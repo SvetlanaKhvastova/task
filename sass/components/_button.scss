@@ -1,0 +1,237 @@
+.button-pop-up {
+  position: fixed;
+  bottom: 0;
+  z-index: 9998;
+  padding: 15px;
+
+  width: 100%;
+
+  border: none;
+  background-color: #ffffff;
+}
+
+.box-btn-list {
+  padding: 15px;
+
+  width: 100%;
+
+  border: none;
+  background-color: #ffffff;
+}
+
+.btn-open-list {
+  display: inline-block;
+
+  width: 100%;
+
+  height: 36px;
+
+  font-size: 14px;
+  line-height: 36px;
+
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  border: none;
+  outline: none;
+
+  cursor: pointer;
+  color: #ffffff;
+  background: #2c8081;
+}
+
+.btn-open {
+  display: inline-block;
+
+  width: 100%;
+
+  height: 36px;
+
+  font-size: 14px;
+  line-height: 36px;
+
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  border: none;
+  outline: none;
+
+  cursor: pointer;
+  color: #ffffff;
+  background: #2c8081;
+}
+
+#salesfire-app {
+  display: none;
+}
+
+.custom-add-to-bag {
+  display: inline-block;
+  margin-top: 24px;
+
+  width: 100%;
+
+  height: 36px;
+
+  font-size: 14px;
+  line-height: 36px;
+
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  color: #ffffff;
+  background: #2c8081;
+
+  border: none;
+  outline: none;
+}
+
+.modal-open {
+  overflow: hidden;
+}
+
+.backdrop-modal {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+
+  width: 100%;
+  height: 100%;
+
+  opacity: 1;
+  overflow-y: scroll;
+
+  background-color: rgba(0, 0, 0, 0.59);
+}
+
+.backdrop-modal.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal-form {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+
+  margin-right: auto;
+  margin-left: auto;
+  padding: 5px 15px 15px 15px;
+
+  background-color: #fff;
+}
+
+.btn-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  padding: 0;
+  margin: 0;
+
+  width: 33px;
+  height: 33px;
+
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #f8f8f8;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  color: #8e8e8e;
+  background-color: #f8f8f8;
+}
+
+.icon-close {
+  fill: currentColor;
+}
+
+.hidden {
+  display: none;
+}
+
+.label-to-pick-color {
+  margin-bottom: 20px;
+  text-align: center;
+
+  font-family: Crimson Text;
+
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 22px;
+
+  color: #000000;
+}
+
+.label-to-pick-size {
+  margin-bottom: 20px;
+  text-align: center;
+
+  font-family: Crimson Text;
+
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 22px;
+
+  color: #000000;
+}
+
+.border-bottom-span {
+  display: flex;
+  margin: auto auto 30px;
+
+  width: 60px;
+  height: 3px;
+
+  border-radius: 7px;
+  background: #8e8e8e;
+}
+
+.controls-box {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.controls-box .controls-btn {
+  width: 32px;
+  height: 32px;
+
+  border-radius: 32px;
+  outline: none;
+  border: none;
+}
+
+.controls-box .controls-btn:not(:last-child) {
+  margin-right: 15px;
+}
+
+.controls-box .active-controls {
+  border: 3px solid #2c8081;
+}
+
+.size-variant {
+  padding: 0 10.5px;
+  font-size: 14px;
+  line-height: 32px;
+
+  outline: none;
+  border: 1px solid #dedede;
+
+  color: #333;
+  background: #fff;
+}
+
+.controls-box .active-size-variant {
+  border: 3px solid #2c8081;
+  color: #fff;
+  background: #2c8081;
+}
+
+.controls-box .size-variant:not(:last-child) {
+  margin-right: 15px;
+}
