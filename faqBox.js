@@ -1,9 +1,9 @@
-let style12 = `
+let style12 = /*html*/ `
  <style>
 .button-pop-up {
   position: fixed;
   bottom: 0;
-  z-index: 9998;
+  z-index: 99988;
   padding: 15px;
 
   width: 100%;
@@ -99,7 +99,7 @@ let style12 = `
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 99999;
 
   width: 100%;
   height: 100%;
@@ -196,10 +196,12 @@ let style12 = `
 
 .controls-box {
   display: flex;
-  margin-bottom: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .controls-box .controls-btn {
+  margin: 0 7px 15px;
   width: 32px;
   height: 32px;
 
@@ -208,16 +210,36 @@ let style12 = `
   border: none;
 }
 
-.controls-box .controls-btn:not(:last-child) {
-  margin-right: 15px;
-}
-
 .controls-box .active-controls {
   border: 3px solid #2c8081;
 }
 
+.color-variant {
+  padding: 0 10.5px;
+  margin: 0 7px 15px;
+
+  min-width: 40px;
+  font-size: 14px;
+  line-height: 32px;
+
+  outline: none;
+  border: 1px solid #dedede;
+
+  color: #333;
+  background: #fff;
+}
+
+.controls-box .active-color-variant {
+  border: 1px solid #2c8081;
+  color: #fff;
+  background: #2c8081;
+}
+
 .size-variant {
   padding: 0 10.5px;
+  margin: 0 7px 15px;
+
+  min-width: 40px;
   font-size: 14px;
   line-height: 32px;
 
@@ -229,20 +251,41 @@ let style12 = `
 }
 
 .controls-box .active-size-variant {
-  border: 3px solid #2c8081;
+  border: 1px solid #2c8081;
   color: #fff;
   background: #2c8081;
 }
 
-.controls-box .size-variant:not(:last-child) {
-  margin-right: 15px;
+.disabled-btn {
+  position: relative;
 }
 
+.disabled-btn::after {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  content: "";
+  width: 34px;
+  border-top: solid 1px #333;
+  transform-origin: center;
+  transform: rotate(45deg);
+}
+
+.disabled-btn::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  content: "";
+  width: 34px;
+  border-top: solid 1px #333;
+  transform-origin: center;
+  transform: rotate(-45deg);
+}
 
   </style>
 `;
 
-let buttons = `
+let buttons = /*html*/ `
    <div class="button-pop-up">
       <button class="btn-open" data-modal-open>add to bag</button>
     </div>
@@ -272,7 +315,7 @@ let buttons = `
     </div>
 `;
 
-let pickColor = `
+let pickColor = /*html*/ `
 
 <h3 class="label-to-pick-color">Pick a color</h3>
 
@@ -282,7 +325,7 @@ let pickColor = `
 </div>
 `;
 
-let pickSize = `
+let pickSize = /*html*/ `
 <h3 class="label-to-pick-size">Pick a size</h3>
 
 <div class="controls-box check-size">
@@ -295,135 +338,192 @@ let pickSize = `
 
 document.head.insertAdjacentHTML("afterbegin", style12);
 
-if (document.querySelector(".product-grid")) {
-  createButtonList();
-}
-if (document.querySelector(".upc")) {
-  openButtonPopUp();
-}
-
-function openButtonPopUp() {
-  document.body.insertAdjacentHTML("afterbegin", buttons);
-  document.querySelector("[data-modal-open]").addEventListener("click", toggleModal);
-  document.querySelector("[data-modal-close]").addEventListener("click", toggleModal);
-
-  document.querySelector(".custom-add-to-bag").addEventListener("click", function () {
-    toggleModal();
-
-    document.querySelector("#page_MainContent_product_detail_btnAddBag").click();
-  });
-
-  function toggleModal() {
-    document.body.classList.toggle("modal-open");
-    document.querySelector("[data-modal]").classList.toggle("is-hidden");
-    document.querySelector("[data-modal-open]").classList.toggle("hidden");
+if (window.location.pathname !== "/departments/the-deli/alcoholic-drinks" && window.location.pathname !== "/departments/beauty/skin-care") {
+  if (document.querySelector(".product-grid")) {
+    createButtonList();
   }
 
-  document.querySelectorAll(".specifics label").forEach((el) => {
-    if (el.innerText.toLowerCase().includes(`colour`)) {
-      document.querySelector(".custom-add-to-bag").insertAdjacentHTML("beforebegin", pickColor);
+  if (document.querySelector(".upc")) {
+    openButtonPopUp();
+  }
 
-      function addSpanColor() {
-        document.querySelectorAll(".variants.form .square").forEach((i) => {
-          let active = "";
-          let bg = i.style.background;
+  function openButtonPopUp() {
+    document.body.insertAdjacentHTML("afterbegin", buttons);
+    document.querySelector("[data-modal-open]").addEventListener("click", toggleModal);
+    document.querySelector("[data-modal-close]").addEventListener("click", toggleModal);
 
-          if (i.closest(`button`).classList.contains("on")) {
-            active = "active-controls";
-          }
+    document.querySelector(".custom-add-to-bag").addEventListener("click", function () {
+      toggleModal();
 
-          document
-            .querySelector(".check-color")
-            .insertAdjacentHTML("beforeend", ` <button type="button" class="controls-btn colors-btn ${active}" style='background: ${bg}'></button>`);
-        });
-      }
+      document.querySelector("#page_MainContent_product_detail_btnAddBag").click();
+    });
 
-      addSpanColor();
+    function toggleModal() {
+      document.body.classList.toggle("modal-open");
+      document.querySelector("[data-modal]").classList.toggle("is-hidden");
+      document.querySelector("[data-modal-open]").classList.toggle("hidden");
     }
 
-    if (el.innerText.toLowerCase().includes(`size`)) {
-      document.querySelector(".custom-add-to-bag").insertAdjacentHTML("beforebegin", pickSize);
+    document.querySelectorAll(".specifics label").forEach((el) => {
+      if (el.innerText.toLowerCase().includes(`colour`)) {
+        document.querySelector(".custom-add-to-bag").insertAdjacentHTML("beforebegin", pickColor);
 
-      let btnSize = el.closest(".specifics").querySelectorAll(".controls button");
+        if (document.querySelectorAll(".variants.form .square").length > 0) {
+          addSpanColor();
+        } else {
+          addBtnColorWithoutSpan();
+        }
 
-      function addSpanSize() {
-        btnSize.forEach((i) => {
-          let active = "";
-          let textContent = i.textContent;
+        function addSpanColor() {
+          document.querySelectorAll(".variants.form .square").forEach((i) => {
+            let active = "";
+            let bg = i.style.background;
+            let dizabledBtn = "";
 
-          if (i.classList.contains("on")) {
-            active = "active-size-variant";
-          }
+            if (i.closest(`button`).classList.contains("on")) {
+              active = "active-controls";
+            }
 
-          document.querySelector(".check-size").insertAdjacentHTML("beforeend", `<button type="button" class="size-variant size-variant-btn ${active}">${textContent}</button>`);
-        });
+            if (i.closest(`button`).getAttribute("disabled")) {
+              dizabledBtn = "disabled-btn";
+            }
+
+            document
+              .querySelector(".check-color")
+              .insertAdjacentHTML("beforeend", ` <button type="button" class="controls-btn colors-btn ${active} ${dizabledBtn}" style='background: ${bg}'></button>`);
+
+            document.querySelectorAll(".disabled-btn").forEach((item) => {
+              item.setAttribute("disabled", "disabled");
+            });
+          });
+        }
+
+        function addBtnColorWithoutSpan() {
+          let btnColorWithoutSpan = el.closest(".specifics").querySelectorAll(".controls button");
+
+          btnColorWithoutSpan.forEach((i) => {
+            let active = "";
+            let textContent = i.textContent;
+            let dizabledBtn = "";
+
+            if (i.classList.contains("on")) {
+              active = "active-color-variant";
+            }
+
+            if (i.getAttribute("disabled")) {
+              dizabledBtn = "disabled-btn";
+            }
+
+            document.querySelector(".check-color").insertAdjacentHTML("beforeend", `<button type="button" class="color-variant colors-btn ${active}">${textContent}</button>`);
+
+            document.querySelectorAll(".disabled-btn").forEach((item) => {
+              item.setAttribute("disabled", "disabled");
+            });
+          });
+        }
       }
 
-      addSpanSize();
+      if (el.innerText.toLowerCase().includes(`size`)) {
+        document.querySelector(".custom-add-to-bag").insertAdjacentHTML("beforebegin", pickSize);
+
+        let btnSize = el.closest(".specifics").querySelectorAll(".controls button");
+
+        function addSpanSize() {
+          btnSize.forEach((i) => {
+            let active = "";
+            let textContent = i.textContent;
+            let dizabledBtn = "";
+
+            if (i.classList.contains("on")) {
+              active = "active-size-variant";
+            }
+
+            if (i.closest(`button`).getAttribute("disabled")) {
+              dizabledBtn = "disabled-btn";
+            }
+
+            document
+              .querySelector(".check-size")
+              .insertAdjacentHTML("beforeend", `<button type="button" class="size-variant size-variant-btn ${dizabledBtn} ${active}">${textContent}</button>`);
+
+            document.querySelectorAll(".disabled-btn").forEach((item) => {
+              item.setAttribute("disabled", "disabled");
+            });
+          });
+        }
+
+        addSpanSize();
+      }
+    });
+
+    document.querySelectorAll(".colors-btn").forEach((color, index) => {
+      let activeСontrols = "active-controls";
+
+      if (document.querySelector(".active-color-variant")) {
+        activeСontrols = "active-color-variant";
+      }
+
+      color.addEventListener("click", function () {
+        if (!color.classList.contains(`${activeСontrols}`)) {
+          document.querySelector(`.${activeСontrols}`).classList.remove(`${activeСontrols}`);
+          color.classList.add(`${activeСontrols}`);
+
+          document.querySelectorAll(".specifics label").forEach((el) => {
+            if (el.innerText.toLowerCase().includes(`colour`)) {
+              el.closest(`.specifics`).querySelectorAll("button")[index].click();
+            }
+          });
+        }
+      });
+    });
+
+    document.querySelectorAll(".size-variant-btn").forEach((size, index) => {
+      size.addEventListener("click", function () {
+        if (!size.classList.contains("active-size-variant")) {
+          document.querySelector(".active-size-variant").classList.remove("active-size-variant");
+          size.classList.add("active-size-variant");
+
+          document.querySelectorAll(".specifics label").forEach((el) => {
+            if (el.innerText.toLowerCase().includes(`size`)) {
+              el.closest(".specifics").querySelectorAll(".controls button")[index].click();
+            }
+          });
+        }
+      });
+    });
+
+    function scroll() {
+      window.addEventListener("scroll", () => {
+        let scroll = document.documentElement.clientHeight;
+        let offset = document.querySelector("#page_MainContent_product_detail_btnAddBag").getBoundingClientRect().top;
+
+        if (scroll > offset) {
+          document.querySelector(".button-pop-up").classList.add("hidden");
+        }
+
+        // console.log(`object`, document.querySelector("#page_MainContent_product_detail_btnAddBag").getBoundingClientRect());
+      });
     }
-  });
-
-  document.querySelectorAll(".colors-btn").forEach((color, index) => {
-    color.addEventListener("click", function () {
-      if (!color.classList.contains("active-controls")) {
-        document.querySelector(".active-controls").classList.remove("active-controls");
-        color.classList.add("active-controls");
-
-        document.querySelectorAll(".specifics label").forEach((el) => {
-          if (el.innerText.toLowerCase().includes(`colour`)) {
-            el.closest(`.specifics`).querySelectorAll("button")[index].click();
-          }
-        });
-      }
-    });
-  });
-
-  document.querySelectorAll(".size-variant-btn").forEach((size, index) => {
-    size.addEventListener("click", function () {
-      if (!size.classList.contains("active-size-variant")) {
-        document.querySelector(".active-size-variant").classList.remove("active-size-variant");
-        size.classList.add("active-size-variant");
-
-        document.querySelectorAll(".specifics label").forEach((el) => {
-          if (el.innerText.toLowerCase().includes(`size`)) {
-            el.closest(".specifics").querySelectorAll(".controls button")[index].click();
-          }
-        });
-      }
-    });
-  });
-
-  function scroll() {
-    window.addEventListener("scroll", () => {
-      let scroll = document.documentElement.clientHeight;
-      let offset = document.querySelector("#page_MainContent_product_detail_btnAddBag").getBoundingClientRect().top;
-
-      if (scroll > offset) {
-        document.querySelector(".button-pop-up").classList.add("hidden");
-      }
-
-      // console.log(`object`, document.querySelector("#page_MainContent_product_detail_btnAddBag").getBoundingClientRect());
-    });
-  }
-  scroll();
-}
-
-function createButtonList() {
-  let products = "products";
-
-  if (document.querySelector(".ais-Hits-list")) {
-    products = "ais-Hits-list";
+    scroll();
   }
 
-  document.querySelectorAll(`.${products}`).forEach((item) => {
-    item.querySelectorAll("li").forEach((i) => {
-      i.style.justifyContent = "space-between";
-      i.insertAdjacentHTML(
-        "beforeend",
-        `<div class="box-btn-list">
-      <button class="btn-open-list">add to bag</button>
-    </div>`
-      );
+  function createButtonList() {
+    let products = "products";
+
+    if (document.querySelector(".ais-Hits-list")) {
+      products = "ais-Hits-list";
+    }
+
+    document.querySelectorAll(`.${products}`).forEach((item) => {
+      item.querySelectorAll("li").forEach((i) => {
+        i.style.justifyContent = "space-between";
+        i.insertAdjacentHTML(
+          "beforeend",
+          `<div class="box-btn-list">
+        <button class="btn-open-list">add to bag</button>
+      </div>`
+        );
+      });
     });
-  });
+  }
 }
