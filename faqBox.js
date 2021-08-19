@@ -1,9 +1,22 @@
 let style12 = /*html*/ `
  <style>
+#navxs {
+  z-index: 1060 !important;
+}
+
+#scrolltop {
+  z-index: 1050 !important;
+}
+
+#search-modal {
+  z-index: 1054;
+}
+
 .button-pop-up {
   position: fixed;
   bottom: 0;
-  z-index: 99988;
+  // z-index: 99988;
+  z-index: 1052;
   padding: 15px;
 
   width: 100%;
@@ -99,7 +112,8 @@ let style12 = /*html*/ `
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: 99999;
+  // z-index: 99999;
+  z-index: 1055;
 
   width: 100%;
   height: 100%;
@@ -260,13 +274,18 @@ let style12 = /*html*/ `
   position: relative;
 }
 
+// .dizabled-background {
+//   background: #f9f9f9 !important;
+// }
+
 .disabled-btn::after {
   position: absolute;
   top: 50%;
   left: 0;
   content: "";
-  width: 34px;
-  border-top: solid 1px #333;
+  max-width: 32px;
+  width: 100%;
+  border-top: solid 2px #333;
   transform-origin: center;
   transform: rotate(45deg);
 }
@@ -276,8 +295,38 @@ let style12 = /*html*/ `
   top: 50%;
   left: 0;
   content: "";
-  width: 34px;
-  border-top: solid 1px #333;
+  max-width: 32px;
+  width: 100%;
+  border-top: solid 2px #333;
+  transform-origin: center;
+  transform: rotate(-45deg);
+}
+
+.dizabled-background {
+  position: relative;
+  background: #f9f9f9 !important;
+}
+
+.dizabled-background::after {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  content: "";
+  max-width: 32px;
+  width: 100%;
+  border-top: solid 2px #333;
+  transform-origin: center;
+  transform: rotate(45deg);
+}
+
+.dizabled-background::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  content: "";
+  max-width: 32px;
+  width: 100%;
+  border-top: solid 2px #333;
   transform-origin: center;
   transform: rotate(-45deg);
 }
@@ -285,12 +334,8 @@ let style12 = /*html*/ `
   </style>
 `;
 
-let buttons = /*html*/ `
-   <div class="button-pop-up">
-      <button class="btn-open" data-modal-open>add to bag</button>
-    </div>
-
-    <div class="backdrop-modal is-hidden" data-modal>
+let modalForm = /*html*/ `
+<div class="backdrop-modal is-hidden" data-modal>
       <form class="modal-form">
        <span class="border-bottom-span"></span>
 
@@ -336,194 +381,401 @@ let pickSize = /*html*/ `
 </div>
 `;
 
-document.head.insertAdjacentHTML("afterbegin", style12);
+let btnAddToBag = /*html*/ `
+<div class="box-btn-list">
+ <button class="btn-open-list" data-modal-open>add to bag</button>
+</div>`;
 
-if (window.location.pathname !== "/departments/the-deli/alcoholic-drinks" && window.location.pathname !== "/departments/beauty/skin-care") {
-  if (document.querySelector(".product-grid")) {
-    createButtonList();
-  }
+document.head.insertAdjacentHTML("afterbegin", style12);
+document.body.insertAdjacentHTML("afterbegin", modalForm);
+
+if (document.querySelector(".product-grid")) {
+  createButtonList();
+}
+
+if (document.querySelector(".upc")) {
+  openButtonPopUp();
+}
+
+function toggleModal() {
+  document.body.classList.toggle("modal-open");
+  document.querySelector("[data-modal]").classList.toggle("is-hidden");
 
   if (document.querySelector(".upc")) {
-    openButtonPopUp();
+    document.querySelector("[data-modal-open]").classList.toggle("hidden");
+  }
+}
+
+document.querySelector("[data-modal-close]").addEventListener("click", function () {
+  let action = "Click Exit cross button PLP";
+
+  if (document.querySelector(".upc")) {
+    action = "Click Exit cross button sticky block";
   }
 
-  function openButtonPopUp() {
-    document.body.insertAdjacentHTML("afterbegin", buttons);
-    document.querySelector("[data-modal-open]").addEventListener("click", toggleModal);
-    document.querySelector("[data-modal-close]").addEventListener("click", toggleModal);
+  //
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp — Stiсky button mobile",
+    eventAction: action,
+  });
+  //
 
-    document.querySelector(".custom-add-to-bag").addEventListener("click", function () {
-      toggleModal();
+  toggleModal();
+});
 
-      document.querySelector("#page_MainContent_product_detail_btnAddBag").click();
+document.querySelector(".custom-add-to-bag").addEventListener("click", function () {
+  let action = "Click Choose button PLP";
+
+  if (document.querySelector(".upc")) {
+    action = "Click Add to bag button sticky block";
+    document.querySelector("#page_MainContent_product_detail_btnAddBag").click();
+  }
+
+  //
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp — Stiсky button mobile",
+    eventAction: action,
+  });
+  //
+
+  toggleModal();
+});
+
+function openButtonPopUp() {
+  document.body.insertAdjacentHTML(
+    "afterbegin",
+    ` <div class="button-pop-up">
+      <button class="btn-open" data-modal-open>add to bag</button>
+    </div>`
+  );
+
+  document.querySelector("[data-modal-open]").addEventListener("click", function () {
+    //
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp — Stiсky button mobile",
+      eventAction: "Click Add to bag button sticky block",
     });
+    //
 
-    function toggleModal() {
-      document.body.classList.toggle("modal-open");
-      document.querySelector("[data-modal]").classList.toggle("is-hidden");
-      document.querySelector("[data-modal-open]").classList.toggle("hidden");
-    }
+    toggleModal();
+  });
 
-    document.querySelectorAll(".specifics label").forEach((el) => {
-      if (el.innerText.toLowerCase().includes(`colour`)) {
-        document.querySelector(".custom-add-to-bag").insertAdjacentHTML("beforebegin", pickColor);
+  document.querySelectorAll(".specifics label").forEach((el) => {
+    if (el.innerText.toLowerCase().includes(`colour`)) {
+      document.querySelector(".custom-add-to-bag").insertAdjacentHTML("beforebegin", pickColor);
 
-        if (document.querySelectorAll(".variants.form .square").length > 0) {
-          addSpanColor();
-        } else {
-          addBtnColorWithoutSpan();
-        }
+      if (document.querySelectorAll(".variants.form .square").length > 0) {
+        addSpanColor();
+        addBtnColorWithoutSpan();
+      } else {
+        addBtnColorWithoutSpan();
+      }
 
-        function addSpanColor() {
-          document.querySelectorAll(".variants.form .square").forEach((i) => {
-            let active = "";
-            let bg = i.style.background;
-            let dizabledBtn = "";
+      function addSpanColor() {
+        document.querySelectorAll(".variants.form .square").forEach((i) => {
+          let active = "";
+          let bg = i.style.background;
+          let dizabledBtn = "";
 
-            if (i.closest(`button`).classList.contains("on")) {
-              active = "active-controls";
-            }
+          if (i.closest(`button`).classList.contains("on")) {
+            active = "active-controls";
+          }
 
-            if (i.closest(`button`).getAttribute("disabled")) {
-              dizabledBtn = "disabled-btn";
-            }
+          if (i.closest(`button`).getAttribute("disabled")) {
+            dizabledBtn = "disabled-btn";
+          }
 
-            document
-              .querySelector(".check-color")
-              .insertAdjacentHTML("beforeend", ` <button type="button" class="controls-btn colors-btn ${active} ${dizabledBtn}" style='background: ${bg}'></button>`);
+          document
+            .querySelector(".check-color")
+            .insertAdjacentHTML("beforeend", ` <button type="button" class="controls-btn colors-btn ${active} ${dizabledBtn}" style='background: ${bg}'></button>`);
 
-            document.querySelectorAll(".disabled-btn").forEach((item) => {
-              item.setAttribute("disabled", "disabled");
-            });
+          document.querySelectorAll(".disabled-btn").forEach((item) => {
+            item.setAttribute("disabled", "disabled");
           });
-        }
+        });
+      }
 
-        function addBtnColorWithoutSpan() {
-          let btnColorWithoutSpan = el.closest(".specifics").querySelectorAll(".controls button");
+      function addBtnColorWithoutSpan() {
+        let btnColorWithoutSpan = el.closest(".specifics").querySelectorAll(".controls button");
 
-          btnColorWithoutSpan.forEach((i) => {
+        btnColorWithoutSpan.forEach((i) => {
+          if (i.children.length === 0) {
             let active = "";
             let textContent = i.textContent;
-            let dizabledBtn = "";
+            let dizabledBackground = "";
 
             if (i.classList.contains("on")) {
               active = "active-color-variant";
             }
 
             if (i.getAttribute("disabled")) {
-              dizabledBtn = "disabled-btn";
+              dizabledBackground = "dizabled-background";
             }
 
             document.querySelector(".check-color").insertAdjacentHTML("beforeend", `<button type="button" class="color-variant colors-btn ${active}">${textContent}</button>`);
 
-            document.querySelectorAll(".disabled-btn").forEach((item) => {
+            document.querySelectorAll(".dizabled-background").forEach((item) => {
               item.setAttribute("disabled", "disabled");
             });
-          });
-        }
+          }
+        });
       }
-
-      if (el.innerText.toLowerCase().includes(`size`)) {
-        document.querySelector(".custom-add-to-bag").insertAdjacentHTML("beforebegin", pickSize);
-
-        let btnSize = el.closest(".specifics").querySelectorAll(".controls button");
-
-        function addSpanSize() {
-          btnSize.forEach((i) => {
-            let active = "";
-            let textContent = i.textContent;
-            let dizabledBtn = "";
-
-            if (i.classList.contains("on")) {
-              active = "active-size-variant";
-            }
-
-            if (i.closest(`button`).getAttribute("disabled")) {
-              dizabledBtn = "disabled-btn";
-            }
-
-            document
-              .querySelector(".check-size")
-              .insertAdjacentHTML("beforeend", `<button type="button" class="size-variant size-variant-btn ${dizabledBtn} ${active}">${textContent}</button>`);
-
-            document.querySelectorAll(".disabled-btn").forEach((item) => {
-              item.setAttribute("disabled", "disabled");
-            });
-          });
-        }
-
-        addSpanSize();
-      }
-    });
-
-    document.querySelectorAll(".colors-btn").forEach((color, index) => {
-      let activeСontrols = "active-controls";
-
-      if (document.querySelector(".active-color-variant")) {
-        activeСontrols = "active-color-variant";
-      }
-
-      color.addEventListener("click", function () {
-        if (!color.classList.contains(`${activeСontrols}`)) {
-          document.querySelector(`.${activeСontrols}`).classList.remove(`${activeСontrols}`);
-          color.classList.add(`${activeСontrols}`);
-
-          document.querySelectorAll(".specifics label").forEach((el) => {
-            if (el.innerText.toLowerCase().includes(`colour`)) {
-              el.closest(`.specifics`).querySelectorAll("button")[index].click();
-            }
-          });
-        }
-      });
-    });
-
-    document.querySelectorAll(".size-variant-btn").forEach((size, index) => {
-      size.addEventListener("click", function () {
-        if (!size.classList.contains("active-size-variant")) {
-          document.querySelector(".active-size-variant").classList.remove("active-size-variant");
-          size.classList.add("active-size-variant");
-
-          document.querySelectorAll(".specifics label").forEach((el) => {
-            if (el.innerText.toLowerCase().includes(`size`)) {
-              el.closest(".specifics").querySelectorAll(".controls button")[index].click();
-            }
-          });
-        }
-      });
-    });
-
-    function scroll() {
-      window.addEventListener("scroll", () => {
-        let scroll = document.documentElement.clientHeight;
-        let offset = document.querySelector("#page_MainContent_product_detail_btnAddBag").getBoundingClientRect().top;
-
-        if (scroll > offset) {
-          document.querySelector(".button-pop-up").classList.add("hidden");
-        }
-
-        // console.log(`object`, document.querySelector("#page_MainContent_product_detail_btnAddBag").getBoundingClientRect());
-      });
     }
-    scroll();
+
+    if (el.innerText.toLowerCase().includes(`size`)) {
+      document.querySelector(".custom-add-to-bag").insertAdjacentHTML("beforebegin", pickSize);
+
+      let btnSize = el.closest(".specifics").querySelectorAll(".controls button");
+
+      function addSpanSize() {
+        btnSize.forEach((i) => {
+          let active = "";
+          let textContent = i.textContent;
+          let dizabledBackground = "";
+
+          if (i.classList.contains("on")) {
+            active = "active-size-variant";
+          }
+
+          if (i.closest(`button`).getAttribute("disabled")) {
+            dizabledBackground = "dizabled-background";
+          }
+
+          document
+            .querySelector(".check-size")
+            .insertAdjacentHTML("beforeend", `<button type="button" class="size-variant size-variant-btn ${dizabledBackground} ${active}">${textContent}</button>`);
+
+          document.querySelectorAll(".dizabled-background").forEach((item) => {
+            item.setAttribute("disabled", "disabled");
+          });
+        });
+      }
+
+      addSpanSize();
+    }
+  });
+
+  document.querySelectorAll(".colors-btn").forEach((color, index) => {
+    let activeСontrols = "active-controls";
+
+    if (document.querySelector(".active-color-variant")) {
+      activeСontrols = "active-color-variant";
+    }
+
+    color.addEventListener("click", function () {
+      if (!color.classList.contains(`${activeСontrols}`)) {
+        document.querySelector(`.${activeСontrols}`).classList.remove(`${activeСontrols}`);
+        color.classList.add(`${activeСontrols}`);
+
+        document.querySelectorAll(".specifics label").forEach((el) => {
+          if (el.innerText.toLowerCase().includes(`colour`)) {
+            el.closest(`.specifics`).querySelectorAll("button")[index].click();
+          }
+        });
+      }
+    });
+  });
+
+  document.querySelectorAll(".size-variant-btn").forEach((size, index) => {
+    size.addEventListener("click", function () {
+      if (!size.classList.contains("active-size-variant")) {
+        document.querySelector(".active-size-variant").classList.remove("active-size-variant");
+        size.classList.add("active-size-variant");
+
+        document.querySelectorAll(".specifics label").forEach((el) => {
+          if (el.innerText.toLowerCase().includes(`size`)) {
+            el.closest(".specifics").querySelectorAll(".controls button")[index].click();
+          }
+        });
+      }
+    });
+  });
+
+  function scroll() {
+    window.addEventListener("scroll", () => {
+      //
+      // window.dataLayer = window.dataLayer || [];
+      // dataLayer.push({
+      //   event: "event-to-ga",
+      //   eventCategory: "Exp — Stiсky button mobile",
+      //   eventAction: "Scroll depth PDP",
+      //   eventLabel: "{{Scroll Depth Threshold}} {{Scroll Depth Units}}",
+      // });
+      //
+
+      let scroll = document.documentElement.clientHeight;
+      let offset = document.querySelector("#page_MainContent_product_detail_btnAddBag").getBoundingClientRect().top;
+
+      if (scroll > offset) {
+        document.querySelector(".button-pop-up").classList.add("hidden");
+      }
+    });
+  }
+  scroll();
+
+  // document.querySelector("#page_MainContent_product_detail_btnAddBag").addEventListener("click", function () {
+  //   //
+  //   window.dataLayer = window.dataLayer || [];
+  //   dataLayer.push({
+  //     event: "event-to-ga",
+  //     eventCategory: "Exp — Stiсky button mobile",
+  //     eventAction: "Click Add to bag button PDP",
+  //   });
+  //   //
+
+  // });
+}
+
+function createButtonList() {
+  let parentDiv = ".product-grid";
+
+  if (document.querySelector(".ais-Hits-list")) {
+    parentDiv = "#hits";
   }
 
-  function createButtonList() {
-    let products = "products";
-
-    if (document.querySelector(".ais-Hits-list")) {
-      products = "ais-Hits-list";
-    }
-
-    document.querySelectorAll(`.${products}`).forEach((item) => {
+  document.querySelectorAll(`article ${parentDiv}`).forEach((item) => {
+    if (!document.querySelector(".btn-open-list")) {
       item.querySelectorAll("li").forEach((i) => {
         i.style.justifyContent = "space-between";
-        i.insertAdjacentHTML(
-          "beforeend",
-          `<div class="box-btn-list">
-        <button class="btn-open-list">add to bag</button>
-      </div>`
-        );
+        i.style.display = "flex";
+        i.insertAdjacentHTML("beforeend", btnAddToBag);
       });
+    }
+  });
+
+  clickListener();
+}
+
+function createButtonListSearch() {
+  document.querySelectorAll(`#search-modal`).forEach((item) => {
+    if (!document.querySelector("#search-modal .ais-Hits-item:first-child .btn-open-list")) {
+      item.querySelectorAll("li").forEach((i) => {
+        i.style.justifyContent = "space-between";
+        i.style.display = "flex";
+        i.insertAdjacentHTML("beforeend", btnAddToBag);
+      });
+    }
+  });
+
+  clickListener();
+}
+
+function clickListener() {
+  document.querySelectorAll(".btn-open-list").forEach((btn) => {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      //
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push({
+        event: "event-to-ga",
+        eventCategory: "Exp — Stiсky button mobile",
+        eventAction: "Click Add to bag button PLP",
+      });
+      //
+
+      toggleModal();
+    });
+  });
+}
+
+//
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+  event: "event-to-ga",
+  eventCategory: "Exp — Stiсky button mobile",
+  eventAction: "loaded",
+});
+//
+
+(function (h, o, t, j, a, r) {
+  h.hj =
+    h.hj ||
+    function () {
+      (h.hj.q = h.hj.q || []).push(arguments);
+    };
+  h._hjSettings = { hjid: 2369936, hjsv: 6 };
+  a = o.getElementsByTagName("head")[0];
+  r = o.createElement("script");
+  r.async = 1;
+  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+  a.appendChild(r);
+})(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
+window.hj =
+  window.hj ||
+  function () {
+    (hj.q = hj.q || []).push(arguments);
+  };
+hj("trigger", "sticky_button_mobile");
+
+//
+let scriptCustom = document.createElement("script");
+scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js";
+scriptCustom.async = false;
+document.head.appendChild(scriptCustom);
+
+setTimeout(function () {
+  $(".modal-form").swipe({
+    swipe: function (event, direction, distance, duration, fingerCount, fingerData) {
+      if (direction === "down") {
+        toggleModal();
+      }
+    },
+  });
+}, 500);
+
+//
+
+let observer = new MutationObserver(() => {
+  if (document.querySelector("#search-modal")) {
+    observer.disconnect();
+    createButtonListSearch();
+    observer.observe(document.querySelector("#search-modal"), {
+      childList: true,
+      subtree: true,
     });
   }
-}
+});
+
+observer.observe(document.querySelector("#search-modal"), {
+  childList: true,
+  subtree: true,
+});
+
+let mut = new MutationObserver((muts) => {
+  mut.disconnect();
+  createButtonList();
+  mut.observe(document.querySelector("article"), {
+    childList: true,
+    subtree: true,
+  });
+});
+
+mut.observe(document.querySelector("article"), {
+  childList: true,
+  subtree: true,
+});
+
+//
+
+// let bearerToken = "";
+// function getFetch() {
+//   let url = `https://api.divendo/store/products`;
+//   let result = fetch(url)
+//     .then((response) => {
+//       return response.json();
+//     })
+//     .then((store) => {
+//       return console.log(store.products);
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//     });
+
+//   return result;
+// }
