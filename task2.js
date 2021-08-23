@@ -1,136 +1,186 @@
 let styleSet = /*html*/ `
 <style>
 
+
+.upc {
+  text-align: center;
+}
+
+@media (min-width: 992px) {
+  .upc {
+    text-align: start;
+  }
+
+  #product p.summ {
+    max-width: 300px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+  .upc {
+    max-width: 200px;
+  }
+
+   #product p.summ {
+    max-width: 190px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1301px) {
+  .controls {
+    max-width: 200px;
+  }
+}
+
 .hidden {
   display: none;
 }
 
-.accent-text-random{
-color:#E62B8A;
+.accent-text-random {
+  color: #e62b8a;
 }
 
-.price-more{
-font-weight:700;
+.price-more {
+  font-weight: 700;
 }
 
-.delivery-box-mobile{
-display: flex;
-justify-content:center;
-margin-top:14px;
-margin-bottom:13px;
-font-weight: 400;
-font-size: 14px;
-line-height: 1;
-align-items: center;
-text-align: center;
-color: #2C8081;
+.delivery-box-mobile {
+  justify-content: center;
+  margin-top: 28px;
+  margin-bottom: 28px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1;
+  align-items: center;
+  text-align: center;
+  color: #2c8081;
 }
 
- .text-block{
-margin-left: 0.7em;
-}
-    
-.text-block-more{
-line-height: 1.7;
-width:208px;
-margin-left: 1em;
-text-align: start;
+.text-block-more {
+  line-height: 1.7;
+  text-align: center;
 }
 
-.information-box-mobile{
-padding:0;
-margin-top:20px;
-margin-bottom:28px;
-text-align: center;
-list-style: none;
-font-weight: 400;
-font-size: 12px;
-line-height: 1.17;
-color: #8E8E8E;
+.delivery-svg-mobile {
+  margin-right: 0.7em;
+  vertical-align: text-bottom;
 }
 
-.list-text:first-child{
-margin-bottom:8px;
+.delivery-svg-mobile-more {
+  margin-right: 5px;
+  vertical-align: text-bottom;
 }
 
-.params-span{
-font-weight: 600;
-font-size: 13px;
+.information-box-mobile {
+  padding: 0;
+  margin-top: 20px;
+  margin-bottom: 28px;
+  text-align: center;
+  list-style: none;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.17;
+  color: #8e8e8e;
 }
 
-<!-- Desktop -->
+.list-text:first-child {
+  margin-bottom: 8px;
+}
+
+.params-span {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+/* Desktop */
 
 .price {
-position: relative;
+  position: relative;
 }
 
-.controls{
-align-items:center;
+.controls {
+  align-items: center;
 }
 
-.delivery-box{
-display: block;
-position: absolute;
-top: 0;
-right: 0;
-padding:20px;
-width:180px;
-border:2px dashed #E5E5E5;
 
-font-weight: 400;
-font-size: 14px;
-line-height: 1.4;
-align-items: center;
-text-align: center;
-color: #2C8081;
+
+.delivery-box {
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 180px;
+  right: 0;
+  padding: 20px;
+  border: 2px dashed #e5e5e5;
+
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.4;
+  align-items: center;
+  text-align: center;
+  color: #2c8081;
 }
 
-.text-span{
-display: block;
-color:#E62B8A;
+
+
+.delivery-svg {
+  vertical-align: baseline;
 }
 
-.information-box{
-text-align:start;
-margin:0;
-padding:0;
-list-style: none;
-font-weight: 400;
-font-size: 12px;
-line-height: 1.17;
-color: #8E8E8E;
+.text-span {
+  display: block;
+  color: #e62b8a;
 }
+
+.information-box {
+  text-align: start;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.17;
+  color: #8e8e8e;
+}
+
 
 </style>
 `;
 
 document.head.insertAdjacentHTML("beforeend", styleSet);
 
-hurryUp();
+// getRandomIntInclusive
+function getRandomIntInclusive(min, max) {
+  minNamber = Math.ceil(min);
+  maxNamber = Math.floor(max);
+  return Math.floor(Math.random() * (maxNamber - minNamber + 1) + minNamber); //max and min includes
+}
 
-if (window.innerWidth <= 768) {
-  if (document.querySelector("delivery-box") || document.querySelector("information-box")) {
-    document.querySelector("delivery-box").classList.add = "hidden";
-    document.querySelector("information-box").classList.add = "hidden";
+let randomeCount = getRandomIntInclusive(1, 9);
+
+hurryUp();
+renderDelivery();
+
+function renderDelivery() {
+  if (window.innerWidth <= 768) {
+    if (document.querySelector("delivery-box") || document.querySelector("information-box")) {
+      document.querySelector("delivery-box").classList.add("hidden");
+      document.querySelector("information-box").classList.add("hidden");
+    }
+    mobileVersion();
+  } else {
+    if (document.querySelector("delivery-box-mobile") || document.querySelector("information-box-mobile")) {
+      document.querySelector("delivery-box-mobile").classList.add("hidden");
+      document.querySelector("information-box-mobile").classList.add("hidden");
+    }
+    desktopVersion();
   }
-  mobileVersion();
-} else {
-  if (document.querySelector("delivery-box-mobile") || document.querySelector("information-box-mobile")) {
-    document.querySelector("delivery-box-mobile").classList.add = "hidden";
-    document.querySelector("information-box-mobile").classList.add = "hidden";
-  }
-  desktopVersion();
 }
 
 // Hurry up
 function hurryUp() {
   if (document.querySelector(".stock.instock")) {
-    document.querySelector(".stock.instock").innerHTML = `<p>Hurry up! Only <span class="accent-text-random">${getRandomIntInclusive(1, 9)} left</span> in Stock.</p>`;
-  }
-  function getRandomIntInclusive(min, max) {
-    minNamber = Math.ceil(min);
-    maxNamber = Math.floor(max);
-    return Math.floor(Math.random() * (maxNamber - minNamber + 1) + minNamber); //max and min includes
+    document.querySelector(".stock.instock").innerHTML = `<p>Hurry up! Only <span class="accent-text-random">${randomeCount} left</span> in Stock.</p>`;
   }
 }
 
@@ -147,27 +197,19 @@ function includesText(text, informationBox) {
 
 // Mobile
 function mobileVersion() {
-  console.log(`mobileVersion`);
-
   // deliveryBoxMobile
   let deliveryBoxMoreMobile = /*html*/ `
 <div class="delivery-box-mobile">
-  <svg width="30" height="20.62" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path
-      d="M0 0v1.875h17.813v14.063H12.04c-.418-1.612-1.867-2.813-3.604-2.813-1.736 0-3.185 1.2-3.603 2.813H3.75V11.25H1.875v6.563h2.959c.418 1.611 1.867 2.812 3.604 2.812 1.736 0 3.185-1.2 3.603-2.813h7.793c.418 1.612 1.867 2.813 3.604 2.813 1.736 0 3.185-1.2 3.603-2.813H30v-7.646l-.06-.147-1.874-5.625-.203-.644h-8.175V0H0zm.938 3.75v1.875h8.437V3.75H.937zm18.75 1.875h6.825l1.612 4.805v5.508h-1.084c-.418-1.612-1.867-2.813-3.604-2.813-1.736 0-3.185 1.2-3.603 2.813h-.146V5.624zM1.875 7.5v1.875H7.5V7.5H1.875zM8.438 15a1.86 1.86 0 011.874 1.875 1.86 1.86 0 01-1.874 1.875 1.86 1.86 0 01-1.876-1.875A1.86 1.86 0 018.438 15zm15 0a1.86 1.86 0 011.875 1.875 1.86 1.86 0 01-1.875 1.875 1.86 1.86 0 01-1.875-1.875A1.86 1.86 0 0123.438 15z"
-      fill="#2C8081"
-    />
-  </svg>
-  <p class="text-block-more">
-    You've got to spend <span class="price-more">£30</span> more to get <span class="accent-text-random">FREE SHIPPING</span> for this order
+   <p class="text-block-more">You've got to spend <span class="price-more">£30</span> more <br><img src="https://conversionratestore.github.io/projects/jarrold/img/delivery.svg" alt="delivery-car" class="delivery-svg-mobile-more"> to get <span class="accent-text-random">FREE SHIPPING</span> for this order
   </p>
 </div>
 `;
 
   let deliveryBoxMobile = /*html*/ `
 <div class="delivery-box-mobile">
-    <svg width="30" height="20.62" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 0v1.875h17.813v14.063H12.04c-.418-1.612-1.867-2.813-3.604-2.813-1.736 0-3.185 1.2-3.603 2.813H3.75V11.25H1.875v6.563h2.959c.418 1.611 1.867 2.812 3.604 2.812 1.736 0 3.185-1.2 3.603-2.813h7.793c.418 1.612 1.867 2.813 3.604 2.813 1.736 0 3.185-1.2 3.603-2.813H30v-7.646l-.06-.147-1.874-5.625-.203-.644h-8.175V0H0zm.938 3.75v1.875h8.437V3.75H.937zm18.75 1.875h6.825l1.612 4.805v5.508h-1.084c-.418-1.612-1.867-2.813-3.604-2.813-1.736 0-3.185 1.2-3.603 2.813h-.146V5.624zM1.875 7.5v1.875H7.5V7.5H1.875zM8.438 15a1.86 1.86 0 011.874 1.875 1.86 1.86 0 01-1.874 1.875 1.86 1.86 0 01-1.876-1.875A1.86 1.86 0 018.438 15zm15 0a1.86 1.86 0 011.875 1.875 1.86 1.86 0 01-1.875 1.875 1.86 1.86 0 01-1.875-1.875A1.86 1.86 0 0123.438 15z" fill="#2C8081"/></svg>
-    <p class="text-block">You've got <span class="accent-text-random">FREE SHIPPING</span> for this order</p>
+   <p class="text-block">
+   <img src="https://conversionratestore.github.io/projects/jarrold/img/delivery.svg" alt="delivery-car" class="delivery-svg-mobile">
+    You've got <span class="accent-text-random">FREE SHIPPING</span> for this order</p>
 </div>
 `;
 
@@ -178,15 +220,33 @@ function mobileVersion() {
       now = "now";
     }
 
-    //   let b = +document.querySelector("dd.total").innerText.split("£")[1];
-    if (document.querySelector(`.${now}`).innerText.split("£")[1] < 50) {
-      // NOT FREE SHIPPING
-      document.querySelector(".upc").insertAdjacentHTML("afterend", deliveryBoxMoreMobile);
-      let a = 50 - document.querySelector(`.${now}`).innerText.split("£")[1];
-      document.querySelector(".price-more").innerText = `£${a}`;
+    if (document.querySelector("#page_header_CPR span").textContent !== `0`) {
+      fetch("https://www.jarrold.co.uk/basket")
+        .then((res) => res.text())
+        .then((data) => {
+          let customDocument = new DOMParser().parseFromString(data, "text/html");
+          let customSumm = +document.querySelector(`.${now}`).innerText.split("£")[1] + +customDocument.querySelector("dd.total").innerText.split("£")[1];
+
+          if (customSumm < 50) {
+            // NOT FREE SHIPPING
+            document.querySelector(".upc").insertAdjacentHTML("afterend", deliveryBoxMoreMobile);
+            let summDiff = 50 - customSumm;
+            document.querySelector(".price-more").innerText = `£${summDiff.toFixed(2)}`;
+          } else {
+            // FREE SHIPPING
+            document.querySelector(".upc").insertAdjacentHTML("afterend", deliveryBoxMobile);
+          }
+        });
     } else {
-      // FREE SHIPPING
-      document.querySelector(".upc").insertAdjacentHTML("afterend", deliveryBoxMobile);
+      if (document.querySelector(`.${now}`).innerText.split("£")[1] < 50) {
+        // NOT FREE SHIPPING
+        document.querySelector(".upc").insertAdjacentHTML("afterend", deliveryBoxMoreMobile);
+        let summDiff = 50 - document.querySelector(`.${now}`).innerText.split("£")[1];
+        document.querySelector(".price-more").innerText = `£${summDiff.toFixed(2)}`;
+      } else {
+        // FREE SHIPPING
+        document.querySelector(".upc").insertAdjacentHTML("afterend", deliveryBoxMobile);
+      }
     }
   }
 
@@ -200,30 +260,27 @@ function mobileVersion() {
   }
 
   if (document.querySelector(".information-box-mobile")) {
-    if (document.querySelector(".information-box-mobile").children.length === 0) {
-      document.querySelector(".information-box-mobile").classList.add = "hidden";
+    if (!document.querySelector(".information-box-mobile li")) {
+      document.querySelector(".information-box-mobile").classList.add("hidden");
     }
   }
 }
 
 // Desktop;
 function desktopVersion() {
-  console.log(`desktopVersion`);
-
   // deliveryBox
   let deliveryBoxMore = /*html*/ `
 <div class="delivery-box">
-    <svg width="30" height="21" fill="none" xmlns="http://www.w3.org/2000/svg" class="svg-delivery"><path d="M0 0v1.875h17.813v14.063H12.04c-.418-1.612-1.867-2.813-3.604-2.813-1.736 0-3.185 1.2-3.603 2.813H3.75V11.25H1.875v6.563h2.959c.418 1.611 1.867 2.812 3.604 2.812 1.736 0 3.185-1.2 3.603-2.813h7.793c.418 1.612 1.867 2.813 3.604 2.813 1.736 0 3.185-1.2 3.603-2.813H30v-7.646l-.06-.147-1.874-5.625-.203-.644h-8.175V0H0zm.938 3.75v1.875h8.437V3.75H.937zm18.75 1.875h6.825l1.612 4.805v5.508h-1.084c-.418-1.612-1.867-2.813-3.604-2.813-1.736 0-3.185 1.2-3.603 2.813h-.146V5.624zM1.875 7.5v1.875H7.5V7.5H1.875zM8.438 15a1.86 1.86 0 011.874 1.875 1.86 1.86 0 01-1.874 1.875 1.86 1.86 0 01-1.876-1.875A1.86 1.86 0 018.438 15zm15 0a1.86 1.86 0 011.875 1.875 1.86 1.86 0 01-1.875 1.875 1.86 1.86 0 01-1.875-1.875A1.86 1.86 0 0123.438 15z" fill="#2C8081"/></svg>
     <p class="text-block-more-desktop">
-        You've got to spend <span class="price-more">£30</span> more to get <br><span class="text-span">FREE SHIPPING</span><br>for this order
+    <img src="https://conversionratestore.github.io/projects/jarrold/img/delivery.svg" alt="delivery-car" class="delivery-svg"><br>You've got to spend <span class="price-more">£30</span> more to get <br><span class="text-span">FREE SHIPPING</span><br>for this order
     </p>
 </div>
 `;
 
   let deliveryBox = /*html*/ `
 <div class="delivery-box">
-    <svg width="30" height="21" fill="none" xmlns="http://www.w3.org/2000/svg" class="svg-delivery"><path d="M0 0v1.875h17.813v14.063H12.04c-.418-1.612-1.867-2.813-3.604-2.813-1.736 0-3.185 1.2-3.603 2.813H3.75V11.25H1.875v6.563h2.959c.418 1.611 1.867 2.812 3.604 2.812 1.736 0 3.185-1.2 3.603-2.813h7.793c.418 1.612 1.867 2.813 3.604 2.813 1.736 0 3.185-1.2 3.603-2.813H30v-7.646l-.06-.147-1.874-5.625-.203-.644h-8.175V0H0zm.938 3.75v1.875h8.437V3.75H.937zm18.75 1.875h6.825l1.612 4.805v5.508h-1.084c-.418-1.612-1.867-2.813-3.604-2.813-1.736 0-3.185 1.2-3.603 2.813h-.146V5.624zM1.875 7.5v1.875H7.5V7.5H1.875zM8.438 15a1.86 1.86 0 011.874 1.875 1.86 1.86 0 01-1.874 1.875 1.86 1.86 0 01-1.876-1.875A1.86 1.86 0 018.438 15zm15 0a1.86 1.86 0 011.875 1.875 1.86 1.86 0 01-1.875 1.875 1.86 1.86 0 01-1.875-1.875A1.86 1.86 0 0123.438 15z" fill="#2C8081"/></svg>
-    <p class="text-block-desktop">You've got <br><span class="text-span">FREE SHIPPING</span><br>for this order</p>
+    <p class="text-block-desktop">
+    <img src="https://conversionratestore.github.io/projects/jarrold/img/delivery.svg" alt="delivery-car" class="delivery-svg"><br>You've got <br><span class="text-span">FREE SHIPPING</span><br>for this order</p>
 </div>
 `;
 
@@ -234,16 +291,33 @@ function desktopVersion() {
       now = "now";
     }
 
-    //   let b = +document.querySelector("dd.total").innerText.split("£")[1];
+    if (document.querySelector("#page_header_CPR span").textContent !== `0`) {
+      fetch("https://www.jarrold.co.uk/basket")
+        .then((res) => res.text())
+        .then((data) => {
+          let customDocument = new DOMParser().parseFromString(data, "text/html");
+          let customSumm = +document.querySelector(`.${now}`).innerText.split("£")[1] + +customDocument.querySelector("dd.total").innerText.split("£")[1];
 
-    if (document.querySelector(`.${now}`).innerText.split("£")[1] < 50) {
-      // NOT FREE SHIPPING
-      document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMore);
-      let a = 50 - document.querySelector(`.${now}`).innerText.split("£")[1];
-      document.querySelector(".price-more").innerText = `£${a}`;
+          if (customSumm < 50) {
+            // NOT FREE SHIPPING
+            document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMore);
+            let summDiff = 50 - customSumm;
+            document.querySelector(".price-more").innerText = `£${summDiff.toFixed(2)}`;
+          } else {
+            // FREE SHIPPING
+            document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBox);
+          }
+        });
     } else {
-      // FREE SHIPPING
-      document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBox);
+      if (document.querySelector(`.${now}`).innerText.split("£")[1] < 50) {
+        // NOT FREE SHIPPING
+        document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMore);
+        let summDiff = 50 - document.querySelector(`.${now}`).innerText.split("£")[1];
+        document.querySelector(".price-more").innerText = `£${summDiff.toFixed(2)}`;
+      } else {
+        // FREE SHIPPING
+        document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBox);
+      }
     }
   }
 
@@ -258,8 +332,56 @@ function desktopVersion() {
   }
 
   if (document.querySelector(".information-box")) {
-    if (document.querySelector(".information-box").children.length === 0) {
-      document.querySelector(".information-box").classList.add = "hidden";
+    if (!document.querySelector(".information-box li")) {
+      document.querySelector(".information-box").classList.add("hidden");
     }
   }
 }
+
+// handleClick
+function handleClick() {
+  document.querySelectorAll(".specifics button").forEach((el) => {
+    el.addEventListener("click", function () {
+      setTimeout(function () {
+        if (!document.querySelector(".accent-text-random")) {
+          hurryUp();
+        }
+
+        if (!document.querySelector(".delivery-box") && !document.querySelector(".delivery-box-mobile")) {
+          renderDelivery();
+          handleClick();
+        }
+      }, 200);
+    });
+  });
+}
+
+handleClick();
+
+//
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+  event: "event-to-ga",
+  eventCategory: "Exp — Delivery Size guide mobile",
+  eventAction: "loaded",
+});
+
+(function (h, o, t, j, a, r) {
+  h.hj =
+    h.hj ||
+    function () {
+      (h.hj.q = h.hj.q || []).push(arguments);
+    };
+  h._hjSettings = { hjid: 2369936, hjsv: 6 };
+  a = o.getElementsByTagName("head")[0];
+  r = o.createElement("script");
+  r.async = 1;
+  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+  a.appendChild(r);
+})(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
+window.hj =
+  window.hj ||
+  function () {
+    (hj.q = hj.q || []).push(arguments);
+  };
+hj("trigger", "delivery_size_guide_mobile");
