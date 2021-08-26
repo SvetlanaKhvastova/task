@@ -147,65 +147,14 @@ let styleSet = /*html*/ `
 </style>
 `;
 
-document.head.insertAdjacentHTML("beforeend", styleSet);
-
-// getRandomIntInclusive
-function getRandomIntInclusive(min, max) {
-  minNamber = Math.ceil(min);
-  maxNamber = Math.floor(max);
-  return Math.floor(Math.random() * (maxNamber - minNamber + 1) + minNamber); //max and min includes
-}
-
-let randomeCount = getRandomIntInclusive(1, 9);
-
-hurryUp();
-renderDelivery();
-
-function renderDelivery() {
-  if (window.innerWidth <= 768) {
-    if (document.querySelector("delivery-box") || document.querySelector("information-box")) {
-      document.querySelector("delivery-box").classList.add("hidden");
-      document.querySelector("information-box").classList.add("hidden");
-    }
-    mobileVersion();
-  } else {
-    if (document.querySelector("delivery-box-mobile") || document.querySelector("information-box-mobile")) {
-      document.querySelector("delivery-box-mobile").classList.add("hidden");
-      document.querySelector("information-box-mobile").classList.add("hidden");
-    }
-    desktopVersion();
-  }
-}
-
-// Hurry up
-function hurryUp() {
-  if (document.querySelector(".stock.instock")) {
-    document.querySelector(".stock.instock").innerHTML = `<p>Hurry up! Only <span class="accent-text-random">${randomeCount} left</span> in Stock.</p>`;
-  }
-}
-
-// includesText
-function includesText(text, informationBox) {
-  if (text.innerText.toLowerCase().includes("model height") || text.innerText.toLowerCase().includes("is wearing")) {
-    let paramsSpan = text.innerText.toLowerCase().includes(": ") ? text.innerText.split(": ") : text.innerText.split("size ");
-    let and = text.innerText.toLowerCase().includes(": ") ? ": " : "size ";
-    document
-      .querySelector(`.${informationBox}`)
-      .insertAdjacentHTML("beforeend", `<li class="list-text">${paramsSpan[0]}${and}<span class="params-span">${paramsSpan[1]}</span></li>`);
-  }
-}
-
-// Mobile
-function mobileVersion() {
-  // deliveryBoxMobile
-  let deliveryBoxMoreMobile = /*html*/ `
+let deliveryBoxMoreMobile = /*html*/ `
 <div class="delivery-box-mobile">
    <p class="text-block-more">You've got to spend <span class="price-more">£30</span> more <br><img src="https://conversionratestore.github.io/projects/jarrold/img/delivery.svg" alt="delivery-car" class="delivery-svg-mobile-more"> to get <span class="accent-text-random">FREE SHIPPING</span> for this order
   </p>
 </div>
 `;
 
-  let deliveryBoxMobile = /*html*/ `
+let deliveryBoxMobile = /*html*/ `
 <div class="delivery-box-mobile">
    <p class="text-block">
    <img src="https://conversionratestore.github.io/projects/jarrold/img/delivery.svg" alt="delivery-car" class="delivery-svg-mobile">
@@ -213,24 +162,97 @@ function mobileVersion() {
 </div>
 `;
 
-  if (document.querySelector(".upc")) {
-    let now = "rrp";
+let deliveryBoxMore = /*html*/ `
+  <div class="delivery-box">
+      <p class="text-block-more-desktop">
+      <img src="https://conversionratestore.github.io/projects/jarrold/img/delivery.svg" alt="delivery-car" class="delivery-svg"><br>You've got to spend <span class="price-more">£30</span> more to get <br><span class="text-span">FREE SHIPPING</span><br>for this order
+      </p>
+  </div>
+  `;
 
-    if (document.querySelector(".price .now")) {
-      now = "now";
+let deliveryBox = /*html*/ `
+  <div class="delivery-box">
+      <p class="text-block-desktop">
+      <img src="https://conversionratestore.github.io/projects/jarrold/img/delivery.svg" alt="delivery-car" class="delivery-svg"><br>You've got <br><span class="text-span">FREE SHIPPING</span><br>for this order</p>
+  </div>
+  `;
+
+let now;
+if (document.querySelector("#variants .price") || document.querySelector(".upc")) {
+  now = "rrp";
+
+  if (document.querySelector(".price .now")) {
+    now = "now";
+  }
+
+  let price = +document.querySelector(`.${now}`).innerText.split("£")[1];
+  let qty = +document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value;
+  let customSumm = +(price * qty).toFixed(2);
+
+  localStorage.setItem("customSumm", customSumm);
+
+  document.head.insertAdjacentHTML("beforeend", styleSet);
+
+  // getRandomIntInclusive
+  function getRandomIntInclusive(min, max) {
+    minNamber = Math.ceil(min);
+    maxNamber = Math.floor(max);
+    return Math.floor(Math.random() * (maxNamber - minNamber + 1) + minNamber); //max and min includes
+  }
+
+  hurryUp();
+  renderDelivery(customSumm);
+
+  function renderDelivery(s) {
+    if (window.innerWidth <= 768) {
+      if (document.querySelector("delivery-box") || document.querySelector("information-box")) {
+        document.querySelector("delivery-box").classList.add("hidden");
+        document.querySelector("information-box").classList.add("hidden");
+      }
+      mobileVersion(s);
+    } else {
+      if (document.querySelector("delivery-box-mobile") || document.querySelector("information-box-mobile")) {
+        document.querySelector("delivery-box-mobile").classList.add("hidden");
+        document.querySelector("information-box-mobile").classList.add("hidden");
+      }
+      desktopVersion(s);
     }
+  }
 
+  // Hurry up
+  function hurryUp() {
+    let randomeCount = getRandomIntInclusive(1, 9);
+
+    if (document.querySelector(".stock.instock")) {
+      document.querySelector(".stock.instock").innerHTML = `<p>Hurry up! Only <span class="accent-text-random">${randomeCount} left</span> in Stock.</p>`;
+    }
+  }
+
+  // includesText
+  function includesText(text, informationBox) {
+    if (text.innerText.toLowerCase().includes("model height") || text.innerText.toLowerCase().includes("is wearing")) {
+      let paramsSpan = text.innerText.toLowerCase().includes(": ") ? text.innerText.split(": ") : text.innerText.split("size ");
+      let and = text.innerText.toLowerCase().includes(": ") ? ": " : "size ";
+      document
+        .querySelector(`.${informationBox}`)
+        .insertAdjacentHTML("beforeend", `<li class="list-text">${paramsSpan[0]}${and}<span class="params-span">${paramsSpan[1]}</span></li>`);
+    }
+  }
+
+  // Mobile
+  function mobileVersion(sum) {
     if (document.querySelector("#page_header_CPR span").textContent !== `0`) {
       fetch("https://www.jarrold.co.uk/basket")
         .then((res) => res.text())
         .then((data) => {
           let customDocument = new DOMParser().parseFromString(data, "text/html");
-          let customSumm = +document.querySelector(`.${now}`).innerText.split("£")[1] + +customDocument.querySelector("dd.total").innerText.split("£")[1];
+          sum += +(+customDocument.querySelector("dd.total").innerText.split("£")[1]).toFixed(2);
+          localStorage.customSumm = sum;
 
-          if (customSumm < 50) {
+          if (sum < 50) {
             // NOT FREE SHIPPING
             document.querySelector(".upc").insertAdjacentHTML("afterend", deliveryBoxMoreMobile);
-            let summDiff = 50 - customSumm;
+            let summDiff = 50 - sum;
             document.querySelector(".price-more").innerText = `£${summDiff.toFixed(2)}`;
           } else {
             // FREE SHIPPING
@@ -238,70 +260,79 @@ function mobileVersion() {
           }
         });
     } else {
-      if (document.querySelector(`.${now}`).innerText.split("£")[1] < 50) {
+      if (sum < 50) {
         // NOT FREE SHIPPING
         document.querySelector(".upc").insertAdjacentHTML("afterend", deliveryBoxMoreMobile);
-        let summDiff = 50 - document.querySelector(`.${now}`).innerText.split("£")[1];
+        let summDiff = 50 - sum;
         document.querySelector(".price-more").innerText = `£${summDiff.toFixed(2)}`;
       } else {
         // FREE SHIPPING
         document.querySelector(".upc").insertAdjacentHTML("afterend", deliveryBoxMobile);
       }
     }
-  }
 
-  // informationBox
-  if (document.querySelector(".controls")) {
-    document.querySelector(".controls").insertAdjacentHTML("afterend", `<ul class="information-box-mobile"></ul>`);
-    document.querySelectorAll(".col-sm-8 li").forEach((text) => {
-      let informationBox = "information-box-mobile";
-      includesText(text, informationBox);
-    });
-  }
+    setTimeout(() => {
+      document.querySelector(".controls.qty .dec").addEventListener("click", function () {
+        if (+document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value > 0) {
+          let summ = +localStorage.getItem("customSumm");
+          let newSumm = summ - price;
+          localStorage.customSumm = newSumm;
+          if (newSumm < 50) {
+            // NOT FREE SHIPPING
+            document.querySelector(".delivery-box-mobile").remove();
+            document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMoreMobile);
+            let newSummDiff = 50 - newSumm;
+            document.querySelector(".price-more").innerText = `£${newSummDiff.toFixed(2)}`;
+          }
+        }
+      });
 
-  if (document.querySelector(".information-box-mobile")) {
-    if (!document.querySelector(".information-box-mobile li")) {
-      document.querySelector(".information-box-mobile").classList.add("hidden");
+      document.querySelector(".controls.qty .inc").addEventListener("click", function () {
+        let summ = +localStorage.getItem("customSumm");
+        let newSumm = summ + price;
+        localStorage.customSumm = newSumm;
+        if (newSumm < 50) {
+          // NOT FREE SHIPPING
+          let newSummDiff = 50 - newSumm;
+          document.querySelector(".price-more").innerText = `£${newSummDiff.toFixed(2)}`;
+        } else {
+          // FREE SHIPPING
+          document.querySelector(".delivery-box-mobile").remove();
+          document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMobile);
+        }
+      });
+    }, 1000);
+
+    // informationBox
+    if (document.querySelector(".controls")) {
+      document.querySelector(".controls").insertAdjacentHTML("afterend", `<ul class="information-box-mobile"></ul>`);
+      document.querySelectorAll(".col-sm-8 li").forEach((text) => {
+        let informationBox = "information-box-mobile";
+        includesText(text, informationBox);
+      });
+    }
+
+    if (document.querySelector(".information-box-mobile")) {
+      if (!document.querySelector(".information-box-mobile li")) {
+        document.querySelector(".information-box-mobile").classList.add("hidden");
+      }
     }
   }
-}
 
-// Desktop;
-function desktopVersion() {
-  // deliveryBox
-  let deliveryBoxMore = /*html*/ `
-<div class="delivery-box">
-    <p class="text-block-more-desktop">
-    <img src="https://conversionratestore.github.io/projects/jarrold/img/delivery.svg" alt="delivery-car" class="delivery-svg"><br>You've got to spend <span class="price-more">£30</span> more to get <br><span class="text-span">FREE SHIPPING</span><br>for this order
-    </p>
-</div>
-`;
-
-  let deliveryBox = /*html*/ `
-<div class="delivery-box">
-    <p class="text-block-desktop">
-    <img src="https://conversionratestore.github.io/projects/jarrold/img/delivery.svg" alt="delivery-car" class="delivery-svg"><br>You've got <br><span class="text-span">FREE SHIPPING</span><br>for this order</p>
-</div>
-`;
-
-  if (document.querySelector("#variants .price")) {
-    let now = "rrp";
-
-    if (document.querySelector(".price .now")) {
-      now = "now";
-    }
-
+  // Desktop;
+  function desktopVersion(sum) {
     if (document.querySelector("#page_header_CPR span").textContent !== `0`) {
       fetch("https://www.jarrold.co.uk/basket")
         .then((res) => res.text())
         .then((data) => {
           let customDocument = new DOMParser().parseFromString(data, "text/html");
-          let customSumm = +document.querySelector(`.${now}`).innerText.split("£")[1] + +customDocument.querySelector("dd.total").innerText.split("£")[1];
+          sum += +(+customDocument.querySelector("dd.total").innerText.split("£")[1]).toFixed(2);
+          localStorage.customSumm = sum;
 
-          if (customSumm < 50) {
+          if (sum < 50) {
             // NOT FREE SHIPPING
             document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMore);
-            let summDiff = 50 - customSumm;
+            let summDiff = 50 - sum;
             document.querySelector(".price-more").innerText = `£${summDiff.toFixed(2)}`;
           } else {
             // FREE SHIPPING
@@ -309,79 +340,111 @@ function desktopVersion() {
           }
         });
     } else {
-      if (document.querySelector(`.${now}`).innerText.split("£")[1] < 50) {
+      if (sum < 50) {
         // NOT FREE SHIPPING
         document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMore);
-        let summDiff = 50 - document.querySelector(`.${now}`).innerText.split("£")[1];
+        let summDiff = 50 - sum;
         document.querySelector(".price-more").innerText = `£${summDiff.toFixed(2)}`;
       } else {
         // FREE SHIPPING
         document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBox);
       }
     }
-  }
 
-  // informationBox
-  if (document.querySelector(".col-sm-8 li")) {
-    document.querySelector(".controls").insertAdjacentHTML("beforeend", `<ul class="information-box"></ul>`);
+    setTimeout(() => {
+      document.querySelector(".controls.qty .dec").addEventListener("click", function () {
+        if (+document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value > 0) {
+          let summ = +localStorage.getItem("customSumm");
+          let newSumm = summ - price;
+          localStorage.customSumm = newSumm;
+          if (newSumm < 50) {
+            // NOT FREE SHIPPING
+            document.querySelector(".delivery-box").remove();
+            document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMore);
+            let newSummDiff = 50 - newSumm;
+            document.querySelector(".price-more").innerText = `£${newSummDiff.toFixed(2)}`;
+          }
+        }
+      });
 
-    document.querySelectorAll(".col-sm-8 li").forEach((text) => {
-      let informationBox = "information-box";
-      includesText(text, informationBox);
-    });
-  }
+      document.querySelector(".controls.qty .inc").addEventListener("click", function () {
+        let summ = +localStorage.getItem("customSumm");
+        let newSumm = summ + price;
+        localStorage.customSumm = newSumm;
+        if (newSumm < 50) {
+          // NOT FREE SHIPPING
+          let newSummDiff = 50 - newSumm;
+          document.querySelector(".price-more").innerText = `£${newSummDiff.toFixed(2)}`;
+        } else {
+          // FREE SHIPPING
+          document.querySelector(".delivery-box").remove();
+          document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBox);
+        }
+      });
+    }, 1000);
 
-  if (document.querySelector(".information-box")) {
-    if (!document.querySelector(".information-box li")) {
-      document.querySelector(".information-box").classList.add("hidden");
+    // informationBox
+    if (document.querySelector(".col-sm-8 li")) {
+      document.querySelector(".controls").insertAdjacentHTML("beforeend", `<ul class="information-box"></ul>`);
+
+      document.querySelectorAll(".col-sm-8 li").forEach((text) => {
+        let informationBox = "information-box";
+        includesText(text, informationBox);
+      });
+    }
+
+    if (document.querySelector(".information-box")) {
+      if (!document.querySelector(".information-box li")) {
+        document.querySelector(".information-box").classList.add("hidden");
+      }
     }
   }
-}
 
-// handleClick
-function handleClick() {
-  document.querySelectorAll(".specifics button").forEach((el) => {
-    el.addEventListener("click", function () {
-      setTimeout(function () {
-        if (!document.querySelector(".accent-text-random")) {
-          hurryUp();
-        }
+  // handleClick
+  function handleClick(s) {
+    document.querySelectorAll(".specifics button").forEach((el) => {
+      el.addEventListener("click", function () {
+        setTimeout(function () {
+          if (!document.querySelector(".accent-text-random")) {
+            hurryUp();
+          }
 
-        if (!document.querySelector(".delivery-box") && !document.querySelector(".delivery-box-mobile")) {
-          renderDelivery();
-          handleClick();
-        }
-      }, 200);
+          if (!document.querySelector(".delivery-box") && !document.querySelector(".delivery-box-mobile")) {
+            renderDelivery(s);
+            handleClick(s);
+          }
+        }, 200);
+      });
     });
+  }
+
+  handleClick(customSumm);
+
+  //
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp — Delivery Size guide mobile",
+    eventAction: "loaded",
   });
-}
 
-handleClick();
-
-//
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
-  event: "event-to-ga",
-  eventCategory: "Exp — Delivery Size guide mobile",
-  eventAction: "loaded",
-});
-
-(function (h, o, t, j, a, r) {
-  h.hj =
-    h.hj ||
+  (function (h, o, t, j, a, r) {
+    h.hj =
+      h.hj ||
+      function () {
+        (h.hj.q = h.hj.q || []).push(arguments);
+      };
+    h._hjSettings = { hjid: 2369936, hjsv: 6 };
+    a = o.getElementsByTagName("head")[0];
+    r = o.createElement("script");
+    r.async = 1;
+    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+    a.appendChild(r);
+  })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
+  window.hj =
+    window.hj ||
     function () {
-      (h.hj.q = h.hj.q || []).push(arguments);
+      (hj.q = hj.q || []).push(arguments);
     };
-  h._hjSettings = { hjid: 2369936, hjsv: 6 };
-  a = o.getElementsByTagName("head")[0];
-  r = o.createElement("script");
-  r.async = 1;
-  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-  a.appendChild(r);
-})(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
-window.hj =
-  window.hj ||
-  function () {
-    (hj.q = hj.q || []).push(arguments);
-  };
-hj("trigger", "delivery_size_guide_mobile");
+  hj("trigger", "delivery_size_guide_mobile");
+}

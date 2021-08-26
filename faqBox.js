@@ -360,31 +360,35 @@ let modalForm = /*html*/ `
     </div>
 `;
 
+// sticky block
 let pickColor = /*html*/ `
-
 <h3 class="label-to-pick-color">Pick a color</h3>
-
-<div class="controls-box check-color">
-  <!-- <button type="button" class="controls-btn active-controls"></button>
-          <button type="button" class="controls-btn"></button> -->
-</div>
+<div class="controls-box check-color"></div>
 `;
 
 let pickSize = /*html*/ `
 <h3 class="label-to-pick-size">Pick a size</h3>
+<div class="controls-box check-size"></div>
+`;
 
-<div class="controls-box check-size">
-             <!-- <button type="button" class="size-variant active-size-variant">
-            ONE SIZE
-          </button>
-          <button type="button" class="size-variant">O/S</button> -->
+//PLP
+let pickColorPlp = /*html*/ `
+<h3 class="label-to-pick-color">Pick a color</h3>
+<div class="controls-box check-color">
+  <button type="button" class="controls-btn active-controls"></button>
+  <button type="button" class="controls-btn"></button>
 </div>
 `;
 
-let btnAddToBag = /*html*/ `
-<div class="box-btn-list">
- <button class="btn-open-list" data-modal-open>add to bag</button>
-</div>`;
+let pickSizePlp = /*html*/ `
+<h3 class="label-to-pick-size">Pick a size</h3>
+<div class="controls-box check-size">
+  <button type="button" class="size-variant active-size-variant">
+  ONE SIZE
+  </button>
+  <button type="button" class="size-variant">O/S</button>
+</div>
+`;
 
 document.head.insertAdjacentHTML("afterbegin", style12);
 document.body.insertAdjacentHTML("afterbegin", modalForm);
@@ -397,6 +401,7 @@ if (document.querySelector(".upc")) {
   openButtonPopUp();
 }
 
+// PLP and sticky block toggleModal
 function toggleModal() {
   document.body.classList.toggle("modal-open");
   document.querySelector("[data-modal]").classList.toggle("is-hidden");
@@ -406,6 +411,7 @@ function toggleModal() {
   }
 }
 
+// PLP and sticky block Exit cross
 document.querySelector("[data-modal-close]").addEventListener("click", function () {
   let action = "Click Exit cross button PLP";
 
@@ -425,6 +431,7 @@ document.querySelector("[data-modal-close]").addEventListener("click", function 
   toggleModal();
 });
 
+// PLP and sticky block CHOOSE
 document.querySelector(".custom-add-to-bag").addEventListener("click", function () {
   let action = "Click Choose button PLP";
 
@@ -445,6 +452,7 @@ document.querySelector(".custom-add-to-bag").addEventListener("click", function 
   toggleModal();
 });
 
+// sticky block
 function openButtonPopUp() {
   document.body.insertAdjacentHTML(
     "afterbegin",
@@ -597,6 +605,7 @@ function openButtonPopUp() {
     });
   });
 
+  // scroll
   function scroll() {
     window.addEventListener("scroll", () => {
       //
@@ -632,6 +641,7 @@ function openButtonPopUp() {
   // });
 }
 
+// PLP
 function createButtonList() {
   let parentDiv = ".product-grid";
 
@@ -644,12 +654,14 @@ function createButtonList() {
       item.querySelectorAll("li").forEach((i) => {
         i.style.justifyContent = "space-between";
         i.style.display = "flex";
-        i.insertAdjacentHTML("beforeend", btnAddToBag);
+        i.insertAdjacentHTML("beforeend", `<div class="box-btn-list"><button class="btn-open-list" data-modal-open>add to bag</button></div>`);
       });
     }
   });
 
   clickListener();
+  // createColorPlp();
+  // createSizePlp();
 }
 
 function createButtonListSearch() {
@@ -658,7 +670,17 @@ function createButtonListSearch() {
       item.querySelectorAll("li").forEach((i) => {
         i.style.justifyContent = "space-between";
         i.style.display = "flex";
-        i.insertAdjacentHTML("beforeend", btnAddToBag);
+        i.insertAdjacentHTML("beforeend", `<div class="box-btn-list"><button class="btn-open-list" data-modal-open>add to bag</button></div>`);
+      });
+    }
+  });
+
+  document.querySelectorAll(`#search`).forEach((item) => {
+    if (!document.querySelector("#search .ais-Hits-item:first-child .btn-open-list")) {
+      item.querySelectorAll("li").forEach((i) => {
+        i.style.justifyContent = "space-between";
+        i.style.display = "flex";
+        i.insertAdjacentHTML("beforeend", `<div class="box-btn-list"><button class="btn-open-list" data-modal-open>add to bag</button></div>`);
       });
     }
   });
@@ -684,6 +706,18 @@ function clickListener() {
   });
 }
 
+function createColorPlp() {
+  if (!document.querySelector(".col-sm-12")) {
+    document.querySelector(".custom-add-to-bag").insertAdjacentHTML("beforebegin", pickColorPlp);
+  }
+}
+
+function createSizePlp() {
+  if (!document.querySelector(".col-sm-12")) {
+    document.querySelector(".custom-add-to-bag").insertAdjacentHTML("beforebegin", pickSizePlp);
+  }
+}
+
 //
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
@@ -691,7 +725,6 @@ dataLayer.push({
   eventCategory: "Exp — Stiсky button mobile",
   eventAction: "loaded",
 });
-//
 
 (function (h, o, t, j, a, r) {
   h.hj =
@@ -713,7 +746,7 @@ window.hj =
   };
 hj("trigger", "sticky_button_mobile");
 
-//
+//swipe
 let scriptCustom = document.createElement("script");
 scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js";
 scriptCustom.async = false;
@@ -729,53 +762,74 @@ setTimeout(function () {
   });
 }, 500);
 
-//
-
+//MutationObserver
 let observer = new MutationObserver(() => {
-  if (document.querySelector("#search-modal")) {
+  if (document.querySelector("#search-modal") || document.querySelector("#search")) {
     observer.disconnect();
     createButtonListSearch();
-    observer.observe(document.querySelector("#search-modal"), {
+    observer.observe(document.querySelector("#search-modal") || document.querySelector("#search"), {
       childList: true,
       subtree: true,
     });
   }
 });
 
-observer.observe(document.querySelector("#search-modal"), {
+observer.observe(document.querySelector("#search-modal") || document.querySelector("#search"), {
   childList: true,
   subtree: true,
 });
 
-let mut = new MutationObserver((muts) => {
-  mut.disconnect();
+let mutArticle = new MutationObserver((muts) => {
+  mutArticle.disconnect();
   createButtonList();
-  mut.observe(document.querySelector("article"), {
+  mutArticle.observe(document.querySelector("article"), {
     childList: true,
     subtree: true,
   });
 });
 
-mut.observe(document.querySelector("article"), {
+mutArticle.observe(document.querySelector("article"), {
   childList: true,
   subtree: true,
 });
 
-//
+//Fetch
+// function getFetchToken() {
+//   const clientSecret = "13755552476747438835239b25ed9568a689ce4c768442288ec2cd34bbaf6e6fc0172f709e774f7998dd1ff0e839afa2";
+//   const clientId = "611f9e56fd56202c38c1fceb";
 
-// let bearerToken = "";
-// function getFetch() {
-//   let url = `https://api.divendo/store/products`;
-//   let result = fetch(url)
+//   fetch("https://api.diven.do/oauth2/token", {
+//     method: "post",
+//     body: `client_id=${clientId}&client_secret=${clientSecret}&grant_type=client_credentials`,
+//   })
 //     .then((response) => {
 //       return response.json();
 //     })
-//     .then((store) => {
-//       return console.log(store.products);
+//     .then((token) => {
+//       console.log(token);
 //     })
 //     .catch((error) => {
 //       console.error(error);
 //     });
-
-//   return result;
 // }
+// getFetchToken();
+
+// function getFetchData() {
+//   fetch("https://api.diven.do/store/products", {
+//     headers: {
+//       Authorization:
+//         "Bearer qI4akOzSSUs8D5Tp4SY7CR1ipjh4KKRBoG8JxAbLugKVn3zBlACKxxZlAZl3O7Sjm-FaRZG0J85_cnJqGjWVEoJ-_VoNY8FvmGv02hD3bromDtYSvh7iLYvIHezwdkZaL4AaQkh7yJdHRkbEg6x3eAkexCT3dHSQpT7Fwc_FBPiKkNYrmNFjHiPCf3v6RmVltSM5jYIZ9LSRQc2EYqgMh6o9pIVWH2VTulbsqgGPweuh7qc1EjX-FSPxz0uRtOh-QeR92ppiMAeuWDDvkcW266ozqYL_v25bcyqWTJ-KP_8",
+//       "Content-Type": "application/json",
+//     },
+//   })
+//     .then((response) => {
+//       return response.json();
+//     })
+//     .then((store) => {
+//       console.log(store.results);
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//     });
+// }
+// getFetchData();
