@@ -56,6 +56,13 @@ let style12 = /*html*/ `
   background: #2c8081;
 }
 
+.btn-open-list:hover,
+.btn-open:hover,
+.custom-add-to-bag:hover {
+  background-color: #266d6e;
+  transition: 250ms;
+}
+
 .btn-open {
   display: inline-block;
 
@@ -660,8 +667,8 @@ function createButtonList() {
   });
 
   clickListener();
-  // createColorPlp();
-  // createSizePlp();
+  createColorPlp();
+  createSizePlp();
 }
 
 function createButtonListSearch() {

@@ -14,6 +14,10 @@ let styleSet = /*html*/ `
   #product p.summ {
     max-width: 300px;
   }
+
+  #product .marketplace {
+    max-width: 289px;
+  }
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {
@@ -23,6 +27,14 @@ let styleSet = /*html*/ `
 
    #product p.summ {
     max-width: 190px;
+  }
+
+  #product .marketplace {
+    max-width: 190px;
+    padding:15px;
+  }
+   #product .marketplace::after {
+    display: none;
   }
 }
 
@@ -181,13 +193,14 @@ let now;
 if (document.querySelector("#variants .price") || document.querySelector(".upc")) {
   now = "rrp";
 
-  if (document.querySelector(".price .now")) {
+  if (document.querySelector("#variants .price .now")) {
     now = "now";
   }
 
   let price = +document.querySelector(`.${now}`).innerText.split("£")[1];
   let qty = +document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value;
   let customSumm = +(price * qty).toFixed(2);
+  let randomeCount = getRandomIntInclusive(1, 9);
 
   localStorage.setItem("customSumm", customSumm);
 
@@ -195,36 +208,35 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
 
   // getRandomIntInclusive
   function getRandomIntInclusive(min, max) {
-    minNamber = Math.ceil(min);
-    maxNamber = Math.floor(max);
+    let minNamber = Math.ceil(min);
+    let maxNamber = Math.floor(max);
     return Math.floor(Math.random() * (maxNamber - minNamber + 1) + minNamber); //max and min includes
   }
 
-  hurryUp();
-  renderDelivery(customSumm);
+  hurryUp(randomeCount);
+  renderDelivery(customSumm, price);
 
-  function renderDelivery(s) {
+  function renderDelivery(s, p) {
     if (window.innerWidth <= 768) {
       if (document.querySelector("delivery-box") || document.querySelector("information-box")) {
         document.querySelector("delivery-box").classList.add("hidden");
         document.querySelector("information-box").classList.add("hidden");
       }
-      mobileVersion(s);
+      mobileVersion(s, p);
     } else {
       if (document.querySelector("delivery-box-mobile") || document.querySelector("information-box-mobile")) {
         document.querySelector("delivery-box-mobile").classList.add("hidden");
         document.querySelector("information-box-mobile").classList.add("hidden");
       }
-      desktopVersion(s);
+      desktopVersion(s, p);
     }
   }
 
   // Hurry up
-  function hurryUp() {
-    let randomeCount = getRandomIntInclusive(1, 9);
 
+  function hurryUp(rc) {
     if (document.querySelector(".stock.instock")) {
-      document.querySelector(".stock.instock").innerHTML = `<p>Hurry up! Only <span class="accent-text-random">${randomeCount} left</span> in Stock.</p>`;
+      document.querySelector(".stock.instock").innerHTML = `<p>Hurry up! Only <span class="accent-text-random">${rc} left</span> in Stock.</p>`;
     }
   }
 
@@ -240,7 +252,7 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
   }
 
   // Mobile
-  function mobileVersion(sum) {
+  function mobileVersion(sum, p) {
     if (document.querySelector("#page_header_CPR span").textContent !== `0`) {
       fetch("https://www.jarrold.co.uk/basket")
         .then((res) => res.text())
@@ -275,7 +287,7 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
       document.querySelector(".controls.qty .dec").addEventListener("click", function () {
         if (+document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value > 0) {
           let summ = +localStorage.getItem("customSumm");
-          let newSumm = summ - price;
+          let newSumm = summ - p;
           localStorage.customSumm = newSumm;
           if (newSumm < 50) {
             // NOT FREE SHIPPING
@@ -289,7 +301,7 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
 
       document.querySelector(".controls.qty .inc").addEventListener("click", function () {
         let summ = +localStorage.getItem("customSumm");
-        let newSumm = summ + price;
+        let newSumm = summ + p;
         localStorage.customSumm = newSumm;
         if (newSumm < 50) {
           // NOT FREE SHIPPING
@@ -320,7 +332,7 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
   }
 
   // Desktop;
-  function desktopVersion(sum) {
+  function desktopVersion(sum, p) {
     if (document.querySelector("#page_header_CPR span").textContent !== `0`) {
       fetch("https://www.jarrold.co.uk/basket")
         .then((res) => res.text())
@@ -355,7 +367,7 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
       document.querySelector(".controls.qty .dec").addEventListener("click", function () {
         if (+document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value > 0) {
           let summ = +localStorage.getItem("customSumm");
-          let newSumm = summ - price;
+          let newSumm = summ - p;
           localStorage.customSumm = newSumm;
           if (newSumm < 50) {
             // NOT FREE SHIPPING
@@ -369,7 +381,7 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
 
       document.querySelector(".controls.qty .inc").addEventListener("click", function () {
         let summ = +localStorage.getItem("customSumm");
-        let newSumm = summ + price;
+        let newSumm = summ + p;
         localStorage.customSumm = newSumm;
         if (newSumm < 50) {
           // NOT FREE SHIPPING
@@ -401,30 +413,36 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
   }
 
   // handleClick
-  function handleClick(s) {
+  function handleClick(s, p, rc) {
     document.querySelectorAll(".specifics button").forEach((el) => {
       el.addEventListener("click", function () {
         setTimeout(function () {
           if (!document.querySelector(".accent-text-random")) {
-            hurryUp();
+            hurryUp(rc);
           }
 
           if (!document.querySelector(".delivery-box") && !document.querySelector(".delivery-box-mobile")) {
-            renderDelivery(s);
-            handleClick(s);
+            renderDelivery(s, p);
+            handleClick(s, p, rc);
           }
-        }, 200);
+        }, 350);
       });
     });
   }
 
-  handleClick(customSumm);
+  handleClick(customSumm, price, randomeCount);
 
   //
+  let eventVar = "desktop";
+
+  if (window.innerWidth <= 768) {
+    eventVar = "mobile";
+  }
+
   window.dataLayer = window.dataLayer || [];
   dataLayer.push({
     event: "event-to-ga",
-    eventCategory: "Exp — Delivery Size guide mobile",
+    eventCategory: `Exp — Delivery Size guide ${eventVar}`,
     eventAction: "loaded",
   });
 
@@ -446,5 +464,5 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
     function () {
       (hj.q = hj.q || []).push(arguments);
     };
-  hj("trigger", "delivery_size_guide_mobile");
+  hj("trigger", `delivery_size_guide_${eventVar}`);
 }
