@@ -102,7 +102,7 @@ vertical-align: unset;
 }
 
 .add-person-title{
-font-family: DINEngschrift LT;
+font-family: 'DINEngschrift LT', sans-serif;
 font-weight: 400 !important;
 font-size: 16px !important;
 line-height: 1 !important;
@@ -160,9 +160,9 @@ max-width: 343px;
 height: 65px;
 align-items: center;
 justify-content: center;
-font-family: DINEngschrift LT;
+font-family: 'DINEngschrift LT', sans-serif;
 font-weight: 400;
-font-size: 14px;
+font-size: 17px !important;
 line-height: 1;
 text-align: center;
 letter-spacing: 0.05em;
@@ -222,8 +222,8 @@ margin-bottom: 20px;
 }
 
 .flex-text-total{
+font-family: 'Roboto', sans-serif !important;
 max-width: 57%;
-font-family: Proxima Nova !important;
 font-weight: 600 !important;
 font-size: 14px !important;
 line-height: 130% !important;
@@ -233,7 +233,7 @@ margin: 0 !important;
 
 
 .flex-span-total{
-font-family: DINEngschrift LT !important;
+font-family: 'DINEngschrift LT', sans-serif !important;
 font-size: 20px !important;
 line-height: 1.2 !important;
 letter-spacing: 0.02em !important;
@@ -335,7 +335,7 @@ margin-left: 3px;
 
 let buzzpatchStickersOne = /*html*/ `
 <section class="stickers-block">
-    <h1 class="stickers-main-title">how many buzzpatch stickers do you need to protect your children?</h1>
+    <h1 class="stickers-main-title">how many buzzpatch stickers do you need to protect your family?</h1>
     <div class="stickers-block-first">
         <ol class="stickers-question-list">
             <li class="select-var">
@@ -402,7 +402,7 @@ let buzzpatchStickersOne = /*html*/ `
                 </select>
             </li>
         </ol>
-        <button class="stickers-btn btn-first">calculate how many do i need</button>
+        <button class="stickers-btn btn-first">Calculate how many I need</button>
     </div>
 </section>
 `
@@ -516,7 +516,7 @@ function calculateSummForPack() {
   return calcSumm
 }
 
-// btn calculate how many do i need
+// btn calculate how many i need
 document.querySelector(".btn-first").addEventListener("click", function () {
   window.dataLayer = window.dataLayer || []
   dataLayer.push({
