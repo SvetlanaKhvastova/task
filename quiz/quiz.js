@@ -13,33 +13,35 @@ let quizStyle = /*html*/ `
         height: auto;
     }
 
-    button{
+    button {
         border: inherit;
         background:inherit;
     }
     
-    p{
+    p {
         margin: 0;
     }
 
-    .none-marker{
+    .none-marker {
         list-style: none;
+        margin: 0;
     }
 
-    .section-first, .section-second, .section-third, .section-fourth, .section-fifth, .section-sixth, .section-result{
+    .section-first, .section-second, .section-third, .section-fourth, .section-fifth, .section-sixth, .section-result {
+        position: relative;
         text-align: center;
         padding: 40px 40px 62px;
         border: 1px dashed red;
     }
 
-    .stages-list{
+    .stages-list {
         position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    .stages-link{
+    .stages-link {
         width: 18.7px;
         height: 18.67px;
         background: #FFFFFF;
@@ -47,7 +49,7 @@ let quizStyle = /*html*/ `
         z-index: 1;
     }
 
-    .stages-link-active{
+    .stages-link-active {
         width: 35.06px;
         height: 35px;
         background: #DA3269;
@@ -55,69 +57,81 @@ let quizStyle = /*html*/ `
         box-shadow: 0px 4.66472px 22.1574px rgb(218 50 105 / 40%);
     }
 
-    .on-vizited{
+    .on-vizited {
         background: #DA3269;
         border: none;
     }
 
-    .cross-block{
-        display: flex;
-        justify-content: flex-end;
-        align-items: flex-end;
+    .cross-block {
+        position: absolute;
+        right: 40px;
+        display: inline-flex;
+        padding: 0;
+        align-items: center;
         font-weight: 400;
         font-size: 16px;
         line-height: 22px;
         text-transform: capitalize;
         color: #212121;
+        border: none;
+        cursor: pointer;
+        z-index: 1;
     }
 
-    .arrow-left-block{
+    .cross-btn {
+        margin-left: 20px;       
+    }
+
+    .arrow-flex-container {
         display: flex;
+    }
+
+    .arrow-left-block {
+        display: inline-flex;
+        padding: 0;
         align-items: center;
+        font-family: 'Nunito', sans-serif;
         font-weight: 600;
         font-size: 16px;
         line-height: 22px;
         text-decoration-line: underline;
         text-transform: capitalize;
         color: #212121;
-    }
-
-    .arrow-left-btn{
-        margin-right: 10px;
         cursor: pointer;
+        border: none;
     }
 
-    .arrow-right-block{
-        display: flex;
+    .arrow-left-btn {
+        margin-right: 10px;
+    }
+
+    .arrow-right-block {
+        display: inline-flex;
+        padding: 0;
+        margin: auto;
         align-items: center;
         justify-content: center;
+        font-family: 'Nunito', sans-serif;
         font-weight: 600;
         font-size: 16px;
         line-height: 22px;
         text-decoration-line: underline;
         text-transform: capitalize;
         color: #DA3269;
+        cursor: pointer;
+        border: none;
     }
 
-    .arrow-right-btn{
+    .arrow-right-btn {
         margin-left: 10px;
-        cursor: pointer;
-    }
+    } 
 
-    .cross-btn{
-        display: inline-flex;
-        width: 20px;
-        height: 20px;
-        padding: 0;        
-        cursor: pointer;
-    }
-
-    .cross-btn-text{
+    .cross-btn-text {
         margin-right: 20px;
 
     }
     
-    .stages-link:not(:last-child){
+    .stages-link:not(:last-child) {
         margin-right: 50px;
     }
 
@@ -131,11 +145,11 @@ let quizStyle = /*html*/ `
         opacity: 0.3;
     }
 
-    .section-box-first{
+    .section-box-first {
         margin-top: 154px;
     }
 
-    .quiz-title{
+    .quiz-title {
         font-family: 'Nunito', sans-serif;
         font-weight: 600;
         font-size: 30px;
@@ -145,7 +159,7 @@ let quizStyle = /*html*/ `
         margin: 0 0 30px;
     }
 
-    .quiz-list-img{
+    .quiz-list-img {
         font-family: 'Nunito', sans-serif;
         font-weight: 400;
         font-size: 14px;
@@ -160,26 +174,26 @@ let quizStyle = /*html*/ `
         margin: auto;
     }
 
-    .quiz-list-second-section{
+    .quiz-list-second-section {
         width: 550px;
         margin-bottom: -20px;
     }
 
-    .quiz-list-first-section{
+    .quiz-list-first-section {
         width: 859px;
     }
    
-    .quiz-first-section-link{
+    .quiz-first-section-link {
         width: calc(92% / 4);   
         padding: 10px 10px 15px;   
     }
 
-    .quiz-first-section-link:nth-child(odd){
+    .quiz-first-section-link:nth-child(odd) {
         border: 1px solid #DA3269;
         border-radius: 3px;
     }
 
-    .quiz-first-section-link:nth-child(even){
+    .quiz-first-section-link:nth-child(even) {
         border: 1px solid #C6C3C7;
         border-radius: 3px;
     }
@@ -188,14 +202,14 @@ let quizStyle = /*html*/ `
         background: rgba(218, 50, 105, 0.05);
     }
 
-    .checkbox-flex{
+    .checkbox-flex {
+        position: relative;
         display: flex;
-        align-content: center;
-        align-items: center;
         margin-top: 15px;
+        padding: 6px 0;
     }
 
-    .quiz-two-section-link{
+    .quiz-two-section-link {
         width: calc(93% / 3);
         
         border: 1px solid #C6C3C7;
@@ -211,7 +225,7 @@ let quizStyle = /*html*/ `
         border-radius: 3px;
     }
 
-    .quiz-text-description{
+    .quiz-text-description {
         font-family: 'Nunito', sans-serif;
         font-weight: 600;
         font-size: 18px;
@@ -221,7 +235,7 @@ let quizStyle = /*html*/ `
         margin: 30px 0 0;
     }
 
-    .quiz-title-third{
+    .quiz-title-third {
         font-family: 'Nunito', sans-serif;
         font-weight: 900;
         font-size: 40px;
@@ -231,7 +245,7 @@ let quizStyle = /*html*/ `
         margin: 0 0 10px;
     }
 
-    .quiz-section-third-text{
+    .quiz-section-third-text {
         font-family: 'Nunito', sans-serif;
         font-weight: 300;
         font-size: 30px;
@@ -240,7 +254,7 @@ let quizStyle = /*html*/ `
         margin: 0 0 40px;
     }
 
-    .quiz-section-third-span{
+    .quiz-section-third-span {
         font-family: 'Nunito', sans-serif;
         font-weight: 700;
         font-size: 20px;
@@ -249,13 +263,14 @@ let quizStyle = /*html*/ `
         margin: 0 0 68px;
     }
 
-    .quiz-btn{
+    .quiz-btn {
             display: inline-flex;
             width: 100%;
             max-width: 310px;
             height: 40px;
             align-items: center;
             justify-content: center;
+            font-family: 'Nunito', sans-serif;
             font-weight: 700;
             font-size: 14px;
             line-height: 19px;
@@ -267,48 +282,48 @@ let quizStyle = /*html*/ `
             outline: none;
     }
 
-    .description-fourth{
+    .description-fourth {
         margin: 60px 0 0;
     }
 
-    .first-block{
+    .first-block {
         margin: 154px 0;
     }
 
-    .second-block{
+    .second-block {
         margin: 33px 0 40px;
     }
 
-    .third-block{
+    .third-block {
         margin: 230px 0 225px;
     } 
 
-    .fourth-block{
+    .fourth-block {
         margin: 257px 0 252px;
     }
 
-    .quiz-title-fourth{
+    .quiz-title-fourth {
         text-transform: uppercase;
     }
 
-    .fifth-block{
+    .fifth-block {
         margin: 156px 0 151px;
     }
 
-    .sixth-block{
+    .sixth-block {
         margin: 222px 0 198px;
     }
 
-    .title-sixth{
+    .title-sixth {
         font-weight: 300;
         margin: 0 0 66px;
     }
 
-    .title-sixth-bold{
+    .title-sixth-bold {
         font-weight: 700;
     }
 
-    .section-six-label{
+    .section-six-label {
         display: block;
     }
 
@@ -322,40 +337,42 @@ let quizStyle = /*html*/ `
         margin-bottom: 76px;
     }
 
-    .section-six-input::placeholder{
+    .section-six-input::placeholder {
         color: #F4C2D2;
         margin-bottom: 10px;
     }
 
 
 
-    .label-position{
+    .label-position {
         position: relative;
+        margin-left: 51px;
     }
 
-    .radio-box{
+    .radio-box {
         position: absolute;
         width: 1px;
         height: 1px;
         overflow: hidden;
-        clip: rect(0 0 0 0);
         padding-left: 20px;
     }
 
-    .radio-style{
+    .radio-box-text{
+        margin-left: 40px;        
+    }
+
+    .radio-style {
         position: absolute;
         width: 28px;
         height: 28px;
-        border-radius: 73px;
-        
-        
+        border-radius: 73px;      
         border: 3px solid #F4C2D2;
         top: 50%;
         left: 50%;
         transform: translate(-189%, -50%);
     }
 
-    .radio-box:checked + .radio-style{
+    .radio-box:checked + .radio-style {
         background: url('./img/svg/vector.svg');
         background-repeat: no-repeat;
         background-position:center center;
@@ -364,12 +381,16 @@ let quizStyle = /*html*/ `
         border: 3px solid #DA3269;
     }
 
-    .radio-box:checked + .label-box{
-        background: rgba(218, 50, 105, 0.05);
+    .radio-box:checked + .label-box,
+    .radio-box:checked + .quiz-first-section-link   {
+        background-color: rgba(218, 50, 105, 0.05);
     }
 
+    .radio-box:checked + .radio-box-text{      
+        color: #DA3269;
+    }
 
-    .result-primary-text{
+    .result-primary-text {
         position: relative;
         font-family: 'Nunito', sans-serif;
         font-weight: 900;
@@ -399,28 +420,28 @@ let quizStyle = /*html*/ `
         border-bottom: 2px solid #F4C2D2;
     }
 
-    .result-wrapper{
+    .result-wrapper {
         display: flex;
         justify-content: center;
         text-align: start;
         margin-bottom: 65px;
     }
 
-    .result-slider{
+    .result-slider {
         display: flex;
         padding: 0;
         margin: 27px 0 0; 
     }
 
-    .result-slider-link:not(:last-child){
+    .result-slider-link:not(:last-child) {
         margin-right: 5px;
     }
 
-    .result-slider-link{
+    .result-slider-link {
         cursor: pointer;
     }
 
-    .result-title{
+    .result-title {
         font-family: 'Nunito', sans-serif;
         font-weight: 700;
         font-size: 30px;
@@ -430,32 +451,31 @@ let quizStyle = /*html*/ `
         margin: 69px 0 65px;
     }
 
-    .result-img-box{
+    .result-img-box {
         margin-right: 115px;
     }
 
-    .result-text-box{
+    .result-text-box {
         max-width: 535px;
 
     }
 
-    .result-list{
+    .result-list {
         padding: 0;
         margin: 40px 0 0;
     }
 
-    .result-link{
+    .result-link {
         display: flex;
         align-items: center;
     }
 
-    .result-link:not(:last-child){
+    .result-link:not(:last-child) {
         margin-bottom: 30px;
 
     }
 
-    .result-text-box-title{
-        
+    .result-text-box-title {        
         font-family: 'Nunito', sans-serif;
         font-weight: 400;
         font-size: 24px;
@@ -465,7 +485,7 @@ let quizStyle = /*html*/ `
         margin: 0 0 10px;
     }
 
-    .result-size{
+    .result-size {
         display: block;
         font-family: 'Nunito', sans-serif;
         font-weight: 400;
@@ -475,7 +495,7 @@ let quizStyle = /*html*/ `
         margin: 0 0 20px;
     }
 
-    .result-text-box-color{
+    .result-text-box-color {
         font-weight: normal;
         font-size: 18px;
         line-height: 25px;
@@ -483,7 +503,7 @@ let quizStyle = /*html*/ `
         margin: 0 0 10px;
     }
 
-    .result-color-accent{
+    .result-color-accent {
         font-weight: 400;
         font-size: 18px;
         line-height: 25px;
@@ -491,22 +511,21 @@ let quizStyle = /*html*/ `
         margin-left: 6px;
     }
 
-    .controls-color-btn{
+    .controls-color-btn {
         width: 27px;
         height: 27px;
         background: #5c648a;
-
         border-radius: 32px;
         outline: none;
         border: none;
         cursor: pointer;
     }
 
-    .controls-color-btn:not(:last-child){
+    .controls-color-btn:not(:last-child) {
         margin-right: 8px;
     }
 
-    .result-accent-text{
+    .result-accent-text {
         max-width: 116px;
         font-family: 'Nunito', sans-serif;
         font-weight: 800;
@@ -516,7 +535,7 @@ let quizStyle = /*html*/ `
         margin: 0 20px 0;
     }
 
-    .result-link-description{
+    .result-link-description {
         max-width: 338px;
         font-family: 'Nunito', sans-serif;
         font-size: 14px;
@@ -525,7 +544,7 @@ let quizStyle = /*html*/ `
 
     }
 
-    .quiz-link-img{
+    .quiz-link-img {
         position: relative;
         overflow: hidden;
         border: 1px solid #C6C3C7;
@@ -550,22 +569,24 @@ let quizStyle = /*html*/ `
 
     */
 
-    .label-flex{
+    .label-flex {
         display: flex;
         justify-content: center;
     }
 
-    .label-box{
+    .label-box {
         border: 1px solid #DA3269;
         width: 200px;
         height: 48px;
+        padding: 14px 0;
+        text-align: start;
     }
 
-    .label-box:not(:last-child){
+    .label-box:not(:last-child) {
         margin-right: 20px;
     }
 
-    .article-hover{
+    .article-hover {
         position: absolute;
         left: 0;
         bottom: 0;
@@ -588,35 +609,38 @@ let quizStyle = /*html*/ `
         text-align: start;
     }
 
-    .title-hover{
+    .title-hover {
         font-weight: 600;
         font-size: 14px;
         line-height: 1.5;        
         color: #212121;
     }
 
-    .accent-color-link-hover{
+    .accent-color-link-hover {
         color: #DA3269;
+    }
+
+    .var-radiobutton {
+        top: 50%;
+        left: 0;
+        transform: translate(0%, -50%);
     }
 
 
 </style>
 `
 
-
 let quiz = /*html*/ `
     <div>
       <!-- section 1 -->
     <section class="section-first">
-        <div class="cross-block">
+        <button class="cross-block">
             <span>Close quiz</span>
-            <button class="cross-btn">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg class="cross-btn" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15 5L5 15" stroke="#212121" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M5 5L15 15" stroke="#212121" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-            </button>
-        </div>
+        </button>
         <div>
             <ul class="none-marker stages-list">
                 <li class="stages-link stages-link-active">
@@ -652,29 +676,33 @@ let quiz = /*html*/ `
                     <li class="quiz-first-section-link">
                         <img src="./img/section1/foto-1.jpg" alt="foto" width="179">
                         <label class="checkbox-flex">
-                            <input type="radio" name="sleepcover" id="" checked>
-                            Renew old furniture
+                            <input type="radio" name="sleepcover" id="" checked class="radio-box">
+                            <span class="radio-style var-radiobutton"></span>
+                            <span class="radio-box-text">Renew old furniture</span>
                         </label>
                     </li>
                     <li class="quiz-first-section-link">
                         <img src="./img/section1/foto-2.jpg" alt="foto" width="179">
                         <label class="checkbox-flex">
-                            <input type="radio" name="sleepcover" id="">
-                            Save furniture from kids
+                            <input type="radio" name="sleepcover" id="" class="radio-box">
+                            <span class="radio-style var-radiobutton"></span>
+                            <span class="radio-box-text">Save furniture from kids</span>
                         </label>
                     </li>
                     <li class="quiz-first-section-link">
                         <img src="./img/section1/foto-3.jpg" alt="foto" width="179" height="235">
                         <label class="checkbox-flex">
-                            <input type="radio" name="sleepcover" id="">
-                            For a new fresh look and feel
+                            <input type="radio" name="sleepcover" id="" class="radio-box">
+                            <span class="radio-style var-radiobutton"></span>
+                            <span class="radio-box-text">For a new fresh look and feel</span>
                         </label>
                     </li>
                     <li class="quiz-first-section-link">
                         <img src="./img/section1/foto-4.jpg" alt="foto" width="179">
                         <label class="checkbox-flex">
-                            <input type="radio" name="sleepcover" id="">
-                            Protect furniture from pets
+                            <input type="radio" name="sleepcover" id="" class="radio-box">
+                            <span class="radio-style var-radiobutton"></span>
+                            <span class="radio-box-text">Protect furniture from pets</span>
                         </label>
                     </li>
                 </ul>
@@ -682,25 +710,26 @@ let quiz = /*html*/ `
             <p class="quiz-text-description">Answer to this question will help us identify the most suitable cover for your needs</p>
         </div>
 
-        <div class="arrow-right-block">
-            <span>Next question</span>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow-right-btn">
-                <path d="M5 10H15M15 10L10 15M15 10L10 5" stroke="#DA3269" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+        <div class="arrow-flex-container">
+            <button class="arrow-right-block">
+                <span>Next question</span>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow-right-btn">
+                    <path d="M5 10H15M15 10L10 15M15 10L10 5" stroke="#DA3269" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
         </div>
+
     </section>
 
       <!-- section 2 -->
     <section class="section-second">
-        <div class="cross-block">
+        <button class="cross-block">
             <span>Close quiz</span>
-            <button class="cross-btn">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg class="cross-btn" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15 5L5 15" stroke="#212121" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M5 5L15 15" stroke="#212121" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-            </button>
-        </div>
+        </button>
         <div>
             <ul class="none-marker stages-list">
                 <li class="stages-link on-vizited">
@@ -735,95 +764,104 @@ let quiz = /*html*/ `
             <li class="quiz-two-section-link">
                 <img src="./img/section2/photo-1.jpg" alt="">
                 <label class="checkbox-flex">
-                    <input type="radio" name="furniture" id="">
-                    Armchair
+                    <input type="radio" name="furniture" id="" checked class="radio-box">
+                    <span class="radio-style var-radiobutton"></span>
+                    <span class="radio-box-text">Armchair</span>
                 </label>
             </li>
             <li class="quiz-two-section-link">
                 <img src="./img/section2/photo-2.jpg" alt="">
                 <label class="checkbox-flex">
-                    <input type="radio" name="furniture" id="" checked>
-                    Sofa
+                    <input type="radio" name="furniture" id="" class="radio-box">
+                    <span class="radio-style var-radiobutton"></span>
+                    <span class="radio-box-text">Sofa</span>
                 </label>
             </li>
             <li class="quiz-two-section-link">
                 <img src="./img/section2/photo-3.jpg" alt="">
                 <label class="checkbox-flex">
-                    <input type="radio" name="furniture" id="">
-                    Sectional Sofa
+                    <input type="radio" name="furniture" id="" class="radio-box">
+                    <span class="radio-style var-radiobutton"></span>
+                    <span class="radio-box-text">Sectional Sofa</span>
                 </label>
             </li>
             <li class="quiz-two-section-link">
                 <img src="./img/section2/photo-4.jpg" alt="">
                 <label class="checkbox-flex">
-                    <input type="radio" name="furniture" id="">
-                    Recliner
+                    <input type="radio" name="furniture" id="" class="radio-box">
+                    <span class="radio-style var-radiobutton"></span>
+                    <span class="radio-box-text">Recliner</span>
                 </label>
             </li>
             <li class="quiz-two-section-link">
                 <img src="./img/section2/photo-5.jpg" alt="">
                 <label class="checkbox-flex">
-                    <input type="radio" name="furniture" id="">
-                    Ottoman
+                    <input type="radio" name="furniture" id="" class="radio-box">
+                    <span class="radio-style var-radiobutton"></span>
+                    <span class="radio-box-text">Ottoman</span>
                 </label>
             </li>
             <li class="quiz-two-section-link">
                 <img src="./img/section2/photo-6.jpg" alt="">
                 <label class="checkbox-flex">
-                    <input type="radio" name="furniture" id="">
-                    Chaise lounge
+                    <input type="radio" name="furniture" id="" class="radio-box">
+                    <span class="radio-style var-radiobutton"></span>
+                    <span class="radio-box-text">Chaise lounge</span>
                 </label>
             </li>
             <li class="quiz-two-section-link">
                 <img src="./img/section2/photo-7.jpg" alt="">
                 <label class="checkbox-flex">
-                    <input type="radio" name="furniture" id="">
-                    Bed
+                    <input type="radio" name="furniture" id="" class="radio-box">
+                    <span class="radio-style var-radiobutton"></span>
+                    <span class="radio-box-text">Bed</span>
                 </label>
             </li>
             <li class="quiz-two-section-link">
                 <img src="./img/section2/photo-8.jpg" alt="">
                 <label class="checkbox-flex">
-                    <input type="radio" name="furniture" id="">
-                    Dinning Chair
+                    <input type="radio" name="furniture" id="" class="radio-box">
+                    <span class="radio-style var-radiobutton"></span>
+                    <span class="radio-box-text">Dinning Chair</span>
                 </label>
             </li>
             <li class="quiz-two-section-link">
                 <img src="./img/section2/photo-9.jpg" alt="">
                 <label class="checkbox-flex">
-                    <input type="radio" name="furniture" id="">
-                    Pillows
+                    <input type="radio" name="furniture" id="" class="radio-box">
+                    <span class="radio-style var-radiobutton"></span>
+                    <span class="radio-box-text">Pillows</span>
                 </label>
             </li>
             </ul>
             <p class="quiz-text-description">This will help us you find the most suitable shape for your cover</p>
         </div>
 
-        <div class="arrow-left-block">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow-left-btn">
-                <path d="M15 10H5M5 10L10 15M5 10L10 5" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span>Previous question</span>
-        </div>
-        <div class="arrow-right-block">
-            <span>Next question</span>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow-right-btn">
-                <path d="M5 10H15M15 10L10 15M15 10L10 5" stroke="#DA3269" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+        <div class="arrow-flex-container">
+            <button class="arrow-left-block">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow-left-btn">
+                    <path d="M15 10H5M5 10L10 15M5 10L10 5" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Previous question</span>
+            </button>
+            <button class="arrow-right-block">
+                <span>Next question</span>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow-right-btn">
+                    <path d="M5 10H15M15 10L10 15M15 10L10 5" stroke="#DA3269" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
         </div>
     </section>
 
       <!-- section 3 -->
     <section class="section-third">
-        <div class="cross-block">
+        <button class="cross-block">
             <span>Close quiz</span>
-            <button class="cross-btn">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg class="cross-btn" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15 5L5 15" stroke="#212121" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M5 5L15 15" stroke="#212121" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-            </button>
-        </div>
+        </button>
         <div>
             <ul class="none-marker stages-list">
                 <li class="stages-link on-vizited">
@@ -859,25 +897,26 @@ let quiz = /*html*/ `
             <button class="quiz-btn">Continue</button>
         </div>
 
-        <div class="arrow-left-block">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow-left-btn">
-                <path d="M15 10H5M5 10L10 15M5 10L10 5" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span>Previous question</span>
+        <div class="arrow-flex-container">
+            <button class="arrow-left-block">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow-left-btn">
+                    <path d="M15 10H5M5 10L10 15M5 10L10 5" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Previous question</span>
+            </button>
         </div>
+
     </section>
 
       <!-- section 4 -->
     <section class="section-fourth">
-        <div class="cross-block">
+        <button class="cross-block">
             <span>Close quiz</span>
-            <button class="cross-btn">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg class="cross-btn" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15 5L5 15" stroke="#212121" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M5 5L15 15" stroke="#212121" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-            </button>
-        </div>
+        </button>
         <div>
             <ul class="none-marker stages-list">
                 <li class="stages-link on-vizited">
@@ -929,18 +968,21 @@ let quiz = /*html*/ `
             <p class="quiz-text-description description-fourth">Our covers are 100% pets and kids friendly</p>
         </div>
 
-        <div class="arrow-left-block">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow-left-btn">
-                <path d="M15 10H5M5 10L10 15M5 10L10 5" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span>Previous question</span>
+        <div class="arrow-flex-container">
+            <button class="arrow-left-block">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow-left-btn">
+                    <path d="M15 10H5M5 10L10 15M5 10L10 5" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Previous question</span>
+            </button>
+            <button class="arrow-right-block">
+                <span>Next question</span>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow-right-btn">
+                    <path d="M5 10H15M15 10L10 15M15 10L10 5" stroke="#DA3269" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
         </div>
-        <div class="arrow-right-block">
-            <span>Next question</span>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow-right-btn">
-                <path d="M5 10H15M15 10L10 15M15 10L10 5" stroke="#DA3269" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </div>
+
     </section>
 
       <!-- section 5 -->
@@ -989,8 +1031,9 @@ let quiz = /*html*/ `
                 <div>
                     <img src="./img/section5/photo-1.jpg" alt="foto" width="179">
                     <label class="checkbox-flex">
-                        <input type="radio" name="pattern" id="" checked>
-                        Microfibra
+                        <input type="radio" name="pattern" id="" checked class="radio-box">
+                        <span class="radio-style var-radiobutton"></span>
+                        <span class="radio-box-text">Microfibra</span>
                     </label>
                     <article class="article-hover">
                         <h3 class="title-hover">Microfibra:</h3>
@@ -1004,8 +1047,9 @@ let quiz = /*html*/ `
                 <div>
                     <img src="./img/section5/photo-2.jpg" alt="foto" width="179">
                     <label class="checkbox-flex">
-                        <input type="radio" name="pattern" id="">
-                        Velvet
+                        <input type="radio" name="pattern" id="" class="radio-box">
+                        <span class="radio-style var-radiobutton"></span>
+                        <span class="radio-box-text">Velvet</span>
                     </label>
                     <article class="article-hover">
                         <h3 class="title-hover">Microfibra:</h3>
@@ -1019,8 +1063,9 @@ let quiz = /*html*/ `
                 <div>
                     <img src="./img/section5/photo-3.jpg" alt="foto" width="179">
                     <label class="checkbox-flex">
-                        <input type="radio" name="pattern" id="">
-                        Mille Righe
+                        <input type="radio" name="pattern" id="" class="radio-box">
+                        <span class="radio-style var-radiobutton"></span>
+                        <span class="radio-box-text">Mille Righe</span>
                     </label>
                     <article class="article-hover">
                         <h3 class="title-hover">Microfibra:</h3>
@@ -1034,8 +1079,9 @@ let quiz = /*html*/ `
                 <div>
                     <img src="./img/section5/photo-4.jpg" alt="foto" width="179">
                     <label class="checkbox-flex">
-                        <input type="radio" name="pattern" id="">
-                        Jacquard 3D
+                        <input type="radio" name="pattern" id="" class="radio-box">
+                        <span class="radio-style var-radiobutton"></span>
+                        <span class="radio-box-text">Jacquard 3D</span>
                     </label>
                     <article class="article-hover">
                         <h3 class="title-hover">Microfibra:</h3>
@@ -1048,31 +1094,31 @@ let quiz = /*html*/ `
             </ul>
             <p class="quiz-text-description">Hover over the picture to learn more about each type of material</p>
         </div>
-        <div class="arrow-left-block">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow-left-btn">
-                <path d="M15 10H5M5 10L10 15M5 10L10 5" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span>Previous question</span>
-        </div>
-        <div class="arrow-right-block">
-            <span>Next question</span>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow-right-btn">
-                <path d="M5 10H15M15 10L10 15M15 10L10 5" stroke="#DA3269" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+        <div class="arrow-flex-container">
+            <button class="arrow-left-block">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow-left-btn">
+                    <path d="M15 10H5M5 10L10 15M5 10L10 5" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Previous question</span>
+            </button>
+            <button class="arrow-right-block">
+                <span>Next question</span>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow-right-btn">
+                    <path d="M5 10H15M15 10L10 15M15 10L10 5" stroke="#DA3269" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
         </div>
       </section>
 
       <!-- section 6 -->
     <section class="section-sixth">
-        <div class="cross-block">
+        <button class="cross-block">
             <span>Close quiz</span>
-            <button class="cross-btn">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg class="cross-btn" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15 5L5 15" stroke="#212121" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M5 5L15 15" stroke="#212121" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-            </button>
-        </div>
+        </button>
         <div>
             <ul class="none-marker stages-list">
                 <li class="stages-link on-vizited">
@@ -1109,25 +1155,26 @@ let quiz = /*html*/ `
             <button class="quiz-btn btn-var-bottom">Continue TO VIEW QUIZ RESULT</button>
         </div>
 
-        <div class="arrow-left-block">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow-left-btn">
-                <path d="M15 10H5M5 10L10 15M5 10L10 5" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span>Previous question</span>
+        <div class="arrow-flex-container">
+            <button class="arrow-left-block">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="arrow-left-btn">
+                    <path d="M15 10H5M5 10L10 15M5 10L10 5" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Previous question</span>
+            </button>
         </div>
+
     </section>
 
       <!-- section Result-->
     <section class="section-result">
-        <div class="cross-block">
-            <span class="cross-btn-text">Close quiz</span>
-            <button class="cross-btn">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <button class="cross-block">
+            <span>Close quiz</span>
+                <svg class="cross-btn" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15 5L5 15" stroke="#212121" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M5 5L15 15" stroke="#212121" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-            </button>
-        </div>
+        </button>
 
         <p class="result-primary-text">Result</p>
         <h2 class="result-title">We found the most suitable cover for you </h2>
@@ -1195,3 +1242,14 @@ let quiz = /*html*/ `
 
 document.head.insertAdjacentHTML("beforeend", quizStyle)
 document.body.insertAdjacentHTML("afterbegin", quiz)
+
+// if (document.querySelector(".radio-box:checked")) {
+//   document.querySelector(".quiz-first-section-link").style.backgroundColor = "rgba(218, 50, 105, 0.05)"
+//   document.querySelector(".quiz-two-section-link").style.backgroundColor = "rgba(218, 50, 105, 0.05)"
+//   document.querySelector(".quiz-list-img").style.backgroundColor = "rgba(218, 50, 105, 0.05)"
+
+//   document.querySelector(".label-box").style.backgroundColor = "rgba(218, 50, 105, 0.05)"
+//   document.querySelector(".label-position").style.color = "#DA3269"
+
+//   document.querySelector(".radio-box-text").style.color = "#DA3269"
+// }
