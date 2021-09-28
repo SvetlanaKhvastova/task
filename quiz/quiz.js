@@ -50,6 +50,7 @@ let quizStyle = /*html*/ `
         padding: 0;
         justify-content: center;
         align-items: center;
+        margin-top: 30px;
     }
 
     .stages-link {
@@ -91,11 +92,11 @@ let quizStyle = /*html*/ `
         display: none;
     }
 
-    .cross-block {        
+    .cross-block {
+        position: absolute;        
         display: inline-flex;
-        margin-bottom: 30px;
-        text-align: end;
-        padding: 0;
+        top: 9px;
+        right: 20px;
         align-items: center;
         font-weight: 400;
         font-size: 16px;
@@ -354,7 +355,7 @@ let quizStyle = /*html*/ `
 
     .section-six-input {
         width: 310px;
-        padding: 0 0 10px;        
+        padding: 0 0 9px;        
         text-align: start;
         border: none;
         outline: none;
@@ -363,6 +364,8 @@ let quizStyle = /*html*/ `
 
     .section-six-input::placeholder {
         color: #F4C2D2;
+        font-size: 16px;
+        line-height: 22px;
         margin-bottom: 10px;
     }
 
@@ -421,6 +424,7 @@ let quizStyle = /*html*/ `
 
     .result-primary-text {
         position: relative;
+        margin-top: 38px;
         font-family: 'Nunito', sans-serif;
         font-weight: 900;
         font-size: 18px;
@@ -434,7 +438,7 @@ let quizStyle = /*html*/ `
         position: absolute;
         display: inline-block;
         top: 50%;
-        left: 70%;
+        left: 75%;
         width: 77px;
         border-bottom: 2px solid #F4C2D2;
     }
@@ -444,7 +448,7 @@ let quizStyle = /*html*/ `
         position: absolute;
         display: inline-block;
         top: 50%;
-        right: 70%;
+        right: 75%;
         width: 77px;
         border-bottom: 2px solid #F4C2D2;
     }
@@ -478,7 +482,7 @@ let quizStyle = /*html*/ `
     .result-img-box {
         display: flex;
         align-items: center;
-        margin: 0 0 20px;
+        margin: 0 0 16px;
     }
 
     .result-photo{
@@ -672,6 +676,7 @@ let quizStyle = /*html*/ `
 
         .cross-block {
             position: absolute;
+            top: unset;
             right: 40px;
             margin-bottom: 0;
         }
@@ -680,13 +685,17 @@ let quizStyle = /*html*/ `
             margin-left: 20px;       
         }
 
+        .stages-list {
+            margin-top: 0;
+        }
+
         .stages-list:before {
             width: 376px;            
         }
 
         .quiz-list-first-section {
             width: 859px;
-            margin: 0;
+            margin-bottom: 0;
         }
 
         .quiz-first-section-link {
@@ -946,6 +955,10 @@ let quizStyle = /*html*/ `
 
         .result-slider-link:not(:last-child) {
             margin: 0 5px 0 0;
+        }
+
+        .result-primary-text {
+            margin-top: unset;
         }
 
         .result-primary-text::before {
