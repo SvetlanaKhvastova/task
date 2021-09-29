@@ -24,9 +24,8 @@ let quizStyle = /*html*/ `
         margin: 0;
     }
 
-    .none-marker {
+    li {
         list-style: none;
-        margin: 0;
     }   
 
     .section-first, .section-second, .section-third, .section-fourth, .section-fifth, .section-sixth, .section-result {
@@ -156,9 +155,7 @@ let quizStyle = /*html*/ `
     .cross-btn-text {
         margin-right: 20px;
 
-    }
-    
-    
+    }  
 
     .section-box-first {
     }
@@ -173,6 +170,14 @@ let quizStyle = /*html*/ `
         margin: 0 0 30px;
     }
 
+
+
+
+
+
+    /*
+    style card
+    */
     .quiz-list-img {
         font-family: 'Nunito', sans-serif;
         font-weight: 400;
@@ -203,32 +208,66 @@ let quizStyle = /*html*/ `
         width: calc(95% / 2);   
     }
    
-    .quiz-first-section-link {
+    .quiz-list-img label {
         display: flex;
         flex-direction: column;
-        height: 100%;
         padding: 7px 6px 10px;
         margin-bottom: 12px;
         border: 1px solid #C6C3C7;
         border-radius: 2.18593px;
     }
 
-
-    .checkbox-flex {
+    .quiz-list-img label > div {
         position: relative;
         display: flex;
+        align-items: center;
         margin-top: 9px;
         padding: 5px 0;
     }
 
-    .quiz-two-section-link {
+    .quiz-list-second-section li{
         width: calc(93% / 3);
-        
-        border: 1px solid #C6C3C7;
-        border-radius: 3px;
-        margin-bottom: 10px;
-        padding: 5px 5px 7px;
     }
+
+    .radio-box {
+        position: absolute;
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+    }
+
+    .quiz-list-img label > div > span:last-child{
+        margin-left: 10px;  
+    }
+
+    .radio-style {
+        flex-shrink: 0;
+        display: block;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;      
+        border: 3px solid #F4C2D2;
+    }
+
+    .radio-box:checked + label .radio-style {
+        background: url('./img/svg/vector.svg') center center no-repeat;
+        background-size: 70%;
+        background-color: #DA3269;
+        border: 3px solid #DA3269;
+    }
+
+    .radio-box:checked + label {
+        background-color: rgba(218, 50, 105, 0.05);
+        border: 1px solid #DA3269;
+    }
+
+    .radio-box:checked + label > div > span:last-child {      
+        color: #DA3269;
+        font-weight: 700;
+    }
+
+
+
 
     .quiz-text-description {
         font-family: 'Nunito', sans-serif;
@@ -365,52 +404,7 @@ let quizStyle = /*html*/ `
         margin-left: 51px;
     }
 
-    .radio-box {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        overflow: hidden;
-        padding-left: 20px;
-    }
-
-    .radio-box-text{
-        margin-left: 30px;      
-    }
-
-    .radio-style {
-        position: absolute;
-        width: 26px;
-        height: 26px;
-        border-radius: 73px;      
-        border: 3px solid #F4C2D2;
-        top: 50%;
-        left: 50%;
-        transform: translate(-189%, -50%);
-    }
-
-    .radio-style-mob {
-        width: 18.94px;
-        height: 18.94px;
-    }
-
-    .radio-box:checked + label .radio-style {
-        background: url('./img/svg/vector.svg');
-        background-repeat: no-repeat;
-        background-position:center center;
-        background-size:13px;
-        background-color: #DA3269;
-        border: 3px solid #DA3269;
-    }
-
-  
-    .radio-box:checked + .quiz-first-section-link  {
-        background-color: rgba(218, 50, 105, 0.05);
-        border: 1px solid #DA3269;
-    }
-
-    .radio-box:checked + label .radio-box-text{      
-        color: #DA3269;
-    }
+    
 
     .result-primary-text {
         position: relative;
@@ -1050,44 +1044,44 @@ let quiz = /*html*/ `
         <div class='first-block'>
             <div class="section-box-first">
                 <h2 class="quiz-title">Why do you need a new Sleepcover?</h2>
-                <ul class="none-marker quiz-list-img quiz-list-first-section">
+                <ul class="quiz-list-img quiz-list-first-section">
                     <li>
                         <input type="radio" name="sleepcover" id="sleepcover1" checked class="radio-box">
-                        <label class="quiz-first-section-link" for="sleepcover1">
-                            <img src="./img/section1/foto-1.jpg" alt="foto" class="img-size">
-                            <div class="checkbox-flex">
-                                <span class="radio-style radio-style-mob var-radiobutton"></span>
-                                <span class="radio-box-text">Renew old furniture</span>
+                        <label for="sleepcover1">
+                            <img src="./img/section1/foto-1.jpg" alt="foto">
+                            <div>
+                                <span class="radio-style"></span>
+                                <span>Renew old furniture</span>
                             </div>
                         </label>
                     </li>
-                    <li >
-                        <input type="radio" name="sleepcover" id="sleepcover2" class="radio-box">
-                        <label class="quiz-first-section-link" for="sleepcover2">
-                            <img src="./img/section1/foto-2.jpg" alt="foto" class="img-size">
-                            <div class="checkbox-flex">
-                                <span class="radio-style radio-style-mob var-radiobutton"></span>
-                                <span class="radio-box-text">Save furniture from kids</span>
+                    <li>
+                        <input type="radio" name="sleepcover" id="sleepcover2" checked class="radio-box">
+                        <label for="sleepcover2">
+                            <img src="./img/section1/foto-2.jpg" alt="foto">
+                            <div>
+                                <span class="radio-style"></span>
+                                <span>Save furniture from kids</span>
                             </div>
                         </label>
                     </li>
-                    <li >
-                        <input type="radio" name="sleepcover" id="sleepcover3" class="radio-box">
-                        <label class="quiz-first-section-link" for="sleepcover3">
-                            <img src="./img/section1/foto-3.jpg" alt="foto" class="img-size">
-                            <div class="checkbox-flex">
-                                <span class="radio-style radio-style-mob var-radiobutton"></span>
-                                <span class="radio-box-text">For a new fresh look and feel</span>
+                    <li>
+                        <input type="radio" name="sleepcover" id="sleepcover3" checked class="radio-box">
+                        <label for="sleepcover3">
+                            <img src="./img/section1/foto-3.jpg" alt="foto">
+                            <div>
+                                <span class="radio-style"></span>
+                                <span>For a new fresh look and feel</span>
                             </div>
                         </label>
                     </li>
-                    <li >
-                        <input type="radio" name="sleepcover" id="sleepcover4" class="radio-box">
-                        <label class="quiz-first-section-link" for="sleepcover4">
-                            <img src="./img/section1/foto-4.jpg" alt="foto" class="img-size">
-                            <div class="checkbox-flex">
-                                <span class="radio-style radio-style-mob var-radiobutton"></span>
-                                <span class="radio-box-text">Protect furniture from pets</span>
+                    <li>
+                        <input type="radio" name="sleepcover" id="sleepcover4" checked class="radio-box">
+                        <label for="sleepcover4">
+                            <img src="./img/section1/foto-4.jpg" alt="foto">
+                            <div>
+                                <span class="radio-style"></span>
+                                <span>Protect furniture from pets</span>
                             </div>
                         </label>
                     </li>

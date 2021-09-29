@@ -1,18 +1,28 @@
-let paymentFlowStyle = /*html*/ `
+let paymentFlowWithoutVideoStyle = /*html*/ `
     <style>
-        #hubspot-messages-iframe-container iframe{
-            top: -145px !important;
-        }
-
-        #paymentForm >.row{
-            display: none;
-        }
-
-        #paymentForm >:nth-child(2){
-            display: none;
-        }
         #hubspot-messages-iframe-container {
             z-index: 0 !important;
+        }
+
+        #hubspot-messages-iframe-container iframe{
+            top: -165px !important;
+        }
+
+        #paymentForm > div >.row{
+            display: none;
+        }
+
+        #paymentForm > div >:nth-child(2){
+            display: none;
+        }
+
+        a {
+        text-decoration: none;
+        }
+
+
+        .accent-color-span{
+            font-weight: 600;
         }
 
         .payment-flow-section{
@@ -24,72 +34,60 @@ let paymentFlowStyle = /*html*/ `
             box-shadow: 0px 0px 22px rgba(0, 0, 0, 0.25);
             border-radius: 10px;
             z-index: 2147483649 !important;
-            padding: 7px 16px 16px;
+            padding: 12px 16px;
             font-family: 'Poppins', sans-serif;
         }
 
         .payment-wrapper{
-            width: unset;
-            text-align: end;
-        }
-
-        .payment-block-discount{
             display: flex;
-            align-items: baseline;
             justify-content: space-between;
-            margin: 0;
         }
 
         .payment-title{
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-            font-size: 18px;
-            line-height: 27px;
-            color: #FFFFFF;
-            margin-bottom: 0;         
-        }
-
-        .discount{
-            padding: 0 4px;
+            max-width: 192px;
+            text-align: start;
             font-weight: 400;
-            font-size: 12px;
-            line-height: 18px;
-            color: #FFFFFF;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 5px;
+            font-size: 16px;
+            line-height: 22px;
+            color: #FFFFFF;         
         }
 
         .payment-text{
-            display: flex;
-            float: left;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
             font-weight: 300;
-            font-size: 10px;
-            line-height: 21px;
+            font-size: 12px;
+            line-height: 1;
             color: rgba(255, 255, 255, 0.6);
-            align-items: stretch;
+            margin: 11px 0 0;
         }
 
         .payment-box-price{
             display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            margin-bottom: 5px;
+            justify-content: flex-start;
+            flex-direction: column;
         }
 
         .crossed-price-flow{
+            font-family: 'Poppins', sans-serif;
             font-weight: 500;
             font-size: 14px;
             line-height: 21px;
             text-decoration-line: line-through;
             color: #9C9C9C;
-            margin: 0 7px 0 0;
+            margin: 3px 0 8px;
         }
 
         .price-flow{
+            font-family: 'Poppins', sans-serif;
             font-weight: 500;
             font-size: 13px;
             line-height: 15px;
             color: #F85736;
+        }
+
+        .payment-btn-wrapper{
+
         }
 
         .payment-btn-box{
@@ -144,15 +142,16 @@ let paymentFlowStyle = /*html*/ `
 
         @media (min-width: 768px) {
             #hubspot-messages-iframe-container iframe{
-                top: -110px !important;
+                top: -171px !important;
             }
 
             .payment-flow-section{
                 display: flex;
-                padding: 20px 30px;
+                padding: 23px 32px;
             }
 
             .payment-wrapper{
+                display: unset;
                 width: calc(100% / 2);
                 text-align: unset;
             }
@@ -160,40 +159,38 @@ let paymentFlowStyle = /*html*/ `
             .payment-block-discount{
                 display: inline-flex;
                 align-items: center;
-                margin: 0 20px 0 0;
-                height: unset;
-            }
+                justify-content: space-between;
+                margin: 0;
 
-            .payment-title{
-                font-size: 24px;
-                line-height: 36px;
-                margin: 0 10px 0 0;            
-            }
-
-            .discount{
-                padding: 0 4px;
-                font-size: 14px;
-                line-height: 21px;
-            }
-
-            .payment-box-price{
-                margin-bottom: 0;
-                justify-content: start;
-            }
-
-            .payment-btn-box{
-                width: calc(100% / 2);
-                display: flex;
-                align-items: center;
-                justify-content: center;
             }
 
             .payment-text{
-                display: inline-block;
-                float: unset;
-                line-height: 1;
-                max-width: 131px;
-                font-size: 12px;
+                margin: 0;
+            }
+
+            .payment-title{
+                max-width: 236px;
+                font-size: 22px;
+                line-height: 26px;
+                          
+            }
+
+            .payment-box-price{
+                justify-content: start;
+                flex-direction: unset;
+            }
+
+            .payment-btn-wrapper{
+                display: flex;
+                width: calc(100% / 2);
+                flex-direction: column;
+                justify-content: space-evenly;
+            }
+
+            .payment-btn-box{
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
 
             .crossed-price-flow{
@@ -229,20 +226,22 @@ let paymentFlowStyle = /*html*/ `
     </style>
 `
 
-let paymentFlow = /*html*/ `
+let paymentFlowWithoutVideo = /*html*/ `
     <div class="payment-flow-section">
         <div class="payment-wrapper">
             <div class="payment-block-discount">
-                <p class="payment-title">Get Samcart</p>
-                <span class="discount">40% OFF</span>
+                <p class="payment-title">40% Off a 1 Year Subscription to the new <span class="accent-color-span">SamCart Launch Plan</span></p>
             </div>
-            <span class="payment-text">30 days money-back guarantee</span>
+            
             <div class="payment-box-price">
                 <span class="crossed-price-flow">$580.00</span>
                 <span class="price-flow">$349.00</span>
             </div>
         </div>
-        <div class="payment-btn-box"></div>
+        <div class="payment-btn-wrapper">
+            <div class="payment-btn-box"></div>
+            <p class="payment-text">30 days money-back guarantee</p>
+        </div>
     </div>
 
 `
@@ -303,9 +302,19 @@ let googlePayBtn = /*html*/ `
         </svg>
     </a>
 `
+document.querySelectorAll(".sc-element")[9].style.display = "none"
+document.head.insertAdjacentHTML("beforeend", paymentFlowWithoutVideoStyle)
+document.body.insertAdjacentHTML('afterbegin', paymentFlowWithoutVideo)
 
-document.head.insertAdjacentHTML("beforeend", paymentFlowStyle)
-document.body.insertAdjacentHTML('afterbegin', paymentFlow)
+document.querySelectorAll(".sc-row")[1].remove()
+document.querySelectorAll(".sc-row")[1].remove()
+document.querySelectorAll(".sc-row")[1].remove()
+document.querySelectorAll(".sc-element")[2].remove()
+document.querySelectorAll(".sc-element")[3].remove()
+document.querySelectorAll(".sc-element")[5].remove()
+
+document.querySelectorAll(".sc-element")[2].style.textAlign = "center"
+
 
 // displayed without form information
 document.querySelector("#fname").value = "Conversion"
@@ -315,10 +324,10 @@ document.querySelector("#phone").value = "0994183099"
 
 // clone box Payment Methods
 document.querySelector('#order-summary-widget').after(document.querySelector('#payments'))
-document.querySelector('#order-summary-widget').after(document.querySelector(".tpl-6__checkout__subtitle.mt-sm-20.mb-16"))
+document.querySelector('#order-summary-widget').after(document.querySelector("h4.tpl-2__checkout__subtitle.mt-sm-12.mb-16"))
 
 // displayed price
-document.querySelector(".crossed-price-flow").innerText = document.querySelector(".sc-element .mobile-column-width #sc2aefd0ed-25fa-4782-ac27-cb984e1f75e1 p").textContent + ".00"
+document.querySelector(".crossed-price-flow").innerText = document.querySelector("#sc41c12e78-a2fa-4ff4-b8b8-83d393ef5b33 strike").textContent.substr(0, 4) + ".00"
 document.querySelector(".price-flow").innerText = document.querySelector("span#total").textContent
 
 // displayed btn
@@ -343,7 +352,7 @@ if(document.querySelector(".google-pay:not(.ng-hide)")){
 }
 
 
-// scrolling
+// Pure js scrolling
 let eventVar = "desktop";
 
 if (window.innerWidth <= 768) {
@@ -353,7 +362,7 @@ if (window.innerWidth <= 768) {
 function scrolling( btnSelector, onClick) {
     let btn = document.querySelector(btnSelector)
     let eLabel = ""
-  
+
     btn.addEventListener("click", (e)=>{
         e.preventDefault()
 
@@ -370,14 +379,14 @@ function scrolling( btnSelector, onClick) {
             eLabel='Google Pay'
         }
 
+
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
         'event': 'event-to-ga',
-        'eventCategory': `Exp - payment flow update ${eventVar}`,
+        'eventCategory': `Exp - hide video block ${eventVar}`,
         'eventAction': 'Clicks banner buttons',
         'eventLabel': eLabel
         });
-
         
         document.querySelector(onClick).click()
 
@@ -392,7 +401,7 @@ function scrolling( btnSelector, onClick) {
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
     'event': 'event-to-ga',
-    'eventCategory': `Exp - payment flow update ${eventVar}`,
+    'eventCategory': `Exp - hide video block ${eventVar}`,
     'eventAction': 'loaded'
 });
 
@@ -405,4 +414,6 @@ dataLayer.push({
     a.appendChild(r);
 })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
-    hj('trigger', `payment_flow_update ${eventVar}`)
+    hj('trigger', `hide_video_block ${eventVar}`)
+
+    
