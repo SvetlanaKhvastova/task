@@ -28,21 +28,18 @@ let quizStyle = /*html*/ `
         list-style: none;
     }   
 
-    .section-first, .section-second, .section-third, .section-fourth, .section-fifth, .section-sixth, .section-result {
+    .custom-quiz section {
         position: relative;
         text-align: center;
-        padding: 20px 35px 49px;
+        padding: 20px 35px 50px;
         border: 1px dashed red;
+        font-family: 'Nunito', sans-serif;
+        font-weight: 400;
     }
 
-    .section-sixth{
-        padding: 20px 32px 49px;
-    }
-
-    .section-result {
-        padding: 20px 35px 36px;
-    }   
-
+    /*
+    stages
+    */
     .stages-list {
         position: relative;
         display: flex;
@@ -97,7 +94,6 @@ let quizStyle = /*html*/ `
         top: 9px;
         right: 20px;
         align-items: center;
-        font-weight: 400;
         font-size: 16px;
         line-height: 22px;
         text-transform: capitalize;
@@ -116,7 +112,6 @@ let quizStyle = /*html*/ `
         display: inline-flex;
         padding: 0;
         align-items: center;
-        font-family: 'Nunito', sans-serif;
         font-weight: 700;
         font-size: 12px;
         line-height: 16px;
@@ -137,7 +132,6 @@ let quizStyle = /*html*/ `
         padding: 0;
         align-items: center;
         justify-content: center;
-        font-family: 'Nunito', sans-serif;
         font-weight: 700;
         font-size: 12px;
         line-height: 16px;
@@ -157,17 +151,30 @@ let quizStyle = /*html*/ `
 
     }  
 
-    .section-box-first {
-    }
-
     .quiz-title {
-        font-family: 'Nunito', sans-serif;
         font-weight: 600;
         font-size: 20px;
         line-height: 27px;
         text-align: center;
         color: #212121;
         margin: 0 0 30px;
+    }
+
+    .quiz-text-description {
+        font-size: 10px;
+        line-height: 14px;
+        text-align: center;
+        color: #212121;
+        margin: 18px 0 0;
+    }
+
+    .quiz-title-third {
+        font-weight: 900;
+        font-size: 26px;
+        line-height: 35px;        
+        text-transform: uppercase;
+        color: #212121;
+        margin: 0 0 15px;
     }
 
 
@@ -179,8 +186,6 @@ let quizStyle = /*html*/ `
     style card
     */
     .quiz-list-img {
-        font-family: 'Nunito', sans-serif;
-        font-weight: 400;
         font-size: 10px;
         line-height: 12px;
         letter-spacing: -0.02em;
@@ -194,25 +199,21 @@ let quizStyle = /*html*/ `
         margin: auto;
     }
 
-    .quiz-list-second-section {
-        width: 305px;
-        margin-bottom: -10px;
-    }
-
-    .quiz-list-first-section {
-        width: 304px;
-        margin-bottom: -12px;
-    }
-
     .quiz-list-first-section li{
-        width: calc(95% / 2);   
+        width: calc(95% / 2); 
+        margin-bottom: 12px;  
+    }
+
+    .quiz-list-second-section li{
+        width: calc(93% / 3);
+        margin-bottom: 12px;
     }
    
     .quiz-list-img label {
         display: flex;
+        height: 100%;
         flex-direction: column;
-        padding: 7px 6px 10px;
-        margin-bottom: 12px;
+        padding: 7px;
         border: 1px solid #C6C3C7;
         border-radius: 2.18593px;
     }
@@ -221,13 +222,8 @@ let quizStyle = /*html*/ `
         position: relative;
         display: flex;
         align-items: center;
-        margin-top: 9px;
-        padding: 5px 0;
-    }
-
-    .quiz-list-second-section li{
-        width: calc(93% / 3);
-    }
+        margin-top: 10px;
+    }   
 
     .radio-box {
         position: absolute;
@@ -243,8 +239,8 @@ let quizStyle = /*html*/ `
     .radio-style {
         flex-shrink: 0;
         display: block;
-        width: 26px;
-        height: 26px;
+        width: 18px;
+        height: 18px;
         border-radius: 50%;      
         border: 3px solid #F4C2D2;
     }
@@ -269,28 +265,7 @@ let quizStyle = /*html*/ `
 
 
 
-    .quiz-text-description {
-        font-family: 'Nunito', sans-serif;
-        font-weight: 400;
-        font-size: 10px;
-        line-height: 14px;
-        text-align: center;
-        color: #212121;
-        margin: 30px 0 0;
-    }
-
-    .quiz-title-third {
-        font-family: 'Nunito', sans-serif;
-        font-weight: 900;
-        font-size: 26px;
-        line-height: 35px;        
-        text-transform: uppercase;
-        color: #212121;
-        margin: 0 0 15px;
-    }
-
     .quiz-section-third-text {
-        font-family: 'Nunito', sans-serif;
         font-weight: 300;
         font-size: 18px;
         line-height: 25px;
@@ -299,7 +274,6 @@ let quizStyle = /*html*/ `
     }
 
     .quiz-section-third-span {
-        font-family: 'Nunito', sans-serif;
         font-weight: 600;
         font-size: 14px;
         line-height: 19px;
@@ -314,7 +288,6 @@ let quizStyle = /*html*/ `
         height: 40px;
         align-items: center;
         justify-content: center;
-        font-family: 'Nunito', sans-serif;
         font-weight: 700;
         font-size: 14px;
         line-height: 19px;
@@ -409,7 +382,6 @@ let quizStyle = /*html*/ `
     .result-primary-text {
         position: relative;
         margin-top: 38px;
-        font-family: 'Nunito', sans-serif;
         font-weight: 900;
         font-size: 18px;
         line-height: 25px;
@@ -498,8 +470,6 @@ let quizStyle = /*html*/ `
     }
 
     .result-text-box-title {        
-        font-family: 'Nunito', sans-serif;
-        font-weight: 400;
         font-size: 20px;
         line-height: 27px;
         text-transform: uppercase;
@@ -509,8 +479,6 @@ let quizStyle = /*html*/ `
 
     .result-size {
         display: block;
-        font-family: 'Nunito', sans-serif;
-        font-weight: 400;
         font-size: 14px;
         line-height: 19px;
         color: #999999;
@@ -518,7 +486,6 @@ let quizStyle = /*html*/ `
     }
 
     .result-text-box-color {
-        font-weight: normal;
         font-size: 14px;
         line-height: 19px;
         color: #000000;
@@ -526,7 +493,6 @@ let quizStyle = /*html*/ `
     }
 
     .result-color-accent {
-        font-weight: 400;
         font-size: 14px;
         line-height: 19px;
         color: #999999;
@@ -548,7 +514,6 @@ let quizStyle = /*html*/ `
     }
 
     .result-accent-text {
-        font-family: 'Nunito', sans-serif;
         font-weight: 800;
         font-size: 12px;
         line-height: 16px;
@@ -557,7 +522,6 @@ let quizStyle = /*html*/ `
     }
 
     .result-link-description {
-        font-family: 'Nunito', sans-serif;
         font-size: 10px;
         line-height: 14px;
         color: #000000;
@@ -573,18 +537,6 @@ let quizStyle = /*html*/ `
         padding: 7px 6px 10px;
         margin-bottom: 12px;
     }
-
-    
-
-    /*
-    .quiz-link-img:hover .article-hover{
-        opacity: 1;
-        overflow: visible;
-        transform: translate(0);
-        transition: transform 350ms cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    */
 
     .label-flex {
         display: flex;
@@ -619,7 +571,6 @@ let quizStyle = /*html*/ `
         transform: translate(-100%);
         transition: transform 350ms cubic-bezier(0.4, 0, 0.2, 1);
 
-        font-family: 'Nunito', sans-serif;
         font-weight: 300;
         font-size: 12px;
         line-height: 1.75;
@@ -638,16 +589,7 @@ let quizStyle = /*html*/ `
         color: #DA3269;
     }
 
-    .var-radiobutton {
-        top: 50%;
-        left: 0;
-        transform: translate(0%, -50%);
-    }
-
-    .img-size{
-        width: 130px;
-        height: 130px;
-    }
+    
 
     
 
@@ -689,10 +631,7 @@ let quizStyle = /*html*/ `
 
         }
 
-        .quiz-first-section-link {
-            padding: 10px 10px 15px;
-            margin: 0;   
-        }
+        
 
         .quiz-list-second-section {
             width: 550px;
@@ -742,10 +681,27 @@ let quizStyle = /*html*/ `
             text-transform: uppercase;
         }
 
+         /*
+        style card
+        */
         .quiz-list-img {
             font-size: 14px;
             line-height: 1.14;
             letter-spacing: unset;
+        }
+
+        .quiz-list-img label {
+            padding: 10px 10px 15px;
+            margin: 0;   
+        }
+
+        .radio-style {
+            width: 28px;
+            height: 28px;
+        }
+
+        .quiz-list-img label > div{
+            margin-top: 15px;
         }
 
         .stages-link {
@@ -773,13 +729,6 @@ let quizStyle = /*html*/ `
             border-radius: 3px;
             margin-bottom: 20px;
             padding: 10px 10px 15px;
-        }
-
-
-        .quiz-two-section-link:first-child,
-        .quiz-two-section-link:last-child {
-            border: 1px solid #DA3269;
-            border-radius: 3px;
         }
 
         .third-block {
@@ -821,19 +770,11 @@ let quizStyle = /*html*/ `
             margin-right: 20px;
         }
 
-        .radio-box-text{
-            margin-left: 40px;        
-        }
-
         .radio-style {
             width: 28px;
             height: 28px;
         }
 
-
-        .radio-box:checked + .radio-style {
-            background-size:15px;
-        }
 
         .fifth-block {
             margin: 156px 0 151px;
@@ -874,7 +815,6 @@ let quizStyle = /*html*/ `
 
         .result-title {
             display: block;
-            font-family: 'Nunito', sans-serif;
             font-weight: 700;
             font-size: 30px;
             line-height: 41px;
@@ -986,14 +926,10 @@ let quizStyle = /*html*/ `
             width: 135px;
         }
 
-        .checkbox-flex {
-            margin-top: 15px;
-            padding: 6px 0;
-        }
+        
 
-        .img-size{
+        .quiz-list-img label > img{
             width: 179px;
-            height: 235px;
         }
             
     }
@@ -1003,9 +939,9 @@ let quizStyle = /*html*/ `
 `
 
 let quiz = /*html*/ `
-    <div>
+    <div class="custom-quiz">
       <!-- section 1 -->
-    <section class="section-first">
+    <section>
         <button class="cross-block">
             <span class="cross-block-title">Close quiz</span>
                 <svg class="cross-btn" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1102,7 +1038,7 @@ let quiz = /*html*/ `
     </section>
 
       <!-- section 2 -->
-    <section class="section-second">
+    <section>
         <button class="cross-block">
             <span class="cross-block-title">Close quiz</span>
                 <svg class="cross-btn" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1140,80 +1076,98 @@ let quiz = /*html*/ `
 
         <div class="second-block">
             <h2 class="quiz-title">Choose your Furniture Type</h2>
-            <ul class="none-marker quiz-list-img quiz-list-second-section">
-            <li class="quiz-two-section-link">
-                <img src="./img/section2/photo-1.jpg" alt="">
-                <label class="checkbox-flex">
-                    <input type="radio" name="furniture" id="" checked class="radio-box">
-                    <span class="radio-style radio-style-mob var-radiobutton"></span>
-                    <span class="radio-box-text">Armchair</span>
-                </label>
-            </li>
-            <li class="quiz-two-section-link">
-                <img src="./img/section2/photo-2.jpg" alt="">
-                <label class="checkbox-flex">
-                    <input type="radio" name="furniture" id="" class="radio-box">
-                    <span class="radio-style radio-style-mob var-radiobutton"></span>
-                    <span class="radio-box-text">Sofa</span>
-                </label>
-            </li>
-            <li class="quiz-two-section-link">
-                <img src="./img/section2/photo-3.jpg" alt="">
-                <label class="checkbox-flex">
-                    <input type="radio" name="furniture" id="" class="radio-box">
-                    <span class="radio-style radio-style-mob var-radiobutton"></span>
-                    <span class="radio-box-text">Sectional Sofa</span>
-                </label>
-            </li>
-            <li class="quiz-two-section-link">
-                <img src="./img/section2/photo-4.jpg" alt="">
-                <label class="checkbox-flex">
-                    <input type="radio" name="furniture" id="" class="radio-box">
-                    <span class="radio-style radio-style-mob var-radiobutton"></span>
-                    <span class="radio-box-text">Recliner</span>
-                </label>
-            </li>
-            <li class="quiz-two-section-link">
-                <img src="./img/section2/photo-5.jpg" alt="">
-                <label class="checkbox-flex">
-                    <input type="radio" name="furniture" id="" class="radio-box">
-                    <span class="radio-style radio-style-mob var-radiobutton"></span>
-                    <span class="radio-box-text">Ottoman</span>
-                </label>
-            </li>
-            <li class="quiz-two-section-link">
-                <img src="./img/section2/photo-6.jpg" alt="">
-                <label class="checkbox-flex">
-                    <input type="radio" name="furniture" id="" class="radio-box">
-                    <span class="radio-style radio-style-mob var-radiobutton"></span>
-                    <span class="radio-box-text">Chaise lounge</span>
-                </label>
-            </li>
-            <li class="quiz-two-section-link">
-                <img src="./img/section2/photo-7.jpg" alt="">
-                <label class="checkbox-flex">
-                    <input type="radio" name="furniture" id="" class="radio-box">
-                    <span class="radio-style radio-style-mob var-radiobutton"></span>
-                    <span class="radio-box-text">Bed</span>
-                </label>
-            </li>
-            <li class="quiz-two-section-link">
-                <img src="./img/section2/photo-8.jpg" alt="">
-                <label class="checkbox-flex">
-                    <input type="radio" name="furniture" id="" class="radio-box">
-                    <span class="radio-style radio-style-mob var-radiobutton"></span>
-                    <span class="radio-box-text">Dinning Chair</span>
-                </label>
-            </li>
-            <li class="quiz-two-section-link">
-                <img src="./img/section2/photo-9.jpg" alt="">
-                <label class="checkbox-flex">
-                    <input type="radio" name="furniture" id="" class="radio-box">
-                    <span class="radio-style radio-style-mob var-radiobutton"></span>
-                    <span class="radio-box-text">Pillows</span>
-                </label>
-            </li>
-            </ul>
+            <ul class="quiz-list-img quiz-list-second-section">
+                    <li>
+                        <input type="radio" name="furniture" id="furniture1" checked class="radio-box">
+                        <label for="furniture1">
+                            <img src="./img/section2/photo-1.jpg" alt="foto">
+                            <div>
+                                <span class="radio-style"></span>
+                                <span>Armchair</span>
+                            </div>
+                        </label>
+                    </li>
+                    <li>
+                        <input type="radio" name="furniture" id="furniture2" checked class="radio-box">
+                        <label for="furniture2">
+                            <img src="./img/section2/photo-2.jpg" alt="foto">
+                            <div>
+                                <span class="radio-style"></span>
+                                <span>Sofa</span>
+                            </div>
+                        </label>
+                    </li>
+                    <li>
+                        <input type="radio" name="furniture" id="furniture3" checked class="radio-box">
+                        <label for="furniture3">
+                            <img src="./img/section2/photo-3.jpg" alt="foto">
+                            <div>
+                                <span class="radio-style"></span>
+                                <span>Sectional Sofa</span>
+                            </div>
+                        </label>
+                    </li>
+                    <li>
+                        <input type="radio" name="furniture" id="furniture4" checked class="radio-box">
+                        <label for="furniture4">
+                            <img src="./img/section2/photo-4.jpg" alt="foto">
+                            <div>
+                                <span class="radio-style"></span>
+                                <span>Recliner</span>
+                            </div>
+                        </label>
+                    </li>
+                    <li>
+                        <input type="radio" name="furniture" id="furniture5" checked class="radio-box">
+                        <label for="furniture5">
+                            <img src="./img/section2/photo-5.jpg" alt="foto">
+                            <div>
+                                <span class="radio-style"></span>
+                                <span>Ottomon</span>
+                            </div>
+                        </label>
+                    </li>
+                    <li>
+                        <input type="radio" name="furniture" id="furniture6" checked class="radio-box">
+                        <label for="furniture6">
+                            <img src="./img/section2/photo-6.jpg" alt="foto">
+                            <div>
+                                <span class="radio-style"></span>
+                                <span>Chaise Lounge</span>
+                            </div>
+                        </label>
+                    </li>
+                    <li>
+                        <input type="radio" name="furniture" id="furniture7" checked class="radio-box">
+                        <label for="furniture7">
+                            <img src="./img/section2/photo-7.jpg" alt="foto">
+                            <div>
+                                <span class="radio-style"></span>
+                                <span>Bed</span>
+                            </div>
+                        </label>
+                    </li>
+                    <li>
+                        <input type="radio" name="furniture" id="furniture8" checked class="radio-box">
+                        <label for="furniture8">
+                            <img src="./img/section2/photo-8.jpg" alt="foto">
+                            <div>
+                                <span class="radio-style"></span>
+                                <span>Dinning Chair</span>
+                            </div>
+                        </label>
+                    </li>
+                    <li>
+                        <input type="radio" name="furniture" id="furniture9" checked class="radio-box">
+                        <label for="furniture9">
+                            <img src="./img/section2/photo-9.jpg" alt="foto">
+                            <div>
+                                <span class="radio-style"></span>
+                                <span>Pillows</span>
+                            </div>
+                        </label>
+                    </li>
+                </ul>
             <p class="quiz-text-description">This will help us you find the most suitable shape for your cover</p>
         </div>
 
@@ -1234,7 +1188,7 @@ let quiz = /*html*/ `
     </section>
 
       <!-- section 3 -->
-    <section class="section-third">
+    <section>
         <button class="cross-block">
             <span class="cross-block-title">Close quiz</span>
                 <svg class="cross-btn" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1289,7 +1243,7 @@ let quiz = /*html*/ `
     </section>
 
       <!-- section 4 -->
-    <section class="section-fourth">
+    <section>
         <button class="cross-block">
             <span class="cross-block-title">Close quiz</span>
                 <svg class="cross-btn" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1366,7 +1320,7 @@ let quiz = /*html*/ `
     </section>
 
       <!-- section 5 -->
-    <section class="section-fifth">
+    <section>
         <div class="cross-block">
             <span class="cross-block-title">Close quiz</span>
             <button class="cross-btn">
@@ -1406,72 +1360,54 @@ let quiz = /*html*/ `
 
         <div class="fifth-block">
             <h2 class="quiz-title">Choose a Pattern</h2>
-            <ul class="none-marker quiz-list-img quiz-list-first-section">
-            <li class="quiz-link-img">
-                <div>
-                    <img src="./img/section5/photo-1.jpg" alt="foto" class="img-size">
-                    <label class="checkbox-flex">
-                        <input type="radio" name="pattern" id="" checked class="radio-box">
-                        <span class="radio-style radio-style-mob var-radiobutton"></span>
-                        <span class="radio-box-text">Microfibra</span>
-                    </label>
-                    <article class="article-hover">
-                        <h3 class="title-hover">Microfibra:</h3>
-                        <p>Microfiber slipcovers can be called a pearl among other collections. Microfiber is very thin and pleasant to touch while also durable. Slipcovers for oversized chair or other pieces of furniture made from microfiber look amazing!
-                            <a href="#" class="accent-color-link-hover">Learn more.</a>
-                        </p>
-                    </article>
-                </div>
-            </li>
-            <li class="quiz-link-img">
-                <div>
-                    <img src="./img/section5/photo-2.jpg" alt="foto" class="img-size">
-                    <label class="checkbox-flex">
-                        <input type="radio" name="pattern" id="" class="radio-box">
-                        <span class="radio-style radio-style-mob var-radiobutton"></span>
-                        <span class="radio-box-text">Velvet</span>
-                    </label>
-                    <article class="article-hover">
-                        <h3 class="title-hover">Microfibra:</h3>
-                        <p>Microfiber slipcovers can be called a pearl among other collections. Microfiber is very thin and pleasant to touch while also durable. Slipcovers for oversized chair or other pieces of furniture made from microfiber look amazing!
-                            <a href="#" class="accent-color-link-hover">Learn more.</a>
-                        </p>
-                    </article>
-                </div>
-            </li>
-            <li class="quiz-link-img">
-                <div>
-                    <img src="./img/section5/photo-3.jpg" alt="foto" class="img-size">
-                    <label class="checkbox-flex">
-                        <input type="radio" name="pattern" id="" class="radio-box">
-                        <span class="radio-style radio-style-mob var-radiobutton"></span>
-                        <span class="radio-box-text">Mille Righe</span>
-                    </label>
-                    <article class="article-hover">
-                        <h3 class="title-hover">Microfibra:</h3>
-                        <p>Microfiber slipcovers can be called a pearl among other collections. Microfiber is very thin and pleasant to touch while also durable. Slipcovers for oversized chair or other pieces of furniture made from microfiber look amazing!
-                            <a href="#" class="accent-color-link-hover">Learn more.</a>
-                        </p>
-                    </article>
-                </div>
-            </li>
-            <li class="quiz-link-img">
-                <div>
-                    <img src="./img/section5/photo-4.jpg" alt="foto" class="img-size">
-                    <label class="checkbox-flex">
-                        <input type="radio" name="pattern" id="" class="radio-box">
-                        <span class="radio-style radio-style-mob var-radiobutton"></span>
-                        <span class="radio-box-text">Jacquard 3D</span>
-                    </label>
-                    <article class="article-hover">
-                        <h3 class="title-hover">Microfibra:</h3>
-                        <p>Microfiber slipcovers can be called a pearl among other collections. Microfiber is very thin and pleasant to touch while also durable. Slipcovers for oversized chair or other pieces of furniture made from microfiber look amazing!
-                            <a href="#" class="accent-color-link-hover">Learn more.</a>
-                        </p>
-                    </article>
-                </div>
-            </li>
-            </ul>
+            <ul class="quiz-list-img quiz-list-first-section">
+                    <li>
+                        <input type="radio" name="pattern" id="pattern1" checked class="radio-box">
+                        <label for="pattern1">
+                            <img src="./img/section5/photo-1.jpg" alt="foto">
+                            <div>
+                                <span class="radio-style"></span>
+                                <span>Microfibra</span>
+                            </div>
+                        </label>
+                        <article class="article-hover">
+                            <h3 class="title-hover">Microfibra:</h3>
+                            <p>Microfiber slipcovers can be called a pearl among other collections. Microfiber is very thin and pleasant to touch while also durable. Slipcovers for oversized chair or other pieces of furniture made from microfiber look amazing!
+                                <a href="#" class="accent-color-link-hover">Learn more.</a>
+                            </p>
+                        </article>
+                    </li>
+                    <li>
+                        <input type="radio" name="pattern" id="pattern2" checked class="radio-box">
+                        <label for="pattern2">
+                            <img src="./img/section5/photo-2.jpg" alt="foto">
+                            <div>
+                                <span class="radio-style"></span>
+                                <span>Velvet</span>
+                            </div>
+                        </label>
+                    </li>
+                    <li>
+                        <input type="radio" name="pattern" id="pattern3" checked class="radio-box">
+                        <label for="pattern3">
+                            <img src="./img/section5/photo-3.jpg" alt="foto">
+                            <div>
+                                <span class="radio-style"></span>
+                                <span>Mille Righe</span>
+                            </div>
+                        </label>
+                    </li>
+                    <li>
+                        <input type="radio" name="pattern" id="pattern4" checked class="radio-box">
+                        <label for="pattern4">
+                            <img src="./img/section5/photo-4.jpg" alt="foto">
+                            <div>
+                                <span class="radio-style"></span>
+                                <span>Jacquard 3D</span>
+                            </div>
+                        </label>
+                    </li>
+                </ul>
             <p class="quiz-text-description">Hover over the picture to learn more about each type of material</p>
         </div>
         <div class="arrow-flex-container">
@@ -1491,7 +1427,7 @@ let quiz = /*html*/ `
       </section>
 
       <!-- section 6 -->
-    <section class="section-sixth">
+    <section>
         <button class="cross-block">
             <span class="cross-block-title">Close quiz</span>
                 <svg class="cross-btn" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1548,7 +1484,7 @@ let quiz = /*html*/ `
     </section>
 
       <!-- section Result-->
-    <section class="section-result">
+    <section>
         <button class="cross-block">
             <span class="cross-block-title">Close quiz</span>
                 <svg class="cross-btn" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

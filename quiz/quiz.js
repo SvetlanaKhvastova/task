@@ -1009,7 +1009,7 @@ let quizStyle = /*html*/ `
 `
 
 let quiz = /*html*/ `
-    <div>
+    <div >
       <!-- section 1 -->
     <section class="section-first">
         <button class="cross-block">
