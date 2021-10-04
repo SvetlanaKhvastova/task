@@ -1,4 +1,4 @@
-let stickySoupBoxStyle = /*html*/`
+let stickySoupBoxStyle = /*html*/ `
 <style>
 *,
     *::before,
@@ -16,29 +16,33 @@ let stickySoupBoxStyle = /*html*/`
     .backdrop-modal {
         position: fixed;
         overflow: hidden;
-        top: 0;
+        bottom: 0;
         left: 0;
         width: 100vw;
         height: 100vh;
         opacity: 1;
         background: rgba(0, 0, 0, 0.5);
-        transition: all 0.8s ease 0s;
+        transition: all 0.8s ease 0s;        
         z-index: 9005;
     }
 
     .backdrop-modal.is-hidden {
         opacity: 0;
         pointer-events: none;
+        transform: translateY(100%);
+        transition: all 0.8s ease 0s;
     }
 
     .backdrop-modal form{
-        position: relative;
-        max-width: 440px;
-        height: 100%;
-        margin-left: auto;
-        padding: 25px 30px;
+        margin: 0;
+        border-radius: 20px 20px 0px 0px;
+        position: absolute;
+        bottom: 0;
+        max-width: 100%;
+        padding: 30px 15px 15px;
         background: #F4F4F4;
         text-align: center;
+        transform: translateY(0%);
         transition: all 0.8s ease 0s;
         font-family: "Archivo Narrow",sans-serif;
     }
@@ -49,9 +53,43 @@ let stickySoupBoxStyle = /*html*/`
         right: 20px;
         outline: none;
         cursor: pointer;
-
     }
 
+    @media (min-width: 768px) {
+
+        .backdrop-modal.is-hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: unset;
+            transition: unset;
+        }
+
+        .backdrop-modal {
+            position: fixed;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            opacity: 1;
+            background: rgba(0, 0, 0, 0.5);
+            transition: all 0.8s ease 0s;
+            z-index: 9005;
+        }
+
+        .backdrop-modal form{
+            border-radius: unset;
+            position: relative;
+            max-width: 440px;
+            height: 100%;
+            margin-left: auto;
+            padding: 25px 30px;
+            background: #F4F4F4;
+            text-align: center;
+            transition: all 0.8s ease 0s;
+            font-family: "Archivo Narrow",sans-serif;
+        }   
+    }       
 
 /* details_box */
     .details-box {
@@ -114,7 +152,7 @@ let stickySoupBoxStyle = /*html*/`
     .basket-box .basket-scroll-box {        
         position: relative;
         border: 2px solid #003DA5;
-        padding: 35px 15px 35px 35px;
+        padding: 25px 15px 25px 25px;
         margin: 35px 0 16px;
     }
 
@@ -147,16 +185,21 @@ let stickySoupBoxStyle = /*html*/`
 
     .basket-box .basket-scroll-box > div > ul {
         text-align: start;
+        font-weight: 700;
+        text-transform: uppercase;
     }
 
     .basket-box .basket-scroll-box > div > ul li{
         display: flex;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
+        align-items: center;
     }
 
     .basket-box .basket-scroll-box > div > ul svg {
         margin-right: 10px;
         position: unset;
+        width: 20px;
+        height: 20px;
     }
 
     .basket-box .basket-scroll-box > div > ul .box-count{
@@ -187,14 +230,13 @@ let stickySoupBoxStyle = /*html*/`
 
     .basket-box .total-price-box {
         display: flex;
-        flex-direction: column;
+        justify-content: space-between;
     }
 
     .basket-box .total-price-box div {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 0 16px;
     }
 
     .basket-box .total-price-box div p {
@@ -211,11 +253,37 @@ let stickySoupBoxStyle = /*html*/`
     }
 
     .basket-box .total-price-box button {
-        width: 100%;
+        max-width: 243px;
         height: 54px;
         font-size: 16px;
         line-height: 105.7%;
         background: #003DA5;
+    }
+
+    @media (min-width: 768px) {
+
+        .basket-box .basket-scroll-box {        
+            padding: 35px 15px 35px 35px;
+
+        }
+
+        .basket-box .basket-scroll-box > div > ul li{
+            margin-bottom: 20px;
+        }
+            
+        .basket-box .total-price-box {
+            flex-direction: column;
+            justify-content: unset;
+        }
+
+        .basket-box .total-price-box div {
+            margin: 0 0 16px;
+        }
+
+        .basket-box .total-price-box button {
+            max-width: 100%;
+        }
+
     }
 
     /* sticky-soup-wraper desktop */
@@ -453,7 +521,7 @@ let soupPopUp = /*html*/ `
 </div>
 `
 
-let stickySoupBox= /*html*/`
+let stickySoupBox = /*html*/ `
     <div class="sticky-soup-block">
         <div>
             <span>Build a box</span>
@@ -493,7 +561,7 @@ let stickySoupBox= /*html*/`
     </div>
 `
 
-let stickySoupBoxMob= /*html*/`
+let stickySoupBoxMob = /*html*/ `
     <!-- <div>
         <h2>Build a box</h2>
         <span>We ship boxes of 6, 9 or 12 Soups</span>
@@ -541,7 +609,7 @@ let stickySoupBoxMob= /*html*/`
     </div>
 `
 
-let soupBasketBnt= /*html*/`
+let soupBasketBnt = /*html*/ `
     <div class="soup-basket-bnt">        
         <p><span>5</span>/<span>6</span></p>        
     </div>
@@ -653,28 +721,21 @@ let soupBasketBox = /*html*/ `
 </div>
 `
 
-
-
-
 document.head.insertAdjacentHTML("beforeend", stickySoupBoxStyle)
-document.body.insertAdjacentHTML('afterbegin', soupPopUp)
-
+document.body.insertAdjacentHTML("afterbegin", soupPopUp)
 
 if (window.innerWidth <= 768) {
-    document.querySelector("#build-a-box-app").insertAdjacentHTML("afterbegin", stickySoupBoxMob)
-}else{
-    document.querySelector("#build-a-box-app").insertAdjacentHTML("afterbegin", stickySoupBox)
-    document.querySelector('.nav .cart_container').innerHTML= `
+  document.querySelector("#build-a-box-app").insertAdjacentHTML("afterbegin", stickySoupBoxMob)
+} else {
+  document.querySelector("#build-a-box-app").insertAdjacentHTML("afterbegin", stickySoupBox)
+  document.querySelector(".nav .cart_container").innerHTML = `
     <div class="soup-basket-bnt">        
         <p><span>0</span>/<span>6</span></p>        
     </div>`
-
 }
 
-document.querySelector("#build-a-box-app .section-header").style.display="none"
-document.querySelector("#shopify-section-build-a-box-template .bab_description").style.display="none"
-
-
+document.querySelector("#build-a-box-app .section-header").style.display = "none"
+document.querySelector("#shopify-section-build-a-box-template .bab_description").style.display = "none"
 
 if (document.querySelector(".backdrop-backdrop_2JB2n")) {
   document.querySelector(".backdrop-backdrop_2JB2n").insertAdjacentHTML(
@@ -695,15 +756,23 @@ if (document.querySelector(".backdrop-backdrop_2JB2n")) {
   document.querySelector(".details-modal-content_sZt78 .product-controls-controls_2K2Zl .product-controls-add_subtract_HfJS- ul li a").innerText = "Add to cart"
 }
 
-if(document.querySelector('.soup-basket-bnt')){
-    document.querySelector('.soup-basket-bnt').addEventListener('click', ()=>{
-        document.querySelector(".backdrop-modal form").insertAdjacentHTML("beforeend", soupBasketBox)
-        document.querySelector(".backdrop-modal").classList.remove('is-hidden')
-        document.body.style.overflow="hidden"
-    })
+if (document.querySelector(".soup-basket-bnt")) {
+  document.querySelector(".soup-basket-bnt").addEventListener("click", () => {
+    document.querySelector(".backdrop-modal form").insertAdjacentHTML("beforeend", soupBasketBox)
+    document.querySelector(".backdrop-modal").classList.remove("is-hidden")
+    document.body.style.overflow = "hidden"
+  })
 }
 
-document.querySelector('.backdrop-modal form svg').addEventListener('click', ()=>{
-    document.querySelector(".backdrop-modal").classList.add('is-hidden')
-    document.body.style.overflow="auto"
+if (document.querySelector(".sticky-soup-block-mob button")) {
+  document.querySelector(".sticky-soup-block-mob button").addEventListener("click", () => {
+    document.querySelector(".backdrop-modal form").insertAdjacentHTML("beforeend", soupBasketBox)
+    document.querySelector(".backdrop-modal").classList.remove("is-hidden")
+    document.body.style.overflow = "hidden"
+  })
+}
+
+document.querySelector(".backdrop-modal form svg").addEventListener("click", () => {
+  document.querySelector(".backdrop-modal").classList.add("is-hidden")
+  document.body.style.overflow = "auto"
 })
