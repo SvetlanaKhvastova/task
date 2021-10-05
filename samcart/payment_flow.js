@@ -1,6 +1,7 @@
 window.onload  = function () {
     let paymentFlowStyle = /*html*/ `
-        <style>
+        <style>        
+
             #hubspot-messages-iframe-container iframe{
                 top: -145px !important;
             }
@@ -15,6 +16,10 @@ window.onload  = function () {
             #hubspot-messages-iframe-container {
                 z-index: 0 !important;
             }
+
+            body{
+                padding-bottom: 95px;
+            }  
     
             .payment-flow-section{
                 position: fixed;
@@ -87,9 +92,9 @@ window.onload  = function () {
             }
     
             .price-flow{
-                font-weight: 500;
-                font-size: 13px;
-                line-height: 15px;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 21px;
                 color: #F85736;
             }
     

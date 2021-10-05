@@ -11,12 +11,16 @@ let stickySoupBoxStyle = /*html*/ `
     li {
         list-style: none;
     }
-    
+
+    #shopify-section-build-a-box-template {
+        margin-top: 0;
+    }
+ 
 /* popap_box */
     .backdrop-modal {
         position: fixed;
         overflow: hidden;
-        bottom: 0;
+        top: 0;
         left: 0;
         width: 100vw;
         height: 100vh;
@@ -24,11 +28,14 @@ let stickySoupBoxStyle = /*html*/ `
         background: rgba(0, 0, 0, 0.5);
         transition: all 0.8s ease 0s;        
         z-index: 9005;
-    }
+        }
 
     .backdrop-modal.is-hidden {
         opacity: 0;
         pointer-events: none;
+    }
+
+    .backdrop-modal.is-hidden form{
         transform: translateY(100%);
         transition: all 0.8s ease 0s;
     }
@@ -42,8 +49,7 @@ let stickySoupBoxStyle = /*html*/ `
         padding: 30px 15px 15px;
         background: #F4F4F4;
         text-align: center;
-        transform: translateY(0%);
-        transition: all 0.8s ease 0s;
+        transition: all 0.8s ease 0s;        
         font-family: "Archivo Narrow",sans-serif;
     }
 
@@ -55,28 +61,20 @@ let stickySoupBoxStyle = /*html*/ `
         cursor: pointer;
     }
 
+    .backdrop-modal form::after {
+        position: absolute;
+        top: 2%;
+        left: 50%;
+        content: "";
+        max-width: 46px;
+        width: 100%;
+        border-top: solid 4px #C4C4C4;
+        transform-origin: center;
+        transform: translate(-50%);
+        border-radius: 17px;
+        }
+
     @media (min-width: 768px) {
-
-        .backdrop-modal.is-hidden {
-            opacity: 0;
-            pointer-events: none;
-            transform: unset;
-            transition: unset;
-        }
-
-        .backdrop-modal {
-            position: fixed;
-            overflow: hidden;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            opacity: 1;
-            background: rgba(0, 0, 0, 0.5);
-            transition: all 0.8s ease 0s;
-            z-index: 9005;
-        }
-
         .backdrop-modal form{
             border-radius: unset;
             position: relative;
@@ -84,11 +82,11 @@ let stickySoupBoxStyle = /*html*/ `
             height: 100%;
             margin-left: auto;
             padding: 25px 30px;
-            background: #F4F4F4;
-            text-align: center;
-            transition: all 0.8s ease 0s;
-            font-family: "Archivo Narrow",sans-serif;
         }   
+
+        .backdrop-modal form::after{
+            content: unset;
+        }
     }       
 
 /* details_box */
@@ -112,6 +110,10 @@ let stickySoupBoxStyle = /*html*/ `
         display: flex;
         justify-content: space-evenly;
         align-items: stretch;
+    }
+
+    .details-box div p{
+        padding-bottom: 0 !important;
     }
 
     .details-box div > span:last-child {
@@ -221,6 +223,7 @@ let stickySoupBoxStyle = /*html*/ `
         font-size: 16px;
         line-height: 17px;
         margin: 0;
+        text-transform:unset;
     }
 
     .basket-box .basket-scroll-box > div .complete-title a{
@@ -292,8 +295,48 @@ let stickySoupBoxStyle = /*html*/ `
         display: flex;
         background: #F4F4F4;
         text-align: center;
-        padding: 10px;
+        padding: 16px 10px;
         font-family: "Archivo Narrow",sans-serif;
+    }
+
+    .sticky-soup-block-mob.var{
+        padding: 0;
+        justify-content: space-between;
+    }
+
+    .sticky-soup-block-mob.var .sticky-soup-wraper-mob{
+        padding: 16px 0 16px 20px;
+    }
+
+    .sticky-soup-block-mob.var button{
+        display: inline-block;
+        padding: 7px 0;
+        min-height: 65px;
+        width: 86px;
+        height: 100%;
+        text-align: center;
+        background: #003DA5;
+    }
+
+    .sticky-soup-block-mob.var button div{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: stretch;
+    }
+
+    .sticky-soup-block-mob.var button div p{
+        padding-bottom: 0 !important;
+
+    }
+
+    .sticky-soup-block-mob.var button > span:last-child{
+        padding: 0 7px;
+        font-weight: 700;
+        font-size: 23px;
+        line-height: 31px;
+        color: #003DA5;
+        background: #FFFFFF;
+        border-radius: 5px;
     }
 
     .sticky-soup-wraper-mob, .sticky-soup-wraper-mob ul {
@@ -306,20 +349,55 @@ let stickySoupBoxStyle = /*html*/ `
         background: url("https://conversionratestore.github.io/projects/sticky_soup/img/soup.svg") center center no-repeat;
         width: 27px;
         height: 27px;
-        margin-right: 10px;
+        margin-right: 12px;
     }
 
     .sticky-soup-wraper-mob ul li:last-child{
         background: url("https://conversionratestore.github.io/projects/sticky_soup/img/open_box.svg") center center no-repeat;
-        width: 29px;    
+        width: 30px;    
         height: 30px;
         margin-right: 25px;
-        margin-left: 15px;
+        margin-left: 5px;
+        font-weight: 500;
+        font-size: 23px;
+        line-height: 118.2%;
+        color: #8EA8D4;
     }
 
     .sticky-soup-wraper-mob ul li.active-soup {
         background: url("https://conversionratestore.github.io/projects/sticky_soup/img/full_soup.svg") center center no-repeat;
+        margin-left: 0;
+        font-weight: 700;
+        font-size: 23px;
+        line-height: 118.2%;
+        color: #003DA5;
     }
+
+    /**/
+    .sticky-soup-wraper-mob ul li:not(:last-child) span {
+        background: url("https://conversionratestore.github.io/projects/sticky_soup/img/soup.svg") center center no-repeat;
+        width: 27px;
+        height: 27px;
+        margin-right: 10px;
+    }
+
+    .sticky-soup-wraper-mob ul li:last-child span{
+        background: url("https://conversionratestore.github.io/projects/sticky_soup/img/open_box.svg") center center no-repeat;
+        width: 30px;    
+        height: 30px;
+        margin-right: 35px;
+    }
+
+    .sticky-soup-wraper-mob ul li.active-box {
+            background: url("https://conversionratestore.github.io/projects/sticky_soup/img/full_box.svg") center center no-repeat;
+            margin-left: 0;
+            font-weight: 700;
+            font-size: 23px;
+            line-height: 118.2%;
+            color: #003DA5;
+        }
+    /**/
+
 
     .sticky-soup-wraper-mob > div{
         display: flex;
@@ -327,7 +405,7 @@ let stickySoupBoxStyle = /*html*/ `
     }
 
     .sticky-soup-wraper-mob > span{
-        margin-right: 25px;
+        margin-right: 12px;
         color: #6B6B6B;
     }
 
@@ -340,11 +418,16 @@ let stickySoupBoxStyle = /*html*/ `
     }
 
     .sticky-soup-wraper-mob > div span:last-child{
+        padding: 2px;
         font-weight: 700;
         font-size: 11px;
         line-height: 13px;
         text-transform: uppercase;
         color: #000000;
+    }
+
+    .sticky-soup-wraper-mob > div span:last-child span{
+        padding:0;
     }
 
     @media (min-width: 768px) {
@@ -410,18 +493,30 @@ let stickySoupBoxStyle = /*html*/ `
             color: #000000;
         }
 
-        .sticky-soup-wraper, .sticky-soup-wraper ul {
+        .sticky-soup-wraper {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #FFFFFF;
+            margin: 0 auto;
+            max-width: 950px;
+            width: 90%;
+            padding-left: 10px;
+        }
+
+        .sticky-soup-wraper ul{
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #FFFFFF;
             margin: 0;
         }
 
         .sticky-soup-wraper > span{
             margin-right: 25px;
             color: #6B6B6B;
+            font-family: 'Roboto', sans-serif;
         }
 
         .sticky-soup-wraper ul li:not(:last-child) {
@@ -433,7 +528,7 @@ let stickySoupBoxStyle = /*html*/ `
 
         .sticky-soup-wraper ul li:last-child{
             background: url("https://conversionratestore.github.io/projects/sticky_soup/img/open_box.svg") center center no-repeat;
-            width: 29px;    
+            width: 30px;    
             height: 30px;
             margin-right: 25px;
             margin-left: 15px;
@@ -516,107 +611,8 @@ let soupPopUp = /*html*/ `
   <form>
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M14.5625 1.4375L1.4375 14.5625M14.5625 14.5625L1.4375 1.4375L14.5625 14.5625Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>        
-  </form>
-</div>
-`
-
-let stickySoupBox = /*html*/ `
-    <div class="sticky-soup-block">
-        <div>
-            <span>Build a box</span>
-            <span>We ship boxes of 6, 9 or 12 Soups</span>
-        </div>
-
-        <div class="sticky-soup-wraper">
-            <ul class="list-six-box">
-                <li class="active-soup"></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li class="active-box"></li>              
-            </ul>    
-            <span>+</span>
-            <ul class="list-nine-box">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>            
-            </ul> 
-            <span>+</span>
-            <ul class="list-twelve-box">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>            
-            </ul> 
-
-            <button>
-                Your box is empty <span>your Cart</span>
-                <span>$0</span>
-            </button>
-        </div>
-    </div>
-`
-
-let stickySoupBoxMob = /*html*/ `
-    <!-- <div>
-        <h2>Build a box</h2>
-        <span>We ship boxes of 6, 9 or 12 Soups</span>
-    </div> -->
-    <div class="sticky-soup-block-mob">
-        <!-- <div class="sticky-soup-wraper-mob">
-            <ul>
-                <li class="active-soup"></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>              
-            </ul>
-            <div>
-                <span>minimum order</span>
-                <span><span>6</span> Soups box</span> 
-            </div>
-        </div> -->
-
-        <div class="sticky-soup-wraper-mob">
-            <ul>
-                <li class="active-soup">6</li>       
-            </ul> 
-            <span>+</span>
-            <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li>9</li>            
-            </ul>
-        </div>
-
-        <button>
-            <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5.84483 6.11646L15.9679 1.77647L11.7763 0.0545305C11.5992 -0.0181768 11.4008 -0.0181768 11.2237 0.0545305L1.15625 4.19035L5.84483 6.11646Z" fill="white"/>
-                <path d="M17.8518 2.55042L7.72571 6.88913L11.4999 8.43966L21.8437 4.19033L17.8518 2.55042Z" fill="white"/>
-                <path d="M10.7729 9.71301L6.67644 8.03016V11.2165C6.67644 11.618 6.35089 11.9435 5.94936 11.9435C5.54784 11.9435 5.22229 11.618 5.22229 11.2165V7.43278L0.50354 5.49426V18.2938C0.50354 18.5887 0.681582 18.8543 0.954325 18.9664L10.7729 23V9.71301Z" fill="white"/>
-                <path d="M12.2271 9.71301V23L22.0456 18.9664C22.3184 18.8544 22.4964 18.5887 22.4964 18.2938C22.4964 17.8046 22.4964 6.0298 22.4964 5.49426L12.2271 9.71301Z" fill="white"/>
-            </svg>
-            <p><span>5</span>/<span>6</span></p>
-            <span>$99</span>        
-        </button>
-    </div>
-`
-
-let soupBasketBnt = /*html*/ `
-    <div class="soup-basket-bnt">        
-        <p><span>5</span>/<span>6</span></p>        
-    </div>
-`
-
-let soupBasketBox = /*html*/ `
-<div class="basket-box">
+        </svg>
+        <div class="basket-box">
     <h2>Your Cart</h2>
     <p>
         We ship boxes of 6, 9 or 12 Soups
@@ -699,12 +695,12 @@ let soupBasketBox = /*html*/ `
                 Your 6 soups box is not completed. Add 1 more soup to complete the box.
             </p>
 
-            <p class="complete-title">Your <span>6</span> soups box is completed.</p>
+            <!-- <p class="complete-title">Your <span>6</span> soups box is completed.</p>
             <p class="complete-title">Add 3 more?
                 <a href="#">Continue</a>
             </p>
 
-            <p class="complete-title">You have reached maximum capacity of the box.</p>
+            <p class="complete-title">You have reached maximum capacity of the box.</p> -->
 
     
         </div>
@@ -719,13 +715,143 @@ let soupBasketBox = /*html*/ `
     </div>
 
 </div>
+
+  </form>
+</div>
 `
+
+let stickySoupBox = /*html*/ `
+    <div class="sticky-soup-block">
+        <div>
+            <span>Build a box</span>
+            <span>We ship boxes of 6, 9 or 12 Soups</span>
+        </div>
+
+        <div class="sticky-soup-wraper">
+            <ul class="list-six-box">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>              
+            </ul>    
+            <span>+</span>
+            <ul class="list-nine-box">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>            
+            </ul> 
+            <span>+</span>
+            <ul class="list-twelve-box">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>            
+            </ul> 
+
+            <button>
+                Your box is empty <span>your Cart</span>
+                <span>$0</span>
+            </button>
+        </div>
+    </div>
+`
+
+let stickySoupBoxMob = /*html*/ `
+    <!-- <div>
+        <h2>Build a box</h2>
+        <span>We ship boxes of 6, 9 or 12 Soups</span>
+    </div> -->
+    <div class="sticky-soup-block-mob var">
+        <!-- <div class="sticky-soup-wraper-mob">
+            <ul>
+                <li class="active-soup"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>              
+            </ul>
+            <div>
+                <span>minimum order</span>
+                <span><span>6</span> Soups box</span> 
+            </div>
+        </div> -->
+
+        <div class="sticky-soup-wraper-mob">
+            <ul>
+                <li class="active-soup">
+                    <span></span>
+                    6
+                </li>       
+            </ul> 
+            <span>+</span>
+            <ul>
+                <li>
+                    <span></span>
+                </li>
+                <li>
+                    <span></span>
+                </li>
+                <li>
+                    <span></span>
+                </li>
+                <li class="active-box">
+                    <span></span>
+                    9
+                </li>            
+            </ul>
+        </div>
+
+        <button>
+            <div>
+                <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.84483 6.11646L15.9679 1.77647L11.7763 0.0545305C11.5992 -0.0181768 11.4008 -0.0181768 11.2237 0.0545305L1.15625 4.19035L5.84483 6.11646Z" fill="white"/>
+                    <path d="M17.8518 2.55042L7.72571 6.88913L11.4999 8.43966L21.8437 4.19033L17.8518 2.55042Z" fill="white"/>
+                    <path d="M10.7729 9.71301L6.67644 8.03016V11.2165C6.67644 11.618 6.35089 11.9435 5.94936 11.9435C5.54784 11.9435 5.22229 11.618 5.22229 11.2165V7.43278L0.50354 5.49426V18.2938C0.50354 18.5887 0.681582 18.8543 0.954325 18.9664L10.7729 23V9.71301Z" fill="white"/>
+                    <path d="M12.2271 9.71301V23L22.0456 18.9664C22.3184 18.8544 22.4964 18.5887 22.4964 18.2938C22.4964 17.8046 22.4964 6.0298 22.4964 5.49426L12.2271 9.71301Z" fill="white"/>
+                </svg>
+                <p><span>5</span>/<span>6</span></p>
+            </div>
+            <span>$99</span>        
+        </button>
+    </div>
+`
+
+let soupBasketBnt = /*html*/ `
+    <div class="soup-basket-bnt">        
+        <p><span>5</span>/<span>6</span></p>        
+    </div>
+`
+
 
 document.head.insertAdjacentHTML("beforeend", stickySoupBoxStyle)
 document.body.insertAdjacentHTML("afterbegin", soupPopUp)
 
+
 if (window.innerWidth <= 768) {
-  document.querySelector("#build-a-box-app").insertAdjacentHTML("afterbegin", stickySoupBoxMob)
+    document.querySelector("#build-a-box-app").insertAdjacentHTML("afterbegin", stickySoupBoxMob)
+
+    //swipe
+    let scriptCustom = document.createElement("script");
+    scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js";
+    scriptCustom.async = false;
+    document.head.appendChild(scriptCustom);
+
+    setTimeout(function () {
+        $(".backdrop-modal form").swipe({
+            swipe: function (event, direction, distance, duration, fingerCount, fingerData) {
+            if (direction === "down") {
+                document.querySelector(".backdrop-modal").classList.add("is-hidden")
+                document.body.style.overflow = "auto"
+            }
+            },
+        });
+    }, 500);
 } else {
   document.querySelector("#build-a-box-app").insertAdjacentHTML("afterbegin", stickySoupBox)
   document.querySelector(".nav .cart_container").innerHTML = `
@@ -758,7 +884,6 @@ if (document.querySelector(".backdrop-backdrop_2JB2n")) {
 
 if (document.querySelector(".soup-basket-bnt")) {
   document.querySelector(".soup-basket-bnt").addEventListener("click", () => {
-    document.querySelector(".backdrop-modal form").insertAdjacentHTML("beforeend", soupBasketBox)
     document.querySelector(".backdrop-modal").classList.remove("is-hidden")
     document.body.style.overflow = "hidden"
   })
@@ -766,7 +891,6 @@ if (document.querySelector(".soup-basket-bnt")) {
 
 if (document.querySelector(".sticky-soup-block-mob button")) {
   document.querySelector(".sticky-soup-block-mob button").addEventListener("click", () => {
-    document.querySelector(".backdrop-modal form").insertAdjacentHTML("beforeend", soupBasketBox)
     document.querySelector(".backdrop-modal").classList.remove("is-hidden")
     document.body.style.overflow = "hidden"
   })
@@ -776,3 +900,62 @@ document.querySelector(".backdrop-modal form svg").addEventListener("click", () 
   document.querySelector(".backdrop-modal").classList.add("is-hidden")
   document.body.style.overflow = "auto"
 })
+
+// 
+let chooseSoup= []
+
+if (localStorage.getItem("chooseSoup")) {
+    chooseSoup = JSON.parse(localStorage.getItem("chooseSoup"));
+  }
+
+if (chooseSoup.length === 0) {
+    document.querySelector('.cart_container .soup-basket-bnt p span:first-child').textContent = "0";
+  } else {
+    document.querySelector('.cart_container .soup-basket-bnt p span:first-child').textContent = chooseSoup.length
+}
+
+if(chooseSoup.length >= '6'){
+    document.querySelector('.cart_container .soup-basket-bnt p span:last-child').textContent = 9
+} 
+
+if(chooseSoup.length >= '9'){
+    document.querySelector('.cart_container .soup-basket-bnt p span:last-child').textContent = 12
+} 
+
+
+onClickAddToBox()
+
+  function onClickAddToBox(){
+    document.querySelectorAll('.product-controls-controls_2K2Zl li ul a').forEach((el, i)=>{
+        el.addEventListener('click', ()=>{
+            let temp = [];
+        
+            if (localStorage.getItem("chooseSoup")) {
+              temp = JSON.parse(localStorage.getItem("chooseSoup"));
+            }
+        
+            temp.push({
+                title: document.querySelector('.product-width_3_1oSkt.product-mob_1_1cv7Z.product-bab_product_1EeWi .product-description_t2Ncs.product-description_t2Ncs p').textContent,
+                price: document.querySelector('.product-width_3_1oSkt.product-mob_1_1cv7Z.product-bab_product_1EeWi .product-description_t2Ncs.product-description_t2Ncs p:last-child').textContent
+            })
+        
+            localStorage.setItem("chooseSoup", JSON.stringify(temp));
+
+            document.querySelector('.cart_container .soup-basket-bnt p span:first-child').textContent = temp.length
+
+            if(temp.length >= '6'){
+                document.querySelector('.cart_container .soup-basket-bnt p span:last-child').textContent = 9
+            } 
+
+            if(temp.length >= '9'){
+                document.querySelector('.cart_container .soup-basket-bnt p span:last-child').textContent = 12
+            } 
+
+            document.querySelector('.sticky-soup-wraper .list-six-box li').classList.add('active-soup')
+     
+        })
+     })
+     
+
+  }
+
