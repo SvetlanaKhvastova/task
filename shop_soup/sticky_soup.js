@@ -289,7 +289,7 @@ let stickySoupBoxStyle = /*html*/ `
 
     }
 
-    /* sticky-soup-wraper desktop */
+    /* sticky-soup-wraper mob */
 
     .sticky-soup-block-mob{
         display: flex;
@@ -443,7 +443,6 @@ let stickySoupBoxStyle = /*html*/ `
 
         .sticky-soup-block button {
             min-height: 54px;
-            max-width: 217px;
             font-weight: 500;
             font-size: 14px;
             line-height: 10px;
@@ -451,17 +450,22 @@ let stickySoupBoxStyle = /*html*/ `
             text-transform: unset;
         }
 
-        .sticky-soup-block button> span:first-child{
-            display: contents;
+        .sticky-soup-block .sticky-soup-wraper button > div {
+            display: inline-flex;
+            flex-direction: column;
+            margin-right: 10px;
+            text-align: start;
+        }
+
+        .sticky-soup-block .sticky-soup-wraper button > div > span:nth-child(2){
             font-weight: 600;
             font-size: 20px;
             line-height: 105.7%;
-            text-align: center;
             text-transform: uppercase;
             color: #FFFFFF;
         }
 
-        .sticky-soup-block button> span:last-child{
+        .sticky-soup-block .sticky-soup-wraper button > span:last-child{
             font-weight: 500;
             font-size: 24px;
             line-height: 32px;
@@ -473,11 +477,11 @@ let stickySoupBoxStyle = /*html*/ `
 
         }
 
-        .sticky-soup-block div:first-child {
+        .sticky-soup-block > div:first-child {
             margin-bottom: 15px;
         }
 
-        .sticky-soup-block div > span:first-child{
+        .sticky-soup-block > div > span:first-child{
             font-weight: 700;
             font-size: 24px;
             line-height: 32px;
@@ -693,7 +697,9 @@ let stickySoupBox = /*html*/ `
             </ul> 
 
             <button>
-                Your box is empty <span>your Cart</span>
+                <div>
+                    <span>Your box is empty</span> <span>your Cart</span>
+                </div>
                 <span>$0</span>
             </button>
         </div>
@@ -705,10 +711,10 @@ let stickySoupBoxMob = /*html*/ `
         <h2>Build a box</h2>
         <span>We ship boxes of 6, 9 or 12 Soups</span>
     </div> -->
-    <div class="sticky-soup-block-mob var">
-        <!-- <div class="sticky-soup-wraper-mob">
+    <div class="sticky-soup-block-mob">
+        <div class="sticky-soup-wraper-mob">
             <ul>
-                <li class="active-soup"></li>
+                <li></li>
                 <li></li>
                 <li></li>
                 <li></li>
@@ -720,45 +726,7 @@ let stickySoupBoxMob = /*html*/ `
                 <span>minimum order</span>
                 <span><span>6</span> Soups box</span> 
             </div>
-        </div> -->
-
-        <div class="sticky-soup-wraper-mob">
-            <ul>
-                <li class="active-soup">
-                    <span></span>
-                    6
-                </li>       
-            </ul> 
-            <span>+</span>
-            <ul>
-                <li>
-                    <span></span>
-                </li>
-                <li>
-                    <span></span>
-                </li>
-                <li>
-                    <span></span>
-                </li>
-                <li class="active-box">
-                    <span></span>
-                    9
-                </li>            
-            </ul>
         </div>
-
-        <button>
-            <div>
-                <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.84483 6.11646L15.9679 1.77647L11.7763 0.0545305C11.5992 -0.0181768 11.4008 -0.0181768 11.2237 0.0545305L1.15625 4.19035L5.84483 6.11646Z" fill="white"/>
-                    <path d="M17.8518 2.55042L7.72571 6.88913L11.4999 8.43966L21.8437 4.19033L17.8518 2.55042Z" fill="white"/>
-                    <path d="M10.7729 9.71301L6.67644 8.03016V11.2165C6.67644 11.618 6.35089 11.9435 5.94936 11.9435C5.54784 11.9435 5.22229 11.618 5.22229 11.2165V7.43278L0.50354 5.49426V18.2938C0.50354 18.5887 0.681582 18.8543 0.954325 18.9664L10.7729 23V9.71301Z" fill="white"/>
-                    <path d="M12.2271 9.71301V23L22.0456 18.9664C22.3184 18.8544 22.4964 18.5887 22.4964 18.2938C22.4964 17.8046 22.4964 6.0298 22.4964 5.49426L12.2271 9.71301Z" fill="white"/>
-                </svg>
-                <p><span>0</span>/<span>6</span></p>
-            </div>
-            <span>$0</span>        
-        </button>
     </div>
 `
 
@@ -822,6 +790,7 @@ if (document.querySelector(".backdrop-backdrop_2JB2n")) {
 
 if (document.querySelector(".soup-basket-bnt")) {
   document.querySelector(".soup-basket-bnt").addEventListener("click", () => {
+    getLocStorPopUpBasket()
     document.querySelector(".backdrop-modal").classList.remove("is-hidden")
     document.body.style.overflow = "hidden"
   })
@@ -846,30 +815,40 @@ if (localStorage.getItem("chooseSoup")) {
   chooseSoup = JSON.parse(localStorage.getItem("chooseSoup"))
 }
 
-if (chooseSoup.length === 0) {
-  document.querySelector(".cart_container .soup-basket-bnt p span:first-child").textContent = "0"
+if (document.querySelector(".cart_container .soup-basket-bnt")) {
+  if (chooseSoup.length === 0) {
+    document.querySelector(".cart_container .soup-basket-bnt p span:first-child").textContent = "0"
+  } else {
+    document.querySelector(".cart_container .soup-basket-bnt p span:first-child").textContent = chooseSoup.length
+  }
+
+  if (chooseSoup.length > "6") {
+    document.querySelector(".cart_container .soup-basket-bnt p span:last-child").textContent = 9
+  }
+
+  if (chooseSoup.length >= "9") {
+    document.querySelector(".cart_container .soup-basket-bnt p span:last-child").textContent = 12
+  }
+}
+
+if (window.innerWidth <= 768) {
+  addActiveClassMob()
 } else {
-  document.querySelector(".cart_container .soup-basket-bnt p span:first-child").textContent = chooseSoup.length
+  addActiveClass()
 }
 
-if (chooseSoup.length >= "6") {
-  document.querySelector(".cart_container .soup-basket-bnt p span:last-child").textContent = 9
-}
-
-if (chooseSoup.length >= "9") {
-  document.querySelector(".cart_container .soup-basket-bnt p span:last-child").textContent = 12
-}
+// onClickSmallBtnRemoveToBox()
+// onClickSmallBtnAddToBox()
 
 onClickAddToBox()
-getLocStorPopUpBasket()
+
+$(".box-wrapper-wrapper_2iq28").on("click", "a.product-controls-relative_TnoUi", addActiveClass)
 
 function onClickAddToBox() {
   document.querySelectorAll(".product-width_3_1oSkt.product-mob_1_1cv7Z.product-bab_product_1EeWi .product-controls-controls_2K2Zl li ul a").forEach((el, i) => {
-    if (chooseSoup.length < 11) {
-      el.addEventListener("click", () => {
-        //   console.log(
-        //     el.closest(".product-width_3_1oSkt.product-mob_1_1cv7Z.product-bab_product_1EeWi").querySelector(".product-description_t2Ncs.product-description_t2Ncs p").textContent
-        //   )
+    el.addEventListener("click", () => {
+      if (chooseSoup.length < 11) {
+        //   .querySelector(".product-description_t2Ncs.product-description_t2Ncs p").textContent
         let temp = []
 
         if (localStorage.getItem("chooseSoup")) {
@@ -883,29 +862,97 @@ function onClickAddToBox() {
         })
 
         localStorage.setItem("chooseSoup", JSON.stringify(temp))
-        console.log(temp.length)
 
-        document.querySelector(".cart_container .soup-basket-bnt p span:first-child").textContent = temp.length
+        if (document.querySelector(".cart_container .soup-basket-bnt")) {
+          document.querySelector(".cart_container .soup-basket-bnt p span:first-child").textContent = temp.length
 
-        if (temp.length >= "6") {
-          document.querySelector(".cart_container .soup-basket-bnt p span:last-child").textContent = 9
+          if (temp.length >= "6") {
+            document.querySelector(".cart_container .soup-basket-bnt p span:last-child").textContent = 9
+          }
+
+          if (temp.length >= "9") {
+            document.querySelector(".cart_container .soup-basket-bnt p span:last-child").textContent = 12
+          }
         }
 
-        if (temp.length >= "9") {
-          document.querySelector(".cart_container .soup-basket-bnt p span:last-child").textContent = 12
+        if (window.innerWidth <= 768) {
+          addActiveClassMob()
+        } else {
+          addActiveClass()
         }
-
-        document.querySelector(".sticky-soup-wraper .list-six-box li").classList.add("active-soup")
-
-        getLocStorPopUpBasket()
-      })
-    }
+      }
+    })
   })
 }
 
+// function onClickSmallBtnRemoveToBox() {
+//   let title = document.querySelector(".product-width_3_1oSkt.product-mob_1_1cv7Z.product-bab_product_1EeWi .product-description_t2Ncs.product-description_t2Ncs p").textContent
+
+//   document
+//     .querySelectorAll(".product-width_3_1oSkt.product-mob_1_1cv7Z.product-bab_product_1EeWi .product-controls-controls_2K2Zl li ul a.product-controls-relative_TnoUi:first-child")
+//     .forEach((el) => {
+//       el.addEventListener("click", () => {
+//         console.log(`onClickSmallBtnRemoveToBox`)
+//         let temp = JSON.parse(localStorage.getItem("chooseSoup"))
+//         console.log(temp)
+
+//         let res = temp.filter((item) => {
+//           return item.title !== title
+//         })
+
+//         console.log(`res`, res)
+
+//         localStorage.setItem("chooseSoup", JSON.stringify(res))
+
+//         document.querySelector(".basket-scroll-box div p span span:first-child").textContent = res.length
+
+//         addActiveClass()
+//       })
+//     })
+// }
+
+// function onClickSmallBtnAddToBox() {
+//   console.log(`object`)
+//   document
+//     .querySelectorAll(".product-width_3_1oSkt.product-mob_1_1cv7Z.product-bab_product_1EeWi .product-controls-controls_2K2Zl li ul a.product-controls-relative_TnoUi:last-child")
+//     .forEach((el) => {
+//       el.addEventListener("click", () => {
+//         let temp = []
+
+//         if (localStorage.getItem("chooseSoup")) {
+//           temp = JSON.parse(localStorage.getItem("chooseSoup"))
+//         }
+
+//         temp.push({
+//           title: document.querySelector(".product-width_3_1oSkt.product-mob_1_1cv7Z.product-bab_product_1EeWi .product-description_t2Ncs.product-description_t2Ncs p").textContent,
+//           price: document.querySelector(".product-width_3_1oSkt.product-mob_1_1cv7Z.product-bab_product_1EeWi .product-description_t2Ncs.product-description_t2Ncs p:last-child")
+//             .textContent,
+//         })
+
+//         localStorage.setItem("chooseSoup", JSON.stringify(temp))
+//         console.log(temp.length)
+
+//         document.querySelector(".cart_container .soup-basket-bnt p span:first-child").textContent = temp.length
+
+//         if (temp.length >= "6") {
+//           document.querySelector(".cart_container .soup-basket-bnt p span:last-child").textContent = 9
+//         }
+
+//         if (temp.length >= "9") {
+//           document.querySelector(".cart_container .soup-basket-bnt p span:last-child").textContent = 12
+//         }
+
+//         addActiveClass()
+//       })
+//     })
+// }
+
 //
+
 function getLocStorPopUpBasket() {
   let temp = JSON.parse(localStorage.getItem("chooseSoup"))
+
+  document.querySelector(".basket-scroll-box div ul").innerHTML = ""
 
   if (chooseSoup.length > 0) {
     temp.map((item) => {
@@ -943,6 +990,258 @@ function getLocStorPopUpBasket() {
       }
 
       document.querySelector(".basket-scroll-box div p span span:first-child").textContent = temp.length
+    })
+  }
+}
+
+function addActiveClass() {
+  let tempLength
+
+  if (localStorage.getItem("chooseSoup")) {
+    tempLength = JSON.parse(localStorage.getItem("chooseSoup")).length
+  }
+
+  document.querySelector(".sticky-soup-block .sticky-soup-wraper button > span:last-child").textContent = document
+    .querySelector(".tally-box-bottom_2gFKf div")
+    .textContent.split(" ")[7]
+
+  let countBox = 6
+  if (tempLength > 6) {
+    countBox = 9
+  }
+
+  if (tempLength >= 9) {
+    countBox = 12
+  }
+
+  document.querySelector(".sticky-soup-block .sticky-soup-wraper button > div > span:first-child").textContent = `${tempLength}/${countBox} soups added`
+
+  document.querySelector(".sticky-soup-block .sticky-soup-wraper button > div > span:nth-child(2)").textContent = "View your Cart"
+
+  if (tempLength < 6 && tempLength !== 0) {
+    document.querySelectorAll(".sticky-soup-wraper .list-six-box li").forEach((item, i) => {
+      if (i + 1 <= tempLength) {
+        item.classList.add("active-soup")
+      } else {
+        item.classList.remove("active-soup")
+      }
+    })
+  }
+
+  if (tempLength === 6) {
+    document.querySelectorAll(".sticky-soup-wraper .list-six-box li").forEach((item, i) => {
+      if (i + 1 <= tempLength) {
+        item.classList.add("active-soup")
+      } else {
+        item.classList.remove("active-soup")
+      }
+    })
+
+    document.querySelectorAll(".sticky-soup-wraper .list-six-box li:last-child").forEach((item, i) => {
+      if (i + 1 <= tempLength) {
+        item.classList.add("active-box")
+      } else {
+        item.classList.remove("active-box")
+      }
+    })
+  }
+
+  //
+  if (tempLength > 6 && tempLength < 9) {
+    document.querySelectorAll(".sticky-soup-wraper .list-nine-box li").forEach((item, i) => {
+      item.classList.add("active-soup")
+      if (i + 1 <= tempLength - 6) {
+        item.classList.add("active-soup")
+      } else {
+        item.classList.remove("active-soup")
+      }
+    })
+  }
+
+  if (tempLength === 9) {
+    document.querySelectorAll(".sticky-soup-wraper .list-nine-box li").forEach((item, i) => {
+      if (i + 1 <= tempLength - 6) {
+        item.classList.add("active-soup")
+      } else {
+        item.classList.remove("active-soup")
+      }
+    })
+
+    document.querySelectorAll(".sticky-soup-wraper .list-nine-box li:last-child").forEach((item, i) => {
+      if (i + 1 <= tempLength - 6) {
+        item.classList.add("active-box")
+      } else {
+        item.classList.remove("active-box")
+      }
+    })
+  }
+
+  //
+  if (tempLength > 9 && tempLength < 12) {
+    document.querySelectorAll(".sticky-soup-wraper .list-twelve-box li").forEach((item, i) => {
+      item.classList.add("active-soup")
+      if (i + 1 <= tempLength - 9) {
+        item.classList.add("active-soup")
+      } else {
+        item.classList.remove("active-soup")
+      }
+    })
+  }
+
+  if (tempLength === 12) {
+    document.querySelectorAll(".sticky-soup-wraper .list-twelve-box li").forEach((item, i) => {
+      if (i + 1 <= tempLength - 9) {
+        item.classList.add("active-soup")
+      } else {
+        item.classList.remove("active-soup")
+      }
+    })
+
+    document.querySelectorAll(".sticky-soup-wraper .list-twelve-box li:last-child").forEach((item, i) => {
+      if (i + 1 <= tempLength - 9) {
+        item.classList.add("active-box")
+      } else {
+        item.classList.remove("active-box")
+      }
+    })
+  }
+}
+
+function addActiveClassMob() {
+  let tempLength
+
+  if (localStorage.getItem("chooseSoup")) {
+    tempLength = JSON.parse(localStorage.getItem("chooseSoup")).length
+  }
+
+  if (document.querySelector(".sticky-soup-wraper-mob div span:last-child span")) {
+    document.querySelector(".sticky-soup-wraper-mob div span:last-child span").textContent = `${tempLength}/6`
+  }
+
+  if (document.querySelector(".sticky-soup-block-mob.var button")) {
+    document.querySelector(".sticky-soup-block-mob.var button > span").textContent = document.querySelector(".tally-box-bottom_2gFKf div").textContent.split(" ")[7]
+    document.querySelector(".sticky-soup-block-mob.var button div p span:first-child").textContent = tempLength
+
+    if (tempLength > 6) {
+      document.querySelector(".sticky-soup-block-mob.var button div p span:last-child").textContent = 9
+    }
+
+    if (tempLength >= 9) {
+      document.querySelector(".sticky-soup-block-mob.var button div p span:last-child").textContent = 12
+    }
+  }
+
+  if (tempLength < 6 && tempLength !== 0) {
+    document.querySelectorAll(".sticky-soup-block-mob .sticky-soup-wraper-mob ul li").forEach((item, i) => {
+      if (i + 1 <= tempLength) {
+        item.classList.add("active-soup")
+      } else {
+        item.classList.remove("active-soup")
+      }
+    })
+  }
+
+  if (tempLength === 6) {
+    document.querySelector(".sticky-soup-block-mob").classList.add("var")
+
+    document.querySelector(".sticky-soup-block-mob.var .sticky-soup-wraper-mob").innerHTML = `    
+            <ul>
+                <li class="active-soup">
+                    <span></span>
+                    6
+                </li>       
+            </ul> 
+            <span>+</span>
+            <ul>
+                <li>
+                    <span></span>
+                </li>
+                <li>
+                    <span></span>
+                </li>
+                <li>
+                    <span></span>
+                </li>
+                <li>
+                    <span></span>
+                    9
+                </li>            
+            </ul>
+ `
+
+    document.querySelector(".sticky-soup-block-mob").insertAdjacentHTML(
+      "beforeend",
+      `<button>
+            <div>
+                <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.84483 6.11646L15.9679 1.77647L11.7763 0.0545305C11.5992 -0.0181768 11.4008 -0.0181768 11.2237 0.0545305L1.15625 4.19035L5.84483 6.11646Z" fill="white"/>
+                    <path d="M17.8518 2.55042L7.72571 6.88913L11.4999 8.43966L21.8437 4.19033L17.8518 2.55042Z" fill="white"/>
+                    <path d="M10.7729 9.71301L6.67644 8.03016V11.2165C6.67644 11.618 6.35089 11.9435 5.94936 11.9435C5.54784 11.9435 5.22229 11.618 5.22229 11.2165V7.43278L0.50354 5.49426V18.2938C0.50354 18.5887 0.681582 18.8543 0.954325 18.9664L10.7729 23V9.71301Z" fill="white"/>
+                    <path d="M12.2271 9.71301V23L22.0456 18.9664C22.3184 18.8544 22.4964 18.5887 22.4964 18.2938C22.4964 17.8046 22.4964 6.0298 22.4964 5.49426L12.2271 9.71301Z" fill="white"/>
+                </svg>
+                <p><span>0</span>/<span>6</span></p>
+            </div>
+            <span>$0</span>        
+        </button> `
+    )
+
+    document.querySelector(".sticky-soup-block-mob.var button > span").textContent = document.querySelector(".tally-box-bottom_2gFKf div").textContent.split(" ")[7]
+    document.querySelector(".sticky-soup-block-mob.var button div p span:last-child").textContent = 9
+    document.querySelector(".sticky-soup-block-mob.var button div p span:first-child").textContent = tempLength
+  }
+
+  if (tempLength > 6 && tempLength < 9) {
+    document.querySelectorAll(".sticky-soup-block-mob.var .sticky-soup-wraper-mob ul:last-child li").forEach((item, i) => {
+      item.classList.add("active-soup")
+      if (i + 1 <= tempLength - 6) {
+        item.classList.add("active-soup")
+      } else {
+        item.classList.remove("active-soup")
+      }
+    })
+  }
+
+  if (tempLength === 9) {
+    document.querySelector(".sticky-soup-block-mob.var .sticky-soup-wraper-mob").innerHTML = `
+    <ul>
+        <li class="active-soup"><span></span>9</li>
+    </ul>
+    <span>+</span>
+    <ul>
+        <li><span></span></li>
+        <li><span></span></li>
+        <li><span></span></li>
+        <li><span></span>12</li>
+    </ul>`
+  }
+
+  if (tempLength > 9 && tempLength < 12) {
+    document.querySelectorAll(".sticky-soup-block-mob.var .sticky-soup-wraper-mob ul:last-child li").forEach((item, i) => {
+      item.classList.add("active-soup")
+      if (i + 1 <= tempLength - 9) {
+        item.classList.add("active-soup")
+      } else {
+        item.classList.remove("active-soup")
+      }
+    })
+  }
+
+  if (tempLength === 12) {
+    document.querySelectorAll(".sticky-soup-block-mob.var .sticky-soup-wraper-mob ul:last-child li").forEach((item, i) => {
+      item.classList.add("active-soup")
+      if (i + 1 <= tempLength - 9) {
+        item.classList.add("active-soup")
+      } else {
+        item.classList.remove("active-soup")
+      }
+    })
+
+    document.querySelectorAll(".sticky-soup-block-mob.var .sticky-soup-wraper-mob ul:last-child li:last-child").forEach((item, i) => {
+      if (i + 1 <= tempLength - 9) {
+        item.classList.add("active-box")
+      } else {
+        item.classList.remove("active-box")
+      }
     })
   }
 }
