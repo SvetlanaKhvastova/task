@@ -1245,3 +1245,13 @@ function addActiveClassMob() {
     })
   }
 }
+
+
+document.querySelector('.total-price-box button').addEventListener('click', (e)=>{
+  e.preventDefault()
+  document.querySelector('.tally-box-button_n8uNS.tally-box-cta_16mQX').click()
+
+  setTimeout(() => {
+  document.querySelector('.tally-box-button_n8uNS.tally-box-cta_16mQX').click()
+  },1000) 
+})

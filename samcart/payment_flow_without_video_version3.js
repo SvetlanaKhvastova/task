@@ -403,11 +403,11 @@ window.onload = function () {
 
       document.querySelector(onClick).click()
 
-      document.querySelector("#payments").scrollIntoView({ block: "center", behavior: "smooth" })
+      document.querySelector(".tpl-2__order.mx-sm-auto.text-center").scrollIntoView({ block: "start", behavior: "smooth" })
 
-      if (btnSelector === ".pall-pay-btn") {
-        document.querySelector("#placeOrder").click()
-      }
+    //   if (btnSelector === ".pall-pay-btn") {
+    //     document.querySelector("#placeOrder").click()
+    //   }
     })
   }
 
@@ -435,5 +435,5 @@ window.onload = function () {
     function () {
       ;(hj.q = hj.q || []).push(arguments)
     }
-  hj("trigger", `hide_video_block ${eventVar}`)
+  hj("trigger", `hide_video_block_${eventVar}`)
 }
