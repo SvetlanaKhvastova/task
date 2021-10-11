@@ -1,0 +1,164 @@
+@font-face {
+  font-family: "Gilroy";
+  src: url("fonts/Gilroy-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Gilroy";
+  src: url("fonts/Gilroy-ExtraBold.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Gilroy";
+  src: url("fonts/Gilroy-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Gilroy";
+  src: url("fonts/Gilroy-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Gilroy", Sans-serif;
+  background: #f7fafd;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  border: 0;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 7px;
+  width: 185px;
+  height: 46px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #ffffff;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+input {
+  background-color: inherit;
+  border: 2px solid #d3d8db;
+  border-radius: 5px;
+  width: 344px;
+  height: 44px;
+  margin-top: 5px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 12px;
+  text-transform: uppercase;
+  color: #eef1f3;
+  margin: auto;
+}
+
+.name-input {
+  margin-bottom: 25px;
+}
+
+.container {
+  text-align: center;
+}
+
+.box-fist-about {
+  padding: 0 165px;
+}
+
+.box-fist-about h1 {
+  font-weight: 800;
+  font-size: 64px;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: #183b56;
+  margin-bottom: 40px;
+}
+
+.box-fist-about h1 > span {
+  color: #046bd9;
+}
+
+.box_already_registered {
+  background: linear-gradient(139.61deg, #1d96f3 12.88%, #4b17e6 67.72%);
+  padding: 115px 0 120px 0;
+}
+
+.box_already_registered > span {
+  font-weight: 800;
+  font-size: 64px;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: #f2813f;
+}
+
+.box_already_registered p {
+  max-width: 670px;
+  margin: 0 auto 32px auto;
+  font-weight: 800;
+  font-size: 48px;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+}
+
+.box_already_registered form {
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.box_already_registered form div {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 24px;
+  margin-bottom: 40px;
+}
+
+.box_already_registered form div span:first-child {
+  border-right: 1px solid #ffffff;
+  width: 100%;
+  padding-right: 25px;
+}
+
+.box_already_registered form div span:last-child {
+  padding-left: 25px;
+}
+
+.box_already_registered form button {
+  background: #f2813f;
+  margin: 40px auto 0;
+}
