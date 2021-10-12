@@ -64,6 +64,7 @@ button {
   cursor: pointer;
   outline: none;
   border: none;
+  margin: 40px auto 0;
 }
 
 input {
@@ -87,19 +88,32 @@ label {
   margin: auto;
 }
 
-.name-input {
-  margin-bottom: 25px;
+label:not(:last-child) {
+  margin-bottom: 20px;
 }
 
-.container {
+/* header */
+header {
+  padding: 40px 60px 52px 60px;
+}
+
+header img {
+  margin-bottom: 52px;
+  display: block;
+  margin: auto;
+}
+
+main {
   text-align: center;
+  padding: 0 60px;
 }
 
-.box-fist-about {
-  padding: 0 165px;
+/* box-fist-about */
+.box_fist_about {
+  padding: 0 105px 120px;
 }
 
-.box-fist-about h1 {
+.box_fist_about h1 {
   font-weight: 800;
   font-size: 64px;
   line-height: 1.12;
@@ -108,13 +122,213 @@ label {
   margin-bottom: 40px;
 }
 
-.box-fist-about h1 > span {
+.box_fist_about h1 > span {
   color: #046bd9;
 }
 
+.box_fist_about > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.information_speaker {
+  width: 50%;
+  min-width: 480px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.33;
+  color: #183b56;
+  text-align: start;
+}
+
+.information_speaker > div {
+  display: flex;
+  text-align: start;
+  align-items: center;
+}
+
+.information_speaker > div img {
+  margin-right: 20px;
+}
+
+.information_speaker > div > div > p {
+  font-weight: 800;
+  font-size: 24px;
+  color: #183b56;
+  margin-bottom: 28px;
+}
+
+.information_speaker > div > div > p > span {
+  color: #f2813f;
+}
+
+.information_speaker > div > div > div {
+  display: inline-flex;
+  align-items: center;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #046bd9;
+}
+
+.information_speaker > div > div > div svg {
+  margin-right: 12px;
+}
+
+.information_speaker > div > div > div span:not(:last-child) {
+  padding-right: 30px;
+  margin-right: 30px;
+  border-right: 1px solid #183b56;
+}
+
+.information_speaker > p {
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 45px;
+  margin: 55px 0 20px;
+}
+
+.information_speaker ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.information_speaker ul li::before {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgb(54 179 126 / 15%) url("./samcart_svg/check.svg") no-repeat center;
+}
+
+.information_speaker ul li {
+  position: relative;
+  padding-left: 36px;
+  width: 50%;
+  margin-bottom: 16px;
+}
+
+/* form 1 */
+.box_fist_about > div > .scene form {
+  background: #ffffff;
+  border: 1px solid #eef1f3;
+  box-shadow: 0px 2px 4px rgb(24 59 86 / 10%), 0px 12px 32px rgb(0 0 0 / 5%);
+  border-radius: 16px;
+  max-width: 424px;
+  /* height: 423px; */
+  padding: 40px;
+  color: #183b56;
+
+  /*  */
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.box_fist_about > div > .scene form > h2 {
+  font-weight: 800;
+  font-size: 36px;
+  line-height: 1.25;
+  margin-bottom: 5px;
+}
+
+.box_fist_about > div > .scene form > p {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.box_fist_about > div > .scene form > label {
+  color: #8c9294;
+  letter-spacing: 0.01em;
+}
+
+.box_fist_about > div > .scene form > span {
+  text-decoration: underline;
+  color: #8c9294;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.14;
+  margin-right: 25px;
+}
+
+.box_fist_about > div > .scene form > button {
+  background: #046bd9;
+}
+
+.scene {
+  perspective: 950px;
+  width: 424px;
+  height: 430px;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+
+.back_form {
+  transform: rotateY(180deg);
+}
+
+.card.is-flipped {
+  transform: rotateY(180deg);
+}
+
+/* box_second_training */
+
+.box_second_training {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #5a7386;
+  padding: 0 25px 120px;
+}
+
+.box_second_training h2 {
+  font-weight: 800;
+  font-size: 48px;
+  line-height: 1.12;
+  text-align: center;
+  letter-spacing: -0.01em;
+  color: #183b56;
+  margin-bottom: 12px;
+}
+
+.box_second_training ul {
+  display: flex;
+  margin-top: 55px;
+}
+
+.box_second_training ul li {
+  font-weight: 700;
+  color: #046bd9;
+}
+
+/* box_slider */
+.box_slider {
+  padding: 0 0 120px;
+}
+
+.box_slider h2 {
+  font-weight: 800;
+  font-size: 48px;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: #183b56;
+}
+
+/* box_already_registered */
 .box_already_registered {
   background: linear-gradient(139.61deg, #1d96f3 12.88%, #4b17e6 67.72%);
   padding: 115px 0 120px 0;
+  margin: 0 -60px;
 }
 
 .box_already_registered > span {
@@ -160,5 +374,149 @@ label {
 
 .box_already_registered form button {
   background: #f2813f;
-  margin: 40px auto 0;
+}
+
+/* popup */
+.backdrop_popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1055;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  overflow-y: scroll;
+  background-color: rgb(0 0 0 / 60%);
+  transition: all 0.8s ease 0s;
+}
+
+.backdrop_popup.is_hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.backdrop_popup form {
+  display: flex;
+  min-height: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 10px;
+}
+
+.popup_form_content {
+  position: relative;
+  max-width: 870px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 100px;
+  background: #ffffff;
+  border: 1px solid #eef1f3;
+  box-shadow: 0px 2px 4px rgba(24, 59, 86, 0.1), 0px 12px 32px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  transition: all 0.8s ease 0s;
+  text-align: start;
+}
+
+.popup_form_content .close_popup {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  width: 24px;
+  height: 24px;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  cursor: pointer;
+  background-color: inherit;
+}
+
+.popup_form_content .close_popup svg {
+  fill: #d3d8db;
+}
+
+.popup_form_content h2 {
+  font-weight: 800;
+  font-size: 36px;
+  line-height: 1.25;
+  color: #122f45;
+  margin-bottom: 5px;
+}
+
+.popup_wrapper {
+  color: #183b56;
+  display: flex;
+}
+
+.popup_wrapper div:first-child {
+  width: 50%;
+  margin-right: 60px;
+}
+
+.popup_wrapper div:first-child p {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #183b56;
+  margin-bottom: 32px;
+}
+
+.popup_wrapper div:first-child ul li::before {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgb(54 179 126 / 15%) url("./samcart_svg/check.svg") no-repeat center;
+}
+
+.popup_wrapper div:first-child ul li {
+  position: relative;
+  padding-left: 36px;
+}
+
+.popup_wrapper div:first-child ul li:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.popup_wrapper div:first-child ul li span {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.5;
+  color: #183b56;
+}
+
+.popup_wrapper div:last-child label {
+  color: #8c9294;
+}
+
+.popup_wrapper div:last-child label input {
+  width: 300px;
+}
+
+.popup_wrapper div:last-child button {
+  background: #046bd9;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+
+/* popup_after_scroll  */
+
+.backdrop_popup.popup_after_scroll button:last-child {
+  background: #046bd9;
+  margin-top: 72px;
+}
+
+.backdrop_popup.popup_after_scroll .popup_wrapper label:not(:last-child) {
+  margin-bottom: 24px;
+}
+
+.backdrop_popup.popup_after_scroll .popup_wrapper div:first-child ul li:not(:last-child) {
+  margin-bottom: 24px;
 }
