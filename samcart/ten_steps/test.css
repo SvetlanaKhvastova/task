@@ -71,23 +71,25 @@ input {
   background-color: inherit;
   border: 2px solid #d3d8db;
   border-radius: 5px;
-  width: 344px;
+  width: 100%;
   height: 44px;
   margin-top: 5px;
+  padding: 0 10px;
 }
 
 select {
   background-color: inherit;
   border: 2px solid #d3d8db;
   border-radius: 5px;
-  width: 344px;
+  width: 100%;
   height: 44px;
   margin-top: 5px;
   font-weight: 400;
   font-size: 18px;
   line-height: 26px;
   color: #5a7386;
-  padding: 10px;
+  padding: 0 10px;
+  appearance: none;
 }
 
 label {
@@ -120,7 +122,7 @@ main {
 
 /* box-fist-about */
 .box_fist_about {
-  padding: 0 105px 120px;
+  padding: 0 0 120px;
 }
 
 .box_fist_about h1 {
@@ -138,12 +140,12 @@ main {
 
 .box_fist_about > div {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  margin: 0 auto;
 }
 
 .information_speaker {
   width: 50%;
-  min-width: 480px;
   font-weight: 400;
   font-size: 18px;
   line-height: 1.33;
@@ -206,7 +208,7 @@ main {
   position: absolute;
   content: "";
   left: 0;
-  top: 50%;
+  top: 10px;
   transform: translateY(-50%);
   width: 24px;
   height: 24px;
@@ -234,7 +236,13 @@ main {
 
   /*  */
   position: absolute;
+  top: 0;
+  left: 0;
   backface-visibility: hidden;
+}
+
+.front_form {
+  position: unset !important;
 }
 
 .box_fist_about > div > .scene form > h2 {
@@ -256,7 +264,7 @@ main {
   letter-spacing: 0.01em;
 }
 
-.box_fist_about > div > .scene form label:not(:last-child) {
+.box_fist_about > div > .scene form > *:not(:nth-child(4)) {
   margin-bottom: 20px;
 }
 
@@ -276,8 +284,8 @@ main {
 
 .scene {
   perspective: 950px;
-  width: 424px;
-  height: 430px;
+  margin-left: 50px;
+  flex-shrink: 0;
 }
 
 .card {
@@ -302,7 +310,7 @@ main {
   font-size: 16px;
   line-height: 1.5;
   color: #5a7386;
-  padding: 0 25px 120px;
+  padding: 0 0 150px;
 }
 
 .box_second_training h2 {
@@ -501,19 +509,18 @@ main {
   transform: translateY(-50%);
 }
 
-.img {
-  height: 70vh;
-}
-
 .img img {
   height: 100%;
   width: 100%;
+  max-height: 70vh;
   object-fit: contain;
 }
 
 /* box_already_registered */
 .box_already_registered {
-  background: linear-gradient(139.61deg, #1d96f3 12.88%, #4b17e6 67.72%);
+  /* background: linear-gradient(139.61deg, #1d96f3 12.88%, #4b17e6 67.72%); */
+  background: url("samcart_svg/background.png") center center no-repeat;
+  background-size: cover;
   padding: 115px 0 120px 0;
   margin: 120px -60px 0;
 }
@@ -542,8 +549,13 @@ main {
   flex-direction: column;
 }
 
-.box_already_registered form label:not(:last-child) {
+.box_already_registered form > :not(:nth-child(3)) {
   margin-bottom: 20px;
+}
+
+.box_already_registered form label {
+  max-width: 344px;
+  width: 100%;
 }
 
 .box_already_registered form div {
@@ -605,7 +617,6 @@ main {
   box-shadow: 0px 2px 4px rgba(24, 59, 86, 0.1), 0px 12px 32px rgba(0, 0, 0, 0.05);
   border-radius: 16px;
   transition: all 0.8s ease 0s;
-  text-align: start;
 }
 
 .popup_form_content .close_popup {
@@ -639,6 +650,7 @@ main {
 .popup_wrapper {
   color: #183b56;
   display: flex;
+  text-align: start;
 }
 
 .popup_wrapper div:first-child {
@@ -686,15 +698,11 @@ main {
   color: #8c9294;
 }
 
-.popup_wrapper div:last-child label:not(:last-child) {
-  margin-bottom: 20px;
+.popup_btn .popup_wrapper div:last-child label:not(:nth-child(2)) {
+  margin-bottom: 24px;
 }
 
 .popup_wrapper div:last-child label input {
-  width: 300px;
-}
-
-.popup_wrapper div:last-child label select {
   width: 300px;
 }
 
@@ -707,15 +715,15 @@ main {
 
 /* popup_after_scroll  */
 
-.backdrop_popup.popup_after_scroll button:last-child {
+.popup_after_scroll button:last-child {
   background: #046bd9;
   margin-top: 72px;
 }
 
-.backdrop_popup.popup_after_scroll .popup_wrapper label:not(:last-child) {
+.popup_after_scroll .popup_wrapper label:not(:last-child) {
   margin-bottom: 24px;
 }
 
-.backdrop_popup.popup_after_scroll .popup_wrapper div:first-child ul li:not(:last-child) {
+.popup_after_scroll .popup_wrapper div:first-child ul li:not(:last-child) {
   margin-bottom: 24px;
 }
