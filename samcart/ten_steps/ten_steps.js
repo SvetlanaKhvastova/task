@@ -8,15 +8,15 @@ document.querySelector('.box_fist_about > div > .scene form > span').addEventLis
   document.querySelector('.card').classList.toggle('is-flipped');
 });
 
-document.querySelector('.box_already_registered form button').addEventListener('click', function (e) {
-  e.preventDefault()
-  showModal(".backdrop_popup.popup_btn")
-});
-
 // document.querySelector('.box_already_registered form button').addEventListener('click', function (e) {
 //   e.preventDefault()
-//   showModal(".backdrop_popup.popup_after_scroll")
+//   showModal(".backdrop_popup.popup_btn")
 // });
+
+document.querySelector('.box_already_registered form button').addEventListener('click', function (e) {
+  e.preventDefault()
+  showModal(".backdrop_popup.popup_after_scroll")
+});
   
 
 document.querySelector(".backdrop_popup .popup_form_content .close_popup").addEventListener("click", function (e) {
@@ -35,7 +35,9 @@ let slider = tns(
 {
   container: ".my-slider",
   items: 1,
-  navPosition:'bottom'
+  navPosition: 'bottom',
+  prevButton: ".arrow_left",
+  nextButton: ".arrow_right"
 })
 
 

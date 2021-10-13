@@ -6,6 +6,7 @@
     <title>modal</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css" />
     <link rel="stylesheet" href="test.css" />
   </head>
 
@@ -68,11 +69,11 @@
                 <p>Just enter your name & email to secure your spot on this webinar</p>
                 <label for="">
                   <span>Your name*</span>
-                  <input type="text" name="" id="" />
+                  <input type="text" name="name" id="" maxlength="64" />
                 </label>
                 <label for="">
                   <span>Your work email*</span>
-                  <input type="email" name="" id="" />
+                  <input type="email" name="email" id="" maxlength="64" />
                 </label>
                 <button>
                   Register Now
@@ -98,11 +99,20 @@
                 <p>Choose date and time of attendance and Finish Registration to Save your Spot</p>
                 <label for="">
                   <span>Your current monthly sales*</span>
-                  <input type="text" name="" id="" />
+                  <select class="" name="customFields.Monthly_Sales">
+                    <option value="">Select an option</option>
+                    <option value="No Sales Yet">No Sales Yet</option>
+                    <option value="$1 - $1,000">$1 - $1,000</option>
+                    <option value="$1,001 - $10,000">$1,001 - $10,000</option>
+                    <option value="$10,001 - $25,000">$10,001 - $25,000</option>
+                    <option value="Greater than $25,000 a month">Greater than $25,000 a month</option>
+                  </select>
                 </label>
                 <label for="">
                   <span>data and time of attendance</span>
-                  <input type="email" name="" id="" />
+                  <select name="start_time">
+                    <option value="2021-10-13T11:50:00.000Z">Wed: October 13 @ 2:50PM EEST</option>
+                  </select>
                 </label>
                 <span>Back</span>
                 <button>
@@ -134,29 +144,126 @@
           Everything you need to know for growing your business in only 45+ minutes. <br />
           Swipe right trough the timeline to discover all the themes
         </p>
-        <ul>
-          <li>Sales</li>
-          <li>Product</li>
-          <li>Competitors</li>
-          <li>Pick a niche</li>
-          <li>Success chance</li>
-          <li>Growth</li>
-          <li>Pricing</li>
-          <li>Funnel</li>
-          <li>Making a sale</li>
-        </ul>
+        <div class="swipe_box">
+          <ul>
+            <li>
+              <span>5:58</span>
+              <div></div>
+              <p>Sales</p>
+            </li>
+            <li>
+              <span>7:07</span>
+              <div></div>
+              <p>Product</p>
+            </li>
+            <li>
+              <span>8:01</span>
+              <div></div>
+              <p>Competitors</p>
+            </li>
+            <li>
+              <span>10:21</span>
+              <div></div>
+              <p>Pick a niche</p>
+            </li>
+            <li>
+              <span>11:48</span>
+              <div></div>
+              <p>Success chance</p>
+            </li>
+            <li>
+              <span>13:15</span>
+              <div></div>
+              <p>Growth</p>
+            </li>
+            <li>
+              <span>15:18</span>
+              <div></div>
+              <p>Pricing</p>
+            </li>
+            <li>
+              <span>16:33</span>
+              <div></div>
+              <p>Funnel</p>
+            </li>
+            <li>
+              <span>19:12</span>
+              <div></div>
+              <p>Making a sale</p>
+            </li>
+          </ul>
+          <div>
+            <svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g filter="url(#filter0_f)">
+                <circle cx="18.5" cy="18.5" r="12.5" fill="#F08E38" fill-opacity="0.61" />
+              </g>
+              <circle cx="18.5" cy="18.5" r="12.5" fill="#F08E38" fill-opacity="0.38" />
+              <circle cx="18.5" cy="18.4999" r="4.92424" fill="#F08E38" />
+              <defs>
+                <filter id="filter0_f" x="0" y="0" width="37" height="37" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                  <feGaussianBlur stdDeviation="3" result="effect1_foregroundBlur" />
+                </filter>
+              </defs>
+            </svg>
+            <div class="progress_line"></div>
+          </div>
+        </div>
       </div>
 
       <div class="box_slider">
         <h2>Real Results People Are Getting Using This System</h2>
 
+        <span class="arrow_left">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M11.7797 6.97028C11.71 6.90043 11.6272 6.84502 11.5361 6.80721C11.445 6.7694 11.3473 6.74994 11.2487 6.74994C11.15 6.74994 11.0523 6.7694 10.9612 6.80721C10.8701 6.84502 10.7873 6.90043 10.7177 6.97028L6.21766 11.4703C6.14781 11.5399 6.0924 11.6227 6.05459 11.7138C6.01678 11.8049 5.99732 11.9026 5.99732 12.0013C5.99732 12.0999 6.01678 12.1976 6.05459 12.2887C6.0924 12.3798 6.14781 12.4626 6.21766 12.5323L10.7177 17.0323C10.8585 17.1731 11.0495 17.2522 11.2487 17.2522C11.4478 17.2522 11.6388 17.1731 11.7797 17.0323C11.9205 16.8914 11.9996 16.7004 11.9996 16.5013C11.9996 16.3021 11.9205 16.1111 11.7797 15.9703L7.80916 12.0013L11.7797 8.03228C11.8495 7.96261 11.9049 7.87985 11.9427 7.78873C11.9805 7.69761 12 7.59993 12 7.50128C12 7.40263 11.9805 7.30495 11.9427 7.21383C11.9049 7.12271 11.8495 7.03995 11.7797 6.97028Z"
+              fill="#183B56"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M18 12C18 11.8011 17.921 11.6103 17.7803 11.4697C17.6397 11.329 17.4489 11.25 17.25 11.25H7.5C7.30109 11.25 7.11032 11.329 6.96967 11.4697C6.82902 11.6103 6.75 11.8011 6.75 12C6.75 12.1989 6.82902 12.3897 6.96967 12.5303C7.11032 12.671 7.30109 12.75 7.5 12.75H17.25C17.4489 12.75 17.6397 12.671 17.7803 12.5303C17.921 12.3897 18 12.1989 18 12Z"
+              fill="#183B56"
+            />
+          </svg>
+        </span>
         <div class="my-slider">
-          <img src="./samcart_svg/slider_photo1.png" alt="" width="910" />
-          <img src="./samcart_svg/slider_photo2.png" alt="" width="910" />
-          <img src="./samcart_svg/slider_photo1.png" alt="" width="910" />
-          <img src="./samcart_svg/slider_photo1.png" alt="" width="910" />
-          <img src="./samcart_svg/slider_photo1.png" alt="" width="910" />
+          <div class="img">
+            <img src="./samcart_svg/slider_photo1.png" alt="" width="910" />
+          </div>
+          <div class="img">
+            <img src="./samcart_svg/slider_photo2.png" alt="" width="910" />
+          </div>
+          <div class="img">
+            <img src="./samcart_svg/slider_photo1.png" alt="" width="910" />
+          </div>
+          <div class="img">
+            <img src="./samcart_svg/slider_photo1.png" alt="" width="910" />
+          </div>
+          <div class="img">
+            <img src="./samcart_svg/slider_photo1.png" alt="" width="910" />
+          </div>
         </div>
+        <span class="arrow_right">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M12.2203 6.97028C12.29 6.90043 12.3728 6.84502 12.4639 6.80721C12.555 6.7694 12.6527 6.74994 12.7513 6.74994C12.85 6.74994 12.9477 6.7694 13.0388 6.80721C13.1299 6.84502 13.2127 6.90043 13.2823 6.97028L17.7823 11.4703C17.8522 11.5399 17.9076 11.6227 17.9454 11.7138C17.9832 11.8049 18.0027 11.9026 18.0027 12.0013C18.0027 12.0999 17.9832 12.1976 17.9454 12.2887C17.9076 12.3798 17.8522 12.4626 17.7823 12.5323L13.2823 17.0323C13.1415 17.1731 12.9505 17.2522 12.7513 17.2522C12.5522 17.2522 12.3612 17.1731 12.2203 17.0323C12.0795 16.8914 12.0004 16.7004 12.0004 16.5013C12.0004 16.3021 12.0795 16.1111 12.2203 15.9703L16.1908 12.0013L12.2203 8.03228C12.1505 7.96261 12.0951 7.87985 12.0573 7.78873C12.0195 7.69761 12 7.59993 12 7.50128C12 7.40263 12.0195 7.30495 12.0573 7.21383C12.0951 7.12271 12.1505 7.03995 12.2203 6.97028Z"
+              fill="#183B56"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M6 12C6 11.8011 6.07902 11.6103 6.21967 11.4697C6.36032 11.329 6.55109 11.25 6.75 11.25H16.5C16.6989 11.25 16.8897 11.329 17.0303 11.4697C17.171 11.6103 17.25 11.8011 17.25 12C17.25 12.1989 17.171 12.3897 17.0303 12.5303C16.8897 12.671 16.6989 12.75 16.5 12.75H6.75C6.55109 12.75 6.36032 12.671 6.21967 12.5303C6.07902 12.3897 6 12.1989 6 12Z"
+              fill="#183B56"
+            />
+          </svg>
+        </span>
       </div>
 
       <div class="box_already_registered">
@@ -169,11 +276,11 @@
           </div>
           <label for="">
             <span>Your name*</span>
-            <input type="text" name="" id="" />
+            <input type="text" name="name" id="" maxlength="64" />
           </label>
           <label for="">
             <span>Your work email*</span>
-            <input type="email" name="" id="" />
+            <input type="email" name="email" id="" maxlength="64" />
           </label>
           <button>
             Register Now
@@ -221,11 +328,20 @@
               <div>
                 <label for="">
                   <span>Your current monthly sales *</span>
-                  <input type="text" name="" id="" />
+                  <select class="" name="customFields.Monthly_Sales">
+                    <option value="">Select an option</option>
+                    <option value="No Sales Yet">No Sales Yet</option>
+                    <option value="$1 - $1,000">$1 - $1,000</option>
+                    <option value="$1,001 - $10,000">$1,001 - $10,000</option>
+                    <option value="$10,001 - $25,000">$10,001 - $25,000</option>
+                    <option value="Greater than $25,000 a month">Greater than $25,000 a month</option>
+                  </select>
                 </label>
                 <label for="">
                   <span>data and time of attendance</span>
-                  <input type="email" name="" id="" />
+                  <select name="start_time">
+                    <option value="2021-10-13T11:50:00.000Z">Wed: October 13 @ 2:50PM EEST</option>
+                  </select>
                 </label>
                 <button>
                   Register Now
@@ -276,19 +392,28 @@
               <div>
                 <label for="">
                   <span>Your name*</span>
-                  <input type="text" name="" id="" />
+                  <input type="text" name="name" id="" maxlength="64" />
                 </label>
                 <label for="">
                   <span>Your work email*</span>
-                  <input type="email" name="" id="" />
+                  <input type="email" name="email" id="" maxlength="64" />
                 </label>
                 <label for="">
                   <span>Your current monthly sales *</span>
-                  <input type="text" name="" id="" />
+                  <select class="" name="customFields.Monthly_Sales">
+                    <option value="">Select an option</option>
+                    <option value="No Sales Yet">No Sales Yet</option>
+                    <option value="$1 - $1,000">$1 - $1,000</option>
+                    <option value="$1,001 - $10,000">$1,001 - $10,000</option>
+                    <option value="$10,001 - $25,000">$10,001 - $25,000</option>
+                    <option value="Greater than $25,000 a month">Greater than $25,000 a month</option>
+                  </select>
                 </label>
                 <label for="">
                   <span>data and time of attendance</span>
-                  <input type="email" name="" id="" />
+                  <select name="start_time">
+                    <option value="2021-10-13T11:50:00.000Z">Wed: October 13 @ 2:50PM EEST</option>
+                  </select>
                 </label>
               </div>
             </div>

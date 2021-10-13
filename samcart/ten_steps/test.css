@@ -76,6 +76,20 @@ input {
   margin-top: 5px;
 }
 
+select {
+  background-color: inherit;
+  border: 2px solid #d3d8db;
+  border-radius: 5px;
+  width: 344px;
+  height: 44px;
+  margin-top: 5px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 26px;
+  color: #5a7386;
+  padding: 10px;
+}
+
 label {
   display: flex;
   flex-direction: column;
@@ -86,10 +100,6 @@ label {
   text-transform: uppercase;
   color: #eef1f3;
   margin: auto;
-}
-
-label:not(:last-child) {
-  margin-bottom: 20px;
 }
 
 /* header */
@@ -246,6 +256,10 @@ main {
   letter-spacing: 0.01em;
 }
 
+.box_fist_about > div > .scene form label:not(:last-child) {
+  margin-bottom: 20px;
+}
+
 .box_fist_about > div > .scene form > span {
   text-decoration: underline;
   color: #8c9294;
@@ -253,6 +267,7 @@ main {
   font-size: 14px;
   line-height: 1.14;
   margin-right: 25px;
+  cursor: pointer;
 }
 
 .box_fist_about > div > .scene form > button {
@@ -282,7 +297,6 @@ main {
 }
 
 /* box_second_training */
-
 .box_second_training {
   font-weight: 400;
   font-size: 16px;
@@ -301,19 +315,149 @@ main {
   margin-bottom: 12px;
 }
 
-.box_second_training ul {
+.box_second_training .swipe_box {
+  position: relative;
+}
+
+.box_second_training .swipe_box ul {
   display: flex;
   margin-top: 55px;
+  transform: translateX(30px);
+  justify-content: space-between;
 }
 
 .box_second_training ul li {
   font-weight: 700;
   color: #046bd9;
+  position: relative;
+  width: 10%;
+  text-align: left;
+}
+
+.box_second_training .swipe_box ul li span {
+  font-weight: 700;
+  color: #183b56;
+}
+
+.box_second_training .swipe_box ul li div {
+  width: 1px;
+  height: 60px;
+  background: #d3d8db;
+  border-radius: 1px;
+  margin: 8px 0 8px 15px;
+}
+.box_second_training .swipe_box ul li p {
+  text-align: left;
+}
+
+.box_second_training .swipe_box ul li::after {
+  position: absolute;
+  text-align: start;
+  width: 100%;
+  left: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.43;
+  color: #5a7386;
+  padding-right: 5px;
+}
+
+.box_second_training ul li:nth-child(1)::after {
+  content: "The one reason most entrepreneurs don't make their first sale";
+}
+.box_second_training ul li:nth-child(2)::after {
+  content: "The only type of product you should attempt to sell when you're just starting out";
+}
+
+.box_second_training ul li:nth-child(3)::after {
+  content: "The real truth behind how much money the average drop-shipper, affiliate marketer, and funnel hack make.";
+}
+
+.box_second_training ul li:nth-child(4)::after {
+  content: "How to pick a niche that could generate tons of sales";
+}
+
+.box_second_training ul li:nth-child(5)::after {
+  content: "The 'problem test' and how it increases your chances of success";
+}
+
+.box_second_training ul li:nth-child(6)::after {
+  content: "My secret 'bookshelf test' and why it can make even a struggling product to start flying off the shelf";
+}
+
+.box_second_training ul li:nth-child(7)::after {
+  content: "The perfect price that is proven to boost conversions in every niche";
+}
+
+.box_second_training ul li:nth-child(8)::after {
+  content: "The four reasons you must DITCH YOUR FUNNEL";
+}
+
+.box_second_training ul li:nth-child(9)::after {
+  content: "The simple '1 Page Blueprint' and how over 19,284 people have used it to make their first sale";
+}
+
+.box_second_training .swipe_box > div {
+  position: absolute;
+  width: 100%;
+  height: 28px;
+  top: 47px;
+  background: #ffffff;
+  border: 1px solid #eef1f3;
+  box-shadow: 0px 2px 2px rgb(24 59 86 / 5%), 0px 12px 8px rgb(0 0 0 / 2%);
+  border-radius: 16px;
+}
+
+.box_second_training .swipe_box > div svg {
+  position: absolute;
+  top: 8px;
+  left: 45px;
+  transform: translateX(-50%);
+  cursor: url("./samcart_svg/cursor.svg"), url("./samcart_svg/cursor_arrow.svg"), default;
+}
+
+.box_second_training .swipe_box > div svg:hover {
+  background: url("./samcart_svg/cursor_arrow.svg") 19px 19px no-repeat;
+}
+
+.progress_line {
+  background: #f7fafd;
+  border-radius: 16px 0px 0px 16px;
+  width: 45px;
+  height: 100%;
 }
 
 /* box_slider */
+.tns-outer .tns-liveregion.tns-visually-hidden {
+  display: none;
+}
+
+.tns-nav {
+  text-align: end;
+}
+
+.tns-nav button {
+  background: #9cabb7;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.tns-nav button:not(:last-child) {
+  margin-right: 20px;
+}
+
+.tns-nav button.tns-nav-active {
+  background: #046bd9;
+}
+
 .box_slider {
-  padding: 0 0 120px;
+  margin: 120px 80px 0;
+  position: relative;
+  background: #ffffff;
+  box-shadow: 0px 2px 4px rgba(24, 59, 86, 0.1), 0px 12px 32px rgba(0, 0, 0, 0.05);
+  border-radius: 32px;
+  padding: 50px;
 }
 
 .box_slider h2 {
@@ -322,13 +466,56 @@ main {
   line-height: 1.12;
   letter-spacing: -0.01em;
   color: #183b56;
+  max-width: 658px;
+  margin: auto;
+}
+
+.my-slider {
+  max-height: 80vh;
+}
+
+.box_slider span {
+  width: 64px;
+  height: 64px;
+  background: #ffffff;
+  border: 1px solid #eef1f3;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 2px rgba(24, 59, 86, 0.05), 0px 12px 8px rgba(0, 0, 0, 0.02);
+  border-radius: 64px;
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+  padding: 20px;
+  cursor: pointer;
+}
+
+.box_slider .arrow_left {
+  position: absolute;
+  top: 50%;
+  left: -89px;
+  transform: translateY(-50%);
+}
+
+.box_slider .arrow_right {
+  position: absolute;
+  top: 50%;
+  right: -89px;
+  transform: translateY(-50%);
+}
+
+.img {
+  height: 70vh;
+}
+
+.img img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 }
 
 /* box_already_registered */
 .box_already_registered {
   background: linear-gradient(139.61deg, #1d96f3 12.88%, #4b17e6 67.72%);
   padding: 115px 0 120px 0;
-  margin: 0 -60px;
+  margin: 120px -60px 0;
 }
 
 .box_already_registered > span {
@@ -353,6 +540,10 @@ main {
   color: #ffffff;
   display: flex;
   flex-direction: column;
+}
+
+.box_already_registered form label:not(:last-child) {
+  margin-bottom: 20px;
 }
 
 .box_already_registered form div {
@@ -495,7 +686,15 @@ main {
   color: #8c9294;
 }
 
+.popup_wrapper div:last-child label:not(:last-child) {
+  margin-bottom: 20px;
+}
+
 .popup_wrapper div:last-child label input {
+  width: 300px;
+}
+
+.popup_wrapper div:last-child label select {
   width: 300px;
 }
 
