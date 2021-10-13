@@ -727,3 +727,17 @@ main {
 .popup_after_scroll .popup_wrapper div:first-child ul li:not(:last-child) {
   margin-bottom: 24px;
 }
+
+@media (max-width: 767px) {
+  header {
+    padding: 20px 30px 40px;
+  }
+
+  main {
+    padding: 0 30px;
+  }
+
+  .box_fist_about h1 {
+    font-size: 48px;
+  }
+}
