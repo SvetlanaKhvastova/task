@@ -78,6 +78,7 @@ input {
 }
 
 select {
+  background: url("/samcart/ten_steps/samcart_svg/keyboard_arrow_down.svg") right 5px center no-repeat;
   background-color: inherit;
   border: 2px solid #d3d8db;
   border-radius: 5px;
@@ -88,7 +89,7 @@ select {
   font-size: 18px;
   line-height: 26px;
   color: #5a7386;
-  padding: 0 10px;
+  padding: 0 30px 0 10px;
   appearance: none;
 }
 
@@ -121,6 +122,11 @@ main {
 }
 
 /* box-fist-about */
+
+.first_mobile_btn {
+  display: none;
+}
+
 .box_fist_about {
   padding: 0 0 120px;
 }
@@ -184,6 +190,7 @@ main {
 
 .information_speaker > div > div > div svg {
   margin-right: 12px;
+  fill: #046bd9;
 }
 
 .information_speaker > div > div > div span:not(:last-child) {
@@ -368,6 +375,8 @@ main {
   line-height: 1.43;
   color: #5a7386;
   padding-right: 5px;
+
+  filter: blur(5px);
 }
 
 .box_second_training ul li:nth-child(1)::after {
@@ -478,7 +487,7 @@ main {
   margin: auto;
 }
 
-.my-slider {
+.my_slider {
   max-height: 80vh;
 }
 
@@ -558,7 +567,7 @@ main {
   width: 100%;
 }
 
-.box_already_registered form div {
+.box_already_registered form > div:first-child {
   font-weight: 400;
   font-size: 24px;
   line-height: 24px;
@@ -580,6 +589,12 @@ main {
 }
 
 /* popup */
+.backdrop_popup.is_hidden {
+  opacity: 0;
+  pointer-events: none;
+  display: none;
+}
+
 .backdrop_popup {
   position: fixed;
   top: 0;
@@ -593,17 +608,13 @@ main {
   transition: all 0.8s ease 0s;
 }
 
-.backdrop_popup.is_hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
 .backdrop_popup form {
   display: flex;
   min-height: 100%;
   align-items: center;
   justify-content: center;
   padding: 30px 10px;
+  transition: all 0.8s ease 0s;
 }
 
 .popup_form_content {
@@ -710,7 +721,7 @@ main {
   background: #046bd9;
   width: 100%;
   justify-content: space-between;
-  padding: 0 24px;
+  padding: 0 15px;
 }
 
 /* popup_after_scroll  */
@@ -730,14 +741,313 @@ main {
 
 @media (max-width: 767px) {
   header {
-    padding: 20px 30px 40px;
+    padding: 20px 30px 35px;
   }
 
   main {
     padding: 0 30px;
   }
 
+  .box_fist_about {
+    padding: 0 0 80px;
+  }
+
   .box_fist_about h1 {
+    font-size: 40px;
+  }
+
+  .scene {
+    display: none;
+  }
+
+  .information_speaker {
+    width: unset;
+  }
+
+  .information_speaker > div {
+    position: relative;
+    align-items: flex-start;
+  }
+
+  .information_speaker > div img {
+    width: 69px;
+  }
+
+  .information_speaker > div > div > div {
+    position: absolute;
+    left: 0;
+    bottom: -30px;
+    color: #183b56;
+  }
+
+  .information_speaker > div > div > div svg {
+    fill: #183b56;
+  }
+
+  .first_mobile_btn {
+    display: inline-flex;
+    justify-content: space-between;
+    padding: 0 17px;
+    background: #046bd9;
+    width: 100%;
+    margin-top: 70px;
+  }
+
+  .information_speaker > div > div > p {
+    font-size: 20px;
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+
+  .information_speaker > p {
+    font-size: 18px;
+    line-height: 1.78;
+    margin: 40px 0 16px;
+  }
+
+  .information_speaker ul {
+    display: block;
+  }
+
+  .information_speaker ul li {
+    width: unset;
+  }
+
+  .information_speaker ul li:last-child {
+    margin-bottom: 0;
+  }
+
+  /*box_second_training  */
+  .box_second_training {
+    padding: 0 30px 130px;
+    background: linear-gradient(180deg, #f7fafd 0%, #ffffff 100%);
+    margin: 0 -30px;
+  }
+
+  .box_second_training h2 {
+    font-size: 36px;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+
+  .box_second_training .swipe_box ul {
+    display: block;
+    transform: unset;
+  }
+
+  .box_second_training .swipe_box > div {
+    transform: rotate(90deg);
+  }
+
+  .box_second_training ul li {
+    display: flex;
+    margin-bottom: 105px;
+    width: unset;
+  }
+
+  .box_second_training .swipe_box ul li div {
+    transform: rotate(90deg);
+    margin: -17px 35px;
+  }
+
+  .box_second_training .swipe_box ul li::after {
+    right: 0;
+    top: 25px;
+    left: unset;
+    padding: unset;
+    width: 50%;
+  }
+
+  .box_second_training .swipe_box ul li span {
+    text-align: right;
+  }
+
+  /*box_slider  */
+  .box_slider {
+    margin: unset;
+    background: unset;
+    box-shadow: unset;
+    border-radius: unset;
+    padding: 56px 0;
+  }
+
+  .box_slider h2 {
+    font-size: 36px;
+    line-height: 1.25;
+    letter-spacing: unset;
+    max-width: 305px;
+    margin-bottom: 28px;
+  }
+
+  .box_slider .arrow_left,
+  .box_slider .arrow_right {
+    display: none;
+  }
+
+  .tns-nav {
+    text-align: center;
+  }
+
+  .tns-nav button {
+    margin-top: 16px;
+  }
+
+  #tns1-mw {
+    background: #ffffff;
+    box-shadow: 0px 2px 4px rgba(24, 59, 86, 0.1), 0px 12px 32px rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+  }
+
+  /* box_already_registered */
+  .box_already_registered {
+    padding: 56px 30px;
+    margin: 0 -30px;
+  }
+
+  .box_already_registered > span {
     font-size: 48px;
+  }
+
+  .box_already_registered p {
+    font-size: 36px;
+    line-height: 1.25;
+    letter-spacing: -1px;
+    margin-bottom: 40px;
+  }
+
+  .box_already_registered form button {
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 17px;
+    margin-top: 32px;
+  }
+
+  .box_second_training ul li.margin_unset {
+    margin-bottom: 0;
+  }
+
+  /* popup_form_content */
+
+  .backdrop_popup.is_hidden form {
+    transform: translateY(100%);
+    transition: all 0.8s ease 0s;
+  }
+
+  .backdrop_popup form {
+    position: fixed;
+    padding: 0;
+    bottom: 0;
+    min-height: unset;
+  }
+
+  .popup_form_content {
+    padding: 40px 30px 20px;
+    border-radius: 16px 16px 0px 0px;
+  }
+
+  .popup_form_content .close_popup {
+    width: 20px;
+    height: 20px;
+    top: 20px;
+    right: 20px;
+  }
+
+  .popup_wrapper {
+    display: unset;
+  }
+
+  .popup_form_content h2 {
+    text-align: center;
+    font-size: 24px;
+    line-height: 1.33;
+  }
+
+  .popup_wrapper div:first-child {
+    width: unset;
+    margin: 0;
+  }
+
+  .popup_wrapper div:first-child p {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .popup_form_content ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 17px;
+  }
+
+  .popup_wrapper div:first-child ul li:not(:last-child),
+  .popup_after_scroll .popup_wrapper div:first-child ul li:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  .popup_wrapper div:first-child ul li {
+    padding-left: 25px;
+    margin-bottom: 10px;
+  }
+
+  .popup_wrapper div:first-child ul li:nth-child(even) {
+    margin-left: 15px;
+  }
+
+  .popup_wrapper div:first-child ul li span {
+    font-size: 13px;
+    line-height: 1.54;
+  }
+
+  .popup_wrapper div:first-child ul li::before {
+    background: rgb(54 179 126 / 0) url(./samcart_svg/check.svg) no-repeat center;
+    width: 20px;
+    height: 20px;
+  }
+
+  .popup_btn .popup_wrapper div:last-child label:not(:nth-child(2)),
+  .popup_after_scroll .popup_wrapper label:not(:last-child) {
+    margin-bottom: 16px;
+  }
+
+  .popup_wrapper div:last-child button {
+    margin-top: 32px;
+  }
+
+  .popup_wrapper div:last-child label input {
+    width: 100%;
+  }
+
+  .popup_after_scroll button:last-child {
+    margin-top: 32px;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 15px;
+  }
+}
+/* 
+@media (max-width: 320px) {
+  .popup_form_content ul {
+    display: block;
+  }
+
+  .popup_wrapper div:first-child ul li:not(:last-child),
+  .popup_after_scroll .popup_wrapper div:first-child ul li:not(:last-child),
+  .popup_wrapper div:first-child ul li:nth-child(even) {
+    margin-left: 0;
+  }
+} */
+
+@media (max-height: 666px) {
+  .backdrop_popup .popup_after_scroll {
+    position: unset;
+  }
+
+  .popup_form_content ul {
+    display: block;
+  }
+
+  .popup_wrapper div:first-child ul li:not(:last-child),
+  .popup_after_scroll .popup_wrapper div:first-child ul li:not(:last-child),
+  .popup_wrapper div:first-child ul li:nth-child(even) {
+    margin-left: 0;
   }
 }
