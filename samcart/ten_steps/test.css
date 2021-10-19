@@ -366,6 +366,9 @@ main {
 }
 
 .box_second_training .swipe_box ul li::after {
+  opacity: 0;
+  transition: all 1s ease 0s;
+  display: block;
   position: absolute;
   text-align: start;
   width: 100%;
@@ -375,8 +378,33 @@ main {
   line-height: 1.43;
   color: #5a7386;
   padding-right: 5px;
-
   filter: blur(5px);
+}
+
+.box_second_training .swipe_box ul li:first-child::after {
+  filter: blur(0px);
+  opacity: 1;
+}
+
+.box_second_training .swipe_box ul li:nth-child(2)::after {
+  opacity: 1;
+  transition: all 1s ease 0s;
+}
+
+.box_second_training .swipe_box ul li.none_text::after {
+  opacity: 0;
+  transition: all 1s ease 0s;
+}
+
+.box_second_training .swipe_box ul li.open_blur_text::after {
+  opacity: 1;
+  transition: all 1s ease 0s;
+}
+
+.box_second_training .swipe_box ul li.color_text::after {
+  filter: blur(0px);
+  opacity: 1;
+  transition: all 1s ease 0s;
 }
 
 .box_second_training ul li:nth-child(1)::after {
@@ -431,6 +459,8 @@ main {
   left: 45px;
   transform: translateX(-50%);
   cursor: url("./samcart_svg/cursor.svg"), url("./samcart_svg/cursor_arrow.svg"), default;
+  opacity: 1;
+  transition: all 1s ease 0s;
 }
 
 .box_second_training .swipe_box > div svg:hover {
@@ -442,6 +472,8 @@ main {
   border-radius: 16px 0px 0px 16px;
   width: 45px;
   height: 100%;
+  opacity: 1;
+  transition: all 1s ease 0s;
 }
 
 /* box_slider */
