@@ -77,6 +77,24 @@ input {
   padding: 0 10px;
 }
 
+input.error,
+select.error {
+  border: 2px solid #ef4836;
+}
+
+.input-validation {
+  width: 100%;
+  margin-top: 8px;
+  padding: 6px 8px;
+  background-color: rgba(239, 72, 54, 0.15);
+  border: 1px solid #ef4836;
+  color: #ef4836;
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.25;
+  display: none;
+}
+
 select {
   background: url("/samcart/ten_steps/samcart_svg/keyboard_arrow_down.svg") right 5px center no-repeat;
   background-color: inherit;
@@ -366,8 +384,6 @@ main {
 }
 
 .box_second_training .swipe_box ul li::after {
-  opacity: 0;
-  transition: all 1s ease 0s;
   display: block;
   position: absolute;
   text-align: start;
@@ -379,6 +395,8 @@ main {
   color: #5a7386;
   padding-right: 5px;
   filter: blur(5px);
+  opacity: 0;
+  transition: all 1s ease 0s;
 }
 
 .box_second_training .swipe_box ul li:first-child::after {
@@ -461,19 +479,33 @@ main {
   cursor: url("./samcart_svg/cursor.svg"), url("./samcart_svg/cursor_arrow.svg"), default;
   opacity: 1;
   transition: all 1s ease 0s;
-}
-
-.box_second_training .swipe_box > div svg:hover {
-  background: url("./samcart_svg/cursor_arrow.svg") 19px 19px no-repeat;
+  z-index: 10;
 }
 
 .progress_line {
+  position: relative;
   background: #f7fafd;
   border-radius: 16px 0px 0px 16px;
   width: 45px;
   height: 100%;
   opacity: 1;
   transition: all 1s ease 0s;
+}
+
+.progress_line::after {
+  content: "";
+  position: absolute;
+  top: 30px;
+  right: 15px;
+  width: 24px;
+  height: 24px;
+  background: url(./samcart_svg/cursor_arrow.svg) center center no-repeat;
+  opacity: 0;
+  transition: all 1s ease 0s;
+}
+
+.progress_line.arrow::after {
+  opacity: 1;
 }
 
 /* box_slider */

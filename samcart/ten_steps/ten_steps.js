@@ -64,6 +64,10 @@ let slider = tns({
 // })
 
 // openSwipeText
+let arrowInterval = setInterval(() => {
+  document.querySelector(".progress_line").classList.toggle("arrow")
+}, 1500)
+
 function openSwipeText() {
   let dataSwipe = +document.querySelector(".box_second_training .swipe_box > div").getAttribute("data-swipe")
   let progressLineWidth = document.querySelector(".progress_line").getBoundingClientRect().width
@@ -79,15 +83,33 @@ function openSwipeText() {
   })
 
   document.querySelector(".progress_line").style.width = `calc(11.3% + ${progressLineWidth}px)`
+
   document.querySelector(".box_second_training .swipe_box > div svg").style.left = `calc(11.3% + ${progressLineWidth}px)`
   document.querySelector(".box_second_training .swipe_box > div").setAttribute("data-swipe", `${dataSwipe + 1}`)
 }
 
-//
+// on click btn swipe
 document.querySelector(".box_second_training .swipe_box > div svg").addEventListener("click", () => {
   console.log(`click`)
   let dataSwipe = +document.querySelector(".box_second_training .swipe_box > div").getAttribute("data-swipe")
   if (dataSwipe <= 9) {
     openSwipeText()
   }
+
+  if (dataSwipe === 9) {
+    clearInterval(arrowInterval)
+    document.querySelector(".progress_line").classList.remove("arrow")
+    document.querySelector(".box_second_training .swipe_box > div svg").style.cursor = "unset"
+
+    setTimeout(() => {
+      document.querySelector(".backdrop_popup").classList.remove("is_hidden")
+      document.body.style.overflow = "hidden"
+      document.querySelector(".backdrop_popup .popup_btn").style.display = "none"
+    }, 10000)
+  }
 })
+
+// validation
+function validationForm(parent) {
+  let inputValue = document.querySelector(`${parent} input[name='name']`).value.includes(/[a-zA-Z\-]/)
+}
