@@ -82,7 +82,8 @@ select.error {
   border: 2px solid #ef4836;
 }
 
-.input-validation {
+.input_validation_name,
+.input_validation_email {
   width: 100%;
   margin-top: 8px;
   padding: 6px 8px;
@@ -471,15 +472,34 @@ main {
   border-radius: 16px;
 }
 
-.box_second_training .swipe_box > div svg {
+.box_second_training .swipe_box > div > svg {
   position: absolute;
   top: 8px;
   left: 45px;
   transform: translateX(-50%);
-  cursor: url("./samcart_svg/cursor.svg"), url("./samcart_svg/cursor_arrow.svg"), default;
   opacity: 1;
   transition: all 1s ease 0s;
   z-index: 10;
+}
+
+.box_second_training .swipe_box > div > span {
+  position: absolute;
+  top: 8px;
+  left: calc(11.2% + 45px);
+  transform: translateX(-50%);
+  z-index: 9;
+  cursor: url("./samcart_svg/cursor.svg"), url("./samcart_svg/cursor_arrow.svg"), default;
+  width: 10%;
+}
+
+.box_second_training .swipe_box > div > span svg {
+  opacity: 0.6;
+  transition: all 1s ease 0s;
+}
+
+.scale_svg {
+  opacity: 1;
+  transform: scale(1.2);
 }
 
 .progress_line {
@@ -492,7 +512,7 @@ main {
   transition: all 1s ease 0s;
 }
 
-.progress_line::after {
+/* .progress_line::after {
   content: "";
   position: absolute;
   top: 30px;
@@ -506,7 +526,7 @@ main {
 
 .progress_line.arrow::after {
   opacity: 1;
-}
+} */
 
 /* box_slider */
 .tns-outer .tns-liveregion.tns-visually-hidden {

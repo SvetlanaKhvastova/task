@@ -1,7 +1,7 @@
 // click on 3d cart
 document.querySelector(".box_fist_about > div > .scene form > button").addEventListener("click", function (e) {
   e.preventDefault()
-  document.querySelector(".card").classList.toggle("is-flipped")
+  validationForm(".front_form")
 })
 
 document.querySelector(".box_fist_about > div > .scene form > span").addEventListener("click", function (e) {
@@ -12,9 +12,7 @@ document.querySelector(".box_fist_about > div > .scene form > span").addEventLis
 // click btn for popup
 document.querySelector(".box_already_registered button").addEventListener("click", function (e) {
   e.preventDefault()
-  document.querySelector(".backdrop_popup").classList.remove("is_hidden")
-  document.body.style.overflow = "hidden"
-  document.querySelector(".backdrop_popup .popup_after_scroll").style.display = "none"
+  validationForm(".box_already_registered form")
 })
 
 document.querySelector(".first_mobile_btn").addEventListener("click", (e) => {
@@ -59,9 +57,12 @@ let slider = tns({
 //   document.querySelector('.button.button--color--primary').click()
 // })
 
-// document.querySelector('.backdrop_popup.popup_after_scroll button:last-child').addEventListener('click', () => {
-//   document.querySelector('.button.button--color--primary').click()
-// })
+if (document.querySelector(".backdrop_popup .popup_after_scroll button:last-child")) {
+  document.querySelector(".backdrop_popup .popup_after_scroll button:last-child").addEventListener("click", (e) => {
+    e.preventDefault()
+    validationForm(".backdrop_popup .popup_after_scroll")
+  })
+}
 
 // openSwipeText
 let arrowInterval = setInterval(() => {
@@ -85,11 +86,14 @@ function openSwipeText() {
   document.querySelector(".progress_line").style.width = `calc(11.3% + ${progressLineWidth}px)`
 
   document.querySelector(".box_second_training .swipe_box > div svg").style.left = `calc(11.3% + ${progressLineWidth}px)`
+  if (dataSwipe < 9) {
+    document.querySelector(".box_second_training .swipe_box > div > span").style.left = `calc(22.3% + ${progressLineWidth}px)`
+  }
   document.querySelector(".box_second_training .swipe_box > div").setAttribute("data-swipe", `${dataSwipe + 1}`)
 }
 
 // on click btn swipe
-document.querySelector(".box_second_training .swipe_box > div svg").addEventListener("click", () => {
+document.querySelector(".box_second_training .swipe_box > div > span").addEventListener("click", () => {
   console.log(`click`)
   let dataSwipe = +document.querySelector(".box_second_training .swipe_box > div").getAttribute("data-swipe")
   if (dataSwipe <= 9) {
@@ -98,7 +102,8 @@ document.querySelector(".box_second_training .swipe_box > div svg").addEventList
 
   if (dataSwipe === 9) {
     clearInterval(arrowInterval)
-    document.querySelector(".progress_line").classList.remove("arrow")
+    document.querySelector(".box_second_training .swipe_box > div > span").style.opacity = "0"
+    // document.querySelector(".progress_line").classList.remove("arrow")
     document.querySelector(".box_second_training .swipe_box > div svg").style.cursor = "unset"
 
     setTimeout(() => {
@@ -109,7 +114,47 @@ document.querySelector(".box_second_training .swipe_box > div svg").addEventList
   }
 })
 
+setInterval(() => {
+  document.querySelector(".box_second_training .swipe_box > div > span > svg").classList.toggle("scale_svg")
+}, 500)
+
 // validation
 function validationForm(parent) {
-  let inputValue = document.querySelector(`${parent} input[name='name']`).value.includes(/[a-zA-Z\-]/)
+  let inputValueName = document.querySelector(`${parent} input[name='name']`).value.match(/^[a-zA-Z-]{1,30}$/)
+  let inputValueEmail = document.querySelector(`${parent} input[name='email']`).value.match(/^\S+@\S+\.\S+$/)
+
+  if (inputValueName === null) {
+    document.querySelector(`${parent} input[name='name']`).classList.add("error")
+    document.querySelector(`${parent} .input_validation_name`).style.display = "block"
+  } else {
+    document.querySelector(`${parent} input[name='name']`).classList.remove("error")
+    document.querySelector(`${parent} .input_validation_name`).style.display = "none"
+  }
+
+  if (inputValueEmail === null) {
+    document.querySelector(`${parent} input[name='email']`).classList.add("error")
+    document.querySelector(`${parent} .input_validation_email`).style.display = "block"
+    document.querySelector(`${parent} .input_validation_email`).textContent = "Must be a valid email address"
+  } else {
+    document.querySelector(`${parent} input[name='email']`).classList.remove("error")
+    document.querySelector(`${parent} .input_validation_email`).style.display = "none"
+  }
+
+  if (inputValueName !== null && inputValueEmail !== null) {
+    if (parent === ".front_form") {
+      document.querySelector(".card").classList.toggle("is-flipped")
+    }
+    if (parent === ".box_already_registered form") {
+      document.querySelector(".backdrop_popup").classList.remove("is_hidden")
+      document.body.style.overflow = "hidden"
+      document.querySelector(".backdrop_popup .popup_after_scroll").style.display = "none"
+    }
+  }
 }
+
+// findOption("select")
+// function findOption(select) {
+//   const option = select.querySelector(`option[value="${select.value}"]`)
+//   console.log(option)
+//   // Действия над option
+// }
