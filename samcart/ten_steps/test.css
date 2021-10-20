@@ -83,7 +83,8 @@ select.error {
 }
 
 .input_validation_name,
-.input_validation_email {
+.input_validation_email,
+.input_validation_select {
   width: 100%;
   margin-top: 8px;
   padding: 6px 8px;
@@ -740,6 +741,7 @@ main {
   line-height: 1.25;
   color: #122f45;
   margin-bottom: 5px;
+  text-align: left;
 }
 
 .popup_wrapper {
