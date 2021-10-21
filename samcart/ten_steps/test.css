@@ -1,24 +1,27 @@
 @font-face {
   font-family: "Gilroy";
-  src: url("fonts/Gilroy-Bold.woff") format("woff");
+  src: url(https://conversionratestore.github.io/projects/samcart/fonts/Gilroy/Gilroy-Bold.woff) format("woff"), url(../fonts/Gilroy/Gilroy-Bold.woff2) format("woff2"),
+    url(../fonts/Gilroy/Gilroy-Bold.ttf) format("truetype");
   font-weight: 700;
   font-style: normal;
 }
 @font-face {
   font-family: "Gilroy";
-  src: url("fonts/Gilroy-ExtraBold.woff") format("woff");
+  src: url(https://conversionratestore.github.io/projects/samcart/fonts/Gilroy/Gilroy-ExtraBold.woff) format("woff"), url(../fonts/Gilroy/Gilroy-ExtraBold.woff2) format("woff2"),
+    url(../fonts/Gilroy/Gilroy-ExtraBold.ttf) format("truetype");
   font-weight: 800;
   font-style: normal;
 }
 @font-face {
   font-family: "Gilroy";
-  src: url("fonts/Gilroy-Medium.woff") format("woff");
+  src: url(https://conversionratestore.github.io/projects/samcart/fonts/Gilroy/Gilroy-Medium.woff) format("woff"), url(../fonts/Gilroy/Gilroy-Medium.woff2) format("woff2"),
+    url(../fonts/Gilroy/Gilroy-Medium.ttf) format("truetype");
   font-weight: 500;
   font-style: normal;
 }
 @font-face {
   font-family: "Gilroy";
-  src: url("fonts/Gilroy-Regular.woff") format("woff");
+  src: url(https://conversionratestore.github.io/projects/samcart/fonts/Gilroy/Gilroy-Regular.woff) format("woff"), url(../fonts/Gilroy/Gilroy-Regular.woff2) format("woff2");
   font-weight: 400;
   font-style: normal;
 }
@@ -29,6 +32,10 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+svg:not(:root) {
+  vertical-align: unset;
 }
 
 body {
@@ -67,29 +74,26 @@ button {
   margin: 40px auto 0;
 }
 
-input {
-  background-color: inherit;
-  border: 2px solid #d3d8db;
-  border-radius: 5px;
-  width: 100%;
-  height: 44px;
-  margin-top: 5px;
-  padding: 0 10px;
-}
-
 input.error,
 select.error {
-  border: 2px solid #ef4836;
+  border: 2px solid #ef4836 !important;
+}
+
+input {
+  background-color: inherit !important;
+  border: 2px solid #d3d8db !important;
+  border-radius: 5px !important;
+  width: 100% !important;
+  height: 44px !important;
+  margin-top: 5px !important;
+  padding: 0 10px !important;
 }
 
 .input_validation_name,
 .input_validation_email,
 .input_validation_select {
   width: 100%;
-  margin-top: 8px;
-  padding: 6px 8px;
-  background-color: rgba(239, 72, 54, 0.15);
-  border: 1px solid #ef4836;
+  padding: 6px 0 0 8px;
   color: #ef4836;
   text-align: left;
   font-size: 14px;
@@ -98,7 +102,7 @@ select.error {
 }
 
 select {
-  background: url("/samcart/ten_steps/samcart_svg/keyboard_arrow_down.svg") right 5px center no-repeat;
+  background: url("https://conversionratestore.github.io/projects/samcart/img/ten_steps_img/keyboard_arrow_down.svg") right 5px center no-repeat;
   background-color: inherit;
   border: 2px solid #d3d8db;
   border-radius: 5px;
@@ -240,7 +244,7 @@ main {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: rgb(54 179 126 / 15%) url("./samcart_svg/check.svg") no-repeat center;
+  background: rgb(54 179 126 / 15%) url("https://conversionratestore.github.io/projects/samcart/img/ten_steps_img/check.svg") no-repeat center;
 }
 
 .information_speaker ul li {
@@ -251,7 +255,7 @@ main {
 }
 
 /* form 1 */
-.box_fist_about > div > .scene form {
+.box_fist_about > div > .scene_box form {
   background: #ffffff;
   border: 1px solid #eef1f3;
   box-shadow: 0px 2px 4px rgb(24 59 86 / 10%), 0px 12px 32px rgb(0 0 0 / 5%);
@@ -272,30 +276,30 @@ main {
   position: unset !important;
 }
 
-.box_fist_about > div > .scene form > h2 {
+.box_fist_about > div > .scene_box form > h2 {
   font-weight: 800;
   font-size: 36px;
   line-height: 1.25;
   margin-bottom: 5px;
 }
 
-.box_fist_about > div > .scene form > p {
+.box_fist_about > div > .scene_box form > p {
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
   margin-bottom: 20px;
 }
 
-.box_fist_about > div > .scene form > label {
+.box_fist_about > div > .scene_box form > label {
   color: #8c9294;
   letter-spacing: 0.01em;
 }
 
-.box_fist_about > div > .scene form > *:not(:nth-child(4)) {
+.box_fist_about > div > .scene_box form > *:not(:nth-child(4)) {
   margin-bottom: 20px;
 }
 
-.box_fist_about > div > .scene form > span {
+.box_fist_about > div > .scene_box form > span {
   text-decoration: underline;
   color: #8c9294;
   font-weight: 400;
@@ -305,17 +309,23 @@ main {
   cursor: pointer;
 }
 
-.box_fist_about > div > .scene form > button {
+.box_fist_about > div > .scene_box form > button {
   background: #046bd9;
 }
 
-.scene {
+.box_fist_about > div > .scene_box form > button:hover {
+  background: #046bd9;
+  color: #ffffff;
+  outline: none;
+}
+
+.scene_box {
   perspective: 950px;
   margin-left: 50px;
   flex-shrink: 0;
 }
 
-.card {
+.card_box {
   width: 100%;
   height: 100%;
   position: relative;
@@ -327,7 +337,7 @@ main {
   transform: rotateY(180deg);
 }
 
-.card.is-flipped {
+.card_box.is-flipped {
   transform: rotateY(180deg);
 }
 
@@ -489,7 +499,7 @@ main {
   left: calc(11.2% + 45px);
   transform: translateX(-50%);
   z-index: 9;
-  cursor: url("./samcart_svg/cursor.svg"), url("./samcart_svg/cursor_arrow.svg"), default;
+  cursor: url("https://conversionratestore.github.io/projects/samcart/img/ten_steps_img/cursor.svg"), default;
   width: 10%;
 }
 
@@ -545,12 +555,22 @@ main {
   border-radius: 50%;
 }
 
+.tns-nav button:hover {
+  background: #9cabb7 !important;
+  cursor: pointer;
+}
+
 .tns-nav button:not(:last-child) {
   margin-right: 20px;
 }
 
 .tns-nav button.tns-nav-active {
   background: #046bd9;
+}
+
+.tns-nav button.tns-nav-active:hover {
+  background: #046bd9 !important;
+  cursor: pointer;
 }
 
 .box_slider {
@@ -589,14 +609,14 @@ main {
   cursor: pointer;
 }
 
-.box_slider .arrow_left {
+.box_slider .arrow_left_btn {
   position: absolute;
   top: 50%;
   left: -89px;
   transform: translateY(-50%);
 }
 
-.box_slider .arrow_right {
+.box_slider .arrow_right_btn {
   position: absolute;
   top: 50%;
   right: -89px;
@@ -613,7 +633,7 @@ main {
 /* box_already_registered */
 .box_already_registered {
   /* background: linear-gradient(139.61deg, #1d96f3 12.88%, #4b17e6 67.72%); */
-  background: url("samcart_svg/background.png") center center no-repeat;
+  background: url("https://conversionratestore.github.io/projects/samcart/img/ten_steps_img/background.png") center center no-repeat;
   background-size: cover;
   padding: 115px 0 120px 0;
   margin: 120px -60px 0;
@@ -671,6 +691,11 @@ main {
 
 .box_already_registered form button {
   background: #f2813f;
+}
+
+.box_already_registered form button:hover {
+  background: #f2813f;
+  color: #ffffff;
 }
 
 /* popup */
@@ -772,7 +797,7 @@ main {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: rgb(54 179 126 / 15%) url("./samcart_svg/check.svg") no-repeat center;
+  background: rgb(54 179 126 / 15%) url("https://conversionratestore.github.io/projects/samcart/img/ten_steps_img/check.svg") no-repeat center;
 }
 
 .popup_wrapper div:first-child ul li {
@@ -810,11 +835,20 @@ main {
   padding: 0 15px;
 }
 
-/* popup_after_scroll  */
+.popup_wrapper div:last-child button:hover {
+  background: #046bd9;
+  color: #ffffff;
+}
 
+/* popup_after_scroll  */
 .popup_after_scroll button:last-child {
   background: #046bd9;
   margin-top: 72px;
+}
+
+.popup_after_scroll button:last-child:hover {
+  background: #046bd9;
+  color: #ffffff;
 }
 
 .popup_after_scroll .popup_wrapper label:not(:last-child) {
@@ -834,6 +868,14 @@ main {
     padding: 0 30px;
   }
 
+  .input_validation_name,
+  .input_validation_email,
+  .input_validation_select {
+    font-size: 10px;
+    line-height: 1;
+    display: none;
+  }
+
   .box_fist_about {
     padding: 0 0 80px;
   }
@@ -842,7 +884,7 @@ main {
     font-size: 40px;
   }
 
-  .scene {
+  .scene_box {
     display: none;
   }
 
@@ -922,7 +964,30 @@ main {
   }
 
   .box_second_training .swipe_box > div {
-    transform: rotate(90deg);
+    width: 28px;
+    height: 105%;
+    top: -32px;
+    left: 50px;
+  }
+
+  .progress_line {
+    height: 45px;
+    width: 100%;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .box_second_training .swipe_box > div > svg {
+    top: 25px;
+    right: 5px;
+    left: 0;
+  }
+
+  .box_second_training .swipe_box > div > span {
+    height: 10%;
+    width: 100%;
+    left: unset;
+    top: calc(10% + 45px);
+    right: 5px;
   }
 
   .box_second_training ul li {
@@ -965,8 +1030,8 @@ main {
     margin-bottom: 28px;
   }
 
-  .box_slider .arrow_left,
-  .box_slider .arrow_right {
+  .box_slider .arrow_left_btn,
+  .box_slider .arrow_right_btn {
     display: none;
   }
 
@@ -1084,7 +1149,7 @@ main {
   }
 
   .popup_wrapper div:first-child ul li::before {
-    background: rgb(54 179 126 / 0) url(./samcart_svg/check.svg) no-repeat center;
+    background: rgb(54 179 126 / 0) url(https://conversionratestore.github.io/projects/samcart/img/ten_steps_img/check.svg) no-repeat center;
     width: 20px;
     height: 20px;
   }
@@ -1136,4 +1201,12 @@ main {
   .popup_wrapper div:first-child ul li:nth-child(even) {
     margin-left: 0;
   }
+}
+
+.page button:hover,
+input[type="submit"]:hover {
+  background-image: unset;
+  border-color: inherit;
+  color: inherit;
+  background: unset;
 }
