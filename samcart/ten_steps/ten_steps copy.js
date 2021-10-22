@@ -1,8 +1,16 @@
+// dayNow and timeNow
+setInterval(() => {
+  let dayNow = new Date().toDateString().split(" ")
+  let timeNow = new Date(new Date().setMinutes(new Date().getMinutes() + 5)).toTimeString().split(" ")[0].slice(0, 5)
+  document.querySelector(".box_already_registered form div span:first-child").textContent = `${dayNow[0]} ${dayNow[2]} ${dayNow[1]}`
+  document.querySelector(".box_already_registered form div span:last-child").textContent = `${timeNow}`
+}, 100)
+
 // click on 3d cart
 document.querySelector(".box_fist_about > div > .scene_box .front_form > button").addEventListener("click", function (e) {
   e.preventDefault()
-  validationForm(".front_form")
   setLocalStorInform(".front_form")
+  validationForm(".front_form")
 
   console.log(`button 1 front_form`)
 })
@@ -24,8 +32,8 @@ if (document.querySelector(".box_fist_about > div > .scene_box .back_form > butt
 // click btn for popup
 document.querySelector(".box_already_registered button").addEventListener("click", function (e) {
   e.preventDefault()
-  validationForm(".box_already_registered form")
   setLocalStorInform(".box_already_registered form")
+  validationForm(".box_already_registered form")
   console.log(`button 4 already_registered block`)
 })
 
@@ -63,11 +71,10 @@ setTimeout(() => {
 }, 100)
 
 // slider
-
 let sliderInterval = setInterval(() => {
-  clearInterval(sliderInterval)
-
   if (typeof tns === "function") {
+    clearInterval(sliderInterval)
+
     let slider = tns({
       container: ".my_slider",
       items: 1,
@@ -79,10 +86,6 @@ let sliderInterval = setInterval(() => {
 }, 200)
 
 // openSwipeText
-// let arrowInterval = setInterval(() => {
-//   document.querySelector(".progress_line").classList.toggle("arrow")
-// }, 1500)
-
 function openSwipeText() {
   let dataSwipe = +document.querySelector(".box_second_training .swipe_box > div").getAttribute("data-swipe")
   let progressLineWidth = document.querySelector(".progress_line").getBoundingClientRect().width
@@ -91,8 +94,14 @@ function openSwipeText() {
   document.querySelectorAll(".box_second_training ul li").forEach((item, idx) => {
     if (idx < dataSwipe) {
       item.classList.add("color_text")
+      if (window.innerWidth <= 768) {
+        item.style.marginBottom = "105px"
+      }
     } else if (idx === dataSwipe) {
       item.classList.add("open_blur_text")
+      if (window.innerWidth <= 768) {
+        item.style.marginBottom = "105px"
+      }
     } else if (idx > dataSwipe) {
       item.classList.add("none_text")
     }
@@ -109,11 +118,11 @@ function openSwipeText() {
   }
 
   if (window.innerWidth <= 768) {
-    document.querySelector(".progress_line").style.height = `calc(11.5% + ${progressLineHeight}px)`
-    document.querySelector(".box_second_training .swipe_box > div svg").style.top = `calc(10% + ${progressLineHeight}px)`
+    document.querySelector(".progress_line").style.height = `calc(131px + ${progressLineHeight}px)`
+    document.querySelector(".box_second_training .swipe_box > div svg").style.top = `calc(131px + ${progressLineHeight}px - 18px)`
 
     if (dataSwipe < 9) {
-      document.querySelector(".box_second_training .swipe_box > div > span").style.top = `calc(21.5% + ${progressLineHeight}px)`
+      document.querySelector(".box_second_training .swipe_box > div > span").style.top = `calc(262px + ${progressLineHeight}px - 20px)`
     }
     document.querySelector(".box_second_training .swipe_box > div").setAttribute("data-swipe", `${dataSwipe + 1}`)
   }
@@ -125,7 +134,6 @@ let scaleSvg = setInterval(() => {
 
 // on click btn swipe
 document.querySelector(".box_second_training .swipe_box > div > span").addEventListener("click", () => {
-  console.log(`click`)
   let dataSwipe = +document.querySelector(".box_second_training .swipe_box > div").getAttribute("data-swipe")
   if (dataSwipe <= 9) {
     openSwipeText()
@@ -141,8 +149,6 @@ document.querySelector(".box_second_training .swipe_box > div > span").addEventL
       if (localStorage.getItem("inputInform")) {
         inputInform = JSON.parse(localStorage.getItem("inputInform"))
         inputInform.map((item) => {
-          console.log(item.inputName)
-          console.log(item.inputEmail)
           if (item.inputName !== "" || item.inputEmail !== "") {
             document.querySelector(`.backdrop_popup .popup_after_scroll input[name='name']`).value = item.inputName
             document.querySelector(`.backdrop_popup .popup_after_scroll input[name='email']`).value = item.inputEmail
@@ -167,7 +173,13 @@ if (document.querySelector(".backdrop_popup .popup_after_scroll button:last-chil
   })
 }
 
-// validation
+if (document.querySelector(".back_form") || document.querySelector(".popup_btn .popup_wrapper") || document.querySelector(".backdrop_popup .popup_after_scroll")) {
+  dataToday(".back_form")
+  dataToday(".popup_btn .popup_wrapper")
+  dataToday(".backdrop_popup .popup_after_scroll")
+}
+
+// validation form
 function validationForm(parent) {
   if (parent === ".front_form" || parent === ".box_already_registered form" || parent === ".backdrop_popup .popup_after_scroll") {
     let inputValueName = document.querySelector(`${parent} input[name='name']`).value.match(/^[a-zA-Z-]{1,30}$/)
@@ -237,14 +249,12 @@ function validationForm(parent) {
           item.value = ""
         })
       }
+
+      setTimeout(() => {
+        document.location = "https://joinnow.live/t/TSa5s8?id=jyjVL6"
+      }, 300)
     }
   }
-}
-
-if (document.querySelector(".back_form") || document.querySelector(".popup_btn .popup_wrapper") || document.querySelector(".backdrop_popup .popup_after_scroll")) {
-  dataToday(".back_form")
-  dataToday(".popup_btn .popup_wrapper")
-  dataToday(".backdrop_popup .popup_after_scroll")
 }
 
 // data today
@@ -259,22 +269,11 @@ function dataToday(parent) {
 
   let dataNow = new Date(new Date().setMinutes(new Date().getMinutes() + 5))
 
-  console.log(dataNow.toLocaleString("en-US", options))
-
   document.querySelector(`${parent} select[name='startTime'] option`).value = dataNow.toLocaleString("en-US", options)
   document.querySelector(`${parent} select[name='startTime'] option`).textContent = dataNow.toLocaleString("en-US", options)
 }
 
-//
-setInterval(() => {
-  let dayNow = new Date().toDateString().split(" ")
-  let timeNow = new Date().toTimeString().split(" ")[0].slice(0, 5)
-  document.querySelector(".box_already_registered form div span:first-child").textContent = `${dayNow[0]} ${dayNow[2]} ${dayNow[1]}`
-  document.querySelector(".box_already_registered form div span:last-child").textContent = `${timeNow}`
-}, 100)
-
-//
-
+//set LocalStor Inform
 function setLocalStorInform(parent) {
   let inputInform = []
 
@@ -289,10 +288,8 @@ function setLocalStorInform(parent) {
 
 if (window.innerWidth <= 768) {
   document.querySelector(".box_second_training p").textContent =
-    "Everything you need to know for growing your business in only 45+ minutes. Swipe down trough the timeline to discover all the themes"
-  document.querySelector(".popup_wrapper div:first-child p").innerHTML = `<p>Enter your details below to save your spot. During the webinar <b>you will learn:</b></p>`
+    "Everything you need to know for growing your business in only 45+ minutes. Tap down trough the timeline to discover all the themes"
 
-  // if ((document.querySelector(`.backdrop_popup .popup_after_scroll .input_validation_name`).style.display = "block")) {
-  //   document.querySelector(".backdrop_popup .popup_after_scroll").style.position = "unset"
-  // }
+  document.querySelector(".popup_wrapper div:first-child p").innerHTML = `<p>Enter your details below to save your spot. During the webinar <b>you will learn:</b></p>`
+  document.querySelector(".box_already_registered form :nth-child(3) span").textContent = "Your contact email*"
 }
