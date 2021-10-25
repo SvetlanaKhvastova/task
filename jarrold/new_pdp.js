@@ -1,0 +1,7 @@
+document.querySelector(".summ").innerHTML = ""
+document.querySelector(".cta a").textContent = "View product details"
+document.querySelector("#page_MainContent_product_detail_btnWishlist").style.border = "none"
+document.querySelector("#page_MainContent_product_detail_btnWishlist span").textContent = ""
+document.querySelector("#page_MainContent_product_detail_btnWishlist").style.minWidth = "35px"
+document.querySelector("#page_MainContent_product_detail_btnWishlist").style.width = "35px !important"
+document.querySelector(".upc").style.display = "none"
