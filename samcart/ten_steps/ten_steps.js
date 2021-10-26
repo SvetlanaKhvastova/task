@@ -1279,7 +1279,7 @@ let tenStepHtml = /*html*/ `
               </div>
             </div>
 
-            <button class="first_mobile_btn">
+            <button class="first_mobile_btn" type="button">
               Register Now
               <svg width="24" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -1321,7 +1321,7 @@ let tenStepHtml = /*html*/ `
                   <input type="email" name="email" id="" maxlength="64" required />
                   <div class="input_validation_email">Please enter your email address</div>
                 </label>
-                <button>
+                <button type="button">
                   Register Now
                   <svg width="24" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -1362,7 +1362,7 @@ let tenStepHtml = /*html*/ `
                   </select>
                 </label>
                 <span>Back</span>
-                <button>
+                <button type="button">
                   Finish Registration!
                   <svg width="24" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -1547,7 +1547,7 @@ let tenStepHtml = /*html*/ `
             <input type="email" name="email" id="" maxlength="64" required />
             <div class="input_validation_email">Please enter your email address</div>
           </label>
-          <button>
+          <button type="button">
             Register Now
             <svg width="24" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -1609,7 +1609,7 @@ let tenStepHtml = /*html*/ `
                     <option value="2021-10-13T11:50:00.000Z">Wed Oct 13 @ 2:50PM EEST</option>
                   </select>
                 </label>
-                <button>
+                <button type="button">
                   Register Now
                   <svg width="24" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -1685,7 +1685,7 @@ let tenStepHtml = /*html*/ `
               </div>
             </div>
 
-            <button>
+            <button type="button">
               Register Now
               <svg width="24" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -1720,13 +1720,19 @@ document.querySelector('[data-id="925c505"]').remove()
 document.body.insertAdjacentHTML("afterbegin", tenStepsStyle)
 document.querySelector(".elementor-section-wrap").insertAdjacentHTML("afterbegin", tenStepHtml)
 
+// convert time round
+let getRoundedDate = (minutes, d = new Date()) => {
+  let ms = 1000 * 60 * minutes // convert minutes to ms
+  let roundedDate = new Date(Math.ceil(d.getTime() / ms) * ms)
+  return roundedDate
+}
+
 // dayNow and timeNow
-setInterval(() => {
-  let dayNow = new Date().toDateString().split(" ")
-  let timeNow = new Date(new Date().setMinutes(new Date().getMinutes() + 5)).toTimeString().split(" ")[0].slice(0, 5)
-  document.querySelector(".box_already_registered form div span:first-child").textContent = `${dayNow[0]} ${dayNow[2]} ${dayNow[1]}`
-  document.querySelector(".box_already_registered form div span:last-child").textContent = `${timeNow}`
-}, 100)
+let dayNow = new Date().toDateString().split(" ")
+let timeNow = getRoundedDate(5, new Date())
+
+document.querySelector(".box_already_registered form div span:first-child").textContent = `${dayNow[0]} ${dayNow[2]} ${dayNow[1]}`
+document.querySelector(".box_already_registered form div span:last-child").textContent = `${timeNow.toTimeString().split(" ")[0].slice(0, 5)}`
 
 // click on 3d cart
 document.querySelector(".box_fist_about > div > .scene_box .front_form > button").addEventListener("click", function (e) {
@@ -1905,7 +1911,12 @@ if (document.querySelector(".back_form") || document.querySelector(".popup_btn .
 function validationForm(parent) {
   if (parent === ".front_form" || parent === ".box_already_registered form" || parent === ".backdrop_popup .popup_after_scroll") {
     let inputValueName = document.querySelector(`${parent} input[name='name']`).value.match(/^[a-zA-Z-]{1,30}$/)
-    let inputValueEmail = document.querySelector(`${parent} input[name='email']`).value.match(/^\S+@\S+\.\S+$/)
+    // let inputValueEmail = document.querySelector(`${parent} input[name='email']`).value.match(/^\S+@\S+\.\S+$/)
+    let inputValueEmail = document
+      .querySelector(`${parent} input[name='email']`)
+      .value.match(
+        /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum|ua)\b/
+      )
 
     if (inputValueName === null) {
       document.querySelector(`${parent} input[name='name']`).classList.add("error")
@@ -1924,7 +1935,7 @@ function validationForm(parent) {
       document.querySelector(`${parent} .input_validation_email`).style.display = "none"
     }
 
-    if (inputValueName !== null && inputValueEmail !== null) {
+    if (inputValueName !== null && inputValueEmail !== null && document.querySelector(`${parent} .error`) == null) {
       if (parent === ".front_form") {
         document.querySelector(".card_box").classList.toggle("is-flipped")
       }
@@ -1942,6 +1953,26 @@ function validationForm(parent) {
 
   if (parent === ".back_form" || parent === ".popup_btn .popup_wrapper" || parent === ".backdrop_popup .popup_after_scroll") {
     let selectValue = document.querySelector(`${parent} select[name='customFields']`).value
+    let selectValueTime = document.querySelector(`${parent} select[name='startTime']`).value
+    let inputValueName
+    let inputValueEmail
+    let inputInform
+
+    if (parent === ".backdrop_popup .popup_after_scroll") {
+      inputValueName = document.querySelector(`.backdrop_popup .popup_after_scroll input[name='name']`).value
+      inputValueEmail = document.querySelector(`.backdrop_popup .popup_after_scroll input[name='email']`).value
+    } else {
+      if (localStorage.getItem("inputInform")) {
+        inputInform = JSON.parse(localStorage.getItem("inputInform"))
+
+        inputInform.map((item) => {
+          if (item.inputName !== "" || item.inputEmail !== "") {
+            inputValueName = item.inputName
+            inputValueEmail = item.inputEmail
+          }
+        })
+      }
+    }
 
     if (selectValue === "") {
       document.querySelector(`${parent} select[name='customFields']`).classList.add("error")
@@ -1950,31 +1981,35 @@ function validationForm(parent) {
       document.querySelector(`${parent} select[name='customFields']`).classList.remove("error")
       document.querySelector(`${parent} .input_validation_select`).style.display = "none"
 
-      if (parent === ".back_form") {
-        document.querySelector(".card_box").classList.toggle("is-flipped")
-        document.querySelectorAll(`.front_form input`).forEach((item) => {
-          item.value = ""
-        })
+      if (document.querySelector(`${parent} .error`) == null) {
+        if (parent === ".back_form") {
+          document.querySelector(".card_box").classList.toggle("is-flipped")
+          document.querySelectorAll(`.front_form input`).forEach((item) => {
+            item.value = ""
+          })
+        }
+
+        if (parent === ".popup_btn .popup_wrapper" || parent === ".backdrop_popup .popup_after_scroll") {
+          document.querySelector(".backdrop_popup").classList.add("is_hidden")
+          document.body.style.overflow = ""
+
+          setTimeout(() => {
+            document.querySelector(".backdrop_popup .popup_after_scroll").style.display = "flex"
+          }, 100)
+        }
+
+        if (parent === ".popup_btn .popup_wrapper") {
+          document.querySelectorAll(`.box_already_registered form input`).forEach((item) => {
+            item.value = ""
+          })
+        }
+
+        postForm(inputValueName, inputValueEmail, selectValueTime, selectValue)
+
+        // setTimeout(() => {
+        //   document.location = "https://joinnow.live/t/TSa5s8?id=jyjVL6"
+        // }, 300)
       }
-
-      if (parent === ".popup_btn .popup_wrapper" || parent === ".backdrop_popup .popup_after_scroll") {
-        document.querySelector(".backdrop_popup").classList.add("is_hidden")
-        document.body.style.overflow = ""
-
-        setTimeout(() => {
-          document.querySelector(".backdrop_popup .popup_after_scroll").style.display = "flex"
-        }, 100)
-      }
-
-      if (parent === ".popup_btn .popup_wrapper") {
-        document.querySelectorAll(`.box_already_registered form input`).forEach((item) => {
-          item.value = ""
-        })
-      }
-
-      setTimeout(() => {
-        document.location = "https://joinnow.live/t/TSa5s8?id=jyjVL6"
-      }, 300)
     }
   }
 }
@@ -1989,9 +2024,11 @@ function dataToday(parent) {
     minute: "numeric",
   }
 
-  let dataNow = new Date(new Date().setMinutes(new Date().getMinutes() + 5))
+  let today = new Date()
+  let date = getRoundedDate(5, today).toJSON()
+  let dataNow = getRoundedDate(5, today)
 
-  document.querySelector(`${parent} select[name='startTime'] option`).value = dataNow.toLocaleString("en-US", options)
+  document.querySelector(`${parent} select[name='startTime'] option`).value = date
   document.querySelector(`${parent} select[name='startTime'] option`).textContent = dataNow.toLocaleString("en-US", options)
 }
 
@@ -2015,3 +2052,35 @@ if (window.innerWidth <= 768) {
   document.querySelector(".popup_wrapper div:first-child p").innerHTML = `<p>Enter your details below to save your spot. During the webinar <b>you will learn:</b></p>`
   document.querySelector(".box_already_registered form :nth-child(3) span").textContent = "Your contact email*"
 }
+
+// fetch submit form
+function postForm(name, email, time, sales) {
+  console.log(name, email, time, sales)
+  fetch("https://api.joinnow.live/webinars/0e7aJr/registration", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify({
+      start_time: `${time}`,
+      email: `${email}`,
+      timezone: "Europe/Kiev",
+      gdprConsentReceived: false,
+      customFields: {
+        Monthly_Sales: `${sales}`,
+        hubspotutk: "27ae00ca6cbfa88154c1f312ccc0674f",
+      },
+      name: `${name}`,
+      linkParams: {},
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data)
+      window.location.href = `https://joinnow.live/t/TSa5s8?id=jyjVL6`
+    })
+    .catch((err) => {
+      console.log("Failed fetch ", err)
+    })
+}
+//
