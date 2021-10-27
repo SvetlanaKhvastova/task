@@ -99,6 +99,7 @@ input {
   height: 44px !important;
   margin-top: 5px !important;
   padding: 0 10px !important;
+  cursor: pointer;
 }
 
 .input_validation_name,
@@ -127,6 +128,7 @@ select {
   color: #5a7386;
   padding: 0 30px 0 10px;
   appearance: none;
+  cursor: pointer;
 }
 
 label {
@@ -934,6 +936,12 @@ main {
     margin-top: 70px;
   }
 
+  .first_mobile_btn:hover {
+    background: #046bd9 !important;
+    color: #ffffff !important;
+    outline: none !important;
+  }
+
   .information_speaker > div > div > p {
     font-size: 20px;
     line-height: 1.2;
@@ -1195,18 +1203,6 @@ main {
     padding: 0 15px;
   }
 }
-/* 
-@media (max-width: 320px) {
-  .popup_form_content ul {
-    display: block;
-  }
-
-  .popup_wrapper div:first-child ul li:not(:last-child),
-  .popup_after_scroll .popup_wrapper div:first-child ul li:not(:last-child),
-  .popup_wrapper div:first-child ul li:nth-child(even) {
-    margin-left: 0;
-  }
-} */
 
 @media (max-height: 666px) {
   .backdrop_popup .popup_after_scroll {
@@ -1223,7 +1219,7 @@ main {
     margin-left: 0;
   }
 
-   .box_second_training .swipe_box ul li::after {
+  .box_second_training .swipe_box ul li::after {
     right: -6px;
     width: 60%;
   }
@@ -1501,15 +1497,6 @@ let tenStepHtml = /*html*/ `
           <div class="img">
             <img src="https://conversionratestore.github.io/projects/samcart/img/ten_steps_img/slider_photo2.png" alt="" width="910" />
           </div>
-          <div class="img">
-            <img src="https://conversionratestore.github.io/projects/samcart/img/ten_steps_img/slider_photo1.png" alt="" width="910" />
-          </div>
-          <div class="img">
-            <img src="https://conversionratestore.github.io/projects/samcart/img/ten_steps_img/slider_photo1.png" alt="" width="910" />
-          </div>
-          <div class="img">
-            <img src="https://conversionratestore.github.io/projects/samcart/img/ten_steps_img/slider_photo1.png" alt="" width="910" />
-          </div>
         </div>
         <span class="arrow_right_btn">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1720,6 +1707,12 @@ document.querySelector('[data-id="925c505"]').remove()
 document.body.insertAdjacentHTML("afterbegin", tenStepsStyle)
 document.querySelector(".elementor-section-wrap").insertAdjacentHTML("afterbegin", tenStepHtml)
 
+let eventVar = "desktop"
+
+if (window.innerWidth <= 768) {
+  eventVar = "mobile"
+}
+
 // convert time round
 let getRoundedDate = (minutes, d = new Date()) => {
   let ms = 1000 * 60 * minutes // convert minutes to ms
@@ -1736,6 +1729,14 @@ document.querySelector(".box_already_registered form div span:last-child").textC
 
 // click on 3d cart
 document.querySelector(".box_fist_about > div > .scene_box .front_form > button").addEventListener("click", function (e) {
+  window.dataLayer = window.dataLayer || []
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp — 10 secrets landing page",
+    eventAction: "Click on Register now button",
+    eventLabel: "Form: Save Your Spot (first screen — step 1)",
+  })
+
   e.preventDefault()
   setLocalStorInform(".front_form")
   validationForm(".front_form")
@@ -1744,6 +1745,14 @@ document.querySelector(".box_fist_about > div > .scene_box .front_form > button"
 })
 
 document.querySelector(".box_fist_about > div > .scene_box form > span").addEventListener("click", function (e) {
+  window.dataLayer = window.dataLayer || []
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp — 10 secrets landing page",
+    eventAction: "Click on Back button",
+    eventLabel: "Form: Save Your Spot (first screen — step 2)",
+  })
+
   e.preventDefault()
   document.querySelector(".card_box").classList.toggle("is-flipped")
   console.log(`button 2 back to front_form`)
@@ -1751,6 +1760,14 @@ document.querySelector(".box_fist_about > div > .scene_box form > span").addEven
 
 if (document.querySelector(".box_fist_about > div > .scene_box .back_form > button")) {
   document.querySelector(".box_fist_about > div > .scene_box .back_form > button").addEventListener("click", (e) => {
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp — 10 secrets landing page",
+      eventAction: "Click on Finish Registration button",
+      eventLabel: "Form: Save Your Spot (first screen — step 2)",
+    })
+
     e.preventDefault()
     validationForm(".back_form")
     console.log(`button 3 back_form`)
@@ -1759,6 +1776,14 @@ if (document.querySelector(".box_fist_about > div > .scene_box .back_form > butt
 
 // click btn for popup
 document.querySelector(".box_already_registered button").addEventListener("click", function (e) {
+  window.dataLayer = window.dataLayer || []
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp — 10 secrets landing page",
+    eventAction: "Click on Register Now button",
+    eventLabel: `Form: Save Your Spot (footer — step 1) ${eventVar}`,
+  })
+
   e.preventDefault()
   setLocalStorInform(".box_already_registered form")
   validationForm(".box_already_registered form")
@@ -1767,6 +1792,14 @@ document.querySelector(".box_already_registered button").addEventListener("click
 
 if (document.querySelector(".popup_btn .popup_wrapper div:last-child button")) {
   document.querySelector(".popup_btn .popup_wrapper div:last-child button").addEventListener("click", (e) => {
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp — 10 secrets landing page",
+      eventAction: "Click on Register Now button",
+      eventLabel: `Form: Save Your Spot (footer — step 2) ${eventVar}`,
+    })
+
     e.preventDefault()
     validationForm(".popup_btn .popup_wrapper")
 
@@ -1775,15 +1808,53 @@ if (document.querySelector(".popup_btn .popup_wrapper div:last-child button")) {
 }
 
 document.querySelector(".first_mobile_btn").addEventListener("click", (e) => {
+  window.dataLayer = window.dataLayer || []
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp — 10 secrets landing page",
+    eventAction: "Click on Register Now button",
+    eventLabel: "First screen (mobile)",
+  })
+
   e.preventDefault()
   document.querySelector(".backdrop_popup").classList.remove("is_hidden")
   document.body.style.overflow = "hidden"
   document.querySelector(".backdrop_popup .popup_btn").style.display = "none"
+
+  //
+  window.dataLayer = window.dataLayer || []
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp — 10 secrets landing page",
+    eventAction: "View popup",
+    eventLabel: "Form: Save Your Spot (mobile) (V3)",
+  })
 })
 
 // click close popup
 document.querySelectorAll(".close_popup").forEach((item) => {
   item.addEventListener("click", function () {
+    let eventLabelText = `Form: Save Your Spot (full popup) ${eventVar}`
+    let modify = ""
+
+    if (item.closest(".backdrop_popup .popup_btn")) {
+      eventLabelText = `Form: Save Your Spot (footer — step 2) ${eventVar}`
+      console.log(eventLabelText)
+    }
+
+    if (item.closest(".backdrop_popup .popup_after_scroll")?.getAttribute("data-time")) {
+      modify = item.closest(".backdrop_popup .popup_after_scroll").getAttribute("data-time")
+      document.querySelector(".backdrop_popup .popup_after_scroll").removeAttribute("data-time")
+    }
+
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp — 10 secrets landing page",
+      eventAction: "Close popup",
+      eventLabel: eventLabelText + modify,
+    })
+
     document.querySelector(".backdrop_popup").classList.add("is_hidden")
     document.body.style.overflow = ""
 
@@ -1810,14 +1881,22 @@ let sliderInterval = setInterval(() => {
       prevButton: ".arrow_left_btn",
       nextButton: ".arrow_right_btn",
     })
+
+    slider.events.on("transitionEnd", () => {
+      window.dataLayer = window.dataLayer || []
+      dataLayer.push({
+        event: "event-to-ga",
+        eventCategory: "Exp — 10 secrets landing page",
+        eventAction: "Swipe slider",
+        eventLabel: `Slider swipe ${eventVar}`,
+      })
+    })
   }
 }, 200)
 
 // openSwipeText
 function openSwipeText() {
   let dataSwipe = +document.querySelector(".box_second_training .swipe_box > div").getAttribute("data-swipe")
-  let progressLineWidth = document.querySelector(".progress_line").getBoundingClientRect().width
-  let progressLineHeight = document.querySelector(".progress_line").getBoundingClientRect().height
 
   document.querySelectorAll(".box_second_training ul li").forEach((item, idx) => {
     if (idx < dataSwipe) {
@@ -1836,21 +1915,21 @@ function openSwipeText() {
   })
 
   if (window.innerWidth > 768) {
-    document.querySelector(".progress_line").style.width = `calc(11.3% + ${progressLineWidth}px)`
+    document.querySelector(".progress_line").style.width = `calc(${11.3 * (dataSwipe - 1)}% + 45px)`
 
-    document.querySelector(".box_second_training .swipe_box > div svg").style.left = `calc(11.3% + ${progressLineWidth}px)`
+    document.querySelector(".box_second_training .swipe_box > div svg").style.left = `calc(${11.3 * (dataSwipe - 1)}% + 45px)`
     if (dataSwipe < 9) {
-      document.querySelector(".box_second_training .swipe_box > div > span").style.left = `calc(22.5% + ${progressLineWidth}px)`
+      document.querySelector(".box_second_training .swipe_box > div > span").style.left = `calc(${11.3 * dataSwipe}% + 45px)`
     }
     document.querySelector(".box_second_training .swipe_box > div").setAttribute("data-swipe", `${dataSwipe + 1}`)
   }
 
   if (window.innerWidth <= 768) {
-    document.querySelector(".progress_line").style.height = `calc(131px + ${progressLineHeight}px)`
-    document.querySelector(".box_second_training .swipe_box > div svg").style.top = `calc(131px + ${progressLineHeight}px - 18px)`
+    document.querySelector(".progress_line").style.height = `calc(${131 * (dataSwipe - 1)}px + 45px)`
+    document.querySelector(".box_second_training .swipe_box > div svg").style.top = `calc(${131 * (dataSwipe - 1)}px + 45px - 18px)`
 
     if (dataSwipe < 9) {
-      document.querySelector(".box_second_training .swipe_box > div > span").style.top = `calc(262px + ${progressLineHeight}px - 20px)`
+      document.querySelector(".box_second_training .swipe_box > div > span").style.top = `calc(${131 * dataSwipe}px + 45px - 20px)`
     }
     document.querySelector(".box_second_training .swipe_box > div").setAttribute("data-swipe", `${dataSwipe + 1}`)
   }
@@ -1862,6 +1941,14 @@ let scaleSvg = setInterval(() => {
 
 // on click btn swipe
 document.querySelector(".box_second_training .swipe_box > div > span").addEventListener("click", () => {
+  window.dataLayer = window.dataLayer || []
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp — 10 secrets landing page",
+    eventAction: "Click on pulsing indicator",
+    eventLabel: `Change step ${eventVar}`,
+  })
+
   let dataSwipe = +document.querySelector(".box_second_training .swipe_box > div").getAttribute("data-swipe")
   if (dataSwipe <= 9) {
     openSwipeText()
@@ -1887,6 +1974,15 @@ document.querySelector(".box_second_training .swipe_box > div > span").addEventL
       document.querySelector(".backdrop_popup").classList.remove("is_hidden")
       document.body.style.overflow = "hidden"
       document.querySelector(".backdrop_popup .popup_btn").style.display = "none"
+      document.querySelector(".backdrop_popup .popup_after_scroll").setAttribute("data-time", " 10sec")
+      //
+      window.dataLayer = window.dataLayer || []
+      dataLayer.push({
+        event: "event-to-ga",
+        eventCategory: "Exp — 10 secrets landing page",
+        eventAction: "View popup",
+        eventLabel: `Form: Save Your Spot (full popup) ${eventVar} 10sec`,
+      })
     }, 10000)
   }
 })
@@ -1894,6 +1990,21 @@ document.querySelector(".box_second_training .swipe_box > div > span").addEventL
 // on click btn send form
 if (document.querySelector(".backdrop_popup .popup_after_scroll button:last-child")) {
   document.querySelector(".backdrop_popup .popup_after_scroll button:last-child").addEventListener("click", (e) => {
+    let eventLabelText = `Form: Save Your Spot (full popup) ${eventVar}`
+    let modify = ""
+
+    if (document.querySelector(".backdrop_popup .popup_after_scroll")?.getAttribute("data-time")) {
+      modify = document.querySelector(".backdrop_popup .popup_after_scroll").getAttribute("data-time")
+    }
+
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp — 10 secrets landing page",
+      eventAction: "Click on Register Now button",
+      eventLabel: eventLabelText + modify,
+    })
+
     e.preventDefault()
     validationForm(".backdrop_popup .popup_after_scroll")
 
@@ -1911,12 +2022,14 @@ if (document.querySelector(".back_form") || document.querySelector(".popup_btn .
 function validationForm(parent) {
   if (parent === ".front_form" || parent === ".box_already_registered form" || parent === ".backdrop_popup .popup_after_scroll") {
     let inputValueName = document.querySelector(`${parent} input[name='name']`).value.match(/^[a-zA-Z-]{1,30}$/)
+    let inputValueEmail = document.querySelector(`${parent} input[name='email']`).value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/)
+
     // let inputValueEmail = document.querySelector(`${parent} input[name='email']`).value.match(/^\S+@\S+\.\S+$/)
-    let inputValueEmail = document
-      .querySelector(`${parent} input[name='email']`)
-      .value.match(
-        /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum|ua)\b/
-      )
+    // let inputValueEmail = document
+    //   .querySelector(`${parent} input[name='email']`)
+    //   .value.match(
+    //     /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum|ua)\b/
+    //   )
 
     if (inputValueName === null) {
       document.querySelector(`${parent} input[name='name']`).classList.add("error")
@@ -1946,6 +2059,14 @@ function validationForm(parent) {
 
         setTimeout(() => {
           document.querySelector(".backdrop_popup .popup_btn").style.display = "flex"
+
+          window.dataLayer = window.dataLayer || []
+          dataLayer.push({
+            event: "event-to-ga",
+            eventCategory: "Exp — 10 secrets landing page",
+            eventAction: "View popup",
+            eventLabel: `Form: Save Your Spot (footer — step 2) ${eventVar}`,
+          })
         }, 100)
       }
     }
@@ -2005,10 +2126,9 @@ function validationForm(parent) {
         }
 
         postForm(inputValueName, inputValueEmail, selectValueTime, selectValue)
-
-        // setTimeout(() => {
-        //   document.location = "https://joinnow.live/t/TSa5s8?id=jyjVL6"
-        // }, 300)
+        if (document.querySelector(".backdrop_popup .popup_after_scroll")?.getAttribute("data-time")) {
+          document.querySelector(".backdrop_popup .popup_after_scroll").removeAttribute("data-time")
+        }
       }
     }
   }
@@ -2083,4 +2203,141 @@ function postForm(name, email, time, sales) {
       console.log("Failed fetch ", err)
     })
 }
+
 //
+
+window.dataLayer = window.dataLayer || []
+dataLayer.push({
+  event: "event-to-ga",
+  eventCategory: `Exp — 10 secrets landing page ${eventVar}`,
+  eventAction: "loaded",
+})
+;(function (h, o, t, j, a, r) {
+  h.hj =
+    h.hj ||
+    function () {
+      ;(h.hj.q = h.hj.q || []).push(arguments)
+    }
+  h._hjSettings = { hjid: 2078786, hjsv: 6 }
+  a = o.getElementsByTagName("head")[0]
+  r = o.createElement("script")
+  r.async = 1
+  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+  a.appendChild(r)
+})(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=")
+window.hj =
+  window.hj ||
+  function () {
+    ;(hj.q = hj.q || []).push(arguments)
+  }
+hj("trigger", `10_secrets_video_${eventVar}`)
+hj("event", `10_secrets_redesign_${eventVar}`)
+
+//
+document.querySelectorAll("input[name='name']").forEach((inputName, idx) => {
+  inputName.addEventListener("change", () => {
+    let modify = ""
+    let label = "Form: Save Your Spot (first screen — step 1)"
+
+    if (idx === 1) {
+      label = `Form: Save Your Spot (footer — step 1) ${eventVar}`
+    }
+
+    if (idx === 2) {
+      label = `Form: Save Your Spot (full popup) ${eventVar}`
+
+      if (document.querySelector(".backdrop_popup .popup_after_scroll")?.getAttribute("data-time")) {
+        modify = document.querySelector(".backdrop_popup .popup_after_scroll").getAttribute("data-time")
+      }
+    }
+
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp — 10 secrets landing page",
+      eventAction: "Change Your name input",
+      eventLabel: label + modify,
+    })
+  })
+})
+
+document.querySelectorAll("input[name='email']").forEach((inputName, idx) => {
+  inputName.addEventListener("change", () => {
+    let label = "Form: Save Your Spot (first screen — step 1)"
+    let modify = ""
+
+    if (idx === 1) {
+      label = `Form: Save Your Spot (footer — step 1) ${eventVar}`
+    }
+
+    if (idx === 2) {
+      label = `Form: Save Your Spot (full popup) ${eventVar}`
+
+      if (document.querySelector(".backdrop_popup .popup_after_scroll")?.getAttribute("data-time")) {
+        modify = document.querySelector(".backdrop_popup .popup_after_scroll").getAttribute("data-time")
+      }
+    }
+
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp — 10 secrets landing page",
+      eventAction: "Change Your work email input",
+      eventLabel: label + modify,
+    })
+  })
+})
+
+document.querySelectorAll("select[name='customFields']").forEach((selectName, idx) => {
+  selectName.addEventListener("change", () => {
+    let label = "Form: Save Your Spot (first screen — step 2)"
+    let modify = ""
+
+    if (idx === 1) {
+      label = `Form: Save Your Spot (footer — step 2) ${eventVar}`
+    }
+
+    if (idx === 2) {
+      label = `Form: Save Your Spot (full popup) ${eventVar}`
+
+      if (document.querySelector(".backdrop_popup .popup_after_scroll")?.getAttribute("data-time")) {
+        modify = document.querySelector(".backdrop_popup .popup_after_scroll").getAttribute("data-time")
+      }
+    }
+
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp — 10 secrets landing page",
+      eventAction: "Change Your current monthly sales select",
+      eventLabel: label + modify,
+    })
+  })
+})
+
+document.querySelectorAll("select[name='startTime']").forEach((selectName, idx) => {
+  selectName.addEventListener("click", () => {
+    let label = "Form: Save Your Spot (first screen — step 2)"
+    let modify = ""
+
+    if (idx === 1) {
+      label = `Form: Save Your Spot (footer — step 2) ${eventVar}`
+    }
+
+    if (idx === 2) {
+      label = `Form: Save Your Spot (full popup) ${eventVar}`
+
+      if (document.querySelector(".backdrop_popup .popup_after_scroll")?.getAttribute("data-time")) {
+        modify = document.querySelector(".backdrop_popup .popup_after_scroll").getAttribute("data-time")
+      }
+    }
+
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp — 10 secrets landing page",
+      eventAction: "Click on Data and time of attendance select",
+      eventLabel: label + modify,
+    })
+  })
+})

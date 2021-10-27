@@ -87,6 +87,7 @@ input {
   height: 44px !important;
   margin-top: 5px !important;
   padding: 0 10px !important;
+  cursor: pointer;
 }
 
 .input_validation_name,
@@ -115,6 +116,7 @@ select {
   color: #5a7386;
   padding: 0 30px 0 10px;
   appearance: none;
+  cursor: pointer;
 }
 
 label {
@@ -920,6 +922,12 @@ main {
     background: #046bd9;
     width: 100%;
     margin-top: 70px;
+  }
+
+  .first_mobile_btn:hover {
+    background: #046bd9 !important;
+    color: #ffffff !important;
+    outline: none !important;
   }
 
   .information_speaker > div > div > p {
