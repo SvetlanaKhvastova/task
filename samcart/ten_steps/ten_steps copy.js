@@ -312,7 +312,7 @@ if (document.querySelector(".back_form") || document.querySelector(".popup_btn .
 // validation form
 function validationForm(parent) {
   if (parent === ".front_form" || parent === ".box_already_registered form" || parent === ".backdrop_popup .popup_after_scroll") {
-    let inputValueName = document.querySelector(`${parent} input[name='name']`).value.match(/^[a-zA-Z-]{1,30}$/)
+    let inputValueName = document.querySelector(`${parent} input[name='name']`).value.match(/^.{1,30}$/)
     let inputValueEmail = document.querySelector(`${parent} input[name='email']`).value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/)
 
     // let inputValueEmail = document.querySelector(`${parent} input[name='email']`).value.match(/^\S+@\S+\.\S+$/)
@@ -460,7 +460,9 @@ if (window.innerWidth <= 768) {
   document.querySelector(".box_second_training p").textContent =
     "Everything you need to know for growing your business in only 45+ minutes. Tap down trough the timeline to discover all the themes"
 
-  document.querySelector(".popup_wrapper div:first-child p").innerHTML = `<p>Enter your details below to save your spot. During the webinar <b>you will learn:</b></p>`
+  document.querySelectorAll(".popup_wrapper div:first-child p").forEach((el) => {
+    el.innerHTML = `<p>Enter your details below to save your spot. During the webinar <b>you will learn:</b></p>`
+  })
   document.querySelector(".box_already_registered form :nth-child(3) span").textContent = "Your contact email*"
 }
 

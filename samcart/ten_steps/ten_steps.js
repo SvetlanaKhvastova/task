@@ -99,7 +99,11 @@ input {
   height: 44px !important;
   margin-top: 5px !important;
   padding: 0 10px !important;
-  cursor: pointer;
+  line-height: 1 !important;
+}
+
+.box_already_registered input{
+  color: white;
 }
 
 .input_validation_name,
@@ -127,6 +131,7 @@ select {
   line-height: 26px;
   color: #5a7386;
   padding: 0 30px 0 10px;
+  -webkit-appearance: none;
   appearance: none;
   cursor: pointer;
 }
@@ -283,6 +288,7 @@ main {
   position: absolute;
   top: 0;
   left: 0;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 
@@ -1203,6 +1209,18 @@ main {
     padding: 0 15px;
   }
 }
+/* 
+@media (max-width: 320px) {
+  .popup_form_content ul {
+    display: block;
+  }
+
+  .popup_wrapper div:first-child ul li:not(:last-child),
+  .popup_after_scroll .popup_wrapper div:first-child ul li:not(:last-child),
+  .popup_wrapper div:first-child ul li:nth-child(even) {
+    margin-left: 0;
+  }
+} */
 
 @media (max-height: 666px) {
   .backdrop_popup .popup_after_scroll {
@@ -1231,6 +1249,12 @@ input[type="submit"]:hover {
   border-color: inherit;
   color: inherit;
   background: unset;
+}
+
+@media (max-height: 564px) {
+  .backdrop_popup .popup_btn {
+    position: unset;
+  }
 }
 
 </style>
@@ -2021,7 +2045,7 @@ if (document.querySelector(".back_form") || document.querySelector(".popup_btn .
 // validation form
 function validationForm(parent) {
   if (parent === ".front_form" || parent === ".box_already_registered form" || parent === ".backdrop_popup .popup_after_scroll") {
-    let inputValueName = document.querySelector(`${parent} input[name='name']`).value.match(/^[a-zA-Z-]{1,30}$/)
+    let inputValueName = document.querySelector(`${parent} input[name='name']`).value.match(/^.{1,30}$/)
     let inputValueEmail = document.querySelector(`${parent} input[name='email']`).value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/)
 
     // let inputValueEmail = document.querySelector(`${parent} input[name='email']`).value.match(/^\S+@\S+\.\S+$/)
@@ -2169,7 +2193,9 @@ if (window.innerWidth <= 768) {
   document.querySelector(".box_second_training p").textContent =
     "Everything you need to know for growing your business in only 45+ minutes. Tap down trough the timeline to discover all the themes"
 
-  document.querySelector(".popup_wrapper div:first-child p").innerHTML = `<p>Enter your details below to save your spot. During the webinar <b>you will learn:</b></p>`
+  document.querySelectorAll(".popup_wrapper div:first-child p").forEach((el) => {
+    el.innerHTML = `<p>Enter your details below to save your spot. During the webinar <b>you will learn:</b></p>`
+  })
   document.querySelector(".box_already_registered form :nth-child(3) span").textContent = "Your contact email*"
 }
 
