@@ -407,6 +407,91 @@ let newPdpStyle = /*html*/ `
         
     }
 
+    .core section{
+        position: relative;
+        background: #F5F5F5;
+        padding: 15px 112px 40px;
+        margin-top: 30px;
+    }
+
+    .core section .col-sm-8{
+        float: unset;
+    }
+
+    .core section h2{
+        font-family: "Crimson Text",serif;
+        font-weight: 700;
+        font-size: 28px;
+        line-height: 53px;
+        color: #000000;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .core section svg{
+        position: absolute;
+        right: 25px;
+        top: 15px;
+        cursor: pointer;
+    }
+
+    .complete_look{
+        text-align: center;
+        width: 15%;
+        margin-top: 60px;
+    }
+
+    
+
+    .complete_look > h2{
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 17px;
+        margin: 10px 0;
+    }
+
+    .complete_look > span{
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
+    }
+
+    .complete_look .select_size_box.complete_var{        
+        width: 100%;
+        margin-right: 0;
+        display: block;
+        margin-top: 22px;
+    }
+
+    .complete_look .select_size_box.complete_var div{
+        min-width: unset;
+        max-width: unset;
+
+    }
+
+    .complete_look button{
+        background: #457E80;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 37px;
+        font-size: 12px;
+        line-height: 14px;
+        text-align: center;
+        text-transform: uppercase;
+        text-decoration: none;
+        cursor: pointer;
+        color: #ffffff;
+        border: none;
+        outline: none;
+        margin-top: 15px;
+    }
+
+     .complete_look button > svg{
+         margin-left: 12px;
+     }
+
 </style>
 `
 
@@ -559,6 +644,45 @@ let selectSize = /*html*/ `
 </div>
 `
 
+let productDet = /*html*/ `
+    <section>
+        <h2>Product details</h2>
+        <svg width="20" height="20" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect y="1.0658" width="1.50717" height="12.546" rx="0.753585" transform="rotate(-45 0 1.0658)" fill="#457E80"/>
+            <rect x="8.93457" y="0.0785522" width="1.50717" height="12.5215" rx="0.753585" transform="rotate(45 8.93457 0.0785522)" fill="#457E80"/>
+        </svg>
+    </section>
+`
+
+let completeLook = /*html*/ `
+    <div class="complete_look">
+        <img src="img/rectangle.jpg" alt="product" width="208" height="209">
+        <h2>Adini Alber Langley Print Tunic</h2>
+        <span>$67.00</span>
+
+            <div class="select_size_box complete_var">
+                <div>
+                    <span>Size</span>
+                    <select name="selectSize">
+                        <option value=""><span>10</span></option>
+                        <option value=""><span>14</span></option>
+                        <option value=""><span>16</span></option>
+                    </select>
+                    <svg width="12" height="5" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.64018 0.231779C1.21591 -0.121785 0.585343 -0.0644614 0.231779 0.359816C-0.121785 0.784093 -0.0644614 1.41466 0.359816 1.76822L1.64018 0.231779ZM7 6L6.35982 6.76822C6.73066 7.07726 7.26934 7.07726 7.64018 6.76822L7 6ZM13.6402 1.76822C14.0645 1.41466 14.1218 0.784093 13.7682 0.359816C13.4147 -0.0644614 12.7841 -0.121785 12.3598 0.231779L13.6402 1.76822ZM0.359816 1.76822L6.35982 6.76822L7.64018 5.23178L1.64018 0.231779L0.359816 1.76822ZM7.64018 6.76822L13.6402 1.76822L12.3598 0.231779L6.35982 5.23178L7.64018 6.76822Z" fill="#C4C4C4"/>
+                    </svg>
+                </div>
+            </div>
+
+        <button type="button">
+            <span>Add to bag</span>
+            <svg width="12" height="15" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.18965 5.48276C3.18965 5.7589 3.41351 5.98276 3.68965 5.98276C3.9658 5.98276 4.18965 5.7589 4.18965 5.48276H3.18965ZM8.12069 5.48276C8.12069 5.7589 8.34454 5.98276 8.62069 5.98276C8.89683 5.98276 9.12069 5.7589 9.12069 5.48276H8.12069ZM1.09676 12.9115L0.598723 12.8672L1.09676 12.9115ZM11.2136 12.9115L10.7155 12.9557L11.2136 12.9115ZM10.4948 4.82525L10.9928 4.78098L10.4948 4.82525ZM2.81161 4.41379H9.49874V3.41379H2.81161V4.41379ZM9.99677 4.86952L10.7155 12.9557L11.7116 12.8672L10.9928 4.78098L9.99677 4.86952ZM10.2175 13.5H2.09283V14.5H10.2175V13.5ZM1.5948 12.9557L2.31357 4.86952L1.3175 4.78098L0.598723 12.8672L1.5948 12.9557ZM4.18965 5.48276C4.18965 4.21438 4.19706 3.20144 4.46534 2.49414C4.59142 2.16175 4.76539 1.92849 5.00421 1.77168C5.24691 1.61233 5.60537 1.5 6.15517 1.5V0.5C5.47221 0.5 4.9061 0.639821 4.45537 0.935754C4.00077 1.23423 3.71246 1.65937 3.53034 2.13948C3.18225 3.05718 3.18965 4.28563 3.18965 5.48276H4.18965ZM6.15517 1.5C6.70497 1.5 7.06343 1.61233 7.30613 1.77168C7.54495 1.92849 7.71892 2.16175 7.845 2.49414C8.11329 3.20144 8.12069 4.21438 8.12069 5.48276H9.12069C9.12069 4.28563 9.12809 3.05718 8.78 2.13948C8.59788 1.65937 8.30957 1.23423 7.85497 0.935754C7.40424 0.639821 6.83813 0.5 6.15517 0.5V1.5ZM2.09283 13.5C1.79922 13.5 1.5688 13.2482 1.5948 12.9557L0.598723 12.8672C0.520732 13.7446 1.21198 14.5 2.09283 14.5V13.5ZM10.7155 12.9557C10.7415 13.2482 10.5111 13.5 10.2175 13.5V14.5C11.0984 14.5 11.7896 13.7446 11.7116 12.8672L10.7155 12.9557ZM9.49874 4.41379C9.75772 4.41379 9.97384 4.61156 9.99677 4.86952L10.9928 4.78098C10.9241 4.00708 10.2757 3.41379 9.49874 3.41379V4.41379ZM2.81161 3.41379C2.03465 3.41379 1.38629 4.00708 1.3175 4.78098L2.31357 4.86952C2.3365 4.61156 2.55262 4.41379 2.81161 4.41379V3.41379Z" fill="white"/>
+            </svg>
+        </button>
+    </div>
+`
+
 document.head.insertAdjacentHTML("afterbegin", newPdpStyle)
 document.body.insertAdjacentHTML("afterbegin", sizeGuideBlock)
 
@@ -569,6 +693,8 @@ document.querySelector(".upc").style.display = "none"
 document.querySelector(".share").style.display = "none"
 document.querySelector(".benefits").style.display = "none"
 document.querySelector(".valueprop").style.display = "none"
+
+document.querySelector(".core .row.crow:first-child").insertAdjacentHTML("afterend", completeLook)
 
 //
 document.querySelector("#product h1").insertAdjacentHTML("beforebegin", titleBrand)
@@ -638,14 +764,18 @@ document.querySelector(".popup_form_content .close_popup").addEventListener("cli
 })
 
 document.querySelector(".cta a").addEventListener("click", () => {
-  document.querySelector(".tabs > div:first-child").style.display = "block"
   document.querySelector(".cta a").style.display = "none"
+  document.querySelector(".core .row.crow:first-child").insertAdjacentHTML("afterend", productDet)
+  document.querySelector(".core section").insertAdjacentHTML("beforeend", document.querySelector(".core #details .row.crow").innerHTML)
 })
 
-document.querySelector(".tabs > div:first-child label").addEventListener("click", () => {
-  document.querySelector(".tabs > div:first-child").style.display = "none"
-  document.querySelector(".cta a").style.display = "block"
-})
+if (document.querySelector(".core section")) {
+  document.querySelector(".core section svg").addEventListener("click", () => {
+    console.log(`jjjjj`)
+    document.querySelector(".core section").display = "none"
+    document.querySelector(".cta a").style.display = "block"
+  })
+}
 
 function togglePopup() {
   document.querySelector(".backdrop_popup").classList.toggle("is_hidden")

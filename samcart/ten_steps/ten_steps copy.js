@@ -395,7 +395,7 @@ function validationForm(parent) {
 
       if (document.querySelector(`${parent} .error`) == null) {
         if (parent === ".back_form") {
-          document.querySelector(".card_box").classList.toggle("is-flipped")
+          // document.querySelector(".card_box").classList.toggle("is-flipped")
           document.querySelectorAll(`.front_form input`).forEach((item) => {
             item.value = ""
           })
@@ -458,7 +458,7 @@ function setLocalStorInform(parent) {
 
 if (window.innerWidth <= 768) {
   document.querySelector(".box_second_training p").textContent =
-    "Everything you need to know for growing your business in only 45+ minutes. Tap down trough the timeline to discover all the themes"
+    "Everything you need to know for growing your business in only 45+ minutes. Tap down through the timeline to discover all the themes"
 
   document.querySelectorAll(".popup_wrapper div:first-child p").forEach((el) => {
     el.innerHTML = `<p>Enter your details below to save your spot. During the webinar <b>you will learn:</b></p>`
@@ -469,7 +469,7 @@ if (window.innerWidth <= 768) {
 // fetch submit form
 function postForm(name, email, time, sales) {
   console.log(name, email, time, sales)
-  fetch("https://api.joinnow.live/webinars/0e7aJr/registration", {
+  fetch("https://api.joinnow.live/webinars/TSa5s8/registration", {
     headers: {
       "Content-Type": "application/json",
     },
@@ -490,7 +490,8 @@ function postForm(name, email, time, sales) {
     .then((res) => res.json())
     .then((data) => {
       console.log(data)
-      window.location.href = `https://joinnow.live/t/TSa5s8?id=jyjVL6`
+      console.log(data.short_id)
+      window.location.href = `https://joinnow.live/a/TSa5s8?id=${data.attendee.short_id}`
     })
     .catch((err) => {
       console.log("Failed fetch ", err)
@@ -498,11 +499,10 @@ function postForm(name, email, time, sales) {
 }
 
 //
-
 window.dataLayer = window.dataLayer || []
 dataLayer.push({
   event: "event-to-ga",
-  eventCategory: `Exp — 10 secrets landing page ${eventVar}`,
+  eventCategory: `Exp — 10 secrets landing page_${eventVar}`,
   eventAction: "loaded",
 })
 ;(function (h, o, t, j, a, r) {
@@ -511,7 +511,7 @@ dataLayer.push({
     function () {
       ;(h.hj.q = h.hj.q || []).push(arguments)
     }
-  h._hjSettings = { hjid: 2078786, hjsv: 6 }
+  h._hjSettings = { hjid: 2592989, hjsv: 6 }
   a = o.getElementsByTagName("head")[0]
   r = o.createElement("script")
   r.async = 1
