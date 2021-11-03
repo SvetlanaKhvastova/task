@@ -606,13 +606,27 @@ let newPdpStyle = /*html*/ `
 
      }
 
+
+     .pdp{
+         display: flex;
+         padding-top: 50px;
+     }
+
+     .pdp> div:first-child{
+         width: 35%;
+     }
+
+     .pdp . div:last-child{
+         width:60%;
+     }
+
 </style>
 `
-
+// +
 let titleBrand = /*html*/ `
     <p class="title_brand">Indi & Cold</p>
 `
-
+// +
 let varBtnTag = /*html*/ `
     <div class="var_btn_tag">
         <!-- <span>Cotton</span>
@@ -718,7 +732,7 @@ let sizeGuideBlock = /*html*/ `
     </div>
 </div>
 `
-
+// +
 let deliveryBox = /*html*/ `
 <div class="delivery_box">
     <p>Approximate Delivery Date</p>
@@ -740,7 +754,7 @@ let deliveryBox = /*html*/ `
     </div>
 </div>
 `
-
+// +
 let selectSize = /*html*/ `
 <div class="select_size_box pdp_var">
     <label for="size">
@@ -797,15 +811,69 @@ let completeLook = /*html*/ `
         </div>
     </section>
 `
-
+// +
 let sliderFor = /*html*/ `
 <div style="display: flex;">
     <div class="slider-nav"></div>
     <div class="slider-for"></div>
+</div>
+`
+
+let pdp = /*html*/ `
+<div class="pdp">
+    <div>
+        <div style="display: flex;">
+            <div class="slider-nav"></div>
+            <div class="slider-for"></div>
+        </div>
+    </div>
+    <div>
+        <p class="title_brand">Indi & Cold</p>
+        <h2>Mint Velvet Georgia Long Sleeved Shirt</h2>
+        <div class="var_btn_tag">
+        <!-- <span>Cotton</span>
+        <span>Casual</span>
+        <span>Spring</span> -->
+        </div>
+        <p class="price_text">£69</p>
+
+        <div class="select_size_box pdp_var">
+            <label for="size">
+                <span>Size</span>
+                <select name="selectSize" id="size"></select>
+                <svg width="12" height="5" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.64018 0.231779C1.21591 -0.121785 0.585343 -0.0644614 0.231779 0.359816C-0.121785 0.784093 -0.0644614 1.41466 0.359816 1.76822L1.64018 0.231779ZM7 6L6.35982 6.76822C6.73066 7.07726 7.26934 7.07726 7.64018 6.76822L7 6ZM13.6402 1.76822C14.0645 1.41466 14.1218 0.784093 13.7682 0.359816C13.4147 -0.0644614 12.7841 -0.121785 12.3598 0.231779L13.6402 1.76822ZM0.359816 1.76822L6.35982 6.76822L7.64018 5.23178L1.64018 0.231779L0.359816 1.76822ZM7.64018 6.76822L13.6402 1.76822L12.3598 0.231779L6.35982 5.23178L7.64018 6.76822Z" fill="#C4C4C4"/>
+                </svg>
+            </label>
+            <p>Size guide</p>
+        </div>
+
+        <div class="delivery_box">
+    <p>Approximate Delivery Date</p>
+    <div>
+        <span>13th October</span>
+        <div>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="9" cy="9" r="8.5" stroke="#457E80"/>
+                    <path d="M9.542 11.308H8.226V10.636C8.226 10.3933 8.24933 10.174 8.296 9.978C8.34267 9.782 8.408 9.60467 8.492 9.446C8.58533 9.28733 8.69267 9.138 8.814 8.998C8.94467 8.84867 9.08933 8.69933 9.248 8.55L9.766 8.06C9.97133 7.88267 10.1393 7.69133 10.27 7.486C10.41 7.27133 10.48 7.00067 10.48 6.674C10.48 6.226 10.3353 5.87133 10.046 5.61C9.766 5.33933 9.402 5.204 8.954 5.204C8.48733 5.204 8.114 5.35333 7.834 5.652C7.554 5.95067 7.39067 6.31467 7.344 6.744L6 6.59C6.056 6.18867 6.17267 5.82933 6.35 5.512C6.52733 5.18533 6.74667 4.91 7.008 4.686C7.27867 4.462 7.58667 4.294 7.932 4.182C8.27733 4.06067 8.646 4 9.038 4C9.43 4 9.794 4.056 10.13 4.168C10.4753 4.28 10.7787 4.448 11.04 4.672C11.3013 4.88667 11.5067 5.15733 11.656 5.484C11.8053 5.80133 11.88 6.17 11.88 6.59C11.88 6.88867 11.8473 7.15 11.782 7.374C11.7167 7.598 11.6233 7.80333 11.502 7.99C11.39 8.16733 11.25 8.33533 11.082 8.494C10.914 8.65267 10.732 8.816 10.536 8.984C10.3493 9.14267 10.1907 9.28733 10.06 9.418C9.92933 9.53933 9.82667 9.66533 9.752 9.796C9.67733 9.92667 9.62133 10.0713 9.584 10.23C9.556 10.3887 9.542 10.5847 9.542 10.818V11.308ZM9.892 13.282C9.892 13.5247 9.80333 13.7393 9.626 13.926C9.44867 14.1127 9.22467 14.206 8.954 14.206C8.69267 14.206 8.46867 14.1173 8.282 13.94C8.10467 13.7533 8.016 13.5387 8.016 13.296C8.016 13.044 8.10467 12.8293 8.282 12.652C8.45933 12.4653 8.68333 12.372 8.954 12.372C9.22467 12.372 9.44867 12.4607 9.626 12.638C9.80333 12.8153 9.892 13.03 9.892 13.282Z" fill="#457E80"/>
+            </svg>
+            <div class="text_popup">
+                <span></span>
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect y="1.0658" width="1.50717" height="12.546" rx="0.753585" transform="rotate(-45 0 1.0658)" fill="#457E80"/>
+                        <rect x="8.93457" y="0.0785522" width="1.50717" height="12.5215" rx="0.753585" transform="rotate(45 8.93457 0.0785522)" fill="#457E80"/>
+                </svg>
+            </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
 `
 
 document.head.insertAdjacentHTML("afterbegin", newPdpStyle)
 document.body.insertAdjacentHTML("afterbegin", sizeGuideBlock)
+// document.querySelector("#page").insertAdjacentHTML("beforebegin", pdp)
 
 document.querySelector("#product h1").insertAdjacentHTML("beforebegin", titleBrand)
 document.querySelector(".core .row.crow:first-child").insertAdjacentHTML("afterend", completeLook)
