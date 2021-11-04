@@ -491,7 +491,8 @@ function postForm(name, email, time, sales) {
     .then((data) => {
       console.log(data)
       console.log(data.short_id)
-      window.location.href = `https://joinnow.live/a/TSa5s8?id=${data.attendee.short_id}`
+      // window.location.href = `https://joinnow.live/a/TSa5s8?id=${data.attendee.short_id}`
+      window.location.href = `https://webclass.samcart.com/a/TSa5s8?id=${data.attendee.short_id}`
     })
     .catch((err) => {
       console.log("Failed fetch ", err)
