@@ -339,7 +339,7 @@ let style12 = /*html*/ `
 }
 
   </style>
-`;
+`
 
 let modalForm = /*html*/ `
 <div class="backdrop-modal is-hidden" data-modal>
@@ -365,18 +365,18 @@ let modalForm = /*html*/ `
         <button class="custom-add-to-bag" type="button">Choose</button>
       </form>
     </div>
-`;
+`
 
 // sticky block
 let pickColor = /*html*/ `
 <h3 class="label-to-pick-color">Pick a color</h3>
 <div class="controls-box check-color"></div>
-`;
+`
 
 let pickSize = /*html*/ `
 <h3 class="label-to-pick-size">Pick a size</h3>
 <div class="controls-box check-size"></div>
-`;
+`
 
 //PLP
 let pickColorPlp = /*html*/ `
@@ -385,7 +385,7 @@ let pickColorPlp = /*html*/ `
   <button type="button" class="controls-btn active-controls"></button>
   <button type="button" class="controls-btn"></button>
 </div>
-`;
+`
 
 let pickSizePlp = /*html*/ `
 <h3 class="label-to-pick-size">Pick a size</h3>
@@ -395,69 +395,69 @@ let pickSizePlp = /*html*/ `
   </button>
   <button type="button" class="size-variant">O/S</button>
 </div>
-`;
+`
 
-document.head.insertAdjacentHTML("afterbegin", style12);
-document.body.insertAdjacentHTML("afterbegin", modalForm);
+document.head.insertAdjacentHTML("afterbegin", style12)
+document.body.insertAdjacentHTML("afterbegin", modalForm)
 
 if (document.querySelector(".product-grid")) {
-  createButtonList();
+  createButtonList()
 }
 
 if (document.querySelector(".upc")) {
-  openButtonPopUp();
+  openButtonPopUp()
 }
 
 // PLP and sticky block toggleModal
 function toggleModal() {
-  document.body.classList.toggle("modal-open");
-  document.querySelector("[data-modal]").classList.toggle("is-hidden");
+  document.body.classList.toggle("modal-open")
+  document.querySelector("[data-modal]").classList.toggle("is-hidden")
 
   if (document.querySelector(".upc")) {
-    document.querySelector("[data-modal-open]").classList.toggle("hidden");
+    document.querySelector("[data-modal-open]").classList.toggle("hidden")
   }
 }
 
 // PLP and sticky block Exit cross
 document.querySelector("[data-modal-close]").addEventListener("click", function () {
-  let action = "Click Exit cross button PLP";
+  let action = "Click Exit cross button PLP"
 
   if (document.querySelector(".upc")) {
-    action = "Click Exit cross button sticky block";
+    action = "Click Exit cross button sticky block"
   }
 
   //
-  window.dataLayer = window.dataLayer || [];
+  window.dataLayer = window.dataLayer || []
   dataLayer.push({
     event: "event-to-ga",
     eventCategory: "Exp — Stiсky button mobile",
     eventAction: action,
-  });
+  })
   //
 
-  toggleModal();
-});
+  toggleModal()
+})
 
 // PLP and sticky block CHOOSE
 document.querySelector(".custom-add-to-bag").addEventListener("click", function () {
-  let action = "Click Choose button PLP";
+  let action = "Click Choose button PLP"
 
   if (document.querySelector(".upc")) {
-    action = "Click Add to bag button sticky block";
-    document.querySelector("#page_MainContent_product_detail_btnAddBag").click();
+    action = "Click Add to bag button sticky block"
+    document.querySelector("#page_MainContent_product_detail_btnAddBag").click()
   }
 
   //
-  window.dataLayer = window.dataLayer || [];
+  window.dataLayer = window.dataLayer || []
   dataLayer.push({
     event: "event-to-ga",
     eventCategory: "Exp — Stiсky button mobile",
     eventAction: action,
-  });
+  })
   //
 
-  toggleModal();
-});
+  toggleModal()
+})
 
 // sticky block
 function openButtonPopUp() {
@@ -466,151 +466,151 @@ function openButtonPopUp() {
     ` <div class="button-pop-up">
       <button class="btn-open" data-modal-open>add to bag</button>
     </div>`
-  );
+  )
 
   document.querySelector("[data-modal-open]").addEventListener("click", function () {
     //
-    window.dataLayer = window.dataLayer || [];
+    window.dataLayer = window.dataLayer || []
     dataLayer.push({
       event: "event-to-ga",
       eventCategory: "Exp — Stiсky button mobile",
       eventAction: "Click Add to bag button sticky block",
-    });
+    })
     //
 
-    toggleModal();
-  });
+    toggleModal()
+  })
 
   document.querySelectorAll(".specifics label").forEach((el) => {
     if (el.innerText.toLowerCase().includes(`colour`)) {
-      document.querySelector(".custom-add-to-bag").insertAdjacentHTML("beforebegin", pickColor);
+      document.querySelector(".custom-add-to-bag").insertAdjacentHTML("beforebegin", pickColor)
 
       if (document.querySelectorAll(".variants.form .square").length > 0) {
-        addSpanColor();
-        addBtnColorWithoutSpan();
+        addSpanColor()
+        addBtnColorWithoutSpan()
       } else {
-        addBtnColorWithoutSpan();
+        addBtnColorWithoutSpan()
       }
 
       function addSpanColor() {
         document.querySelectorAll(".variants.form .square").forEach((i) => {
-          let active = "";
-          let bg = i.style.background;
-          let dizabledBtn = "";
+          let active = ""
+          let bg = i.style.background
+          let dizabledBtn = ""
 
           if (i.closest(`button`).classList.contains("on")) {
-            active = "active-controls";
+            active = "active-controls"
           }
 
           if (i.closest(`button`).getAttribute("disabled")) {
-            dizabledBtn = "disabled-btn";
+            dizabledBtn = "disabled-btn"
           }
 
           document
             .querySelector(".check-color")
-            .insertAdjacentHTML("beforeend", ` <button type="button" class="controls-btn colors-btn ${active} ${dizabledBtn}" style='background: ${bg}'></button>`);
+            .insertAdjacentHTML("beforeend", ` <button type="button" class="controls-btn colors-btn ${active} ${dizabledBtn}" style='background: ${bg}'></button>`)
 
           document.querySelectorAll(".disabled-btn").forEach((item) => {
-            item.setAttribute("disabled", "disabled");
-          });
-        });
+            item.setAttribute("disabled", "disabled")
+          })
+        })
       }
 
       function addBtnColorWithoutSpan() {
-        let btnColorWithoutSpan = el.closest(".specifics").querySelectorAll(".controls button");
+        let btnColorWithoutSpan = el.closest(".specifics").querySelectorAll(".controls button")
 
         btnColorWithoutSpan.forEach((i) => {
           if (i.children.length === 0) {
-            let active = "";
-            let textContent = i.textContent;
-            let dizabledBackground = "";
+            let active = ""
+            let textContent = i.textContent
+            let dizabledBackground = ""
 
             if (i.classList.contains("on")) {
-              active = "active-color-variant";
+              active = "active-color-variant"
             }
 
             if (i.getAttribute("disabled")) {
-              dizabledBackground = "dizabled-background";
+              dizabledBackground = "dizabled-background"
             }
 
-            document.querySelector(".check-color").insertAdjacentHTML("beforeend", `<button type="button" class="color-variant colors-btn ${active}">${textContent}</button>`);
+            document.querySelector(".check-color").insertAdjacentHTML("beforeend", `<button type="button" class="color-variant colors-btn ${active}">${textContent}</button>`)
 
             document.querySelectorAll(".dizabled-background").forEach((item) => {
-              item.setAttribute("disabled", "disabled");
-            });
+              item.setAttribute("disabled", "disabled")
+            })
           }
-        });
+        })
       }
     }
 
     if (el.innerText.toLowerCase().includes(`size`)) {
-      document.querySelector(".custom-add-to-bag").insertAdjacentHTML("beforebegin", pickSize);
+      document.querySelector(".custom-add-to-bag").insertAdjacentHTML("beforebegin", pickSize)
 
-      let btnSize = el.closest(".specifics").querySelectorAll(".controls button");
+      let btnSize = el.closest(".specifics").querySelectorAll(".controls button")
 
       function addSpanSize() {
         btnSize.forEach((i) => {
-          let active = "";
-          let textContent = i.textContent;
-          let dizabledBackground = "";
+          let active = ""
+          let textContent = i.textContent
+          let dizabledBackground = ""
 
           if (i.classList.contains("on")) {
-            active = "active-size-variant";
+            active = "active-size-variant"
           }
 
           if (i.closest(`button`).getAttribute("disabled")) {
-            dizabledBackground = "dizabled-background";
+            dizabledBackground = "dizabled-background"
           }
 
           document
             .querySelector(".check-size")
-            .insertAdjacentHTML("beforeend", `<button type="button" class="size-variant size-variant-btn ${dizabledBackground} ${active}">${textContent}</button>`);
+            .insertAdjacentHTML("beforeend", `<button type="button" class="size-variant size-variant-btn ${dizabledBackground} ${active}">${textContent}</button>`)
 
           document.querySelectorAll(".dizabled-background").forEach((item) => {
-            item.setAttribute("disabled", "disabled");
-          });
-        });
+            item.setAttribute("disabled", "disabled")
+          })
+        })
       }
 
-      addSpanSize();
+      addSpanSize()
     }
-  });
+  })
 
   document.querySelectorAll(".colors-btn").forEach((color, index) => {
-    let activeСontrols = "active-controls";
+    let activeСontrols = "active-controls"
 
     if (document.querySelector(".active-color-variant")) {
-      activeСontrols = "active-color-variant";
+      activeСontrols = "active-color-variant"
     }
 
     color.addEventListener("click", function () {
       if (!color.classList.contains(`${activeСontrols}`)) {
-        document.querySelector(`.${activeСontrols}`).classList.remove(`${activeСontrols}`);
-        color.classList.add(`${activeСontrols}`);
+        document.querySelector(`.${activeСontrols}`).classList.remove(`${activeСontrols}`)
+        color.classList.add(`${activeСontrols}`)
 
         document.querySelectorAll(".specifics label").forEach((el) => {
           if (el.innerText.toLowerCase().includes(`colour`)) {
-            el.closest(`.specifics`).querySelectorAll("button")[index].click();
+            el.closest(`.specifics`).querySelectorAll("button")[index].click()
           }
-        });
+        })
       }
-    });
-  });
+    })
+  })
 
   document.querySelectorAll(".size-variant-btn").forEach((size, index) => {
     size.addEventListener("click", function () {
       if (!size.classList.contains("active-size-variant")) {
-        document.querySelector(".active-size-variant").classList.remove("active-size-variant");
-        size.classList.add("active-size-variant");
+        document.querySelector(".active-size-variant").classList.remove("active-size-variant")
+        size.classList.add("active-size-variant")
 
         document.querySelectorAll(".specifics label").forEach((el) => {
           if (el.innerText.toLowerCase().includes(`size`)) {
-            el.closest(".specifics").querySelectorAll(".controls button")[index].click();
+            el.closest(".specifics").querySelectorAll(".controls button")[index].click()
           }
-        });
+        })
       }
-    });
-  });
+    })
+  })
 
   // scroll
   function scroll() {
@@ -625,15 +625,15 @@ function openButtonPopUp() {
       // });
       //
 
-      let scroll = document.documentElement.clientHeight;
-      let offset = document.querySelector("#page_MainContent_product_detail_btnAddBag").getBoundingClientRect().top;
+      let scroll = document.documentElement.clientHeight
+      let offset = document.querySelector("#page_MainContent_product_detail_btnAddBag").getBoundingClientRect().top
 
       if (scroll > offset) {
-        document.querySelector(".button-pop-up").classList.add("hidden");
+        document.querySelector(".button-pop-up").classList.add("hidden")
       }
-    });
+    })
   }
-  scroll();
+  scroll()
 
   // document.querySelector("#page_MainContent_product_detail_btnAddBag").addEventListener("click", function () {
   //   //
@@ -650,193 +650,192 @@ function openButtonPopUp() {
 
 // PLP
 function createButtonList() {
-  let parentDiv = ".product-grid";
+  let parentDiv = ".product-grid"
 
   if (document.querySelector(".ais-Hits-list")) {
-    parentDiv = "#hits";
+    parentDiv = "#hits"
   }
 
   document.querySelectorAll(`article ${parentDiv}`).forEach((item) => {
     if (!document.querySelector(".btn-open-list")) {
       item.querySelectorAll("li").forEach((i) => {
-        i.style.justifyContent = "space-between";
-        i.style.display = "flex";
-        i.insertAdjacentHTML("beforeend", `<div class="box-btn-list"><button class="btn-open-list" data-modal-open>add to bag</button></div>`);
-      });
+        i.style.justifyContent = "space-between"
+        i.style.display = "flex"
+        i.insertAdjacentHTML("beforeend", `<div class="box-btn-list"><button class="btn-open-list" data-modal-open>add to bag</button></div>`)
+      })
     }
-  });
+  })
 
-  clickListener();
-  createColorPlp();
-  createSizePlp();
+  clickListener()
+  createColorPlp()
+  createSizePlp()
 }
 
 function createButtonListSearch() {
   document.querySelectorAll(`#search-modal`).forEach((item) => {
     if (!document.querySelector("#search-modal .ais-Hits-item:first-child .btn-open-list")) {
       item.querySelectorAll("li").forEach((i) => {
-        i.style.justifyContent = "space-between";
-        i.style.display = "flex";
-        i.insertAdjacentHTML("beforeend", `<div class="box-btn-list"><button class="btn-open-list" data-modal-open>add to bag</button></div>`);
-      });
+        i.style.justifyContent = "space-between"
+        i.style.display = "flex"
+        i.insertAdjacentHTML("beforeend", `<div class="box-btn-list"><button class="btn-open-list" data-modal-open>add to bag</button></div>`)
+      })
     }
-  });
+  })
 
   document.querySelectorAll(`#search`).forEach((item) => {
     if (!document.querySelector("#search .ais-Hits-item:first-child .btn-open-list")) {
       item.querySelectorAll("li").forEach((i) => {
-        i.style.justifyContent = "space-between";
-        i.style.display = "flex";
-        i.insertAdjacentHTML("beforeend", `<div class="box-btn-list"><button class="btn-open-list" data-modal-open>add to bag</button></div>`);
-      });
+        i.style.justifyContent = "space-between"
+        i.style.display = "flex"
+        i.insertAdjacentHTML("beforeend", `<div class="box-btn-list"><button class="btn-open-list" data-modal-open>add to bag</button></div>`)
+      })
     }
-  });
+  })
 
-  clickListener();
+  clickListener()
 }
 
 function clickListener() {
   document.querySelectorAll(".btn-open-list").forEach((btn) => {
     btn.addEventListener("click", function (e) {
-      e.preventDefault();
+      e.preventDefault()
       //
-      window.dataLayer = window.dataLayer || [];
+      window.dataLayer = window.dataLayer || []
       dataLayer.push({
         event: "event-to-ga",
         eventCategory: "Exp — Stiсky button mobile",
         eventAction: "Click Add to bag button PLP",
-      });
+      })
       //
 
-      toggleModal();
-    });
-  });
+      toggleModal()
+    })
+  })
 }
 
 function createColorPlp() {
   if (!document.querySelector(".col-sm-12")) {
-    document.querySelector(".custom-add-to-bag").insertAdjacentHTML("beforebegin", pickColorPlp);
+    document.querySelector(".custom-add-to-bag").insertAdjacentHTML("beforebegin", pickColorPlp)
   }
 }
 
 function createSizePlp() {
   if (!document.querySelector(".col-sm-12")) {
-    document.querySelector(".custom-add-to-bag").insertAdjacentHTML("beforebegin", pickSizePlp);
+    document.querySelector(".custom-add-to-bag").insertAdjacentHTML("beforebegin", pickSizePlp)
   }
 }
 
 //
-window.dataLayer = window.dataLayer || [];
+window.dataLayer = window.dataLayer || []
 dataLayer.push({
   event: "event-to-ga",
   eventCategory: "Exp — Stiсky button mobile",
   eventAction: "loaded",
-});
-
-(function (h, o, t, j, a, r) {
+})
+;(function (h, o, t, j, a, r) {
   h.hj =
     h.hj ||
     function () {
-      (h.hj.q = h.hj.q || []).push(arguments);
-    };
-  h._hjSettings = { hjid: 2369936, hjsv: 6 };
-  a = o.getElementsByTagName("head")[0];
-  r = o.createElement("script");
-  r.async = 1;
-  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-  a.appendChild(r);
-})(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
+      ;(h.hj.q = h.hj.q || []).push(arguments)
+    }
+  h._hjSettings = { hjid: 2369936, hjsv: 6 }
+  a = o.getElementsByTagName("head")[0]
+  r = o.createElement("script")
+  r.async = 1
+  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+  a.appendChild(r)
+})(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=")
 window.hj =
   window.hj ||
   function () {
-    (hj.q = hj.q || []).push(arguments);
-  };
-hj("trigger", "sticky_button_mobile");
+    ;(hj.q = hj.q || []).push(arguments)
+  }
+hj("trigger", "sticky_button_mobile")
 
 //swipe
-let scriptCustom = document.createElement("script");
-scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js";
-scriptCustom.async = false;
-document.head.appendChild(scriptCustom);
+let scriptCustom = document.createElement("script")
+scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js"
+scriptCustom.async = false
+document.head.appendChild(scriptCustom)
 
 setTimeout(function () {
   $(".modal-form").swipe({
     swipe: function (event, direction, distance, duration, fingerCount, fingerData) {
       if (direction === "down") {
-        toggleModal();
+        toggleModal()
       }
     },
-  });
-}, 500);
+  })
+}, 500)
 
 //MutationObserver
 let observer = new MutationObserver(() => {
   if (document.querySelector("#search-modal") || document.querySelector("#search")) {
-    observer.disconnect();
-    createButtonListSearch();
+    observer.disconnect()
+    createButtonListSearch()
     observer.observe(document.querySelector("#search-modal") || document.querySelector("#search"), {
       childList: true,
       subtree: true,
-    });
+    })
   }
-});
+})
 
 observer.observe(document.querySelector("#search-modal") || document.querySelector("#search"), {
   childList: true,
   subtree: true,
-});
+})
 
 let mutArticle = new MutationObserver((muts) => {
-  mutArticle.disconnect();
-  createButtonList();
+  mutArticle.disconnect()
+  createButtonList()
   mutArticle.observe(document.querySelector("article"), {
     childList: true,
     subtree: true,
-  });
-});
+  })
+})
 
 mutArticle.observe(document.querySelector("article"), {
   childList: true,
   subtree: true,
-});
+})
 
 //Fetch
-// function getFetchToken() {
-//   const clientSecret = "13755552476747438835239b25ed9568a689ce4c768442288ec2cd34bbaf6e6fc0172f709e774f7998dd1ff0e839afa2";
-//   const clientId = "611f9e56fd56202c38c1fceb";
+function getFetchToken() {
+  const clientSecret = "13755552476747438835239b25ed9568a689ce4c768442288ec2cd34bbaf6e6fc0172f709e774f7998dd1ff0e839afa2"
+  const clientId = "611f9e56fd56202c38c1fceb"
 
-//   fetch("https://api.diven.do/oauth2/token", {
-//     method: "post",
-//     body: `client_id=${clientId}&client_secret=${clientSecret}&grant_type=client_credentials`,
-//   })
-//     .then((response) => {
-//       return response.json();
-//     })
-//     .then((token) => {
-//       console.log(token);
-//     })
-//     .catch((error) => {
-//       console.error(error);
-//     });
-// }
-// getFetchToken();
+  fetch("https://api.diven.do/oauth2/token", {
+    method: "post",
+    body: `client_id=${clientId}&client_secret=${clientSecret}&grant_type=client_credentials`,
+  })
+    .then((response) => {
+      return response.json()
+    })
+    .then((token) => {
+      console.log(token)
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+}
+getFetchToken()
 
-// function getFetchData() {
-//   fetch("https://api.diven.do/store/products", {
-//     headers: {
-//       Authorization:
-//         "Bearer qI4akOzSSUs8D5Tp4SY7CR1ipjh4KKRBoG8JxAbLugKVn3zBlACKxxZlAZl3O7Sjm-FaRZG0J85_cnJqGjWVEoJ-_VoNY8FvmGv02hD3bromDtYSvh7iLYvIHezwdkZaL4AaQkh7yJdHRkbEg6x3eAkexCT3dHSQpT7Fwc_FBPiKkNYrmNFjHiPCf3v6RmVltSM5jYIZ9LSRQc2EYqgMh6o9pIVWH2VTulbsqgGPweuh7qc1EjX-FSPxz0uRtOh-QeR92ppiMAeuWDDvkcW266ozqYL_v25bcyqWTJ-KP_8",
-//       "Content-Type": "application/json",
-//     },
-//   })
-//     .then((response) => {
-//       return response.json();
-//     })
-//     .then((store) => {
-//       console.log(store.results);
-//     })
-//     .catch((error) => {
-//       console.error(error);
-//     });
-// }
-// getFetchData();
+function getFetchData() {
+  fetch("https://api.diven.do/store/products", {
+    headers: {
+      Authorization:
+        "Bearer 5TS9euyDvMV24MWlK-toL7Sju0H7pBJaZGs9kX_ascIl2LzRUXWriDIhslRzEpTnaPOzDw927AjWuAe_dgHJ5Y10HCT7BXtnQgadj7yI4AargKJbO3oQ8uO9srPTFZnPwEBIbZHmylsmYRSRtkAA-Kbj6eYNl72Nf2xcIpvUgroWVddhRx71j7dpWi8vJxycGqXIG0QN8O-yGEY2Z-f-eNdkqU4wrQ1YOJ0cxglO2jxoFfk2uuTtyS8uHC4h2nTEjq6-lkgHfp0FqWstsFGAkNX-WmA6jp0FDd8pdJe-Nvc",
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      return response.json()
+    })
+    .then((store) => {
+      console.log(store.results)
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+}
+getFetchData()
