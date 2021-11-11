@@ -446,6 +446,19 @@ let styleNewLanding = /*html*/ `
         border-radius: 6px;
     }
 
+    .js-packs input[type=radio]+label.radio-inline:nth-child(3){
+        border-radius: 0px 6px 6px 6px !important;
+    }
+
+    .bestseller{
+        border-radius: 3px 3px 0px 0px !important;
+        font-family: 'DINEngschrift LT', sans-serif !important;
+        letter-spacing: 0.02em !important;
+        font-size: 11px !important;
+        line-height: 1 !important;
+        padding: 7px 20px !important;
+    }
+
     .js-packs input[type=radio]+label span{
         font-family: 'Roboto', sans-serif !important;
         font-weight: 400 !important;
@@ -576,11 +589,15 @@ let styleNewLanding = /*html*/ `
 
     .faqs #js-accordion .card-link{
         font-family: 'Roboto', sans-serif !important;
-        font-weight: 600 !important;
+        font-weight: 400 !important;
         font-size: 18px !important;
         line-height: 130% !important;
         color: #212529;
-        padding: 15px 20px 15px 30px !important;
+        padding: 15px 1px 15px 38px !important;
+    }
+
+    #js-accordion .card-link:hover{
+        color: #FF3C7F !important;
     }
 
     .faqs #js-accordion p{
@@ -592,7 +609,7 @@ let styleNewLanding = /*html*/ `
     }
 
     .faqs #js-accordion .card-body{
-        padding: 0 0 0 30px !important;
+        padding: 0 0 0 38px !important;
     }
     
     /*footer */
@@ -702,7 +719,7 @@ let styleNewLanding = /*html*/ `
         width: 100%;
         max-width: 343px;
         padding: 20.5px 20px;
-        margin-top: 40px;
+        margin-top: 24px;
 
         font-family: 'DINEngschrift LT', sans-serif;
         font-weight: 400;
@@ -851,16 +868,91 @@ let styleNewLanding = /*html*/ `
 
     #featured-reviews > a{
         margin-top: 40px;
-    }   
+    }
+    
+    /* */
 
+    .by_op_daily{
+        margin: 56px 0;
+    }
+
+    .by_op_daily p{
+        font-family: 'DINEngschrift LT', sans-serif;
+        font-weight: 400;
+        font-size: 26px !important;
+        line-height: 110% !important;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: #0C0B0B;
+        margin-bottom: 28px !important;
+    }
+
+    .by_op_daily p > a{
+        color: #FF3C7F !important;
+    }
+
+    .by_op_daily > span{
+        font-family: 'Roboto', sans-serif !important;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 130%;
+        text-align: center;
+        color: #0C0B0B;
+        margin-right: 10px;
+    }
+
+    .by_op_daily img{
+        object-fit: cover;
+        max-width: 296px !important;
+    }
+
+    @media (max-width: 320px) {
+        .by_op_daily p{
+            font-size: 22px !important;
+        }
+
+        .by_op_daily img{
+            object-fit: cover;
+            max-width: 235px !important;
+        }
+    }
 </style>
+`
+
+let oD = /*html*/ `
+<div class="by_op_daily">
+    <p>Buzzpatch was included in <a href="https://www.oprahdaily.com/life/g38025636/11-gifts-every-mom-will-appreciate/" target="_blank">
+         “11 Gifts Every Mom Will Appreciate”</a></p>
+    <span>by</span>
+    <img src="https://conversionratestore.github.io/projects/buzzpatch/img/name.png" alt="by Oprah Daily">
+    <ul>
+            <li>
+                <img src="https://conversionratestore.github.io/projects/buzzpatch/img/verified_buyer_2.png" alt="">
+                <p class="accent_var">Maria Drew</p>
+                <p>Great product! No more tears and fights when applying bug spray. My 1 year old didn’t even know it happened.</p>
+                <span>Verified Buyer</span>
+            </li>
+            <li>
+                <img src="https://conversionratestore.github.io/projects/buzzpatch/img/verified_buyer_1.png" alt="">
+                <p class="accent_var">Joanne</p>
+                <p>These are amazing, they really work! I'm a magnet for mosquitoes and didn't get bit once :)</p>
+                <span>Verified Buyer</span>
+            </li>
+            <li>
+                <img src="https://conversionratestore.github.io/projects/buzzpatch/img/verified_buyer_3.png" alt="">
+                <p class="accent_var">Jodie N.M.</p>
+                <p>Excellent product will keep ordering. Works wonders on my grandson who is allergic. Thank you buzz patch.</p>
+                <span>Verified Buyer</span>
+            </li>
+    </ul>
+</div>
 `
 
 let navBlock = /*html*/ `
 <div class="nav_block">
     <p>Our customers rate <br> us as <b>Excellent</b></p>
     <div>
-        <img src="https://conversionratestore.github.io/projects/buzzpatch/img/trustpilot.png" alt="logo trustpilot" width="94" height="23">
+        <img src="https://conversionratestore.github.io/projects/buzzpatch/img/trustpilot.svg" alt="logo trustpilot" width="94" height="23">
     </div>
     <div>
         <a href="https://www.trustpilot.com/review/buzzpatch.com" target="blank">
@@ -886,30 +978,16 @@ let blockAllergies = /*html*/ `
 <section class="block_as_seen_on">
     <div>
         <h2>AS SEEN ON</h2>
-        <img src="https://conversionratestore.github.io/projects/buzzpatch/img/partners.png" alt="">
+        <img src="https://conversionratestore.github.io/projects/buzzpatch/img/partners_new.png" alt="">
     </div>
     <div>
         <img src="https://conversionratestore.github.io/projects/buzzpatch/img/logo_winner.png" alt="">
-        <ul>
-            <li>
-                <img src="https://conversionratestore.github.io/projects/buzzpatch/img/verified_buyer_2.png" alt="">
-                <p class="accent_var">Maria Drew</p>
-                <p>Great product! No more tears and fights when applying bug spray. My 1 year old didn’t even know it happened.</p>
-                <span>Verified Buyer</span>
-            </li>
-            <li>
-                <img src="https://conversionratestore.github.io/projects/buzzpatch/img/verified_buyer_1.png" alt="">
-                <p class="accent_var">Joanne</p>
-                <p>These are amazing, they really work! I'm a magnet for mosquitoes and didn't get bit once :)</p>
-                <span>Verified Buyer</span>
-            </li>
-            <li>
-                <img src="https://conversionratestore.github.io/projects/buzzpatch/img/verified_buyer_3.png" alt="">
-                <p class="accent_var">Jodie N.M.</p>
-                <p>Excellent product will keep ordering. Works wonders on my grandson who is allergic. Thank you buzz patch.</p>
-                <span>Verified Buyer</span>
-            </li>
-        </ul>
+        <div class="by_op_daily">
+            <p>Buzzpatch was included in <a href="https://www.oprahdaily.com/life/g38025636/11-gifts-every-mom-will-appreciate/" target="blank">
+                “11 Gifts Every Mom Will Appreciate”</a></p>
+            <span>by</span>
+            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/name.png" alt="by Oprah Daily">
+        </div>        
     </div>
     <a href="#getNow" class="button_custom">Keep mosquitos at bay</a>
 </section>
@@ -1077,7 +1155,7 @@ let blockAllergies = /*html*/ `
     <h4>Effective up to <span>72</span> hours. <br> Lasts for <span>12</span> months</h4>
     <p>Our stickers are the most effective in the first 12 hours and continue to be effective for up to 72 hours.</p>
     <p>If not in use, seal the BuzzPatch sticker in a provided bag that will keep it active for up to 12 months. </p>
-    <img src="https://conversionratestore.github.io/projects/buzzpatch/img/illustration.png" alt="">
+    <img src="https://conversionratestore.github.io/projects/buzzpatch/img/Illustration_new.png" alt="">
 </div>
 
 </section>
@@ -1177,13 +1255,13 @@ document
 
 document
   .querySelector("#purchase .container.package .row.no-gutters #getNow p:nth-child(3)")
-  .insertAdjacentHTML("afterend", `<img src="https://conversionratestore.github.io/projects/buzzpatch/img/select_package.png" alt="buzzpatch photo">`)
+  .insertAdjacentHTML("afterend", `<img src="https://conversionratestore.github.io/projects/buzzpatch/img/select_package_new.png" alt="buzzpatch photo">`)
 
 document.querySelector("#featured-reviews").insertAdjacentHTML("afterbegin", sliderNav)
 document.querySelector(".slider_nav").insertAdjacentHTML("afterend", `<a href="#getNow" class="button_custom">Keep mosquitos at bay</a>`)
 
 // btn
-scrolling(".block_as_seen_on a", "Click on Keep Mosqitos At Bay button1")
+scrolling(".block_as_seen_on > a", "Click on Keep Mosqitos At Bay button1")
 scrolling(".compar_block a", "Click on Keep Mosqitos At Bay button2")
 scrolling("#featured-reviews div a", "Click on Keep Mosqitos At Bay button3")
 scrolling("#featured-reviews > a", "Click on Keep Mosqitos At Bay button4")
@@ -1276,6 +1354,17 @@ setTimeout(() => {
   })
 }, 100)
 
+//
+document.querySelector(".by_op_daily p > a").addEventListener("click", () => {
+  window.dataLayer = window.dataLayer || []
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp - LP AB test",
+    eventAction: "Click on link text byOprahDaily",
+    eventLabel: `Link text byOprahDaily`,
+  })
+})
+
 // Clicks on Trust Pilot
 document.querySelector(".nav_block div:last-child a").addEventListener("click", () => {
   window.dataLayer = window.dataLayer || []
@@ -1310,4 +1399,4 @@ window.hj =
   function () {
     ;(hj.q = hj.q || []).push(arguments)
   }
-hj("trigger", "lp_ab_test")
+hj("event", "lp_ab_test")
