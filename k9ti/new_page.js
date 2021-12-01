@@ -5,6 +5,76 @@ let newPageStyle = /*html*/ `
     .container > .col-md-6:first-child, .container > .row.row1030{
         display: none;
     }
+    
+    .spacer30{
+        height: 0 !important;
+    }
+
+    .footer-container{
+        border: none;
+    }
+
+    .site-inner{
+        padding: 0 !important;
+    }
+
+    .first_block .submit_btn{
+        padding: 0;
+        margin: 0;
+        height: unset;
+    }
+
+    .first_block .submit_btn input#submit, input#submit_disabled{
+        background: #1D3871;
+        border-radius: 10px;
+        max-width: 262px;
+        box-shadow: unset;
+    }
+
+    .first_block input#submit:hover{
+        margin: 0 auto !important;
+    }
+
+    body .first_block input, select{
+        border: 1px solid #DFE8F0 !important;
+        border-radius: 5px;
+        padding: 10px 0 10px 18px !important;
+        font-size: 14px !important;
+        line-height: 19px;
+    }
+
+    body .first_block input:focus{
+        font-weight: 700;
+        font-size: 14px !important;
+        line-height: 19px;
+        color: #183B56 !important;
+    }
+
+    body .first_block .submit_btn input#submit, input#submit_disabled:focus{
+        color: #FFFFFF !important;
+    }
+
+    .first_block .top-level{
+        display: block !important;
+    }
+
+    .first_block span.top-level {
+        left: 25px;
+        right: unset !important;
+        top: -6px;
+        line-height: 14px;
+        color: #808080;
+        padding: 0 10px;
+        background: #FFFFFF;
+    }
+
+    .fa-info-circle:before{
+        content: unset !important;
+    }
+
+    input#cvv, select.mm{
+        margin-bottom: 8px !important;
+    }
 
     @media (min-width: 799px){
             body .container {
@@ -13,8 +83,6 @@ let newPageStyle = /*html*/ `
             max-width: 1110px;
         }
     }
-
-
     /*first_block */
     .first_block > img{
         width: 204px;
@@ -35,6 +103,154 @@ let newPageStyle = /*html*/ `
     body .container .first_block > h1 span{
         font-weight: 700;
         text-transform: uppercase;
+    }
+
+    /*scroll_bar_box */
+    .scroll_bar_box{
+        background: #E8F1F9;
+        border-radius: 10px;
+        padding: 25px !important;
+        display: flex;
+        margin-bottom: 40px !important;
+    }
+
+    .scroll_bar_box li{
+        flex: 1;
+        display: flex;
+        position: relative;
+    }
+
+    .scroll_bar_box li:not(:last-child){
+        margin-right: 16px;
+    }
+
+    .scroll_bar_box li:nth-child(3), .scroll_bar_box li:nth-child(4), .scroll_bar_box li:nth-child(5){
+        flex: 1.7;
+    }
+
+    .scroll_bar_box li .figures_box{
+        position: absolute;
+        content: "";
+        bottom: -15px;
+        left: 0;
+        width: 100%;
+    }
+
+    .scroll_bar_box li .figures_box > span:first-child{
+        background: #734F22;
+        border-radius: 21px;
+        width: 70px;
+        height: 4px;
+        display: inline-block;
+    }
+
+    .scroll_bar_box li .figures_box > span:first-child:not(:last-child){
+        margin-right: 20px;
+    }
+
+    .scroll_bar_box li:nth-child(5) .figures_box > span:first-child{
+        max-width: 220px;
+        width: 100%;
+    }
+
+    .scroll_bar_box li .figures_box > span.circle{
+        width: 4px;
+        height: 4px;
+        left: 90px;
+        background: rgba(115, 79, 34, 0.5);
+        border-radius: 21px;
+        display: inline-block;
+    }
+
+    .scroll_bar_box li .figures_box > span.circle:not(:last-child){
+        margin-right: 3%;
+    }
+
+    .scroll_bar_box li .text_block {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+
+    .scroll_bar_box li .text_block > div:first-child p{
+        font-family: 'Open Sans',sans-serif;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 16px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #183B56 !important;
+        margin: 0;
+        text-align: left;
+    }
+
+    .scroll_bar_box li .text_block > div:first-child{
+        margin-bottom: 5px;
+    }
+
+    .scroll_bar_box li .text_block > div:last-child p{
+        font-weight: 400;
+        font-size: 10px;
+        line-height: 12px;
+        color: #808080 !important;
+        margin: 0;
+        text-align: left;
+    }
+
+    .hover_box{
+        position: absolute;
+        content: "";
+        top: 0;
+        right: 0;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: url('https://conversionratestore.github.io/projects/knineti/img/alert_circle.svg') center center no-repeat;
+        cursor: pointer;
+    }
+
+    .hover_text{
+        background: #FFFFFF;
+        box-shadow: 0px 0.688073px 2.06422px rgb(18 53 80 / 5%), 0px 8.25688px 34.4037px rgb(100 102 111 / 12%);
+        border-radius: 10px;
+        padding: 15px;
+        max-width: 189px;
+        width: 189px;
+        position: absolute;
+        top: 25px;
+        right: -21px;
+        content: '';
+        z-index: 1;
+        display: none;
+    }
+
+    .hover_text div{
+        position: relative;
+    }
+
+    .hover_text div::after{
+        position: absolute;
+        content: "";
+        top: -22px;
+        right: -7px;
+        width: 39.84px;
+        height: 9.75px;
+        background: url('https://conversionratestore.github.io/projects/knineti/img/polygon.svg') center center no-repeat;
+    }
+    
+
+    .hover_text p{
+        font-family: 'Open Sans',sans-serif;
+        font-weight: 400;
+        font-size: 10px;
+        line-height: 180%;
+        color: #808080;
+        margin: 0 !important;
+    }
+
+    .hover_box:hover .hover_text{
+        display: block;
     }
 
     /*payment_inform_box */
@@ -254,6 +470,9 @@ let newPageStyle = /*html*/ `
     /* reviews_box */
     .reviews_box{
         display: flex;
+        margin: 100px 0 23px !important;
+        padding-bottom: 120px !important;
+        border-bottom: 1px solid #F0EEEE;
     }
 
     .reviews_box li img{
@@ -307,6 +526,7 @@ let newPageStyle = /*html*/ `
     /* contacts_us */
     .contacts_us{
         display: flex;
+        padding: 0 !important;
     }
 
     .contacts_us li{
@@ -333,11 +553,72 @@ let newPageStyle = /*html*/ `
         font-size: 12px;
         line-height: 167%;
         color: #808080 !important;
+        margin: 0 !important;
     }
 
     .contacts_us p > a{
         color: #0037B4;
     }
+
+     @media (max-width: 768px){
+        body .container .first_block > h1{
+            font-size: 24px !important;
+            margin: 0 0 20px !important;
+        }
+
+        .scroll_bar_box{
+            overflow-x: auto;
+            margin-right: -6%;
+        }
+
+        .payment_inform_box li{
+            width: 100%;
+        }
+
+        .payment_inform_box li:nth-child(2){
+            order: -1;
+        }
+
+        .reviews_box{
+            display: block;
+        }
+
+        .reviews_box li:not(:last-child){
+            margin: 0 0 40px;
+        }
+
+        .reviews_box li p:first-child{
+            height: unset;
+            font-size: 14px;
+            line-height: 19px;  
+        }
+
+        .reviews_box li p:not(:first-child), .contacts_us p:last-child{
+           text-align: left;
+        }
+
+        .reviews_box li img{
+            width: 56px;
+            height: 56px;
+        }
+
+        .reviews_box li div{
+            margin-left: 16px;
+        }
+
+        .reviews_box{
+            margin: 80px 0 20px;
+            padding-bottom: 80px !important;
+        }
+
+        .contacts_us li, .contacts_us li:last-child{
+            padding: 0 !important;
+        }
+
+        .contacts_us li:not(:last-child){
+            margin-right: 25px;
+        }
+     }
 </style>
 
 `
@@ -346,12 +627,100 @@ let firstBlock = /*html*/ `
 <div class="first_block">
     <img src="https://conversionratestore.github.io/projects/knineti/img/logo_training.jpg" alt="logo k9 training institute">
     <h1>Enroll now for <span>unlimited access</span> to our 10-week Total Transformation Masterclass</h1>
-    <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+    <ul class="scroll_bar_box">
+        <li>
+            <div class="text_block">
+                <div>
+                    <p>Enroll for masterclass</p>
+                </div>
+                <div>
+                    <p>Dec 1, 2021</p>
+                </div>
+            </div>
+            <div class="figures_box">
+                <span></span>
+                <span class="circle"></span>
+                <span class="circle"></span>
+            </div>
+        </li>
+        <li>
+            <div class="text_block">
+                <div>
+                    <p>Watch <br/> first lesson</p>
+                </div>
+                <div>
+                    <p>Dec 1, 2021</p>
+                </div>
+            </div>
+            <div class="figures_box">
+                <span></span>
+                <span class="circle"></span>
+                <span class="circle"></span>
+                <span class="circle"></span>
+            </div>
+        </li>
+        <li>
+            <div class="text_block">
+                <div>
+                    <p>Noticeable improvements in your dog’s behavior</p>
+                </div>
+                <div>
+                    <p>Dec 7, 2021</p>
+                </div>
+            </div>
+            <div class="figures_box">
+                <span></span>
+                <span class="circle"></span>
+                <span class="circle"></span>
+                <span class="circle"></span>
+                <span class="circle"></span>
+                <span class="circle"></span>
+                <span class="circle"></span>
+                <span class="circle"></span>
+            </div>
+        </li>
+        <li>
+            <div class="text_block">
+                <div>
+                    <p>Your dog will become as obedient as a service dog</p>
+                </div>
+                <div>
+                    <p>Jan 1, 2022</p>
+                </div>
+            </div>
+            <div class="figures_box">
+                <span></span>
+                <span class="circle"></span>
+                <span class="circle"></span>
+                <span class="circle"></span>
+                <span class="circle"></span>
+                <span class="circle"></span>
+                <span class="circle"></span>
+                <span class="circle"></span>
+                <span class="circle"></span>
+            </div>
+        </li>
+        <li>
+            <div class="text_block">
+                <div>
+                    <p>90 days UNconditional money-back guarantee</p>
+                </div>
+                <div>
+                    <p>Until Mar 1, 2022</p>
+                </div>
+            </div>
+            <div class="figures_box">
+                <span></span>
+            </div>
+            <div class="hover_box">
+                <div class="hover_text">
+                    <div>
+                        <p>If you are not satisfied with the masterclass, please contact us within 90 days of your enrollment to get a full refund.</p>
+                    </div>
+                </div>
+            </div>
+           
+        </li>
     </ul>
 
     <ul class="payment_inform_box">
@@ -508,5 +877,13 @@ setTimeout(() => {
       .after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[0])
 
     document.querySelector(".payment_inform_box").after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[5])
+
+    document.querySelector(".submit_btn input").value = "Enroll Now"
+
+    document.querySelector(".content .page h4, .content .entry-content h4").textContent = "Contact information"
+
+    document.querySelectorAll("input").forEach((el) => {
+      el.placeholder = ""
+    })
   }
 }, 10)
