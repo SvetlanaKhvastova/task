@@ -2,9 +2,254 @@ window.onload = function () {}
 
 let newPageStyle = /*html*/ `
 <style>
-    .col-md-6:first-child, .row.row1030:last-child{
+    .container > .col-md-6:first-child, .container > .row.row1030{
         display: none;
     }
+
+    @media (min-width: 799px){
+            body .container {
+            width: 80%;
+            margin: 0 auto;
+            max-width: 1110px;
+        }
+    }
+
+
+    /*first_block */
+    .first_block > img{
+        width: 204px;
+        display: block;
+        margin: 5px auto 17px;
+    }
+
+    body .container .first_block > h1{
+        font-family: 'Open Sans',sans-serif;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 167%;
+        text-align: center;
+        color: #794E15;
+        margin: 0 0 30px !important;
+    }
+
+    body .container .first_block > h1 span{
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    /*payment_inform_box */
+    .payment_inform_box{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 48px !important;
+        padding: 0 !important;
+    }
+
+    .payment_inform_box li{
+        width: 48%;
+    }
+
+    .payment_inform_box li:nth-child(1), .payment_inform_box li:nth-child(2){
+        margin-bottom: 40px;
+    }
+
+    .payment_inform_box p.subtitle_text{
+        margin: 0 0 16px;
+        font-family: 'Open Sans',sans-serif;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 27px;
+        letter-spacing: -0.01em;
+        text-transform: uppercase;
+        color: #794E15 !important;
+    }
+
+    .payment_inform_box .paymen_method p.subtitle_text{
+        text-transform: none;
+    }
+
+    .paymen_method{
+        position: relative;
+    }
+
+    .paymen_method::after{
+        position: absolute;
+        content: "";
+        background: url('https://conversionratestore.github.io/projects/knineti/img/secured.png') center center no-repeat;
+        width: 167px;
+        height: 30px;
+        top: 0;
+        right: 0;
+    }
+
+    .paymen_method p:last-child{
+        font-family: 'Open Sans',sans-serif;
+        font-weight: 400;
+        font-size: 10px;
+        line-height: 150%;
+        color: #5A7386 !important;
+        margin: 16px 0 0;
+    }
+
+    .payment_inform_box li > div{
+        border: 1px solid #DFE8F0;
+        border-radius: 10px;
+        padding: 28px 25px;
+    }
+
+    .payment_inform_box li > div.customer_information_wrapper, .payment_inform_box li > div.paypament-details{
+        border: unset;
+        padding: unset;
+    }
+
+    .payment_inform_box li > div > p{
+        font-family: 'Open Sans',sans-serif;
+        font-weight: 700;
+        font-size: 10px;
+        line-height: 14px;
+        text-align: right;
+        text-transform: uppercase;
+        color: #734F22 !important;
+        margin: 20px 0 0 !important;
+    }
+
+    .payment_inform_box li > div table thead tr th{
+        border: none;
+        font-family: 'Open Sans',sans-serif;
+        font-weight: 700;
+        font-size: 10px;
+        line-height: 14px;
+        text-align: right;
+        text-transform: uppercase;
+        color: #734F22;
+        padding:  0 0 10px;
+    }
+
+    .payment_inform_box li > div table thead tr th:nth-child(2){
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+
+    .payment_inform_box li > div table tbody tr td{
+        font-family: 'Open Sans',sans-serif;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+        color: #1D3871;
+        padding: 10px 0;
+    }
+
+    .payment_inform_box li > div table tbody tr:last-child td{
+        padding-bottom: 20px;
+    }
+
+    .payment_inform_box li > div table tbody tr td:nth-child(2){
+        color: #808080;
+        text-decoration-line: line-through;
+        text-align: end;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .payment_inform_box li > div table tbody tr td:nth-child(3){
+        color: #183B56;
+        text-align: end;
+        font-weight: 700;
+    }
+
+    .payment_inform_box li > div table tfoot tr td{
+        font-family: 'Open Sans',sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 19px;
+        text-transform: uppercase;
+        color: #1D3871;
+        padding: 20px 0 0;
+        border-top: 1px solid #DFE8F0;
+    }
+
+    .payment_inform_box li > div table tfoot tr td:nth-child(2){
+        color: #808080;
+        text-decoration-line: line-through;
+        text-align: end;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .payment_inform_box li > div table tfoot tr td:nth-child(3){
+        color: #183B56;
+        text-align: end;
+    }
+
+    .payment_inform_box li > div.input_wrapper > div:not(:last-child){
+        margin-bottom: 20px;
+    }
+
+    .payment_inform_box li > div.input_wrapper > div{
+        position: relative;
+    }
+
+    .payment_inform_box .input_wrapper > div > input{
+        position: absolute;
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+    }
+
+    .payment_inform_box .input_wrapper > div label{
+        margin: 0;
+        font-family: 'Open Sans',sans-serif;
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 16px;
+        color: #1D3871;
+
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .payment_inform_box .input_wrapper > div:first-child label span .accent_color{
+        color: #808080;
+        text-decoration-line: line-through;
+        font-weight: 400;
+    }
+
+    .payment_inform_box .input_wrapper > div:last-child label{
+        font-weight: 400;
+    }
+
+    .radio_style{
+        flex-shrink: 0;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        border: 1px solid #808080;
+        margin-right: 12px;
+    }
+
+    .ellipse{
+        display: none;
+    }
+
+    .payment_inform_box .input_wrapper > div >input:checked + label .radio_style{
+        border: 1px solid #1D3871;
+    }
+
+    .payment_inform_box .input_wrapper > div >input:checked + label .radio_style .ellipse{
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background: #1D3871;
+        border-radius: 50%;
+    }
+
 
     /* reviews_box */
     .reviews_box{
@@ -66,7 +311,12 @@ let newPageStyle = /*html*/ `
 
     .contacts_us li{
         flex: 1;
+        padding-left: 92px !important;
     }
+
+     .contacts_us li:last-child{
+        padding-left: 126px !important;
+     }
 
     .contacts_us li p:first-child{
         font-family: 'Open Sans',sans-serif;
@@ -104,9 +354,84 @@ let firstBlock = /*html*/ `
         <li></li>
     </ul>
 
-    <ul>
-        <li></li>
-        <li></li>
+    <ul class="payment_inform_box">
+        <li class="payment_inform_wrapp">
+            <p class="subtitle_text">Payment Information</p>
+        </li>
+        <li>
+            <p class="subtitle_text">Order Summary</p>
+            <div>
+                <table>
+                    <thead>
+                        <th>&nbsp;</th>
+                        <th>Full price</th>
+                        <th>Your price</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Total Transformation Masterclass </td>
+                            <td>$497.00</td>
+                            <td>$297.00</td>
+                        </tr>
+                        <tr>
+                            <td>10 weeks of personal coaching from our training experts</td>
+                            <td>$999.00</td>
+                            <td>$0.00</td>
+                        </tr>
+                        <tr>
+                            <td>BONUS CLASS ‘How to Housetrain Your Dog’</td>
+                            <td>$69.70</td>
+                            <td>$0.00</td>
+                        </tr>
+                        <tr>
+                            <td>BONUS CLASS ‘Cure Your Dog’s Separation Anxiety’</td>
+                            <td>$69.70</td>
+                            <td>$0.00</td>
+                        </tr>
+                        <tr>
+                            <td>BONUS CLASS ‘How to Get Kids to Interact with Your Dog’</td>
+                            <td>$69.70</td>
+                            <td>$0.00</td>
+                        </tr>                        
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>Total</td>
+                            <td>$1705.10</td>
+                            <td>$297.00</td>
+                        </tr>
+                    </tfoot>                   
+                </table>
+                <p>YOUR DISCOUNT IS VALID UNTIL DEC 7, 2021</p>
+            </div>
+        </li>
+        <li class="paymen_method">
+            <p class="subtitle_text">Payment Method</p>
+            <p>We currently support Visa and Mastercard credit and debit cards. <br>You will see a charge from K9ti.org 4157581461 on your card or bank statement.</p>
+        </li>
+        <li>
+            <p class="subtitle_text">Payment plan</p>
+            <div class="input_wrapper">
+                <div>
+                    <input type="radio" id="plan1" name="payplan" checked>
+                    <label for="plan1">
+                        <span class="radio_style">
+                            <span class="ellipse"></span>
+                        </span>
+                        <span>One-time payment of <span class='accent_color'>$1705,10</span> $297</span>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" id="plan2" name="payplan">
+                    <label for="plan2">
+                        <span class="radio_style">
+                            <span class="ellipse"></span>
+                        </span>
+                        <span>3 monthly payments of $99, with the first payment due today</span>
+                    </label>
+                </div>                
+            </div>
+        </li>
     </ul>
 
 
@@ -170,4 +495,18 @@ document.head.insertAdjacentHTML("beforeend", newPageStyle)
 
 setTimeout(() => {
   document.querySelector("section .container").insertAdjacentHTML("afterbegin", firstBlock)
+
+  if (document.querySelector(".first_block")) {
+    document.querySelector(".payment_inform_box .payment_inform_wrapp p.subtitle_text").after(document.querySelector(".customer_information_wrapper"))
+    document
+      .querySelectorAll(".payment_inform_box .payment_inform_wrapp .customer_information_wrapper .row")[1]
+      .after(document.querySelectorAll(".payment_inform_box .payment_inform_wrapp .customer_information_wrapper .row")[0])
+
+    document.querySelector(".payment_inform_box .paymen_method p.subtitle_text").after(document.querySelector(".paypament-details"))
+    document
+      .querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[1]
+      .after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[0])
+
+    document.querySelector(".payment_inform_box").after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[5])
+  }
 }, 10)
