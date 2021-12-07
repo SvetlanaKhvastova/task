@@ -251,7 +251,4 @@ function scrolling(btnSelector, onClick) {
 
 //Try 14 days for FREE
 
-document.querySelectorAll(".sc-column.col-12.sc-root-row")[0].remove()
-document.querySelectorAll(".row.section")[1].remove()
-document.querySelectorAll(".row.section")[2].remove()
-document.querySelectorAll(".row.section")[3].remove()
+//

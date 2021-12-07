@@ -1042,18 +1042,22 @@ function newPage() {
     })
 
     //
-    let today = new Date().toDateString().split(" ")
+    let params = new URLSearchParams(window.location.search)
+    let dQueryDate = atob(params.get("d"))
+    let dsp = dQueryDate.split("-")
+
+    let today = new Date(dsp[0], dsp[1] - 1, dsp[2]).toDateString().split(" ")
     document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[0].textContent = `${today[1]} ${today[2]}, ${today[3]}`
     document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[1].textContent = `${today[1]} ${today[2]}, ${today[3]}`
 
-    let daySeven = new Date(new Date().setDate(new Date().getDate() + 7)).toDateString().split(" ")
+    let daySeven = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 7)).toDateString().split(" ")
     document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[2].textContent = `${daySeven[1]} ${daySeven[2]}, ${daySeven[3]}`
     document.querySelector(".payment_inform_box li > div > p").textContent = `YOUR DISCOUNT IS VALID UNTIL ${daySeven[1]} ${daySeven[2]}, ${daySeven[3]}`
 
-    let dayThirty = new Date(new Date().setDate(new Date().getDate() + 30)).toDateString().split(" ")
+    let dayThirty = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 30)).toDateString().split(" ")
     document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[3].textContent = `${dayThirty[1]} ${dayThirty[2]}, ${dayThirty[3]}`
 
-    let dayNinty = new Date(new Date().setDate(new Date().getDate() + 90)).toDateString().split(" ")
+    let dayNinty = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 90)).toDateString().split(" ")
     document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[4].textContent = `Until ${dayNinty[1]} ${dayNinty[2]}, ${dayNinty[3]}`
 
     document.querySelector(".submit_btn input").value = "Enroll Now"
