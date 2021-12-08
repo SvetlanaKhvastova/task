@@ -90,11 +90,45 @@ let newPageStyle = /*html*/ `
         display: flex;
         justify-content: space-between;
         align-items: center;
+        border-radius: 5px;
     }
 
     .payment_inform_box li > div.card_type .col-md-4.col-sm-4{
         padding: 0 !important;
+        height: 100%;
+        display: flex;
+        align-items: center;
     }
+
+    input#card1, input#card2{
+        position: absolute;
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+    }
+
+
+
+    .payment_inform_box li > div.card_type label{
+        margin-bottom: 0 !important;
+        display: flex;
+        cursor: pointer;
+    }
+
+    .radio_card_type{
+        margin-left: unset !important;
+        position: relative;
+        margin: 0 !important;
+    }
+
+    .payment_inform_box li > div.card_type input:checked + label .radio_style .ellipse{
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background: #1D3871;
+        border-radius: 50%;
+    }
+
 
     @media (min-width: 769px){
             body .container {
@@ -492,7 +526,6 @@ let newPageStyle = /*html*/ `
         border-radius: 50%;
     }
 
- 
 
     /* reviews_box */
     .reviews_box{
@@ -532,82 +565,6 @@ let newPageStyle = /*html*/ `
     .reviews_box li div span{
         display: block;
         margin-bottom: 8px;
-    }
-
-    li.paymen_method .input_wrapper{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 20px;
-        padding: 20px 20px !important;
-        border-radius: 5px;
-    }
-
-    li.paymen_method > div.input_wrapper > p{
-        margin: 0 !important;
-        font-size: 14px !important;
-        font-weight: 400 !important;
-        color: inherit !important;
-        text-transform: capitalize;
-    }
-
-    li.paymen_method div.input_wrapper> div {
-        margin-bottom: 0 !important;
-    }
-
-    li.paymen_method > div.input_wrapper > div{
-        position: relative;
-    }
-
-    li.paymen_method .input_wrapper > div > input{
-        position: absolute;
-        width: 0.1px;
-        height: 0.1px;
-        opacity: 0;
-    }
-
-    li.paymen_method .input_wrapper > div label{
-        margin: 0;
-        font-family: 'Open Sans',sans-serif;
-        font-weight: 400;
-        font-size: 12px;
-        line-height: 16px;
-        color: inherit !important;
-
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        cursor: pointer;
-    }
-
-
-
-    li.paymen_method .radio_style{
-        flex-shrink: 0;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        width: 13px;
-        height: 13px;
-        border-radius: 50%;
-        border: 1px solid #808080;
-        margin-right: 12px;
-    }
-
-    li.paymen_method .ellipse{
-        display: none;
-    }
-
-    li.paymen_method .input_wrapper > div >input:checked + label .radio_style{
-        border: 1px solid #1D3871;
-    }
-
-    li.paymen_method .input_wrapper > div >input:checked + label .radio_style .ellipse{
-        display: inline-block;
-        width: 8px;
-        height: 8px;
-        background: #1D3871;
-        border-radius: 50%;
     }
 
     @media (max-width: 1283px){
@@ -849,10 +806,6 @@ let newPageStyle = /*html*/ `
                 padding-bottom: 0px !important;
             }
     }
-
-    .text-field-style input[type="email"], input[type="password"], input[type="text"]{
-        height: unset;
-    }
 </style>
 
 `
@@ -1011,28 +964,7 @@ let firstBlock = /*html*/ `
             </div>
         </li>
         <li class="paymen_method">
-            <p class="subtitle_text">Payment Method</p>            
-            <div class="input_wrapper">
-                <p>Card Type</p>
-                <div>
-                    <input type="radio" maxlength="50" id="card1" checked name="card" tabindex="12" value="visa">
-                    <label for="card1">
-                        <span class="radio_style">
-                            <span class="ellipse"></span>
-                        </span>
-                        <span>Visa</span>
-                    </label>
-                </div>
-                <div>
-                    <input type="radio" maxlength="50" id="card2" name="card" tabindex="13" value="mastercard">
-                    <label for="card2">
-                        <span class="radio_style">
-                            <span class="ellipse"></span>
-                        </span>
-                        <span>Mastercard</span>
-                    </label>
-                </div>                
-            </div>
+            <p class="subtitle_text">Payment Method</p>
             <p class="support_text">We currently support Visa and Mastercard credit and debit cards. <br>You will see a charge from K9ti.org 4157581461 on your card or bank statement.</p>
         </li>
         <li class="payment_plan_wrapp">
@@ -1135,7 +1067,6 @@ function newPage() {
 
   if (document.querySelector(".first_block")) {
     document.querySelector(".payment_plan").remove()
-    document.querySelector(".card_type").remove()
 
     document.querySelector(".payment_inform_box .payment_inform_wrapp p.subtitle_text").after(document.querySelector(".customer_information_wrapper"))
 
@@ -1143,9 +1074,8 @@ function newPage() {
       .querySelectorAll(".payment_inform_box .payment_inform_wrapp .customer_information_wrapper .row")[1]
       .after(document.querySelectorAll(".payment_inform_box .payment_inform_wrapp .customer_information_wrapper .row")[0])
 
-    // document.querySelector(".payment_inform_box .paymen_method p.subtitle_text").after(document.querySelector(".paypament-details"))
-    document.querySelector("li.paymen_method .input_wrapper").after(document.querySelector(".paypament-details"))
-
+    document.querySelector(".payment_inform_box .paymen_method p.subtitle_text").after(document.querySelector(".paypament-details"))
+    document.querySelector(".payment_inform_box .paymen_method p.subtitle_text").after(document.querySelector(".card_type"))
     document
       .querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[1]
       .after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[0])
@@ -1156,6 +1086,22 @@ function newPage() {
 
     document.querySelector("#month").options[0].text = "Month"
     document.querySelector("#year1").options[0].text = "Year"
+
+    //
+    document.querySelector("#card1").insertAdjacentHTML(
+      "afterend",
+      `<label for="card1">
+                         <span class="radio_style"><span class="ellipse"></span></span>
+        </label>
+   `
+    )
+
+    document.querySelector("#card2").insertAdjacentHTML(
+      "afterend",
+      `<label for="card2">
+                         <span class="radio_style"><span class="ellipse"></span></span>
+        </label>`
+    )
 
     document.querySelectorAll("input").forEach((el) => {
       el.placeholder = ""
