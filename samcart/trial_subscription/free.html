@@ -1,0 +1,277 @@
+<style>
+  h4.tpl-6__checkout__subtitle.mt-sm-20.mb-16,
+  .v2-horizontal-large-container {
+    display: none;
+  }
+
+  .tpl-6__order.text-center.pt-sm-30.py-24 #placeOrder {
+    max-width: 323px !important;
+    height: 48px !important;
+  }
+
+  .tpl-6__order.text-center.pt-sm-30.py-24 > p {
+    max-width: 339px;
+    margin: 0 auto;
+  }
+
+  #payments {
+    margin-bottom: 12px;
+  }
+
+  #order-summary-widget #summary-totals,
+  #paymentForm .invoice-amount-col.float-right.text-right {
+    color: #f2813f;
+  }
+
+  .text_pricing {
+    margin: 12px 0 0 !important;
+    text-align: right;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #183b56;
+  }
+
+  .text_pricing span:first-child {
+    text-decoration-line: line-through;
+  }
+
+  .text_pricing span:last-child {
+    font-weight: 500;
+  }
+
+  .title {
+    margin-top: 40px !important;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400 !important;
+    font-size: 32px !important;
+    line-height: 119% !important;
+    color: #172f44 !important;
+  }
+
+  .text {
+    font-size: 16px;
+    line-height: 125%;
+  }
+
+  .text:last-of-type {
+    margin: 0 !important;
+  }
+
+  ul {
+    display: flex;
+    padding: 0 !important;
+    align-items: center;
+    justify-content: space-between;
+    display: none;
+  }
+
+  ul li {
+    display: flex;
+    list-style: none;
+    background: #f6faeb;
+    border-radius: 40px;
+    padding: 12px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #183b56;
+  }
+  ul li:not(:last-child) {
+    margin-right: 12px;
+  }
+  ul li p {
+    margin: 0 !important;
+    padding-left: 10px;
+  }
+
+  #paymentForm .invoice-item.total-row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #paymentForm .invoice-amount-col.float-right.text-right {
+    color: #f2813f !important;
+    font-weight: 700 !important;
+    font-size: 20px !important;
+    line-height: 23px !important;
+  }
+
+  #paymentForm .invoice-item-label {
+    font-weight: 700 !important;
+    font-size: 20px !important;
+    line-height: 23px !important;
+    letter-spacing: 0.01em !important;
+    text-transform: uppercase !important;
+    color: #183b56 !important;
+  }
+
+  @media (max-width: 767px) {
+    .title {
+      font-weight: 700 !important;
+      font-size: 20px !important;
+      line-height: 120% !important;
+      text-align: center !important;
+    }
+
+    ul {
+      flex-wrap: wrap;
+      margin: 0 0 40px !important;
+    }
+
+    ul li {
+      width: 100%;
+    }
+
+    ul li:not(:last-child) {
+      margin: 0 0 12px 0;
+    }
+
+    .invoice-item.total-row {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    #paymentForm .invoice-item.total-row {
+      padding: 0 16px;
+      justify-content: flex-end;
+      background: #eff8fe;
+      margin: 0 -16px;
+    }
+
+    #paymentForm .invoice-item-label {
+      margin-right: 7px;
+    }
+
+    #paymentForm .text_pricing {
+      background: #eff8fe;
+      margin: 0 -16px !important;
+      padding: 12px 16px 0 0;
+    }
+
+    #payments {
+      margin-bottom: 0 !important;
+      padding-bottom: 12px !important;
+    }
+
+    .tpl-6__order.text-center.pt-sm-30.py-24 {
+      background: #eff8fe;
+      margin: 0 -16px -16px !important;
+      padding: 24px 16px 45px !important;
+    }
+  }
+</style>
+
+<!-- <p class="title">100% no-risk free trial</p>
+<ul>
+  <li>
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M7.50013 13.4749L4.61263 10.5874C4.28783 10.2626 3.7615 10.2616 3.43555 10.5853C3.10797 10.9106 3.10704 11.4401 3.43347 11.7665L7.50013 15.8332L16.9125 6.42084C17.237 6.0963 17.237 5.57011 16.9125 5.24556C16.5881 4.92113 16.0621 4.921 15.7375 5.24529L7.50013 13.4749Z"
+        fill="#89BE00"
+      />
+    </svg>
+    <p>Cancel at ANY time during your trial.</p>
+  </li>
+  <li>
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M7.50013 13.4749L4.61263 10.5874C4.28783 10.2626 3.7615 10.2616 3.43555 10.5853C3.10797 10.9106 3.10704 11.4401 3.43347 11.7665L7.50013 15.8332L16.9125 6.42084C17.237 6.0963 17.237 5.57011 16.9125 5.24556C16.5881 4.92113 16.0621 4.921 15.7375 5.24529L7.50013 13.4749Z"
+        fill="#89BE00"
+      />
+    </svg>
+    <p>Get access to all features.</p>
+  </li>
+  <li>
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M7.50013 13.4749L4.61263 10.5874C4.28783 10.2626 3.7615 10.2616 3.43555 10.5853C3.10797 10.9106 3.10704 11.4401 3.43347 11.7665L7.50013 15.8332L16.9125 6.42084C17.237 6.0963 17.237 5.57011 16.9125 5.24556C16.5881 4.92113 16.0621 4.921 15.7375 5.24529L7.50013 13.4749Z"
+        fill="#89BE00"
+      />
+    </svg>
+    <p>Pay NOTHING for the first 30-days.</p>
+  </li>
+</ul>
+
+<p class="text">We ask for credit card to continue your access after free trial and charge the price of subscription after 14 days.</p>
+<p class="text">This also allows us to reduce fraud and prevent multiple free trials for one person. This helps us deliver better service for all the honest customers.</p> -->
+
+<script type="text/javascript">
+  setTimeout(() => {
+    document.querySelector(".main_title").after(document.querySelector("#order-summary-widget"))
+    document.querySelectorAll(".invoice-amount-col.float-right.text-right")[4].textContent = "0.00$ for 14 days"
+    document.querySelectorAll(".product-price-col.float-right.text-right")[0].textContent = "$349.00"
+
+    document.querySelector(".invoice-item.total-row").insertAdjacentHTML("afterend", `<p class="text_pricing">After 14 days: <span>$580</span> <span>$349</span></p>`)
+    document.querySelector("#payments").insertAdjacentElement("afterend", document.querySelector(".text_pricing").cloneNode(true))
+    document.querySelector("#payments").insertAdjacentElement("afterend", document.querySelector(".invoice-item.total-row").cloneNode(true))
+    document.querySelector(".main_title").before(document.querySelector(".tpl-6__checkout__title.mb-sm-24.mb-16"))
+
+    //click btn Start my free trial
+    document.querySelector("#placeOrder").addEventListener("click", () => {
+      window.dataLayer = window.dataLayer || []
+      dataLayer.push({
+        event: "event-to-ga",
+        eventCategory: "Exp — Trial subscription checkout",
+        eventAction: "Click on Start my free trial button",
+        eventLabel: "page Checkout",
+      })
+    })
+
+    visibility("#placeOrder", "Visibility Start my free trial button")
+
+    function visibility(selector, eventAct) {
+      //observer
+      const options = {
+        root: null,
+        threshold: 0.5,
+      }
+
+      let containerFaq = document.querySelector(selector)
+      let observer = new IntersectionObserver((entries) => {
+        if (!entries[0].isIntersecting) return
+        //
+
+        window.dataLayer = window.dataLayer || []
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: "Exp — Trial subscription checkout",
+          eventAction: eventAct,
+          eventLabel: "page Checkout",
+        })
+
+        observer.disconnect()
+      })
+
+      observer.observe(containerFaq, options)
+    }
+
+    ;(function (h, o, t, j, a, r) {
+      h.hj =
+        h.hj ||
+        function () {
+          ;(h.hj.q = h.hj.q || []).push(arguments)
+        }
+      h._hjSettings = { hjid: 2592989, hjsv: 6 }
+      a = o.getElementsByTagName("head")[0]
+      r = o.createElement("script")
+      r.async = 1
+      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+      a.appendChild(r)
+    })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=")
+    window.hj =
+      window.hj ||
+      function () {
+        ;(hj.q = hj.q || []).push(arguments)
+      }
+    hj("trigger", `tv_trial_subscription_checkout_${eventVar}`)
+    hj("event", `trial_subscription_checkout_${eventVar}`)
+
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: `Exp — Trial subscription checkout ${eventVar}`,
+      eventAction: "loaded",
+    })
+  }, 100)
+</script>

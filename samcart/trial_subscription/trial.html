@@ -1,4 +1,11 @@
 <style>
+  .tpl-6__content.py-sm-34.px-sm-48.p-16.rounded.bg-white {
+    display: none;
+  }
+
+  .tpl-6.pb-sm-48 {
+    padding-bottom: 0 !important;
+  }
   .payment_list {
     display: flex;
     flex-wrap: wrap;
@@ -48,7 +55,8 @@
     margin: 0 !important;
   }
 
-  .payment_list li.link_wrapper {
+  .payment_list li.link_wrapper,
+  .payment_list li:nth-child(2) {
     display: flex;
     justify-content: center;
   }
@@ -68,7 +76,7 @@
     line-height: 18px;
   }
 
-  .payment_list li.link_wrapper a:not(:last-child) {
+  .payment_list li.link_wrapper a {
     margin-right: 9px;
   }
 
@@ -79,7 +87,7 @@
     height: 48px;
     background: #2096ef !important;
     border-radius: 48px;
-    margin-right: 0;
+    margin-right: 9px;
   }
 
   .pay_pal_btn {
@@ -153,13 +161,13 @@
     <span>$349</span>
   </li>
   <li>
-    <a href="#paymentForm" class="enroll_now">Enroll Now</a>
+    <a href="https://checkout.samcart.com/products/courses-special-offer-purchase" class="enroll_now" target="blank">Enroll Now</a>
   </li>
   <li>
     <p>30 days money back guarantee</p>
   </li>
   <li class="link_wrapper">
-    <a href="#payments" class="pay_pal_btn">
+    <a href="https://checkout.samcart.com/products/courses-special-offer-purchase" class="pay_pal_btn" target="blank">
       <svg width="77" height="20" viewBox="0 0 77 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M13.5257 5.96615C13.6882 4.66276 13.5257 3.79384 12.8739 2.98698C12.167 2.11806 10.9176 1.68359 9.34246 1.68359H4.72398C4.45237 1.68359 4.1268 1.99393 4.07166 2.30426L2.17041 16.0829C2.17041 16.3312 2.33349 16.6415 2.6051 16.6415H5.43027L5.26719 18.0069C5.21264 18.2552 5.37572 18.4414 5.59278 18.4414H7.98384C8.25603 18.4414 8.52706 18.2552 8.58161 17.9449V17.7587L9.07027 14.5313V14.4072C9.12483 14.0968 9.39644 13.8485 9.66804 13.8485H9.99479C12.3302 13.8485 14.1234 12.7934 14.6667 9.6901C14.9383 8.38673 14.8304 7.3316 14.178 6.5868C14.0149 6.33855 13.7428 6.15235 13.5257 5.96615Z"
@@ -199,7 +207,7 @@
         />
       </svg>
     </a>
-    <a href="#payments" class="apple_pay_btn">
+    <a href="https://checkout.samcart.com/products/courses-special-offer-purchase" class="apple_pay_btn" target="blank">
       <svg width="49" height="20" viewBox="0 0 49 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_752_14414)">
           <path
@@ -214,7 +222,7 @@
         </defs>
       </svg>
     </a>
-    <a href="#payments" class="google_pay_btn">
+    <a href="https://checkout.samcart.com/products/courses-special-offer-purchase" class="google_pay_btn" target="blank">
       <svg width="49" height="20" viewBox="0 0 49 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M22.9003 9.75189V15.3496H21.1348V1.53329H25.8076C26.3636 1.52077 26.9166 1.6191 27.4347 1.82262C27.9528 2.02615 28.4259 2.33086 28.8268 2.71923C29.2257 3.09274 29.5439 3.54512 29.7615 4.04811C29.979 4.5511 30.0913 5.0939 30.0913 5.64259C30.0913 6.19128 29.979 6.73408 29.7615 7.23707C29.5439 7.74006 29.2257 8.19244 28.8268 8.56595C28.4257 8.95405 27.9526 9.25859 27.4345 9.4621C26.9164 9.66561 26.3636 9.76409 25.8076 9.75189H22.865H22.9003ZM22.9003 3.22919V8.04413H25.8429C26.1702 8.05576 26.4962 7.99848 26.8002 7.87596C27.1042 7.75344 27.3795 7.56836 27.6085 7.33256C27.8346 7.11448 28.014 6.85199 28.1355 6.56132C28.2569 6.27065 28.318 5.95796 28.3148 5.64259C28.2918 5.00445 28.0236 4.40026 27.5668 3.95767C27.11 3.51508 26.5003 3.26874 25.8665 3.2707H22.9239L22.9003 3.22919Z"
@@ -243,19 +251,16 @@
         />
       </svg>
     </a>
-    <a href="#payments" class="card_pay_btn">
-      <span class="card-pay-text">Pay with</span>
-      <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M0.416992 11.6875C0.416992 12.2677 0.64746 12.8241 1.0577 13.2343C1.46793 13.6445 2.02433 13.875 2.60449 13.875H15.7295C16.3097 13.875 16.8661 13.6445 17.2763 13.2343C17.6865 12.8241 17.917 12.2677 17.917 11.6875V5.67188H0.416992V11.6875ZM2.99512 8.71875C2.99512 8.40795 3.11858 8.10988 3.33835 7.89011C3.55812 7.67034 3.85619 7.54688 4.16699 7.54688H6.04199C6.35279 7.54688 6.65086 7.67034 6.87063 7.89011C7.0904 8.10988 7.21387 8.40795 7.21387 8.71875V9.5C7.21387 9.8108 7.0904 10.1089 6.87063 10.3286C6.65086 10.5484 6.35279 10.6719 6.04199 10.6719H4.16699C3.85619 10.6719 3.55812 10.5484 3.33835 10.3286C3.11858 10.1089 2.99512 9.8108 2.99512 9.5V8.71875ZM15.7295 0.125H2.60449C2.02433 0.125 1.46793 0.355468 1.0577 0.765704C0.64746 1.17594 0.416992 1.73234 0.416992 2.3125V3.32812H17.917V2.3125C17.917 1.73234 17.6865 1.17594 17.2763 0.765704C16.8661 0.355468 16.3097 0.125 15.7295 0.125Z"
-          fill="white"
-        />
-      </svg>
-    </a>
   </li>
 </ul>
 
 <script type="text/javascript">
+  let eventVar = "desktop"
+
+  if (window.innerWidth <= 768) {
+    eventVar = "mobile"
+  }
+
   let time = setTimeout(() => {
     if (document.querySelector(".enroll_now")) {
       scrolling(".enroll_now")
@@ -273,12 +278,6 @@
       scrolling(".pay_pal_btn", "#payPalRadio")
     }
 
-    if (document.querySelector("#creditCardRadio")) {
-      console.log(`show card_pay_btn`)
-      document.querySelector(".card_pay_btn").style.display = "inline-flex"
-      scrolling(".card_pay_btn", "#creditCardRadio")
-    }
-
     if (document.querySelector(".google-pay:not(.ng-hide)")) {
       console.log(`show google_pay_btn`)
       document.querySelector(".google_pay_btn").style.display = "inline-flex"
@@ -289,15 +288,154 @@
       let btn = document.querySelector(btnSelector)
 
       btn.addEventListener("click", (e) => {
-        e.preventDefault()
-        console.log(btn)
+        let eventAction = ""
+        localStorage.setItem("btn", btnSelector)
 
-        if (btnSelector !== ".enroll_now") {
-          document.querySelector(onClick).click()
+        if (btnSelector === ".enroll_now") {
+          eventAction = "Click on Enroll now button"
         }
 
-        document.querySelector(".tpl-6__order.text-center.pt-sm-30.py-24").scrollIntoView({ block: "start", behavior: "smooth" })
+        if (btnSelector === ".pay_pal_btn") {
+          eventAction = "Click on PayPal button"
+        }
+        if (btnSelector === ".google_pay_btn") {
+          eventAction = "Click on Google pay"
+        }
+        if (btnSelector === ".apple_pay_btn") {
+          eventAction = "Click on Apple pay"
+        }
+
+        window.dataLayer = window.dataLayer || []
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp — Trial subscription checkout ${eventVar}`,
+          eventAction: eventAction,
+        })
       })
     }
+
+    // event btn1
+    if (document.querySelector(".btn_wrapper_first .custom_btn")) {
+      document.querySelector(".btn_wrapper_first .custom_btn").addEventListener("click", () => {
+        window.dataLayer = window.dataLayer || []
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp — Trial subscription checkout ${eventVar}`,
+          eventAction: "Click on Try 14 days for FREE button",
+          eventLabel: "page Special Offer above title Plus $10,060 Worth...",
+        })
+      })
+    }
+
+    // event btn2
+    if (document.querySelector(".btn_wrapper_second .custom_btn")) {
+      document.querySelector(".btn_wrapper_second .custom_btn").addEventListener("click", () => {
+        window.dataLayer = window.dataLayer || []
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp — Trial subscription checkout ${eventVar}`,
+          eventAction: "Click on Try 14 days for FREE button",
+          eventLabel: "page Special Offer above title Create your course...",
+        })
+      })
+    }
+
+    // event btn3
+    if (document.querySelector(".btn_wrapper_third .custom_btn")) {
+      document.querySelector(".btn_wrapper_third .custom_btn").addEventListener("click", () => {
+        window.dataLayer = window.dataLayer || []
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp — Trial subscription checkout ${eventVar}`,
+          eventAction: "Click on Try 14 days for FREE button",
+          eventLabel: "page Special Offer above title 28947 People...",
+        })
+      })
+    }
+
+    // event btn4
+    if (document.querySelector(".btn_wrapper_fourth .custom_btn")) {
+      document.querySelector(".btn_wrapper_fourth .custom_btn").addEventListener("click", () => {
+        window.dataLayer = window.dataLayer || []
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp — Trial subscription checkout ${eventVar}`,
+          eventAction: "Click on Try 14 days for FREE button",
+          eventLabel: "page Special Offer above title A Pre-Designed...",
+        })
+      })
+    }
+
+    // event btn5
+    if (document.querySelector(".btn_wrapper_fifth .custom_btn")) {
+      document.querySelector(".btn_wrapper_fifth .custom_btn").addEventListener("click", () => {
+        window.dataLayer = window.dataLayer || []
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp — Trial subscription checkout ${eventVar}`,
+          eventAction: "Click on Try 14 days for FREE button",
+          eventLabel: "page Special Offer above the footer section",
+        })
+      })
+    }
+
+    visibility(".btn_wrapper_first .custom_btn", "page Special Offer above title Plus $10,060 Worth...")
+    visibility(".btn_wrapper_second .custom_btn", "page Special Offer above title Create your course...")
+    visibility(".btn_wrapper_third .custom_btn", "page Special Offer above title 28947 People...")
+    visibility(".btn_wrapper_fourth .custom_btn", "page Special Offer above title A Pre-Designed...")
+    visibility(".btn_wrapper_fifth .custom_btn", "page Special Offer above the footer section")
+
+    function visibility(selector, eventAction) {
+      //observer
+      const options = {
+        root: null,
+        threshold: 0.5,
+      }
+
+      let containerFaq = document.querySelector(selector)
+      let observer = new IntersectionObserver((entries) => {
+        if (!entries[0].isIntersecting) return
+        //
+        window.dataLayer = window.dataLayer || []
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: "Exp — Trial subscription checkout",
+          eventAction: "Visibility Try 14 days for FREE button",
+          eventLabel: eventAction,
+        })
+
+        observer.disconnect()
+      })
+
+      observer.observe(containerFaq, options)
+    }
+
+    ;(function (h, o, t, j, a, r) {
+      h.hj =
+        h.hj ||
+        function () {
+          ;(h.hj.q = h.hj.q || []).push(arguments)
+        }
+      h._hjSettings = { hjid: 2592989, hjsv: 6 }
+      a = o.getElementsByTagName("head")[0]
+      r = o.createElement("script")
+      r.async = 1
+      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+      a.appendChild(r)
+    })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=")
+    window.hj =
+      window.hj ||
+      function () {
+        ;(hj.q = hj.q || []).push(arguments)
+      }
+    hj("trigger", `tv_trial_subscription_checkout_${eventVar}`)
+    hj("event", `trial_subscription_checkout_${eventVar}`)
+
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: `Exp — Trial subscription checkout ${eventVar}`,
+      eventAction: "loaded",
+    })
   }, 1500)
 </script>
