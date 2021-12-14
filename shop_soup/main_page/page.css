@@ -1,0 +1,244 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+img {
+  display: block;
+}
+
+.container {
+  max-width: 785px;
+  margin: 0 auto;
+}
+
+.hero_img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.page_wrap {
+  padding: 0 15px;
+  margin-top: 40px;
+}
+
+.page_wrap h1 {
+  font-family: "Archivo Narrow", sans-serif;
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 120%;
+  text-transform: uppercase;
+  color: #373030;
+  margin-bottom: 40px;
+}
+
+.page_wrap > p {
+  font-family: "Archivo Narrow", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: #373030;
+  text-align: end;
+  margin-top: 10px;
+}
+
+.page_wrap .owner_info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.page_wrap .owner_info > div:first-of-type {
+  flex: 1.6;
+}
+
+.page_wrap .owner_info > div:first-of-type p {
+  font-family: "Helvetica", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 165%;
+  color: #373030;
+}
+
+.page_wrap .owner_info > div:first-of-type p + p {
+  margin-top: 20px;
+}
+
+.page_wrap .owner_info > div:last-of-type {
+  margin-left: 20px;
+}
+
+.page_wrap .owner_info > div:last-of-type img {
+  width: 100%;
+  max-width: 269px;
+  height: 100%;
+  object-fit: cover;
+}
+
+.page_wrap ol {
+  margin: 80px 0;
+}
+
+.page_wrap ol li + li {
+  margin-top: 80px;
+}
+
+.page_wrap ol li h2 {
+  font-family: "Archivo Narrow", sans-serif;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 48px;
+  text-transform: uppercase;
+  color: #373030;
+  margin-bottom: 10px;
+}
+
+.page_wrap ol li p {
+  font-family: "Helvetica", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 180%;
+  color: #373030;
+  margin-bottom: 30px;
+}
+
+.page_wrap ol li > div {
+  display: flex;
+}
+
+.page_wrap ol li img {
+  width: 100%;
+}
+
+.page_wrap ol li div > img {
+  width: unset;
+  height: 300px;
+}
+.page_wrap ol li div > img:first-child {
+  flex: 1;
+}
+
+.page_wrap ol li div > img:last-child {
+  flex: 2;
+  margin-left: 20px;
+}
+
+.social_networks {
+  margin-bottom: 80px;
+}
+
+.social_networks > div:first-child {
+  border: 1px solid rgba(146, 168, 209, 0.2);
+  background: #f0f2f3;
+  display: flex;
+  justify-content: space-between;
+}
+
+.social_networks > div:first-child > div:first-of-type {
+  flex: 1.1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 30px 0 30px 40px;
+}
+
+.social_networks > div:first-child > div:first-of-type > p {
+  font-family: "Archivo Narrow", sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 113%;
+  text-transform: uppercase;
+  color: #373030;
+}
+
+.social_networks > div:first-child > div:first-of-type button {
+  background: #103d9d;
+  width: 117px;
+  height: 36px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: "Archivo Narrow", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.social_networks > div:first-child > div:last-of-type {
+  flex: 1;
+  max-height: 198px;
+}
+
+.social_networks > div:first-child > div img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.social_networks > div:last-child {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #122846;
+  padding-top: 24px;
+  margin-top: 40px;
+}
+
+.social_networks > div:last-child > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.social_networks > div:last-child > div span {
+  font-family: "Archivo Narrow", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #373030;
+}
+
+.social_networks > div:last-child > div span + span {
+  margin-left: 15px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.social_networks > div:last-child > div span + span::before {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #373030;
+}
+
+.social_networks > div:last-child ul {
+  display: flex;
+}
+
+.social_networks > div:last-child ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #373030;
+  width: 32px;
+  height: 32px;
+  background: #ffffff;
+  padding: 8px;
+}
+
+.social_networks > div:last-child ul li + li {
+  margin-left: 8px;
+}

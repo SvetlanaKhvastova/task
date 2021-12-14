@@ -806,13 +806,36 @@ let newPageStyle = /*html*/ `
                 padding-bottom: 0px !important;
             }
     }
+
+    .logo_link{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 5px auto 17px;
+    }
+
+    .logo_link img{
+        height: 50px;
+    }
+
+    .logo_link span{
+        color: #579cd7;
+        margin-left: 15px;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
 </style>
 
 `
 
 let firstBlock = /*html*/ `
 <div class="first_block">
-    <img src="https://conversionratestore.github.io/projects/knineti/img/logo_training.jpg" alt="logo k9 training institute">
+    <!-- <img src="https://conversionratestore.github.io/projects/knineti/img/logo_training.jpg" alt="logo k9 training institute"> -->
+    <a href="" class="logo_link">
+        <img src="https://conversionratestore.github.io/projects/knineti/img/footer_logo.png" alt="logo k9 training institute">
+        <span>K9 Training Institute</span>
+    </a>
     <h1>Enroll now for <span>unlimited access</span> to our 10-week Total Transformation Masterclass</h1>
     <div class="scroll_bar">
         <ul class="scroll_bar_box">
@@ -977,7 +1000,7 @@ let firstBlock = /*html*/ `
                         <span class="radio_style">
                             <span class="ellipse"></span>
                         </span>
-                        <span>One-time payment of <span class='accent_color'>$1705,10</span> $297</span>
+                        <span>One-time payment of <span class='accent_color'>$1705.10</span> $297</span>
                     </label>
                 </div>
                 <div>
@@ -1081,7 +1104,9 @@ function newPage() {
       .querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[1]
       .after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[0])
 
-    document.querySelector(".payment_inform_box").after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[5])
+    if (document.querySelector(".payment_inform_box .card_type")) {
+      document.querySelector(".payment_inform_box").after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[5])
+    }
 
     document.querySelector(".content .page h4, .content .entry-content h4").textContent = "Contact information"
 
@@ -1117,18 +1142,33 @@ function newPage() {
     let dQueryDate = atob(params.get("d"))
     let dsp = dQueryDate.split("-")
 
-    let today = new Date(dsp[0], dsp[1] - 1, dsp[2]).toDateString().split(" ")
+    // let today = new Date(dsp[0], dsp[1] - 1, dsp[2]).toDateString().split(" ")
+    // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[0].textContent = `${today[1]} ${today[2]}, ${today[3]}`
+    // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[1].textContent = `${today[1]} ${today[2]}, ${today[3]}`
+
+    // let daySeven = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 7)).toDateString().split(" ")
+    // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[2].textContent = `${daySeven[1]} ${daySeven[2]}, ${daySeven[3]}`
+    // document.querySelector(".payment_inform_box li > div > p").textContent = `YOUR DISCOUNT IS VALID UNTIL ${daySeven[1]} ${daySeven[2]}, ${daySeven[3]}`
+
+    // let dayThirty = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 30)).toDateString().split(" ")
+    // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[3].textContent = `${dayThirty[1]} ${dayThirty[2]}, ${dayThirty[3]}`
+
+    // let dayNinty = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 90)).toDateString().split(" ")
+    // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[4].textContent = `Until ${dayNinty[1]} ${dayNinty[2]}, ${dayNinty[3]}`
+
+    let today = new Date().toDateString().split(" ")
     document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[0].textContent = `${today[1]} ${today[2]}, ${today[3]}`
     document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[1].textContent = `${today[1]} ${today[2]}, ${today[3]}`
 
+    let daySevenToday = new Date(new Date().setDate(new Date().getDate() + 7)).toDateString().split(" ")
     let daySeven = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 7)).toDateString().split(" ")
-    document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[2].textContent = `${daySeven[1]} ${daySeven[2]}, ${daySeven[3]}`
+    document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[2].textContent = `${daySevenToday[1]} ${daySevenToday[2]}, ${daySevenToday[3]}`
     document.querySelector(".payment_inform_box li > div > p").textContent = `YOUR DISCOUNT IS VALID UNTIL ${daySeven[1]} ${daySeven[2]}, ${daySeven[3]}`
 
-    let dayThirty = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 30)).toDateString().split(" ")
+    let dayThirty = new Date(new Date().setDate(new Date().getDate() + 30)).toDateString().split(" ")
     document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[3].textContent = `${dayThirty[1]} ${dayThirty[2]}, ${dayThirty[3]}`
 
-    let dayNinty = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 90)).toDateString().split(" ")
+    let dayNinty = new Date(new Date().setDate(new Date().getDate() + 90)).toDateString().split(" ")
     document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[4].textContent = `Until ${dayNinty[1]} ${dayNinty[2]}, ${dayNinty[3]}`
 
     document.querySelector(".submit_btn input").value = "Enroll Now"
