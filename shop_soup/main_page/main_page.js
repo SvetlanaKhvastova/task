@@ -1,105 +1,486 @@
 let pageStyle = /*html */ `
 <style>
 
-.page_wrap h1{
-    font-family: "Archivo Narrow",sans-serif;
-    font-weight: 700;
-    font-size: 56px;
-    line-height: 120%;
-    text-transform: uppercase;
-    color: #373030;
-    margin-bottom: 40px;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.page_wrap ol{
-    margin: 80px 0;
+li {
+  list-style: none;
 }
 
-.page_wrap ol li h2{
-    font-family: "Archivo Narrow",sans-serif;
-    font-weight: 500;
-    font-size: 36px;
-    line-height: 48px;
-    text-transform: uppercase;
-    color: #373030;
-    margin-bottom: 10px;
+img {
+  display: block;
 }
 
-.page_wrap ol li p{
-    font-family: "Helvetica",sans-serif;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 180%;
-    color: #373030;
+.container {
+  max-width: 785px;
+  margin: 0 auto;
+}
+
+.hero_img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.page_wrap {
+  padding: 0 15px;
+  margin-top: 40px;
+}
+
+.page_wrap h1 {
+  font-family: "Archivo Narrow", sans-serif;
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 120%;
+  text-transform: uppercase;
+  color: #373030;
+  margin-bottom: 40px;
+}
+
+.page_wrap > p {
+  font-family: "Archivo Narrow", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: #373030;
+  text-align: end;
+  margin-top: 10px;
+}
+
+.page_wrap .owner_info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.page_wrap .owner_info > div:first-of-type {
+  flex: 1.6;
+}
+
+.page_wrap .owner_info > div:first-of-type p {
+  font-family: "Helvetica", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 165%;
+  color: #373030;
+}
+
+.page_wrap .owner_info > div:first-of-type p + p {
+  margin-top: 20px;
+}
+
+.page_wrap .owner_info > div:last-of-type {
+  margin-left: 20px;
+}
+
+.page_wrap .owner_info > div:last-of-type img {
+  width: 100%;
+  max-width: 269px;
+  height: 100%;
+  object-fit: cover;
+}
+
+.page_wrap ol {
+  margin: 80px 0;
+}
+
+.page_wrap ol li + li {
+  margin-top: 80px;
+}
+
+.page_wrap ol li h2 {
+  font-family: "Archivo Narrow", sans-serif;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 48px;
+  text-transform: uppercase;
+  color: #373030;
+  margin-bottom: 10px;
+}
+
+.page_wrap ol li p {
+  font-family: "Helvetica", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 180%;
+  color: #373030;
+  margin-bottom: 30px;
+}
+
+.page_wrap ol li > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.page_wrap ol li img {
+  width: 100%;
+}
+
+.page_wrap ol li div > img {
+  max-height: 300px;
+  object-fit: cover;
+}
+
+.page_wrap ol li div > img:first-child {
+  width: 36%;
+}
+
+.page_wrap ol li div > img:last-child {
+  width: 62%;
+}
+
+.page_wrap ol li.var_list div > img:first-child {
+  width: 62%;
+}
+
+.page_wrap ol li.var_list div > img:last-child {
+  width: 36%;
+}
+
+.social_networks {
+  margin-bottom: 80px;
+}
+
+.social_networks > div:first-child {
+  border: 1px solid rgba(146, 168, 209, 0.2);
+  background: #f0f2f3;
+  display: flex;
+  justify-content: space-between;
+}
+
+.social_networks > div:first-child > div:first-of-type {
+  flex: 1.1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 30px 0 30px 40px;
+}
+
+.social_networks > div:first-child > div:first-of-type > p {
+  font-family: "Archivo Narrow", sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 113%;
+  text-transform: uppercase;
+  color: #373030;
+}
+
+.social_networks > div:first-child > div:first-of-type a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  background: #103d9d;
+  width: 117px;
+  height: 36px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: "Archivo Narrow", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.social_networks > div:first-child > div:first-of-type a:hover {
+  background: linear-gradient(to top, #6899ff, #001861);
+}
+
+.social_networks > div:first-child > div:last-of-type {
+  flex: 1;
+  max-height: 198px;
+}
+
+.social_networks > div:first-child > div img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.social_networks > div:last-child {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #122846;
+  padding-top: 24px;
+  margin-top: 40px;
+}
+
+.social_networks > div:last-child > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.social_networks > div:last-child > div span {
+  font-family: "Archivo Narrow", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #373030;
+}
+
+.social_networks > div:last-child > div span + span {
+  margin-left: 15px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.social_networks > div:last-child > div span + span::before {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #373030;
+}
+
+.social_networks > div:last-child ul {
+  display: flex;
+}
+
+.social_networks > div:last-child ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #373030;
+  width: 32px;
+  height: 32px;
+  background: #ffffff;
+  padding: 8px;
+  transition: all 250ms ease-in-out;
+}
+
+.social_networks > div:last-child ul li a svg {
+  fill: inherit;
+}
+
+.social_networks > div:last-child ul li a:hover {
+  background: #373030;
+  fill: #ffffff;
+}
+
+.social_networks > div:last-child ul li + li {
+  margin-left: 8px;
+}
+
+@media (max-width: 767px) {
+  .page_wrap .owner_info {
+    flex-direction: column;
+  }
+
+  .page_wrap .owner_info > div:first-of-type p {
+    font-size: 16px;
+  }
+
+  .page_wrap .owner_info > div:last-of-type {
+    margin: 20px 0 0;
+  }
+
+  .page_wrap .owner_info > div:last-of-type img {
+    max-width: unset;
+  }
+
+  .page_wrap ol {
+    margin: 60px 0;
+  }
+
+  .page_wrap ol li + li {
+    margin-top: 60px;
+  }
+
+  .page_wrap h1 {
+    font-size: 34px;
     margin-bottom: 30px;
+  }
+
+  .page_wrap > p {
+    font-size: 16px;
+  }
+
+  .page_wrap ol li h2 {
+    font-size: 18px;
+    line-height: 30px;
+  }
+
+  .page_wrap ol li p {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .social_networks > div:first-child > div:first-of-type {
+    padding: 20px 0 20px 30px;
+  }
+
+  .social_networks > div:first-child > div:first-of-type > p {
+    font-size: 12px;
+  }
+
+  .social_networks > div:first-child > div:first-of-type a {
+    font-size: 10px;
+    line-height: 14px;
+
+    height: 30px;
+    margin-top: 5px;
+  }
+
+  .social_networks > div:last-child > div span {
+    font-size: 10px;
+  }
+
+  .social_networks > div:last-child > div span + span {
+    margin-left: 10px;
+    padding-left: 15px;
+  }
+
+  .social_networks > div:last-child > div {
+    align-items: center;
+  }
 }
+
+@media (max-width: 321px) {
+  .social_networks > div:last-child > div span {
+    font-size: 7px;
+  }
+
+  .page_wrap ol li h2 {
+    font-size: 15px;
+  }
+}
+
 
 </style>
 `
 let page = /*html */ `
-<section class="page_wrap">
-    <h1>Five Reasons People Choose Good Stock</h1>
-    <div>
-        <div>
-            <p>I started Good Stock because I was tired of eating soup that was typically average at best. Why couldn’t I find soup that was convenient and delicious? What were all the artificial ingredients and preservatives in these soups? Why were these soups loaded with sodium, yet still needed salt to make it palatable? When I couldn’t find answers to these questions, I got to cooking, and Good Stock was born.</p>
+    <header>
+      <img src="img/hero_img.jpg" alt="" class="hero_img" />
+    </header>
+    <main>
+      <section class="page_wrap container">
+        <h1>
+          Five Reasons <br />
+          People Choose Good Stock
+        </h1>
+        <div class="owner_info">
+          <div>
+            <p>
+              I started Good Stock because I was tired of eating soup that was typically average at best. Why couldn’t I find soup that was convenient and delicious? What were all
+              the artificial ingredients and preservatives in these soups? Why were these soups loaded with sodium, yet still needed salt to make it palatable? When I couldn’t find
+              answers to these questions, I got to cooking, and Good Stock was born.
+            </p>
             <p>I believe soup is the world’s most incredible dish. If you agree with me, then you deserve the best.</p>
+          </div>
+          <div>
+            <img src="img/owner.jpg" alt="photo Ben LeBlanc, owner" />
+          </div>
         </div>
-        <div>
-            <img src="" alt="photo Ben LeBlanc, owner">
-        </div>
-    </div>
-    <p>Ben LeBlanc, owner</p>
-    <ol>
-        <li>
+        <p>Ben LeBlanc, owner</p>
+        <ol>
+          <li>
             <h2>1. Our soups are delicious</h2>
             <p>Our number one goal is to cook soups that taste amazing.</p>
-            <img src="" alt="">
-        </li>
-        <li>
+            <img src="img/img1.jpg" alt="" />
+          </li>
+          <li>
             <h2>2. Our soups are better for you</h2>
             <p>We use only high-quality, all-natural ingredients. Our soups are packed with vitamins, minerals, and nutrients.</p>
-            <img src="" alt="">
-        </li>
-        <li>
+            <img src="img/img2.jpg" alt="" />
+          </li>
+          <li>
             <h2>3. We never use artificial ingredients or additives, ever</h2>
             <p>If you wouldn’t find an ingredient in your cupboard, you won’t find it in our soups.</p>
-            <img src="" alt="">
-            <img src="" alt="">
-        </li>
-        <li>
+            <div>
+              <img src="img/img3.jpg" alt="" />
+              <img src="img/img4.jpg" alt="" />
+            </div>
+          </li>
+          <li>
             <h2>4. So convenient!</h2>
             <p>We ship our soups straight to your door.</p>
-            <img src="" alt="">
-        </li>
-        <li>
+            <img src="img/img5.jpg" alt="" />
+          </li>
+          <li class="var_list">
             <h2>5. So easy!</h2>
             <p>Store our soups in the freezer, so you never have to worry about them spoiling in the fridge. When you’re ready to eat, deliciousness is only 10 minutes away.</p>
-            <img src="" alt="">
-            <img src="" alt="">
-        </li>
-    </ol>
-    <div>
-        <div>
             <div>
-                <p>Delicious, nutritious, convenient</p>
-                <button type="button">Shop now</button>
+              <img src="img/img6.jpg" alt="" />
+              <img src="img/img7.jpg" alt="" />
+            </div>
+          </li>
+        </ol>
+        <div class="social_networks">
+          <div>
+            <div>
+              <p>Delicious, nutritious, convenient</p>
+              <a href="https://www.goodstocksoups.com/collections/build-a-box">Shop now</a>
             </div>
             <div>
-                <img src="" alt="">
+              <img src="img/image8.jpg" alt="" />
             </div>
-        </div>
-        <div>
+          </div>
+          <div>
             <div>
-                <span>by Ben LeBlanc</span>
-                <span>November 26, 2021</span>
+              <span>by Ben LeBlanc</span>
+              <span>November 26, 2021</span>
             </div>
             <ul>
-                <li><a href="">IN</a></li>
-                <li><a href="">LIN</a></li>
-                <li><a href="">T</a></li>
-                <li><a href="">F</a></li>
+              <li>
+                <a target="blank" href="https://www.instagram.com/goodstock/"
+                  ><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M15.9438 4.70135C15.8831 3.41964 15.5904 2.2843 14.6516 1.3489C13.7165 0.413499 12.5814 0.12074 11.2999 0.0564753C9.97925 -0.0184996 6.02075 -0.0184996 4.70006 0.0564753C3.4222 0.117169 2.28712 0.409928 1.34835 1.34533C0.409593 2.28073 0.120468 3.41606 0.0562186 4.69778C-0.0187395 6.01876 -0.0187395 9.97815 0.0562186 11.2991C0.116899 12.5809 0.409593 13.7162 1.34835 14.6516C2.28712 15.587 3.41863 15.8797 4.70006 15.944C6.02075 16.019 9.97925 16.019 11.2999 15.944C12.5814 15.8833 13.7165 15.5906 14.6516 14.6516C15.5868 13.7162 15.8795 12.5809 15.9438 11.2991C16.0187 9.97815 16.0187 6.02234 15.9438 4.70135ZM12.2708 4.68707C12.7991 4.68707 13.2274 4.26221 13.2274 3.73025C13.2274 3.20185 12.7991 2.77342 12.2708 2.77342C11.7426 2.77342 11.3142 3.20185 11.3142 3.73025C11.3142 4.25864 11.739 4.68707 12.2708 4.68707ZM8.00178 3.89805C5.73162 3.89805 3.9005 5.72958 3.9005 8.00025C3.9005 10.2709 5.73162 12.1024 8.00178 12.1024C10.2719 12.1024 12.1031 10.2709 12.1031 8.00025C12.1031 5.72958 10.2719 3.89805 8.00178 3.89805ZM8.00179 10.6672C6.53475 10.6672 5.33541 9.47118 5.33541 8.00024C5.33541 6.52931 6.53118 5.33328 8.00179 5.33328C9.47239 5.33328 10.6682 6.52931 10.6682 8.00024C10.6682 9.47118 9.46882 10.6672 8.00179 10.6672ZM12.717 14.2374C13.4202 13.9554 13.9592 13.4163 14.2376 12.7165C14.5958 11.8162 14.5759 9.84689 14.5629 8.5703C14.5608 8.35854 14.5588 8.16584 14.5588 8.00024C14.5588 7.83462 14.5608 7.64195 14.5629 7.43025C14.5759 6.15434 14.5958 4.18731 14.2376 3.28397C13.9556 2.58063 13.4166 2.04152 12.717 1.76305C11.8141 1.40671 9.83564 1.42569 8.5597 1.43793C8.35271 1.43992 8.16421 1.44173 8.00178 1.44173C7.83619 1.44173 7.64357 1.43977 7.43193 1.43763C6.1563 1.4247 4.1897 1.40477 3.28656 1.76305C2.58338 2.0451 2.04439 2.5842 1.76598 3.28397C1.40972 4.1871 1.4287 6.16598 1.44094 7.4422C1.44292 7.64924 1.44473 7.83778 1.44473 8.00024C1.44473 8.16587 1.44278 8.35854 1.44063 8.57023C1.42771 9.84614 1.40778 11.8132 1.76598 12.7165C2.04796 13.4199 2.58695 13.959 3.28656 14.2374C4.18949 14.5938 6.16793 14.5748 7.44387 14.5626C7.65086 14.5606 7.83936 14.5588 8.00178 14.5588C8.16737 14.5588 8.36 14.5607 8.57164 14.5629C9.84727 14.5758 11.8139 14.5957 12.717 14.2374Z"
+                    />
+                  </svg>
+                </a>
+              </li>
+              <!-- <li>
+                <a target="blank" href=""
+                  ><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M1.91715 3.85236C0.858797 3.85236 0 2.97575 0 1.91739C0 0.859041 0.858797 0.000244141 1.91715 0.000244141C2.9755 0.000244141 3.8343 0.859041 3.8343 1.91739C3.8343 2.97575 2.9755 3.85236 1.91715 3.85236ZM3.57416 15.9646H0.263697V5.30626H3.57416V15.9646ZM12.661 15.9646H15.9644H15.9679V10.1098C15.9679 7.24479 15.3514 5.039 12.0018 5.039C10.3911 5.039 9.31136 5.92274 8.86949 6.76016H8.82316V5.30626H5.64811V15.9646H8.95501V10.6871C8.95501 9.29735 9.21871 7.95392 10.9399 7.95392C12.6361 7.95392 12.661 9.53967 12.661 10.7762V15.9646Z"
+                      
+                    />
+                  </svg>
+                </a>
+              </li> -->
+              <li>
+                <a
+                  target="blank"
+                  href="https://twitter.com/intent/tweet?text=Our%20Annual%20Anti-Sale%20is%20On!...&url=https://www.goodstocksoups.com/blogs/thesimmer/our-annual-anti-sale-is-on-give-back-when-you-stock-up&via=goodstocksoups"
+                  ><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M14.3553 4.57474C14.3655 4.71687 14.3655 4.85903 14.3655 5.00115C14.3655 9.33615 11.066 14.3311 5.03553 14.3311C3.17766 14.3311 1.45178 13.793 0 12.859C0.263969 12.8895 0.51775 12.8996 0.791875 12.8996C2.32484 12.8996 3.73603 12.3819 4.86294 11.4986C3.42131 11.4682 2.21319 10.524 1.79694 9.2245C2 9.25493 2.20303 9.27525 2.41625 9.27525C2.71066 9.27525 3.00509 9.23462 3.27919 9.16359C1.77666 8.859 0.649719 7.53921 0.649719 5.94531V5.90471C1.08625 6.14837 1.59391 6.30065 2.13194 6.32093C1.24869 5.73209 0.670031 4.72703 0.670031 3.58996C0.670031 2.98084 0.832438 2.42246 1.11672 1.93515C2.73094 3.92499 5.15734 5.22446 7.87813 5.36662C7.82738 5.12296 7.79691 4.86918 7.79691 4.61537C7.79691 2.80824 9.25884 1.33618 11.0761 1.33618C12.0203 1.33618 12.873 1.73212 13.472 2.37171C14.2131 2.22959 14.9238 1.95546 15.5533 1.57984C15.3096 2.34128 14.7918 2.98087 14.1116 3.38693C14.7715 3.3159 15.4111 3.13312 15.9999 2.87934C15.5533 3.52906 14.9949 4.10771 14.3553 4.57474Z"
+                    />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a
+                  target="blank"
+                  href="https://www.facebook.com/login.php?skip_api_login=1&api_key=966242223397117&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fsharer%2Fsharer.php%3Fu%3Dhttps%253A%252F%252Fwww.goodstocksoups.com%252Fblogs%252Fthesimmer%252Four-annual-anti-sale-is-on-give-back-when-you-stock-up&cancel_url=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Fclose_window%2F%3Fapp_id%3D966242223397117%26connect%3D0%23_%3D_&display=popup&locale=uk_UA"
+                  ><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M10.7438 2.65649H12.25V0.112744C11.9906 0.0783691 11.0969 0.000244141 10.0563 0.000244141C7.88438 0.000244141 6.39688 1.32524 6.39688 3.75962V6.00024H4V8.84399H6.39688V16.0002H9.33437V8.84399H11.6344L12 6.00024H9.33437V4.04087C9.33437 3.21899 9.5625 2.65649 10.7438 2.65649Z"
+                    />
+                  </svg>
+                </a>
+              </li>
             </ul>
+          </div>
         </div>
-    </div>
-</section>
+      </section>
+    </main>
 `
