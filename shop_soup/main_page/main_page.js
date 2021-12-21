@@ -1,13 +1,75 @@
 let pageStyle = /*html */ `
 <style>
+li {
+  list-style: none;
+}
+  
 img {
   display: block;
 }
+  
+  .flex_wrapp_article{
+      display: flex;
+    justify-content: space-between;
+  }
+  
+  .one-third.columns.article{
+    float: unset;
+  }
+  
+  .one-third {
+    width: 32%;
+}
+  
+  .one-third.columns.article a img{
+  width: 100%;
+  }
+  
+  .one-third h5{
+    font-size: 127%;
+    line-height: 1.2em;
+  }
+  
+  .container.main.content{
+    margin: 0;
+    padding: 0;
+    max-width: unset;
+    width: 100%;
+  }
+  
+.sixteen.columns.page.clearfix{
 
-.container {
+  float: unset !important;
+  display: block !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+  
+  .section.clearfix{
+    margin: 0 0 80px;
+  }
+  
+.section.clearfix h3{
+      margin: 0 auto 15px 0;
+}
+  
+.section.clearfix .excerpt{
+      margin: 0.5em 0;
+  }
+.section.clearfix h5.sub_title{
+      margin: 0 0 0.5em 0;
+  }
+  
+.page_wrap *{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* .container {
   max-width: 785px;
   margin: 0 auto;
-}
+} */
 
 .hero_img {
   width: 100%;
@@ -17,7 +79,8 @@ img {
 
 .page_wrap {
   padding: 0 15px;
-  margin-top: 40px;
+  max-width: 775px;
+  margin: 40px auto 0;
 }
 
 .page_wrap h1 {
@@ -34,6 +97,7 @@ img {
   font-family: "Archivo Narrow", sans-serif;
   font-weight: 400;
   font-size: 18px;
+  line-height: 24px;
   color: #373030;
   text-align: end;
   margin-top: 10px;
@@ -262,7 +326,18 @@ img {
   margin-left: 8px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 767px) {  
+  .one-third{
+  width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-bottom: 15px;
+  }
+  
+  .flex_wrapp_article{
+    flex-direction: column;
+  }
+  
   .page_wrap .owner_info {
     flex-direction: column;
   }
