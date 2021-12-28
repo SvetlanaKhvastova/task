@@ -1,18 +1,458 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="page.css" />
-    <title>Document</title>
-  </head>
-  <body>
-    <header>
-      <img src="img/hero_img.jpg" alt="" class="hero_img" />
-    </header>
-    <main>
-      <section class="page_wrap container">
+<style>
+li {
+  list-style: none;
+}
+  
+img {
+  display: block;
+}
+  
+  #shopify-section-newsletter #contact_form .action_button.sign_up{
+	border-top: none;
+	border-bottom: none;
+    background: #fff;
+    color: #133d9d; 
+  	background-position: 0 0;
+  	transition: all 450ms ease-in-out;
+  
+}
+  
+#shopify-section-newsletter #contact_form .action_button.sign_up:hover{
+  	border-top: none !important;
+	border-bottom: none !important;
+  	background: linear-gradient(to top, #6899ff, #001861);
+    background-position: 100% 0;
+  	color: #ffffff !important;
+}
+  
+  .flex_wrapp_article{
+      display: flex;
+    justify-content: space-between;
+  }
+  
+  .one-third.columns.article{
+    float: unset;
+  }
+  
+  .one-third {
+    width: 32%;
+}
+  
+  .one-third.columns.article a img{
+  width: 100%;
+  }
+  
+  .one-third h5{
+    font-size: 127%;
+    line-height: 1.2em;
+  }
+  
+  .container.main.content{
+    margin: 0;
+    padding: 0;
+    max-width: unset;
+    width: 100%;
+  }
+  
+.sixteen.columns.page.clearfix{
+
+  float: unset !important;
+  display: block !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+  
+  .section.clearfix{
+    margin: 0 0 80px;
+  }
+  
+.section.clearfix h3{
+      margin: 0 auto 15px 0;
+}
+  
+.section.clearfix .excerpt{
+      margin: 0.5em 0;
+  }
+.section.clearfix h5.sub_title{
+      margin: 0 0 0.5em 0;
+  }
+  
+.page_wrap *{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* .container {
+  max-width: 785px;
+  margin: 0 auto;
+} */
+
+.hero_img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.page_wrap {
+  padding: 0 15px;
+  max-width: 775px;
+  margin: 40px auto 0;
+}
+
+.page_wrap h1 {
+  font-family: "Archivo Narrow", sans-serif;
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 120%;
+  text-transform: uppercase;
+  color: #373030;
+  margin-bottom: 40px;
+}
+
+.page_wrap > p {
+  font-family: "Archivo Narrow", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #373030;
+  text-align: end;
+  margin-top: 10px;
+}
+
+.page_wrap .owner_info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.page_wrap .owner_info > div:first-of-type {
+  flex: 1.6;
+}
+
+.page_wrap .owner_info > div:first-of-type p {
+  font-family: "Helvetica", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 165%;
+  color: #373030;
+}
+
+.page_wrap .owner_info > div:first-of-type p + p {
+  margin-top: 20px;
+}
+
+.page_wrap .owner_info > div:last-of-type {
+  margin-left: 20px;
+}
+
+.page_wrap .owner_info > div:last-of-type img {
+  width: 100%;
+  max-width: 269px;
+  height: 100%;
+  object-fit: cover;
+}
+
+.page_wrap ol {
+  margin: 80px 0;
+}
+
+.page_wrap ol li + li {
+  margin-top: 80px;
+}
+
+.page_wrap ol li h2 {
+  font-family: "Archivo Narrow", sans-serif;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 48px;
+  text-transform: uppercase;
+  color: #373030;
+  margin-bottom: 10px;
+}
+
+.page_wrap ol li p {
+  font-family: "Helvetica", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 180%;
+  color: #373030;
+  margin-bottom: 30px;
+}
+
+.page_wrap ol li > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.page_wrap ol li img {
+  width: 100%;
+}
+
+.page_wrap ol li div > img {
+  max-height: 300px;
+  object-fit: cover;
+}
+
+.page_wrap ol li div > img:first-child {
+  width: 36%;
+}
+
+.page_wrap ol li div > img:last-child {
+  width: 62%;
+}
+
+.page_wrap ol li.var_list div > img:first-child {
+  width: 62%;
+}
+
+.page_wrap ol li.var_list div > img:last-child {
+  width: 36%;
+}
+
+.social_networks {
+  margin-bottom: 80px;
+}
+
+.social_networks > div:first-child {
+  border: 1px solid rgba(146, 168, 209, 0.2);
+  background: #f0f2f3;
+  display: flex;
+  justify-content: space-between;
+}
+
+.social_networks > div:first-child > div:first-of-type {
+  flex: 1.1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 30px 0 30px 40px;
+}
+
+.social_networks > div:first-child > div:first-of-type > p {
+  font-family: "Archivo Narrow", sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 113%;
+  text-transform: uppercase;
+  color: #373030;
+}
+
+.social_networks > div:first-child > div:first-of-type a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  background: #103d9d;
+  width: 117px;
+  height: 36px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: "Archivo Narrow", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.social_networks > div:first-child > div:first-of-type a:hover {
+  background: linear-gradient(to top, #6899ff, #001861);
+}
+
+.social_networks > div:first-child > div:last-of-type {
+  flex: 1;
+  max-height: 198px;
+}
+
+.social_networks > div:first-child > div img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.social_networks > div:last-child {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #122846;
+  padding-top: 24px;
+  margin-top: 40px;
+}
+
+.social_networks > div:last-child > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.social_networks > div:last-child > div span {
+  font-family: "Archivo Narrow", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #373030;
+}
+
+.social_networks > div:last-child > div span + span {
+  margin-left: 15px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.social_networks > div:last-child > div span + span::before {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #373030;
+}
+
+.social_networks > div:last-child ul {
+  display: flex;
+}
+
+.social_networks > div:last-child ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #373030;
+  width: 32px;
+  height: 32px;
+  background: #ffffff;
+  padding: 8px;
+  transition: all 250ms ease-in-out;
+}
+
+.social_networks > div:last-child ul li a svg {
+  fill: inherit;
+}
+
+.social_networks > div:last-child ul li a:hover {
+  background: #373030;
+  fill: #ffffff;
+}
+
+.social_networks > div:last-child ul li + li {
+  margin-left: 8px;
+}
+
+@media (max-width: 767px) {  
+  .one-third{
+  width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-bottom: 15px;
+  }
+  
+  .flex_wrapp_article{
+    flex-direction: column;
+  }
+  
+  .page_wrap .owner_info {
+    flex-direction: column;
+  }
+
+  .page_wrap .owner_info > div:first-of-type p {
+    font-size: 16px;
+  }
+
+  .page_wrap .owner_info > div:last-of-type {
+    margin: 20px 0 0;
+  }
+
+  .page_wrap .owner_info > div:last-of-type img {
+    max-width: unset;
+  }
+
+  .page_wrap ol {
+    margin: 60px 0;
+  }
+
+  .page_wrap ol li + li {
+    margin-top: 60px;
+  }
+
+  .page_wrap h1 {
+    font-size: 34px;
+    margin-bottom: 30px;
+  }
+
+  .page_wrap > p {
+    font-size: 16px;
+  }
+
+  .page_wrap ol li h2 {
+    font-size: 18px;
+    line-height: 30px;
+  }
+
+  .page_wrap ol li p {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .social_networks > div:first-child > div:first-of-type {
+    padding: 20px 0 20px 30px;
+  }
+
+  .social_networks > div:first-child > div:first-of-type > p {
+    font-size: 12px;
+  }
+
+  .social_networks > div:first-child > div:first-of-type a {
+    font-size: 10px;
+    line-height: 14px;
+
+    height: 30px;
+    margin-top: 5px;
+  }
+
+  .social_networks > div:last-child > div span {
+    font-size: 10px;
+  }
+
+  .social_networks > div:last-child > div span + span {
+    margin-left: 10px;
+    padding-left: 15px;
+  }
+
+  .social_networks > div:last-child > div {
+    align-items: center;
+  }
+}
+
+@media (max-width: 321px) {
+  .social_networks > div:last-child > div span {
+    font-size: 7px;
+  }
+
+  .page_wrap ol li h2 {
+    font-size: 15px;
+  }
+}
+
+
+</style>
+
+
+
+<a name="pagecontent" id="pagecontent"></a>
+
+
+<div class="sixteen columns page clearfix">
+    <div>
+          <img src="{{'hero_img.jpg' | asset_url}}" alt="hero img soup" class="hero_img" />
+    </div>
+
+    <div>
+      <section class="page_wrap">
         <h1>
           Five Reasons <br />
           People Choose Good Stock
@@ -27,7 +467,7 @@
             <p>I believe soup is the world’s most incredible dish. If you agree with me, then you deserve the best.</p>
           </div>
           <div>
-            <img src="img/owner.jpg" alt="photo Ben LeBlanc, owner" />
+            <img src="{{'owner.jpg' | asset_url}}" alt="photo Ben LeBlanc, owner" />
           </div>
         </div>
         <p>Ben LeBlanc, owner</p>
@@ -35,32 +475,32 @@
           <li>
             <h2>1. Our soups are delicious</h2>
             <p>Our number one goal is to cook soups that taste amazing.</p>
-            <img src="img/img1.jpg" alt="" />
+            <img src="{{'img1.jpg'| asset_url}}" alt="woman and girl eat soup" />
           </li>
           <li>
             <h2>2. Our soups are better for you</h2>
             <p>We use only high-quality, all-natural ingredients. Our soups are packed with vitamins, minerals, and nutrients.</p>
-            <img src="img/img2.jpg" alt="" />
+            <img src="{{'img2.jpg'| asset_url}}" alt="plate soup and spoon" />
           </li>
           <li>
             <h2>3. We never use artificial ingredients or additives, ever</h2>
             <p>If you wouldn’t find an ingredient in your cupboard, you won’t find it in our soups.</p>
             <div>
-              <img src="img/img3.jpg" alt="" />
-              <img src="img/img4.jpg" alt="" />
+              <img src="{{'img3.jpg'| asset_url}}" alt="ingredient" />
+              <img src="{{'img4.jpg'| asset_url}}" alt="ingredient" />
             </div>
           </li>
           <li>
             <h2>4. So convenient!</h2>
             <p>We ship our soups straight to your door.</p>
-            <img src="img/img5.jpg" alt="" />
+            <img src="{{'img5.jpg'| asset_url}}" alt="box" />
           </li>
           <li class="var_list">
             <h2>5. So easy!</h2>
             <p>Store our soups in the freezer, so you never have to worry about them spoiling in the fridge. When you’re ready to eat, deliciousness is only 10 minutes away.</p>
             <div>
-              <img src="img/img6.jpg" alt="" />
-              <img src="img/img7.jpg" alt="" />
+              <img src="{{'img6.jpg'| asset_url}}" alt="paket soup" />
+              <img src="{{'img7.jpg'| asset_url}}" alt="paket soup" />
             </div>
           </li>
         </ol>
@@ -71,7 +511,7 @@
               <a href="https://www.goodstocksoups.com/collections/build-a-box">Shop now</a>
             </div>
             <div>
-              <img src="img/image8.jpg" alt="" />
+              <img src="{{'image8.jpg'| asset_url}}" alt="paket soup" />
             </div>
           </div>
           <div>
@@ -106,7 +546,7 @@
               <li>
                 <a
                   target="blank"
-                  href="https://twitter.com/intent/tweet?text=Our%20Annual%20Anti-Sale%20is%20On!...&url=https://www.goodstocksoups.com/blogs/thesimmer/our-annual-anti-sale-is-on-give-back-when-you-stock-up&via=goodstocksoups"
+                  href="https://twitter.com/goodstocksoups"
                   ><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M14.3553 4.57474C14.3655 4.71687 14.3655 4.85903 14.3655 5.00115C14.3655 9.33615 11.066 14.3311 5.03553 14.3311C3.17766 14.3311 1.45178 13.793 0 12.859C0.263969 12.8895 0.51775 12.8996 0.791875 12.8996C2.32484 12.8996 3.73603 12.3819 4.86294 11.4986C3.42131 11.4682 2.21319 10.524 1.79694 9.2245C2 9.25493 2.20303 9.27525 2.41625 9.27525C2.71066 9.27525 3.00509 9.23462 3.27919 9.16359C1.77666 8.859 0.649719 7.53921 0.649719 5.94531V5.90471C1.08625 6.14837 1.59391 6.30065 2.13194 6.32093C1.24869 5.73209 0.670031 4.72703 0.670031 3.58996C0.670031 2.98084 0.832438 2.42246 1.11672 1.93515C2.73094 3.92499 5.15734 5.22446 7.87813 5.36662C7.82738 5.12296 7.79691 4.86918 7.79691 4.61537C7.79691 2.80824 9.25884 1.33618 11.0761 1.33618C12.0203 1.33618 12.873 1.73212 13.472 2.37171C14.2131 2.22959 14.9238 1.95546 15.5533 1.57984C15.3096 2.34128 14.7918 2.98087 14.1116 3.38693C14.7715 3.3159 15.4111 3.13312 15.9999 2.87934C15.5533 3.52906 14.9949 4.10771 14.3553 4.57474Z"
@@ -117,7 +557,7 @@
               <li>
                 <a
                   target="blank"
-                  href="https://www.facebook.com/login.php?skip_api_login=1&api_key=966242223397117&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fsharer%2Fsharer.php%3Fu%3Dhttps%253A%252F%252Fwww.goodstocksoups.com%252Fblogs%252Fthesimmer%252Four-annual-anti-sale-is-on-give-back-when-you-stock-up&cancel_url=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Fclose_window%2F%3Fapp_id%3D966242223397117%26connect%3D0%23_%3D_&display=popup&locale=uk_UA"
+                  href="https://www.facebook.com/goodstocksoups"
                   ><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M10.7438 2.65649H12.25V0.112744C11.9906 0.0783691 11.0969 0.000244141 10.0563 0.000244141C7.88438 0.000244141 6.39688 1.32524 6.39688 3.75962V6.00024H4V8.84399H6.39688V16.0002H9.33437V8.84399H11.6344L12 6.00024H9.33437V4.04087C9.33437 3.21899 9.5625 2.65649 10.7438 2.65649Z"
@@ -128,7 +568,93 @@
             </ul>
           </div>
         </div>
+        <!--  Articles  -->
+  
+  <div class="section clearfix">
+        <hr />
+        <h3>Also in The Simmer</h3>
+  
+<div class="flex_wrapp_article">
+        {% assign article_found = false %}
+        {% for a in blogs.thesimmer.articles limit: 4 %}
+          {% assign skip_article = false %}
+          {% if article_found == false and forloop.last %}
+            {% assign skip_article = true %}
+          {% endif %}
+          {% if article.id == a.id %}
+            {% assign article_found = true %}
+            {% assign skip_article = true %}
+          {% endif %}
+          {% unless skip_article %}
+            <div class="one-third columns article">
+              {% if a.image %}
+                <a href="{{ a.url }}" title="{{ a.title | escape }}">
+                  <img  src="{{ a.image | img_url: '100x' }}"
+                        alt="{% if a.image.alt != blank %}{{ a.image.alt }}{% else %}{{ a.title | escape }}{% endif %}"
+                        data-src="{{ a.image | img_url: '1200x', format: 'pjpg' }}"
+                        class="lazyload {{ settings.image_loading_style }}"
+                        sizes="100vw"
+                        srcset="{{ a.image | img_url: '480x', format: 'pjpg' }} 480w,
+                                {{ a.image | img_url: '600x', format: 'pjpg' }} 600w,
+                                {{ a.image | img_url: '800x', format: 'pjpg' }} 800w,
+                                {{ a.image | img_url: '1200x', format: 'pjpg' }} 1200w"
+                         />
+                </a>
+              {% endif %}
+
+
+
+              <h5 class="sub_title">
+                <a href="{{ a.url }}" title="{{ a.title | escape }}">{{ a.title }}</a>
+              </h5>
+              <p class="blog_meta">
+
+                  <span>{{ 'blogs.article.by_author' | t: author: a.author }}</span>
+
+
+                
+                  <span>{{ a.published_at | date: format: "month_day_year" }}</span>
+              
+
+                {% if section.settings.read_time %}
+                  {% include 'include-read-time', article: a %}
+                {% endif %}
+
+                {% if settings.disqus_enabled %}
+                  <span>
+                    <a href="{{ a.url }}#disqus_thread" data-disqus-identifier="{{ a.id }}" class="disqus-comment-count">{{ 'blogs.counts.comments_with_count' | t: count: 0 }}</a>
+                  </span>
+                {% elsif section.settings.blog_comment_count and a.comments_count > 0 %}
+                  <span>
+                    <a href="{{ a.url }}#comments">{{ 'blogs.counts.comments_with_count' | t: count: a.comments_count }}</a>
+                  </span>
+                {% endif %}
+              </p>
+              {% if section.settings.blog_tags %}
+                <div class="blog_meta tags">
+                  {% for tag in a.tags %}
+                    <span><a href="{{ shop.url}}/blogs/{{ blog.handle }}/tagged/{{ tag | handleize }}" title="{{ blog.title | escape }} {{ 'blogs.general.tagged' | t }} {{ tag | escape }}">{{ tag }}</a></span>
+                  {% endfor %}
+                </div>
+              {% endif %}
+
+              {% if a.excerpt != blank %}
+                <div class="excerpt">{{ a.excerpt }}</div>
+              {% endif %}
+              
+                <a href="{{ a.url }}" title="{{ a.title | escape }}" {% if settings.read_more_style == 'button' %}class="action_button continue-button"{% endif %}>{{ 'blogs.general.continue_reading_html' | t }}</a>
+              
+            </div>
+          {% endunless %}
+        {% endfor %}
+    </div>
+</div>
+  
+
+
+
       </section>
-    </main>
-  </body>
-</html>
+    </div> 
+</div> 
+  
+
