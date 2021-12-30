@@ -1,37 +1,19 @@
 const script = document.createElement("script")
 script.src = "https://code.jquery.com/jquery-3.4.1.min.js"
-script.async = false
+script.type = "text/javascript"
 document.getElementsByTagName("head")[0].appendChild(script)
-
-let jqueryLoaded = setInterval(() => {
-  if (typeof jQuery === "function") {
-    clearInterval(jqueryLoaded)
-
-    let scriptCustom = document.createElement("script")
-    scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
-    scriptCustom.async = false
-    document.head.appendChild(scriptCustom)
-
-    let scriptCustomStyle = document.createElement("link")
-    scriptCustomStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
-    scriptCustomStyle.rel = "stylesheet"
-    document.head.appendChild(scriptCustomStyle)
-  }
-}, 100)
 
 const style = /*html*/ `
 <style>
-    .custom_main *,
-    .custom_main *::before,
-    .custom_main *::after {
+    *,
+    *::before,
+    *::after {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
     }
     
-    .custom_main p {
-    	margin: 0;
-    }
+
 	
 	/*body {*/
 	/* padding: 15px !important;*/
@@ -51,15 +33,6 @@ const style = /*html*/ `
     /*    padding: 0;*/
     /*    margin: 0;*/
     /*}*/
-    
-   .content-area {
-   	display: none;
-   }
-   
-   .custom_main {
-   	margin-top: -40px;
-	    padding: 15px;
-   }
 
     .custom_main li {
         list-style: none;        
@@ -67,10 +40,6 @@ const style = /*html*/ `
     
     .dropdown ul li {
     	margin-bottom: 8px;
-    }
-    
-    .custom_main p {
-    	line-height: normal;
     }
     
     /* heading */
@@ -92,7 +61,6 @@ const style = /*html*/ `
     }
     
     .dropdown .subject {
-    	position: relative;
         font-weight: bold;
         font-size: 14px;
         line-height: 16px;
@@ -101,21 +69,6 @@ const style = /*html*/ `
         background-color: #000;
         color: #FFFFFF;
         padding: 10px;        
-    }
-    
-    .dropdown .subject::after{
-        content: "";
-        position: absolute;
-        width: 12px;
-        height: 8px;
-        top: 50%;
-        right: 16px;
-        transform: translateY(-50%);
-        background: url(https://conversionratestore.github.io/projects/mammutmarsch/img/keyboard_arrow_up.svg) center no-repeat;
-    }
-    
-    .hide-custom .dropdown .subject::after{
-    	background: url(https://conversionratestore.github.io/projects/mammutmarsch/img/keyboard_arrow_down.svg) center no-repeat;
     }
 
     /* first_block*/
@@ -206,8 +159,9 @@ const style = /*html*/ `
 
 	.show .hidden_text{
 		display: block;
-		margin-top: 11px;
 	} 
+	
+	
 	
 	/*.show svg {*/
 	/*	position: relative;*/
@@ -269,10 +223,6 @@ const style = /*html*/ `
         padding: 8px;
         border: 2px solid #F5F5F5; 
         border-radius: 5px;
-    }
-    
-    .slider_nav .slick-active {
-    	display: none;
     }
 
     .slider_reviews .slider_nav .slider_custom_list > div:first-child{
@@ -363,19 +313,11 @@ const style = /*html*/ `
         width: 8px;
         height: 8px;
     }
-    
-    .slick-dots {
-		padding: 0 !important;
-	}
 
     /*third_block */
     
     .third_block  {
-    	padding: 20px 0;
-    }
-    
-    .third_block > ol {
-    	padding-left: 20px;
+    	padding: 20px;
     }
 
     .third_block h2{
@@ -404,48 +346,20 @@ const style = /*html*/ `
     }
 
     .third_block > ol li {
-        list-style: inherit;
+        list-style: auto;
     }
     
     /*fourth_block*/
     
-    .fourth_block .item {
-     border: 1px solid #E5E5E5;
-     margin: 12px 0;
-     border-radius: 2px;
-    }
-    
     .fourth_block .visible { 
         display: flex;
         justify-content: space-between;
-        align-items: center;       
+        align-items: center;
+        border: 1px solid #E5E5E5;
 		border-radius: 2px;
 		padding: 15px 10px;
-		position: relative;
+		margin-bottom: 12px;
     }
-		
-	.fourth_block .visible p.pseudo {
-		position: absolute;
-		top: -7px;
-		left: 50%;
-		transform: translateX(-50%);
-		padding: 3px 10px;
-		font-weight: bold;
-		font-size: 8px;
-		letter-spacing: 0.03em;
-		text-transform: uppercase;		
-		color: #333333;
-		border-radius: 2px;
-	}
-	
-	.pseudo.favorit {
-		background: #FFFF00;		
-	}
-	
-	.pseudo.beliebt {
-		background: #008000;
-		color: #fff !important;
-	}
     
     .fourth_block .visible div {
         display: flex;
@@ -474,7 +388,7 @@ const style = /*html*/ `
   user-select: none;
 }
 
-/* hide-custom the browser's default radio button */
+/* Hide the browser's default radio button */
 .radio_container input {
   position: absolute;
   opacity: 0;
@@ -492,18 +406,14 @@ const style = /*html*/ `
   border: 2px solid #7F7F7F;
 }
 
-.alarmed .checkmark {
-	border-color: #CC0000;
-}
-
 /* On mouse-over, add a grey background color */
 /*.radio_container:hover input ~ .checkmark {*/
 /*  background-color: #fff;*/
 /*}*/
 
 /* When the radio button is checked, add a blue background */
-.selected .checkmark {
-  border-color: #008000 !important;
+.radio_container input:checked ~ .checkmark {
+  border-color: #008000;
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
@@ -514,7 +424,7 @@ const style = /*html*/ `
 }
 
 /* Show the indicator (dot/circle) when checked */
-.selected .checkmark:after {
+.radio_container input:checked ~ .checkmark:after {
   display: block;
 }
 
@@ -533,9 +443,6 @@ const style = /*html*/ `
  margin: 8px 0;
 }
 
-.grecaptcha-badge {
-	z-index: 1000;
-}
 
 .first_block .slider-for img{
 	width: 296px;
@@ -547,7 +454,6 @@ const style = /*html*/ `
 	width: 69px;
 	height: 69px;
 	padding-right: 8px;
-	object-fit: cover;
 }
 
 .table_section{
@@ -571,227 +477,14 @@ const style = /*html*/ `
         color: #7F7F7F;
         text-align: end;
         padding: 8px 12px 8px 0;
-        }
-        
-        .hidden_custom div {
-        	display: flex;
-        	flex-direction: row;
-        	border-top: 1px solid #E5E5E5;
-        	margin: 0 10px;
-        	padding: 8px;
-        }
-        
-        .hidden_custom div .title {
-        	font-weight: 500;
-			font-size: 14px;
-			line-height: 16px;
-			
-			color: #333333;
-        }
-        
-        .hidden div .subtitle {
-	        font-weight: normal;
-			font-size: 12px;
-			line-height: 14px;
-			color: #7F7F7F;
-        }
-        
-        .hidden_custom {
-        	display: none;
-        }
-        
-        /*.selected .hidden{*/
-        /*	display: block;*/
-        /*}*/
-		
-		.total_block .price-wrap {
-			display: flex;
-			justify-content: space-between;
-			background-color: #F5F5F5;
-        	padding: 15px;
-        	align-items: center;
-        	margin: 0 -15px;
-		}
-		
-		.total_block .btn-wrap {
-			text-align: center;
-		}
-		
-		.total_block p, .total_block p span, .total_block button {
-			text-transform: uppercase;
-			font-weight: bold;						
-			letter-spacing: 0.03em;
-			color: #000000;
-		}
-		
-		.total_block .total {
-			font-size: 20px;
-			line-height:12px;
-		}
-		
-		.total_block span {
-			font-size: 10px;
-		}
-		
-		.total_block .price {
-			font-size: 25px;
-		}
-		
-		.total_block button {
-			background: #FFFF00;
-			border-radius: 29px;
-			padding: 13px;
-			border: none;
-			margin-top: 15px;
-			width: 100%;
-			font-size: 14px;
-			color: #333333;
-		}
-		
-		.fourth_block .item.selected {
-			border: 1px solid #008000;
-		}
-		
-		 p.alarm {
-		 	display: none;
-			font-weight: normal;
-			font-size: 14px;
-			line-height: 16px;
-			text-align: center;
-			margin-top: 15px;		
-			
-			color: #CC0000;
-		}
-		
-		/*.total_block.alarmed p.alarm  {*/
-		/*	display: block;*/
-		/*}*/
-		
-		.alarm img {
-			margin-right: 4px;
-		}
-		
-		.total_block button[disabled] {
-			background-color: #E1E1E1 !important;
-		}
+    }
 </style>
 `
-
-const pathProduct = window.location.pathname.split("/50-km-marsch")[1]
-let product
-
-switch (pathProduct) {
-  case "/mammut-hamburg/":
-    product = "hamburg"
-    break
-  case "/ruhr/":
-    product = "ruhrgebiet"
-    break
-  case "/mammutmarsch-muenchen/":
-    product = "munchen"
-    break
-  default:
-    break
-}
-
-const version = {
-  hamburg: {
-    eventDetails: {
-      title: `Mammutmarsch<br>Hamburg – 42/60 km`,
-      start: `Elbinsel Kaltehofe, Kaltehofe-<br>Hauptdeich 6-7, 20539 <br>Hamburg`,
-      dataStart: "26.02.2021, ab 07:00 Uhr",
-      dataFinish: "27.02.2021, 01:00 Uhr",
-      routes: "42km /60km",
-      altitude: "150m/370m",
-    },
-    eventHighlights: [
-      "Hamburg, meine Perle. Urbanes und grünes Sightseeing zugleich!",
-      "Hafencity mit Elbphilharmonie",
-      "Elbufer mit Hafenblick",
-      "Außenalster & Binnenalster",
-      "Speicherstadt",
-      "Blankenese",
-    ],
-    paket: ["42 km (mit T-Shirt)", "42 km (nur Teilnahme)", "60 km (mit T-Shirt)", "60 km (nur Teilnahme)"],
-    img: [
-      "https://conversionratestore.github.io/projects/mammutmarsch/img/new_map42.png",
-      "https://conversionratestore.github.io/projects/mammutmarsch/img/new_map60.png",
-      "https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img0.jpg",
-      "https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img1.jpg",
-      "https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img2.jpg",
-      "https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img3.jpg",
-    ],
-  },
-  ruhrgebiet: {
-    eventDetails: {
-      title: `Mammutmarsch <br>Ruhrgebiet - 30/55 km`,
-      start: `Landschaftspark Duisburg –<br> Nord, Emscherstraße 71,<br> 47137 Duisburg`,
-      dataStart: `23.04.2022<br> ab 07:30 Uhr (55 KM)<br> ab 10:30 Uhr (30 KM)`,
-      dataFinish: "24:00 Uhr",
-      routes: "30km /55km",
-      altitude: "130m/270m",
-    },
-    eventHighlights: [
-      "100% Industriekultur. Wir führen dich hautnah durch die beeindruckendsten Industrieanlagen des Ruhrgebiets",
-      "Start im alten Eisenwerk LaPaDu",
-      "Zeche Zollverein (55 KM)",
-      "Ausblick vom Tetraeder (55 KM)",
-      "Gasometer Oberhausen",
-      "Zeche Osterfeld",
-    ],
-    paket: ["30 km (mit T-Shirt)", "30 km (nur Teilnahme)", "55 km (mit T-Shirt)", "55 km (nur Teilnahme)"],
-    img: [
-      "https://conversionratestore.github.io/projects/mammutmarsch/img/new_map30_rahr.jpg",
-      "https://conversionratestore.github.io/projects/mammutmarsch/img/new_map55_rahr.jpg",
-      "https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img4.jpg",
-      "https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img5.jpg",
-      "https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img9.jpg",
-      "https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img6.jpg",
-      "https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img7.jpg",
-      "https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img8.jpg",
-    ],
-  },
-  munchen: {
-    eventDetails: {
-      title: `Mammutmarsch <br>München - 30/55 km`,
-      start: `Südbad, Seestraße 20,<br> 82327 Tutzing`,
-      dataStart: `26.03.2022<br> ab 07:30 Uhr (55 KM)<br> ab 09:30 Uhr (30 KM)`,
-      dataFinish: "24:00 Uhr",
-      routes: "30km /55km",
-      altitude: "270m/550m",
-    },
-    eventHighlights: [
-      "Back to Nature , ruhige lange Wanderwege durch Wald und Felder mit viel Seeblick.",
-      "Start und Ziel am Starnberger See",
-      "Ammersee",
-      "Kloster Andechs",
-      "Alpenblick",
-      "Viel Natur",
-    ],
-    paket: ["30 km (mit T-Shirt)", "30 km (nur Teilnahme)", "55 km (mit T-Shirt)", "55 km (nur Teilnahme)"],
-    img: [
-      "https://conversionratestore.github.io/projects/mammutmarsch/img/new_map30_mun.jpg",
-      "https://conversionratestore.github.io/projects/mammutmarsch/img/new_map55_mun.jpg",
-      "https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img10.jpg",
-      "https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img11.jpg",
-      "https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img12.jpg",
-      "https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img13.jpg",
-    ],
-  },
-}
-
-let cityObj = version[product]
-
-function mapImg() {
-  cityObj.map(el, (idx) => {
-    return ` <img src="${cityObj.img[idx]}" alt="photo">`
-  })
-}
 
 const page = /*html*/ `
     <main class="custom_main">
       <section class="heading">
-          <p class="title">${cityObj.eventDetails.title}</p>
+          <p class="title">Mammutmarsch<br>Hamburg – 42/60 km</p>
           <p class="subtitle">Nimmst du die Herausforderung an?</p>
       </section>
       <section class="dropdown">
@@ -802,30 +495,45 @@ const page = /*html*/ `
                   </div>
                   <div class="first_block info">
                       <div class="slider-for"></div>
-                      <div class="slider_nav">                          
-                          <img src="${mapImg()}" alt="photo">
+                      <div class="slider_nav">
+                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/new_map42.png" alt="photo">
+                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/new_map60.png" alt="photo">
+                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img0.jpg" alt="img0">
+                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img1.jpg" alt="img1">
+                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img2.jpg" alt="img2">
+                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img3.jpg" alt="img3">
+                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img4.jpg" alt="img4">
+                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img5.jpg" alt="img5">
+                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img6.jpg" alt="img6">
+                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img7.jpg" alt="img7">
+                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img8.jpg" alt="img8">
+                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img9.jpg" alt="img9">
+                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img10.jpg" alt="img10">
+                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img11.jpg" alt="img11">
+                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img12.jpg" alt="img12">
+                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img13.jpg" alt="img13">
                       </div>
                       <table class="table_section">
 					    <tbody>
 					        <tr>
 					            <td>Start/<br> Zieladresse</td>
-					            <td>${cityObj.eventDetails.start}</td>
+					            <td>Elbinsel Kaltehofe, Kaltehofe-<br>Hauptdeich 6-7, 20539 <br>Hamburg</td>
 					        </tr>
 					        <tr>
 					            <td>Datum & Uhrzeit:</td>
-					            <td>${cityObj.eventDetails.dataStart}</td>
+					            <td>26.02.2021, ab 07:00 Uhr</td>
 					        </tr>
 					        <tr>
 					            <td>Spätester Finish:</td>
-					            <td>${cityObj.eventDetails.dataFinish}</td>
+					            <td>27.02.2021, 01:00 Uhr</td>
 					        </tr>
 					        <tr>
 					            <td>Routen</td>
-					            <td>${cityObj.eventDetails.routes}</td>
+					            <td>42km /60km</td>
 					        </tr>
 					        <tr>
 					            <td>Höhenmeter</td>
-					            <td>${cityObj.eventDetails.altitude}</td>
+					            <td>150m/370m</td>
 					        </tr>
 					    </tbody>
 					</table>
@@ -955,306 +663,141 @@ const page = /*html*/ `
                       <p>Event Highlights</p>
                   </div>
                   <div class="third_block info">
-                      <h2>${cityObj.eventHighlights[0]}</h2>
+                      <h2>Hamburg, meine Perle. Urbanes und grünes Sightseeing zugleich! </h2>
                       <ol>
                           <li>  
-                            ${cityObj.eventHighlights[1]}
+                            Hafencity mit Elbphilharmonie
                           </li>
                           <li>
-                            ${cityObj.eventHighlights[2]}
+                            Elbufer mit Hafenblick
                           </li>
                           <li>
-                            ${cityObj.eventHighlights[3]}
+                            Außenalster & Binnenalster
                           </li>
                           <li>
-                            ${cityObj.eventHighlights[4]}
+                            Speicherstadt
                           </li>
                           <li>
-                            ${cityObj.eventHighlights[5]}
+                            Blankenese
                           </li>
                       </ol>
                   </div>
               </li>
               <li>
-    <div class="subject">
-        <p>Wähle dein Paket aus</p>
-    </div>
-        <div class="fourth_block info">
-            <div class="item">
-                <div class="visible">
-                    <div>
-                        <label class="radio_container">
-                            <input type="radio"   name="radio">
-                            <span class="checkmark"></span>
-                        </label>
-                        <p>${cityObj.paket[0]}<img
-                                src="https://conversionratestore.github.io/projects/mammutmarsch/img/tshirt.png"
-                                alt="tshirt"></p>
-                    </div>
-                    <p class="item_price">€67.50</p>
-                    <p class="pseudo favorit">Favorit</p>
-                </div>
-                <div class="hidden_custom">
-                    <div>
-                        <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/tshirt-black.svg" alt="">
-                        <p class="title">Hochwertiges, gut geschnittenes<br><span class="subtitle">Event T-Shirt</span></p>
-                    </div>
-                </div>
-                
-            </div>
-            <div class="item">
-                <div class="visible">
-                    <div>
-                        <label class="radio_container">
-                            <input type="radio" name="radio">
-                            <span class="checkmark"></span>
-                        </label>
-                        <p>${cityObj.paket[1]}</p>
-                    </div>
-                    <p class="item_price">€47.50</p>
-                </div>
-                <div class="hidden_custom">
-                    <div>
-                        <p class="subtitle">Teilnahme, Streckenposten (mit Snacks, Wasser und Überraschungen),
-                            Shuttle-Service/Ausstiegspunkte, Urkunde, Medaille & Finisherband, Betreuung durch
-                            Sanitätsdienst, Teilnehmerheft</p>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="visible">
-                    <div>
-                        <label class="radio_container">
-                            <input type="radio"   name="radio">
-                            <span class="checkmark"></span>
-                        </label>
-                        <p>${cityObj.paket[2]}<img
-                                src="https://conversionratestore.github.io/projects/mammutmarsch/img/tshirt.png"
-                                alt="tshirt"></p>
-                    </div>
-                    <p class="item_price">€77.50</p>
-                    <p class="pseudo beliebt">Beliebt</p>
-                </div>
-                <div class="hidden_custom">
-                    <div>
-                        <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/tshirt-black.svg" alt="">
-                        <p class="title">Hochwertiges, gut geschnittenes<br><span class="subtitle">Event T-Shirt</span></p>
-                    </div>
-                </div>
-                
-            </div>
-            <div class="item">
-                <div class="visible">
-                    <div>
-                        <label class="radio_container">
-                            <input type="radio"  name="radio">
-                            <span class="checkmark"></span>
-                        </label>
-                        <p>${cityObj.paket[3]}</p>
-                    </div>
-                    <p class="item_price">€57.50</p>
-                </div>
-                <div class="hidden_custom">
-                    <div>
-                        <p class="subtitle">Teilnahme, Streckenposten (mit Snacks, Wasser und Überraschungen),
-                            Shuttle-Service/Ausstiegspunkte, Urkunde, Medaille & Finisherband, Betreuung durch
-                            Sanitätsdienst, Teilnehmerheft</p>
-                    </div>
-                </div>
-            </div>
-            <div class="total_block">
-            <div class="price-wrap">
-                <p class="total">Total<br><span>(INKLUSIVE MWST)</span></p>
-                <p class="price">€00.00</p>
-            </div>
-            <p class="alarm"><img src="https://conversionratestore.github.io/projects/mammutmarsch/img/alarm.svg" alt="alarm">Bitte wähle ein Paket aus</p>
-            <div class="btn-wrap">
-                <button>Anmeldung abschließen</button>
-            </div>
-        </div>
-        </div>
-        
-</li>
+                  <div class="subject">
+                      <p>Wähle dein Paket aus</p>
+                  </div>
+                  <div class="fourth_block info">
+                      <div class="item">
+                        <div class="visible">
+                          <div>
+                            <label class="radio_container">
+                              <input type="radio" checked="checked" name="radio">                              
+                              <span class="checkmark"></span>
+                            </label>
+                            <label class="radio_container">
+                              <input type="radio" checked="checked" name="radio">                              
+                              <span class="checkmark"></span>
+                            </label>
+                            <p>42 km (mit T-Shirt)<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/tshirt.png" alt="tshirt"></p>      
+                          </div>                                              
+                          <p>€67.50</p>
+                        </div>                        
+                        <div class="hidden">                       
+                            text
+                        </div>
+                      </div>
+                  </div>
+              </li>
           </ul>
       </section>
     </main>
 `
 
 document.body.insertAdjacentHTML("afterbegin", style)
-// document.body.insertAdjacentHTML('afterbegin', page)
-document.querySelector("#main").insertAdjacentHTML("afterbegin", page)
+document.body.insertAdjacentHTML("afterbegin", page)
 
-let jqueryLoaded2 = setInterval(() => {
-  if (typeof jQuery === "function") {
-    clearInterval(jqueryLoaded2)
+document.body.addEventListener("click", function (e) {
+  if (!e.target.closest(".second_block_inform li")?.classList.contains("show")) {
+    removeShowClass()
 
-    let slickInterval = setInterval(() => {
-      if (
-        typeof jQuery(".slider_reviews .slider_nav").slick === "function" &&
-        document.querySelector(".slider_reviews .slider_nav") &&
-        document.querySelector(".first_block .slider_nav")
-      ) {
-        clearInterval(slickInterval)
+    e.target.closest(".second_block_inform li")?.classList.add("show")
+  } else {
+    removeShowClass()
+  }
+})
 
-        $(".slider_reviews .slider_nav").slick({
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          arrows: false,
-          focusOnSelect: true,
-          dots: true,
-        })
+const jqueryInterval = setInterval(() => {
+  if (typeof jQuery == "function" && document.querySelector(".slider_reviews .slider_nav") && document.querySelector(".first_block .slider_nav")) {
+    clearInterval(jqueryInterval)
 
-        $(".first_block .slider-for").slick({
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          fade: true,
-          asNavFor: ".first_block .slider_nav",
-          prevArrow: `
+    let scriptCustom = document.createElement("script")
+    scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
+    scriptCustom.async = false
+    document.head.appendChild(scriptCustom)
+
+    let scriptCustomStyle = document.createElement("link")
+    scriptCustomStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
+    scriptCustomStyle.rel = "stylesheet"
+    document.head.appendChild(scriptCustomStyle)
+
+    setTimeout(() => {
+      $(".slider_reviews .slider_nav").slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        focusOnSelect: true,
+        dots: true,
+      })
+
+      $(".first_block .slider-for").slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        fade: true,
+        asNavFor: ".first_block .slider_nav",
+        prevArrow: `
 					<div class="prev" >
 						<svg width="13" height="20" viewBox="0 0 13 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 					        <path d="M12.5098 1.8701L10.7298 0.100098L0.839844 10.0001L10.7398 19.9001L12.5098 18.1301L4.37984 10.0001L12.5098 1.8701Z" fill="#333333" fill-opacity="0.8"/>
 					        </svg>
 					</div>
 				`,
-          nextArrow: `
+        nextArrow: `
 <div class="next" >
 			<svg width="13" height="20" viewBox="0 0 13 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         		<path d="M0.490234 18.1301L2.26023 19.9001L12.1602 10.0001L2.26023 0.100098L0.490234 1.8701L8.62023 10.0001L0.490234 18.1301Z" fill="#333333" fill-opacity="0.8"/>
         	</svg>
         	</div>
         `,
-        })
-        $(".first_block .slider_nav").slick({
-          slidesToShow: 4,
-          slidesToScroll: 1,
-          arrows: false,
-          asNavFor: ".slider-for",
-          focusOnSelect: true,
-        })
+      })
+      $(".first_block .slider_nav").slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        arrows: false,
+        asNavFor: ".slider-for",
+        focusOnSelect: true,
+      })
 
-        $(".subject").click(function () {
-          $(this).closest("li").toggleClass("hide-custom")
-          if ($(this).closest("li").hasClass("hide-custom")) {
-            $(this).closest("li").find(".info").slideUp()
-          } else {
-            $(this).closest("li").find(".info").slideDown()
-          }
-        })
-
-        document.body.addEventListener("click", function (e) {
-          if (!e.target.closest(".second_block_inform li")?.classList.contains("show")) {
-            removeShowClass()
-            e.target.closest(".second_block_inform li")?.classList.add("show")
-          } else {
-            removeShowClass()
-          }
-        })
-
-        $(".second_block_inform ul li div svg").click(function () {
-          if (!$(this).closest("li").hasClass("show")) {
-            $(this).closest("li").find(".hidden_text").slideDown()
-            $(this).closest("li").addClass("show")
-          } else {
-            $(this).closest("li").find(".hidden_text").slideUp()
-            $(".second_block_inform .show").removeClass("show")
-            $(".second_block_inform .show").find(".hidden_text").slideDown()
-          }
-        })
-
-        $(".fourth_block .item").click(function () {
-          if (!$(this).hasClass("selected")) {
-            let indexItem = $(this).index()
-
-            $(".fourth_block .selected .hidden_custom").slideUp()
-            $(".fourth_block .selected").removeClass("selected")
-
-            $(this).find(".hidden_custom").slideDown()
-            $(this).addClass("selected")
-
-            $(".price-wrap .price").text($(this).find(".item_price").text())
-
-            $(".total_block .alarm").slideUp()
-            $(".fourth_block").removeClass("alarmed")
-
-            $(".total_block button").attr("disabled", false)
-
-            switch (+indexItem) {
-              case 0:
-                document.querySelectorAll(".radio-container")[0].click()
-                console.log(+indexItem)
-                break
-              case 1:
-                document.querySelectorAll(".radio-container")[2].click()
-                console.log(+indexItem)
-                break
-              case 2:
-                document.querySelectorAll(".radio-container")[1].click()
-                console.log(+indexItem)
-                break
-              case 3:
-                document.querySelectorAll(".radio-container")[3].click()
-                console.log(+indexItem)
-                break
-              default:
-                break
-            }
-
-            // // $(this).find('.visible p')
-            // $('.fourth_block .visible p')
-            // .fourth_block .visible p
-          }
-        })
-
-        $(".total_block button").click(function () {
-          if ($(".item.selected").length === 0) {
-            $(".fourth_block").addClass("alarmed")
-            $(".total_block .alarm").slideDown()
-            $(".total_block button").attr("disabled", true)
-
-            console.log("Proceed to checkout click")
-
-            window.dataLayer = window.dataLayer || []
-            dataLayer.push({
-              event: "event-to-ga",
-              eventCategory: "Exp: PDP improvements",
-              eventAction: "Proceed to checkout click",
-            })
-          } else {
-            document.querySelector("#proceed_to_checkout").click()
-
-            $(".total_block button").attr("disabled", false)
-            $(".total_block .alarm").slideUp()
-            $(".fourth_block").removeClass("alarmed")
-          }
-        })
-      }
-    }, 100)
+      $(".subject").click(function () {
+        $(this).closest("li").toggleClass("hide")
+        if ($(this).closest("li").hasClass("hide")) {
+          $(this).closest("li").find(".info").slideUp()
+        } else {
+          $(this).closest("li").find(".info").slideDown()
+        }
+      })
+    }, 1000)
   }
 }, 100)
 
+function removeShowClass() {
+  document.querySelectorAll(".second_block_inform li").forEach((li) => {
+    if (li.classList.contains("show")) {
+      li.classList.remove("show")
+    }
+  })
+}
+
 document.querySelectorAll(".first_block .slider_nav img").forEach((el) => {
   document.querySelector(".first_block .slider-for").insertAdjacentHTML("beforeend", `<img class="product1" src="${el.src}" alt="photo">`)
-})
-
-console.log("loaded")
-;(function (h, o, t, j, a, r) {
-  h.hj =
-    h.hj ||
-    function () {
-      ;(h.hj.q = h.hj.q || []).push(arguments)
-    }
-  h._hjSettings = { hjid: 1191175, hjsv: 6 }
-  a = o.getElementsByTagName("head")[0]
-  r = o.createElement("script")
-  r.async = 1
-  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
-  a.appendChild(r)
-})(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=")
-hj("event", "pdp_improvements")
-
-window.dataLayer = window.dataLayer || []
-dataLayer.push({
-  event: "event-to-ga",
-  eventCategory: "Exp: PDP improvements",
-  eventAction: "loaded",
 })
