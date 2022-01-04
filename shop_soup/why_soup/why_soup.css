@@ -17,6 +17,11 @@ img {
   margin: 0 auto;
 }
 
+.container.how_we_work_block {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .hero_img {
   width: 100%;
   height: 100%;
@@ -28,8 +33,205 @@ img {
   margin-top: 40px;
 }
 
-@media (max-width: 767px) {
+.why_soup_wrap {
+  margin: 60px auto 146px;
 }
 
-@media (max-width: 321px) {
+.why_soup_wrap h1 {
+  font-weight: 600;
+  font-size: 72px;
+  line-height: 114%;
+  text-align: center;
+  text-transform: uppercase;
+  color: #103d9d;
+}
+
+.why_soup_list {
+  margin-top: 90px;
+}
+
+.why_soup_list li + li {
+  margin-top: 90px;
+}
+
+.why_soup_list li {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  width: 100%;
+  height: 430px;
+  background: center / cover no-repeat url(img/photo1_why_soup.jpg);
+}
+
+.why_soup_list li:nth-child(2) {
+  background: center / cover no-repeat url(img/photo2_why_soup.jpg);
+  align-items: flex-end;
+}
+
+.why_soup_list li:nth-child(3) {
+  background: center / cover no-repeat url(img/photo3_why_soup.jpg);
+}
+
+.why_soup_list li:nth-child(4) {
+  background: center / cover no-repeat url(img/photo4_why_soup.jpg);
+  align-items: flex-end;
+}
+
+.why_soup_list li:nth-child(5) {
+  background: center / cover no-repeat url(img/photo5_why_soup.jpg);
+}
+
+.why_soup_list li:nth-child(1) > div:last-child {
+  width: 48%;
+}
+
+.why_soup_list li:nth-child(2) > div:last-child {
+  width: 60%;
+}
+
+.why_soup_list li:nth-child(4) > div:last-child {
+  width: 60%;
+}
+
+.why_soup_list li:nth-child(5) > div:last-child {
+  width: ;
+}
+
+.why_soup_list li h2 {
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 58px;
+  text-transform: uppercase;
+  color: #103d9d;
+  margin-bottom: 14px;
+}
+
+.why_soup_list li p {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 150%;
+  color: #373030;
+  max-width: 341px;
+}
+
+.why_soup_list li:nth-child(2) p {
+  max-width: 423px;
+}
+
+.why_soup_list li:nth-child(3) p {
+  max-width: 355px;
+}
+
+.why_soup_list li:nth-child(4) p {
+  max-width: 435px;
+}
+
+.why_soup_list li:nth-child(5) p {
+  max-width: 355px;
+}
+
+.how_we_work_block ul {
+  display: flex;
+  margin-top: 60px;
+}
+
+.how_we_work_block ul li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.how_we_work_block ul li + li {
+  margin-left: 20px;
+}
+
+.how_we_work_block ul li img {
+  width: 45px;
+  height: 45px;
+}
+
+.how_we_work_block ul li:not(:last-child):before {
+  content: "";
+  position: absolute;
+  background: center / cover no-repeat url("img/line.svg");
+  width: 205px;
+  height: 1px;
+  top: 20px;
+  right: -107px;
+}
+
+.how_we_work_block ul li p:nth-child(2) {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  text-transform: uppercase;
+  color: #003da5;
+  margin: 10px 0 20px;
+}
+
+.how_we_work_block ul li p:nth-child(3) {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 140%;
+  color: #373030;
+}
+
+.how_we_work_block h3 {
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 140%;
+  text-align: center;
+  text-transform: uppercase;
+  color: #00399a;
+}
+
+/*shop_now */
+.shop_now {
+  margin: 116px auto;
+  border: 1px solid rgba(146, 168, 209, 0.2);
+}
+
+.shop_now ul li {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  width: 100%;
+  height: 430px;
+  background: center / cover no-repeat url(img/photo6_why_soup.jpg);
+}
+
+.shop_now ul li p {
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 121%;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #00399a;
+  margin-bottom: 40px;
+}
+
+.shop_now ul li a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  background: #103d9d;
+  width: 194px;
+  height: 53px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: "Archivo Narrow", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.shop_now a:hover {
+  background: linear-gradient(to top, #6899ff, #001861);
 }
