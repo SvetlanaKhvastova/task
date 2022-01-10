@@ -93,10 +93,6 @@ img {
   width: 60%;
 }
 
-.why_soup_list li:nth-child(5) > div:last-child {
-  width: ;
-}
-
 .why_soup_list li h2 {
   font-weight: 600;
   font-size: 48px;

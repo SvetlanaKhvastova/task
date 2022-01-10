@@ -240,6 +240,81 @@ img {
   background: linear-gradient(to top, #6899ff, #001861);
 }
 
+/*curated_packages */
+.curated_packages h2{
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 140%;
+    text-align: center;
+    text-transform: uppercase;
+    color: #103D9D;
+    margin-bottom: 60px;
+}
+
+.curated_packages ul{
+    display: flex;
+}
+
+.curated_packages ul > li{
+    width: 30%;
+}
+
+.curated_packages ul > li + li{
+    margin-left: 60px;
+}
+
+.curated_packages ul > li > a{
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    color: #19409C;
+    display: block;
+    margin-bottom: 10px;
+    text-decoration-line: none;
+}
+
+.curated_packages  ul > li > a:last-of-type{
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+    text-decoration-line: underline;
+    color: #19409C;
+    margin: 10px 0 0;
+}
+
+.curated_packages  ul > li > div{
+    display: flex;
+    width: 100%;
+    background: #19409C;
+    padding: 4px 0;
+}
+
+.curated_packages  ul > li > div span{
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 19px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    border-right: 2px solid  #FFFFFF;
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+}
+
+.curated_packages  ul > li > div button{
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 19px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background: #19409C;
+    border: none;
+    flex: 3;
+    padding: 10px;
+    text-align: center;
+}
+
 </style>
 `
 let page = /*html */ `
@@ -320,6 +395,36 @@ let page = /*html */ `
                 </li>
             </ul>
         </div>
+        <div class="curated_packages">
+            <h2>Curated Packages</h2>
+            <ul>
+                <li>
+                    <a href="">Bestseller Bundle</a>
+                    <a href="">
+                        <img src="" alt="">
+                    </a>
+                    <div>
+                        <span>$54.00</span>
+                        <button>
+                            <img src="https://conversionratestore.github.io/projects/sticky_soup/img/open_box.svg" alt="">
+                            Add to box</button>
+                    </div>
+                    <a href="">View bundle</a>
+                </li>
+                <li>
+                    <a href="">Bestseller Bundle</a>
+                    <a href="">
+                        <img src="" alt="">
+                    </a>
+                    <div>
+                        <span>$54.00</span>
+                        <button>Add to box</button>
+                    </div>
+                    <a href="">View bundle</a>
+                </li>
+            </ul>
+        </div>
+            
    </main>
 `
 document.body.insertAdjacentHTML("afterbegin", pageStyle)
