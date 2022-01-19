@@ -1,0 +1,218 @@
+<style>
+  .row.section {
+    display: none;
+  }
+</style>
+
+<script type="text/javascript">
+  time = setTimeout(() => {
+    let eventVar = "desktop"
+
+    if (window.innerWidth <= 768) {
+      eventVar = "mobile"
+    }
+
+    let btnOnClick = localStorage.getItem("btn")
+
+    if (btnOnClick === ".enroll_now") {
+      scrolling("#creditCardRadio")
+    }
+
+    if (btnOnClick === ".apple_pay_btn") {
+      scrolling("#digitalWalletRadio")
+    }
+
+    if (btnOnClick === ".pay_pal_btn") {
+      scrolling("#payPalRadio")
+    }
+
+    if (btnOnClick === ".google_pay_btn") {
+      scrolling("#digitalWalletRadio")
+    }
+
+    setTimeout(() => {
+      onClickRadioBtn("#creditCardRadio")
+      onClickRadioBtn("#payPalRadio")
+      onClickRadioBtn("#digitalWalletRadio")
+    }, 200)
+
+    function scrolling(onClick) {
+      document.querySelector(onClick).click()
+
+      // document.querySelector(".tpl-6__order.text-center.pt-sm-30.py-24").scrollIntoView({ block: "start", behavior: "smooth" })
+    }
+
+    function onClickRadioBtn(btnSelector) {
+      document.querySelector(btnSelector).addEventListener("click", () => {
+        let eventAction = ""
+
+        if (btnSelector === "#creditCardRadio") {
+          eventAction = "Click on Credit Card payment method"
+        }
+
+        if (btnSelector === "#payPalRadio") {
+          eventAction = "Click on PayPal payment method"
+        }
+        if (btnSelector === "#digitalWalletRadio") {
+          eventAction = "Click on Apple pay or Google pay'"
+        }
+
+        window.dataLayer = window.dataLayer || []
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp — Trial subscription checkout purchase ${eventVar}`,
+          eventAction: `Click on ${eventAction}`,
+          eventLabel: "Checkout after Enroll Now",
+        })
+      })
+    }
+
+    //click on Contact form input
+    if (document.querySelectorAll(".col-sm-6.col-12 input")) {
+      document.querySelectorAll(".col-sm-6.col-12 input").forEach((el) => {
+        el.addEventListener("change", () => {
+          window.dataLayer = window.dataLayer || []
+          dataLayer.push({
+            event: "event-to-ga",
+            eventCategory: `Exp — Trial subscription checkout purchase ${eventVar}`,
+            eventAction: `Click on input ${el.name}`,
+            eventLabel: "Checkout after Enroll Now",
+          })
+        })
+      })
+    }
+
+    if (document.querySelector(".InputElement.is-empty.Input.Input--empty[name=exp-date]")) {
+      document.querySelector(".InputElement.is-empty.Input.Input--empty[name=exp-date]").addEventListener("change", () => {
+        window.dataLayer = window.dataLayer || []
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp — Trial subscription checkout purchase ${eventVar}`,
+          eventAction: `Click on input ${document.querySelector(".InputElement.is-empty.Input.Input--empty[name=exp-date]").placeholder}`,
+          eventLabel: "Checkout after Enroll Now",
+        })
+      })
+    }
+
+    if (document.querySelector(".InputElement.is-empty.Input.Input--empty[name=cardnumber]")) {
+      document.querySelector(".InputElement.is-empty.Input.Input--empty[name=cardnumber]").addEventListener("change", () => {
+        window.dataLayer = window.dataLayer || []
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp — Trial subscription checkout purchase ${eventVar}`,
+          eventAction: `Click on input ${document.querySelector(".InputElement.is-empty.Input.Input--empty[name=cardnumber]").placeholder}`,
+          eventLabel: "Checkout after Enroll Now",
+        })
+      })
+    }
+
+    if (document.querySelector(".InputElement.is-empty.Input.Input--empty[name=cvc]")) {
+      document.querySelector(".InputElement.is-empty.Input.Input--empty[name=cvc]").addEventListener("change", () => {
+        window.dataLayer = window.dataLayer || []
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp — Trial subscription checkout purchase ${eventVar}`,
+          eventAction: `Click on input ${document.querySelector(".InputElement.is-empty.Input.Input--empty[name=cvc]").placeholder}`,
+          eventLabel: "Checkout after Enroll Now",
+        })
+      })
+    }
+
+    // Click on Yes add the Facebook checkbox
+    if (document.querySelector(".bump-content.left label")) {
+      document.querySelector(".bump-content.left label").addEventListener("click", () => {
+        window.dataLayer = window.dataLayer || []
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp — Trial subscription checkout purchase ${eventVar}`,
+          eventAction: "Click on Yes add the Facebook checkbox",
+          eventLabel: "Checkout after Enroll Now",
+        })
+      })
+    }
+
+    //click btn placeOrder
+    if (document.querySelector("#placeOrder")) {
+      document.querySelector("#placeOrder").addEventListener("click", () => {
+        window.dataLayer = window.dataLayer || []
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp — Trial subscription checkout purchase ${eventVar}`,
+          eventAction: "Click on Place Order Now button",
+          eventLabel: "Checkout after Enroll Now",
+        })
+      })
+    }
+
+    //click btn PayNow
+    // if (document.querySelector(".PaymentRequestButton.PaymentRequestButton--dark.baseline-offset")) {
+    //   document.querySelector(".PaymentRequestButton.PaymentRequestButton--dark.baseline-offset").addEventListener("click", () => {
+    //     console.log(`.PaymentRequestButton.PaymentRequestButton--dark.baseline-offset`)
+    //     window.dataLayer = window.dataLayer || []
+    //     dataLayer.push({
+    //       event: "event-to-ga",
+    //       eventCategory: `Exp — Trial subscription checkout purchase ${eventVar}`,
+    //       eventAction: "Click on PayNow",
+    //       eventLabel: "page Checkout",
+    //     })
+    //   })
+    // }
+    // visibility(".PaymentRequestButton.PaymentRequestButton--dark.baseline-offset", "Visibility PayNow button")
+
+    visibility("#placeOrder", "Visibility Place Order Now button")
+
+    function visibility(selector, eventAct) {
+      //observer
+      const options = {
+        root: null,
+        threshold: 0.5,
+      }
+
+      let containerFaq = document.querySelector(selector)
+      let observer = new IntersectionObserver((entries) => {
+        if (!entries[0].isIntersecting) return
+        //
+
+        window.dataLayer = window.dataLayer || []
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp — Trial subscription checkout purchase ${eventVar}`,
+          eventAction: eventAct,
+          eventLabel: "Checkout after Enroll Now",
+        })
+
+        observer.disconnect()
+      })
+
+      observer.observe(containerFaq, options)
+    }
+
+    ;(function (h, o, t, j, a, r) {
+      h.hj =
+        h.hj ||
+        function () {
+          ;(h.hj.q = h.hj.q || []).push(arguments)
+        }
+      h._hjSettings = { hjid: 2592989, hjsv: 6 }
+      a = o.getElementsByTagName("head")[0]
+      r = o.createElement("script")
+      r.async = 1
+      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+      a.appendChild(r)
+    })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=")
+    window.hj =
+      window.hj ||
+      function () {
+        ;(hj.q = hj.q || []).push(arguments)
+      }
+    hj("trigger", `tv_trial_subscription_checkout_purchase_${eventVar}`)
+    hj("event", `trial_subscription_checkout_purchase_${eventVar}`)
+
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: `Exp — Trial subscription checkout purchase ${eventVar}`,
+      eventAction: "loaded",
+    })
+  }, 1500)
+</script>
