@@ -720,15 +720,15 @@ let startFunc = setInterval(() => {
           Dec: "December",
         }
         const days = {
-          1: "st",
-          2: "nd",
-          3: "rd",
-          4: "th",
-          5: "th",
-          6: "th",
-          7: "th",
-          8: "th",
-          9: "th",
+          01: "st",
+          02: "nd",
+          03: "rd",
+          04: "th",
+          05: "th",
+          06: "th",
+          07: "th",
+          08: "th",
+          09: "th",
           10: "th",
           11: "th",
           12: "th",
@@ -768,7 +768,7 @@ let startFunc = setInterval(() => {
           }
 
           if (document.querySelector(".price_block .blur_block> p:nth-of-type(2) span:last-child")) {
-            document.querySelector(".price_block .blur_block> p:nth-of-type(2) span:last-child").textContent = `${days[daySeven[2]]}`
+            document.querySelector(".price_block .blur_block> p:nth-of-type(2) span:last-child").textContent = `${days[+daySeven[2]]}`
           }
 
           // timer

@@ -1,4 +1,3 @@
-// window.onload = function () {
 let scriptCustom = document.createElement("script")
 scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
 scriptCustom.async = false
@@ -11,47 +10,47 @@ document.head.appendChild(scriptCustomStyle)
 
 let styleComparisonBlock = /*html*/ `
 <style>
-
-  .bp-tooltip .bp-tooltiptext{
+  .bp-tooltip .bp-tooltiptext {
     max-width: 180px;
     left: calc(50% - 54px) !important;
     width: 95px !important;
   }
 
-  .comparison_slider_nav{
+  .comparison_slider_nav {
     padding-bottom: 42px;
     margin-bottom: 40px;
   }
 
-  .comparison_slider_nav, .comparison_slider_nav .bp-comparison{
-    background: #ECEEF0;
+  .comparison_slider_nav,
+  .comparison_slider_nav .bp-comparison {
+    background: #eceef0;
   }
 
-  .comparison_slider_nav .bp-comparison{
+  .comparison_slider_nav .bp-comparison {
     padding: 30px 0 40px;
     margin-bottom: 0 !important;
   }
 
-  .wave-effect.js-mobile svg{
+  .wave-effect.js-mobile svg {
     display: none;
   }
 
-  .wave-effect.js-mobile svg path{
-  fill:#ECEEF0;
+  .wave-effect.js-mobile svg path {
+    fill: #eceef0;
   }
 
-  .wave-effect{
+  .wave-effect {
     margin-bottom: -2px;
   }
 
-  .comparison_slider_nav .col-lg-3.text-center.js-heading{
+  .comparison_slider_nav .col-lg-3.text-center.js-heading {
     margin-top: 10px;
   }
 
-  .comparison_slider_nav .bp-mob-table-container p{
-  font-weight: 600;
-  font-size: 14px !important;
-  line-height: 20px !important;
+  .comparison_slider_nav .bp-mob-table-container p {
+    font-weight: 600;
+    font-size: 14px !important;
+    line-height: 20px !important;
   }
 
   .comparison_block table thead tr:last-child td,
@@ -83,7 +82,8 @@ let styleComparisonBlock = /*html*/ `
     padding: 30px 16px 40px;
   }
 
-  .comparison_block h2, .comparison_slider_nav .js-title.text-dark {
+  .comparison_block h2,
+  .comparison_slider_nav .js-title.text-dark {
     font-family: "DINEngschrift LT", sans-serif;
     font-weight: 400;
     font-size: 30px;
@@ -95,7 +95,7 @@ let styleComparisonBlock = /*html*/ `
     margin-bottom: 40px;
   }
 
-  .comparison_slider_nav .js-title.text-dark{
+  .comparison_slider_nav .js-title.text-dark {
     margin-bottom: 56px;
   }
 
@@ -111,11 +111,81 @@ let styleComparisonBlock = /*html*/ `
     border: 2px solid #ff3c81;
     border-radius: 6px;
     padding: 20px 47px;
-    margin-top: 40px;
-    margin-bottom: 0;
+    position: relative;
+    margin: 40px auto 0;
+    width: max-content;
   }
 
-  .comparison_block > p span {
+  .comparison_block > p > svg {
+    position: absolute;
+    content: "";
+    bottom: 41px;
+    right: 19px;
+    width: 40px;
+  }
+
+  .mini_box {
+    bottom: 72px !important;
+    right: 19px !important;
+    opacity: 0;
+  }
+
+  .hidden_text {
+    opacity: 0;
+    position: absolute;
+    top: -72px;
+    right: 7px;
+    width: 100%;
+    background: #ffffff;
+    font-family: "Roboto", sans-serif;
+    text-transform: none;
+    box-shadow: 0px 0.688073px 4.06px rgb(0 0 0 / 7%), 6px 7.26px 20.4px rgb(0 0 0 / 10%);
+    border-radius: 7px;
+    font-weight: 400;
+    font-size: 12px !important;
+    line-height: 17px !important;
+    color: #212529;
+    margin: 0;
+    padding: 10px;
+    max-width: 245px;
+    text-align: left;
+  }
+
+  @media (max-width: 320px) {
+    .mini_box {
+      right: -3px !important;
+    }
+    .comparison_block > p > svg {
+      right: -6px;
+    }
+
+    .hidden_text {
+      right: -10px;
+    }
+  }
+
+  @media (max-width: 280px) {
+    .mini_box {
+      bottom: 108px !important;
+      right: -6px !important;
+    }
+
+    .comparison_block > p > svg {
+      bottom: 92px;
+      right: -8px;
+    }
+
+    .hidden_text {
+      right: -10px;
+      top: -96px;
+    }
+
+    .comparison_block > p {
+      width: 100%;
+    }
+  }
+
+  .comparison_block > p > span span {
     color: #ff3c81;
   }
 
@@ -187,24 +257,24 @@ let styleComparisonBlock = /*html*/ `
     height: 26px;
   }
 
-  .comparison_slider_nav .slick-dots li a::before, .slick-dots li button::before{
-    background: #F1F3F4;
+  .comparison_slider_nav .slick-dots li a::before,
+  .slick-dots li button::before {
+    background: #f1f3f4;
     border: 1px solid #212529;
     width: 12px;
     height: 12px;
-    content:"";
+    content: "";
     transform: unset;
     color: unset;
   }
 
-   .comparison_slider_nav .slick-dots li.slick-active a::before, .slick-dots li.slick-active button::before{
-    content:"";
+  .comparison_slider_nav .slick-dots li.slick-active a::before,
+  .slick-dots li.slick-active button::before {
+    content: "";
     transform: unset;
     color: unset;
     background: #212529;
   }
-
-
 
   @media (max-width: 321px) {
     .comparison_block > p {
@@ -214,6 +284,10 @@ let styleComparisonBlock = /*html*/ `
     .comparison_block table tbody tr td:first-child div {
       padding-right: 20px;
     }
+  }
+
+  .toggle_opacity {
+    opacity: 1;
   }
 </style>
 `
@@ -306,9 +380,18 @@ let sliderBox = /*html */ `
           </tr>
         </tbody>
       </table>
-      <p>
-        Buzzpatch is <span>UP to 25% <br />cheaper</span> than a bug spray
-      </p>
+     
+        <p>
+          <span>Buzzpatch is <span>UP to 25% <br />cheaper</span> than a bug spray</span>
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.47506 7.3V5.5M5.47506 3.70005H5.4858M9.95 5.5C9.95 3.01472 7.94647 1 5.475 1C3.00353 1 1 3.01472 1 5.5C1 7.98528 3.00353 10 5.475 10C7.94647 10 9.95 7.98528 9.95 5.5Z" stroke="#777777" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="hidden_text">The calculation is based on comparing the price of Buzzpatch to the price of the most popular mosquito repelling spay available on the market.</span>
+          <svg class="mini_box" width="27" height="10" viewBox="0 0 27 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14.6905 9.11818C13.9833 9.64203 13.0167 9.64203 12.3095 9.11818L0 -9.53674e-07L27 -9.53674e-07L14.6905 9.11818Z" fill="white"/>
+          </svg>
+        </p>
+
     </section>
 </div>
 `
@@ -355,6 +438,31 @@ let slickInterval = setInterval(() => {
   }
 }, 100)
 
+if (document.querySelector(".comparison_block > p > svg")) {
+  const toggleMenu = () => {
+    document.querySelector(".hidden_text").classList.toggle("toggle_opacity")
+    document.querySelector(".mini_box").classList.toggle("toggle_opacity")
+  }
+
+  document.querySelector(".comparison_block > p > svg").addEventListener("click", (e) => {
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp: Pricing comparison option",
+      eventAction: "Click tooltip",
+    })
+
+    e.stopPropagation()
+
+    toggleMenu()
+  })
+
+  document.addEventListener("click", (e) => {
+    document.querySelector(".hidden_text")?.classList.remove("toggle_opacity")
+    document.querySelector(".mini_box")?.classList.remove("toggle_opacity")
+  })
+}
+
 clarity("set", "hypothesis_3", "comparison_table")
 
 window.dataLayer = window.dataLayer || []
@@ -377,4 +485,3 @@ dataLayer.push({
   a.appendChild(r)
 })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=")
 hj("event", "pricing_comparison_option")
-// }
