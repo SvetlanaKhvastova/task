@@ -1,8 +1,40 @@
 let styleComparisonBlock = /*html*/ `
 <style>
-  .bp-comparison.js-mobile, .wave-effect.js-mobile{
-    display: none;
+  .bp-tooltip .bp-tooltiptext {
+    max-width: 180px;
+    left: calc(50% - 54px) !important;
+    width: 95px !important;
   }
+
+  .comparison_slider_nav {
+    padding-bottom: 42px;
+    margin-bottom: 40px;
+  }
+
+  .comparison_slider_nav,
+  .comparison_slider_nav .bp-comparison {
+    background: #eceef0;
+  }
+
+  .comparison_slider_nav .bp-comparison {
+    padding: 30px 0 40px;
+    margin-bottom: 0 !important;
+  }
+
+
+
+
+
+  .comparison_slider_nav .col-lg-3.text-center.js-heading {
+    margin-top: 10px;
+  }
+
+  .comparison_slider_nav .bp-mob-table-container p {
+    font-weight: 600;
+    font-size: 14px !important;
+    line-height: 20px !important;
+  }
+
   .comparison_block table thead tr:last-child td,
   table thead tr:last-child th {
     border-bottom: none;
@@ -18,8 +50,13 @@ let styleComparisonBlock = /*html*/ `
     color: #ff3c81 !important;
   }
 
+  section#purchase{
+    padding-bottom: 0;
+  }
+
   .img_block {
     margin-bottom: -2px;
+    background: #F9F8F6;
   }
 
   .img_block img {
@@ -29,11 +66,12 @@ let styleComparisonBlock = /*html*/ `
   .comparison_block {
     background-size: 100%;
     background-color: #eceef0;
-    padding: 30px 16px;
-    margin-bottom: 50px;
+    padding: 30px 16px 40px;
+    margin-bottom: 37px;
   }
 
-  .comparison_block h2 {
+  .comparison_block h2,
+  .comparison_slider_nav .js-title.text-dark {
     font-family: "DINEngschrift LT", sans-serif;
     font-weight: 400;
     font-size: 30px;
@@ -43,6 +81,10 @@ let styleComparisonBlock = /*html*/ `
     text-transform: uppercase;
     color: #0c0b0b;
     margin-bottom: 40px;
+  }
+
+  .comparison_slider_nav .js-title.text-dark {
+    margin-bottom: 56px;
   }
 
   .comparison_block > p {
@@ -57,10 +99,61 @@ let styleComparisonBlock = /*html*/ `
     border: 2px solid #ff3c81;
     border-radius: 6px;
     padding: 20px 47px;
-    margin-top: 40px;
+    position: relative;
+    margin: 40px auto 0;
+    width: max-content;
   }
 
-  .comparison_block > p span {
+  .comparison_block > p > svg:not(.mini_box) {
+    position: absolute;
+    bottom: 41px;
+    right: 19px;
+    width: 40px;
+  }
+
+  .mini_box {
+    position: absolute;
+    bottom: -9px;
+    right: 20px;
+    opacity: 0;
+  }
+
+  .hidden_text {
+    opacity: 0;
+    position: absolute;
+    top: -72px;
+    right: 7px;
+    width: 100%;
+    background: #ffffff;
+    font-family: "Roboto", sans-serif;
+    text-transform: none;
+    box-shadow: 0px 0.688073px 4.06px rgb(0 0 0 / 7%), 6px 7.26px 20.4px rgb(0 0 0 / 10%);
+    border-radius: 7px;
+    font-weight: 400;
+    font-size: 12px !important;
+    line-height: 17px !important;
+    color: #212529;
+    margin: 0;
+    padding: 10px;
+    max-width: 245px;
+    text-align: left;
+  }
+
+  @media (width: 360px) {
+    .comparison_block > p{
+      font-size: 24px !important;
+    }
+  }
+
+
+
+  @media (max-width: 280px) {
+    .comparison_block > p {
+      width: 100%;
+    }
+  }
+
+  .comparison_block > p > span span {
     color: #ff3c81;
   }
 
@@ -84,6 +177,10 @@ let styleComparisonBlock = /*html*/ `
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+
+  .comparison_block table thead th.accent_span div > img{
+    padding-top: 25px;
   }
 
   .comparison_block table thead th span {
@@ -132,6 +229,25 @@ let styleComparisonBlock = /*html*/ `
     height: 26px;
   }
 
+  .comparison_slider_nav .slick-dots li a::before,
+  .slick-dots li button::before {
+    background: #f1f3f4;
+    border: 1px solid #212529;
+    width: 12px;
+    height: 12px;
+    content: "";
+    transform: unset;
+    color: unset;
+  }
+
+  .comparison_slider_nav .slick-dots li.slick-active a::before,
+  .slick-dots li.slick-active button::before {
+    content: "";
+    transform: unset;
+    color: unset;
+    background: #212529;
+  }
+
   @media (max-width: 321px) {
     .comparison_block > p {
       padding: 20px 19px;
@@ -140,13 +256,28 @@ let styleComparisonBlock = /*html*/ `
     .comparison_block table tbody tr td:first-child div {
       padding-right: 20px;
     }
+
+      .comparison_block > p > svg:not(.mini_box){
+        bottom: 57px;
+        right: 6px;
+      }
+      
+      .hidden_text{
+            right: -7px;
+      }
   }
+
+  .hidden_text.toggle_opacity,  .mini_box.toggle_opacity {
+    opacity: 1;
+  }
+
+
 </style>
 `
 
 let comparisonBlock = /*html*/ `
 <div class="img_block">
-  <img src="https://conversionratestore.github.io/projects/buzzpatch/img/background_comparison_block.svg" alt="background figure">
+  <img src="https://conversionratestore.github.io/projects/buzzpatch/img/background_comparison_block2.svg" alt="background figure">
 </div>
     <section class="comparison_block">
       <h2>
@@ -228,15 +359,50 @@ let comparisonBlock = /*html*/ `
           </tr>
         </tbody>
       </table>
-      <p>
-        Buzzpatch is <span>UP to 25% <br />cheaper</span> than a bug spray
-      </p>
+        <p>
+          <span>Buzzpatch is <span>UP to 25% <br />cheaper</span> than a bug spray</span>
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.47506 7.3V5.5M5.47506 3.70005H5.4858M9.95 5.5C9.95 3.01472 7.94647 1 5.475 1C3.00353 1 1 3.01472 1 5.5C1 7.98528 3.00353 10 5.475 10C7.94647 10 9.95 7.98528 9.95 5.5Z" stroke="#777777" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="hidden_text">The calculation is based on comparing the price of Buzzpatch to the price of the most popular mosquito repelling spay available on the market.
+          <svg class="mini_box" width="27" height="10" viewBox="0 0 27 10" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14.6905 9.11818C13.9833 9.64203 13.0167 9.64203 12.3095 9.11818L0 -9.53674e-07L27 -9.53674e-07L14.6905 9.11818Z" fill="white"/>
+          </svg>
+          </span>
+        </p>
     </section>
 `
 
 document.head.insertAdjacentHTML("beforeend", styleComparisonBlock)
 document.querySelector("#reviews").insertAdjacentHTML("beforebegin", comparisonBlock)
-// document.querySelector(".js-mobile.effectiveness").insertAdjacentHTML("afterend", comparisonBlock)
+
+// click on hint
+if (document.querySelector(".comparison_block > p > svg")) {
+  const toggleMenu = () => {
+    document.querySelector(".hidden_text").classList.toggle("toggle_opacity")
+    document.querySelector(".mini_box").classList.toggle("toggle_opacity")
+  }
+
+  document.querySelector(".comparison_block > p > svg").addEventListener("click", (e) => {
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp: Pricing comparison option",
+      eventAction: "Click on the hint",
+    })
+
+    e.stopPropagation()
+
+    toggleMenu()
+  })
+
+  document.addEventListener("click", (e) => {
+    document.querySelector(".hidden_text")?.classList.remove("toggle_opacity")
+    document.querySelector(".mini_box")?.classList.remove("toggle_opacity")
+  })
+}
+
+clarity("set", "comparison_option", "variant_1")
 
 window.dataLayer = window.dataLayer || []
 dataLayer.push({
