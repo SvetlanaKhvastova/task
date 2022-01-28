@@ -17,10 +17,6 @@ let startFunc = setInterval(() => {
 
       let styleFreeWorkShop = /*html */ `
         <style>
-            #myHeaderr{
-                display: none !important;
-            }
-
             #demo1 .item_mc{
                 height: 0;
             }
@@ -111,7 +107,6 @@ let startFunc = setInterval(() => {
                 background: #dde8f1;
                 padding-left: 15px;
                 padding-right: 15px;
-                cursor: pointer;
             }
 
             .free_work_shop_box .timeline_container {
@@ -208,7 +203,7 @@ let startFunc = setInterval(() => {
                 font-size: 12px;
                 line-height: 15px;
                 color: #1D3871;
-                max-width: 163px;
+                max-width: 197px;
                 position: relative;
                 padding-left: 11px;
                 display: block;
@@ -526,20 +521,20 @@ let startFunc = setInterval(() => {
 `
       let arrText = {
         "0:00": [``, 1],
-        "6:14": [`3 key rules to train <br/> your dog to be a <br/> service dog`, 2],
-        "13:34": [`Stop your dog pulling its <br/> leash - an effective <br/> technique`, 3],
+        "6:14": [`3 key rules to train <br/> your dog to be like a <br/> service dog`, 2],
+        "13:34": [`Stop your dog pulling its <br/> leash - a powerful <br/> technique`, 3],
         "16:30": [`Using body <br/> language to <br/> train your dog`, 4],
         "17:22": [`Body language to <br/> stop your dog <br/> jumping on people`, 5],
-        "21:45": [`Dealing <br/> with <br/> unnecessary barking`, 6],
+        "21:45": [`Prevent <br/> excessive <br/> barking`, 6],
         "36:11": [`Why you should wean <br/> your dog away from <br/> treats, and how to do it`, 7],
-        "40:04": [`2 important <br/> commands to make <br/> your dog obedient`, 8],
+        "40:04": [`2 important <br/> cues taught <br/> to service dogs`, 8],
         "40:43": [`Training your dog <br/> to walk without <br/> pulling its leash`, 9],
         "45:14": [`Training your <br/> dog to come to <br/> you when called`, 10],
-        "45:55": [`Learn what’s ‘puppy push- <br/> ups’ and why you should <br/> train your dog to do them`, 11],
-        "47:09": [`Master new approaches <br/> to improve your dog’s <br/> impulse control`, 12],
-        "47:33": [`Priceless advice to stop <br/> your dog being aggressive <br/> towards dogs and people`, 13],
-        "50:11": [`Preventing dog- <br/> related accidents <br/> in your home`, 14],
-        "1:33:57": [``, 15],
+        "45:55": [`Learn what’s a ‘puppy-pushup’  <br/> and why you should <br/>  train your dog to do them`, 11],
+        "47:09": [`Dramatically <br/> improve your dog’s <br/> impulse control`, 12],
+        "47:33": [`How to stop <br/> your dog from <br/> being aggressive`, 13],
+        "50:11": [`Housebreaking: <br/> preventing accidents <br/> in your home`, 14],
+        "56:25": [``, 15],
       }
 
       let freeWorkShop = /*html */ `
@@ -547,7 +542,7 @@ let startFunc = setInterval(() => {
     <div class="free_work_shop_container">
         <div class="title_block">
             <h2>TOPICS COVERED In this video</h2>
-            <span>1:33:57</span>
+            <span>56:25</span>
         </div>
         <div class="timeline">
             <div class="timeline_container">
@@ -566,7 +561,7 @@ let startFunc = setInterval(() => {
         <p>workshop Special offer</p>
     </div>
     <div class="blur_block">
-        <p>Get Total Transformation Masterclass and <br/> FREE gifts now </p>
+        <p>Get Total Transformation Masterclass and <br/> your FREE gifts now </p>
         <div class="pricing_text_box active_blur_parent">
             <ul class="active_blur">
                 <li>
@@ -590,7 +585,7 @@ let startFunc = setInterval(() => {
                     <span>$0.00</span>
                 </li>
                 <li>
-                    <p><span>BONUS CLASS </span> <br/> How to get your dog adjusted to kids</p>
+                    <p><span>BONUS CLASS </span> <br/> How to prevent biting/nipping and get your dog adjusted to kids</p>
                     <span>$69.70</span>
                     <span>$0.00</span>
                 </li>
