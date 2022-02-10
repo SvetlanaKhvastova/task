@@ -669,7 +669,13 @@ let startFunk2 = setInterval(() => {
     document.querySelector(".back .my-32.text-uppercase")?.after(document.querySelector("#payments"))
     document.querySelector(".back #payments")?.after(document.querySelector(".tpl-t1__terms.mx-auto.text-center"))
     document.querySelector(".tpl-t1__terms.mx-auto.text-center").after(document.querySelector("#order-summary-widget"))
-    document.querySelector(".back #order-summary-widget")?.after(document.querySelector("#placeOrder"))
+    if (document.querySelector("#placeOrder")) {
+      document.querySelector(".back #order-summary-widget")?.after(document.querySelector("#placeOrder"))
+    }
+
+    if (document.querySelector("#payment-request-button")) {
+      document.querySelector(".back #order-summary-widget")?.after(document.querySelector("#payment-request-button"))
+    }
     document.querySelector(".back")?.append(document.querySelector(".g-recaptcha-container"))
 
     if (document.querySelector(".card_box")) {
@@ -684,7 +690,9 @@ let startFunk2 = setInterval(() => {
 
       document.querySelector(".card_box .back h3.my-32.text-uppercase").innerHTML = "Please add your payment details  <br> to start free trial"
 
-      document.querySelector("#placeOrder").textContent = "Start your free trial now"
+      if (document.querySelector("#placeOrder")) {
+        document.querySelector("#placeOrder").textContent = "Start your free trial now"
+      }
 
       setTimeout(() => {
         if (document.querySelector("#payments #cards")) {
@@ -786,6 +794,56 @@ let startFunk2 = setInterval(() => {
           }
         }
       }
+
+      //
+      let observerFav = new MutationObserver(() => {
+        if (document.querySelector("form")) {
+          observerFav.disconnect()
+
+          if (document.querySelector("#placeOrder")) {
+            document.querySelector(".back #order-summary-widget")?.after(document.querySelector("#placeOrder"))
+            //   document.querySelector(".back #placeOrder").insertAdjacentHTML(
+            //     "afterend",
+            //     `          <div class="quarantee">
+            //   <div>
+            //     <!-- <img src="https://conversionratestore.github.io/projects/samcart/img/mask_group.png" alt="quarantee"> -->
+            //   </div>
+            //   <div>
+            //     <p>Risk-free trial. Cancel anytime during the next 14 days</p>
+            //     <p>Our templates can help you start your new online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel your risk-free trial within 14 days and we will not charge you anything.</p>
+            //   </div>
+            // </div>`
+            //   )
+          }
+
+          if (document.querySelector("#payment-request-button")) {
+            document.querySelector(".back #order-summary-widget")?.after(document.querySelector("#payment-request-button"))
+
+            //   document.querySelector(".back #payment-request-button").insertAdjacentHTML(
+            //     "afterend",
+            //     `          <div class="quarantee">
+            //   <div>
+            //     <!-- <img src="https://conversionratestore.github.io/projects/samcart/img/mask_group.png" alt="quarantee"> -->
+            //   </div>
+            //   <div>
+            //     <p>Risk-free trial. Cancel anytime during the next 14 days</p>
+            //     <p>Our templates can help you start your new online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel your risk-free trial within 14 days and we will not charge you anything.</p>
+            //   </div>
+            // </div>`
+            //   )
+          }
+
+          observerFav.observe(document.querySelector("form"), {
+            childList: true,
+            subtree: true,
+          })
+        }
+      })
+
+      observerFav.observe(document.querySelector("form"), {
+        childList: true,
+        subtree: true,
+      })
     }
   }
 }, 10)

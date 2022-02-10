@@ -236,12 +236,12 @@ let startFunk2 = setInterval(() => {
     font-weight: 600;
   }
 
-  .card_box .invoice-item.total-row {
+  .invoice-item.total-row {
     display: flex;
     justify-content: space-between;
   }
 
-  .card_box .invoice-item.total-row .invoice-amount-col.float-right.text-right {
+  .invoice-item.total-row .invoice-amount-col.float-right.text-right {
     float: unset !important;
   }
 
@@ -254,7 +254,7 @@ let startFunk2 = setInterval(() => {
     color: #5a7386 !important;
   }
 
-  .card_box .invoice-item.total-row .invoice-amount-col.float-right.text-right #total {
+  .invoice-item.total-row .invoice-amount-col.float-right.text-right #total {
     font-family: "Poppins", sans-serif !important;
     font-weight: 700 !important;
     font-size: 16px !important;
@@ -322,43 +322,9 @@ let startFunk2 = setInterval(() => {
     height: 100%;
   }
 
-  .wrapper_card {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background: #ffffff;
-  }
 
-  .card_box {
-    position: relative;
-    perspective: 5000px;
-    width: 100%;
-    height: 100%;
-  }
-  .card_box .front,
-  .card_box .back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    transition: transform 1.5s;
-    backface-visibility: hidden;
-    background: #ffffff;
-  }
-
-  .card_box .front {
-    z-index: 10;
-  }
-  .card_box .back {
-    transform: rotateY(-180deg);
-  }
-
-
-  .card_box .front button.btn_continue,
-  .card_box #placeOrder {
+  button.btn_continue,
+  #placeOrder {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -380,27 +346,27 @@ let startFunk2 = setInterval(() => {
     cursor: pointer;
   }
 
-  .card_box #order-summary-widget {
+  #order-summary-widget {
     margin: 20px 0 !important;
     background: #f4f5f6 !important;
     border-radius: 4px !important;
     padding: 10px 20px 5px !important;
   }
 
-  .card_box #placeOrder {
+  #placeOrder {
     text-transform: unset;
     margin: 0 !important;
   }
 
-  .card_box .front button.btn_continue svg {
+  button.btn_continue svg {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     right: 20px;
   }
 
-  .card_box .front .mb-24.text-uppercase,
-  .card_box .back .my-32.text-uppercase {
+  form .mb-24.text-uppercase,
+  form .my-32.text-uppercase {
     font-family: "Poppins", sans-serif !important;
     font-weight: 500;
     font-size: 18px;
@@ -412,15 +378,14 @@ let startFunk2 = setInterval(() => {
     margin-top: 0 !important;
   }
 
-  #paymentForm .card_box .back .stripe-processor-form .CVV2-label,
-  #paymentForm .card_box .back .stripe-processor-form .exp-label,
-  #paymentForm .card_box .back .stripe-processor-form .stripe-label,
-  #paymentForm .card_box .back .tab-content > .tab-pane {
+  #paymentForm .stripe-processor-form .CVV2-label,
+  #paymentForm .stripe-processor-form .exp-label,
+  #paymentForm .stripe-processor-form .stripe-label,
+  #paymentForm .tab-content > .tab-pane {
     display: block !important;
   }
 
-  #paymentForm .card_box .front label,
-  #paymentForm .card_box .back label {
+  #paymentForm label{
     font-family: "Poppins", sans-serif !important;
     font-weight: 500;
     font-size: 12px;
@@ -430,37 +395,37 @@ let startFunk2 = setInterval(() => {
     margin-bottom: 5px;
   }
 
-  .card_box .back .tpl-t1__terms.mx-auto.text-center {
+  form .tpl-t1__terms.mx-auto.text-center {
     text-align: left !important;
     position: relative;
   }
 
-  #paymentForm .card_box .back label#terms_conditions_checkbox-error {
+  #paymentForm label#terms_conditions_checkbox-error {
     position: absolute;
     top: 0px;
     right: 0px;
     color: red;
   }
 
-  .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  form .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
     border: none !important;
   }
 
-  #paymentForm .card_box .back label[for="terms_conditions_checkbox"]:not(.error) {
+  #paymentForm label[for="terms_conditions_checkbox"]:not(.error) {
     color: #5f7384;
     font-weight: 400;
     text-transform: unset;
   }
 
-  #paymentForm .card_box .back label[for="terms_conditions_checkbox"]:not(.error) a {
+  #paymentForm label[for="terms_conditions_checkbox"]:not(.error) a {
     font-weight: 700;
   }
 
-  .card_box .front .form-control,
-  .card_box .stripe-processor-form .StripeElement,
-  .card_box select,
-  .card_box .ElementsApp input,
-  .card_box .ElementsApp .InputElement input {
+  form .form-control,
+ form  .stripe-processor-form .StripeElement,
+ form select,
+  form .ElementsApp input,
+  form .ElementsApp .InputElement input {
     border: 1px solid #bfc7ce;
     border-radius: 3px;
     height: 41px;
@@ -473,19 +438,19 @@ let startFunk2 = setInterval(() => {
     padding: 11px !important;
   }
 
-  .card_box .front .border-bottom.mb-16 {
+ form .border-bottom.mb-16 {
     margin-bottom: 0 !important;
   }
 
-  .card_box .front select.form-control {
+  form select.form-control {
     background: url(https://conversionratestore.github.io/projects/samcart/img/chevron-down.svg) right 0.75rem center/15px 14px no-repeat #fff !important;
   }
 
-  #product-list {
+  form #product-list {
     display: none;
   }
 
-  .g-recaptcha-container {
+  form .g-recaptcha-container {
     margin: 20px 0 !important;
   }
 
@@ -534,14 +499,17 @@ let startFunk2 = setInterval(() => {
 
     .btn_back{
     color: #273542;
-    background-color: #f4f5f6;
-    padding: 5px 11px;
-    margin-bottom: 30px;
+    margin: 20px 0;
     border-radius: 4px;
     display: inline-block;
     cursor: pointer;
+    text-align:center;
     text-transform: lowercase;
-    font-size: 11px;
+    font-size: 18px;;
+    }
+
+    div[ng-if="subscriptionsByProductId[checkoutContext.order.invoice.items[0].product_id]"]{
+      display: none !important;
     }
 
 </style>
@@ -597,32 +565,7 @@ let startFunk2 = setInterval(() => {
     `
 
     let card = /* html*/ `
-    <div class="wrapper_card">
-      <div class="card_box">
-        <div class="front">
-          <span class="testik"></span>        
-          <button class="btn_continue">Continue
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M4.16699 10H15.8337" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M10 4.16675L15.8333 10.0001L10 15.8334" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-        </div>
-        <div class="back">
-          <span class="btn_back">&#8249; Back</span>
-          <span class="testik2"></span>
-          <div class="quarantee">
-            <div>
-              <!-- <img src="https://conversionratestore.github.io/projects/samcart/img/mask_group.png" alt="quarantee"> -->
-            </div>
-            <div>
-              <p>Risk-free trial. Cancel anytime during the next 14 days</p>
-              <p>Our templates can help you start your new online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel your risk-free trial within 14 days and we will not charge you anything.</p>
-            </div>
-          </div>
-      </div>
-      </div>
-    </div>    
+      <span class="btn_back">&#8249; Back</span>  
     `
 
     let totalText = /* html*/ `
@@ -661,130 +604,140 @@ let startFunk2 = setInterval(() => {
     })
 
     // 3d card
-    document.querySelector("#paymentForm")?.insertAdjacentHTML("afterbegin", card)
-    document.querySelector(".testik")?.after(document.querySelector(".mb-24.text-uppercase"))
-    document.querySelector(".front .mb-24.text-uppercase")?.after(document.querySelectorAll(".border-bottom.mb-16")[0])
+    document.querySelector(".my-32.text-uppercase").insertAdjacentHTML(
+      "beforebegin",
+      `          <button class="btn_continue">Continue
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4.16699 10H15.8337" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 4.16675L15.8333 10.0001L10 15.8334" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>`
+    )
 
-    document.querySelector(".testik2").after(document.querySelector(".my-32.text-uppercase"))
-    document.querySelector(".back .my-32.text-uppercase")?.after(document.querySelector("#payments"))
-    document.querySelector(".back #payments")?.after(document.querySelector(".tpl-t1__terms.mx-auto.text-center"))
-    document.querySelector(".tpl-t1__terms.mx-auto.text-center").after(document.querySelector("#order-summary-widget"))
-    document.querySelector(".back #order-summary-widget")?.after(document.querySelector("#placeOrder"))
-    document.querySelector(".back")?.append(document.querySelector(".g-recaptcha-container"))
+    document.querySelector("#payments").after(document.querySelector(".tpl-t1__terms.mx-auto.text-center"))
+    document.querySelector(".g-recaptcha-container").insertAdjacentHTML(
+      "beforebegin",
+      `<div class="quarantee">
+            <div>
+              <!-- <img src="https://conversionratestore.github.io/projects/samcart/img/mask_group.png" alt="quarantee"> -->
+            </div>
+            <div>
+              <p>Risk-free trial. Cancel anytime during the next 14 days</p>
+              <p>Our templates can help you start your new online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel your risk-free trial within 14 days and we will not charge you anything.</p>
+            </div>
+          </div>`
+    )
 
-    if (document.querySelector(".card_box")) {
-      document.querySelector('input[name="fname"]').placeholder = "John"
-      document.querySelector('input[name="lname"]').placeholder = "Smith"
-      document.querySelector('input[name="email"]').placeholder = "johnsmth@gmail.com"
-      // document.querySelector('input[name="phone"]').placeholder = "+1 (000) - 000 - 0000"
+    document.querySelector('input[name="fname"]').placeholder = "John"
+    document.querySelector('input[name="lname"]').placeholder = "Smith"
+    document.querySelector('input[name="email"]').placeholder = "johnsmth@gmail.com"
+    // document.querySelector('input[name="phone"]').placeholder = "+1 (000) - 000 - 0000"
 
-      document.querySelector(".card_box .front button.btn_continue").addEventListener("click", () => {
-        validationForm("form .wrapper_card .card_box .front")
-      })
+    document.querySelector("button.btn_continue").addEventListener("click", () => {
+      validationForm("form#paymentForm")
+    })
 
-      document.querySelector(".card_box .back h3.my-32.text-uppercase").innerHTML = "Please add your payment details  <br> to start free trial"
+    document.querySelector("h3.my-32.text-uppercase").innerHTML = "Please add your payment details  <br> to start free trial"
 
-      document.querySelector("#placeOrder").textContent = "Start your free trial now"
+    document.querySelector("#placeOrder").textContent = "Start your free trial now"
 
-      setTimeout(() => {
-        if (document.querySelector("#payments #cards")) {
-          if (document.querySelector('label[for="card-number"]')) {
-            document.querySelector('label[for="card-number"]').textContent = "Card Number"
-          }
-
-          if (document.querySelector(".extra-row.row.mobile-display .exp-label")) {
-            document.querySelector(".extra-row.row.mobile-display .exp-label").textContent = "Exp. Date"
-          }
-
-          if (document.querySelector(".extra-row.row.mobile-display .CVV2-label")) {
-            document.querySelector(".extra-row.row.mobile-display .CVV2-label").textContent = "CVV"
-          }
-
-          if (document.querySelector('label[for="postal-code"]')) {
-            document.querySelector('label[for="postal-code"]').textContent = "Zip Code *"
-          }
-
-          if (document.querySelector('input[name="cardnumber"]')) {
-            document.querySelector('input[name="cardnumber"]').placeholder = "1234 5678 9012 3456"
-          }
-
-          if (document.querySelector('input[name="cvc"]')) {
-            document.querySelector('input[name="cvc"]').placeholder = "***"
-          }
-
-          if (document.querySelector('input[name="postal"]')) {
-            document.querySelector('input[name="postal"]').placeholder = "000000"
-          }
+    setTimeout(() => {
+      if (document.querySelector("#payments")) {
+        if (document.querySelector('label[for="card-number"]')) {
+          document.querySelector('label[for="card-number"]').textContent = "Card Number"
         }
-      }, 100)
 
-      document.querySelector("#order-summary-widget .invoice-amount-col #total").insertAdjacentHTML("afterend", totalText)
-
-      //
-      document.querySelector(".btn_back").addEventListener("click", function (e) {
-        e.preventDefault()
-        document.querySelector(".front").style.transform = "rotateY(0deg)"
-        document.querySelector(".back").style.transform = "rotateY(-180deg)"
-        document.querySelector(".front").style.zIndex = "15"
-        console.log(`back to front`)
-      })
-
-      // validate form
-      if (document.querySelector("form .front .border-bottom.mb-16")) {
-        function validationForm(parent) {
-          let inputValueName = document.querySelector(`${parent} input[name='fname']`).value.match(/^.{1,30}$/)
-          let inputValueLastName = document.querySelector(`${parent} input[name='lname']`).value.match(/^.{1,30}$/)
-          let inputValuePhone = document.querySelector(`${parent} input[name='phone']`).value.match(/(?<=^|\s|>|\;|\:|\))(?:\+|7|8|9|\()[\d\-\(\) ]{8,}\d/)
-          let inputValueEmail = document.querySelector(`${parent} input[name='email']`).value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/)
-          let selectValue = document.querySelector(`${parent} select[name='custom_ubiGdEid']`).value
-
-          // name
-          if (inputValueName === null) {
-            document.querySelector(`${parent} input[name='fname']`).classList.add("error")
-          } else {
-            document.querySelector(`${parent} input[name='fname']`).classList.remove("error")
-          }
-
-          // lname
-          if (inputValueLastName === null) {
-            document.querySelector(`${parent} input[name='lname']`).classList.add("error")
-          } else {
-            document.querySelector(`${parent} input[name='lname']`).classList.remove("error")
-          }
-
-          // phone
-          // if (inputValuePhone === null) {
-          //   document.querySelector(`${parent} input[name='phone']`).classList.add("error")
-          // } else {
-          //   document.querySelector(`${parent} input[name='phone']`).classList.remove("error")
-          // }
-
-          // email
-          if (inputValueEmail === null) {
-            document.querySelector(`${parent} input[name='email']`).classList.add("error")
-          } else {
-            document.querySelector(`${parent} input[name='email']`).classList.remove("error")
-          }
-
-          // select
-          if (selectValue === "") {
-            document.querySelector(`${parent} select[name='custom_ubiGdEid']`).classList.add("error")
-          } else if (selectValue !== "") {
-            document.querySelector(`${parent} select[name='custom_ubiGdEid']`).classList.remove("error")
-          }
-
-          if (document.querySelector(`${parent} input.error`) == null && document.querySelector(`${parent} select.error`) == null) {
-            document.querySelector(".front").style.transform = "rotateY(-180deg)"
-            document.querySelector(".back").style.transform = "rotateY(-360deg)"
-            document.querySelector(".front").style.zIndex = "0"
-
-            setTimeout(() => {
-              if (document.querySelector("#paymentForm .card_box .back label#terms_conditions_checkbox-error")) {
-                document.querySelector("#paymentForm .card_box .back label#terms_conditions_checkbox-error").remove()
-              }
-            }, 100)
-          }
+        if (document.querySelector(".extra-row.row.mobile-display .exp-label")) {
+          document.querySelector(".extra-row.row.mobile-display .exp-label").textContent = "Exp. Date"
         }
+
+        if (document.querySelector(".extra-row.row.mobile-display .CVV2-label")) {
+          document.querySelector(".extra-row.row.mobile-display .CVV2-label").textContent = "CVV"
+        }
+
+        if (document.querySelector('label[for="postal-code"]')) {
+          document.querySelector('label[for="postal-code"]').textContent = "Zip Code *"
+        }
+
+        if (document.querySelector('input[name="cardnumber"]')) {
+          document.querySelector('input[name="cardnumber"]').placeholder = "1234 5678 9012 3456"
+        }
+
+        if (document.querySelector('input[name="cvc"]')) {
+          document.querySelector('input[name="cvc"]').placeholder = "***"
+        }
+
+        if (document.querySelector('input[name="postal"]')) {
+          document.querySelector('input[name="postal"]').placeholder = "000000"
+        }
+      }
+    }, 100)
+
+    document.querySelector("#order-summary-widget .invoice-amount-col #total").insertAdjacentHTML("afterend", totalText)
+
+    //
+    // document.querySelector(".btn_back").addEventListener("click", function (e) {
+    //   e.preventDefault()
+    //   document.querySelector(".front").style.transform = "rotateY(0deg)"
+    //   document.querySelector(".back").style.transform = "rotateY(-180deg)"
+    //   document.querySelector(".front").style.zIndex = "15"
+    //   console.log(`back to front`)
+    // })
+
+    // validate form
+
+    function validationForm(parent) {
+      let inputValueName = document.querySelector(`${parent} input[name='fname']`).value.match(/^.{1,30}$/)
+      let inputValueLastName = document.querySelector(`${parent} input[name='lname']`).value.match(/^.{1,30}$/)
+      let inputValuePhone = document.querySelector(`${parent} input[name='phone']`).value.match(/(?<=^|\s|>|\;|\:|\))(?:\+|7|8|9|\()[\d\-\(\) ]{8,}\d/)
+      let inputValueEmail = document.querySelector(`${parent} input[name='email']`).value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/)
+      let selectValue = document.querySelector(`${parent} select[name='custom_ubiGdEid']`).value
+
+      // name
+      if (inputValueName === null) {
+        document.querySelector(`${parent} input[name='fname']`).classList.add("error")
+      } else {
+        document.querySelector(`${parent} input[name='fname']`).classList.remove("error")
+      }
+
+      // lname
+      if (inputValueLastName === null) {
+        document.querySelector(`${parent} input[name='lname']`).classList.add("error")
+      } else {
+        document.querySelector(`${parent} input[name='lname']`).classList.remove("error")
+      }
+
+      // phone
+      // if (inputValuePhone === null) {
+      //   document.querySelector(`${parent} input[name='phone']`).classList.add("error")
+      // } else {
+      //   document.querySelector(`${parent} input[name='phone']`).classList.remove("error")
+      // }
+
+      // email
+      if (inputValueEmail === null) {
+        document.querySelector(`${parent} input[name='email']`).classList.add("error")
+      } else {
+        document.querySelector(`${parent} input[name='email']`).classList.remove("error")
+      }
+
+      // select
+      if (selectValue === "") {
+        document.querySelector(`${parent} select[name='custom_ubiGdEid']`).classList.add("error")
+      } else if (selectValue !== "") {
+        document.querySelector(`${parent} select[name='custom_ubiGdEid']`).classList.remove("error")
+      }
+
+      if (document.querySelector(`${parent} input.error`) == null && document.querySelector(`${parent} select.error`) == null) {
+        // document.querySelector(".front").style.transform = "rotateY(-180deg)"
+        // document.querySelector(".back").style.transform = "rotateY(-360deg)"
+        // document.querySelector(".front").style.zIndex = "0"
+
+        setTimeout(() => {
+          if (document.querySelector("#paymentForm label#terms_conditions_checkbox-error")) {
+            document.querySelector("#paymentForm label#terms_conditions_checkbox-error").remove()
+          }
+        }, 100)
       }
     }
   }
