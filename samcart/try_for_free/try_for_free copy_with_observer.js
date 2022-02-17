@@ -1,35 +1,46 @@
 let startFunc = setInterval(() => {
-  if (document.querySelector(".home.page-template-default.page.page-id-106.page-home")) {
-    clearInterval(startFunc)
+  if (
+    document.querySelector(
+      ".home.page-template-default.page.page-id-106.page-home"
+    )
+  ) {
+    clearInterval(startFunc);
 
     // click on btn try_for_free and pricing
-    document.querySelector(".button.button--solid.button--large.button--hover-blue-dark.button--icon-right").addEventListener("click", (e) => {
-      e.preventDefault()
-      onClickPricingUrl()
-    })
-    document.querySelector(".nav-try a.button.button--solid.button--small").addEventListener("click", (e) => {
-      e.preventDefault()
-      onClickPricingUrl()
-    })
+    document
+      .querySelector(
+        ".button.button--solid.button--large.button--hover-blue-dark.button--icon-right"
+      )
+      .addEventListener("click", (e) => {
+        e.preventDefault();
+        onClickPricingUrl();
+      });
+    document
+      .querySelector(".nav-try a.button.button--solid.button--small")
+      .addEventListener("click", (e) => {
+        e.preventDefault();
+        onClickPricingUrl();
+      });
 
-    document.querySelectorAll(".nav-action a.nav-link").forEach((el) => {
-      if (el.textContent.includes("Pricing")) {
-        el.addEventListener("click", (e) => {
-          e.preventDefault()
-          onClickPricingUrl()
-        })
-      }
-    })
+    // document.querySelectorAll(".nav-action a.nav-link").forEach((el) => {
+    //   if (el.textContent.includes("Pricing")) {
+    //     el.addEventListener("click", (e) => {
+    //       e.preventDefault()
+    //       onClickPricingUrl()
+    //     })
+    //   }
+    // })
 
     function onClickPricingUrl() {
-      document.location = "https://checkout.samcart.com/products/samcart-grow-yearly-trial?_ga=2.142421298.1224594291.1644311332-453639727.1633503243"
+      document.location =
+        "https://checkout.samcart.com/products/samcart-grow-yearly-trial?_ga=2.142421298.1224594291.1644311332-453639727.1633503243";
     }
   }
-}, 10)
+}, 10);
 
 let startFunk2 = setInterval(() => {
   if (document.querySelector(".ng-scope")) {
-    clearInterval(startFunk2)
+    clearInterval(startFunk2);
 
     let styleBox = /* html*/ `
 <style>
@@ -347,7 +358,7 @@ let startFunk2 = setInterval(() => {
     height: 100%;
     left: 0;
     top: 0;
-    transition: all 1.3s 0s cubic-bezier(0.47, 0, 0.75, 0.72);
+    transition: all 1s 0s cubic-bezier(0.47, 0, 0.75, 0.72);
     backface-visibility: hidden;
     background: #ffffff;
   }
@@ -391,7 +402,7 @@ let startFunk2 = setInterval(() => {
 
   .card_box #placeOrder {
     text-transform: unset;
-    margin: 0 !important;
+    margin: 0 0 15px !important;
   }
 
   .card_box .front button.btn_continue svg {
@@ -500,7 +511,7 @@ let startFunk2 = setInterval(() => {
     border: 1px solid #bfc7ce;
     border-radius: 6px;
     padding: 10px 17px 10px 10px;
-    /*display: flex;*/
+    display: flex;
     align-items: center;
     margin-top: 20px;
   }
@@ -538,18 +549,22 @@ let startFunk2 = setInterval(() => {
   }
 
   .btn_back {
-    color: #273542;
-    background-color: #f4f5f6;
-    padding: 5px 11px;
-    margin-bottom: 30px;
-    border-radius: 4px;
-    display: inline-block;
+    color: #183B56;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     cursor: pointer;
-    text-transform: lowercase;
-    font-size: 11px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    margin-bottom: 30px;
+  }
+
+  .btn_back >svg{
+    margin-right: 10px;
   }
 </style>
-      `
+      `;
 
     let steps = /* html*/ `
 <div class="steps">
@@ -607,7 +622,7 @@ let startFunk2 = setInterval(() => {
     </li>
   </ol>
 </div>
-    `
+    `;
 
     let card = /* html*/ `
 <div class="wrapper_card">
@@ -623,11 +638,22 @@ let startFunk2 = setInterval(() => {
       </button>
     </div>
     <div class="back">
-      <span class="btn_back">&#8249; Back</span>
+      <span class="btn_back">
+        <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <rect x="14.875" width="14" height="14.875" transform="rotate(90 14.875 0)" fill="url(#pattern0)"/>
+          <defs>
+          <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+          <use xlink:href="#image0_20_788" transform="scale(0.0625 0.0588235)"/>
+          </pattern>
+          <image id="image0_20_788" width="16" height="17" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAARCAYAAADUryzEAAAAuElEQVQ4Ee2TwQ3DIAxFGaEjILMAB/uOTAfJRs0m7QjZoNmk3aDVJzJCDSLqsVIjIYz/+w44xLnBQ6IrSb4PkLEUJL8wxtRA/Rdw7od6EDjfcGF8TL79qr0jgAEbOF8rG1gXwMT68JKiCZ8FoIEpedbFOOdjOmEXZgiiE0Rbb7FOtgYLTy1gAYnOBhHrpcZtXnQ2vjvj7Wbcz9vOusY26fmciPPTCiBGrmUO49Kw8jvr2jb20Pgt8Ab/wWmi0HxujAAAAABJRU5ErkJggg=="/>
+          </defs>
+        </svg>
+        Back
+      </span>
       <span class="testik2"></span>
       <div class="quarantee">
         <div>
-          <!-- <img src="https://conversionratestore.github.io/projects/samcart/img/mask_group.png" alt="quarantee"> -->
+          <img src="https://conversionratestore.github.io/projects/samcart/img/mask_group.png" alt="quarantee">
         </div>
         <div>
           <p>Risk-free trial. Cancel anytime during the next 14 days</p>
@@ -640,7 +666,7 @@ let startFunk2 = setInterval(() => {
     </div>
   </div>
 </div>
-    `
+    `;
 
     let totalText = /* html*/ `
 <p class="total_text">
@@ -672,12 +698,12 @@ let startFunk2 = setInterval(() => {
     >
   </span>
 </p>
-    `
+    `;
 
     let quaranteeBlock = /* html*/ `
 <div class="quarantee">
   <div>
-    <!-- <img src="https://conversionratestore.github.io/projects/samcart/img/mask_group.png" alt="quarantee"> -->
+    <img src="https://conversionratestore.github.io/projects/samcart/img/mask_group.png" alt="quarantee">
   </div>
   <div>
     <p>Risk-free trial. Cancel anytime during the next 14 days</p>
@@ -688,129 +714,293 @@ let startFunk2 = setInterval(() => {
   </div>
 </div>
 
+    `;
+
+    let btnBack = /* html*/ `
+    <span class="btn_back">
+    <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <rect x="14.875" width="14" height="14.875" transform="rotate(90 14.875 0)" fill="url(#pattern0)"/>
+      <defs>
+      <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+      <use xlink:href="#image0_20_788" transform="scale(0.0625 0.0588235)"/>
+      </pattern>
+      <image id="image0_20_788" width="16" height="17" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAARCAYAAADUryzEAAAAuElEQVQ4Ee2TwQ3DIAxFGaEjILMAB/uOTAfJRs0m7QjZoNmk3aDVJzJCDSLqsVIjIYz/+w44xLnBQ6IrSb4PkLEUJL8wxtRA/Rdw7od6EDjfcGF8TL79qr0jgAEbOF8rG1gXwMT68JKiCZ8FoIEpedbFOOdjOmEXZgiiE0Rbb7FOtgYLTy1gAYnOBhHrpcZtXnQ2vjvj7Wbcz9vOusY26fmciPPTCiBGrmUO49Kw8jvr2jb20Pgt8Ab/wWmi0HxujAAAAABJRU5ErkJggg=="/>
+      </defs>
+    </svg>
+    Back
+  </span>
     `
 
-    document.head.insertAdjacentHTML("beforeend", styleBox)
+    document.head.insertAdjacentHTML("beforeend", styleBox);
 
-    if (document.querySelector(".sc-element  .mobile-column-width #sc5d10c341-d9b7-4b33-992c-37c47d5322e2 p font")) {
-      document.querySelector(".sc-element  .mobile-column-width #sc5d10c341-d9b7-4b33-992c-37c47d5322e2 p font").insertAdjacentHTML("afterend", steps)
+    if (
+      document.querySelector(
+        ".sc-element  .mobile-column-width #sc5d10c341-d9b7-4b33-992c-37c47d5322e2 p font"
+      )
+    ) {
+      document
+        .querySelector(
+          ".sc-element  .mobile-column-width #sc5d10c341-d9b7-4b33-992c-37c47d5322e2 p font"
+        )
+        .insertAdjacentHTML("afterend", steps);
     }
 
-    if (document.querySelector("#sc51e54003-0fac-46db-80a2-881825e46c45 h1 strong")) {
-      document.querySelector("#sc51e54003-0fac-46db-80a2-881825e46c45 h1 strong").textContent = "Create your new business today!"
+    if (document.querySelector(".steps")) {
+      let today = new Date().toDateString().split(" ");
+      let dayFourteenthToday = new Date(
+        new Date().setDate(new Date().getDate() + 14)
+      )
+        .toDateString()
+        .split(" ");
+      document.querySelectorAll(
+        ".absolute_box > span"
+      )[0].textContent = `${today[1]} / ${today[2]} / ${today[3]}`;
+      document.querySelectorAll(
+        ".absolute_box > span"
+      )[1].textContent = `${today[1]} / ${today[2]} / ${today[3]}`;
+      document.querySelectorAll(
+        ".absolute_box > span"
+      )[2].textContent = `${dayFourteenthToday[1]} / ${dayFourteenthToday[2]} / ${dayFourteenthToday[3]}`;
     }
 
-    if (document.querySelector(".sc-element  .mobile-column-width #sc5d10c341-d9b7-4b33-992c-37c47d5322e2 p font")) {
-      document.querySelector(".sc-element  .mobile-column-width #sc5d10c341-d9b7-4b33-992c-37c47d5322e2 p font").textContent =
-        "Create your account to start your 14-day trial and set up your new storefront."
+    if (
+      document.querySelector(
+        "#sc51e54003-0fac-46db-80a2-881825e46c45 h1 strong"
+      )
+    ) {
+      document.querySelector(
+        "#sc51e54003-0fac-46db-80a2-881825e46c45 h1 strong"
+      ).textContent = "Create your new business today!";
+    }
+
+    if (
+      document.querySelector(
+        ".sc-element  .mobile-column-width #sc5d10c341-d9b7-4b33-992c-37c47d5322e2 p font"
+      )
+    ) {
+      document.querySelector(
+        ".sc-element  .mobile-column-width #sc5d10c341-d9b7-4b33-992c-37c47d5322e2 p font"
+      ).textContent =
+        "Create your account to start your 14-day trial and set up your new storefront.";
     }
 
     // 3d card
-    document.querySelector("#paymentForm")?.insertAdjacentHTML("afterbegin", card)
-    document.querySelector(".testik")?.after(document.querySelector(".mb-24.text-uppercase"))
-    document.querySelector(".front .mb-24.text-uppercase")?.after(document.querySelectorAll(".border-bottom.mb-16")[0])
-    document.querySelector(".testik2").after(document.querySelector(".my-32.text-uppercase"))
-    document.querySelector(".back .my-32.text-uppercase")?.after(document.querySelector("#payments"))
-    document.querySelector(".back #payments")?.after(document.querySelector(".tpl-t1__terms.mx-auto.text-center"))
-    document.querySelector(".tpl-t1__terms.mx-auto.text-center")?.after(document.querySelector("#order-summary-widget"))
-    document.querySelector(".tpl-t1__terms.mx-auto.text-center")?.after(document.querySelector(".g-recaptcha-container"))
+    document
+      .querySelector("#paymentForm")
+      ?.insertAdjacentHTML("afterbegin", card);
+    document
+      .querySelector(".testik")
+      ?.after(document.querySelector(".mb-24.text-uppercase"));
+    document
+      .querySelector(".front .mb-24.text-uppercase")
+      ?.after(document.querySelectorAll(".border-bottom.mb-16")[0]);
+    document
+      .querySelector(".testik2")
+      .after(document.querySelector(".my-32.text-uppercase"));
+    document
+      .querySelector(".back .my-32.text-uppercase")
+      ?.after(document.querySelector("#payments"));
+    document
+      .querySelector(".back #payments")
+      ?.after(document.querySelector(".tpl-t1__terms.mx-auto.text-center"));
+    document
+      .querySelector(".tpl-t1__terms.mx-auto.text-center")
+      ?.after(document.querySelector("#order-summary-widget"));
+    document
+      .querySelector(".tpl-t1__terms.mx-auto.text-center")
+      ?.after(document.querySelector(".g-recaptcha-container"));
     // document.querySelector(".back")?.append(document.querySelector(".g-recaptcha-container"))
     if (document.querySelector("#placeOrder")) {
-      document.querySelector(".back #order-summary-widget")?.after(document.querySelector("#placeOrder"))
+      document
+        .querySelector(".back #order-summary-widget")
+        ?.after(document.querySelector("#placeOrder"));
     }
     if (document.querySelector("#payment-request-button")) {
-      document.querySelector(".back #order-summary-widget")?.after(document.querySelector("#payment-request-button"))
+      document
+        .querySelector(".back #order-summary-widget")
+        ?.after(document.querySelector("#payment-request-button"));
     }
 
     if (document.querySelector(".card_box")) {
       //placeholder input front card
-      document.querySelector('input[name="fname"]').placeholder = "John"
-      document.querySelector('input[name="lname"]').placeholder = "Smith"
-      document.querySelector('input[name="email"]').placeholder = "johnsmth@gmail.com"
+      document.querySelector('input[name="fname"]').placeholder = "John";
+      document.querySelector('input[name="lname"]').placeholder = "Smith";
+      document.querySelector('input[name="email"]').placeholder =
+        "johnsmth@gmail.com";
       // document.querySelector('input[name="phone"]').placeholder = "+1 (000) - 000 - 0000"
 
       // click on btn_continue
-      document.querySelector(".card_box .front button.btn_continue").addEventListener("click", () => {
-        validationForm("form .wrapper_card .card_box .front")
-      })
+      document
+        .querySelector(".card_box .front button.btn_continue")
+        .addEventListener("click", () => {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp: New free trial flow',
+            'eventAction': 'Click on Continue button',
+            'eventLabel': 'Step 1'
+        });
+
+          validationForm("form .wrapper_card .card_box .front");
+        });
 
       // hover on hint -> event
-      // document.querySelector(".hint").addEventListener("mouseover", () => {
-      //   console.log(`first`)
-      // })
+      if(document.querySelector(".steps ol li + li .absolute_box .hint")){
+        document.querySelector(".steps ol li + li .absolute_box .hint").addEventListener("mouseenter", () => {
+          console.log(`Hover on the tips Risk free trial`)
+          window.dataLayer = window.dataLayer || [];
+          dataLayer.push({
+              'event': 'event-to-ga',
+              'eventCategory': 'Exp: New free trial flow',
+              'eventAction': 'Hover on the tips Risk free trial'
+          });
+        })
+      }
+
+      setTimeout(()=>{
+      if(document.querySelector(".card_box .back #summary-totals .hint")){
+          document.querySelector(".card_box .back .hint").addEventListener("mouseenter", () => {
+            console.log(`Hover on you pay nothing today`)
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp: New free trial flow',
+                'eventAction': 'Hover on you pay nothing today'
+            });
+          })
+        }
+      },100)
 
       // click on btn_back
-      document.querySelector(".btn_back").addEventListener("click", function (e) {
-        e.preventDefault()
-        document.querySelector(".front").style.transform = "rotateY(0deg)"
-        document.querySelector(".back").style.transform = "rotateY(-180deg)"
-        document.querySelector(".front").style.zIndex = "15"
-      })
+      let onBtnBack = setInterval(()=>{
+        if(document
+          .querySelector(".btn_back")){
+            clearInterval(onBtnBack)
+            
+            if(document
+              .querySelector(".btn_back")){
+                document
+                  .querySelector(".btn_back")
+                  .addEventListener("click", function (e) {
+                    e.preventDefault();
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp: New free trial flow',
+                        'eventAction': 'Click on Back link',
+                        'eventLabel': 'Step 2'
+                    });
+          
+                    document.querySelector(".front").style.transform = "rotateY(0deg)";
+                    document.querySelector(".back").style.transform = "rotateY(-180deg)";
+                    document.querySelector(".front").style.zIndex = "15";
+                  });
+              }
+          }
+      },10)
 
       //label, input textContent back card
       if (document.querySelector(".card_box .back h3.my-32.text-uppercase")) {
-        document.querySelector(".card_box .back h3.my-32.text-uppercase").innerHTML = "Please add your payment details  <br> to start free trial"
+        document.querySelector(
+          ".card_box .back h3.my-32.text-uppercase"
+        ).innerHTML =
+          "Please add your payment details  <br> to start free trial";
       }
 
       if (document.querySelector("#placeOrder")) {
-        document.querySelector("#placeOrder").textContent = "Start your free trial now"
+        document.querySelector("#placeOrder").textContent =
+          "Start your free trial now";
       }
 
       setTimeout(() => {
         if (document.querySelector("#payments #cards")) {
           if (document.querySelector('label[for="card-number"]')) {
-            document.querySelector('label[for="card-number"]').textContent = "Card Number"
+            document.querySelector('label[for="card-number"]').textContent =
+              "Card Number";
           }
 
-          if (document.querySelector(".extra-row.row.mobile-display .exp-label")) {
-            document.querySelector(".extra-row.row.mobile-display .exp-label").textContent = "Exp. Date"
+          if (
+            document.querySelector(".extra-row.row.mobile-display .exp-label")
+          ) {
+            document.querySelector(
+              ".extra-row.row.mobile-display .exp-label"
+            ).textContent = "Exp. Date";
           }
 
-          if (document.querySelector(".extra-row.row.mobile-display .CVV2-label")) {
-            document.querySelector(".extra-row.row.mobile-display .CVV2-label").textContent = "CVV"
+          if (
+            document.querySelector(".extra-row.row.mobile-display .CVV2-label")
+          ) {
+            document.querySelector(
+              ".extra-row.row.mobile-display .CVV2-label"
+            ).textContent = "CVV";
           }
 
           if (document.querySelector('label[for="postal-code"]')) {
-            document.querySelector('label[for="postal-code"]').textContent = "Zip Code *"
+            document.querySelector('label[for="postal-code"]').textContent =
+              "Zip Code *";
           }
 
           if (document.querySelector('input[name="cardnumber"]')) {
-            document.querySelector('input[name="cardnumber"]').placeholder = "1234 5678 9012 3456"
+            document.querySelector('input[name="cardnumber"]').placeholder =
+              "1234 5678 9012 3456";
           }
 
           if (document.querySelector('input[name="cvc"]')) {
-            document.querySelector('input[name="cvc"]').placeholder = "***"
+            document.querySelector('input[name="cvc"]').placeholder = "***";
           }
 
           if (document.querySelector('input[name="postal"]')) {
-            document.querySelector('input[name="postal"]').placeholder = "000000"
+            document.querySelector('input[name="postal"]').placeholder =
+              "000000";
           }
         }
-      }, 100)
+      }, 100);
 
-      document.querySelector("#order-summary-widget .invoice-amount-col #total").insertAdjacentHTML("afterend", totalText)
+      document
+        .querySelector("#order-summary-widget .invoice-amount-col #total")
+        .insertAdjacentHTML("afterend", totalText);
 
       // validate form
       if (document.querySelector("form .front .border-bottom.mb-16")) {
         function validationForm(parent) {
-          let inputValueName = document.querySelector(`${parent} input[name='fname']`).value.match(/^.{1,30}$/)
-          let inputValueLastName = document.querySelector(`${parent} input[name='lname']`).value.match(/^.{1,30}$/)
-          let inputValuePhone = document.querySelector(`${parent} input[name='phone']`).value.match(/(?<=^|\s|>|\;|\:|\))(?:\+|7|8|9|\()[\d\-\(\) ]{8,}\d/)
-          let inputValueEmail = document.querySelector(`${parent} input[name='email']`).value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/)
-          let selectValue = document.querySelector(`${parent} select[name='custom_ubiGdEid']`).value
+          let inputValueName = document
+            .querySelector(`${parent} input[name='fname']`)
+            .value.match(/^.{1,30}$/);
+          let inputValueLastName = document
+            .querySelector(`${parent} input[name='lname']`)
+            .value.match(/^.{1,30}$/);
+          let inputValuePhone = document
+            .querySelector(`${parent} input[name='phone']`)
+            .value.match(
+              /(?<=^|\s|>|\;|\:|\))(?:\+|7|8|9|\()[\d\-\(\) ]{8,}\d/
+            );
+          let inputValueEmail = document
+            .querySelector(`${parent} input[name='email']`)
+            .value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/);
+          let selectValue = document.querySelector(
+            `${parent} select[name='custom_ubiGdEid']`
+          ).value;
 
           // name
           if (inputValueName === null) {
-            document.querySelector(`${parent} input[name='fname']`).classList.add("error")
+            document
+              .querySelector(`${parent} input[name='fname']`)
+              .classList.add("error");
           } else {
-            document.querySelector(`${parent} input[name='fname']`).classList.remove("error")
+            document
+              .querySelector(`${parent} input[name='fname']`)
+              .classList.remove("error");
           }
 
           // lname
           if (inputValueLastName === null) {
-            document.querySelector(`${parent} input[name='lname']`).classList.add("error")
+            document
+              .querySelector(`${parent} input[name='lname']`)
+              .classList.add("error");
           } else {
-            document.querySelector(`${parent} input[name='lname']`).classList.remove("error")
+            document
+              .querySelector(`${parent} input[name='lname']`)
+              .classList.remove("error");
           }
 
           // phone
@@ -822,28 +1012,49 @@ let startFunk2 = setInterval(() => {
 
           // email
           if (inputValueEmail === null) {
-            document.querySelector(`${parent} input[name='email']`).classList.add("error")
+            document
+              .querySelector(`${parent} input[name='email']`)
+              .classList.add("error");
           } else {
-            document.querySelector(`${parent} input[name='email']`).classList.remove("error")
+            document
+              .querySelector(`${parent} input[name='email']`)
+              .classList.remove("error");
           }
 
           // select
           if (selectValue === "") {
-            document.querySelector(`${parent} select[name='custom_ubiGdEid']`).classList.add("error")
+            document
+              .querySelector(`${parent} select[name='custom_ubiGdEid']`)
+              .classList.add("error");
           } else if (selectValue !== "") {
-            document.querySelector(`${parent} select[name='custom_ubiGdEid']`).classList.remove("error")
+            document
+              .querySelector(`${parent} select[name='custom_ubiGdEid']`)
+              .classList.remove("error");
           }
 
-          if (document.querySelector(`${parent} input.error`) == null && document.querySelector(`${parent} select.error`) == null) {
-            document.querySelector(".front").style.transform = "rotateY(-180deg)"
-            document.querySelector(".back").style.transform = "rotateY(-360deg)"
-            document.querySelector(".front").style.zIndex = "0"
+          if (
+            document.querySelector(`${parent} input.error`) == null &&
+            document.querySelector(`${parent} select.error`) == null
+          ) {
+            document.querySelector(".front").style.transform =
+              "rotateY(-180deg)";
+            document.querySelector(".back").style.transform =
+              "rotateY(-360deg)";
+            document.querySelector(".front").style.zIndex = "0";
 
             setTimeout(() => {
-              if (document.querySelector("#paymentForm .card_box .back label#terms_conditions_checkbox-error")) {
-                document.querySelector("#paymentForm .card_box .back label#terms_conditions_checkbox-error").remove()
+              if (
+                document.querySelector(
+                  "#paymentForm .card_box .back label#terms_conditions_checkbox-error"
+                )
+              ) {
+                document
+                  .querySelector(
+                    "#paymentForm .card_box .back label#terms_conditions_checkbox-error"
+                  )
+                  .remove();
               }
-            }, 100)
+            }, 100);
           }
         }
       }
@@ -852,34 +1063,57 @@ let startFunk2 = setInterval(() => {
       const options = {
         childList: true,
         subtree: true,
-      }
+      };
 
       let observerForm = new MutationObserver(() => {
         if (document.querySelector("form")) {
-          observerForm.disconnect()
+          observerForm.disconnect();
 
-          onObserverForm("#placeOrder")
-          onObserverForm("#payment-request-button")
+          onObserverForm("#placeOrder");
+          onObserverForm("#payment-request-button");
 
           function onObserverForm(selectorBtn) {
             if (document.querySelector(`${selectorBtn}`)) {
-              document.querySelector(".back #order-summary-widget")?.after(document.querySelector(`${selectorBtn}`))
+              document
+                .querySelector(".back #order-summary-widget")
+                ?.after(document.querySelector(`${selectorBtn}`));
 
               if (selectorBtn === "#placeOrder") {
-                document.querySelector(`${selectorBtn}`).textContent = "Start your free trial now"
+                document.querySelector(`${selectorBtn}`).textContent =
+                  "Start your free trial now";
               }
 
               if (!document.querySelector(".quarantee")) {
-                document.querySelector(`.back ${selectorBtn}`).insertAdjacentHTML("afterend", quaranteeBlock)
+                document
+                  .querySelector(`.back ${selectorBtn}`)
+                  .insertAdjacentHTML("afterend", quaranteeBlock);
               }
+
+              // if (document.querySelector(".quarantee")){
+              //   if(!document.querySelector('.btn_back')){
+              //     document
+              //     .querySelector(`.back .quarantee`)
+              //     .insertAdjacentHTML("beforebegin", btnBack);
+              //   }
+              // }
+
             }
           }
 
-          observerForm.observe(document.querySelector("form"), options)
+          observerForm.observe(document.querySelector("form"), options);
         }
-      })
+      });
 
-      observerForm.observe(document.querySelector("form"), options)
+      observerForm.observe(document.querySelector("form"), options);
+
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push({
+        event: "event-to-ga",
+        eventCategory: "Exp: New free trial flow",
+        eventAction: "loaded",
+      });
+
+      clarity('set', 'new_free_trial_flow', 'variant_1');
     }
   }
-}, 10)
+}, 10);
