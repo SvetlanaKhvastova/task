@@ -2,7 +2,30 @@ if (window.innerWidth <= 768) {
   let startfunkMobUpsell = setInterval(() => {
     if (document.querySelector(".prices")) {
       clearInterval(startfunkMobUpsell)
-      console.log(`first`)
+
+      // event
+      let actionDataLayer = "",
+        labelDataLayer = ""
+
+      function pushDataLayer(actionDataLayer, labelDataLayer) {
+        window.dataLayer = window.dataLayer || []
+        if (labelDataLayer) {
+          console.log(actionDataLayer + " : " + labelDataLayer)
+          dataLayer.push({
+            event: "event-to-ga",
+            eventCategory: `Exp: Upsell hypothesis 1`,
+            eventAction: `${actionDataLayer}`,
+            eventLabel: `${labelDataLayer}`,
+          })
+        } else {
+          console.log(actionDataLayer)
+          dataLayer.push({
+            event: "event-to-ga",
+            eventCategory: `Exp: Upsell hypothesis 1`,
+            eventAction: `${actionDataLayer}`,
+          })
+        }
+      }
 
       let cartBoxStyle = /*html */ `
         <style>
@@ -182,10 +205,11 @@ if (window.innerWidth <= 768) {
             }
 
             .your_cart .price_box > div:last-of-type p{
+                font-family: 'DINEngschrift LT', sans-serif;
                 font-weight: 400;
                 font-size: 16px !important;
                 line-height: 110% !important;
-                letter-spacing: 0.02em;
+                letter-spacing: 0.04em;
                 text-transform: uppercase;
                 color: #0C0B0B;
                 margin: 0 0 5px;
@@ -303,6 +327,10 @@ if (window.innerWidth <= 768) {
                 color: #212529; 
                 margin: 0;
             }
+            .your_cart #BuzzPacks.price_box > div.img_box{
+                height: 108px;
+                max-width: 120px;
+            }
             
         </style>
       `
@@ -354,7 +382,7 @@ if (window.innerWidth <= 768) {
                         <span>off</span>
                     </div>
 
-                    <div class="price_box">
+                    <div class="price_box" id='MagicPacks'>
                         <div class="img_box">
                             <img src="https://conversionratestore.github.io/projects/buzzpatch/img/upsell_4.png" alt="">
                         </div>
@@ -394,111 +422,152 @@ if (window.innerWidth <= 768) {
       if (document.querySelector(".cart_box")) {
         document.querySelector(".cart_box").after(document.querySelector("#addToCart"))
 
+        getCartPrice()
+        scrolling(".new_reviews_box a")
+
+        //your cart price
+        function getCartPrice() {
+          let salePrice = document.querySelector(".js-total .pr").textContent
+          let oldPrice = document.querySelector(".js-strike .rp").textContent
+          let countVal = document.querySelector(".js-packs input[type=radio]:checked+label").textContent.split(" ")[0]
+          let text = "BuzzPatch Packs"
+          let upsellSalePrice = document.querySelector(".js-packs label[for=radios-3] span").textContent.split(" ")[0]
+          let imgSrc = ""
+
+          document.querySelector(".your_cart #BuzzPacks.price_box > div:last-of-type span:first-of-type").textContent = `$${salePrice}`
+          document.querySelector(".your_cart #BuzzPacks.price_box > div:last-of-type span:last-of-type").textContent = `$${oldPrice}`
+
+          document.querySelector(".your_cart #MagicPacks.price_box > div:last-of-type span:first-of-type").textContent = upsellSalePrice
+
+          if (upsellSalePrice === "$14.99") {
+            document.querySelector(".your_cart #MagicPacks.price_box > div:last-of-type span:last-of-type").textContent = "$24.99"
+          } else {
+            document.querySelector(".your_cart #MagicPacks.price_box > div:last-of-type span:last-of-type").textContent = "$31.00"
+          }
+
+          if (countVal === "1") {
+            text = "BuzzPatch Pack"
+            imgSrc =
+              "//cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-1packs_180x120.jpg?v=1631505264 180w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-1packs_360x240.jpg?v=1631505264 360w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-1packs_540x360.jpg?v=1631505264 540w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-1packs_720x480.jpg?v=1631505264 720w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-1packs_900x600.jpg?v=1631505264 900w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-1packs_1080x720.jpg?v=1631505264 1080w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-1packs_1296x864.jpg?v=1631505264 1296w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-1packs_1512x1008.jpg?v=1631505264 1512w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-1packs_1728x1152.jpg?v=1631505264 1728w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-1packs_2048x1365.jpg?v=1631505264 2048w"
+          }
+
+          if (countVal === "") {
+            countVal = document.querySelector(".js-packs input[type=radio]:checked+label").textContent.split(" ")[1]
+          }
+
+          if (countVal === "2") {
+            imgSrc =
+              "//cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-2packs_180x120.jpg?v=1631505264 180w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-2packs_360x240.jpg?v=1631505264 360w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-2packs_540x360.jpg?v=1631505264 540w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-2packs_720x480.jpg?v=1631505264 720w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-2packs_900x600.jpg?v=1631505264 900w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-2packs_1080x720.jpg?v=1631505264 1080w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-2packs_1296x864.jpg?v=1631505264 1296w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-2packs_1512x1008.jpg?v=1631505264 1512w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-2packs_1728x1152.jpg?v=1631505264 1728w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-2packs_2048x1365.jpg?v=1631505264 2048w"
+          }
+
+          if (countVal === "3") {
+            imgSrc =
+              "//cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-3packs_180x120.jpg?v=1631505264 180w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-3packs_360x240.jpg?v=1631505264 360w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-3packs_540x360.jpg?v=1631505264 540w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-3packs_720x480.jpg?v=1631505264 720w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-3packs_900x600.jpg?v=1631505264 900w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-3packs_1080x720.jpg?v=1631505264 1080w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-3packs_1296x864.jpg?v=1631505264 1296w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-3packs_1512x1008.jpg?v=1631505264 1512w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-3packs_1728x1152.jpg?v=1631505264 1728w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-3packs_2048x1365.jpg?v=1631505264 2048w"
+          }
+
+          if (countVal === "4") {
+            imgSrc =
+              "//cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-4packs_180x120.jpg?v=1631505264 180w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-4packs_360x240.jpg?v=1631505264 360w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-4packs_540x360.jpg?v=1631505264 540w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-4packs_720x480.jpg?v=1631505264 720w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-4packs_900x600.jpg?v=1631505264 900w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-4packs_1080x720.jpg?v=1631505264 1080w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-4packs_1296x864.jpg?v=1631505264 1296w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-4packs_1512x1008.jpg?v=1631505264 1512w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-4packs_1728x1152.jpg?v=1631505264 1728w, //cdn.shopify.com/s/files/1/0387/0749/4956/products/Buzzpatch-4packs_2048x1365.jpg?v=1631505264 2048w"
+          }
+
+          document.querySelector(".your_cart #BuzzPacks.price_box > div.img_box img").src = imgSrc
+          document.querySelector(".your_cart #BuzzPacks.price_box > div:last-of-type p").textContent = `${countVal} ${text}`
+        }
+
+        // js scrolling
+        function scrolling(upSelector) {
+          let links = document.querySelectorAll(upSelector),
+            speed = 0.5
+
+          links.forEach((link) => {
+            link.addEventListener("click", function (event) {
+              event.preventDefault()
+              pushDataLayer("Click to Add to cart button", "Main CTA button")
+
+              let widthTop = document.documentElement.scrollTop,
+                hash = this.hash,
+                toBlock = document.querySelector(hash).getBoundingClientRect().top,
+                start = null
+
+              requestAnimationFrame(step)
+
+              function step(time) {
+                if (start === null) {
+                  start = time
+                }
+
+                let progress = time - start,
+                  r = toBlock < 0 ? Math.max(widthTop - progress / speed, widthTop + toBlock) : Math.min(widthTop + progress / speed, widthTop + toBlock)
+
+                document.documentElement.scrollTo(0, r)
+
+                if (r != widthTop + toBlock) {
+                  requestAnimationFrame(step)
+                } else {
+                  location.hash = hash
+                }
+              }
+            })
+          })
+        }
+
+        let idValue = document.querySelector(".js-packs input[type=radio]:checked+label").previousElementSibling.value
+
+        // click on btn
+        document.querySelector(".your_cart .btn_wrap > a:last-of-type").addEventListener("click", function (e) {
+          e.preventDefault()
+          pushDataLayer("Click to add to cart button", "Need instant section")
+          addToCart(idValue)
+        })
+
         document.querySelector(".your_cart .btn_wrap > a:first-of-type").addEventListener("click", function (e) {
           e.preventDefault()
-          document.querySelector("#addToCart").click()
+          pushDataLayer("Click to no thanks button", "Need instant section")
+          addToCart(idValue, "Checkout without Upsell")
         })
-      }
 
-      getCartPrice()
-      scrolling(".new_reviews_box a")
-
-      //your cart price
-      function getCartPrice() {
-        let salePrice = document.querySelector(".js-total .pr").textContent
-        let oldPrice = document.querySelector(".js-strike .rp").textContent
-        let countVal = document.querySelector(".js-packs input[type=radio]:checked+label").textContent.split(" ")[0]
-        let text = "BuzzPatch Packs"
-
-        document.querySelector(".your_cart #BuzzPacks.price_box > div:last-of-type span:first-of-type").textContent = `$${salePrice}`
-        document.querySelector(".your_cart #BuzzPacks.price_box > div:last-of-type span:last-of-type").textContent = `$${oldPrice}`
-
-        if (countVal === "1") {
-          text = "BuzzPatch Pack"
-        }
-
-        if (countVal === "") {
-          countVal = document.querySelector(".js-packs input[type=radio]:checked+label").textContent.split(" ")[1]
-        }
-
-        document.querySelector(".your_cart #BuzzPacks.price_box > div:last-of-type p").textContent = `${countVal} ${text}`
-      }
-
-      // js scrolling
-      function scrolling(upSelector) {
-        let links = document.querySelectorAll(upSelector),
-          speed = 0.5
-
-        links.forEach((link) => {
-          link.addEventListener("click", function (event) {
-            event.preventDefault()
-
-            let widthTop = document.documentElement.scrollTop,
-              hash = this.hash,
-              toBlock = document.querySelector(hash).getBoundingClientRect().top,
-              start = null
-
-            requestAnimationFrame(step)
-
-            function step(time) {
-              if (start === null) {
-                start = time
-              }
-
-              let progress = time - start,
-                r = toBlock < 0 ? Math.max(widthTop - progress / speed, widthTop + toBlock) : Math.min(widthTop + progress / speed, widthTop + toBlock)
-
-              document.documentElement.scrollTo(0, r)
-
-              if (r != widthTop + toBlock) {
-                requestAnimationFrame(step)
-              } else {
-                location.hash = hash
-              }
-            }
-          })
+        document.querySelector("a#addToCart").addEventListener("click", function (e) {
+          e.preventDefault()
+          pushDataLayer("Click to Proceed to checkout button")
+          addToCart(idValue, "Checkout without Upsell")
         })
-      }
 
-      // observer
-      let observer = new MutationObserver(() => {
-        if (document) {
-          observer.disconnect()
-          getCartPrice()
-          observer.observe(document, {
-            childList: true,
-            subtree: true,
-          })
-        }
-      })
+        // observer
+        let observer = new MutationObserver(() => {
+          if (document) {
+            observer.disconnect()
+            getCartPrice()
 
-      observer.observe(document, {
-        childList: true,
-        subtree: true,
-      })
-
-      document.querySelector(".your_cart .btn_wrap > a:last-of-type").addEventListener("click", function (e) {
-        e.preventDefault()
-        addToCart()
-      })
-
-      //add to cart and checkout
-      let idValue = document.querySelector(".js-packs input[type=radio]:checked+label").previousElementSibling.value
-      function addToCart() {
-        fetch("/cart/clear.js", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+            idValue = document.querySelector(".js-packs input[type=radio]:checked+label").previousElementSibling.value
+            observer.observe(document, {
+              childList: true,
+              subtree: true,
+            })
+          }
         })
-          .then((response) => {
-            return response.json()
-          })
-          .catch((error) => {
-            console.error("Error:", error)
-          })
 
-        setTimeout(() => {
+        observer.observe(document, {
+          childList: true,
+          subtree: true,
+        })
+
+        //add to cart and checkout
+        async function addToCart(idValue, parent = "") {
+          // clearCart()
+
+          await fetch("/cart/clear.js", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then((response) => {
+              return response.json()
+            })
+            .catch((error) => {
+              console.error("Error:", error)
+            })
+
           let formData = {
             items: [
               {
@@ -512,7 +581,18 @@ if (window.innerWidth <= 768) {
             ],
           }
 
-          fetch("/cart/add.js", {
+          if (parent === "Checkout without Upsell") {
+            formData = {
+              items: [
+                {
+                  id: idValue,
+                  quantity: 1,
+                },
+              ],
+            }
+          }
+
+          await fetch("/cart/add.js", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -526,8 +606,29 @@ if (window.innerWidth <= 768) {
               console.error("Error:", error)
             })
 
-          window.location.pathname = "/checkout"
-        }, 100)
+          setTimeout(() => {
+            window.location.pathname = "/checkout"
+          }, 300)
+        }
+
+        // clearCart
+        // async function clearCart() {
+        //   await fetch("/cart/clear.js", {
+        //     method: "POST",
+        //     headers: {
+        //       "Content-Type": "application/json",
+        //     },
+        //   })
+        //     .then((response) => {
+        //       return response.json()
+        //     })
+        //     .catch((error) => {
+        //       console.error("Error:", error)
+        //     })
+        // }
+
+        pushDataLayer("loaded")
+        clarity("set", "upsell_hypothesis_1", "variant_1")
       }
     }
   }, 10)
