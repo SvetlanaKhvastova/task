@@ -51,9 +51,84 @@
 
           <ul class="tabs_content">
             <li class="active_tab_content">
-              <div class="firts_block">
+              <div class="photo_var">
                 <div>
                   <img src="/blackoakled/img/Group 21.png" alt="" />
+                </div>
+              </div>
+              <div class="video_var">
+                <div class="container">
+                  <h3 class="third_title">Check out our Night Vision Camera in action.</h3>
+                  <div>
+                    <iframe
+                      width="100%"
+                      height="630"
+                      src="https://www.youtube.com/embed/7mVeiftHxW0"
+                      title="YouTube video player"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen=""
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+              <div class="benefits_var">
+                <div class="container">
+                  <h2>The most advanced low-light camera</h2>
+                  <ul>
+                    <li>
+                      <p>Hyper Low Lux Sensor</p>
+                      <p>
+                        Nitron XD was specifically designed to function in complete darkness, providing crystal clear HD video in any nighttime environment no matter the ambient
+                        temp.
+                      </p>
+                    </li>
+                    <li>
+                      <p>2X The Resolution</p>
+                      <p>See more than just silhouettes, Nitron XD shows details in full HD.</p>
+                    </li>
+                    <li>
+                      <p>Marine Rated</p>
+                      <p>Our Camera can withstand heavy spray and handle immersion up to 3 feet for over 60 hours.</p>
+                    </li>
+                    <li>
+                      <p>Easy Installation</p>
+                      <p>We include everything you need to easily install along with a plug and play harness to fully integrate with your MFD.</p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="difference_var">
+                <div class="container">
+                  <h3 class="third_title">The difference is night and day.</h3>
+                  <p class="txt">Turn night into day and put your mind at ease with the ability to see channel markers, boats, buoys, and other hazardous objects.</p>
+                  <div class="juxtapose">
+                    <img src="/blackoakled/img/juxtapose.jpg" />
+                    <img src="/blackoakled/img/connect_img1.jpg" />
+                  </div>
+                </div>
+              </div>
+              <div class="connect_var">
+                <div class="container">
+                  <ul>
+                    <li>
+                      <h3 class="third_title">Quick Connect</h3>
+                      <p class="txt">
+                        Take advantage of our easy access quick connect harness. With the ability to easily remove or attach, you never have to worry about leaving your camera.
+                      </p>
+                      <div class="img_wrapper"><img src="/blackoakled/img/connect_img1.jpg" alt="product camera" /></div>
+                    </li>
+                    <li>
+                      <div class="img_wrapper"><img src="/blackoakled/img/connect_img2.jpg" alt="product camera" /></div>
+                      <h3 class="third_title">Plug-N-Play with MF</h3>
+                      <p class="txt">Easily connect to your Garmin, Simrad, or other popular MFD with the supplied brand specific video input cable.</p>
+                    </li>
+                    <li>
+                      <div class="img_wrapper"><img src="/blackoakled/img/connect_img3.jpg" alt="product camera" /></div>
+                      <h3 class="third_title">Built to Last</h3>
+                      <p class="txt">With our military grade housing, there is no need to worry about your camera withstanding the harsh marine environments.</p>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </li>
@@ -107,7 +182,41 @@
         })
       }
 
-      tabs(".tabs .tabs_visible_wrap", ".tabs .tabs_visible_wrap li", ".tabs .tabs_content li", "active_tab")
+      tabs(".tabs .tabs_visible_wrap", ".tabs .tabs_visible_wrap > li", ".tabs .tabs_content > li", "active_tab")
+    </script>
+    <script>
+      let scriptCustom = document.createElement("script")
+      scriptCustom.src = "https://cdn.knightlab.com/libs/juxtapose/latest/js/juxtapose.min.js"
+      scriptCustom.async = false
+      document.head.appendChild(scriptCustom)
+
+      let scriptCustomStyle = document.createElement("link")
+      scriptCustomStyle.href = "https://cdn.knightlab.com/libs/juxtapose/latest/css/juxtapose.css"
+      scriptCustomStyle.rel = "stylesheet"
+      document.head.appendChild(scriptCustomStyle)
+
+      // slider = new juxtapose.JXSlider(
+      //   "#foo",
+      //   [
+      //     {
+      //       src: "https://example.com/firstimage.jpg",
+      //       label: "2009",
+      //       credit: "Image Credit",
+      //     },
+      //     {
+      //       src: "https://example.com/secondimage.jpg",
+      //       label: "2014",
+      //       credit: "Image Credit",
+      //     },
+      //   ],
+      //   {
+      //     animate: true,
+      //     showLabels: true,
+      //     showCredits: true,
+      //     startingPosition: "50%",
+      //     makeResponsive: true,
+      //   }
+      // )
     </script>
   </body>
 </html>
