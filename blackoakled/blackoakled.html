@@ -9,6 +9,7 @@
       href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Oswald:wght@400;500;700&family=Roboto:wght@300;400;500;700;900&display=swap"
       rel="stylesheet"
     />
+
     <link rel="stylesheet" href="blackoakled.css" />
   </head>
   <body>
@@ -189,7 +190,7 @@
               <img src="/blackoakled/img/juxtapose.jpg" />
               <img src="/blackoakled/img/connect_img1.jpg" />
             </div>
-            <a class="btn_custom" href="/products/nitron-xd-black-oak-hd-night-vision-camera?_pos=1&_sid=616d8fee8&_ss=r">Buy it now</a>
+            <a class="btn_custom" href="/products/nitron-xd-black-oak-hd-night-vision-camera?_pos=1&_sid=616d8fee8&_ss=r">Shop now</a>
           </div>
         </div>
 
@@ -237,9 +238,92 @@
             </ul>
           </div>
         </div>
+
+        <!-- reviews_wrapp -->
+        <div class="reviews_wrapp">
+          <div class="container_custom">
+            <h2>What our customers say</h2>
+            <ul class="slider_nav">
+              <li>
+                <div>
+                  <span>Reviewed in the United States on April 19, 2021</span>
+                  <h3>Sleek & Easy to Install</h3>
+                  <p>
+                    Really liking the sleek design on the camera housing. It actually looks like it belongs on a boat as opposed to some of the other brands. The harness provided
+                    also makes the install as easy as can be.
+                  </p>
+                </div>
+                <div>
+                  <span>Jane Cooper, USA</span>
+                  <div class="img_wrapper">
+                    <img src="/blackoakled/img/reviews.png" alt="reviews" />
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <span>Reviewed in the United States on April 19, 2021</span>
+                  <h3>Better than thermal</h3>
+                  <p>
+                    For the past 5 years I ran a 42' Yellowfin and 72' Viking with expensive Thermal Cameras. It was very difficult to see channel markers in the early morning when
+                    I'd be coming back from a long trip. We didn't feel comfortable going any faster than 10 knots in the dark mornings.
+                  </p>
+                </div>
+                <div>
+                  <span>Jane Cooper, USA</span>
+                  <div class="img_wrapper">
+                    <img src="/blackoakled/img/reviews.png" alt="reviews" />
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <span>Reviewed in the United States on April 19, 2021</span>
+                  <h3>Better than thermal</h3>
+                  <p>
+                    For the past 5 years I ran a 42' Yellowfin and 72' Viking with expensive Thermal Cameras. It was very difficult to see channel markers in the early morning when
+                    I'd be coming back from a long trip. We didn't feel comfortable going any faster than 10 knots in the dark mornings.
+                  </p>
+                </div>
+                <div>
+                  <span>Jane Cooper, USA</span>
+                  <div class="img_wrapper">
+                    <img src="/blackoakled/img/reviews.png" alt="reviews" />
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <a class="btn_custom" href="/products/nitron-xd-black-oak-hd-night-vision-camera?_pos=1&_sid=616d8fee8&_ss=r">Shop now</a>
+          </div>
+        </div>
+
+        <!-- new footer -->
+        <div class="footer">
+          <div class="container_custom">
+            <ul>
+              <li></li>
+              <li></li>
+              <li>
+                <ul>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+              </li>
+              <li>
+                <div class="img_wrapper">
+                  <img src="/blackoakled/img/contacts_photo.png" alt="contacts" />
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </main>
     <footer></footer>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script>
       const tabs = (headerSelector, tabSelector, contentSelector, activeClass, display = "block") => {
         const header = document.querySelector(headerSelector),
@@ -290,29 +374,64 @@
       scriptCustomStyle.href = "https://cdn.knightlab.com/libs/juxtapose/latest/css/juxtapose.css"
       scriptCustomStyle.rel = "stylesheet"
       document.head.appendChild(scriptCustomStyle)
+    </script>
 
-      // slider = new juxtapose.JXSlider(
-      //   "#foo",
-      //   [
-      //     {
-      //       src: "https://example.com/firstimage.jpg",
-      //       label: "2009",
-      //       credit: "Image Credit",
-      //     },
-      //     {
-      //       src: "https://example.com/secondimage.jpg",
-      //       label: "2014",
-      //       credit: "Image Credit",
-      //     },
-      //   ],
-      //   {
-      //     animate: true,
-      //     showLabels: true,
-      //     showCredits: true,
-      //     startingPosition: "50%",
-      //     makeResponsive: true,
-      //   }
-      // )
+    <script>
+      let scriptCustomSlider = document.createElement("script")
+      scriptCustomSlider.src = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
+      scriptCustomSlider.async = false
+      document.head.appendChild(scriptCustomSlider)
+
+      let scriptCustomSliderStyle = document.createElement("link")
+      scriptCustomSliderStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
+      scriptCustomSliderStyle.rel = "stylesheet"
+      document.head.appendChild(scriptCustomSliderStyle)
+
+      let slickInterval = setInterval(() => {
+        if (typeof jQuery(".slider_nav").slick === "function" && document.querySelector(".slider_nav")) {
+          clearInterval(slickInterval)
+
+          //  slider
+          setTimeout(() => {
+            let slider = $(".slider_nav").slick({
+              slidesToShow: 2,
+              slidesToScroll: 1,
+              arrows: true,
+              adaptiveHeight: true,
+              autoplay: true,
+              autoplaySpeed: 3000,
+              dots: false,
+              prevArrow: `
+       					<div class="prev_btn" >
+                   <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <g opacity="0.3">
+                     <path d="M25 30L15 20L25 10" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                     </g>
+                   </svg>
+       					</div>
+       				`,
+              nextArrow: `
+                  <div class="next_btn" >
+                   <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <g opacity="0.3">
+                     <path d="M15 30L25 20L15 10" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                     </g>
+                   </svg>
+               	</div>
+               `,
+              responsive: [
+                {
+                  breakpoint: 768,
+                  settings: {
+                    slidesToShow: 1,
+                    dots: true,
+                  },
+                },
+              ],
+            })
+          }, 200)
+        }
+      }, 100)
     </script>
   </body>
 </html>
