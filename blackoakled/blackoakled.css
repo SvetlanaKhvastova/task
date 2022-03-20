@@ -505,10 +505,6 @@ div.jx-arrow.jx-right::before {
 } */
 .slick-initialized .slick-slide {
   margin: 0 11px;
-  flex: 0 0 auto;
-}
-.slick-list .slick-track {
-  display: flex;
 }
 
 .slick-arrow {
@@ -904,10 +900,15 @@ div.jx-arrow.jx-right::before {
   }
 
   .slick-arrow.prev_btn {
-    left: -25px;
+    left: -30px;
   }
 
   .slick-arrow.next_btn {
-    right: -25px;
+    right: -30px;
   }
+  /* 
+  .slick-slider {
+    max-width: 300px;
+    margin: 0 auto;
+  } */
 }
