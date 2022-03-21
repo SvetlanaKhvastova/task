@@ -22,7 +22,7 @@
             <span>* New Nitron XD Night Vision HD Camera</span>
             <h1>See what you couldn’t before</h1>
             <p>The ultra low-light marine camera that will change boating as we know it. Stay out later, get home safe. Nightwave takes the darkness out of night.</p>
-            <a class="btn_custom" href="/products/nitron-xd-black-oak-hd-night-vision-camera?_pos=1&_sid=616d8fee8&_ss=r">Shop now</a>
+            <a class="btn_custom" href="#">Shop now</a>
           </div>
         </section>
 
@@ -150,7 +150,7 @@
                 allowfullscreen=""
               ></iframe>
             </div>
-            <a class="btn_custom" href="/products/nitron-xd-black-oak-hd-night-vision-camera?_pos=1&_sid=616d8fee8&_ss=r">Buy it now</a>
+            <a class="btn_custom" href="#">Buy it now</a>
           </div>
         </div>
 
@@ -190,7 +190,7 @@
               <img src="/blackoakled/img/juxtapose.jpg" />
               <img src="/blackoakled/img/connect_img1.jpg" />
             </div>
-            <a class="btn_custom" href="/products/nitron-xd-black-oak-hd-night-vision-camera?_pos=1&_sid=616d8fee8&_ss=r">Shop now</a>
+            <a class="btn_custom" href="#">Shop now</a>
           </div>
         </div>
 
@@ -293,12 +293,12 @@
                 </div>
               </li>
             </ul>
-            <a class="btn_custom" href="/products/nitron-xd-black-oak-hd-night-vision-camera?_pos=1&_sid=616d8fee8&_ss=r">Shop now</a>
+            <a class="btn_custom" href="#">Shop now</a>
           </div>
         </div>
 
         <!-- new footer -->
-        <div class="footer">
+        <!-- <div class="footer">
           <div class="container_custom">
             <div>
               <div class="form_block">
@@ -388,10 +388,34 @@
               </div>
             </div>
           </div>
+        </div> -->
+
+        <!-- popup -->
+        <div class="popup_custom" data-modal>
+          <div class="popup_dialog">
+            <div class="popup_content">
+              <button type="button">
+                Close
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M15 5L5 15" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M5 5L15 15" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div class="popup_form">
+                <h2>New Nitron XD Night Vision HD Camera</h2>
+                <a href="#" class="btn_custom purchase_btn">One click purchase</a>
+                <span>or</span>
+                <a href="/products/nitron-xd-black-oak-hd-night-vision-camera?_pos=1&_sid=616d8fee8&_ss=r" class="btn_custom details_btn"
+                  >Explore full details in <b>Black Oak e-shop</b></a
+                >
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>
     <footer></footer>
+
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script>
       const tabs = (headerSelector, tabSelector, contentSelector, activeClass, display = "block") => {
@@ -502,6 +526,92 @@
           }, 200)
         }
       }, 100)
+    </script>
+
+    <script>
+      function bindModal(triggerSelector, modalSelector, closeSelector, closeClickOverlay = true) {
+        const trigger = document.querySelectorAll(triggerSelector),
+          modal = document.querySelector(modalSelector),
+          close = document.querySelector(closeSelector),
+          windows = document.querySelectorAll("[data-modal]")
+
+        trigger.forEach((item) => {
+          item.addEventListener("click", (e) => {
+            if (e.target) {
+              e.preventDefault()
+            }
+
+            windows.forEach((item) => {
+              item.style.opacity = "0"
+            })
+
+            modal.style.opacity = "1"
+            modal.style.pointerEvents = "unset"
+            document.body.style.overflow = "hidden"
+          })
+        })
+
+        close.addEventListener("click", () => {
+          windows.forEach((item) => {
+            item.style.opacity = "0"
+          })
+
+          modal.style.opacity = "0"
+          modal.style.pointerEvents = "none"
+          document.body.style.overflow = ""
+        })
+
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal && closeClickOverlay) {
+            windows.forEach((item) => {
+              item.style.opacity = "0"
+            })
+
+            modal.style.pointerEvents = "none"
+            modal.style.opacity = "0"
+            document.body.style.overflow = ""
+          }
+        })
+      }
+
+      bindModal(".hero_section > a.btn_custom", ".popup_custom", ".popup_custom button")
+      bindModal(".difference_var a.btn_custom", ".popup_custom", ".popup_custom button")
+      bindModal(".reviews_wrapp a.btn_custom", ".popup_custom", ".popup_custom button")
+      bindModal(".video_var a.btn_custom", ".popup_custom", ".popup_custom button")
+
+      document.querySelector(".popup_custom .popup_content .popup_form > a.purchase_btn").addEventListener("click", function () {
+        addToCart()
+      })
+
+      //add to cart and checkout
+      async function addToCart() {
+        let formData = {
+          items: [
+            {
+              id: "39783882981437",
+              quantity: 1,
+            },
+          ],
+        }
+
+        await fetch("/cart/add.js", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        })
+          .then((response) => {
+            return response.json()
+          })
+          .catch((error) => {
+            console.error("Error:", error)
+          })
+
+        setTimeout(() => {
+          window.location.pathname = "/cart"
+        }, 300)
+      }
     </script>
   </body>
 </html>

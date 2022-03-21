@@ -669,6 +669,125 @@ div.jx-arrow.jx-right::before {
   justify-content: flex-end;
 }
 
+/* popup_custom */
+.popup_custom {
+  opacity: 0;
+  /* display: none; */
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9090;
+  background: rgb(22 22 22 / 60%);
+  pointer-events: none;
+  transition: all 0.8s ease 0s;
+}
+
+.popup_custom .popup_content {
+  position: fixed;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 610px;
+  background: #f4f4f4;
+  box-shadow: 0px 4px 250px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  padding: 25px 30px 40px;
+}
+
+.popup_custom .popup_content > button {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  text-transform: uppercase;
+  color: #161616;
+  margin: 0 0 20px auto;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  background: unset;
+}
+
+.popup_custom .popup_content > button > svg {
+  margin-left: 7px;
+}
+
+.popup_custom .popup_content .popup_form {
+  position: relative;
+}
+
+.popup_custom .popup_content .popup_form::before {
+  position: absolute;
+  content: "";
+  left: -180px;
+  top: -215px;
+  background-image: url(/blackoakled/img/popup_img.png);
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 400px;
+}
+
+.popup_custom .popup_content .popup_form > h2 {
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 110%;
+  text-transform: uppercase;
+  color: #161616;
+  max-width: 365px;
+  margin: 0 0 0 auto;
+  padding: 30px 8px;
+  border-bottom: 1px solid rgb(75 75 77 / 20%);
+  position: relative;
+}
+
+.popup_custom .popup_content .popup_form > h2::before {
+  position: absolute;
+  right: 0;
+  top: 0;
+  content: "";
+  width: 70%;
+  height: 1px;
+  background: rgb(75 75 77 / 20%);
+}
+
+.popup_custom .popup_content .popup_form > a.purchase_btn {
+  margin-top: 35px;
+}
+
+.popup_custom .popup_content .popup_form > a.details_btn {
+  border: 2px solid #161616;
+  max-width: 455px;
+  background: inherit;
+  font-weight: 400;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.popup_custom .popup_content .popup_form > a.details_btn b {
+  text-transform: uppercase;
+  margin-left: 5px;
+  font-weight: 700;
+  font-family: "Open Sans", sans-serif;
+}
+
+.popup_custom .popup_content .popup_form > span {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #161616;
+  text-align: center;
+  margin-top: 8px;
+  display: block;
+}
+
 @media (max-width: 767px) {
   a.btn_custom {
     margin-top: 30px;
@@ -930,7 +1049,7 @@ div.jx-arrow.jx-right::before {
     font-size: 14px;
   }
 
-  .reviews_wrapp .slick-dots {
+  #new_nitron_wrapper .reviews_wrapp .slick-dots {
     display: flex;
     justify-content: center;
     margin-top: 30px;
@@ -982,9 +1101,55 @@ div.jx-arrow.jx-right::before {
   .slick-arrow.next_btn {
     right: -30px;
   }
-  /* 
-  .slick-slider {
-    max-width: 300px;
-    margin: 0 auto;
-  } */
+
+  /*  popup_custom */
+  .popup_custom .popup_content {
+    padding: 15px 15px 30px;
+    max-width: 260px;
+  }
+
+  .popup_custom .popup_content > button {
+    font-size: 10px;
+    line-height: 12px;
+  }
+
+  .popup_custom .popup_content > button > svg {
+    margin-left: 5px;
+    width: 12px;
+    height: 12px;
+  }
+
+  .popup_custom .popup_content .popup_form > h2 {
+    font-size: 20px;
+    line-height: 110%;
+    padding-left: 74px;
+  }
+
+  .popup_custom .popup_content .popup_form > a.purchase_btn {
+    max-width: 217px;
+    margin-top: 20px;
+  }
+
+  .popup_custom .popup_content .popup_form > a.details_btn {
+    max-width: 217px;
+    height: 72px;
+    padding: 14px 0;
+  }
+
+  .popup_custom .popup_content .popup_form > span {
+    font-size: 14px;
+    line-height: 19px;
+    margin-top: 10px;
+  }
+
+  .popup_custom .popup_content .popup_form::before {
+    background-image: url(/blackoakled/img/popup_img_mob.png);
+    left: -25%;
+    top: -50%;
+    min-height: unset;
+  }
+
+  .popup_custom .popup_content .popup_form > h2::before {
+    width: 50%;
+  }
 }
