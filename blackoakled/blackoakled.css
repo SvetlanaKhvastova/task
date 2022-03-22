@@ -27,7 +27,8 @@ li {
   margin: 0 auto;
 }
 
-a.btn_custom {
+a.btn_custom,
+button.btn_custom {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -610,7 +611,75 @@ div.jx-arrow.jx-right::before {
 }
 
 #new_nitron_wrapper .footer .container_custom > div > div {
-  width: 45%;
+  width: 48%;
+}
+
+.form_block form > h2,
+.ql-editor h4 strong {
+  font-family: "Oswald", sans-serif;
+  font-weight: 500 !important;
+  font-size: 24px;
+  line-height: 120%;
+  color: rgb(255 255 255 / 80%) !important;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  display: block;
+}
+
+.ql-editor p,
+.ql-editor h4 {
+  text-align: start !important;
+}
+
+.form_block form > p,
+.ql-editor p span {
+  font-weight: 300 !important;
+  font-size: 16px !important;
+  line-height: 150% !important;
+  color: rgb(255 255 255 / 80%) !important;
+  margin-bottom: 20px !important;
+  max-width: 355px !important;
+  display: block !important;
+}
+
+.form_block form,
+form.needsclick.klaviyo-form.klaviyo-form-version-cid_1.kl-private-reset-css-Xuajs1 {
+  margin: 0 0 83px 0 !important;
+  max-width: unset !important;
+}
+
+.form_block > form > div {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.form_block form > div > input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: rgb(255 255 255 / 30%);
+  padding: 13px 200px 13px 30px;
+  width: 100%;
+  height: 50px;
+  outline: none;
+}
+
+.form_block form > div > input::placeholder {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: rgb(255 255 255 / 30%);
+}
+
+.form_block form > div button {
+  margin: 0;
+  max-width: 198px;
+  position: absolute;
+  right: 0;
 }
 
 .nav_link_block {
@@ -625,6 +694,7 @@ div.jx-arrow.jx-right::before {
   line-height: 120%;
   color: rgb(255 255 255 / 80%);
   margin-bottom: 18px;
+  text-transform: uppercase;
 }
 
 .nav_link_block > div ul li + li {
@@ -639,6 +709,10 @@ div.jx-arrow.jx-right::before {
   text-decoration: unset;
 }
 
+.info_block address {
+  margin: 0;
+}
+
 .info_block address > ul {
   display: flex;
   flex-wrap: wrap;
@@ -650,17 +724,61 @@ div.jx-arrow.jx-right::before {
 }
 
 .info_block address > ul > li + li {
+  position: relative;
+  padding-left: 30px;
   margin-top: 10px;
+}
+
+.info_block address > ul > li + li::before {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background-image: url(/blackoakled/img/bx_support.svg);
+}
+
+.info_block address > ul > li:nth-child(3):before {
+  background-image: url(/blackoakled/img/cil_fax.svg);
+}
+
+.info_block address > ul > li:nth-child(4):before {
+  background-image: url(/blackoakled/img/carbon_phone.svg);
+}
+
+.info_block address > ul > li:nth-child(5):before {
+  background-image: url(/blackoakled/img/carbon_earth-southeast-asia.svg);
 }
 
 .info_block address > ul > li:first-child {
   width: 100%;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 }
 
 .info_block address > ul > li:first-child .img_wrapper {
   max-width: 150px;
   display: block;
+}
+
+.info_block address > ul > li a {
+  text-decoration: unset;
+}
+
+.info_block address > ul > li:nth-child(3) a {
+  cursor: unset;
+}
+
+.info_block address > ul > li a > span {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 150%;
+  color: #ffffff;
+}
+
+.info_block address > ul > li a > span:first-child {
+  font-weight: 600;
 }
 
 .partnerts_block {
@@ -1151,5 +1269,110 @@ div.jx-arrow.jx-right::before {
 
   .popup_custom .popup_content .popup_form > h2::before {
     width: 50%;
+  }
+
+  /* footer */
+  .footer {
+    padding: 30px 0 0;
+  }
+
+  #new_nitron_wrapper .footer .container_custom > div {
+    flex-direction: column;
+  }
+
+  #new_nitron_wrapper .footer .container_custom > div > div.form_block {
+    order: 1;
+  }
+  #new_nitron_wrapper .footer .container_custom > div > div.nav_link_block {
+    order: 3;
+  }
+  #new_nitron_wrapper .footer .container_custom > div > div.info_block {
+    order: 2;
+  }
+  #new_nitron_wrapper .footer .container_custom > div > div.partnerts_block {
+    order: 4;
+  }
+
+  #new_nitron_wrapper .footer .container_custom > div > div {
+    width: 100%;
+  }
+
+  #new_nitron_wrapper .footer .container_custom > div > div + div {
+    border-top: 1px solid #4b4b4d;
+    padding: 30px 0;
+  }
+
+  .form_block form {
+    margin-bottom: 30px;
+  }
+
+  .form_block form > p {
+    margin-bottom: 30px;
+  }
+
+  .info_block address > ul > li {
+    width: 100%;
+  }
+
+  .form_block form > div button {
+    max-width: 138px;
+  }
+
+  .form_block form > div > input {
+    padding-right: 140px;
+  }
+
+  .nav_link_block {
+    flex-wrap: wrap;
+  }
+
+  .nav_link_block > div {
+    width: 40%;
+  }
+
+  .nav_link_block > div:first-child {
+    margin-top: 40px;
+    order: 3;
+  }
+
+  .nav_link_block > div:nth-child(2) {
+    order: 2;
+  }
+
+  .nav_link_block > div:nth-child(3) {
+    order: 1;
+  }
+}
+
+@media (max-width: 320px) {
+  .hero_section > h1 {
+    font-size: 40px;
+  }
+
+  h3.third_title {
+    font-size: 25px;
+  }
+
+  .tabs ul.tabs_visible_wrap {
+    padding: 13px 20px;
+  }
+
+  .reviews_wrapp h2,
+  div.benefits_var h2 {
+    font-size: 45px;
+  }
+
+  .form_block form > div > input {
+    font-size: 12px;
+  }
+
+  .nav_link_block > div h3,
+  .form_block form > p,
+  .form_block form > div button {
+    font-size: 14px;
+  }
+
+  .nav_link_block > div ul li a {
+    font-size: 12px;
   }
 }

@@ -298,7 +298,7 @@
         </div>
 
         <!-- new footer -->
-        <!-- <div class="footer">
+        <div class="footer">
           <div class="container_custom">
             <div>
               <div class="form_block">
@@ -306,12 +306,9 @@
                   <h2>CONNECT WITH US</h2>
                   <p>Sign up for our newsletter and be the first to know about coupons and special promotions.</p>
 
-                  <div class="fotter_area">
-                    <label>
-                      <input type="email" name="fotter-form" id="fotterForm" placeholder="Enter your email" />
-                    </label>
-
-                    <button type="submit" class="fotter-submit">Subscribe</button>
+                  <div>
+                    <input type="email" name="footer_form" placeholder="Enter your email" />
+                    <button type="submit" class="footer_submit btn_custom">Subscribe</button>
                   </div>
                 </form>
               </div>
@@ -361,21 +358,21 @@
                       </a>
                     </li>
                     <li>
-                      <a href="tel:18003481287">
-                        <span>Phone:</span>
-                        <span>1-800-348-1287</span>
-                      </a>
-                    </li>
-                    <li>
                       <a href="#">
                         <span>Fax:</span>
                         <span>1-800-348-1287</span>
                       </a>
                     </li>
                     <li>
+                      <a href="tel:18003481287">
+                        <span>Phone:</span>
+                        <span>1-800-348-1287</span>
+                      </a>
+                    </li>
+                    <li>
                       <a href="#shipping-selector-form">
                         <span></span>
-                        <span>We Ship Worldwide </span>
+                        <span>We Ship Worldwide</span>
                       </a>
                     </li>
                   </ul>
@@ -388,7 +385,7 @@
               </div>
             </div>
           </div>
-        </div> -->
+        </div>
 
         <!-- popup -->
         <div class="popup_custom" data-modal>
@@ -611,6 +608,20 @@
         setTimeout(() => {
           window.location.pathname = "/cart"
         }, 300)
+      }
+    </script>
+
+    <script>
+      if (document.querySelector(".info_block address > ul > li:nth-child(3) a")) {
+        document.querySelector(".info_block address > ul > li:nth-child(3) a").addEventListener("click", (e) => {
+          e.preventDefault()
+        })
+      }
+
+      if (document.querySelectorAll(".info_block address > ul > li a")[4]) {
+        document.querySelectorAll(".info_block address > ul > li a")[4].addEventListener("click", (e) => {
+          document.querySelector(".shipping-selector-popup-form").click()
+        })
       }
     </script>
   </body>
