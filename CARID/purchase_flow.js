@@ -1,51 +1,48 @@
-// renderDelivery()
+let startfunkCarid = setInterval(() => {
+  if (document.querySelector("#product_orderform")) {
+    clearInterval(startfunkCarid)
 
-// function renderDelivery() {
-//   if (window.innerWidth <= 768) {
-//     console.log(`mobileVar`)
-//     mobileVar()
-//   } else {
-//     console.log(`desktopVar`)
-//     desktopVar()
-//   }
-// }
+    let scriptCustomPopper = document.createElement("script")
+    scriptCustomPopper.src = "https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"
+    scriptCustomPopper.async = false
+    document.head.appendChild(scriptCustomPopper)
 
-// // event
-// let actionDataLayer = "",
-//   labelDataLayer = "",
-//   eventVar = "desktop"
+    let scriptCustomTippy = document.createElement("script")
+    scriptCustomTippy.src = "https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"
+    scriptCustomTippy.async = false
+    document.head.appendChild(scriptCustomTippy)
 
-// if (window.innerWidth <= 768) {
-//   eventVar = "mobile"
-// }
+    // // event
+    // let actionDataLayer = "",
+    //   labelDataLayer = "",
+    //   eventVar = "desktop"
 
-// function pushDataLayer(actionDataLayer, labelDataLayer) {
-//   window.dataLayer = window.dataLayer || []
-//   if (labelDataLayer) {
-//     console.log(actionDataLayer + " : " + labelDataLayer)
-//     dataLayer.push({
-//       event: "event-to-ga",
-//       eventCategory: `Exp: New free trial flow ${eventVar}`,
-//       eventAction: `${actionDataLayer}`,
-//       eventLabel: `${labelDataLayer}`,
-//     })
-//   } else {
-//     console.log(actionDataLayer)
-//     dataLayer.push({
-//       event: "event-to-ga",
-//       eventCategory: `Exp: New free trial flow ${eventVar}`,
-//       eventAction: `${actionDataLayer}`,
-//     })
-//   }
-// }
+    // if (window.innerWidth <= 768) {
+    //   eventVar = "mobile"
+    // }
 
-// function mobileVar() {}
-// function desktopVar() {}
+    // function pushDataLayer(actionDataLayer, labelDataLayer) {
+    //   window.dataLayer = window.dataLayer || []
+    //   if (labelDataLayer) {
+    //     console.log(actionDataLayer + " : " + labelDataLayer)
+    //     dataLayer.push({
+    //       event: "event-to-ga",
+    //       eventCategory: ` ${eventVar}`,
+    //       eventAction: `${actionDataLayer}`,
+    //       eventLabel: `${labelDataLayer}`,
+    //     })
+    //   } else {
+    //     console.log(actionDataLayer)
+    //     dataLayer.push({
+    //       event: "event-to-ga",
+    //       eventCategory: ` ${eventVar}`,
+    //       eventAction: `${actionDataLayer}`,
+    //     })
+    //   }
+    // }
 
-let purchaseFlowStyle = /*html */ `
+    let purchaseFlowStyle = /*html */ `
 <style>
-
-
     #selectBtnReact,
     .sticky_wrapp{
         display: none;
@@ -86,6 +83,19 @@ let purchaseFlowStyle = /*html */ `
         position: relative;
     }
 
+    .tippy-box{
+        background: rgba(248, 248, 248, 0.95);
+        border: 1px solid #4062B9;
+        border-radius: 5px;
+        width: 100%;
+        min-width: 486px;
+    }
+
+    .tippy-content{
+        width: 100%;
+        padding: 0;
+    }
+
     .hover_block{
         background: rgba(248, 248, 248, 0.95);
         border: 1px solid #4062B9;
@@ -100,7 +110,8 @@ let purchaseFlowStyle = /*html */ `
         visibility: hidden;
     }
 
-    .purchase_flow > div > .hover_block > p{
+    .purchase_flow > div > .hover_block > p,
+    .hover_block_desk > p{
         font-family: "Roboto", sans-serif;
         font-weight: 700;
         font-size: 16px;
@@ -110,23 +121,28 @@ let purchaseFlowStyle = /*html */ `
         padding: 10px;
         border-bottom: 1px solid #4062B9;
         margin: 0;
+        text-align: left;
     }
 
-    .purchase_flow > div > .hover_block > ul{
+    .purchase_flow > div > .hover_block > ul,
+    .hover_block_desk > ul {
         list-style: none;
         padding: 18px;
     }
 
-    .purchase_flow > div > .hover_block > ul li{
+    .purchase_flow > div > .hover_block > ul li,
+    .hover_block_desk > ul li {
         display: flex;
         align-items: center;
     }
 
-    .purchase_flow > div > .hover_block > ul li + li{
+    .purchase_flow > div > .hover_block > ul li + li,
+    .hover_block_desk > ul li + li{
         margin-top: 18px;
     }
 
-    .purchase_flow > div > .hover_block > ul li p:first-child{
+    .purchase_flow > div > .hover_block > ul li p:first-child,
+    .hover_block_desk > ul li p:first-child{
         font-weight: 700;
         font-size: 14px;
         line-height: 100%; 
@@ -135,7 +151,8 @@ let purchaseFlowStyle = /*html */ `
         margin: 0;
     }
 
-    .purchase_flow > div > .hover_block > ul li p:last-child{
+    .purchase_flow > div > .hover_block > ul li p:last-child,
+    .hover_block_desk > ul li p:last-child{
         font-family: "Roboto", sans-serif;
         font-weight: 400;
         font-size: 13px;
@@ -144,7 +161,8 @@ let purchaseFlowStyle = /*html */ `
         margin: 0 0 0 18px;    
     }
 
-    .purchase_flow > div > .hover_block > ul li p:last-child >span{
+    .purchase_flow > div > .hover_block > ul li p:last-child >span,
+    .hover_block_desk > ul li p:last-child >span{
         font-weight: 700;
         font-size: 14px;
         line-height: 100%;
@@ -153,7 +171,8 @@ let purchaseFlowStyle = /*html */ `
         margin-right: 11px;
     }
 
-    .purchase_flow > div > .hover_block > ul li p:last-child >span::after{
+    .purchase_flow > div > .hover_block > ul li p:last-child >span::after,
+    .hover_block_desk > ul li p:last-child >span::after{
         position: absolute;
         content: '';
         right: -5px;
@@ -173,12 +192,9 @@ let purchaseFlowStyle = /*html */ `
         background-color: #3157ab;
     }
 
-    button.now_pay_btn:hover ~ .hover_block{
-        opacity: 1;
-        visibility: unset;
-    }
-
     @media (max-width: 768px) {
+
+
         .tooltip_bar{
             background: #F8F8F8;
             border: 1px solid #4062B9;
@@ -186,6 +202,19 @@ let purchaseFlowStyle = /*html */ `
             padding: 10px 45px 10px 10px;
             display: flex;
             margin-top: 20px;
+            position: relative;
+        }
+
+        .tooltip_bar::after{
+            position: absolute;
+            content: "";
+            background: url(https://cdn.carid.com/css/prod-images/ca4806dc.svg) no-repeat 0 0;
+            height: 6px;
+            width: 10px;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: all 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
         }
 
         .tooltip_bar > .tooltip_svg{
@@ -210,9 +239,8 @@ let purchaseFlowStyle = /*html */ `
             opacity: 0;
             position: absolute;
             transition: all 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
-            visibility: unset;
-            top: unset;
-            left: unset;
+            top: unset !important;
+            left: unset !important;
         }
 
         .purchase_flow > div > .hover_block > p{
@@ -242,10 +270,15 @@ let purchaseFlowStyle = /*html */ `
         .show_var.hover_block{
             opacity: 1;
             position: static;
+            visibility: unset;
+        }
+
+        .arrow_down_var.tooltip_bar::after{
+            transform: translateY(-50%) rotateX(180deg);
         }
 
         .sticky_wrapp{
-            display: block;
+            display: none;
             position: fixed;
             bottom: 0;
             z-index: 999;
@@ -255,9 +288,20 @@ let purchaseFlowStyle = /*html */ `
             margin: 0;
         }
 
+        .purchase_flow button.now_pay_btn{
+            height: 52px;
+            margin: 0;
+        }
+
+        .prod_add{
+            margin-bottom: 17px;
+        }
+
         button.sticky_mob{
             margin: 0 auto;
             width: 88%;
+            line-height: 129%;
+            height: 52px;
         }
     }
 
@@ -265,7 +309,7 @@ let purchaseFlowStyle = /*html */ `
 
 `
 
-let purchaseFlow = /*html */ `
+    let purchaseFlow = /*html */ `
 <div class="purchase_flow">
     <!-- <button>CHOOSE OPTIONS and Add to cart</button> -->
 
@@ -304,14 +348,11 @@ let purchaseFlow = /*html */ `
     </div>
 </div>
 `
-document.head.insertAdjacentHTML("beforeend", purchaseFlowStyle)
+    document.head.insertAdjacentHTML("beforeend", purchaseFlowStyle)
 
-let startfunkDesk = setInterval(() => {
-  if (document.querySelector("#product_orderform")) {
-    clearInterval(startfunkDesk)
-    a()
+    startfunk()
 
-    function a() {
+    function startfunk() {
       document.querySelector("#prod-slct-opts-btn-holder").insertAdjacentHTML("beforeend", purchaseFlow)
 
       if (document.querySelector("button#addToCartButReact")) {
@@ -324,15 +365,104 @@ let startfunkDesk = setInterval(() => {
           document.querySelector("button#selectBtnReact").click()
         })
 
-        document.querySelector(".purchase_flow button.now_pay_btn").addEventListener("mouseenter", function () {
-          const block = document.querySelector(".purchase_flow > div")
+        // if (window.innerWidth > 768) {
+        //   console.log(window.innerWidth)
+        //   document.querySelector(".purchase_flow button.now_pay_btn").addEventListener("mouseenter", function () {
+        //     const block = document.querySelector(".purchase_flow > div")
+        //     document.querySelector(".purchase_flow > div > .hover_block").style.opacity = "1"
+        //     document.querySelector(".purchase_flow > div > .hover_block").style.visibility = "unset"
 
-          if (block.getBoundingClientRect().top >= 365) {
-            document.querySelector(".purchase_flow > div > .hover_block").style.top = "-214px"
+        //     if (block.getBoundingClientRect().top >= 365) {
+        //       document.querySelector(".purchase_flow > div > .hover_block").style.top = "-214px"
+        //     } else {
+        //       document.querySelector(".purchase_flow > div > .hover_block").style.top = "60px"
+        //     }
+        //   })
+
+        //   document.querySelector(".purchase_flow button.now_pay_btn").addEventListener("mouseleave", function () {
+        //     document.querySelector(".purchase_flow > div > .hover_block").style.opacity = "0"
+        //     document.querySelector(".purchase_flow > div > .hover_block").style.visibility = "hidden"
+        //   })
+        // }
+      }
+
+      //   sticky btn mobile and  click on tooltip_bar mobile
+      document.body.insertAdjacentHTML("afterbegin", `<div class="sticky_wrapp"><button class="sticky_mob">order NOW PAY later</button></div>`)
+
+      if (window.innerWidth <= 768) {
+        //   sticky btn mobile
+        if (document.querySelector("button.sticky_mob")) {
+          document.querySelector("button.sticky_mob").addEventListener("click", function (e) {
+            e.preventDefault()
+            document.querySelector("button#selectBtnReact").click()
+          })
+        }
+
+        const element = document.querySelector("#prod-slct-opts-btn-holder")
+
+        function visible(target) {
+          //  position elem
+          let targetPosition = {
+              top: window.pageYOffset + target.getBoundingClientRect().top,
+              left: window.pageXOffset + target.getBoundingClientRect().left,
+              right: window.pageXOffset + target.getBoundingClientRect().right,
+              bottom: window.pageYOffset + target.getBoundingClientRect().bottom,
+            },
+            // position window
+            windowPosition = {
+              top: window.pageYOffset,
+              left: window.pageXOffset,
+              right: window.pageXOffset + document.documentElement.clientWidth,
+              bottom: window.pageYOffset + document.documentElement.clientHeight,
+            }
+
+          if (
+            targetPosition.bottom > windowPosition.top &&
+            targetPosition.top < windowPosition.bottom &&
+            targetPosition.right > windowPosition.left &&
+            targetPosition.left < windowPosition.right
+          ) {
+            document.querySelector(".sticky_wrapp").style.display = "none"
           } else {
-            document.querySelector(".purchase_flow > div > .hover_block").style.top = "60px"
+            document.querySelector(".sticky_wrapp").style.display = "block"
           }
+        }
+
+        window.addEventListener("scroll", function () {
+          visible(element)
         })
+
+        visible(element)
+
+        //   click on tooltip_bar mobile
+        if (document.querySelector(".tooltip_bar")) {
+          document.querySelector(".tooltip_bar").addEventListener("click", function () {
+            document.querySelector(".purchase_flow > div > .hover_block").classList.toggle("show_var")
+
+            if (document.querySelector(".purchase_flow > div > .hover_block").classList.contains("show_var")) {
+              this.classList.add("arrow_down_var")
+            } else {
+              this.classList.remove("arrow_down_var")
+            }
+          })
+        }
+      }
+
+      // hover desktop
+      if (window.innerWidth > 768) {
+        let run = setInterval(() => {
+          if (typeof tippy === "function") {
+            clearInterval(run)
+
+            tippy(".purchase_flow button.now_pay_btn", {
+              allowHTML: true,
+              followCursor: true,
+              arrow: false,
+              content:
+                '<div class="hover_block_desk"><p>Order now AND pay later in equal instalments</p><ul><li><p>STEP 1</p><p>Choose product options</p></li><li><p>STEP 2</p><p>Add product to cart</p> </li><li><p>STEP 3</p><p>Select <span>affirm</span> as a payment method at checkout</p></li><li><p>STEP 4</p><p>Enter your details and get a real-time loan decision</p></li></ul></div>',
+            })
+          }
+        }, 100)
       }
     }
 
@@ -353,40 +483,7 @@ let startfunkDesk = setInterval(() => {
     //   childList: true,
     //   subtree: true,
     // })
-    // let jqueryLoaded = setInterval(() => {
-    //   if (typeof $ === "function") {
-    //     clearInterval(jqueryLoaded)
-    //     console.log(`tooltip_bar`)
 
-    //     $(".tooltip_bar").click(function () {
-    //       $(this).toggleClass("show_var")
-
-    //       if ($(this).hasClass("show_var")) {
-    //         $(this).nextElementSibling.slideDown()
-    //       } else {
-    //         $(this).nextElementSibling.slideUp()
-    //       }
-
-    //       $(this).nextElementSibling.slideDown()
-    //     })
-    //   }
-    // }, 1000)
-
-    //   click on tooltip_bar mobile
-    if (document.querySelector(".tooltip_bar")) {
-      document.querySelector(".tooltip_bar").addEventListener("click", function () {
-        document.querySelector(".purchase_flow > div > .hover_block").classList.toggle("show_var")
-      })
-    }
-
-    //   sticky btn
-    document.body.insertAdjacentHTML("afterbegin", `<div class="sticky_wrapp"><button class="sticky_mob">order NOW PAY later</button></div>`)
-
-    if (document.querySelector("button.sticky_mob")) {
-      document.querySelector("button.sticky_mob").addEventListener("click", function (e) {
-        e.preventDefault()
-        document.querySelector("button#selectBtnReact").click()
-      })
-    }
+    //
   }
 }, 10)
