@@ -23,3 +23,17 @@
 //     })
 
 //   }
+
+const userAgent = navigator.userAgent.toLowerCase()
+
+const Safari = /safari/.test(userAgent)
+
+setTimeout(() => {
+  document.querySelector("iframe").setAttribute("src", document.querySelector("iframe").dataset.src)
+}, 200)
+
+setInterval(() => {
+  if (!document.querySelector("iframe").attributes.src) {
+    document.querySelector("iframe").setAttribute("src", document.querySelector("iframe").dataset.src)
+  }
+}, 10)
