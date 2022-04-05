@@ -470,9 +470,11 @@ let startfunkCarid = setInterval(() => {
               arrow: false,
               onShow(instance) {
                 console.log(`show`)
+                timerEventDesk(document.querySelector(".purchase_flow button.now_pay_btn"), "start")
               },
               onHide(instance) {
                 console.log(`hide`)
+                timerEventDesk(document.querySelector(".purchase_flow button.now_pay_btn"), "stop")
               },
               content:
                 '<div class="hover_block_desk"><p>Order now AND pay later in equal instalments</p><ul><li><p>STEP 1</p><p>Choose product options</p></li><li><p>STEP 2</p><p>Add product to cart</p> </li><li><p>STEP 3</p><p>Select <span>affirm</span> as a payment method at checkout</p></li><li><p>STEP 4</p><p>Enter your details and get a real-time loan decision</p></li></ul></div>',
@@ -501,7 +503,7 @@ let startfunkCarid = setInterval(() => {
     // })
 
     //
-    clarity("set", "purchase_flow_improvement", "variant_1")
+    // clarity("set", "purchase_flow_improvement", "variant_1")
     pushDataLayer("loaded")
 
     //   timer
@@ -529,6 +531,29 @@ let startfunkCarid = setInterval(() => {
         }
 
         if (!el.classList.contains("arrow_down_var")) {
+          clearInterval(s)
+        }
+      }, 1000)
+    }
+
+    function timerEventDesk(el, trigger) {
+      let time = 0
+      let currentTime = 0
+
+      let s = setInterval(() => {
+        if (trigger === "start") {
+          currentTime = ++time
+          el.setAttribute("data-time", currentTime)
+        }
+
+        if (trigger === "stop") {
+          clearInterval(s)
+          currentTime = el.getAttribute("data-time")
+          console.log(currentTime)
+          pushDataLayer("'Visibility equal instalments pop up mobile", `setTimeM ${currentTime}`)
+        }
+
+        if (!document.querySelector("div#tippy-1")) {
           clearInterval(s)
         }
       }, 1000)
