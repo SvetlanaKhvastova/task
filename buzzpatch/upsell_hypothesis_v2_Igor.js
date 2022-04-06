@@ -81,14 +81,14 @@ if (window.innerWidth <= 768) {
 
             /*new_reviews_box */
             .new_reviews_box{
-                margin-top: 44px;
+                margin-top: 32px;
             }
 
             .new_reviews_box > div{
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                margin: 24px 0 6px;
+                margin: 40px 0;
             }
 
             .new_reviews_box > div > div:last-child{
@@ -118,53 +118,79 @@ if (window.innerWidth <= 768) {
 
             /*cart_box */
             .cart_box{
-                padding: 12px 8px;
+                padding: 42px 8px 0;
                 width: 100%;
                 display: none;
             }
 
-            .your_cart{
+            .additionally_cart{
                 background: #FAFAFA;
-                border: 1px solid #E6E6E6;
+                border: 2px solid #FF3C81;
                 border-radius: 5px;
-                padding: 24px 8px 16px;
+                padding: 16px 8px;
+                position: relative;
             }
 
             .your_cart h2{
-                font-family: 'Segoe UI', sans-serif;
-                font-weight: 700 !important;
-                font-size: 24px !important;
-                line-height: 32px;
+                font-family: 'DINEngschrift LT', sans-serif;
+                font-weight: 600 !important;
+                font-size: 36px !important;
+                line-height: 117%;
                 letter-spacing: 0.02em !important;
-                color: #333333 !important;
-                margin-bottom: 12px !important;
+                color: #0C0B0B !important;
+                margin-bottom: 16px !important;
                 text-align: center;
-                text-transform: unset;
+                text-transform: uppercase;
             }
 
-            .your_cart h3{
-                font-weight: 600;
-                font-size: 36px;
-                line-height: 42px;
-                letter-spacing: 0.02em;
+           .cart_box .additionally_cart > p{
+                font-family: 'DINEngschrift LT', sans-serif;
+                font-weight: 400;
+                font-size: 20px !important;
+                line-height: 120% !important;
                 text-transform: uppercase;
                 color: #0C0B0B;
-                margin: 16px 0 10px;
+                margin: 0 auto 16px;
                 text-align: center;
+                /*
+                max-width: 308px;
+                */
             }
 
-            .your_cart > div:not(.progress_bar){
-                padding: 16px 8px;
+            .additionally_cart > p >span{
+              color: #FF3C7F;
+            }
+
+            .cart_box .additionally_cart > svg{
+              text-align: center;
+              display: block;
+              margin: 0 auto;
+              stroke: #FF3C81;
+              transition: all 0.9s ease;
+            }
+
+           
+            .drop_down_cart{
+                padding: 28px 8px;
                 background: #FFFFFF;
                 border: 1px solid #ECEEF0;
-                box-sizing: border-box;
-                box-shadow: 0px 2px 4px rgb(12 11 11 / 10%), 0px 12px 32px rgb(0 0 0 / 5%);
+                box-shadow: 0px 2px 4px rgba(12, 11, 11, 0.1), 0px 12px 32px rgba(0, 0, 0, 0.05);
                 border-radius: 6px;
+                margin: 4px 0 16px;
+
+                position: absolute;
+                pointer-events: none;
+                opacity: 0;
+                transition: all 0.9s ease;
+                visibility: hidden;
             }
 
-            .your_cart > div:last-of-type{
-                position: relative;
-            }
+        .show_var.drop_down_cart{
+            opacity: 1;
+            position: relative;
+            visibility: unset;
+            pointer-events: unset;
+        }
 
             .text_absolute{
                 position: absolute;
@@ -192,31 +218,52 @@ if (window.innerWidth <= 768) {
                 margin-right: 3px;
             }
 
+            .your_cart{
+              margin-bottom: 32px;
+            }
+
+            .additionally_cart .price_box,
             .your_cart .price_box{
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
             }
 
+            .your_cart .price_box{
+              background: #FFFFFF;
+              border: 1px solid #ECEEF0;
+              box-shadow: 0px 2px 4px rgb(12 11 11 / 10%), 0px 12px 32px rgb(0 0 0 / 5%);
+              border-radius: 6px;
+              padding: 16px 14px;
+            }
+
+            .additionally_cart .price_box .img_box,
             .your_cart .price_box .img_box{
                 width: 39%;
             }
 
+            .your_cart .price_box .img_box img{
+              min-height: 108px;
+            }
+
+            .additionally_cart .price_box > div:last-of-type,
             .your_cart .price_box > div:last-of-type{
                 width: 59%;
             }
 
+            .additionally_cart .price_box > div:last-of-type p,
             .your_cart .price_box > div:last-of-type p{
                 font-family: 'DINEngschrift LT', sans-serif;
                 font-weight: 400;
                 font-size: 16px !important;
                 line-height: 110% !important;
-                letter-spacing: 0.04em;
+                letter-spacing: 0.02em;
                 text-transform: uppercase;
                 color: #0C0B0B;
                 margin: 0 0 5px;
             }
 
+            .additionally_cart .price_box > div:last-of-type span:last-of-type,
             .your_cart .price_box > div:last-of-type span:last-of-type{
                 font-family: "Roboto", sans-serif;
                 font-weight: 400;
@@ -226,6 +273,7 @@ if (window.innerWidth <= 768) {
                 color: #999999;
             }
 
+            .additionally_cart .price_box > div:last-of-type span:first-of-type,
             .your_cart .price_box > div:last-of-type span:first-of-type{
                 font-family: "Roboto", sans-serif;
                 font-weight: 700;
@@ -235,12 +283,12 @@ if (window.innerWidth <= 768) {
                 margin-right: 4px;
             }
 
-            .your_cart .progress_bar{
+            .additionally_cart .progress_bar{
                 text-align: center;
                 margin-top: 16px;
             }
 
-            .your_cart .progress_bar span{
+            .additionally_cart .progress_bar span{
                 width: 24px;
                 height: 24px;
                 border-radius: 50%;
@@ -252,19 +300,19 @@ if (window.innerWidth <= 768) {
                 z-index: 2;
             }
 
-            .your_cart .progress_bar span:first-of-type{
+            .additionally_cart .progress_bar span:first-of-type{
                 color: #FFFFFF;
                 background: #FF3C7F;
                 position: relative;
                 margin-right: 16px;
             }
 
-            .your_cart .progress_bar span:last-of-type{
+            .additionally_cart .progress_bar span:last-of-type{
                 color: #4A4A4A;
                 background: #EEE3E3;
             }
 
-            .your_cart .progress_bar span:first-of-type::after{
+            .additionally_cart .progress_bar span:first-of-type::after{
                 position: absolute;
                 content: "";
                 width: 100%;
@@ -276,14 +324,14 @@ if (window.innerWidth <= 768) {
                 z-index: 1;
             }
 
-            .your_cart .btn_wrap{
+            .additionally_cart .btn_wrap{
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                margin-top: 13px;
+                margin-top: 20px;
             }
 
-            .your_cart .btn_wrap > a{
+            .additionally_cart .btn_wrap > a{
                 height: 46px;
                 width: 48%;
                 font-size: 14px !important;
@@ -291,24 +339,24 @@ if (window.innerWidth <= 768) {
                 letter-spacing: 0.05em;
             }
 
-            .your_cart .btn_wrap > a:first-of-type{
+            .additionally_cart .btn_wrap > a:first-of-type{
                 color: #FF3C7F !important;
                 background: #FFFFFF;
                 border: 1px solid #FF3C7F;
             }
 
-            .your_cart > div > p{ 
-                font-family: 'Segoe UI', sans-serif;
-                font-weight: 600;
-                font-size: 18px !important;
-                line-height: 23px !important;
-                color: #333333;
-                margin: 12px auto 8px;
+            .additionally_cart > div > p{ 
+                font-family: "Roboto", sans-serif;
+                font-weight: 400;
+                font-size: 17px !important;
+                line-height: 118% !important;
+                color: #181717;
+                margin: 12px auto 14px;
                 text-align: center;
-                max-width: 266px; 
+                max-width: 315px; 
             }
 
-            .your_cart > div > ul{ 
+            .additionally_cart > div > ul{ 
                 color: #FF3C7F; 
                 display: flex;
                 flex-direction: column;
@@ -317,11 +365,11 @@ if (window.innerWidth <= 768) {
                 margin: 0;
             } 
 
-            .your_cart > div > ul li + li{ 
+            .additionally_cart > div > ul li + li{ 
                 margin-top: 8px; 
             } 
 
-            .your_cart > div > ul li > p{ 
+            .additionally_cart > div > ul li > p{ 
                 font-family: "Roboto", sans-serif; 
                 font-weight: 400;
                 font-size: 14px !important; 
@@ -329,7 +377,7 @@ if (window.innerWidth <= 768) {
                 color: #212529; 
                 margin: 0;
             }
-            .your_cart #BuzzPacks.price_box > div.img_box{
+            .additionally_cart #BuzzPacks.price_box > div.img_box{
                 height: 108px;
                 max-width: 120px;
             }
@@ -340,7 +388,7 @@ if (window.innerWidth <= 768) {
         <div class="new_reviews_box">            
             <a href="#scrollAddBtn">Add to cart</a>
 
-            <div id="scrollAddBtn">
+            <div>
                 <div class="img_box">
                     <img src="https://conversionratestore.github.io/projects/buzzpatch/img/upsell_1.png" alt="">
                 </div>
@@ -356,29 +404,25 @@ if (window.innerWidth <= 768) {
             `
 
       let cartBox = /*html */ `
-        <div class="cart_box">
-            <div class="your_cart">
-                <h2>Your cart</h2>
-
-                <div class="price_box" id='BuzzPacks'>
-                    <div class="img_box">
-                        <img src="https://conversionratestore.github.io/projects/buzzpatch/img/upsell_3.png" alt="">
-                    </div>
-                    <div>
-                        <p>3 BuzzPatch Packs</p>
-                        <span>$41.85</span>
-                        <span>$84.00</span>
-                    </div>
+        <div class="cart_box" id="scrollAddBtn">
+          <div class="your_cart">
+            <h2>Your cart</h2>
+  
+            <div class="price_box" id='BuzzPacks'>
+                <div class="img_box">
+                    <img src="https://conversionratestore.github.io/projects/buzzpatch/img/upsell_3.png" alt="">
                 </div>
-
-                <div class="progress_bar">
-                    <span>1</span>
-                    <span>2</span>
-                </div>
-
-                <h3>Need instant itch <br> relief?</h3>
-
                 <div>
+                    <p>3 BuzzPatch Packs</p>
+                    <span>$41.85</span>
+                    <span>$84.00</span>
+                </div>
+            </div>
+          </div>
+          <div class="additionally_cart">
+                <p>You will now be protected from mosquito bites. But just in case you get <span>an unexpected bite</span>, try our popular instant each relief.</p>
+
+                <div class="drop_down_cart">
                     <div class="text_absolute">
                         <span>40%</span>
                         <span>off</span>
@@ -395,13 +439,11 @@ if (window.innerWidth <= 768) {
                         </div>
                     </div>
 
-                    <div class="btn_wrap">
-                        <a href="#">no, thanks</a>
-                        <a href="#">Add to cart</a>
-                    </div>
-
-                    <p>Place patch on skin with a bite to stop the itching instantly.</p>
+                    <p>Place the patch on the area with a mosquito bite to experience instant relief:</p>
                     <ul>
+                        <li>
+                            <p>Instantly stop the itching</p>
+                        </li>
                         <li>
                             <p>100% natural & chemical free</p>
                         </li>
@@ -411,8 +453,18 @@ if (window.innerWidth <= 768) {
                         <li>
                             <p>Effective up to 7 days</p>
                         </li>
-                    </ul>                    
+                    </ul>     
+                    
+                    <div class="btn_wrap">
+                        <a href="#">no, thanks</a>
+                        <a href="#">Add to cart</a>
+                    </div>
                 </div>
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12.3154 13.2627L17.6461 18.5934C17.8413 18.7886 18.1579 18.7886 18.3532 18.5934L23.6839 13.2627" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M12.3154 18.4736L17.6461 23.8043C17.8413 23.9996 18.1579 23.9996 18.3532 23.8043L23.6839 18.4736" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="18" cy="18" r="17" stroke-width="2"/>
+                </svg>
             </div>
                 
         </div>
@@ -439,12 +491,12 @@ if (window.innerWidth <= 768) {
           document.querySelector(".your_cart #BuzzPacks.price_box > div:last-of-type span:first-of-type").textContent = `$${salePrice}`
           document.querySelector(".your_cart #BuzzPacks.price_box > div:last-of-type span:last-of-type").textContent = `$${oldPrice}`
 
-          document.querySelector(".your_cart #MagicPacks.price_box > div:last-of-type span:first-of-type").textContent = upsellSalePrice
+          document.querySelector(".additionally_cart #MagicPacks.price_box > div:last-of-type span:first-of-type").textContent = upsellSalePrice
 
           if (upsellSalePrice === "$14.99") {
-            document.querySelector(".your_cart #MagicPacks.price_box > div:last-of-type span:last-of-type").textContent = "$24.99"
+            document.querySelector(".additionally_cart #MagicPacks.price_box > div:last-of-type span:last-of-type").textContent = "$24.99"
           } else {
-            document.querySelector(".your_cart #MagicPacks.price_box > div:last-of-type span:last-of-type").textContent = "$31.00"
+            document.querySelector(".additionally_cart #MagicPacks.price_box > div:last-of-type span:last-of-type").textContent = "$31.00"
           }
 
           if (countVal === "1") {
@@ -486,8 +538,9 @@ if (window.innerWidth <= 768) {
               event.preventDefault()
               pushDataLayer("Click to Add to cart button", "Main CTA button")
               document.querySelector(".cart_box").style.display = "block"
+              document.querySelector("#addToCart").style.display = "flex"
 
-              let widthTop = document.documentElement.scrollTop,
+              let widthTop = document.documentElement.scrollTop - 85,
                 hash = this.hash,
                 toBlock = document.querySelector(hash).getBoundingClientRect().top,
                 start = null
@@ -517,16 +570,17 @@ if (window.innerWidth <= 768) {
         let idValue = document.querySelector(".js-packs input[type=radio]:checked+label").previousElementSibling.value
 
         // click on btn
-        document.querySelector(".your_cart .btn_wrap > a:last-of-type").addEventListener("click", function (e) {
+        document.querySelector(".additionally_cart .btn_wrap > a:last-of-type").addEventListener("click", function (e) {
           e.preventDefault()
           pushDataLayer("Click to add to cart button", "Need instant section")
           addToCart(idValue)
         })
 
-        document.querySelector(".your_cart .btn_wrap > a:first-of-type").addEventListener("click", function (e) {
+        document.querySelector(".additionally_cart .btn_wrap > a:first-of-type").addEventListener("click", function (e) {
           e.preventDefault()
           pushDataLayer("Click to no thanks button", "Need instant section")
-          addToCart(idValue, "Checkout without Upsell")
+          // addToCart(idValue, "Checkout without Upsell")
+          document.querySelector(".additionally_cart").style.display = "none"
         })
 
         document.querySelector("a#addToCart").addEventListener("click", function (e) {
@@ -614,21 +668,22 @@ if (window.innerWidth <= 768) {
           }, 300)
         }
 
-        // clearCart
-        // async function clearCart() {
-        //   await fetch("/cart/clear.js", {
-        //     method: "POST",
-        //     headers: {
-        //       "Content-Type": "application/json",
-        //     },
-        //   })
-        //     .then((response) => {
-        //       return response.json()
-        //     })
-        //     .catch((error) => {
-        //       console.error("Error:", error)
-        //     })
-        // }
+        // click svg
+        if (document.querySelector(".cart_box .additionally_cart > svg")) {
+          document.querySelector(".cart_box .additionally_cart > svg").addEventListener("click", function () {
+            document.querySelector(".drop_down_cart").classList.toggle("show_var")
+
+            if (document.querySelector(".drop_down_cart").classList.contains("show_var")) {
+              this.style.transform = "rotate(180deg)"
+              this.style.stroke = "rgba(255, 60, 129, 0.5)"
+              // document.querySelector(".additionally_cart > div:last-of-type").style.display = "block"
+            } else {
+              this.style.transform = "rotate(0deg)"
+              this.style.stroke = "#FF3C82"
+              // document.querySelector(".additionally_cart > div:last-of-type").style.display = "none"
+            }
+          })
+        }
 
         pushDataLayer("loaded")
         clarity("set", "upsell_hypothesis_1", "variant_1")

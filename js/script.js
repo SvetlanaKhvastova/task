@@ -20,3 +20,8 @@ document.head.appendChild(scriptCustom)
 setTimeout(function () {
   document.querySelector(".exp")?.remove()
 }, 5000)
+
+//
+window.addEventListener("pageshow", function () {
+  document.querySelector("iframe").setAttribute("src", document.querySelector("iframe").dataset.src)
+})
