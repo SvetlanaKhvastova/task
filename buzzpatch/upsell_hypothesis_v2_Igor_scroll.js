@@ -13,7 +13,7 @@ if (window.innerWidth <= 768) {
           console.log(actionDataLayer + " : " + labelDataLayer)
           dataLayer.push({
             event: "event-to-ga",
-            eventCategory: `Exp: Upsell hypothesis 1`,
+            eventCategory: `Exp: Upsell hypothesis 1.V2`,
             eventAction: `${actionDataLayer}`,
             eventLabel: `${labelDataLayer}`,
           })
@@ -21,7 +21,7 @@ if (window.innerWidth <= 768) {
           console.log(actionDataLayer)
           dataLayer.push({
             event: "event-to-ga",
-            eventCategory: `Exp: Upsell hypothesis 1`,
+            eventCategory: `Exp: Upsell hypothesis 1.V2`,
             eventAction: `${actionDataLayer}`,
           })
         }
@@ -48,8 +48,8 @@ if (window.innerWidth <= 768) {
                 display: none;
             }
 
-            .new_reviews_box a,
-            .cart_box a{
+            .new_reviews_box a:not(a.scroll_svg),
+            .cart_box a:not(a.scroll_svg){
                 display: inline-flex;
                 width: 100%;
                 max-width: 312px;
@@ -161,14 +161,21 @@ if (window.innerWidth <= 768) {
               color: #FF3C7F;
             }
 
-            .cart_box .additionally_cart > svg{
+            .cart_box .additionally_cart >a.scroll_svg{
+              display: flex;
               text-align: center;
-              display: block;
+              width: 36px;
+              height: 36px;
               margin: 0 auto;
-              stroke: #FF3C81;
-              transition: all 0.9s ease;
+              align-items: center;
+              justify-content: center;
             }
 
+            .cart_box .additionally_cart >a.scroll_svg svg{
+              text-align: center;
+              stroke: #FF3C81;
+              transition: all 1s ease;
+            }
            
             .drop_down_cart{
                 padding: 28px 8px;
@@ -181,7 +188,7 @@ if (window.innerWidth <= 768) {
                 position: absolute;
                 pointer-events: none;
                 opacity: 0;
-                transition: all 0.9s ease;
+                transition: all 1s ease-in-out;
                 visibility: hidden;
             }
 
@@ -331,7 +338,7 @@ if (window.innerWidth <= 768) {
                 margin-top: 20px;
             }
 
-            .additionally_cart .btn_wrap > a{
+            .additionally_cart .btn_wrap > a:not(a.scroll_svg){
                 height: 46px;
                 width: 48%;
                 font-size: 14px !important;
@@ -419,7 +426,7 @@ if (window.innerWidth <= 768) {
                 </div>
             </div>
           </div>
-          <div class="additionally_cart">
+          <div class="additionally_cart" id="scrollSvg">
                 <p>You will now be protected from mosquito bites. But just in case you get <span>an unexpected bite</span>, try our popular instant each relief.</p>
 
                 <div class="drop_down_cart">
@@ -456,15 +463,17 @@ if (window.innerWidth <= 768) {
                     </ul>     
                     
                     <div class="btn_wrap">
-                        <a href="#">no, thanks</a>
+                        <a href="#scrollAddBtn">no, thanks</a>
                         <a href="#">Add to cart</a>
                     </div>
                 </div>
-                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12.3154 13.2627L17.6461 18.5934C17.8413 18.7886 18.1579 18.7886 18.3532 18.5934L23.6839 13.2627" stroke-width="2" stroke-linecap="round"/>
-                  <path d="M12.3154 18.4736L17.6461 23.8043C17.8413 23.9996 18.1579 23.9996 18.3532 23.8043L23.6839 18.4736" stroke-width="2" stroke-linecap="round"/>
-                  <circle cx="18" cy="18" r="17" stroke-width="2"/>
-                </svg>
+                <a href="#scrollSvg" class="scroll_svg">
+                  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.3154 13.2627L17.6461 18.5934C17.8413 18.7886 18.1579 18.7886 18.3532 18.5934L23.6839 13.2627" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M12.3154 18.4736L17.6461 23.8043C17.8413 23.9996 18.1579 23.9996 18.3532 23.8043L23.6839 18.4736" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="18" cy="18" r="17" stroke-width="2"/>
+                  </svg>
+                </a>
             </div>
                 
         </div>
@@ -477,7 +486,10 @@ if (window.innerWidth <= 768) {
         document.querySelector(".cart_box").after(document.querySelector("#addToCart"))
 
         getCartPrice()
+
         scrolling(".new_reviews_box a")
+        scrolling(".cart_box .additionally_cart > a.scroll_svg")
+        scrolling(".additionally_cart .btn_wrap > a:first-of-type")
 
         //your cart price
         function getCartPrice() {
@@ -531,18 +543,47 @@ if (window.innerWidth <= 768) {
         // js scrolling
         function scrolling(upSelector) {
           let links = document.querySelectorAll(upSelector),
-            speed = 0.5
+            speed = 1
 
           links.forEach((link) => {
             link.addEventListener("click", function (event) {
               event.preventDefault()
-              pushDataLayer("Click to Add to cart button", "Main CTA button")
-              document.querySelector(".cart_box").style.display = "block"
-              document.querySelector("#addToCart").style.display = "flex"
 
-              let widthTop = document.documentElement.scrollTop - 85,
+              if (upSelector === ".new_reviews_box a") {
+                pushDataLayer("Click to Add to cart button", "Main CTA button")
+
+                document.querySelector(".cart_box").style.display = "block"
+                document.querySelector("#addToCart").style.display = "flex"
+              }
+
+              if (upSelector === ".additionally_cart .btn_wrap > a:first-of-type") {
+                pushDataLayer("Click to no thanks button", "Need instant section")
+
+                document.querySelector(".additionally_cart").style.display = "none"
+              }
+
+              if (upSelector === ".cart_box .additionally_cart > a.scroll_svg") {
+                setTimeout(() => {
+                  document.querySelector(".drop_down_cart").classList.toggle("show_var")
+                }, 10)
+
+                if (document.querySelector(".drop_down_cart").classList.contains("show_var")) {
+                  pushDataLayer("Click to Wrap out arrow")
+
+                  this.hash = "#scrollAddBtn"
+                  document.querySelector(".cart_box .additionally_cart > a.scroll_svg svg").style.transform = "rotate(0deg)"
+                  document.querySelector(".cart_box .additionally_cart > a.scroll_svg svg").style.stroke = "#FF3C82"
+                } else {
+                  pushDataLayer("Click to Wrap up arrow")
+                  this.hash = "#scrollSvg"
+                  document.querySelector(".cart_box .additionally_cart > a.scroll_svg svg").style.transform = "rotate(180deg)"
+                  document.querySelector(".cart_box .additionally_cart > a.scroll_svg svg").style.stroke = "rgba(255, 60, 129, 0.5)"
+                }
+              }
+
+              let widthTop = document.documentElement.scrollTop,
                 hash = this.hash,
-                toBlock = document.querySelector(hash).getBoundingClientRect().top,
+                toBlock = document.querySelector(hash).getBoundingClientRect().top - 87,
                 start = null
 
               requestAnimationFrame(step)
@@ -560,8 +601,9 @@ if (window.innerWidth <= 768) {
                 if (r != widthTop + toBlock) {
                   requestAnimationFrame(step)
                 } else {
-                  location.hash = hash
+                  // console.log(`hash`)
                 }
+                location.hash = hash
               }
             })
           })
@@ -574,13 +616,6 @@ if (window.innerWidth <= 768) {
           e.preventDefault()
           pushDataLayer("Click to add to cart button", "Need instant section")
           addToCart(idValue)
-        })
-
-        document.querySelector(".additionally_cart .btn_wrap > a:first-of-type").addEventListener("click", function (e) {
-          e.preventDefault()
-          pushDataLayer("Click to no thanks button", "Need instant section")
-          // addToCart(idValue, "Checkout without Upsell")
-          document.querySelector(".additionally_cart").style.display = "none"
         })
 
         document.querySelector("a#addToCart").addEventListener("click", function (e) {
@@ -610,8 +645,7 @@ if (window.innerWidth <= 768) {
 
         //add to cart and checkout
         async function addToCart(idValue, parent = "") {
-          // clearCart()
-
+          // clearCart
           await fetch("/cart/clear.js", {
             method: "POST",
             headers: {
@@ -668,25 +702,8 @@ if (window.innerWidth <= 768) {
           }, 300)
         }
 
-        // click svg
-        if (document.querySelector(".cart_box .additionally_cart > svg")) {
-          document.querySelector(".cart_box .additionally_cart > svg").addEventListener("click", function () {
-            document.querySelector(".drop_down_cart").classList.toggle("show_var")
-
-            if (document.querySelector(".drop_down_cart").classList.contains("show_var")) {
-              this.style.transform = "rotate(180deg)"
-              this.style.stroke = "rgba(255, 60, 129, 0.5)"
-              // document.querySelector(".additionally_cart > div:last-of-type").style.display = "block"
-            } else {
-              this.style.transform = "rotate(0deg)"
-              this.style.stroke = "#FF3C82"
-              // document.querySelector(".additionally_cart > div:last-of-type").style.display = "none"
-            }
-          })
-        }
-
         pushDataLayer("loaded")
-        clarity("set", "upsell_hypothesis_1", "variant_1")
+        clarity("set", "upsell_hypothesis_1V2", "variant_1")
       }
     }
   }, 10)

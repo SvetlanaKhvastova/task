@@ -222,14 +222,21 @@ if (window.innerWidth <= 768) {
               margin-bottom: 32px;
             }
 
+            .final_magicpatch{
+              display: none;
+                  margin-top: -11px;
+           }
+
             .additionally_cart .price_box,
-            .your_cart .price_box{
+            .your_cart .price_box,
+            .final_magicpatch .price_box {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
             }
 
-            .your_cart .price_box{
+            .your_cart .price_box,
+            .final_magicpatch .price_box {
               background: #FFFFFF;
               border: 1px solid #ECEEF0;
               box-shadow: 0px 2px 4px rgb(12 11 11 / 10%), 0px 12px 32px rgb(0 0 0 / 5%);
@@ -238,7 +245,8 @@ if (window.innerWidth <= 768) {
             }
 
             .additionally_cart .price_box .img_box,
-            .your_cart .price_box .img_box{
+            .your_cart .price_box .img_box,
+            .final_magicpatch .price_box .img_box {
                 width: 39%;
             }
 
@@ -247,12 +255,14 @@ if (window.innerWidth <= 768) {
             }
 
             .additionally_cart .price_box > div:last-of-type,
-            .your_cart .price_box > div:last-of-type{
+            .your_cart .price_box > div:last-of-type,
+            .final_magicpatch .price_box > div:last-of-type{
                 width: 59%;
             }
 
             .additionally_cart .price_box > div:last-of-type p,
-            .your_cart .price_box > div:last-of-type p{
+            .your_cart .price_box > div:last-of-type p,
+            .final_magicpatch .price_box > div:last-of-type p{
                 font-family: 'DINEngschrift LT', sans-serif;
                 font-weight: 400;
                 font-size: 16px !important;
@@ -264,7 +274,8 @@ if (window.innerWidth <= 768) {
             }
 
             .additionally_cart .price_box > div:last-of-type span:last-of-type,
-            .your_cart .price_box > div:last-of-type span:last-of-type{
+            .your_cart .price_box > div:last-of-type span:last-of-type,
+             .final_magicpatch .price_box > div:last-of-type span:last-of-type{
                 font-family: "Roboto", sans-serif;
                 font-weight: 400;
                 font-size: 12px;
@@ -274,7 +285,8 @@ if (window.innerWidth <= 768) {
             }
 
             .additionally_cart .price_box > div:last-of-type span:first-of-type,
-            .your_cart .price_box > div:last-of-type span:first-of-type{
+            .your_cart .price_box > div:last-of-type span:first-of-type,
+            .final_magicpatch .price_box > div:last-of-type span:first-of-type{
                 font-family: "Roboto", sans-serif;
                 font-weight: 700;
                 font-size: 14px;
@@ -418,9 +430,23 @@ if (window.innerWidth <= 768) {
                     <span>$84.00</span>
                 </div>
             </div>
+          </div>          
+
+          <div class="final_magicpatch">
+            <div class="price_box" id='MagicPacks'>
+              <div class="img_box">
+                <img src="https://conversionratestore.github.io/projects/buzzpatch/img/upsell_4.png" alt="">
+              </div>
+              <div>
+                <p>MagicPatch itch relief patches <br> - 60 patches in 1 pack</p>
+                <span>$14.99</span>
+                <span>$24.99</span>
+             </div>
+            </div>
           </div>
+
           <div class="additionally_cart">
-                <p>You will now be protected from mosquito bites. But just in case you get <span>an unexpected bite</span>, try our popular instant each relief.</p>
+                <p>You will now be protected from mosquito bites. But just in case you get <span>an unexpected bite</span>, try our popular instant itch relief.</p>
 
                 <div class="drop_down_cart">
                     <div class="text_absolute">
