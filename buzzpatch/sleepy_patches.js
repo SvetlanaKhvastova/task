@@ -3,15 +3,15 @@ if (window.innerWidth <= 768) {
     if (document.querySelector("#flowers")) {
       clearInterval(startFunkMobSleepy)
 
-      let scriptPopper = document.createElement("script")
-      scriptPopper.src = "https://unpkg.com/popper.js@1"
-      scriptPopper.async = false
-      document.body.appendChild(scriptPopper)
+      let scriptCustomPopper = document.createElement("script")
+      scriptCustomPopper.src = "https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"
+      scriptCustomPopper.async = false
+      document.head.appendChild(scriptCustomPopper)
 
-      let scriptTippy = document.createElement("script")
-      scriptTippy.src = "https://unpkg.com/tippy.js@5"
-      scriptTippy.async = false
-      document.body.appendChild(scriptTippy)
+      let scriptCustomTippy = document.createElement("script")
+      scriptCustomTippy.src = "https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"
+      scriptCustomTippy.async = false
+      document.head.appendChild(scriptCustomTippy)
 
       // event
       function pushDataLayer(actionDataLayer, labelDataLayer) {
@@ -64,7 +64,7 @@ if (window.innerWidth <= 768) {
                 padding-right: 0;
             }
 
-            .tippy-tooltip{
+            .tippy-box{
                 background: #FFFFFF;
                 border-radius: 2px;
                 color: #212529;
@@ -73,8 +73,9 @@ if (window.innerWidth <= 768) {
                 max-width: 252px !important;
             }
 
-            .tippy-tooltip[data-placement^=bottom]>.tippy-arrow{
+            .tippy-box[data-placement^=bottom]>.tippy-arrow{
                 border-bottom-color: #FFFFFF;
+                color: white;
             }
 
               section.new_section_sleepy{
@@ -117,7 +118,7 @@ if (window.innerWidth <= 768) {
 
               .tooltip_bar{
                 background: #ECEEF0;
-                padding: 0 0 40px;
+                padding: 0 0 20px;
               }
               
               .tooltip_bar .container_var{
@@ -160,6 +161,7 @@ if (window.innerWidth <= 768) {
               .not_addictive .container_var img, 
               .safe_for_kids .container_var img{
                 margin-right: 16px;
+                width: 60px;
               }
 
               .how_to_use .container_var{
@@ -235,26 +237,38 @@ if (window.innerWidth <= 768) {
                 align-items: center;
               }
 
-              .tooltip_bar ul li p{
+              .tooltip_bar ul li > div{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 5px;
+              }
+
+              .tooltip_bar ul li > div p{
                 font-family: "Roboto", sans-serif;
                 font-weight: 400;
                 font-size: 14px !important;
                 line-height: 171% !important;
                 color: #234799;
-                margin: 7px 0 5px;
+                margin: 0;
+                margin-right: 3px;
+              }
+
+              .tooltip_bar ul li > img{
+                width: 70px;
               }
 
                @media (max-width: 320px){
-                    .tooltip_bar ul li img:first-child{
+                    .tooltip_bar ul li img{
                         width: 60px;
                     }
 
-                   .tooltip_bar ul li p{
+                   .tooltip_bar ul li > div p{
 
                        font-size: 10px !important;
                    }
 
-                   .tooltip_bar ul li img:last-child{
+                   .tooltip_bar ul li > div img{
                        width: 14px;
                    }
                }
@@ -296,15 +310,15 @@ if (window.innerWidth <= 768) {
                     <h2>How to use SleepyPatch</h2>
                     <ul>
                         <li>
-                            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/how_to_use1.jpg" alt="patch">
+                            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/how_to_use1.png" alt="patch">
                             <p>Take 1 patch. <br> Use 1 patch per night.</p>
                         </li>
                         <li>
-                            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/how_to_use2.jpg" alt="children's jumpsuit">
+                            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/how_to_use2.png" alt="children's jumpsuit">
                             <p>Stick a patch to your kids <br> pyjamas, not on skin.</p>
                         </li>
                         <li>
-                            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/how_to_use3.jpg" alt="moon and stars">
+                            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/how_to_use3.png" alt="moon and stars">
                             <p>Calm down and fall <br> asleep without a fuss.</p>
                         </li>
                     </ul>
@@ -315,7 +329,7 @@ if (window.innerWidth <= 768) {
                 <div class="container_var">
                     <h2>What’s inside the pack</h2>
                     <div class="img_wrap">
-                        <img src="https://conversionratestore.github.io/projects/buzzpatch/img/inside_pack.jpg" alt="sleepy patch box">
+                        <img src="https://conversionratestore.github.io/projects/buzzpatch/img/inside_pack.png" alt="sleepy patch box">
                     </div>
                     <a href="#getNow" class="">GET SLEEPYPATCH</a>
                 </div>
@@ -326,7 +340,7 @@ if (window.innerWidth <= 768) {
       let arrTooltip = {
         Mandarin: [
           `Mandarin`,
-          `Lavender essential oil works by calming the central nervous system and promoting slow-wave sleep, so helping to sleep longer and better.`,
+          `Mandarin essential oil helps to quell feelings of irritation, anger and anxiety.`,
           `https://conversionratestore.github.io/projects/buzzpatch/img/mandarin.png`,
         ],
         Lavender: [
@@ -336,12 +350,12 @@ if (window.innerWidth <= 768) {
         ],
         Marjoram: [
           `Marjoram`,
-          `Lavender essential oil works by calming the central nervous system and promoting slow-wave sleep, so helping to sleep longer and better.`,
+          `Sweet marjoram essential oil helps to widen and relax blood vessels to ease blood flow and reduce blood pressure.`,
           `https://conversionratestore.github.io/projects/buzzpatch/img/sweet_marjoram.png`,
         ],
         Vetiver: [
           `Vetiver`,
-          `Lavender essential oil works by calming the central nervous system and promoting slow-wave sleep, so helping to sleep longer and better.`,
+          `Vetiver essential oil improves breathing quality and promotes relaxation.`,
           `https://conversionratestore.github.io/projects/buzzpatch/img/vetiver.png`,
         ],
       }
@@ -354,9 +368,10 @@ if (window.innerWidth <= 768) {
         return ` 
         <li>
             <img src="${img}" alt="${title}">
-            <p>${title}</p>
-            <img data-title="${tooltip}" src="https://conversionratestore.github.io/projects/buzzpatch/img/inform_btn.svg" alt="tooltip icon">
-
+            <div>
+              <p>${title}</p>
+              <img data-title="${tooltip}" src="https://conversionratestore.github.io/projects/buzzpatch/img/inform_btn.svg" alt="tooltip icon">
+            </div>
         </li>
         `
       }
@@ -377,9 +392,8 @@ if (window.innerWidth <= 768) {
               content: el.getAttribute("data-title"),
               placement: "bottom",
               trigger: "click",
-              hideOnClick: true,
 
-              onTrigger() {
+              onTrigger(e) {
                 pushDataLayer(el.getAttribute("data-title"))
               },
             })
