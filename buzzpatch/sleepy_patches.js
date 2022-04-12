@@ -20,7 +20,7 @@ if (window.innerWidth <= 768) {
           console.log(actionDataLayer + " : " + labelDataLayer)
           dataLayer.push({
             event: "event-to-ga",
-            eventCategory: `Exp: Upsell hypothesis 1.V2`,
+            eventCategory: `Exp: PDP improvements mobile`,
             eventAction: `${actionDataLayer}`,
             eventLabel: `${labelDataLayer}`,
           })
@@ -28,7 +28,7 @@ if (window.innerWidth <= 768) {
           console.log(actionDataLayer)
           dataLayer.push({
             event: "event-to-ga",
-            eventCategory: `Exp: Upsell hypothesis 1.V2`,
+            eventCategory: `Exp: PDP improvements mobile`,
             eventAction: `${actionDataLayer}`,
           })
         }
@@ -73,9 +73,14 @@ if (window.innerWidth <= 768) {
                 max-width: 252px !important;
             }
 
-            .tippy-box[data-placement^=bottom]>.tippy-arrow{
+            .tippy-box[data-placement^=bottom]>.tippy-arrow,
+            .tippy-box[data-placement^=top]>.tippy-arrow{
                 border-bottom-color: #FFFFFF;
                 color: white;
+            }
+
+            header .navbar.fixed-top{
+              z-index: 100440011;
             }
 
               section.new_section_sleepy{
@@ -158,8 +163,8 @@ if (window.innerWidth <= 768) {
                 margin-bottom: 16px;
               }
 
-              .not_addictive .container_var img, 
-              .safe_for_kids .container_var img{
+              .not_addictive .container_var > div > img, 
+              .safe_for_kids .container_var > div > img{
                 margin-right: 16px;
                 width: 60px;
               }
@@ -258,6 +263,16 @@ if (window.innerWidth <= 768) {
                 width: 70px;
               }
 
+              .bp-mob-table-container p{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+
+              .bp-mob-table-container p > img{
+                margin-left: 8px;
+              }
+
                @media (max-width: 320px){
                     .tooltip_bar ul li img{
                         width: 60px;
@@ -289,7 +304,9 @@ if (window.innerWidth <= 768) {
                 <div class="container_var">
                     <div>
                         <img src="https://conversionratestore.github.io/projects/buzzpatch/img/not_addictive.png" alt="ban on pills">
-                        <h2>Not addictive</h2>
+                        <h2>Not addictive
+                          <img data-id="non addictive hint" data-title="The SleepyPatch is formulated with a blend of mandarin, lavender, sweet marjoram, and vetiver essential oils - 100% natural content & chemical free and addiction-free." src="https://conversionratestore.github.io/projects/buzzpatch/img/inform_btn.svg" alt="tooltip icon">
+                        </h2>
                     </div>
                     <p>Comparing to melatonin, SleepyPatch is not addictive and does not have any side effects. It’s not a medcine.</p>
                 </div>
@@ -299,7 +316,9 @@ if (window.innerWidth <= 768) {
                 <div class="container_var">
                     <div>
                         <img src="https://conversionratestore.github.io/projects/buzzpatch/img/old_adults.png" alt="woman and girl">
-                        <h2>Safe for kids 2+ <br> years old & adults</h2>
+                        <h2>Safe for kids 2+ <br> years old & adults
+                          <img data-id="safe for kids 2+" data-title="100% natural ingredients that are suitable for adults and kids 2+ years old." src="https://conversionratestore.github.io/projects/buzzpatch/img/inform_btn.svg" alt="tooltip icon">
+                        </h2>
                     </div>
                     <p>100% natural components and medical adhesive are safe for even the littlest ones.</p>
                 </div>
@@ -360,6 +379,22 @@ if (window.innerWidth <= 768) {
         ],
       }
 
+      let arrTooltipTable = {
+        SuitableForAges: [`100% natural ingredients that are suitable for adults and kids 2+ years old`],
+        RequiresMedicalSupervision: [
+          `Comparing to melatonin or other speep remedies, SleepyPatch is 100% natural content & chemical free. It’s not a medcine and does not require medical supervision.`,
+        ],
+        CanBeAddictive: [
+          `The SleepyPatch is formulated with a blend of mandarin, lavender, sweet marjoram, and vetiver essential oils - 100% natural content & chemical free and addiction-free.`,
+        ],
+        HowToTake: [`Stick a patch to the pyjamas, not on skin.`],
+        Side_Effects: [`Comparing to melatonin or other speep remedies, SleepyPatch is 100% natural content & chemical free. It does not have any side effects.`],
+        DurationOfEffect: [
+          `SleepyPatch nanomaterial releases molecules of oils every 30 seconds. Signs of relaxation make take up to 30 minutes and the range effect will vary between individuals.`,
+        ],
+        Ingredients: [`Mandarin, Lavender, Sweet Marjoram, Vetiver  - 100% natural essential oils & chemical free`],
+      }
+
       document.head.insertAdjacentHTML("beforeend", sleepyPatchesStyle)
       document.querySelector("#flowers").insertAdjacentHTML("afterend", sleepyPatches)
 
@@ -382,27 +417,85 @@ if (window.innerWidth <= 768) {
         }
       }
 
+      // setTooltipBarTable
+      // function setTooltipBarTable(event, tooltip) {
+      //   return `<img data-id="${event}" data-title="${tooltip}" src="https://conversionratestore.github.io/projects/buzzpatch/img/inform_btn.svg" alt="tooltip icon">`
+      // }
+
+      // if (document.querySelector(".bp-comparison .container .js-mobile")) {
+      //   document.querySelectorAll(".bp-comparison .bp-mob-table-container p").forEach((el) => {
+      //     let product
+      //     if (el.textContent === `Suitable for Ages`) {
+      //       product = "SuitableForAges"
+      //     } else if (el.textContent === `Requires Medical Supervision`) {
+      //       product = "RequiresMedicalSupervision"
+      //     } else if (el.textContent === `Can Be Addictive`) {
+      //       product = "CanBeAddictive"
+      //     } else if (el.textContent === `How To Take`) {
+      //       product = "HowToTake"
+      //     } else if (el.textContent === `Side effects`) {
+      //       product = "Side_Effects"
+      //     } else if (el.textContent === `Duration of Effect`) {
+      //       product = "DurationOfEffect"
+      //     } else if (el.textContent === `Ingredients`) {
+      //       product = "Ingredients"
+      //     }
+
+      //     let arrTooltipTableVar = arrTooltipTable[product]
+
+      //     for (let key in arrTooltipTableVar) {
+      //       el.insertAdjacentHTML("beforeend", setTooltipBarTable(product, arrTooltipTableVar[key]))
+      //     }
+      //   })
+      // }
+
       let tippyRun = setInterval(() => {
         if (typeof tippy === "function") {
           clearInterval(tippyRun)
-          console.log(`hello tippy`)
           document.querySelectorAll(".tooltip_bar ul li img:last-child").forEach((el, index) => {
-            console.log(el)
             tippy(el, {
               content: el.getAttribute("data-title"),
               placement: "bottom",
               trigger: "click",
+              appendTo: function () {
+                return document.querySelector(".js-iphone")
+              },
 
               onTrigger(e) {
-                pushDataLayer(el.getAttribute("data-title"))
+                pushDataLayer(`Clicks on each hints ${el.previousElementSibling.textContent}`)
               },
             })
-            //   el.addEventListener("mouseover", () => {
-            //     action = "hover on tooltipe"
-            //     let label = el.closest(".timeline_title").innerText
-            //     pushDataLayer(el.getAttribute("data-title"), label)
-            //   })
           })
+
+          document.querySelectorAll(".new_section_sleepy h2 > img").forEach((el) => {
+            tippy(el, {
+              content: el.getAttribute("data-title"),
+              placement: "bottom",
+              trigger: "click",
+              appendTo: function () {
+                return document.querySelector(".js-iphone")
+              },
+
+              onTrigger(e) {
+                pushDataLayer(`Click on ${el.getAttribute("data-id")}`)
+              },
+            })
+          })
+
+          // document.querySelectorAll(".bp-comparison .bp-mob-table-container p > img").forEach((el) => {
+          //   tippy(el, {
+          //     content: el.getAttribute("data-title"),
+          //     placement: "bottom",
+          //     trigger: "click",
+          //     appendTo: function () {
+          //       return document.querySelector(".js-iphone")
+          //     },
+
+          //     onTrigger(e) {
+          //       pushDataLayer(`Click on hint ${el.getAttribute("data-id")}`)
+          //     },
+          //   })
+          // })
         }
       }, 300)
 
@@ -443,6 +536,9 @@ if (window.innerWidth <= 768) {
           })
         })
       }
+
+      pushDataLayer("loaded")
+      clarity("set", "pdp_improvements_mobile", "variant_1")
     }
   }, 10)
 }
