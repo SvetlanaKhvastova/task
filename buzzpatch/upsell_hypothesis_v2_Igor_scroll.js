@@ -146,7 +146,7 @@ if (window.innerWidth <= 768) {
            .cart_box .additionally_cart > p{
                 font-family: 'DINEngschrift LT', sans-serif;
                 font-weight: 400;
-                font-size: 20px !important;
+                font-size: 18px !important;
                 line-height: 120% !important;
                 text-transform: uppercase;
                 color: #0C0B0B;
@@ -388,6 +388,12 @@ if (window.innerWidth <= 768) {
                 height: 108px;
                 max-width: 120px;
             }
+
+            @media (max-width: 320px){
+              .cart_box .additionally_cart > p{
+                font-size: 15px !important;
+              }
+            }
             
         </style>
       `
@@ -426,8 +432,8 @@ if (window.innerWidth <= 768) {
                 </div>
             </div>
           </div>
-          <div class="additionally_cart" id="scrollSvg">
-                <p>You will now be protected from mosquito bites. But just in case you get <span>an unexpected bite</span>, try our popular instant itch relief.</p>
+          <div class="additionally_cart" id="scrollSvg">                
+                <p>Buzzpatch will now protect you, but in case you get <br> <span>the odd bite</span>, try our popular Instant Itch Relief</p>
 
                 <div class="drop_down_cart">
                     <div class="text_absolute">
