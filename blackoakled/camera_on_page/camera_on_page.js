@@ -1,10 +1,11 @@
 let cameraOnPageStyle = /*html */ `
 <style>
     .link_camera_nitron{
-        background: #161616;
+        background: #161616 url(https://conversionratestore.github.io/projects/blackoakled/img/link_camera_nitron.png) right bottom no-repeat;
+        background-size: auto 100%;
         border: 5px solid #fff;
         border-radius: 5px;
-        margin: 25px 0 30px;
+        margin: 5px 0 30px;
     }
 
     .link_camera_nitron .container_custom{
@@ -54,6 +55,11 @@ let cameraOnPageStyle = /*html */ `
     }
 
     @media (max-width: 768px){
+        .link_camera_nitron {
+            background: #161616 url(https://conversionratestore.github.io/projects/blackoakled/img/link_camera_nitron_mob.png) top right no-repeat;
+            background-size: auto;
+        }
+
         .link_camera_nitron .container_custom{
             text-align: center;
             padding: 248px 30px 30px;
@@ -88,6 +94,15 @@ let cameraOnPageStyle = /*html */ `
     }
 
     @media (max-width: 320px){
+        .link_camera_nitron{
+            background: #161616 url(https://conversionratestore.github.io/projects/blackoakled/img/link_camera_nitron_mob.png) top right no-repeat;
+            background-size: auto 68%;
+        }
+
+        .link_camera_nitron .container_custom {
+            padding: 220px 30px 30px;
+        }
+
         .link_camera_nitron .container_custom > h2{
             font-size: 28px;
         }
@@ -104,12 +119,18 @@ let cameraOnPage = /*html */ `
 <div class="link_camera_nitron">
     <div class="container_custom">
         <h2>Own the night</h2>
-        <p>The most advanced marine night vision camera that crushes darkness. See more than just silhouettes, Nitron XD shows details in full HD. Stay out later and always get home safe.</p>
+        <p>The most advanced marine night vision camera that crushes darkness. <br> See more than just silhouettes, Nitron XD shows details in full HD. <br> Stay out later and always get home safe.</p>
         <a href="https://www.blackoakled.com/products/extra-new-nitron-xd-marine-night-vision-camera?_pos=1&_sid=64ce8aa77&_ss=r">Explore Nitron XD</a>
-    </div>
-    
+    </div>    
 </div>
 `
 
 document.head.insertAdjacentHTML("beforeend", cameraOnPageStyle)
 document.querySelector(".box.box_home.box_home_featured_products").insertAdjacentHTML("beforebegin", cameraOnPage)
+
+if (window.innerWidth <= 768) {
+  if (document.querySelector("#content .link_camera_nitron .container_custom p")) {
+    document.querySelector("#content .link_camera_nitron .container_custom p").textContent =
+      "The most advanced marine night vision camera that crushes darkness. See more than just silhouettes, Nitron XD shows details in full HD. Stay out later and always get home safe."
+  }
+}
