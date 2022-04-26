@@ -192,6 +192,14 @@ let startfunkCarid = setInterval(() => {
         background-color: #3157ab;
     }
 
+            .prod_add{
+          width: 100% !important;
+        }
+
+        .prod-slct:not(.-wide)+.prod_add{
+          width: 100% !important;
+        }
+
     @media (max-width: 768px) {
         .tooltip_bar{
             background: #F8F8F8;
@@ -206,13 +214,14 @@ let startfunkCarid = setInterval(() => {
         .tooltip_bar::after{
             position: absolute;
             content: "";
-            background: url(https://conversionratestore.github.io/projects/carid/img/arrow.svg) no-repeat 0 0;
-            height: 11px;
-            width: 14px;
+            background: url(https://conversionratestore.github.io/projects/carid/img/arrow.svg) no-repeat;
+            height: 14px;
+            width: 16px;
             right: 24px;
-            top: 13px;
-            background-size: cover;
+            top: 14px;
+            background-size: contain;
             transition: all 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
+            z-index: 2;
         }
 
         .tooltip_bar > .tooltip_svg{
@@ -272,7 +281,8 @@ let startfunkCarid = setInterval(() => {
         }
 
         .arrow_down_var.tooltip_bar::after{
-            transform: rotateX(180deg);
+            content: "";
+            transform: rotateZ(180deg);
         }
 
         .sticky_wrapp{
