@@ -233,7 +233,7 @@ let startfunkCarid = setInterval(() => {
         .hover_block{
             pointer-events: unset;
             margin-top: 8px;
-            background: #F8F8F8;
+            background: rgba(248, 248, 248, 0.95);
             opacity: 0;
             position: absolute;
             transition: all 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -302,6 +302,12 @@ let startfunkCarid = setInterval(() => {
             height: 52px;
         }
     }
+
+      @media (max-width: 320px) {
+          .purchase_flow > div > .hover_block > ul li p:first-child{
+            font-size: 10px;
+          }
+      }
 
 </style>
 
@@ -449,6 +455,7 @@ let startfunkCarid = setInterval(() => {
               allowHTML: true,
               followCursor: true,
               arrow: false,
+              placement: "bottom",
               onShow(instance) {
                 console.log(`show`)
                 timerEventDesk(document.querySelector(".purchase_flow button.now_pay_btn"), "start")
