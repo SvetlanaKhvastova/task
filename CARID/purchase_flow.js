@@ -149,6 +149,8 @@ let startfunkCarid = setInterval(() => {
         text-transform: uppercase;
         color: #4062B9;
         margin: 0;
+        text-align: left;
+        white-space: nowrap;
     }
 
     .purchase_flow > div > .hover_block > ul li p:last-child,
@@ -159,6 +161,7 @@ let startfunkCarid = setInterval(() => {
         line-height: 20px;
         color: #4062B9;  
         margin: 0 0 0 18px;    
+        text-align: left;
     }
 
     .purchase_flow > div > .hover_block > ul li p:last-child >span,
@@ -198,6 +201,7 @@ let startfunkCarid = setInterval(() => {
 
         .prod-slct:not(.-wide)+.prod_add{
           width: 100% !important;
+          float: unset !important;
         }
 
     @media (max-width: 768px) {
@@ -342,19 +346,19 @@ let startfunkCarid = setInterval(() => {
             <p>Order now AND pay later in equal instalments</p>
             <ul>
                 <li>
-                    <p>STEP 1</p>
+                    <p>STEP&nbsp;1</p>
                     <p>Choose product options</p>
                 </li>
                 <li>
-                    <p>STEP 2</p>
+                    <p>STEP&nbsp;2</p>
                     <p>Add product to cart</p>
                 </li>
                 <li>
-                    <p>STEP 3</p>
+                    <p>STEP&nbsp;3</p>
                     <p>Select <span>affirm</span> as a payment method at checkout</p>
                 </li>
                 <li>
-                    <p>STEP 4</p>
+                    <p>STEP&nbsp;4</p>
                     <p>Enter your details and get a real-time loan decision</p>
                 </li>
             </ul>
