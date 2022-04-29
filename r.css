@@ -1,6 +1,8 @@
 .vis-ver-2_1.modal-header.modal-header-style.modal-of-header.style-border.modal-header1,
 .vis-ver-0_0.modal-header.modal-header-style.modal-of-header.style-border.modal-header1,
-.for-spacing {
+.for-spacing,
+#openModal .modal-header.modal-header-style.modal-of-header.style-border,
+#openModal .row-md-12.style-of-row-free-workshop > div:first-child {
   display: none !important;
 }
 
@@ -8,8 +10,14 @@
 #steppuppies,
 .yesno,
 #puppyContent > p:last-child,
-#adultContent > p:last-child {
+#adultContent > p:last-child,
+#subs-email2,
+#subs-mobile2 {
   display: none;
+}
+
+#openModal .form-group {
+  background: white;
 }
 
 #adultContent,
@@ -29,6 +37,10 @@
 
 .popup_third {
   display: none;
+}
+
+#openModal .popup_third {
+  display: block;
 }
 
 .border-of-modal {
@@ -194,7 +206,7 @@
   cursor: pointer;
 }
 
-.popup_second .body_popup button,
+.popup_second .body_popup .btn_continue,
 .button_input_name,
 #contact-submit {
   background: #193973;
@@ -227,6 +239,11 @@
   margin: 65px auto 0;
 }
 
+.button_input_name:focus,
+#contact-submit:focus {
+  box-shadow: 2px 2px 6px 6px rgba(0, 0, 0, 0.2);
+}
+
 .first_block_checkbox input.custom_checkbox,
 .second_block_checkbox input.custom_checkbox {
   position: absolute;
@@ -248,6 +265,7 @@
   user-select: none;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .custom_checkbox + label::before {
@@ -288,7 +306,9 @@ form .form-group img,
 
 #subs-email,
 #subs-mobile,
-#contact-submit {
+#contact-submit,
+#subs-email2,
+#subs-mobile2 {
   max-width: 331px;
   width: 100% !important;
   margin: 0 auto 16px !important;
@@ -340,8 +360,8 @@ span.top-levels,
   display: flex;
   flex-direction: column;
   padding: 0;
-  margin: 32px auto 32px 195px;
-  gap: 14px;
+  margin: 20px auto 20px 195px;
+  gap: 10px;
   max-width: 376px;
 }
 
@@ -362,7 +382,7 @@ span.top-levels,
 .security_box {
   display: flex;
   align-items: center;
-  margin: 0 auto 36px;
+  margin: 0 auto;
   max-width: 440px;
   justify-content: center;
 }
@@ -377,7 +397,9 @@ span.top-levels,
 }
 
 #subs-name,
-#dog-name {
+#dog-name,
+#subs-name2,
+#dog-name2 {
   display: flex;
 }
 
@@ -398,7 +420,7 @@ span.top-levels,
 }
 
 .popup_adress .body_popup > p {
-  margin: 0 auto 32px;
+  margin: 0 auto 15px;
   padding: 10px;
   border: 1px solid #6fb3fa;
   box-sizing: border-box;
@@ -424,4 +446,34 @@ button.close {
   opacity: 1;
   transform: translateY(-50%);
   text-shadow: unset;
+}
+
+.close:hover,
+.close:focus {
+  color: #a0a1a8;
+  opacity: 1;
+}
+
+.input_error_text {
+  font-size: 10px;
+  line-height: 20px;
+  color: #f15050;
+  margin: -12px auto 10px;
+  display: none;
+  max-width: 304px;
+  text-align: left;
+}
+
+.popup_adress .body_popup > h2 {
+  margin-bottom: 0px !important;
+}
+
+.text_for_work_shop {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  text-align: center;
+  color: #808080 !important;
+  margin-bottom: 32px;
+  display: none;
 }
