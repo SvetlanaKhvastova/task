@@ -1,35 +1,70 @@
-let startFunk = setInterval(() => {
-  if (document.querySelector(".entry-content")) {
-    clearInterval(startFunk)
+if (window.innerWidth <= 768) {
+  let startFunkMob = setInterval(() => {
+    if (document.querySelector(".entry-content")) {
+      clearInterval(startFunkMob)
 
-    function pushDataLayer(actionDataLayer, labelDataLayer) {
-      window.dataLayer = window.dataLayer || []
-      if (labelDataLayer) {
-        console.log(actionDataLayer + " : " + labelDataLayer)
-        dataLayer.push({
-          event: "event-to-ga",
-          eventCategory: `Exp: Reg pop up improvements`,
-          eventAction: `${actionDataLayer}`,
-          eventLabel: `${labelDataLayer}`,
-        })
-      } else {
-        console.log(actionDataLayer)
-        dataLayer.push({
-          event: "event-to-ga",
-          eventCategory: `Exp: Reg pop up improvements`,
-          eventAction: `${actionDataLayer}`,
-        })
+      function pushDataLayer(actionDataLayer, labelDataLayer) {
+        window.dataLayer = window.dataLayer || []
+        if (labelDataLayer) {
+          console.log(actionDataLayer + " : " + labelDataLayer)
+          dataLayer.push({
+            event: "event-to-ga",
+            eventCategory: `Exp: Reg pop up improvements mob`,
+            eventAction: `${actionDataLayer}`,
+            eventLabel: `${labelDataLayer}`,
+          })
+        } else {
+          console.log(actionDataLayer)
+          dataLayer.push({
+            event: "event-to-ga",
+            eventCategory: `Exp: Reg pop up improvements mob`,
+            eventAction: `${actionDataLayer}`,
+          })
+        }
+      }
+
+      let popupStyle = /*html */ `
+    <style>
+    #firstModal .modal-content, #openModal .modal-content{
+      max-height: calc(100vh - 10px) !important;
+      height: 100% !important;
+    }
+
+    .submission_form_old {
+      margin-top: 40px !important;
+    }
+
+    #openModal .submission_form_old{
+      margin: 0 !important;
+    }
+
+    .modal-body {
+      padding: 0 !important;
+    }
+
+    .row {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+
+    @media only screen and (max-width: 480px){
+    .modal.in .modal-dialog .popup-first-body {
+        width: 95% !important;
+        max-width: 95% !important;
       }
     }
 
-    let popupStyle = /*html */ `
-    <style>
 .vis-ver-2_1.modal-header.modal-header-style.modal-of-header.style-border.modal-header1,
 .vis-ver-0_0.modal-header.modal-header-style.modal-of-header.style-border.modal-header1,
 .for-spacing,
 #openModal .modal-header.modal-header-style.modal-of-header.style-border,
 #openModal .row-md-12.style-of-row-free-workshop > div:first-child {
   display: none !important;
+}
+
+.border-of-modal .modal-header{
+  border: unset !important;
 }
 
 #steptwoadult,
@@ -97,7 +132,7 @@ let startFunk = setInterval(() => {
 .header_popup {
   background: #193973;
   border-radius: 0px;
-  padding: 22px 0;
+  padding: 12px 20px;
   text-align: center;
   position: relative;
 }
@@ -112,7 +147,7 @@ let startFunk = setInterval(() => {
 
 .body_popup {
   background: #ffffff;
-  padding: 25px 56px 28px;
+  padding: 40px 16px;
 }
 
 .body_popup > h2 {
@@ -121,7 +156,8 @@ let startFunk = setInterval(() => {
   line-height: 30px !important;
   text-align: center;
   color: #193973 !important;
-  margin-bottom: 24px !important;
+  margin: 0 auto 56px !important;
+  max-width: 318px;
 }
 
 .inform_wrap > p {
@@ -130,7 +166,8 @@ let startFunk = setInterval(() => {
   line-height: 20px !important;
   text-align: center;
   color: #77777d !important;
-  margin-bottom: 28px !important;
+  margin: 0 auto 32px !important;
+  max-width: 224px;
 }
 
 .inform_wrap > ul {
@@ -139,13 +176,13 @@ let startFunk = setInterval(() => {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  max-width: 455px;
+  max-width: 205px;
   width: 100%;
   gap: 18px;
 }
 
 .inform_wrap > ul li {
-  width: 46%;
+  width: 100%;
   display: flex;
   align-items: center;
 }
@@ -160,7 +197,7 @@ let startFunk = setInterval(() => {
 }
 
 .btn_wrapp {
-  margin-top: 46px;
+  margin-top: 56px;
 }
 
 .btn_wrapp p {
@@ -168,13 +205,15 @@ let startFunk = setInterval(() => {
   font-size: 16px;
   line-height: 125%;
   color: #808080 !important;
-  margin-bottom: 24px;
+  margin: 0 auto 32px;
   text-align: center;
+  max-width: 228px;
 }
 
 .btn_wrapp > div {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .btn_wrapp > div a {
@@ -187,15 +226,17 @@ let startFunk = setInterval(() => {
   text-align: center;
   letter-spacing: -0.01em;
   color: #ffffff !important;
-  width: 48%;
+  width: 100%;
+  max-width: 318px;
+  margin: 0 auto;
 }
 
 .popup_second .body_popup > h2 {
-  margin-bottom: 20px !important;
+  margin-bottom: 56px !important;
 }
 
 .popup_second .body_popup {
-  padding: 28px 56px 24px;
+  padding: 40px 16px;
 }
 
 .popup_second .body_popup > div {
@@ -207,20 +248,20 @@ let startFunk = setInterval(() => {
 .second_block_checkbox {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   gap: 18px;
 }
 
 .second_block_checkbox {
-  margin: 18px 0 38px;
+  margin: 18px 0 56px;
   display: none;
 }
 
 .popup_second .body_popup .show_more {
-  margin: 58px auto 18px;
+  margin: 56px auto 16px;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .popup_second .body_popup .show_more p {
@@ -228,7 +269,7 @@ let startFunk = setInterval(() => {
   font-size: 16px;
   line-height: 22px;
   color: #193973 !important;
-  margin: 0;
+  margin: 0 8px 0 0;
   cursor: pointer;
 }
 
@@ -262,7 +303,7 @@ let startFunk = setInterval(() => {
 }
 
 .button_input_name {
-  margin: 65px auto 0;
+  margin: 56px auto 0;
 }
 
 .button_input_name:focus,
@@ -279,11 +320,12 @@ let startFunk = setInterval(() => {
 
 .first_block_checkbox label,
 .second_block_checkbox label {
-  width: 48%;
+  width: 100%;
+  max-width: 304px;
   border: 1px solid #dee8f1;
   border-radius: 10px;
-  padding: 10px 40px;
-  margin: 0;
+  padding: 10px;
+  margin: 0 auto;
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;
@@ -292,6 +334,7 @@ let startFunk = setInterval(() => {
   display: flex;
   align-items: center;
   cursor: pointer;
+  text-align: left;
 }
 
 .custom_checkbox + label::before {
@@ -335,7 +378,7 @@ form .form-group img,
 #contact-submit,
 #subs-email2,
 #subs-mobile2 {
-  max-width: 331px;
+  max-width: 304px;
   width: 100% !important;
   margin: 0 auto 16px !important;
 }
@@ -353,7 +396,7 @@ span.top-levels,
 
 .form-group {
   margin: 0;
-  padding: 0 0 24px;
+  padding: 0 15px 53px;
 }
 
 #finalForm .popup_third .body_popup > h2 {
@@ -361,7 +404,7 @@ span.top-levels,
 }
 
 #finalForm .popup_third .body_popup {
-  padding: 28px 164px 0;
+  padding: 40px 16px 0;
   margin-bottom: 56px;
 }
 
@@ -384,16 +427,22 @@ span.top-levels,
 
 .benefits ul {
   display: flex;
-  flex-direction: column;
-  padding: 0;
-  margin: 20px auto 20px 195px;
-  gap: 10px;
-  max-width: 376px;
+    flex-direction: column;
+    padding: 0;
+    margin: 32px auto 40px;
+    gap: 14px;
+    max-width: 304px;
 }
 
 .benefits ul li {
   display: flex;
   align-items: center;
+}
+
+.benefits ul li > svg{
+  width: 100%;
+  max-width: 28px;
+  height: 28px;
 }
 
 .benefits ul li > p {
@@ -409,8 +458,13 @@ span.top-levels,
   display: flex;
   align-items: center;
   margin: 0 auto;
-  max-width: 440px;
+  max-width: 304px;
   justify-content: center;
+}
+
+.security_box > svg{
+  width: 100%;
+  max-width: 16px;
 }
 
 .security_box > p {
@@ -431,22 +485,18 @@ span.top-levels,
 
 .popup_adress .header_popup {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 20px 0;
-}
-
-.popup_adress .header_popup > p {
-  margin-left: 10px;
+  padding: 12px 20px;
 }
 
 #finalForm .popup_third .popup_adress .body_popup {
-  padding: 24px 0 0;
-  margin-bottom: 32px;
+  padding: 40px 16px 0;
+  margin-bottom: 16px;
 }
 
 .popup_adress .body_popup > p {
-  margin: 0 auto 15px;
+  margin: 0 auto 40px;
   padding: 10px;
   border: 1px solid #6fb3fa;
   box-sizing: border-box;
@@ -455,22 +505,17 @@ span.top-levels,
   font-size: 12px;
   line-height: 20px;
   text-align: center;
-  max-width: 413px;
+  max-width: 300px;
   color: #808080 !important;
-}
-
-#finalForm .popup_third .popup_adress .body_popup > h2 {
-  max-width: 413px;
 }
 
 button.close {
   display: block;
   position: absolute;
-  top: 50%;
-  right: 18px;
+  top: 10px;
+  right: 7px;
   color: #f8f8ff;
   opacity: 1;
-  transform: translateY(-50%);
   text-shadow: unset;
 }
 
@@ -500,13 +545,36 @@ form .text_for_work_shop {
   line-height: 20px;
   text-align: center;
   color: #808080 !important;
-  margin-bottom: 32px !important;
+  margin: 32px auto 24px !important;
+  max-width: 304px;
   display: none;
+}
+
+#openModal .popup_third .body_popup{
+    padding: 40px 16px 56px;
+}
+
+#openModal .popup_third .body_popup > h2{
+    margin: 0 auto !important;
+}
+
+@media (max-width: 320px){
+  .header_popup > p{
+    font-size: 14px;
+  }
+
+  .body_popup > h2{
+    font-size: 19px !important;
+  }
+
+  .btn_wrapp > div a{
+    font-size: 15px;
+  }
 }
     </style>
     `
 
-    let popup_first = /*html*/ `
+      let popup_first = /*html*/ `
     <div class="popup_first">
         <div class="header_popup">
             <p>FREE ONLINE DOG TRAINING WORKSHOP</p>
@@ -593,7 +661,7 @@ form .text_for_work_shop {
     </div>
     `
 
-    let popup_third = /*html*/ `
+      let popup_third = /*html*/ `
     <div class="popup_third">
         <div class="popup_name">
             <div class="header_popup">
@@ -603,7 +671,7 @@ form .text_for_work_shop {
           </button>
             </div>
             <div class="body_popup">
-                <h2>How should we address you and your <br> dog?</h2>
+                <h2>How should we address you and your dog?</h2>
             </div>
         </div>
     
@@ -618,20 +686,20 @@ form .text_for_work_shop {
           </button>
             </div>
             <div class="body_popup">
-                <p>The workshop will be conducted by Dr. Alexa Diaz PhD <br> (one of the foremost service dog trainers in the U.S.) and Eric Presnall<br> (host of the Animal Planet TV show "Who Let the Dogs Out").</p>
-                <h2>Enter your email and mobile number <br> to access this FREE online workshop <br> now</h2>
+                <p>The workshop will be conducted by Dr. Alexa Diaz PhD (one of the foremost service dog trainers in the U.S.) and Eric Presnall (host of the Animal Planet TV show "Who Let the Dogs Out").</p>
+                <h2>Enter your email and mobile <br> number to access this <br> FREE online workshop now</h2>
             </div>
         </div>
     </div>
     `
 
-    let popup_second = /*html*/ `
+      let popup_second = /*html*/ `
     <div class="popup_second">
         <div class="header_popup">
             <p>FREE ONLINE DOG TRAINING WORKSHOP</p>
         </div>
         <div class="body_popup">
-            <h2>Choose the behavior you want to <br> address</h2>
+            <h2>Choose the behavior you want to address</h2>
     
             <div>
                 <div class="first_block_checkbox">
@@ -680,7 +748,7 @@ form .text_for_work_shop {
     </div>
     `
 
-    let buttonInputName = /*html*/ `
+      let buttonInputName = /*html*/ `
         <div class="button_input_name" tabindex="0">Continue</div>
         <div class="benefits">
             <ul>
@@ -710,280 +778,274 @@ form .text_for_work_shop {
                     <path d="M5.83801 1.59C4.88559 1.85248 3.93965 2.1379 3.00101 2.446C2.91529 2.47376 2.8391 2.52504 2.78111 2.59399C2.72312 2.66295 2.68567 2.7468 2.67301 2.836C2.11901 6.993 3.39901 10.026 4.92601 12.024C5.57252 12.8784 6.34341 13.6311 7.21301 14.257C7.55901 14.501 7.86501 14.677 8.10601 14.79C8.22601 14.847 8.32401 14.885 8.39901 14.908C8.43181 14.9195 8.46562 14.9279 8.50001 14.933C8.53398 14.9275 8.56743 14.9191 8.60001 14.908C8.67601 14.885 8.77401 14.847 8.89401 14.79C9.13401 14.677 9.44101 14.5 9.78701 14.257C10.6566 13.6311 11.4275 12.8784 12.074 12.024C13.601 10.027 14.881 6.993 14.327 2.836C14.3145 2.74676 14.277 2.66285 14.219 2.59388C14.161 2.52491 14.0848 2.47366 13.999 2.446C13.348 2.233 12.249 1.886 11.162 1.591C10.052 1.29 9.03101 1.067 8.50001 1.067C7.97001 1.067 6.94801 1.29 5.83801 1.591V1.59ZM5.57201 0.56C6.65701 0.265 7.81001 0 8.50001 0C9.19001 0 10.343 0.265 11.428 0.56C12.538 0.86 13.657 1.215 14.315 1.43C14.5901 1.52085 14.834 1.68747 15.0187 1.9107C15.2034 2.13394 15.3213 2.40474 15.359 2.692C15.955 7.169 14.572 10.487 12.894 12.682C12.1824 13.621 11.334 14.4479 10.377 15.135C10.0461 15.3728 9.69549 15.5819 9.32901 15.76C9.04901 15.892 8.74801 16 8.50001 16C8.25201 16 7.95201 15.892 7.67101 15.76C7.30452 15.5819 6.95391 15.3728 6.62301 15.135C5.66603 14.4478 4.81759 13.621 4.10601 12.682C2.42801 10.487 1.04501 7.169 1.64101 2.692C1.67869 2.40474 1.79665 2.13394 1.98132 1.9107C2.166 1.68747 2.4099 1.52085 2.68501 1.43C3.6402 1.11681 4.60281 0.826725 5.57201 0.56Z" fill="#9DA1AA"/>
                     <path d="M10 6.49995C10.0002 6.81027 9.90407 7.11301 9.72497 7.36644C9.54587 7.61986 9.29258 7.8115 9 7.91495L9.385 9.90495C9.39901 9.97732 9.39684 10.0519 9.37864 10.1233C9.36045 10.1948 9.32668 10.2613 9.27976 10.3182C9.23283 10.375 9.17392 10.4208 9.10723 10.4523C9.04054 10.4837 8.96772 10.5 8.894 10.4999H8.106C8.03236 10.4998 7.95966 10.4834 7.8931 10.4519C7.82653 10.4204 7.76774 10.3746 7.72093 10.3178C7.67412 10.261 7.64044 10.1945 7.6223 10.1231C7.60416 10.0517 7.60201 9.97724 7.616 9.90495L8 7.91495C7.74076 7.82329 7.5117 7.66214 7.33786 7.44911C7.16401 7.23608 7.05206 6.97936 7.01425 6.70701C6.97644 6.43465 7.01422 6.15715 7.12345 5.90481C7.23269 5.65248 7.40919 5.43502 7.63365 5.27621C7.85812 5.1174 8.12192 5.02335 8.39623 5.00433C8.67053 4.9853 8.94479 5.04205 9.18903 5.16835C9.43327 5.29466 9.63809 5.48567 9.78111 5.72051C9.92414 5.95535 9.99986 6.22498 10 6.49995Z" fill="#9DA1AA"/>
                 </svg>
-                <p>Your email address and mobile number won't be shared with anyone. <br> Please review our privacy policy for more information.</p>
+                <p>Your email address and mobile number won't be shared with anyone. Please review our privacy policy for more information.</p>
             </div>
         </div>
     `
 
-    let textForWorkShop = /*html */ `
+      let textForWorkShop = /*html */ `
     <p class="text_for_work_shop">We’ll email and text you the link for the workshop <br> and tips to train your dog.</p>
     `
 
-    document.head.insertAdjacentHTML("beforeend", popupStyle)
+      document.head.insertAdjacentHTML("beforeend", popupStyle)
 
-    // #firstModal
-    // document.querySelectorAll('#firstModal') -> auto popup
-    if (document.querySelector("#firstModal .vis-ver-0_0.modal-header.modal-header-style.modal-of-header.style-border.modal-header1")) {
-      document.querySelector("#firstModal .vis-ver-0_0.modal-header.modal-header-style.modal-of-header.style-border.modal-header1").insertAdjacentHTML("beforebegin", popup_first)
+      // #firstModal
+      // document.querySelectorAll('#firstModal') -> auto popup
+      if (document.querySelector("#firstModal .vis-ver-0_0.modal-header.modal-header-style.modal-of-header.style-border.modal-header1")) {
+        document.querySelector("#firstModal .vis-ver-0_0.modal-header.modal-header-style.modal-of-header.style-border.modal-header1").insertAdjacentHTML("beforebegin", popup_first)
 
-      document.querySelector("#firstModal #subs-name").placeholder = "Your name"
-      document.querySelector("#firstModal #dog-name").placeholder = "Dog’s name"
-      document.querySelector("#firstModal #subs-email").placeholder = "Enter your email"
-      document.querySelector("#firstModal #subs-mobile").placeholder = "Enter your phone number"
-      document.querySelector("#firstModal #contact-submit").textContent = "Get workshop link"
-      document.querySelector("#firstModal #subs-name").tabIndex = "0"
-      document.querySelector("#firstModal #dog-name").tabIndex = "0"
-      document.querySelector("#firstModal #subs-email").tabIndex = "0"
-      document.querySelector("#firstModal #subs-mobile").tabIndex = "0"
-      document.querySelector("#firstModal #contact-submit").tabIndex = "0"
+        document.querySelector("#firstModal #subs-name").placeholder = "Your name"
+        document.querySelector("#firstModal #dog-name").placeholder = "Dog’s name"
+        document.querySelector("#firstModal #subs-email").placeholder = "Enter your email"
+        document.querySelector("#firstModal #subs-mobile").placeholder = "Enter your phone number"
+        document.querySelector("#firstModal #contact-submit").textContent = "Get workshop link"
+        document.querySelector("#firstModal #subs-name").tabIndex = "0"
+        document.querySelector("#firstModal #dog-name").tabIndex = "0"
+        document.querySelector("#firstModal #subs-email").tabIndex = "0"
+        document.querySelector("#firstModal #subs-mobile").tabIndex = "0"
+        document.querySelector("#firstModal #contact-submit").tabIndex = "0"
 
-      document
-        .querySelector(`#firstModal input[name='dog_name']`)
-        .insertAdjacentHTML("afterend", `<span class="input_error_text">Please enter Your Dog’s name without spaces, numbers or special characters</span>`)
-
-      document
-        .querySelector(`#firstModal input[name='first_name']`)
-        .insertAdjacentHTML("afterend", `<span class="input_error_text">Please enter Your name without spaces, numbers or special characters</span>`)
-
-      document.querySelector("#firstModal #contact-submit").insertAdjacentHTML("beforebegin", textForWorkShop)
-
-      // click on btn My dog is a puppy (aged less than 1 year)
-      document.querySelector("#firstModal .popup_first .btn_wrapp > div a:first-child").addEventListener("click", function (e) {
-        e.preventDefault()
-
-        document.querySelector("#firstModal .sec .puppy-popup-link #puppyCheck").click()
-        document.querySelector("#firstModal .popup_first").style.display = "none"
-        document.querySelector("#firstModal #puppyContent").insertAdjacentHTML("afterbegin", popup_second)
-
-        onShowMore()
-        document.querySelector("#firstModal #puppyContent .popup_second").style.display = "block"
-        console.log(`click on btn My dog is a puppy (aged less than 1 year)`)
-      })
-
-      // click on btn My dog is a young or adult dog (aged 1 year or more)
-      document.querySelector("#firstModal .popup_first .btn_wrapp > div a:last-child").addEventListener("click", function (e) {
-        e.preventDefault()
-
-        document.querySelector("#firstModal .sec .popup_link:last-child #puppyCheck").click()
-        document.querySelector("#firstModal .popup_first").style.display = "none"
-        document.querySelector("#firstModal #adultContent").insertAdjacentHTML("afterbegin", popup_second)
-
-        onShowMore()
-        document.querySelector("#firstModal #adultContent .popup_second").style.display = "block"
-        console.log(`click on btn My dog is a young or adult dog (aged 1 year or more)`)
-      })
-
-      // create new element popup finalForm -> input name, email, number
-      if (document.querySelector("#firstModal #finalForm")) {
-        document.querySelector("#firstModal #finalForm").insertAdjacentHTML("afterbegin", popup_third)
-
-        //   value btn main submit
-        document.querySelector("#firstModal #contact-submit").value = "Get workshop link"
-
-        document.querySelector("#firstModal #contact-submit").addEventListener("click", function () {
-          pushDataLayer("Get workshop link clicked #firstModal")
-        })
-
-        //   create btn last continue
-        document.querySelector("#firstModal form .form-group > div:last-child").insertAdjacentHTML("beforebegin", buttonInputName)
-      }
-
-      function onShowMore() {
-        // click on btn #puppyContent show_more
-        if (document.querySelector("#firstModal #puppyContent .popup_second .body_popup .show_more")) {
-          document.querySelector("#firstModal #puppyContent .popup_second .body_popup .show_more").addEventListener("click", () => {
-            pushDataLayer("Show_more #puppyContent")
-
-            document.querySelector("#firstModal #puppyContent .second_block_checkbox").style.display = "flex"
-            document.querySelector("#firstModal #puppyContent .popup_second .body_popup .show_more").style.display = "none"
-          })
-        }
-
-        // click on btn #adultContent show_more
-        if (document.querySelector("#firstModal #adultContent .popup_second .body_popup .show_more")) {
-          document.querySelector("#firstModal #adultContent .popup_second .body_popup .show_more").addEventListener("click", () => {
-            pushDataLayer("Show_more #adultContent")
-
-            document.querySelector("#firstModal #adultContent .second_block_checkbox").style.display = "flex"
-            document.querySelector("#firstModal #adultContent .popup_second .body_popup .show_more").style.display = "none"
-          })
-        }
-
-        // click on btn checkbox continue #puppyContent
-        if (document.querySelector("#firstModal #puppyContent  .popup_second .body_popup .btn_continue")) {
-          document.querySelector("#firstModal #puppyContent  .popup_second .body_popup .btn_continue").addEventListener("click", function () {
-            // label checkbox
-            let array = []
-            document.querySelectorAll("#firstModal .custom_checkbox:checked + label").forEach((el) => {
-              array.push(el.getAttribute("for"))
-            })
-
-            pushDataLayer(`Step 2 Continue #puppyContent ${array}`)
-
-            document.querySelector("#firstModal #puppyContent .yesno .ysn.popup_link:nth-child(1) a").click()
-            document.querySelector("#firstModal #puppyContent  .popup_second").style.display = "none"
-            document.querySelector("#firstModal .popup_third").style.display = "block"
-          })
-        }
-
-        // click on btn checkbox continue #adultContent
-        if (document.querySelector("#firstModal #adultContent .popup_second .body_popup .btn_continue")) {
-          document.querySelector("#firstModal #adultContent .popup_second .body_popup .btn_continue").addEventListener("click", function () {
-            // label checkbox
-            let array = []
-            document.querySelectorAll("#firstModal .custom_checkbox:checked + label").forEach((el) => {
-              array.push(el.getAttribute("for"))
-            })
-
-            pushDataLayer(`Step 2 Continue #adultContent ${array}`)
-
-            document.querySelector("#firstModal #adultContent .yesno .ysn.popup_link:nth-child(1) a").click()
-            document.querySelector("#firstModal #adultContent .popup_second").style.display = "none"
-            document.querySelector("#firstModal .popup_third").style.display = "block"
-          })
-        }
-      }
-
-      document.querySelector("#firstModal .button_input_name").addEventListener("click", () => {
-        validationForm("#firstModal")
-      })
-
-      // click on button.close
-      if (document.querySelector("#firstModal .popup_name button.close")) {
-        document.querySelector("#firstModal .popup_name button.close").addEventListener("click", () => {
-          pushDataLayer("#firstModal Step 3 closed")
-        })
-      }
-
-      if (document.querySelector("#firstModal .popup_adress button.close")) {
-        document.querySelector("#firstModal .popup_adress button.close").addEventListener("click", () => {
-          pushDataLayer("#firstModal Step 4 closed")
-        })
-      }
-    }
-
-    // #openModal
-    // document.querySelectorAll('#openModal') -> click on btn popup
-    let a = setInterval(() => {
-      if (document.querySelector("#openModal .modal-content.modal-of-content.popup-first-body.landscape-popup-width")) {
-        clearInterval(a)
-        document.querySelector("#openModal #subs-name2").placeholder = "Your name"
-        document.querySelector("#openModal #dog-name2").placeholder = "Dog’s name"
-        document.querySelector("#openModal #subs-email2").placeholder = "Enter your email"
-        document.querySelector("#openModal #subs-mobile2").placeholder = "Enter your phone number"
-        document.querySelector("#openModal #contact-submit").textContent = "Get workshop link"
-        document.querySelector("#openModal #subs-name2").tabIndex = "0"
-        document.querySelector("#openModal #dog-name2").tabIndex = "0"
-        document.querySelector("#openModal #subs-email2").tabIndex = "0"
-        document.querySelector("#openModal #subs-mobile2").tabIndex = "0"
-        document.querySelector("#openModal #contact-submit").tabIndex = "0"
-        console.log(`#openModal`)
         document
-          .querySelector(`#openModal input[name='dog_name']`)
+          .querySelector(`#firstModal input[name='dog_name']`)
           .insertAdjacentHTML("afterend", `<span class="input_error_text">Please enter Your Dog’s name without spaces, numbers or special characters</span>`)
 
         document
-          .querySelector(`#openModal input[name='first_name']`)
+          .querySelector(`#firstModal input[name='first_name']`)
           .insertAdjacentHTML("afterend", `<span class="input_error_text">Please enter Your name without spaces, numbers or special characters</span>`)
 
-        document.querySelector("#openModal #contact-submit").insertAdjacentHTML("beforebegin", textForWorkShop)
+        document.querySelector("#firstModal #contact-submit").insertAdjacentHTML("beforebegin", textForWorkShop)
+
+        // click on btn My dog is a puppy (aged less than 1 year)
+        document.querySelector("#firstModal .popup_first .btn_wrapp > div a:first-child").addEventListener("click", function (e) {
+          e.preventDefault()
+
+          document.querySelector("#firstModal .sec .puppy-popup-link #puppyCheck").click()
+          document.querySelector("#firstModal .popup_first").style.display = "none"
+          document.querySelector("#firstModal #puppyContent").insertAdjacentHTML("afterbegin", popup_second)
+
+          onShowMore()
+          document.querySelector("#firstModal #puppyContent .popup_second").style.display = "block"
+          console.log(`click on btn My dog is a puppy (aged less than 1 year)`)
+        })
+
+        // click on btn My dog is a young or adult dog (aged 1 year or more)
+        document.querySelector("#firstModal .popup_first .btn_wrapp > div a:last-child").addEventListener("click", function (e) {
+          e.preventDefault()
+
+          document.querySelector("#firstModal .sec .popup_link:last-child #puppyCheck").click()
+          document.querySelector("#firstModal .popup_first").style.display = "none"
+          document.querySelector("#firstModal #adultContent").insertAdjacentHTML("afterbegin", popup_second)
+
+          onShowMore()
+          document.querySelector("#firstModal #adultContent .popup_second").style.display = "block"
+          console.log(`click on btn My dog is a young or adult dog (aged 1 year or more)`)
+        })
 
         // create new element popup finalForm -> input name, email, number
-        document.querySelector("#openModal .row-md-12.style-of-row-free-workshop > div:first-child").insertAdjacentHTML("afterend", popup_third)
-
-        if (document.querySelector("#openModal form .form-group")) {
-          console.log(`HELLO form2`)
+        if (document.querySelector("#firstModal #finalForm")) {
+          document.querySelector("#firstModal #finalForm").insertAdjacentHTML("afterbegin", popup_third)
 
           //   value btn main submit
-          document.querySelector("#openModal #contact-submit").value = "Get workshop link"
+          document.querySelector("#firstModal #contact-submit").value = "Get workshop link"
 
-          document.querySelector("#openModal #contact-submit").addEventListener("click", function () {
-            pushDataLayer("Get workshop link clicked #openModal")
+          document.querySelector("#firstModal #contact-submit").addEventListener("click", function () {
+            pushDataLayer("Get workshop link clicked #firstModal")
           })
 
           //   create btn last continue
-          document.querySelector("#openModal form .form-group > div:last-child").insertAdjacentHTML("beforebegin", buttonInputName)
+          document.querySelector("#firstModal form .form-group > div:last-child").insertAdjacentHTML("beforebegin", buttonInputName)
         }
 
-        if (document.querySelector("#openModal .button_input_name")) {
-          document.querySelector("#openModal .button_input_name").addEventListener("click", () => {
-            validationForm("#openModal")
+        function onShowMore() {
+          // click on btn #puppyContent show_more
+          if (document.querySelector("#firstModal #puppyContent .popup_second .body_popup .show_more")) {
+            document.querySelector("#firstModal #puppyContent .popup_second .body_popup .show_more").addEventListener("click", () => {
+              pushDataLayer("Show_more #puppyContent")
+
+              document.querySelector("#firstModal #puppyContent .second_block_checkbox").style.display = "flex"
+              document.querySelector("#firstModal #puppyContent .popup_second .body_popup .show_more").style.display = "none"
+            })
+          }
+
+          // click on btn #adultContent show_more
+          if (document.querySelector("#firstModal #adultContent .popup_second .body_popup .show_more")) {
+            document.querySelector("#firstModal #adultContent .popup_second .body_popup .show_more").addEventListener("click", () => {
+              pushDataLayer("Show_more #adultContent")
+
+              document.querySelector("#firstModal #adultContent .second_block_checkbox").style.display = "flex"
+              document.querySelector("#firstModal #adultContent .popup_second .body_popup .show_more").style.display = "none"
+            })
+          }
+
+          // click on btn checkbox continue #puppyContent
+          if (document.querySelector("#firstModal #puppyContent  .popup_second .body_popup .btn_continue")) {
+            document.querySelector("#firstModal #puppyContent  .popup_second .body_popup .btn_continue").addEventListener("click", function () {
+              pushDataLayer(`Step 2 Continue #puppyContent`)
+
+              document.querySelector("#firstModal #puppyContent .yesno .ysn.popup_link:nth-child(1) a").click()
+              document.querySelector("#firstModal #puppyContent  .popup_second").style.display = "none"
+              document.querySelector("#firstModal .popup_third").style.display = "block"
+            })
+          }
+
+          // click on btn checkbox continue #adultContent
+          if (document.querySelector("#firstModal #adultContent .popup_second .body_popup .btn_continue")) {
+            document.querySelector("#firstModal #adultContent .popup_second .body_popup .btn_continue").addEventListener("click", function () {
+              pushDataLayer(`Step 2 Continue #adultContent`)
+
+              document.querySelector("#firstModal #adultContent .yesno .ysn.popup_link:nth-child(1) a").click()
+              document.querySelector("#firstModal #adultContent .popup_second").style.display = "none"
+              document.querySelector("#firstModal .popup_third").style.display = "block"
+            })
+          }
+
+          // click on label checkbox
+          document.querySelectorAll("#firstModal .custom_checkbox + label").forEach((el) => {
+            el.addEventListener("click", function () {
+              pushDataLayer(`${this.getAttribute("for")} selected`)
+            })
           })
         }
+
+        document.querySelector("#firstModal .button_input_name").addEventListener("click", () => {
+          validationForm("#firstModal")
+        })
 
         // click on button.close
-        if (document.querySelector("#openModal .popup_name button.close")) {
-          document.querySelector("#openModal .popup_name button.close").addEventListener("click", () => {
-            pushDataLayer("#openModal Step 3 closed")
+        if (document.querySelector("#firstModal .popup_name button.close")) {
+          document.querySelector("#firstModal .popup_name button.close").addEventListener("click", () => {
+            pushDataLayer("#firstModal Step 3 closed")
           })
         }
 
-        if (document.querySelector("#openModal .popup_adress button.close")) {
-          document.querySelector("#openModal .popup_adress button.close").addEventListener("click", () => {
-            pushDataLayer("#openModal Step 4 closed")
+        if (document.querySelector("#firstModal .popup_adress button.close")) {
+          document.querySelector("#firstModal .popup_adress button.close").addEventListener("click", () => {
+            pushDataLayer("#firstModal Step 4 closed")
           })
         }
       }
-    }, 10)
 
-    // validate formu
-    function validationForm(parent) {
-      let inputValueName = document.querySelector(`${parent} input[name='first_name']`).value.match(/^[a-zA-Z]+$/)
-      let inputDogName = document.querySelector(`${parent} input[name='dog_name']`).value.match(/^[a-zA-Z]+$/)
+      // #openModal
+      // document.querySelectorAll('#openModal') -> click on btn popup
+      let a = setInterval(() => {
+        if (document.querySelector("#openModal .modal-content.modal-of-content.popup-first-body")) {
+          clearInterval(a)
+          document.querySelector("#openModal #subs-name2").placeholder = "Your name"
+          document.querySelector("#openModal #dog-name2").placeholder = "Dog’s name"
+          document.querySelector("#openModal #subs-email2").placeholder = "Enter your email"
+          document.querySelector("#openModal #subs-mobile2").placeholder = "Enter your phone number"
+          document.querySelector("#openModal #contact-submit").textContent = "Get workshop link"
+          document.querySelector("#openModal #subs-name2").tabIndex = "0"
+          document.querySelector("#openModal #dog-name2").tabIndex = "0"
+          document.querySelector("#openModal #subs-email2").tabIndex = "0"
+          document.querySelector("#openModal #subs-mobile2").tabIndex = "0"
+          document.querySelector("#openModal #contact-submit").tabIndex = "0"
+          console.log(`#openModal`)
+          document
+            .querySelector(`#openModal input[name='dog_name']`)
+            .insertAdjacentHTML("afterend", `<span class="input_error_text">Please enter Your Dog’s name without spaces, numbers or special characters</span>`)
 
-      // first_name
-      if (inputValueName === null) {
-        document.querySelector(`${parent} input[name='first_name']`).classList.add("input_error")
-        document.querySelector(`${parent} .input_error_text`).style.display = "block"
-      } else {
-        document.querySelector(`${parent} input[name='first_name']`).classList.remove("input_error")
-        document.querySelector(`${parent} .input_error_text`).style.display = "none"
+          document
+            .querySelector(`#openModal input[name='first_name']`)
+            .insertAdjacentHTML("afterend", `<span class="input_error_text">Please enter Your name without spaces, numbers or special characters</span>`)
+
+          document.querySelector("#openModal #contact-submit").insertAdjacentHTML("beforebegin", textForWorkShop)
+
+          // create new element popup finalForm -> input name, email, number
+          document.querySelector("#openModal .row-md-12.style-of-row-free-workshop > div:first-child").insertAdjacentHTML("afterend", popup_third)
+
+          if (document.querySelector("#openModal form .form-group")) {
+            //   value btn main submit
+            document.querySelector("#openModal #contact-submit").value = "Get workshop link"
+
+            document.querySelector("#openModal #contact-submit").addEventListener("click", function () {
+              pushDataLayer("Get workshop link clicked #openModal")
+            })
+
+            //   create btn last continue
+            document.querySelector("#openModal form .form-group > div:last-child").insertAdjacentHTML("beforebegin", buttonInputName)
+          }
+
+          if (document.querySelector("#openModal .button_input_name")) {
+            document.querySelector("#openModal .button_input_name").addEventListener("click", () => {
+              validationForm("#openModal")
+            })
+          }
+
+          // click on button.close
+          if (document.querySelector("#openModal .popup_name button.close")) {
+            document.querySelector("#openModal .popup_name button.close").addEventListener("click", () => {
+              pushDataLayer("#openModal Step 3 closed")
+            })
+          }
+
+          if (document.querySelector("#openModal .popup_adress button.close")) {
+            document.querySelector("#openModal .popup_adress button.close").addEventListener("click", () => {
+              pushDataLayer("#openModal Step 4 closed")
+            })
+          }
+        }
+      }, 10)
+
+      // validate formu
+      function validationForm(parent) {
+        let inputValueName = document.querySelector(`${parent} input[name='first_name']`).value.match(/^[a-zA-Z]+$/)
+        let inputDogName = document.querySelector(`${parent} input[name='dog_name']`).value.match(/^[a-zA-Z]+$/)
+
+        // first_name
+        if (inputValueName === null) {
+          document.querySelector(`${parent} input[name='first_name']`).classList.add("input_error")
+          document.querySelector(`${parent} .input_error_text`).style.display = "block"
+        } else {
+          document.querySelector(`${parent} input[name='first_name']`).classList.remove("input_error")
+          document.querySelector(`${parent} .input_error_text`).style.display = "none"
+        }
+
+        // dog_name
+        if (inputDogName === null) {
+          document.querySelector(`${parent} input[name='dog_name']`).classList.add("input_error")
+          document.querySelector(`${parent} input[name='dog_name'] + .input_error_text`).style.display = "block"
+        } else {
+          document.querySelector(`${parent} input[name='dog_name']`).classList.remove("input_error")
+          document.querySelector(`${parent} input[name='dog_name'] + .input_error_text`).style.display = "none"
+        }
+
+        if (document.querySelector(`${parent} input.input_error`) === null && parent === `#openModal`) {
+          pushDataLayer(`Step 3 Continue ${parent}`)
+          document.querySelector("#openModal .button_input_name").style.display = "none"
+          document.querySelector("#openModal #subs-name2").style.display = "none"
+          document.querySelector("#openModal #dog-name2").style.display = "none"
+
+          document.querySelector("#openModal #subs-email2").style.display = "flex"
+          document.querySelector("#openModal #subs-mobile2").style.display = "flex"
+          document.querySelector("#openModal #contact-submit").style.display = "flex"
+
+          document.querySelector("#openModal .text_for_work_shop").style.display = "block"
+          document.querySelector("#openModal .benefits").style.display = "block"
+          document.querySelector("#openModal .popup_adress").style.display = "block"
+          document.querySelector("#openModal .popup_name").style.display = "none"
+        }
+
+        if (document.querySelector(`${parent} input.input_error`) === null && parent === `#firstModal`) {
+          pushDataLayer(`Step 3 Continue ${parent}`)
+          document.querySelector("#firstModal .button_input_name").style.display = "none"
+          document.querySelector("#firstModal #subs-name").style.display = "none"
+          document.querySelector("#firstModal #dog-name").style.display = "none"
+
+          document.querySelector("#firstModal #subs-email").style.display = "flex"
+          document.querySelector("#firstModal #subs-mobile").style.display = "flex"
+          document.querySelector("#firstModal #contact-submit").style.display = "flex"
+
+          document.querySelector("#firstModal .text_for_work_shop").style.display = "block"
+          document.querySelector("#firstModal .benefits").style.display = "block"
+          document.querySelector("#firstModal .popup_adress").style.display = "block"
+          document.querySelector("#firstModal .popup_name").style.display = "none"
+        }
       }
 
-      // dog_name
-      if (inputDogName === null) {
-        document.querySelector(`${parent} input[name='dog_name']`).classList.add("input_error")
-        document.querySelector(`${parent} input[name='dog_name'] + .input_error_text`).style.display = "block"
-      } else {
-        document.querySelector(`${parent} input[name='dog_name']`).classList.remove("input_error")
-        document.querySelector(`${parent} input[name='dog_name'] + .input_error_text`).style.display = "none"
-      }
-
-      if (document.querySelector(`${parent} input.input_error`) === null && parent === `#openModal`) {
-        pushDataLayer(`Step 3 Continue ${parent}`)
-        document.querySelector("#openModal .button_input_name").style.display = "none"
-        document.querySelector("#openModal #subs-name2").style.display = "none"
-        document.querySelector("#openModal #dog-name2").style.display = "none"
-
-        document.querySelector("#openModal #subs-email2").style.display = "flex"
-        document.querySelector("#openModal #subs-mobile2").style.display = "flex"
-        document.querySelector("#openModal #contact-submit").style.display = "flex"
-
-        document.querySelector("#openModal .text_for_work_shop").style.display = "block"
-        document.querySelector("#openModal .benefits").style.display = "block"
-        document.querySelector("#openModal .popup_adress").style.display = "block"
-        document.querySelector("#openModal .popup_name").style.display = "none"
-      }
-
-      if (document.querySelector(`${parent} input.input_error`) === null && parent === `#firstModal`) {
-        pushDataLayer(`Step 3 Continue ${parent}`)
-        document.querySelector("#firstModal .button_input_name").style.display = "none"
-        document.querySelector("#firstModal #subs-name").style.display = "none"
-        document.querySelector("#firstModal #dog-name").style.display = "none"
-
-        document.querySelector("#firstModal #subs-email").style.display = "flex"
-        document.querySelector("#firstModal #subs-mobile").style.display = "flex"
-        document.querySelector("#firstModal #contact-submit").style.display = "flex"
-
-        document.querySelector("#firstModal .text_for_work_shop").style.display = "block"
-        document.querySelector("#firstModal .benefits").style.display = "block"
-        document.querySelector("#firstModal .popup_adress").style.display = "block"
-        document.querySelector("#firstModal .popup_name").style.display = "none"
-      }
+      pushDataLayer("loaded")
+      clarity("set", "reg_popup_impr", "variant_1")
+      document.querySelector(".exp")?.remove()
     }
-
-    pushDataLayer("loaded")
-    clarity("set", "reg_popup_impr", "variant_1")
-    document.querySelector(".exp")?.remove()
-  }
-}, 10)
+  }, 10)
+}
