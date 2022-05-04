@@ -25,35 +25,119 @@ if (window.innerWidth <= 768) {
 
       let popupStyle = /*html */ `
     <style>
-    #firstModal .modal-content, #openModal .modal-content{
-      max-height: calc(100vh - 10px) !important;
-      height: 100% !important;
-    }
+    #firstModal .modal-content,
+#openModal .modal-content {
+  max-height: calc(100vh - 10px) !important;
+  height: 100% !important;
+}
 
-    .submission_form_old {
-      margin-top: 40px !important;
-    }
+.submission_form_old {
+  margin-top: 40px !important;
+}
 
-    #openModal .submission_form_old{
-      margin: 0 !important;
-    }
+#openModal .submission_form_old {
+  margin: 0 !important;
+}
 
-    .modal-body {
-      padding: 0 !important;
-    }
+.modal-body {
+  padding: 0 !important;
+}
 
-    .row {
-        margin-right: 0;
-        margin-left: 0;
-    }
+#openModal .row,
+#firstModal .row {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+form span.top-levels {
+  right: 150px !important;
+}
 
 
-    @media only screen and (max-width: 480px){
-    .modal.in .modal-dialog .popup-first-body {
-        width: 95% !important;
-        max-width: 95% !important;
-      }
-    }
+
+@media only screen and (max-width: 430px){
+  form span.top-levels#subs-email2-top-levels,
+  form span.top-levels#subs-mobile2-top-levels,
+  form span.top-levels#subs-email-top-levels,
+form span.top-levels#subs-mobile-top-levels{
+  right: 52px !important;
+}
+}
+
+@media only screen and (max-width: 393px){
+  form span.top-levels#subs-email2-top-levels,
+  form span.top-levels#subs-mobile2-top-levels,
+  form span.top-levels#subs-email-top-levels,
+form span.top-levels#subs-mobile-top-levels{
+  right: 37px !important;
+}
+}
+
+@media only screen and (max-width: 730px) {
+  form span.top-levels {
+    right: 130px !important;
+  }
+}
+
+@media only screen and (max-width: 675px) {
+  form span.top-levels {
+    right: 110px !important;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  form span.top-levels {
+    right: 96px !important;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  form span.top-levels {
+    right: 78px !important;
+  }
+}
+
+@media only screen and (max-width: 552px) {
+  form span.top-levels {
+    right: 62px !important;
+  }
+}
+
+@media only screen and (max-width: 494px) {
+  form span.top-levels {
+    right: 46px !important;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  form span.top-levels {
+    right: 74px !important;
+  }
+}
+@media only screen and (max-width: 430px) {
+  form span.top-levels {
+    right: 52px !important;
+  }
+}
+
+@media (max-width: 393px) {
+  form span.top-levels {
+    right: 45px !important;
+  }
+}
+
+@media (max-width: 320px) {
+  form span.top-levels {
+    right: 27px !important;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .modal.in .modal-dialog .popup-first-body {
+    width: 95% !important;
+    max-width: 95% !important;
+  }
+}
 
 .vis-ver-2_1.modal-header.modal-header-style.modal-of-header.style-border.modal-header1,
 .vis-ver-0_0.modal-header.modal-header-style.modal-of-header.style-border.modal-header1,
@@ -63,7 +147,7 @@ if (window.innerWidth <= 768) {
   display: none !important;
 }
 
-.border-of-modal .modal-header{
+.border-of-modal .modal-header {
   border: unset !important;
 }
 
@@ -383,7 +467,6 @@ form .form-group img,
   margin: 0 auto 16px !important;
 }
 
-span.top-levels,
 .fa {
   display: none !important;
 }
@@ -427,11 +510,11 @@ span.top-levels,
 
 .benefits ul {
   display: flex;
-    flex-direction: column;
-    padding: 0;
-    margin: 32px auto 40px;
-    gap: 14px;
-    max-width: 304px;
+  flex-direction: column;
+  padding: 0;
+  margin: 32px auto 40px;
+  gap: 14px;
+  max-width: 304px;
 }
 
 .benefits ul li {
@@ -439,7 +522,7 @@ span.top-levels,
   align-items: center;
 }
 
-.benefits ul li > svg{
+.benefits ul li > svg {
   width: 100%;
   max-width: 28px;
   height: 28px;
@@ -462,7 +545,7 @@ span.top-levels,
   justify-content: center;
 }
 
-.security_box > svg{
+.security_box > svg {
   width: 100%;
   max-width: 16px;
 }
@@ -550,27 +633,28 @@ form .text_for_work_shop {
   display: none;
 }
 
-#openModal .popup_third .body_popup{
-    padding: 40px 16px 56px;
+#openModal .popup_third .body_popup {
+  padding: 40px 16px 56px;
 }
 
-#openModal .popup_third .body_popup > h2{
-    margin: 0 auto !important;
+#openModal .popup_third .body_popup > h2 {
+  margin: 0 auto !important;
 }
 
-@media (max-width: 320px){
-  .header_popup > p{
+@media (max-width: 320px) {
+  .header_popup > p {
     font-size: 14px;
   }
 
-  .body_popup > h2{
+  .body_popup > h2 {
     font-size: 19px !important;
   }
 
-  .btn_wrapp > div a{
+  .btn_wrapp > div a {
     font-size: 15px;
   }
 }
+
     </style>
     `
 
@@ -686,7 +770,7 @@ form .text_for_work_shop {
           </button>
             </div>
             <div class="body_popup">
-                <p>The workshop will be conducted by Dr. Alexa Diaz PhD (one of the foremost service dog trainers in the U.S.) and Eric Presnall (host of the Animal Planet TV show "Who Let the Dogs Out").</p>
+                <p>The workshop will be conducted by Dr. Alexa Diaz, PhD (one of the foremost service dog trainers in the U.S.) and Eric Presnall (host of the Animal Planet TV show "Who Let the Dogs Out").</p>
                 <h2>Enter your email and mobile <br> number to access this <br> FREE online workshop now</h2>
             </div>
         </div>
@@ -799,6 +883,8 @@ form .text_for_work_shop {
         document.querySelector("#firstModal #subs-email").placeholder = "Enter your email"
         document.querySelector("#firstModal #subs-mobile").placeholder = "Enter your phone number"
         document.querySelector("#firstModal #contact-submit").textContent = "Get workshop link"
+        document.querySelector("#firstModal #dog-name-top-levels").textContent = "Dog’s name"
+        document.querySelector("#firstModal #subs-name-top-levels").textContent = "Your name"
         document.querySelector("#firstModal #subs-name").tabIndex = "0"
         document.querySelector("#firstModal #dog-name").tabIndex = "0"
         document.querySelector("#firstModal #subs-email").tabIndex = "0"
@@ -935,6 +1021,8 @@ form .text_for_work_shop {
           document.querySelector("#openModal #subs-email2").placeholder = "Enter your email"
           document.querySelector("#openModal #subs-mobile2").placeholder = "Enter your phone number"
           document.querySelector("#openModal #contact-submit").textContent = "Get workshop link"
+          document.querySelector("#openModal #dog-name2-top-levels").textContent = "Dog’s name"
+          document.querySelector("#openModal #subs-name2-top-levels").textContent = "Your name"
           document.querySelector("#openModal #subs-name2").tabIndex = "0"
           document.querySelector("#openModal #dog-name2").tabIndex = "0"
           document.querySelector("#openModal #subs-email2").tabIndex = "0"
@@ -1015,6 +1103,8 @@ form .text_for_work_shop {
           document.querySelector("#openModal .button_input_name").style.display = "none"
           document.querySelector("#openModal #subs-name2").style.display = "none"
           document.querySelector("#openModal #dog-name2").style.display = "none"
+          document.querySelector("#openModal #dog-name2-top-levels").style.display = "none"
+          document.querySelector("#openModal #subs-name2-top-levels").style.display = "none"
 
           document.querySelector("#openModal #subs-email2").style.display = "flex"
           document.querySelector("#openModal #subs-mobile2").style.display = "flex"
@@ -1031,6 +1121,8 @@ form .text_for_work_shop {
           document.querySelector("#firstModal .button_input_name").style.display = "none"
           document.querySelector("#firstModal #subs-name").style.display = "none"
           document.querySelector("#firstModal #dog-name").style.display = "none"
+          document.querySelector("#firstModal #dog-name-top-levels").style.display = "none"
+          document.querySelector("#firstModal #subs-name-top-levels").style.display = "none"
 
           document.querySelector("#firstModal #subs-email").style.display = "flex"
           document.querySelector("#firstModal #subs-mobile").style.display = "flex"

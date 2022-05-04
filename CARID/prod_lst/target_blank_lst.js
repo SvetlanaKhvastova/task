@@ -1,7 +1,6 @@
 let startfunk = setInterval(() => {
   if (document.querySelector(".main-content")) {
     clearInterval(startfunk)
-    console.log(`startfunk`)
 
     function pushDataLayer(actionDataLayer, labelDataLayer) {
       window.dataLayer = window.dataLayer || []
@@ -9,7 +8,7 @@ let startfunk = setInterval(() => {
         console.log(actionDataLayer + " : " + labelDataLayer)
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: `,
+          eventCategory: `Exp: PDP on new tab`,
           eventAction: `${actionDataLayer}`,
           eventLabel: `${labelDataLayer}`,
         })
@@ -17,59 +16,40 @@ let startfunk = setInterval(() => {
         console.log(actionDataLayer)
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: `,
+          eventCategory: `Exp: PDP on new tab`,
           eventAction: `${actionDataLayer}`,
         })
       }
     }
 
-    if (document.querySelector("#prod-list .prod_lst")) {
-      addTargetBlankLst()
-    }
-
-    if (document.querySelector("#prod-list .prod_grd")) {
+    if (document.querySelector("#prod-list .js-main-prod-list")) {
       addTargetBlankGrd()
     }
 
-    function addTargetBlankLst() {
-      console.log(`startfunkLst`)
-      document.querySelectorAll("#prod-list .prod_lst .lst_a").forEach(function (el) {
-        el.addEventListener("click", function (e) {
-          e.preventDefault()
-          e.stopPropagation()
-          console.log(`prod_lst`, this.href)
-
-          window.open(this.href, "_blank")
-        })
-      })
-    }
-
     function addTargetBlankGrd() {
-      console.log(`startfunkGrd`)
-      //   setTimeout(() => {
-      document.querySelectorAll(".prod_grd .lst_a").forEach(function (el) {
-        el.addEventListener("click", function (e) {
-          e.preventDefault()
-          e.stopPropagation()
-          console.log(`prod_grd`, this.href)
+      console.log(`#prod_grd`)
+      document.querySelectorAll(".js-main-prod-list .lst_a").forEach(function (el) {
+        if (!el.getAttribute("data-grd")) {
+          el.addEventListener("click", function (e) {
+            console.log(`data-grd`, !el.getAttribute("data-grd"))
+            e.preventDefault()
+            e.stopPropagation()
+            pushDataLayer("Click on view details button")
 
-          window.open(this.href, "_blank")
-        })
+            window.open(this.href, "_blank")
+            console.log(el)
+          })
+          el.setAttribute("data-grd", "prod_grd")
+        }
       })
-      //   }, 500)
     }
 
     // observer
     let observer = new MutationObserver(() => {
       if (document) {
         observer.disconnect()
-        console.log(`observer`)
 
-        if (document.querySelector(".prod_lst")) {
-          addTargetBlankLst()
-        }
-
-        if (document.querySelector(".prod_grd")) {
+        if (document.querySelector("#prod-list .js-main-prod-list")) {
           addTargetBlankGrd()
         }
 
@@ -84,5 +64,8 @@ let startfunk = setInterval(() => {
       childList: true,
       subtree: true,
     })
+
+    pushDataLayer("loaded")
+    clarity("set", "pdp_on_new_tab", "variant_1")
   }
 }, 10)
