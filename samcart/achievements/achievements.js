@@ -45,7 +45,7 @@ let startfunk = setInterval(() => {
 .achievements_block .btn_back {
   max-width: 100px;
   width: 100%;
-  height: 24px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -61,6 +61,13 @@ let startfunk = setInterval(() => {
   padding: 0;
   margin: 0 auto;
   cursor: pointer;
+  transition: all 250ms ease;
+}
+
+.achievements_block .btn_back:hover{
+    box-shadow: 2px 2px 6px 6px rgb(0 0 0 / 20%);
+    padding: 5px;
+    border-radius: 10px;
 }
 
 .achievements_block ul {
@@ -120,6 +127,10 @@ let startfunk = setInterval(() => {
   }
 }
 
+.radio-box:checked + label {
+    border: 2px solid #183B56;
+}
+
 .radio-box:checked + label .radio-style {
   border: 2px solid #183b56;
 }
@@ -147,52 +158,46 @@ let startfunk = setInterval(() => {
 
 .achievements_block .box_first {
   margin-top: 80px;
-position: fixed;
-opacity: 0;
-transition: all 2s;  
-left: 100%;
-  top: 0;
-pointer-events: unset;
 }
 
 .achievements_block .box_second{
   margin-top: 40px;
-position: fixed;
-opacity: 0;
-transition: all 2s;  
-left: 100%;
-  top: 0;
-pointer-events: unset;
-
 }
 
 .achievements_block .box_second > ul {
   margin: 40px auto 0;
 }
 
-.achievements_block .box_third {
-    position: fixed;
-opacity: 0;
-transition: all 2s;  
-left: 100%;
-  top: 0;
-pointer-events: unset;
+
+.achievements_block .box_first,
+.achievements_block .box_second,
+.achievements_block .box_third{
+    position: absolute;
+    opacity: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    pointer-events: unset;
+    visibility: hidden;
 }
+
 
 .achievements_block .box_first.show_var,
 .achievements_block .box_third.show_var,
 .achievements_block .box_second.show_var {  
  opacity: 1;  
- left: 0;
  position: static;
  visibility: unset;
- transition: all 1s;
+ transition: all 1s cubic-bezier(0.4, 0, 1, 1);;
 }
 
 .achievements_block .box_second.back,
 .achievements_block .box_third.back{
+    /*
 left: -100%;
 position: absolute;
+transition: all 2s ease;  
+*/
 }
 
 
@@ -218,7 +223,8 @@ position: absolute;
   margin: 0 0 40px;
 }
 
-.achievements_block .box_third > a:last-child {
+.achievements_block .box_third > a:last-child,
+.btn_next {
   font-family: "Gilroy", sans-serif;
   max-width: 220px;
   height: 60px;
@@ -238,11 +244,24 @@ position: absolute;
   border: none;
   cursor: pointer;
   text-decoration: unset;
+  transition: all 250ms ease;
+}
+
+.btn_next{
+    margin-top: 50px;
+}
+
+.btn_next.btn_next:hover{
+    box-shadow: 2px 2px 6px 6px rgba(0, 0, 0, 0.2);
 }
 
 .achievements_block .box_third > a:last-child > span {
   color: #ffffff;
   margin-left: 5px;
+}
+
+.achievements_block .box_third > a:last-child:hover{
+    box-shadow: 2px 2px 6px 6px rgba(0, 0, 0, 0.2);
 }
              
 </style>
@@ -252,9 +271,9 @@ position: absolute;
           <section class="achievements">
               <div class="container">
                   <div class="achievements_block">
-                      <h2>What do you want to achieve with Samcart?</h2>
+                      <h2>What do you want to achieve with SamCart?</h2>
             
-                  <div class="box_first show_var">
+                  <div class="box_first show_var" id="#box_first">
                     <ul>
                       <li>
                         <input type="radio" name="achievements" id="achievements1" class="radio-box" />
@@ -311,9 +330,11 @@ position: absolute;
                         </label>
                       </li>
                     </ul>
+
+                    <!-- <button class="btn_next">Next</button> -->
                   </div>
             
-                  <div class="box_second">
+                  <div class="box_second" id="#box_second">
                     <button class="btn_back">
                       <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -326,7 +347,7 @@ position: absolute;
                     <ul>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements7" class="radio-box" />
-                        <label for="achievements7">
+                        <label for="achievements7" data-count="1111">
                           <div>
                             <span class="radio-style"></span>
                             <span>Online courses</span>
@@ -335,7 +356,7 @@ position: absolute;
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements8" class="radio-box" />
-                        <label for="achievements8">
+                        <label for="achievements8" data-count="1457">
                           <div>
                             <span class="radio-style"></span>
                             <span>eBooks</span>
@@ -344,7 +365,7 @@ position: absolute;
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements9" class="radio-box" />
-                        <label for="achievements9">
+                        <label for="achievements9" data-count="1174">
                           <div>
                             <span class="radio-style"></span>
                             <span>Coaching</span>
@@ -353,7 +374,7 @@ position: absolute;
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements10" class="radio-box" />
-                        <label for="achievements10">
+                        <label for="achievements10" data-count="2274">
                           <div>
                             <span class="radio-style"></span>
                             <span>Consulting</span>
@@ -362,7 +383,7 @@ position: absolute;
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements11" class="radio-box" />
-                        <label for="achievements11">
+                        <label for="achievements11" data-count="1854">
                           <div>
                             <span class="radio-style"></span>
                             <span>Consumer goods</span>
@@ -371,7 +392,7 @@ position: absolute;
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements12" class="radio-box" />
-                        <label for="achievements12">
+                        <label for="achievements12" data-count="9655">
                           <div>
                             <span class="radio-style"></span>
                             <span>Craft products</span>
@@ -380,7 +401,7 @@ position: absolute;
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements13" class="radio-box" />
-                        <label for="achievements13">
+                        <label for="achievements13" data-count="8524">
                           <div>
                             <span class="radio-style"></span>
                             <span>Food</span>
@@ -389,7 +410,7 @@ position: absolute;
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements14" class="radio-box" />
-                        <label for="achievements14">
+                        <label for="achievements14" data-count="7412">
                           <div>
                             <span class="radio-style"></span>
                             <span>Electronics</span>
@@ -398,7 +419,7 @@ position: absolute;
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements15" class="radio-box" />
-                        <label for="achievements15">
+                        <label for="achievements15" data-count="4521">
                           <div>
                             <span class="radio-style"></span>
                             <span>Healthcare products</span>
@@ -407,7 +428,7 @@ position: absolute;
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements16" class="radio-box" />
-                        <label for="achievements16">
+                        <label for="achievements16" data-count="7453">
                           <div>
                             <span class="radio-style"></span>
                             <span>Other</span>
@@ -415,9 +436,21 @@ position: absolute;
                         </label>
                       </li>
                     </ul>
+
+                    <!-- <button class="btn_back">
+                      <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M16 7C16.5523 7 17 7.44772 17 8C17 8.55228 16.5523 9 16 9V7ZM0.292892 8.70711C-0.0976315 8.31658 -0.0976315 7.68342 0.292892 7.29289L6.65685 0.928932C7.04738 0.538408 7.68054 0.538408 8.07107 0.928932C8.46159 1.31946 8.46159 1.95262 8.07107 2.34315L2.41421 8L8.07107 13.6569C8.46159 14.0474 8.46159 14.6805 8.07107 15.0711C7.68054 15.4616 7.04738 15.4616 6.65685 15.0711L0.292892 8.70711ZM16 9H0.999999V7H16V9Z"
+                          fill="#5A7386"
+                        />
+                      </svg>
+                      Back
+                    </button> -->
+
+                     <!-- <button class="btn_next">Next</button> -->
                   </div>
             
-                  <div class="box_third">
+                  <div class="box_third" id="#box_third">
                     <button class="btn_back">
                       <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -429,7 +462,7 @@ position: absolute;
                     </button>
                     <h3>There are currently <span>4781</span> entrepreneurs successfully selling Online Courses using SamCart</h3>
                     <p>Create your sales page for free and start selling online courses today</p>
-                    <a href="https://www.samcart.com/pricing?type=annual">Try SamCart for <span>FREE</span></a>
+                    <a target="_blank" href="https://checkout.samcart.com/products/samcart-grow-yearly-trial">Try SamCart for <span>FREE</span></a>
                   </div>
                   </div>
               </div>
@@ -451,18 +484,23 @@ position: absolute;
         if (document.querySelector(".achievements_block .box_third").classList.contains("back")) {
           document.querySelector(".achievements_block .box_third").classList.remove("back")
         }
+
+        // onscroll(170, "#box_second")
       })
     })
 
     //   click on radiobatton box_second
     document.querySelectorAll(".achievements_block .box_second ul li label").forEach((el) => {
       el.addEventListener("click", function () {
+        document.querySelector(".achievements_block .box_third > h3 span").textContent = el.getAttribute("data-count")
         document.querySelector(".achievements_block .box_second").classList.remove("show_var")
         document.querySelector(".achievements_block > h2").style.display = "none"
         document.querySelector(".achievements_block .box_third").classList.add("show_var")
         if (document.querySelector(".achievements_block .box_third").classList.contains("back")) {
           document.querySelector(".achievements_block .box_third").classList.remove("back")
         }
+
+        // onscroll(130, "#box_third")
       })
     })
 
@@ -475,6 +513,7 @@ position: absolute;
         radio.checked = false
       }
       document.querySelector(".achievements_block .box_first").classList.add("show_var")
+      //   onscroll(210, "#box_first")
     })
 
     document.querySelector(".achievements_block .box_third .btn_back").addEventListener("click", function () {
@@ -482,9 +521,25 @@ position: absolute;
       document.querySelector(".achievements_block .box_third").classList.add("back")
       document.querySelector(".achievements_block .box_second").classList.add("show_var")
       document.querySelector(".achievements_block > h2").style.display = "block"
+      //   onscroll(170, "#box_second")
     })
 
     //   click on Try SamCart for FREE
-    document.querySelector(".achievements_block .box_third > a:last-child").addEventListener("click", function () {})
+    document.querySelector(".achievements_block .box_third > a:last-child").addEventListener("click", function (e) {
+      console.log(`Try SamCart for FREE`)
+    })
+
+    function onscroll(topOff, id) {
+      const scrollTarget = document.getElementById(id)
+
+      const topOffset = topOff + 80
+      const elementPosition = scrollTarget.getBoundingClientRect().top
+      const offsetPosition = elementPosition - topOffset
+
+      window.scrollBy({
+        top: offsetPosition,
+        behavior: "smooth",
+      })
+    }
   }
 }, 10)
