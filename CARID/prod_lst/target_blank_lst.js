@@ -22,24 +22,25 @@ let startfunk = setInterval(() => {
       }
     }
 
-    if (document.querySelector("#prod-list .js-main-prod-list")) {
-      addTargetBlankGrd()
-    }
+    addTargetBlankLst()
 
-    function addTargetBlankGrd() {
-      console.log(`#prod_grd`)
-      document.querySelectorAll(".js-main-prod-list .lst_a").forEach(function (el) {
-        if (!el.getAttribute("data-grd")) {
-          el.addEventListener("click", function (e) {
-            console.log(`data-grd`, !el.getAttribute("data-grd"))
-            e.preventDefault()
-            e.stopPropagation()
-            pushDataLayer("Click on view details button")
-
-            window.open(this.href, "_blank")
-            console.log(el)
+    function addTargetBlankLst() {
+      document.querySelectorAll(".js-main-prod-list li").forEach(function (el) {
+        if (!el.getAttribute("data-lst")) {
+          el.addEventListener("mouseenter", function () {
+            el.querySelectorAll(".lst_a").forEach((a) => {
+              if (!a.getAttribute("data-test")) {
+                a.addEventListener("click", function (e) {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  pushDataLayer("Click on view details button")
+                  window.open(a.href, "_blank")
+                })
+              }
+              a.setAttribute("data-test", "1")
+            })
           })
-          el.setAttribute("data-grd", "prod_grd")
+          el.setAttribute("data-lst", "1")
         }
       })
     }
@@ -49,9 +50,7 @@ let startfunk = setInterval(() => {
       if (document) {
         observer.disconnect()
 
-        if (document.querySelector("#prod-list .js-main-prod-list")) {
-          addTargetBlankGrd()
-        }
+        addTargetBlankLst()
 
         observer.observe(document, {
           childList: true,
