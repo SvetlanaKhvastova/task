@@ -6,55 +6,5 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body>
-    <a href="" target="_blank"></a>
-  </body>
-
-  <script>
-    let a = `
-    <style>
-    .link_target_blank  {
-        position: absolute;
-    /* bottom: 0; */
-    right: 0;
-    border: 1px solid #111;
-    border-radius: 4px;
-    box-sizing: border-box;
-    color: #111;
-    cursor: pointer;
-    /* display: none; */
-    font-size: 1.5em;
-    font-weight: 700;
-    line-height: 3.35;
-    /* position: absolute; */
-    /* right: 0; */
-    text-align: center;
-    text-decoration: none;
-    top: 96px;
-    white-space: nowrap;
-    width: 225px;
-      }
-      </style>
-    `
-
-    document.querySelectorAll(".prod_lst>li").forEach((el) => el.insertAdjacentHTML("beforeend", `<a class="link_target_blank" href="" target="_blank">VIEW DETAILS</a>`))
-    document.querySelectorAll(".prod_grd > li").forEach((el) => el.insertAdjacentHTML("beforeend", `<a class="link_target_blank" href="" target="_blank">VIEW DETAILS</a>`))
-    document.querySelectorAll(".prod_lst .link_target_blank").forEach((el) => {
-      el.addEventListener("click", function (e) {
-        this.href = this.closest("li").querySelector(".prod_lst .lst_a").href
-
-        console.log(this.closest("li").querySelector(".prod_lst .lst_a"))
-      })
-    })
-
-    document.querySelectorAll(".prod_grd .link_target_blank").forEach((el) => {
-      el.addEventListener("click", function (e) {
-        this.href = this.closest("li").querySelector(".prod_grd .lst_a").href
-
-        console.log(this.closest("li").querySelector(".prod_lst .lst_a"))
-      })
-    })
-
-    //
-  </script>
+  <body></body>
 </html>
