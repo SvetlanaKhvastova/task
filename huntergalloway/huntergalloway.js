@@ -8,6 +8,7 @@ function scrolling(upSelector) {
   links.forEach((link) => {
     link.addEventListener("click", function (event) {
       event.preventDefault()
+      console.log(link)
 
       let widthTop = document.documentElement.scrollTop,
         hash = this.hash,
@@ -16,6 +17,14 @@ function scrolling(upSelector) {
 
       if (window.innerWidth <= 768) {
         toBlock = document.querySelector(hash).getBoundingClientRect().top - 70
+      }
+
+      if (hash === "#guide_first") {
+        speed = 1.5
+      } else if (hash === "#guide_second" || hash === "#guide_third" || hash === "#guide_fourth") {
+        speed = 1.1
+      } else if (hash === "#guide_fifth" || hash === "#guide_sixth" || hash === "#guide_seventh" || hash === "#guide_eighth") {
+        speed = 0.4
       }
 
       requestAnimationFrame(step)
