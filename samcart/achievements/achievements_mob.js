@@ -1,45 +1,25 @@
-let startfunk = setInterval(() => {
-  if (document.querySelector(".block-3-photo")) {
-    clearInterval(startfunk)
+if (window.innerWidth <= 768) {
+  let startfunk = setInterval(() => {
+    if (document.querySelector(".block-3-photo")) {
+      clearInterval(startfunk)
 
-    let achievementsStyle = /*html */ `
+      let achievementsStyle = /*html */ `
 <style>
 
 .achievements {
-  margin-top: 150px;
-  position: relative;
-}
-
-.achievements::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 12px;
-  max-width: 383px;
-  height: 110px;
-  width: 100%;
-  background: url(https://conversionratestore.github.io/projects/samcart/img/background_achievements.png);
-  z-index: -1;
-  background-repeat: no-repeat;
-  background-size: auto;
-}
-
-.achievements_block {
-  padding-bottom: 80px;
-  border-bottom: 1px solid #e6eaf3;
-  margin: 0 auto 100px;
+  margin: 91px 0 140px;
 }
 
 .achievements_block > h2 {
-  font-family: "Inter", sans-serif;
-  font-weight: 900;
-  font-size: 48px;
-  line-height: 54px;
+  font-family: "Gilroy", sans-serif;
+  font-weight: 800;
+  font-size: 36px;
+  line-height: 125%;
   letter-spacing: -1px;
   color: #183b56;
   max-width: 745px;
-  margin: 0 auto;
-  text-align: center;
+  margin: 0;
+  text-align: left;
 }
 
 .achievements_block .btn_back {
@@ -59,7 +39,7 @@ let startfunk = setInterval(() => {
   text-transform: uppercase;
   color: #5a7386;
   padding: 0;
-  margin: 0 50px 0 0;
+  margin: 38px 0 0;
   cursor: pointer;
   transition: all 250ms ease;
 }
@@ -75,15 +55,14 @@ let startfunk = setInterval(() => {
   flex-wrap: wrap;
   align-items: center;
   text-align: center;
-  gap: 20px;
-  margin: 0 auto;
-  max-width: 900px;
+  gap:16px;
+  margin: 0;
   width: 100%;
   justify-content: space-between;
 }
 
 .achievements_block ul li {
-  width: 48%;
+  width: 100%;
 }
 
 .achievements_block ul li .radio-box {
@@ -100,18 +79,18 @@ let startfunk = setInterval(() => {
   height: 18px;
   border-radius: 50%;
   border: 2px solid #d3d8db;
-  margin-right: 20px;
+  margin-right: 15px;
   position: relative;
 }
 
 .achievements_block ul li label {
   background: #f7fafd;
+  border: 2px solid #f7fafd;
   border-radius: 7px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  height: 44px;
-  padding: 5px 5px 5px 20px;
+  padding: 10px 10px 10px 20px;
   font-family: "Inter", sans-serif;
   font-weight: 400;
   font-size: 16px;
@@ -119,12 +98,6 @@ let startfunk = setInterval(() => {
   color: #5a7386;
   cursor: pointer;
   text-align: left;
-}
-
-@media (max-width: 991.98px) {
-  .achievements_block ul li label {
-    font-size: 12px;
-  }
 }
 
 .radio-box:checked + label {
@@ -159,7 +132,7 @@ let startfunk = setInterval(() => {
 }
 
 .achievements_block .box_first {
-  margin-top: 80px;
+  margin-top: 40px;
 }
 
 .achievements_block .box_second{
@@ -193,26 +166,15 @@ let startfunk = setInterval(() => {
  transition: all 1s cubic-bezier(0.4, 0, 1, 1);;
 }
 
-.achievements_block .box_second.back,
-.achievements_block .box_third.back{
-    /*
-left: -100%;
-position: absolute;
-transition: all 2s ease;  
-*/
-}
-
-
-
 .achievements_block .box_third > h3 {
-  font-family: "Inter", sans-serif;
-  font-weight: 700;
+  font-family: "Gilroy", sans-serif;
+  font-weight: 800;
   font-size: 36px;
   line-height: 45px;
-  text-align: center;
+  text-align: left;
   color: #183b56;
-  max-width: 735px;
-  margin: 29px auto 20px;
+  margin: 0 0 20px;
+  letter-spacing: -1px;
 }
 
 .achievements_block .box_third > p {
@@ -221,11 +183,11 @@ transition: all 2s ease;
   font-size: 16px;
   line-height: 24px;
   color: #5a7386;
-  text-align: center;
+  text-align: left;
   margin: 0 0 40px;
 }
 
-.achievements_block .box_third >.btn_wrapp a:last-child,
+.achievements_block .box_third >.btn_wrapp a:first-child,
 .btn_next {
   font-family: "Gilroy", sans-serif;
   max-width: 220px;
@@ -239,7 +201,7 @@ transition: all 2s ease;
   border-radius: 10px;
   font-weight: 800;
   font-size: 16px;
-  line-height: 19px;
+  line-height: 20px;
   text-align: center;
   color: #FFFFFF;
   outline: none;
@@ -249,7 +211,7 @@ transition: all 2s ease;
   transition: all 250ms ease;
 }
 
-.achievements_block .box_third >.btn_wrapp a:last-child{
+.achievements_block .box_third >.btn_wrapp a:first-child{
   font-weight: 600;
 }
 
@@ -258,12 +220,12 @@ transition: all 2s ease;
     box-shadow: 2px 2px 6px 6px rgba(0, 0, 0, 0.2);
 }
 
-.achievements_block .box_third > .btn_wrapp a:last-child > span {
+.achievements_block .box_third > .btn_wrapp a:first-child > span {
   margin-left: 5px;
   font-weight: 800;
 }
 
-.achievements_block .box_third > .btn_wrapp a:last-child:hover{
+.achievements_block .box_third > .btn_wrapp a:first-child:hover{
     box-shadow: 2px 2px 6px 6px rgba(0, 0, 0, 0.2);
 }
 
@@ -271,17 +233,24 @@ transition: all 2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
+  flex-direction: column;
+  margin-top: 40px;
 }
 
 .achievements_block .box_third > h3 span:not(.var_text){
   color: #3096ea;
 }
+
+@media (max-width: 320px) {
+  .achievements_block .box_third > h3{
+    font-size: 30px;
+  }
+}
              
 </style>
 `
 
-    let achievements = /*html */ `
+      let achievements = /*html */ `
           <section class="achievements">
               <div class="container">
                   <div class="achievements_block">
@@ -454,7 +423,9 @@ transition: all 2s ease;
                       </li>
                     </ul>
 
-                    <div class="btn_wrapp">
+                    <div class="btn_wrapp">                      
+                      <a href="#box_third" class="btn_next">Next</a>
+
                       <a href="#box_first" class="btn_back">
                         <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path
@@ -464,16 +435,16 @@ transition: all 2s ease;
                         </svg>
                         Back
                       </a>
-  
-                       <a href="#box_third" class="btn_next">Next</a>
                     </div>
                   </div>
             
                   <div class="box_third" id="box_third">
-                    <h3>There are currently <span>11955</span> entrepreneurs from the <span class="var_text">Self-help and Motivation</span> niche that are successfully using SamCart</h3>
+                     <h3>There are currently <span>11955</span> entrepreneurs from the <span class="var_text">Self-help and Motivation</span> niche that are successfully using SamCart</h3>
                     <p>Create your sales page for free and start selling online courses today</p>
-
+                    
+                    
                     <div class="btn_wrapp">
+                      <a target="_blank" href="https://checkout.samcart.com/products/samcart-grow-yearly-trial">Try SamCart for <span>FREE</span></a>
                       <a href="#box_second" class="btn_back">
                         <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path
@@ -483,8 +454,6 @@ transition: all 2s ease;
                         </svg>
                         Back
                       </a>
-  
-                       <a target="_blank" href="https://checkout.samcart.com/products/samcart-grow-yearly-trial">Try SamCart for <span>FREE</span></a>
                     </div>
                   </div>
                   </div>
@@ -493,77 +462,151 @@ transition: all 2s ease;
           
           `
 
-    document.head.insertAdjacentHTML("beforeend", achievementsStyle)
-    document.querySelector(".block-3-photo").insertAdjacentHTML("afterend", achievements)
+      document.head.insertAdjacentHTML("beforeend", achievementsStyle)
+      document.querySelector(".block-3-photo").insertAdjacentHTML("afterend", achievements)
 
-    // click on btn NEXT box_first
-    document.querySelector(".achievements_block .box_first .btn_wrapp .btn_next").addEventListener("click", function (e) {
-      e.preventDefault()
-      document.querySelector(".achievements_block .box_first").classList.remove("show_var")
-      document.querySelector(".achievements_block .box_second").classList.add("show_var")
-      document.querySelector(".achievements_block > h2").textContent = "Which of the following best describes your niche?"
-      if (document.querySelector(".achievements_block .box_second").classList.contains("back")) {
-        document.querySelector(".achievements_block .box_second").classList.remove("back")
-      }
-      if (document.querySelector(".achievements_block .box_third").classList.contains("back")) {
-        document.querySelector(".achievements_block .box_third").classList.remove("back")
-      }
-    })
-
-    document.querySelectorAll(".achievements_block .box_second ul li label").forEach((el) => {
-      el.addEventListener("click", function () {
-        if (el.querySelector("div > span:last-child").textContent === "Other") {
-          document.querySelector(".achievements_block .box_third > h3").innerHTML = `          
+      // click on btn NEXT box_first
+      // document.querySelector(".achievements_block .box_first .btn_wrapp .btn_next").addEventListener("click", function (e) {
+      //   e.preventDefault()
+      //   document.querySelector(".achievements_block .box_first").classList.remove("show_var")
+      //   document.querySelector(".achievements_block .box_second").classList.add("show_var")
+      //   if (document.querySelector(".achievements_block .box_second").classList.contains("back")) {
+      //     document.querySelector(".achievements_block .box_second").classList.remove("back")
+      //   }
+      //   if (document.querySelector(".achievements_block .box_third").classList.contains("back")) {
+      //     document.querySelector(".achievements_block .box_third").classList.remove("back")
+      //   }
+      // })
+      document.querySelectorAll(".achievements_block .box_second ul li label").forEach((el) => {
+        el.addEventListener("click", function () {
+          if (el.querySelector("div > span:last-child").textContent === "Other") {
+            document.querySelector(".achievements_block .box_third > h3").innerHTML = `          
           <h3>There are currently more than <span>11955</span> entrepreneurs from a <span class="var_text">vast variety</span> of niches that are successfully using SamCart</h3>
           `
-        } else {
-          document.querySelector(".achievements_block .box_third > h3").innerHTML = `          
+          } else {
+            document.querySelector(".achievements_block .box_third > h3").innerHTML = `          
           <h3>There are currently <span>11955</span> entrepreneurs from the <span class="var_text">Self-help and Motivation</span> niche that are successfully using SamCart</h3>
           `
-        }
+          }
 
-        document.querySelector(".achievements_block .box_third > h3 span:not(.var_text)").textContent = el.getAttribute("data-count")
-        document.querySelector(".achievements_block .box_third > h3 span.var_text").textContent = el.querySelector("div > span:last-child").textContent
+          document.querySelector(".achievements_block .box_third > h3 span:not(.var_text)").textContent = el.getAttribute("data-count")
+          document.querySelector(".achievements_block .box_third > h3 span.var_text").textContent = el.querySelector("div > span:last-child").textContent
 
-        if (el.querySelector("div > span:last-child").textContent === "Other") {
-          document.querySelector(".achievements_block .box_third > h3 span.var_text").textContent = "vast variety"
-        }
+          if (el.querySelector("div > span:last-child").textContent === "Other") {
+            document.querySelector(".achievements_block .box_third > h3 span.var_text").textContent = "vast variety"
+          }
+        })
       })
-    })
 
-    // click on btn NEXT box_second
-    document.querySelector(".achievements_block .box_second .btn_wrapp .btn_next").addEventListener("click", function (e) {
-      e.preventDefault()
+      // click on btn NEXT box_second
+      // document.querySelector(".achievements_block .box_second .btn_wrapp .btn_next").addEventListener("click", function (e) {
+      //   e.preventDefault()
 
-      document.querySelector(".achievements_block .box_second").classList.remove("show_var")
-      document.querySelector(".achievements_block > h2").style.display = "none"
-      document.querySelector(".achievements_block .box_third").classList.add("show_var")
-      if (document.querySelector(".achievements_block .box_third").classList.contains("back")) {
-        document.querySelector(".achievements_block .box_third").classList.remove("back")
+      //   document.querySelector(".achievements_block .box_second").classList.remove("show_var")
+      //   document.querySelector(".achievements_block > h2").style.display = "none"
+      //   document.querySelector(".achievements_block .box_third").classList.add("show_var")
+      //   if (document.querySelector(".achievements_block .box_third").classList.contains("back")) {
+      //     document.querySelector(".achievements_block .box_third").classList.remove("back")
+      //   }
+      // })
+
+      //   click on btn Back box_second
+      // document.querySelector(".achievements_block .box_second .btn_back").addEventListener("click", function (e) {
+      //   e.preventDefault()
+      //   document.querySelector(".achievements_block .box_second").classList.remove("show_var")
+      //   document.querySelector(".achievements_block .box_second").classList.add("back")
+      //   document.querySelector(".achievements_block .box_first").classList.add("show_var")
+      // })
+
+      //   click on btn Back box_third
+      // document.querySelector(".achievements_block .box_third .btn_back").addEventListener("click", function (e) {
+      //   e.preventDefault()
+      //   document.querySelector(".achievements_block .box_third").classList.remove("show_var")
+      //   document.querySelector(".achievements_block .box_third").classList.add("back")
+      //   document.querySelector(".achievements_block .box_second").classList.add("show_var")
+      //   document.querySelector(".achievements_block > h2").style.display = "block"
+      // })
+
+      //   click on Try SamCart for FREE
+      document.querySelector(".achievements_block .box_third > .btn_wrapp a:first-child").addEventListener("click", function (e) {
+        console.log(`Try SamCart for FREE`)
+      })
+
+      scrolling(".achievements_block .box_first .btn_wrapp .btn_next", 300)
+      scrolling(".achievements_block .box_second .btn_wrapp .btn_next", 150)
+      scrolling(".achievements_block .box_second .btn_back", 250)
+      scrolling(".achievements_block .box_third .btn_back", 300)
+
+      // js scrolling
+      function scrolling(upSelector, upWidth) {
+        let links = document.querySelectorAll(upSelector),
+          speed = 1.2
+
+        links.forEach((link) => {
+          link.addEventListener("click", function (event) {
+            event.preventDefault()
+
+            if (upSelector === ".achievements_block .box_first .btn_wrapp .btn_next") {
+              document.querySelector(".achievements_block .box_first").classList.remove("show_var")
+              document.querySelector(".achievements_block .box_second").classList.add("show_var")
+              document.querySelector(".achievements_block > h2").textContent = "Which of the following best describes your niche?"
+              if (document.querySelector(".achievements_block .box_second").classList.contains("back")) {
+                document.querySelector(".achievements_block .box_second").classList.remove("back")
+              }
+              if (document.querySelector(".achievements_block .box_third").classList.contains("back")) {
+                document.querySelector(".achievements_block .box_third").classList.remove("back")
+              }
+            }
+
+            if (upSelector === ".achievements_block .box_second .btn_wrapp .btn_next") {
+              document.querySelector(".achievements_block .box_second").classList.remove("show_var")
+              document.querySelector(".achievements_block > h2").style.display = "none"
+              document.querySelector(".achievements_block .box_third").classList.add("show_var")
+              if (document.querySelector(".achievements_block .box_third").classList.contains("back")) {
+                document.querySelector(".achievements_block .box_third").classList.remove("back")
+              }
+            }
+
+            if (upSelector === ".achievements_block .box_second .btn_back") {
+              document.querySelector(".achievements_block .box_second").classList.remove("show_var")
+              document.querySelector(".achievements_block .box_second").classList.add("back")
+              document.querySelector(".achievements_block .box_first").classList.add("show_var")
+              document.querySelector(".achievements_block > h2").textContent = "What do you want to achieve with SamCart?"
+            }
+
+            if (upSelector === ".achievements_block .box_third .btn_back") {
+              document.querySelector(".achievements_block .box_third").classList.remove("show_var")
+              document.querySelector(".achievements_block .box_third").classList.add("back")
+              document.querySelector(".achievements_block .box_second").classList.add("show_var")
+              document.querySelector(".achievements_block > h2").style.display = "block"
+            }
+
+            let widthTop = document.documentElement.scrollTop,
+              hash = this.hash,
+              toBlock = document.querySelector(hash).getBoundingClientRect().top - upWidth,
+              start = null
+
+            requestAnimationFrame(step)
+
+            function step(time) {
+              if (start === null) {
+                start = time
+              }
+
+              let progress = time - start,
+                r = toBlock < 0 ? Math.max(widthTop - progress / speed, widthTop + toBlock) : Math.min(widthTop + progress / speed, widthTop + toBlock)
+
+              document.documentElement.scrollTo(0, r)
+
+              if (r != widthTop + toBlock) {
+                requestAnimationFrame(step)
+              } else {
+              }
+              location.hash = hash
+            }
+          })
+        })
       }
-    })
-
-    //   click on btn Back box_second
-    document.querySelector(".achievements_block .box_second .btn_back").addEventListener("click", function (e) {
-      e.preventDefault()
-      document.querySelector(".achievements_block .box_second").classList.remove("show_var")
-      document.querySelector(".achievements_block .box_second").classList.add("back")
-      document.querySelector(".achievements_block .box_first").classList.add("show_var")
-      document.querySelector(".achievements_block > h2").textContent = "What do you want to achieve with SamCart?"
-    })
-
-    //   click on btn Back box_third
-    document.querySelector(".achievements_block .box_third .btn_back").addEventListener("click", function (e) {
-      e.preventDefault()
-      document.querySelector(".achievements_block .box_third").classList.remove("show_var")
-      document.querySelector(".achievements_block .box_third").classList.add("back")
-      document.querySelector(".achievements_block .box_second").classList.add("show_var")
-      document.querySelector(".achievements_block > h2").style.display = "block"
-    })
-
-    //   click on Try SamCart for FREE
-    document.querySelector(".achievements_block .box_third > .btn_wrapp a:last-child").addEventListener("click", function (e) {
-      console.log(`Try SamCart for FREE`)
-    })
-  }
-}, 10)
+    }
+  }, 10)
+}

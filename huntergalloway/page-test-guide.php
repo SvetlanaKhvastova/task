@@ -487,9 +487,9 @@ section.guide_box {
   content: "";
   position: absolute;
   top: 0;
-  left: -22px;
+  left: 0;
   width: 100%;
-  height: 100%;
+  height: 85%;
   background: url("<?php echo get_template_directory_uri(); ?>/images/guide/guide_box_line.svg");
   background-repeat: no-repeat;
   z-index: 2;
@@ -512,7 +512,7 @@ section.guide_box {
 
 .third_block > ol > li:nth-child(4) {
   max-width: 1030px;
-  margin: 0 auto 0 0;
+  margin: 0 auto 0 30px;
 }
 
 .third_block > ol > li:nth-child(5) {
@@ -522,7 +522,7 @@ section.guide_box {
 
 .third_block > ol > li:nth-child(6) {
   max-width: 1240px;
-  margin: 0 0 0 auto;
+  margin: 0 0 0 60px;
 }
 
 .third_block > ol > li:nth-child(7) {
@@ -551,27 +551,27 @@ section.guide_box {
 }
 
 .third_block > ol > li:nth-child(4):before {
-  left: 15px;
+  left: 28px;
   top: -50px;
 }
 
 .third_block > ol > li:nth-child(5):before {
-  left: -55px;
+  left: -15px;
   top: -40px;
 }
 
 .third_block > ol > li:nth-child(6):before {
-  left: 15px;
+  left: 35px;
   top: -50px;
 }
 
 .third_block > ol > li:nth-child(7):before {
-  left: -55px;
-  top: -40px;
+  left: -82px;
+  top: -15px;
 }
 
 .third_block > ol > li:nth-child(8):before {
-  left: 0;
+  left: -70px;
   top: -60px;
 }
 
@@ -582,6 +582,8 @@ section.guide_box {
   color: #000000;
   margin: 0;
   padding: 0;
+  position: relative;
+  z-index: 5;
 }
 
 .third_block > ol > li p {
@@ -650,7 +652,6 @@ section.guide_box {
 
 .third_block > ol > li:nth-child(1) > div .img_wrap {
   max-width: 370px;
-  max-height: 385px;
   width: 53%;
 }
 
@@ -682,7 +683,6 @@ section.guide_box {
 
 .third_block > ol > li:nth-child(3) > div .img_wrap {
   max-width: 431px;
-  max-height: 317px;
   width: 53%;
 }
 
@@ -692,7 +692,6 @@ section.guide_box {
 
 .third_block > ol > li:nth-child(5) > div .img_wrap {
   max-width: 312px;
-  max-height: 326px;
   width: 45%;
 }
 
@@ -703,8 +702,7 @@ section.guide_box {
 .third_block > ol > li:nth-child(6) > div .img_wrap {
   order: 2;
   margin: 0 0 0 30px;
-  max-width: 465px;
-  max-height: 380px;
+  max-width: 416px;
   width: 45%;
 }
 
