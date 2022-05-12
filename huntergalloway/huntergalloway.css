@@ -347,7 +347,7 @@ section.guide_box {
   line-height: 150%;
   color: #444444;
   margin: 0;
-  text-decoration: underline dotted;
+  text-decoration: underline;
 }
 
 .third_block > ol > li a.link_more_articles {

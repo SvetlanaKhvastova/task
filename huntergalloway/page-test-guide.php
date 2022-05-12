@@ -603,7 +603,7 @@ section.guide_box {
   line-height: 150%;
   color: #444444;
   margin: 0;
-  text-decoration: underline dotted;
+  text-decoration: underline;
   position: relative;
   z-index: 5;
 }
@@ -1257,7 +1257,6 @@ section.guide_box {
                     <a target="_blank" href="/buying-a-house-with-inheritance/">How to use inheritance as a deposit</a>
                   </li>
                 </ul>
-                <a target="_blank" href="#" class="link_more_articles">More Articles</a>
               </div>
             </div>
           </li>
@@ -1281,7 +1280,6 @@ section.guide_box {
                     <a target="_blank" href="/first-home-super-saver-scheme/">First Home Super Saver Scheme</a>
                   </li>
                 </ul>
-                <a target="_blank" href="#" class="link_more_articles">More Articles</a>
               </div>
             </div>
           </li>
@@ -1308,7 +1306,6 @@ section.guide_box {
                     <a target="_blank" href="/best-suburbs-in-brisbane/">Best suburbs in Brisbane</a>
                   </li>
                 </ul>
-                <a target="_blank" href="#" class="link_more_articles">More Articles</a>
               </div>
             </div>
           </li>
@@ -1355,7 +1352,6 @@ section.guide_box {
                     <a target="_blank" href="/first-home-buyer-stamp-duty/"> First home buyer stamp duty</a>
                   </li>
                 </ul>
-                <a target="_blank" href="#" class="link_more_articles">More Articles</a>
               </div>
             </div>
           </li>
@@ -1385,7 +1381,6 @@ section.guide_box {
                     <a target="_blank" href="/offset-account/">What is an offset account?</a>
                   </li>
                 </ul>
-                <a target="_blank" href="#" class="link_more_articles">More Articles</a>
               </div>
             </div>
           </li>
@@ -1420,7 +1415,6 @@ section.guide_box {
                     <a target="_blank" href="/positive-credit-reporting-what-it-mean-for-home-loans/"> Positive credit reporting: What does it mean for home loans?</a>
                   </li>
                 </ul>
-                <a target="_blank" href="#" class="link_more_articles">More Articles</a>
               </div>
             </div>
           </li>
@@ -1441,7 +1435,6 @@ section.guide_box {
                   <li><a target="_blank" href="/home-loans-for-doctors/">Home loans for doctors</a></li>
                   <li><a target="_blank" href="/maternity-leave-home-loan/">Maternity leave home loan</a></li>
                 </ul>
-                <a target="_blank" href="#" class="link_more_articles">More Articles</a>
               </div>
             </div>
           </li>
@@ -1465,7 +1458,6 @@ section.guide_box {
                   <li><a target="_blank" href="/bank-of-qld-home-loan-review/">Bank of Queensland home loan review</a></li>
                   <li><a target="_blank" href="/virgin-money-home-loans/">Virgin Money home loans</a></li>
                 </ul>
-                <a target="_blank" href="#" class="link_more_articles">More Articles</a>
                 <div class="img_wrap">
                   <img src="<?php echo get_template_directory_uri(); ?>/images/guide/guide_box_photo6.jpg" alt="partners" />
                 </div>
@@ -1755,7 +1747,7 @@ function scrolling(upSelector) {
       }
 
       if (hash === "#guide_first") {
-        speed = 1.5
+        speed = 1.7
       } else if (hash === "#guide_second" || hash === "#guide_third" || hash === "#guide_fourth") {
         speed = 1.1
       } else if (hash === "#guide_fifth" || hash === "#guide_sixth" || hash === "#guide_seventh" || hash === "#guide_eighth") {
@@ -1785,9 +1777,7 @@ function scrolling(upSelector) {
   })
 }
 
-if (window.innerWidth <= 768) {
-  document.querySelector(".third_block > ol > li:nth-child(8) > div .img_wrap").after(document.querySelector(".third_block > ol > li:nth-child(8) a.link_more_articles"))
-}
+
 
 </script>
 

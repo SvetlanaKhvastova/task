@@ -59,7 +59,7 @@ let startfunk = setInterval(() => {
   text-transform: uppercase;
   color: #5a7386;
   padding: 0;
-  margin: 0 auto;
+  margin: 0 50px 0 0;
   cursor: pointer;
   transition: all 250ms ease;
 }
@@ -223,13 +223,13 @@ transition: all 2s ease;
   margin: 0 0 40px;
 }
 
-.achievements_block .box_third > a:last-child,
+.achievements_block .box_third >.btn_wrapp a:last-child,
 .btn_next {
   font-family: "Gilroy", sans-serif;
   max-width: 220px;
   height: 60px;
   width: 100%;
-  margin: 0 auto;
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -247,21 +247,25 @@ transition: all 2s ease;
   transition: all 250ms ease;
 }
 
-.btn_next{
-    margin-top: 50px;
-}
 
 .btn_next.btn_next:hover{
     box-shadow: 2px 2px 6px 6px rgba(0, 0, 0, 0.2);
 }
 
-.achievements_block .box_third > a:last-child > span {
+.achievements_block .box_third > .btn_wrapp a:last-child > span {
   color: #ffffff;
   margin-left: 5px;
 }
 
-.achievements_block .box_third > a:last-child:hover{
+.achievements_block .box_third > .btn_wrapp a:last-child:hover{
     box-shadow: 2px 2px 6px 6px rgba(0, 0, 0, 0.2);
+}
+
+.btn_wrapp{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
 }
              
 </style>
@@ -276,7 +280,7 @@ transition: all 2s ease;
                   <div class="box_first show_var" id="#box_first">
                     <ul>
                       <li>
-                        <input type="radio" name="achievements" id="achievements1" class="radio-box" />
+                        <input checked type="radio" name="achievements" id="achievements1" class="radio-box" />
                         <label for="achievements1">
                           <div>
                             <span class="radio-style"></span>
@@ -330,23 +334,17 @@ transition: all 2s ease;
                         </label>
                       </li>
                     </ul>
+                    
+                    <div class="btn_wrapp">
+                      <button class="btn_next">Next</button>
+                    </div>
 
-                    <!-- <button class="btn_next">Next</button> -->
                   </div>
             
                   <div class="box_second" id="#box_second">
-                    <button class="btn_back">
-                      <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M16 7C16.5523 7 17 7.44772 17 8C17 8.55228 16.5523 9 16 9V7ZM0.292892 8.70711C-0.0976315 8.31658 -0.0976315 7.68342 0.292892 7.29289L6.65685 0.928932C7.04738 0.538408 7.68054 0.538408 8.07107 0.928932C8.46159 1.31946 8.46159 1.95262 8.07107 2.34315L2.41421 8L8.07107 13.6569C8.46159 14.0474 8.46159 14.6805 8.07107 15.0711C7.68054 15.4616 7.04738 15.4616 6.65685 15.0711L0.292892 8.70711ZM16 9H0.999999V7H16V9Z"
-                          fill="#5A7386"
-                        />
-                      </svg>
-                      Back
-                    </button>
                     <ul>
                       <li>
-                        <input type="radio" name="achievementsSecond" id="achievements7" class="radio-box" />
+                        <input checked type="radio" name="achievementsSecond" id="achievements7" class="radio-box" />
                         <label for="achievements7" data-count="1111">
                           <div>
                             <span class="radio-style"></span>
@@ -437,32 +435,38 @@ transition: all 2s ease;
                       </li>
                     </ul>
 
-                    <!-- <button class="btn_back">
-                      <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M16 7C16.5523 7 17 7.44772 17 8C17 8.55228 16.5523 9 16 9V7ZM0.292892 8.70711C-0.0976315 8.31658 -0.0976315 7.68342 0.292892 7.29289L6.65685 0.928932C7.04738 0.538408 7.68054 0.538408 8.07107 0.928932C8.46159 1.31946 8.46159 1.95262 8.07107 2.34315L2.41421 8L8.07107 13.6569C8.46159 14.0474 8.46159 14.6805 8.07107 15.0711C7.68054 15.4616 7.04738 15.4616 6.65685 15.0711L0.292892 8.70711ZM16 9H0.999999V7H16V9Z"
-                          fill="#5A7386"
-                        />
-                      </svg>
-                      Back
-                    </button> -->
-
-                     <!-- <button class="btn_next">Next</button> -->
+                    <div class="btn_wrapp">
+                      <a href="#" class="btn_back">
+                        <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M16 7C16.5523 7 17 7.44772 17 8C17 8.55228 16.5523 9 16 9V7ZM0.292892 8.70711C-0.0976315 8.31658 -0.0976315 7.68342 0.292892 7.29289L6.65685 0.928932C7.04738 0.538408 7.68054 0.538408 8.07107 0.928932C8.46159 1.31946 8.46159 1.95262 8.07107 2.34315L2.41421 8L8.07107 13.6569C8.46159 14.0474 8.46159 14.6805 8.07107 15.0711C7.68054 15.4616 7.04738 15.4616 6.65685 15.0711L0.292892 8.70711ZM16 9H0.999999V7H16V9Z"
+                            fill="#5A7386"
+                          />
+                        </svg>
+                        Back
+                      </a>
+  
+                       <a href="#" class="btn_next">Next</a>
+                    </div>
                   </div>
             
                   <div class="box_third" id="#box_third">
-                    <button class="btn_back">
-                      <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M16 7C16.5523 7 17 7.44772 17 8C17 8.55228 16.5523 9 16 9V7ZM0.292892 8.70711C-0.0976315 8.31658 -0.0976315 7.68342 0.292892 7.29289L6.65685 0.928932C7.04738 0.538408 7.68054 0.538408 8.07107 0.928932C8.46159 1.31946 8.46159 1.95262 8.07107 2.34315L2.41421 8L8.07107 13.6569C8.46159 14.0474 8.46159 14.6805 8.07107 15.0711C7.68054 15.4616 7.04738 15.4616 6.65685 15.0711L0.292892 8.70711ZM16 9H0.999999V7H16V9Z"
-                          fill="#5A7386"
-                        />
-                      </svg>
-                      Back
-                    </button>
                     <h3>There are currently <span>4781</span> entrepreneurs successfully selling Online Courses using SamCart</h3>
                     <p>Create your sales page for free and start selling online courses today</p>
-                    <a target="_blank" href="https://checkout.samcart.com/products/samcart-grow-yearly-trial">Try SamCart for <span>FREE</span></a>
+
+                    <div class="btn_wrapp">
+                      <a href="#" class="btn_back">
+                        <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M16 7C16.5523 7 17 7.44772 17 8C17 8.55228 16.5523 9 16 9V7ZM0.292892 8.70711C-0.0976315 8.31658 -0.0976315 7.68342 0.292892 7.29289L6.65685 0.928932C7.04738 0.538408 7.68054 0.538408 8.07107 0.928932C8.46159 1.31946 8.46159 1.95262 8.07107 2.34315L2.41421 8L8.07107 13.6569C8.46159 14.0474 8.46159 14.6805 8.07107 15.0711C7.68054 15.4616 7.04738 15.4616 6.65685 15.0711L0.292892 8.70711ZM16 9H0.999999V7H16V9Z"
+                            fill="#5A7386"
+                          />
+                        </svg>
+                        Back
+                      </a>
+  
+                       <a target="_blank" href="https://checkout.samcart.com/products/samcart-grow-yearly-trial">Try SamCart for <span>FREE</span></a>
+                    </div>
                   </div>
                   </div>
               </div>
@@ -490,33 +494,48 @@ transition: all 2s ease;
     })
 
     //   click on radiobatton box_second
-    document.querySelectorAll(".achievements_block .box_second ul li label").forEach((el) => {
-      el.addEventListener("click", function () {
-        document.querySelector(".achievements_block .box_third > h3 span").textContent = el.getAttribute("data-count")
-        document.querySelector(".achievements_block .box_second").classList.remove("show_var")
-        document.querySelector(".achievements_block > h2").style.display = "none"
-        document.querySelector(".achievements_block .box_third").classList.add("show_var")
-        if (document.querySelector(".achievements_block .box_third").classList.contains("back")) {
-          document.querySelector(".achievements_block .box_third").classList.remove("back")
-        }
+    // document.querySelectorAll(".achievements_block .box_second ul li label").forEach((el) => {
+    //   el.addEventListener("click", function () {
+    //     document.querySelector(".achievements_block .box_third > h3 span").textContent = el.getAttribute("data-count")
+    //     document.querySelector(".achievements_block .box_second").classList.remove("show_var")
+    //     document.querySelector(".achievements_block > h2").style.display = "none"
+    //     document.querySelector(".achievements_block .box_third").classList.add("show_var")
+    //     if (document.querySelector(".achievements_block .box_third").classList.contains("back")) {
+    //       document.querySelector(".achievements_block .box_third").classList.remove("back")
+    //     }
 
-        // onscroll(130, "#box_third")
+    //     // onscroll(130, "#box_third")
+    //   })
+    // })
+
+    // click on NEXT
+    document.querySelector(".achievements_block .box_second .btn_wrapp .btn_next").addEventListener("click", function (e) {
+      e.preventDefault()
+      document.querySelectorAll(".achievements_block .box_second ul li label").forEach((el) => {
+        document.querySelector(".achievements_block .box_third > h3 span").textContent = el.getAttribute("data-count")
       })
+
+      document.querySelector(".achievements_block .box_second").classList.remove("show_var")
+      document.querySelector(".achievements_block > h2").style.display = "none"
+      document.querySelector(".achievements_block .box_third").classList.add("show_var")
+      if (document.querySelector(".achievements_block .box_third").classList.contains("back")) {
+        document.querySelector(".achievements_block .box_third").classList.remove("back")
+      }
+
+      // onscroll(130, "#box_third")
     })
 
     //   click on btn Back
-    document.querySelector(".achievements_block .box_second .btn_back").addEventListener("click", function () {
+    document.querySelector(".achievements_block .box_second .btn_back").addEventListener("click", function (e) {
+      e.preventDefault()
       document.querySelector(".achievements_block .box_second").classList.remove("show_var")
       document.querySelector(".achievements_block .box_second").classList.add("back")
-
-      for (let radio of document.querySelectorAll('[type="radio"]')) {
-        radio.checked = false
-      }
       document.querySelector(".achievements_block .box_first").classList.add("show_var")
       //   onscroll(210, "#box_first")
     })
 
-    document.querySelector(".achievements_block .box_third .btn_back").addEventListener("click", function () {
+    document.querySelector(".achievements_block .box_third .btn_back").addEventListener("click", function (e) {
+      e.preventDefault()
       document.querySelector(".achievements_block .box_third").classList.remove("show_var")
       document.querySelector(".achievements_block .box_third").classList.add("back")
       document.querySelector(".achievements_block .box_second").classList.add("show_var")
@@ -525,7 +544,7 @@ transition: all 2s ease;
     })
 
     //   click on Try SamCart for FREE
-    document.querySelector(".achievements_block .box_third > a:last-child").addEventListener("click", function (e) {
+    document.querySelector(".achievements_block .box_third > .btn_wrapp a:last-child").addEventListener("click", function (e) {
       console.log(`Try SamCart for FREE`)
     })
 
