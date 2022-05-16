@@ -405,7 +405,7 @@ section.guide_box {
   color: #000000;
   background: #effbff;
   margin: 0;
-  text-decoration: underline dotted;
+  text-decoration: underline;
   position: relative;
   width: 90%;
   height: 100%;
