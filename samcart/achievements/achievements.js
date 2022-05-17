@@ -141,11 +141,7 @@ let startfunk = setInterval(() => {
   text-align: left;
 }
 
-@media (max-width: 991.98px) {
-  .achievements_block ul li label {
-    font-size: 12px;
-  }
-}
+
 
 .radio-box:checked + label {
     border: 2px solid #183B56;
@@ -297,6 +293,16 @@ transition: all 2s ease;
 .achievements_block .box_third > h3 span:not(.var_text){
   color: #3096ea;
 }
+
+@media (max-width: 991.98px) {
+  .achievements_block ul li label {
+    font-size: 12px;
+  }
+
+  .radio-box:checked + label {
+    font-size: 11px;
+  }
+}
              
 </style>
 `
@@ -310,7 +316,7 @@ transition: all 2s ease;
                   <div class="box_first show_var" id="box_first">
                     <ul>
                       <li>
-                        <input checked type="radio" name="achievements" id="achievements1" class="radio-box" />
+                        <input type="radio" name="achievements" id="achievements1" class="radio-box" />
                         <label for="achievements1">
                           <div>
                             <span class="radio-style"></span>
@@ -374,7 +380,7 @@ transition: all 2s ease;
                   <div class="box_second" id="box_second">
                     <ul>
                       <li>
-                        <input checked type="radio" name="achievementsSecond" id="achievements7" class="radio-box" />
+                        <input  type="radio" name="achievementsSecond" id="achievements7" class="radio-box" />
                         <label for="achievements7" data-count="11,955">
                           <div>
                             <span class="radio-style"></span>
@@ -600,13 +606,13 @@ transition: all 2s ease;
 
     document.querySelectorAll(".achievements_block .box_first ul li label").forEach((el) => {
       el.addEventListener("click", function () {
-        pushDataLayer("click on radio button step1", `Click ${el.querySelector("div > span:last-child").textContent}`)
+        pushDataLayer("click on radio button step1", `${el.querySelector("div > span:last-child").textContent}`)
       })
     })
 
     document.querySelectorAll(".achievements_block .box_second ul li label").forEach((el) => {
       el.addEventListener("click", function () {
-        pushDataLayer("click on radio button step 2", `Click ${el.querySelector("div > span:last-child").textContent}`)
+        pushDataLayer("click on radio button step 2", `${el.querySelector("div > span:last-child").textContent}`)
 
         if (el.querySelector("div > span:last-child").textContent === "Other") {
           document.querySelector(".achievements_block .box_third > h3").innerHTML = `          

@@ -1004,7 +1004,7 @@ section.guide_box {
   }
 
   .second_block > ol li > a {
-    font-size: 20px;
+    font-size: 17px;
     line-height: 130%;
   }
 
@@ -1745,9 +1745,9 @@ function scrolling(upSelector) {
       }
 
       if (hash === "#guide_first") {
-        speed = 1.7
+        speed = 1.3
       } else if (hash === "#guide_second" || hash === "#guide_third" || hash === "#guide_fourth") {
-        speed = 1.1
+        speed = 0.9
       } else if (hash === "#guide_fifth" || hash === "#guide_sixth" || hash === "#guide_seventh" || hash === "#guide_eighth") {
         speed = 0.4
       }
