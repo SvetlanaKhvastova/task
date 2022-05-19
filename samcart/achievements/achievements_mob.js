@@ -3,13 +3,19 @@ if (window.innerWidth <= 768) {
     if (document.querySelector(".block-3-photo")) {
       clearInterval(startfunk)
 
+      let eventVar = "desktop"
+
+      if (window.innerWidth <= 768) {
+        eventVar = "mobile"
+      }
+
       function pushDataLayer(actionDataLayer, labelDataLayer) {
         window.dataLayer = window.dataLayer || []
         if (labelDataLayer) {
           console.log(actionDataLayer + " : " + labelDataLayer)
           dataLayer.push({
             event: "event-to-ga",
-            eventCategory: `Exp: HP Conversion through engagement mobile`,
+            eventCategory: `Exp: HP Conversion through engagement - ${eventVar}`,
             eventAction: `${actionDataLayer}`,
             eventLabel: `${labelDataLayer}`,
           })
@@ -17,7 +23,7 @@ if (window.innerWidth <= 768) {
           console.log(actionDataLayer)
           dataLayer.push({
             event: "event-to-ga",
-            eventCategory: `Exp: HP Conversion through engagement mobile`,
+            eventCategory: `Exp: HP Conversion through engagement - ${eventVar}`,
             eventAction: `${actionDataLayer}`,
           })
         }
@@ -231,6 +237,11 @@ if (window.innerWidth <= 768) {
   transition: all 250ms ease;
 }
 
+.btn_next.disabled_btn{
+  pointer-events: none;
+  background: rgb(24 59 86 / 60%);
+}
+
 .achievements_block .box_third >.btn_wrapp a:first-child{
   font-weight: 600;
 }
@@ -279,7 +290,7 @@ if (window.innerWidth <= 768) {
                   <div class="box_first show_var" id="box_first">
                     <ul>
                       <li>
-                        <input checked type="radio" name="achievements" id="achievements1" class="radio-box" />
+                        <input type="radio" name="achievements" id="achievements1" class="radio-box" />
                         <label for="achievements1">
                           <div>
                             <span class="radio-style"></span>
@@ -335,7 +346,7 @@ if (window.innerWidth <= 768) {
                     </ul>
                     
                     <div class="btn_wrapp">
-                      <a href="#box_second" class="btn_next">Next</a>
+                      <a href="#box_second" class="disabled_btn btn_next">Next</a>
                     </div>
 
                   </div>
@@ -343,7 +354,7 @@ if (window.innerWidth <= 768) {
                   <div class="box_second" id="box_second">
                     <ul>
                       <li>
-                        <input checked type="radio" name="achievementsSecond" id="achievements7" class="radio-box" />
+                        <input type="radio" name="achievementsSecond" id="achievements7" class="radio-box" />
                         <label for="achievements7" data-count="11,955">
                           <div>
                             <span class="radio-style"></span>
@@ -444,7 +455,7 @@ if (window.innerWidth <= 768) {
                     </ul>
 
                     <div class="btn_wrapp">                      
-                      <a href="#box_third" class="btn_next">Next</a>
+                      <a href="#box_third" class="disabled_btn btn_next">Next</a>
 
                       <a href="#box_first" class="btn_back">
                         <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -539,16 +550,20 @@ if (window.innerWidth <= 768) {
             pushDataLayer(`Time spend on the screen step ${step}`, `setTimeM ${currentTime}`)
           }
 
-          if (currentTime === timeNotClick) {
-            clearInterval(s)
-            pushDataLayer(`Time spend on the screen step ${step}`, "not_click")
-          }
+          // if (currentTime === timeNotClick) {
+          //   clearInterval(s)
+          //   pushDataLayer(`Time spend on the screen step ${step}`, "not_click")
+          // }
         }, 1000)
       }
 
       document.querySelectorAll(".achievements_block .box_first ul li label").forEach((el) => {
         el.addEventListener("click", function () {
           pushDataLayer("click on radio button step1", `${el.querySelector("div > span:last-child").textContent}`)
+
+          if (document.querySelector(".achievements_block .box_first .btn_next").classList.contains("disabled_btn")) {
+            document.querySelector(".achievements_block .box_first .btn_next.disabled_btn").classList.remove("disabled_btn")
+          }
         })
       })
 
@@ -572,6 +587,10 @@ if (window.innerWidth <= 768) {
           if (el.querySelector("div > span:last-child").textContent === "Other") {
             document.querySelector(".achievements_block .box_third > h3 span.var_text").textContent = "vast variety"
           }
+
+          if (document.querySelector(".achievements_block .box_second .btn_next").classList.contains("disabled_btn")) {
+            document.querySelector(".achievements_block .box_second .btn_next.disabled_btn").classList.remove("disabled_btn")
+          }
         })
       })
 
@@ -588,7 +607,7 @@ if (window.innerWidth <= 768) {
       scrolling(".achievements_block .box_third .btn_back", 300)
 
       pushDataLayer("loaded")
-      clarity("set", "hp_conversion_through_engagement", "variant_1")
+      clarity("set", `hp_conversion_through_engagement_${eventVar}`, "variant_1")
 
       // js scrolling
       function scrolling(upSelector, upWidth) {

@@ -2,13 +2,19 @@ let startfunk = setInterval(() => {
   if (document.querySelector(".block-3-photo")) {
     clearInterval(startfunk)
 
+    let eventVar = "desktop"
+
+    if (window.innerWidth <= 768) {
+      eventVar = "mobile"
+    }
+
     function pushDataLayer(actionDataLayer, labelDataLayer) {
       window.dataLayer = window.dataLayer || []
       if (labelDataLayer) {
         console.log(actionDataLayer + " : " + labelDataLayer)
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: HP Conversion through engagement`,
+          eventCategory: `Exp: HP Conversion through engagement - ${eventVar}`,
           eventAction: `${actionDataLayer}`,
           eventLabel: `${labelDataLayer}`,
         })
@@ -16,7 +22,7 @@ let startfunk = setInterval(() => {
         console.log(actionDataLayer)
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: HP Conversion through engagement`,
+          eventCategory: `Exp: HP Conversion through engagement - ${eventVar}`,
           eventAction: `${actionDataLayer}`,
         })
       }
@@ -265,6 +271,11 @@ transition: all 2s ease;
   transition: all 250ms ease;
 }
 
+.btn_next.disabled_btn{
+  pointer-events: none;
+  background: rgb(24 59 86 / 60%);
+}
+
 .achievements_block .box_third >.btn_wrapp a:last-child{
   font-weight: 600;
 }
@@ -372,7 +383,7 @@ transition: all 2s ease;
                     </ul>
                     
                     <div class="btn_wrapp">
-                      <a href="#box_second" class="btn_next">Next</a>
+                      <a href="#box_second" class="btn_next disabled_btn">Next</a>
                     </div>
 
                   </div>
@@ -491,7 +502,7 @@ transition: all 2s ease;
                         Back
                       </a>
   
-                       <a href="#box_third" class="btn_next">Next</a>
+                       <a href="#box_third" class="btn_next disabled_btn">Next</a>
                     </div>
                   </div>
             
@@ -576,10 +587,10 @@ transition: all 2s ease;
           pushDataLayer(`Time spend on the screen step ${step}`, `setTimeM ${currentTime}`)
         }
 
-        if (currentTime === timeNotClick) {
-          clearInterval(s)
-          pushDataLayer(`Time spend on the screen step ${step}`, "not_click")
-        }
+        // if (currentTime === timeNotClick) {
+        //   clearInterval(s)
+        //   pushDataLayer(`Time spend on the screen step ${step}`, "not_click")
+        // }
       }, 1000)
     }
 
@@ -607,6 +618,10 @@ transition: all 2s ease;
     document.querySelectorAll(".achievements_block .box_first ul li label").forEach((el) => {
       el.addEventListener("click", function () {
         pushDataLayer("click on radio button step1", `${el.querySelector("div > span:last-child").textContent}`)
+
+        if (document.querySelector(".achievements_block .box_first .btn_next").classList.contains("disabled_btn")) {
+          document.querySelector(".achievements_block .box_first .btn_next.disabled_btn").classList.remove("disabled_btn")
+        }
       })
     })
 
@@ -629,6 +644,10 @@ transition: all 2s ease;
 
         if (el.querySelector("div > span:last-child").textContent === "Other") {
           document.querySelector(".achievements_block .box_third > h3 span.var_text").textContent = "vast variety"
+        }
+
+        if (document.querySelector(".achievements_block .box_second .btn_next").classList.contains("disabled_btn")) {
+          document.querySelector(".achievements_block .box_second .btn_next.disabled_btn").classList.remove("disabled_btn")
         }
       })
     })
@@ -694,6 +713,6 @@ transition: all 2s ease;
     })
 
     pushDataLayer("loaded")
-    clarity("set", "hp_conversion_through_engagement", "variant_1")
+    clarity("set", `hp_conversion_through_engagement_${eventVar}`, "variant_1")
   }
 }, 10)
