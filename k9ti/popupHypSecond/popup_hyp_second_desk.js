@@ -1,6 +1,15 @@
 let startFunkDesk = setInterval(() => {
   if (document.querySelector(".entry-content")) {
     clearInterval(startFunkDesk)
+    let scriptCustomSliderStyle = document.createElement("link")
+    scriptCustomSliderStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.min.css"
+    scriptCustomSliderStyle.rel = "stylesheet"
+    document.head.appendChild(scriptCustomSliderStyle)
+
+    let scriptCustomSlider = document.createElement("script")
+    scriptCustomSlider.src = "https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"
+    scriptCustomSlider.async = false
+    document.head.appendChild(scriptCustomSlider)
 
     let popupStyle = /*html */ `
     <style>
@@ -411,11 +420,13 @@ let startFunkDesk = setInterval(() => {
         }
 
         /*popup_second */
-        .popup_new > div:last-child .popup_second{
+        .popup_new > div:last-child .popup_second,
+        .popup_new > div:last-child .popup_third{
             display: none;
         }
 
-        .popup_new > div:last-child .popup_second > h2{
+        .popup_new > div:last-child .popup_second > h2,
+        .popup_new > div:last-child .popup_third > h2{
             font-weight: 700;
             font-size: 24px;
             line-height: 125%;
@@ -448,7 +459,7 @@ let startFunkDesk = setInterval(() => {
             border-radius: 10px;
             display: flex;
             align-items: flex-start;
-            justify-content: flex-start;
+            justify-content: center;
             flex-direction: column;
             max-height: 78px;
             padding: 10px 18px;
@@ -477,13 +488,34 @@ let startFunkDesk = setInterval(() => {
         }
 
         .popup_new > div:last-child .popup_first.active_popup,
-        .popup_new > div:last-child .popup_second.active_popup{
+        .popup_new > div:last-child .popup_second.active_popup,
+        .popup_new > div:last-child .popup_third.active_popup{
             display: block;
         }
 
-        .dog_second{
+        .dog_second, .dog_third{
             display: none;
         }
+
+        /*choosen */
+        .popup_new  .chosen-container .chosen-drop{
+            max-height: 240px;
+
+        }
+
+        .chosen-container .chosen-results li{
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 22px;
+            color: #193973;
+        }
+
+        .chosen-container .chosen-results li em{
+            font-weight: 700;
+            text-decoration: unset;
+        }
+
+
             </style>
     `
     let newBlock = /*html */ `
@@ -557,6 +589,7 @@ let startFunkDesk = setInterval(() => {
         <div class="img_wrap">
             <img src="https://conversionratestore.github.io/projects/knineti/img/dog_select_problem.jpg" alt="dog" class="dog_first">
             <img src="https://conversionratestore.github.io/projects/knineti/img/dog_age_block.jpg" alt="dog" class="dog_second">
+            <img src="https://conversionratestore.github.io/projects/knineti/img/dog_breed_block.jpg" alt="dog" class="dog_third">
         </div>
 
         <div>
@@ -567,7 +600,7 @@ let startFunkDesk = setInterval(() => {
                     <li></li>
                 </ul>
                 <div>
-                   <p>
+                   <p class="active_btn_first">
                        <img src="https://conversionratestore.github.io/projects/knineti/img/previous_btn.svg" alt="previous button">
                        <span>Previous</span>
                    </p>
@@ -659,6 +692,35 @@ let startFunkDesk = setInterval(() => {
                 <div class="btn_continue">Continue</div>
             </div> 
 
+            <div class="popup_third">
+                <h2>
+                    What breed is your dog?
+                </h2>
+
+                        <select data-placeholder="Enter your dog’s breed" multiple class="chosen-select">
+                            <option value=""></option>
+                            <option>American Black Bear</option>
+                            <option>Asiatic Black Bear</option>
+                            <option>Brown Bear</option>
+                            <option>Giant Panda</option>
+                            <option >Sloth Bear</option>
+                            <option>Sun Bear</option>
+                            <option>Polar Bear</option>
+                            <option>Spectacled Bear</option>
+                            <option value="">Alaskan Husky</option>
+                            <option value="">Akita</option>
+                            <option value="">Akbash</option>
+                            <option value="">Airedale Terrier</option>
+                            <option value="">Afghan Hound</option>
+                            <option value="">Affenpinscher</option>
+                            <option value="">Basset Hound</option>
+                            <option value="">Basset Griffon</option>
+                        </select>
+                
+
+                <div class="btn_continue">Continue</div>
+            </div>
+
         </div>
     </div>
    
@@ -693,6 +755,8 @@ let startFunkDesk = setInterval(() => {
       console.log(this)
       this.closest(".popup_first").classList.remove("active_popup")
 
+      document.querySelector(".popup_new > div:last-child .progress_bar > div p:first-child.active_btn_first").classList.remove("active_btn_first")
+      document.querySelector(".popup_new > div:last-child .progress_bar > div p:first-child").classList.add("active_btn_second")
       document.querySelector(".popup_new > div:last-child .popup_second").classList.add("active_popup")
       document.querySelector(".popup_new .img_wrap .dog_first").style.display = "none"
       document.querySelector(".popup_new .img_wrap .dog_second").style.display = "block"
@@ -701,15 +765,71 @@ let startFunkDesk = setInterval(() => {
       document.querySelector(".popup_new > div:last-child .progress_bar > div p:first-child span").style.display = "inline-block"
     })
 
-    //   btn back
-    if (document.querySelector(".popup_new > div:last-child .popup_second")) {
-      document.querySelector(".popup_new > div:last-child .popup_first").classList.add("active_popup")
-      document.querySelector(".popup_new > div:last-child .popup_second").classList.remove("active_popup")
-      document.querySelector(".popup_new .img_wrap .dog_first").style.display = "block"
+    //   click on second btn Continue
+    document.querySelector(".popup_new > div:last-child .popup_second .btn_continue").addEventListener("click", function (el) {
+      console.log(this)
+      this.closest(".popup_second").classList.remove("active_popup")
+
+      document.querySelector(".popup_new > div:last-child .progress_bar > div p:first-child.active_btn_second").classList.remove("active_btn_second")
+      document.querySelector(".popup_new > div:last-child .progress_bar > div p:first-child").classList.add("active_btn_third")
+      document.querySelector(".popup_new > div:last-child .popup_third").classList.add("active_popup")
       document.querySelector(".popup_new .img_wrap .dog_second").style.display = "none"
-      document.querySelector(".popup_new > div:last-child .progress_bar > ul li:nth-child(2)").classList.remove("active_step")
-      document.querySelector(".popup_new > div:last-child .progress_bar > div p:last-child span:nth-child(1)").textContent = "1"
-      document.querySelector(".popup_new > div:last-child .progress_bar > div p:first-child span").style.display = "none"
+      document.querySelector(".popup_new .img_wrap .dog_third").style.display = "block"
+      document.querySelector(".popup_new > div:last-child .progress_bar > ul li:nth-child(3)").classList.add("active_step")
+      document.querySelector(".popup_new > div:last-child .progress_bar > div p:last-child span:nth-child(1)").textContent = "3"
+    })
+
+    // //   btn back first
+    if (document.querySelector(".popup_new > div:last-child .progress_bar > div p:first-child")) {
+      document.querySelector(".popup_new > div:last-child .progress_bar > div p:first-child").addEventListener("click", function (el) {
+        console.log(this)
+        if (this.classList.contains("active_btn_first")) {
+          console.log("popup_first")
+          // document.querySelector(".popup_new").style.display = "none"
+        }
+
+        //   btn back active_btn_second
+        if (this.classList.contains("active_btn_second")) {
+          this.classList.remove("active_btn_second")
+          this.classList.add("active_btn_first")
+          console.log("popup_second")
+          document.querySelector(".popup_new > div:last-child .popup_first").classList.add("active_popup")
+          document.querySelector(".popup_new > div:last-child .popup_second").classList.remove("active_popup")
+          document.querySelector(".popup_new .img_wrap .dog_second").style.display = "none"
+          document.querySelector(".popup_new .img_wrap .dog_first").style.display = "block"
+          document.querySelector(".popup_new > div:last-child .progress_bar > ul li:nth-child(2)").classList.remove("active_step")
+          document.querySelector(".popup_new > div:last-child .progress_bar > div p:last-child span:nth-child(1)").textContent = "1"
+          document.querySelector(".popup_new > div:last-child .progress_bar > div p:first-child span").style.display = "none"
+        }
+
+        //   btn back active_btn_third
+        if (this.classList.contains("active_btn_third")) {
+          console.log("popup_third")
+          this.classList.remove("active_btn_third")
+          this.classList.add("active_btn_second")
+          document.querySelector(".popup_new > div:last-child .popup_third").classList.remove("active_popup")
+          document.querySelector(".popup_new > div:last-child .popup_second").classList.add("active_popup")
+          document.querySelector(".popup_new .img_wrap .dog_third").style.display = "none"
+          document.querySelector(".popup_new .img_wrap .dog_second").style.display = "block"
+          document.querySelector(".popup_new > div:last-child .progress_bar > ul li:nth-child(3)").classList.remove("active_step")
+          document.querySelector(".popup_new > div:last-child .progress_bar > div p:last-child span:nth-child(1)").textContent = "2"
+        }
+      })
     }
+
+    //
+    let slickInterval = setInterval(() => {
+      if (typeof jQuery(".chosen-select").chosen === "function" && document.querySelector(".chosen-select")) {
+        clearInterval(slickInterval)
+
+        $(document).ready(function () {
+          $(".chosen-select").chosen({
+            //   max_selected_options: 1,
+            no_results_text: "Oops, nothing found!",
+            width: "55%",
+          })
+        })
+      }
+    }, 100)
   }
 }, 10)
