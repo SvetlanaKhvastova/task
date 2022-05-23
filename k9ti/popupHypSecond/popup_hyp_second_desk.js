@@ -539,21 +539,6 @@ box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 60%);
   text-decoration: unset;
 }
 
-.chosen-container-multi .chosen-choices{
-  background: unset !important;
-  border: 1px solid #E8F1F9;
-  border-radius: 10px;
-  padding: 10px 0 10px 18px;
-}
-
-.chosen-container-multi .chosen-choices li.search-choice{
-  width: 100%;
-  border-radius: unset !important;
-  background: unset !important;
-  box-shadow: unset !important;
-  border: unset;
-}
-
 /* */
 
 .fade.in {
@@ -1443,7 +1428,7 @@ form .text_for_work_shop {
 
         $(document).ready(function () {
           $(".chosen-select").chosen({
-            max_selected_options: 1,
+            //   max_selected_options: 1,
             no_results_text: "Oops, nothing found!",
             width: "55%",
           })
