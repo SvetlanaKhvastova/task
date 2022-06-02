@@ -314,6 +314,21 @@ transition: all 2s ease;
     font-size: 11px;
   }
 }
+
+.achievements_block #box_second ul li:last-child{
+    display: none;
+}
+
+input.other_text{
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: unset;
+    background: inherit;
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
              
 </style>
 `
@@ -489,6 +504,11 @@ transition: all 2s ease;
                           </div>
                         </label>
                       </li>
+                      <li>
+                        <label for="otherText">
+                          <input maxlength="50" class="other_text" type="text" id="otherText">
+                        </label>
+                      </li>
                     </ul>
 
                     <div class="btn_wrapp">
@@ -625,7 +645,7 @@ transition: all 2s ease;
       })
     })
 
-    document.querySelectorAll(".achievements_block .box_second ul li label").forEach((el) => {
+    document.querySelectorAll(".achievements_block .box_second ul li label[data-count]").forEach((el) => {
       el.addEventListener("click", function () {
         pushDataLayer("click on radio button step 2", `${el.querySelector("div > span:last-child").textContent}`)
 
@@ -633,10 +653,18 @@ transition: all 2s ease;
           document.querySelector(".achievements_block .box_third > h3").innerHTML = `          
           <h3>There are currently more than <span>11955</span> entrepreneurs from a <span class="var_text">vast variety</span> of niches that are successfully using SamCart</h3>
           `
+
+          document.querySelector(".achievements_block #box_second ul li:last-child").style.display = "block"
+          setTimeout(() => {
+            document.querySelector(".achievements_block #box_second ul li:last-child input").focus()
+          }, 10)
         } else {
           document.querySelector(".achievements_block .box_third > h3").innerHTML = `          
           <h3>There are currently <span>11955</span> entrepreneurs from the <span class="var_text">Self-help and Motivation</span> niche that are successfully using SamCart</h3>
           `
+
+          document.querySelector(".achievements_block #box_second ul li:last-child").style.display = "none"
+          document.querySelector(".achievements_block #box_second ul li:last-child input").value = ""
         }
 
         document.querySelector(".achievements_block .box_third > h3 span:not(.var_text)").textContent = el.getAttribute("data-count")
@@ -656,7 +684,13 @@ transition: all 2s ease;
     document.querySelector(".achievements_block .box_second .btn_wrapp .btn_next").addEventListener("click", function (e) {
       e.preventDefault()
 
-      pushDataLayer("click on Next button step 2")
+      let value = document.querySelector("input.other_text").value
+
+      if (value !== "") {
+        pushDataLayer(`click on Next button step 2 "${value}"`)
+      } else {
+        pushDataLayer(`click on Next button step 2`)
+      }
 
       document.querySelector(".achievements_block .box_second").classList.remove("show_var")
       document.querySelector(".achievements_block > h2").style.display = "none"
