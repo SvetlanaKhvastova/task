@@ -402,7 +402,7 @@ input.other_text{
                       </li>
                       <li>
                         <label for="otherTextFirst">
-                          <input maxlength="100" class="other_text" type="text" id="otherTextFirst" placeholder="Please specify what do you want to achieve">
+                          <input maxlength="100" class="other_text" type="text" id="otherTextFirst" placeholder="Please specify your goal">
                         </label>
                       </li>
                     </ul>
@@ -628,13 +628,7 @@ input.other_text{
     document.querySelector(".achievements_block .box_first .btn_wrapp .btn_next").addEventListener("click", function (e) {
       e.preventDefault()
 
-      let value = document.querySelector("input#otherTextFirst.other_text").value
-
-      if (value != "") {
-        pushDataLayer(`click on Next button step 1 "${value}"`)
-      } else {
-        pushDataLayer("click on Next button step 1")
-      }
+      pushDataLayer("click on Next button step 1")
 
       document.querySelector(".achievements_block .box_first").classList.remove("show_var")
       document.querySelector(".achievements_block .box_second").classList.add("show_var")
@@ -707,13 +701,7 @@ input.other_text{
     document.querySelector(".achievements_block .box_second .btn_wrapp .btn_next").addEventListener("click", function (e) {
       e.preventDefault()
 
-      let value = document.querySelector("input#otherTextSecond.other_text").value
-
-      if (value !== "") {
-        pushDataLayer(`click on Next button step 2 "${value}"`)
-      } else {
-        pushDataLayer(`click on Next button step 2`)
-      }
+      pushDataLayer(`click on Next button step 2`)
 
       document.querySelector(".achievements_block .box_second").classList.remove("show_var")
       document.querySelector(".achievements_block > h2").style.display = "none"
@@ -764,7 +752,38 @@ input.other_text{
 
     //   click on Try SamCart for FREE
     document.querySelector(".achievements_block .box_third > .btn_wrapp a:last-child").addEventListener("click", function (e) {
-      pushDataLayer("click on Try it for free button step 3")
+      let valueFirst = document.querySelector("input#otherTextFirst.other_text").value
+      let valueSecond = document.querySelector("input#otherTextSecond.other_text").value
+
+      pushDataLayer("click on Try SamCart for FREE button step 3")
+
+      if (document.querySelector('.radio-box[id="achievements6"]:checked') && !document.querySelector('.radio-box[id="achievements16"]:checked')) {
+        if (valueFirst != "") {
+          pushDataLayer(`${valueFirst} - Try SamCart for FREE`, ``)
+        } else if (valueFirst === "") {
+          pushDataLayer(`"" - Try SamCart for FREE`, ``)
+        }
+      }
+
+      if (document.querySelector('.radio-box[id="achievements16"]:checked') && !document.querySelector('.radio-box[id="achievements6"]:checked')) {
+        if (valueSecond === "") {
+          pushDataLayer(``, `"" - Try SamCart for FREE`)
+        } else if (valueSecond != "") {
+          pushDataLayer(``, `${valueSecond} - Try SamCart for FREE`)
+        }
+      }
+
+      if (document.querySelector('.radio-box[id="achievements6"]:checked') && document.querySelector('.radio-box[id="achievements16"]:checked')) {
+        if (valueFirst != "" && valueSecond === "") {
+          pushDataLayer(`${valueFirst} - Try SamCart for FREE`, `"" - Try SamCart for FREE`)
+        } else if (valueFirst === "" && valueSecond != "") {
+          pushDataLayer(`"" - Try SamCart for FREE`, `${valueSecond} - Try SamCart for FREE`)
+        } else if (valueFirst != "" && valueSecond != "") {
+          pushDataLayer(`${valueFirst} - Try SamCart for FREE`, `${valueSecond} - Try SamCart for FREE`)
+        } else if (valueFirst === "" && valueSecond === "") {
+          pushDataLayer(`"" - Try SamCart for FREE`, `"" - Try SamCart for FREE`)
+        }
+      }
 
       document.querySelector(".achievements_block .box_third").classList.add("end")
     })
