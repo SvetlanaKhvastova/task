@@ -78,7 +78,7 @@ function mobileVar() {
           font-weight: 600;
           font-family: "Poppins", sans-serif !important;
           font-size: 48px !important;
-          line-height: 53px;
+          line-height: 110%;
           align-items: center;
           color: #ffffff !important;
         }
@@ -88,7 +88,7 @@ function mobileVar() {
           font-family: "Poppins", sans-serif !important;
           font-weight: 400;
           font-size: 18px;
-          line-height: 27px;
+          line-height: 150%;
           color: #ffffff !important;
         }
 
@@ -150,7 +150,7 @@ function mobileVar() {
           font-family: "Roboto", sans-serif;
           font-weight: 400;
           font-size: 14px;
-          line-height: 16px;
+          line-height: 114%;
           color: rgb(255 255 255 / 50%);
         }
 
@@ -167,7 +167,7 @@ function mobileVar() {
           font-family: "Poppins", sans-serif !important;
           font-weight: 700;
           font-size: 16px;
-          line-height: 24px;
+          line-height: 150%;
           color: #98b9e9;
           padding: 12px 13px;
           margin-right: 20px;
@@ -188,7 +188,7 @@ function mobileVar() {
           font-family: "Poppins", sans-serif !important;
           font-weight: 700;
           font-size: 13px !important;
-          line-height: 16px;
+          line-height: 123%;
           letter-spacing: 0.1em;
           text-transform: uppercase;
           color: #ffffff;
@@ -204,7 +204,7 @@ function mobileVar() {
           font-family: "Roboto", sans-serif;
           font-weight: 400;
           font-size: 14px;
-          line-height: 16px;
+          line-height: 114%;
           color: rgb(255 255 255 / 50%);
         }
 
@@ -227,7 +227,7 @@ function mobileVar() {
           font-family: "Poppins", sans-serif !important;
           font-weight: 300;
           font-size: 12px;
-          line-height: 17px;
+          line-height: 141%;
           color: #5a7386;
           top: -194px;
           right: -37px;
@@ -238,9 +238,45 @@ function mobileVar() {
           pointer-events: none;
         }
 
-        p.hint_plan > span .hidden_text {
-          top: -160px;
-          right: -145px;
+        @media only screen and (min-width: 550px) and (max-width: 768px){
+            p.hint_plan > span .hidden_text{
+                top: -159px;
+                right: -15px;
+            }
+        }
+
+        @media only screen and (min-width: 453px) and (max-width: 768px){
+            .absolute_box p span .hidden_text{
+                right: -167px;
+            }
+        }
+
+         @media (max-width: 453px){
+            .absolute_box p span .hidden_text{
+                right: -37px;
+            }
+         }
+
+        
+        @media only screen and (min-width: 531px) and (max-width: 550px){
+            p.hint_plan > span .hidden_text{
+                top: -159px;
+                right: -15px;
+            }
+        }
+
+        @media only screen and (min-width: 457px) and (max-width: 531px){
+            p.hint_plan > span .hidden_text{
+                top: -159px;
+                right: -215px;
+            }
+        }
+
+        @media (max-width: 456px){
+            p.hint_plan > span .hidden_text {
+                top: -159px;
+                right: -145px;
+            }
         }
 
         p.total_text span .hidden_text {
@@ -275,7 +311,7 @@ function mobileVar() {
           font-family: "Poppins", sans-serif !important;
           font-weight: 300;
           font-size: 8px;
-          line-height: 18px;
+          line-height: 225%;
           text-align: right;
           color: #5a7386;
         }
@@ -283,7 +319,7 @@ function mobileVar() {
         p.total_text .accent_color {
           font-weight: 500;
           font-size: 9px;
-          line-height: 18px;
+          line-height: 200%;
           color: #5a7386;
         }
 
@@ -300,7 +336,7 @@ function mobileVar() {
           font-family: "Poppins", sans-serif !important;
           font-weight: 500 !important;
           font-size: 16px !important;
-          line-height: 24px !important;
+          line-height: 150% !important;
           text-transform: uppercase !important;
           color: #5a7386 !important;
         }
@@ -309,7 +345,7 @@ function mobileVar() {
           font-family: "Poppins", sans-serif !important;
           font-weight: 700 !important;
           font-size: 16px !important;
-          line-height: 24px !important;
+          line-height: 150% !important;
           text-transform: uppercase !important;
           color: #286cd2 !important;
         }
@@ -377,7 +413,7 @@ function mobileVar() {
           font-family: "Poppins", sans-serif !important;
           font-weight: 600;
           font-size: 20px;
-          line-height: 20px;
+          line-height: 100%;
           text-transform: capitalize;
           color: #ffffff;
           margin-top: 32px;
@@ -407,7 +443,7 @@ function mobileVar() {
           font-family: "Poppins", sans-serif !important;
           font-weight: 500;
           font-size: 16px;
-          line-height: 19px;
+          line-height: 119%;
           text-transform: uppercase !important;
           color: #5a7386 !important;
           margin-bottom: 27px !important;
@@ -426,7 +462,7 @@ function mobileVar() {
           font-family: "Poppins", sans-serif !important;
           font-weight: 500;
           font-size: 12px;
-          line-height: 12px;
+          line-height: 100%;
           text-transform: capitalize;
           color: #5a7386;
           margin: 0px 0 8px;
@@ -480,7 +516,7 @@ function mobileVar() {
           font-family: "Poppins", sans-serif !important;
           font-weight: 400 !important;
           font-size: 12px !important;
-          line-height: 18px !important;
+          line-height: 150% !important;
           color: #5a7386;
           opacity: 0.5;
           padding: 11px !important;
@@ -530,7 +566,7 @@ function mobileVar() {
           font-family: "Poppins", sans-serif !important;
           font-weight: 600;
           font-size: 12px;
-          line-height: 18px;
+          line-height: 150%;
           text-transform: uppercase;
           color: #0b1a26;
           margin-bottom: 8px;
@@ -540,7 +576,7 @@ function mobileVar() {
           font-family: "Poppins", sans-serif !important;
           font-weight: 300;
           font-size: 12px;
-          line-height: 17px;
+          line-height: 141%;
           color: #0b1a26;
           margin: 0;
         }
@@ -553,7 +589,7 @@ function mobileVar() {
           cursor: pointer;
           font-weight: 600;
           font-size: 18px;
-          line-height: 18px;
+          line-height: 100%;
           margin-bottom: 30px;
         }
 
@@ -572,7 +608,7 @@ function mobileVar() {
         p.hint_plan {
           font-weight: 600;
           font-size: 15px !important;
-          line-height: 18px;
+          line-height: 120%;
           text-transform: uppercase;
           color: #ffffff;
         }
@@ -1115,7 +1151,7 @@ function desktopVar() {
     max-width: 445px;
     font-family: "Poppins", sans-serif !important;
     font-size: 41px !important;
-    line-height: 50px;
+    line-height: 122%;
     align-items: center;
     color: #ffffff !important;
   }
@@ -1126,7 +1162,7 @@ function desktopVar() {
     font-family: "Poppins", sans-serif !important;
     font-weight: 400;
     font-size: 16px;
-    line-height: 24px;
+    line-height: 150%;
     color: #ffffff !important;
   }
 
@@ -1165,7 +1201,7 @@ function desktopVar() {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-size: 8px;
-    line-height: 9px;
+    line-height: 113%;
     color: #ffffff;
     opacity: 0.5;
   }
@@ -1183,7 +1219,7 @@ function desktopVar() {
     font-family: "Roboto", sans-serif;
     font-weight: 700;
     font-size: 8px;
-    line-height: 9px;
+    line-height: 113%;
     color: #ffffff;
     padding: 5px 8px;
     margin-right: 20px;
@@ -1219,7 +1255,7 @@ function desktopVar() {
     font-family: "Poppins", sans-serif !important;
     font-weight: 400;
     font-size: 9px !important;
-    line-height: 13px;
+    line-height: 144%;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: #ffffff;
@@ -1230,7 +1266,7 @@ function desktopVar() {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-size: 8px;
-    line-height: 9px;
+    line-height: 113%;
     color: #ffffff;
     opacity: 0.5;
   }
@@ -1252,7 +1288,7 @@ function desktopVar() {
     font-family: "Poppins", sans-serif !important;
     font-weight: 300;
     font-size: 10px;
-    line-height: 16px;
+    line-height: 160%;
     color: #5a7386;
     top: 25px;
     left: -33px;
@@ -1300,7 +1336,7 @@ function desktopVar() {
     font-family: "Poppins", sans-serif !important;
     font-weight: 400;
     font-size: 7px;
-    line-height: 13px;
+    line-height: 186%;
     text-align: right;
     color: #5a7386;
   }
@@ -1322,7 +1358,7 @@ function desktopVar() {
     font-family: "Poppins", sans-serif !important;
     font-weight: 500 !important;
     font-size: 16px !important;
-    line-height: 24px !important;
+    line-height: 150% !important;
     text-transform: uppercase !important;
     color: #5a7386 !important;
   }
@@ -1331,7 +1367,7 @@ function desktopVar() {
     font-family: "Poppins", sans-serif !important;
     font-weight: 700 !important;
     font-size: 16px !important;
-    line-height: 24px !important;
+    line-height: 150% !important;
     text-transform: uppercase !important;
     color: #286cd2 !important;
   }
@@ -1443,7 +1479,7 @@ function desktopVar() {
     font-family: "Poppins", sans-serif !important;
     font-weight: 600;
     font-size: 18px;
-    line-height: 27px;
+    line-height: 150%;
     letter-spacing: 0.05em;
     text-transform: capitalize;
     color: #ffffff;
@@ -1477,7 +1513,7 @@ function desktopVar() {
     font-family: "Poppins", sans-serif !important;
     font-weight: 500;
     font-size: 18px;
-    line-height: 27px;
+    line-height: 150%;
     letter-spacing: 0.1em;
     text-transform: uppercase !important;
     color: #5a7386 !important;
@@ -1497,7 +1533,7 @@ function desktopVar() {
     font-family: "Poppins", sans-serif !important;
     font-weight: 500;
     font-size: 12px;
-    line-height: 18px;
+    line-height: 150%;
     text-transform: capitalize;
     color: #5a7386;
     margin-bottom: 5px;
@@ -1544,7 +1580,7 @@ function desktopVar() {
     font-family: "Poppins", sans-serif !important;
     font-weight: 400 !important;
     font-size: 12px !important;
-    line-height: 18px !important;
+    line-height: 150% !important;
     color: #5a7386;
     opacity: 0.5;
     padding: 11px !important;
@@ -1593,7 +1629,7 @@ function desktopVar() {
     font-family: "Poppins", sans-serif !important;
     font-weight: 600;
     font-size: 12px;
-    line-height: 18px;
+    line-height: 150%;
     text-transform: uppercase;
     color: #273542;
     margin-bottom: 5px;
@@ -1603,7 +1639,7 @@ function desktopVar() {
     font-family: "Poppins", sans-serif !important;
     font-weight: 300;
     font-size: 9px;
-    line-height: 13px;
+    line-height: 144%;
     color: #5a7386;
     margin: 0;
   }
@@ -1616,7 +1652,7 @@ function desktopVar() {
     cursor: pointer;
     font-weight: 600;
     font-size: 14px;
-    line-height: 18px;
+    line-height: 129%;
     margin-bottom: 30px;
   }
 
