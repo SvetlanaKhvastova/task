@@ -355,3 +355,15 @@ let startFunk = setInterval(() => {
     }
   }
 }, 10)
+
+// if (document.querySelector('[name="customFields.Monthly_Sales"]')) {
+//   if (document.querySelector('[name="customFields.Monthly_Sales"]').value === "$1,001 - $10,000" && sessionStorage.getItem("select_value") == null) {
+//     sessionStorage.setItem("select_value", document.querySelector('[name="customFields.Monthly_Sales"]').value)
+//   }
+// }
+
+// if (document.querySelector('[name="customFields.Monthly_Sales"]')) {
+//   document.querySelector('[name="customFields.Monthly_Sales"]').addEventListener("click", function () {
+//     console.log(this)
+//   })
+// }
