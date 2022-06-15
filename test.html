@@ -6,5 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    <form id="account-register" action="/l-c/ajax/" method="post">
+      <input type="hidden" name="submit_type" value="register" /> <input type="hidden" name="form_key" value="aiVDIe6zih2jDKNf" />
+      <div class="w-100 clearfix">
+        <div class="form-label-group w-50 float-left pr-1">
+          <input type="text" id="first-name" placeholder=" " name="firstname" required="required" autocomplete="off" class="form-control" />
+          <label for="first-name">First Name</label>
+        </div>
+        <div class="form-label-group w-50 float-right pl-1">
+          <input type="text" id="last-name" placeholder=" " name="lastname" required="required" class="form-control" /> <label for="last-name">Last Name</label>
+        </div>
+      </div>
+      <div class="form-label-group">
+        <input type="email" id="register-email" placeholder=" " name="emailAddress" required="required" class="form-control" /> <label for="register-email">Email address</label>
+      </div>
+      <div class="form-label-group">
+        <input
+          minlength="7"
+          maxlength="24"
+          data-parsley-minlength="7"
+          data-parsley-maxlength="24"
+          data-parsley-minlength-message="You need to enter at least 7 characters."
+          type="password"
+          id="register-password"
+          name="password"
+          placeholder=" "
+          autocomplete="off"
+          required="required"
+          class="form-control"
+        />
+        <label for="register-password">Password</label>
+      </div>
+      <div class="text-center"><button id="btn-register-submit" data-type="native" class="btn-register btn btn-primary btn-block">Sign Me Up</button></div>
+      <div class="mt-3 mb-3">
+        <input checked="checked" name="newsletter" id="newsletter" type="checkbox" data-parsley-multiple="newsletter" /> <label for="newsletter">Send me the 15% code</label>
+      </div>
+    </form>
+  </body>
 </html>

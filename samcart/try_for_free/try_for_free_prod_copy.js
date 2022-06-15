@@ -96,7 +96,7 @@ function mobileVar() {
           display: none;
         }
 
-        .back .v2-horizontal-grid-container{
+        .back .v2-horizontal-grid-container {
           height: unset;
         }
 
@@ -241,45 +241,44 @@ function mobileVar() {
           pointer-events: none;
         }
 
-        @media only screen and (min-width: 550px) and (max-width: 768px){
-            p.hint_plan > span .hidden_text{
-                top: -159px;
-                right: -15px;
-            }
+        @media only screen and (min-width: 550px) and (max-width: 768px) {
+          p.hint_plan > span .hidden_text {
+            top: -159px;
+            right: -15px;
+          }
         }
 
-        @media only screen and (min-width: 453px) and (max-width: 768px){
-            .absolute_box p span .hidden_text{
-                right: -167px;
-            }
+        @media only screen and (min-width: 453px) and (max-width: 768px) {
+          .absolute_box p span .hidden_text {
+            right: -167px;
+          }
         }
 
-         @media (max-width: 453px){
-            .absolute_box p span .hidden_text{
-                right: -37px;
-            }
-         }
-
-        
-        @media only screen and (min-width: 531px) and (max-width: 550px){
-            p.hint_plan > span .hidden_text{
-                top: -159px;
-                right: -15px;
-            }
+        @media (max-width: 453px) {
+          .absolute_box p span .hidden_text {
+            right: -37px;
+          }
         }
 
-        @media only screen and (min-width: 457px) and (max-width: 531px){
-            p.hint_plan > span .hidden_text{
-                top: -159px;
-                right: -215px;
-            }
+        @media only screen and (min-width: 531px) and (max-width: 550px) {
+          p.hint_plan > span .hidden_text {
+            top: -159px;
+            right: -15px;
+          }
         }
 
-        @media (max-width: 456px){
-            p.hint_plan > span .hidden_text {
-                top: -159px;
-                right: -145px;
-            }
+        @media only screen and (min-width: 457px) and (max-width: 531px) {
+          p.hint_plan > span .hidden_text {
+            top: -159px;
+            right: -215px;
+          }
+        }
+
+        @media (max-width: 456px) {
+          p.hint_plan > span .hidden_text {
+            top: -159px;
+            right: -145px;
+          }
         }
 
         p.total_text span .hidden_text {
@@ -335,26 +334,26 @@ function mobileVar() {
           float: unset !important;
         }
 
-        .card_box .back #order-summary-widget .product-item{
+        .card_box .back #order-summary-widget .product-item {
           margin-bottom: 24px;
           padding-bottom: 0;
           border-bottom: unset !important;
         }
 
-        .card_box .back #summary-totals{
-          border-top: 1px solid #EFF1F3;
+        .card_box .back #summary-totals {
+          border-top: 2px solid #eff1f3;
           padding-top: 24px;
         }
 
-        .card_box .back #order-summary-widget .product-item .product-label-col .product-item-name{
-          color: #183B56;
+        .card_box .back #order-summary-widget .product-item .product-label-col .product-item-name {
+          color: #183b56;
           font-weight: 400;
-          font-size: 14px;
-          line-height: 21px;
+          font-size: 10px;
+          line-height: 11px;
         }
 
-        .card_box .back .price-item-detail .ng-binding{
-          color: #5A7386 !important;
+        .card_box .back .price-item-detail .ng-binding {
+          color: #5a7386 !important;
           font-weight: 400;
           font-size: 10px;
           line-height: 15px;
@@ -368,7 +367,7 @@ function mobileVar() {
           font-size: 16px !important;
           line-height: 150% !important;
           text-transform: unset !important;
-          color: #183B56 !important;
+          color: #183b56 !important;
         }
 
         .card_box .invoice-item.total-row .invoice-amount-col.float-right.text-right #total {
@@ -377,7 +376,7 @@ function mobileVar() {
           font-size: 16px !important;
           line-height: 150% !important;
           text-transform: uppercase !important;
-          color: #136ED6 !important;
+          color: #136ed6 !important;
         }
 
         /*3d card */
@@ -453,7 +452,7 @@ function mobileVar() {
         }
 
         .card_box #order-summary-widget {
-          margin: 25px 0 !important;
+          margin: 20px 0 !important;
           background: #f4f5f6 !important;
           border-radius: 4px !important;
           padding: 12px !important;
@@ -659,112 +658,416 @@ function mobileVar() {
           margin-bottom: 9px;
         }
 
-         @media (max-width: 360px) {
-           .absolute_box p span .hidden_text{
-             right: -154px;
-           }
+        .back .v2-horizontal-grid-container .vertical .top-content,
+        .back .payment-summary {
+          display: none;
+        }
 
-           .card_box #placeOrder{
-             font-size: 17px;
-           }
+        /* creator block*/
+        .upsell_u {
+          margin-bottom: 20px;
+        }
+        .back h3.upsell_title {
+          font-family: "Poppins", sans-serif !important;
+          font-weight: 600;
+          font-size: 18px;
+          line-height: 156%;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: #5a7386 !important;
+          margin: 9px 0 15px;
+        }
 
-           p.total_text{
-             font-size: 6px;
-           }
+        .img_wrap {
+          max-height: 56px;
+          height: 100%;
+          max-width: 160px;
+          width: 100%;
+          object-fit: cover;
+        }
 
-           .quarantee div:last-child > p:last-child{
-             font-size: 10px;
-           }
-           .quarantee div:last-child > p:first-child{
-             font-size: 10px;
-           }
-           .card_box .front .mb-24.text-uppercase, .card_box .back .my-32.text-uppercase{
-             font-size: 13px;
-           }
-         }
+        .upsell_u .img_wrap {
+          max-height: 42px;
+        }
 
-         @media (width: 320px) {
-           p.hint_plan > span .hidden_text.toggle_opacity{
-             right: -61px;
-           }
-           .absolute_box p span .hidden_text {
-              right: -120px;
+        .price_wrap {
+          display: flex;
+          align-items: center;
+          margin: 15px 0 10px;
+        }
+        .price_wrap span {
+          font-family: "Inter", sans-serif;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 24px;
+          text-decoration-line: line-through;
+          color: #aebac4;
+        }
+
+        .price_wrap span:last-child {
+          color: #286cd2;
+          font-weight: 700;
+          text-decoration-line: unset;
+          margin-left: 12px;
+        }
+
+        .creator_list {
+          padding: 10px 0 0;
+          margin: 10px 0;
+          display: flex;
+          flex-direction: column;
+          border-top: 1px solid #eeeeee;
+          gap: 10px;
+        }
+
+        .creator_list li {
+          list-style: none;
+          display: flex;
+        }
+
+        .creator_list li svg {
+          max-width: 24px;
+          width: 100%;
+          height: 100%;
+          max-height: 24px;
+        }
+
+        .creator_list li p {
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 171%;
+          color: #183b56;
+          margin-left: 5px;
+        }
+
+        .next_pricing {
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 133%;
+          color: #99a3ab;
+        }
+
+        .live_workshops_wrap {
+          margin-bottom: 10px;
+        }
+
+        .live_workshops_wrap p:first-child {
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 150%;
+          color: #ffffff;
+          padding: 4px 12px;
+          background: #f22447;
+          border-radius: 4px;
+        }
+
+        .live_workshops_wrap p:first-child > span {
+          font-weight: 800;
+        }
+
+        .live_workshops_wrap p:last-child {
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 133%;
+          color: #5a7386;
+          background: #f9f9f9;
+          padding: 10px;
+          border-radius: 0 0 4px 4px;
+        }
+
+        .back .v2-horizontal-grid-container .divider {
+          padding: 0;
+          width: 0;
+          border: unset;
+        }
+
+        .back .v2-horizontal-grid-container .vertical .bump-content {
+          padding: 0 !important;
+        }
+
+        .back .v2-horizontal-grid-container .custom-checkbox {
+          border: none !important;
+          background: #5a7386 !important;
+          border-radius: 8px !important;
+          margin: 0;
+          width: 100% !important;
+          display: flex !important;
+          align-items: center;
+          justify-content: center;
+          height: 40px;
+          padding: 0 !important;
+        }
+
+        .back .v2-horizontal-grid-container .custom-checkbox.active_check {
+          background: #286cd2 !important;
+        }
+
+        .back .v2-horizontal-grid-container .vertical.active_check{
+          border: 1px solid #286CD2 !important;
+        }
+
+        .back .v2-horizontal-grid-container .custom-checkbox label {
+          font-weight: 600 !important;
+          font-size: 16px !important;
+          line-height: 150% !important;
+          color: #ffffff !important;
+          margin: 0 !important;
+          padding: 0 0 0 70px !important;
+          text-align: left;
+          width: 100%;
+        }
+
+        .back .v2-horizontal-grid-container .custom-checkbox .custom-control-label::before {
+          border-radius: 50%;
+          left: 39px;
+        }
+
+        .back .v2-horizontal-grid-container .custom-checkbox .custom-control-label::after{
+          left: 39px;
+        }
+
+        .back .v2-horizontal-grid-container .custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
+          background-image: url(https://conversionratestore.github.io/projects/knineti/img/dark_blue_check_mark.png);
+        }
+
+        .back .v2-horizontal-grid-container .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+          background-color: #ffffff !important;
+        }
+
+        .back .v2-horizontal-grid-container {
+          height: unset;
+          background: #ffffff;
+          box-shadow: 0px 0px 6px rgb(83 137 219 / 30%);
+          border-radius: 20px;
+          padding: 40px 20px 20px;
+          gap: 40px;
+        }
+
+        .back .v2-horizontal-grid-container .order-bump-wrapper {
+          padding: 0;
+          position: relative;
+        }
+
+        .back .v2-horizontal-grid-container .order-bump-wrapper::before {
+          content: "";
+          position: absolute;
+          border-radius: 40px;
+          width: 100%;
+          height: 40px;
+          top: -20px;
+          max-width: 207px;
+          left: 50%;
+          transform: translateX(-50%);
+          font-weight: 800;
+          font-size: 14px;
+          line-height: 114%;
+          text-transform: uppercase;
+          color: #ffffff;
+          padding: 4px 8px;
+          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .back .v2-horizontal-grid-container .order-bump-wrapper:first-child {
+          order: 2;
+        }
+
+        .back .v2-horizontal-grid-container .order-bump-wrapper:first-child::before {
+          background: #6bccbc;
+          content: "Jumpstart your Growth On-Demand";
+        }
+
+        .back .v2-horizontal-grid-container .order-bump-wrapper:last-child {
+          order: 1;
+        }
+
+        .back .v2-horizontal-grid-container .order-bump-wrapper:last-child::before {
+          background: #f22447;
+          content: "Scale Faster with Live Sessions";
+        }
+
+        .back .v2-horizontal-grid-container .vertical {
+          background: #ffffff;
+          border: 1px solid #eeeeee !important;
+          border-color: #eeeeee !important;
+          border-radius: 16px !important;
+          padding: 30px 20px 20px;
+        }
+
+        @media (max-width: 360px) {
+          .absolute_box p span .hidden_text {
+            right: -154px;
           }
-         }
 
-          @media (width: 280px) {
-            .absolute_box p span .hidden_text {
-                right: -120px;
-            }
-
-            .card_box #placeOrder {
-                font-size: 14px;
-            }
-            p.total_text {
-                font-size: 4px;
-            }
-            p.total_text .accent_color {
-                font-size: 7px;
-            }
-
-            .stripe-processor-form .error{
-              font-size: 9px;
-            }
-
-            #paymentForm .card_box .back label#terms_conditions_checkbox-error{
-              top: 28px;
-            }
+          .card_box #placeOrder {
+            font-size: 17px;
           }
+
+          p.total_text {
+            font-size: 6px;
+          }
+
+          .quarantee div:last-child > p:last-child {
+            font-size: 10px;
+          }
+          .quarantee div:last-child > p:first-child {
+            font-size: 10px;
+          }
+          .card_box .front .mb-24.text-uppercase,
+          .card_box .back .my-32.text-uppercase {
+            font-size: 13px;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .price_wrap span {
+            font-size: 13px;
+          }
+
+          .creator_list li p {
+            font-size: 11px;
+          }
+
+          .live_workshops_wrap p:first-child {
+            font-size: 12px;
+          }
+
+          .live_workshops_wrap p:last-child {
+            font-size: 10px;
+          }
+
+          .back .v2-horizontal-grid-container .order-bump-wrapper::before {
+            max-width: 182px;
+            font-size: 12px;
+          }
+
+          .card_box .back #order-summary-widget .product-item .product-label-col .product-item-name {
+            font-size: 7px;
+          }
+
+          .card_box .back .price-item-detail .ng-binding {
+            font-size: 8px;
+          }
+        }
+
+        @media (width: 320px) {
+          p.hint_plan > span .hidden_text.toggle_opacity {
+            right: -61px;
+          }
+          .absolute_box p span .hidden_text {
+            right: -120px;
+          }
+        }
+
+        @media (max-width: 280px) {
+          .price_wrap span {
+            font-size: 11px;
+          }
+
+          .next_pricing {
+            font-size: 10px;
+          }
+
+          .creator_list li p {
+            font-size: 9px;
+          }
+          .live_workshops_wrap p:first-child {
+            font-size: 10px;
+          }
+
+          .live_workshops_wrap p:last-child {
+            font-size: 8px;
+          }
+
+          .card_box .back #order-summary-widget .unit-amount.ng-binding {
+            font-size: 9px;
+          }
+
+          .card_box .back #order-summary-widget .product-item .product-label-col .product-item-name {
+            font-size: 7px;
+          }
+
+          .card_box .back .price-item-detail .ng-binding {
+            font-size: 7px;
+          }
+        }
+
+        @media (width: 280px) {
+          .absolute_box p span .hidden_text {
+            right: -120px;
+          }
+
+          .card_box #placeOrder {
+            font-size: 14px;
+          }
+          p.total_text {
+            font-size: 4px;
+          }
+          p.total_text .accent_color {
+            font-size: 7px;
+          }
+
+          .stripe-processor-form .error {
+            font-size: 9px;
+          }
+
+          #paymentForm .card_box .back label#terms_conditions_checkbox-error {
+            top: 28px;
+          }
+        }
+
       </style>
     `
 
       let steps = /* html*/ `
-      <div class="steps">
-        <ol>
-          <li>
-            <span class="active">1</span>
-            <div class="absolute_box">
-              <p>Start your free trial and get access to samcart</p>
-              <span>Feb / 03 / 22</span>
-            </div>
-          </li>
-          <li>
-            <span>2</span>
-            <div class="absolute_box">
-              <p>Create your new marketplace</p>
-              <span>Feb / 03 / 22</span>
-            </div>
-          </li>
-          <li>
-            <span>3</span>
-            <div class="absolute_box">
-              <p>
-                Risk-free trial. Cancel anytime during the next 14 days.
-                <span>
-                  <svg class="hint" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8.25 5.25H9.75V6.75H8.25V5.25Z" fill="#98B9E9" />
-                    <path d="M8.25 8.25H9.75V12.75H8.25V8.25Z" fill="#98B9E9" />
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M1.5 9C1.5 4.86 4.85999 1.5 9 1.5C13.14 1.5 16.5 4.86 16.5 9C16.5 13.14 13.14 16.5 9 16.5C4.85999 16.5 1.5 13.14 1.5 9ZM3 9C3 12.3075 5.69247 15 9 15C12.3075 15 15 12.3075 15 9C15 5.6925 12.3075 3 9 3C5.69247 3 3 5.6925 3 9Z"
-                      fill="#98B9E9"
-                    />
-                  </svg>
-                  <svg class="mini_box" width="20" height="10" viewBox="0 0 20 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M11.5568 8.72844C10.7889 9.52248 9.52275 9.5437 8.72872 8.77586L0.0002195 0.335198L19.9974 -6.09158e-05L11.5568 8.72844Z" fill="white" />
-                  </svg>
-                  <span class="hidden_text"
-                    >Our templates can help you start your online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel your
-                    risk-free trial within 14 days and we will not charge you anything.</span
-                  >
-                </span>
-              </p>
-              <span>Mar / 05 / 22</span>
-            </div>
-          </li>
-        </ol>
-      </div>
+          <div class="steps">
+            <ol>
+              <li>
+                <span class="active">1</span>
+                <div class="absolute_box">
+                  <p>Start your free trial and get access to samcart</p>
+                  <span>Feb / 03 / 22</span>
+                </div>
+              </li>
+              <li>
+                <span>2</span>
+                <div class="absolute_box">
+                  <p>Create your new marketplace</p>
+                  <span>Feb / 03 / 22</span>
+                </div>
+              </li>
+              <li>
+                <span>3</span>
+                <div class="absolute_box">
+                  <p>
+                    Risk-free trial. Cancel anytime during the next 14 days.
+                    <span>
+                      <svg class="hint" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.25 5.25H9.75V6.75H8.25V5.25Z" fill="#98B9E9" />
+                        <path d="M8.25 8.25H9.75V12.75H8.25V8.25Z" fill="#98B9E9" />
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M1.5 9C1.5 4.86 4.85999 1.5 9 1.5C13.14 1.5 16.5 4.86 16.5 9C16.5 13.14 13.14 16.5 9 16.5C4.85999 16.5 1.5 13.14 1.5 9ZM3 9C3 12.3075 5.69247 15 9 15C12.3075 15 15 12.3075 15 9C15 5.6925 12.3075 3 9 3C5.69247 3 3 5.6925 3 9Z"
+                          fill="#98B9E9"
+                        />
+                      </svg>
+                      <svg class="mini_box" width="20" height="10" viewBox="0 0 20 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11.5568 8.72844C10.7889 9.52248 9.52275 9.5437 8.72872 8.77586L0.0002195 0.335198L19.9974 -6.09158e-05L11.5568 8.72844Z" fill="white" />
+                      </svg>
+                      <span class="hidden_text"
+                        >Our templates can help you start your online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel your
+                        risk-free trial within 14 days and we will not charge you anything.</span
+                      >
+                    </span>
+                  </p>
+                  <span>Mar / 05 / 22</span>
+                </div>
+              </li>
+            </ol>
+          </div>
     `
       let hintPlan = /* html*/ `
       <p class="hint_plan">
@@ -823,18 +1126,6 @@ function mobileVar() {
               Back
             </span>
             <span class="testik2"></span>
-            <div class="quarantee">
-              <div>
-                <img src="https://conversionratestore.github.io/projects/samcart/img/mask_group_mobile.png" alt="quarantee" />
-              </div>
-              <div>
-                <p>Risk-free trial. Cancel anytime during the next 14 days</p>
-                <p>
-                  Our templates can help you start your online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel your
-                  risk-free trial within 14 days and we will not charge you anything.
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -875,7 +1166,7 @@ function mobileVar() {
       let quaranteeBlock = /* html*/ `
       <div class="quarantee">
         <div>
-          <img src="https://conversionratestore.github.io/projects/samcart/img/mask_group_mobile.png" alt="quarantee" />
+          <img src="https://conversionratestore.github.io/projects/samcart/img/mask_group2.png" alt="quarantee" />
         </div>
         <div>
           <p>Risk-free trial. Cancel anytime during the next 14 days</p>
@@ -886,6 +1177,83 @@ function mobileVar() {
         </div>
       </div>
     `
+
+      let upsellU = /* html*/ `
+        <div class="upsell_u">
+          <div class="img_wrap">
+            <img src="https://conversionratestore.github.io/projects/samcart/img/creator_u.png" alt="logo creator u" />
+          </div>
+          <div class="price_wrap">
+            <span>$144.00</span>
+            <span>14-DAYS FREE</span>
+          </div>
+          <p class="next_pricing">Then $10/month, billed yearly starting in 2 weeks</p>
+          <ul class="creator_list">
+            <li>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  opacity="0.8"
+                  d="M19 11.6818L17.4473 9.90636L17.6636 7.55818L15.3664 7.03636L14.1636 5L12 5.92909L9.83636 5L8.63364 7.03L6.33636 7.54545L6.55273 9.9L5 11.6818L6.55273 13.4573L6.33636 15.8118L8.63364 16.3336L9.83636 18.3636L12 17.4282L14.1636 18.3573L15.3664 16.3273L17.6636 15.8055L17.4473 13.4573L19 11.6818ZM10.7845 14.6855L8.36636 12.2609L9.30818 11.3191L10.7845 12.8018L14.5073 9.06636L15.4491 10.0082L10.7845 14.6855Z"
+                  fill="#5389DB"
+                />
+              </svg>
+              <p>Full access to <b>CreatorU Library with 28+</b> data driven blueprints</p>
+            </li>
+            <li>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  opacity="0.8"
+                  d="M19 11.6818L17.4473 9.90636L17.6636 7.55818L15.3664 7.03636L14.1636 5L12 5.92909L9.83636 5L8.63364 7.03L6.33636 7.54545L6.55273 9.9L5 11.6818L6.55273 13.4573L6.33636 15.8118L8.63364 16.3336L9.83636 18.3636L12 17.4282L14.1636 18.3573L15.3664 16.3273L17.6636 15.8055L17.4473 13.4573L19 11.6818ZM10.7845 14.6855L8.36636 12.2609L9.30818 11.3191L10.7845 12.8018L14.5073 9.06636L15.4491 10.0082L10.7845 14.6855Z"
+                  fill="#5389DB"
+                />
+              </svg>
+              <p><b>Marketing & sales strategies</b> used by the top creators online today</p>
+            </li>
+          </ul>
+        </div>
+      `
+
+      let upsellULive = /* html*/ `
+        <div class="upsell_u_live">
+          <div class="img_wrap">
+            <img src="https://conversionratestore.github.io/projects/samcart/img/creator_u_live.png" alt="logo creator U Live" />
+          </div>
+          <div class="price_wrap">
+            <span>$444.00</span>
+            <span>14-DAYS FREE</span>
+          </div>
+          <p class="next_pricing">Then $30.42/month, billed yearly starting in 2 weeks</p>
+          <ul class="creator_list">
+            <li>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  opacity="0.8"
+                  d="M19 11.6818L17.4473 9.90636L17.6636 7.55818L15.3664 7.03636L14.1636 5L12 5.92909L9.83636 5L8.63364 7.03L6.33636 7.54545L6.55273 9.9L5 11.6818L6.55273 13.4573L6.33636 15.8118L8.63364 16.3336L9.83636 18.3636L12 17.4282L14.1636 18.3573L15.3664 16.3273L17.6636 15.8055L17.4473 13.4573L19 11.6818ZM10.7845 14.6855L8.36636 12.2609L9.30818 11.3191L10.7845 12.8018L14.5073 9.06636L15.4491 10.0082L10.7845 14.6855Z"
+                  fill="#5389DB"
+                />
+              </svg>
+              <p>Full access to <b>CreatorU Library with 28+</b> data driven blueprints</p>
+            </li>
+            <li>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  opacity="0.8"
+                  d="M19 11.6818L17.4473 9.90636L17.6636 7.55818L15.3664 7.03636L14.1636 5L12 5.92909L9.83636 5L8.63364 7.03L6.33636 7.54545L6.55273 9.9L5 11.6818L6.55273 13.4573L6.33636 15.8118L8.63364 16.3336L9.83636 18.3636L12 17.4282L14.1636 18.3573L15.3664 16.3273L17.6636 15.8055L17.4473 13.4573L19 11.6818ZM10.7845 14.6855L8.36636 12.2609L9.30818 11.3191L10.7845 12.8018L14.5073 9.06636L15.4491 10.0082L10.7845 14.6855Z"
+                  fill="#5389DB"
+                />
+              </svg>
+              <p><b>Marketing & sales strategies</b> used by the top creators online today</p>
+            </li>
+          </ul>
+          <div class="live_workshops_wrap">
+            <p>
+              <span>+ LIVE WORKSHOPS</span> <br />
+              with world’s top creators
+            </p>
+            <p>Each month you'll be learning specific strategies from <b>7 and 8-figure creators!</b></p>
+          </div>
+        </div>
+      `
 
       document.head.insertAdjacentHTML("beforeend", styleBox)
 
@@ -920,14 +1288,31 @@ function mobileVar() {
       document.querySelector(".front .mb-24.text-uppercase")?.after(document.querySelectorAll(".border-bottom.mb-16")[0])
       document.querySelector(".testik2").after(document.querySelector(".my-32.text-uppercase"))
       document.querySelector(".back .my-32.text-uppercase")?.after(document.querySelector("#payments"))
-      document.querySelector(".back #payments")?.after(document.querySelector(".tpl-t1__terms.mx-auto.text-center"))
-      document.querySelector(".tpl-t1__terms.mx-auto.text-center")?.after(document.querySelector("#order-summary-widget"))
-      document.querySelector(".tpl-t1__terms.mx-auto.text-center")?.after(document.querySelector(".g-recaptcha-container"))
+
+      document.querySelector(".back #payments")?.insertAdjacentHTML("afterend", `<h3 class="upsell_title">LEARN HOW TO LAUNCH OR SCALE YOUR ONLINE <br/> BUSINESS</h3>`)
+      document.querySelector(".back h3.upsell_title")?.after(document.querySelector(".v2-horizontal-grid-container"))
+      document.querySelector(".back .v2-horizontal-grid-container")?.after(document.querySelector("#order-summary-widget"))
+      document.querySelector(`.back #order-summary-widget`).insertAdjacentHTML("afterend", quaranteeBlock)
+      document.querySelector(".back .quarantee")?.after(document.querySelector(".tpl-t1__terms.mx-auto.text-center"))
+      document.querySelector(".back .tpl-t1__terms.mx-auto.text-center")?.after(document.querySelector(".g-recaptcha-container"))
+
       if (document.querySelector("#placeOrder")) {
-        document.querySelector(".back #order-summary-widget")?.after(document.querySelector("#placeOrder"))
+        document.querySelector(".back .g-recaptcha-container")?.after(document.querySelector("#placeOrder"))
       }
+
       if (document.querySelector("#payment-request-button")) {
-        document.querySelector(".back #order-summary-widget")?.after(document.querySelector("#payment-request-button"))
+        document.querySelector(".back .g-recaptcha-container")?.after(document.querySelector("#payment-request-button"))
+      }
+
+      document.querySelectorAll(".v2-horizontal-grid-container .vertical .top-content")[0].insertAdjacentHTML("afterend", upsellU)
+      document.querySelectorAll(".v2-horizontal-grid-container .vertical .top-content")[1].insertAdjacentHTML("afterend", upsellULive)
+
+      if (document.querySelector(".upsell_u_live .price_wrap span:first-child")) {
+        document.querySelector(".upsell_u_live .price_wrap span:first-child").textContent = document.querySelectorAll(".v2-horizontal-grid-container strike")[1].textContent
+      }
+
+      if (document.querySelector(".upsell_u .price_wrap span:first-child")) {
+        document.querySelector(".upsell_u .price_wrap span:first-child").textContent = document.querySelectorAll(".v2-horizontal-grid-container strike")[0].textContent
       }
 
       if (document.querySelector(".card_box")) {
@@ -938,10 +1323,10 @@ function mobileVar() {
         // document.querySelector('input[name="phone"]').placeholder = "+1 (000) - 000 - 0000"
 
         // click on btn_continue
-        document.querySelector(".card_box .front button.btn_continue").addEventListener("click", () => {
+        document.querySelector(".card_box .front button.btn_continue").addEventListener("click", (event) => {
           pushDataLayer("Click on Continue button", "Step 1")
 
-          validationForm("form .wrapper_card .card_box .front")
+          validationForm("form .wrapper_card .card_box .front", event)
         })
 
         // hover on hint -> event
@@ -1056,7 +1441,7 @@ function mobileVar() {
 
         // validate form
         if (document.querySelector("form .front .border-bottom.mb-16")) {
-          function validationForm(parent) {
+          function validationForm(parent, event) {
             let inputValueName = document.querySelector(`${parent} input[name='fname']`).value.match(/^.{1,30}$/)
             let inputValueLastName = document.querySelector(`${parent} input[name='lname']`).value.match(/^.{1,30}$/)
             // let inputValuePhone = document.querySelector(`${parent} input[name='phone']`).value.match(/(?<=^|\s|>|\;|\:|\))(?:\+|7|8|9|\()[\d\-\(\) ]{8,}\d/)
@@ -1099,12 +1484,13 @@ function mobileVar() {
             }
 
             if (document.querySelector(`${parent} input.error`) == null && document.querySelector(`${parent} select.error`) == null) {
+              event.preventDefault()
               document.querySelector(".front").style.transform = "rotateY(-180deg)"
               document.querySelector(".back").style.transform = "rotateY(-360deg)"
               document.querySelector(".front").style.zIndex = "0"
 
               setTimeout(() => {
-                document.querySelector("section.tpl-t1.pb-sm-40.pb-24 .tpl-t1__col-form").style.height = "1420px"
+                document.querySelector("section.tpl-t1.pb-sm-40.pb-24 .tpl-t1__col-form").style.height = "2670px"
                 document.querySelector(".back").style.opacity = "1"
                 document.querySelector(".back").style.display = "block"
               }, 400)
@@ -1117,6 +1503,18 @@ function mobileVar() {
             }
           }
         }
+
+        document.querySelectorAll(".back .v2-horizontal-grid-container .custom-checkbox .custom-control-input").forEach((el) => {
+          el.addEventListener("change", function () {
+            if (el.checked) {
+              el.closest(".custom-checkbox").classList.add("active_check")
+              el.closest(".vertical").classList.add("active_check")
+            } else {
+              el.closest(".custom-checkbox").classList.remove("active_check")
+              el.closest(".vertical").classList.remove("active_check")
+            }
+          })
+        })
 
         // observe Form
         const options = {
@@ -1133,14 +1531,10 @@ function mobileVar() {
 
             function onObserverForm(selectorBtn) {
               if (document.querySelector(`${selectorBtn}`)) {
-                document.querySelector(".back #order-summary-widget")?.after(document.querySelector(`${selectorBtn}`))
+                document.querySelector(".back .g-recaptcha-container")?.after(document.querySelector(`${selectorBtn}`))
 
                 if (selectorBtn === "#placeOrder") {
                   document.querySelector(`${selectorBtn}`).textContent = "Start your free trial now"
-                }
-
-                if (!document.querySelector(".quarantee")) {
-                  document.querySelector(`.back ${selectorBtn}`).insertAdjacentHTML("afterend", quaranteeBlock)
                 }
               }
             }
@@ -1164,601 +1558,901 @@ function desktopVar() {
       clearInterval(startFunk2)
 
       let styleBox = /* html*/ `
-<style>
-  section.tpl-t1.pb-sm-40.pb-24 .tpl-t1__col-form {
-    padding-top: 65px;
-  }
+  <style>
+    section.tpl-t1.pb-sm-40.pb-24 .tpl-t1__col-form {
+      padding-top: 65px;
+      width: 84% !important;
+    }
 
-  #recaptcha-error {
-    text-align: center !important;
-  }
+    #recaptcha-error {
+      text-align: center !important;
+    }
 
-  #sc51e54003-0fac-46db-80a2-881825e46c45 h1 {
-    max-width: 445px;
-    font-family: "Poppins", sans-serif !important;
-    font-size: 41px !important;
-    line-height: 122%;
-    align-items: center;
-    color: #ffffff !important;
-  }
+    #sc51e54003-0fac-46db-80a2-881825e46c45 h1 {
+      max-width: 445px;
+      font-family: "Poppins", sans-serif !important;
+      font-size: 41px !important;
+      line-height: 122%;
+      align-items: center;
+      color: #ffffff !important;
+    }
 
-  .sc-element .mobile-column-width #sc5d10c341-d9b7-4b33-992c-37c47d5322e2 p font {
-    display: block;
-    max-width: 401px;
-    font-family: "Poppins", sans-serif !important;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 150%;
-    color: #ffffff !important;
-  }
+    .sc-element .mobile-column-width #sc5d10c341-d9b7-4b33-992c-37c47d5322e2 p font {
+      display: block;
+      max-width: 401px;
+      font-family: "Poppins", sans-serif !important;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 150%;
+      color: #ffffff !important;
+    }
 
-  div[ng-if="subscriptionsByProductId[checkoutContext.order.invoice.items[0].product_id]"] {
-    display: none;
-  }
+    div[ng-if="subscriptionsByProductId[checkoutContext.order.invoice.items[0].product_id]"] {
+      display: none;
+    }
 
-  .back .v2-horizontal-grid-container{
-    height: unset;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 6px rgb(83 137 219 / 30%);
-    border-radius: 20px;
-    padding: 40px 20px 20px;
-    gap: 10px;
-    flex-wrap: unset;
-  }
+    .back .v2-horizontal-grid-container {
+      height: unset;
+      background: #ffffff;
+      box-shadow: 0px 0px 6px rgb(83 137 219 / 30%);
+      border-radius: 20px;
+      padding: 40px 20px 20px;
+      gap: 10px;
+      flex-wrap: unset;
+    }
 
-  .back .v2-horizontal-grid-container .order-bump-wrapper{
-    padding: 0;
-  }
+    .back .v2-horizontal-grid-container .order-bump-wrapper {
+      padding: 0;
+      position: relative;
+    }
 
-  .back .v2-horizontal-grid-container .vertical{
-    background: #FFFFFF;
-    border: 1px solid #EEEEEE !important;
-    border-color: #EEEEEE !important;
-    border-radius: 16px !important;
-  }
+    .back .v2-horizontal-grid-container .order-bump-wrapper::before {
+      content: "";
+      position: absolute;
+      border-radius: 40px;
+      width: 100%;
+      height: 40px;
+      top: -20px;
+      max-width: 207px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-weight: 800;
+      font-size: 14px;
+      line-height: 114%;
+      text-transform: uppercase;
+      color: #ffffff;
+      padding: 4px 8px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
+    .back .v2-horizontal-grid-container .order-bump-wrapper:first-child {
+      order: 2;
+    }
 
-  .steps {
-    margin: 96px 0 54px;
-  }
+    .back .v2-horizontal-grid-container .order-bump-wrapper:first-child::before {
+      background: #6bccbc;
+      content: "Jumpstart your Growth On-Demand";
+    }
 
-  .steps ol {
-    display: flex;
-    align-items: center;
-    padding: 0;
-    margin: 0;
-  }
+    .back .v2-horizontal-grid-container .order-bump-wrapper:last-child {
+      order: 1;
+    }
 
-  .steps ol li {
-    position: relative;
-    list-style: none;
-    display: flex;
-    align-items: center;
-  }
+    .back .v2-horizontal-grid-container .order-bump-wrapper:last-child::before {
+      background: #f22447;
+      content: "Scale Faster with Live Sessions";
+    }
 
-  .steps ol li + li {
-    margin-left: 20px;
-  }
+    .back .v2-horizontal-grid-container .vertical {
+      background: #ffffff;
+      border: 1px solid #eeeeee !important;
+      border-color: #eeeeee !important;
+      border-radius: 16px !important;
+      padding: 30px 20px 20px;
+    }
 
-  .steps ol li:nth-child(1)::after {
-    position: absolute;
-    content: "Today";
-    left: 0;
-    bottom: -17px;
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    font-size: 8px;
-    line-height: 113%;
-    color: #ffffff;
-    opacity: 0.5;
-  }
+    .steps {
+      margin: 96px 0 54px;
+    }
 
-  .steps ol li > span {
-    width: 21px;
-    height: 20px;
+    .steps ol {
+      display: flex;
+      align-items: center;
+      padding: 0;
+      margin: 0;
+    }
 
-    border: 1px solid #ffffff;
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    .steps ol li {
+      position: relative;
+      list-style: none;
+      display: flex;
+      align-items: center;
+    }
 
-    font-family: "Roboto", sans-serif;
-    font-weight: 700;
-    font-size: 8px;
-    line-height: 113%;
-    color: #ffffff;
-    padding: 5px 8px;
-    margin-right: 20px;
-  }
+    .steps ol li + li {
+      margin-left: 20px;
+    }
 
-  .steps ol li > span.active {
-    background: #ffffff;
-    color: #286cd2;
-  }
+    .steps ol li:nth-child(1)::after {
+      position: absolute;
+      content: "Today";
+      left: 0;
+      bottom: -17px;
+      font-family: "Roboto", sans-serif;
+      font-weight: 400;
+      font-size: 8px;
+      line-height: 113%;
+      color: #ffffff;
+      opacity: 0.5;
+    }
 
-  .steps ol li:nth-child(1) .absolute_box {
-    width: 145px;
-  }
+    .steps ol li > span {
+      width: 21px;
+      height: 20px;
 
-  .steps ol li:nth-child(2) .absolute_box {
-    width: 110px;
-  }
+      border: 1px solid #ffffff;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-  .steps ol li:nth-child(3) .absolute_box {
-    width: 175px;
-  }
+      font-family: "Roboto", sans-serif;
+      font-weight: 700;
+      font-size: 8px;
+      line-height: 113%;
+      color: #ffffff;
+      padding: 5px 8px;
+      margin-right: 20px;
+    }
 
-  .absolute_box {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: -50px;
-    left: 0;
-    justify-content: space-between;
-  }
+    .steps ol li > span.active {
+      background: #ffffff;
+      color: #286cd2;
+    }
 
-  .absolute_box p {
-    font-family: "Poppins", sans-serif !important;
-    font-weight: 400;
-    font-size: 9px !important;
-    line-height: 144%;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #ffffff;
-    margin-bottom: 5px !important;
-  }
-
-  .absolute_box > span {
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    font-size: 8px;
-    line-height: 113%;
-    color: #ffffff;
-    opacity: 0.5;
-  }
-
-  .absolute_box p span,
-  p.total_text > span {
-    position: relative;
-  }
-
-  .absolute_box p span .hidden_text,
-  p.total_text > span .hidden_text {
-    position: absolute;
-    opacity: 0;
-    width: 230px;
-    background: #f4f5f6;
-    box-shadow: 0px 0.688073px 2.06422px rgba(24, 59, 86, 0.1), 0px 5.26px 20px rgba(8, 32, 125, 0.2);
-    border-radius: 10px;
-    padding: 15px;
-    font-family: "Poppins", sans-serif !important;
-    font-weight: 300;
-    font-size: 10px;
-    line-height: 160%;
-    color: #5a7386;
-    top: 25px;
-    left: -33px;
-    z-index: 5;
-    text-transform: none;
-    transition: all 250ms ease;
-    text-align: left;
-    pointer-events: none;
-  }
-
-  p.total_text span .hidden_text {
-    left: unset;
-    right: -28px;
-  }
-
-  .absolute_box p span .mini_box,
-  p.total_text span .mini_box {
-    position: absolute;
-    opacity: 0;
-    top: 17px;
-    left: -14px;
-    z-index: 7;
-    width: 39.84px;
-    height: 9.75px;
-    transition: all 250ms ease;
-  }
-
-  p.total_text span .mini_box {
-    left: unset;
-    right: -13px;
-  }
-
-  .hint {
-    cursor: pointer;
-  }
-
-  .absolute_box p span .hint:hover ~ .mini_box,
-  .absolute_box p span .hint:hover ~ .hidden_text,
-  p.total_text span .hint:hover ~ .mini_box,
-  p.total_text span .hint:hover ~ .hidden_text {
-    opacity: 1;
-  }
-
-  p.total_text {
-    font-family: "Poppins", sans-serif !important;
-    font-weight: 400;
-    font-size: 7px;
-    line-height: 186%;
-    text-align: right;
-    color: #5a7386;
-  }
-
-  p.total_text .accent_color {
-    font-weight: 600;
-  }
-
-  .card_box .invoice-item.total-row {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .card_box .invoice-item.total-row .invoice-amount-col.float-right.text-right {
-    float: unset !important;
-  }
-
-          .card_box .back #order-summary-widget .product-item{
-          margin-bottom: 24px;
-          padding-bottom: 0;
-          border-bottom: unset !important;
-        }
-
-        .card_box .back #summary-totals{
-          border-top: 1px solid #EFF1F3;
-          padding-top: 24px;
-        }
-
-        .card_box .back #order-summary-widget .remove-product{
-          font-family: "Poppins", sans-serif !important;
-          font-weight: 400;
-          font-size: 10px;
-          line-height: 15px;
-          text-decoration: underline;
-          color: #5A7386;
-          opacity: 1;
-        }
-
-        .card_box .back #order-summary-widget .remove-product-container{
-          padding: 0;
-        }
-
-        .card_box .back #order-summary-widget .product-item .product-label-col .product-item-name{
-          font-family: "Poppins", sans-serif !important;
-          color: #183B56;
-          font-weight: 400;
-          font-size: 14px;
-          line-height: 21px;
-        }
-
-        .card_box .back .price-item-detail .ng-binding{
-          font-family: "Poppins", sans-serif !important;
-          color: #5A7386 !important;
-          font-weight: 400;
-          font-size: 10px;
-          line-height: 15px;
-          margin: 0;
-          text-align: start !important;
-        }
-
-        .card_box .back .unit-amount.ng-binding{
-          font-family: "Poppins", sans-serif !important;
-          color: #183B56;
-          font-weight: 400;
-          font-size: 14px;
-          line-height: 21px;
-        }
-
-        .invoice-item.total-row .invoice-label-col .invoice-item-label {
-          font-family: "Poppins", sans-serif !important;
-          font-weight: 600 !important;
-          font-size: 16px !important;
-          line-height: 150% !important;
-          text-transform: unset !important;
-          color: #183B56 !important;
-        }
-
-        .card_box .invoice-item.total-row .invoice-amount-col.float-right.text-right #total {
-          font-family: "Poppins", sans-serif !important;
-          font-weight: 700 !important;
-          font-size: 16px !important;
-          line-height: 150% !important;
-          text-transform: uppercase !important;
-          color: #136ED6 !important;
-        }
-
-  @media (max-width: 1210px) {
     .steps ol li:nth-child(1) .absolute_box {
-      width: 135px;
+      width: 145px;
     }
 
     .steps ol li:nth-child(2) .absolute_box {
-      width: 85px;
+      width: 110px;
     }
 
     .steps ol li:nth-child(3) .absolute_box {
-      width: 132px;
+      width: 175px;
     }
 
     .absolute_box {
-      top: -65px;
-    }
-  }
-
-  @media (max-width: 1098px) {
-    .steps ol li:nth-child(1) .absolute_box {
-      width: 105px;
-    }
-
-    .steps ol li:nth-child(2) img {
-      max-width: 100px;
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: -50px;
+      left: 0;
+      justify-content: space-between;
     }
 
-    .steps ol li:nth-child(2) .absolute_box {
-      width: 67px;
+    .absolute_box p {
+      font-family: "Poppins", sans-serif !important;
+      font-weight: 400;
+      font-size: 9px !important;
+      line-height: 144%;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-bottom: 5px !important;
     }
 
-    .steps ol li:nth-child(2) .absolute_box p {
-      margin-bottom: 18px !important;
+    .absolute_box > span {
+      font-family: "Roboto", sans-serif;
+      font-weight: 400;
+      font-size: 8px;
+      line-height: 113%;
+      color: #ffffff;
+      opacity: 0.5;
     }
 
-    .steps ol li:nth-child(2) img {
-      max-width: 70px;
+    .absolute_box p span,
+    p.total_text > span {
+      position: relative;
     }
 
-    .steps ol li:nth-child(3) .absolute_box {
-      width: 95px;
+    .absolute_box p span .hidden_text,
+    p.total_text > span .hidden_text {
+      position: absolute;
+      opacity: 0;
+      width: 230px;
+      background: #f4f5f6;
+      box-shadow: 0px 0.688073px 2.06422px rgba(24, 59, 86, 0.1), 0px 5.26px 20px rgba(8, 32, 125, 0.2);
+      border-radius: 10px;
+      padding: 15px;
+      font-family: "Poppins", sans-serif !important;
+      font-weight: 300;
+      font-size: 10px;
+      line-height: 160%;
+      color: #5a7386;
+      top: 25px;
+      left: -33px;
+      z-index: 5;
+      text-transform: none;
+      transition: all 250ms ease;
+      text-align: left;
+      pointer-events: none;
     }
 
-    .absolute_box {
-      top: -77px;
+    p.total_text span .hidden_text {
+      left: unset;
+      right: -28px;
     }
-  }
 
-  /*3d card */
-  .tpl-t1__col-form {
-    height: 100%;
-  }
+    .absolute_box p span .mini_box,
+    p.total_text span .mini_box {
+      position: absolute;
+      opacity: 0;
+      top: 17px;
+      left: -14px;
+      z-index: 7;
+      width: 39.84px;
+      height: 9.75px;
+      transition: all 250ms ease;
+    }
 
-  #paymentForm {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
+    p.total_text span .mini_box {
+      left: unset;
+      right: -13px;
+    }
 
-  .wrapper_card {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background: #ffffff;
-  }
+    .hint {
+      cursor: pointer;
+    }
 
-  .card_box {
-    position: relative;
-    perspective: 5000px;
-    width: 100%;
-    height: 100%;
-  }
-  .card_box .front,
-  .card_box .back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    transition: all 1s 0s cubic-bezier(0.47, 0, 0.75, 0.72);
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    background: #ffffff;
-  }
+    .absolute_box p span .hint:hover ~ .mini_box,
+    .absolute_box p span .hint:hover ~ .hidden_text,
+    p.total_text span .hint:hover ~ .mini_box,
+    p.total_text span .hint:hover ~ .hidden_text {
+      opacity: 1;
+    }
 
-  .card_box .front {
-    z-index: 10;
-  }
-  .card_box .back {
-    transform: rotateY(-180deg);
-  }
+    p.total_text {
+      font-family: "Poppins", sans-serif !important;
+      font-weight: 400;
+      font-size: 7px;
+      line-height: 186%;
+      text-align: right;
+      color: #5a7386;
+    }
 
-  .card_box .front button.btn_continue,
-  .card_box #placeOrder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100% !important;
-    height: 65px;
-    padding: 18px;
-    background: #273542 !important;
-    border-radius: 7px;
-    font-family: "Poppins", sans-serif !important;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 150%;
-    letter-spacing: 0.05em;
-    text-transform: capitalize;
-    color: #ffffff;
-    margin-top: 30px;
-    position: relative;
-    border: none;
-    cursor: pointer;
-  }
+    p.total_text .accent_color {
+      font-weight: 600;
+    }
 
-  .card_box #order-summary-widget {
-    margin: 40px 0 0 !important;
-    background: #F5F8FA !important;
-    border-radius: 20px !important;
-    padding: 30px !important;
-  }
+    .card_box .invoice-item.total-row {
+      display: flex;
+      justify-content: space-between;
+    }
 
-  .card_box #placeOrder {
-    text-transform: unset;
-    margin: 0 0 15px !important;
-  }
+    .card_box .invoice-item.total-row .invoice-amount-col.float-right.text-right {
+      float: unset !important;
+    }
 
-  .card_box .front button.btn_continue svg {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 20px;
-  }
+    .card_box .back #order-summary-widget .product-item {
+      margin-bottom: 24px;
+      padding-bottom: 0;
+      border-bottom: unset !important;
+    }
 
-  .card_box .front .mb-24.text-uppercase,
-  .card_box .back .my-32.text-uppercase {
-    font-family: "Poppins", sans-serif !important;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 150%;
-    letter-spacing: 0.1em;
-    text-transform: uppercase !important;
-    color: #5a7386 !important;
-    margin-bottom: 10px !important;
-    margin-top: 0 !important;
-  }
+    .card_box .back #summary-totals {
+      border-top: 1px solid #eff1f3;
+      padding-top: 24px;
+    }
 
-  #paymentForm .card_box .back .stripe-processor-form .CVV2-label,
-  #paymentForm .card_box .back .stripe-processor-form .exp-label,
-  #paymentForm .card_box .back .stripe-processor-form .stripe-label,
-  #paymentForm .card_box .back .tab-content > .tab-pane {
-    display: block !important;
-  }
+    .card_box .back #order-summary-widget .remove-product {
+      font-family: "Poppins", sans-serif !important;
+      font-weight: 400;
+      font-size: 10px;
+      line-height: 15px;
+      text-decoration: underline;
+      color: #5a7386;
+      opacity: 1;
+    }
 
-  #paymentForm .card_box .front label,
-  #paymentForm .card_box .back label {
-    font-family: "Poppins", sans-serif !important;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 150%;
-    text-transform: capitalize;
-    color: #5a7386;
-    margin-bottom: 5px;
-  }
+    .card_box .back #order-summary-widget .remove-product-container {
+      padding: 0;
+    }
 
-  #paymentForm .card_box .front label.error{
-    color: #FF3465;
-  }
+    .card_box .back #order-summary-widget .product-item .product-label-col .product-item-name {
+      font-family: "Poppins", sans-serif !important;
+      color: #183b56;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 21px;
+    }
 
-  .card_box .back .tpl-t1__terms.mx-auto.text-center {
-    text-align: left !important;
-    position: relative;
-  }
+    .card_box .back .price-item-detail .ng-binding {
+      font-family: "Poppins", sans-serif !important;
+      color: #5a7386 !important;
+      font-weight: 400;
+      font-size: 10px;
+      line-height: 15px;
+      margin: 0;
+      text-align: start !important;
+    }
 
-  #paymentForm .card_box .back label#terms_conditions_checkbox-error {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    color: red;
-  }
+    .card_box .back .unit-amount.ng-binding {
+      font-family: "Poppins", sans-serif !important;
+      color: #183b56;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 11px;
+    }
 
-  .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
-    border: none !important;
-  }
+    .invoice-item.total-row .invoice-label-col .invoice-item-label {
+      font-family: "Poppins", sans-serif !important;
+      font-weight: 600 !important;
+      font-size: 16px !important;
+      line-height: 150% !important;
+      text-transform: unset !important;
+      color: #183b56 !important;
+    }
 
-  #paymentForm .card_box .back label[for="terms_conditions_checkbox"]:not(.error) {
-    color: #5f7384;
-    font-weight: 400;
-    text-transform: unset;
-  }
+    .card_box .invoice-item.total-row .invoice-amount-col.float-right.text-right #total {
+      font-family: "Poppins", sans-serif !important;
+      font-weight: 700 !important;
+      font-size: 16px !important;
+      line-height: 150% !important;
+      text-transform: uppercase !important;
+      color: #136ed6 !important;
+    }
 
-  #paymentForm .card_box .back label[for="terms_conditions_checkbox"]:not(.error) a {
-    font-weight: 700;
-  }
+    @media (max-width: 1210px) {
+      .steps ol li:nth-child(1) .absolute_box {
+        width: 135px;
+      }
 
-  .card_box .front .form-control,
-  .card_box .stripe-processor-form .StripeElement,
-  .card_box select,
-  .card_box .ElementsApp input,
-  .card_box .ElementsApp .InputElement input {
-    border: 1px solid #bfc7ce;
-    border-radius: 3px;
-    height: 41px;
-    font-family: "Poppins", sans-serif !important;
-    font-weight: 400 !important;
-    font-size: 12px !important;
-    line-height: 150% !important;
-    color: #5a7386;
-    opacity: 0.5;
-    padding: 11px !important;
-  }
+      .steps ol li:nth-child(2) .absolute_box {
+        width: 85px;
+      }
 
-  .card_box .front .border-bottom.mb-16 {
-    margin-bottom: 0 !important;
-  }
+      .steps ol li:nth-child(3) .absolute_box {
+        width: 132px;
+      }
 
-  .card_box .front select.form-control {
-    background: url(https://conversionratestore.github.io/projects/samcart/img/chevron-down.svg) right 0.75rem center/15px 14px no-repeat #fff !important;
-  }
+      .absolute_box {
+        top: -65px;
+      }
+    }
 
-  .g-recaptcha-container {
-    margin: 20px 0 40px !important;
-  }
+    @media (max-width: 1098px) {
+      .steps ol li:nth-child(1) .absolute_box {
+        width: 105px;
+      }
 
-  /*quarantee */
-  .quarantee {
-    border: 1px solid rgb(191 199 206 / 40%);
-    border-radius: 6px;
-    padding: 10px 17px 10px 14px;
-    display: flex;
-    align-items: center;
-    margin: 20px 0 40px;
-  }
+      .steps ol li:nth-child(2) img {
+        max-width: 100px;
+      }
 
-  .quarantee div:first-child {
-    width: 31%;
-    min-width: 48px;
-    max-width: 48px;
-    margin-right: 10px;
-  }
+      .steps ol li:nth-child(2) .absolute_box {
+        width: 67px;
+      }
 
-  .quarantee div:first-child img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+      .steps ol li:nth-child(2) .absolute_box p {
+        margin-bottom: 18px !important;
+      }
 
-  .quarantee div:last-child > p:first-child {
-    font-family: "Poppins", sans-serif !important;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 150%;
-    text-transform: uppercase;
-    color: #273542;
-    margin-bottom: 5px;
-  }
+      .steps ol li:nth-child(2) img {
+        max-width: 70px;
+      }
 
-  .quarantee div:last-child > p:last-child {
-    font-family: "Poppins", sans-serif !important;
-    font-weight: 300;
-    font-size: 9px;
-    line-height: 144%;
-    color: #5a7386;
-    margin: 0;
-  }
+      .steps ol li:nth-child(3) .absolute_box {
+        width: 95px;
+      }
 
-  .btn_back {
-    color: #183B56;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 129%;
-    margin-bottom: 30px;
-  }
+      .absolute_box {
+        top: -77px;
+      }
+    }
 
-  .btn_back >svg{
-    margin-right: 10px;
-  }
+    /*3d card */
+    .tpl-t1__col-form {
+      height: 100%;
+    }
 
-  .back .v2-horizontal-grid-container .vertical .top-content, 
-  .back .payment-summary{
-    display: none;
-  }
-</style>
+    #paymentForm {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .wrapper_card {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      background: #ffffff;
+    }
+
+    .card_box {
+      position: relative;
+      perspective: 5000px;
+      width: 100%;
+      height: 100%;
+    }
+    .card_box .front,
+    .card_box .back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      transition: all 1s 0s cubic-bezier(0.47, 0, 0.75, 0.72);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      background: #ffffff;
+    }
+
+    .card_box .front {
+      z-index: 10;
+    }
+
+    .card_box .back {
+      transform: rotateY(-180deg);
+      padding-bottom: 1950px;
+    }
+
+    .card_box .front button.btn_continue,
+    .card_box #placeOrder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100% !important;
+      height: 65px;
+      padding: 18px;
+      background: #273542 !important;
+      border-radius: 7px;
+      font-family: "Poppins", sans-serif !important;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 150%;
+      letter-spacing: 0.05em;
+      text-transform: capitalize;
+      color: #ffffff;
+      margin-top: 30px;
+      position: relative;
+      border: none;
+      cursor: pointer;
+    }
+
+    .card_box #order-summary-widget {
+      margin: 40px 0 0 !important;
+      background: #f5f8fa !important;
+      border-radius: 20px !important;
+      padding: 30px !important;
+    }
+
+    .card_box #placeOrder {
+      text-transform: unset;
+      margin: 0 0 15px !important;
+    }
+
+    .card_box .front button.btn_continue svg {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 20px;
+    }
+
+    .card_box .front .mb-24.text-uppercase,
+    .card_box .back .my-32.text-uppercase {
+      font-family: "Poppins", sans-serif !important;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 150%;
+      letter-spacing: 0.1em;
+      text-transform: uppercase !important;
+      color: #5a7386 !important;
+      margin-bottom: 10px !important;
+      margin-top: 0 !important;
+    }
+
+    #paymentForm .card_box .back .stripe-processor-form .CVV2-label,
+    #paymentForm .card_box .back .stripe-processor-form .exp-label,
+    #paymentForm .card_box .back .stripe-processor-form .stripe-label,
+    #paymentForm .card_box .back .tab-content > .tab-pane {
+      display: block !important;
+    }
+
+    #paymentForm .card_box .front label,
+    #paymentForm .card_box .back label {
+      font-family: "Poppins", sans-serif !important;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 150%;
+      text-transform: capitalize;
+      color: #5a7386;
+      margin-bottom: 5px;
+    }
+
+    #paymentForm .card_box .front label.error {
+      color: #ff3465;
+    }
+
+    .card_box .back .tpl-t1__terms.mx-auto.text-center {
+      text-align: left !important;
+      position: relative;
+    }
+
+    #paymentForm .card_box .back label#terms_conditions_checkbox-error {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      color: red;
+    }
+
+    .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+      border: none !important;
+    }
+
+    #paymentForm .card_box .back label[for="terms_conditions_checkbox"]:not(.error) {
+      color: #5f7384;
+      font-weight: 400;
+      text-transform: unset;
+    }
+
+    #paymentForm .card_box .back label[for="terms_conditions_checkbox"]:not(.error) a {
+      font-weight: 700;
+    }
+
+    .card_box .front .form-control,
+    .card_box .stripe-processor-form .StripeElement,
+    .card_box select,
+    .card_box .ElementsApp input,
+    .card_box .ElementsApp .InputElement input {
+      border: 1px solid #bfc7ce;
+      border-radius: 3px;
+      height: 41px;
+      font-family: "Poppins", sans-serif !important;
+      font-weight: 400 !important;
+      font-size: 12px !important;
+      line-height: 150% !important;
+      color: #5a7386;
+      opacity: 0.5;
+      padding: 11px !important;
+    }
+
+    .card_box .front .border-bottom.mb-16 {
+      margin-bottom: 0 !important;
+    }
+
+    .card_box .front select.form-control {
+      background: url(https://conversionratestore.github.io/projects/samcart/img/chevron-down.svg) right 0.75rem center/15px 14px no-repeat #fff !important;
+    }
+
+    .g-recaptcha-container {
+      margin: 20px 0 40px !important;
+    }
+
+    /*quarantee */
+    .quarantee {
+      border: 1px solid rgb(191 199 206 / 40%);
+      border-radius: 6px;
+      padding: 10px 17px 10px 14px;
+      display: flex;
+      align-items: center;
+      margin: 20px 0 40px;
+    }
+
+    .quarantee div:first-child {
+      width: 31%;
+      min-width: 48px;
+      max-width: 48px;
+      margin-right: 10px;
+    }
+
+    .quarantee div:first-child img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .quarantee div:last-child > p:first-child {
+      font-family: "Poppins", sans-serif !important;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 150%;
+      text-transform: uppercase;
+      color: #273542;
+      margin-bottom: 5px;
+    }
+
+    .quarantee div:last-child > p:last-child {
+      font-family: "Poppins", sans-serif !important;
+      font-weight: 300;
+      font-size: 9px;
+      line-height: 144%;
+      color: #5a7386;
+      margin: 0;
+    }
+
+    .btn_back {
+      color: #183b56;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 129%;
+      margin-bottom: 30px;
+    }
+
+    .btn_back > svg {
+      margin-right: 10px;
+    }
+
+    .back .v2-horizontal-grid-container .vertical .top-content,
+    .back .payment-summary {
+      display: none;
+    }
+
+    /* creator block*/
+    .back h3.upsell_title {
+      font-family: "Poppins", sans-serif !important;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 156%;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #5a7386 !important;
+      margin-bottom: 15px;
+    }
+
+    .img_wrap {
+      max-height: 56px;
+      height: 100%;
+      max-width: 160px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .price_wrap {
+      display: flex;
+      align-items: center;
+      margin: 15px 0 10px;
+    }
+    .price_wrap span {
+      font-family: "Inter", sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      text-decoration-line: line-through;
+      color: #aebac4;
+    }
+
+    .price_wrap span:last-child {
+      color: #286cd2;
+      font-weight: 700;
+      text-decoration-line: unset;
+      margin-left: 12px;
+    }
+
+    .creator_list {
+      padding: 10px 0 0;
+      margin: 10px 0;
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid #eeeeee;
+      gap: 10px;
+    }
+
+    .creator_list li {
+      list-style: none;
+      display: flex;
+    }
+
+    .creator_list li svg {
+      max-width: 24px;
+      width: 100%;
+      height: 100%;
+      max-height: 24px;
+    }
+
+    .creator_list li p {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 171%;
+      color: #183b56;
+      margin-left: 5px;
+    }
+
+    .next_pricing {
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 133%;
+      color: #99a3ab;
+    }
+
+    .live_workshops_wrap {
+      margin-bottom: 10px;
+    }
+
+    .live_workshops_wrap p:first-child {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 150%;
+      color: #ffffff;
+      padding: 4px 12px;
+      background: #f22447;
+      border-radius: 4px;
+    }
+
+    .live_workshops_wrap p:first-child > span {
+      font-weight: 800;
+    }
+
+    .live_workshops_wrap p:last-child {
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 133%;
+      color: #5a7386;
+      background: #f9f9f9;
+      padding: 10px;
+      border-radius: 0 0 4px 4px;
+    }
+
+    .back .v2-horizontal-grid-container .divider {
+      padding: 0;
+      width: 0;
+      border: unset;
+    }
+
+    .back .v2-horizontal-grid-container .vertical .bump-content {
+      padding: 0 !important;
+    }
+
+    .back .v2-horizontal-grid-container .custom-checkbox {
+      border: none !important;
+      background: #5a7386 !important;
+      border-radius: 8px !important;
+      margin: 0;
+      width: 100% !important;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      padding: 0 !important;
+    }
+
+    .back .v2-horizontal-grid-container .custom-checkbox.active_check {
+      background: #286cd2 !important;
+    }
+
+    .back .v2-horizontal-grid-container .vertical.active_check{
+      border: 1px solid #286CD2 !important;
+    }
+
+    .back .v2-horizontal-grid-container .custom-checkbox label {
+      font-weight: 600 !important;
+      font-size: 16px !important;
+      line-height: 150% !important;
+      color: #ffffff !important;
+      margin: 0 !important;
+      padding: 0 0 0 70px !important;
+      text-align: left;
+      width: 100%;
+    }
+
+    .back .v2-horizontal-grid-container .custom-checkbox .custom-control-label::before {
+      border-radius: 50%;
+      left: 39px;
+    }
+
+    .back .v2-horizontal-grid-container .custom-checkbox .custom-control-label::after{
+      left: 39px;
+    }
+
+    .back .v2-horizontal-grid-container .custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
+      background-image: url(https://conversionratestore.github.io/projects/knineti/img/dark_blue_check_mark.png);
+    }
+
+    .back .v2-horizontal-grid-container .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+      background-color: #ffffff !important;
+    }
+
+    @media (max-width: 1286px) {
+      .back h3.upsell_title {
+        font-size: 17px;
+      }
+
+      .price_wrap span {
+        font-size: 13px;
+      }
+
+      .creator_list li p {
+        font-size: 11px;
+      }
+
+      .live_workshops_wrap p:first-child {
+        font-size: 12px;
+      }
+
+      .live_workshops_wrap p:last-child {
+        font-size: 10px;
+      }
+
+      .back .v2-horizontal-grid-container .order-bump-wrapper::before {
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 960px) {
+      .tpl-t1__col-form {
+        height: 130% !important;
+      }
+
+      .pb-sm-40,
+      .py-sm-40 {
+        padding-bottom: 513px !important;
+      }
+
+      section.tpl-t1.pb-sm-40.pb-24 .tpl-t1__col-form {
+        width: 100% !important;
+      }
+
+      .back h3.upsell_title {
+        font-size: 13px;
+      }
+
+      .price_wrap span {
+        font-size: 11px;
+      }
+      .price_wrap span {
+        font-size: 11px;
+      }
+
+      .creator_list li p {
+        font-size: 9px;
+      }
+
+      .live_workshops_wrap p:first-child {
+        font-size: 10px;
+      }
+
+      .live_workshops_wrap p:last-child {
+        font-size: 8px;
+      }
+
+      .back .v2-horizontal-grid-container .custom-checkbox label {
+        font-size: 14px !important;
+      }
+
+      .back .v2-horizontal-grid-container .order-bump-wrapper::before {
+        font-size: 11px;
+        max-width: 166px;
+      }
+
+      .v2-horizontal-grid-container .order-bump-wrapper {
+        min-width: unset !important;
+      }
+      .back .v2-horizontal-grid-container .vertical {
+        padding: 30px 7px 7px;
+      }
+      .back .v2-horizontal-grid-container {
+        padding: 40px 10px 10px;
+      }
+
+      .card_box .back #order-summary-widget .product-item .product-label-col .product-item-name {
+        font-size: 10px;
+      }
+
+      .card_box .back .price-item-detail .ng-binding {
+        font-size: 8px;
+      }
+    }
+
+  </style>
       `
 
       let steps = /* html*/ `
@@ -1846,18 +2540,6 @@ function desktopVar() {
             Back
         </span>
         <span class="testik2"></span>
-        <!-- <div class="quarantee">
-            <div>
-            <img src="https://conversionratestore.github.io/projects/samcart/img/mask_group.png" alt="quarantee">
-            </div>
-            <div>
-            <p>Risk-free trial. Cancel anytime during the next 14 days</p>
-            <p>
-                Our templates can help you start your online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel your
-                risk-free trial within 14 days and we will not charge you anything.
-            </p>
-            </div>
-        </div> -->
         </div>
     </div>
     </div>
@@ -1911,16 +2593,16 @@ function desktopVar() {
     `
 
       let upsellU = /* html*/ `
-      <div>
-        <div>
-          <img src="" alt="logo creator u">
+      <div class="upsell_u">
+        <div class="img_wrap">
+          <img src="https://conversionratestore.github.io/projects/samcart/img/creator_u.png" alt="logo creator u">
         </div>
-        <div>
+        <div class="price_wrap">
           <span>$144.00</span>
           <span>14-DAYS FREE</span>
         </div>
-        <p>Then $10/month, billed yearly starting in 2 weeks</p>
-        <ul>
+        <p class="next_pricing">Then $10/month, billed yearly starting in 2 weeks</p>
+        <ul class="creator_list">
           <li>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path opacity="0.8" d="M19 11.6818L17.4473 9.90636L17.6636 7.55818L15.3664 7.03636L14.1636 5L12 5.92909L9.83636 5L8.63364 7.03L6.33636 7.54545L6.55273 9.9L5 11.6818L6.55273 13.4573L6.33636 15.8118L8.63364 16.3336L9.83636 18.3636L12 17.4282L14.1636 18.3573L15.3664 16.3273L17.6636 15.8055L17.4473 13.4573L19 11.6818ZM10.7845 14.6855L8.36636 12.2609L9.30818 11.3191L10.7845 12.8018L14.5073 9.06636L15.4491 10.0082L10.7845 14.6855Z" fill="#5389DB"/>
@@ -1938,16 +2620,16 @@ function desktopVar() {
       `
 
       let upsellULive = /* html*/ `
-      <div>
-        <div>
-          <img src="" alt="logo creator U Live">
+      <div class="upsell_u_live">
+        <div class="img_wrap">
+          <img src="https://conversionratestore.github.io/projects/samcart/img/creator_u_live.png" alt="logo creator U Live">
         </div>
-        <div>
+        <div class="price_wrap">
           <span>$444.00</span>
           <span>14-DAYS FREE</span>
         </div>
-        <p>Then $30.42/month, billed yearly starting in 2 weeks</p>
-        <ul>
+        <p class="next_pricing">Then $30.42/month, billed yearly starting in 2 weeks</p>
+        <ul class="creator_list">
           <li>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path opacity="0.8" d="M19 11.6818L17.4473 9.90636L17.6636 7.55818L15.3664 7.03636L14.1636 5L12 5.92909L9.83636 5L8.63364 7.03L6.33636 7.54545L6.55273 9.9L5 11.6818L6.55273 13.4573L6.33636 15.8118L8.63364 16.3336L9.83636 18.3636L12 17.4282L14.1636 18.3573L15.3664 16.3273L17.6636 15.8055L17.4473 13.4573L19 11.6818ZM10.7845 14.6855L8.36636 12.2609L9.30818 11.3191L10.7845 12.8018L14.5073 9.06636L15.4491 10.0082L10.7845 14.6855Z" fill="#5389DB"/>
@@ -1961,7 +2643,7 @@ function desktopVar() {
             <p><b>Marketing & sales strategies</b> used by the top creators online today</p>
           </li>
         </ul>
-        <div>
+        <div class="live_workshops_wrap">
           <p><span>+ LIVE WORKSHOPS</span> <br> with world’s top creators</p>
           <p>Each month you'll be learning specific strategies from <b>7 and 8-figure creators!</b></p>
         </div>
@@ -1998,8 +2680,8 @@ function desktopVar() {
       document.querySelector(".testik2").after(document.querySelector(".my-32.text-uppercase"))
       document.querySelector(".back .my-32.text-uppercase")?.after(document.querySelector("#payments"))
 
-      // NEWWWWWWWW
-      document.querySelector(".back #payments")?.after(document.querySelector(".v2-horizontal-grid-container"))
+      document.querySelector(".back #payments")?.insertAdjacentHTML("afterend", `<h3 class="upsell_title">LEARN HOW TO LAUNCH OR SCALE YOUR ONLINE <br/> BUSINESS</h3>`)
+      document.querySelector(".back h3.upsell_title")?.after(document.querySelector(".v2-horizontal-grid-container"))
       document.querySelector(".back .v2-horizontal-grid-container")?.after(document.querySelector("#order-summary-widget"))
       document.querySelector(`.back #order-summary-widget`).insertAdjacentHTML("afterend", quaranteeBlock)
       document.querySelector(".back .quarantee")?.after(document.querySelector(".tpl-t1__terms.mx-auto.text-center"))
@@ -2016,6 +2698,14 @@ function desktopVar() {
       document.querySelectorAll(".v2-horizontal-grid-container .vertical .top-content")[0].insertAdjacentHTML("afterend", upsellU)
       document.querySelectorAll(".v2-horizontal-grid-container .vertical .top-content")[1].insertAdjacentHTML("afterend", upsellULive)
 
+      if (document.querySelector(".upsell_u_live .price_wrap span:first-child")) {
+        document.querySelector(".upsell_u_live .price_wrap span:first-child").textContent = document.querySelectorAll(".v2-horizontal-grid-container strike")[1].textContent
+      }
+
+      if (document.querySelector(".upsell_u .price_wrap span:first-child")) {
+        document.querySelector(".upsell_u .price_wrap span:first-child").textContent = document.querySelectorAll(".v2-horizontal-grid-container strike")[0].textContent
+      }
+
       if (document.querySelector(".card_box")) {
         //placeholder input front card
         document.querySelector('input[name="fname"]').placeholder = "John"
@@ -2024,10 +2714,10 @@ function desktopVar() {
         // document.querySelector('input[name="phone"]').placeholder = "+1 (000) - 000 - 0000"
 
         // click on btn_continue
-        document.querySelector(".card_box .front button.btn_continue").addEventListener("click", () => {
+        document.querySelector(".card_box .front button.btn_continue").addEventListener("click", (event) => {
           pushDataLayer("Click on Continue button", "Step 1")
 
-          validationForm("form .wrapper_card .card_box .front")
+          validationForm("form .wrapper_card .card_box .front", event)
         })
 
         // hover on hint -> event
@@ -2109,7 +2799,7 @@ function desktopVar() {
 
         // validate form
         if (document.querySelector("form .front .border-bottom.mb-16")) {
-          function validationForm(parent) {
+          function validationForm(parent, event) {
             let inputValueName = document.querySelector(`${parent} input[name='fname']`).value.match(/^.{1,30}$/)
             let inputValueLastName = document.querySelector(`${parent} input[name='lname']`).value.match(/^.{1,30}$/)
             // let inputValuePhone = document.querySelector(`${parent} input[name='phone']`).value.match(/(?<=^|\s|>|\;|\:|\))(?:\+|7|8|9|\()[\d\-\(\) ]{8,}\d/)
@@ -2152,6 +2842,7 @@ function desktopVar() {
             }
 
             if (document.querySelector(`${parent} input.error`) == null && document.querySelector(`${parent} select.error`) == null) {
+              event.preventDefault()
               document.querySelector(".front").style.transform = "rotateY(-180deg)"
               document.querySelector(".back").style.transform = "rotateY(-360deg)"
               document.querySelector(".front").style.zIndex = "0"
@@ -2165,14 +2856,19 @@ function desktopVar() {
           }
         }
 
-        // document.querySelectorAll("#paymentForm .card_box .back label").forEach((el) => {
-        //   el.addEventListener("click", function () {
-        //     el.closest(".vertical").style.borderColor = "#286CD2"
-        //     if (el.previousElementSibling.checked) {
-        //       console.log(el)
-        //     }
-        //   })
-        // })
+        document.querySelectorAll(".back .v2-horizontal-grid-container .custom-checkbox .custom-control-input").forEach((el) => {
+          el.addEventListener("change", function () {
+            if (el.checked) {
+              console.log(el)
+              el.closest(".custom-checkbox").classList.add("active_check")
+              el.closest(".vertical").classList.add("active_check")
+            } else {
+              console.log(`FFFF`)
+              el.closest(".custom-checkbox").classList.remove("active_check")
+              el.closest(".vertical").classList.remove("active_check")
+            }
+          })
+        })
 
         // observe Form
         const options = {
@@ -2194,10 +2890,6 @@ function desktopVar() {
                 if (selectorBtn === "#placeOrder") {
                   document.querySelector(`${selectorBtn}`).textContent = "Start your free trial now"
                 }
-
-                // if (!document.querySelector(".quarantee")) {
-                //   document.querySelector(`.back ${selectorBtn}`).insertAdjacentHTML("afterend", quaranteeBlock)
-                // }
               }
             }
 
