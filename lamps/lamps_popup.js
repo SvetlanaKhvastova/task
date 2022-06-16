@@ -102,3 +102,71 @@ function hidePopup() {
 // document.querySelector("#register-email").value = "dhfjf@jjd.ckm"
 // document.querySelector("#register-password").value = "8520"
 // document.querySelector("#btn-register-submit").click()
+
+// coupon true
+if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
+  document.querySelector('.inner-panel .i-block [data-label="Cart Coupon"]').click()
+  document.querySelector(".inner-panel .i-block #sidebar-discount-coupon-form input").value = "WLS1-QFT5"
+
+  if (document.querySelector(".inner-panel .i-block #sidebar-discount-coupon-form input").value !== "") {
+    document.querySelector(".inner-panel .i-block #submit-coupon").click()
+  }
+}
+
+//
+let arrayProduct = []
+
+if (sessionStorage.getItem("saleProduct")) {
+  arrayProduct = JSON.parse(sessionStorage.getItem("saleProduct"))
+}
+
+// click on btn Add to card listing on pdp
+if (document.querySelector("#personalized")) {
+  document.querySelectorAll(".category-products .products-grid .item .item-inner .details-area .actions .addtocart").forEach((el) => {
+    el.addEventListener("click", function () {
+      console.log(`listing on pdp`)
+
+      let dataProduct = JSON.parse(this.closest(".item.t-simple").getAttribute("data-product"))
+      let idProduct = dataProduct.id
+      console.log(`idProduct`, idProduct)
+
+      let storage = JSON.parse(sessionStorage.getItem("saleProduct"))
+      console.log(storage)
+
+      if (storage === null) {
+        arrayProduct.push(idProduct)
+      } else {
+        storage.filter((item) => {
+          console.log(`item`, item)
+          if (item !== idProduct) {
+            arrayProduct.push(idProduct)
+          }
+        })
+      }
+
+      sessionStorage.setItem("saleProduct", JSON.stringify(arrayProduct))
+    })
+  })
+}
+
+// click on btn Add to card pdp
+document.querySelector("#add-item-to-cart").addEventListener("click", function (el) {
+  let dataProduct = JSON.parse(this.closest(".product-essential").querySelector("#item-details").getAttribute("data-product"))
+  let idProduct = dataProduct.id
+
+  let storage = JSON.parse(sessionStorage.getItem("saleProduct"))
+  console.log(storage)
+
+  if (storage === null) {
+    arrayProduct.push(idProduct)
+  } else {
+    storage.filter((item) => {
+      console.log(`item`, item)
+      if (item !== idProduct) {
+        arrayProduct.push(idProduct)
+      }
+    })
+  }
+
+  sessionStorage.setItem("saleProduct", JSON.stringify(arrayProduct))
+})
