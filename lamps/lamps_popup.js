@@ -110,10 +110,13 @@ let startFunk = setInterval(() => {
               bottom: 44px;
               left: 0;
               width: 100%;
-              padding: 0 30px;
+              margin: 0 30px;
+              max-width: 300px;
              }
 
             .form_wrap > p:last-child{
+              border-top: 1px solid #E5E5E5;
+              padding-bottom: 10px;
               margin: 0;
             }
 
@@ -152,9 +155,7 @@ let startFunk = setInterval(() => {
 
              .form_wrap > ul{
                display: flex;
-              margin: 15px 0 10px;
-              padding-bottom: 30px;
-              border-bottom: 1px solid #E5E5E5;
+              margin: 15px 0 30px;
               gap: 15px;
               align-items: center;
               justify-content: space-between;
@@ -239,6 +240,51 @@ let startFunk = setInterval(() => {
               color: rgb(51 51 51 / 70%);
               opacity: 0;
              }
+
+             /*discount_cart */
+             .discount_cart,
+             .discount_cart.sign_up,
+             .discount_pdp,
+             .discount_pdp.sign_up{
+               display: inline-flex;
+               align-items: center;
+               justify-content: center;
+               width: 100%;
+               height: 32px;
+               font-weight: 600;
+               font-size: 12px;
+               line-height: 12px;
+               letter-spacing: 0.5px;
+               text-transform: uppercase;
+               color: #FFFFFF;
+               background: #1B963E;
+              margin-bottom: -5px;
+             }
+
+             .discount_pdp,
+             .discount_pdp.sign_up{
+              border-radius: 8px;
+              max-width: 260px;
+              margin: 0;
+             }
+
+             .discount_pdp.sign_up{
+              max-width: 218px;
+             }
+
+             .discount_cart.sign_up span:first-of-type,
+             .discount_pdp.sign_up span:first-of-type{
+              text-decoration: underline;
+              cursor: pointer;
+              margin: 0;
+             }
+
+             .discount_cart.sign_up span:last-of-type,
+            .discount_pdp.sign_up span:last-of-type,
+            .discount_pdp span{
+              font-weight: 400;
+              margin: 0 5px;
+             }
     </style>
     `
 
@@ -288,24 +334,25 @@ let startFunk = setInterval(() => {
       </div>
       <span>or with</span>
       <ul>
-        <li>
+        <li class="fb">
           <img src="https://conversionratestore.github.io/projects/lamps/img/fb.png" alt="logo Facebook">
         </li>
-        <li>
+        <li class="google">
           <img src="https://conversionratestore.github.io/projects/lamps/img/google.png" alt="logo Google">
         </li>
-        <li>
+        <li class="amazon">
           <img src="https://conversionratestore.github.io/projects/lamps/img/amazon.png" alt="logo Amazon">
         </li>
       </ul>
       <p>Already have an account? <span>Login</span></p>
     </div>
+    
     <div class="form_wrap">
       <h2>Thank you!</h2>
       <p>Here’s a 15% off Coupon Code:</p>
       <div class="coupon_value">WLS1-QFT5</div>
       <p class="coupon_var">It will be <b>automatically applied</b> at checkout*</p>
-      <button>Continue Shopping </button>
+      <button id="continueBtn">Continue Shopping </button>
       <p class="coupon_var">*Brand restrictions apply. Excludes closeout items. Cannot be combined with any other sales or promotions.</p>
     </div>
     <div>
@@ -313,9 +360,24 @@ let startFunk = setInterval(() => {
     </div>
     `
 
+    let discountCart = /*html */ `
+    <div class="discount_cart">15% discount applied</div>
+    `
+
+    let discountCartSignUp = /*html */ `
+    <div class="discount_cart sign_up"><span>Sign up</span> <span>to get</span> 15% discount</div>
+    `
+
+    let discountPdp = /*html */ `
+    <div class="discount_pdp">15% discount <span>applied at checkout</span></div>
+    `
+
+    let discounPdpSignUp = /*html */ `
+    <div class="discount_pdp sign_up"><span>Sign up</span> <span>to get</span> 15% discount</div>
+    `
+
     document.head.insertAdjacentHTML("beforeend", popUpStyle)
     document.body.insertAdjacentHTML("beforeend", popUp)
-
     document.querySelector(".body_popup")?.insertAdjacentHTML("afterbegin", bodyPopup)
 
     // TO show POPUP
@@ -344,10 +406,65 @@ let startFunk = setInterval(() => {
       document.querySelector(".backdrop_popup").classList.remove("show")
       document.body.style.overflow = "unset"
     }
+
+    // render text on cart
+    document.querySelectorAll(".inner-panel .content-panel .c-product")?.forEach((el) => {
+      el.insertAdjacentHTML("beforeend", discountCartSignUp)
+    })
+
+    document.querySelector(".catalog-product-view .product-essential .p-price .pdp-afterpay")?.insertAdjacentHTML("beforebegin", discountPdp)
+
+    // form
+    if (document.querySelector(".form_wrap > ul")) {
+      document.querySelectorAll(".form_wrap > ul li").forEach((el) => {
+        el.addEventListener("click", () => {
+          if (el.classList.contains("fb")) {
+            document.querySelector(".i-block.m-0 .fab.fa-facebook").closest("a").click()
+          }
+
+          if (el.classList.contains("google")) {
+            document.querySelector(".i-block.m-0 .fab.fa-google").closest("a").click()
+          }
+
+          if (el.classList.contains("amazon")) {
+            document.querySelector(".i-block.m-0 .fab.fa-amazon").closest("a").click()
+          }
+        })
+      })
+    }
+
+    document.querySelector(".form_wrap > p > span")?.addEventListener("click", () => {
+      hidePopup()
+      document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"]')?.click()
+      document.querySelector("#account-panel .content-panel #btn-login-show")?.click()
+    })
+
+    document.querySelector(".form_wrap button#continueBtn")?.addEventListener("click", () => {
+      hidePopup()
+    })
+
+    document.querySelector(".form_wrap button#btnRegisterSubmit")?.addEventListener("click", () => {
+      sessionStorage.setItem("successSign", true)
+      hidePopup()
+    })
+
+    let newPopup = setInterval(() => {
+      if (sessionStorage.getItem("successSign")) {
+        clearInterval(newPopup)
+        document.querySelectorAll(".body_popup .form_wrap")[1].classList.add("active")
+        document.querySelectorAll(".body_popup .form_wrap")[0].classList.remove("active")
+        showPopup()
+        if (sessionStorage.getItem("successSign")) {
+          sessionStorage.removeItem("successSign")
+        }
+      }
+    }, 10)
   }
 }, 10)
 
 // form
+// document.querySelector(".new_form > div input#firstName").value
+
 // document.querySelector("#signup-email").click()
 // document.querySelector("#first-name").value = "Bob"
 // document.querySelector("#last-name").value = "Bobik"
