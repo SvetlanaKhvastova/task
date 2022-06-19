@@ -4,6 +4,9 @@ let startFunk = setInterval(() => {
 
     let popUpStyle = /*html */ `
     <style>
+      #cart-panel .mkt.i-block.text-center{
+        display: none;
+      }
         .backdrop_popup {
             position: fixed;
             top: 0;
@@ -116,7 +119,7 @@ let startFunk = setInterval(() => {
 
             .form_wrap > p:last-child{
               border-top: 1px solid #E5E5E5;
-              padding-bottom: 10px;
+              padding-top: 10px;
               margin: 0;
             }
 
@@ -285,6 +288,119 @@ let startFunk = setInterval(() => {
               font-weight: 400;
               margin: 0 5px;
              }
+
+             .img_lamps_mob{
+              display: none;
+             }
+             
+             @media (max-width: 768px) {
+              .body_popup{
+                flex-direction: column;
+              }
+
+              .body_popup .form_wrap{
+                order: 2;
+                padding: 30px;
+              }
+
+              .body_popup >div:last-child{
+                order: 1;
+              }
+
+              .img_lamps{
+                display: none;
+              }
+
+            .img_lamps_mob{
+              display: block;
+              width: 100%;
+              height: 100%;
+             }
+
+             .backdrop_popup .container_popup{
+              margin: 20px auto;
+             }
+
+             .new_form > div:nth-child(1), .new_form > div:nth-child(2){
+                  width: 47%;
+             }
+
+             .form_wrap > p.coupon_var{
+              line-height: 171%;
+             }
+
+             .body_popup .form_wrap:nth-child(2) button{
+                  margin-bottom: 30px;
+             }
+
+             .form_wrap > p.coupon_var:last-child{
+              position: unset;
+              margin: 0;
+             }
+             }
+
+             @media (max-width: 320px) {
+              .new_form > div:nth-child(1), .new_form > div:nth-child(2) {
+                  width: 46.5%;
+              }
+
+              .form_wrap > h2{
+                font-size: 22px;
+              }
+
+              .form_wrap > p{
+                font-size: 12px;
+              }
+
+              .form_wrap > ul{
+                gap: 10px;
+              }
+
+              .form_wrap > ul li{
+                height: 42px;
+              }
+
+              .form_wrap > ul li img{
+                width: 100%;
+                max-width: 45px;
+              }
+
+               .new_form > div input::placeholder{
+                font-size: 10px;
+               }
+
+               .form_wrap > span::before, .form_wrap > span::after{
+                  width: 35%;
+                }
+
+               .form_wrap > p.coupon_var {
+                    font-size: 10px;
+                }
+             }
+
+              @media (max-width: 280px) {
+                .form_wrap > h2 {
+                    font-size: 19px;
+                }
+
+                .form_wrap > p {
+                    font-size: 10px;
+                }
+
+                .new_form > div:nth-child(1), .new_form > div:nth-child(2) {
+                    width: 45.7%;
+                }
+
+                .form_wrap > span::before, .form_wrap > span::after{
+                  width: 33%;
+                }
+
+                .form_wrap > p.coupon_var {
+                    font-size: 9px;
+                }
+
+
+              }
     </style>
     `
 
@@ -356,7 +472,8 @@ let startFunk = setInterval(() => {
       <p class="coupon_var">*Brand restrictions apply. Excludes closeout items. Cannot be combined with any other sales or promotions.</p>
     </div>
     <div>
-      <img src="https://conversionratestore.github.io/projects/lamps/img/lamps.jpg" alt="lamps">
+      <img class="img_lamps" src="https://conversionratestore.github.io/projects/lamps/img/lamps.jpg" alt="lamps">
+      <img class="img_lamps_mob" src="https://conversionratestore.github.io/projects/lamps/img/lamps_mob.jpg" alt="lamps">
     </div>
     `
 
@@ -379,6 +496,81 @@ let startFunk = setInterval(() => {
     document.head.insertAdjacentHTML("beforeend", popUpStyle)
     document.body.insertAdjacentHTML("beforeend", popUp)
     document.querySelector(".body_popup")?.insertAdjacentHTML("afterbegin", bodyPopup)
+
+    renderTextToCart()
+    renderToPdp()
+
+    // render text on cart
+    function renderTextToCart() {
+      if (document.querySelector("#cart-panel #minicart-items")) {
+        document.querySelectorAll("#cart-panel #minicart-items > div").forEach((el) => {
+          console.log(`listing on pdp`)
+
+          let dataProduct = JSON.parse(el.getAttribute("data-product"))
+          let salesProduct = dataProduct.salesproduct
+
+          if (salesProduct) {
+            console.log(typeof salesProduct)
+            if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
+              el.insertAdjacentHTML("beforeend", discountCart)
+            } else {
+              el.insertAdjacentHTML("beforeend", discountCartSignUp)
+              activateCoupon()
+            }
+          }
+        })
+      }
+    }
+
+    // render text on cart
+    function renderToPdp() {
+      if (document.querySelector("#main-wrapper #item-details")) {
+        let dataProduct = JSON.parse(document.querySelector("#main-wrapper #item-details").getAttribute("data-product"))
+        let salesProduct = dataProduct.salesproduct
+
+        if (salesProduct) {
+          console.log(typeof salesProduct)
+          if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
+            if (!document.querySelector(".discount_pdp")) {
+              document.querySelector(".catalog-product-view .product-essential .p-price .pdp-afterpay")?.insertAdjacentHTML("beforebegin", discountPdp)
+            }
+          } else {
+            if (!document.querySelector(".discount_pdp.sign_up")) {
+              document.querySelector(".catalog-product-view .product-essential .p-price .pdp-afterpay")?.insertAdjacentHTML("beforebegin", discounPdpSignUp)
+            }
+          }
+        }
+      }
+    }
+
+    // coupon true
+    function activateCoupon() {
+      if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
+        document.querySelector('.inner-panel .i-block [data-label="Cart Coupon"]')?.click()
+        document.querySelector(".inner-panel .i-block #sidebar-discount-coupon-form input").value = "WLS1-QFT5"
+        if (document.querySelector(".inner-panel .i-block #sidebar-discount-coupon-form input").value !== "") {
+          document.querySelector(".inner-panel .i-block #submit-coupon")?.click()
+        }
+      }
+    }
+
+    // observer
+    let observer = new MutationObserver(() => {
+      if (document.querySelector("#main-wrapper")) {
+        observer.disconnect()
+        renderToPdp()
+
+        observer.observe(document.querySelector("#main-wrapper"), {
+          childList: true,
+          subtree: true,
+        })
+      }
+    })
+
+    observer.observe(document.querySelector("#main-wrapper"), {
+      childList: true,
+      subtree: true,
+    })
 
     // TO show POPUP
     setTimeout(() => {
@@ -406,13 +598,6 @@ let startFunk = setInterval(() => {
       document.querySelector(".backdrop_popup").classList.remove("show")
       document.body.style.overflow = "unset"
     }
-
-    // render text on cart
-    document.querySelectorAll(".inner-panel .content-panel .c-product")?.forEach((el) => {
-      el.insertAdjacentHTML("beforeend", discountCartSignUp)
-    })
-
-    document.querySelector(".catalog-product-view .product-essential .p-price .pdp-afterpay")?.insertAdjacentHTML("beforebegin", discountPdp)
 
     // form
     if (document.querySelector(".form_wrap > ul")) {
@@ -472,16 +657,6 @@ let startFunk = setInterval(() => {
 // document.querySelector("#register-password").value = "qwerty123"
 // document.querySelector("#btn-register-submit").click()
 
-// coupon true
-// if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
-//   document.querySelector('.inner-panel .i-block [data-label="Cart Coupon"]').click()
-//   document.querySelector(".inner-panel .i-block #sidebar-discount-coupon-form input").value = "WLS1-QFT5"
-
-//   if (document.querySelector(".inner-panel .i-block #sidebar-discount-coupon-form input").value !== "") {
-//     document.querySelector(".inner-panel .i-block #submit-coupon").click()
-//   }
-// }
-
 // //
 // let arrayProduct = []
 
@@ -514,25 +689,3 @@ let startFunk = setInterval(() => {
 //     })
 //   })
 // }
-
-// // click on btn Add to card pdp
-// document.querySelector("#add-item-to-cart").addEventListener("click", function (el) {
-//   let dataProduct = JSON.parse(this.closest(".product-essential").querySelector("#item-details").getAttribute("data-product"))
-//   let idProduct = dataProduct.id
-
-//   let storage = JSON.parse(sessionStorage.getItem("saleProduct"))
-//   console.log(storage)
-
-//   if (storage === null) {
-//     arrayProduct.push(idProduct)
-//   } else {
-//     storage.filter((item) => {
-//       console.log(`item`, item)
-//       if (item !== idProduct) {
-//         arrayProduct.push(idProduct)
-//       }
-//     })
-//   }
-
-//   sessionStorage.setItem("saleProduct", JSON.stringify(arrayProduct))
-// })
