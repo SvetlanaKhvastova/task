@@ -893,45 +893,33 @@ let startFunk = setInterval(() => {
           document.querySelector(`${parent} input[name='firstName']`).value,
           document.querySelector(`${parent} input[name='lastName']`).value
         )
-        // document.querySelector("#btn-register-submit").click()
-
-        // const a = setInterval(() => {
-        //   if (document.querySelector(".status-msg.danger.alert.alert-danger")) {
-        //     clearInterval(a)
-        //     console.log(`>>>setInterval`)
-        //     document.querySelector(".status-msg.danger.alert.alert-danger").remove()
-        //   }
-        // }, 100)
-
-        // setTimeout(() => {
-        //   if (!document.querySelector(".status-msg.danger.alert.alert-danger")) {
-        //     clearInterval(a)
-        //     console.log(`>>>setTimeout`)
-
-        //   }
-        // }, 1500)
-
-        // pushDataLayer("Sign Up clicked")
-        // document.querySelector(".btn_close").setAttribute("successCoupon", "true")
-        // sessionStorage.setItem("successSign", true)
-        // sessionStorage.setItem("successCoupon", true)
-        // hidePopup()
       }
     }
 
-    function postForm(email, password, firstName, lastName) {
+    function postForm(email, passwordVal, firstName, lastName) {
       let form = new FormData()
-      form.append("form_key", "JZMTFmvGgwukubVQ")
+
+      form.append("form_key", window.form_key)
       form.append("submit_type", "register")
       form.append("emailAddress", email)
-      form.append("password", password)
+      form.append("password", passwordVal)
       form.append("firstname", firstName)
       form.append("lastname", lastName)
+      console.log(form)
 
       fetch(`https://www.lamps.com/l-c/ajax/`, {
         headers: {
           "Content-Type": "application/json",
         },
+        // body: {
+        //   form_key: window.form_key,
+        //   submit_type: "register",
+        //   emailAddress: email,
+        //   password: passwordVal,
+        //   firstname: firstName,
+        //   lastname: lastName,
+        // },
+
         body: form,
         method: "POST",
       })
