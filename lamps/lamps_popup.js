@@ -340,6 +340,10 @@ let startFunk = setInterval(() => {
       float: left;
     }
 
+    .catalog-product-view .product-essential .p-price .orig-price{
+      margin-left: 10px;
+    }
+
     .discount_pdp.sign_up {
       max-width: 252px;
       font-size: 14px;
@@ -364,7 +368,21 @@ let startFunk = setInterval(() => {
       display: none;
     }
 
+    .form_wrap  > .error_msg{
+      color: #850000;
+      background-color: #fcc;
+      border-color: #ffb8b8;
+      width: 100%;
+      display: none;
+      font-size: 12px;
+      padding: 5px;
+    }
+
     @media (max-width: 768px) {
+      .form_wrap > .error_msg{
+        font-size: 10px;
+      }
+      
       .body_popup {
         flex-direction: column;
       }
@@ -512,6 +530,7 @@ let startFunk = setInterval(() => {
     <div class="form_wrap active">
       <h2>Save 15% on today’s order</h2>
       <p>Sign up below and get instant savings on items over $75</p>
+      <p class="error_msg">An account is already registered with this email address.</p>
       <div class="new_form">
         <div>
           <input type="text" id="firstName" placeholder="First Name" name="firstName" required="required" autocomplete="off"> 
@@ -727,7 +746,10 @@ let startFunk = setInterval(() => {
 
     // TO show POPUP
     setTimeout(() => {
-      if (!sessionStorage.getItem("successSign")) {
+      let dataProduct = JSON.parse(document.querySelector("#main-wrapper #item-details").getAttribute("data-product"))
+      let salesProduct = dataProduct.salesproduct
+
+      if (!sessionStorage.getItem("successSign") && salesProduct) {
         showPopup()
       }
     }, 3000)
@@ -865,8 +887,13 @@ let startFunk = setInterval(() => {
         console.log(document.querySelector("#last-name").value)
         console.log(document.querySelector("#register-email").value)
         console.log(document.querySelector("#register-password").value)
-
-        document.querySelector("#btn-register-submit").click()
+        postForm(
+          document.querySelector(`${parent} input[name='registerEmail']`).value,
+          document.querySelector(`${parent} input[name='registerPassword']`).value,
+          document.querySelector(`${parent} input[name='firstName']`).value,
+          document.querySelector(`${parent} input[name='lastName']`).value
+        )
+        // document.querySelector("#btn-register-submit").click()
 
         // const a = setInterval(() => {
         //   if (document.querySelector(".status-msg.danger.alert.alert-danger")) {
@@ -884,12 +911,50 @@ let startFunk = setInterval(() => {
         //   }
         // }, 1500)
 
-        pushDataLayer("Sign Up clicked")
-        document.querySelector(".btn_close").setAttribute("successCoupon", "true")
-        sessionStorage.setItem("successSign", true)
-        sessionStorage.setItem("successCoupon", true)
-        hidePopup()
+        // pushDataLayer("Sign Up clicked")
+        // document.querySelector(".btn_close").setAttribute("successCoupon", "true")
+        // sessionStorage.setItem("successSign", true)
+        // sessionStorage.setItem("successCoupon", true)
+        // hidePopup()
       }
+    }
+
+    function postForm(email, password, firstName, lastName) {
+      let form = new FormData()
+      form.append("form_key", "JZMTFmvGgwukubVQ")
+      form.append("submit_type", "register")
+      form.append("emailAddress", email)
+      form.append("password", password)
+      form.append("firstname", firstName)
+      form.append("lastname", lastName)
+
+      fetch(`https://www.lamps.com/l-c/ajax/`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: form,
+        method: "POST",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data)
+
+          // if (data.is_logged_in) {
+          //   // true / false
+          //   document.querySelector(".form_wrap  > .error_msg").style.display = "block"
+          // } else {
+          //   document.querySelector(".form_wrap  > .error_msg").style.display = "none"
+          //   pushDataLayer("Sign Up clicked")
+          //   document.querySelector("#btn-register-submit").click()
+          //   document.querySelector(".btn_close").setAttribute("successCoupon", "true")
+          //   sessionStorage.setItem("successSign", true)
+          //   sessionStorage.setItem("successCoupon", true)
+          //   hidePopup()
+          // }
+        })
+        .catch((err) => {
+          console.log("Failed fetch ", err)
+        })
     }
 
     pushDataLayer("loaded")
