@@ -1,5 +1,5 @@
 let startFunk = setInterval(() => {
-  if (document.querySelector(".catalog-product-view .main-container")) {
+  if (document.querySelector("#main-wrapper")) {
     clearInterval(startFunk)
 
     // event
@@ -746,10 +746,14 @@ let startFunk = setInterval(() => {
 
     // TO show POPUP
     setTimeout(() => {
-      let dataProduct = JSON.parse(document.querySelector("#main-wrapper #item-details").getAttribute("data-product"))
+      let dataProduct = JSON.parse(document.querySelector("#main-wrapper #item-details")?.getAttribute("data-product"))
       let salesProduct = dataProduct.salesproduct
 
-      if (!sessionStorage.getItem("successSign") && salesProduct) {
+      if (
+        !sessionStorage.getItem("successSign") &&
+        salesProduct &&
+        document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account"
+      ) {
         showPopup()
       }
     }, 3000)
@@ -811,7 +815,7 @@ let startFunk = setInterval(() => {
     document.querySelector(".form_wrap button#continueBtn")?.addEventListener("click", () => {
       pushDataLayer("Continue Shopping clicked")
       hidePopup()
-      // window.location.reload()
+      window.location.reload()
     })
 
     document.querySelector(".form_wrap button#btnRegisterSubmit")?.addEventListener("click", () => {
@@ -887,12 +891,19 @@ let startFunk = setInterval(() => {
         console.log(document.querySelector("#last-name").value)
         console.log(document.querySelector("#register-email").value)
         console.log(document.querySelector("#register-password").value)
-        postForm(
-          document.querySelector(`${parent} input[name='registerEmail']`).value,
-          document.querySelector(`${parent} input[name='registerPassword']`).value,
-          document.querySelector(`${parent} input[name='firstName']`).value,
-          document.querySelector(`${parent} input[name='lastName']`).value
-        )
+        // postForm(
+        //   document.querySelector(`${parent} input[name='registerEmail']`).value,
+        //   document.querySelector(`${parent} input[name='registerPassword']`).value,
+        //   document.querySelector(`${parent} input[name='firstName']`).value,
+        //   document.querySelector(`${parent} input[name='lastName']`).value
+        // )
+
+        pushDataLayer("Sign Up clicked")
+        document.querySelector("#btn-register-submit").click()
+        document.querySelector(".btn_close").setAttribute("successCoupon", "true")
+        sessionStorage.setItem("successSign", true)
+        sessionStorage.setItem("successCoupon", true)
+        hidePopup()
       }
     }
 
