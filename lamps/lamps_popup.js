@@ -2,6 +2,8 @@ let startFunk = setInterval(() => {
   if (document.querySelector("#main-wrapper")) {
     clearInterval(startFunk)
 
+    document.cookie = "login_alt = true"
+
     // event
     let eventVar = "desktop"
 
@@ -640,7 +642,10 @@ let startFunk = setInterval(() => {
 
           if (salesProduct) {
             if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
-              el.insertAdjacentHTML("beforeend", discountCart)
+              if (!el.querySelector(".discount_cart")) {
+                el.insertAdjacentHTML("beforeend", discountCart)
+                startCoupon()
+              }
             } else {
               if (!el.querySelector(".discount_cart.sign_up")) {
                 el.insertAdjacentHTML("beforeend", discountCartSignUp)
@@ -674,20 +679,23 @@ let startFunk = setInterval(() => {
       }
     }
 
+    startCoupon()
     // coupon activate
-    const startCoupon = setInterval(() => {
-      const couponInput = document.querySelector(".inner-panel .i-block #sidebar-discount-coupon-form input")
-      if (couponInput) {
-        // clearInterval(startCoupon)
+    function startCoupon() {
+      const startCoupon = setInterval(() => {
+        const couponInput = document.querySelector(".inner-panel .i-block #sidebar-discount-coupon-form input")
+        if (couponInput) {
+          clearInterval(startCoupon)
 
-        if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
-          if (couponInput.value !== "WLS1-QFT5") {
-            couponInput.value = "WLS1-QFT5"
-            document.querySelector(".inner-panel .i-block #submit-coupon")?.click()
+          if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
+            if (couponInput.value !== "WLS1-QFT5") {
+              couponInput.value = "WLS1-QFT5"
+              document.querySelector(".inner-panel .i-block #submit-coupon")?.click()
+            }
           }
         }
-      }
-    }, 1000)
+      }, 1000)
+    }
 
     // observer
     let observer = new MutationObserver(() => {
@@ -759,7 +767,7 @@ let startFunk = setInterval(() => {
     }, 3000)
 
     document.querySelector(".btn_close").addEventListener("click", function () {
-      if (this.getAttribute("successCoupon")) {
+      if (this.getAttribute("successCoupon") || document.querySelector(".body_popup .form_wrap:nth-child(2)").classList.contains("active")) {
         pushDataLayer("TY after registration pop up closed by X")
       } else {
         pushDataLayer("Registration pop up closed by X")
@@ -887,23 +895,12 @@ let startFunk = setInterval(() => {
         document.querySelector("#register-email").value = document.querySelector(`${parent} input[name='registerEmail']`).value
         document.querySelector("#register-password").value = document.querySelector(`${parent} input[name='registerPassword']`).value
 
-        console.log(document.querySelector("#first-name").value)
-        console.log(document.querySelector("#last-name").value)
-        console.log(document.querySelector("#register-email").value)
-        console.log(document.querySelector("#register-password").value)
-        // postForm(
-        //   document.querySelector(`${parent} input[name='registerEmail']`).value,
-        //   document.querySelector(`${parent} input[name='registerPassword']`).value,
-        //   document.querySelector(`${parent} input[name='firstName']`).value,
-        //   document.querySelector(`${parent} input[name='lastName']`).value
-        // )
-
-        pushDataLayer("Sign Up clicked")
-        document.querySelector("#btn-register-submit").click()
-        document.querySelector(".btn_close").setAttribute("successCoupon", "true")
-        sessionStorage.setItem("successSign", true)
-        sessionStorage.setItem("successCoupon", true)
-        hidePopup()
+        postForm(
+          document.querySelector(`${parent} input[name='registerEmail']`).value,
+          document.querySelector(`${parent} input[name='registerPassword']`).value,
+          document.querySelector(`${parent} input[name='firstName']`).value,
+          document.querySelector(`${parent} input[name='lastName']`).value
+        )
       }
     }
 
@@ -916,40 +913,26 @@ let startFunk = setInterval(() => {
       form.append("password", passwordVal)
       form.append("firstname", firstName)
       form.append("lastname", lastName)
-      console.log(form)
 
       fetch(`https://www.lamps.com/l-c/ajax/`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        // body: {
-        //   form_key: window.form_key,
-        //   submit_type: "register",
-        //   emailAddress: email,
-        //   password: passwordVal,
-        //   firstname: firstName,
-        //   lastname: lastName,
-        // },
-
         body: form,
         method: "POST",
       })
-        .then((res) => res.json())
+        .then((res) => {
+          return res.status
+        })
         .then((data) => {
-          console.log(data)
-
-          // if (data.is_logged_in) {
-          //   // true / false
-          //   document.querySelector(".form_wrap  > .error_msg").style.display = "block"
-          // } else {
-          //   document.querySelector(".form_wrap  > .error_msg").style.display = "none"
-          //   pushDataLayer("Sign Up clicked")
-          //   document.querySelector("#btn-register-submit").click()
-          //   document.querySelector(".btn_close").setAttribute("successCoupon", "true")
-          //   sessionStorage.setItem("successSign", true)
-          //   sessionStorage.setItem("successCoupon", true)
-          //   hidePopup()
-          // }
+          if (data === 403) {
+            document.querySelector(".form_wrap  > .error_msg").style.display = "block"
+          } else {
+            document.querySelector(".form_wrap  > .error_msg").style.display = "none"
+            pushDataLayer("Sign Up clicked")
+            document.querySelector(".btn_close").setAttribute("successCoupon", "true")
+            document.querySelector("#btn-register-submit").click()
+            sessionStorage.setItem("successCoupon", true)
+            sessionStorage.setItem("successSign", true)
+            hidePopup()
+          }
         })
         .catch((err) => {
           console.log("Failed fetch ", err)
