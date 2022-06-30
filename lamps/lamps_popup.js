@@ -643,8 +643,9 @@ let startFunk = setInterval(() => {
           if (salesProduct) {
             if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
               if (!el.querySelector(".discount_cart")) {
+                activateCoupon()
                 el.insertAdjacentHTML("beforeend", discountCart)
-                startCoupon()
+                // startCoupon()
               }
             } else {
               if (!el.querySelector(".discount_cart.sign_up")) {
@@ -666,11 +667,11 @@ let startFunk = setInterval(() => {
         if (salesProduct) {
           if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
             if (!document.querySelector(".discount_pdp")) {
-              document.querySelector(".catalog-product-view .product-essential .p-price .pdp-afterpay")?.insertAdjacentHTML("beforebegin", discountPdp)
+              document.querySelector(".catalog-product-view .product-essential .p-price .final-price.mt-3")?.insertAdjacentHTML("afterend", discountPdp)
             }
           } else {
             if (!document.querySelector(".discount_pdp.sign_up")) {
-              document.querySelector(".catalog-product-view .product-essential .p-price .pdp-afterpay")?.insertAdjacentHTML("beforebegin", discounPdpSignUp)
+              document.querySelector(".catalog-product-view .product-essential .p-price .final-price.mt-3")?.insertAdjacentHTML("afterend", discounPdpSignUp)
 
               onClickSignUp("#main-wrapper")
             }
@@ -679,22 +680,46 @@ let startFunk = setInterval(() => {
       }
     }
 
-    startCoupon()
+    // startCoupon()
     // coupon activate
-    function startCoupon() {
-      const startCoupon = setInterval(() => {
-        const couponInput = document.querySelector(".inner-panel .i-block #sidebar-discount-coupon-form input")
-        if (couponInput) {
-          clearInterval(startCoupon)
+    // function startCoupon() {
+    //   const startCoupon = setInterval(() => {
+    //     const couponInput = document.querySelector(".inner-panel .i-block #sidebar-discount-coupon-form input")
+    //     if (couponInput) {
+    //       clearInterval(startCoupon)
 
-          if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
-            if (couponInput.value !== "WLS1-QFT5") {
-              couponInput.value = "WLS1-QFT5"
-              document.querySelector(".inner-panel .i-block #submit-coupon")?.click()
-            }
-          }
-        }
-      }, 1000)
+    //       if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
+    //         if (couponInput.value !== "WLS1-QFT5") {
+    //           couponInput.value = "WLS1-QFT5"
+    //           document.querySelector(".inner-panel .i-block #submit-coupon")?.click()
+    //         }
+    //       }
+    //     }
+    //   }, 1000)
+    // }
+
+    //new_customer_coupon
+    function activateCoupon() {
+      if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
+        const cookieName = "new_customer_coupon"
+        let cookieValue = "true"
+        let myDate = new Date()
+        myDate.setMonth(myDate.getMonth() + 12)
+        document.cookie = cookieName + "=" + cookieValue + ";expires=" + myDate + ";domain=.www.lamps.com;path=/"
+        // document.cookie = `${cookieName}=${cookieValue};expires=-1;domain=.www.lamps.com;path=/`
+      }
+    }
+
+    onClickLogout()
+    // onClick logout
+    function onClickLogout() {
+      if (document.querySelector("#btn-logout")) {
+        document.querySelector("#btn-logout").addEventListener("click", function () {
+          setTimeout(() => {
+            document.cookie = "new_customer_coupon" + "=" + "" + ";max-age=" + -1 + ";domain=.www.lamps.com;path=/"
+          }, 1000)
+        })
+      }
     }
 
     // observer
@@ -702,6 +727,7 @@ let startFunk = setInterval(() => {
       if (document.querySelector("#main-wrapper")) {
         observer.disconnect()
         renderToPdp()
+        onClickLogout()
 
         observer.observe(document.querySelector("#main-wrapper"), {
           childList: true,
@@ -719,6 +745,7 @@ let startFunk = setInterval(() => {
       if (document.querySelector("#cart-panel")) {
         observerCart.disconnect()
         renderToCart()
+        onClickLogout()
 
         observerCart.observe(document.querySelector("#cart-panel"), {
           childList: true,
@@ -844,7 +871,7 @@ let startFunk = setInterval(() => {
       }
     }, 10)
 
-    // validate formu
+    // validate form
     function validationForm(parent) {
       let inputValueName = document.querySelector(`${parent} input[name='firstName']`).value.match(/^[а-яА-ЯёЁa-zA-Z0-9]+$/)
       let inputLastName = document.querySelector(`${parent} input[name='lastName']`).value.match(/^[а-яА-ЯёЁa-zA-Z0-9]+$/)
