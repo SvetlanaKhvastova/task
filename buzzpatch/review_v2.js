@@ -115,7 +115,11 @@ let startFunkReview = setInterval(() => {
             position: relative;
         }
 
-        .block_second > ul > li::before{
+        .stories.carousel .story>a u{
+            position: relative;
+        }
+
+        .stories.carousel .story>a u::before{
             position: absolute;
             content: '';
             width: 24px;
@@ -206,18 +210,7 @@ let startFunkReview = setInterval(() => {
     <div class="block_second">
         <h2>Video Reviews</h2>
         <ul id="stories">
-            <li>
-                <!-- <img src="" alt="photo"> -->
-            </li>
-            <li>
-                <!-- <img src="" alt="photo"> -->
-            </li>
-            <li>
-                <!-- <img src="" alt="photo"> -->
-            </li>
-            <li>
-                <!-- <img src="" alt="photo"> -->
-            </li>
+
         </ul>
     </div>
     
@@ -268,46 +261,60 @@ let startFunkReview = setInterval(() => {
     }
 
     //
+    // let s = setInterval(() => {
+    //   if (document.querySelector("#stories")) {
+    //     clearInterval(s)
     setTimeout(() => {
-      function buildItem(id, type, length, src, preview, link, seen, time) {
+      function buildItem(id, type, src, preview, seen) {
         return {
           id,
           type,
-          length,
           src,
           preview,
-          link,
           seen,
-          time,
         }
       }
 
-      const stories = new Zuck({
-        id: "stories",
-        skin: "snapgram",
+      const stories = new Zuck("stories", {
+        skin: "Snapgram",
         avatars: true,
+        backNative: true,
+        previousTap: true,
         list: false,
         openEffect: true,
-        cubeEffect: false,
-        autoFullScreen: false,
+        cubeEffect: true,
+        autoFullScreen: true,
         backButton: true,
-        backNative: false,
-        previousTap: true,
         localStorage: true,
-        reactive: true,
-        rtl: false,
         stories: [
           {
-            id: "vision",
-            photo: "https://conversionratestore.github.io/projects/buzzpatch/img/review4.jpg",
-            name: "Tech",
+            id: "a",
+            photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review1.jpg",
+            items: [buildItem("1", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/familyandcoffee.mp4", false)],
+          },
+          {
+            id: "r",
+            photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review2.jpg",
+            items: [buildItem("1", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/paosfitmomlife.mp4", false)],
+          },
+          {
+            id: "t",
+            photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review3.jpg",
             items: [
-              buildItem("3", "photo", 3, "https://conversionratestore.github.io/projects/buzzpatch/img/review4.jpg", "", false, 1492665454),
-              buildItem("2", "photo", 3, "https://conversionratestore.github.io/projects/buzzpatch/img/review1.jpg", "", false, 1492665454),
+              buildItem("1", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/blessed_by_brynn-1.mp4", false),
+              buildItem("2", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/blessed_by_brynn-2.mp4", false),
+              buildItem("3", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/blessed_by_brynn-3.mp4", false),
             ],
+          },
+          {
+            id: "d",
+            photo: "https://conversionratestore.github.io/projects/buzzpatch/img/video_review4.jpg",
+            items: [buildItem("1", "video", "https://conversionratestore.github.io/projects/buzzpatch/video/allthngsmely.mp4", false)],
           },
         ],
       })
     }, 3000)
   }
+  //   }, 20)
+  // }
 }, 10)
