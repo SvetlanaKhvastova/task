@@ -1,5 +1,5 @@
 let startFunkReview = setInterval(() => {
-  if (document.querySelector(".js-heading .trust-rating")) {
+  if (document.querySelector("#mainContent")) {
     clearInterval(startFunkReview);
 
     let scriptCustom = document.createElement("script");
@@ -20,19 +20,25 @@ let startFunkReview = setInterval(() => {
     scriptSnapgramStyle.rel = "stylesheet";
     document.head.appendChild(scriptSnapgramStyle);
 
+    //----------------------------------------------------------------------------------------------------
+    let scriptCustomImg = document.createElement("script");
+    scriptCustomImg.src =
+      "https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js";
+    scriptCustomImg.async = false;
+    document.head.appendChild(scriptCustomImg);
+
+    let scriptCustomImgStyle = document.createElement("link");
+    scriptCustomImgStyle.href =
+      "https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css";
+    scriptCustomImgStyle.rel = "stylesheet";
+    document.head.appendChild(scriptCustomImgStyle);
+
     let styleReveiw = /* html */ `
       <style>
-        .trust-rating{
-            display: none;
-        }
-
         /*block_first */
         .block_first{
-            background: #FFFFFF;
-            border-radius: 14px;
-            max-width: 315px;
-            margin: 0 auto 20px;
-            padding: 20px;
+            margin: 10px 0 0;
+            padding: 0;
         }
 
         .block_first > p{
@@ -66,7 +72,7 @@ let startFunkReview = setInterval(() => {
 
         .block_first > ul{
             display: flex;
-            margin: 5px 0 0 !important;
+            margin: 0 !important;
             align-items: center;
             justify-content: space-between;
             gap: 5px;
@@ -83,6 +89,7 @@ let startFunkReview = setInterval(() => {
         .block_first > ul li img{
             width: 100%;
             height: 100%;
+            margin: 0;
         }
 
         /* block_second*/
@@ -90,7 +97,8 @@ let startFunkReview = setInterval(() => {
             margin: 0 22px 64px;
         }
 
-        .block_second > h2 {
+        .block_second > h2,
+        .block_third > h2 {
             font-weight: 500;
             font-size: 36px;
             line-height: 100%;
@@ -137,6 +145,47 @@ let startFunkReview = setInterval(() => {
           display: none;
         }
 
+        #zuck-modal *{
+          -webkit-user-select: none;
+        }
+
+         /*block_third */
+        .block_third {
+            margin: 64px 30px 0;
+        }
+
+        .block_third ul{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 0;
+        }
+
+        .block_third ul li{
+            list-style: none;
+            width: 30%;
+        }
+
+        .block_third ul li img{
+            width: 100%;
+            height: 100%;
+        }
+
+        #getNow img{
+          max-width: 320px !important;
+        }
+
+        #getNow > img:not(.new_img_review){
+          display: none;
+        }
+
+        .new_img_review {
+          margin: 20px auto 30px !important
+        }
+
+
          @media (max-width: 320px){
             .block_first > div span:nth-child(1){
                 font-size: 16px;
@@ -146,6 +195,10 @@ let startFunkReview = setInterval(() => {
                 width: 60px;
                 height: 60px;
             }
+
+            .block_third ul li{
+                width: 28%;
+            }
          }
 
       </style>
@@ -153,57 +206,6 @@ let startFunkReview = setInterval(() => {
 
     let blockFirst = /* html */ `
     <div class="block_first">
-      <p>Our customers rate us as</p>
-      <div>
-        <span>Excellent</span>
-        <div>
-          <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z"
-              fill="#FFD200"
-            />
-          </svg>
-          <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z"
-              fill="#FFD200"
-            />
-          </svg>
-          <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z"
-              fill="#FFD200"
-            />
-          </svg>
-          <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z"
-              fill="#FFD200"
-            />
-          </svg>
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <mask id="mask0_2_162" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="12" height="20">
-              <rect width="12" height="20" fill="#D9D9D9" />
-            </mask>
-            <g mask="url(#mask0_2_162)">
-              <path
-                d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z"
-                fill="#FFD200"
-              />
-            </g>
-            <mask id="mask1_2_162" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="10" y="0" width="10" height="20">
-              <rect x="10" width="10" height="20" fill="#D9D9D9" />
-            </mask>
-            <g mask="url(#mask1_2_162)">
-              <path
-                d="M10 1.30198L12.1834 6.55144L12.3007 6.83342L12.6051 6.85782L18.2723 7.31216L13.9545 11.0108L13.7225 11.2095L13.7934 11.5066L15.1126 17.0368L10.2606 14.0733L10 13.9141L9.73937 14.0733L4.88743 17.0368L6.2066 11.5066L6.27746 11.2095L6.04552 11.0108L1.72769 7.31216L7.39492 6.85782L7.69934 6.83342L7.81663 6.55144L10 1.30198Z"
-                stroke="#FFD200"
-              />
-            </g>
-          </svg>
-        </div>
-        <span>4.91 (92)</span>
-      </div>
       <ul>
         <li><img src="https://conversionratestore.github.io/projects/buzzpatch/img/review1.jpg" alt="child" /></li>
         <li><img src="https://conversionratestore.github.io/projects/buzzpatch/img/review2.jpg" alt="child" /></li>
@@ -216,69 +218,98 @@ let startFunkReview = setInterval(() => {
     let blockSecond = /* html */ `
     <div class="block_second">
         <h2>Video Reviews</h2>
-        <ul id="stories">
-
-        </ul>
-    </div>
-    
+        <ul id="stories"></ul>
+    </div>    
     `;
+
+    let blockThird = /* html */ `
+<div class="block_third">
+    <h2>See it in real life</h2>
+    <ul>
+        <li data-fancybox="demo" data-src="https://conversionratestore.github.io/projects/buzzpatch/img/review5_1.jpg">
+            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/review5.jpg" alt="people">
+        </li>
+        <li data-fancybox="demo" data-src="https://conversionratestore.github.io/projects/buzzpatch/img/review6_1.jpg">
+            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/review6.jpg" alt="people">
+        </li>
+        <li data-fancybox="demo" data-src="https://conversionratestore.github.io/projects/buzzpatch/img/review7_1.jpg">
+            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/review7.jpg" alt="people">
+        </li>
+        <li data-fancybox="demo" data-src="https://conversionratestore.github.io/projects/buzzpatch/img/review8_1.jpg">
+            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/review8.jpg" alt="people">
+        </li>
+        <li data-fancybox="demo" data-src="https://conversionratestore.github.io/projects/buzzpatch/img/review9_1.jpg">
+            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/review9.jpg" alt="people">
+        </li>
+        <li data-fancybox="demo" data-src="https://conversionratestore.github.io/projects/buzzpatch/img/review10_1.jpg">
+            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/review10.jpg" alt="people">
+        </li>
+        <li data-fancybox="demo" data-src="https://conversionratestore.github.io/projects/buzzpatch/img/review11_1.jpg">
+            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/review11.jpg" alt="people">
+        </li>
+        <li data-fancybox="demo" data-src="https://conversionratestore.github.io/projects/buzzpatch/img/review12_1.jpg">
+            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/review12.jpg" alt="people">
+        </li>
+        <li data-fancybox="demo" data-src="https://conversionratestore.github.io/projects/buzzpatch/img/review13_1.jpg">
+            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/review13.jpg" alt="people">
+        </li>
+    </ul>
+</div>
+`;
 
     document.head.insertAdjacentHTML("beforeend", styleReveiw);
     document
-      .querySelector(".js-heading .trust-rating")
+      .querySelector(".js-heading .trust-rating .stars")
       .insertAdjacentHTML("afterend", blockFirst);
+
     document
       .querySelector("#flowers")
       .insertAdjacentHTML("afterbegin", blockSecond);
 
+    document.querySelector(".trust-rating .stars .text").textContent =
+      "Reviews 699";
+
+    document
+      .querySelector("#ingredients")
+      .insertAdjacentHTML("beforebegin", blockThird);
+
+    document
+      .querySelector(".js-iphone .grey")
+      .insertAdjacentHTML(
+        "beforeend",
+        `<img class="new_img_review" src="https://conversionratestore.github.io/projects/buzzpatch/img/reviews_box.png" alt="reviews">`
+      );
+
     //click on block_first
-    scrolling(".block_first");
+    scrolling(".trust-rating");
 
     // Pure js scrolling
     function scrolling(upSelector) {
       // Scrolling with raf
-      let links = document.querySelectorAll(upSelector),
-        speed = 0.3;
+      let links = document.querySelectorAll(upSelector);
 
       links.forEach((link) => {
         link.addEventListener("click", function (event) {
           event.preventDefault();
 
-          let widthTop = document.documentElement.scrollTop,
-            hash = "#reviews",
-            toBlock = document.querySelector(hash).getBoundingClientRect().top,
-            start = null;
+          const scrollTarget = document.getElementById("reviews");
 
-          requestAnimationFrame(step);
+          const topOffset = 101;
+          const elementPosition = scrollTarget.getBoundingClientRect().top;
+          const offsetPosition = elementPosition - topOffset;
 
-          function step(time) {
-            if (start === null) {
-              start = time;
-              console.log(`time`, time);
-            }
-
-            let progress = time - start,
-              r =
-                toBlock < 0
-                  ? Math.max(widthTop - progress / speed, widthTop + toBlock)
-                  : Math.min(widthTop + progress / speed, widthTop + toBlock);
-
-            document.documentElement.scrollTo(98, r);
-
-            if (r != widthTop + toBlock) {
-              requestAnimationFrame(step);
-            } else {
-              location.hash = hash;
-            }
-          }
+          window.scrollBy({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
         });
       });
     }
 
-    //
-    let s = setInterval(() => {
+    //play video insta
+    let videoInsta = setInterval(() => {
       if (document.querySelector("#stories") && typeof Zuck === "function") {
-        clearInterval(s);
+        clearInterval(videoInsta);
         function buildItem(id, type, src, seen) {
           return {
             id,
@@ -294,11 +325,12 @@ let startFunkReview = setInterval(() => {
           backNative: true,
           list: false,
           openEffect: true,
-          cubeEffect: true,
-          autoFullScreen: true,
+          cubeEffect: "true",
+          autoFullScreen: "false",
           backButton: true,
           localStorage: true,
           previousTap: true,
+          reactive: true,
           stories: [
             {
               id: "a",
@@ -368,5 +400,14 @@ let startFunkReview = setInterval(() => {
         });
       }
     }, 20);
+
+    // full Size Img
+    let fullImg = setInterval(() => {
+      if (typeof Fancybox === "function") {
+        clearInterval(fullImg);
+
+        Fancybox.bind("[data-fancybox]", {});
+      }
+    }, 10);
   }
 }, 10);
