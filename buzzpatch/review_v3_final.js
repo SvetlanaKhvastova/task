@@ -51,6 +51,20 @@ let startFunkReview = setInterval(() => {
 
     let styleReveiw = /* html */ `
       <style>
+        #zuck-modal-content .story-viewer .head .left{
+          float: right !important;
+          margin: 14px 28px !important;
+        }
+
+        #zuck-modal-content .story-viewer.with-back-button .head .left > .back{
+          color: #FFFFFF !important;
+          font-size: 32px !important;
+        }
+
+        #zuck-modal-content .story-viewer.with-back-button .head .left .img{
+          display: none;
+        }
+
         /*block_first */
         .block_first{
             margin: 10px 0 0;
@@ -331,9 +345,9 @@ let startFunkReview = setInterval(() => {
           avatars: true,
           backNative: true,
           list: false,
-          openEffect: true,
-          cubeEffect: "true",
-          autoFullScreen: "false",
+          openEffect: "false",
+          cubeEffect: true,
+          autoFullScreen: "true",
           backButton: true,
           localStorage: true,
           previousTap: true,
