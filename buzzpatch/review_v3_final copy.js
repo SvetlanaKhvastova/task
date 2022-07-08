@@ -55,37 +55,14 @@ let startFunkReview = setInterval(() => {
           z-index: 999999999999999 !important;
         }
 
-        #zuck-modal-content .story-viewer .head .right .close{
-          display: block !important;
-          color: #FFFFFF !important;
-          opacity: 1 !important;
-          height: 55px !important;
-        }
-
         #zuck-modal.with-effects{
           position: fixed !important;
         }
-
-        #zuck-modal-content .story-viewer .head .right .close > svg{
-          top: 24px !important;
-          position: absolute !important;
-          right: 15px !important;
-        }
-
-        #zuck-modal-content .story-viewer .head {
-          display: flex;
-          justify-content: space-between;
-        }        
         
         #zuck-modal-content .story-viewer .head .left{
-          display: none !important;
-        }
-
-        #zuck-modal-content .story-viewer .head .right{
-          float: unset !important;
-          width: 48px;
-          height: 42px;
-          margin: 0 0 0 auto;
+          float: right !important;
+          margin: 8px 0 !important;
+          width: 33px !important;
         }
 
         #zuck-modal-content .story-viewer.with-back-button .head .left > .back{
@@ -442,13 +419,7 @@ let startFunkReview = setInterval(() => {
       if (typeof Fancybox === "function") {
         clearInterval(fullImg)
 
-        Fancybox.bind("[data-fancybox]", {
-          // on: {
-          //   done: (fancybox, slide) => {
-          //     pushDataLayer("'photo review loaded", `photo_${slide.index + 1}`)
-          //   },
-          // },
-        })
+        Fancybox.bind("[data-fancybox]", {})
 
         document.querySelectorAll("[data-fancybox]").forEach((el, i) => {
           el.addEventListener("click", function () {
