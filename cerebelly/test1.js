@@ -1,7 +1,23 @@
 let testStart = setInterval(() => {
   if (document.querySelector(".e-page-content-wrap")) {
   }
-  clearInterval(testStart);
+  clearInterval(testStart)
+
+  // observer
+  let observer = new MutationObserver((muts) => {
+    observer.disconnect()
+    console.log(`mut`)
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    })
+  })
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+  })
 
   let styleVar = /*html */ `
   <style>
@@ -32,6 +48,29 @@ let testStart = setInterval(() => {
     margin-bottom: 10px;
   }
 
+  /*count_badge*/
+  .count_badge{
+    display: none;
+    align-items: center;
+    position: absolute;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    top: -6px;
+    right: -11px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #FFFFFF;
+    z-index: 20;
+    background: #FC4E37;
+    border-radius: 50%;
+  }
+
+  .count_badge.is_visible{
+    display: flex;
+  }
+
   /*sticky_box */
   .sticky_box{
     position: fixed;
@@ -44,6 +83,7 @@ let testStart = setInterval(() => {
     align-items: center;
     justify-content: space-between;
     gap: 7px;
+    z-index: 100;
   }
 
   .sticky_box > span{
@@ -100,14 +140,14 @@ let testStart = setInterval(() => {
     font-weight: 800;
   }
   </style>
-  `;
+  `
 
   let stickyBox = /*html */ `
   <div class="sticky_box">
     <span>$1660.88</span>
     <button>Checkout NOW - GET <span>25%</span> OFF</button>
   </div>
-  `;
+  `
 
   let shippingBox = /*html */ `
   <div class="shipping_box">
@@ -117,23 +157,21 @@ let testStart = setInterval(() => {
     </svg>
     <span>Your order qualifies for <b>FREE</b> Shipping</span>
   </div>
-  `;
+  `
 
-  document.head.insertAdjacentHTML("beforeend", styleVar);
+  document.head.insertAdjacentHTML("beforeend", styleVar)
 
-  document
-    .querySelector(
-      ".e-page-content.css-xf71d4.css-l33dnr.is-scrolled.is-scrolled-50.is-scrolled-60"
-    )
-    .insertAdjacentHTML("beforeend", stickyBox);
+  document.querySelector(".css-11td2i.b-header.fw-header .e-nav .mobile-cart-box")?.insertAdjacentHTML("afterbegin", `<span class="count_badge is_visible">1</span>`)
+
+  if (document.querySelector(".count_badge").classList.contains("is_visible")) {
+    document.querySelector(".e-page-content.css-xf71d4.css-l33dnr.is-scrolled.is-scrolled-50.is-scrolled-60").insertAdjacentHTML("beforeend", stickyBox)
+  }
 
   setTimeout(() => {
-    document
-      .querySelector(".css-qa0rkb .cart-wrapper .cart-product-actions")
-      ?.insertAdjacentHTML("afterbegin", shippingBox);
-  }, 5000);
+    document.querySelector(".css-qa0rkb .cart-wrapper .cart-product-actions")?.insertAdjacentHTML("afterbegin", shippingBox)
+  }, 3000)
 
   //   document.querySelector(
   //     ".css-qa0rkb .cart-wrapper .cart-product-actions button.checkout"
   //   ).textContent = "CHECKOUT NOW - GET 15% OFF";
-}, 10);
+}, 10)
