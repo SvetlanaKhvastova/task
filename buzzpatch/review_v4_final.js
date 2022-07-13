@@ -54,7 +54,7 @@ let startFunkReview = setInterval(() => {
         .trust-rating .stars .text{
             border-bottom: 1px solid #000000;
             font-weight: 700 !important;
-            font-size: 13px !important;
+            font-size: 12px !important;
             line-height: 16px !important;
         }
         
@@ -304,6 +304,18 @@ let startFunkReview = setInterval(() => {
 
             .block_third ul li{
                 width: 28%;
+            }
+
+            .trust-rating .stars .text{
+              font-size: 10px !important;
+            }
+
+            #getNow .new_img_review_box >img:nth-child(2){
+              max-width: 158px !important;
+            }
+
+            #getNow .new_img_review_box >img:nth-child(1) {
+                max-width: 62px !important;
             }
          }
 

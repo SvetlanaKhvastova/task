@@ -3,22 +3,6 @@ let testStart = setInterval(() => {
   }
   clearInterval(testStart)
 
-  // observer
-  let observer = new MutationObserver((muts) => {
-    observer.disconnect()
-    console.log(`mut`)
-
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-    })
-  })
-
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true,
-  })
-
   let styleVar = /*html */ `
   <style>
   .css-ayu7xz .boxmenuContainer,
@@ -28,7 +12,9 @@ let testStart = setInterval(() => {
 
   .css-qa0rkb .cart-wrapper .cart-product-actions{
     padding: 20px;
+    /*
     position: fixed !important;
+    */
     background: #FFFFFF;
     box-shadow: 0px 4px 8px rgb(0 0 0 / 10%);
     width: 100%;
@@ -54,10 +40,10 @@ let testStart = setInterval(() => {
     align-items: center;
     position: absolute;
     justify-content: center;
-    width: 20px;
-    height: 20px;
+    width: 26px;
+    height: 26px;
     top: -6px;
-    right: -11px;
+    right: -16px;
     font-weight: 400;
     font-size: 14px;
     line-height: 16px;
@@ -71,6 +57,10 @@ let testStart = setInterval(() => {
     display: flex;
   }
 
+  .e-page-content-wrap + div.is_hidden{
+    display: none;
+  }
+
   /*sticky_box */
   .sticky_box{
     position: fixed;
@@ -81,7 +71,7 @@ let testStart = setInterval(() => {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     gap: 7px;
     z-index: 100;
   }
@@ -161,17 +151,111 @@ let testStart = setInterval(() => {
 
   document.head.insertAdjacentHTML("beforeend", styleVar)
 
-  document.querySelector(".css-11td2i.b-header.fw-header .e-nav .mobile-cart-box")?.insertAdjacentHTML("afterbegin", `<span class="count_badge is_visible">1</span>`)
-
-  if (document.querySelector(".count_badge").classList.contains("is_visible")) {
-    document.querySelector(".e-page-content.css-xf71d4.css-l33dnr.is-scrolled.is-scrolled-50.is-scrolled-60").insertAdjacentHTML("beforeend", stickyBox)
-  }
-
-  setTimeout(() => {
-    document.querySelector(".css-qa0rkb .cart-wrapper .cart-product-actions")?.insertAdjacentHTML("afterbegin", shippingBox)
-  }, 3000)
+  // setTimeout(() => {
+  //   document.querySelector(".css-qa0rkb .cart-wrapper .cart-product-actions")?.insertAdjacentHTML("afterbegin", shippingBox)
+  // }, 3000)
 
   //   document.querySelector(
   //     ".css-qa0rkb .cart-wrapper .cart-product-actions button.checkout"
   //   ).textContent = "CHECKOUT NOW - GET 15% OFF";
+
+  // observer
+  const target = document.querySelector(".e-page-content-wrap + div")
+  const config = {
+    childList: true,
+    subtree: true,
+  }
+
+  let observer = new MutationObserver((mutations) => {
+    observer.disconnect()
+
+    for (let mutation of mutations) {
+      for (let node of mutation.addedNodes) {
+        if (!(node instanceof HTMLElement)) continue
+
+        if (node.matches(".css-n8qisr .custom .content > div")) {
+          calback()
+        }
+
+        function calback() {
+          // const items = [...document.querySelectorAll(".product-count")]
+          // let totalItems = 0
+          // items.forEach((i) => {
+          //   let item = +i.textContent.split(" ")[0] || +i.textContent.split("-")[0]
+          //   totalItems += item
+          // })
+          // localStorage.setItem("allItems", totalItems)
+          // console.dir(totalItems)
+          const items = document.querySelector(".cart-product-wrapper").children.length
+          totalItems = items
+          localStorage.setItem("allItems", totalItems)
+
+          const prices = [...document.querySelectorAll(".product-price")]
+          let totalPrice = 0
+
+          prices.forEach((element) => {
+            let price = +element.textContent.slice(1).replace(/,/g, "")
+            totalPrice += price
+          })
+
+          localStorage.setItem("allSumm", totalPrice.toFixed(2))
+          renderCountBadge()
+          renderStickyBox()
+
+          console.dir(totalPrice.toFixed(2))
+        }
+      }
+    }
+    observer.observe(target, config)
+  })
+
+  observer.observe(target, config)
+
+  renderStickyBox()
+  renderCountBadge()
+
+  // render StickyBox
+  function renderStickyBox() {
+    // if (document.querySelector(".count_badge").classList.contains("is_visible") && localStorage.getItem("allSumm") && !document.querySelector(".sticky_box")) {
+    //   document.querySelector(".e-page-content.css-xf71d4.css-l33dnr.is-scrolled.is-scrolled-50.is-scrolled-60").insertAdjacentHTML("beforeend", stickyBox)
+    // }
+
+    if (localStorage.getItem("allSumm") && !document.querySelector(".sticky_box")) {
+      document.querySelector(".e-page-content.css-xf71d4.css-l33dnr.is-scrolled.is-scrolled-50.is-scrolled-60").insertAdjacentHTML("beforeend", stickyBox)
+    }
+
+    if (document.querySelector(".sticky_box > span")) {
+      let summ = +localStorage.getItem("allSumm")
+      document.querySelector(".sticky_box > span").textContent = `$${summ}`
+    }
+  }
+
+  function renderCountBadge() {
+    if (!document.querySelector(".count_badge") && localStorage.getItem("allItems")) {
+      document.querySelector(".css-11td2i.b-header.fw-header .e-nav .mobile-cart-box")?.insertAdjacentHTML("afterbegin", `<span class="count_badge">0</span>`)
+    }
+
+    if (document.querySelector(".count_badge") && localStorage.getItem("allItems")) {
+      let items = +localStorage.getItem("allItems")
+      document.querySelector(".count_badge").textContent = items
+      document.querySelector(".count_badge").classList.add("is_visible")
+    }
+  }
+
+  //?????????
+  addToCartPopup()
+  function addToCartPopup() {
+    document.querySelectorAll(".css-ayu7xz .pageContainer > .container .category .products .product .action button").forEach((el) => {
+      el.addEventListener("click", function () {
+        document.querySelector(".e-page-content-wrap + div").classList.add("is_hidden")
+        document.querySelector(".css-11td2i.b-header.fw-header .e-nav .mobile-cart-box").click()
+        document.querySelector(".css-11td2i.b-header.fw-header .e-nav .mobile-cart-box").click()
+        document.querySelector(".e-page-content-wrap + div").classList.remove("is_hidden")
+
+        // if (+document.querySelector(".count_badge.is_visible").textContent < +document.querySelector(".count_badge.is_visible").textContent) {
+        //   console.dir(+document.querySelector(".count_badge.is_visible").textContent)
+        // }
+      })
+    })
+  }
 }, 10)

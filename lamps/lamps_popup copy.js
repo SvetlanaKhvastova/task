@@ -934,12 +934,12 @@ let startFunk = setInterval(() => {
             document.querySelector(".form_wrap  > .error_msg").style.display = "block"
           } else {
             document.querySelector(".form_wrap  > .error_msg").style.display = "none"
-            pushDataLayer("Sign Up clicked")
             document.querySelector(".btn_close").setAttribute("successCoupon", "true")
             sessionStorage.setItem("successCoupon", true)
             sessionStorage.setItem("successSign", true)
             activateCoupon()
             $j(document).hoAjax("refreshPage", "account")
+            pushDataLayer("Sign Up clicked")
             hidePopup()
           }
         })
