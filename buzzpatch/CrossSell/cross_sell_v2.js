@@ -115,23 +115,24 @@ let crossSellFunc = setInterval(() => {
   color: #0c0b0b;
   margin: 0;
 }
-.magic_patch_box h2 span {
-  color: #ff3c7f;
-}
+
 .magic_patch_box > p {
-  font-weight: 600;
+  font-weight: 400;
   text-align: center;
   font-size: 16px !important;
   line-height: 130% !important;
-  color: #ff3c7f;
+  color: #212529;
   margin: 4px 0 20px;
+}
+.magic_patch_box h2 span,
+.magic_patch_box > p > span {
+  color: #ff3c7f;
+  font-weight: 700;
 }
 .price_block {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #d9d9d9;
   margin: 13px 0 20px;
 }
 .price_block span {
@@ -165,8 +166,7 @@ let crossSellFunc = setInterval(() => {
 .btn_wrap {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: space-between;
   padding: 0 0 20px;
 }
 .btn_wrap button {
@@ -176,27 +176,42 @@ let crossSellFunc = setInterval(() => {
   background: #f53981;
   box-shadow: 0px 2px 4px rgba(12, 11, 11, 0.1), 0px 12px 32px rgba(0, 0, 0, 0.05);
   border-radius: 52px;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 20px;
-  line-height: 80%;
+  line-height: 110%;
   text-align: center;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #ffffff;
   transition: all 0.15s;
 }
-.btn_wrap button:active {
-  max-width: 98%;
-  padding: 1em;
-}
 .btn_wrap button.no_magic {
   color: #0c0b0b;
-  font-weight: 400;
-  font-size: 16px;
   background: #f9f8f6;
+  box-shadow: unset;
+  border: 2px solid #ECECEC;
+  border-radius: 52px;
 }
 .btn_wrap button + button {
-  margin-top: 10px;
+  margin-left: 20px;
+}
+
+/*about_magicpatch_block */
+.about_magicpatch_block{
+    background: #FFFFFF;
+    border: 1px solid #EFEFEF;
+    border-radius: 10px;
+    padding: 20px;
+}
+.about_magicpatch_block h3{
+  margin-bottom: 12px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 130%;
+  color: #0C0B0B;
+  font-family: "Roboto", sans-serif !important;
+  text-align: center;
+  text-transform: unset;
 }
 
 /*carousel */
@@ -220,12 +235,6 @@ let crossSellFunc = setInterval(() => {
 }
 .slick-initialized .slick-slide {
   padding: 0 35px;
-}
-
-.carousel__slide{
-  display: flex !important;
-  align-items: center;
-    justify-content: center;
 }
 
 .slick-arrow:not(.disabled):not([disabled]):focus,
@@ -287,6 +296,7 @@ let crossSellFunc = setInterval(() => {
   }
   .btn_wrap button {
     height: 58px;
+    font-size: 18px;
   }
   .carousel__slide img {
     max-height: 155px;
@@ -311,6 +321,7 @@ let crossSellFunc = setInterval(() => {
   }
   .btn_wrap button {
     height: 54px;
+    font-size: 16px;
   }
   .carousel__slide img {
     max-height: 135px;
@@ -350,8 +361,8 @@ let crossSellFunc = setInterval(() => {
               </div>
 
               <div class="magic_patch_box">
-                <h2>Get <span>Extra</span> Protection with MagicPatch Itch Relief</h2>
-                <p>in case you get an unexpected bite</p>
+                <h2>Get <span>Extra</span> Protection with <br> MagicPatch</h2>
+                <p>Reduce pain in 30-60 seconds in <br> case you get an <span>unexpected</span> bite </p>
                 <ul id="carousel" class="single-item">
                   <li class="carousel__slide">
                     <img src="https://conversionratestore.github.io/projects/buzzpatch/img/magic_patch1.jpg" alt="magic patch" />
@@ -367,17 +378,20 @@ let crossSellFunc = setInterval(() => {
                   <span>$14.99 (40% OFF)</span>
                   <span>Reg. Price: $24.99 (Save $9.99)</span>
                 </div>
-                <ul>
-                  <li><span>Reduce pain in 30-60 seconds</span></li>
-                  <li><span>100% natural & chemical free</span></li>
-                  <li><span>Safe for kids 0+ years old</span></li>
-                  <li><span>27 patches in 1 pack</span></li>
-                </ul>
+                <div class="btn_wrap">
+                  <button class="no_magic">No, Thanks</button>
+                  <button class="add_to_order">Add to ORDER</button>
+                </div>
+                <div class="about_magicpatch_block">
+                  <h3>Why MagicPatch?</h3>
+                  <ul>
+                    <li><span>Reduce pain in 30-60 seconds</span></li>
+                    <li><span>100% natural & chemical free</span></li>
+                    <li><span>Safe for kids 0+ years old</span></li>
+                    <li><span>27 patches in 1 pack</span></li>
+                  </ul>
+                </div>
               </div>
-            </div>
-            <div class="btn_wrap">
-              <button class="add_to_order">Add to ORDER</button>
-              <button class="no_magic">No, Thanks</button>
             </div>
           </div>
         </div>
@@ -386,7 +400,7 @@ let crossSellFunc = setInterval(() => {
     `
 
     document.head.insertAdjacentHTML("beforeend", crossSellStyle)
-    document.body.insertAdjacentHTML("afterbegin", popUp)
+    document.body.insertAdjacentHTML("beforeend", popUp)
     document.querySelector(".prices").insertAdjacentHTML("afterend", newBtnAddToCart)
 
     //textContent addToCart
@@ -518,27 +532,43 @@ let crossSellFunc = setInterval(() => {
       if (typeof jQuery("#carousel").slick === "function") {
         clearInterval(slickInterval)
 
-        // setTimeout(() => {
-        let slider = $(".single-item").slick({
-          infinite: true,
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          prevArrow: `
+        setTimeout(() => {
+          let slider = $(".single-item").slick({
+            arrows: true,
+            // variableWidth: true,
+            centerMode: true,
+            centerPadding: "1px",
+            slidesToShow: 1,
+            prevArrow: `
              <div class="prev_btn"><svg width="14" height="24" viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.4111 22.5892C14.1896 21.8107 14.1903 20.5486 13.4126 19.7692L5.66031 12L13.4126 4.23077C14.1903 3.45137 14.1896 2.18931 13.4111 1.41077V1.41077C12.6319 0.631622 11.3687 0.631623 10.5895 1.41077L0.000312805 12L10.5895 22.5892C11.3687 23.3684 12.6319 23.3684 13.4111 22.5892V22.5892Z" fill="#FF3C7F"/></svg></div>`,
-          nextArrow: `
+            nextArrow: `
               <div class="next_btn"><svg width="14" height="24" viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.588919 22.5892C-0.189627 21.8107 -0.190315 20.5486 0.587381 19.7692L8.33969 12L0.587381 4.23077C-0.190315 3.45137 -0.189627 2.18931 0.588919 1.41077C1.36806 0.631622 2.63131 0.631623 3.41046 1.41077L13.9997 12L3.41046 22.5892C2.63131 23.3684 1.36806 23.3684 0.588919 22.5892Z" fill="#FF3C7F"/></svg></div>`,
-        })
-
-        slider.on("swipe", () => {
-          pushDataLayer("Swipe to slider")
-        })
-
-        document.querySelectorAll(".slick-arrow").forEach((el) => {
-          el.addEventListener("click", function () {
-            pushDataLayer(`Clicks to slider ${this.classList[0]}`)
           })
-        })
-        // }, 700)
+
+          slider.on("swipe", () => {
+            pushDataLayer("Swipe to slider")
+          })
+
+          document.querySelectorAll(".slick-arrow").forEach((el) => {
+            el.addEventListener("click", function () {
+              pushDataLayer(`Clicks to slider ${this.classList[0]}`)
+            })
+          })
+        }, 700)
+
+        // $(".single-item").slick({
+        //   slidesToShow: 1,
+        //   slidesToScroll: 1,
+        //   arrows: true,
+        //   autoplay: false,
+        //   dots: false,
+        //   centerMode: true,
+        //   variableWidth: true,
+        //   prevArrow: `
+        //    <div class="prev_btn"><svg width="14" height="24" viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.4111 22.5892C14.1896 21.8107 14.1903 20.5486 13.4126 19.7692L5.66031 12L13.4126 4.23077C14.1903 3.45137 14.1896 2.18931 13.4111 1.41077V1.41077C12.6319 0.631622 11.3687 0.631623 10.5895 1.41077L0.000312805 12L10.5895 22.5892C11.3687 23.3684 12.6319 23.3684 13.4111 22.5892V22.5892Z" fill="#FF3C7F"/></svg></div>`,
+        //   nextArrow: `
+        //     <div class="next_btn"><svg width="14" height="24" viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.588919 22.5892C-0.189627 21.8107 -0.190315 20.5486 0.587381 19.7692L8.33969 12L0.587381 4.23077C-0.190315 3.45137 -0.189627 2.18931 0.588919 1.41077C1.36806 0.631622 2.63131 0.631623 3.41046 1.41077L13.9997 12L3.41046 22.5892C2.63131 23.3684 1.36806 23.3684 0.588919 22.5892Z" fill="#FF3C7F"/></svg></div>`,
+        // })
       }
     }, 10)
 
