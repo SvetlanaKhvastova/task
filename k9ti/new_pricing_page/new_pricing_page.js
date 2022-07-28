@@ -6,20 +6,19 @@ let arrTooltipTable = {
   3: [`You may spread the payment over 3 months by choosing instalments at Checkout`],
   4: [`You may spread the payment over 3 months by choosing instalments at Checkout`],
   5: [
-    `The Total Transformation Masterclass uses videos of real dogs to demonstrate how you can instil service dog levels of calmness, obedience, and impulse control into your canine companion. Plus: Housebreaking, Separation Anxiety, and Biting/Nipping Prevention BONUS classes`,
+    `The Total Transformation Masterclass uses videos of real dogs to demonstrate how you can instil service dog levels of calmness, obedience, and impulse control into your canine companion. <br/> <span>Plus:</span> Housebreaking, Separation Anxiety, and Biting/Nipping Prevention <span>BONUS classes</span>`,
   ],
   6: [`Calls held every Saturday at 3PM EST`],
 }
+let scriptPopper = document.createElement("script")
+scriptPopper.src = "https://unpkg.com/popper.js@1"
+scriptPopper.async = false
+document.body.appendChild(scriptPopper)
 
-let scriptCustomPopper = document.createElement("script")
-scriptCustomPopper.src = "https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"
-scriptCustomPopper.async = false
-document.head.appendChild(scriptCustomPopper)
-
-let scriptCustomTippy = document.createElement("script")
-scriptCustomTippy.src = "https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"
-scriptCustomTippy.async = false
-document.head.appendChild(scriptCustomTippy)
+let scriptTippy = document.createElement("script")
+scriptTippy.src = "https://unpkg.com/tippy.js@5"
+scriptTippy.async = false
+document.body.appendChild(scriptTippy)
 
 // setTooltipBarTable
 function setTooltipBarTable(event, tooltip) {
@@ -70,62 +69,107 @@ let tippyRun = setInterval(() => {
   }
 }, 500)
 
-// document.querySelectorAll(".btn_plan").forEach((e) => {
-//   e.addEventListener("click", function (item) {
-//     console.log(e)
-//     if (e === item.currentTarget) {
-//       this.closest("th").classList.add("active_plan")
-//     } else {
-//       e.closest("th").classList.remove("active_plan")
-//     }
-//   })
-// })
-
-const accardionToggle = (slideMenu) => (e) => {
+const planToggle = (slideMenu) => (e) => {
   slideMenu.forEach((links) => {
-    console.log(links)
-
     const hidePanel = links.nextElementSibling
     if (links === e.currentTarget) {
       e.currentTarget.closest("th").classList.add("active_plan")
 
       let s = e.currentTarget.closest("th").getAttribute("data-count")
-      console.log(s)
 
       if (s === "premium") {
-        document.querySelectorAll("table tr td:nth-child(3)").forEach((el) => {
+        console.log(s)
+        document.querySelectorAll("table tbody tr:not(:nth-child(1)) td:nth-child(2)").forEach((el) => {
+          el.style.background = "#FFFFFF"
+          el.style.color = "#808080"
+          el.querySelector("svg").style.stroke = "#808080"
+          if (el.querySelector("svg").classList.contains("minus_var")) {
+            el.querySelector("svg").style.fill = "#808080"
+          }
+        })
+        document.querySelectorAll("table tbody tr:not(:nth-child(1)) td:nth-child(3)").forEach((el) => {
           el.style.background = "#f9fcff"
+          el.style.color = "#1D3871"
+          el.querySelector("svg").style.stroke = "#1D3871"
         })
-        document.querySelectorAll("table tr td:nth-child(2)").forEach((el) => {
-          el.style.background = "#FFFFFF;"
-        })
-        document.querySelectorAll("table tr td:nth-child(4)").forEach((el) => {
+        document.querySelectorAll("table tbody tr:not(:nth-child(1)) td:nth-child(4)").forEach((el) => {
           el.style.background = "#FFFFFF"
+          el.style.color = "#808080"
+          el.querySelector("svg").style.stroke = "#808080"
         })
-      } else if (s === "basic") {
-        document.querySelectorAll("table tr td:nth-child(2)").forEach((el) => {
+        document.querySelectorAll(".enroll_link_wrap:nth-child(3)").forEach((el) => {
+          el.style.opacity = "1"
+        })
+        document.querySelectorAll(".enroll_link_wrap:nth-child(2)").forEach((el) => {
+          el.style.opacity = "0"
+        })
+        document.querySelectorAll(".enroll_link_wrap:nth-child(4)").forEach((el) => {
+          el.style.opacity = "0"
+        })
+      }
+
+      if (s === "basic") {
+        console.log(s)
+        document.querySelectorAll("table tbody tr:not(:nth-child(1))  td:nth-child(2)").forEach((el) => {
           el.style.background = "#f9fcff"
+          el.style.color = "#1D3871"
+          el.querySelector("svg").style.stroke = "#1D3871"
+          if (el.querySelector("svg").classList.contains("minus_var")) {
+            el.querySelector("svg").style.fill = "#1D3871"
+          }
         })
-        document.querySelectorAll("table tr td:nth-child(3)").forEach((el) => {
+        document.querySelectorAll("table tbody tr:not(:nth-child(1)) td:nth-child(3)").forEach((el) => {
           el.style.background = "#FFFFFF"
+          el.style.color = "#808080"
+          el.querySelector("svg").style.stroke = "#808080"
         })
-        document.querySelectorAll("table tr td:nth-child(4)").forEach((el) => {
+        document.querySelectorAll("table tbody tr:not(:nth-child(1)) td:nth-child(4)").forEach((el) => {
           el.style.background = "#FFFFFF"
+          el.style.color = "#808080"
+          el.querySelector("svg").style.stroke = "#808080"
         })
-      } else if (s === "deluxe") {
-        document.querySelectorAll("table tr td:nth-child(4)").forEach((el) => {
+        document.querySelectorAll(".enroll_link_wrap:nth-child(2)").forEach((el) => {
+          el.style.opacity = "1"
+        })
+        document.querySelectorAll(".enroll_link_wrap:nth-child(3)").forEach((el) => {
+          el.style.opacity = "0"
+        })
+        document.querySelectorAll(".enroll_link_wrap:nth-child(4)").forEach((el) => {
+          el.style.opacity = "0"
+        })
+      }
+      if (s === "deluxe") {
+        console.log(s)
+        document.querySelectorAll("table tbody tr:not(:nth-child(1)) td:nth-child(4)").forEach((el) => {
           el.style.background = "#f9fcff"
+          el.style.color = "#1D3871"
+          el.querySelector("svg").style.stroke = "#1D3871"
         })
-        document.querySelectorAll("table tr td:nth-child(2)").forEach((el) => {
+        document.querySelectorAll("table tbody tr:not(:nth-child(1)) td:nth-child(2)").forEach((el) => {
           el.style.background = "#FFFFFF"
+          el.style.color = "#808080"
+          el.querySelector("svg").style.stroke = "#808080"
+          if (el.querySelector("svg").classList.contains("minus_var")) {
+            el.querySelector("svg").style.fill = "#808080"
+          }
         })
-        document.querySelectorAll("table tr td:nth-child(3)").forEach((el) => {
+        document.querySelectorAll("table tbody tr:not(:nth-child(1)) td:nth-child(3)").forEach((el) => {
           el.style.background = "#FFFFFF"
+          el.style.color = "#808080"
+          el.querySelector("svg").style.stroke = "#808080"
+        })
+        document.querySelectorAll(".enroll_link_wrap:nth-child(4)").forEach((el) => {
+          el.style.opacity = "1"
+        })
+        document.querySelectorAll(".enroll_link_wrap:nth-child(3)").forEach((el) => {
+          el.style.opacity = "0"
+        })
+        document.querySelectorAll(".enroll_link_wrap:nth-child(2)").forEach((el) => {
+          el.style.opacity = "0"
         })
       }
     } else {
       links.closest("th").classList.remove("active_plan")
-      //   hidePanel.classList.remove("active_block")
     }
   })
 }
@@ -133,5 +177,5 @@ const accardionToggle = (slideMenu) => (e) => {
 const slideMenu = document.querySelectorAll(".btn_plan")
 
 slideMenu.forEach((links) => {
-  links.addEventListener("click", accardionToggle(slideMenu))
+  links.addEventListener("click", planToggle(slideMenu))
 })

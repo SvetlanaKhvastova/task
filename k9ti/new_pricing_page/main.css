@@ -103,22 +103,27 @@ header {
 }
 
 /* tooltip */
-.tippy-box {
+.tippy-tooltip {
   background: #ffffff;
   border-radius: 8px;
   padding: 16px;
   box-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
   filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.2));
-  max-width: 335px !important;
+  max-width: 348px !important;
   font-size: 14px;
   line-height: 150%;
   color: #808080;
 }
 
-.tippy-box[data-placement^="bottom"] > .tippy-arrow,
-.tippy-box[data-placement^="top"] > .tippy-arrow {
+.tippy-tooltip span {
+  font-weight: 700;
+}
+
+.tippy-tooltip[data-placement^="bottom"] > .tippy-arrow,
+.tippy-tooltip[data-placement^="top"] > .tippy-arrow {
   border-bottom-color: #ffffff;
   color: white;
+  border-top-color: white;
 }
 
 p[data-tolltip] {
@@ -183,6 +188,8 @@ img[data-title] {
 
 table {
   width: 100%;
+  border-collapse: separate;
+  border-spacing: 8px 0;
 }
 
 .plan_header {
@@ -250,6 +257,13 @@ table {
   color: #1d3871;
   margin-top: 16px;
   cursor: pointer;
+  padding: 1px;
+}
+
+@media (max-width: 1000px) {
+  .enroll_link_wrap a {
+    font-size: 11px;
+  }
 }
 .best_value {
   position: relative;
@@ -295,12 +309,18 @@ table tr td:not(:nth-child(1)) {
   letter-spacing: -0.01em;
   text-transform: uppercase;
   color: #808080;
+  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
+
 table tr td:first-child {
   width: 27%;
 }
-tbody tr:not(:last-child) td {
+tbody tr:not(:nth-child(1)) td {
   border-bottom: 1px solid #dfe8f0;
+}
+
+tbody tr:nth-child(5) td {
+  border: unset;
 }
 
 tbody td svg + span {
@@ -310,6 +330,14 @@ tbody td svg + span {
 
 table tbody td {
   padding: 20px 0;
+}
+
+table tbody tr:first-child td {
+  padding: 10px 0;
+}
+
+.enroll_link_wrap {
+  opacity: 0;
 }
 
 .enroll_link_wrap p {
@@ -335,8 +363,29 @@ table tbody td {
 
 .enroll_link_wrap a {
   text-decoration: unset;
+  margin-top: 20px;
 }
 
-table tr td:nth-child(3) {
+.enroll_link_wrap a span {
+  margin: 0 5px;
+}
+
+.enroll_link_wrap.active {
+  opacity: 1;
+}
+
+table tbody tr:not(:nth-child(1)) td:nth-child(3) {
   background: #f9fcff;
+  color: #1d3871;
+  transition: all 2s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+table tbody tr:nth-child(2) td {
+  border-radius: 16px 16px 0 0;
+  transition: all 2s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+table tbody tr:nth-child(5) td {
+  border-radius: 0 0 16px 16px;
+  transition: all 2s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
