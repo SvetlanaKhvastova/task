@@ -664,10 +664,12 @@ let startFunk = setInterval(() => {
 
           if (salesProduct) {
             if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent === "Account") {
+              console.log(`>>>>>>>>>OK Account`)
               dataLayerCustomer.forEach((item) => {
                 let customer = item.customer
                 if (customer) {
                   for (key in customer) {
+                    console.log(`>>>>>>>>>OK2 Account`)
                     if (customer[key] === "General") {
                       if (!el.querySelector(".discount_cart")) {
                         console.log(customer[key])
@@ -689,8 +691,12 @@ let startFunk = setInterval(() => {
                 }
               })
             } else {
+              console.log(`>>>>>>>>>OK1 NOT LOGIN`)
               if (!el.querySelector(".discount_cart.sign_up")) {
+                console.log(`>>>>>>>>>OK2 NOT LOGIN`)
                 el.insertAdjacentHTML("beforeend", discountCartSignUp)
+                console.log(`>>>>>END`)
+                console.log(document.querySelector(".discount_cart.sign_up"))
               }
             }
           }
@@ -737,6 +743,7 @@ let startFunk = setInterval(() => {
 
     //new_customer_coupon
     function activateCoupon() {
+      console.log(`>>>activateCoupon`)
       const cookieName = "new_customer_coupon"
       let cookieValue = "true"
       let myDate = new Date()
@@ -777,7 +784,6 @@ let startFunk = setInterval(() => {
     let observerCart = new MutationObserver((muts) => {
       if (document.querySelector("#cart-panel")) {
         observerCart.disconnect()
-        console.log(`#cart-panel`)
         renderToCart()
         onClickLogout()
 
@@ -788,20 +794,23 @@ let startFunk = setInterval(() => {
       }
     })
 
-    observerCart.observe(document.querySelector("#cart-panel"), {
-      childList: true,
-      subtree: true,
-    })
+    if (document.querySelector("#cart-panel")) {
+      observerCart.observe(document.querySelector("#cart-panel"), {
+        childList: true,
+        subtree: true,
+      })
+    }
 
-    jQuery(body).on('click', `#add-item-to-cart`, function () {
-      console.log(document.querySelector("#cart-panel"))
-      renderToCart()
-    })
-
-    jQuery(body).on('click', ` .category-products .products-grid .item .item-inner .details-area .actions .addtocart`, function () {
-      console.log(document.querySelector("#cart-panel"))
-      renderToCart()
-    })
+    jQuery("body").on(
+      "click",
+      `#add-item-to-cart, .category-products .products-grid .item .item-inner .details-area .actions .addtocart, .inner-panel .content-panel .c-product .p-qty .input-group-btn .btn-number`,
+      function () {
+        setTimeout(() => {
+          console.log(`setTimeout for  renderToCart()`)
+          renderToCart()
+        }, 2000)
+      }
+    )
 
     if (document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"] span').textContent !== "Account") {
       jQuery("body").on(
@@ -812,7 +821,8 @@ let startFunk = setInterval(() => {
         .action-links [data-account-trigger="true"], 
         .header-container .mobile-actions .action-links [data-account-trigger="true"],
         .vp-row.col-11.opt-personalize, 
-        .panel-responsive.logged-out .panel-close i`,
+        .panel-responsive.logged-out .panel-close i,
+        .ew-vp.pt-1 a`,
         (e) => {
           e.preventDefault()
           e.stopPropagation()
@@ -823,18 +833,19 @@ let startFunk = setInterval(() => {
         "click",
         '[data-position="3"], #mobile-nav .inner-panel .menu.customer li.account-panel-login-register, .header-container .header-actions .action-links [data-account-trigger="true"], .header-container .mobile-actions .action-links [data-account-trigger="true"], .to_login',
         function (e) {
-          if (!document.querySelector('.login_close_btn')) {
+          if (!document.querySelector(".login_close_btn")) {
             jQuery(".panel-responsive.logged-out .panel-close").after(`<div class="login_close_btn">&#10005;</div>`)
           }
+
           if (e.target.textContent === "Login") {
             pushDataLayer("Click on newPopup 'Already have an account? Login'")
-          } else if (e.target.closest("div.mobile-actions") || e.target.closest('.menu-container.mt-sm-3')) {
+          } else if (e.target.closest("div.mobile-actions") || e.target.closest(".menu-container.mt-sm-3")) {
             console.log(`Click on "Sign In"`)
           } else {
             pushDataLayer(`Click on '${e.target.textContent}'`)
           }
 
-          jQuery(".over").addClass('show')
+          jQuery(".over").addClass("show")
           jQuery(".panel-responsive.logged-out").css("display", "block")
           jQuery("body").css("overflow", "hidden")
         }
@@ -844,10 +855,28 @@ let startFunk = setInterval(() => {
         hidePopup()
       })
 
+      jQuery("body").on("click", ".ew-vp.pt-1 a:nth-child(1)", function () {
+        if (!document.querySelector(".login_close_btn")) {
+          jQuery(".panel-responsive.logged-out .panel-close").after(`<div class="login_close_btn">&#10005;</div>`)
+        }
+        pushDataLayer("Click on 'Login Cart'")
+        jQuery(".over").addClass("show")
+        jQuery(".panel-responsive.logged-out").css("display", "block")
+        jQuery("body").css("overflow", "hidden")
+      })
+
+      jQuery("body").on("click", ".ew-vp.pt-1 a:nth-child(2)", function () {
+        pushDataLayer("Click on 'Sign Up Cart'")
+        jQuery("#overlay").click()
+        jQuery(".over").removeClass("show")
+        jQuery(".panel-responsive.logged-out").css("display", "none")
+        showPopup()
+      })
+
       jQuery("body").on("click", ".login_close_btn", function (e) {
         pushDataLayer("Login pop up closed by X")
 
-        jQuery(".over").removeClass('show')
+        jQuery(".over").removeClass("show")
         jQuery(".panel-responsive.logged-out").css("display", "none")
         jQuery("body").css("overflow", "auto")
       })
@@ -861,7 +890,7 @@ let startFunk = setInterval(() => {
           pushDataLayer(`Click on '${e.target.textContent}'`)
         }
 
-        jQuery(".over").removeClass('show')
+        jQuery(".over").removeClass("show")
         jQuery(".panel-responsive.logged-out").css("display", "none")
         showPopup()
       })
@@ -869,7 +898,7 @@ let startFunk = setInterval(() => {
       jQuery(".over").click(function () {
         pushDataLayer("Login pop up closed by backdrop")
 
-        jQuery(".over").removeClass('show')
+        jQuery(".over").removeClass("show")
         jQuery(".panel-responsive.logged-out").css("display", "none")
         jQuery("body").css("overflow", "auto")
       })
