@@ -498,6 +498,7 @@ main {
 }
 .sticky_wrapp {
   position: fixed;
+  display: none;
   top: 0;
   z-index: 999;
   background: #ffffff;
@@ -509,6 +510,7 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0;
 }
 .sticky_wrapp ul li {
   flex: 1;
@@ -776,6 +778,9 @@ main {
   .tippy-tooltip {
     font-size: 10px;
   }
+  .sticky_wrapp ul li {
+    font-size: 15px;
+  }
 }
 @media (max-width: 280px) {
   body .container_var {
@@ -807,5 +812,8 @@ main {
   }
   .best_value::before {
     font-size: 9px;
+  }
+  .sticky_wrapp ul li {
+    font-size: 12px;
   }
 }

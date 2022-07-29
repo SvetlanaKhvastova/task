@@ -284,41 +284,50 @@ slideMenu.forEach((links) => {
 })
 
 // click on btn sticky
-const planStickySwitch = (slideMenu) => (e) => {
-  slideMenu.forEach((links) => {
-    e.preventDefault()
+if (window.innerWidth <= 768) {
+  const planStickySwitch = (slideMenu) => (e) => {
+    slideMenu.forEach((links) => {
+      e.preventDefault()
 
-    if (links === e.currentTarget) {
-      e.currentTarget.classList.add("active_plan")
-    } else {
-      links.classList.remove("active_plan")
-    }
+      if (links === e.currentTarget) {
+        e.currentTarget.classList.add("active_plan")
+      } else {
+        links.classList.remove("active_plan")
+      }
 
-    let attr = e.target.getAttribute("data-count")
-    if (attr === "basic") {
-      document.querySelectorAll(".plan_header .btn_plan")[0].click()
-    }
-    if (attr === "premium") {
-      document.querySelectorAll(".plan_header .btn_plan")[1].click()
-    }
-    if (attr === "deluxe") {
-      document.querySelectorAll(".plan_header .btn_plan")[2].click()
-    }
+      let attr = e.target.getAttribute("data-count")
+      if (attr === "basic") {
+        document.querySelectorAll(".plan_header .btn_plan")[0].click()
+      }
+      if (attr === "premium") {
+        document.querySelectorAll(".plan_header .btn_plan")[1].click()
+      }
+      if (attr === "deluxe") {
+        document.querySelectorAll(".plan_header .btn_plan")[2].click()
+      }
+    })
+  }
+
+  const stickyMenu = document.querySelectorAll(".sticky_wrapp ul li")
+
+  stickyMenu.forEach((links) => {
+    links.addEventListener("click", planStickySwitch(stickyMenu))
   })
-}
 
-const stickyMenu = document.querySelectorAll(".sticky_wrapp ul li")
+  // sticky btn
+  const element = document.querySelector("tbody")
 
-stickyMenu.forEach((links) => {
-  links.addEventListener("click", planStickySwitch(stickyMenu))
-})
+  function visible(target) {
+    if (target.getBoundingClientRect().top < 0) {
+      document.querySelector(".sticky_wrapp").style.display = "block"
+    } else {
+      document.querySelector(".sticky_wrapp").style.display = "none"
+    }
+  }
 
-const element = document.querySelector("tbody")
+  window.addEventListener("scroll", function () {
+    visible(element)
+  })
 
-function visible(target) {}
-
-window.addEventListener("scroll", function () {
   visible(element)
-})
-
-visible(element)
+}
