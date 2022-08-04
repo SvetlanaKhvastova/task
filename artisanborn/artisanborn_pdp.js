@@ -1,11 +1,26 @@
 let startFunk = setInterval(() => {
   if (document.querySelector("#shopify-section-product-template")) {
     clearInterval(startFunk)
-    const spanStockUrl = "https://conversionratestore.github.io/projects/artisanborn/img/in_stock.svg"
-    console.log(`first`)
+    const spanStockUrl = "https://conversionratestore.github.io/projects/artisanborn/img/in_stock_black.svg"
 
     let styleVar = /*html */ `
             <style>
+                .sale-savings,
+                .old_price_wrap,
+                .product .final-price-wrap b:last-child{
+                  display: none;
+                }
+
+                .product .final-price-wrap b:first-child{
+                  font-weight: 400;
+                  font-size: 17px;
+                  line-height: 28px;
+                }
+                #shopify-section-product-template .final-price-wrap>.variantPrice{
+                  color: #000000 !important;
+                  font-size: 22px;
+                  line-height: 28px;
+                }
                 span.in-stock, span.out-stock{
                     display: flex;
                     align-items: center;
@@ -19,6 +34,15 @@ let startFunk = setInterval(() => {
                 }
                 span.in-stock svg{
                     display: none;
+                }
+
+                /*free_shipping_txt */
+                .free_shipping_txt{
+                  font-weight: 400;
+                  font-size: 14px;
+                  line-height: 24px;
+                  color: #068922;
+                  margin: -15px 0 0;
                 }
     
                 /*product_section form */
@@ -34,24 +58,32 @@ let startFunk = setInterval(() => {
                     align-items: flex-end;
                     justify-content: flex-start;
                     gap: 4px;
-                }
-                .select .selector-wrapper{
                     margin-top: 20px;
+                    position: relative;
+                    padding-top: 27px;
                 }
+
                 .select label{
-                    display: none;
+                  display: none;
                 }
                 .select select{
                     margin: 0;
+                    max-height: 40px;
+                    min-height: 40px;
+                    color: #000000;
                 }
                 .new_label{
                     display: flex;
                     flex-direction: column;
                     align-items: flex-start;
                     align-content: flex-start;
-                    width: 26%;
+                    width: 27%;
                 }
                 .new_label p{
+                  text-transform: uppercase;
+                  position: absolute;
+                  top: -3px;
+                  left: 0;
                     font-weight: 700;
                     font-size: 13px;
                     line-height: 27px;
@@ -76,7 +108,7 @@ let startFunk = setInterval(() => {
 
                 /*text_custom_link */
                 .text_custom_link{
-                    margin-top: 13px;
+                    margin-top: 19px;
                 }
                 .text_custom_link p{
                     font-weight: 400;
@@ -190,7 +222,7 @@ let startFunk = setInterval(() => {
                     margin: 0;
                     position: absolute;
                     left: 10px;
-                    top: 10px;
+                    top: 0;
                     transition: top 0.5s;
                     font-size: 14px;
                     color: #7B8594;
@@ -208,8 +240,15 @@ let startFunk = setInterval(() => {
                     border-radius: 1px;
                     margin: 0;
                 }
+                .contact_details_wrap ul li input{
+                  max-height: 32px !important;
+                  height: 100%;
+                  min-height: 32px;
+                }
                 .request_wrap ul li textarea{
                     resize:unset;
+                    min-height: 73px;
+                    height: 100%;
                 }
                 .request_wrap ul li textarea::placeholder{
                     font-weight: 400;
@@ -225,8 +264,10 @@ let startFunk = setInterval(() => {
                 .contact_details_wrap ul li input:focus+label,
                 .contact_details_wrap ul li input:not(:placeholder-shown)+label{
                     top: -6px;
-                    font-size: 9px;
+                    font-size: 7px;
                     line-height: unset;
+                    right: 9px;
+                    left: unset;
                 }
 
                 .contact_details_wrap ul li::-webkit-input-placeholder {
@@ -236,17 +277,27 @@ let startFunk = setInterval(() => {
                 input:focus::-webkit-input-placeholder{
                     opacity: 1;
                 }
+                .img_wrap{
+                  width: 37%;
+                }
+                .inform_pdp > div:nth-child(2){
+                  width: 73%;
+                }
 
                 .img_wrap .gallery-cell{
                     position: unset !important;
                     left: 0 !important;
                 }
                 .img_wrap .gallery-cell .image__container{
-                    max-height: 110px !important;
+                  /*
+                    max-height: 120px !important;
+                    */
+                    max-width: 137px !important;
+                    object-fit: contain;
                 }
                 .img_wrap .gallery-cell .image__container img{
-                    width: 120px !important;
-                    height: 110px !important;
+                    width: 100% !important;
+                    height: 100%!important;
                 }
                 .title_pdp h1.product_name{
                     padding: 0;
@@ -256,6 +307,160 @@ let startFunk = setInterval(() => {
                     letter-spacing: 0.01em;
                     margin: 0 0 4px;
                 }
+                .btn_wrap{
+                  display: flex;
+                  align-items: center;
+                  justify-content: flex-end;
+                }
+                .cancel_btn{
+                  font-weight: 700;
+                  font-size: 18px;
+                  line-height: 120%;
+                  letter-spacing: 0.01em;
+                  text-transform: uppercase;
+                  color: #56B2E3;
+                  margin-right: 64px;
+                  cursor: pointer;
+                }
+                .send_btn, 
+                .ok_btn {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-weight: 700;
+                  font-size: 18px;
+                  line-height: 120%;
+                  letter-spacing: 0.01em;
+                  color: #FFFFFF;
+                  background: #56B2E3;
+                  height: 44px;
+                  width: 100%;
+                  max-width: 224px;
+                  padding: 5px;
+                  cursor: pointer;
+                }
+                .ok_btn{
+                  max-width: 113px;
+                  text-transform: unset;
+                  margin: 86px 0 0 auto;
+                }
+                .sending_rqst{
+                  display: none;
+                  margin-top: 87px;
+                  text-align: center;
+                }
+                .sending_rqst p:first-of-type{
+                  font-weight: 700;
+                  font-size: 22px;
+                  line-height: 136%;
+                  letter-spacing: 0.01em;
+                  margin: 10px 0 8px;
+                }
+                .sending_rqst p:last-of-type{
+                  font-weight: 400;
+                  font-size: 14px;
+                  line-height: 171%;
+                  margin: 0;
+                }
+                .body_popup form{
+                  margin: 0;
+                }
+                .inform_pdp .bold_option_price_display.variantPrice{
+                  font-weight: 700;
+                }
+
+                @media (max-width: 768px) {
+                  .body_popup{
+                    padding: 36px 16px 16px;
+                  }
+                  .body_popup h2{
+                    font-size: 26px;
+                    line-height: 156%;
+                    margin-bottom: 8px;
+                  }
+                  .inform_pdp{
+                    margin: 0 -8px 16px;
+                    padding: 8px;
+                    gap: 8px;
+                  }
+                  .request_wrap{
+                    margin: 16px 0;
+                  }
+                  .contact_details_wrap > p, 
+                  .request_wrap > p{
+                    line-height: 157%;
+                  }
+                  .contact_details_wrap ul, 
+                  .request_wrap ul{
+                    flex-direction: column;
+                  }
+                  .request_wrap ul li textarea{
+                    min-height: 84px;
+                  }
+                  .backdrop_popup .container_popup {
+                    margin: 30px auto 30px;
+                    width: calc(100% - 20px);
+                  }
+                  .cancel_btn{
+                    margin-right: 36px;
+                  }
+                  .send_btn{
+                    max-width: 205px;
+                  }
+                  .btn_close{
+                    top: 36px;
+                    right: 15px;
+                  }
+                  .body_popup h1#desktopppp, .body_popup a#desktest{
+                    display: block;
+                  }
+                  .img_wrap {
+                      width: 40%;
+                  }
+                  .inform_pdp > div:nth-child(2) {
+                      width: 60%;
+                  }
+                  .img_wrap .gallery-cell .image__container{
+                    height: 120px;
+                    width: 100%;
+                    object-fit: contain;
+                  }
+                  .sending_rqst,
+                  .ok_btn{
+                    margin-top: 94px;
+                  }
+                  .sending_rqst p:first-of-type{
+                    margin-top: 16px;
+                  }
+                  .sending_rqst p:last-of-type{
+                    font-size: 16px;
+                    line-height: 150%;
+                  }
+                  .product_section form .select{
+                    padding: 16px 12px;
+                    margin: 12px -14px 9px;
+                  }
+                  .free_shipping_txt{
+                    margin: -9px 0 0;
+                  }
+                  .text_custom_title p{
+                    font-size: 16px;
+                    line-height: 160%;
+                  }
+                  .select .selector-wrapper{
+                    margin-top: 8px;
+                    gap: 8px;
+                  }
+                  .select select{
+                    font-size: 14px;
+                    line-height: 18px;
+                    padding: 8px 37px 8px 14px;
+                  }
+                  .text_custom_link {
+                        margin-top: 12px;
+                    }
+                }
+         
 
             </style>        
             `
@@ -285,41 +490,39 @@ let startFunk = setInterval(() => {
 
     let bodyPopup = /*html */ `
     <div class="body_popup">
-        <svg class="btn_close" width="15" height="24" viewBox="0 0 15 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_932_840)">
-            <path d="M14.5594 16.9406C15.1453 17.5266 15.1453 18.4758 14.5594 19.0617C14.2688 19.3547 13.8844 19.5 13.5 19.5C13.1156 19.5 12.7322 19.3535 12.4397 19.0606L7.5 14.1234L2.56078 19.0594C2.26781 19.3547 1.88391 19.5 1.5 19.5C1.11609 19.5 0.732656 19.3547 0.439453 19.0594C-0.146484 18.4734 -0.146484 17.5242 0.439453 16.9383L5.38008 11.9977L0.439453 7.05939C-0.146484 6.47345 -0.146484 5.52423 0.439453 4.93829C1.02539 4.35236 1.97461 4.35236 2.56055 4.93829L7.5 9.88126L12.4406 4.94064C13.0266 4.3547 13.9758 4.3547 14.5617 4.94064C15.1477 5.52657 15.1477 6.47579 14.5617 7.06173L9.62109 12.0024L14.5594 16.9406Z" fill="#A7A7A7"/>
-            </g>
-            <defs>
-            <clipPath id="clip0_932_840">
-            <rect width="15" height="24" fill="white"/>
-            </clipPath>
-            </defs>
+        <svg class="btn_close" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="#999899"/>
         </svg>
+
         <h2>Customization Request</h2>
         <div class="inform_pdp">
             <div class="img_wrap"></div>
             <div>
-            <input type="hidden" name="productId" value="2415919595582">
-                <div class="title_pdp"></div>
-                <div class="reviews_pdp"></div>
-                <div class="price_pdp"></div>
+              <div class="title_pdp"></div>
+              <div class="reviews_pdp"></div>
+              <div class="price_pdp"></div>
             </div>
-        </div>
-        <form method="post" action="//stamped.io/api/questions" onsubmit="StampedFn.submitQuestionForm(this);return false;">
+          </div>
+          <form method="post" action="//stamped.io/api/questions" id="new-question-form" onsubmit="event.preventDefault(); StampedFn.submitQuestionForm(this); document.querySelector('.sending_rqst').style.display='block';">
+            <input type="hidden" name="productId" value="">
+            <input type="hidden" name="shop" value="artisan-born.myshopify.com">
+            <input type="hidden" name="apiKey" value="pubkey-1W01YekPtU0kCf65p72yNtV5xoKxR7">
+            <input type="hidden" name="storeUrl" value="artisan-born.myshopify.com">
+            <input type="hidden" name="sId" value="103569">
 
             <div class="contact_details_wrap">
                 <h3>Contact details</h3>
                 <p>Enter your contact details and our manager will get back to you within 24 hours</p>
                 <ul>
                     <li>
-                        <input id="number_var" required="" type="number" placeholder=" ">
-                        <label for="number_var">
-                            Contact number
+                        <input id="name" required="" type="text" placeholder=" ">
+                        <label for="name">
+                        Name
                         </label>
                     </li>
                     <li>
-                        <input id="email_var" required="" type="email" placeholder=" ">
-                        <label for="email_var">
+                        <input id="email" required="" type="email" placeholder=" ">
+                        <label for="email">
                             Email
                         </label>
                     </li>
@@ -331,21 +534,36 @@ let startFunk = setInterval(() => {
                 <ul>
                     <li>
                         <label>
-                            <textarea rows="3" maxlength="1000" placeholder="Write your requests here..." required=""></textarea>
+                            <textarea name="reviewBody" rows="2" maxlength="1000" placeholder="Write your requests here..." required=""></textarea>
                         </label>
                     </li>
                 </ul>
             </div>
             <div class="btn_wrap">
-                <span>Cancel</span>
-                <button type="submit">SEND REQUEST</button>
+                <span class="cancel_btn">Cancel</span>
+                <button type="submit" class="send_btn">SEND REQUEST</button>
             </div>
         </form>
+
+        <div class="sending_rqst">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M44 6.996L18.898 32.12L9.57 22.792L12.672 19.69L18.898 25.916L40.898 3.916L44 6.996ZM39.138 18.084C39.424 19.338 39.6 20.658 39.6 22C39.6 31.724 31.724 39.6 22 39.6C12.276 39.6 4.4 31.724 4.4 22C4.4 12.276 12.276 4.4 22 4.4C25.476 4.4 28.688 5.412 31.416 7.15L34.584 3.982C31.02 1.474 26.686 0 22 0C9.856 0 0 9.856 0 22C0 34.144 9.856 44 22 44C34.144 44 44 34.144 44 22C44 19.382 43.516 16.874 42.68 14.542L39.138 18.084Z" fill="#11891D"/>
+          </svg>
+          <p>Thank you for sending the request!</p>
+          <p>We will contact you within 24 hours</p>
+          <span class="ok_btn">Ok</span>
+        </div>
     </div>
     `
 
     document.head.insertAdjacentHTML("beforeend", styleVar)
     document.body.insertAdjacentHTML("beforeend", overlayPopUp)
+
+    document.querySelector(".product .final-price-wrap b:first-child").textContent = "Price from"
+    document.querySelector(".product .final-price-wrap b:last-child")
+    if (document.querySelector(".product .final-price-wrap b:last-child")) {
+      document.querySelector(".clearfix.product_form").insertAdjacentHTML("afterbegin", `<p class="free_shipping_txt"><b>Congratulations!</b> You get <b>free shipping</b> with this order</p>`)
+    }
 
     document.querySelector("span.in-stock").insertAdjacentHTML("afterbegin", inStockSvg)
 
@@ -372,97 +590,61 @@ let startFunk = setInterval(() => {
 
     document.querySelectorAll(".select > .selector-wrapper select").forEach((el) => {
       let text
+      let outsideLabel = el.closest("div.select").querySelector("label").textContent.toLocaleUpperCase()
 
       if (el.previousSibling) {
-        text = el.previousSibling.textContent.toUpperCase()
+        text = el.previousSibling.textContent.toLocaleUpperCase()
       } else {
-        console.log("NOT selector-wrapper", el.closest("div.select").querySelector("label").textContent)
-        if (el.closest("div.select").querySelector("label").textContent === "Size") {
-          console.log(el.closest("div.select").querySelector("label").textContent)
-          el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel("SIZE", "https://conversionratestore.github.io/projects/artisanborn/img/width.png"))
+        console.log(">>>>NOT selector-wrapper", el.closest("div.select").querySelector("label").textContent)
+        if (outsideLabel === "SIZE" || outsideLabel === "CHOOSE SIZE") {
+          el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel(outsideLabel, "https://conversionratestore.github.io/projects/artisanborn/img/select_size.png"))
         }
 
-        if (el.closest("div.select").querySelector("label").textContent === "Length") {
-          console.log(el.closest("div.select").querySelector("label").textContent)
-          el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel("Length", "https://conversionratestore.github.io/projects/artisanborn/img/width.png"))
+        if (outsideLabel === "LENGTH" || outsideLabel === "CHOOSE LENGTH") {
+          el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel(outsideLabel, "https://conversionratestore.github.io/projects/artisanborn/img/select_length.png"))
         }
 
-        if (el.closest("div.select").querySelector("label").textContent.toUpperCase() === "DIMENSIONS") {
-          console.log(el.closest("div.select").querySelector("label").textContent)
-          el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel("DIMENSIONS", "https://conversionratestore.github.io/projects/artisanborn/img/width.png"))
+        if (outsideLabel === "DIMENSIONS") {
+          el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel(outsideLabel, "https://conversionratestore.github.io/projects/artisanborn/img/select_dimensions.png"))
         }
 
-        if (el.closest("div.select").querySelector("label").textContent.toUpperCase() === "WIDTH") {
-          console.log(el.closest("div.select").querySelector("label").textContent)
-          el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel("WIDTH", "https://conversionratestore.github.io/projects/artisanborn/img/width.png"))
-        }
-
-        if (el.closest("div.select").querySelector("label").textContent.toUpperCase() === "CHOOSE SIZE") {
-          console.log(el.closest("div.select").querySelector("label").textContent)
-          el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel("SIZE", "https://conversionratestore.github.io/projects/artisanborn/img/width.png"))
+        if (outsideLabel === "WIDTH" || outsideLabel === "CHOOSE WIDTH") {
+          el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel(outsideLabel, "https://conversionratestore.github.io/projects/artisanborn/img/select_width.png"))
         }
       }
 
-      if (text === "WIDTH") {
-        el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel("WIDTH", "https://conversionratestore.github.io/projects/artisanborn/img/width.png"))
-      } else if (text === "LENGTH" || text === "CHOOSE LENGTH") {
-        el.closest("div").insertAdjacentHTML(
-          "afterbegin",
-          renderNewLabel("LENGTH, <span>inches</span>", "https://conversionratestore.github.io/projects/artisanborn/img/length.png")
-        )
-      } else if (text === "LEG STYLE") {
-        console.log(el.value)
+      if (text === "LENGTH" || text === "CHOOSE LENGTH") {
+        el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_length.png"))
+      } else if (text === "LEG TYPE" || text === "LEG STYLE" || text === "CHOOSE LEG TYPE") {
         if (el.value === "Hairpin Legs" || el.value === "Hairpin") {
-          el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel("LEG STYLE", "https://conversionratestore.github.io/projects/artisanborn/img/hairpin.png"))
+          console.log(el.value)
+          el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/hairpin.png"))
         } else {
-          el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel("LEG STYLE", "https://conversionratestore.github.io/projects/artisanborn/img/u_shape.png"))
+          el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/u_shape.png"))
         }
-      } else if (text === "LEG TYPE" || text === "CHOOSE LEG TYPE") {
-        console.log(el.value)
-        if (el.value === "Hairpin Legs" || el.value === "Hairpin") {
-          el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel("LEG TYPE", "https://conversionratestore.github.io/projects/artisanborn/img/hairpin.png"))
-        } else {
-          el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel("LEG TYPE", "https://conversionratestore.github.io/projects/artisanborn/img/u_shape.png"))
-        }
+      } else if (text === "WIDTH" || text === "CHOOSE WIDTH") {
+        el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_width.png"))
       } else if (text === "HEIGHT" || text === "CHOOSE TABLE HEIGHT") {
-        el.closest("div").insertAdjacentHTML(
-          "afterbegin",
-          renderNewLabel("HEIGHT, <span>inches</span>", "https://conversionratestore.github.io/projects/artisanborn/img/height.png")
-        )
-      } else if (text === "CHOOSE COLOR" || text === "WOOD" || text === "WOOD COLOR") {
-        el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel("WOOD COLOR", "https://conversionratestore.github.io/projects/artisanborn/img/wood_color.png"))
-      } else if (text === "DEPTH") {
-        el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel("DEPTH", "https://conversionratestore.github.io/projects/artisanborn/img/length.png"))
-      } else if (text === "MATERIAL") {
-        el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel("MATERIAL", "https://conversionratestore.github.io/projects/artisanborn/img/length.png"))
+        el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_height.png"))
       } else if (text === "SIZE" || text === "CHOOSE SIZE") {
-        el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel("SIZE", "https://conversionratestore.github.io/projects/artisanborn/img/length.png"))
-      } else if (text === "QUANTITY") {
-        el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel("QUANTITY", "https://conversionratestore.github.io/projects/artisanborn/img/length.png"))
+        el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_size.png"))
+      } else if (text === "WOOD" || text === "WOOD COLOR" || text === "CHOOSE COLOR" || text === "MATERIAL") {
+        el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_color.png"))
       } else if (text === "DIMENSIONS") {
-        el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel("DIMENSIONS", "https://conversionratestore.github.io/projects/artisanborn/img/length.png"))
+        el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_dimensions.png"))
+      } else if (text === "TITLE") {
+        el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_title.png"))
+      } else if (text === "DEPTH" || text === "CHOOSE DEPTH") {
+        el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_depth.png"))
+      } else if (text === "QUANTITY") {
+        el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_quantity.png"))
       }
     })
 
     document.querySelector(".product_section form .select ")?.insertAdjacentHTML("afterbegin", textCustomTitle)
     document.querySelector(".product_section form .select ")?.insertAdjacentHTML("beforeend", textCustomLink)
 
-    //   POPUP
-    document.querySelector(".text_custom_link p span")?.addEventListener("click", function () {
-      showPopup()
-    })
-    // click on CLOSE
-    document.querySelector(".btn_close")?.addEventListener("click", function () {
-      hidePopup()
-    })
-
-    // click on backdrop_popup
-    document.querySelector(".backdrop_popup")?.addEventListener("click", (e) => {
-      if (e.target.matches(".backdrop_popup")) {
-        hidePopup()
-      }
-    })
-
+    // POPUP
     //show popup
     function showPopup() {
       document.querySelector(".backdrop_popup")?.classList.add("show")
@@ -476,6 +658,35 @@ let startFunk = setInterval(() => {
       document.querySelector(".reviews_pdp")?.appendChild(clonedNodeReviews)
       document.querySelector(".price_pdp")?.appendChild(clonedNodePrice)
       document.querySelector(".img_wrap")?.appendChild(clonedNodeImg)
+
+      // id pdp
+      document.querySelector('.body_popup [name="productId"]').value = document.querySelector(".shopify-product-reviews-badge").getAttribute("data-id")
+      document.querySelector(".inform_pdp .reviews_pdp")?.addEventListener("click", function (e) {
+        e.preventDefault()
+      })
+
+      // click on CLOSE
+      document.querySelector(".btn_close")?.addEventListener("click", function () {
+        console.log(`btn_close`)
+        hidePopup()
+      })
+
+      // click on cancel
+      document.querySelector(".cancel_btn")?.addEventListener("click", function () {
+        console.log(`cancel_btn`)
+        hidePopup()
+      })
+
+      // ok_btn
+      document.querySelector(".ok_btn")?.addEventListener("click", function () {
+        console.log(`ok_btn`)
+        hidePopup()
+      })
+
+      // submit
+      document.querySelector(".send_btn")?.addEventListener("click", function () {
+        console.log(this)
+      })
     }
 
     //hide popup
@@ -484,5 +695,86 @@ let startFunk = setInterval(() => {
       jQuery("body").css("overflow", "auto")
       document.querySelector(".body_popup")?.remove()
     }
+
+    // click on "Need more customization? Send us a request"
+    document.querySelector(".text_custom_link p span")?.addEventListener("click", function () {
+      showPopup()
+    })
+
+    // click on backdrop_popup
+    document.querySelector(".backdrop_popup")?.addEventListener("click", (e) => {
+      if (e.target.matches(".backdrop_popup")) {
+        hidePopup()
+      }
+    })
+
+    // observer pdp
+    let observer = new MutationObserver(() => {
+      if (document.querySelector(".product.clearfix")) {
+        observer.disconnect()
+        console.log(`observer`)
+        document.querySelector(".product .final-price-wrap b:first-child").textContent = "Price"
+
+        observer.observe(document.querySelector(".product.clearfix"), {
+          childList: true,
+          subtree: true,
+        })
+      }
+    })
+
+    observer.observe(document.querySelector(".product.clearfix"), {
+      childList: true,
+      subtree: true,
+    })
+
+    // change Lang Type
+    changeLangType()
+    function changeLangType() {
+      document.querySelectorAll(".select > .selector-wrapper select").forEach((el) => {
+        console.log(`changeLangType`)
+        let text
+        text = el.previousSibling.textContent.toLocaleUpperCase()
+
+        if (text === "LEG TYPE" || text === "LEG STYLE" || text === "CHOOSE LEG TYPE") {
+          el.addEventListener("change", function () {
+            if (el.value === "Hairpin Legs" || el.value === "Hairpin") {
+              console.log(`changeLangType`, el.value)
+              el.closest("div").querySelector(".new_label img").src = "https://conversionratestore.github.io/projects/artisanborn/img/hairpin.png"
+            } else {
+              el.closest("div").querySelector(".new_label img").src = "https://conversionratestore.github.io/projects/artisanborn/img/u_shape.png"
+            }
+          })
+        }
+      })
+    }
+  }
+}, 10)
+
+
+let startFunkCard = setInterval(() => {
+  if (document) {
+    clearInterval(startFunkCard)
+
+    let styleCard = /*html */`
+    <style>
+      .save-text,
+      .was_price{
+        display: none;
+      }
+      .money.sale{
+        color: #000 !important;
+      }
+      p.modal_price{
+        padding: 0;
+      }
+      p.price_total{
+        margin: 0;
+      }
+    </style>
+    
+    `
+
+    document.head.insertAdjacentHTML('beforeend', styleCard)
+
   }
 }, 10)
