@@ -1,10 +1,41 @@
 let startFunk = setInterval(() => {
   if (document.querySelector("#shopify-section-product-template")) {
     clearInterval(startFunk)
+
+    // event
+    let eventVar = "desktop"
+
+    if (window.innerWidth <= 768) {
+      eventVar = "mobile"
+    }
+
+    function pushDataLayer(actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || []
+      if (labelDataLayer) {
+        console.log(actionDataLayer + " : " + labelDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: PDP improvements ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        })
+      } else {
+        console.log(actionDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: PDP improvements ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+        })
+      }
+    }
+
     const spanStockUrl = "https://conversionratestore.github.io/projects/artisanborn/img/in_stock_black.svg"
 
     let styleVar = /*html */ `
             <style>
+                #dummy-chat-button-iframe{
+                    z-index: 2147483646 !important;
+                }
                 .sale-savings,
                 .old_price_wrap,
                 .product .final-price-wrap b:last-child{
@@ -133,7 +164,7 @@ let startFunk = setInterval(() => {
                     background: rgb(0 0 0 / 65%);
                     display: flex;
                     overflow-y: auto;
-                    z-index: 1000000000;
+                    z-index: 10300001015;
                     opacity: 0;
                     pointer-events: none;
                     transition: all 0.3s ease;
@@ -342,11 +373,11 @@ let startFunk = setInterval(() => {
                 .ok_btn{
                   max-width: 113px;
                   text-transform: unset;
-                  margin: 86px 0 0 auto;
+                  margin: 83px 0 0 auto;
                 }
                 .sending_rqst{
                   display: none;
-                  margin-top: 87px;
+                  margin-top: 86px;
                   text-align: center;
                 }
                 .sending_rqst p:first-of-type{
@@ -354,7 +385,7 @@ let startFunk = setInterval(() => {
                   font-size: 22px;
                   line-height: 136%;
                   letter-spacing: 0.01em;
-                  margin: 10px 0 8px;
+                  margin: 16px 0 8px;
                 }
                 .sending_rqst p:last-of-type{
                   font-weight: 400;
@@ -440,8 +471,14 @@ let startFunk = setInterval(() => {
                     padding: 16px 12px;
                     margin: 12px -14px 9px;
                   }
+                  span.in-stock{
+                    margin-top: -28px;
+                  }
+                  div.seven.columns > p:first-of-type{
+                    display: none;
+                  }
                   .free_shipping_txt{
-                    margin: -9px 0 0;
+                    margin: 0;
                   }
                   .text_custom_title p{
                     font-size: 16px;
@@ -459,9 +496,70 @@ let startFunk = setInterval(() => {
                   .text_custom_link {
                         margin-top: 12px;
                     }
+                    .new_label > img{
+                        min-height: 40px;
+                        min-width: 70px;
+                    }
                 }
-         
 
+                @media (max-width: 320px) {
+                    .free_shipping_txt{
+                        font-size: 12px;
+                    }
+                    .text_custom_title p {
+                        font-size: 14px;
+                    }
+                    .new_label p{
+                        font-size: 10px;
+                    }
+                    .select select{
+                        font-size: 11px;
+                    }
+                    .text_custom_link p{
+                        font-size: 13px;
+                    }
+                    .select .selector-wrapper{
+                        padding-top: 20px;
+                    }
+                    .new_label > img{
+                        min-height: 40px;
+                        min-width: 70px;
+                    }
+                    .body_popup h2{
+                        font-size: 19px;
+                    }
+                    .contact_details_wrap > p, .request_wrap > p{
+                        font-size: 12px;
+                    }
+                }
+                
+                @media (max-width: 280px) {
+                    .free_shipping_txt{
+                        font-size: 10px;
+                    }
+                    .text_custom_title p {
+                        font-size: 12px;
+                    }
+                    .new_label p{
+                        font-size: 9px;
+                    }
+                    .select select{
+                        font-size: 10px;
+                    }
+                    .text_custom_link p{
+                        font-size: 12px;
+                    }
+                    .body_popup h2{
+                        font-size: 17px;
+                    }
+                    .contact_details_wrap > p, .request_wrap > p{
+                        font-size: 121x;
+                    }
+                }  
+
+                .is_visible{
+                    display: block;
+                }
             </style>        
             `
 
@@ -503,7 +601,7 @@ let startFunk = setInterval(() => {
               <div class="price_pdp"></div>
             </div>
           </div>
-          <form method="post" action="//stamped.io/api/questions" id="new-question-form" onsubmit="event.preventDefault(); StampedFn.submitQuestionForm(this); document.querySelector('.sending_rqst').style.display='block';">
+          <form method="post" action="//stamped.io/api/questions" id="new-question-form" onsubmit = "event.preventDefault(); StampedFn.submitQuestionForm(this); setTimeout(() => {document.querySelector('.sending_rqst').classList.add('is_visible')}, 2000);">
             <input type="hidden" name="productId" value="">
             <input type="hidden" name="shop" value="artisan-born.myshopify.com">
             <input type="hidden" name="apiKey" value="pubkey-1W01YekPtU0kCf65p72yNtV5xoKxR7">
@@ -515,13 +613,13 @@ let startFunk = setInterval(() => {
                 <p>Enter your contact details and our manager will get back to you within 24 hours</p>
                 <ul>
                     <li>
-                        <input id="name" required="" type="text" placeholder=" ">
+                        <input id="name" required="" type="text" placeholder=" " name="name">
                         <label for="name">
                         Name
                         </label>
                     </li>
                     <li>
-                        <input id="email" required="" type="email" placeholder=" ">
+                        <input id="email" required="" type="email" placeholder=" " name="email">
                         <label for="email">
                             Email
                         </label>
@@ -559,10 +657,20 @@ let startFunk = setInterval(() => {
     document.head.insertAdjacentHTML("beforeend", styleVar)
     document.body.insertAdjacentHTML("beforeend", overlayPopUp)
 
-    document.querySelector(".product .final-price-wrap b:first-child").textContent = "Price from"
-    document.querySelector(".product .final-price-wrap b:last-child")
+    if (document.querySelector(".product .final-price-wrap b:first-child")) {
+      document.querySelector(".product .final-price-wrap b:first-child").textContent = "Price from"
+    }
+
     if (document.querySelector(".product .final-price-wrap b:last-child")) {
-      document.querySelector(".clearfix.product_form").insertAdjacentHTML("afterbegin", `<p class="free_shipping_txt"><b>Congratulations!</b> You get <b>free shipping</b> with this order</p>`)
+      document
+        .querySelector(".clearfix.product_form")
+        .insertAdjacentHTML("afterbegin", `<p class="free_shipping_txt"><b>Congratulations!</b> You get <b>free shipping</b> with this order</p>`)
+    }
+
+    if (document.querySelector(".free_shipping_txt")) {
+      document.querySelector(".free_shipping_txt").addEventListener("click", (e) => {
+        e.preventDefault()
+      })
     }
 
     document.querySelector("span.in-stock").insertAdjacentHTML("afterbegin", inStockSvg)
@@ -617,7 +725,6 @@ let startFunk = setInterval(() => {
         el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/select_length.png"))
       } else if (text === "LEG TYPE" || text === "LEG STYLE" || text === "CHOOSE LEG TYPE") {
         if (el.value === "Hairpin Legs" || el.value === "Hairpin") {
-          console.log(el.value)
           el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/hairpin.png"))
         } else {
           el.closest("div").insertAdjacentHTML("afterbegin", renderNewLabel(text, "https://conversionratestore.github.io/projects/artisanborn/img/u_shape.png"))
@@ -644,68 +751,91 @@ let startFunk = setInterval(() => {
     document.querySelector(".product_section form .select ")?.insertAdjacentHTML("afterbegin", textCustomTitle)
     document.querySelector(".product_section form .select ")?.insertAdjacentHTML("beforeend", textCustomLink)
 
+    renderInformPopup()
+    //  renderInformPopup()
+    function renderInformPopup() {
+      document.querySelector(".container_popup")?.insertAdjacentHTML("afterbegin", bodyPopup)
+      let clonedNodeTitle = document.querySelector("#desktopppp")?.cloneNode(true)
+      let clonedNodeReviews = document.querySelector("#desktest")?.cloneNode(true)
+      let clonedNodePrice = document.querySelector("span.final-price-wrap")?.cloneNode(true)
+      let clonedNodeImg = document.querySelectorAll(".product_gallery .flickity-slider .gallery-cell")[0]?.cloneNode(true)
+      console.log(clonedNodeImg)
+
+      if (clonedNodeTitle) {
+        document.querySelector(".title_pdp")?.appendChild(clonedNodeTitle)
+      }
+
+      if (clonedNodeReviews) {
+        document.querySelector(".reviews_pdp")?.appendChild(clonedNodeReviews)
+      }
+
+      if (clonedNodePrice) {
+        document.querySelector(".price_pdp")?.appendChild(clonedNodePrice)
+      }
+
+      if (clonedNodeImg) {
+        document.querySelector(".img_wrap")?.appendChild(clonedNodeImg)
+      }
+
+      // id pdp
+      document.querySelector('.body_popup [name="productId"]').value = document.querySelector(".shopify-product-reviews-badge").getAttribute("data-id")
+    }
+
     // POPUP
     //show popup
     function showPopup() {
       document.querySelector(".backdrop_popup")?.classList.add("show")
       jQuery("body").css("overflow", "hidden")
-      document.querySelector(".container_popup")?.insertAdjacentHTML("afterbegin", bodyPopup)
-      let clonedNodeTitle = document.querySelector("#desktopppp").cloneNode(true)
-      let clonedNodeReviews = document.querySelector("#desktest").cloneNode(true)
-      let clonedNodePrice = document.querySelector("span.final-price-wrap").cloneNode(true)
-      let clonedNodeImg = document.querySelectorAll(".product_gallery .flickity-slider .gallery-cell")[0].cloneNode(true)
-      document.querySelector(".title_pdp")?.appendChild(clonedNodeTitle)
-      document.querySelector(".reviews_pdp")?.appendChild(clonedNodeReviews)
-      document.querySelector(".price_pdp")?.appendChild(clonedNodePrice)
-      document.querySelector(".img_wrap")?.appendChild(clonedNodeImg)
-
-      // id pdp
-      document.querySelector('.body_popup [name="productId"]').value = document.querySelector(".shopify-product-reviews-badge").getAttribute("data-id")
-      document.querySelector(".inform_pdp .reviews_pdp")?.addEventListener("click", function (e) {
-        e.preventDefault()
-      })
-
-      // click on CLOSE
-      document.querySelector(".btn_close")?.addEventListener("click", function () {
-        console.log(`btn_close`)
-        hidePopup()
-      })
-
-      // click on cancel
-      document.querySelector(".cancel_btn")?.addEventListener("click", function () {
-        console.log(`cancel_btn`)
-        hidePopup()
-      })
-
-      // ok_btn
-      document.querySelector(".ok_btn")?.addEventListener("click", function () {
-        console.log(`ok_btn`)
-        hidePopup()
-      })
-
-      // submit
-      document.querySelector(".send_btn")?.addEventListener("click", function () {
-        console.log(this)
-      })
     }
 
     //hide popup
     function hidePopup() {
       document.querySelector(".backdrop_popup")?.classList.remove("show")
       jQuery("body").css("overflow", "auto")
-      document.querySelector(".body_popup")?.remove()
+
+      if (document.querySelector(".sending_rqst").classList.contains("is_visible")) {
+        document.querySelector(".sending_rqst").classList.remove("is_visible")
+        document.querySelector(".body_popup form").style.display = "block"
+      }
     }
 
     // click on "Need more customization? Send us a request"
     document.querySelector(".text_custom_link p span")?.addEventListener("click", function () {
+      pushDataLayer("Custimization request link clicked")
       showPopup()
     })
 
-    // click on backdrop_popup
-    document.querySelector(".backdrop_popup")?.addEventListener("click", (e) => {
-      if (e.target.matches(".backdrop_popup")) {
-        hidePopup()
-      }
+    // click on reviews POPUP
+    document.querySelector(".inform_pdp .reviews_pdp")?.addEventListener("click", function (e) {
+      e.preventDefault()
+    })
+
+    //  click on AddToCart
+    document.querySelector("#AddToCart")?.addEventListener("click", function (e) {
+      pushDataLayer("Add to Cart clicked")
+    })
+
+    // click on CLOSE
+    document.querySelector(".btn_close")?.addEventListener("click", function () {
+      pushDataLayer("Customization pop up closed (x)")
+      hidePopup()
+    })
+
+    // click on cancel
+    document.querySelector(".cancel_btn")?.addEventListener("click", function () {
+      pushDataLayer("Customization pop up 'Cancel'")
+      hidePopup()
+    })
+
+    // ok_btn
+    document.querySelector(".ok_btn")?.addEventListener("click", function () {
+      pushDataLayer("Customization pop up 'Ok'")
+      hidePopup()
+    })
+
+    // submit
+    document.querySelector(".send_btn")?.addEventListener("click", function () {
+      pushDataLayer("Custom request sent")
     })
 
     // observer pdp
@@ -729,16 +859,15 @@ let startFunk = setInterval(() => {
 
     // change Lang Type
     changeLangType()
+
     function changeLangType() {
       document.querySelectorAll(".select > .selector-wrapper select").forEach((el) => {
-        console.log(`changeLangType`)
         let text
         text = el.previousSibling.textContent.toLocaleUpperCase()
 
         if (text === "LEG TYPE" || text === "LEG STYLE" || text === "CHOOSE LEG TYPE") {
           el.addEventListener("change", function () {
             if (el.value === "Hairpin Legs" || el.value === "Hairpin") {
-              console.log(`changeLangType`, el.value)
               el.closest("div").querySelector(".new_label img").src = "https://conversionratestore.github.io/projects/artisanborn/img/hairpin.png"
             } else {
               el.closest("div").querySelector(".new_label img").src = "https://conversionratestore.github.io/projects/artisanborn/img/u_shape.png"
@@ -747,15 +876,97 @@ let startFunk = setInterval(() => {
         }
       })
     }
-  }
-}, 10)
 
+    changeSelectEvent()
+    function changeSelectEvent() {
+      document.querySelectorAll(".select > .selector-wrapper select").forEach((el) => {
+        let text
+
+        el.addEventListener("change", function () {
+          if (el.previousSibling.classList.contains("new_label")) {
+            text = el.closest("div.select").querySelector("label").textContent
+          } else {
+            text = el.previousSibling.textContent
+          }
+
+          pushDataLayer(`${text} drop down selected`)
+        })
+      })
+    }
+
+    //   fetch question form
+    function fetchQuestionForm(form) {
+      let formData = new FormData(form)
+      let inputName = form.querySelector('[name="name"]').value
+      let inputEmail = form.querySelector('[name="email"]').value
+      let textarea = form.querySelector('[name="reviewBody"]').value
+
+      //   fetch(`https://stamped.io/api/questions`, {
+      //     body: formData,
+      //     header: "Content-Type: application/json",
+      //     method: "POST",
+      //   })
+      //     .then((res) => res.json())
+      //     .then((data) => {
+      //       console.log(data)
+      //     //   document.querySelector(".sending_rqst").style.display = "block"
+      //     })
+      //     .catch((err) => {
+      //       console.log("Failed fetch ", err)
+      //     })
+    }
+
+    if (window.innerWidth <= 768) {
+      //   change place price and inStock
+      document.querySelector("div#underpricee")?.after(document.querySelector("#shopify-section-product-template .prices-wrap"))
+      document.querySelector("#shopify-section-product-template .prices-wrap")?.after(document.querySelector("span.in-stock"))
+
+      // click on backdrop_popup
+      document.querySelector(".backdrop_popup")?.addEventListener("click", (e) => {
+        if (e.target.matches(".backdrop_popup")) {
+          pushDataLayer("Customization pop up 'backdrop'")
+          hidePopup()
+        }
+      })
+    }
+
+    pushDataLayer("loaded")
+    clarity("set", `pdp_improvements${eventVar}`, "variant_1")
+  }
+}, 500)
 
 let startFunkCard = setInterval(() => {
-  if (document) {
+  if (document.querySelector("#cart_form")) {
     clearInterval(startFunkCard)
 
-    let styleCard = /*html */`
+    // event
+    let eventVar = "desktop"
+
+    if (window.innerWidth <= 768) {
+      eventVar = "mobile"
+    }
+
+    function pushDataLayer(actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || []
+      if (labelDataLayer) {
+        console.log(actionDataLayer + " : " + labelDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: PDP improvements ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        })
+      } else {
+        console.log(actionDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: PDP improvements ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+        })
+      }
+    }
+
+    let styleCard = /*html */ `
     <style>
       .save-text,
       .was_price{
@@ -764,17 +975,18 @@ let startFunkCard = setInterval(() => {
       .money.sale{
         color: #000 !important;
       }
-      p.modal_price{
+      div.modal_price{
         padding: 0;
       }
       p.price_total{
         margin: 0;
       }
-    </style>
-    
+    </style>    
     `
 
-    document.head.insertAdjacentHTML('beforeend', styleCard)
+    document.head.insertAdjacentHTML("beforeend", styleCard)
 
+    pushDataLayer("loaded")
+    clarity("set", `pdp_improvements${eventVar}`, "variant_1")
   }
 }, 10)
