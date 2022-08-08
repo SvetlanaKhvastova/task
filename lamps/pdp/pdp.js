@@ -1,6 +1,26 @@
 let startFunkPdp = setInterval(() => {
   if (document.querySelector("#main-wrapper")) {
     clearInterval(startFunkPdp)
+
+    //   style
+    let styleVar = /*html */ `
+    <style>
+        /*color */
+        .catalog-product-view .product-essential .product-shop #product-options-wrapper .swatches .attribute-swatch{
+            border: 1px solid #A7A7A7;
+        }
+        .catalog-product-view .product-essential .product-shop #product-options-wrapper .swatches .attribute-swatch.selected{
+            border: 1px solid #286278;
+        }        
+
+        .catalog-product-view .product-essential .product-shop #product-options-wrapper .swatches .attribute-swatch .hex-swatch,
+         .catalog-product-view .product-essential .product-shop #product-options-wrapper .swatches .attribute-swatch .img-swatch{
+            height: 23px;
+            width: 23px;
+            border: 1px solid transparent;
+        }
+    </style>
+    `
     // Tooltip
     let arrTooltipTable = {
       price: [
@@ -45,11 +65,66 @@ let startFunkPdp = setInterval(() => {
       <p class="text_why_need">Why do I need this?</p>
       `
 
+    let PriceMatchGuarantee = /*html */ `
+        <div class="price_match_guarantee">
+            <img src="https://conversionratestore.github.io/projects/lamps/img/price_policy.svg" alt="price policy" />
+            <span>Price Match Guarantee</span>
+        </div>      
+      `
+
+    let wrapVarPolicy = /*html */ `
+    <div class="wrap_var_policy">
+        <ul>
+            <li>
+                <img src="https://conversionratestore.github.io/projects/lamps/img/price_policy.svg" alt="price policy">
+                <span>Price Match Guarantee</span>
+                <p>Pay less than enywhere else</p>
+            </li>
+            <li>
+                <img src="https://conversionratestore.github.io/projects/lamps/img/return_policy.svg" alt="return policy">
+                <span>30-day return period</span>
+                <p>Easy returns and exchanges</p>
+            </li>
+        </ul>
+    </div>
+    `
+
+    let wrapQuestions = /*html */ `
+    <div class="wrap_questions">
+        <div class="img_wrap">
+            <img src="" alt="logo lamps">
+        </div>
+        <div>
+            <p>Questions about <span class="var_title_pdp">Spitfire 48" Indoor/Outdoor Ceiling Fan</span>?</p>
+            <p>Chat with our lighting & ceiling fan expert now</p>
+        </div>
+        <div class="img_wrap">
+            <img src="" alt="button">
+        </div>
+    </div>
+    `
+
+    document.head.insertAdjacentHTML("beforeend", styleVar)
+    renderTextWhyNeed()
+
     //   render block Why do I need this?
-    if (document.querySelector(".category-products .col-12 span.h4.group")) {
-      document.querySelectorAll(".category-products .col-12 span.h4.group").forEach((el) => {
-        el.insertAdjacentHTML("afterend", textWhyNeed)
-      })
+    function renderTextWhyNeed() {
+      if (document.querySelector(".category-products .col-12 span.h4.group")) {
+        document.querySelectorAll(".category-products .col-12 span.h4.group").forEach((el) => {
+          el.insertAdjacentHTML("afterend", textWhyNeed)
+        })
+      }
+    }
+
+    // to change place for price and other element
+    if (document.querySelector(".catalog-product-view .product-essential .product-shop .p-value-props")) {
+      document
+        .querySelector(".catalog-product-view .product-essential .p-atc .qty-box")
+        ?.before(document.querySelector(".catalog-product-view .product-essential .product-shop .p-value-props"))
+    }
+
+    if (document.querySelector("#config-box")) {
+      document.querySelector(".catalog-product-view .product-essential .p-price")?.after(document.querySelector("#config-box"))
     }
   }
 }, 10)
