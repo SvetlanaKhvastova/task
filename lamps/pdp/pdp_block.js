@@ -85,6 +85,47 @@ let startFunkPdp = setInterval(() => {
             height: 100%;
             display: block;
         }
+        .catalog-product-view .product-essential .p-price .orig-price{
+          font-size: 15px;
+          line-height: 20px;
+          color: #333333;
+          font-weight: 400;
+          margin-bottom: 4px;
+           display: block;
+        }
+        /*discount_pdp sign_up */
+        .discount_pdp.sign_up{
+          background: #FFFFFF;
+              padding: 9px;
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              margin: 9px 0 20px;
+        }
+        .discount_pdp.sign_up > span{
+          font-weight: 600;
+          font-size: 13px;
+          line-height: 14px;
+          text-decoration-line: underline;
+          text-transform: uppercase;
+          color: #286278;
+          margin-left: 4px;
+          cursor: pointer;
+        }
+        .price_reflects_pdp.sign_up{
+          display: flex;
+              background: #FFFFFF;
+              align-items: center;
+              justify-content: flex-start;
+              padding: 8px;
+        }
+        .price_reflects_pdp.sign_up span{
+          margin-left: 4px;
+          font-weight: 400;
+          font-size: 13px;
+          line-height: 14px;
+          color: #333333;
+        }
         /*color */
         .catalog-product-view .product-essential .product-shop #product-options-wrapper .swatches .attribute-swatch{
             border: 1px solid #A7A7A7;
@@ -99,6 +140,20 @@ let startFunkPdp = setInterval(() => {
             width: 23px;
             border: 1px solid transparent;
         }
+        .catalog-product-view .product-essential .product-shop #product-options-wrapper .labels{
+          margin: 10px 0 0;
+        }
+        .catalog-product-view .product-essential .product-shop #product-options-wrapper .labels .attribute-label{
+          margin-top: 0 !important;
+          padding: 5px 8px;
+        }
+        .pb-1, .py-1{
+          padding: 0 !important;
+        }
+        .catalog-product-view .product-essential .product-shop #product-options-wrapper .attr-label{
+          font-size: 16px;
+          line-height: 16px;
+        }
         /* */
         .catalog-product-view .product-essential .product-shop .p-value-props{
           padding: 20px 0 0;
@@ -109,6 +164,43 @@ let startFunkPdp = setInterval(() => {
           margin: 0;
           padding: 0;
           background: unset;
+        }
+        .catalog-product-view .product-essential .vp-box .vp-row i.in-stock,
+        .catalog-product-view .product-essential .vp-box .vp-row i.fa-shipping-fast{
+          display: none;
+        }
+        /*shipping */
+        .shipping ul li{
+          display: flex;
+          align-items: center;
+        }
+        .shipping ul li p.shipping_var{
+          font-weight: 400;
+          font-size: 15px;
+          line-height: 133%;
+          color: #333333;
+          margin: 0 0 0 6px;
+        }
+        p.stock_var{
+          margin: 0 0 0 6px;
+        }
+        .catalog-product-view .product-essential .vp-box .vp-row.text-center{
+          max-width: 20px;
+          margin: -3px 6px 0 0;
+        }
+        .catalog-product-view .product-essential .vp-box .vp-row{
+          padding: 0;
+        }
+        .shipping{
+          margin-top: 10px;
+        }
+        .catalog-product-view .product-essential .product-shop .col-12.mb-3:nth-child(1){
+          margin: 0 !important;
+        }
+
+        .catalog-product-view .product-essential .product-shop #product-options-wrapper .spca{
+          padding: 0;
+          margin-bottom: 20px;
         }
         /*add to card */
         button#add-item-to-cart .total-price,
@@ -363,7 +455,7 @@ let startFunkPdp = setInterval(() => {
     let wrapQuestions = /*html */ `
     <div class="wrap_questions">
         <div class="img_wrap">
-            <img src="${imgFolderUrl}logo_question.png" alt="logo lamps">
+            <img src="${imgFolderUrl}logo_question2.png" alt="logo lamps">
         </div>
         <div>
             <p>Questions about <span class="var_title_pdp">Spitfire 48" Indoor/Outdoor Ceiling Fan</span>?</p>
@@ -374,6 +466,48 @@ let startFunkPdp = setInterval(() => {
         </div>
     </div>
     `
+
+    let shipping = /*html */ `
+    <div class="shipping">
+      <ul>
+        <li class="shipping_box">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.80103 4.09938C4.35306 4.16568 4.03366 4.39545 3.83879 4.79273C3.71408 5.04197 3.71022 5.07319 3.69865 5.58747L3.68304 6.12121L2.54171 6.13297C1.45108 6.14472 1.39249 6.14858 1.28743 6.22646C0.913477 6.50306 0.901722 7.03277 1.26796 7.27815C1.36531 7.34831 1.50949 7.35217 3.40661 7.37164C5.39319 7.39111 5.44002 7.39111 5.54912 7.47284C5.92307 7.74945 5.93483 8.27915 5.56859 8.52453C5.47124 8.5947 5.33882 8.59855 3.83897 8.61802C2.26914 8.63749 2.21459 8.64135 2.10549 8.71922C1.73154 8.99583 1.71979 9.52553 2.08603 9.77092C2.18337 9.84108 2.3158 9.84494 3.81564 9.86441C5.38547 9.88387 5.44002 9.88773 5.54912 9.96561C5.8452 10.1838 5.92693 10.5655 5.73995 10.8421C5.56859 11.0915 5.47896 11.1108 4.53232 11.1108H3.69075V11.9289V12.7469H3.53885C3.41818 12.7469 3.36749 12.7702 3.30504 12.8481C3.23102 12.9455 3.22331 13.0039 3.22331 13.6234C3.22331 14.2896 3.22331 14.2934 3.32451 14.3869C3.418 14.4765 3.45308 14.4804 4.01787 14.4922L4.61387 14.5039L4.64106 14.2585C4.71508 13.5183 5.18252 12.8485 5.84465 12.5368C6.24192 12.3498 6.47574 12.303 6.91985 12.3304C7.37553 12.3537 7.6639 12.451 8.02609 12.6966C8.56369 13.0588 8.8831 13.6043 8.96887 14.2938L8.99605 14.5002H11.1661H13.3358L13.3826 14.177C13.5035 13.32 14.15 12.5994 14.9875 12.3774C15.2408 12.3111 15.7198 12.3034 16.0082 12.3618C16.8457 12.5331 17.5586 13.3044 17.6833 14.177L17.7301 14.5002H18.2053C18.7039 14.5002 18.8986 14.4613 18.9611 14.3445C18.9844 14.3055 19 13.9667 19 13.5927C19 12.9383 18.9961 12.915 18.9104 12.8331C18.8597 12.7864 18.7741 12.7473 18.7157 12.7473H18.6139L18.6022 10.71C18.5904 8.72731 18.5866 8.67276 18.5087 8.50139C18.4618 8.40405 18.01 7.78067 17.5036 7.11854C16.7754 6.15997 16.5495 5.89126 16.4209 5.8211C16.2613 5.73532 16.2418 5.73532 14.7653 5.73532H13.2734V5.07319C13.2734 4.27845 13.2421 4.1655 13.0124 4.10323C12.841 4.05272 5.12044 4.05272 4.80103 4.09938ZM15.6223 6.9975C15.7898 7.06766 15.8638 7.15325 16.5065 8.03377L17.0597 8.79343L15.6067 8.80518C14.8042 8.80904 14.1265 8.80518 14.103 8.79343C14.0641 8.78167 14.0523 8.55961 14.0523 7.85855V6.94295H14.773C15.2991 6.94295 15.5288 6.95856 15.6223 6.9975Z" fill="#286278"/>
+            <path d="M6.36035 12.9926C5.92413 13.1406 5.59683 13.4211 5.39424 13.834C5.27743 14.0717 5.26953 14.1183 5.26953 14.4807C5.26953 14.839 5.28129 14.8936 5.39424 15.1351C5.54614 15.4545 5.82275 15.735 6.13443 15.8909C6.34088 15.9882 6.39928 16 6.78885 16C7.17051 16 7.24068 15.9882 7.43941 15.8948C8.07435 15.5987 8.45602 14.8781 8.33149 14.2235C8.23029 13.7172 7.89124 13.2731 7.43941 13.0666C7.26015 12.9847 7.14719 12.9614 6.86672 12.9537C6.64871 12.9459 6.45769 12.9615 6.36035 12.9926ZM7.02652 14.0327C7.39661 14.2158 7.40433 14.7378 7.03827 14.9366C6.87848 15.0221 6.77342 15.0262 6.59416 14.9522C6.16951 14.7731 6.22406 14.099 6.67203 13.9822C6.81236 13.9469 6.85901 13.9548 7.02652 14.0327Z" fill="#286278"/>
+            <path d="M15.0848 12.9925C14.8355 13.0783 14.6757 13.1716 14.4772 13.3588C14.002 13.8029 13.8617 14.4378 14.0915 15.061C14.2121 15.3727 14.555 15.7388 14.8783 15.8868C15.1004 15.988 15.1626 15.9998 15.5327 15.9998C15.9105 15.9998 15.9612 15.992 16.1949 15.8791C16.9389 15.5207 17.266 14.6909 16.974 13.9002C16.8572 13.5926 16.5337 13.2535 16.2066 13.0901C15.9846 12.981 15.9028 12.9615 15.595 12.9538C15.377 12.9459 15.1823 12.9615 15.0848 12.9925ZM15.7548 14.0288C16.1638 14.2158 16.1287 14.8156 15.6964 14.9675C15.1004 15.174 14.7382 14.2898 15.3107 14.0288C15.4003 13.9899 15.5015 13.9548 15.5327 13.9548C15.5639 13.9548 15.6653 13.9897 15.7548 14.0288Z" fill="#286278"/>
+          </svg>
+          <p class="shipping_var"><b>Free Shipping!</b></p>
+        </li>
+      </ul>
+    </div>
+    `
+
+    let discountPdp = /*html */ `
+      <div class="discount_pdp">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7.49977 14.25L11.6248 10.125M9.74977 16.5L11.6248 14.625M3.31027 12.4395L11.5603 4.1895C11.8415 3.90818 12.223 3.75008 12.6208 3.75H18.7498C19.1476 3.75 19.5291 3.90804 19.8104 4.18934C20.0917 4.47064 20.2498 4.85218 20.2498 5.25V11.379C20.2497 11.7768 20.0916 12.1583 19.8103 12.4395L11.5603 20.6895C11.279 20.9707 10.8975 21.1287 10.4998 21.1287C10.102 21.1287 9.72057 20.9707 9.43927 20.6895L3.31027 14.5605C3.02907 14.2792 2.87109 13.8977 2.87109 13.5C2.87109 13.1023 3.02907 12.7208 3.31027 12.4395V12.4395Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M17.25 7.5C17.25 7.69891 17.171 7.88968 17.0303 8.03033C16.8897 8.17098 16.6989 8.25 16.5 8.25C16.3011 8.25 16.1103 8.17098 15.9697 8.03033C15.829 7.88968 15.75 7.69891 15.75 7.5C15.75 7.30109 15.829 7.11032 15.9697 6.96967C16.1103 6.82902 16.3011 6.75 16.5 6.75C16.6989 6.75 16.8897 6.82902 17.0303 6.96967C17.171 7.11032 17.25 7.30109 17.25 7.5Z" fill="white"/>
+          </svg>  
+          <span>15% discount applied on cart</span>
+      </div>
+      `
+
+    let discounPdpSignUp = /*html */ `
+      <div class="discount_pdp sign_up">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7.49977 14.25L11.6248 10.125M9.74977 16.5L11.6248 14.625M3.31027 12.4395L11.5603 4.1895C11.8415 3.90818 12.223 3.75008 12.6208 3.75H18.7498C19.1476 3.75 19.5291 3.90804 19.8104 4.18934C20.0917 4.47064 20.2498 4.85218 20.2498 5.25V11.379C20.2497 11.7768 20.0916 12.1583 19.8103 12.4395L11.5603 20.6895C11.279 20.9707 10.8975 21.1287 10.4998 21.1287C10.102 21.1287 9.72057 20.9707 9.43927 20.6895L3.31027 14.5605C3.02907 14.2792 2.87109 13.8977 2.87109 13.5C2.87109 13.1023 3.02907 12.7208 3.31027 12.4395V12.4395Z" stroke="#286278" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M17.25 7.5C17.25 7.69891 17.171 7.88968 17.0303 8.03033C16.8897 8.17098 16.6989 8.25 16.5 8.25C16.3011 8.25 16.1103 8.17098 15.9697 8.03033C15.829 7.88968 15.75 7.69891 15.75 7.5C15.75 7.30109 15.829 7.11032 15.9697 6.96967C16.1103 6.82902 16.3011 6.75 16.5 6.75C16.6989 6.75 16.8897 6.82902 17.0303 6.96967C17.171 7.11032 17.25 7.30109 17.25 7.5Z" fill="#286278"/>
+          </svg>
+          <span data-sign="signUup">get 15% off with a coupon</span>
+      </div>
+      `
+
+    let priceReflectsPdpSignUp = /*html */ `
+      <div class="price_reflects_pdp sign_up">
+          <img src="${imgFolderUrl}svg_price_reflects.svg" alt="icon">
+          <span></span>
+      </div>
+      `
 
     document.head.insertAdjacentHTML("beforeend", styleVar)
     changeImgAfterpay()
@@ -394,17 +528,6 @@ let startFunkPdp = setInterval(() => {
       document.querySelector(".catalog-product-view .product-essential .p-price")?.after(document.querySelector("#config-box"))
     }
 
-    if (document.querySelector("#config-box")) {
-      document.querySelector("#config-box").insertAdjacentHTML("beforebegin", `<div class="personalize_block"><span></span></div>`)
-
-      if (document.querySelectorAll(".catalog-product-view .product-essential .vp-box .vp-row")) {
-        setTimeout(() => {
-          document.querySelector(".personalize_block > span").after(document.querySelectorAll(".catalog-product-view .product-essential .vp-box .vp-row")[0])
-          document.querySelector(".personalize_block .vp-row").after(document.querySelectorAll(".catalog-product-view .product-essential .vp-box .vp-row")[0])
-        }, 1000)
-      }
-    }
-
     // render new blocks
     if (document.querySelector(".row.no-gutters.p-atc")) {
       document.querySelector(".row.no-gutters.p-atc").insertAdjacentHTML("afterend", wrapVarPolicy)
@@ -418,6 +541,73 @@ let startFunkPdp = setInterval(() => {
       document.querySelector(".wrap_questions > div:nth-child(2) p > span").textContent = document.querySelector(
         ".catalog-product-view .product-essential .p-head .product-name span"
       ).textContent // title pdp question
+    }
+
+    onChangeSvgInStock()
+    onChangeTitleShipping()
+    // in-stock
+    function onChangeSvgInStock() {
+      document
+        .querySelector(".catalog-product-view .product-essential .vp-box .vp-row i.in-stock")
+        ?.insertAdjacentHTML(
+          "beforebegin",
+          `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 2C5.584 2 2 5.584 2 10C2 14.416 5.584 18 10 18C14.416 18 18 14.416 18 10C18 5.584 14.416 2 10 2ZM8.4 14L4.4 10L5.528 8.872L8.4 11.736L14.472 5.664L15.6 6.8L8.4 14Z" fill="#1B963E"/></svg>`
+        )
+
+      document
+        .querySelector(".catalog-product-view .product-essential .vp-box .vp-row i.fa-shipping-fast")
+        ?.insertAdjacentHTML(
+          "beforebegin",
+          `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.80103 4.09938C4.35306 4.16568 4.03366 4.39545 3.83879 4.79273C3.71408 5.04197 3.71022 5.07319 3.69865 5.58747L3.68304 6.12121L2.54171 6.13297C1.45108 6.14472 1.39249 6.14858 1.28743 6.22646C0.913477 6.50306 0.901722 7.03277 1.26796 7.27815C1.36531 7.34831 1.50949 7.35217 3.40661 7.37164C5.39319 7.39111 5.44002 7.39111 5.54912 7.47284C5.92307 7.74945 5.93483 8.27915 5.56859 8.52453C5.47124 8.5947 5.33882 8.59855 3.83897 8.61802C2.26914 8.63749 2.21459 8.64135 2.10549 8.71922C1.73154 8.99583 1.71979 9.52553 2.08603 9.77092C2.18337 9.84108 2.3158 9.84494 3.81564 9.86441C5.38547 9.88387 5.44002 9.88773 5.54912 9.96561C5.8452 10.1838 5.92693 10.5655 5.73995 10.8421C5.56859 11.0915 5.47896 11.1108 4.53232 11.1108H3.69075V11.9289V12.7469H3.53885C3.41818 12.7469 3.36749 12.7702 3.30504 12.8481C3.23102 12.9455 3.22331 13.0039 3.22331 13.6234C3.22331 14.2896 3.22331 14.2934 3.32451 14.3869C3.418 14.4765 3.45308 14.4804 4.01787 14.4922L4.61387 14.5039L4.64106 14.2585C4.71508 13.5183 5.18252 12.8485 5.84465 12.5368C6.24192 12.3498 6.47574 12.303 6.91985 12.3304C7.37553 12.3537 7.6639 12.451 8.02609 12.6966C8.56369 13.0588 8.8831 13.6043 8.96887 14.2938L8.99605 14.5002H11.1661H13.3358L13.3826 14.177C13.5035 13.32 14.15 12.5994 14.9875 12.3774C15.2408 12.3111 15.7198 12.3034 16.0082 12.3618C16.8457 12.5331 17.5586 13.3044 17.6833 14.177L17.7301 14.5002H18.2053C18.7039 14.5002 18.8986 14.4613 18.9611 14.3445C18.9844 14.3055 19 13.9667 19 13.5927C19 12.9383 18.9961 12.915 18.9104 12.8331C18.8597 12.7864 18.7741 12.7473 18.7157 12.7473H18.6139L18.6022 10.71C18.5904 8.72731 18.5866 8.67276 18.5087 8.50139C18.4618 8.40405 18.01 7.78067 17.5036 7.11854C16.7754 6.15997 16.5495 5.89126 16.4209 5.8211C16.2613 5.73532 16.2418 5.73532 14.7653 5.73532H13.2734V5.07319C13.2734 4.27845 13.2421 4.1655 13.0124 4.10323C12.841 4.05272 5.12044 4.05272 4.80103 4.09938ZM15.6223 6.9975C15.7898 7.06766 15.8638 7.15325 16.5065 8.03377L17.0597 8.79343L15.6067 8.80518C14.8042 8.80904 14.1265 8.80518 14.103 8.79343C14.0641 8.78167 14.0523 8.55961 14.0523 7.85855V6.94295H14.773C15.2991 6.94295 15.5288 6.95856 15.6223 6.9975Z" fill="#286278"/><path d="M6.36035 12.9926C5.92413 13.1406 5.59683 13.4211 5.39424 13.834C5.27743 14.0717 5.26953 14.1183 5.26953 14.4807C5.26953 14.839 5.28129 14.8936 5.39424 15.1351C5.54614 15.4545 5.82275 15.735 6.13443 15.8909C6.34088 15.9882 6.39928 16 6.78885 16C7.17051 16 7.24068 15.9882 7.43941 15.8948C8.07435 15.5987 8.45602 14.8781 8.33149 14.2235C8.23029 13.7172 7.89124 13.2731 7.43941 13.0666C7.26015 12.9847 7.14719 12.9614 6.86672 12.9537C6.64871 12.9459 6.45769 12.9615 6.36035 12.9926ZM7.02652 14.0327C7.39661 14.2158 7.40433 14.7378 7.03827 14.9366C6.87848 15.0221 6.77342 15.0262 6.59416 14.9522C6.16951 14.7731 6.22406 14.099 6.67203 13.9822C6.81236 13.9469 6.85901 13.9548 7.02652 14.0327Z" fill="#286278"/><path d="M15.0848 12.9925C14.8355 13.0783 14.6757 13.1716 14.4772 13.3588C14.002 13.8029 13.8617 14.4378 14.0915 15.061C14.2121 15.3727 14.555 15.7388 14.8783 15.8868C15.1004 15.988 15.1626 15.9998 15.5327 15.9998C15.9105 15.9998 15.9612 15.992 16.1949 15.8791C16.9389 15.5207 17.266 14.6909 16.974 13.9002C16.8572 13.5926 16.5337 13.2535 16.2066 13.0901C15.9846 12.981 15.9028 12.9615 15.595 12.9538C15.377 12.9459 15.1823 12.9615 15.0848 12.9925ZM15.7548 14.0288C16.1638 14.2158 16.1287 14.8156 15.6964 14.9675C15.1004 15.174 14.7382 14.2898 15.3107 14.0288C15.4003 13.9899 15.5015 13.9548 15.5327 13.9548C15.5639 13.9548 15.6653 13.9897 15.7548 14.0288Z" fill="#286278"/></svg>`
+        )
+
+      document.querySelector(".catalog-product-view .product-essential .vp-box")?.insertAdjacentHTML("beforeend", shipping)
+    }
+
+    function onChangeTitleShipping() {
+      if (document.querySelector(".shipping")) {
+        let price = +document.querySelector(".catalog-product-view .product-essential .p-price .final-price .price").textContent.split("$")[1]
+        if (price < 75) {
+          console.log(price)
+          document.querySelector("p.shipping_var").innerHTML = `<b>Free Shipping</b> on orders over $75`
+        } else {
+          console.log(price)
+          document.querySelector("p.shipping_var").innerHTML = "<b>Free Shipping!</b>"
+        }
+
+        document.querySelectorAll(".catalog-product-view .product-essential .vp-box .vp-row .text-strong").forEach((el) => {
+          if (el.textContent === "Free Shipping ") {
+            el.closest(".vp-row.col-11").previousElementSibling.style.display = "none"
+            el.closest(".vp-row.col-11").style.display = "none"
+          }
+
+          if (el.closest(".vp-box").querySelector(".vp-row.col-11").textContent.includes("Price reflects")) {
+            if (document.querySelector(".catalog-product-view .product-essential .p-price")) {
+              if (!document.querySelector(".price_reflects_pdp.sign_up")) {
+                document.querySelector(".catalog-product-view .product-essential .p-price").insertAdjacentHTML("afterend", priceReflectsPdpSignUp)
+              }
+            }
+
+            el.closest(".vp-box").querySelector(".vp-row.col-11").previousElementSibling.style.display = "none"
+            el.closest(".vp-box").querySelector(".vp-row.col-11").style.display = "none"
+          }
+
+          if (document.querySelector(".price_reflects_pdp.sign_up")) {
+            document.querySelector(".price_reflects_pdp.sign_up span").innerHTML = el.closest(".vp-box").querySelector(".vp-row.col-11").innerHTML
+          }
+
+          if (el.closest(".vp-box").querySelector(".vp-row.col-11").textContent.includes("Register Now.")) {
+            if (document.querySelector(".catalog-product-view .product-essential .p-price")) {
+              if (!document.querySelector(".discount_pdp.sign_up")) {
+                document.querySelector(".catalog-product-view .product-essential .p-price").insertAdjacentHTML("afterend", discounPdpSignUp)
+              }
+            }
+
+            el.closest(".vp-box").querySelector(".vp-row.col-11").previousElementSibling.style.display = "none"
+            el.closest(".vp-box").querySelector(".vp-row.col-11").style.display = "none"
+          }
+        })
+      }
     }
 
     // change img afterpay
@@ -441,6 +631,9 @@ let startFunkPdp = setInterval(() => {
       if (document.querySelector(".catalog-product-view .product-essential .p-price .final-price")) {
         document.querySelectorAll(".catalog-product-view .product-essential .p-price .final-price").forEach((el) => {
           el.insertAdjacentHTML("beforeend", priceMatchGuarantee)
+          if (el.closest(".p-price").querySelector(".orig-price")) {
+            el.before(el.closest(".p-price").querySelector(".orig-price"))
+          }
         })
       }
     }
@@ -491,12 +684,16 @@ let startFunkPdp = setInterval(() => {
           renderTextWhyNeed()
         }
         if (!document.querySelector(".price_match_guarantee")) {
-          console.log(document.querySelector(".price_match_guarantee"))
           renderPriceMatchGuarantee()
         }
         onTippyRun()
         renderTooltip()
         changeImgAfterpay()
+
+        if (!document.querySelector(".shipping")) {
+          onChangeSvgInStock()
+        }
+        onChangeTitleShipping()
 
         observer.observe(document.querySelector(".catalog-product-view .product-essential"), {
           childList: true,
@@ -510,4 +707,4 @@ let startFunkPdp = setInterval(() => {
       subtree: true,
     })
   }
-}, 500)
+}, 1000)
