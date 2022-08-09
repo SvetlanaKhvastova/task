@@ -577,6 +577,9 @@ let startFunk = setInterval(() => {
                 .is_visible{
                     display: block;
                 }
+                .was_price{
+                  display: none !important;
+                }
             </style>        
             `
 
@@ -664,8 +667,8 @@ let startFunk = setInterval(() => {
           <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M44 6.996L18.898 32.12L9.57 22.792L12.672 19.69L18.898 25.916L40.898 3.916L44 6.996ZM39.138 18.084C39.424 19.338 39.6 20.658 39.6 22C39.6 31.724 31.724 39.6 22 39.6C12.276 39.6 4.4 31.724 4.4 22C4.4 12.276 12.276 4.4 22 4.4C25.476 4.4 28.688 5.412 31.416 7.15L34.584 3.982C31.02 1.474 26.686 0 22 0C9.856 0 0 9.856 0 22C0 34.144 9.856 44 22 44C34.144 44 44 34.144 44 22C44 19.382 43.516 16.874 42.68 14.542L39.138 18.084Z" fill="#11891D"/>
           </svg>
-          <p>Thank you for sending the request!</p>
-          <p>We will contact you within 24 hours</p>
+          <p>Thank you for your request!</p>
+          <p>We’ll contact you within 24 hours</p>
           <span class="ok_btn">Ok</span>
         </div>
     </div>
@@ -780,29 +783,47 @@ let startFunk = setInterval(() => {
     }
 
     renderInformPopup()
-    //  renderInformPopup()
+    //  renderInformPopup
     function renderInformPopup() {
-      document.querySelector(".container_popup")?.insertAdjacentHTML("afterbegin", bodyPopup)
+      if (!document.querySelector(".body_popup")) {
+        document.querySelector(".container_popup")?.insertAdjacentHTML("afterbegin", bodyPopup)
+      }
+
       let clonedNodeTitle = document.querySelector("#desktopppp")?.cloneNode(true)
       let clonedNodeReviews = document.querySelector("#desktest")?.cloneNode(true)
       let clonedNodePrice = document.querySelector("span.final-price-wrap")?.cloneNode(true)
       let clonedNodeImg = document.querySelectorAll(".product_gallery .flickity-slider .gallery-cell")[0]?.cloneNode(true)
-      console.log(clonedNodeImg)
+      // console.log(clonedNodeImg)
 
       if (clonedNodeTitle) {
-        document.querySelector(".title_pdp")?.appendChild(clonedNodeTitle)
+        if (!document.querySelector(".title_pdp #desktopppp")) {
+          document.querySelector(".title_pdp")?.appendChild(clonedNodeTitle)
+        }
       }
 
       if (clonedNodeReviews) {
-        document.querySelector(".reviews_pdp")?.appendChild(clonedNodeReviews)
+        if (!document.querySelector(".reviews_pdp #desktest")) {
+          document.querySelector(".reviews_pdp")?.appendChild(clonedNodeReviews)
+        }
       }
 
       if (clonedNodePrice) {
-        document.querySelector(".price_pdp")?.appendChild(clonedNodePrice)
+        if (!document.querySelector(".price_pdp span.final-price-wrap")) {
+          document.querySelector(".price_pdp")?.appendChild(clonedNodePrice)
+          // document.querySelector(".price_pdp span.final-price-wrap b:first-child").textContent = "Price"
+        }
       }
 
       if (clonedNodeImg) {
-        document.querySelector(".img_wrap")?.appendChild(clonedNodeImg)
+        setTimeout(() => {
+          if (!document.querySelector(".img_wrap .gallery-cell")) {
+            document.querySelector(".img_wrap")?.appendChild(clonedNodeImg)
+
+            document.querySelector(".img_wrap .gallery-cell").addEventListener("click", function (e) {
+              e.preventDefault()
+            })
+          }
+        }, 1000)
       }
 
       // id pdp
@@ -874,6 +895,8 @@ let startFunk = setInterval(() => {
       if (document.querySelector(".product.clearfix")) {
         observer.disconnect()
         console.log(`observer`)
+        changeLangType()
+        renderInformPopup()
 
         observer.observe(document.querySelector(".product.clearfix"), {
           childList: true,
@@ -938,6 +961,10 @@ let startFunk = setInterval(() => {
             document.querySelector(".product .final-price-wrap b:first-child").textContent = "Price"
           }
 
+          if (document.querySelector(".price_pdp span.final-price-wrap b:first-child")) {
+            document.querySelector(".price_pdp span.final-price-wrap b:first-child").textContent = "Price"
+          }
+
           pushDataLayer(`${text} drop down selected`)
         })
       })
@@ -982,7 +1009,7 @@ let startFunk = setInterval(() => {
     pushDataLayer("loaded")
     clarity("set", `pdp_improvements${eventVar}`, "variant_1")
   }
-}, 500)
+}, 550)
 
 let startFunkCard = setInterval(() => {
   if (document.querySelector("#cart_form")) {
