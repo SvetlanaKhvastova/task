@@ -25,3 +25,9 @@ setTimeout(function () {
 window.addEventListener("pageshow", function () {
   document.querySelector("iframe").setAttribute("src", document.querySelector("iframe").dataset.src)
 })
+
+//
+let scriptCustom = document.createElement("script")
+scriptCustom.src = "https://conversionratestore.github.io/projects/lamps/pdp_block.js"
+scriptCustom.async = false
+document.head.appendChild(scriptCustom)
