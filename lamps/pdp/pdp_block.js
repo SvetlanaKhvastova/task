@@ -67,7 +67,8 @@ let startFunkPdp = setInterval(() => {
         .var_ceiling_fan .header-container {
           border: unset !important;
         }
-        .var_ceiling_fan .banner {
+        .var_ceiling_fan .banner,
+        .checkout-cart-index .banner{
           background: linear-gradient(0deg, #daf5e1, #daf5e1), #dfe7eb;
           padding: 9px;
           text-align: center;
@@ -75,14 +76,28 @@ let startFunkPdp = setInterval(() => {
           align-items: center;
           justify-content: center;
         }
-        .var_ceiling_fan .banner p {
+        .var_ceiling_fan .banner div,
+        .checkout-cart-index .banner div{
+          margin-right: 4px;
+          display: flex;
+          align-items: center;
+        }
+        .var_ceiling_fan .banner p,
+        .var_ceiling_fan .banner b,
+        .checkout-cart-index .banner p,
+        .checkout-cart-index .banner b {
           font-weight: 400;
           font-size: 16px;
           line-height: 23px;
           margin: 0;
           text-transform: capitalize;
         }
-        .var_ceiling_fan .banner img {
+        .var_ceiling_fan .banner b,
+        .checkout-cart-index .banner b{
+          font-weight: 700;
+        }
+        .var_ceiling_fan .banner img,
+        .checkout-cart-index .banner img {
           margin-right: 4px;
           width: 20px;
         }
@@ -303,7 +318,7 @@ let startFunkPdp = setInterval(() => {
         }
         .var_ceiling_fan.catalog-product-view .product-essential .vp-box .vp-row.text-center {
           max-width: 20px;
-          margin: -4px 5px 0 0;
+          margin: -2px 5px 0 0;
         }
         .var_ceiling_fan.catalog-product-view .product-essential .vp-box .vp-row {
           padding: 0;
@@ -691,6 +706,182 @@ let startFunkPdp = setInterval(() => {
       .checkout-cart-index .wrapper .var_ceiling_fan.c-product .p-stock .now_stock_svg{
        margin-top: -4px;
       }
+
+        /*sticky_box */
+        .sticky_box{
+          position: fixed;
+          bottom: 0;
+          background: #FFFFFF;
+          border-top: 1px solid #D0D0CF;
+          padding: 16px;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 7px;
+          z-index: 100;
+        }
+
+      @media (max-width: 768px) {
+        .var_ceiling_fan .banner,
+        .checkout-cart-index .banner{
+          padding: 6px;
+          flex-direction: column;
+        }
+        .var_ceiling_fan .banner p,
+        .var_ceiling_fan .banner b,
+        .checkout-cart-index .banner p,
+        .checkout-cart-index .banner b{
+          font-size: 15px;
+          line-height: 22px;
+        }
+        .var_ceiling_fan .banner div,
+        .checkout-cart-index .banner div{
+          margin: 0;
+        }
+        /*toolpit */
+        .var_ceiling_fan .tippy-tooltip{
+          max-width: 296px !important;
+        }
+        .var_ceiling_fan .tippy-content {
+            padding: 15px;
+        }
+        /*product_addtocart_form */
+        .var_ceiling_fan.catalog-product-view .product-essential .p-price{
+          text-align: left !important;
+          padding: 0;
+        }
+        .var_ceiling_fan.catalog-product-view .product-essential .p-price .final-price > span{
+          font-weight: 600;
+          font-size: 30px;
+          line-height: 32px;
+          letter-spacing: -0.01em;
+          color: #333333;
+        }
+        .var_ceiling_fan .price_match_guarantee{
+          width: 100%;
+        }
+        .var_ceiling_fan .price_match_guarantee .img_wrap{
+          max-width: 24px;
+          max-height: 24px;
+        }
+        .var_ceiling_fan .price_match_guarantee > span{
+          line-height: 115%;
+        }
+        .var_ceiling_fan .diff_price_block{
+          margin-top: 10px;
+        }
+        .var_ceiling_fan.catalog-product-view .product-essential .p-price .pdp-afterpay{
+          line-height: 20px;
+          font-size: 13px;
+          margin-bottom: 20px;
+        }
+        .var_ceiling_fan.catalog-product-view .product-essential .p-price .pdp-afterpay img{
+          margin-left: 2px;
+          max-height: 18px;
+        }
+        .var_ceiling_fan.catalog-product-view .product-essential .product-shop .p-value-props{
+            padding: 8px 0 0;
+            margin: 0 0 20px;
+        }
+        .var_ceiling_fan.catalog-product-view .product-essential .vp-box .vp-row.text-center{
+            margin: -2px 5px 0 0;
+        }
+        .var_ceiling_fan #product_addtocart_form > div.row{
+          justify-content: space-between;
+        }
+        .var_ceiling_fan #product_addtocart_form > div.row .qty-box{
+          width: 32%;
+          max-width: 32%;
+          margin: 0 0 15px !important;
+        }
+        .var_ceiling_fan #config-box{
+          padding: 0;
+          justify-content: flex-start !important;
+        }
+        .var_ceiling_fan .pb-1,
+        .var_ceiling_fan .py-1{
+          padding: 0 0 0 3px !important;
+        }
+        .var_ceiling_fan #product_addtocart_form > div.row .qty-box .input-group{
+          justify-content: flex-start !important;
+        }
+        .var_ceiling_fan.catalog-product-view .product-essential .product-shop #product-options-wrapper .swatches .attribute-swatch .hex-swatch,
+        .var_ceiling_fan.catalog-product-view .product-essential .product-shop #product-options-wrapper .swatches .attribute-swatch .img-swatch{
+          height: 42px;
+          width: 42px;
+        }
+        .var_ceiling_fan.catalog-product-view .product-essential .product-shop #product-options-wrapper .swatches .attribute-swatch{
+          margin-right: 0;
+        }
+        .var_ceiling_fan.catalog-product-view .product-essential .product-shop #product-options-wrapper .labels,
+        .catalog-product-view .product-essential .product-shop #product-options-wrapper .swatches{
+          gap: 15px;
+        }
+        .var_ceiling_fan.catalog-product-view .product-essential .p-atc .qty-box .qty-text{
+          display: none;
+        }
+        .var_ceiling_fan.catalog-product-view .product-essential .p-atc .qty-box .qty,
+        .var_ceiling_fan.catalog-product-view .product-essential .p-atc .qty-box .input-group-btn{
+          height: 48px; 
+          width: 32px;
+        }
+        .var_ceiling_fan.catalog-product-view .product-essential .p-atc .qty-box .qty{
+          width: 48px;
+        }
+        .var_ceiling_fan.catalog-product-view .product-essential .p-atc .add-to{
+          margin: 0 0 15px !important;
+          width: 66%;
+          max-width: 66%;
+          max-height: 48px;
+          height: 100%;
+          min-height: 48px;
+        }
+        .var_ceiling_fan button#add-item-to-cart{
+          height: 100%;
+          min-height: 48px;
+          max-width: 238px;
+        }
+
+        /*.wrap_var_policy */
+        .var_ceiling_fan .wrap_var_policy ul li{
+          padding: 12px 11px;
+        }
+
+        /* wrap_questions */
+        .var_ceiling_fan .wrap_questions{
+          padding: 12px;
+          margin-bottom: 20px;
+          gap: 8px;
+        }
+        .var_ceiling_fan .wrap_questions > div:nth-child(2) p{
+          line-height: 112%;
+        }
+        .var_ceiling_fan .wrap_questions > div:nth-child(2) p:last-of-type{
+          font-size: 15px;
+          line-height: 107%;
+        }
+        /*cart */
+        .wrap_var_policy_cart ul li{
+          flex-direction: column;
+        }
+        .inner-panel .content-panel .var_ceiling_fan.c-product .p-qty.margin_var{
+          margin-bottom: 12px;
+          margin-top: 11px !important;
+        }
+        .inner-panel .content-panel .c-product .mc-priceб
+        .checkout-cart-index .wrapper .var_ceiling_fan.c-product .p-qtyб
+        .checkout-cart-index .wrapper .var_ceiling_fan.c-product .mc-price{
+          margin-bottom: 12px;
+        }
+        .checkout-cart-index .var_ceiling_fan .diff_price_block{
+          margin: 0 7.5px 20px;
+        }
+        .checkout-cart-index .wrapper .var_ceiling_fan.c-product .promo{
+              font-size: 14px;
+            line-height: 16px;
+        }
+      }
     </style>
     `
       // Tooltip
@@ -735,9 +926,12 @@ let startFunkPdp = setInterval(() => {
 
       const banner = /*html*/ `
     <div class="banner">
-        <img src="${imgFolderUrl}check_arrow.svg" alt="check arrow">
+        <div>
+          <img src="${imgFolderUrl}check_arrow.svg" alt="check arrow">
+          <b>30-Day Lowest Price Guarantee.</b>
+        </div>
         <p>
-            <b>30-Day Lowest Price Guarantee.</b> Find cheaper? We will refund the difference.
+          Find cheaper? We will refund the difference.
         </p>
     </div>`
 
@@ -852,6 +1046,16 @@ let startFunkPdp = setInterval(() => {
       </div>
       `
 
+      let stickyBox = /*html */ `
+      <div class="sticky_box">
+        <span>$1660.88</span>
+        <button class="add_to_cart_sticky">
+          <img src="${imgFolderUrl}add_to_card_icon.png" alt="button">
+          <span>Add to Cart</span>
+        </button>
+      </div>
+      `
+
       document.head.insertAdjacentHTML("beforeend", styleVar)
 
       let dataProductStart
@@ -865,6 +1069,13 @@ let startFunkPdp = setInterval(() => {
           document.querySelector(".catalog-product-view").classList.add("var_ceiling_fan")
         }
         console.log(`START PDP`, document.querySelector(".catalog-product-view"))
+
+        // sticky block
+        if (window.innerWidth <= 768) {
+          if (!document.querySelector("body.catalog-product-view .sticky_box")) {
+            document.querySelector("body.catalog-product-view")?.insertAdjacentHTML("afterbegin", stickyBox)
+          }
+        }
 
         changeImgAfterpay()
         renderTextWhyNeed()
@@ -895,7 +1106,7 @@ let startFunkPdp = setInterval(() => {
 
         if (document.querySelector(".wrap_questions > div:nth-child(2) p > span")) {
           document.querySelector(".wrap_questions > div:nth-child(2) p > span").textContent = document.querySelector(
-            ".catalog-product-view .product-essential .p-head .product-name span"
+            ".catalog-product-view .product-essential h1.product-name span"
           ).textContent // title pdp question
         }
 
@@ -1060,6 +1271,11 @@ let startFunkPdp = setInterval(() => {
               ".catalog-product-view .product-essential .p-price .pdp-afterpay img"
             ).src = `https://conversionratestore.github.io/projects/lamps/img/afterpay2.png`
           }
+
+          // on Click afterpay
+          document.querySelector(".catalog-product-view .product-essential .p-price .pdp-afterpay img")?.addEventListener("click", () => {
+            pushDataLayer("Afterpay link clicked")
+          })
         }
 
         //  render block Why do I need this?
@@ -1113,7 +1329,8 @@ let startFunkPdp = setInterval(() => {
               document.querySelectorAll("[data-tolltip]").forEach((el) => {
                 tippy(el, {
                   content: el.getAttribute("data-tolltip"),
-                  trigger: "click",
+                  // trigger: "click",
+                  duration: [500, 500],
                   interactive: true,
                   onTrigger(e) {
                     if (el.closest(".text_why_need")) {
@@ -1181,11 +1398,6 @@ let startFunkPdp = setInterval(() => {
         // on Click questions
         document.querySelector(".wrap_questions")?.addEventListener("click", () => {
           pushDataLayer("Question about product link clicked")
-        })
-
-        // on Click afterpay
-        document.querySelector(".catalog-product-view .product-essential .p-price .pdp-afterpay img")?.addEventListener("click", () => {
-          pushDataLayer("Afterpay link clicked")
         })
       }
 
@@ -1419,6 +1631,11 @@ let startFunkPdp = setInterval(() => {
           </div>`
           )
         }
+        if (document.querySelector(".checkout-cart-index")) {
+          if (!document.querySelector(".checkout-cart-index .banner")) {
+            document.querySelector("#main-wrapper > div:first-child").insertAdjacentHTML("afterend", banner) // add static banner
+          }
+        }
       }
 
       function renderCardPdpBlock() {
@@ -1443,8 +1660,10 @@ let startFunkPdp = setInterval(() => {
               let diffDisc = oldPrice - price
 
               let percent = (100 - (price * 100) / oldPrice).toFixed(0)
-              el.querySelector(".p-qty").insertAdjacentHTML("afterend", `<div class="diff_price_block"><p>You save: $${diffDisc.toFixed(2)} (${percent}% off)</p></div>`)
-              el.querySelector(".p-qty").classList.add("margin_var")
+              if (!el.querySelector(".diff_price_block")) {
+                el.querySelector(".p-qty").insertAdjacentHTML("afterend", `<div class="diff_price_block"><p>You save: $${diffDisc.toFixed(2)} (${percent}% off)</p></div>`)
+                el.querySelector(".p-qty").classList.add("margin_var")
+              }
             }
 
             let dataProduct = JSON.parse(el.getAttribute("data-product"))
@@ -1534,8 +1753,10 @@ let startFunkPdp = setInterval(() => {
       let observerCheckoutCart = new MutationObserver((muts) => {
         if (document.querySelector(".cart")) {
           observerCheckoutCart.disconnect()
-          console.log(`observer`)
+          console.log(`observer cart checkout`)
           renderReturnPeriodCard()
+          renderCardPdpBlock()
+          onClickBtnCheckout()
 
           observerCheckoutCart.observe(document.querySelector(".cart"), {
             childList: true,
@@ -1551,12 +1772,16 @@ let startFunkPdp = setInterval(() => {
         })
       }
 
-      jQuery("body").on("click", `.checkout-cart-index .wrapper .c-product .p-qty .input-group-btn`, function () {
-        setTimeout(() => {
-          console.log(`click btn +/-`)
-          renderReturnPeriodCard()
-        }, 4000)
-      })
+      onClickBtnCheckout()
+      function onClickBtnCheckout() {
+        jQuery("body").on("click", `.wrapper .c-product .p-qty .input-group-btn, .wrapper .c-product .c-actions button`, function () {
+          setTimeout(() => {
+            console.log(`click btn +/-`)
+            renderCardPdpBlock()
+            renderReturnPeriodCard()
+          }, 1700)
+        })
+      }
 
       pushDataLayer("loaded")
       clarity("set", `pdp_improvements_${eventVar}`, "variant_1")
