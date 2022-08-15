@@ -511,13 +511,13 @@ let startFunkPdp = setInterval(() => {
       }
       /*wrap_var_policy_cart */
       .wrap_var_policy_cart {
-        margin: 32px 0 20px;
+        margin: 32px 7.5px 20px;
+        width: 100%;
       }
       .wrap_var_policy_cart ul {
         display: flex;
         align-items: center;
-        justify-content: center;
-        gap: 40px;
+        justify-content: space-between;
       }
       .wrap_var_policy_cart ul li {
         display: flex;
@@ -763,11 +763,17 @@ let startFunkPdp = setInterval(() => {
       }
 
       @media (max-width: 768px) {
-        .col-12,
-        .page .main-container {
+        .var_ceiling_fan #hbl-live-chat-wrapper{
+          display: none;
+        }
+        .var_ceiling_fan .text_why_need{
+          font-size: 17px;
+        }
+        .checkout-cart-index .col-12,
+        .checkout-cart-index .page .main-container {
           padding: 0;
         }
-        .row {
+        .checkout-cart-index .row {
           margin: 0;
         }
         .var_ceiling_fan .banner,
@@ -931,7 +937,7 @@ let startFunkPdp = setInterval(() => {
           margin-bottom: 12px;
         }
         .checkout-cart-index .var_ceiling_fan .diff_price_block {
-          margin: 0 7.5px 20px;
+          margin: 0 0 20px;
         }
         .checkout-cart-index .wrapper .var_ceiling_fan.c-product .promo {
           font-size: 14px;
@@ -943,6 +949,37 @@ let startFunkPdp = setInterval(() => {
         }
         .checkout-cart-index .wrapper .total-col .cart-totals .btn {
           width: 96%;
+        }
+        .checkout-cart-index .wrapper .c-product .mc-price{
+          padding-left: 0;
+        }
+        .catalog-product-view .cts-goods .item .product-options .attr-label{
+          margin-bottom: 10px;
+        }
+        .var_ceiling_fan #cts-goods .category-products > .col-12{
+          flex-direction: column;
+        }
+        .var_ceiling_fan.catalog-product-view .select2 {
+            width: 100% !important;
+            min-width: unset !important;
+        }
+      }
+
+      @media (max-width: 360px) {
+        .var_ceiling_fan #product_addtocart_form > div.row .qty-box{
+          width: 37%;
+          max-width: 37%;
+        }
+        .var_ceiling_fan.catalog-product-view .product-essential .p-atc .add-to {
+          width: 62%;
+          max-width: 62%;
+        }
+        .var_ceiling_fan .wrap_var_policy ul li span,
+        .var_ceiling_fan .wrap_var_policy ul li p{
+          font-size: 12px;
+        }
+        .wrap_var_policy_cart ul li span{
+          font-size: 12px;
         }
       }
 
@@ -1149,7 +1186,7 @@ let startFunkPdp = setInterval(() => {
                   <img src="${imgFolderUrl}price_policy.svg" alt="price policy">
                 </div>
                 <span>Price Match Guarantee</span>
-                <p>Pay less than enywhere else</p>
+                <p>Pay less than anywhere else</p>
             </li>
             <li data-tolltip>
                 <div class="img_wrap">
@@ -1264,6 +1301,7 @@ let startFunkPdp = setInterval(() => {
         if (!document.querySelector(".catalog-product-view").classList.contains("var_ceiling_fan")) {
           document.querySelector(".catalog-product-view").classList.add("var_ceiling_fan")
         }
+
         console.log(`START PDP`, document.querySelector(".catalog-product-view"))
 
         // sticky block
@@ -1342,7 +1380,9 @@ let startFunkPdp = setInterval(() => {
 
                 if (el.querySelector(".final-price .price")) {
                   price = +el.querySelector(".final-price .price").textContent.slice(1).replace(/,/g, "")
-                  document.querySelector(".sticky_box .last_price").textContent = el.querySelector(".final-price .price").textContent
+                  if (window.innerWidth <= 768) {
+                    document.querySelector(".sticky_box .last_price").textContent = el.querySelector(".final-price .price").textContent
+                  }
                 }
 
                 if (price < 75) {
@@ -1354,8 +1394,10 @@ let startFunkPdp = setInterval(() => {
                 if (el.querySelector(".orig-price")) {
                   if (el.querySelector(".orig-price .price")) {
                     oldPrice = +el.querySelector(".orig-price .price").textContent.slice(1).replace(/,/g, "")
-                    document.querySelector(".sticky_box .old_price").style.display = "block"
-                    document.querySelector(".sticky_box .old_price").textContent = el.querySelector(".orig-price .price").textContent
+                    if (window.innerWidth <= 768) {
+                      document.querySelector(".sticky_box .old_price").style.display = "block"
+                      document.querySelector(".sticky_box .old_price").textContent = el.querySelector(".orig-price .price").textContent
+                    }
                   }
 
                   let diffDisc = oldPrice - price
@@ -1612,7 +1654,21 @@ let startFunkPdp = setInterval(() => {
         // on Click questions
         document.querySelector(".wrap_questions")?.addEventListener("click", () => {
           pushDataLayer("Question about product link clicked")
+          if (window.innerWidth <= 768) {
+            document.querySelector(".var_ceiling_fan #hbl-live-chat-wrapper").style.display = "block"
+          }
         })
+
+        if (window.innerWidth <= 768) {
+          if (document.querySelector("#olark-wrapper .olark-launch-button")) {
+            document.querySelector("#olark-wrapper .olark-launch-button")?.addEventListener("click", () => {
+              console.log(document.querySelector('[aria-expanded="true"]'))
+              setTimeout(() => {
+                document.querySelector(".var_ceiling_fan #hbl-live-chat-wrapper").style.display = "none"
+              }, 100)
+            })
+          }
+        }
       }
 
       // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CART
