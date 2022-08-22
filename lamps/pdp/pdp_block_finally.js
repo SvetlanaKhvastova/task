@@ -67,6 +67,10 @@ let startFunkPdp = setInterval(() => {
       .var_ceiling_fan .header-container {
         border: unset !important;
       }
+      .p-value-props+.qty-box {
+        max-width: fit-content !important; 
+        margin-right: 24px !important;
+      }
       .var_ceiling_fan .banner,
       .checkout-cart-index .banner {
         background: linear-gradient(0deg, #daf5e1, #daf5e1), #dfe7eb;
@@ -76,8 +80,8 @@ let startFunkPdp = setInterval(() => {
         align-items: center;
         justify-content: center;
       }
-      .var_ceiling_fan .banner div,
-      .checkout-cart-index .banner div {
+      .var_ceiling_fan .banner a,
+      .checkout-cart-index .banner a {
         margin-right: 4px;
         display: flex;
         align-items: center;
@@ -761,6 +765,10 @@ let startFunkPdp = setInterval(() => {
         line-height: 24px;
         color: #ffffff;
       }
+      
+      .checkout-types .buttons+.col-12 {
+        padding: 0;
+      }
 
       @media (max-width: 768px) {
         .var_ceiling_fan #hbl-live-chat-wrapper{
@@ -788,8 +796,8 @@ let startFunkPdp = setInterval(() => {
           font-size: 15px;
           line-height: 22px;
         }
-        .var_ceiling_fan .banner div,
-        .checkout-cart-index .banner div {
+        .var_ceiling_fan .banner a,
+        .checkout-cart-index .banner a {
           margin: 0;
         }
         /*toolpit */
@@ -981,6 +989,8 @@ let startFunkPdp = setInterval(() => {
         .wrap_var_policy_cart ul li span{
           font-size: 12px;
         }
+        
+        
       }
 
       @media (max-width: 320px) {
@@ -1117,9 +1127,9 @@ let startFunkPdp = setInterval(() => {
       // Tooltip
       let arrTooltipTable = {
         "Price Match Guarantee": [
-          `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/price_policy.svg" alt="price policy" /><span>Price Match Guarantee</span></div><p>Find cheaper? We will refund the difference within 30 days of receiving your order.<br /> Read more about our <a class="on_policy" target="_blank" href="/policies/returns/">price protection policy here</a>.</p></div>`,
+          `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/price_policy.svg" alt="price policy" /><span>Price Match Guarantee</span></div><p>Read more about our <a class="on_policy" target="_blank" href="/policies/price-protection/">price protection policy here</a>.</p></div>`,
         ],
-        "30-day return period": [
+        "Easy returns": [
           `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/return_policy.svg" alt="return policy" /><span>Easy Return</span></div><p>Because we want you to love your purchase, most items can be returned up to 30 days from the date the item was delivered. Read more about our <a class="on_return" target="_blank" href="/policies/returns/">return policy here</a>.</p></div>`,
         ],
         Downrods: [
@@ -1152,17 +1162,17 @@ let startFunkPdp = setInterval(() => {
         "Light Kit Covers": [
           `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/help.svg" alt="return policy" /><span>Light Kit Covers</span></div><p>This accessory may be added if you do not wish to use the fan for illumination.</p></div>`,
         ],
+        "Free Shipping!": [
+          `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/help.svg" alt="return policy" /><span>Free Shipping</span></div><p>Free standard ground shipping on all orders within the continental US. Orders shipping to Alaska, Hawaii, Puerto Rico may incur additional shipping charges. Charges will be calculated at checkout.</p></div>`,
+        ],
       }
 
       const banner = /*html*/ `
     <div class="banner">
-        <div>
-          <img src="${imgFolderUrl}check_arrow.svg" alt="check arrow">
-          <b>30-Day Lowest Price Guarantee.</b>
-        </div>
-        <p>
-          Find cheaper? We will refund the difference.
-        </p>
+          <a target="_blank" href="/policies/price-protection/">
+              <img src="${imgFolderUrl}check_arrow.svg" alt="check arrow">
+              <b>30-Day Lowest Price Guarantee.</b>
+          </a>
     </div>`
 
       let textWhyNeed = /*html */ `
@@ -1192,8 +1202,8 @@ let startFunkPdp = setInterval(() => {
                 <div class="img_wrap">
                   <img src="${imgFolderUrl}return_policy.png" alt="return policy">
                 </div>
-                <span class="return_policy">30-day return period</span>
-                <p>Easy returns and exchanges</p>
+                <span class="return_policy">Easy returns</span>
+                <p>30-day return period</p>
             </li>
         </ul>
     </div>
@@ -1223,7 +1233,7 @@ let startFunkPdp = setInterval(() => {
             <path d="M6.36035 12.9926C5.92413 13.1406 5.59683 13.4211 5.39424 13.834C5.27743 14.0717 5.26953 14.1183 5.26953 14.4807C5.26953 14.839 5.28129 14.8936 5.39424 15.1351C5.54614 15.4545 5.82275 15.735 6.13443 15.8909C6.34088 15.9882 6.39928 16 6.78885 16C7.17051 16 7.24068 15.9882 7.43941 15.8948C8.07435 15.5987 8.45602 14.8781 8.33149 14.2235C8.23029 13.7172 7.89124 13.2731 7.43941 13.0666C7.26015 12.9847 7.14719 12.9614 6.86672 12.9537C6.64871 12.9459 6.45769 12.9615 6.36035 12.9926ZM7.02652 14.0327C7.39661 14.2158 7.40433 14.7378 7.03827 14.9366C6.87848 15.0221 6.77342 15.0262 6.59416 14.9522C6.16951 14.7731 6.22406 14.099 6.67203 13.9822C6.81236 13.9469 6.85901 13.9548 7.02652 14.0327Z" fill="#286278"/>
             <path d="M15.0848 12.9925C14.8355 13.0783 14.6757 13.1716 14.4772 13.3588C14.002 13.8029 13.8617 14.4378 14.0915 15.061C14.2121 15.3727 14.555 15.7388 14.8783 15.8868C15.1004 15.988 15.1626 15.9998 15.5327 15.9998C15.9105 15.9998 15.9612 15.992 16.1949 15.8791C16.9389 15.5207 17.266 14.6909 16.974 13.9002C16.8572 13.5926 16.5337 13.2535 16.2066 13.0901C15.9846 12.981 15.9028 12.9615 15.595 12.9538C15.377 12.9459 15.1823 12.9615 15.0848 12.9925ZM15.7548 14.0288C16.1638 14.2158 16.1287 14.8156 15.6964 14.9675C15.1004 15.174 14.7382 14.2898 15.3107 14.0288C15.4003 13.9899 15.5015 13.9548 15.5327 13.9548C15.5639 13.9548 15.6653 13.9897 15.7548 14.0288Z" fill="#286278"/>
           </svg>
-          <p class="shipping_var"><b>Free Shipping!</b></p>
+          <p class="shipping_var" data-tolltip><span><b>Free Shipping!</b></span></p>
         </li>
       </ul>
     </div>
@@ -1552,6 +1562,9 @@ let startFunkPdp = setInterval(() => {
             if (el.closest(".price_match_guarantee")) {
               title = el.querySelector("span").textContent
             }
+            if (el.classList.contains("shipping_var")) {
+              title = el.querySelector("b").textContent
+            }
 
             let arrTooltipTableVar = arrTooltipTable[title]
             el.setAttribute("data-tolltip", arrTooltipTableVar)
@@ -1576,7 +1589,7 @@ let startFunkPdp = setInterval(() => {
                     } else if (el.closest(".final-price")) {
                       pushDataLayer(`${el.querySelector("span").textContent} link clicked`)
                     } else {
-                      pushDataLayer(`${el.querySelector("span").textContent} block clicked`)
+                      pushDataLayer(`${el.querySelector("span")?.textContent} block clicked`)
                     }
                   },
                 })
