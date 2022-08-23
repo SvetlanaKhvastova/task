@@ -11,7 +11,6 @@ let startFunkPdp = setInterval(() => {
         for (key in customer) {
           if (key === "group") {
             if (customer[key] !== "P10" && customer[key] !== "P10 Taxable") {
-              console.log(customer[key])
               pdpTest()
             }
           }
@@ -99,6 +98,9 @@ let startFunkPdp = setInterval(() => {
       .var_ceiling_fan .banner b,
       .checkout-cart-index .banner b {
         font-weight: 700;
+        text-decoration-line: underline;
+        color: #333333;
+        cursor: pointer;
       }
       .var_ceiling_fan .banner img,
       .checkout-cart-index .banner img {
@@ -264,11 +266,16 @@ let startFunkPdp = setInterval(() => {
         border: 1px solid #286278;
       }
 
+      .var_ceiling_fan.catalog-product-view .product-essential .product-shop #product-options-wrapper .swatches .attribute-swatch.selected .hex-swatch,
+      .var_ceiling_fan.catalog-product-view .product-essential .product-shop #product-options-wrapper .swatches .attribute-swatch.selected .img-swatch{
+        border: 3px solid #f2f2f2;
+      }
+
       .var_ceiling_fan.catalog-product-view .product-essential .product-shop #product-options-wrapper .swatches .attribute-swatch .hex-swatch,
       .var_ceiling_fan.catalog-product-view .product-essential .product-shop #product-options-wrapper .swatches .attribute-swatch .img-swatch {
         height: 23px;
         width: 23px;
-        border: 1px solid transparent;
+        border: unset;
       }
       .var_ceiling_fan.catalog-product-view .product-essential .product-shop #product-options-wrapper .labels .attribute-label span {
         font-size: 13px;
@@ -316,6 +323,7 @@ let startFunkPdp = setInterval(() => {
         line-height: 133%;
         color: #333333;
         margin: 0 0 0 6px;
+        cursor: pointer;
       }
       .var_ceiling_fan p.stock_var {
         margin: 0 0 0 6px;
@@ -1165,13 +1173,16 @@ let startFunkPdp = setInterval(() => {
         "Free Shipping!": [
           `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/help.svg" alt="return policy" /><span>Free Shipping</span></div><p>Free standard ground shipping on all orders within the continental US. Orders shipping to Alaska, Hawaii, Puerto Rico may incur additional shipping charges. Charges will be calculated at checkout.</p></div>`,
         ],
+        "Free Shipping": [
+          `<div class="tooltip_bar"><div class="name_tooltip"><img src="https://conversionratestore.github.io/projects/lamps/img/help.svg" alt="return policy" /><span>Free Shipping</span></div><p>Free standard ground shipping on all orders within the continental US. Orders shipping to Alaska, Hawaii, Puerto Rico may incur additional shipping charges. Charges will be calculated at checkout.</p></div>`,
+        ],
       }
 
       const banner = /*html*/ `
     <div class="banner">
           <a target="_blank" href="/policies/price-protection/">
               <img src="${imgFolderUrl}check_arrow.svg" alt="check arrow">
-              <b>30-Day Lowest Price Guarantee.</b>
+              <b>30-Day Lowest Price Guarantee</b>
           </a>
     </div>`
 
@@ -1324,6 +1335,9 @@ let startFunkPdp = setInterval(() => {
         renderPriceMatchGuarantee()
 
         document.querySelector(".header-container").insertAdjacentHTML("beforeend", banner) // add static banner
+        document.querySelector(".var_ceiling_fan .banner b")?.addEventListener("click", () => {
+          pushDataLayer("Banner link clicked")
+        })
         document.querySelector("button#add-item-to-cart")?.insertAdjacentHTML("afterbegin", `<img src="${imgFolderUrl}add_to_card_icon.png" alt="button">`) // add to cart icon
 
         // to change place for price and other element
@@ -1519,11 +1533,16 @@ let startFunkPdp = setInterval(() => {
               ".catalog-product-view .product-essential .p-price .pdp-afterpay img"
             ).src = `https://conversionratestore.github.io/projects/lamps/img/afterpay2.png`
           }
-
           // on Click afterpay
-          document.querySelector(".catalog-product-view .product-essential .p-price .pdp-afterpay img")?.addEventListener("click", () => {
-            pushDataLayer("Afterpay link clicked")
-          })
+
+          if (document.querySelector(".var_ceiling_fan.catalog-product-view .product-essential .p-price .pdp-afterpay img")) {
+            if (!document.querySelector(".var_ceiling_fan.catalog-product-view .product-essential .p-price .pdp-afterpay img").getAttribute("data-test")) {
+              document.querySelector(".var_ceiling_fan.catalog-product-view .product-essential .p-price .pdp-afterpay img")?.addEventListener("click", () => {
+                pushDataLayer("Afterpay link clicked")
+              })
+            }
+            document.querySelector(".var_ceiling_fan.catalog-product-view .product-essential .p-price .pdp-afterpay img").setAttribute("data-test", "1")
+          }
         }
 
         //  render block Why do I need this?
@@ -1578,34 +1597,52 @@ let startFunkPdp = setInterval(() => {
               clearInterval(tippyRun)
 
               document.querySelectorAll("[data-tolltip]").forEach((el) => {
-                tippy(el, {
-                  content: el.getAttribute("data-tolltip"),
-                  // trigger: "click",
-                  duration: [500, 500],
-                  interactive: true,
-                  onTrigger(e) {
-                    if (el.closest(".text_why_need")) {
-                      pushDataLayer(`Why do I need this '${el.closest(".text_why_need").getAttribute("data-title")}' clicked `)
-                    } else if (el.closest(".final-price")) {
-                      pushDataLayer(`${el.querySelector("span").textContent} link clicked`)
-                    } else {
-                      pushDataLayer(`${el.querySelector("span")?.textContent} block clicked`)
-                    }
-                  },
-                })
+                setTimeout(() => {
+                  if (el) {
+                    tippy(el, {
+                      content: el.getAttribute("data-tolltip"),
+                      // trigger: "click",
+                      duration: [500, 500],
+                      interactive: true,
+                      onTrigger(e) {
+                        if (el) {
+                          if (el.closest(".text_why_need")) {
+                            pushDataLayer(`Why do I need this '${el.closest(".text_why_need").getAttribute("data-title")}' clicked `)
+                          } else if (el.closest(".final-price")) {
+                            pushDataLayer(`${el.querySelector("span").textContent} link clicked`)
+                          } else if (el.classList.contains("shipping_var")) {
+                            pushDataLayer(`${el.querySelector("b").textContent} link clicked`)
+                          } else {
+                            pushDataLayer(`${el.querySelector("span")?.textContent} block clicked`)
+                          }
+                        }
+                      },
+                    })
+                  }
+                }, 1000)
               })
 
               // Click on_policy
-              document.querySelector(".on_policy")?.addEventListener("click", () => {
-                pushDataLayer("'price protection policy here.' link clicked")
-              })
+              if (document.querySelector(".on_policy")) {
+                if (!document.querySelector(".on_policy").getAttribute("data-test")) {
+                  document.querySelector(".on_policy")?.addEventListener("click", () => {
+                    pushDataLayer("'price protection policy here.' link clicked")
+                  })
+                }
+                document.querySelector(".on_policy").setAttribute("data-test", "1")
+              }
 
               // Click on_return
-              document.querySelector(".on_return")?.addEventListener("click", () => {
-                pushDataLayer("'return policy here.' link clicked")
-              })
+              if (document.querySelector(".on_return")) {
+                if (!document.querySelector(".on_return").getAttribute("data-test")) {
+                  document.querySelector(".on_return")?.addEventListener("click", () => {
+                    pushDataLayer("'return policy here.' link clicked")
+                  })
+                }
+                document.querySelector(".on_return").setAttribute("data-test", "1")
+              }
             }
-          }, 500)
+          }, 1000)
         }
 
         // observer pdp
@@ -1621,8 +1658,11 @@ let startFunkPdp = setInterval(() => {
               renderPriceMatchGuarantee()
             }
 
-            onTippyRun()
-            renderTooltip()
+            setTimeout(() => {
+              renderTooltip()
+              onTippyRun()
+            }, 2000)
+
             changeImgAfterpay()
 
             renderToPdp()
@@ -1933,7 +1973,12 @@ let startFunkPdp = setInterval(() => {
             // if (document.querySelector(".checkout-cart-index")) {
             if (!document.querySelector(".checkout-cart-index .banner")) {
               document.querySelector("#main-wrapper > div:first-child").insertAdjacentHTML("afterend", banner) // add static banner
+
+              document.querySelector(".checkout-cart-index .banner b")?.addEventListener("click", () => {
+                pushDataLayer("Banner link clicked")
+              })
             }
+
             // }
 
             if (el.querySelector(".orig-price")) {
