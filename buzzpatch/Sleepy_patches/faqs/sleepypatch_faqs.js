@@ -8,7 +8,7 @@ let faqs = setInterval(() => {
         console.log(actionDataLayer + " : " + labelDataLayer)
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: Add scientific research`,
+          eventCategory: `Exp: How it works`,
           eventAction: `${actionDataLayer}`,
           eventLabel: `${labelDataLayer}`,
         })
@@ -16,7 +16,7 @@ let faqs = setInterval(() => {
         console.log(actionDataLayer)
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: Add scientific research`,
+          eventCategory: `Exp: Exp: How it works`,
           eventAction: `${actionDataLayer}`,
         })
       }
@@ -132,7 +132,7 @@ let faqs = setInterval(() => {
                 <li class="accardion_block_faqs">
                     <div class="accardion_link_faqs">
                         <span></span>
-                        <h3>How does SleepyPatch work?</h3>
+                        <h3>How do SleepyPatches work?</h3>
                     </div>
                     <div class="accardion_lists_faqs">
                         <div>
@@ -149,7 +149,7 @@ let faqs = setInterval(() => {
                 <li class="accardion_block_faqs">
                     <div class="accardion_link_faqs">
                         <span></span>
-                        <h3>How to apply SleepyPatch?</h3>
+                        <h3>How do you apply SleepyPatches?</h3>
                     </div>
                     <div class="accardion_lists_faqs">
                         <div>
@@ -165,7 +165,7 @@ let faqs = setInterval(() => {
                 <li class="accardion_block_faqs">
                     <div class="accardion_link_faqs">
                         <span></span>
-                        <h3>How long do SleepyPatch last?</h3>
+                        <h3>How long do SleepyPatches work for?</h3>
                     </div>
                     <div class="accardion_lists_faqs">
                         <div>
@@ -176,7 +176,7 @@ let faqs = setInterval(() => {
                 <li class="accardion_block_faqs">
                     <div class="accardion_link_faqs">
                         <span></span>
-                        <h3>What do the SleepyPatches smell like?</h3>
+                        <h3>What do SleepyPatches smell like?</h3>
                     </div>
                     <div class="accardion_lists_faqs">
                         <div>
@@ -187,7 +187,7 @@ let faqs = setInterval(() => {
                 <li >
                     <div class="accardion_link_faqs">
                         <span></span>
-                        <h3>What are the ingredients in the SleepyPatch?</h3>
+                        <h3>What ingredients are in SleepyPatches?</h3>
                     </div>
                     <div class="accardion_lists_faqs">
                         <div>
@@ -198,7 +198,7 @@ let faqs = setInterval(() => {
                 <li class="accardion_block_faqs">
                     <div class="accardion_link_faqs">
                         <span></span>
-                        <h3>Does SleepyPatch have scientifically proven effect?</h3>
+                        <h3>Are SleepyPatches science-backed?</h3>
                     </div>
                     <div class="accardion_lists_faqs">
                         <div>
@@ -222,7 +222,7 @@ let faqs = setInterval(() => {
         if (link === e.currentTarget) {
           e.currentTarget.classList.toggle("active")
 
-          pushDataLayer("Click on section explaining", `${e.currentTarget.querySelector("h3").textContent}`)
+          pushDataLayer("Click on question", `${e.currentTarget.querySelector("h3").textContent}`)
           hidePanel.classList.toggle("active_block")
 
           const scrollTarget = hidePanel
@@ -248,6 +248,6 @@ let faqs = setInterval(() => {
     })
 
     pushDataLayer("loaded")
-    clarity("set", "add_scientific_research", "variant_1")
+    clarity("set", "Exp: How it works", "variant_1")
   }
 }, 10)
