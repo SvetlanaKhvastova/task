@@ -184,6 +184,7 @@ img[data-title] {
   gap: 90px;
   margin: 0;
 }
+
 .reviews_wrapp .new_reviews_box li {
   display: flex;
   gap: 20px;
@@ -231,6 +232,7 @@ table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 8px 0;
+  position: relative;
 }
 
 table th {
@@ -369,7 +371,9 @@ tbody tr:not(:nth-child(1)) {
   position: relative;
 }
 
-tbody tr:not(:nth-child(1))::after {
+tbody tr:nth-child(2) td:after,
+tbody tr:nth-child(3) td:after,
+tbody tr:nth-child(4) td:after{
   position: absolute;
   content: "";
   left: 0;
@@ -389,6 +393,7 @@ tbody td svg + span {
 
 table tbody td {
   padding: 20px 0;
+  position: relative;
 }
 
 table tbody tr:first-child td {
@@ -628,7 +633,8 @@ main {
     position: absolute;
     width: 100%;
     top: -8px;
-    padding: 6px 0 0;
+    padding: 6px 0 0;2
+    z-index: 10;
   }
   .plan_header {
     padding: 12px;
@@ -689,7 +695,9 @@ main {
   table tbody td {
     padding: 20px 0 0;
   }
-  tbody tr:not(:nth-child(1))::after {
+ tbody tr:nth-child(2) td:not(:nth-child(1))::after,
+ tbody tr:nth-child(3) td:not(:nth-child(1))::after,
+ tbody tr:nth-child(4) td:not(:nth-child(1))::after {
     bottom: 15px;
   }
   table tr td:first-child p {
@@ -703,9 +711,14 @@ main {
   table tr td:first-child p span.mob_var {
     display: inline;
   }
-  tbody tr:nth-child(2)::after {
+  tbody tr:nth-child(2) td:not(:nth-child(1))::after {
     bottom: 24px;
   }
+
+  tbody tr td:nth-child(1)::after{
+    content: unset;
+  }
+  
   tbody tr:nth-child(3) {
     height: 146px;
   }
