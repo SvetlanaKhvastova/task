@@ -44,8 +44,8 @@ if (settings.observe) {
         if (!(node instanceof HTMLElement)) continue
 
         if (node.classList.contains("mygarage-dd-container")) {
-          if (node.querySelector(".mygarage-vehicle-title") && document.querySelector(".lav-add-popup") && document.querySelector(".lav-add__caption")) {
-            localStorage.setItem("showSearch", "yes")
+          if (node.querySelector(".mygarage-vehicle-title") && document.querySelector(".lav-add-popup")) {
+            // localStorage.setItem("showSearch", "yes")
             if (localStorage.getItem("startDate")) {
               let time = (new Date().getTime() - parseInt(localStorage.getItem("startDate"))) / 1000
               gaEvent(`Popup was closed after ${time} seconds`, "Popup: Select vehicle")
@@ -83,7 +83,7 @@ if (settings.observe) {
                         gaEvent(`Click on Make select`, "Popup: Select vehicle")
                       } else if (item.querySelector(".marker").innerText == "3") {
                         gaEvent(`Click on Model select`, "Popup: Select vehicle")
-                        sessionStorage.setItem("chooseModel", true)
+                        localStorage.setItem("showSearch", "yes")
                       }
                     })
                   }
@@ -91,7 +91,7 @@ if (settings.observe) {
               })
             }
 
-            for (let item of document.querySelectorAll(".lav-add-popup .select-vehicle-col")) {
+            for (let item of document.querySelectorAll(".select-vehicle-col")) {
               item.addEventListener("click", function () {
                 if (item.querySelector(".marker").innerText == "1") {
                   gaEvent(`Click on Year select`, "Popup: Select vehicle")
@@ -99,7 +99,25 @@ if (settings.observe) {
                   gaEvent(`Click on Make select`, "Popup: Select vehicle")
                 } else if (item.querySelector(".marker").innerText == "3") {
                   gaEvent(`Click on Model select`, "Popup: Select vehicle")
-                  sessionStorage.setItem("chooseModel", true)
+                  localStorage.setItem("showSearch", "yes")
+                }
+              })
+            }
+          }, 800)
+        }
+
+        //
+        if (node.classList.contains("select-vehicle-spacer") && node.closest(".head-nav-inner")) {
+          setTimeout(() => {
+            for (let item of document.querySelectorAll(".select-vehicle-col")) {
+              item.addEventListener("click", function () {
+                if (item.querySelector(".marker").innerText == "1") {
+                  gaEvent(`Click on Year select`, "Homepage: Select vehicle")
+                } else if (item.querySelector(".marker").innerText == "2") {
+                  gaEvent(`Click on Make select`, "Homepage: Select vehicle")
+                } else if (item.querySelector(".marker").innerText == "3") {
+                  gaEvent(`Click on Model select`, "Homepage: Select vehicle")
+                  localStorage.setItem("showSearch", "yes")
                 }
               })
             }
@@ -232,19 +250,28 @@ const styles = `
     border-radius: 5px;
     padding: 30px;
   }
-  .lav-add__caption {
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 30px;
-    margin-bottom: 20px;
-    color: #FFFFFF;
-    letter-spacing: 0.4px;
-  }
   .lav-add-popup .gbox_close {
     top: 20px;
     right: 20px;
     opacity: 1;
   }
+  .lav-search__btn-top.new_input-search{
+    max-width: 124px;
+    height: 44px;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    text-align: center;
+    position: absolute;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #ffffff !important;
+  }
+    .search-field>.search-btn{
+    display: none;
+    }
   @media(max-width: 1024px) {
     .lav-search__btn-brief {
       display: block;
@@ -260,6 +287,17 @@ const styles = `
       width: 36px;
       height: 36px;
     }
+    .lav-search__btn-top.new_input-search{
+        min-width: 36px;
+        height: 36px;
+        max-width: 36px;
+        right: 5px;
+    }
+    .lav-search__btn-top.new_input-search .lav-search__btn-brief {
+    display: block;
+    width: 18px;
+    height: 18px;
+}
     #dummy-search-input-for-preact-render .header-search-label {
       padding-left: 12px;
       height: 36px;
@@ -274,12 +312,6 @@ const styles = `
     #dummy-search-input-for-preact-render {
       margin-top: 0;
       padding: 5px;
-    }
-    .lav-add__caption {
-      font-size: 20px;
-      line-height: 24px;
-      padding: 0 5px;
-      margin-bottom: 10px;
     }
     .gbox_portal .select-vehicle {
       padding: 55px 7px 5px;
@@ -306,6 +338,7 @@ function init() {
 
   document.addEventListener("click", function (e) {
     console.log(e.target)
+
     if (
       localStorage.getItem("startDate") &&
       e.target.href &&
@@ -314,6 +347,20 @@ function init() {
       let time = (new Date().getTime() - parseInt(localStorage.getItem("startDate"))) / 1000
       gaEvent(`Popup was closed after ${time} seconds`, "Popup: Select vehicle")
       localStorage.removeItem("startDate")
+    }
+
+    if (e.target.classList.contains("simple-btn") && document.querySelector(".simple-btn")) {
+      gaEvent(`Click on Add vehicle`, "Header: My garage")
+    }
+
+    if (
+      (e.target.classList.contains("hover-item") && e.target.closest(".left-dd-vehicle-spacer")) ||
+      (e.target.classList.contains("left-menu-vehicles-title") && e.target.closest(".left-dd-vehicle-spacer")) ||
+      (e.target.classList.contains("count-item") && e.target.closest(".left-dd-vehicle-spacer")) ||
+      e.target.classList.contains("left-dd-vehicle-spacer") ||
+      (e.target.classList.contains("left-dd-title") && e.target.closest(".left-dd-vehicle-spacer"))
+    ) {
+      gaEvent(`Click on My Garage`, "PanelPage: My garage")
     }
 
     if (e.target.classList.contains("select-vehicle-button") && e.target.closest(".lav-add-popup")) {
@@ -387,7 +434,7 @@ function init() {
   gaEvent("loaded")
 
   changeSearch()
-  openSearchAfterClickAddingCar()
+  addSearchBtn()
 }
 
 function changeSearch() {
@@ -416,11 +463,13 @@ function changeSearch() {
       clarity("set", "site_search", "search_clicked")
     }
     handleSearch()
+    addSearchBtn()
   })
 }
 
 function handleSearch() {
   isProcessing = true
+
   if (!document.querySelector(".mygarage-vehicle-title")) {
     document.querySelector(".header-search-label").click()
     let addNewInterval = setInterval(() => {
@@ -437,11 +486,31 @@ function handleSearch() {
   isProcessing = false
 }
 
-function openSearchAfterClickAddingCar() {
-  if (document.querySelector(".nav-tool.-garage>.title").textContent !== "Select vehicle") {
-    if (sessionStorage.getItem("chooseModel")) {
-      document.querySelector(".header-search-label").click()
-      sessionStorage.removeItem("chooseModel")
+function addSearchBtn() {
+  let addNewInterval = setInterval(() => {
+    if (!document.querySelector(".search-field>.search-btn")) return false
+
+    if (!document.querySelector(".lav-search__btn.lav-search__btn-top.new_input-search")) {
+      document.querySelector(".search-field>.search-btn").insertAdjacentHTML(
+        "beforebegin",
+        ` <button class='lav-search__btn lav-search__btn-top new_input-search'>
+            <span class='lav-search__btn-full'>Search</span>
+            <span class='lav-search__btn-brief'>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9659 11.2549H12.7559L17.7459 16.2549L16.2559 17.7449L11.2559 12.7549V11.9649L10.9859 11.6849C9.84586 12.6649 8.36586 13.2549 6.75586 13.2549C3.16586 13.2549 0.255859 10.3449 0.255859 6.75488C0.255859 3.16488 3.16586 0.254883 6.75586 0.254883C10.3459 0.254883 13.2559 3.16488 13.2559 6.75488C13.2559 8.36488 12.6659 9.84488 11.6859 10.9849L11.9659 11.2549ZM2.25586 6.75488C2.25586 9.24488 4.26586 11.2549 6.75586 11.2549C9.24586 11.2549 11.2559 9.24488 11.2559 6.75488C11.2559 4.26488 9.24586 2.25488 6.75586 2.25488C4.26586 2.25488 2.25586 4.26488 2.25586 6.75488Z" fill="#ffffff"/>
+              </svg>
+            </span>
+          </button >`
+      )
     }
-  }
+
+    if (document.querySelector(".lav-search__btn.lav-search__btn-top.new_input-search")) {
+      document.querySelector(".lav-search__btn.lav-search__btn-top.new_input-search").addEventListener("click", (e) => {
+        e.preventDefault()
+        document.querySelector(".search-field>.search-btn").click()
+      })
+    }
+
+    clearInterval(addNewInterval)
+  }, 150)
 }
