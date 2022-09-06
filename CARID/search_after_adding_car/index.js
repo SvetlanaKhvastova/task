@@ -1,38 +1,38 @@
-console.log('initExp');
+console.log("initExp")
 
 /********* Settings **********/
 const settings = {
-  dir: 'https://flopsi69.github.io/crs/carid/search',
+  dir: "https://flopsi69.github.io/crs/carid/search",
   clarity: true,
   observe: true,
-};
+}
 
 //Hotjar
 if (settings.clarity) {
   try {
-    clarity('set', 'site_search', 'variant_1');
+    clarity("set", "site_search", "variant_1")
   } catch (e) {}
 }
 
 // Alalytic
 function gaEvent(action, label) {
   if (!label) {
-    label = '';
+    label = ""
   }
-  let device = 'Desktop';
+  let device = "Desktop"
   if (window.innerWidth < 992) {
-    device = 'Mobile';
+    device = "Mobile"
   }
   try {
     var objData = {
-      event: 'event-to-ga',
-      eventCategory: 'Exp: Site search ' + device,
+      event: "event-to-ga",
+      eventCategory: "Exp: Site search " + device,
       eventAction: action,
       eventLabel: label,
-      eventValue: '',
-    };
-    console.log('EventFire:', objData);
-    dataLayer.push(objData);
+      eventValue: "",
+    }
+    console.log("EventFire:", objData)
+    dataLayer.push(objData)
   } catch (e) {}
 }
 
@@ -41,120 +41,75 @@ if (settings.observe) {
   let observer = new MutationObserver((mutations) => {
     for (let mutation of mutations) {
       for (let node of mutation.addedNodes) {
-        if (!(node instanceof HTMLElement)) continue;
+        if (!(node instanceof HTMLElement)) continue
 
-        if (node.classList.contains('mygarage-dd-container')) {
-          if (
-            node.querySelector('.mygarage-vehicle-title') &&
-            document.querySelector('.lav-add-popup') &&
-            document.querySelector('.lav-add__caption')
-          ) {
-            localStorage.setItem('showSearch', 'yes');
-            if (localStorage.getItem('startDate')) {
-              let time =
-                (new Date().getTime() -
-                  parseInt(localStorage.getItem('startDate'))) /
-                1000;
-              gaEvent(
-                `Popup was closed after ${time} seconds`,
-                'Popup: Select vehicle'
-              );
-              localStorage.removeItem('startDate');
+        if (node.classList.contains("mygarage-dd-container")) {
+          if (node.querySelector(".mygarage-vehicle-title") && document.querySelector(".lav-add-popup") && document.querySelector(".lav-add__caption")) {
+            localStorage.setItem("showSearch", "yes")
+            if (localStorage.getItem("startDate")) {
+              let time = (new Date().getTime() - parseInt(localStorage.getItem("startDate"))) / 1000
+              gaEvent(`Popup was closed after ${time} seconds`, "Popup: Select vehicle")
+              localStorage.removeItem("startDate")
             }
           }
         }
 
-        if (
-          node.classList.contains('select-vehicle') &&
-          node.closest('.gbox_portal')
-        ) {
-          node.closest('.gbox_portal').classList.add('lav-add-popup');
+        if (node.classList.contains("select-vehicle") && node.closest(".gbox_portal")) {
+          node.closest(".gbox_portal").classList.add("lav-add-popup")
           setTimeout(() => {
-            document
-              .querySelector('.lav-add-popup .gbox_close')
-              .addEventListener('click', function () {
-                gaEvent(
-                  'Clicks on the cross pictogramme',
-                  'First select popup'
-                );
-                if (localStorage.getItem('startDate')) {
-                  let time =
-                    (new Date().getTime() -
-                      parseInt(localStorage.getItem('startDate'))) /
-                    1000;
-                  gaEvent(
-                    `Popup was closed after ${time} seconds', 'Popup: Select vehicle`
-                  );
-                  localStorage.removeItem('startDate');
-                }
-              });
+            document.querySelector(".lav-add-popup .gbox_close").addEventListener("click", function () {
+              gaEvent("Clicks on the cross pictogramme", "First select popup")
+              if (localStorage.getItem("startDate")) {
+                let time = (new Date().getTime() - parseInt(localStorage.getItem("startDate"))) / 1000
+                gaEvent(`Popup was closed after ${time} seconds', 'Popup: Select vehicle`)
+                localStorage.removeItem("startDate")
+              }
+            })
 
-            for (let item of document.querySelectorAll(
-              '.lav-add-popup .nav .link'
-            )) {
-              item.addEventListener('click', function () {
-                let text = item.innerText;
-                if (item.querySelector('.link-title')) {
-                  text = item.querySelector('.link-title').innerText;
+            for (let item of document.querySelectorAll(".lav-add-popup .nav .link")) {
+              item.addEventListener("click", function () {
+                let text = item.innerText
+                if (item.querySelector(".link-title")) {
+                  text = item.querySelector(".link-title").innerText
                 }
-                gaEvent(
-                  `Click on ${text} navigation button`,
-                  'Popup: Select vehicle'
-                );
+                gaEvent(`Click on ${text} navigation button`, "Popup: Select vehicle")
                 setTimeout(() => {
-                  for (let item of document.querySelectorAll(
-                    '.lav-add-popup .select-vehicle-col'
-                  )) {
-                    item.addEventListener('click', function (e) {
-                      if (e.target.classList.contains('item')) return false;
-                      if (item.querySelector('.marker').innerText == '1') {
-                        gaEvent(
-                          `Click on Year select`,
-                          'Popup: Select vehicle'
-                        );
-                      } else if (
-                        item.querySelector('.marker').innerText == '2'
-                      ) {
-                        gaEvent(
-                          `Click on Make select`,
-                          'Popup: Select vehicle'
-                        );
-                      } else if (
-                        item.querySelector('.marker').innerText == '3'
-                      ) {
-                        gaEvent(
-                          `Click on Model select`,
-                          'Popup: Select vehicle'
-                        );
+                  for (let item of document.querySelectorAll(".lav-add-popup .select-vehicle-col")) {
+                    item.addEventListener("click", function (e) {
+                      if (e.target.classList.contains("item")) return false
+                      if (item.querySelector(".marker").innerText == "1") {
+                        gaEvent(`Click on Year select`, "Popup: Select vehicle")
+                      } else if (item.querySelector(".marker").innerText == "2") {
+                        gaEvent(`Click on Make select`, "Popup: Select vehicle")
+                      } else if (item.querySelector(".marker").innerText == "3") {
+                        gaEvent(`Click on Model select`, "Popup: Select vehicle")
                       }
-                    });
+                    })
                   }
-                }, 500);
-              });
+                }, 500)
+              })
             }
 
-            for (let item of document.querySelectorAll(
-              '.lav-add-popup .select-vehicle-col'
-            )) {
-              item.addEventListener('click', function () {
-                if (item.querySelector('.marker').innerText == '1') {
-                  gaEvent(`Click on Year select`, 'Popup: Select vehicle');
-                } else if (item.querySelector('.marker').innerText == '2') {
-                  gaEvent(`Click on Make select`, 'Popup: Select vehicle');
-                } else if (item.querySelector('.marker').innerText == '3') {
-                  gaEvent(`Click on Model select`, 'Popup: Select vehicle');
+            for (let item of document.querySelectorAll(".lav-add-popup .select-vehicle-col")) {
+              item.addEventListener("click", function () {
+                if (item.querySelector(".marker").innerText == "1") {
+                  gaEvent(`Click on Year select`, "Popup: Select vehicle")
+                } else if (item.querySelector(".marker").innerText == "2") {
+                  gaEvent(`Click on Make select`, "Popup: Select vehicle")
+                } else if (item.querySelector(".marker").innerText == "3") {
+                  gaEvent(`Click on Model select`, "Popup: Select vehicle")
                 }
-              });
+              })
             }
-          }, 800);
+          }, 800)
         }
       }
     }
-  });
+  })
 
-  let demoElem = document.body;
+  let demoElem = document.body
 
-  observer.observe(demoElem, { childList: true, subtree: true });
+  observer.observe(demoElem, { childList: true, subtree: true })
 }
 
 // Styles
@@ -328,198 +283,122 @@ const styles = `
       padding: 55px 7px 5px;
     }
   }
-`;
+`
 
-const stylesEl = document.createElement('style');
-stylesEl.innerHTML = styles;
-document.body.appendChild(stylesEl);
+const stylesEl = document.createElement("style")
+stylesEl.innerHTML = styles
+document.body.appendChild(stylesEl)
 /*** STYLES / end ***/
 
 /********* Custom Code **********/
-init();
-var isSearch = false;
-var isProcessing = false;
+init()
+var isSearch = false
+var isProcessing = false
 function init() {
-  console.log('init');
-  document.addEventListener('keypress', function (event) {
-    if (event.key === 'Enter' && document.activeElement) {
-      gaEvent('Click on Search button enter', 'Header. Search menu');
+  console.log("init")
+  document.addEventListener("keypress", function (event) {
+    if (event.key === "Enter" && document.activeElement) {
+      gaEvent("Click on Search button enter", "Header. Search menu")
     }
-  });
+  })
 
-  document.addEventListener('click', function (e) {
-    console.log(e.target);
+  document.addEventListener("click", function (e) {
+    console.log(e.target)
     if (
-      localStorage.getItem('startDate') &&
+      localStorage.getItem("startDate") &&
       e.target.href &&
-      (e.target.href.includes('powersportsid') ||
-        e.target.href.includes('truckid') ||
-        e.target.href.includes('motorcycleid'))
+      (e.target.href.includes("powersportsid") || e.target.href.includes("truckid") || e.target.href.includes("motorcycleid"))
     ) {
-      let time =
-        (new Date().getTime() - parseInt(localStorage.getItem('startDate'))) /
-        1000;
-      gaEvent(
-        `Popup was closed after ${time} seconds`,
-        'Popup: Select vehicle'
-      );
-      localStorage.removeItem('startDate');
+      let time = (new Date().getTime() - parseInt(localStorage.getItem("startDate"))) / 1000
+      gaEvent(`Popup was closed after ${time} seconds`, "Popup: Select vehicle")
+      localStorage.removeItem("startDate")
     }
 
-    if (
-      e.target.classList.contains('select-vehicle-button') &&
-      e.target.closest('.lav-add-popup')
-    ) {
-      gaEvent(`Click on Go button`, 'Popup: Select vehicle');
+    if (e.target.classList.contains("select-vehicle-button") && e.target.closest(".lav-add-popup")) {
+      gaEvent(`Click on Go button`, "Popup: Select vehicle")
     }
 
-    if (
-      (e.target.classList.contains('gbox') ||
-        e.target.classList.contains('gbox_wrap')) &&
-      document.querySelector('.lav-add-popup')
-    ) {
-      if (localStorage.getItem('startDate')) {
-        let time =
-          (new Date().getTime() - parseInt(localStorage.getItem('startDate'))) /
-          1000;
-        gaEvent(
-          `Popup was closed after ${time} seconds`,
-          'Popup: Select vehicle'
-        );
-        localStorage.removeItem('startDate');
+    if ((e.target.classList.contains("gbox") || e.target.classList.contains("gbox_wrap")) && document.querySelector(".lav-add-popup")) {
+      if (localStorage.getItem("startDate")) {
+        let time = (new Date().getTime() - parseInt(localStorage.getItem("startDate"))) / 1000
+        gaEvent(`Popup was closed after ${time} seconds`, "Popup: Select vehicle")
+        localStorage.removeItem("startDate")
       }
     }
 
-    if (
-      (e.target.classList.contains('gbox') ||
-        e.target.classList.contains('gbox_wrap')) &&
-      isSearch
-    ) {
-      isSearch = false;
-      gaEvent(
-        'Clicks on the background space closes pop-up',
-        'Header. Search menu'
-      );
+    if ((e.target.classList.contains("gbox") || e.target.classList.contains("gbox_wrap")) && isSearch) {
+      isSearch = false
+      gaEvent("Clicks on the background space closes pop-up", "Header. Search menu")
     }
 
-    if (e.target.classList.contains('gbox_close') && isSearch) {
-      isSearch = false;
-      gaEvent(
-        'Clicks on the closing search cross pictogramme',
-        'Header. Search menu'
-      );
+    if (e.target.classList.contains("gbox_close") && isSearch) {
+      isSearch = false
+      gaEvent("Clicks on the closing search cross pictogramme", "Header. Search menu")
     }
 
-    if (e.target.classList.contains('js-recent-searches-summary-item')) {
-      gaEvent('Click on last searches terms', 'Header. Search menu');
+    if (e.target.classList.contains("js-recent-searches-summary-item")) {
+      gaEvent("Click on last searches terms", "Header. Search menu")
     }
 
-    if (
-      e.target.classList.contains('action') &&
-      e.target.closest('.recent-searches-summary')
-    ) {
-      gaEvent('Click on Clear History link', 'Header. Search menu');
+    if (e.target.classList.contains("action") && e.target.closest(".recent-searches-summary")) {
+      gaEvent("Click on Clear History link", "Header. Search menu")
     }
 
-    if (
-      e.target.classList.contains('search-btn') &&
-      document.querySelector('.search-submit-loader')
-    ) {
-      gaEvent(
-        `Click on Search button. ${
-          document.querySelector('#search-field').value
-        }`,
-        'Header. Search menu'
-      );
+    if (e.target.classList.contains("search-btn") && document.querySelector(".search-submit-loader")) {
+      gaEvent(`Click on Search button. ${document.querySelector("#search-field").value}`, "Header. Search menu")
     }
 
-    if (e.target.classList.contains('cat-link') && isSearch) {
-      if (e.target.closest('.autoc-section')) {
-        gaEvent(
-          `Click on ${e.target.innerText} button in ${
-            e.target
-              .closest('.autoc-section')
-              .querySelector('.autoc-section-title').innerText
-          }`,
-          'Header. Search menu'
-        );
+    if (e.target.classList.contains("cat-link") && isSearch) {
+      if (e.target.closest(".autoc-section")) {
+        gaEvent(`Click on ${e.target.innerText} button in ${e.target.closest(".autoc-section").querySelector(".autoc-section-title").innerText}`, "Header. Search menu")
       }
 
-      if (e.target.closest('.autoc-section-row')) {
-        gaEvent(
-          `Click on ${e.target.innerText} button in ${
-            e.target
-              .closest('.autoc-section-row')
-              .querySelector('.autoc-section-title').innerText
-          }`,
-          'Header. Search menu'
-        );
+      if (e.target.closest(".autoc-section-row")) {
+        gaEvent(`Click on ${e.target.innerText} button in ${e.target.closest(".autoc-section-row").querySelector(".autoc-section-title").innerText}`, "Header. Search menu")
       }
     }
 
-    if (
-      e.target.closest('.autoc-prod-li') &&
-      e.target.closest('.autoc-products-section') &&
-      isSearch
-    ) {
+    if (e.target.closest(".autoc-prod-li") && e.target.closest(".autoc-products-section") && isSearch) {
       gaEvent(
-        `Click on ${
-          e.target.closest('.autoc-prod-li').querySelector('.title').innerText
-        } button in ${
-          e.target
-            .closest('.autoc-products-section')
-            .querySelector('.autoc-section-title').innerText
+        `Click on ${e.target.closest(".autoc-prod-li").querySelector(".title").innerText} button in ${
+          e.target.closest(".autoc-products-section").querySelector(".autoc-section-title").innerText
         }`,
-        'Header. Search menu'
-      );
+        "Header. Search menu"
+      )
     }
 
-    if (
-      e.target.closest('.autoc-brands-li') &&
-      e.target.closest('.autoc-brands') &&
-      isSearch
-    ) {
-      gaEvent(
-        `Click on brand icon in ${
-          e.target
-            .closest('.autoc-section')
-            .querySelector('.autoc-section-title').innerText
-        }`,
-        'Header. Search menu'
-      );
+    if (e.target.closest(".autoc-brands-li") && e.target.closest(".autoc-brands") && isSearch) {
+      gaEvent(`Click on brand icon in ${e.target.closest(".autoc-section").querySelector(".autoc-section-title").innerText}`, "Header. Search menu")
     }
-  });
+  })
 
-  if (localStorage.getItem('showSearch') == 'yes') {
+  if (localStorage.getItem("showSearch") == "yes") {
     let clickSearch = setInterval(() => {
-      if (!document.querySelector('.lav-search__btn-top')) return false;
-      clearInterval(clickSearch);
-      localStorage.removeItem('showSearch');
-      isSearch = true;
-      document.querySelector('.header-search-label').click();
-    }, 200);
+      if (!document.querySelector(".lav-search__btn-top")) return false
+      clearInterval(clickSearch)
+      localStorage.removeItem("showSearch")
+      isSearch = true
+      document.querySelector(".header-search-label").click()
+    }, 200)
   }
 
   // if (!localStorage.getItem('loadedFiredSearch')) {
   // localStorage.setItem('loadedFiredSearch', 'yes');
-  gaEvent('loaded');
+  gaEvent("loaded")
   // }
 
-  addSidebarSearch();
-  changeSearch();
+  addSidebarSearch()
+  changeSearch()
 }
 
 function changeSearch() {
-  if (!document.querySelector('#dummy-search-input-for-preact-render'))
-    return false;
+  if (!document.querySelector("#dummy-search-input-for-preact-render")) return false
 
   setInterval(() => {
-    if (!document.querySelector('.lav-search__btn-top')) {
-      document
-        .querySelector('#dummy-search-input-for-preact-render')
-        .insertAdjacentHTML(
-          'beforeend',
-          `<button class='lav-search__btn lav-search__btn-top'>
+    if (!document.querySelector(".lav-search__btn-top")) {
+      document.querySelector("#dummy-search-input-for-preact-render").insertAdjacentHTML(
+        "beforeend",
+        `<button class='lav-search__btn lav-search__btn-top'>
             <span class='lav-search__btn-full'>Search</span>
             <span class='lav-search__btn-brief'>
               <svg width="18" height="18" viewBox="0 0 18 18" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
@@ -527,46 +406,39 @@ function changeSearch() {
               </svg>
             </span>
           </button > `
-        );
+      )
     }
-  }, 1000);
+  }, 1000)
 
-  document
-    .querySelector('#dummy-search-input-for-preact-render')
-    .addEventListener('click', function (e) {
-      e.preventDefault();
-      if (!isProcessing) {
-        gaEvent('Click on Search input', 'Header. Search menu');
-        clarity('set', 'site_search', 'search_clicked');
-      }
-      handleSearch();
-    });
+  document.querySelector("#dummy-search-input-for-preact-render").addEventListener("click", function (e) {
+    e.preventDefault()
+    if (!isProcessing) {
+      gaEvent("Click on Search input", "Header. Search menu")
+      clarity("set", "site_search", "search_clicked")
+    }
+    handleSearch()
+  })
 }
 
 function addSidebarSearch() {
-  document.addEventListener('click', function (e) {
-    if (e.target.classList.contains('js-panel-back')) {
-      handleSidebar();
+  document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("js-panel-back")) {
+      handleSidebar()
     }
-  });
+  })
 
-  document
-    .querySelector('.js-hamburger')
-    .addEventListener('click', handleSidebar);
+  document.querySelector(".js-hamburger").addEventListener("click", handleSidebar)
 }
 
 function handleSidebar() {
   var hambInterval = setInterval(() => {
-    if (document.querySelector('.lav-side__search')) return false;
+    if (document.querySelector(".lav-side__search")) return false
 
-    if (
-      document.querySelectorAll('.panel-content .panel-content-spacing ul li')
-        .length
-    ) {
-      clearInterval(hambInterval);
+    if (document.querySelectorAll(".panel-content .panel-content-spacing ul li").length) {
+      clearInterval(hambInterval)
 
-      document.querySelector('.js-left-menu-garage').insertAdjacentHTML(
-        'beforebegin',
+      document.querySelector(".js-left-menu-garage").insertAdjacentHTML(
+        "beforebegin",
         `<li class="lav-side__search">
           <div class='lav-side__search-inner'>
             <input class='lav-side__search-input' type='text' placeholder='Search...' />
@@ -577,47 +449,40 @@ function handleSidebar() {
               </button>
             </div>
           </li>`
-      );
+      )
 
-      document
-        .querySelector('.lav-side__search-inner')
-        .addEventListener('click', function (e) {
-          e.preventDefault();
-          gaEvent('Clicks on the search field', 'hamburger menu');
-          clarity('set', 'site_search', 'search_clicked');
-          handleSearch();
-        });
+      document.querySelector(".lav-side__search-inner").addEventListener("click", function (e) {
+        e.preventDefault()
+        gaEvent("Clicks on the search field", "hamburger menu")
+        clarity("set", "site_search", "search_clicked")
+        handleSearch()
+      })
     }
-  }, 100);
+  }, 100)
 }
 
 function handleSearch() {
-  isProcessing = true;
+  isProcessing = true
   // document.querySelector('.js-garage-header-menu .title').innerText ==
   //   'Select vehicle'
-  if (!document.querySelector('.mygarage-vehicle-title')) {
-    document
-      .querySelector('.js-garage-header-menu .js-mygarage-open-create-popup')
-      .click();
+  if (!document.querySelector(".mygarage-vehicle-title")) {
+    document.querySelector(".js-garage-header-menu .js-mygarage-open-create-popup").click()
     let addNewInterval = setInterval(() => {
-      if (!document.querySelector('.gbox_portal .select-vehicle')) return false;
+      if (!document.querySelector(".gbox_portal .select-vehicle")) return false
 
-      if (!document.querySelector('.lav-add__caption')) {
+      if (!document.querySelector(".lav-add__caption")) {
         document
-          .querySelector('.gbox_portal .select-vehicle')
-          .insertAdjacentHTML(
-            'afterbegin',
-            "<div class='lav-add__caption'>First select the vehicle that you need a part for</div>"
-          );
+          .querySelector(".gbox_portal .select-vehicle")
+          .insertAdjacentHTML("afterbegin", "<div class='lav-add__caption'>First select the vehicle that you need a part for</div>")
       }
 
-      localStorage.setItem('startDate', JSON.stringify(new Date().getTime()));
+      localStorage.setItem("startDate", JSON.stringify(new Date().getTime()))
 
-      clearInterval(addNewInterval);
-    }, 400);
+      clearInterval(addNewInterval)
+    }, 400)
   } else {
-    isSearch = true;
-    document.querySelector('.header-search-label').click();
+    isSearch = true
+    document.querySelector(".header-search-label").click()
   }
-  isProcessing = false;
+  isProcessing = false
 }
