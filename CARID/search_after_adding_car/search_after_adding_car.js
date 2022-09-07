@@ -83,7 +83,10 @@ if (settings.observe) {
                         gaEvent(`Click on Make select`, "Popup: Select vehicle")
                       } else if (item.querySelector(".marker").innerText == "3") {
                         gaEvent(`Click on Model select`, "Popup: Select vehicle")
-                        localStorage.setItem("showSearch", "yes")
+                        if (localStorage.getItem("windowLocation")) {
+                          console.log(`window.location.pathname`)
+                          localStorage.setItem("showSearch", "yes")
+                        }
                       }
                     })
                   }
@@ -99,7 +102,10 @@ if (settings.observe) {
                   gaEvent(`Click on Make select`, "Popup: Select vehicle")
                 } else if (item.querySelector(".marker").innerText == "3") {
                   gaEvent(`Click on Model select`, "Popup: Select vehicle")
-                  localStorage.setItem("showSearch", "yes")
+                  if (localStorage.getItem("windowLocation")) {
+                    console.log(`window.location.pathname`)
+                    localStorage.setItem("showSearch", "yes")
+                  }
                 }
               })
             }
@@ -117,7 +123,10 @@ if (settings.observe) {
                   gaEvent(`Click on Make select`, "Homepage: Select vehicle")
                 } else if (item.querySelector(".marker").innerText == "3") {
                   gaEvent(`Click on Model select`, "Homepage: Select vehicle")
-                  localStorage.setItem("showSearch", "yes")
+                  if (localStorage.getItem("windowLocation")) {
+                    console.log(`window.location.pathname`)
+                    localStorage.setItem("showSearch", "yes")
+                  }
                 }
               })
             }
@@ -206,6 +215,7 @@ if (settings.observe) {
 const styles = `
     .search-field.search-preloader::after{
     background-color: unset !important;
+    right: 130px;
     }
   .lav-jumb {
     background: #24282F;
@@ -346,6 +356,9 @@ const styles = `
     display: none;
     }
   @media(max-width: 1024px) {
+        .search-field.search-preloader::after{
+    right: 50px;
+    }
     .lav-search__btn-brief {
       display: block;
     }
@@ -404,6 +417,12 @@ var isProcessing = false
 var isForClosingSearch = false
 
 function init() {
+  if (window.location.pathname === "/") {
+    console.log(`HELLO>>>>>>>>>>>>`, window.location)
+    if (!localStorage.getItem("windowLocation")) {
+      localStorage.setItem("windowLocation", "yes")
+    }
+  }
   console.log("init")
   document.addEventListener("keypress", function (event) {
     if (event.key === "Enter" && document.activeElement && isSearch) {
@@ -417,7 +436,7 @@ function init() {
     // console.log(`isSearch`, isSearch)
 
     if (e.target.classList.contains("select-vehicle-button") && document.querySelector(".select-vehicle-button.-after-selects") && !e.target.closest(".lav-add-popup")) {
-      gaEvent(`Click on Go button`, "Main Page: Select vehicle")
+      gaEvent(`Click on Go button`, "Homepage: Select vehicle")
     }
     if (e.target.classList.contains("-wide") && document.querySelector(".autoc-show-more-btn")) {
       if (e.target.textContent === "Show more Categories") {
@@ -550,6 +569,9 @@ function init() {
       if (!document.querySelector(".lav-search__btn-top")) return false
       clearInterval(clickSearch)
       localStorage.removeItem("showSearch")
+      if (localStorage.getItem("windowLocation") == "yes") {
+        localStorage.removeItem("windowLocation")
+      }
       isSearch = true
       document.querySelector(".header-search-label").click()
     }, 200)
