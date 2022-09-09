@@ -10,13 +10,13 @@ window.addEventListener("load", () => {
   console.log(`>>>>>>>>>>>>>>>>>>>>`)
   const config = {
     kind: "widget",
-    url: "https://www.videoask.com/fn5pz0q1v",
+    url: "https://www.videoask.com/fqmrwq1q4",
     options: {
       widgetType: "VideoThumbnailExtraLarge",
       text: "",
-      backgroundColor: "#7D00FE",
+      backgroundColor: "#ff1668",
       position: "bottom-right",
-      dismissable: false,
+      dismissible: false,
     },
   }
 
