@@ -261,6 +261,17 @@ let startFunk = setInterval(() => {
       top: -2px;
       transform: unset;
     }
+    /* */
+    .accardion_lists{
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+    }
+    .active_block {
+      max-height: fit-content;
+      opacity: 1;
+      margin-top: 20px;
+    }
     </style>
       `
 
@@ -368,6 +379,378 @@ let startFunk = setInterval(() => {
           </ul>
       </div>
     `
+
+    let sixeGuidContent = /*html */ `
+    <div class="content_popup size_guide">
+      <h2>Size guide</h2>
+      <p><b>Note:</b> Some sizes (XS / 3XL / 4XL / 5XL) might be sourced outside your region depending on your location and colour/size choice.</p>
+      <ul>
+        <li class="accardion_block">
+          <div class="accardion_link">
+            <h3>TSHIRTS + TOPS</h3>
+            <span></span>
+          </div>
+          <div class="accardion_lists">
+            <div>
+              <ul>
+                <li>Relaxed Classic Unisex Fit & Pre-Shrunk</li>
+                <li>100% Combed Ring-Spun Cotton (Heathers contain polyester)</li>
+                <li>Fabric weight: 4.2 oz/yd² (142 g/m²)</li>
+              </ul>
+              <table cellspacing="0" cellpadding="0" class="t1">
+                <thead>
+                  <th valign="top" class="td1">
+                    <p class="p2">&nbsp;</p>
+                  </th>
+                  <th valign="top" class="td1">
+                    <p class="p1"><strong>LENGTH</strong></p>
+                  </th>
+                  <th valign="top" class="td1">
+                    <p class="p1"><strong>WIDTH</strong></p>
+                  </th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td valign="top" class="td1">
+                      <p class="p1"><strong>XS</strong></p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">27in / 68.6cm</p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">16.5in / 42cm</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" class="td1">
+                      <p class="p1">
+                        <strong>S<span class="Apple-converted-space">&nbsp;</span></strong>
+                      </p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">28in / 71.1cm</p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">18in / 45.7cm</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" class="td1">
+                      <p class="p1">
+                        <strong>M<span class="Apple-converted-space">&nbsp;</span></strong>
+                      </p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">29in / 73.7cm</p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">20in / 50.8cm</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" class="td1">
+                      <p class="p1">
+                        <strong>L<span class="Apple-converted-space">&nbsp;</span></strong>
+                      </p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">30in / 76.2cm</p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">22in / 55.9cm</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" class="td1">
+                      <p class="p1">
+                        <strong>XL<span class="Apple-converted-space">&nbsp;</span></strong>
+                      </p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">31in / 78.7cm</p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">24in / 61cm</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" class="td1">
+                      <p class="p1">
+                        <strong>2XL<span class="Apple-converted-space">&nbsp;</span></strong>
+                      </p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">32in / 81.3cm</p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">26in / 66cm</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" class="td1">
+                      <p class="p1">
+                        <strong>3XL<span class="Apple-converted-space">&nbsp;</span></strong>
+                      </p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">33in / 83.8cm</p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">28in / 71.1cm</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" class="td1">
+                      <p class="p1">
+                        <strong>4XL<span class="Apple-converted-space">&nbsp;</span></strong>
+                      </p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">34in / 86.4cm</p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">30in / 76.2cm</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" class="td1">
+                      <p class="p1">
+                        <strong>5XL<span class="Apple-converted-space">&nbsp;</span></strong>
+                      </p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">35in / 89cm</p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">31in / 78.7cm</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </li>
+        <li class="accardion_block">
+          <div class="accardion_link">
+            <h3>HOODIES & SWEATSHIRTS</h3>
+            <span></span>
+          </div>
+          <div class="accardion_lists">
+            <div>
+              <ul>
+                <li>Relaxed Classic Unisex Fit & Pre-Shrunk</li>
+                <li>50% cotton, 50% polyester</li>
+                <li>Fabric weight: 8.0 oz/yd² (271.25 g/m²)</li>
+              </ul>
+              <table cellspacing="0" cellpadding="0" class="t1">
+                <thead>
+                  <th valign="top" class="td1">
+                    <p class="p2">&nbsp;</p>
+                  </th>
+                  <th valign="top" class="td1">
+                    <p class="p1"><strong>LENGTH</strong></p>
+                  </th>
+                  <th valign="top" class="td1">
+                    <p class="p1"><strong>WIDTH</strong></p>
+                  </th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td valign="top" class="td1">
+                      <p class="p1">
+                        <strong>S<span class="Apple-converted-space">&nbsp;</span></strong>
+                      </p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">27in / 68.6cm</p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">20in / 50.8cm</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" class="td1">
+                      <p class="p1"><strong>M</strong></p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">28in / 71.1cm</p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">22in / 55.9cm</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" class="td1">
+                      <p class="p1">
+                        <strong>L<span class="Apple-converted-space">&nbsp;</span></strong>
+                      </p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">29in / 73.7cm</p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">24in / 61cm</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" class="td1">
+                      <p class="p1"><strong>XL</strong><span class="Apple-converted-space">&nbsp;</span></p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">30in / 76.2cm</p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">26in / 66cm</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" class="td1">
+                      <p class="p1"><strong>2XL</strong><span class="Apple-converted-space">&nbsp;</span></p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">31in / 78.7cm</p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">28in / 71.1cm</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" class="td1">
+                      <p class="p1"><strong>3XL</strong><span class="Apple-converted-space">&nbsp;</span></p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">32in / 81.3cm</p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">30in / 76.2cm</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" class="td1">
+                      <p class="p1"><strong>4XL</strong></p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">33in / 83.8cm</p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">32in / 81.3cm</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" class="td1">
+                      <p class="p1"><strong>5XL</strong></p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">34in / 86.4cm</p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">34in / 86.4cm</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </li>
+        <li class="accardion_block">
+          <div class="accardion_link">
+            <h3>TANK TOPS</h3>
+            <span></span>
+          </div>
+          <div class="accardion_lists">
+            <div>
+              <ul>
+                <li>100% combed and ringspun cotton</li>
+                <li>Tri-blends are 50% polyester/25% combed/25% ringspun cotton/rayon</li>
+                <li>Fabric weight: 4.2 oz/yd² (142.40 g/m²), triblends: 3.8 oz/yd² (90.07 g/m²)</li>
+              </ul>
+              <table cellspacing="0" cellpadding="0" class="t1">
+                <thead>
+                  <th valign="top" class="td1">
+                    <p class="p2">&nbsp;</p>
+                  </th>
+                  <th valign="top" class="td1">
+                    <p class="p1">LENGTH</p>
+                  </th>
+                  <th valign="top" class="td1">
+                    <p class="p1">WIDTH</p>
+                  </th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td valign="top" class="td1">
+                      <p class="p1">XS<span class="Apple-converted-space">&nbsp;</span></p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">26in / 66cm</p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">16in / 41.3cm</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" class="td1">
+                      <p class="p1">S</p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">27in / 68.6cm</p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">18in / 46.4cm</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" class="td1">
+                      <p class="p1">M<span class="Apple-converted-space">&nbsp;</span></p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">28in / 71.1cm</p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">20in / 51.4cm</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" class="td1">
+                      <p class="p1">L</p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">29in / 73.7cm</p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">22in / 56.5cm</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" class="td1">
+                      <p class="p1">XL<span class="Apple-converted-space">&nbsp;</span></p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">30in / 76.2cm</p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">24in / 61.6cm</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" class="td1">
+                      <p class="p1">2XL<span class="Apple-converted-space">&nbsp;</span></p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">31in / 78.7cm</p>
+                    </td>
+                    <td valign="top" class="td1">
+                      <p class="p1">26in / 66.7cm</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    `
     document.body.insertAdjacentHTML("afterbegin", donatePopup)
     document.body.insertAdjacentHTML("afterbegin", style)
 
@@ -380,8 +763,17 @@ let startFunk = setInterval(() => {
 
     document.querySelector(".svg_popup").addEventListener("click", () => {
       document.querySelector(".backdrop_modal").classList.remove("is_hidden")
-      document.querySelector(".container_popup").insertAdjacentHTML("beforeend", contentpopup)
+      // document.querySelector(".container_popup").insertAdjacentHTML("beforeend", contentpopup)
+      document.querySelector(".container_popup").insertAdjacentHTML("beforeend", sixeGuidContent)
       document.body.style.overflow = "hidden"
+
+      const slideMenu = document.querySelectorAll(".accardion_link")
+
+      if (slideMenu) {
+        slideMenu.forEach((el) => {
+          el.addEventListener("click", accardionToggleFaqs(slideMenu))
+        })
+      }
     })
 
     document.querySelector(".backdrop_modal .container_popup > svg").addEventListener("click", () => {
@@ -434,262 +826,22 @@ let startFunk = setInterval(() => {
         value = "XPF"
         console.log(`${newPrice.toFixed(0)}${value}`)
       }
+    }
 
-      if (priceItem.includes("L")) {
-        priceItem.split("L")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("د.ج")) {
-        priceItem.split("د.ج")
-        console.log(priceItem)
-      }
+    //
+    const accardionToggleFaqs = (slideMenu) => (e) => {
+      slideMenu.forEach((link) => {
+        e.preventDefault()
+        const hidePanel = link.nextElementSibling
+        if (link === e.currentTarget) {
+          e.currentTarget.classList.toggle("active")
 
-      if (priceItem.includes("դր.")) {
-        priceItem.split("դր.")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("£")) {
-        priceItem.split("£")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("₼")) {
-        priceItem.split("₼")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("৳")) {
-        priceItem.split("৳")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("Fr")) {
-        priceItem.split("Fr")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("Bs.")) {
-        priceItem.split("Bs.")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("КМ")) {
-        priceItem.split("КМ")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("лв.")) {
-        priceItem.split("лв.")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("៛")) {
-        priceItem.split("៛")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("kn")) {
-        priceItem.split("kn")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("Kč")) {
-        priceItem.split("Kč")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("Fdj")) {
-        priceItem.split("Fdj")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("ج.م")) {
-        priceItem.split("ج.م")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("Br")) {
-        priceItem.split("Br")
-        console.log(priceItem)
-      }
-
-      if (priceItem.includes("kr.")) {
-        priceItem.split("kr.")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("Q")) {
-        priceItem.split("Q")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("₹")) {
-        priceItem.split("₹")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("Rp")) {
-        priceItem.split("Rp")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("¥")) {
-        priceItem.split("¥")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("〒")) {
-        priceItem.split("〒")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("KSh")) {
-        priceItem.split("KSh")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("som")) {
-        priceItem.split("som")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("₭")) {
-        priceItem.split("₭")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("ل.ل")) {
-        priceItem.split("ل.ل")
-        console.log(priceItem)
-      }
-
-      if (priceItem.includes("MK")) {
-        priceItem.split("MK")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("RM")) {
-        priceItem.split("RM")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("MVR")) {
-        priceItem.split("MVR")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("₮")) {
-        priceItem.split("₮")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("د.م.")) {
-        priceItem.split("د.م.")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("C$")) {
-        priceItem.split("C$")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("₦")) {
-        priceItem.split("₦")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("ден")) {
-        priceItem.split("ден")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("₪")) {
-        priceItem.split("₪")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("K")) {
-        priceItem.split("K")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("₲")) {
-        priceItem.split("₲")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("S/.")) {
-        priceItem.split("S/.")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("₱")) {
-        priceItem.split("₱")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("zł")) {
-        priceItem.split("zł")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("ر.ق")) {
-        priceItem.split("ر.ق")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("Lei")) {
-        priceItem.split("Lei")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("FRw")) {
-        priceItem.split("FRw")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("T")) {
-        priceItem.split("T")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("Db")) {
-        priceItem.split("Db")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("ر.س")) {
-        priceItem.split("ر.س")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("РСД")) {
-        priceItem.split("РСД")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("Le")) {
-        priceItem.split("Le")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("ƒ")) {
-        priceItem.split("ƒ")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("₩")) {
-        priceItem.split("₩")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("₨")) {
-        priceItem.split("₨")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("kr")) {
-        priceItem.split("kr")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("CHF")) {
-        priceItem.split("CHF")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("ЅМ")) {
-        priceItem.split("ЅМ")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("Sh")) {
-        priceItem.split("Sh")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("฿")) {
-        priceItem.split("฿")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("T")) {
-        priceItem.split("T")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("USh")) {
-        priceItem.split("USh")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("₴")) {
-        priceItem.split("₴")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("Vt")) {
-        priceItem.split("Vt")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("₫")) {
-        priceItem.split("₫")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("﷼")) {
-        priceItem.split("﷼")
-        console.log(priceItem)
-      }
-      if (priceItem.includes("د.إ")) {
-        priceItem.split("د.إ")
-        console.log(priceItem)
-      }
+          hidePanel.classList.toggle("active_block")
+        } else {
+          link.classList.remove("active")
+          hidePanel.classList.remove("active_block")
+        }
+      })
     }
   }
 }, 100)
