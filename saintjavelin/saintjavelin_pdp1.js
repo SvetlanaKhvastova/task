@@ -261,16 +261,157 @@ let startFunk = setInterval(() => {
       top: -2px;
       transform: unset;
     }
-    /* */
+    /*size_guide */
+    .size_guide > h2{
+      font-weight: 700;
+      font-size: 22px;
+      line-height: 25px;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      color: #3F3F3F;
+      margin: 0;
+    }
+    .size_guide > p{
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 24px;
+      color: #3F3F3F;
+      margin: 16px 0;
+    }
+    .accardion_size{
+      margin: 0;
+      list-style: none;
+    }
+    .accardion_lists table p{
+      margin: 0;
+      font-size: 14px;
+      line-height: 25.5px;
+    }
+    .accardion_size table{
+      margin: 20px 0 0;
+    }
+    .accardion_size table td,
+    .accardion_size table th{
+      padding: 6px 8px;
+    }
+    .accardion_size table td:first-child{
+      width: 90px;
+    }
+    ul.composition{
+      list-style-type: disc;
+      margin: 0 0 0 40px;
+    }
+    ul.composition li{
+      font-size: 14px;
+      line-height: 24px;
+      margin: 0;
+    }
+    ul.composition li + li{
+      margin-top: 5px;
+    }
     .accardion_lists{
       max-height: 0;
       overflow: hidden;
-      opacity: 0;
+      opacity: 0; 
     }
     .active_block {
       max-height: fit-content;
       opacity: 1;
+      margin: 10px 0 0;
+    }
+    .accardion_size > li{
+      margin: 0;
+    }
+    .accardion_size > li + li{
       margin-top: 20px;
+    }
+    .accardion_link{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+    .accardion_link h3{
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 24px;
+      text-transform: uppercase;
+      color: #3F3F3F;
+      margin: 0;
+    }
+    .accardion_link span{
+      position: relative;
+      width: 24px;
+      height: 24px;
+      display: inline-flex;
+      transition: all 0.5s ease 0s;   
+    }
+    .accardion_link span::before{
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 100%;
+      background: url(https://conversionratestore.github.io/projects/saintjavelin/img/expand_more.svg) no-repeat center center;
+      top: 0;
+      right: 0;
+      background-size: contain;
+      transition: all 0.5s ease 0s;   
+    }
+    .accardion_link.active span::before {
+      transform: rotate(180deg);
+    }
+    /* */
+    .variant-input-wrap label{
+      border: 1px solid #EBEBEB;
+      border-radius: 50px;
+      box-shadow: unset;
+      font-size: 12px;
+      line-height: 12px;
+      letter-spacing: -0.4px;
+      color: #3F3F3F;
+      padding: 13px 16px;
+      margin: 0 !important;
+    }
+    .variant-input-wrap input[type=radio]:checked+label{
+      background: #3F3F3F;
+      font-weight: 600;
+      color: #FFFFFF;
+      box-shadow: unset;
+    }
+    .variant-input-wrap label.disabled{
+      color: #A5A5A5;
+      z-index: 1;
+    }
+    .variant-input-wrap label.disabled:after,
+    .variant-input-wrap label.disabled:before{
+      position: absolute;
+      content: "";
+      left: 0;
+      top: 50%;
+      bottom: 0;
+      background: #EBEBEB;
+      height: 1px;
+      width: 100%;
+      z-index: -1;
+    }
+    .variant-input-wrap label.disabled:after {
+      transform: rotate(135deg);
+   }
+   .variant-input-wrap label.disabled:before{
+      transform: rotate(45deg);
+   }
+   .variant-input-wrap{
+      margin: 0;
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+   }
+   .variant-input {
+        display: inline-flex;
+    }
+    .variant-wrapper:last-of-type{
+      margin-top: 24px;
     }
     </style>
       `
@@ -384,7 +525,7 @@ let startFunk = setInterval(() => {
     <div class="content_popup size_guide">
       <h2>Size guide</h2>
       <p><b>Note:</b> Some sizes (XS / 3XL / 4XL / 5XL) might be sourced outside your region depending on your location and colour/size choice.</p>
-      <ul>
+      <ul class="accardion_size">
         <li class="accardion_block">
           <div class="accardion_link">
             <h3>TSHIRTS + TOPS</h3>
@@ -392,137 +533,137 @@ let startFunk = setInterval(() => {
           </div>
           <div class="accardion_lists">
             <div>
-              <ul>
+              <ul class="composition">
                 <li>Relaxed Classic Unisex Fit & Pre-Shrunk</li>
                 <li>100% Combed Ring-Spun Cotton (Heathers contain polyester)</li>
                 <li>Fabric weight: 4.2 oz/yd² (142 g/m²)</li>
               </ul>
-              <table cellspacing="0" cellpadding="0" class="t1">
+              <table>
                 <thead>
-                  <th valign="top" class="td1">
-                    <p class="p2">&nbsp;</p>
+                  <th>
+                    <p>&nbsp;</p>
                   </th>
-                  <th valign="top" class="td1">
-                    <p class="p1"><strong>LENGTH</strong></p>
+                  <th>
+                    <p><strong>LENGTH</strong></p>
                   </th>
-                  <th valign="top" class="td1">
-                    <p class="p1"><strong>WIDTH</strong></p>
+                  <th>
+                    <p><strong>WIDTH</strong></p>
                   </th>
                 </thead>
                 <tbody>
                   <tr>
-                    <td valign="top" class="td1">
-                      <p class="p1"><strong>XS</strong></p>
+                    <td>
+                      <p><strong>XS</strong></p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">27in / 68.6cm</p>
+                    <td>
+                      <p>27in / 68.6cm</p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">16.5in / 42cm</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td valign="top" class="td1">
-                      <p class="p1">
-                        <strong>S<span class="Apple-converted-space">&nbsp;</span></strong>
-                      </p>
-                    </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">28in / 71.1cm</p>
-                    </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">18in / 45.7cm</p>
+                    <td>
+                      <p>16.5in / 42cm</p>
                     </td>
                   </tr>
                   <tr>
-                    <td valign="top" class="td1">
-                      <p class="p1">
-                        <strong>M<span class="Apple-converted-space">&nbsp;</span></strong>
+                    <td>
+                      <p>
+                        <strong>S</strong>
                       </p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">29in / 73.7cm</p>
+                    <td>
+                      <p>28in / 71.1cm</p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">20in / 50.8cm</p>
+                    <td>
+                      <p>18in / 45.7cm</p>
                     </td>
                   </tr>
                   <tr>
-                    <td valign="top" class="td1">
-                      <p class="p1">
-                        <strong>L<span class="Apple-converted-space">&nbsp;</span></strong>
+                    <td>
+                      <p>
+                        <strong>M</strong>
                       </p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">30in / 76.2cm</p>
+                    <td>
+                      <p>29in / 73.7cm</p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">22in / 55.9cm</p>
+                    <td>
+                      <p>20in / 50.8cm</p>
                     </td>
                   </tr>
                   <tr>
-                    <td valign="top" class="td1">
-                      <p class="p1">
-                        <strong>XL<span class="Apple-converted-space">&nbsp;</span></strong>
+                    <td>
+                      <p>
+                        <strong>L</strong>
                       </p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">31in / 78.7cm</p>
+                    <td>
+                      <p>30in / 76.2cm</p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">24in / 61cm</p>
+                    <td>
+                      <p>22in / 55.9cm</p>
                     </td>
                   </tr>
                   <tr>
-                    <td valign="top" class="td1">
-                      <p class="p1">
-                        <strong>2XL<span class="Apple-converted-space">&nbsp;</span></strong>
+                    <td>
+                      <p>
+                        <strong>XL</strong>
                       </p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">32in / 81.3cm</p>
+                    <td>
+                      <p>31in / 78.7cm</p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">26in / 66cm</p>
+                    <td>
+                      <p>24in / 61cm</p>
                     </td>
                   </tr>
                   <tr>
-                    <td valign="top" class="td1">
-                      <p class="p1">
-                        <strong>3XL<span class="Apple-converted-space">&nbsp;</span></strong>
+                    <td>
+                      <p>
+                        <strong>2XL</strong>
                       </p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">33in / 83.8cm</p>
+                    <td>
+                      <p>32in / 81.3cm</p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">28in / 71.1cm</p>
+                    <td>
+                      <p>26in / 66cm</p>
                     </td>
                   </tr>
                   <tr>
-                    <td valign="top" class="td1">
-                      <p class="p1">
-                        <strong>4XL<span class="Apple-converted-space">&nbsp;</span></strong>
+                    <td>
+                      <p>
+                        <strong>3XL</strong>
                       </p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">34in / 86.4cm</p>
+                    <td>
+                      <p>33in / 83.8cm</p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">30in / 76.2cm</p>
+                    <td>
+                      <p>28in / 71.1cm</p>
                     </td>
                   </tr>
                   <tr>
-                    <td valign="top" class="td1">
-                      <p class="p1">
-                        <strong>5XL<span class="Apple-converted-space">&nbsp;</span></strong>
+                    <td>
+                      <p>
+                        <strong>4XL</strong>
                       </p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">35in / 89cm</p>
+                    <td>
+                      <p>34in / 86.4cm</p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">31in / 78.7cm</p>
+                    <td>
+                      <p>30in / 76.2cm</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>
+                        <strong>5XL</strong>
+                      </p>
+                    </td>
+                    <td>
+                      <p>35in / 89cm</p>
+                    </td>
+                    <td>
+                      <p>31in / 78.7cm</p>
                     </td>
                   </tr>
                 </tbody>
@@ -537,114 +678,114 @@ let startFunk = setInterval(() => {
           </div>
           <div class="accardion_lists">
             <div>
-              <ul>
+              <ul class="composition">
                 <li>Relaxed Classic Unisex Fit & Pre-Shrunk</li>
                 <li>50% cotton, 50% polyester</li>
                 <li>Fabric weight: 8.0 oz/yd² (271.25 g/m²)</li>
               </ul>
-              <table cellspacing="0" cellpadding="0" class="t1">
+              <table>
                 <thead>
-                  <th valign="top" class="td1">
-                    <p class="p2">&nbsp;</p>
+                  <th>
+                    <p>&nbsp;</p>
                   </th>
-                  <th valign="top" class="td1">
-                    <p class="p1"><strong>LENGTH</strong></p>
+                  <th>
+                    <p><strong>LENGTH</strong></p>
                   </th>
-                  <th valign="top" class="td1">
-                    <p class="p1"><strong>WIDTH</strong></p>
+                  <th>
+                    <p><strong>WIDTH</strong></p>
                   </th>
                 </thead>
                 <tbody>
                   <tr>
-                    <td valign="top" class="td1">
-                      <p class="p1">
-                        <strong>S<span class="Apple-converted-space">&nbsp;</span></strong>
+                    <td>
+                      <p>
+                        <strong>S</strong>
                       </p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">27in / 68.6cm</p>
+                    <td>
+                      <p>27in / 68.6cm</p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">20in / 50.8cm</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td valign="top" class="td1">
-                      <p class="p1"><strong>M</strong></p>
-                    </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">28in / 71.1cm</p>
-                    </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">22in / 55.9cm</p>
+                    <td>
+                      <p>20in / 50.8cm</p>
                     </td>
                   </tr>
                   <tr>
-                    <td valign="top" class="td1">
-                      <p class="p1">
-                        <strong>L<span class="Apple-converted-space">&nbsp;</span></strong>
+                    <td>
+                      <p><strong>M</strong></p>
+                    </td>
+                    <td>
+                      <p>28in / 71.1cm</p>
+                    </td>
+                    <td>
+                      <p>22in / 55.9cm</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>
+                        <strong>L</strong>
                       </p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">29in / 73.7cm</p>
+                    <td>
+                      <p>29in / 73.7cm</p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">24in / 61cm</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td valign="top" class="td1">
-                      <p class="p1"><strong>XL</strong><span class="Apple-converted-space">&nbsp;</span></p>
-                    </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">30in / 76.2cm</p>
-                    </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">26in / 66cm</p>
+                    <td>
+                      <p>24in / 61cm</p>
                     </td>
                   </tr>
                   <tr>
-                    <td valign="top" class="td1">
-                      <p class="p1"><strong>2XL</strong><span class="Apple-converted-space">&nbsp;</span></p>
+                    <td>
+                      <p><strong>XL</strong></p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">31in / 78.7cm</p>
+                    <td>
+                      <p>30in / 76.2cm</p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">28in / 71.1cm</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td valign="top" class="td1">
-                      <p class="p1"><strong>3XL</strong><span class="Apple-converted-space">&nbsp;</span></p>
-                    </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">32in / 81.3cm</p>
-                    </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">30in / 76.2cm</p>
+                    <td>
+                      <p>26in / 66cm</p>
                     </td>
                   </tr>
                   <tr>
-                    <td valign="top" class="td1">
-                      <p class="p1"><strong>4XL</strong></p>
+                    <td>
+                      <p><strong>2XL</strong></p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">33in / 83.8cm</p>
+                    <td>
+                      <p>31in / 78.7cm</p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">32in / 81.3cm</p>
+                    <td>
+                      <p>28in / 71.1cm</p>
                     </td>
                   </tr>
                   <tr>
-                    <td valign="top" class="td1">
-                      <p class="p1"><strong>5XL</strong></p>
+                    <td>
+                      <p><strong>3XL</strong></p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">34in / 86.4cm</p>
+                    <td>
+                      <p>32in / 81.3cm</p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">34in / 86.4cm</p>
+                    <td>
+                      <p>30in / 76.2cm</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p><strong>4XL</strong></p>
+                    </td>
+                    <td>
+                      <p>33in / 83.8cm</p>
+                    </td>
+                    <td>
+                      <p>32in / 81.3cm</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p><strong>5XL</strong></p>
+                    </td>
+                    <td>
+                      <p>34in / 86.4cm</p>
+                    </td>
+                    <td>
+                      <p>34in / 86.4cm</p>
                     </td>
                   </tr>
                 </tbody>
@@ -659,88 +800,88 @@ let startFunk = setInterval(() => {
           </div>
           <div class="accardion_lists">
             <div>
-              <ul>
+              <ul class="composition">
                 <li>100% combed and ringspun cotton</li>
                 <li>Tri-blends are 50% polyester/25% combed/25% ringspun cotton/rayon</li>
                 <li>Fabric weight: 4.2 oz/yd² (142.40 g/m²), triblends: 3.8 oz/yd² (90.07 g/m²)</li>
               </ul>
-              <table cellspacing="0" cellpadding="0" class="t1">
+              <table>
                 <thead>
-                  <th valign="top" class="td1">
-                    <p class="p2">&nbsp;</p>
+                  <th>
+                    <p>&nbsp;</p>
                   </th>
-                  <th valign="top" class="td1">
-                    <p class="p1">LENGTH</p>
+                  <th>
+                    <p><strong>LENGTH</strong></p>
                   </th>
-                  <th valign="top" class="td1">
-                    <p class="p1">WIDTH</p>
+                  <th>
+                    <p><strong>WIDTH</strong></p>
                   </th>
                 </thead>
                 <tbody>
                   <tr>
-                    <td valign="top" class="td1">
-                      <p class="p1">XS<span class="Apple-converted-space">&nbsp;</span></p>
+                    <td>
+                      <p><strong>XS</strong></p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">26in / 66cm</p>
+                    <td>
+                      <p>26in / 66cm</p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">16in / 41.3cm</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td valign="top" class="td1">
-                      <p class="p1">S</p>
-                    </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">27in / 68.6cm</p>
-                    </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">18in / 46.4cm</p>
+                    <td>
+                      <p>16in / 41.3cm</p>
                     </td>
                   </tr>
                   <tr>
-                    <td valign="top" class="td1">
-                      <p class="p1">M<span class="Apple-converted-space">&nbsp;</span></p>
+                    <td>
+                      <p><strong>S</strong></p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">28in / 71.1cm</p>
+                    <td>
+                      <p>27in / 68.6cm</p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">20in / 51.4cm</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td valign="top" class="td1">
-                      <p class="p1">L</p>
-                    </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">29in / 73.7cm</p>
-                    </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">22in / 56.5cm</p>
+                    <td>
+                      <p>18in / 46.4cm</p>
                     </td>
                   </tr>
                   <tr>
-                    <td valign="top" class="td1">
-                      <p class="p1">XL<span class="Apple-converted-space">&nbsp;</span></p>
+                    <td>
+                      <p><strong>M</strong></p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">30in / 76.2cm</p>
+                    <td>
+                      <p>28in / 71.1cm</p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">24in / 61.6cm</p>
+                    <td>
+                      <p>20in / 51.4cm</p>
                     </td>
                   </tr>
                   <tr>
-                    <td valign="top" class="td1">
-                      <p class="p1">2XL<span class="Apple-converted-space">&nbsp;</span></p>
+                    <td>
+                      <p><strong>L</strong></p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">31in / 78.7cm</p>
+                    <td>
+                      <p>29in / 73.7cm</p>
                     </td>
-                    <td valign="top" class="td1">
-                      <p class="p1">26in / 66.7cm</p>
+                    <td>
+                      <p>22in / 56.5cm</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p><strong>XL</strong></p>
+                    </td>
+                    <td>
+                      <p>30in / 76.2cm</p>
+                    </td>
+                    <td>
+                      <p>24in / 61.6cm</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p><strong>2XL</strong></p>
+                    </td>
+                    <td>
+                      <p>31in / 78.7cm</p>
+                    </td>
+                    <td>
+                      <p>26in / 66.7cm</p>
                     </td>
                   </tr>
                 </tbody>
@@ -750,6 +891,7 @@ let startFunk = setInterval(() => {
         </li>
       </ul>
     </div>
+
     `
     document.body.insertAdjacentHTML("afterbegin", donatePopup)
     document.body.insertAdjacentHTML("afterbegin", style)
@@ -843,5 +985,32 @@ let startFunk = setInterval(() => {
         }
       })
     }
+
+    //
+    if (!document.querySelector(".mistake")) {
+      document.querySelector(".product-block").insertAdjacentHTML("beforebegin", `<div class="mistake">Please select color </div><div><button class="ADDD">ADDDDDD</button></div>`)
+    }
+    if (document.querySelector(".ADDD")) {
+      document.querySelector(".ADDD").addEventListener("click", (el) => {
+        document.querySelectorAll(".variant-input-wrap input[type=radio]:checked").forEach((el) => {
+          if (el.value === "default") {
+            console.log(el)
+            document.querySelector(".mistake").style.color = "red"
+            console.log(`red`)
+          } else {
+            console.log(`green`)
+            document.querySelector(".mistake").style.color = "green"
+          }
+        })
+      })
+    }
+    // нужно нарисовать новые кнопки и выводить ошибку, когда инпуты выбраны, тогда удалить блок с новыми кнопками и показать блок со старыми кнопками,
+    //  добавить disabled размерам когда их нет.
+    // if (document.querySelector('[name="add"]').getAttribute("disabled")) {
+    //   document.querySelector('[name="add"]').removeAttribute("disabled")
+    // }
+    // document.querySelector('[name="add"]').addEventListener("click", (el) => {
+    //   console.log(el)
+    // })
   }
 }, 100)
