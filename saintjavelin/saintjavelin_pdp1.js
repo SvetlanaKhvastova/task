@@ -381,6 +381,7 @@ let startFunk = setInterval(() => {
     .variant-input-wrap label.disabled{
       color: #A5A5A5;
       z-index: 1;
+      cursor: default;
     }
     .variant-input-wrap label.disabled:after,
     .variant-input-wrap label.disabled:before{
@@ -412,6 +413,56 @@ let startFunk = setInterval(() => {
     }
     .variant-wrapper:last-of-type{
       margin-top: 24px;
+    }
+    .product-block .variant__label.hidden-label{
+      clip: unset; 
+      overflow: unset;
+      position: unset;
+      height: unset;
+      width: unset;
+      cursor: default !important;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 25px;
+      letter-spacing: -0.4px;
+      color: #3F3F3F;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+    .product-block .variant__label.hidden-label .variant__label-info{
+      display: none !important;
+    }
+    .mistake{
+      position: absolute;
+      top: 50%;
+      left: 91px;
+      transform: translateY(-50%);
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 12px;
+      letter-spacing: -0.4px;
+      color: #D71D1D;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .mistake.size_var{
+      left: 82px;
+    }
+    .mistake > svg{
+      margin-right: 5px;
+    }
+    .size_guide_var{
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 25px;
+      letter-spacing: -0.4px;
+      text-decoration-line: underline;
+      color: #3F3F3F;
+      cursor: pointer;
     }
     </style>
       `
@@ -905,17 +956,8 @@ let startFunk = setInterval(() => {
 
     document.querySelector(".svg_popup").addEventListener("click", () => {
       document.querySelector(".backdrop_modal").classList.remove("is_hidden")
-      // document.querySelector(".container_popup").insertAdjacentHTML("beforeend", contentpopup)
-      document.querySelector(".container_popup").insertAdjacentHTML("beforeend", sixeGuidContent)
+      document.querySelector(".container_popup").insertAdjacentHTML("beforeend", contentpopup)
       document.body.style.overflow = "hidden"
-
-      const slideMenu = document.querySelectorAll(".accardion_link")
-
-      if (slideMenu) {
-        slideMenu.forEach((el) => {
-          el.addEventListener("click", accardionToggleFaqs(slideMenu))
-        })
-      }
     })
 
     document.querySelector(".backdrop_modal .container_popup > svg").addEventListener("click", () => {
@@ -987,9 +1029,7 @@ let startFunk = setInterval(() => {
     }
 
     //
-    if (!document.querySelector(".mistake")) {
-      document.querySelector(".product-block").insertAdjacentHTML("beforebegin", `<div class="mistake">Please select color </div><div><button class="ADDD">ADDDDDD</button></div>`)
-    }
+
     if (document.querySelector(".ADDD")) {
       document.querySelector(".ADDD").addEventListener("click", (el) => {
         document.querySelectorAll(".variant-input-wrap input[type=radio]:checked").forEach((el) => {
@@ -1005,12 +1045,60 @@ let startFunk = setInterval(() => {
       })
     }
     // нужно нарисовать новые кнопки и выводить ошибку, когда инпуты выбраны, тогда удалить блок с новыми кнопками и показать блок со старыми кнопками,
-    //  добавить disabled размерам когда их нет.
-    // if (document.querySelector('[name="add"]').getAttribute("disabled")) {
-    //   document.querySelector('[name="add"]').removeAttribute("disabled")
-    // }
-    // document.querySelector('[name="add"]').addEventListener("click", (el) => {
-    //   console.log(el)
-    // })
+    document.querySelectorAll(".product-block .variant__label.hidden-label").forEach((el) => {
+      if (el.textContent.includes("Color")) {
+        el.textContent = "Select color:"
+        if (!document.querySelector(".mistake.color_var")) {
+          el.insertAdjacentHTML(
+            "beforeend",
+            `<div class="mistake color_var"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.33398 9.99992H8.66732V11.3333H7.33398V9.99992ZM7.33398 4.66659H8.66732V8.66659H7.33398V4.66659ZM7.99398 1.33325C4.31398 1.33325 1.33398 4.31992 1.33398 7.99992C1.33398 11.6799 4.31398 14.6666 7.99398 14.6666C11.6807 14.6666 14.6673 11.6799 14.6673 7.99992C14.6673 4.31992 11.6807 1.33325 7.99398 1.33325ZM8.00065 13.3333C5.05398 13.3333 2.66732 10.9466 2.66732 7.99992C2.66732 5.05325 5.05398 2.66659 8.00065 2.66659C10.9473 2.66659 13.334 5.05325 13.334 7.99992C13.334 10.9466 10.9473 13.3333 8.00065 13.3333Z" fill="#D71D1D"/>
+</svg>Please select color</div>`
+          )
+        }
+      }
+
+      if (el.textContent.includes("Size")) {
+        el.textContent = "Select size:"
+        if (!document.querySelector(".mistake.size_var")) {
+          el.insertAdjacentHTML(
+            "beforeend",
+            `<div class="mistake size_var"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.33398 9.99992H8.66732V11.3333H7.33398V9.99992ZM7.33398 4.66659H8.66732V8.66659H7.33398V4.66659ZM7.99398 1.33325C4.31398 1.33325 1.33398 4.31992 1.33398 7.99992C1.33398 11.6799 4.31398 14.6666 7.99398 14.6666C11.6807 14.6666 14.6673 11.6799 14.6673 7.99992C14.6673 4.31992 11.6807 1.33325 7.99398 1.33325ZM8.00065 13.3333C5.05398 13.3333 2.66732 10.9466 2.66732 7.99992C2.66732 5.05325 5.05398 2.66659 8.00065 2.66659C10.9473 2.66659 13.334 5.05325 13.334 7.99992C13.334 10.9466 10.9473 13.3333 8.00065 13.3333Z" fill="#D71D1D"/>
+</svg> Please select size</div><div class="size_guide_var">Size guide</div>`
+          )
+        }
+
+        document.querySelector(".size_guide_var")?.addEventListener("click", () => {
+          document.querySelector(".backdrop_modal").classList.remove("is_hidden")
+          document.querySelector(".container_popup").insertAdjacentHTML("beforeend", sixeGuidContent)
+          document.body.style.overflow = "hidden"
+
+          const slideMenu = document.querySelectorAll(".accardion_link")
+
+          if (slideMenu) {
+            slideMenu.forEach((el) => {
+              el.addEventListener("click", accardionToggleFaqs(slideMenu))
+            })
+          }
+        })
+      }
+    })
+
+    document.querySelectorAll(".variant-input-wrap label").forEach((el) => {
+      el.addEventListener("click", (i) => {
+        if (el.classList.contains("disabled")) {
+          if (!el.previousElementSibling.getAttribute("disabled")) {
+            el.previousElementSibling.setAttribute("disabled", "disabled")
+            console.log(`setAttribute("disabled", "disabled")`)
+          }
+        } else {
+          if (el.previousElementSibling.getAttribute("disabled")) {
+            el.previousElementSibling.removeAttribute("disabled")
+            console.log(`removeAttribute("disabled")`)
+          }
+        }
+      })
+    })
   }
 }, 100)
