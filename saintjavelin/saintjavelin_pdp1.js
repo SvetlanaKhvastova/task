@@ -15,6 +15,7 @@ let startFunk = setInterval(() => {
         justify-content: space-between;
         padding: 4px 8px;
         margin-bottom: 16px;
+        cursor: pointer;
       }
       .donation_amount_flex p{
         font-weight: 500;
@@ -42,7 +43,6 @@ let startFunk = setInterval(() => {
       }
       .donation_amount_flex svg{
         margin-left: 30px;
-        cursor: pointer;
       }
       .product-block.product-block--price{
         margin-bottom: 10px;
@@ -452,6 +452,10 @@ let startFunk = setInterval(() => {
     .mistake.size_var{
       left: 82px;
     }
+    .mistake.is_hidden,
+    .mistake.is_visited{
+      opacity: 0;
+    }
     .mistake > svg{
       margin-right: 5px;
     }
@@ -463,6 +467,16 @@ let startFunk = setInterval(() => {
       text-decoration-line: underline;
       color: #3F3F3F;
       cursor: pointer;
+    }
+    .buy_it_now{
+      background: #064f90;
+      margin-top: 10px;
+    }
+    .buy_it_now:hover{
+      background: #064f90 !important;
+    }
+    .add_to_cart{
+      padding: 10px 25px;
     }
     </style>
       `
@@ -954,13 +968,21 @@ let startFunk = setInterval(() => {
     productBlock.insertAdjacentHTML("afterend", donationAmount)
     boxForDonationInform.insertAdjacentHTML("beforeend", donationInform)
 
-    document.querySelector(".svg_popup").addEventListener("click", () => {
+    document.querySelector(".donation_amount_flex")?.addEventListener("click", () => {
       document.querySelector(".backdrop_modal").classList.remove("is_hidden")
       document.querySelector(".container_popup").insertAdjacentHTML("beforeend", contentpopup)
       document.body.style.overflow = "hidden"
+
+      if (document.querySelector(".backdrop_modal .content_popup")) {
+        document.querySelector(".backdrop_modal .content_popup .by_it_now_btn")?.addEventListener("click", (e) => {
+          e.preventDefault()
+          console.log(`click`)
+          document.querySelector("a.link_text")?.click()
+        })
+      }
     })
 
-    document.querySelector(".backdrop_modal .container_popup > svg").addEventListener("click", () => {
+    document.querySelector(".backdrop_modal .container_popup > svg")?.addEventListener("click", () => {
       document.querySelector(".backdrop_modal").classList.add("is_hidden")
       document.body.style.overflow = "auto"
       setTimeout(() => {
@@ -1010,6 +1032,13 @@ let startFunk = setInterval(() => {
         value = "XPF"
         console.log(`${newPrice.toFixed(0)}${value}`)
       }
+      if (priceItem.includes("₫")) {
+        item = priceItem.split("₫")
+        console.log(+item[0].split(".").join("").replace(/,/g, ""))
+        newPrice = +item[0].split(".").join("").replace(/,/g, "") * 0.4
+        value = "₫"
+        console.log(`${newPrice.toFixed(0)}${value}`)
+      }
     }
 
     //
@@ -1029,29 +1058,13 @@ let startFunk = setInterval(() => {
     }
 
     //
-
-    if (document.querySelector(".ADDD")) {
-      document.querySelector(".ADDD").addEventListener("click", (el) => {
-        document.querySelectorAll(".variant-input-wrap input[type=radio]:checked").forEach((el) => {
-          if (el.value === "default") {
-            console.log(el)
-            document.querySelector(".mistake").style.color = "red"
-            console.log(`red`)
-          } else {
-            console.log(`green`)
-            document.querySelector(".mistake").style.color = "green"
-          }
-        })
-      })
-    }
-    // нужно нарисовать новые кнопки и выводить ошибку, когда инпуты выбраны, тогда удалить блок с новыми кнопками и показать блок со старыми кнопками,
     document.querySelectorAll(".product-block .variant__label.hidden-label").forEach((el) => {
       if (el.textContent.includes("Color")) {
         el.textContent = "Select color:"
         if (!document.querySelector(".mistake.color_var")) {
           el.insertAdjacentHTML(
             "beforeend",
-            `<div class="mistake color_var"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            `<div class="mistake color_var is_hidden"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M7.33398 9.99992H8.66732V11.3333H7.33398V9.99992ZM7.33398 4.66659H8.66732V8.66659H7.33398V4.66659ZM7.99398 1.33325C4.31398 1.33325 1.33398 4.31992 1.33398 7.99992C1.33398 11.6799 4.31398 14.6666 7.99398 14.6666C11.6807 14.6666 14.6673 11.6799 14.6673 7.99992C14.6673 4.31992 11.6807 1.33325 7.99398 1.33325ZM8.00065 13.3333C5.05398 13.3333 2.66732 10.9466 2.66732 7.99992C2.66732 5.05325 5.05398 2.66659 8.00065 2.66659C10.9473 2.66659 13.334 5.05325 13.334 7.99992C13.334 10.9466 10.9473 13.3333 8.00065 13.3333Z" fill="#D71D1D"/>
 </svg>Please select color</div>`
           )
@@ -1063,10 +1076,20 @@ let startFunk = setInterval(() => {
         if (!document.querySelector(".mistake.size_var")) {
           el.insertAdjacentHTML(
             "beforeend",
-            `<div class="mistake size_var"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            `<div class="mistake size_var is_hidden"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M7.33398 9.99992H8.66732V11.3333H7.33398V9.99992ZM7.33398 4.66659H8.66732V8.66659H7.33398V4.66659ZM7.99398 1.33325C4.31398 1.33325 1.33398 4.31992 1.33398 7.99992C1.33398 11.6799 4.31398 14.6666 7.99398 14.6666C11.6807 14.6666 14.6673 11.6799 14.6673 7.99992C14.6673 4.31992 11.6807 1.33325 7.99398 1.33325ZM8.00065 13.3333C5.05398 13.3333 2.66732 10.9466 2.66732 7.99992C2.66732 5.05325 5.05398 2.66659 8.00065 2.66659C10.9473 2.66659 13.334 5.05325 13.334 7.99992C13.334 10.9466 10.9473 13.3333 8.00065 13.3333Z" fill="#D71D1D"/>
-</svg> Please select size</div><div class="size_guide_var">Size guide</div>`
+</svg> Please select size</div>`
           )
+        }
+        if (
+          !document.querySelector(".size_guide_var") &&
+          (document.querySelector("h1.product-single__title").textContent.includes("Sweater") ||
+            document.querySelector("h1.product-single__title").textContent.includes("Sweatshirt") ||
+            document.querySelector("h1.product-single__title").textContent.includes("Shirt") ||
+            document.querySelector("h1.product-single__title").textContent.includes("Tank Top") ||
+            document.querySelector("h1.product-single__title").textContent.includes("Hoodie"))
+        ) {
+          el.insertAdjacentHTML("beforeend", `<div class="size_guide_var">Size guide</div>`)
         }
 
         document.querySelector(".size_guide_var")?.addEventListener("click", () => {
@@ -1086,7 +1109,86 @@ let startFunk = setInterval(() => {
     })
 
     document.querySelectorAll(".variant-input-wrap label").forEach((el) => {
+      console.log(el.previousElementSibling.matches("input[type=radio]:checked"))
+      if (el.previousElementSibling.matches("input[type=radio]:checked")) {
+        if (el.previousElementSibling.value === "default") {
+          if (!document.querySelector(".new_wrap_btn")) {
+            document.querySelector("form.product-single__form").insertAdjacentHTML(
+              "beforebegin",
+              `    <div class="new_wrap_btn">
+        <button class="btn btn--full add-to-cart btn--tertiary add_to_cart">
+          <span>Add to cart</span>
+        </button>
+        <button type="button" class="shopify-payment-button__button shopify-payment-button__button--unbranded buy_it_now">Buy it now</button>
+      </div>`
+            )
+
+            document.querySelector("form.product-single__form").style.display = "none"
+
+            document.querySelector(".new_wrap_btn .add_to_cart")?.addEventListener("click", (e) => {
+              e.preventDefault()
+              document.querySelectorAll(".mistake").forEach((el) => {
+                el.classList.remove("is_hidden")
+              })
+            })
+
+            document.querySelector(".new_wrap_btn .buy_it_now")?.addEventListener("click", (e) => {
+              e.preventDefault()
+              document.querySelectorAll(".mistake").forEach((el) => {
+                el.classList.remove("is_hidden")
+              })
+            })
+
+            document.querySelector("a.link_text")?.addEventListener("click", (e) => {
+              e.preventDefault()
+              if (document.querySelector('[name="add"]').getAttribute("disabled")) {
+                document.querySelector(".new_wrap_btn .buy_it_now")?.click()
+              } else {
+                document.querySelector('form [data-testid="Checkout-button"')?.click()
+              }
+            })
+          }
+        }
+      }
+
       el.addEventListener("click", (i) => {
+        console.log(`click`, el.previousElementSibling)
+        // console.log(el.previousElementSibling.matches("input[type=radio]:checked"))
+        if (el.previousElementSibling.value !== "default") {
+          if (el.closest(".variant-wrapper").querySelector(".variant__label.hidden-label").textContent.includes("Select color:")) {
+            el.closest(".variant-wrapper").querySelector(".variant__label.hidden-label .mistake").classList.add("is_visited")
+          }
+
+          if (el.closest(".variant-wrapper").querySelector(".variant__label.hidden-label").textContent.includes("Select size:")) {
+            el.closest(".variant-wrapper").querySelector(".variant__label.hidden-label .mistake").classList.add("is_visited")
+          }
+
+          console.log(el.closest(".variant-wrapper").querySelector(".variant__label.hidden-label .mistake.color_var"))
+
+          if (document.querySelector(".variant__label.hidden-label .mistake.color_var") && document.querySelector(".variant__label.hidden-label .mistake.size_var")) {
+            if (
+              document.querySelector(".variant__label.hidden-label .mistake.color_var").classList.contains("is_visited") &&
+              document.querySelector(".variant__label.hidden-label .mistake.size_var").classList.contains("is_visited")
+            ) {
+              document.querySelector("form.product-single__form").style.display = "unset"
+              document.querySelector(".new_wrap_btn").style.display = "none"
+            }
+          }
+          if (document.querySelector(".variant__label.hidden-label .mistake.color_var") && !document.querySelector(".variant__label.hidden-label .mistake.size_var")) {
+            if (document.querySelector(".variant__label.hidden-label .mistake.color_var").classList.contains("is_visited")) {
+              document.querySelector("form.product-single__form").style.display = "unset"
+              document.querySelector(".new_wrap_btn").style.display = "none"
+            }
+          }
+
+          if (!document.querySelector(".variant__label.hidden-label .mistake.color_var") && document.querySelector(".variant__label.hidden-label .mistake.size_var")) {
+            if (document.querySelector(".variant__label.hidden-label .mistake.size_var").classList.contains("is_visited")) {
+              document.querySelector("form.product-single__form").style.display = "unset"
+              document.querySelector(".new_wrap_btn").style.display = "none"
+            }
+          }
+        }
+        //
         if (el.classList.contains("disabled")) {
           if (!el.previousElementSibling.getAttribute("disabled")) {
             el.previousElementSibling.setAttribute("disabled", "disabled")
