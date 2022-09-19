@@ -23,9 +23,11 @@ let startFunk = setInterval(() => {
         line-height: 18px;
         color: #3F3F3F;
         display: inline;
+        letter-spacing: normal;
         margin: 0;
       }
-      .donation_amount_flex p span:not(.text_absol){
+      .donate_value,
+      .donate_price{
         font-weight: 700;
       }
       .text_absol{
@@ -122,7 +124,7 @@ let startFunk = setInterval(() => {
         width: 100%;
         padding: 24px;
       }
-      p.goal_text{
+      ul.background_wrap > li p.goal_text{
         font-weight: 400;
         margin-bottom: 4px;
       }
@@ -478,12 +480,122 @@ let startFunk = setInterval(() => {
     .add_to_cart{
       padding: 10px 25px;
     }
+    @media (max-width: 768px) {
+      .backdrop_modal .container_popup{
+        max-width: 358px;
+      }
+      .backdrop_modal .container_popup > svg{
+        top: 16px;
+        right: 16px;
+      }
+      .content_popup > h2{
+        margin: 4px 0 8px;
+      }
+      .content_popup p.goal_text strong{
+        font-size: 14px;
+      }
+      ul.main_popup_list > li {
+          margin: 0 0 0 26px;
+      }
+      /* */
+      .donation_inform h3{
+        margin-bottom: 8px;
+      }
+      ul.background_wrap > li{
+        width: 100%;
+      }
+      ul.background_wrap > li + li {
+          margin: 16px 0 0;
+      }
+      ul.background_wrap > li .img_wrap {
+          max-width: 68px;
+          max-height: 80px;
+          margin-bottom: 4px;
+      }
+      .already_donat_list{
+        margin: 4px 0 0 16px;
+      }
+      .donation_inform > div:last-child h3{
+        margin-bottom: 16px;
+      }
+      .donation_inform{
+        margin-bottom: 32px;
+      }
+      /* */
+      .size_guide > h2{
+        margin: 0;
+      }
+      .accardion_size > li + li {
+          margin-top: 16px;
+      }
+      .product-single__prices>:last-child{
+        font-size: 18px;
+        line-height: 24px;
+      }
+      .sales-point .icon-and-text{
+        justify-content: start;
+      }
+    }
+    @media (max-width: 320px) {
+      .donation_amount_flex p,
+      .product-block .variant__label.hidden-label,
+      .size_guide_var{
+        font-size: 12px;
+      }
+      .mistake{
+        font-size: 10px;
+      }
+      .donation_inform h3{
+         font-size: 17px;
+      }
+      ul.background_wrap > li p.title_list {
+          font-size: 14px;
+      }
+      ul.background_wrap > li p{
+        font-size: 13px;
+      }
+      .content_popup > h2{
+         font-size: 20px;
+      }
+      .backdrop_modal .container_popup {
+          max-width: 312px;
+      }
+      .accardion_lists table p{
+            font-size: 10px;
+      }
+    }
+    @media (max-width: 280px) {
+      .donation_amount_flex p, .product-block .variant__label.hidden-label, .size_guide_var{
+            font-size: 10px;
+      }
+      .mistake{
+            left: 64px;
+      }
+      .mistake.size_var {
+          left: 57px;
+      }
+      .donation_inform h3 {
+          font-size: 15px;
+      }
+      ul.background_wrap > li p.title_list {
+          font-size: 11px;
+      }
+      ul.background_wrap > li p {
+          font-size: 10px;
+      }
+      p.goal_text strong {
+          font-size: 12px;
+      }
+      .accardion_lists table p {
+          font-size: 8px;
+      }
+    }
     </style>
       `
 
     let donationAmount = /*html */ `
     <div class="donation_amount_flex">
-        <p>Your purchase will <b>donate</b> <span>$</span><span>12.8</span> to support <span class="text_absol">Ukraine</span></p>
+        <p>Your purchase will <b>donate</b> <span class="donate_value">$</span><span class="donate_price">12.8</span> to support <span class="text_absol">Ukraine</span></p>
       <svg class="svg_popup" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M7.99967 14.6666C11.6663 14.6666 14.6663 11.6666 14.6663 7.99992C14.6663 4.33325 11.6663 1.33325 7.99967 1.33325C4.33301 1.33325 1.33301 4.33325 1.33301 7.99992C1.33301 11.6666 4.33301 14.6666 7.99967 14.6666Z"
@@ -528,7 +640,7 @@ let startFunk = setInterval(() => {
           <li>
             <p class="goal_text">Fundraising goal by the end of October 2022: <strong>$1 million</strong></p>
             <div class="bar"></div>
-            <p><a class="link_text" href="/cart">Buy this product</a> to <b>donate</b> <span>$</span><span>12.8</span> to support Ukraine</p>
+            <p><a class="link_text" href="#">Buy this product</a> to <b>donate</b> <span class="donate_value">$</span><span class="donate_price">12.8</span> to support Ukraine</p>
           </li>
         </ul>
       </div>
@@ -966,7 +1078,12 @@ let startFunk = setInterval(() => {
       price = productBlock.querySelector(".product__price").textContent
 
     productBlock.insertAdjacentHTML("afterend", donationAmount)
-    boxForDonationInform.insertAdjacentHTML("beforeend", donationInform)
+
+    if (innerWidth <= 768) {
+      document.querySelector(".product-block .aos-animate").closest(".product-block").insertAdjacentHTML("beforebegin", donationInform)
+    } else {
+      boxForDonationInform.insertAdjacentHTML("beforeend", donationInform)
+    }
 
     document.querySelector(".donation_amount_flex")?.addEventListener("click", () => {
       document.querySelector(".backdrop_modal").classList.remove("is_hidden")
@@ -979,6 +1096,11 @@ let startFunk = setInterval(() => {
           console.log(`click`)
           document.querySelector("a.link_text")?.click()
         })
+      }
+      if (innerWidth <= 768) {
+        if (document.querySelector(".content_popup p.goal_text br")) {
+          document.querySelector(".content_popup p.goal_text br").remove()
+        }
       }
     })
 
@@ -994,50 +1116,58 @@ let startFunk = setInterval(() => {
 
     function getPrice(priceItem) {
       let newPrice = 0
-      let value
+      let finalPrice = 0
+      let value = ""
 
       if (priceItem.includes("€")) {
-        newPrice = +priceItem.split("€")[1].replace(/,/g, "") * 0.4
+        newPrice = +priceItem.split("€")[1].split(",")[0].replace(/\./g, ",").replace(/,/g, "") * 0.4
+        // console.log(+priceItem.split("€")[1].replace(/\,/g, ".") * 0.4)
         value = "€"
-        console.log(`${value}${newPrice.toFixed(0)}`)
+        finalPrice = newPrice.toFixed(0).replace(/\./g, ",")
+        console.log(`${value}${newPrice.toFixed(1).replace(/\./g, ",")}`)
       }
-      if (priceItem.includes("؋")) {
-        newPrice = +priceItem.split("؋")[0].replace(/,/g, "") * 0.4
-        value = "؋"
-        console.log(`${newPrice.toFixed(0)}${value}`)
-      }
+
       if (priceItem.includes("$")) {
         newPrice = +priceItem.split("$")[1].replace(/,/g, "") * 0.4
         value = "$"
-        console.log(`${value}${newPrice}`)
+        finalPrice = newPrice.toFixed(0).replace(/(\d)(?=(\d{3})+\.)/g, "1,")
+        console.log(`${value}${newPrice.toFixed(1).replace(/(\d)(?=(\d{3})+\.)/g, "1,")}`)
       }
-      if (priceItem.includes("YER")) {
-        newPrice = +priceItem.split(" YER")[0].replace(/,/g, "") * 0.4
-        value = "YER"
-        console.log(`${newPrice.toFixed(0)}${value}`)
+
+      if (priceItem.includes("₴")) {
+        newPrice = +priceItem.split("₴")[1].replace(/,/g, "") * 0.4
+        value = "₴"
+        finalPrice = newPrice.toFixed(0).replace(/(\d)(?=(\d{3})+\.)/g, "1,")
+        console.log(`${value}${newPrice.toFixed(1).replace(/(\d)(?=(\d{3})+\.)/g, "1,")}`)
       }
-      if (priceItem.includes("dh")) {
-        newPrice = +priceItem.split(" dh")[0].replace(/,/g, "") * 0.4
-        value = "dh"
-        console.log(`${newPrice.toFixed(0)}${value}`)
+
+      if (priceItem.includes("£")) {
+        newPrice = +priceItem.split("£")[1].replace(/,/g, "") * 0.4
+        value = "£"
+        finalPrice = newPrice.toFixed(0).replace(/(\d)(?=(\d{3})+\.)/g, "1,")
+        console.log(`${value}${newPrice.toFixed(1).replace(/(\d)(?=(\d{3})+\.)/g, "1,")}`)
       }
-      if (priceItem.includes("DA")) {
-        newPrice = +priceItem.split("DA ")[1].replace(/,/g, "") * 0.4
-        value = "DA"
-        console.log(`${value}${newPrice}`)
+
+      if (priceItem.includes(" zl")) {
+        newPrice = +priceItem.split(" zl")[0].split(",")[0].replace(/\./g, ",").replace(/,/g, "") * 0.4
+        // console.log(newPrice.toFixed(1).replace(/\./g, ","))
+        value = "zl"
+        finalPrice = newPrice.toFixed(0).replace(/\./g, ",")
+        console.log(`${newPrice.toFixed().replace(/\./g, ",")} ${value}`)
       }
-      if (priceItem.includes("XPF")) {
-        item = priceItem.split(" XPF")
-        newPrice = +item[0].split(" ").join("").replace(/,/g, "") * 0.4
-        value = "XPF"
-        console.log(`${newPrice.toFixed(0)}${value}`)
-      }
-      if (priceItem.includes("₫")) {
-        item = priceItem.split("₫")
-        console.log(+item[0].split(".").join("").replace(/,/g, ""))
-        newPrice = +item[0].split(".").join("").replace(/,/g, "") * 0.4
-        value = "₫"
-        console.log(`${newPrice.toFixed(0)}${value}`)
+
+      if (document.querySelector(".donation_amount_flex")) {
+        if (document.querySelector(".donate_value")) {
+          document.querySelectorAll(".donate_value").forEach((el) => {
+            el.textContent = value
+          })
+        }
+
+        if (document.querySelector(".donate_price")) {
+          document.querySelectorAll(".donate_price").forEach((el) => {
+            el.textContent = finalPrice
+          })
+        }
       }
     }
 
@@ -1109,7 +1239,6 @@ let startFunk = setInterval(() => {
     })
 
     document.querySelectorAll(".variant-input-wrap label").forEach((el) => {
-      console.log(el.previousElementSibling.matches("input[type=radio]:checked"))
       if (el.previousElementSibling.matches("input[type=radio]:checked")) {
         if (el.previousElementSibling.value === "default") {
           if (!document.querySelector(".new_wrap_btn")) {
@@ -1152,8 +1281,6 @@ let startFunk = setInterval(() => {
       }
 
       el.addEventListener("click", (i) => {
-        console.log(`click`, el.previousElementSibling)
-        // console.log(el.previousElementSibling.matches("input[type=radio]:checked"))
         if (el.previousElementSibling.value !== "default") {
           if (el.closest(".variant-wrapper").querySelector(".variant__label.hidden-label").textContent.includes("Select color:")) {
             el.closest(".variant-wrapper").querySelector(".variant__label.hidden-label .mistake").classList.add("is_visited")
