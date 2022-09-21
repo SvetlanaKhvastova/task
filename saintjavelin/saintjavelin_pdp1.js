@@ -2,6 +2,12 @@ let startFunk = setInterval(() => {
   if (document.body && document.querySelector(".product-single__meta") != null) {
     clearInterval(startFunk)
 
+    document.querySelectorAll("input[type=radio]").forEach((item) => {
+      if (item.value === "default") {
+        item.click()
+      }
+    })
+
     /* other variables  */
     const imgFolderUrl = "https://conversionratestore.github.io/projects/saintjavelin/img/"
 
@@ -26,7 +32,6 @@ let startFunk = setInterval(() => {
         letter-spacing: normal;
         margin: 0;
       }
-      .donate_value,
       .donate_price{
         font-weight: 700;
       }
@@ -151,17 +156,14 @@ let startFunk = setInterval(() => {
         transition: all 0.5s ease 0s;        
         z-index: 9005;
         }
-
     .backdrop_modal.is_hidden {
         opacity: 0;
         pointer-events: none;
     }
-
     .backdrop_modal.is_hidden .container_popup{
         transform: translateX(100%);
         transition: all 0.8s ease 0s;
     }
-
     .backdrop_modal .container_popup{
       position: absolute;
       bottom: 0;
@@ -174,7 +176,6 @@ let startFunk = setInterval(() => {
       transition: all 0.5s ease 0s;
       overflow: auto;
     }
-
     .backdrop_modal .container_popup > svg {
         position: absolute;
         top: 24px;
@@ -627,7 +628,7 @@ let startFunk = setInterval(() => {
 
     let donationAmount = /*html */ `
     <div class="donation_amount_flex">
-        <p>Your purchase will <b>donate</b> <span class="donate_value">$</span><span class="donate_price">12.8</span> to support <span class="text_absol">Ukraine</span></p>
+        <p>Your purchase will <b>donate</b> <span class="donate_price">12.8</span> to support <span class="text_absol">Ukraine</span></p>
       <svg class="svg_popup" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M7.99967 14.6666C11.6663 14.6666 14.6663 11.6666 14.6663 7.99992C14.6663 4.33325 11.6663 1.33325 7.99967 1.33325C4.33301 1.33325 1.33301 4.33325 1.33301 7.99992C1.33301 11.6666 4.33301 14.6666 7.99967 14.6666Z"
@@ -674,7 +675,7 @@ let startFunk = setInterval(() => {
             <div class="bar">
               <span class="count_donate"></span>
             </div>
-            <p><a class="link_text" href="#">Buy this product</a> to <b>donate</b> <span class="donate_value">$</span><span class="donate_price">12.8</span> to support Ukraine</p>
+            <p><a class="link_text" href="#">Buy this product</a> to <b>donate</b> <span class="donate_price">12.8</span> to support Ukraine</p>
           </li>
         </ul>
       </div>
@@ -1105,8 +1106,8 @@ let startFunk = setInterval(() => {
         </li>
       </ul>
     </div>
-
     `
+
     document.body.insertAdjacentHTML("afterbegin", donatePopup)
     document.body.insertAdjacentHTML("afterbegin", style)
 
@@ -1130,7 +1131,6 @@ let startFunk = setInterval(() => {
       if (document.querySelector(".backdrop_modal .content_popup")) {
         document.querySelector(".backdrop_modal .content_popup .by_it_now_btn")?.addEventListener("click", (e) => {
           e.preventDefault()
-          console.log(`click`)
           document.querySelector("a.link_text")?.click()
         })
       }
@@ -1159,66 +1159,6 @@ let startFunk = setInterval(() => {
       }
     })
 
-    getPrice(price)
-
-    function getPrice(priceItem) {
-      let newPrice = 0
-      let finalPrice = 0
-      let value = ""
-
-      if (priceItem.includes("€")) {
-        newPrice = +priceItem.split("€")[1].split(",")[0].replace(/\./g, ",").replace(/,/g, "") * 0.4
-        // console.log(+priceItem.split("€")[1].replace(/\,/g, ".") * 0.4)
-        value = "€"
-        finalPrice = newPrice.toFixed(0).replace(/\./g, ",")
-        console.log(`${value}${newPrice.toFixed(1).replace(/\./g, ",")}`)
-      }
-
-      if (priceItem.includes("$")) {
-        newPrice = +priceItem.split("$")[1].replace(/,/g, "") * 0.4
-        value = "$"
-        finalPrice = newPrice.toFixed(0).replace(/(\d)(?=(\d{3})+\.)/g, "1,")
-        console.log(`${value}${newPrice.toFixed(1).replace(/(\d)(?=(\d{3})+\.)/g, "1,")}`)
-      }
-
-      if (priceItem.includes("₴")) {
-        newPrice = +priceItem.split("₴")[1].replace(/,/g, "") * 0.4
-        value = "₴"
-        finalPrice = newPrice.toFixed(0).replace(/(\d)(?=(\d{3})+\.)/g, "1,")
-        console.log(`${value}${newPrice.toFixed(1).replace(/(\d)(?=(\d{3})+\.)/g, "1,")}`)
-      }
-
-      if (priceItem.includes("£")) {
-        newPrice = +priceItem.split("£")[1].replace(/,/g, "") * 0.4
-        value = "£"
-        finalPrice = newPrice.toFixed(0).replace(/(\d)(?=(\d{3})+\.)/g, "1,")
-        console.log(`${value}${newPrice.toFixed(1).replace(/(\d)(?=(\d{3})+\.)/g, "1,")}`)
-      }
-
-      if (priceItem.includes(" zl")) {
-        newPrice = +priceItem.split(" zl")[0].split(",")[0].replace(/\./g, ",").replace(/,/g, "") * 0.4
-        // console.log(newPrice.toFixed(1).replace(/\./g, ","))
-        value = "zl"
-        finalPrice = newPrice.toFixed(0).replace(/\./g, ",")
-        console.log(`${newPrice.toFixed().replace(/\./g, ",")} ${value}`)
-      }
-
-      if (document.querySelector(".donation_amount_flex")) {
-        if (document.querySelector(".donate_value")) {
-          document.querySelectorAll(".donate_value").forEach((el) => {
-            el.textContent = value
-          })
-        }
-
-        if (document.querySelector(".donate_price")) {
-          document.querySelectorAll(".donate_price").forEach((el) => {
-            el.textContent = finalPrice
-          })
-        }
-      }
-    }
-
-    //
     const accardionToggleFaqs = (slideMenu) => (e) => {
       slideMenu.forEach((link) => {
         e.preventDefault()
@@ -1242,8 +1182,8 @@ let startFunk = setInterval(() => {
           el.insertAdjacentHTML(
             "beforeend",
             `<div class="mistake color_var is_hidden"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M7.33398 9.99992H8.66732V11.3333H7.33398V9.99992ZM7.33398 4.66659H8.66732V8.66659H7.33398V4.66659ZM7.99398 1.33325C4.31398 1.33325 1.33398 4.31992 1.33398 7.99992C1.33398 11.6799 4.31398 14.6666 7.99398 14.6666C11.6807 14.6666 14.6673 11.6799 14.6673 7.99992C14.6673 4.31992 11.6807 1.33325 7.99398 1.33325ZM8.00065 13.3333C5.05398 13.3333 2.66732 10.9466 2.66732 7.99992C2.66732 5.05325 5.05398 2.66659 8.00065 2.66659C10.9473 2.66659 13.334 5.05325 13.334 7.99992C13.334 10.9466 10.9473 13.3333 8.00065 13.3333Z" fill="#D71D1D"/>
-</svg>Please select color</div>`
+                        <path d="M7.33398 9.99992H8.66732V11.3333H7.33398V9.99992ZM7.33398 4.66659H8.66732V8.66659H7.33398V4.66659ZM7.99398 1.33325C4.31398 1.33325 1.33398 4.31992 1.33398 7.99992C1.33398 11.6799 4.31398 14.6666 7.99398 14.6666C11.6807 14.6666 14.6673 11.6799 14.6673 7.99992C14.6673 4.31992 11.6807 1.33325 7.99398 1.33325ZM8.00065 13.3333C5.05398 13.3333 2.66732 10.9466 2.66732 7.99992C2.66732 5.05325 5.05398 2.66659 8.00065 2.66659C10.9473 2.66659 13.334 5.05325 13.334 7.99992C13.334 10.9466 10.9473 13.3333 8.00065 13.3333Z" fill="#D71D1D"/>
+                        </svg>Please select color</div>`
           )
         }
       }
@@ -1254,8 +1194,8 @@ let startFunk = setInterval(() => {
           el.insertAdjacentHTML(
             "beforeend",
             `<div class="mistake size_var is_hidden"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M7.33398 9.99992H8.66732V11.3333H7.33398V9.99992ZM7.33398 4.66659H8.66732V8.66659H7.33398V4.66659ZM7.99398 1.33325C4.31398 1.33325 1.33398 4.31992 1.33398 7.99992C1.33398 11.6799 4.31398 14.6666 7.99398 14.6666C11.6807 14.6666 14.6673 11.6799 14.6673 7.99992C14.6673 4.31992 11.6807 1.33325 7.99398 1.33325ZM8.00065 13.3333C5.05398 13.3333 2.66732 10.9466 2.66732 7.99992C2.66732 5.05325 5.05398 2.66659 8.00065 2.66659C10.9473 2.66659 13.334 5.05325 13.334 7.99992C13.334 10.9466 10.9473 13.3333 8.00065 13.3333Z" fill="#D71D1D"/>
-</svg> Please select size</div>`
+                            <path d="M7.33398 9.99992H8.66732V11.3333H7.33398V9.99992ZM7.33398 4.66659H8.66732V8.66659H7.33398V4.66659ZM7.99398 1.33325C4.31398 1.33325 1.33398 4.31992 1.33398 7.99992C1.33398 11.6799 4.31398 14.6666 7.99398 14.6666C11.6807 14.6666 14.6673 11.6799 14.6673 7.99992C14.6673 4.31992 11.6807 1.33325 7.99398 1.33325ZM8.00065 13.3333C5.05398 13.3333 2.66732 10.9466 2.66732 7.99992C2.66732 5.05325 5.05398 2.66659 8.00065 2.66659C10.9473 2.66659 13.334 5.05325 13.334 7.99992C13.334 10.9466 10.9473 13.3333 8.00065 13.3333Z" fill="#D71D1D"/>
+                            </svg> Please select size</div>`
           )
         }
         if (
@@ -1285,6 +1225,10 @@ let startFunk = setInterval(() => {
       }
     })
 
+    document.querySelectorAll(".donate_price").forEach((item) => {
+      item.innerText = document.querySelector("[data-price-donate]").dataset.priceDonate
+    })
+
     document.querySelectorAll(".variant-input-wrap label").forEach((el) => {
       if (el.previousElementSibling.matches("input[type=radio]:checked")) {
         if (el.previousElementSibling.value === "default") {
@@ -1292,11 +1236,11 @@ let startFunk = setInterval(() => {
             document.querySelector("form.product-single__form").insertAdjacentHTML(
               "beforebegin",
               `    <div class="new_wrap_btn">
-        <button class="btn btn--full add-to-cart btn--tertiary add_to_cart">
-          <span>Add to cart</span>
-        </button>
-        <button type="button" class="shopify-payment-button__button shopify-payment-button__button--unbranded buy_it_now">Buy it now</button>
-      </div>`
+                                    <button class="btn btn--full add-to-cart btn--tertiary add_to_cart">
+                                      <span>Add to cart</span>
+                                    </button>
+                                    <button type="button" class="shopify-payment-button__button shopify-payment-button__button--unbranded buy_it_now">Buy it now</button>
+                                  </div>`
             )
 
             document.querySelector("form.product-single__form").style.display = "none"
@@ -1348,8 +1292,6 @@ let startFunk = setInterval(() => {
             el.closest(".variant-wrapper").querySelector(".variant__label.hidden-label .mistake").classList.add("is_visited")
           }
 
-          console.log(el.closest(".variant-wrapper").querySelector(".variant__label.hidden-label .mistake.color_var"))
-
           if (document.querySelector(".variant__label.hidden-label .mistake.color_var") && document.querySelector(".variant__label.hidden-label .mistake.size_var")) {
             if (
               document.querySelector(".variant__label.hidden-label .mistake.color_var").classList.contains("is_visited") &&
@@ -1373,18 +1315,32 @@ let startFunk = setInterval(() => {
             }
           }
         }
-        //
+
+        document.querySelectorAll(".donate_price").forEach((item) => {
+          item.innerText = document.querySelector("[data-price-donate]").dataset.priceDonate
+        })
+
         if (el.classList.contains("disabled")) {
           if (!el.previousElementSibling.getAttribute("disabled")) {
             el.previousElementSibling.setAttribute("disabled", "disabled")
-            console.log(`setAttribute("disabled", "disabled")`)
           }
         } else {
           if (el.previousElementSibling.getAttribute("disabled")) {
             el.previousElementSibling.removeAttribute("disabled")
-            console.log(`removeAttribute("disabled")`)
           }
         }
+      })
+    })
+
+    document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)').forEach((item) => {
+      item.addEventListener("click", function () {
+        let color = this.previousElementSibling.value.toLowerCase().replaceAll(" ", "-")
+
+        document.querySelectorAll(".product__photos a").forEach((a) => {
+          if (a.getAttribute("href").includes(color)) {
+            a.click()
+          }
+        })
       })
     })
   }
