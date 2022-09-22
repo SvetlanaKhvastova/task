@@ -13,6 +13,21 @@ if (window.location.pathname === "/mc/") {
       scriptTippy.async = false
       document.body.appendChild(scriptTippy)
 
+      //is the first time
+      if (!localStorage.getItem("firstTime")) {
+        localStorage.setItem("firstTime", true)
+      }
+
+      // is NOT the first time
+      window.onunload = unloadPage
+      function unloadPage() {
+        console.log("unload event detected!")
+
+        if (localStorage.getItem("firstTime") && !localStorage.getItem("notFirstTime")) {
+          localStorage.setItem("notFirstTime", true)
+        }
+      }
+
       /* other variables  */
       const imgFolderUrl = "https://conversionratestore.github.io/projects/knineti/img/"
 
@@ -60,6 +75,9 @@ if (window.location.pathname === "/mc/") {
 
       let style = /*html */ `
       <style>
+        #myCarousel .item_mc {
+            height: 660px !important;
+        }
         .count_sec > .container,
         .enroll_btn_txt,
         #myHeaderr .top_menu_box{
@@ -87,6 +105,11 @@ if (window.location.pathname === "/mc/") {
             text-align: center;
             text-transform: uppercase;
             color: #FFFFFF !important;
+            transition: all 250ms cubic-bezier(0.075, 0.82, 0.165, 1)
+        }
+        button.new_btn:hover,
+        button.new_btn:focus{
+            box-shadow: unset;
         }
         .last_price_text{
             font-weight: 400;
@@ -296,6 +319,33 @@ if (window.location.pathname === "/mc/") {
             font-weight: 600;
         }
         /*more_thirty_mins_block */
+        .more_thirty_mins_block{
+            border-bottom: 3px solid #794E15;
+            padding-bottom: 32px;
+        }
+        .more_thirty_mins_block > div:last-of-type{
+            padding-top: 32px;
+            position: relative;
+        }
+        .more_thirty_mins_block > div:last-of-type::after,
+        .more_thirty_mins_block > div:last-of-type::before{
+            position: absolute;
+            content: '';
+            width: 117px;
+            height: 120px;
+        }
+        .more_thirty_mins_block > div:last-of-type::after{
+            right: 45px;
+            top: 25%;
+            background: url(${imgFolderUrl}foot_dog_right.png) no-repeat;
+            background-size: cover;
+        }
+        .more_thirty_mins_block > div:last-of-type::before{
+            left: 45px;
+            top: 30%;
+            background: url(${imgFolderUrl}foot_dog_left.png) no-repeat;
+            background-size: cover;
+        }
         .more_thirty_mins_block .logo_wrap{
             display: flex;
             align-items: center;
@@ -319,7 +369,6 @@ if (window.location.pathname === "/mc/") {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: 32px;
         }
         .more_thirty_mins_block .total_transformation_block > p{
             font-weight: 700;
@@ -340,6 +389,50 @@ if (window.location.pathname === "/mc/") {
             color: #173775 !important;
             margin: 0 0 0 8px;
         }
+        .tooltip_icon{
+            position: relative;
+            margin-left: 8px;
+            cursor: pointer;
+        }
+        .tooltip_icon::before{
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 50%;
+            width: 11px;
+            height: 11px;
+            transform: translateX(-50%);
+            background: url(${imgFolderUrl}new_tooltip_icon.svg);
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        .tippy-popper{
+            z-index: 998 !important;
+        }
+        .tippy-tooltip{
+            width: 319px;
+            background: #FFFFFF;
+            border-radius: 8px;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 150%;
+            display: flex;
+            align-items: center;
+            color: #808080;
+            box-shadow: 0px 2px 6px 2px rgb(0 0 0 / 15%);
+            filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.2));
+            padding: 16px;
+            text-align: left;
+        }
+        .tippy-content {
+            padding: 0;
+        }
+        .tippy-tooltip[data-placement^=top]>.tippy-arrow{
+            border-top-color: #FFFFFF;
+        }
+        .tippy-tooltip[data-placement^=bottom]>.tippy-arrow {
+            border-bottom-color: #FFFFFF;
+        }
         .more_thirty_mins_block .enroll_now_btn_time{
             max-width: 152px;
             height: 62px;
@@ -350,7 +443,12 @@ if (window.location.pathname === "/mc/") {
             font-size: 14px;
             line-height: 150%;
             color: #173775 !important;
-            margin: 35px 0 0;
+            max-width: 701px;
+            text-align: center;
+            margin: 35px auto 0;
+        }
+        .more_thirty_mins_block.is_hidden{
+            display: none;
         }
 
       </style>
@@ -358,12 +456,12 @@ if (window.location.pathname === "/mc/") {
 
       let notFirstVisitStickyBlock = /*html */ `
         <div class="sticky_new_header">
-          <p class="special_offer_text">Special Offer - Ends in <span class="count_days">7</span> <span class="text_days">days</span></p>
+          <p class="special_offer_text">Special Offer - Ends <span class="count_days">7</span> <span class="text_days">days</span></p>
           <div>
               <span class="last_price_text">$497</span>
               <span class="new_price_text">$297</span>
               <span class="you_save_text">You save $200</span>
-              <button class="new_btn enroll_now_btn_new">EnRoll now</button>
+              <button data-enrollbtn class="new_btn enroll_now_btn_new">EnRoll now</button>
           </div>
         </div>
     `
@@ -519,12 +617,12 @@ if (window.location.pathname === "/mc/") {
     `
 
       let moreThirtyMinsBlock = /*html */ `
-        <div class="more_thirty_mins_block">
+        <div class="more_thirty_mins_block is_hidden">
           <div class="logo_wrap">
             <div class="img_wrap">
                 <img src="${imgFolderUrl}logo_time.png" alt="logo k9ti" />
             </div>
-            <p class="special_offer_text">Special Offer - Ends in <span class="count_days">7</span> <span class="text_days">days</span></p>
+            <p class="special_offer_text">Special Offer - Ends <span class="count_days">7</span> <span class="text_days">days</span></p>
           </div>
           <div>
             <div class="total_transformation_block">
@@ -533,7 +631,7 @@ if (window.location.pathname === "/mc/") {
               <span class="new_price_text">$297</span>
               <span class="you_save_text">You save $200</span>
             </div>
-            <button class="new_btn enroll_now_btn_time">EnRoll now</button>
+            <button data-enrollbtn class="new_btn enroll_now_btn_time">EnRoll now</button>
             <div class="tooltip_bar">
               <span>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -550,7 +648,7 @@ if (window.location.pathname === "/mc/") {
                 </defs>
                 </svg>
               </span>
-              <p data-tolltip>90-day refund policy <span class="tooltip_icon" data-title="We provide an unconditional 90-day refund policy and guarantee that you will get your money back if you are dissatisfied with the Total Transformation Masterclass">lalalal</span></p>
+              <p data-tolltip>90-day refund policy <span class="tooltip_icon" data-title="We provide an unconditional 90-day refund policy and guarantee that you will get your money back if you are dissatisfied with the Total Transformation Masterclass"></span></p>
             </div>
             <p class="join_now_descr">
               Join now to discover <strong>key techniques</strong> for addressing <strong>housebreaking issues</strong> as well as <strong>barking, jumping, bitings</strong>, and
@@ -566,6 +664,10 @@ if (window.location.pathname === "/mc/") {
       document.querySelector("#myHeaderr").insertAdjacentHTML("beforeend", notFirstVisitStickyBlock)
       document.querySelector(".main_section")?.insertAdjacentHTML("afterbegin", moreThirtyMinsBlock)
 
+      if (document.querySelector("#below_video_text")) {
+        document.querySelector("#below_video_text").remove()
+      }
+
       for (const badBehavior in objBadBehavior) {
         if (true) {
           let cityObj = objBadBehavior[badBehavior]
@@ -578,28 +680,37 @@ if (window.location.pathname === "/mc/") {
 
       onClickSeeMore()
       getEndsDays()
+      timerVideo()
 
       //getEndsDays
       function getEndsDays() {
         if (document.querySelector("#myHeaderr h4.box_text")) {
           let value = document.querySelector("#myHeaderr h4.box_text").textContent.split(".")[1].split(" ")
-          let days = value[3]
+          let days = `in ${value[3]}`
           let textDays = value[4]
 
+          if (value[3] === "2") {
+            days = "tomorrow"
+            textDays = ""
+          }
+          if (value[3] === "1") {
+            days = "today"
+            textDays = ""
+          }
+
           if (document.querySelector(".sticky_new_header")) {
-            document.querySelector(".count_days").textContent = days
-            document.querySelector(".text_days").textContent = textDays
-            if (days === "2") {
-              days = "tomorrow"
-              textDays = ""
-            }
-            if (days === "1") {
-              days = "today"
-              textDays = ""
-            }
-            document.querySelector(".enroll_now_btn_new").addEventListener("click", (e) => {
-              e.preventDefault()
-              document.querySelector("#myHeaderr a.enroll_now_btn").click()
+            document.querySelectorAll(".count_days").forEach((el) => {
+              el.textContent = days
+            })
+            document.querySelectorAll(".text_days").forEach((el) => {
+              el.textContent = textDays
+            })
+
+            document.querySelectorAll("[data-enrollbtn]").forEach((el) => {
+              el.addEventListener("click", (e) => {
+                e.preventDefault()
+                document.querySelector("#myHeaderr a.enroll_now_btn").click()
+              })
             })
           }
         }
@@ -613,7 +724,8 @@ if (window.location.pathname === "/mc/") {
           document.querySelectorAll("span[data-title]").forEach((el) => {
             tippy(el, {
               content: el.getAttribute("data-title"),
-              trigger: "click",
+              //   trigger: "click",
+              placement: "bottom-end",
               appendTo: function () {
                 return document.querySelector(".tooltip_bar")
               },
@@ -638,6 +750,63 @@ if (window.location.pathname === "/mc/") {
       // getURLParameter 'dogname'
       function getURLParameter(name) {
         return decodeURIComponent((RegExp(name + "=" + "(.+?)(&|$)").exec(location.search) || [, null])[1] || "")
+      }
+
+      // saw more than 35 mins of video
+      function timerVideo() {
+        let intevalVideo = setInterval(() => {
+          if (document.querySelector("video")) {
+            clearInterval(intevalVideo)
+
+            setTimeout(() => {
+              // let counter
+              const videoItem = document.querySelector("video")
+
+              function timeUpdate() {
+                console.log(videoItem.currentTime)
+                // let timer = 35 * 60 + 45
+                let timer = 1 * 60
+
+                let currentTime = Math.floor(videoItem.currentTime)
+
+                timer -= currentTime
+                console.log(`>>>>timer`, timer)
+
+                if (timer <= 0) {
+                  document.querySelector(".more_thirty_mins_block.is_hidden")?.classList.remove("is_hidden")
+                  if (!localStorage.getItem("finishTime")) {
+                    localStorage.setItem("finishTime", true)
+                  }
+                  let int = setInterval(() => {
+                    if (!document.querySelector(".more_thirty_mins_block").classList.contains("is_hidden") && localStorage.getItem("finishTime")) {
+                      clearInterval(int)
+
+                      videoItem.removeEventListener("timeupdate", timeUpdate)
+                      console.log(`>>>>>>>>>>finish`)
+                    }
+                  }, 10)
+                }
+              }
+
+              videoItem.addEventListener("timeupdate", timeUpdate)
+            }, 1000)
+          }
+        }, 100)
+      }
+
+      if (localStorage.getItem("notFirstTime")) {
+        if (document.querySelector(".box_second")) {
+          document.querySelector(".box_second").style.display = "none"
+        }
+        if (document.querySelector(".box_third")) {
+          document.querySelector(".box_third").style.display = "none"
+        }
+        if (document.querySelector(".Breed-Specific.count_sec")) {
+          document.querySelector(".Breed-Specific.count_sec").style.display = "none"
+        }
+        if (localStorage.getItem("finishTime")) {
+          document.querySelector(".more_thirty_mins_block.is_hidden")?.classList.remove("is_hidden")
+        }
       }
     }
   })
