@@ -33,55 +33,55 @@ if (window.location.pathname === "/mc/") {
 
       const objBadBehavior = {
         Barking: {
-          text: `Discover how to eliminate <span class="dogs_name">[dog’s name]</span>'s barking and behavior problems today!`,
+          text: `Discover how to eliminate <span class="dogs_name">[dog’s name]</span> barking and behavior problems today!`,
         },
         Jumping: {
-          text: `Discover how to eliminate <span class="dogs_name">[dog’s name]</span>'s jumping and behavior problems today!`,
+          text: `Discover how to eliminate <span class="dogs_name">[dog’s name]</span> jumping and behavior problems today!`,
         },
         "Pulling leash": {
-          text: `Discover how to eliminate <span class="dogs_name">[dog’s name]</span>'s leash tugging and behavior problems today!`,
+          text: `Discover how to eliminate <span class="dogs_name">[dog’s name]</span> leash tugging and behavior problems today!`,
         },
         Housebreaking: {
-          text: `Discover how to eliminate <span class="dogs_name">[dog’s name]</span>'s housebreaking issues and behavior problems today!`,
+          text: `Discover how to eliminate <span class="dogs_name">[dog’s name]</span> housebreaking issues and behavior problems today!`,
         },
         "Nipping or biting": {
-          text: `Discover how to eliminate <span class="dogs_name">[dog’s name]</span>'s nipping & biting and behavior problems today!`,
+          text: `Discover how to eliminate <span class="dogs_name">[dog’s name]</span> nipping & biting and behavior problems today!`,
         },
         "Not coming when called": {
-          text: `Discover how to eliminate <span class="dogs_name">[dog’s name]</span>'s stubbornness and behavior problems today!`,
+          text: `Discover how to eliminate <span class="dogs_name">[dog’s name]</span> stubbornness and behavior problems today!`,
         },
         "Doesn't listen": {
-          text: `Discover how to eliminate <span class="dogs_name">[dog’s name]</span>'s tendency to ignore commands and behavior problems today!`,
+          text: `Discover how to eliminate <span class="dogs_name">[dog’s name]</span> tendency to ignore commands and behavior problems today!`,
         },
         Chewing: {
-          text: `Discover how to eliminate <span class="dogs_name">[dog’s name]</span>'s chewing & digging and behavior problems today!`,
+          text: `Discover how to eliminate <span class="dogs_name">[dog’s name]</span> chewing & digging and behavior problems today!`,
         },
         "Extremely excited": {
-          text: `Discover how to eliminate <span class="dogs_name">[dog’s name]</span>'s active disobedience and behavior problems today!`,
+          text: `Discover how to eliminate <span class="dogs_name">[dog’s name]</span> active disobedience and behavior problems today!`,
         },
         Aggression: {
-          text: `Discover how to eliminate <span class="dogs_name">[dog’s name]</span>'s aggression and behavior problems today!`,
+          text: `Discover how to eliminate <span class="dogs_name">[dog’s name]</span> aggression and behavior problems today!`,
         },
         Anxiety: {
-          text: `Discover how to eliminate <span class="dogs_name">[dog’s name]</span>'s anxiety and behavior problems today!`,
+          text: `Discover how to eliminate <span class="dogs_name">[dog’s name]</span> anxiety and behavior problems today!`,
         },
         "Reacting to other dogs": {
-          text: `Discover how to eliminate <span class="dogs_name">[dog’s name]</span>'s socialization issues and behavior problems today!`,
+          text: `Discover how to eliminate <span class="dogs_name">[dog’s name]</span> socialization issues and behavior problems today!`,
         },
         Other: {
-          text: `Discover how to eliminate <span class="dogs_name">[dog’s name]</span>'s behavior problems today!`,
+          text: `Discover how to eliminate <span class="dogs_name">[dog’s name]</span> behavior problems today!`,
         },
       }
 
       let style = /*html */ `
       <style>
         #myCarousel .item_mc {
-            height: 660px !important;
+            height: 713px !important;
         }
         .count_sec > .container,
-        .enroll_btn_txt,
+        .banner_txt .enroll_btn_txt,
         #myHeaderr .top_menu_box{
-            display: none;
+            display: none !important;
         }
         #myHeaderr{
             padding: 0 !important;
@@ -186,6 +186,9 @@ if (window.location.pathname === "/mc/") {
             padding: 48px 15px;
         }
         /*box_second */
+        .box_second.is_hidden{
+            display: none;
+        }
         .box_second .container > .box_second_content{
             display: flex;
             justify-content: space-between;
@@ -450,6 +453,34 @@ if (window.location.pathname === "/mc/") {
         .more_thirty_mins_block.is_hidden{
             display: none;
         }
+        /*click_play */
+        #myCarousel .click_play{
+            margin: 8px auto 0;
+        }
+        #myCarousel .click_play > p{
+            cursor: pointer;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 150%;
+            text-align: center;
+            color: #173775 !important;
+            max-width: 464px;
+            margin: 0 auto;
+        }
+        #myCarousel .dog_bad_behavior{
+            margin-top: 5px;
+        }
+        #myCarousel .dog_bad_behavior > p{
+            margin: 0;
+            font-weight: 800;
+            font-size: 24px;
+            line-height: 150%;
+            text-align: center;
+            color: #173775 !important;
+        }
+        #myCarousel .dog_bad_behavior > p .dogs_name{
+            color: #679BD2 !important;
+        }
 
       </style>
       `
@@ -663,17 +694,27 @@ if (window.location.pathname === "/mc/") {
       document.querySelector(".count_sec")?.insertAdjacentHTML("afterbegin", firstVisitNewBlock)
       document.querySelector("#myHeaderr").insertAdjacentHTML("beforeend", notFirstVisitStickyBlock)
       document.querySelector(".main_section")?.insertAdjacentHTML("afterbegin", moreThirtyMinsBlock)
+      document.querySelector(".banner_txt")?.insertAdjacentHTML("beforeend", dogBadBehavior)
+      document.querySelector(".dog_bad_behavior")?.insertAdjacentHTML("afterend", onClickPlay)
 
       if (document.querySelector("#below_video_text")) {
         document.querySelector("#below_video_text").remove()
       }
 
       for (const badBehavior in objBadBehavior) {
-        if (true) {
+        if (document.querySelector(".dog_bad_behavior")) {
           let cityObj = objBadBehavior[badBehavior]
-          console.log(`<div class="dog_bad_behavior"><p>${cityObj.text}</p></div>`)
+          let test = "Barking"
+          if (test.includes(badBehavior)) {
+            document.querySelector(".dog_bad_behavior").insertAdjacentHTML("afterbegin", `<p>${cityObj.text}</p>`)
+            console.log(cityObj.text)
+          }
           if (document.querySelector(".dogs_name")) {
-            document.querySelector(".dogs_name").textContent = getURLParameter("dogname")
+            if (getURLParameter("dogname") === " " || getURLParameter("dogname").length > 10) {
+              document.querySelector(".dogs_name").textContent = `your dog's`
+            } else {
+              document.querySelector(".dogs_name").textContent = `${getURLParameter("dogname")}'s`
+            }
           }
         }
       }
@@ -685,18 +726,70 @@ if (window.location.pathname === "/mc/") {
       //getEndsDays
       function getEndsDays() {
         if (document.querySelector("#myHeaderr h4.box_text")) {
-          let value = document.querySelector("#myHeaderr h4.box_text").textContent.split(".")[1].split(" ")
-          let days = `in ${value[3]}`
-          let textDays = value[4]
+          //   let value = document.querySelector("#myHeaderr h4.box_text").textContent.split(".")[1].split(" ")
+          //   let days = `in ${value[3]}`
+          //   let textDays = value[4]
+          let days = ""
+          let textDays = "days"
 
-          if (value[3] === "2") {
+          //   if (value[3] === "2") {
+          //     days = "tomorrow"
+          //     textDays = ""
+          //   }
+          //   if (value[3] === "1") {
+          //     days = "today"
+          //     textDays = ""
+          //   }
+          //
+          let paramsLocation = new URLSearchParams(window.location.search)
+          let dQueryDate = atob(paramsLocation.get("d"))
+          let dsp = dQueryDate.split("-")
+
+          let today = new Date(new Date().setDate(new Date().getDate())).toDateString().split(" ")
+          let dayStart = new Date(new Date(dsp[0], dsp[1] - 1, dsp[2]).setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate())).toDateString().split(" ")
+          let dayFirst = new Date(new Date(dsp[0], dsp[1] - 1, dsp[2]).setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 1)).toDateString().split(" ")
+          let daySecond = new Date(new Date(dsp[0], dsp[1] - 1, dsp[2]).setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 2)).toDateString().split(" ")
+          let dayThird = new Date(new Date(dsp[0], dsp[1] - 1, dsp[2]).setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 3)).toDateString().split(" ")
+          let dayFourth = new Date(new Date(dsp[0], dsp[1] - 1, dsp[2]).setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 4)).toDateString().split(" ")
+          let dayFifth = new Date(new Date(dsp[0], dsp[1] - 1, dsp[2]).setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 5)).toDateString().split(" ")
+          let daySixth = new Date(new Date(dsp[0], dsp[1] - 1, dsp[2]).setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 6)).toDateString().split(" ")
+          let daySeventh = new Date(new Date(dsp[0], dsp[1] - 1, dsp[2]).setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 7)).toDateString().split(" ")
+          let todayFormat = `${today[0]}${today[1]}${today[2]}${today[3]}`
+          let dayStartFormat = `${dayStart[0]}${dayStart[1]}${dayStart[2]}${dayStart[3]}`
+          let dayFirstFormat = `${dayFirst[0]}${dayFirst[1]}${dayFirst[2]}${dayFirst[3]}`
+          let daySecondFormat = `${daySecond[0]}${daySecond[1]}${daySecond[2]}${daySecond[3]}`
+          let dayThirdFormat = `${dayThird[0]}${dayThird[1]}${dayThird[2]}${dayThird[3]}`
+          let dayFourthFormat = `${dayFourth[0]}${dayFourth[1]}${dayFourth[2]}${dayFourth[3]}`
+          let dayFifthFormat = `${dayFifth[0]}${dayFifth[1]}${dayFifth[2]}${dayFifth[3]}`
+          let daySixthFormat = `${daySixth[0]}${daySixth[1]}${daySixth[2]}${daySixth[3]}`
+          let daySeventhFormat = `${daySeventh[0]}${daySeventh[1]}${daySeventh[2]}${daySeventh[3]}`
+
+          if (todayFormat === dayStartFormat) {
+            days = "in 7"
+            textDays = "days"
+          } else if (todayFormat === dayFirstFormat) {
+            days = "in 6"
+            textDays = "days"
+          } else if (todayFormat === daySecondFormat) {
+            days = "in 5"
+            textDays = "days"
+          } else if (todayFormat === dayThirdFormat) {
+            days = "in 4"
+            textDays = "days"
+          } else if (todayFormat === dayFourthFormat) {
+            days = "in 3"
+            textDays = "days"
+          } else if (todayFormat === dayFifthFormat) {
+            days = "in 2"
+            textDays = "days"
+          } else if (todayFormat === daySixthFormat) {
             days = "tomorrow"
             textDays = ""
-          }
-          if (value[3] === "1") {
+          } else if (todayFormat === daySeventhFormat) {
             days = "today"
             textDays = ""
           }
+          //
 
           if (document.querySelector(".sticky_new_header")) {
             document.querySelectorAll(".count_days").forEach((el) => {
@@ -795,14 +888,18 @@ if (window.location.pathname === "/mc/") {
       }
 
       if (localStorage.getItem("notFirstTime")) {
+        if (document.querySelector("#myCarousel .click_play")) {
+          document.querySelector("#myCarousel .click_play").style.display = "none"
+        }
+
         if (document.querySelector(".box_second")) {
-          document.querySelector(".box_second").style.display = "none"
+          document.querySelector(".box_second").classList.add("is_hidden")
         }
         if (document.querySelector(".box_third")) {
           document.querySelector(".box_third").style.display = "none"
         }
-        if (document.querySelector(".Breed-Specific.count_sec")) {
-          document.querySelector(".Breed-Specific.count_sec").style.display = "none"
+        if (document.querySelector(".after-refresh .Breed-Specific.count_sec")) {
+          document.querySelector(".after-refresh .Breed-Specific.count_sec:nth-child(1)").style.display = "none"
         }
         if (localStorage.getItem("finishTime")) {
           document.querySelector(".more_thirty_mins_block.is_hidden")?.classList.remove("is_hidden")
