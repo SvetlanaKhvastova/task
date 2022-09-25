@@ -1,3 +1,5 @@
+// свг лапки на моб, стили для разных экранов моб,
+
 if (window.location.pathname === "/mc/") {
   let startFunc = setInterval(() => {
     if (document.querySelector("#player")) {
@@ -12,6 +14,32 @@ if (window.location.pathname === "/mc/") {
       scriptTippy.src = "https://unpkg.com/tippy.js@5"
       scriptTippy.async = false
       document.body.appendChild(scriptTippy)
+
+      let eventVar = "desktop"
+
+      if (window.innerWidth <= 768) {
+        eventVar = "mobile"
+      }
+
+      function pushDataLayer(actionDataLayer, labelDataLayer) {
+        window.dataLayer = window.dataLayer || []
+        if (labelDataLayer) {
+          console.log(actionDataLayer + " : " + labelDataLayer)
+          dataLayer.push({
+            event: "event-to-ga",
+            eventCategory: `Exp: New reg/fw flow ${eventVar}`,
+            eventAction: `${actionDataLayer}`,
+            eventLabel: `${labelDataLayer}`,
+          })
+        } else {
+          console.log(actionDataLayer)
+          dataLayer.push({
+            event: "event-to-ga",
+            eventCategory: `Exp: New reg/fw flow ${eventVar}`,
+            eventAction: `${actionDataLayer}`,
+          })
+        }
+      }
 
       //is the first time
       if (!localStorage.getItem("firstTime")) {
@@ -180,10 +208,15 @@ if (window.location.pathname === "/mc/") {
             max-height: 40px;
         }
         .main_section .container{
-            max-width: 1030px;
+            max-width: 970px;
             width: 100%;
             margin: 0 auto !important;
             padding: 48px 15px;
+        }
+        @media (min-width: 1200px){
+            .main_section .container{
+                max-width: 1030px;
+            }
         }
         /*box_second */
         .box_second.is_hidden{
@@ -282,6 +315,9 @@ if (window.location.pathname === "/mc/") {
             text-align: left;
             margin-bottom: 24px;
         }
+        .title_mob{
+            display: none;
+        }
         .main_section .box_third{
             background: #DEE8F1;
         }
@@ -326,24 +362,24 @@ if (window.location.pathname === "/mc/") {
             border-bottom: 3px solid #794E15;
             padding-bottom: 32px;
         }
-        .more_thirty_mins_block > div:last-of-type{
+        .more_thirty_mins_block > div > div:last-of-type{
             padding-top: 32px;
             position: relative;
         }
-        .more_thirty_mins_block > div:last-of-type::after,
-        .more_thirty_mins_block > div:last-of-type::before{
+        .more_thirty_mins_block > div > div:last-of-type::after,
+        .more_thirty_mins_block > div > div:last-of-type::before{
             position: absolute;
             content: '';
             width: 117px;
             height: 120px;
         }
-        .more_thirty_mins_block > div:last-of-type::after{
+        .more_thirty_mins_block > div > div:last-of-type::after{
             right: 45px;
             top: 25%;
             background: url(${imgFolderUrl}foot_dog_right.png) no-repeat;
             background-size: cover;
         }
-        .more_thirty_mins_block > div:last-of-type::before{
+        .more_thirty_mins_block > div > div:last-of-type::before{
             left: 45px;
             top: 30%;
             background: url(${imgFolderUrl}foot_dog_left.png) no-repeat;
@@ -467,10 +503,10 @@ if (window.location.pathname === "/mc/") {
             max-width: 464px;
             margin: 0 auto;
         }
-        #myCarousel .dog_bad_behavior{
+        body .dog_bad_behavior{
             margin-top: 5px;
         }
-        #myCarousel .dog_bad_behavior > p{
+        body .dog_bad_behavior > p{
             margin: 0;
             font-weight: 800;
             font-size: 24px;
@@ -478,13 +514,197 @@ if (window.location.pathname === "/mc/") {
             text-align: center;
             color: #173775 !important;
         }
-        #myCarousel .dog_bad_behavior > p .dogs_name,
-        #myCarousel .dog_bad_behavior > p b{
+        body .dog_bad_behavior > p .dogs_name,
+        body .dog_bad_behavior > p b{
             color: #679BD2 !important;
             font-weight: 800;
         }
-        #myCarousel .dog_bad_behavior > p .dogs_name{
+        body .dog_bad_behavior > p .dogs_name{
             text-transform: capitalize;
+        }
+        [data-enrollbtn] svg{
+            margin-left: 8px;
+        }
+        @media (max-width: 768px) {
+            /*sticky_new_header */
+            .sticky_new_header{
+                border-bottom: 2px solid #794E15;
+            }
+            .sticky_new_header .last_price_text{
+                margin: 0 0 0 35px;
+            }
+            p.special_offer_text{
+                padding: 6px;
+                font-weight: 700;
+                font-size: 14px;
+            }
+            .sticky_new_header > div{
+                padding: 16px 20px;
+                flex-wrap: wrap;
+            }
+            .new_price_text{
+                font-size: 28px;
+                margin: 0 8px;
+            }
+            button.new_btn.enroll_now_btn_new{
+                max-width: 235px;
+                margin: 16px 0 0;
+                width: 100%;
+            }
+            /*new_header_logo */
+            .new_header_logo{
+                padding: 16px 20px;
+            }
+            .new_header_logo div.img_wrap {
+                max-width: 119px;
+                max-height: 28px;
+            }
+            #myCarousel .click_play > p{
+                font-size: 16px !important;
+            }
+            #myCarousel .click_play > p strong{
+                text-decoration: underline;
+            }
+            .dog_bad_behavior {
+                margin: 0 0 16px;
+                padding: 0 20px;
+            }
+            #myCarousel .item_mc {
+                height: 282px !important;
+            }
+            body .dog_bad_behavior > p {
+                font-weight: 700;
+                font-size: 28px !important;
+                line-height: 130%;
+                text-align: left;
+            }
+            .footer-container{
+                border-top: unset;
+            }
+            .main_section .container{
+                padding: 32px 20px;
+            }
+            button.new_btn{
+                max-width: unset;
+            }
+            /*box_second */
+            .box_second .container > .box_second_content{
+                flex-direction: column;
+            }
+            .box_second .container > .box_second_content > div {
+                width: 100%;
+                order: 2;
+            }
+            .box_second .container > .box_second_content > div + div {
+                margin: 0 0 32px;
+                order: 1;
+            }
+            .box_second .container > .box_second_content h3{
+                font-size: 20px !important;
+                margin-bottom: 16px;
+            }
+            .box_second .container > .box_second_content ul li + li {
+                margin-top: 16px;
+            }
+            .box_second .container > .box_second_content > div:nth-child(2) ul li p.name_text{
+                font-size: 16px;
+            }
+            .box_second .container > .box_second_content > div:nth-child(2) ul li p.descrip_text{
+                margin: 0;
+            }
+            .box_second .container > .box_second_content > div:nth-child(1) ul li p{
+                line-height: 130%;
+            }
+            .box_second .container > .box_second_content > div:nth-child(1) ul:first-of-type {
+                margin-bottom: 16px;
+            }
+            /*box_third */
+            .main_section .box_third h2.title_mob{
+                font-size: 24px !important;
+                margin-bottom: 16px;
+                display: block;
+            }
+            .title_desk{
+                display: none;
+            }
+            .main_section .box_third ul{
+                flex-direction: column;
+                padding: 0;
+            }
+            .main_section .box_third ul li {
+                width: 100%;
+            }
+            .main_section .box_third ul li + li {
+                margin: 16px 0 0;
+            }
+            .main_section .box_third ul li:nth-child(2) > div p {
+                font-size: 14px;
+            }
+            /* more_thirty_mins_block */
+            .more_thirty_mins_block{
+                border-bottom: unset;
+                padding: 20px;
+                background: #794E15;
+            }
+            .more_thirty_mins_block > div{
+                background: #FFFFFF;
+                padding: 16px;
+            }
+            .more_thirty_mins_block .logo_wrap{
+                flex-direction: column;
+                background: unset;
+                padding: unset;
+            }
+            .more_thirty_mins_block .logo_wrap p.special_offer_text{
+                background: #794E15;
+                padding: 6px;
+                font-size: 14px;
+                order: 1;
+                width: 100%;
+                text-align: center;
+            }
+            .more_thirty_mins_block .logo_wrap .img_wrap {
+                max-width: 32px;
+                max-height: 32px;
+                margin: 24px 0 0;
+                order: 2;
+            }
+            .more_thirty_mins_block > div > div:last-of-type {
+                padding-top: 8px;
+            }
+            .more_thirty_mins_block .join_now_descr{
+                margin: 16px auto 0;
+            }
+            .more_thirty_mins_block .enroll_now_btn_time {
+                max-width: 235px;
+                height: 48px;
+                margin: 16px auto 20px;
+            }
+            .more_thirty_mins_block .total_transformation_block{
+                flex-wrap: wrap;
+            }
+            .more_thirty_mins_block .total_transformation_block > p {
+                font-weight: 800;
+                font-size: 20px;
+                line-height: 130%;
+                color: #173775 !important;
+                margin: 0 0 16px;
+                text-align: center;
+            }
+            .more_thirty_mins_block > div > div:last-of-type::before{
+                content: unset;
+            }
+            .you_save_wrap{
+                width: 100%;
+            }
+            .you_save_wrap .you_save_text{
+                margin: 16px auto 0;
+                max-width: 113px;
+            }
+            .more_thirty_mins_block .total_transformation_block .new_price_text{
+                margin: 0 0 0 8px;
+            }
+
         }
 
       </style>
@@ -497,7 +717,9 @@ if (window.location.pathname === "/mc/") {
               <span class="last_price_text">$497</span>
               <span class="new_price_text">$297</span>
               <span class="you_save_text">You save $200</span>
-              <button data-enrollbtn class="new_btn enroll_now_btn_new">EnRoll now</button>
+              <button data-enrollbtn='(sticky header)' class="new_btn enroll_now_btn_new">EnRoll now <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.741797 8.23307L3.97513 4.99974L0.741797 1.76641C0.416797 1.44141 0.416797 0.916406 0.741797 0.591406C1.0668 0.266406 1.5918 0.266406 1.9168 0.591406L5.7418 4.41641C6.0668 4.74141 6.0668 5.26641 5.7418 5.59141L1.9168 9.4164C1.5918 9.7414 1.0668 9.7414 0.741797 9.4164C0.42513 9.0914 0.416797 8.55807 0.741797 8.23307Z" fill="white"/>
+</svg></button>
           </div>
         </div>
     `
@@ -517,7 +739,7 @@ if (window.location.pathname === "/mc/") {
 
       let onClickPlay = /*html */ `
         <div class="click_play">
-          <p data-watch-free>Click <strong>play</strong> to gain special access to training methods that will unlock your dog's best behavior</p>
+          <p data-watch-free='"Click play"'>Click <strong>play</strong> to gain special access to training methods that will unlock your dog's best behavior</p>
         </div>
     `
 
@@ -606,12 +828,12 @@ if (window.location.pathname === "/mc/") {
                     </ul>
                   </div>
                 </div>
-                <button class="new_btn watch_free_workshop_btn" data-watch-free>Watch free workshop</button>
+                <button class="new_btn watch_free_workshop_btn" data-watch-free='1'>Watch free workshop</button>
             </div>
           </div>
           <div class="box_third">
             <div class="container">
-                <h2>There is a reason why service dogs always form extraordinarily strong bonds with their human partners...</h2>
+                <h2 class="title_desk">There is a reason why service dogs always form extraordinarily strong bonds with their human partners...</h2>
                 <ul>
                   <li>
                     <div class="img_wrap">
@@ -619,6 +841,7 @@ if (window.location.pathname === "/mc/") {
                     </div>
                   </li>
                   <li>
+                    <h2 class="title_mob">There is a reason why service dogs always form extraordinarily strong bonds with their human partners...</h2>
                     <p>
                       <strong>YouTube and $9.99 dog training books</strong> will make you think that verbal commands such as "sit", "stay", etc. are all that you need....but if you follow
                       that advice you will be making one of the <strong>BIGGEST mistakes</strong> in dog training.
@@ -644,7 +867,7 @@ if (window.location.pathname === "/mc/") {
                         well-trained as a service dog.
                       </p>
                     </div>
-                    <button class="new_btn watch_free_workshop_btn" data-watch-free>Watch free workshop</button>
+                    <button class="new_btn watch_free_workshop_btn" data-watch-free='2'>Watch free workshop</button>
                   </li>
                 </ul>
             </div>
@@ -654,43 +877,50 @@ if (window.location.pathname === "/mc/") {
 
       let moreThirtyMinsBlock = /*html */ `
         <div class="more_thirty_mins_block is_hidden">
-          <div class="logo_wrap">
-            <div class="img_wrap">
-                <img src="${imgFolderUrl}logo_time.png" alt="logo k9ti" />
+            <div>
+                <div class="logo_wrap">
+                  <div class="img_wrap">
+                      <img src="${imgFolderUrl}logo_time.png" alt="logo k9ti" />
+                  </div>
+                  <p class="special_offer_text">Special Offer - Ends <span class="count_days">7</span> <span class="text_days">days</span></p>
+                </div>
+
+                <div>
+                  <div class="total_transformation_block">
+                    <p>Total Transformation Masterclass</p>
+                    <span class="last_price_text">$497</span>
+                    <span class="new_price_text">$297</span>
+                    <div class="you_save_wrap">
+                        <span class="you_save_text">You save $200</span>
+                    </div>
+                  </div>
+                  <button data-enrollbtn='(35 min block)' class="new_btn enroll_now_btn_time">EnRoll now <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.741797 8.23307L3.97513 4.99974L0.741797 1.76641C0.416797 1.44141 0.416797 0.916406 0.741797 0.591406C1.0668 0.266406 1.5918 0.266406 1.9168 0.591406L5.7418 4.41641C6.0668 4.74141 6.0668 5.26641 5.7418 5.59141L1.9168 9.4164C1.5918 9.7414 1.0668 9.7414 0.741797 9.4164C0.42513 9.0914 0.416797 8.55807 0.741797 8.23307Z" fill="white"/>
+</svg></button>
+                  <div class="tooltip_bar">
+                    <span>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g clip-path="url(#clip0_1873_10796)">
+                      <path d="M23.7941 18.5397L21.2176 15.9629C20.9519 16.5221 20.4437 16.9517 19.7989 17.1049L19.4479 17.1882L19.3645 17.5395C19.2221 18.1395 18.5521 19.2693 17.1417 19.1546L16.7817 19.1254L16.5939 19.4336C16.2778 19.9523 15.7471 20.3069 15.1572 20.412L18.5397 23.7941C18.712 23.9664 18.9612 24.0372 19.1984 23.9812C19.4356 23.9253 19.6269 23.7504 19.7039 23.5193L20.6577 20.6577L23.5193 19.7039C23.7505 19.6268 23.9253 19.4356 23.9813 19.1984C24.0372 18.9612 23.9664 18.712 23.7941 18.5397Z" fill="#173775"/>
+                      <path d="M7.40615 19.4336L7.21837 19.1254L6.85832 19.1546C5.44799 19.2693 4.77796 18.1395 4.63551 17.5395L4.55212 17.1883L4.20112 17.1049C3.55635 16.9517 3.04818 16.5221 2.78249 15.9629L0.20596 18.5397C0.0336478 18.712 -0.0371803 18.9612 0.0188353 19.1984C0.0748041 19.4356 0.249648 19.6268 0.480788 19.7039L3.34241 20.6577L4.29618 23.5193C4.37324 23.7505 4.56449 23.9253 4.80168 23.9812C5.03887 24.0372 5.2881 23.9664 5.46041 23.7941L8.84287 20.412C8.2529 20.3068 7.72227 19.9523 7.40615 19.4336Z" fill="#173775"/>
+                      <path d="M15.3932 18.7017L16.032 17.6536L17.2555 17.753C17.6008 17.781 17.9163 17.5524 17.9964 17.2146L18.2801 16.0203L19.474 15.7367C19.8118 15.6565 20.0405 15.3417 20.0124 14.9957L19.913 13.7725L20.9611 13.1338C21.2575 12.9532 21.3777 12.5832 21.2441 12.2628L20.7718 11.13L21.5711 10.1987C21.7972 9.93531 21.7973 9.54629 21.5712 9.28286L20.7718 8.35121L21.2441 7.21834C21.3777 6.89795 21.2575 6.52796 20.9611 6.34731L19.913 5.70859L20.0124 4.48543C20.0404 4.1394 19.8118 3.82464 19.474 3.74439L18.2801 3.46084L17.9964 2.26651C17.9162 1.92868 17.6008 1.70017 17.2555 1.72815L16.032 1.82753L15.3932 0.779402C15.2126 0.482871 14.8424 0.362824 14.5221 0.496371L13.3894 0.968965L12.4582 0.169559C12.1948 -0.0565195 11.8057 -0.0565195 11.5423 0.169559L10.6111 0.968871L9.47837 0.496277C9.15788 0.362637 8.78795 0.482824 8.60724 0.779309L7.96848 1.82743L6.74499 1.72806C6.39896 1.70036 6.08424 1.92859 6.00404 2.26642L5.7204 3.46075L4.52645 3.74439C4.18871 3.82464 3.96001 4.1394 3.98813 4.48543L4.08751 5.70859L3.03943 6.34731C2.74299 6.52796 2.62276 6.8979 2.75635 7.21834L3.22867 8.35121L2.42926 9.28286C2.20323 9.54629 2.20328 9.93531 2.42935 10.1987L3.22867 11.13L2.75645 12.2628C2.62285 12.5832 2.74309 12.9532 3.03953 13.1338L4.0876 13.7725L3.98823 14.9957C3.96015 15.3417 4.18881 15.6565 4.52654 15.7367L5.72049 16.0203L6.00413 17.2146C6.08438 17.5524 6.3991 17.7807 6.74509 17.753L7.96857 17.6536L8.60734 18.7017C8.78799 18.9982 9.15798 19.1184 9.47846 18.9848L10.6112 18.5122L11.5424 19.3114C11.8058 19.5375 12.1949 19.5375 12.4583 19.3114L13.3895 18.5122L14.5222 18.9848C14.8424 19.1183 15.2126 18.9982 15.3932 18.7017ZM11.7443 14.7566C11.4698 15.0311 11.0245 15.0312 10.7499 14.7566L6.60774 10.6144C6.33315 10.3398 6.33315 9.89462 6.60774 9.62003L8.73793 7.48979C9.01248 7.2152 9.4577 7.2152 9.73229 7.48979L11.2471 9.00456L14.6447 5.60697C14.9192 5.33237 15.3645 5.33237 15.6391 5.60697L17.7692 7.73715C18.0438 8.01175 18.0438 8.45692 17.7692 8.73151L11.7443 14.7566Z" fill="#679BD2"/>
+                      <path d="M11.7436 10.4962C11.4691 10.7708 11.0239 10.7708 10.7493 10.4962L9.23446 8.98146L8.09863 10.1173L11.2465 13.2651L16.2771 8.23446L15.1413 7.09863L11.7436 10.4962Z" fill="#173775"/>
+                      </g>
+                      <defs>
+                      <clipPath id="clip0_1873_10796">
+                      <rect width="24" height="24" fill="white"/>
+                      </clipPath>
+                      </defs>
+                      </svg>
+                    </span>
+                    <p data-tolltip>90-day refund policy <span class="tooltip_icon" data-title="We provide an unconditional 90-day refund policy and guarantee that you will get your money back if you are dissatisfied with the Total Transformation Masterclass"></span></p>
+                  </div>
+                  <p class="join_now_descr">
+                    Join now to discover <strong>key techniques</strong> for addressing <strong>housebreaking issues</strong> as well as <strong>barking, jumping, bitings</strong>, and
+                    <strong>other unwanted behavior</strong>. Your dog is only one masterclass away from being as obedient as a service dog.
+                  </p>
+                </div>
             </div>
-            <p class="special_offer_text">Special Offer - Ends <span class="count_days">7</span> <span class="text_days">days</span></p>
-          </div>
-          <div>
-            <div class="total_transformation_block">
-              <p>Total Transformation Masterclass</p>
-              <span class="last_price_text">$497</span>
-              <span class="new_price_text">$297</span>
-              <span class="you_save_text">You save $200</span>
-            </div>
-            <button data-enrollbtn class="new_btn enroll_now_btn_time">EnRoll now</button>
-            <div class="tooltip_bar">
-              <span>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_1873_10796)">
-                <path d="M23.7941 18.5397L21.2176 15.9629C20.9519 16.5221 20.4437 16.9517 19.7989 17.1049L19.4479 17.1882L19.3645 17.5395C19.2221 18.1395 18.5521 19.2693 17.1417 19.1546L16.7817 19.1254L16.5939 19.4336C16.2778 19.9523 15.7471 20.3069 15.1572 20.412L18.5397 23.7941C18.712 23.9664 18.9612 24.0372 19.1984 23.9812C19.4356 23.9253 19.6269 23.7504 19.7039 23.5193L20.6577 20.6577L23.5193 19.7039C23.7505 19.6268 23.9253 19.4356 23.9813 19.1984C24.0372 18.9612 23.9664 18.712 23.7941 18.5397Z" fill="#173775"/>
-                <path d="M7.40615 19.4336L7.21837 19.1254L6.85832 19.1546C5.44799 19.2693 4.77796 18.1395 4.63551 17.5395L4.55212 17.1883L4.20112 17.1049C3.55635 16.9517 3.04818 16.5221 2.78249 15.9629L0.20596 18.5397C0.0336478 18.712 -0.0371803 18.9612 0.0188353 19.1984C0.0748041 19.4356 0.249648 19.6268 0.480788 19.7039L3.34241 20.6577L4.29618 23.5193C4.37324 23.7505 4.56449 23.9253 4.80168 23.9812C5.03887 24.0372 5.2881 23.9664 5.46041 23.7941L8.84287 20.412C8.2529 20.3068 7.72227 19.9523 7.40615 19.4336Z" fill="#173775"/>
-                <path d="M15.3932 18.7017L16.032 17.6536L17.2555 17.753C17.6008 17.781 17.9163 17.5524 17.9964 17.2146L18.2801 16.0203L19.474 15.7367C19.8118 15.6565 20.0405 15.3417 20.0124 14.9957L19.913 13.7725L20.9611 13.1338C21.2575 12.9532 21.3777 12.5832 21.2441 12.2628L20.7718 11.13L21.5711 10.1987C21.7972 9.93531 21.7973 9.54629 21.5712 9.28286L20.7718 8.35121L21.2441 7.21834C21.3777 6.89795 21.2575 6.52796 20.9611 6.34731L19.913 5.70859L20.0124 4.48543C20.0404 4.1394 19.8118 3.82464 19.474 3.74439L18.2801 3.46084L17.9964 2.26651C17.9162 1.92868 17.6008 1.70017 17.2555 1.72815L16.032 1.82753L15.3932 0.779402C15.2126 0.482871 14.8424 0.362824 14.5221 0.496371L13.3894 0.968965L12.4582 0.169559C12.1948 -0.0565195 11.8057 -0.0565195 11.5423 0.169559L10.6111 0.968871L9.47837 0.496277C9.15788 0.362637 8.78795 0.482824 8.60724 0.779309L7.96848 1.82743L6.74499 1.72806C6.39896 1.70036 6.08424 1.92859 6.00404 2.26642L5.7204 3.46075L4.52645 3.74439C4.18871 3.82464 3.96001 4.1394 3.98813 4.48543L4.08751 5.70859L3.03943 6.34731C2.74299 6.52796 2.62276 6.8979 2.75635 7.21834L3.22867 8.35121L2.42926 9.28286C2.20323 9.54629 2.20328 9.93531 2.42935 10.1987L3.22867 11.13L2.75645 12.2628C2.62285 12.5832 2.74309 12.9532 3.03953 13.1338L4.0876 13.7725L3.98823 14.9957C3.96015 15.3417 4.18881 15.6565 4.52654 15.7367L5.72049 16.0203L6.00413 17.2146C6.08438 17.5524 6.3991 17.7807 6.74509 17.753L7.96857 17.6536L8.60734 18.7017C8.78799 18.9982 9.15798 19.1184 9.47846 18.9848L10.6112 18.5122L11.5424 19.3114C11.8058 19.5375 12.1949 19.5375 12.4583 19.3114L13.3895 18.5122L14.5222 18.9848C14.8424 19.1183 15.2126 18.9982 15.3932 18.7017ZM11.7443 14.7566C11.4698 15.0311 11.0245 15.0312 10.7499 14.7566L6.60774 10.6144C6.33315 10.3398 6.33315 9.89462 6.60774 9.62003L8.73793 7.48979C9.01248 7.2152 9.4577 7.2152 9.73229 7.48979L11.2471 9.00456L14.6447 5.60697C14.9192 5.33237 15.3645 5.33237 15.6391 5.60697L17.7692 7.73715C18.0438 8.01175 18.0438 8.45692 17.7692 8.73151L11.7443 14.7566Z" fill="#679BD2"/>
-                <path d="M11.7436 10.4962C11.4691 10.7708 11.0239 10.7708 10.7493 10.4962L9.23446 8.98146L8.09863 10.1173L11.2465 13.2651L16.2771 8.23446L15.1413 7.09863L11.7436 10.4962Z" fill="#173775"/>
-                </g>
-                <defs>
-                <clipPath id="clip0_1873_10796">
-                <rect width="24" height="24" fill="white"/>
-                </clipPath>
-                </defs>
-                </svg>
-              </span>
-              <p data-tolltip>90-day refund policy <span class="tooltip_icon" data-title="We provide an unconditional 90-day refund policy and guarantee that you will get your money back if you are dissatisfied with the Total Transformation Masterclass"></span></p>
-            </div>
-            <p class="join_now_descr">
-              Join now to discover <strong>key techniques</strong> for addressing <strong>housebreaking issues</strong> as well as <strong>barking, jumping, bitings</strong>, and
-              <strong>other unwanted behavior</strong>. Your dog is only one masterclass away from being as obedient as a service dog.
-            </p>
-          </div>
         </div>
     `
 
@@ -699,8 +929,14 @@ if (window.location.pathname === "/mc/") {
       document.querySelector(".count_sec")?.insertAdjacentHTML("afterbegin", firstVisitNewBlock)
       document.querySelector("#myHeaderr").insertAdjacentHTML("beforeend", notFirstVisitStickyBlock)
       document.querySelector(".main_section")?.insertAdjacentHTML("afterbegin", moreThirtyMinsBlock)
-      document.querySelector(".banner_txt")?.insertAdjacentHTML("beforeend", dogBadBehavior)
-      document.querySelector(".dog_bad_behavior")?.insertAdjacentHTML("afterend", onClickPlay)
+
+      if (innerWidth <= 768) {
+        document.querySelector(".new_header_logo")?.insertAdjacentHTML("afterend", dogBadBehavior)
+        document.querySelector(".banner_txt")?.insertAdjacentHTML("beforeend", onClickPlay)
+      } else {
+        document.querySelector(".banner_txt")?.insertAdjacentHTML("beforeend", dogBadBehavior)
+        document.querySelector(".dog_bad_behavior")?.insertAdjacentHTML("afterend", onClickPlay)
+      }
 
       if (document.querySelector("#below_video_text")) {
         document.querySelector("#below_video_text").remove()
@@ -815,6 +1051,7 @@ if (window.location.pathname === "/mc/") {
             document.querySelectorAll("[data-enrollbtn]").forEach((el) => {
               el.addEventListener("click", (e) => {
                 e.preventDefault()
+                pushDataLayer(`Enroll now ${el.getAttribute("data-enrollbtn")} clicked`)
                 document.querySelector("#myHeaderr a.enroll_now_btn").click()
               })
             })
@@ -835,6 +1072,9 @@ if (window.location.pathname === "/mc/") {
               appendTo: function () {
                 return document.querySelector(".tooltip_bar")
               },
+              onTrigger(e) {
+                pushDataLayer(`Refund policy (i) clicked`)
+              },
             })
           })
         }
@@ -844,10 +1084,13 @@ if (window.location.pathname === "/mc/") {
       function onClickSeeMore() {
         document.querySelector(".see_more_btn")?.addEventListener("click", function (e) {
           console.log(e.currentTarget.previousElementSibling)
+          pushDataLayer(`${e.target.textContent} link clicked`)
           e.currentTarget.previousElementSibling.classList.toggle("see_hidden")
           if (!e.currentTarget.previousElementSibling.classList.contains("see_hidden")) {
+            e.currentTarget.previousElementSibling.scrollIntoView({ block: "center", behavior: "smooth" })
             e.target.textContent = "See less"
           } else {
+            e.currentTarget.previousElementSibling.previousElementSibling.scrollIntoView({ block: "center", behavior: "smooth" })
             e.target.textContent = "See more"
           }
         })
@@ -906,9 +1149,17 @@ if (window.location.pathname === "/mc/") {
           let btn = document.querySelectorAll("[data-watch-free]"),
             videoOverlay = document.querySelector(".flowplayer.is-paused .fp-ui"),
             fullScreenBtn = document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1]
+
+          fullScreenBtn.addEventListener("click", () => {
+            pushDataLayer("Expand video to full screen")
+          })
+
           btn.forEach((el) => {
             el.addEventListener("click", () => {
               console.log(`click`)
+
+              pushDataLayer(`Watch Free Workshop ${el.getAttribute("data-watch-free")} clicked`)
+
               if (videoOverlay) {
                 if (innerWidth <= 768) {
                   fullScreenBtn.click()
@@ -948,6 +1199,28 @@ if (window.location.pathname === "/mc/") {
           document.querySelector(".more_thirty_mins_block.is_hidden")?.classList.remove("is_hidden")
         }
       }
+
+      addOtherEvent()
+      function addOtherEvent() {
+        document.querySelectorAll(".panel-heading")?.forEach((el) => {
+          el.addEventListener("click", (i) => {
+            pushDataLayer(`'${el.querySelector(".ques-hd b").textContent}' in FAQ clicked`)
+          })
+        })
+        document.querySelectorAll(".footer-container .footer-menu li")?.forEach((el) => {
+          el.addEventListener("click", (i) => {
+            pushDataLayer(`'${el.querySelector("a").textContent}' in footer clicked`)
+          })
+        })
+        document.querySelectorAll(".Breed-Specific .enroll_now_main .button-blue-large.grab_butn.enroll_now_btn")?.forEach((el, idx) => {
+          el.addEventListener("click", (i) => {
+            pushDataLayer(`Enroll now ${idx + 1} clicked`)
+          })
+        })
+      }
+
+      pushDataLayer("loaded")
+      clarity("set", `new_reg_fw_flow_${eventVar}`, "variant_1")
     }
   })
 }
