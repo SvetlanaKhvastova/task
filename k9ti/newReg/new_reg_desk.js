@@ -1,5 +1,3 @@
-// свг лапки на моб, стили для разных экранов моб,
-
 if (window.location.pathname === "/mc/") {
   let startFunc = setInterval(() => {
     if (document.querySelector("#player")) {
@@ -104,7 +102,10 @@ if (window.location.pathname === "/mc/") {
       let style = /*html */ `
       <style>
         #myCarousel .item_mc {
-            height: 713px !important;
+            height: 600px !important;
+        }
+        body.override .site-inner {
+            padding-bottom: 0;
         }
         .count_sec > .container,
         .banner_txt .enroll_btn_txt,
@@ -207,6 +208,10 @@ if (window.location.pathname === "/mc/") {
             width: 100%;
             max-height: 40px;
         }
+        .main_section{
+            padding-top: 32px;
+            background: #DEE8F1;
+        }
         .main_section .container{
             max-width: 970px;
             width: 100%;
@@ -219,6 +224,9 @@ if (window.location.pathname === "/mc/") {
             }
         }
         /*box_second */
+        .box_second{
+            background: #FFFFFF;
+        }
         .box_second.is_hidden{
             display: none;
         }
@@ -360,6 +368,7 @@ if (window.location.pathname === "/mc/") {
         /*more_thirty_mins_block */
         .more_thirty_mins_block{
             border-bottom: 3px solid #794E15;
+            background: #FFFFFF;
             padding-bottom: 32px;
         }
         .more_thirty_mins_block > div > div:last-of-type{
@@ -490,10 +499,11 @@ if (window.location.pathname === "/mc/") {
             display: none;
         }
         /*click_play */
-        #myCarousel .click_play{
-            margin: 8px auto 0;
+        body .click_play{
+            padding: 8px 0 0;
+            background: #DEE8F1;
         }
-        #myCarousel .click_play > p{
+        body .click_play > p{
             cursor: pointer;
             font-weight: 400;
             font-size: 16px;
@@ -504,10 +514,10 @@ if (window.location.pathname === "/mc/") {
             margin: 0 auto;
         }
         body .dog_bad_behavior{
-            margin-top: 5px;
+            background: #DEE8F1;
         }
         body .dog_bad_behavior > p{
-            margin: 0;
+            margin: 0 auto;
             font-weight: 800;
             font-size: 24px;
             line-height: 150%;
@@ -526,6 +536,12 @@ if (window.location.pathname === "/mc/") {
             margin-left: 8px;
         }
         @media (max-width: 768px) {
+            .main_section{
+                padding: 0;
+            }
+            body .click_play{
+                padding: 0 20px 20px;
+            }
             /*sticky_new_header */
             .sticky_new_header{
                 border-bottom: 2px solid #794E15;
@@ -559,18 +575,19 @@ if (window.location.pathname === "/mc/") {
                 max-width: 119px;
                 max-height: 28px;
             }
-            #myCarousel .click_play > p{
+            body .click_play > p{
                 font-size: 16px !important;
             }
-            #myCarousel .click_play > p strong{
+            body .click_play > p strong{
                 text-decoration: underline;
             }
-            .dog_bad_behavior {
+            body .dog_bad_behavior {
+                background: unset;
                 margin: 0 0 16px;
                 padding: 0 20px;
             }
             #myCarousel .item_mc {
-                height: 282px !important;
+                height: 230px !important;
             }
             body .dog_bad_behavior > p {
                 font-weight: 700;
@@ -645,6 +662,7 @@ if (window.location.pathname === "/mc/") {
                 border-bottom: unset;
                 padding: 20px;
                 background: #794E15;
+                z-index: 5;
             }
             .more_thirty_mins_block > div{
                 background: #FFFFFF;
@@ -662,6 +680,7 @@ if (window.location.pathname === "/mc/") {
                 order: 1;
                 width: 100%;
                 text-align: center;
+                z-index: 5;
             }
             .more_thirty_mins_block .logo_wrap .img_wrap {
                 max-width: 32px;
@@ -704,8 +723,73 @@ if (window.location.pathname === "/mc/") {
             .more_thirty_mins_block .total_transformation_block .new_price_text{
                 margin: 0 0 0 8px;
             }
+            .more_thirty_mins_block > div > div:last-of-type::after{
+                background: url(${imgFolderUrl}foot_dog_right_mob.png) no-repeat;
+                background-size: cover;
+                top: -105px;
+                right: -17px;
+            }
 
         }
+        @media (max-width: 320px) {
+            body .dog_bad_behavior > p{
+                font-size: 25px !important;
+            }
+            body .click_play > p {
+                font-size: 14px !important;
+            }
+            .more_thirty_mins_block .logo_wrap p.special_offer_text{
+                font-size: 12px;
+            }
+            .more_thirty_mins_block .join_now_descr{
+                font-size: 12px;
+            }
+            .box_second .container > .box_second_content h3{
+                font-size: 18px !important;
+            }
+            .box_second .container > .box_second_content > div:nth-child(2) ul li p.descrip_text{
+                font-size: 13px;
+            }
+            .main_section .box_third h2.title_mob{
+                font-size: 22px !important;
+            }
+        }
+         @media (max-width: 280px) {
+            body .dog_bad_behavior > p{
+                font-size: 21px !important;
+            }
+            .more_thirty_mins_block .logo_wrap p.special_offer_text,
+            .more_thirty_mins_block .join_now_descr{
+                font-size: 11px;
+            }
+            .more_thirty_mins_block .total_transformation_block > p{
+                font-size: 18px;
+            }
+            .box_second .container > .box_second_content h3{
+                font-size: 16px !important;
+            }
+            .box_second .container > .box_second_content > div:nth-child(2) ul li p.descrip_text{
+                font-size: 10px;
+            }
+            .box_second .container > .box_second_content > div:nth-child(1) ul li p{
+                font-size: 12px;
+                text-align: left;
+            }
+            .main_section .box_third h2.title_mob{
+                font-size: 19px !important;
+            }
+            .main_section .box_third ul li p{
+                font-size: 13px;
+                text-align: left;
+            }
+            .main_section .box_third ul li:nth-child(2) > div p{
+                font-size: 12px;
+                text-align: left;
+            }
+            .sticky_new_header .last_price_text{
+                margin: 0;
+            }
+         }
 
       </style>
       `
@@ -932,9 +1016,9 @@ if (window.location.pathname === "/mc/") {
 
       if (innerWidth <= 768) {
         document.querySelector(".new_header_logo")?.insertAdjacentHTML("afterend", dogBadBehavior)
-        document.querySelector(".banner_txt")?.insertAdjacentHTML("beforeend", onClickPlay)
+        document.querySelector(".want-to-obey")?.insertAdjacentHTML("beforebegin", onClickPlay)
       } else {
-        document.querySelector(".banner_txt")?.insertAdjacentHTML("beforeend", dogBadBehavior)
+        document.querySelector(".want-to-obey")?.insertAdjacentHTML("beforebegin", dogBadBehavior)
         document.querySelector(".dog_bad_behavior")?.insertAdjacentHTML("afterend", onClickPlay)
       }
 
@@ -970,7 +1054,10 @@ if (window.location.pathname === "/mc/") {
       onClickSeeMore()
       getEndsDays()
       timerVideo()
-      scrollToVideo()
+      if (document.querySelectorAll("[data-watch-free]")) {
+        console.log(`>>>>>>>>>>>>scrollToVideo`)
+        scrollToVideo()
+      }
 
       //getEndsDays
       function getEndsDays() {
@@ -1113,8 +1200,8 @@ if (window.location.pathname === "/mc/") {
 
               function timeUpdate() {
                 console.log(videoItem.currentTime)
-                // let timer = 35 * 60 + 45
-                let timer = 1 * 60
+                let timer = 35 * 60
+                // let timer = 1 * 60
 
                 let currentTime = Math.floor(videoItem.currentTime)
 
@@ -1123,6 +1210,9 @@ if (window.location.pathname === "/mc/") {
 
                 if (timer <= 0) {
                   document.querySelector(".more_thirty_mins_block.is_hidden")?.classList.remove("is_hidden")
+                  if (document.querySelector("body .click_play")) {
+                    document.querySelector("body .click_play").style.display = "none"
+                  }
                   if (!localStorage.getItem("finishTime")) {
                     localStorage.setItem("finishTime", true)
                   }
@@ -1143,35 +1233,41 @@ if (window.location.pathname === "/mc/") {
         }, 100)
       }
 
+      setTimeout(() => {
+        document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1]?.addEventListener("click", () => {
+          pushDataLayer("Expand video to full screen")
+        })
+      }, 1500)
+
       // scrollToVideo
       function scrollToVideo() {
         if (document.querySelectorAll("[data-watch-free]")) {
-          let btn = document.querySelectorAll("[data-watch-free]"),
-            videoOverlay = document.querySelector(".flowplayer.is-paused .fp-ui"),
-            fullScreenBtn = document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1]
+          console.log(`scrollToVideo`)
+          let btn = document.querySelectorAll("[data-watch-free]")
+          // videoOverlay = document.querySelector(".flowplayer.is-paused .fp-ui")
+          // fullScreenBtn = document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1]
 
-          fullScreenBtn.addEventListener("click", () => {
-            pushDataLayer("Expand video to full screen")
-          })
-
-          btn.forEach((el) => {
+          btn?.forEach((el) => {
             el.addEventListener("click", () => {
-              console.log(`click`)
-
               pushDataLayer(`Watch Free Workshop ${el.getAttribute("data-watch-free")} clicked`)
 
-              if (videoOverlay) {
+              if (document.querySelector(".flowplayer.is-paused .fp-ui")) {
+                console.log(`>>>>>>>>>>>>>click`)
+
                 if (innerWidth <= 768) {
-                  fullScreenBtn.click()
+                  document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1].click()
                 } else {
-                  videoOverlay.scrollIntoView({ block: "center", behavior: "smooth" })
+                  console.log(`scroll`)
+                  document.querySelector(".flowplayer.is-paused .fp-ui").scrollIntoView({ block: "center", behavior: "smooth" })
                 }
 
                 if (!document.querySelector("video")) {
-                  videoOverlay.click()
+                  console.log(`NOvideo`)
+                  document.querySelector(".flowplayer.is-paused .fp-ui").click()
                 } else {
                   if (document.querySelector("video").paused) {
-                    videoOverlay.click()
+                    console.log(`videoPaused`)
+                    document.querySelector(".flowplayer.is-paused .fp-ui").click()
                   }
                 }
               }
@@ -1182,8 +1278,8 @@ if (window.location.pathname === "/mc/") {
 
       if (localStorage.getItem("notFirstTime")) {
         document.querySelectorAll("body #myCarousel .item_mc")[0].style.height = "660px"
-        if (document.querySelector("#myCarousel .click_play")) {
-          document.querySelector("#myCarousel .click_play").style.display = "none"
+        if (document.querySelector("body .click_play")) {
+          document.querySelector("body .click_play").style.display = "none"
         }
 
         if (document.querySelector(".box_second")) {
@@ -1221,6 +1317,7 @@ if (window.location.pathname === "/mc/") {
 
       pushDataLayer("loaded")
       clarity("set", `new_reg_fw_flow_${eventVar}`, "variant_1")
+      document.querySelector(".exp")?.remove()
     }
   })
 }
