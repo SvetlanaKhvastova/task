@@ -107,7 +107,8 @@ if (window.location.pathname === "/mc/") {
         body.override .site-inner {
             padding-bottom: 0;
         }
-        .count_sec > .container,
+        .count_sec:nth-child(1) > .container,
+        .count_sec:nth-child(2) > .container,
         .banner_txt .enroll_btn_txt,
         #myHeaderr .top_menu_box{
             display: none !important;
@@ -523,6 +524,7 @@ if (window.location.pathname === "/mc/") {
             line-height: 150%;
             text-align: center;
             color: #173775 !important;
+            max-width: 988px;
         }
         body .dog_bad_behavior > p .dogs_name,
         body .dog_bad_behavior > p b{
@@ -1230,8 +1232,8 @@ if (window.location.pathname === "/mc/") {
       }
 
       setTimeout(() => {
-        if (document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1]) {
-          document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1].addEventListener("click", () => {
+        if (document.querySelector(".flowplayer .fp-header .fp-fullscreen")) {
+          document.querySelector(".flowplayer .fp-header .fp-fullscreen").addEventListener("click", () => {
             pushDataLayer("Expand video to full screen")
           })
         }
@@ -1249,16 +1251,21 @@ if (window.location.pathname === "/mc/") {
         pushDataLayer(`Watch Free Workshop ${el.getAttribute("data-watch-free")} clicked`)
 
         if (document.querySelector(".flowplayer.is-paused .fp-ui")) {
-          if (innerWidth <= 768) {
-            document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1].click()
-          } else {
-            document.querySelector(".flowplayer.is-paused .fp-ui").scrollIntoView({ block: "center", behavior: "smooth" })
-          }
-
           if (!document.querySelector("video")) {
+            if (innerWidth <= 768) {
+              document.querySelector(".flowplayer .fp-header .fp-fullscreen").click()
+            } else {
+              document.querySelector(".flowplayer.is-paused .fp-ui").scrollIntoView({ block: "center", behavior: "smooth" })
+            }
+
             document.querySelector(".flowplayer.is-paused .fp-ui").click()
           } else {
             if (document.querySelector("video").paused) {
+              if (innerWidth <= 768) {
+                document.querySelector(".flowplayer .fp-header .fp-fullscreen").click()
+              } else {
+                document.querySelector(".flowplayer.is-paused .fp-ui").scrollIntoView({ block: "center", behavior: "smooth" })
+              }
               document.querySelector(".flowplayer.is-paused .fp-ui").click()
             }
           }
@@ -1266,7 +1273,7 @@ if (window.location.pathname === "/mc/") {
 
         if (document.querySelector("video")) {
           if (innerWidth <= 768) {
-            document.querySelectorAll(".flowplayer .fp-header .fp-icon")[1].click()
+            document.querySelector(".flowplayer .fp-header .fp-fullscreen").click()
           } else {
             document.querySelector("video").scrollIntoView({ block: "center", behavior: "smooth" })
           }
@@ -1305,7 +1312,7 @@ if (window.location.pathname === "/mc/") {
             pushDataLayer(`'${el.querySelector("a").textContent}' in footer clicked`)
           })
         })
-        document.querySelectorAll(".Breed-Specific .enroll_now_main .button-blue-large.grab_butn.enroll_now_btn")?.forEach((el, idx) => {
+        document.querySelectorAll(".enroll_now_main .button-blue-large.grab_butn.enroll_now_btn")?.forEach((el, idx) => {
           el.addEventListener("click", (i) => {
             pushDataLayer(`Enroll now ${idx + 1} clicked`)
           })
