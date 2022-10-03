@@ -1111,22 +1111,22 @@ let startFunk = setInterval(() => {
     document.body.insertAdjacentHTML("afterbegin", donatePopup)
     document.body.insertAdjacentHTML("afterbegin", style)
 
-    let productBlock = document.querySelector(".product-block.product-block--price"),
+    let priceBlock = document.querySelector(".product-block.product-block--price"),
+      imgBlock = document.querySelector(".product-block .aos-animate"),
       boxForDonationInform = document.querySelector(".page-content .page-width .grid [data-product-images]"),
-      price = productBlock.querySelector(".product__price").textContent
+      body = document.body,
+      overlay = document.querySelector(".backdrop_modal")
 
-    productBlock.insertAdjacentHTML("afterend", donationAmount)
+    priceBlock.insertAdjacentHTML("afterend", donationAmount)
 
     if (innerWidth <= 768) {
-      document.querySelector(".product-block .aos-animate").closest(".product-block").insertAdjacentHTML("beforebegin", donationInform)
+      imgBlock.closest(".product-block").insertAdjacentHTML("beforebegin", donationInform)
     } else {
       boxForDonationInform.insertAdjacentHTML("beforeend", donationInform)
     }
 
     document.querySelector(".donation_amount_flex")?.addEventListener("click", () => {
-      document.querySelector(".backdrop_modal").classList.remove("is_hidden")
-      document.querySelector(".container_popup").insertAdjacentHTML("beforeend", contentpopup)
-      document.body.style.overflow = "hidden"
+      onOpenPopup(contentpopup)
 
       if (document.querySelector(".backdrop_modal .content_popup")) {
         document.querySelector(".backdrop_modal .content_popup .by_it_now_btn")?.addEventListener("click", (e) => {
@@ -1141,23 +1141,32 @@ let startFunk = setInterval(() => {
       }
     })
 
+    // click on btn close popup
     document.querySelector(".backdrop_modal .container_popup > svg")?.addEventListener("click", () => {
-      document.querySelector(".backdrop_modal").classList.add("is_hidden")
-      document.body.style.overflow = "auto"
-      setTimeout(() => {
-        document.querySelector(".content_popup").remove()
-      }, 1000)
+      onClosePopup()
     })
 
-    document.querySelector(".backdrop_modal").addEventListener("click", (e) => {
+    // click on overlay popup
+    overlay.addEventListener("click", (e) => {
       if (e.target.matches(".backdrop_modal")) {
-        document.querySelector(".backdrop_modal").classList.add("is_hidden")
-        document.body.style.overflow = "auto"
-        setTimeout(() => {
-          document.querySelector(".content_popup").remove()
-        }, 1000)
+        onClosePopup()
       }
     })
+
+    function onOpenPopup(block) {
+      overlay.classList.remove("is_hidden")
+      body.style.overflow = "hidden"
+
+      document.querySelector(".container_popup").insertAdjacentHTML("beforeend", block)
+    }
+
+    function onClosePopup() {
+      overlay.classList.add("is_hidden")
+      body.style.overflow = "auto"
+      setTimeout(() => {
+        document.querySelector(".content_popup")?.remove()
+      }, 1000)
+    }
 
     const accardionToggleFaqs = (slideMenu) => (e) => {
       slideMenu.forEach((link) => {
@@ -1174,16 +1183,16 @@ let startFunk = setInterval(() => {
       })
     }
 
-    //
+    // render mistake "Please select size", "Please select color"
     document.querySelectorAll(".product-block .variant__label.hidden-label").forEach((el) => {
       if (el.textContent.includes("Color")) {
         el.textContent = "Select color:"
         if (!document.querySelector(".mistake.color_var")) {
           el.insertAdjacentHTML(
             "beforeend",
-            `<div class="mistake color_var is_hidden"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7.33398 9.99992H8.66732V11.3333H7.33398V9.99992ZM7.33398 4.66659H8.66732V8.66659H7.33398V4.66659ZM7.99398 1.33325C4.31398 1.33325 1.33398 4.31992 1.33398 7.99992C1.33398 11.6799 4.31398 14.6666 7.99398 14.6666C11.6807 14.6666 14.6673 11.6799 14.6673 7.99992C14.6673 4.31992 11.6807 1.33325 7.99398 1.33325ZM8.00065 13.3333C5.05398 13.3333 2.66732 10.9466 2.66732 7.99992C2.66732 5.05325 5.05398 2.66659 8.00065 2.66659C10.9473 2.66659 13.334 5.05325 13.334 7.99992C13.334 10.9466 10.9473 13.3333 8.00065 13.3333Z" fill="#D71D1D"/>
-                        </svg>Please select color</div>`
+            `<div class="mistake color_var is_hidden">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.33398 9.99992H8.66732V11.3333H7.33398V9.99992ZM7.33398 4.66659H8.66732V8.66659H7.33398V4.66659ZM7.99398 1.33325C4.31398 1.33325 1.33398 4.31992 1.33398 7.99992C1.33398 11.6799 4.31398 14.6666 7.99398 14.6666C11.6807 14.6666 14.6673 11.6799 14.6673 7.99992C14.6673 4.31992 11.6807 1.33325 7.99398 1.33325ZM8.00065 13.3333C5.05398 13.3333 2.66732 10.9466 2.66732 7.99992C2.66732 5.05325 5.05398 2.66659 8.00065 2.66659C10.9473 2.66659 13.334 5.05325 13.334 7.99992C13.334 10.9466 10.9473 13.3333 8.00065 13.3333Z" fill="#D71D1D"/></svg>Please select color
+            </div>`
           )
         }
       }
@@ -1193,9 +1202,9 @@ let startFunk = setInterval(() => {
         if (!document.querySelector(".mistake.size_var")) {
           el.insertAdjacentHTML(
             "beforeend",
-            `<div class="mistake size_var is_hidden"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.33398 9.99992H8.66732V11.3333H7.33398V9.99992ZM7.33398 4.66659H8.66732V8.66659H7.33398V4.66659ZM7.99398 1.33325C4.31398 1.33325 1.33398 4.31992 1.33398 7.99992C1.33398 11.6799 4.31398 14.6666 7.99398 14.6666C11.6807 14.6666 14.6673 11.6799 14.6673 7.99992C14.6673 4.31992 11.6807 1.33325 7.99398 1.33325ZM8.00065 13.3333C5.05398 13.3333 2.66732 10.9466 2.66732 7.99992C2.66732 5.05325 5.05398 2.66659 8.00065 2.66659C10.9473 2.66659 13.334 5.05325 13.334 7.99992C13.334 10.9466 10.9473 13.3333 8.00065 13.3333Z" fill="#D71D1D"/>
-                            </svg> Please select size</div>`
+            `<div class="mistake size_var is_hidden">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.33398 9.99992H8.66732V11.3333H7.33398V9.99992ZM7.33398 4.66659H8.66732V8.66659H7.33398V4.66659ZM7.99398 1.33325C4.31398 1.33325 1.33398 4.31992 1.33398 7.99992C1.33398 11.6799 4.31398 14.6666 7.99398 14.6666C11.6807 14.6666 14.6673 11.6799 14.6673 7.99992C14.6673 4.31992 11.6807 1.33325 7.99398 1.33325ZM8.00065 13.3333C5.05398 13.3333 2.66732 10.9466 2.66732 7.99992C2.66732 5.05325 5.05398 2.66659 8.00065 2.66659C10.9473 2.66659 13.334 5.05325 13.334 7.99992C13.334 10.9466 10.9473 13.3333 8.00065 13.3333Z" fill="#D71D1D"/></svg> Please select size
+            </div>`
           )
         }
         if (
@@ -1210,9 +1219,7 @@ let startFunk = setInterval(() => {
         }
 
         document.querySelector(".size_guide_var")?.addEventListener("click", () => {
-          document.querySelector(".backdrop_modal").classList.remove("is_hidden")
-          document.querySelector(".container_popup").insertAdjacentHTML("beforeend", sixeGuidContent)
-          document.body.style.overflow = "hidden"
+          onOpenPopup(sixeGuidContent)
 
           const slideMenu = document.querySelectorAll(".accardion_link")
 
@@ -1225,54 +1232,45 @@ let startFunk = setInterval(() => {
       }
     })
 
-    document.querySelectorAll(".donate_price").forEach((item) => {
-      item.innerText = document.querySelector("[data-price-donate]").dataset.priceDonate
-    })
-
+    //render/hidden new btn "Add to cart", "Buy it now"
     document.querySelectorAll(".variant-input-wrap label").forEach((el) => {
       if (el.previousElementSibling.matches("input[type=radio]:checked")) {
         if (el.previousElementSibling.value === "default") {
           if (!document.querySelector(".new_wrap_btn")) {
             document.querySelector("form.product-single__form").insertAdjacentHTML(
               "beforebegin",
-              `    <div class="new_wrap_btn">
-                                    <button class="btn btn--full add-to-cart btn--tertiary add_to_cart">
-                                      <span>Add to cart</span>
-                                    </button>
-                                    <button type="button" class="shopify-payment-button__button shopify-payment-button__button--unbranded buy_it_now">Buy it now</button>
-                                  </div>`
+              `<div class="new_wrap_btn">
+                <button class="btn btn--full add-to-cart btn--tertiary add_to_cart"><span>Add to cart</span></button>
+                <button type="button" class="shopify-payment-button__button shopify-payment-button__button--unbranded buy_it_now">Buy it now</button>
+              </div>`
             )
 
             document.querySelector("form.product-single__form").style.display = "none"
 
             document.querySelector(".new_wrap_btn .add_to_cart")?.addEventListener("click", (e) => {
               e.preventDefault()
-              document.querySelectorAll(".mistake").forEach((el) => {
-                el.classList.remove("is_hidden")
-                el.scrollIntoView({ block: "center", behavior: "smooth" })
-              })
+              removeMistakeVar()
             })
 
             document.querySelector(".new_wrap_btn .buy_it_now")?.addEventListener("click", (e) => {
               e.preventDefault()
+              removeMistakeVar()
+            })
 
+            function removeMistakeVar() {
               document.querySelectorAll(".mistake").forEach((el) => {
                 el.classList.remove("is_hidden")
                 el.scrollIntoView({ block: "center", behavior: "smooth" })
               })
-            })
+            }
 
             document.querySelector("a.link_text")?.addEventListener("click", (e) => {
               e.preventDefault()
 
               if (document.querySelector('[name="add"]').getAttribute("disabled")) {
                 document.querySelector(".new_wrap_btn .buy_it_now")?.click()
-                if (document.querySelector(".backdrop_modal")) {
-                  document.querySelector(".backdrop_modal").classList.add("is_hidden")
-                  document.body.style.overflow = "auto"
-                  setTimeout(() => {
-                    document.querySelector(".content_popup")?.remove()
-                  }, 1000)
+                if (overlay) {
+                  onClosePopup()
                 }
               } else {
                 document.querySelector('form [data-testid="Checkout-button"')?.click()
@@ -1297,28 +1295,27 @@ let startFunk = setInterval(() => {
               document.querySelector(".variant__label.hidden-label .mistake.color_var").classList.contains("is_visited") &&
               document.querySelector(".variant__label.hidden-label .mistake.size_var").classList.contains("is_visited")
             ) {
-              document.querySelector("form.product-single__form").style.display = "unset"
-              document.querySelector(".new_wrap_btn").style.display = "none"
+              isHiddenNewWrapBtn()
             }
           }
+
           if (document.querySelector(".variant__label.hidden-label .mistake.color_var") && !document.querySelector(".variant__label.hidden-label .mistake.size_var")) {
             if (document.querySelector(".variant__label.hidden-label .mistake.color_var").classList.contains("is_visited")) {
-              document.querySelector("form.product-single__form").style.display = "unset"
-              document.querySelector(".new_wrap_btn").style.display = "none"
+              isHiddenNewWrapBtn()
             }
           }
 
           if (!document.querySelector(".variant__label.hidden-label .mistake.color_var") && document.querySelector(".variant__label.hidden-label .mistake.size_var")) {
             if (document.querySelector(".variant__label.hidden-label .mistake.size_var").classList.contains("is_visited")) {
-              document.querySelector("form.product-single__form").style.display = "unset"
-              document.querySelector(".new_wrap_btn").style.display = "none"
+              isHiddenNewWrapBtn()
             }
           }
-        }
 
-        document.querySelectorAll(".donate_price").forEach((item) => {
-          item.innerText = document.querySelector("[data-price-donate]").dataset.priceDonate
-        })
+          function isHiddenNewWrapBtn() {
+            document.querySelector("form.product-single__form").style.display = "unset"
+            document.querySelector(".new_wrap_btn").style.display = "none"
+          }
+        }
 
         if (el.classList.contains("disabled")) {
           if (!el.previousElementSibling.getAttribute("disabled")) {
@@ -1332,7 +1329,13 @@ let startFunk = setInterval(() => {
       })
     })
 
-    document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)').forEach((item) => {
+    // change donate count
+    document.querySelectorAll(".donate_price")?.forEach((item) => {
+      item.innerHTML = document.querySelector("[data-price-donate]").dataset.priceDonate
+    })
+
+    // fix bug change color
+    document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)')?.forEach((item) => {
       item.addEventListener("click", function () {
         let color = this.previousElementSibling.value.toLowerCase().replaceAll(" ", "-")
 
