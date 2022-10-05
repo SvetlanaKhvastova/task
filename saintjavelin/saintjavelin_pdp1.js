@@ -2,14 +2,40 @@ let startFunk = setInterval(() => {
   if (document.body && document.querySelector(".product-single__meta") != null) {
     clearInterval(startFunk)
 
+    /* other variables  */
+    const imgFolderUrl = "https://conversionratestore.github.io/projects/saintjavelin/img/"
+
+    let eventVar = "desktop"
+
+    if (window.innerWidth <= 768) {
+      eventVar = "mobile"
+    }
+
+    function pushDataLayer(actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || []
+      if (labelDataLayer) {
+        console.log(actionDataLayer + " : " + labelDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp — New design pdp' ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        })
+      } else {
+        console.log(actionDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp — New design pdp' ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+        })
+      }
+    }
+
     document.querySelectorAll("input[type=radio]").forEach((item) => {
       if (item.value === "default") {
         item.click()
       }
     })
-
-    /* other variables  */
-    const imgFolderUrl = "https://conversionratestore.github.io/projects/saintjavelin/img/"
 
     let style = /*html */ `
     <style>
@@ -629,6 +655,12 @@ let startFunk = setInterval(() => {
     .content_popup .total-raised::before{
       right: -50px;
     }
+    .donation_inform.is_full .total-raised::before{
+      right: 5px;
+    }
+    .container_popup.is_full .content_popup .total-raised::before{
+      right: -5px;
+    }
     @media (max-width: 768px) {
       .range-wrapper{
         margin-bottom: 16px;
@@ -794,10 +826,10 @@ let startFunk = setInterval(() => {
         </ul>
       </div>
       <div>
-        <h3>Our new campaign aims to fundraise $1 million by Oct 30th to buy winter clothing and generators for 3,000 Ukrainian <span class="text_absol">soldiers</span></h3>
+        <h3>Our new campaign aims to fundraise $1 million by Nov 30th to buy winter clothing and generators for 3,000 Ukrainian <span class="text_absol">soldiers</span></h3>
         <ul class="background_wrap">
           <li>
-            <p class="goal_text">Fundraising goal by the end of October 2022: <strong>$1 million</strong></p>
+            <p class="goal_text">Fundraising goal by the end of November 2022: <strong>$1 million</strong></p>
           <div class="range-wrapper">
                 <div class="range-line">
                   <div class="range-donated" style="width:0%">
@@ -835,10 +867,10 @@ let startFunk = setInterval(() => {
       <div class="content_popup">
           <img src="${imgFolderUrl}ukrainian_flag.png" alt="ukrainian flag" />
           <h2>All profits go towards helping Ukraine resist the invasion</h2>
-          <p>Our new campaign aims to fundraise $1 million by Oct 30th to buy winter clothing and generators for 3,000 Ukrainian soldiers</p>
+          <p>Our new campaign aims to fundraise $1 million by Nov 30th to buy winter clothing and generators for 3,000 Ukrainian soldiers</p>
           <div>
             <p class="goal_text">
-              Fundraising goal by the end of October 2022: <br />
+              Fundraising goal by the end of November 2022: <br />
               <strong>$1 million</strong>
             </p>
           </div>
@@ -1265,6 +1297,7 @@ let startFunk = setInterval(() => {
     }
 
     document.querySelector(".donation_amount_flex")?.addEventListener("click", () => {
+      pushDataLayer("Сlick on donate to support Ukraine")
       onOpenPopup(contentpopup)
       let clonedNodeBar = document.querySelector(".range-wrapper").cloneNode(true)
 
@@ -1277,7 +1310,27 @@ let startFunk = setInterval(() => {
       if (document.querySelector(".backdrop_modal .content_popup")) {
         document.querySelector(".backdrop_modal .content_popup .by_it_now_btn")?.addEventListener("click", (e) => {
           e.preventDefault()
-          document.querySelector("a.link_text")?.click()
+
+          pushDataLayer("Сlick on Buy it now button", "Pop up All profits go towards helping Ukraine resist the invasion")
+          document.querySelector(".new_wrap_btn .buy_it_now").classList.add("on_click")
+          document.querySelector('form [data-testid="Checkout-button"').classList.add("on_click")
+
+          if (document.querySelector('[name="add"]').getAttribute("disabled")) {
+            document.querySelector(".new_wrap_btn .buy_it_now")?.click()
+            if (overlay) {
+              onClosePopup()
+            }
+
+            setTimeout(() => {
+              document.querySelector(".new_wrap_btn .buy_it_now").classList.remove("on_click")
+            }, 1000)
+          } else {
+            document.querySelector('form [data-testid="Checkout-button"')?.click()
+
+            setTimeout(() => {
+              document.querySelector('form [data-testid="Checkout-button"').classList.remove("on_click")
+            }, 1000)
+          }
         })
       }
       if (innerWidth <= 768) {
@@ -1287,14 +1340,53 @@ let startFunk = setInterval(() => {
       }
     })
 
+    // click on origin btn " Add to cart", "Buy it now button"
+    // observer
+    let observer = new MutationObserver(() => {
+      if (document) {
+        observer.disconnect()
+        if (document.querySelectorAll(".mistake.is_visited").length === 2) {
+          document.querySelector('form [data-testid="Checkout-button"')?.addEventListener("click", (e) => {
+            if (!e.target.classList.contains("on_click")) {
+              pushDataLayer("Сlick on Buy it now button", `0`)
+            }
+          })
+        }
+
+        observer.observe(document, {
+          childList: true,
+          subtree: true,
+        })
+      }
+    })
+
+    observer.observe(document, {
+      childList: true,
+      subtree: true,
+    })
+
+    document.querySelector("[data-button_style=shadow] .btn--tertiary.btn--full")?.addEventListener("click", () => {
+      pushDataLayer("Сlick on Add to cart button", `0`)
+    })
+
     // click on btn close popup
-    document.querySelector(".backdrop_modal .container_popup > svg")?.addEventListener("click", () => {
+    document.querySelector(".backdrop_modal .container_popup > svg")?.addEventListener("click", (e) => {
+      if (e.currentTarget.nextElementSibling.classList.contains("size_guide")) {
+        pushDataLayer("Сlick on close", "Pop up Size guide")
+      } else {
+        pushDataLayer("Сlick on btn close", "Pop up All profits go towards helping Ukraine resist the invasion")
+      }
       onClosePopup()
     })
 
     // click on overlay popup
     overlay.addEventListener("click", (e) => {
       if (e.target.matches(".backdrop_modal")) {
+        if (e.target.querySelector(".size_guide")) {
+          pushDataLayer("Сlick on overlay close", "Pop up Size guide")
+        } else {
+          pushDataLayer("Сlick on overlay close", "Pop up All profits go towards helping Ukraine resist the invasion")
+        }
         onClosePopup()
       }
     })
@@ -1319,6 +1411,7 @@ let startFunk = setInterval(() => {
         e.preventDefault()
         const hidePanel = link.nextElementSibling
         if (link === e.currentTarget) {
+          pushDataLayer(`Сlick on ${e.currentTarget.querySelector("h3").textContent}`, "Pop up Size guide")
           e.currentTarget.classList.toggle("active")
 
           hidePanel.classList.toggle("active_block")
@@ -1365,6 +1458,7 @@ let startFunk = setInterval(() => {
         }
 
         document.querySelector(".size_guide_var")?.addEventListener("click", () => {
+          pushDataLayer("Сlick on Size guide")
           onOpenPopup(sixeGuidContent)
 
           const slideMenu = document.querySelectorAll(".accardion_link")
@@ -1380,6 +1474,7 @@ let startFunk = setInterval(() => {
 
     //render/hidden new btn "Add to cart", "Buy it now"
     document.querySelectorAll(".variant-input-wrap label").forEach((el) => {
+      let errorVar = 2
       if (el.previousElementSibling.matches("input[type=radio]:checked")) {
         if (el.previousElementSibling.value === "default") {
           if (!document.querySelector(".new_wrap_btn")) {
@@ -1395,11 +1490,18 @@ let startFunk = setInterval(() => {
 
             document.querySelector(".new_wrap_btn .add_to_cart")?.addEventListener("click", (e) => {
               e.preventDefault()
+              countError()
+              pushDataLayer("Сlick on Add to cart button", `${errorVar}`)
               removeMistakeVar()
             })
 
             document.querySelector(".new_wrap_btn .buy_it_now")?.addEventListener("click", (e) => {
               e.preventDefault()
+              countError()
+
+              if (!e.target.classList.contains("on_click")) {
+                pushDataLayer("Сlick on Buy it now button", `${errorVar}`)
+              }
               removeMistakeVar()
             })
 
@@ -1413,13 +1515,23 @@ let startFunk = setInterval(() => {
             document.querySelector("a.link_text")?.addEventListener("click", (e) => {
               e.preventDefault()
 
+              pushDataLayer("Сlick on Buy this product")
+              document.querySelector(".new_wrap_btn .buy_it_now").classList.add("on_click")
+              document.querySelector('form [data-testid="Checkout-button"').classList.add("on_click")
+
               if (document.querySelector('[name="add"]').getAttribute("disabled")) {
                 document.querySelector(".new_wrap_btn .buy_it_now")?.click()
                 if (overlay) {
                   onClosePopup()
                 }
+                setTimeout(() => {
+                  document.querySelector(".new_wrap_btn .buy_it_now").classList.remove("on_click")
+                }, 1000)
               } else {
                 document.querySelector('form [data-testid="Checkout-button"')?.click()
+                setTimeout(() => {
+                  document.querySelector('form [data-testid="Checkout-button"').classList.remove("on_click")
+                }, 1000)
               }
             })
           }
@@ -1473,6 +1585,17 @@ let startFunk = setInterval(() => {
           }
         }
       })
+
+      function countError() {
+        let count = document.querySelectorAll(".mistake.is_visited").length
+        if (count === 0) {
+          errorVar = 2
+        } else if (count === 1) {
+          errorVar = 1
+        } else if (count === 2) {
+          errorVar = 0
+        }
+      }
     })
 
     // change donate count
@@ -1525,6 +1648,13 @@ let startFunk = setInterval(() => {
         })
         document.querySelectorAll(".range-donated").forEach((el) => {
           el.style = `width: ${donated <= 10000 ? 0 : donated < 15000 ? 0.5 : rangeDonated}%`
+          if (el.style.width >= "80%") {
+            console.log(el.style.width)
+            if (document.querySelector(".container_popup")) {
+              document.querySelector(".container_popup").classList.add("is_full")
+              document.querySelector(".donation_inform").classList.add("is_full")
+            }
+          }
         })
         document.querySelectorAll(".sum").forEach((el) => {
           el.innerHTML = "$" + new Intl.NumberFormat("ru-RU").format(sum.toFixed(0))
@@ -1552,5 +1682,8 @@ let startFunk = setInterval(() => {
       .catch((error) => {
         console.error("Error:", error)
       })
+
+    pushDataLayer("loaded")
+    clarity("set", "new_design_pdp", "variant_1")
   }
 }, 100)

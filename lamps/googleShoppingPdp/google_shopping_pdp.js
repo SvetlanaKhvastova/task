@@ -97,10 +97,43 @@ let startFunk = setInterval(() => {
         .sticky_scroll_bar ul li.active p{
           color: #286378;
         }
+        /*baner */
+        .header-container{
+          border: unset;
+        }
+        .banner {
+        background: linear-gradient(0deg, #DAF5E1, #DAF5E1), #DFE7EB;
+        padding: 9px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .banner a {
+        display: flex;
+        align-items: center;
+      }
+      .banner b {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 23px;
+        margin: 0;
+        text-transform: capitalize;
+        text-decoration-line: underline;
+        color: #333333;
+        cursor: pointer;
+      }
+      .banner img{
+        margin-right: 4px;
+        width: 20px;
+      }
         /*catalog-product-view */
+        #item-details{
+          display: none;
+        }
         .catalog-product-view .product-essential{
           background: #FBFBFB;
-          padding: 20px 30px 30px 20px;
+          justify-content: space-between;
         }
         .catalog-product-view .product-essential .p-media .media-sticky{
           position: relative;
@@ -138,11 +171,95 @@ let startFunk = setInterval(() => {
           flex: unset;
           max-width: 30%;
           margin-right: 50px;
-          padding: 0;
+          padding: 20px 0 30px 20px;
         }
         .catalog-product-view .product-shop{
           flex: unset;
           max-width: 65%;
+        }
+        /* config_wrap , price_wrap*/
+        .product-shop .p-atc{
+          display: flex;
+          flex-wrap: nowrap;
+          justify-content: space-between;
+        }
+        .config_wrap{
+          width: 45%;
+          padding: 20px 0 30px;
+        }
+        .price_wrap{
+          width: 55%;
+          padding: 20px 30px 30px 25px;
+          border-left: 1px solid #D0D0D0;
+        }
+        .price_wrap > .col-12{
+          padding: 0 !important;
+        }
+        .config_wrap .col-12.p-head.mb-2{
+          margin: 0 0 5px !important;
+          padding: 0;
+        }
+        .config_wrap h1.product-name{
+          font-weight: 700 !important;
+          font-size: 24px !important;
+          line-height: 32px !important;
+          color: #286378 !important;
+          margin: 0 !important;
+        }
+        .config_wrap .col-12.text-left.p-item-vendor{
+          padding: 0;
+        }
+        .config_wrap #config-box{
+          padding: 0;
+          margin: 25px 0 0 !important;
+        }
+        .catalog-product-view .product-essential .product-shop #product-options-wrapper .swatches .attribute-swatch .hex-swatch,
+        .catalog-product-view .product-essential .product-shop #product-options-wrapper .swatches .attribute-swatch .img-swatch{
+          height: 23px;
+          width: 23px;
+        }
+        .catalog-product-view .product-essential .product-shop #product-options-wrapper .swatches .attribute-swatch,
+        .catalog-product-view .product-essential .product-shop #product-options-wrapper .labels .attribute-label{
+          border: unset;
+          margin: 0;
+        }
+        .catalog-product-view .product-essential .product-shop #product-options-wrapper .labels .attribute-label{
+          padding: 5px 15px;
+        }
+        .catalog-product-view .product-essential .product-shop #product-options-wrapper .swatches .attribute-swatch.selected,
+        .catalog-product-view .product-essential .product-shop #product-options-wrapper .labels .attribute-label.selected{
+          border: 1px solid #286278;
+        }
+        .catalog-product-view .product-essential .product-shop #product-options-wrapper .swatches{
+          gap: 7px;
+          margin-top: 0;
+        }
+        .catalog-product-view .product-essential .product-shop #product-options-wrapper .spca{
+          padding: 0;
+        }
+        .catalog-product-view .product-essential .product-shop #product-options-wrapper .spca:not(:first-of-type){
+          margin-top: 20px;
+        }
+        .catalog-product-view .product-essential .product-shop #product-options-wrapper .attr-label{
+          font-size: 16px;
+          line-height: 16px;
+          color: #333333;
+        }
+        .catalog-product-view .product-essential .product-shop #product-options-wrapper .spca > .pt-1.pb-1{
+          padding: 0 !important;
+          margin-top: 8px;
+        }
+        .catalog-product-view .product-essential .product-shop #product-options-wrapper .labels{
+          margin: 0;
+          gap: 7px;
+          display: flex;
+          flex-wrap: wrap !important;
+        }
+        .catalog-product-view .product-essential .product-shop #product-options-wrapper .labels .attribute-label{
+          margin: 0 !important;
+        }
+        .product-shop form .row.w-100.no-gutters.pb-2 .col-12.mt-4 {
+          display: none;
         }
         /*product_details_wrap */
         .product_details_wrap{
@@ -341,6 +458,46 @@ let startFunk = setInterval(() => {
             margin: 4px 3px;
             transform-origin: unset;
         }
+      /*wrap_var_policy */
+      .wrap_var_policy {
+      }
+      .wrap_var_policy ul {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+      }
+      .wrap_var_policy ul li {
+        width: 50%;
+        background: #DFE7EB;
+        padding: 12px;
+        display: flex;
+        align-items: flex-start;
+        cursor: pointer;
+        justify-content: flex-start;
+        gap: 8px;
+      }
+      .wrap_var_policy ul li span,
+      .wrap_var_policy ul li p {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
+        color: #333333;
+        margin: 0;
+      }
+      .wrap_var_policy ul li span {
+        font-weight: 600;
+        text-decoration-line: underline;
+        color: #333333;
+        margin: 0 0 2px;
+      }
+      .wrap_var_policy .img_wrap {
+        width: 20px;
+        height: 20px;
+      }
+      .wrap_var_policy .img_wrap img {
+        width: 100%;
+        height: 100%;
+      }
         
       </style>
       `
@@ -359,6 +516,39 @@ let startFunk = setInterval(() => {
     </div>    
     `
 
+    const banner = /*html*/ `
+    <div class="banner">
+          <a target="_blank" href="/policies/price-protection/">
+              <img src="${imgFolderUrl}check_arrow.svg" alt="check arrow">
+              <b>30-Day Lowest Price Guarantee</b>
+          </a>
+    </div>`
+
+    let wrapVarPolicy = /*html */ `
+    <div class="wrap_var_policy">
+        <ul>
+            <li data-tolltip>
+                <div class="img_wrap">
+                  <img src="${imgFolderUrl}price_policy.svg" alt="price policy">
+                </div>
+                <div>
+                  <span>Price Match Guarantee</span>
+                  <p>Pay less than anywhere else</p>
+                </div>
+            </li>
+            <li data-tolltip>
+                <div class="img_wrap">
+                  <img src="${imgFolderUrl}return_policy.png" alt="return policy">
+                </div>
+                <div>
+                  <span class="return_policy">Easy returns</span>
+                  <p>30-day return period</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    `
+
     function renderText(text, tooltip) {
       return `<li>
                 <p>${text}</p>
@@ -370,6 +560,10 @@ let startFunk = setInterval(() => {
 
     document.head.insertAdjacentHTML("beforeend", style)
     document.querySelector(".product-view").insertAdjacentHTML("beforebegin", stickyScrollBar)
+    document.querySelector(".header-container").insertAdjacentHTML("beforeend", banner)
+    document.querySelector(".var_ceiling_fan .banner b")?.addEventListener("click", () => {
+      console.log(`banner`)
+    })
 
     document
       .querySelector("#personalized")
@@ -391,6 +585,22 @@ let startFunk = setInterval(() => {
       renderAccessoriesTabs()
       onTippyRun()
     }
+
+    // main cart
+    if (!document.querySelector(".product-shop .config_wrap") && !document.querySelector(".product-shop .price_wrap")) {
+      document.querySelector(".product-shop .p-atc")?.insertAdjacentHTML("afterbegin", `<div class="config_wrap"><span></span></div><div class="price_wrap"><span></span></div>`)
+    }
+    if (document.querySelector(".product-shop .config_wrap")) {
+      document.querySelector(".product-shop .config_wrap span").after(document.querySelector(".product-shop .col-12.p-head.mb-2"))
+      document.querySelector(".product-shop .config_wrap .col-12.p-head.mb-2").after(document.querySelector(".product-shop .col-12.text-left.p-item-vendor"))
+      document.querySelector(".product-shop .config_wrap .col-12.text-left.p-item-vendor").after(document.querySelector("#config-box"))
+    }
+    if (document.querySelector(".product-shop .price_wrap")) {
+      document.querySelector(".product-shop .price_wrap span").after(document.querySelector(".product-shop .p-price").closest("div.col-12"))
+      document.querySelector(".product-shop .p-price").closest("div.col-12").after(document.querySelector(".product-shop .col-12.mt-2"))
+    }
+
+    document.querySelector(".price_wrap").insertAdjacentHTML("beforeend", wrapVarPolicy)
 
     // render Accessories Tabs
     function renderAccessoriesTabs() {
