@@ -87,15 +87,19 @@ let startFunk = setInterval(() => {
         .sticky_scroll_bar ul li.active{
           border-bottom: 2px solid #286378;
         }
-        .sticky_scroll_bar ul li p{
+        .sticky_scroll_bar ul li a{
           margin: 0;
           font-weight: 600;
           font-size: 18px;
           line-height: 24px;
           color: #333333;
         }
-        .sticky_scroll_bar ul li.active p{
+        .sticky_scroll_bar ul li.active a{
           color: #286378;
+        }
+        .sticky_scroll_bar ul li:last-child,
+        .sticky_scroll_bar ul li:nth-child(3){
+          display: none;
         }
         /*baner */
         .header-container{
@@ -558,7 +562,7 @@ let startFunk = setInterval(() => {
           cursor: pointer;
           padding: 12px 25px;
         }
-        .tabs_visible_wrap li p{
+        .tabs_visible_wrap li > p{
           font-weight: 500;
           font-size: 18px;
           line-height: 24px;
@@ -568,7 +572,7 @@ let startFunk = setInterval(() => {
         .active_tab{
           border-bottom: 2px solid #286378;
         }
-        .tabs_visible_wrap li.active_tab p{
+        .tabs_visible_wrap li.active_tab > p{
           color: #286378;
         } 
         .accessories_tabs .products-grid{
@@ -788,15 +792,18 @@ let startFunk = setInterval(() => {
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
-        font-weight: 400;
-        font-size: 13px;
-        line-height: 14px;
-        color: #333333;
       }
       .diff_price_block .tippy-content > div img{
         max-width: 20px;
         height: auto;
         margin-right: 4px;
+      }
+      .diff_price_block .tippy-content > div > div{
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 14px;
+        color: #333333;
+        
       }
       </style>
       `
@@ -804,13 +811,13 @@ let startFunk = setInterval(() => {
     let stickyScrollBar = /*html */ `
     <div class="sticky_scroll_bar">
       <ul>
-        <li class="active"><p>About</p></li>
-        <li><p>Product specs</p></li>
-        <li><p>Resources</p></li>
-        <li><p>Ask a question</p></li>
-        <li><p>Return policy</p></li>
-        <li><p>Price protection policy</p></li>
-        <li><p>Items you may need</p></li>
+        <li class="active"><a href="#main-wrapper">About</a></li>
+        <li><a href="#tab-header-1">Product specs</a></li>
+        <li><a href="#tab-header-2">Resources</a></li>
+        <li><a href="#tab-header-3">Ask a question</a></li>
+        <li><a href="#tab-header-4">Return policy</a></li>
+        <li><a href="#tab-header-6">Price protection policy</a></li>
+        <li><a href="#cts-goods">Items you may need</a></li>
       </ul>
     </div>    
     `
@@ -929,7 +936,7 @@ let startFunk = setInterval(() => {
     }
 
     let a = setInterval(() => {
-      if (document.querySelector("#cts-goods")) {
+      if (document.querySelector("#accessories")) {
         clearInterval(a)
         renderAccessoriesTabs()
       }
@@ -1142,6 +1149,7 @@ let startFunk = setInterval(() => {
 
     // render Accessories Tabs
     function renderAccessoriesTabs() {
+      document.querySelector(".sticky_scroll_bar ul li:last-child").style.display = "block"
       if (!document.querySelector(".accessories_tabs")) {
         document
           .querySelector("#accessories")
@@ -1225,7 +1233,8 @@ let startFunk = setInterval(() => {
         el.setAttribute("data-tolltip", arrTooltipTableVar)
 
         if (el.classList.contains("diff_price_block")) {
-          el.setAttribute("data-tolltip", `<div><img src="${imgFolderUrl}price_reflects.png" alt="icon"> ${document.querySelector("#pdp-promo-box span").innerHTML}</div>`)
+          let t = document.querySelector("#pdp-promo-box span").innerHTML.split(".")
+          el.setAttribute("data-tolltip", `<div><img src="${imgFolderUrl}price_reflects.png" alt="icon"> <div>${t[0]}.<br/><b>${t[1]}${t[2]}</b>.</div></div>`)
         }
       })
     }
@@ -1240,7 +1249,7 @@ let startFunk = setInterval(() => {
               if (el) {
                 tippy(el, {
                   content: el.getAttribute("data-tolltip"),
-                  trigger: "click",
+                  // trigger: "click",
                   placement: "bottom-start",
                   duration: [500, 500],
                   interactive: true,
@@ -1261,7 +1270,7 @@ let startFunk = setInterval(() => {
               if (el) {
                 tippy(el, {
                   content: el.getAttribute("data-toolltip"),
-                  // trigger: "click",
+                  trigger: "click",
                   duration: [500, 500],
                   interactive: true,
                 })
@@ -1270,6 +1279,82 @@ let startFunk = setInterval(() => {
           })
         }
       }, 2000)
+    }
+
+    onScrollBar()
+    function onScrollBar() {
+      const list = document.querySelectorAll(".sticky_scroll_bar ul li a")
+      list.forEach((item) => {
+        document.querySelectorAll(".new_inform_wrap #product-info .i-card button").forEach((el, i) => {
+          if (el.getAttribute("data-label") === "product-resources") {
+            if (item.textContent === "Resources") {
+              item.closest("li").style.display = "block"
+            }
+          }
+
+          if (document.querySelectorAll(".new_inform_wrap #product-info .i-card button")[1].getAttribute("data-label") !== "product-resources") {
+            if (item.textContent === "Resources") {
+              item.closest("li").style.display = "none"
+            }
+          }
+
+          if (el.textContent.toLocaleLowerCase().includes(item.textContent.toLocaleLowerCase())) {
+            item.setAttribute("href", `#${el.closest(".i-header").getAttribute("id")}`)
+            console.log(el.closest(".i-header").getAttribute("id"))
+          }
+        })
+
+        item.addEventListener("click", (e) => {
+          e.preventDefault()
+
+          list.forEach((el) => {
+            el.closest("li").classList.remove("active")
+          })
+
+          item.closest("li").classList.add("active")
+
+          let href = item.getAttribute("href").substring(1)
+
+          const scrollTarget = document.getElementById(href)
+
+          const topOffset = 70
+          const elementPosition = scrollTarget.getBoundingClientRect().top
+          const offsetPosition = elementPosition - topOffset
+
+          console.log(item)
+
+          window.scrollBy({
+            top: offsetPosition,
+            behavior: "smooth",
+          })
+        })
+      })
+    }
+
+    miniCart()
+    function miniCart() {
+      let title = document.querySelector(".config_wrap .col-12.p-head.mb-2").cloneNode(true),
+        vendor = document.querySelector(".config_wrap .col-12.text-left.p-item-vendor").cloneNode(true),
+        priceBlock = document.querySelector(".price_wrap").cloneNode(true),
+        img = document.querySelector(".catalog-product-view .product-essential .p-media .media-sticky").cloneNode(true)
+
+      if (title) {
+        if (!document.querySelector(".new_item_inform .col-12.p-head.mb-2")) {
+          document.querySelector(".new_item_inform")?.appendChild(title)
+        }
+      }
+
+      if (vendor) {
+        if (!document.querySelector(".new_item_inform .col-12.text-left.p-item-vendor")) {
+          document.querySelector(".new_item_inform")?.appendChild(vendor)
+        }
+      }
+
+      if (priceBlock) {
+        if (!document.querySelector(".new_item_inform .price_wrap")) {
+          document.querySelector(".new_item_inform")?.appendChild(priceBlock)
+        }
+      }
     }
 
     // observer pdp
@@ -1285,12 +1370,15 @@ let startFunk = setInterval(() => {
         renderToPdp()
         renderTooltip()
 
-        if (!document.querySelector(".accessories_tabs")) {
-          console.log(`!document.querySelector(".accessories_tabs"))`)
-          renderAccessoriesTabs()
+        if (document.querySelector("#accessories")) {
+          if (!document.querySelector(".accessories_tabs")) {
+            console.log(`!document.querySelector(".accessories_tabs"))`)
+            renderAccessoriesTabs()
+          }
         }
 
         onTippyRun()
+        onScrollBar()
 
         observer.observe(document.querySelector(".catalog-product-view .product-essential"), {
           childList: true,
