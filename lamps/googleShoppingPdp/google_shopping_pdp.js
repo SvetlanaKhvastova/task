@@ -72,7 +72,7 @@ let startFunk = setInterval(() => {
           position: sticky;
           top: 0;
           left: 0;
-          z-index: 154585454;
+          z-index: 1524;
         }
         .sticky_scroll_bar ul{
           display: flex;
@@ -148,6 +148,10 @@ let startFunk = setInterval(() => {
           bottom: 0;
           left: 0;
         }
+        .catalog-product-view .select2 {
+            width: 100% !important;
+            min-width: 200px;
+        }
         .catalog-product-view .product-essential .p-media .media-sticky .mySwiper2 .swiper-slide{
           max-width: 333px !important;
           width: 100% !important;
@@ -169,13 +173,13 @@ let startFunk = setInterval(() => {
         }
         .catalog-product-view .product-essential .p-media{
           flex: unset;
-          max-width: 30%;
+          max-width: 25%;
           margin-right: 50px;
           padding: 20px 0 30px 20px;
         }
         .catalog-product-view .product-shop{
           flex: unset;
-          max-width: 65%;
+          max-width: 70%;
         }
         /* config_wrap , price_wrap*/
         .product-shop .p-atc{
@@ -185,7 +189,7 @@ let startFunk = setInterval(() => {
         }
         .config_wrap{
           width: 45%;
-          padding: 20px 0 30px;
+          padding: 20px 20px 30px 0;
         }
         .price_wrap{
           width: 55%;
@@ -195,6 +199,71 @@ let startFunk = setInterval(() => {
         .price_wrap > .col-12{
           padding: 0 !important;
         }
+        .price_wrap > .col-12.mt-2{
+          margin: 30px 0 0 !important;
+        }
+        .price_wrap > .col-12.mt-2 > form > div{
+          padding: 0 !important;
+        }
+        .price_wrap > .col-12.mt-2 > form > div > .col-12:nth-child(2){
+          margin: 15px 0 !important;
+        }
+        .price_wrap > .col-12.mt-2 > form > div > .col-12:nth-child(2) > div{
+            justify-content: space-between !important;
+        }
+        .price_wrap > .col-12.mt-2 > form > div > .col-12:nth-child(2) > div .add-to{
+          max-width: 293px;
+          flex: unset;
+          width: 100%;
+        }
+        .catalog-product-view .product-essential .p-atc .add-to .btn-cart{
+          height: 38px;
+          max-width: 293px;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 30px;
+        }
+        .catalog-product-view .product-essential .p-atc .qty-box .qty{
+          width: 36px;
+          height: 36px;
+        }
+        .catalog-product-view .product-essential .p-atc .qty-box .input-group-btn{
+          height: 36px;
+          width: 28px;
+        }
+        .catalog-product-view .product-essential .product-shop .p-value-props{
+          padding: 15px 0;
+          margin: 0 !important;
+          border-top: 1px solid #D0D0D0;
+          border-bottom: 1px solid #D0D0D0;
+        }
+       /*shipping */
+      .shipping ul li {
+        display: flex;
+        align-items: center;
+      }
+      .shipping ul li p.shipping_var {
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 133%;
+        color: #333333;
+        margin: 0 0 0 6px;
+      }
+      p.stock_var {
+        margin: 0 0 0 6px;
+      }
+      .catalog-product-view .product-essential .p-value-props .vp-box .vp-row {
+        padding: 0;
+      }
+      .catalog-product-view .product-essential .p-value-props .vp-box .vp-row .in_stock_svg {
+        max-width: 20px;
+        margin: -3px 0 0 0
+      }
+      .catalog-product-view .product-essential .vp-box .vp-row:nth-child(2){
+        margin-bottom: 15px;
+      }
         .config_wrap .col-12.p-head.mb-2{
           margin: 0 0 5px !important;
           padding: 0;
@@ -261,6 +330,84 @@ let startFunk = setInterval(() => {
         .product-shop form .row.w-100.no-gutters.pb-2 .col-12.mt-4 {
           display: none;
         }
+        /*discount_pdp sign_up */
+       .discount_pdp.sign_up,
+       .discount_pdp {
+        padding: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        background: #03a500;
+        border-radius: 5px;
+        max-width: fit-content;
+        margin-top: -62px;
+      }
+       .discount_pdp.sign_up {
+        background: #ffffff;
+        border-radius: unset;
+      }
+       .discount_pdp.sign_up > span,
+       .discount_pdp > span {
+        font-weight: 600;
+        font-size: 13px;
+        line-height: 14px;
+        text-decoration-line: underline;
+        text-transform: uppercase;
+        color: #286278;
+        margin-left: 4px;
+        cursor: pointer;
+      }
+       .discount_pdp > span {
+        letter-spacing: 0.5px;
+        text-decoration-line: unset;
+        color: #ffffff;
+        cursor: unset;
+      }
+      .catalog-product-view .product-essential .p-price{
+        padding: 0;
+        margin: 0 0 77px;
+      }
+      .catalog-product-view .product-essential .p-price > div:nth-child(1){
+        margin: 0 !important;
+      }   
+    
+      #pdp-promo-box{
+        display: none;
+      }
+      
+      .catalog-product-view .product-essential .p-price .final-price{
+        display: flex;
+        letter-spacing: -0.01em;
+        font-size: 30px;
+        line-height: 30px;
+      }
+      .catalog-product-view .product-essential .p-price .orig-price{
+        padding: 0;
+        color: #333333;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 20px;
+        margin: 10px 4px 0 0;
+      }
+      /*diff_price_block */
+       .diff_price_block {
+        background: #333333;
+        border-radius: 4px;
+        padding: 6px 8px;
+        margin: 10px 0 -40px;
+        max-width: fit-content;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+       .diff_price_block > p {
+        font-weight: 600;
+        font-size: 13px;
+        line-height: 108%;
+        color: #ffffff;
+        margin: 0 6px 0 0;
+      }
         /*product_details_wrap */
         .product_details_wrap{
           margin-top: 48px;
@@ -452,11 +599,15 @@ let startFunk = setInterval(() => {
             transform: rotate(45deg);
             margin: 4px 3px;
             transform-origin: unset;
+            color: #FFFFFF !important;
+            background-color: #FFFFFF !important;
         }
         .tippy-tooltip[data-placement^=bottom]>.tippy-arrow{
             transform: rotate(45deg);
             margin: 4px 3px;
             transform-origin: unset;
+            color: #FFFFFF !important;
+            background-color: #FFFFFF !important;
         }
       /*wrap_var_policy */
       .wrap_var_policy {
@@ -476,15 +627,15 @@ let startFunk = setInterval(() => {
         justify-content: flex-start;
         gap: 8px;
       }
-      .wrap_var_policy ul li span,
-      .wrap_var_policy ul li p {
+      .wrap_var_policy ul li > div > span,
+      .wrap_var_policy ul li > div > p {
         font-weight: 400;
         font-size: 12px;
         line-height: 14px;
         color: #333333;
         margin: 0;
       }
-      .wrap_var_policy ul li span {
+      .wrap_var_policy ul li > div > span {
         font-weight: 600;
         text-decoration-line: underline;
         color: #333333;
@@ -509,7 +660,7 @@ let startFunk = setInterval(() => {
       .price_match_guarantee > span {
         font-weight: 600;
         font-size: 13px;
-        line-height: 108%;
+        line-height: 15px;
         text-decoration-line: underline;
         color: #333333;
       }
@@ -533,6 +684,119 @@ let startFunk = setInterval(() => {
       .catalog-product-view .product-essential .vp-box .vp-row i.low-stock,
       .catalog-product-view .product-essential .vp-box .vp-row i.no-stock  {
         display: none;
+      }
+      /*mini_product_specs */
+      .mini_product_specs{
+        display: flex;
+        margin: 24px 0 0;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 20px;
+      }
+      .mini_product_specs h3{
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 24px;
+        text-transform: capitalize;
+        color: #000000;
+      }
+      .mini_product_specs ul li{
+        font-size: 13px;
+        line-height: 24px;
+        padding: 0 !important;
+        flex: unset;
+        margin: 0 !important;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 5px;
+      }
+      .mini_product_specs ul li span{
+        padding: 0 !important;
+        flex: unset;
+        max-width: unset;
+        width: auto;
+      }
+      /*tippy-tooltip */
+       .tippy-popper {
+        z-index: 10047222222 !important;
+      }
+       .tippy-tooltip {
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0px 2px 6px 2px rgb(0 0 0 / 15%);
+        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.2));
+        max-width: 309px !important;
+      }
+       .tippy-tooltip[data-placement^="top"] > .tippy-arrow {
+        border-top-color: #ffffff;
+      }
+       .tippy-tooltip[data-placement^="bottom"] > .tippy-arrow {
+        border-bottom-color: #ffffff;
+      }
+       .tippy-content {
+        padding: 20px;
+        background-color: unset !important;
+        color: unset !important;
+        border: unset !important;
+        border-radius: unset !important;
+        filter: unset !important;
+      }
+       .tooltip_bar {
+        text-align: left;
+      }
+       .name_tooltip {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+      }
+       .name_tooltip span {
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 133%;
+        color: #333333;
+        margin-left: 4px;
+      }
+       .tooltip_bar p {
+        margin: 12px 0 0;
+        color: #474747;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 150%;
+        letter-spacing: initial;
+      }
+      .tooltip_bar p a{
+        font-weight: 500;
+      }
+      .diff_price_block .tippy-tooltip[data-placement^="top"] > .tippy-arrow,
+      .diff_price_block .tippy-tooltip[data-placement^="bottom"] > .tippy-arrow{
+        display: none;
+      }
+      .diff_price_block .tippy-tooltip{
+        background: #FFFFFF;
+        box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.15);
+        padding: 8px !important;
+        border-radius: 0;
+        max-width: 423px !important;
+        filter: unset;
+      }
+      .diff_price_block .tippy-content{
+        padding: 0 !important;
+      }
+      .diff_price_block .tippy-content > div{
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 14px;
+        color: #333333;
+      }
+      .diff_price_block .tippy-content > div img{
+        max-width: 20px;
+        height: auto;
+        margin-right: 4px;
       }
       </style>
       `
@@ -638,7 +902,7 @@ let startFunk = setInterval(() => {
     function renderText(text, tooltip) {
       return `<li>
                 <p>${text}</p>
-                <svg data-tolltip='${tooltip}' width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg data-toolltip='${tooltip}' width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7 0C3.13306 0 0 3.16129 0 7C0 10.8669 3.13306 14 7 14C10.8387 14 14 10.8669 14 7C14 3.16129 10.8387 0 7 0ZM7 12.6452C3.86694 12.6452 1.35484 10.1331 1.35484 7C1.35484 3.89516 3.86694 1.35484 7 1.35484C10.1048 1.35484 12.6452 3.89516 12.6452 7C12.6452 10.1331 10.1048 12.6452 7 12.6452ZM10.0202 5.44758C10.0202 4.03629 8.52419 2.93548 7.14113 2.93548C5.81452 2.93548 4.96774 3.5 4.31855 4.4879C4.20565 4.62903 4.23387 4.82661 4.375 4.93952L5.16532 5.53226C5.30645 5.64516 5.53226 5.61694 5.64516 5.47581C6.06855 4.93952 6.37903 4.62903 7.02823 4.62903C7.53629 4.62903 8.15726 4.93952 8.15726 5.44758C8.15726 5.81452 7.84677 5.98387 7.33871 6.26613C6.77419 6.60484 6.0121 7 6.0121 8.01613V8.24193C6.0121 8.43952 6.15323 8.58064 6.35081 8.58064H7.62097C7.81855 8.58064 7.95968 8.43952 7.95968 8.24193V8.07258C7.95968 7.36694 10.0202 7.33871 10.0202 5.44758ZM8.18548 10.1613C8.18548 9.5121 7.64919 8.97581 7 8.97581C6.32258 8.97581 5.81452 9.5121 5.81452 10.1613C5.81452 10.8387 6.32258 11.3468 7 11.3468C7.64919 11.3468 8.18548 10.8387 8.18548 10.1613Z" fill="#286378"/>
                 </svg>
             </li>`
@@ -657,9 +921,6 @@ let startFunk = setInterval(() => {
         "afterend",
         `<div class="product_details_wrap"><h3>Product details</h3> <div class="new_inform_wrap"><div><span></span></div><div class="new_item_inform"></div></div></div>`
       )
-    document
-      .querySelector("#accessories")
-      ?.insertAdjacentHTML("afterend", `<div class="accessories_tabs"><ul class="tabs_visible_wrap"></ul> <div class="tabs_content"><span></span></div></div>`)
 
     if (document.querySelector(".product_details_wrap")) {
       document.querySelector(".product_details_wrap .new_inform_wrap > div > span").after(document.querySelector(".catalog-product-view .p-support"))
@@ -667,10 +928,12 @@ let startFunk = setInterval(() => {
       document.querySelector(".product_details_wrap .p-support")?.after(document.querySelector(".row.no-gutters.p-product-info.pt-2"))
     }
 
-    if (document.querySelector(".category-products .col-12 span.h4.group")) {
-      renderAccessoriesTabs()
-      onTippyRun()
-    }
+    let a = setInterval(() => {
+      if (document.querySelector("#cts-goods")) {
+        clearInterval(a)
+        renderAccessoriesTabs()
+      }
+    }, 1000)
 
     // main cart
     if (!document.querySelector(".product-shop .config_wrap") && !document.querySelector(".product-shop .price_wrap")) {
@@ -679,7 +942,35 @@ let startFunk = setInterval(() => {
     if (document.querySelector(".product-shop .config_wrap")) {
       document.querySelector(".product-shop .config_wrap span").after(document.querySelector(".product-shop .col-12.p-head.mb-2"))
       document.querySelector(".product-shop .config_wrap .col-12.p-head.mb-2").after(document.querySelector(".product-shop .col-12.text-left.p-item-vendor"))
-      document.querySelector(".product-shop .config_wrap .col-12.text-left.p-item-vendor").after(document.querySelector("#config-box"))
+      if (document.querySelector("#config-box")) {
+        document.querySelector(".product-shop .config_wrap .col-12.text-left.p-item-vendor").after(document.querySelector("#config-box"))
+      } else {
+        document
+          .querySelector(".product-shop .config_wrap .col-12.text-left.p-item-vendor")
+          ?.insertAdjacentHTML("afterend", `<div class="mini_product_specs"><div><h3></h3></div><div><h3></h3></div></div>`)
+
+        document.querySelectorAll("#product-attribute-specs h4").forEach((el) => {
+          if (el.textContent === "Dimensions") {
+            document.querySelector(".mini_product_specs div:nth-child(1) h3").textContent = el.textContent
+            let content = el.closest("div").querySelector("ul")?.cloneNode(true)
+            if (content) {
+              if (!document.querySelector(".mini_product_specs > div:nth-child(1) > ul")) {
+                document.querySelector(".mini_product_specs div:nth-child(1)")?.appendChild(content)
+              }
+            }
+          }
+
+          if (el.textContent === "Appearance") {
+            document.querySelector(".mini_product_specs div:nth-child(2) h3").textContent = el.textContent
+            let content = el.closest("div").querySelector("ul")?.cloneNode(true)
+            if (content) {
+              if (!document.querySelector(".mini_product_specs > div:nth-child(2) > ul")) {
+                document.querySelector(".mini_product_specs div:nth-child(2)")?.appendChild(content)
+              }
+            }
+          }
+        })
+      }
     }
     if (document.querySelector(".product-shop .price_wrap")) {
       document.querySelector(".product-shop .price_wrap span").after(document.querySelector(".product-shop .p-price").closest("div.col-12"))
@@ -687,87 +978,6 @@ let startFunk = setInterval(() => {
     }
 
     document.querySelector(".price_wrap").insertAdjacentHTML("beforeend", wrapVarPolicy)
-
-    // render Accessories Tabs
-    function renderAccessoriesTabs() {
-      for (const tooltip in arrTooltipTable) {
-        let title
-        if (document.querySelector(".category-products .col-12 span.h4.group")) {
-          document.querySelectorAll(".category-products .col-12 span.h4.group").forEach((el) => {
-            title = el.textContent
-            if (title.includes(tooltip)) {
-              document.querySelector(".accessories_tabs .tabs_visible_wrap")?.insertAdjacentHTML("beforeend", renderText(title, arrTooltipTable[title]))
-            }
-
-            document.querySelectorAll(".accessories_tabs .tabs_visible_wrap li")[0]?.classList.add("active_tab")
-            document.querySelector(".accessories_tabs .tabs_content span")?.after(el.closest(".category-products"))
-            document.querySelectorAll(".accessories_tabs .tabs_content .category-products")[0]?.classList.add("active_tab_content")
-          })
-        }
-      }
-    }
-
-    function onTippyRun() {
-      let tippyRun = setInterval(() => {
-        if (typeof tippy === "function" && document.querySelector("[data-tolltip]")) {
-          clearInterval(tippyRun)
-
-          document.querySelectorAll("[data-tolltip]").forEach((el) => {
-            setTimeout(() => {
-              if (el) {
-                tippy(el, {
-                  content: el.getAttribute("data-tolltip"),
-                  // trigger: "click",
-                  duration: [500, 500],
-                  interactive: true,
-                })
-              }
-            }, 1000)
-          })
-        }
-      }, 2000)
-    }
-    // switch tabs
-    const tabs = (headerSelector, tabSelector, contentSelector, activeClass, display = "block") => {
-      const header = document.querySelector(headerSelector),
-        tab = document.querySelectorAll(tabSelector),
-        content = document.querySelectorAll(contentSelector)
-
-      function hideTabContent() {
-        content.forEach((item) => {
-          item.style.display = "none"
-        })
-
-        tab.forEach((item) => {
-          item.classList.remove(activeClass)
-        })
-      }
-
-      function showTabContent(i = 0) {
-        content[i].style.display = display
-        tab[i].classList.add(activeClass)
-      }
-
-      hideTabContent()
-      showTabContent()
-
-      header.addEventListener("click", (e) => {
-        const target = e.target
-
-        if (target) {
-          tab.forEach((item, i) => {
-            if (target == item || target.parentNode == item) {
-              hideTabContent()
-              showTabContent(i)
-            }
-          })
-        }
-      })
-    }
-
-    if (document.querySelector(".accessories_tabs")) {
-      tabs(".accessories_tabs .tabs_visible_wrap", ".accessories_tabs .tabs_visible_wrap > li", ".accessories_tabs .tabs_content .category-products", "active_tab")
-    }
 
     renderPriceMatchGuarantee()
     // render block Price Match Guarantee
@@ -783,6 +993,7 @@ let startFunk = setInterval(() => {
     }
 
     renderToPdp()
+    onTippyRun()
 
     function renderToPdp() {
       if (document.querySelector("#main-wrapper #item-details")) {
@@ -800,7 +1011,7 @@ let startFunk = setInterval(() => {
 
               // on click GET 15% OFF WITH A COUPON
               document.querySelector(".discount_pdp.sign_up > span")?.addEventListener("click", function () {
-                document.querySelector('.header-container .header-actions .action-links [data-account-trigger="true"]')?.click()
+                document.querySelector('.catalog-product-view .promo-box .promo-text [data-account-trigger="true"]').click()
               })
             }
           }
@@ -843,34 +1054,19 @@ let startFunk = setInterval(() => {
               if (!el.querySelector(".diff_price_block")) {
                 el.querySelector(".pdp-afterpay")?.insertAdjacentHTML(
                   "beforebegin",
-                  `<div class="diff_price_block"><p>You save: $${diffDisc.toFixed(2)} (${percent}% off)</p></div>`
+                  `<div class="diff_price_block" data-tolltip>
+                    <p>You save: $${diffDisc.toFixed(2)} (${percent}% off)</p> 
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 0C3.13306 0 0 3.16129 0 7C0 10.8669 3.13306 14 7 14C10.8387 14 14 10.8669 14 7C14 3.16129 10.8387 0 7 0ZM7 12.6452C3.86694 12.6452 1.35484 10.1331 1.35484 7C1.35484 3.89516 3.86694 1.35484 7 1.35484C10.1048 1.35484 12.6452 3.89516 12.6452 7C12.6452 10.1331 10.1048 12.6452 7 12.6452ZM10.0202 5.44758C10.0202 4.03629 8.52419 2.93548 7.14113 2.93548C5.81452 2.93548 4.96774 3.5 4.31855 4.4879C4.20565 4.62903 4.23387 4.82661 4.375 4.93952L5.16532 5.53226C5.30645 5.64516 5.53226 5.61694 5.64516 5.47581C6.06855 4.93952 6.37903 4.62903 7.02823 4.62903C7.53629 4.62903 8.15726 4.93952 8.15726 5.44758C8.15726 5.81452 7.84677 5.98387 7.33871 6.26613C6.77419 6.60484 6.0121 7 6.0121 8.01613V8.24193C6.0121 8.43952 6.15323 8.58064 6.35081 8.58064H7.62097C7.81855 8.58064 7.95968 8.43952 7.95968 8.24193V8.07258C7.95968 7.36694 10.0202 7.33871 10.0202 5.44758ZM8.18548 10.1613C8.18548 9.5121 7.64919 8.97581 7 8.97581C6.32258 8.97581 5.81452 9.5121 5.81452 10.1613C5.81452 10.8387 6.32258 11.3468 7 11.3468C7.64919 11.3468 8.18548 10.8387 8.18548 10.1613Z" fill="white"/></svg>
+                  </div>`
                 )
               }
             }
 
             el.querySelectorAll(".vp-box .vp-row .text-strong").forEach((i) => {
-              console.log(i)
               if (i.textContent === "Free Shipping ") {
-                console.log(i.closest(".vp-row"))
                 i.closest(".vp-row").previousElementSibling.style.display = "none"
                 i.closest(".vp-row").style.display = "none"
               }
-
-              // if (i.closest(".vp-box").querySelector(".vp-row.col-11").textContent.includes("Price reflects")) {
-              //   if (el.querySelector(".p-price")) {
-              //     if (!el.querySelector(".price_reflects_pdp.sign_up")) {
-              //       el.querySelector(".p-price").insertAdjacentHTML("afterend", priceReflectsPdpSignUp)
-              //     }
-              //   }
-
-              //   i.closest(".vp-box").querySelector(".vp-row.col-11").previousElementSibling.style.display = "none"
-              //   i.closest(".vp-box").querySelector(".vp-row.col-11").style.display = "none"
-              // }
-
-              // if (el.querySelector(".price_reflects_pdp.sign_up")) {
-              //   let t = i.closest(".vp-box").querySelector(".vp-row.col-11").innerHTML.split(".")
-              //   el.querySelector(".price_reflects_pdp.sign_up span").innerHTML = `${t[0]}.<br/><b>${t[1]}${t[2]}</b>.`
-              // }
 
               if (i.closest(".vp-box").querySelector(".vp-row").textContent.includes("Register Now.")) {
                 i.closest(".vp-box").querySelector(".vp-row").previousElementSibling.style.display = "none"
@@ -879,7 +1075,6 @@ let startFunk = setInterval(() => {
 
               if (el.querySelector("i.in-stock")) {
                 if (i.closest(".vp-box").querySelector(".vp-row span.text-strong").textContent === "In Stock.") {
-                  console.log(`In Stock`)
                   if (!i.closest(".vp-box").querySelector(".vp-row .in_stock_svg")) {
                     el.querySelector("i.in-stock").insertAdjacentHTML(
                       "beforebegin",
@@ -945,6 +1140,138 @@ let startFunk = setInterval(() => {
       }
     }
 
+    // render Accessories Tabs
+    function renderAccessoriesTabs() {
+      if (!document.querySelector(".accessories_tabs")) {
+        document
+          .querySelector("#accessories")
+          ?.insertAdjacentHTML("afterend", `<div class="accessories_tabs"><ul class="tabs_visible_wrap"></ul> <div class="tabs_content"><span></span></div></div>`)
+      }
+
+      for (const tooltip in arrTooltipTable) {
+        let title
+        if (document.querySelector(".category-products .col-12 span.h4.group")) {
+          document.querySelectorAll(".category-products .col-12 span.h4.group").forEach((el) => {
+            title = el.textContent
+            if (title.includes(tooltip)) {
+              document.querySelector(".accessories_tabs .tabs_visible_wrap")?.insertAdjacentHTML("beforeend", renderText(title, arrTooltipTable[title]))
+            }
+
+            document.querySelectorAll(".accessories_tabs .tabs_visible_wrap li")[0]?.classList.add("active_tab")
+            document.querySelector(".accessories_tabs .tabs_content span")?.after(el.closest(".category-products"))
+            document.querySelectorAll(".accessories_tabs .tabs_content .category-products")[0]?.classList.add("active_tab_content")
+          })
+        }
+      }
+      // switch tabs
+      const tabs = (headerSelector, tabSelector, contentSelector, activeClass, display = "block") => {
+        const header = document.querySelector(headerSelector),
+          tab = document.querySelectorAll(tabSelector),
+          content = document.querySelectorAll(contentSelector)
+
+        function hideTabContent() {
+          content.forEach((item) => {
+            item.style.display = "none"
+          })
+
+          tab.forEach((item) => {
+            item.classList.remove(activeClass)
+          })
+        }
+
+        function showTabContent(i = 0) {
+          content[i].style.display = display
+          tab[i].classList.add(activeClass)
+        }
+
+        hideTabContent()
+        showTabContent()
+
+        header.addEventListener("click", (e) => {
+          const target = e.target
+
+          if (target) {
+            tab.forEach((item, i) => {
+              if (target == item || target.parentNode == item) {
+                hideTabContent()
+                showTabContent(i)
+              }
+            })
+          }
+        })
+      }
+
+      if (document.querySelector(".accessories_tabs")) {
+        tabs(".accessories_tabs .tabs_visible_wrap", ".accessories_tabs .tabs_visible_wrap > li", ".accessories_tabs .tabs_content .category-products", "active_tab")
+      }
+    }
+
+    renderTooltip()
+    function renderTooltip() {
+      document.querySelectorAll("[data-tolltip]").forEach((el) => {
+        let title
+
+        if (el.closest(".wrap_var_policy")) {
+          title = el.querySelector("span").textContent
+        }
+        if (el.closest(".price_match_guarantee")) {
+          title = el.querySelector("span").textContent
+        }
+        if (el.classList.contains("shipping_var")) {
+          title = el.querySelector("b").textContent
+        }
+
+        let arrTooltipTableVar = arrTooltipTable[title]
+        el.setAttribute("data-tolltip", arrTooltipTableVar)
+
+        if (el.classList.contains("diff_price_block")) {
+          el.setAttribute("data-tolltip", `<div><img src="${imgFolderUrl}price_reflects.png" alt="icon"> ${document.querySelector("#pdp-promo-box span").innerHTML}</div>`)
+        }
+      })
+    }
+
+    function onTippyRun() {
+      let tippyRun = setInterval(() => {
+        if (typeof tippy === "function" && document.querySelector("[data-tolltip]")) {
+          clearInterval(tippyRun)
+
+          document.querySelectorAll("[data-tolltip]").forEach((el) => {
+            setTimeout(() => {
+              if (el) {
+                tippy(el, {
+                  content: el.getAttribute("data-tolltip"),
+                  trigger: "click",
+                  placement: "bottom-start",
+                  duration: [500, 500],
+                  interactive: true,
+                  appendTo: function () {
+                    return el
+                  },
+                })
+              }
+            }, 1000)
+          })
+        }
+
+        if (typeof tippy === "function" && document.querySelector("[data-toolltip]")) {
+          clearInterval(tippyRun)
+
+          document.querySelectorAll("[data-toolltip]").forEach((el) => {
+            setTimeout(() => {
+              if (el) {
+                tippy(el, {
+                  content: el.getAttribute("data-toolltip"),
+                  // trigger: "click",
+                  duration: [500, 500],
+                  interactive: true,
+                })
+              }
+            }, 1000)
+          })
+        }
+      }, 2000)
+    }
+
     // observer pdp
     let observer = new MutationObserver(() => {
       if (document.querySelector(".catalog-product-view .product-essential")) {
@@ -956,6 +1283,14 @@ let startFunk = setInterval(() => {
         }
 
         renderToPdp()
+        renderTooltip()
+
+        if (!document.querySelector(".accessories_tabs")) {
+          console.log(`!document.querySelector(".accessories_tabs"))`)
+          renderAccessoriesTabs()
+        }
+
+        onTippyRun()
 
         observer.observe(document.querySelector(".catalog-product-view .product-essential"), {
           childList: true,
@@ -971,4 +1306,4 @@ let startFunk = setInterval(() => {
       })
     }
   }
-}, 1500)
+}, 2000)

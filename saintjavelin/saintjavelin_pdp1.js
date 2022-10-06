@@ -39,748 +39,9 @@ let startFunk = setInterval(() => {
 
     let style = /*html */ `
     <style>
-      /*donation_amount_flex */
-      .donation_amount_flex{
-        background: #FFF9DB;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 4px 8px;
-        margin-bottom: 16px;
-        cursor: pointer;
-      }
-      .donation_amount_flex p{
-        font-weight: 500;
-        font-size: 13px;
-        line-height: 18px;
-        color: #3F3F3F;
-        display: inline;
-        letter-spacing: normal;
-        margin: 0;
-      }
-      .donate_price{
-        font-weight: 700;
-      }
-      .text_absol{
-        position: relative;
-      }
-      .text_absol::after{
-        content: '';
-        position: absolute;
-        width: 24px;
-        height: 24px;
-        background: url(${imgFolderUrl}ukrainian_flag.png) top left / auto 24px no-repeat no-repeat;
-        right: -28px;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-      .donation_amount_flex svg{
-        margin-left: 30px;
-      }
-      .product-block.product-block--price{
-        margin-bottom: 10px;
-      }
-      /*donation_inform */
-      .donation_inform{
-        margin-top: 46px;
-      }
-      .donation_inform .text_absol::after{
-        top: -5px;
-        transform: unset;
-      }
-      .donation_inform h3{
-        font-weight: 700;
-        font-size: 20px;
-        line-height: 30px;
-        color: #3F3F3F;
-        text-transform: unset;
-        letter-spacing: normal;
-        margin-bottom: 16px;
-      }
-      ul.background_wrap{
-        display: flex;
-        justify-content: space-between;
-        margin: 0;
-        list-style: none;
-        flex-wrap: wrap;
-      }
-      ul.background_wrap > li{
-        width: 48.5%;
-        background: rgba(63, 63, 63, 0.05);
-        padding: 16px;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        margin: 0;
-      }
-      ul.background_wrap > li + li{
-        margin: 0 0 0 16px;
-      }
-      ul.background_wrap > li .img_wrap{
-        max-width: 102px;
-        max-height: 120px;
-        width: 100%;
-        height: 100%;
-        margin-bottom: 8px;
-      }
-      .img_wrap img{
-        width: 100%;
-        height: 100%;
-      }
-      ul.background_wrap > li p.title_list{
-        font-size: 16px;
-      }
-      ul.background_wrap > li p{
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 24px;
-        color: #3F3F3F;
-        margin: 0;
-      }
-      .already_donat_list{
-        color: #015BC1;
-        list-style-type: disc;
-        margin: 4px 0 0 20px;
-      }
-      .already_donat_list li {
-        margin: 0;
-      }
-      .already_donat_list li + li{
-        margin-top: 8px;
-      }
-      .donation_inform > div:last-child{
-        margin-top: 32px;
-      }
-      .donation_inform > div:last-child ul.background_wrap > li{
-        width: 100%;
-        padding: 24px;
-      }
-      ul.background_wrap > li p.goal_text{
-        font-weight: 400;
-        margin-bottom: 4px;
-      }
-      p.goal_text strong{
-        font-size: 18px;
-      }
-      a.link_text{
-        font-style: italic;
-        font-weight: 700;
-        text-decoration-line: underline;
-        color: #1F508B;
-      }
-      /* */
-      /* popap_box */
-    .backdrop_modal {
-        position: fixed;
-        overflow: hidden;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        opacity: 1;
-        background: rgba(0, 0, 0, 0.5);
-        transition: all 0.5s ease 0s;        
-        z-index: 9005;
-        }
-    .backdrop_modal.is_hidden {
-        opacity: 0;
-        pointer-events: none;
-    }
-    .backdrop_modal.is_hidden .container_popup{
-        transform: translateX(100%);
-        transition: all 0.8s ease 0s;
-    }
-    .backdrop_modal .container_popup{
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      max-width: 383px;
-      height: 100%;
-      padding: 48px 24px 24px;
-      margin: 0;
-      background: #FDFDFD;
-      transition: all 0.5s ease 0s;
-      overflow: auto;
-    }
-    .backdrop_modal .container_popup > svg {
-        position: absolute;
-        top: 24px;
-        right: 24px;
-        outline: none;
-        cursor: pointer;
-    }
-    /*content_popup */
-    .content_popup > img{
-      max-width: 40px;
-      max-height: 40px;
-      display: block;
-    }
-    .content_popup > h2{
-      margin: 0 0 8px;
-      font-weight: 700;
-      font-size: 24px;
-      line-height: 150%;
-      color: #3F3F3F;
-    }
-    .content_popup > p{
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 24px;
-      color: #3F3F3F;
-      margin: 0 0 16px;
-    }
-    .by_it_now_btn{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #1F508B;
-      border: none;
-      outline: none;
-      height: 50px;
-      width: 100%;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 24px;
-      letter-spacing: 3px;
-      color: #FFFFFF;
-      margin: 16px 0 24px;
-      cursor: pointer;
-    }
-    ul.main_popup_list{
-      background: rgba(63, 63, 63, 0.05);
-      padding: 16px;
-      margin: 0;
-      color: #015BC1;
-      display: flex;
-      flex-direction: column;
-    }
-    ul.main_popup_list > li{
-      margin: 0 0 0 16px;
-    }
-    ul.main_popup_list > li + li{
-      margin-top: 16px;
-    }
-    ul.main_popup_list > li p{
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 24px;
-      color: #3F3F3F;
-      margin: 0;
-    }
-    ul.main_popup_list > li ul.already_donat_list{
-      color: #000000;
-      list-style-type: disc;
-      margin: 4px 0 0 20px;
-      font-size: 13px;
-    }
-    ul.main_popup_list .already_donat_list li + li{
-      margin: 0;
-    }
-    .content_popup p.goal_text{
-      font-size: 14px;
-      line-height: 24px;
-      color: #3F3F3F;
-      margin: 0;
-    }
-    .content_popup .text_absol::after {
-      width: 16px;
-      height: 16px;
-      background: url(https://conversionratestore.github.io/projects/saintjavelin/img/ukrainian_flag.png) top left / auto 16px no-repeat no-repeat;
-      right: -20px;
-      top: -2px;
-      transform: unset;
-    }
-    /*size_guide */
-    .size_guide > h2{
-      font-weight: 700;
-      font-size: 22px;
-      line-height: 25px;
-      letter-spacing: 2.2px;
-      text-transform: uppercase;
-      color: #3F3F3F;
-      margin: 0;
-    }
-    .size_guide > p{
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 24px;
-      color: #3F3F3F;
-      margin: 16px 0;
-    }
-    .accardion_size{
-      margin: 0;
-      list-style: none;
-    }
-    .accardion_lists table p{
-      margin: 0;
-      font-size: 14px;
-      line-height: 25.5px;
-    }
-    .accardion_size table{
-      margin: 20px 0 0;
-    }
-    .accardion_size table td,
-    .accardion_size table th{
-      padding: 6px 8px;
-    }
-    .accardion_size table td:first-child{
-      width: 90px;
-    }
-    ul.composition{
-      list-style-type: disc;
-      margin: 0 0 0 40px;
-    }
-    ul.composition li{
-      font-size: 14px;
-      line-height: 24px;
-      margin: 0;
-    }
-    ul.composition li + li{
-      margin-top: 5px;
-    }
-    .accardion_lists{
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0; 
-    }
-    .active_block {
-      max-height: fit-content;
-      opacity: 1;
-      margin: 10px 0 0;
-    }
-    .accardion_size > li{
-      margin: 0;
-    }
-    .accardion_size > li + li{
-      margin-top: 20px;
-    }
-    .accardion_link{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      cursor: pointer;
-    }
-    .accardion_link h3{
-      font-weight: 700;
-      font-size: 14px;
-      line-height: 24px;
-      text-transform: uppercase;
-      color: #3F3F3F;
-      margin: 0;
-    }
-    .accardion_link span{
-      position: relative;
-      width: 24px;
-      height: 24px;
-      display: inline-flex;
-      transition: all 0.5s ease 0s;   
-    }
-    .accardion_link span::before{
-      position: absolute;
-      content: "";
-      width: 100%;
-      height: 100%;
-      background: url(https://conversionratestore.github.io/projects/saintjavelin/img/expand_more.svg) no-repeat center center;
-      top: 0;
-      right: 0;
-      background-size: contain;
-      transition: all 0.5s ease 0s;   
-    }
-    .accardion_link.active span::before {
-      transform: rotate(180deg);
-    }
-    /* */
-    .variant-input-wrap label{
-      border: 1px solid #EBEBEB;
-      border-radius: 50px;
-      box-shadow: unset;
-      font-size: 12px;
-      line-height: 12px;
-      letter-spacing: -0.4px;
-      color: #3F3F3F;
-      padding: 13px 16px;
-      margin: 0 !important;
-    }
-    .variant-input-wrap input[type=radio]:checked+label{
-      background: #3F3F3F;
-      font-weight: 600;
-      color: #FFFFFF;
-      box-shadow: unset;
-    }
-    .variant-input-wrap label.disabled{
-      color: #A5A5A5;
-      z-index: 1;
-      cursor: default;
-    }
-    .variant-input-wrap label.disabled:after,
-    .variant-input-wrap label.disabled:before{
-      position: absolute;
-      content: "";
-      left: 0;
-      top: 50%;
-      bottom: 0;
-      background: #EBEBEB;
-      height: 1px;
-      width: 100%;
-      z-index: -1;
-    }
-    .variant-input-wrap label.disabled:after {
-      transform: rotate(135deg);
-   }
-   .variant-input-wrap label.disabled:before{
-      transform: rotate(45deg);
-   }
-   .variant-input-wrap{
-      margin: 0;
-      position: relative;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-   }
-   .variant-input {
-        display: inline-flex;
-    }
-    .variant-wrapper:last-of-type{
-      margin-top: 24px;
-    }
-    .product-block .variant__label.hidden-label{
-      clip: unset; 
-      overflow: unset;
-      position: unset;
-      height: unset;
-      width: unset;
-      cursor: default !important;
-      margin-bottom: 8px;
-      font-weight: 600;
-      font-size: 14px;
-      line-height: 25px;
-      letter-spacing: -0.4px;
-      color: #3F3F3F;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: relative;
-    }
-    .product-block .variant__label.hidden-label .variant__label-info{
-      display: none !important;
-    }
-    .mistake{
-      position: absolute;
-      top: 50%;
-      left: 91px;
-      transform: translateY(-50%);
-      font-weight: 500;
-      font-size: 12px;
-      line-height: 12px;
-      letter-spacing: -0.4px;
-      color: #D71D1D;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-    }
-    .mistake.size_var{
-      left: 82px;
-    }
-    .mistake.is_hidden,
-    .mistake.is_visited{
-      opacity: 0;
-    }
-    .mistake > svg{
-      margin-right: 5px;
-    }
-    .size_guide_var{
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 25px;
-      letter-spacing: -0.4px;
-      text-decoration-line: underline;
-      color: #3F3F3F;
-      cursor: pointer;
-    }
-    .buy_it_now{
-      background: #064f90;
-      margin-top: 10px;
-    }
-    .buy_it_now:hover{
-      background: #064f90 !important;
-    }
-    .add_to_cart{
-      padding: 10px 25px;
-    }
-    /*range-wrapper */
-  .range-wrapper {
-      width: 100%;
-      height: 28px;
-      position: relative;
-      display: flex;
-      align-items: center;
-      margin-bottom: 24px;
-  }
-  .range-line {
-      background: rgb(31 80 139 / 10%);
-      width: 100%;
-      position: relative;
-      height: 28px;
-      overflow: hidden;
-  }
-  .range-donated {
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      background: #FAD41A;
-  }
-  .total-raised{
-    position: relative;
-    display: block;
-  }
-  .total-raised::before {
-    position: absolute;
-    content: attr(data-price);
-    right: -15px;
-    top: 2px;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 24px;
-    color: #3F3F3F;
-}
-  .range-wrapper:before, .range-wrapper:after  {
-      content: '';
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      height: 28px;
-      background: #FAD41A;
-      width: 8px;
-  }
-  .range-wrapper:before {
-      left: 0;
-  }
-  .range-wrapper:after {
-      background: rgb(31 80 139 / 0%);
-      right: 0;
-  }
-  .range-wrapper.active:after {
-      background: #FAD41A;
-  }
-  .range-wrapper .sum, .step.active[data-price]:before  {
-      font-family: 'Novarese-Bold', sans-serif;
-      font-weight: 700;
-      font-size: 20px;
-      line-height: 22px;
-      color: #000000;
-      position: absolute;
-      text-align: center;
-      width: 101px;
-      right: 8px;
-      transform: translateX(50%);
-      bottom: calc(100% + 7px);
-  }
-  .range-wrapper .sum{
-    display: none;
-  }
-  .step.active[data-price]:before {
-      content: attr(data-price);
-  }
-  .steps .step.step-small.active[data-price]:before {
-      bottom: calc(100% + 47px);
-  }
-  .step.active[data-price]:after {
-      content: 'NOW';
-      left: 50%;
-      transform: translateX(-50%);
-      top: calc(100% + 9px);
-      position: absolute;
-      font-family: 'Novarese-Medium', sans-serif;
-      font-weight: 500;
-      font-size: 16px;
-      line-height: 18px;
-      color: #000000;
-      white-space: nowrap;
-  }
-  .steps {
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 100%;
-      padding: 0 8px;
-      z-index: 1;
-  }
-  .steps .step {
-      width: 1px;
-      opacity: 0.2;
-      background: #000;
-      position: relative;
-  }
-  .steps:after {
-      content: '30 NOV';
-      right: 8px;
-      transform: translateX(50%);
-      position: absolute;
-      top: calc(100% + 9px);
-      font-family: 'Novarese-Medium', sans-serif;
-      font-weight: 500;
-      font-size: 16px;
-      line-height: 18px;
-      color: #000000;
-      white-space: nowrap;
-      display: none;
-  }
-  .steps .step.active {
-      opacity: 0;
-  }
-  .steps .step-small {
-      height: 8px;
-      opacity: 0;
-      display: none;
-  }
-  .steps .step-big {
-      height: 28px;
-      opacity: 0;
-  }
-  /*flex*/
-  .flex {
-      display: flex;
-  }
-  .items-end {
-      align-items: flex-end;
-  }
-  .justify-between {
-      justify-content: space-between;
-  }
-    .content_popup .range-wrapper{
-      margin: 4px 0 16px;
-    }
-    .content_popup .total-raised::before{
-      right: -50px;
-    }
-    .donation_inform.is_full .total-raised::before{
-      right: 5px;
-    }
-    .container_popup.is_full .content_popup .total-raised::before{
-      right: -5px;
-    }
-    @media (max-width: 768px) {
-      .range-wrapper{
-        margin-bottom: 16px;
-      }
-      .total-raised::before{
-        right: -64px;
-      }
-      .backdrop_modal .container_popup{
-        max-width: 358px;
-      }
-      .backdrop_modal .container_popup > svg{
-        top: 16px;
-        right: 16px;
-      }
-      .content_popup > h2{
-        margin: 4px 0 8px;
-      }
-      .content_popup p.goal_text strong{
-        font-size: 14px;
-      }
-      ul.main_popup_list > li {
-          margin: 0 0 0 26px;
-      }
-      /* */
-      .donation_inform h3{
-        margin-bottom: 8px;
-      }
-      ul.background_wrap > li{
-        width: 100%;
-      }
-      ul.background_wrap > li + li {
-          margin: 16px 0 0;
-      }
-      ul.background_wrap > li .img_wrap {
-          max-width: 68px;
-          max-height: 80px;
-          margin-bottom: 4px;
-      }
-      .already_donat_list{
-        margin: 4px 0 0 16px;
-      }
-      .donation_inform > div:last-child h3{
-        margin-bottom: 16px;
-      }
-      .donation_inform{
-        margin-bottom: 32px;
-      }
-      /* */
-      .size_guide > h2{
-        margin: 0;
-      }
-      .accardion_size > li + li {
-          margin-top: 16px;
-      }
-      .product-single__prices>:last-child{
-        font-size: 18px;
-        line-height: 24px;
-      }
-      .sales-point .icon-and-text{
-        justify-content: start;
-      }
-    }
-    @media (max-width: 320px) {
-      .total-raised::before{
-        font-size: 12px;
-        right: -50px;
-      }
-      .donation_amount_flex p,
-      .product-block .variant__label.hidden-label,
-      .size_guide_var{
-        font-size: 12px;
-      }
-      .mistake{
-        font-size: 10px;
-      }
-      .donation_inform h3{
-         font-size: 17px;
-      }
-      ul.background_wrap > li p.title_list {
-          font-size: 14px;
-      }
-      ul.background_wrap > li p{
-        font-size: 13px;
-      }
-      .content_popup > h2{
-         font-size: 20px;
-      }
-      .backdrop_modal .container_popup {
-          max-width: 312px;
-      }
-      .accardion_lists table p{
-            font-size: 10px;
-      }
-    }
-    @media (max-width: 280px) {
-      .donation_amount_flex p, .product-block .variant__label.hidden-label, .size_guide_var{
-            font-size: 10px;
-      }
-      .mistake{
-            left: 64px;
-      }
-      .mistake.size_var {
-          left: 57px;
-      }
-      .donation_inform h3 {
-          font-size: 15px;
-      }
-      ul.background_wrap > li p.title_list {
-          font-size: 11px;
-      }
-      ul.background_wrap > li p {
-          font-size: 10px;
-      }
-      p.goal_text strong {
-          font-size: 12px;
-      }
-      .accardion_lists table p {
-          font-size: 8px;
-      }
-    }
+
+
+
     </style>
       `
 
@@ -810,7 +71,7 @@ let startFunk = setInterval(() => {
             <div class="img_wrap">
               <img src="${imgFolderUrl}sj.png" alt="saintjavelin" />
             </div>
-            <p class="title_list">So far we have raised <strong>over $1 million</strong> in support of <span class="text_absol">Ukraine</span></p>
+            <p class="title_list">So far we've raised <strong>over $1 million</strong> in support of <span class="text_absol">Ukraine</span></p>
           </li>
           <li>
             <div class="img_wrap">
@@ -887,7 +148,7 @@ let startFunk = setInterval(() => {
           <button class="by_it_now_btn">BUY IT NOW</button>
           <ul class="main_popup_list">
             <li>
-              <p>So far we have raised <strong>over $1 million</strong> in support of <span class="text_absol">Ukraine</span></p>
+              <p>So far we've raised <strong>over $1 million</strong> in support of <span class="text_absol">Ukraine</span></p>
             </li>
             <li>
               <p><b>We already donated:</b></p>
@@ -1312,8 +573,12 @@ let startFunk = setInterval(() => {
           e.preventDefault()
 
           pushDataLayer("Сlick on Buy it now button", "Pop up All profits go towards helping Ukraine resist the invasion")
-          document.querySelector(".new_wrap_btn .buy_it_now").classList.add("on_click")
-          document.querySelector('form [data-testid="Checkout-button"').classList.add("on_click")
+          if (document.querySelector(".new_wrap_btn .buy_it_now")) {
+            document.querySelector(".new_wrap_btn .buy_it_now").classList.add("on_click")
+          }
+          if (document.querySelector('form [data-testid="Checkout-button"')) {
+            document.querySelector('form [data-testid="Checkout-button"').classList.add("on_click")
+          }
 
           if (document.querySelector('[name="add"]').getAttribute("disabled")) {
             document.querySelector(".new_wrap_btn .buy_it_now")?.click()
@@ -1322,13 +587,17 @@ let startFunk = setInterval(() => {
             }
 
             setTimeout(() => {
-              document.querySelector(".new_wrap_btn .buy_it_now").classList.remove("on_click")
+              if (document.querySelector(".new_wrap_btn .buy_it_now").classList.contains("on_click")) {
+                document.querySelector(".new_wrap_btn .buy_it_now").classList.remove("on_click")
+              }
             }, 1000)
           } else {
             document.querySelector('form [data-testid="Checkout-button"')?.click()
 
             setTimeout(() => {
-              document.querySelector('form [data-testid="Checkout-button"').classList.remove("on_click")
+              if (document.querySelector('form [data-testid="Checkout-button"').classList.contains("on_click")) {
+                document.querySelector('form [data-testid="Checkout-button"').classList.remove("on_click")
+              }
             }, 1000)
           }
         })
@@ -1472,6 +741,40 @@ let startFunk = setInterval(() => {
       }
     })
 
+    // Сlick on Buy this product
+    document.querySelector("a.link_text")?.addEventListener("click", (e) => {
+      e.preventDefault()
+      e.stopPropagation()
+      console.log(e.target)
+
+      pushDataLayer("Сlick on Buy this product")
+      if (document.querySelector(".new_wrap_btn .buy_it_now")) {
+        document.querySelector(".new_wrap_btn .buy_it_now").classList.add("on_click")
+      }
+      if (document.querySelector('form [data-testid="Checkout-button"')) {
+        document.querySelector('form [data-testid="Checkout-button"').classList.add("on_click")
+      }
+
+      if (document.querySelector('[name="add"]').getAttribute("disabled")) {
+        document.querySelector(".new_wrap_btn .buy_it_now")?.click()
+        if (overlay) {
+          onClosePopup()
+        }
+        setTimeout(() => {
+          if (document.querySelector(".new_wrap_btn .buy_it_now").classList.contains("on_click")) {
+            document.querySelector(".new_wrap_btn .buy_it_now").classList.remove("on_click")
+          }
+        }, 1000)
+      } else {
+        document.querySelector('form [data-testid="Checkout-button"')?.click()
+        setTimeout(() => {
+          if (document.querySelector('form [data-testid="Checkout-button"').classList.contains("on_click")) {
+            document.querySelector('form [data-testid="Checkout-button"').classList.remove("on_click")
+          }
+        }, 1000)
+      }
+    })
+
     //render/hidden new btn "Add to cart", "Buy it now"
     document.querySelectorAll(".variant-input-wrap label").forEach((el) => {
       let errorVar = 2
@@ -1512,28 +815,38 @@ let startFunk = setInterval(() => {
               })
             }
 
-            document.querySelector("a.link_text")?.addEventListener("click", (e) => {
-              e.preventDefault()
+            // document.querySelector("a.link_text")?.addEventListener("click", (e) => {
+            //   e.preventDefault()
+            //   e.stopPropagation()
+            //   console.log(e.target)
 
-              pushDataLayer("Сlick on Buy this product")
-              document.querySelector(".new_wrap_btn .buy_it_now").classList.add("on_click")
-              document.querySelector('form [data-testid="Checkout-button"').classList.add("on_click")
+            //   pushDataLayer("Сlick on Buy this product")
+            //   if (document.querySelector(".new_wrap_btn .buy_it_now")) {
+            //     document.querySelector(".new_wrap_btn .buy_it_now").classList.add("on_click")
+            //   }
+            //   if (document.querySelector('form [data-testid="Checkout-button"')) {
+            //     document.querySelector('form [data-testid="Checkout-button"').classList.add("on_click")
+            //   }
 
-              if (document.querySelector('[name="add"]').getAttribute("disabled")) {
-                document.querySelector(".new_wrap_btn .buy_it_now")?.click()
-                if (overlay) {
-                  onClosePopup()
-                }
-                setTimeout(() => {
-                  document.querySelector(".new_wrap_btn .buy_it_now").classList.remove("on_click")
-                }, 1000)
-              } else {
-                document.querySelector('form [data-testid="Checkout-button"')?.click()
-                setTimeout(() => {
-                  document.querySelector('form [data-testid="Checkout-button"').classList.remove("on_click")
-                }, 1000)
-              }
-            })
+            //   if (document.querySelector('[name="add"]').getAttribute("disabled")) {
+            //     document.querySelector(".new_wrap_btn .buy_it_now")?.click()
+            //     if (overlay) {
+            //       onClosePopup()
+            //     }
+            //     setTimeout(() => {
+            //       if (document.querySelector(".new_wrap_btn .buy_it_now").classList.contains("on_click")) {
+            //         document.querySelector(".new_wrap_btn .buy_it_now").classList.remove("on_click")
+            //       }
+            //     }, 1000)
+            //   } else {
+            //     document.querySelector('form [data-testid="Checkout-button"')?.click()
+            //     setTimeout(() => {
+            //       if (document.querySelector('form [data-testid="Checkout-button"').classList.contains("on_click")) {
+            //         document.querySelector('form [data-testid="Checkout-button"').classList.remove("on_click")
+            //       }
+            //     }, 1000)
+            //   }
+            // })
           }
         }
       }
