@@ -8,14 +8,34 @@
   </head>
 
   <body>
-    <ul>
-      <li class="active"><a href="">About</a></li>
-      <li><a href="">Product specs</a></li>
-      <li><a href="">Resources</a></li>
-      <li><a href="">Ask a question</a></li>
-      <li><a href="">Return policy</a></li>
-      <li><a href="">Price protection policy</a></li>
-      <li><a href="">Items you may need</a></li>
-    </ul>
+    <div class="new_item_inform">
+      <div class="img_wrap">
+        <img src="" alt="" />
+      </div>
+      <div class="mini_more_inform">
+        <h2></h2>
+        <div class="mini_vendor_box"></div>
+
+        <div class="mini_price_box">
+          <div class="btn_wrap">
+            <div>
+              <span class="qty-text qty-text sr-only">Quantity: </span>
+              <span class="input-group-btn d-flex br-0">
+                <button type="button" title="decrease quantity" class="btn-number" data-type="minus">
+                  <i class="fal fa-minus" aria-hidden="true"></i>
+                </button>
+              </span>
+              <input id="atc-qty" type="tel" title="item quantity" name="qty" class="d-flex input-number qty" value="1" min="0" max="500" />
+              <span class="input-group-btn d-flex bl-0">
+                <button type="button" title="increase quantity" class="btn-number" data-type="plus">
+                  <i class="fal fa-plus" aria-hidden="true"></i>
+                </button>
+              </span>
+            </div>
+            <button>Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

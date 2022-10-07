@@ -922,12 +922,19 @@ let startFunk = setInterval(() => {
       console.log(`banner`)
     })
 
-    document
-      .querySelector("#personalized")
-      .insertAdjacentHTML(
-        "afterend",
-        `<div class="product_details_wrap"><h3>Product details</h3> <div class="new_inform_wrap"><div><span></span></div><div class="new_item_inform"></div></div></div>`
-      )
+    document.querySelector("#personalized").insertAdjacentHTML(
+      "afterend",
+      `<div class="product_details_wrap"><h3>Product details</h3> <div class="new_inform_wrap"><div><span></span></div>    <div class="new_item_inform">
+      <div class="img_wrap">
+        <img src="" alt="" />
+      </div>
+      <div class="mini_more_inform">
+        <h2></h2>
+        <div class="mini_vendor_box"></div>
+        <div class="mini_price_box"></div>
+      </div>
+    </div></div></div>`
+    )
 
     if (document.querySelector(".product_details_wrap")) {
       document.querySelector(".product_details_wrap .new_inform_wrap > div > span").after(document.querySelector(".catalog-product-view .p-support"))
@@ -1270,7 +1277,7 @@ let startFunk = setInterval(() => {
               if (el) {
                 tippy(el, {
                   content: el.getAttribute("data-toolltip"),
-                  trigger: "click",
+                  // trigger: "click",
                   duration: [500, 500],
                   interactive: true,
                 })
@@ -1338,23 +1345,32 @@ let startFunk = setInterval(() => {
         priceBlock = document.querySelector(".price_wrap").cloneNode(true),
         img = document.querySelector(".catalog-product-view .product-essential .p-media .media-sticky").cloneNode(true)
 
-      if (title) {
-        if (!document.querySelector(".new_item_inform .col-12.p-head.mb-2")) {
-          document.querySelector(".new_item_inform")?.appendChild(title)
-        }
-      }
+      document.querySelector(".mini_more_inform > h2").insertAdjacentHTML("afterbegin", document.querySelector(".config_wrap .col-12.p-head.mb-2 span").textContent)
+      document.querySelector(".mini_vendor_box").insertAdjacentHTML("afterbegin", document.querySelector(".config_wrap .col-12.text-left.p-item-vendor").innerHTML)
 
-      if (vendor) {
-        if (!document.querySelector(".new_item_inform .col-12.text-left.p-item-vendor")) {
-          document.querySelector(".new_item_inform")?.appendChild(vendor)
-        }
-      }
+      // if (all) {
+      //   if (!document.querySelector(".new_item_inform .catalog-product-view .product-essential")) {
+      //     document.querySelector(".new_item_inform")?.appendChild(all)
+      //   }
+      // }
 
-      if (priceBlock) {
-        if (!document.querySelector(".new_item_inform .price_wrap")) {
-          document.querySelector(".new_item_inform")?.appendChild(priceBlock)
-        }
-      }
+      // if (title) {
+      //   if (!document.querySelector(".mini_more_inform h2 .col-12.p-head.mb-2")) {
+      //     document.querySelector(".mini_more_inform > h2")?.appendChild(title)
+      //   }
+      // }
+
+      // if (vendor) {
+      //   if (!document.querySelector(".mini_vendor_box .col-12.text-left.p-item-vendor")) {
+      //     document.querySelector(".mini_vendor_box")?.appendChild(vendor)
+      //   }
+      // }
+
+      // if (priceBlock) {
+      //   if (!document.querySelector(".mini_price_box .price_wrap")) {
+      //     document.querySelector(".mini_price_box")?.appendChild(priceBlock)
+      //   }
+      // }
     }
 
     // observer pdp
@@ -1379,6 +1395,7 @@ let startFunk = setInterval(() => {
 
         onTippyRun()
         onScrollBar()
+        miniCart()
 
         observer.observe(document.querySelector(".catalog-product-view .product-essential"), {
           childList: true,
