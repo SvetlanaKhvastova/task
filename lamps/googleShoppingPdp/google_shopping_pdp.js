@@ -1,5 +1,5 @@
 let startFunk = setInterval(() => {
-  if (document.querySelector("#item-details")) {
+  if (document.querySelector(".product-shop")) {
     clearInterval(startFunk)
 
     // SCRIPT
@@ -689,6 +689,12 @@ let startFunk = setInterval(() => {
       .catalog-product-view .product-essential .vp-box .vp-row i.no-stock  {
         display: none;
       }
+      .checkout-cart-index .wrapper .c-product .p-stock .final_sale_svg,
+      .checkout-cart-index .wrapper .c-product .p-stock .backordered_svg,
+      .checkout-cart-index .wrapper .c-product .p-stock .low_stock_svg,
+      .checkout-cart-index .wrapper .c-product .p-stock .now_stock_svg {
+        margin-top: -4px;
+      }
       /*mini_product_specs */
       .mini_product_specs{
         display: flex;
@@ -802,8 +808,13 @@ let startFunk = setInterval(() => {
         font-weight: 400;
         font-size: 13px;
         line-height: 14px;
-        color: #333333;
-        
+        color: #333333;        
+      }
+      .catalog-product-view .product-essential .p-media .media-sticky .i-share{
+        display: none !important;
+      }
+      .catalog-product-view .product-essential .p-media .media-sticky .swiper-slide img.single{
+        max-height: 340px !important;
       }
       </style>
       `
@@ -924,16 +935,23 @@ let startFunk = setInterval(() => {
 
     document.querySelector("#personalized").insertAdjacentHTML(
       "afterend",
-      `<div class="product_details_wrap"><h3>Product details</h3> <div class="new_inform_wrap"><div><span></span></div>    <div class="new_item_inform">
-      <div class="img_wrap">
-        <img src="" alt="" />
+      `    <div class="product_details_wrap">
+      <h3>Product details</h3>
+      <div class="new_inform_wrap">
+        <div><span></span></div>
+        <div class="new_item_inform">
+          <div class="img_wrap">
+            <img src="" alt="" />
+          </div>
+
+          <div class="mini_more_inform">
+            <h2></h2>
+            <div class="mini_vendor_box"></div>
+
+          </div>
+        </div>
       </div>
-      <div class="mini_more_inform">
-        <h2></h2>
-        <div class="mini_vendor_box"></div>
-        <div class="mini_price_box"></div>
-      </div>
-    </div></div></div>`
+    </div>`
     )
 
     if (document.querySelector(".product_details_wrap")) {
@@ -1307,7 +1325,6 @@ let startFunk = setInterval(() => {
 
           if (el.textContent.toLocaleLowerCase().includes(item.textContent.toLocaleLowerCase())) {
             item.setAttribute("href", `#${el.closest(".i-header").getAttribute("id")}`)
-            console.log(el.closest(".i-header").getAttribute("id"))
           }
         })
 
@@ -1328,8 +1345,6 @@ let startFunk = setInterval(() => {
           const elementPosition = scrollTarget.getBoundingClientRect().top
           const offsetPosition = elementPosition - topOffset
 
-          console.log(item)
-
           window.scrollBy({
             top: offsetPosition,
             behavior: "smooth",
@@ -1345,8 +1360,26 @@ let startFunk = setInterval(() => {
         priceBlock = document.querySelector(".price_wrap").cloneNode(true),
         img = document.querySelector(".catalog-product-view .product-essential .p-media .media-sticky").cloneNode(true)
 
-      document.querySelector(".mini_more_inform > h2").insertAdjacentHTML("afterbegin", document.querySelector(".config_wrap .col-12.p-head.mb-2 span").textContent)
-      document.querySelector(".mini_vendor_box").insertAdjacentHTML("afterbegin", document.querySelector(".config_wrap .col-12.text-left.p-item-vendor").innerHTML)
+      // document.querySelector(".mini_more_inform > h2").insertAdjacentHTML("afterbegin", document.querySelector(".config_wrap .col-12.p-head.mb-2 span").textContent)
+      // document.querySelector(".mini_vendor_box").insertAdjacentHTML("afterbegin", document.querySelector(".config_wrap .col-12.text-left.p-item-vendor").innerHTML)
+      // document.querySelector(".mini_price_box .last_price").textContent = document.querySelector(
+      //   ".catalog-product-view .product-essential .p-price .final-price .price"
+      // ).textContent
+      // if (document.querySelector(".catalog-product-view .product-essential .p-price .orig-price")) {
+      //   document.querySelector(".mini_price_box .old_price").textContent = document.querySelector(".catalog-product-view .product-essential .p-price .orig-price").textContent
+      // }
+
+      // if (document.querySelector(".mini_price_box .last_price")) {
+      //   document.querySelectorAll(".mini_price_box .last_price").forEach((el) => {
+      //     el.insertAdjacentHTML("afterend", priceMatchGuarantee)
+      //   })
+      // }
+
+      // if (document.querySelector(".catalog-product-view .product-essential .p-price .diff_price_block")) {
+      //   document
+      //     .querySelector(".mini_price_box .diff_price_block")
+      //     .insertAdjacentHTML("beforeend", document.querySelector(".catalog-product-view .product-essential .p-price .diff_price_block").innerHTML)
+      // }
 
       // if (all) {
       //   if (!document.querySelector(".new_item_inform .catalog-product-view .product-essential")) {
@@ -1354,23 +1387,23 @@ let startFunk = setInterval(() => {
       //   }
       // }
 
-      // if (title) {
-      //   if (!document.querySelector(".mini_more_inform h2 .col-12.p-head.mb-2")) {
-      //     document.querySelector(".mini_more_inform > h2")?.appendChild(title)
-      //   }
-      // }
+      if (title) {
+        if (!document.querySelector(".mini_more_inform h2 .col-12.p-head.mb-2")) {
+          document.querySelector(".mini_more_inform > h2")?.appendChild(title)
+        }
+      }
 
-      // if (vendor) {
-      //   if (!document.querySelector(".mini_vendor_box .col-12.text-left.p-item-vendor")) {
-      //     document.querySelector(".mini_vendor_box")?.appendChild(vendor)
-      //   }
-      // }
+      if (vendor) {
+        if (!document.querySelector(".mini_vendor_box .col-12.text-left.p-item-vendor")) {
+          document.querySelector(".mini_vendor_box")?.appendChild(vendor)
+        }
+      }
 
-      // if (priceBlock) {
-      //   if (!document.querySelector(".mini_price_box .price_wrap")) {
-      //     document.querySelector(".mini_price_box")?.appendChild(priceBlock)
-      //   }
-      // }
+      if (priceBlock) {
+        if (!document.querySelector(".mini_vendor_box .price_wrap")) {
+          document.querySelector(".mini_vendor_box")?.appendChild(priceBlock)
+        }
+      }
     }
 
     // observer pdp
@@ -1387,15 +1420,18 @@ let startFunk = setInterval(() => {
         renderTooltip()
 
         if (document.querySelector("#accessories")) {
-          if (!document.querySelector(".accessories_tabs")) {
-            console.log(`!document.querySelector(".accessories_tabs"))`)
+          if (!document.querySelector(".tabs_visible_wrap")) {
+            console.log(`!document.querySelector(".tabs_visible_wrap"))`)
             renderAccessoriesTabs()
           }
         }
 
         onTippyRun()
         onScrollBar()
-        miniCart()
+
+        // if (document.querySelector(".mini_more_inform > h2").textContent.length === 0) {
+        // miniCart()
+        // }
 
         observer.observe(document.querySelector(".catalog-product-view .product-essential"), {
           childList: true,
@@ -1411,4 +1447,4 @@ let startFunk = setInterval(() => {
       })
     }
   }
-}, 2000)
+}, 2500)

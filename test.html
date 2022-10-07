@@ -8,31 +8,45 @@
   </head>
 
   <body>
-    <div class="new_item_inform">
-      <div class="img_wrap">
-        <img src="" alt="" />
-      </div>
-      <div class="mini_more_inform">
-        <h2></h2>
-        <div class="mini_vendor_box"></div>
+    <div class="product_details_wrap">
+      <h3>Product details</h3>
+      <div class="new_inform_wrap">
+        <div><span></span></div>
+        <div class="new_item_inform">
+          <div class="img_wrap">
+            <img src="" alt="" />
+          </div>
 
-        <div class="mini_price_box">
-          <div class="btn_wrap">
-            <div>
-              <span class="qty-text qty-text sr-only">Quantity: </span>
-              <span class="input-group-btn d-flex br-0">
-                <button type="button" title="decrease quantity" class="btn-number" data-type="minus">
-                  <i class="fal fa-minus" aria-hidden="true"></i>
-                </button>
-              </span>
-              <input id="atc-qty" type="tel" title="item quantity" name="qty" class="d-flex input-number qty" value="1" min="0" max="500" />
-              <span class="input-group-btn d-flex bl-0">
-                <button type="button" title="increase quantity" class="btn-number" data-type="plus">
-                  <i class="fal fa-plus" aria-hidden="true"></i>
-                </button>
-              </span>
+          <div class="mini_more_inform">
+            <h2></h2>
+            <div class="mini_vendor_box"></div>
+
+            <div class="mini_price_box">
+              <div class="price_info">
+                <div>
+                  <span class="old_price"></span>
+                  <span class="last_price"></span>
+                </div>
+              </div>
+              <div class="stock_box"></div>
+              <div class="btn_wrap">
+                <div>
+                  <span class="qty-text qty-text sr-only">Quantity: </span>
+                  <span class="input-group-btn d-flex br-0">
+                    <button type="button" title="decrease quantity" class="btn-number" data-type="minus">
+                      <i class="fal fa-minus" aria-hidden="true"></i>
+                    </button>
+                  </span>
+                  <input id="atc-qty" type="tel" title="item quantity" name="qty" class="d-flex input-number qty" value="1" min="0" max="500" />
+                  <span class="input-group-btn d-flex bl-0">
+                    <button type="button" title="increase quantity" class="btn-number" data-type="plus">
+                      <i class="fal fa-plus" aria-hidden="true"></i>
+                    </button>
+                  </span>
+                </div>
+                <button>Add to Cart</button>
+              </div>
             </div>
-            <button>Add to Cart</button>
           </div>
         </div>
       </div>
