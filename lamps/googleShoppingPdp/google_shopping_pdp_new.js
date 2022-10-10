@@ -91,6 +91,7 @@ let startFunk = setInterval(() => {
 /*sticky_scroll_bar */
 .sticky_scroll_bar {
   border-bottom: 1px solid #d0d0d0;
+  border-top: 1px solid #d0d0d0;
   background: #fbfbfb;
   padding: 0 14px;
   position: sticky;
@@ -124,6 +125,17 @@ let startFunk = setInterval(() => {
 .sticky_scroll_bar ul li:last-child,
 .sticky_scroll_bar ul li:nth-child(3) {
   display: none;
+}
+.sticky_scroll_bar ul li:last-child{
+    align-items: center;
+    justify-content: space-between;
+    border-left: 1px solid #D0D0D0;
+}
+.sticky_scroll_bar ul li:last-child a{
+    color: #286378;
+}
+.sticky_scroll_bar ul li:last-child a > svg{
+    margin-right: 8px;
 }
 /*baner */
 .header-container {
@@ -1319,7 +1331,11 @@ border: 1px solid rgba(40, 99, 120, 0.2)
         <li><a href="#tab-header-3">Ask a question</a></li>
         <li><a href="#tab-header-4">Return policy</a></li>
         <li><a href="#tab-header-6">Price protection policy</a></li>
-        <li><a href="#cts-goods">Items you may need</a></li>
+        <li><a href="#cts-goods"><svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M13.86 0.84C13.5189 0.33 12.9505 0 12.3158 0L1.89474 0.0100002C0.852632 0.0100002 0 0.9 0 2L0 12C0 13.1 0.852632 13.99 1.89474 13.99L12.3158 14C12.9505 14 13.5189 13.67 13.86 13.16L17.6251 7.55781C17.8518 7.22049 17.8518 6.77951 17.6251 6.44219L13.86 0.84Z" fill="#286378"/>
+        <path d="M7.57879 4L7.57879 7L7.57879 4ZM7.57879 7V10V7ZM7.57879 7L4.73669 7L7.57879 7ZM7.57879 7H10.4209H7.57879Z" fill="#286378"/>
+        <path d="M7.57879 4L7.57879 7M7.57879 7V10M7.57879 7L4.73669 7M7.57879 7H10.4209" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>Items you may need</a></li>
       </ul>
     </div>    
     `
@@ -1872,7 +1888,7 @@ border: 1px solid rgba(40, 99, 120, 0.2)
     //   sticky_scroll_bar
     if (window.innerWidth > 768) {
       if (!document.querySelector(".sticky_scroll_bar")) {
-        document.querySelector(".product-view").insertAdjacentHTML("beforebegin", stickyScrollBar)
+        document.querySelector(".catalog-product-view .product-essential").insertAdjacentHTML("afterend", stickyScrollBar)
       }
     } else {
       if (!document.querySelector(".sticky_scroll_bar")) {
@@ -1899,7 +1915,7 @@ border: 1px solid rgba(40, 99, 120, 0.2)
     function renderAccessoriesTabs() {
       if (document.querySelector("#accessories")) {
         if (document.querySelector(".sticky_scroll_bar")) {
-          document.querySelector(".sticky_scroll_bar ul li:last-child").style.display = "block"
+          document.querySelector(".sticky_scroll_bar ul li:last-child").style.display = "flex"
         }
 
         if (!document.querySelector(".accessories_tabs")) {
@@ -2100,9 +2116,11 @@ border: 1px solid rgba(40, 99, 120, 0.2)
         }
 
         if (document.querySelector(".mini_price_info .mini_last_price")) {
-          document.querySelector(".mini_price_info .mini_last_price").textContent = document.querySelector(
-            ".catalog-product-view .product-essential .p-price .final-price .price"
-          ).textContent
+          if (document.querySelector(".catalog-product-view .product-essential .p-price .final-price .price")) {
+            document.querySelector(".mini_price_info .mini_last_price").textContent = document.querySelector(
+              ".catalog-product-view .product-essential .p-price .final-price .price"
+            ).textContent
+          }
         }
 
         if (document.querySelector(".catalog-product-view .product-essential .p-price .orig-price")) {

@@ -185,13 +185,13 @@ a.link_text {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   opacity: 1;
   background: rgba(0, 0, 0, 0.5);
   transition: all 0.5s ease 0s;
   z-index: 9005;
   display: block;
-  max-height: 100vh;
+  max-height: 100%;
 }
 .backdrop_modal.is_hidden {
   opacity: 0;
@@ -1412,6 +1412,47 @@ ul.background_wrap > li p {
             }
             e.target.setAttribute("data-test", "1")
           })
+
+          document.querySelector(".shopify-payment-button__more-options[data-testid='sheet-open-button']")?.addEventListener("click", (e) => {
+            console.log(e.target)
+            if (!e.target.getAttribute("data-test")) {
+              if (!e.target.classList.contains("on_click")) {
+                pushDataLayer("Сlick on More payment options", `0`)
+              }
+            }
+            e.target.setAttribute("data-test", "1")
+          })
+          document.querySelector('[data-testid="ShopifyPay-button"]')?.addEventListener("click", (e) => {
+            if (!e.target.getAttribute("data-test")) {
+              if (!e.target.classList.contains("on_click")) {
+                pushDataLayer("Сlick on Buy now with ShopPay", `0`)
+              }
+            }
+            e.target.setAttribute("data-test", "1")
+          })
+          document.querySelector("[data-testid='ApplePay-button']")?.addEventListener("click", (e) => {
+            if (!e.target.getAttribute("data-test")) {
+              if (!e.target.classList.contains("on_click")) {
+                pushDataLayer("Сlick on ApplePay", `0`)
+              }
+            }
+            e.target.setAttribute("data-test", "1")
+          })
+          document.querySelector("[data-testid='GooglePay-button']")?.addEventListener("click", (e) => {
+            if (!e.target.getAttribute("data-test")) {
+              if (!e.target.classList.contains("on_click")) {
+                pushDataLayer("Сlick on GooglePay", `0`)
+              }
+            }
+            e.target.setAttribute("data-test", "1")
+          })
+
+          document.querySelector("[data-button_style=shadow] .btn--tertiary.btn--full")?.addEventListener("click", (e) => {
+            if (!e.target.getAttribute("data-test")) {
+              pushDataLayer("Сlick on Add to cart button", `0`)
+            }
+            e.target.setAttribute("data-test", "1")
+          })
         }
 
         observer.observe(document, {
@@ -1424,6 +1465,40 @@ ul.background_wrap > li p {
     observer.observe(document, {
       childList: true,
       subtree: true,
+    })
+
+    document.querySelector(".shopify-payment-button__more-options[data-testid='sheet-open-button']")?.addEventListener("click", (e) => {
+      console.log(e.target)
+      if (!e.target.getAttribute("data-test")) {
+        if (!e.target.classList.contains("on_click")) {
+          pushDataLayer("Сlick on More payment options", `0`)
+        }
+      }
+      e.target.setAttribute("data-test", "1")
+    })
+    document.querySelector('[data-testid="ShopifyPay-button"]')?.addEventListener("click", (e) => {
+      if (!e.target.getAttribute("data-test")) {
+        if (!e.target.classList.contains("on_click")) {
+          pushDataLayer("Сlick on Buy now with ShopPay", `0`)
+        }
+      }
+      e.target.setAttribute("data-test", "1")
+    })
+    document.querySelector("[data-testid='ApplePay-button']")?.addEventListener("click", (e) => {
+      if (!e.target.getAttribute("data-test")) {
+        if (!e.target.classList.contains("on_click")) {
+          pushDataLayer("Сlick on ApplePay", `0`)
+        }
+      }
+      e.target.setAttribute("data-test", "1")
+    })
+    document.querySelector("[data-testid='GooglePay-button']")?.addEventListener("click", (e) => {
+      if (!e.target.getAttribute("data-test")) {
+        if (!e.target.classList.contains("on_click")) {
+          pushDataLayer("Сlick on GooglePay", `0`)
+        }
+      }
+      e.target.setAttribute("data-test", "1")
     })
 
     document.querySelector("[data-button_style=shadow] .btn--tertiary.btn--full")?.addEventListener("click", (e) => {
@@ -1459,6 +1534,11 @@ ul.background_wrap > li p {
       overlay.classList.remove("is_hidden")
       body.style.overflow = "hidden"
       body.style.display = "block"
+      body.style.height = "100%"
+
+      document.querySelector("html").style.overflow = "hidden"
+      document.querySelector("html").style.display = "block"
+      document.querySelector("html").style.height = "100%"
 
       document.querySelector(".container_popup").insertAdjacentHTML("beforeend", block)
     }
@@ -1467,6 +1547,9 @@ ul.background_wrap > li p {
       overlay.classList.add("is_hidden")
       body.style.overflow = "auto"
       body.style.display = "initial"
+      document.querySelector("html").style.overflow = "auto"
+      document.querySelector("html").style.display = "initial"
+
       setTimeout(() => {
         document.querySelector(".content_popup")?.remove()
       }, 1000)
