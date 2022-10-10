@@ -180,7 +180,7 @@ a.link_text {
 /* */
 /* popap_box */
 .backdrop_modal {
-  position: fixed;
+  position: fixed !important;
   overflow: hidden;
   top: 0;
   left: 0;
@@ -1363,13 +1363,23 @@ ul.background_wrap > li p {
               }
             }, 1000)
           } else {
-            document.querySelector('form [data-testid="Checkout-button"')?.click()
+            if (document.querySelector('form [data-testid="Checkout-button"')) {
+              document.querySelector('form [data-testid="Checkout-button"')?.click()
 
-            setTimeout(() => {
-              if (document.querySelector('form [data-testid="Checkout-button"').classList.contains("on_click")) {
-                document.querySelector('form [data-testid="Checkout-button"').classList.remove("on_click")
-              }
-            }, 1000)
+              setTimeout(() => {
+                if (document.querySelector('form [data-testid="Checkout-button"').classList.contains("on_click")) {
+                  document.querySelector('form [data-testid="Checkout-button"').classList.remove("on_click")
+                }
+              }, 1000)
+            }
+            {
+              document.querySelector(".shopify-payment-button__more-options[data-testid='sheet-open-button']")?.click()
+              setTimeout(() => {
+                if (document.querySelector(".shopify-payment-button__more-options[data-testid='sheet-open-button").classList.contains("on_click")) {
+                  document.querySelector(".shopify-payment-button__more-options[data-testid='sheet-open-button").classList.remove("on_click")
+                }
+              }, 1000)
+            }
           }
         })
       }
@@ -1448,6 +1458,7 @@ ul.background_wrap > li p {
     function onOpenPopup(block) {
       overlay.classList.remove("is_hidden")
       body.style.overflow = "hidden"
+      body.style.display = "block"
 
       document.querySelector(".container_popup").insertAdjacentHTML("beforeend", block)
     }
@@ -1455,6 +1466,7 @@ ul.background_wrap > li p {
     function onClosePopup() {
       overlay.classList.add("is_hidden")
       body.style.overflow = "auto"
+      body.style.display = "initial"
       setTimeout(() => {
         document.querySelector(".content_popup")?.remove()
       }, 1000)
@@ -1551,12 +1563,21 @@ ul.background_wrap > li p {
           }
         }, 1000)
       } else {
-        document.querySelector('form [data-testid="Checkout-button"')?.click()
-        setTimeout(() => {
-          if (document.querySelector('form [data-testid="Checkout-button"').classList.contains("on_click")) {
-            document.querySelector('form [data-testid="Checkout-button"').classList.remove("on_click")
-          }
-        }, 1000)
+        if (document.querySelector('form [data-testid="Checkout-button"')) {
+          document.querySelector('form [data-testid="Checkout-button"')?.click()
+          setTimeout(() => {
+            if (document.querySelector('form [data-testid="Checkout-button"').classList.contains("on_click")) {
+              document.querySelector('form [data-testid="Checkout-button"').classList.remove("on_click")
+            }
+          }, 1000)
+        } else {
+          document.querySelector(".shopify-payment-button__more-options[data-testid='sheet-open-button']")?.click()
+          setTimeout(() => {
+            if (document.querySelector(".shopify-payment-button__more-options[data-testid='sheet-open-button").classList.contains("on_click")) {
+              document.querySelector(".shopify-payment-button__more-options[data-testid='sheet-open-button").classList.remove("on_click")
+            }
+          }, 1000)
+        }
       }
     })
 

@@ -75,6 +75,19 @@ let startFunk = setInterval(() => {
 
     let style = /*html */ `
       <style>
+        #personalized > div:nth-child(1){
+            display: flex;
+            justify-content: space-between;
+        }
+        .view_all_categories{
+            font-weight: 500;
+            font-size: 15px;
+            line-height: 24px;
+            text-decoration-line: underline;
+            text-transform: capitalize;
+            color: #286278;
+            cursor: pointer;
+        }
 /*sticky_scroll_bar */
 .sticky_scroll_bar {
   border-bottom: 1px solid #d0d0d0;
@@ -1432,6 +1445,28 @@ border: 1px solid rgba(40, 99, 120, 0.2)
       console.log(`banner`)
     })
 
+    viewAllCategories()
+    //view All Categories
+    function viewAllCategories() {
+      let waitingBlock = setInterval(() => {
+        if (document.querySelector("#personalized > div span")) {
+          clearInterval(waitingBlock)
+          if (!document.querySelector(".view_all_categories")) {
+            document.querySelector("#personalized > div span")?.insertAdjacentHTML("afterend", `<span class="view_all_categories">View All Ceiling Fans</span>`)
+          }
+          if (document.querySelector(".view_all_categories")) {
+            document.querySelector(".view_all_categories").textContent = `View All ${
+              document.querySelector(".breadcrumbs ul li.product.last").previousElementSibling.querySelector("a").textContent
+            }`
+
+            document.querySelector(".view_all_categories").addEventListener("click", () => {
+              document.querySelector(".breadcrumbs ul li.product.last").previousElementSibling.querySelector("a").click()
+            })
+          }
+        }
+      }, 10)
+    }
+
     // sticky button mobile
     if (window.innerWidth <= 768) {
       if (!document.querySelector("body.catalog-product-view .sticky_box")) {
@@ -2064,9 +2099,11 @@ border: 1px solid rgba(40, 99, 120, 0.2)
           }
         }
 
-        document.querySelector(".mini_price_info .mini_last_price").textContent = document.querySelector(
-          ".catalog-product-view .product-essential .p-price .final-price .price"
-        ).textContent
+        if (document.querySelector(".mini_price_info .mini_last_price")) {
+          document.querySelector(".mini_price_info .mini_last_price").textContent = document.querySelector(
+            ".catalog-product-view .product-essential .p-price .final-price .price"
+          ).textContent
+        }
 
         if (document.querySelector(".catalog-product-view .product-essential .p-price .orig-price")) {
           document.querySelector(".mini_price_info .mini_old_price").textContent = document.querySelector(
@@ -2143,6 +2180,7 @@ border: 1px solid rgba(40, 99, 120, 0.2)
         console.log(`observer`)
 
         renderToPdp()
+        viewAllCategories()
 
         if (!document.querySelector(".price_wrap .price_match_guarantee")) {
           renderPriceMatchGuarantee()
