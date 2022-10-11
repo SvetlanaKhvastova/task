@@ -13,16 +13,31 @@ let startFunk = setInterval(() => {
     scriptTippy.async = false
     document.body.appendChild(scriptTippy)
 
-    // swiper
-    let scriptCustom = document.createElement("script")
-    scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
-    scriptCustom.async = false
-    document.head.appendChild(scriptCustom)
+    let eventVar = "desktop"
 
-    let scriptCustomStyle = document.createElement("link")
-    scriptCustomStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
-    scriptCustomStyle.rel = "stylesheet"
-    document.head.appendChild(scriptCustomStyle)
+    if (window.innerWidth <= 768) {
+      eventVar = "mobile"
+    }
+
+    function pushDataLayer(actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || []
+      if (labelDataLayer) {
+        console.log(actionDataLayer + " : " + labelDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Google shopping PDP ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        })
+      } else {
+        console.log(actionDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Google shopping PDP ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+        })
+      }
+    }
 
     /* other variables  */
     const imgFolderUrl = "https://conversionratestore.github.io/projects/lamps/img/"
@@ -93,7 +108,6 @@ let startFunk = setInterval(() => {
   border-bottom: 1px solid #d0d0d0;
   border-top: 1px solid #d0d0d0;
   background: #fbfbfb;
-  padding: 0 14px;
   position: sticky;
   top: 0;
   left: 0;
@@ -101,13 +115,12 @@ let startFunk = setInterval(() => {
 }
 .sticky_scroll_bar ul {
   display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 .sticky_scroll_bar ul li {
-  padding: 11px;
+  padding: 12px 25px;
   cursor: pointer;
-}
-.sticky_scroll_bar ul li + li {
-  margin-left: 15px;
 }
 .sticky_scroll_bar ul li.active {
   border-bottom: 2px solid #286378;
@@ -129,7 +142,9 @@ let startFunk = setInterval(() => {
 .sticky_scroll_bar ul li:last-child{
     align-items: center;
     justify-content: space-between;
+    position: relative;
     border-left: 1px solid #D0D0D0;
+    margin: 0 0 0 auto;
 }
 .sticky_scroll_bar ul li:last-child a{
     color: #286378;
@@ -451,10 +466,14 @@ p.stock_var {
     background: #FBFBFB;
     height: max-content;
     padding: 20px;
+    position: sticky;
+    top: 72px;
+    left: 0;
 }
 .new_inform_wrap > div.new_item_inform .new_container{
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     gap: 21px;
 }
 .new_inform_wrap .p-support {
@@ -753,6 +772,9 @@ p.stock_var {
   max-width: unset;
   width: auto;
 }
+.mini_product_specs ul li span:nth-child(2){
+font-weight: 600;
+}
 /*tippy-tooltip */
 .tippy-popper {
   z-index: 10047222222 !important;
@@ -947,7 +969,7 @@ border: 1px solid rgba(40, 99, 120, 0.2)
 .slider-nav img {
   border: 1px solid transparent;
 }
-@media (max-width: 1150px) {
+@media (max-width: 1290px) {
     .sticky_scroll_bar ul li a{
         font-size: 14px;
     }
@@ -1098,8 +1120,13 @@ border: 1px solid rgba(40, 99, 120, 0.2)
   }
   .sticky_scroll_bar {
     padding: 0;
-    overflow: auto;
     margin: 0 -7.5px;
+    width: 104%;
+  }
+  .sticky_scroll_bar > div{
+    overflow: auto;
+    width: 100%;
+    max-width: 397px;
   }
   .sticky_scroll_bar ul {
     padding: 0 25px;
@@ -1319,24 +1346,93 @@ border: 1px solid rgba(40, 99, 120, 0.2)
         font-size: 8px;
     }
 }
+.my_swiper_box,
+.my_swiper_box2{
+    overflow: hidden;
+    position: relative;
+    max-height: 310px;
+    height: 100%;
+}
+.my_swiper_box2{
+    overflow: hidden;
+}
+.my_swiper_box2 .new_swiper2{
+    height: 100%;
+}
+.my_swiper_box2 .new_swiper2 .swiper-button-next:after, 
+.my_swiper_box2 .new_swiper2 .swiper-button-prev:after{
+    font-size: 29px;
+}
+.my_swiper_box2 .new_swiper2 .swiper-wrapper .swiper-slide .swiper-zoom-container img{
+    height: 100% !important;
+    max-height: 250px !important;
+    width: 100% !important;
+    object-fit: contain !important;
+}
+.my_swiper_box .product_thumbs {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    width: 90%;
+    max-height: 50px;
+    height: 100%;
+}
+.my_swiper_box img{
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: contain !important;
+    max-height: unset !important;
+}
+.my_swiper_box .swiper-button-next,
+.my_swiper_box .swiper-button-prev,
+.my_swiper_box2 .swiper-button-next,
+.my_swiper_box2 .swiper-button-prev{
+    color: #e35757;
+}
+.my_swiper_box .product_thumbs .swiper-slide{
+    border: 1px solid transparent; 
+    max-width: 50px;  
+    cursor: pointer;
+}
+.my_swiper_box .product_thumbs .swiper-slide-thumb-active{
+    border: 1px solid rgba(40, 99, 120, 0.2) !important;
+}
+@media (max-width: 768px) {
+    .my_swiper_box{
+        margin: 0 -7.5px;
+    }
+    .my_swiper_box .swiper-button-next,
+.my_swiper_box .swiper-button-prev{
+    display: none;
+}
+.view_all_categories{
+    display: none;
+}
+.sticky_scroll_bar ul li:last-child{
+    padding-left: 12px;
+    margin-left: 13px;
+}
+}
       </style>
       `
 
     let stickyScrollBar = /*html */ `
     <div class="sticky_scroll_bar">
-      <ul>
-        <li class="active"><a href="#main-wrapper">About</a></li>
-        <li><a href="#tab-header-1">Product specs</a></li>
-        <li><a href="#tab-header-2">Resources</a></li>
-        <li><a href="#tab-header-3">Ask a question</a></li>
-        <li><a href="#tab-header-4">Return policy</a></li>
-        <li><a href="#tab-header-6">Price protection policy</a></li>
-        <li><a href="#cts-goods"><svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M13.86 0.84C13.5189 0.33 12.9505 0 12.3158 0L1.89474 0.0100002C0.852632 0.0100002 0 0.9 0 2L0 12C0 13.1 0.852632 13.99 1.89474 13.99L12.3158 14C12.9505 14 13.5189 13.67 13.86 13.16L17.6251 7.55781C17.8518 7.22049 17.8518 6.77951 17.6251 6.44219L13.86 0.84Z" fill="#286378"/>
-        <path d="M7.57879 4L7.57879 7L7.57879 4ZM7.57879 7V10V7ZM7.57879 7L4.73669 7L7.57879 7ZM7.57879 7H10.4209H7.57879Z" fill="#286378"/>
-        <path d="M7.57879 4L7.57879 7M7.57879 7V10M7.57879 7L4.73669 7M7.57879 7H10.4209" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>Items you may need</a></li>
-      </ul>
+        <div>
+            <ul>
+              <li class="active"><a href="#main-wrapper">About</a></li>
+              <li><a href="#tab-header-1">Product specs</a></li>
+              <li><a href="#tab-header-2">Resources</a></li>
+              <li><a href="#tab-header-3">Ask a question</a></li>
+              <li><a href="#tab-header-4">Return policy</a></li>
+              <li><a href="#tab-header-6">Price protection policy</a></li>
+              <li><a href="#cts-goods"><svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13.86 0.84C13.5189 0.33 12.9505 0 12.3158 0L1.89474 0.0100002C0.852632 0.0100002 0 0.9 0 2L0 12C0 13.1 0.852632 13.99 1.89474 13.99L12.3158 14C12.9505 14 13.5189 13.67 13.86 13.16L17.6251 7.55781C17.8518 7.22049 17.8518 6.77951 17.6251 6.44219L13.86 0.84Z" fill="#286378"/>
+              <path d="M7.57879 4L7.57879 7L7.57879 4ZM7.57879 7V10V7ZM7.57879 7L4.73669 7L7.57879 7ZM7.57879 7H10.4209H7.57879Z" fill="#286378"/>
+              <path d="M7.57879 4L7.57879 7M7.57879 7V10M7.57879 7L4.73669 7M7.57879 7H10.4209" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>Items you may need</a></li>
+            </ul>
+        </div>
     </div>    
     `
 
@@ -1442,6 +1538,17 @@ border: 1px solid rgba(40, 99, 120, 0.2)
     </div>
     `
 
+    // on Click ADD2Cart
+    document.querySelector("#add-item-to-cart")?.addEventListener("click", (e) => {
+      if (!e.target.classList.contains("on_click")) {
+        if (e.target.classList.contains("sticky_var")) {
+          pushDataLayer("sticky Add to cart clicked")
+        } else {
+          pushDataLayer("Add to cart top page clicked")
+        }
+      }
+    })
+
     function renderText(text, tooltip) {
       return `<li>
                 <p>${text}</p>
@@ -1475,8 +1582,12 @@ border: 1px solid rgba(40, 99, 120, 0.2)
               document.querySelector(".breadcrumbs ul li.product.last").previousElementSibling.querySelector("a").textContent
             }`
 
-            document.querySelector(".view_all_categories").addEventListener("click", () => {
-              document.querySelector(".breadcrumbs ul li.product.last").previousElementSibling.querySelector("a").click()
+            document.querySelector(".view_all_categories").addEventListener("click", (item) => {
+              if (!item.target.getAttribute("data-test")) {
+                pushDataLayer(`${item.target.textContent}`)
+                document.querySelector(".breadcrumbs ul li.product.last").previousElementSibling.querySelector("a").click()
+              }
+              item.target.setAttribute("data-test", "1")
             })
           }
         }
@@ -1570,90 +1681,70 @@ border: 1px solid rgba(40, 99, 120, 0.2)
 
     onNewSwipe()
     function onNewSwipe() {
-      if (!document.querySelector(".media-sticky .new_swiper")) {
+      document.querySelector(".my_swiper_box")?.remove()
+
+      if (!document.querySelector(".my_swiper_box")) {
         document.querySelector(".media-sticky")?.insertAdjacentHTML(
           "beforeend",
-          `   <div class="new_swiper" style="display: flex;">
-          <div class="slider-nav"></div>
-          <div class="slider-for"></div>
-      </div>`
+          ` <div class="my_swiper_box">
+                <div class="new_swiper">
+                    <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    </div>
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+                <div class="product_thumbs">
+                    <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    </div>
+                </div>
+            </div>
+          `
         )
       }
 
-      if (document.querySelector(".swiper-wrapper").childNodes.length > 0) {
-        document.querySelectorAll(".product-view .swiper-slide").forEach((el) => {
-          if (!el.getAttribute("isProcessing")) {
-            if (document.querySelector(".new_swiper")) {
-              document.querySelectorAll(".slider-for").forEach((i) => {
-                i.insertAdjacentHTML("beforeend", `<img class="product1" src="${el.querySelector("img").getAttribute("srcset")}" alt="photo">`)
-              })
-              document.querySelectorAll(".slider-nav").forEach((i) => {
-                i.insertAdjacentHTML("beforeend", `<img class="product2" src="${el.querySelector("img").getAttribute("srcset")}" alt="photo">`)
-              })
-            }
-            el.setAttribute("isProcessing", true)
-          }
-        })
-      }
+      if (document.querySelector(".my_swiper_box")) {
+        let arr = []
 
-      let slickInterval = setInterval(() => {
-        if (typeof jQuery(".new_swiper").slick === "function" && document.querySelector(".new_swiper")) {
-          clearInterval(slickInterval)
-          //  slider
-          jQuery(".slider-for").slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            prevArrow:
-              '<svg class="arrow prev_arrow" width="27" height="44" viewBox="0 0 23 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 8L11.5 2L22 8" stroke="" stroke-width="3"/></svg>',
-            nextArrow:
-              '<svg class="arrow next_arrow" width="27" height="44" viewBox="0 0 23 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 2L11.5 8L22 2" stroke="" stroke-width="3"/></svg>',
-            fade: true,
-            asNavFor: ".slider-nav",
-          })
-          jQuery(".slider-nav")?.slick({
-            slidesToShow: 2,
-            slidesToScroll: 1,
-            asNavFor: ".slider-for",
-            focusOnSelect: true,
-            arrows: false,
+        if (document.querySelector("#wishlist-btn + div .swiper-wrapper").childNodes.length > 0) {
+          document.querySelectorAll("#wishlist-btn + div .swiper-wrapper .swiper-slide img").forEach((el) => {
+            if (!arr.includes(el.getAttribute("srcset"))) {
+              arr.push(el.getAttribute("srcset"))
+            }
           })
         }
-      }, 10)
+        arr.forEach((el) => {
+          document
+            .querySelector(".my_swiper_box .new_swiper .swiper-wrapper")
+            .insertAdjacentHTML("beforeend", `<div class="swiper-slide"><div class="swiper-zoom-container"><img src="${el}" alt="photo"></div></div>`)
 
-      //     if (!document.querySelector(".my_swiper")) {
-      //       document.querySelector(".media-sticky")?.insertAdjacentHTML(
-      //         "beforeend",
-      //         `<div class="my_swiper_box"><div class="new_swiper">
-      //     <div class="swiper-wrapper">
-      //   <!-- Slides -->
-      // </div>
-      // <!-- If we need navigation buttons -->
-      // <div class="swiper-btn-prev"></div>
-      // <div class="swiper-btn-next"></div>
-      //   </div>
-      //   <div class="product-thumbs"></div>`
-      //       )
-      //     }
+          document.querySelector(".my_swiper_box .product_thumbs .swiper-wrapper").insertAdjacentHTML("beforeend", `<div class="swiper-slide"><img src="${el}" alt="photo"></div>`)
+        })
 
-      //     if (document.querySelector(".my_swiper_box .new_swiper")) {
-      //       if (document.querySelector("#wishlist-btn + div .swiper-wrapper").childNodes.length > 0) {
-      //         document.querySelectorAll("#wishlist-btn + div .swiper-wrapper .swiper-slide").forEach((el) => {
-      //           document
-      //             .querySelector(".my_swiper_box .new_swiper .swiper-wrapper")
-      //             .insertAdjacentHTML("beforeend", `<div class="swiper-slide"><img src="${el.querySelector("img").getAttribute("srcset")}" alt="photo"></div>`)
-      //         })
-      //       }
-
-      //       setTimeout(() => {
-      //         const newSwiper = new Swiper(".my_swiper_box .new_swiper", {
-      //           loop: true,
-      //           navigation: {
-      //             nextButton: ".swiper-btn-next",
-      //             prevButton: ".swiper-btn-prev",
-      //           },
-      //         })
-      //       }, 2000)
-      //     }
+        setTimeout(() => {
+          const newSwiper = new Swiper(".my_swiper_box .new_swiper", {
+            loop: true,
+            spaceBetween: 4,
+            zoom: {
+              maxRatio: 3,
+            },
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+            thumbs: {
+              swiper: new Swiper(".my_swiper_box .product_thumbs", {
+                slidesPerView: 4,
+                loop: false,
+                slideToClickedSlide: true,
+                spaceBetween: 8,
+              }),
+            },
+          })
+        }, 100)
+      }
     }
 
     renderToPdp()
@@ -1860,6 +1951,17 @@ border: 1px solid rgba(40, 99, 120, 0.2)
                   appendTo: function () {
                     return el
                   },
+                  onTrigger(e) {
+                    if (el) {
+                      if (el.closest(".final-price")) {
+                        pushDataLayer(`${el.querySelector("span").textContent} link clicked`)
+                      } else if (el.closest(".diff_price_block")) {
+                        pushDataLayer(`${el.querySelector("p").textContent} link clicked`)
+                      } else {
+                        pushDataLayer(`${el.querySelector("span")?.textContent} block clicked`)
+                      }
+                    }
+                  },
                 })
               }
             }, 1000)
@@ -1877,6 +1979,11 @@ border: 1px solid rgba(40, 99, 120, 0.2)
                   // trigger: "click",
                   duration: [500, 500],
                   interactive: true,
+                  onTrigger(e) {
+                    if (el) {
+                      pushDataLayer(`${el.previousElementSibling?.textContent} block tooltip`)
+                    }
+                  },
                 })
               }
             }, 1000)
@@ -1890,6 +1997,21 @@ border: 1px solid rgba(40, 99, 120, 0.2)
       if (!document.querySelector(".sticky_scroll_bar")) {
         document.querySelector(".catalog-product-view .product-essential").insertAdjacentHTML("afterend", stickyScrollBar)
       }
+      //   window.addEventListener("scroll", function () {
+      //     let scrollDistance = window.scrollY
+      //     document.querySelectorAll("div").forEach((el, i) => {
+      //       if (el.offsetTop <= scrollDistance) {
+      //         document.querySelectorAll(".sticky_scroll_bar ul li a").forEach((item) => {
+      //           if (item.getAttribute("href").includes(el.getAttribute("id"))) {
+      //             if (item.closest("li").classList.contains("active")) {
+      //               item.closest("li").classList.remove("active")
+      //             }
+      //             document.querySelectorAll(".sticky_scroll_bar ul li")[i].classList.add("active")
+      //           }
+      //         })
+      //       }
+      //     })
+      //   })
     } else {
       if (!document.querySelector(".sticky_scroll_bar")) {
         document.querySelector(".catalog-product-view .product-essential .p-media").insertAdjacentHTML("beforebegin", stickyScrollBar)
@@ -1975,7 +2097,11 @@ border: 1px solid rgba(40, 99, 120, 0.2)
 
           header.addEventListener("click", (e) => {
             const target = e.target
-            console.log(target)
+
+            if (!target.getAttribute("data-test")) {
+              pushDataLayer(`'${target.textContent}' You May Need clicked`)
+            }
+            target.setAttribute("data-test", "1")
 
             if (target) {
               tab.forEach((item, i) => {
@@ -2024,6 +2150,14 @@ border: 1px solid rgba(40, 99, 120, 0.2)
 
         item.addEventListener("click", (e) => {
           e.preventDefault()
+          if (!e.target.getAttribute("data-test")) {
+            if (e.target.textContent.includes("Items you may need")) {
+              pushDataLayer(`Items you may need in menu clicked`)
+            } else {
+              pushDataLayer(`${e.target.textContent} in menu clicked`)
+            }
+          }
+          e.target.setAttribute("data-test", "1")
 
           list.forEach((el) => {
             el.closest("li").classList.remove("active")
@@ -2047,14 +2181,16 @@ border: 1px solid rgba(40, 99, 120, 0.2)
       })
     }
 
-    miniCart()
+    if (window.innerWidth > 768) {
+      miniCart()
+    }
+
     function miniCart() {
-      let vendor = document.querySelector(".config_wrap .col-12.text-left.p-item-vendor").cloneNode(true),
+      let vendor = document.querySelector(".config_wrap .col-12.text-left.p-item-vendor")?.cloneNode(true),
         stockVar = document.querySelector(".catalog-product-view .product-essential .product-shop .p-value-props").cloneNode(true),
         diffBlock = document.querySelector(".diff_price_block")?.cloneNode(true),
         couponSignUp = document.querySelector(".discount_pdp.sign_up")?.cloneNode(true),
-        coupon = document.querySelector(".discount_pdp")?.cloneNode(true),
-        img = document.querySelector(".new_swiper")?.cloneNode(true)
+        coupon = document.querySelector(".discount_pdp")?.cloneNode(true)
 
       if (document.querySelector(".new_item_inform")) {
         document.querySelector(".new_item_inform").insertAdjacentHTML(
@@ -2081,7 +2217,7 @@ border: 1px solid rgba(40, 99, 120, 0.2)
                         <span class="increment"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 0C5.73478 0 5.48043 0.105357 5.29289 0.292893C5.10536 0.48043 5 0.734784 5 1V5H1C0.734784 5 0.48043 5.10536 0.292893 5.29289C0.105357 5.48043 0 5.73478 0 6C0 6.26522 0.105357 6.51957 0.292893 6.70711C0.48043 6.89464 0.734784 7 1 7H5V11C5 11.2652 5.10536 11.5196 5.29289 11.7071C5.48043 11.8946 5.73478 12 6 12C6.26522 12 6.51957 11.8946 6.70711 11.7071C6.89464 11.5196 7 11.2652 7 11V7H11C11.2652 7 11.5196 6.89464 11.7071 6.70711C11.8946 6.51957 12 6.26522 12 6C12 5.73478 11.8946 5.48043 11.7071 5.29289C11.5196 5.10536 11.2652 5 11 5H7V1C7 0.734784 6.89464 0.48043 6.70711 0.292893C6.51957 0.105357 6.26522 0 6 0Z" fill="#727272"/></svg>
                         </span>
                     </div>
-                    <button><img src="${imgFolderUrl}add_to_card_icon.png" alt="button">Add to Cart</button>
+                    <button class="middle_var"><img src="${imgFolderUrl}add_to_card_icon.png" alt="button">Add to Cart</button>
                 </div>
             </div>
           </div>`
@@ -2089,16 +2225,6 @@ border: 1px solid rgba(40, 99, 120, 0.2)
       }
 
       if (document.querySelector(".new_container .all_inform_wrap")) {
-        // if (!document.querySelector(".mini_img_wrap > div")) {
-        //   document.querySelector(".mini_img_wrap")?.insertAdjacentHTML(
-        //     "beforeend",
-        //     `   <div class="new_swiper" style="display: flex;">
-        //             <div class="slider-nav"></div>
-        //             <div class="slider-for"></div>
-        //         </div>`
-        //   )
-        // }
-
         if (document.querySelector(".new_container .all_inform_wrap h3")) {
           document.querySelector(".new_container .all_inform_wrap h3").textContent = document.querySelector(".config_wrap .col-12.p-head.mb-2 span").textContent
         }
@@ -2130,8 +2256,18 @@ border: 1px solid rgba(40, 99, 120, 0.2)
         }
 
         document.querySelector(".mini_btn_wrap > button").addEventListener("click", (el) => {
+          pushDataLayer("Add to cart middle page clicked")
           el.preventDefault()
+          if (document.querySelector("#add-item-to-cart")) {
+            document.querySelector("#add-item-to-cart").classList.add("on_click")
+          }
           document.querySelector("#add-item-to-cart").click()
+
+          setTimeout(() => {
+            if (document.querySelector("#add-item-to-cart").classList.contains("on_click")) {
+              document.querySelector("#add-item-to-cart").classList.remove("on_click")
+            }
+          }, 1000)
         })
 
         localStorage.setItem("qtyValue", document.querySelector(".product-view .product-shop #atc-qty").value)
@@ -2185,11 +2321,75 @@ border: 1px solid rgba(40, 99, 120, 0.2)
       }
     }
 
+    if (document.querySelector(".new_item_inform .mini_img_wrap")) {
+      onMiniNewSwipe()
+    }
+
+    function onMiniNewSwipe() {
+      document.querySelector(".my_swiper_box2")?.remove()
+
+      if (!document.querySelector(".my_swiper_box2")) {
+        document.querySelector(".new_item_inform .mini_img_wrap")?.insertAdjacentHTML(
+          "beforeend",
+          ` <div class="my_swiper_box2">
+                <div class="new_swiper2">
+                    <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    </div>
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
+          `
+        )
+      }
+
+      if (document.querySelector(".my_swiper_box2")) {
+        let arr = []
+
+        if (document.querySelector("#wishlist-btn + div .swiper-wrapper").childNodes.length > 0) {
+          document.querySelectorAll("#wishlist-btn + div .swiper-wrapper .swiper-slide img").forEach((el) => {
+            if (!arr.includes(el.getAttribute("srcset"))) {
+              arr.push(el.getAttribute("srcset"))
+            }
+          })
+        }
+        arr.forEach((el) => {
+          document
+            .querySelector(".my_swiper_box2 .new_swiper2 .swiper-wrapper")
+            .insertAdjacentHTML("beforeend", `<div class="swiper-slide"><div class="swiper-zoom-container"><img src="${el}" alt="photo"></div></div>`)
+        })
+
+        setTimeout(() => {
+          const newSwiper2 = new Swiper(".my_swiper_box2 .new_swiper2", {
+            loop: false,
+            spaceBetween: 2,
+            calculateHeight: true,
+            zoom: {
+              maxRatio: 3,
+            },
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+          })
+        }, 100)
+      }
+    }
+
     if (localStorage.getItem("qtyValue")) {
       if (document.querySelector(".count_box span.count_var")) {
         document.querySelector(".count_box span.count_var").textContent = localStorage.getItem("qtyValue")
       }
     }
+
+    let visibleEl = setInterval(() => {
+      if (document.querySelector(".mini_product_specs")) {
+        clearInterval(visibleEl)
+        pushDataLayer("visible mini product specs on top pdp")
+      }
+    }, 10)
 
     // observer pdp
     let observer = new MutationObserver(() => {
@@ -2200,12 +2400,8 @@ border: 1px solid rgba(40, 99, 120, 0.2)
         renderToPdp()
         viewAllCategories()
 
-        if (!document.querySelector(".price_wrap .price_match_guarantee")) {
+        if (!document.querySelector(".price_match_guarantee")) {
           renderPriceMatchGuarantee()
-        }
-
-        if (!document.querySelector(".new_swiper")) {
-          onNewSwipe()
         }
 
         if (!document.querySelector(".tabs_visible_wrap")) {
@@ -2215,9 +2411,15 @@ border: 1px solid rgba(40, 99, 120, 0.2)
           }, 100)
         }
 
-        document.querySelector(".new_item_inform").innerHTML = ""
-        if (document.querySelector(".new_item_inform").childNodes.length === 0) {
-          miniCart()
+        if (window.innerWidth > 768) {
+          document.querySelector(".new_item_inform").innerHTML = ""
+          if (document.querySelector(".new_item_inform").childNodes.length === 0) {
+            miniCart()
+          }
+        }
+
+        if (!document.querySelector(".new_swiper")) {
+          onNewSwipe()
         }
 
         renderTooltip()
@@ -2225,6 +2427,12 @@ border: 1px solid rgba(40, 99, 120, 0.2)
 
         if (document.querySelectorAll(".sticky_scroll_bar")) {
           onScrollBar()
+        }
+
+        if (document.querySelector(".new_item_inform .mini_img_wrap")) {
+          setTimeout(() => {
+            onMiniNewSwipe()
+          }, 1000)
         }
 
         observer.observe(document.querySelector(".catalog-product-view .product-essential"), {
@@ -2240,5 +2448,8 @@ border: 1px solid rgba(40, 99, 120, 0.2)
         subtree: true,
       })
     }
+
+    pushDataLayer("loaded")
+    clarity("set", "pdp_gshopping", "variant_1")
   }
 }, 2500)
