@@ -746,6 +746,7 @@ p.stock_var {
   justify-content: flex-start;
   align-items: flex-start;
   gap: 20px;
+  flex-wrap: wrap;
 }
 .mini_product_specs h3 {
   font-weight: 600;
@@ -763,7 +764,7 @@ p.stock_var {
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   gap: 5px;
 }
 .mini_product_specs ul li span {
@@ -982,6 +983,23 @@ border: 1px solid rgba(40, 99, 120, 0.2)
 /*all_inform_wrap */
 .mini_img_wrap{
     width: 35%;
+    position: relative;
+    background: #FFFFFF;
+}
+.wish_wrap{
+    position: absolute;
+    right: 8px;
+    top: 9px;
+    z-index: 555;
+}
+.wish_wrap #wishlist-btn{
+    font-size: 13px;
+    cursor: pointer;
+    background: #f2f2f2;
+    padding: 6px;
+    border-radius: 50%;
+    color: #a7a7a7;
+    font-size: 8px;
 }
 .all_inform_wrap{
     width: 60%;
@@ -1120,8 +1138,12 @@ border: 1px solid rgba(40, 99, 120, 0.2)
   }
   .sticky_scroll_bar {
     padding: 0;
-    margin: 0 -7.5px;
+    margin: 0 -7.5px 0;
     width: 104%;
+    border: unset;
+  }
+  .catalog-product-view .product-essential{
+    margin: 0 0 10px;
   }
   .sticky_scroll_bar > div{
     overflow: auto;
@@ -1413,6 +1435,23 @@ border: 1px solid rgba(40, 99, 120, 0.2)
     margin-left: 13px;
 }
 }
+.items_need{
+    margin-top: 10px;
+    background: #FBFBFB;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.items_need a{
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 24px;
+    color: #286378;
+}
+.items_need a svg{
+    margin: -3px 8px 0 0;
+}
       </style>
       `
 
@@ -1565,7 +1604,7 @@ border: 1px solid rgba(40, 99, 120, 0.2)
       document.querySelector(".header-container").insertAdjacentHTML("beforeend", banner)
     }
     document.querySelector(".var_ceiling_fan .banner b")?.addEventListener("click", () => {
-      console.log(`banner`)
+      pushDataLayer("Banner link clicked")
     })
 
     viewAllCategories()
@@ -1639,8 +1678,13 @@ border: 1px solid rgba(40, 99, 120, 0.2)
 
       // config_wrap
       if (document.querySelector(".product-shop .config_wrap")) {
-        document.querySelector(".product-shop .config_wrap span").after(document.querySelector(".product-shop .col-12.p-head.mb-2"))
-        document.querySelector(".product-shop .config_wrap .col-12.p-head.mb-2").after(document.querySelector(".product-shop .col-12.text-left.p-item-vendor"))
+        if (!document.querySelector(".product-shop .config_wrap .col-12.p-head.mb-2")) {
+          document.querySelector(".product-shop .config_wrap span").after(document.querySelector(".product-shop .col-12.p-head.mb-2"))
+        }
+
+        if (!document.querySelector(".product-shop .config_wrap .col-12.text-left.p-item-vendor")) {
+          document.querySelector(".product-shop .config_wrap .col-12.p-head.mb-2").after(document.querySelector(".product-shop .col-12.text-left.p-item-vendor"))
+        }
 
         if (document.querySelector("#config-box")) {
           document.querySelector(".product-shop .config_wrap .col-12.text-left.p-item-vendor").after(document.querySelector("#config-box"))
@@ -1898,7 +1942,9 @@ border: 1px solid rgba(40, 99, 120, 0.2)
     function renderPriceMatchGuarantee() {
       if (document.querySelector(".catalog-product-view .product-essential .p-price .final-price")) {
         document.querySelectorAll(".catalog-product-view .product-essential .p-price .final-price").forEach((el) => {
-          el.insertAdjacentHTML("beforeend", priceMatchGuarantee)
+          if (!document.querySelector(".catalog-product-view .product-essential .p-price .final-price .price_match_guarantee")) {
+            el.insertAdjacentHTML("beforeend", priceMatchGuarantee)
+          }
           if (el.closest(".p-price").querySelector(".orig-price")) {
             el.before(el.closest(".p-price").querySelector(".orig-price"))
           }
@@ -1997,24 +2043,31 @@ border: 1px solid rgba(40, 99, 120, 0.2)
       if (!document.querySelector(".sticky_scroll_bar")) {
         document.querySelector(".catalog-product-view .product-essential").insertAdjacentHTML("afterend", stickyScrollBar)
       }
+
       //   window.addEventListener("scroll", function () {
       //     let scrollDistance = window.scrollY
-      //     document.querySelectorAll("div").forEach((el, i) => {
-      //       if (el.offsetTop <= scrollDistance) {
-      //         document.querySelectorAll(".sticky_scroll_bar ul li a").forEach((item) => {
-      //           if (item.getAttribute("href").includes(el.getAttribute("id"))) {
+
+      //     document.querySelectorAll("div").forEach((el) => {
+      //       document.querySelectorAll(".sticky_scroll_bar ul li a").forEach((item) => {
+      //         if (item.getAttribute("href").includes(el.getAttribute("id"))) {
+      //           if (el.offsetTop - document.querySelector(".sticky_scroll_bar").clientHeight <= scrollDistance) {
       //             if (item.closest("li").classList.contains("active")) {
       //               item.closest("li").classList.remove("active")
       //             }
-      //             document.querySelectorAll(".sticky_scroll_bar ul li")[i].classList.add("active")
+      //             // console.log(`div`, i)
+      //             document.querySelectorAll(".sticky_scroll_bar ul li a").forEach((link, idx) => {
+      //
+      //
+      //             })
       //           }
-      //         })
-      //       }
+      //         }
+      //       })
       //     })
       //   })
     } else {
       if (!document.querySelector(".sticky_scroll_bar")) {
-        document.querySelector(".catalog-product-view .product-essential .p-media").insertAdjacentHTML("beforebegin", stickyScrollBar)
+        document.querySelector(".catalog-product-view .product-essential").insertAdjacentHTML("afterend", stickyScrollBar)
+        // document.querySelector(".catalog-product-view .product-essential .p-media").insertAdjacentHTML("beforebegin", stickyScrollBar)
       }
 
       window.addEventListener("scroll", function () {
@@ -2036,9 +2089,29 @@ border: 1px solid rgba(40, 99, 120, 0.2)
     // render Accessories Tabs
     function renderAccessoriesTabs() {
       if (document.querySelector("#accessories")) {
-        if (document.querySelector(".sticky_scroll_bar")) {
-          document.querySelector(".sticky_scroll_bar ul li:last-child").style.display = "flex"
+        if (!document.querySelector(".items_need")) {
+          document.querySelector("#personalized").insertAdjacentHTML(
+            "beforebegin",
+            `<div class="items_need"><a href="#cts-goods"><svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13.86 0.84C13.5189 0.33 12.9505 0 12.3158 0L1.89474 0.0100002C0.852632 0.0100002 0 0.9 0 2L0 12C0 13.1 0.852632 13.99 1.89474 13.99L12.3158 14C12.9505 14 13.5189 13.67 13.86 13.16L17.6251 7.55781C17.8518 7.22049 17.8518 6.77951 17.6251 6.44219L13.86 0.84Z" fill="#286378"></path>
+              <path d="M7.57879 4L7.57879 7L7.57879 4ZM7.57879 7V10V7ZM7.57879 7L4.73669 7L7.57879 7ZM7.57879 7H10.4209H7.57879Z" fill="#286378"></path>
+              <path d="M7.57879 4L7.57879 7M7.57879 7V10M7.57879 7L4.73669 7M7.57879 7H10.4209" stroke="white" stroke-width="1.5" stroke-linecap="round"></path>
+              </svg>Items you may need</a></div>`
+          )
         }
+
+        if (document.querySelector(".items_need")) {
+          document.querySelector(".items_need").addEventListener("click", (e) => {
+            e.preventDefault()
+            if (document.querySelector(".sticky_scroll_bar")) {
+              document.querySelector(".sticky_scroll_bar ul li:last-child a").click()
+            }
+            // pushDataLayer(`Items you may need clicked`)
+          })
+        }
+        // if (document.querySelector(".sticky_scroll_bar")) {
+        //   document.querySelector(".sticky_scroll_bar ul li:last-child").style.display = "flex"
+        // }
 
         if (!document.querySelector(".accessories_tabs")) {
           document
@@ -2168,6 +2241,9 @@ border: 1px solid rgba(40, 99, 120, 0.2)
           let href = item.getAttribute("href").substring(1)
 
           const scrollTarget = document.getElementById(href)
+          if (!scrollTarget.nextElementSibling.classList.contains("show")) {
+            scrollTarget.querySelector(".btn.btn-link.btn-block").click()
+          }
 
           const topOffset = 70
           const elementPosition = scrollTarget.getBoundingClientRect().top
@@ -2190,14 +2266,17 @@ border: 1px solid rgba(40, 99, 120, 0.2)
         stockVar = document.querySelector(".catalog-product-view .product-essential .product-shop .p-value-props").cloneNode(true),
         diffBlock = document.querySelector(".diff_price_block")?.cloneNode(true),
         couponSignUp = document.querySelector(".discount_pdp.sign_up")?.cloneNode(true),
-        coupon = document.querySelector(".discount_pdp")?.cloneNode(true)
+        coupon = document.querySelector(".discount_pdp")?.cloneNode(true),
+        wish = document.querySelector("#wishlist-btn")?.cloneNode(true)
 
       if (document.querySelector(".new_item_inform")) {
         document.querySelector(".new_item_inform").insertAdjacentHTML(
           "afterbegin",
           `
           <div class="new_container">
-            <div class="mini_img_wrap"></div>
+            <div class="mini_img_wrap">
+            <div class="wish_wrap"></div>
+            </div>
             <div class="all_inform_wrap">
                 <h3></h3>
                 <div class="mini_vendor_box"></div>
@@ -2222,6 +2301,30 @@ border: 1px solid rgba(40, 99, 120, 0.2)
             </div>
           </div>`
         )
+      }
+
+      if (document.querySelector(".mini_img_wrap")) {
+        if (wish) {
+          if (!document.querySelector(".mini_img_wrap .wish_wrap #wishlist-btn")) {
+            document.querySelector(".mini_img_wrap .wish_wrap").appendChild(wish)
+          }
+
+          if (document.querySelector(".catalog-product-view .product-essential .p-media .media-sticky #wishlist-btn").classList.contains("in-wishlist")) {
+            document.querySelector(".mini_img_wrap .wish_wrap #wishlist-btn").style.color = "#e35757"
+          } else {
+            document.querySelector(".mini_img_wrap .wish_wrap #wishlist-btn").style.color = "#a7a7a7"
+          }
+
+          document.querySelectorAll("#wishlist-btn").forEach((el) => {
+            el.addEventListener("click", () => {
+              if (!document.querySelector(".catalog-product-view .product-essential .p-media .media-sticky #wishlist-btn").classList.contains("in-wishlist")) {
+                document.querySelector(".mini_img_wrap .wish_wrap #wishlist-btn").style.color = "#e35757"
+              } else {
+                document.querySelector(".mini_img_wrap .wish_wrap #wishlist-btn").style.color = "#a7a7a7"
+              }
+            })
+          })
+        }
       }
 
       if (document.querySelector(".new_container .all_inform_wrap")) {
