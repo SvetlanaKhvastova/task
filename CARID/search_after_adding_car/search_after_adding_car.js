@@ -140,7 +140,6 @@ if (settings.observe) {
 
   observer.observe(demoElem, { childList: true, subtree: true })
 }
-let countClickSelect = 1
 
 window.onunload = unloadPage
 function unloadPage() {
@@ -435,23 +434,43 @@ function init() {
     }
 
     if (window.innerWidth > 768) {
-      if (document.querySelector(".head-nav-inner .select-vehicle-spacer")) {
-        if (!localStorage.getItem("onClickSelect")) {
-          const selectEvents = ["mousedown", "focusin"]
-          const select = document.querySelector("small.value")
-          selectEvents.forEach((eventType) => select.dispatchEvent(new MouseEvent(eventType, { bubbles: true })))
-          localStorage.setItem("onClickSelect", countClickSelect)
-        } else {
-          if (localStorage.getItem("onClickSelect")) {
-            if (+localStorage.getItem("onClickSelect") < 2) {
-              const selectEvents = ["mousedown", "focusin"]
-              const select = document.querySelector("small.value")
-              selectEvents.forEach((eventType) => select.dispatchEvent(new MouseEvent(eventType, { bubbles: true })))
-              localStorage.setItem("onClickSelect", +localStorage.getItem("onClickSelect") + 1)
+      let wait = setInterval(() => {
+        if (document.querySelector(".head-nav-inner .select-vehicle-spacer")) {
+          clearInterval(wait)
+          console.log(`document.querySelector(".head-nav-inner .select-vehicle-spacer")`, document.querySelector(".head-nav-inner .select-vehicle-spacer"))
+          let countClickSelect = 1
+          if (!localStorage.getItem("onClickSelect")) {
+            console.log(`!localStorage.getItem("onClickSelect")`)
+            const selectEvents = ["mousedown", "focusin"]
+            setTimeout(() => {
+              let wait2 = setInterval(() => {
+                if (document.querySelectorAll(".head-nav-inner .select-vehicle-spacer small.value")[0]) {
+                  clearInterval(wait2)
+                  const select = document.querySelectorAll(".head-nav-inner .select-vehicle-spacer small.value")[0]
+                  console.log(select)
+                  selectEvents.forEach((eventType) => select?.dispatchEvent(new MouseEvent(eventType, { bubbles: true })))
+                  localStorage.setItem("onClickSelect", countClickSelect)
+                }
+              }, 10)
+            }, 500)
+          } else {
+            if (localStorage.getItem("onClickSelect")) {
+              if (+localStorage.getItem("onClickSelect") < 2) {
+                console.log(`localStorage.getItem("onClickSelect")`)
+                const selectEvents = ["mousedown", "focusin"]
+                setTimeout(() => {
+                  let wait3 = setInterval(() => {
+                    clearInterval(wait3)
+                    const select = document.querySelectorAll(".head-nav-inner .select-vehicle-spacer small.value")[0]
+                    selectEvents.forEach((eventType) => select?.dispatchEvent(new MouseEvent(eventType, { bubbles: true })))
+                    localStorage.setItem("onClickSelect", +localStorage.getItem("onClickSelect") + 1)
+                  }, 10)
+                }, 500)
+              }
             }
           }
         }
-      }
+      }, 10)
     }
   }
 

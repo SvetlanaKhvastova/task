@@ -1556,7 +1556,7 @@ p.stock_var {
                 </div>
                 <div>
                   <span>Price Match Guarantee</span>
-                  <p>Pay less than enywhere else</p>
+                  <p>Pay less than anywhere else</p>
                 </div>
             </li>
             <li data-tolltip>
