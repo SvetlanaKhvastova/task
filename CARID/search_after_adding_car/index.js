@@ -10,7 +10,7 @@ const settings = {
 //Hotjar
 if (settings.clarity) {
   try {
-    clarity("set", "site_search", "variant_1")
+    // clarity("set", "site_search", "variant_1")
   } catch (e) {}
 }
 
@@ -414,7 +414,7 @@ function changeSearch() {
     e.preventDefault()
     if (!isProcessing) {
       gaEvent("Click on Search input", "Header. Search menu")
-      clarity("set", "site_search", "search_clicked")
+      // clarity("set", "site_search", "search_clicked")
     }
     handleSearch()
   })
@@ -454,7 +454,7 @@ function handleSidebar() {
       document.querySelector(".lav-side__search-inner").addEventListener("click", function (e) {
         e.preventDefault()
         gaEvent("Clicks on the search field", "hamburger menu")
-        clarity("set", "site_search", "search_clicked")
+        // clarity("set", "site_search", "search_clicked")
         handleSearch()
       })
     }
