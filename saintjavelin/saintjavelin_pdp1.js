@@ -494,6 +494,9 @@ ul.composition li + li {
 .mistake.patch_var{
   left: 132px;
 }
+.mistake.type_var{
+  left: 88px;
+}
 .mistake.size_var {
   left: 82px;
 }
@@ -1539,7 +1542,7 @@ ul.background_wrap > li p {
 
       document.querySelector("html").style.overflow = "hidden"
       document.querySelector("html").style.display = "block"
-      document.querySelector("html").style.height = "100%"
+      document.querySelector("html").style.height = "max-content"
 
       document.querySelector(".container_popup").insertAdjacentHTML("beforeend", block)
     }
@@ -1602,7 +1605,7 @@ ul.background_wrap > li p {
         if (!document.querySelector(".mistake.color_var")) {
           el.insertAdjacentHTML(
             "beforeend",
-            `<div class="mistake patch_var is_hidden">
+            `<div class="mistake patch_var type_var is_hidden">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.33398 9.99992H8.66732V11.3333H7.33398V9.99992ZM7.33398 4.66659H8.66732V8.66659H7.33398V4.66659ZM7.99398 1.33325C4.31398 1.33325 1.33398 4.31992 1.33398 7.99992C1.33398 11.6799 4.31398 14.6666 7.99398 14.6666C11.6807 14.6666 14.6673 11.6799 14.6673 7.99992C14.6673 4.31992 11.6807 1.33325 7.99398 1.33325ZM8.00065 13.3333C5.05398 13.3333 2.66732 10.9466 2.66732 7.99992C2.66732 5.05325 5.05398 2.66659 8.00065 2.66659C10.9473 2.66659 13.334 5.05325 13.334 7.99992C13.334 10.9466 10.9473 13.3333 8.00065 13.3333Z" fill="#D71D1D"/></svg>Please select type
             </div>`
           )
@@ -1722,7 +1725,6 @@ ul.background_wrap > li p {
 
             function removeMistakeVar() {
               document.querySelectorAll(".mistake").forEach((el) => {
-                console.log(`removeMistakeVar`)
                 el.classList.remove("is_hidden")
                 if (!el.classList.contains("is_visited")) {
                   el.scrollIntoView({ block: "center", behavior: "smooth" })
@@ -1846,29 +1848,51 @@ ul.background_wrap > li p {
     })
 
     // fix bug change color
-    document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)')?.forEach((item) => {
-      item.addEventListener("click", function () {
-        let color = this.previousElementSibling.value.toLowerCase().replaceAll(" ", "-")
+    // document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)')?.forEach((item) => {
+    //   item.addEventListener("click", function () {
+    //     let color = this.previousElementSibling.value.toLowerCase().replaceAll(" ", "-")
 
-        document.querySelectorAll(".product__photos a").forEach((a) => {
-          if (a.getAttribute("href").includes(color)) {
-            a.click()
-          }
+    //     document.querySelectorAll(".product__photos a").forEach((a) => {
+    //       if (a.getAttribute("href").includes(color)) {
+    //         a.click()
+    //       }
+    //     })
+    //   })
+    // })
+
+    document.querySelector(".product__thumbs--scroller")?.addEventListener("click", function (e) {
+      if (e.target.classList.contains("product__thumbs--scroller")) {
+        document.querySelectorAll(".product__photos a.is-active")?.forEach((item) => {
+          document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)').forEach((a) => {
+            let color = a.previousElementSibling.value.toLowerCase().replaceAll(" ", "-")
+
+            if (item.getAttribute("href").includes(color)) {
+              a.click()
+              if (window.innerWidth <= 768) {
+                document.querySelector(".product__photos").scrollIntoView()
+              }
+            }
+          })
         })
-      })
+      }
     })
 
-    document.querySelectorAll(".product__photos a")?.forEach((item) => {
+    document.querySelectorAll(".product__photos .product__thumb-item a")?.forEach((item) => {
       item.addEventListener("click", function () {
-        document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)').forEach((a) => {
-          console.log(item.getAttribute("href"))
-          let color = a.previousElementSibling.value.toLowerCase().replaceAll(" ", "-")
-          console.log(`color`, color)
-
-          if (item.getAttribute("href").includes(color)) {
-            a.click()
-          }
-        })
+        if (item.classList.contains("is-active")) {
+          document.querySelectorAll('.variant-input-wrap[name="Color"] label:not(.disabled)').forEach((a) => {
+            let color = a.previousElementSibling.value.toLowerCase().replaceAll(" ", "-")
+            console.log(color)
+            if (item.getAttribute("href").includes(color)) {
+              console.log(item.getAttribute("href"))
+              console.log(`color>>>>>>>>>..`, color)
+              a.click()
+              if (window.innerWidth <= 768) {
+                document.querySelector(".product__photos").scrollIntoView()
+              }
+            }
+          })
+        }
       })
     })
 
@@ -1886,9 +1910,12 @@ ul.background_wrap > li p {
 
             if (item.closest(".product-slideshow").querySelector(".flickity-slider .is-selected img").getAttribute("data-photoswipe-src").includes(color)) {
               a.click()
+              if (window.innerWidth <= 768) {
+                document.querySelector(".product__photos").scrollIntoView()
+              }
             }
           })
-        }, 400)
+        }, 600)
       })
     })
 
@@ -1935,9 +1962,12 @@ ul.background_wrap > li p {
 
           if (item.closest("div.flickity-slider").querySelector(".is-selected img").getAttribute("data-photoswipe-src").includes(color)) {
             a.click()
+            if (window.innerWidth <= 768) {
+              document.querySelector(".product__photos").scrollIntoView()
+            }
           }
         })
-      }, 500)
+      }, 600)
     }
 
     // Size
@@ -1950,6 +1980,9 @@ ul.background_wrap > li p {
 
             if (item.getAttribute("href").includes(`${size}`)) {
               a.click()
+              if (window.innerWidth <= 768) {
+                document.querySelector(".product__photos").scrollIntoView()
+              }
             }
           }
 
@@ -1958,6 +1991,9 @@ ul.background_wrap > li p {
 
             if (item.getAttribute("href").includes(`${size}-case`)) {
               a.click()
+              if (window.innerWidth <= 768) {
+                document.querySelector(".product__photos").scrollIntoView()
+              }
             }
           }
         })
@@ -1980,6 +2016,9 @@ ul.background_wrap > li p {
 
               if (item.closest(".product-slideshow").querySelector(".flickity-slider .is-selected img").getAttribute("data-photoswipe-src").includes(`${size}`)) {
                 a.click()
+                if (window.innerWidth <= 768) {
+                  document.querySelector(".product__photos").scrollIntoView()
+                }
               }
             }
 
@@ -1988,6 +2027,9 @@ ul.background_wrap > li p {
 
               if (item.closest(".product-slideshow").querySelector(".flickity-slider .is-selected img").getAttribute("data-photoswipe-src").includes(`${size}-case`)) {
                 a.click()
+                if (window.innerWidth <= 768) {
+                  document.querySelector(".product__photos").scrollIntoView()
+                }
               }
             }
           })
@@ -2040,6 +2082,9 @@ ul.background_wrap > li p {
 
             if (item.closest("div.flickity-slider").querySelector(".is-selected img").getAttribute("data-photoswipe-src").includes(`${size}`)) {
               a.click()
+              if (window.innerWidth <= 768) {
+                document.querySelector(".product__photos").scrollIntoView()
+              }
             }
           }
 
@@ -2048,6 +2093,9 @@ ul.background_wrap > li p {
 
             if (item.closest("div.flickity-slider").querySelector(".is-selected img").getAttribute("data-photoswipe-src").includes(`${size}-case`)) {
               a.click()
+              if (window.innerWidth <= 768) {
+                document.querySelector(".product__photos").scrollIntoView()
+              }
             }
           }
         })
