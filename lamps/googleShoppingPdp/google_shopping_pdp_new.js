@@ -1753,7 +1753,9 @@ p.stock_var {
 
             document.querySelectorAll("#product-attribute-specs h4").forEach((el) => {
               if (el.textContent === "Dimensions") {
-                document.querySelector(".mini_product_specs div:nth-child(1) h3").textContent = el.textContent
+                if (document.querySelector(".mini_product_specs div:nth-child(1) h3")) {
+                  document.querySelector(".mini_product_specs div:nth-child(1) h3").textContent = el.textContent
+                }
                 let content = el.closest("div").querySelector("ul")?.cloneNode(true)
                 if (content) {
                   if (!document.querySelector(".mini_product_specs > div:nth-child(1) > ul")) {
@@ -1763,7 +1765,9 @@ p.stock_var {
               }
 
               if (el.textContent === "Appearance") {
-                document.querySelector(".mini_product_specs div:nth-child(2) h3").textContent = el.textContent
+                if (document.querySelector(".mini_product_specs div:nth-child(2) h3")) {
+                  document.querySelector(".mini_product_specs div:nth-child(2) h3").textContent = el.textContent
+                }
                 let content = el.closest("div").querySelector("ul")?.cloneNode(true)
                 if (content) {
                   if (!document.querySelector(".mini_product_specs > div:nth-child(2) > ul")) {
