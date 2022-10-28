@@ -39,6 +39,7 @@ let problemStart = setInterval(() => {
         }
         .magicpatch_problems h2 span{
             display: block;
+            font-weight: 600;
             font-family: "Roboto", sans-serif;
         }
          .magicpatch_problems h2 span.accent_color{
@@ -112,6 +113,9 @@ let problemStart = setInterval(() => {
             transform: rotate(180deg);
         }
          .magicpatch_accardion_lists{
+            display: none;
+            margin-top: 10px;
+            /*
             max-height: 0;
             overflow: hidden;
             -webkit-transition: all 0.5s;
@@ -119,6 +123,7 @@ let problemStart = setInterval(() => {
             -o-transition: all 0.5s;
             transition: all 0.5s;
             opacity: 0;
+            */
          }
          .magicpatch_accardion_lists > div{
             border-top: 1px solid rgba(255, 60, 127, 0.1);
@@ -143,13 +148,18 @@ let problemStart = setInterval(() => {
             background: #FF3C7F;
             box-shadow: 0px 2px 4px rgba(12, 11, 11, 0.1), 0px 12px 32px rgba(0, 0, 0, 0.05);
             border-radius: 52px;
+            font-family: 'DINEngschrift LT', sans-serif;
             font-weight: 400;
-            font-size: 16px;
-            line-height: 16px;
-            letter-spacing: 0.05em;
+            font-size: 20px;
+            line-height: 120%;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             color: #FFFFFF;
             margin-top: 16px;
+         }
+         .magicpatch_accardion_btn:hover{
+            text-decoration: unset;
+            color: #FFFFFF;
          }
         .active_block {
             max-height: fit-content;
@@ -318,46 +328,56 @@ let problemStart = setInterval(() => {
     })
 
     // accardion
-    const accardionToggle = (slideMenu) => (e) => {
-      slideMenu.forEach((links) => {
-        e.preventDefault()
-        const hidePanel = links.nextElementSibling
-        if (links === e.currentTarget) {
-          e.currentTarget.classList.toggle("active")
-          if (e.currentTarget.classList.contains("active")) {
-            pushDataLayer("Open block", `${e.currentTarget.querySelector("p").textContent}`)
-          } else {
-            pushDataLayer("Close block", `${e.currentTarget.querySelector("p").textContent}`)
-          }
+    // const accardionToggle = (slideMenu) => (e) => {
+    //   slideMenu.forEach((links) => {
+    //     e.preventDefault()
+    //     const hidePanel = links.nextElementSibling
+    //     if (links === e.currentTarget) {
+    //       e.currentTarget.classList.toggle("active")
+    //       if (e.currentTarget.classList.contains("active")) {
+    //         pushDataLayer("Open block", `${e.currentTarget.querySelector("p").textContent}`)
+    //       } else {
+    //         pushDataLayer("Close block", `${e.currentTarget.querySelector("p").textContent}`)
+    //       }
 
-          hidePanel.classList.toggle("active_block")
+    //       hidePanel.classList.toggle("active_block")
 
-          const scrollTarget = hidePanel
+    //       //   const scrollTarget = hidePanel
 
-          let topOffset = 175
+    //       //   let topOffset = 175
 
-          if (innerWidth <= 320) {
-            topOffset = 160
-          }
+    //       //   if (innerWidth <= 320) {
+    //       //     topOffset = 160
+    //       //   }
 
-          const elementPosition = scrollTarget.getBoundingClientRect().top
-          const offsetPosition = elementPosition - topOffset
+    //       //   const elementPosition = scrollTarget.getBoundingClientRect().top
+    //       //   const offsetPosition = elementPosition - topOffset
 
-          window.scrollBy({
-            top: offsetPosition,
-            behavior: "smooth",
-          })
-        } else {
-          links.classList.remove("active")
-          hidePanel.classList.remove("active_block")
-        }
-      })
-    }
+    //       //   window.scrollBy({
+    //       //     top: offsetPosition,
+    //       //     behavior: "smooth",
+    //       //   })
+    //     } else {
+    //       links.classList.remove("active")
+    //       hidePanel.classList.remove("active_block")
+    //     }
+    //   })
+    // }
 
-    const slideMenu = document.querySelectorAll(".magicpatch_accardion_link")
+    // const slideMenu = document.querySelectorAll(".magicpatch_accardion_link")
 
-    slideMenu.forEach((links) => {
-      links.addEventListener("click", accardionToggle(slideMenu))
+    // slideMenu.forEach((links) => {
+    //   links.addEventListener("click", accardionToggle(slideMenu))
+    // })
+
+    $(".magicpatch_accardion_link").click(function (e) {
+      $(this).toggleClass("active")
+      $(this).next(".magicpatch_accardion_lists").slideToggle()
+      if (e.currentTarget.classList.contains("active")) {
+        pushDataLayer("Open block", `${e.currentTarget.querySelector("p").textContent}`)
+      } else {
+        pushDataLayer("Close block", `${e.currentTarget.querySelector("p").textContent}`)
+      }
     })
 
     pushDataLayer("loaded")

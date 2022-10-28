@@ -4,31 +4,34 @@ let magicComparisonTable = setInterval(() => {
 
     let megicpatchStyle = /*html*/ `
         <style>
-            .accent_color{
+            .accent_color_main{
                 font-weight: 400;
                 font-size: 13px;
                 line-height: 140%;
-                text-align: center;
                 color: #008CD6;
             }
-    
-            .accent-color-blue{
+            .accent_color_first{
                 font-family: 'Din Condensed', Roboto, sans-serif;
                 font-weight: 400;
                 font-size: 14px;
-                line-height: 1.14;
+                line-height: 129%;
                 text-align: center;
                 letter-spacing: 0.015em !important;
                 text-transform: uppercase;
                 color: #008DD6;
-            }    
+            }      
+            .accent_color_pink{
+                color: #FF3C7F;
+            }
+            .magicpatch-section strong{
+                font-weight: 600;
+            }
             .magicpatch-section{
                 text-align: center;
                 padding: 56px 15px;
                 margin: 0 -15px 52px;
                 background: #F9F8F6;
-            }
-    
+            }    
             .magicpatch-section h2{
                 max-width: 345px;
                 font-weight: 400;
@@ -49,12 +52,12 @@ let magicComparisonTable = setInterval(() => {
                 margin-bottom:16px;
             }
     
-            .magicpatch-title{
+            .magicpatch-section h3{
                 margin-bottom: 16px;
                 font-family: 'Roboto',sans-serif;
-                font-weight: 700;
+                font-weight: 600;
                 font-size: 14px;
-                line-height: 1.43;
+                line-height: 130%;
                 text-align: center;
                 text-transform: unset;
                 letter-spacing: unset !important;
@@ -65,7 +68,7 @@ let magicComparisonTable = setInterval(() => {
                 list-style: none;
                 display: flex;
                 margin: 0;
-                padding-bottom: 16px;
+                padding-bottom: 20px;
             }
     
             .list-var{
@@ -74,25 +77,30 @@ let magicComparisonTable = setInterval(() => {
     
             .magicpatch-link{
                 display: flex;
+                justify-content: flex-start;
+                align-items: flex-start;
                 flex-direction: column;
-                flex-wrap: wrap;
-                justify-content: center;
-                align-items: center;
-                width: calc((100% * 2) / 3);
+                width: calc((100% * 3) / 4);
                 font-weight: 400;
-                font-size: 12px;
-                line-height: 1.6;
-                text-align: center;
+                font-size: 13px;
+                line-height: 140%;
+                text-align: left;
                 letter-spacing: unset !important;
-                color: #212529;
-                padding: 5px;
-            }
-    
+                color: #515151;
+                padding: 0 6px;
+            }    
             .magicpatch-link:not(:last-child){
                 border-right: 1px solid #E2E2E2;
             }
-
-            .megicpatch-btn{
+            .magicpatch-section > p{
+                font-weight: 400;
+                font-size: 14px !important;
+                line-height: 130% !important;
+                text-align: left;
+                color: #212529;
+                margin: 20px 0 0;
+            }
+            .megicpatch_btn{
                 display: flex;
                 width: 100%;
                 height: 66px;
@@ -112,9 +120,8 @@ let magicComparisonTable = setInterval(() => {
                 cursor: pointer;
                 outline: none;
                 margin-top: 40px;
-            }
-    
-            .megicpatch-btn:hover{
+            }    
+            .megicpatch_btn:hover{
                 text-decoration: unset;
             }
     
@@ -126,8 +133,8 @@ let magicComparisonTable = setInterval(() => {
             <div class="magicpatch-box">
                 <ul class="magicpatch-list">
                     <li class="magicpatch-link list-var">
-                        <img src="https://conversionratestore.github.io/projects/buzzpatch/img/magic_magicpatch.magic_gels" alt="magicpatch" width="38" height="38">
-                        <span class="accent-color-blue magicpatch-span-after-svg">MagicPatch</span>
+                        <img src="https://conversionratestore.github.io/projects/buzzpatch/img/magic_magicpatch.png" alt="magicpatch" width="38" height="38">
+                        <span class="accent_color_first magicpatch-span-after-svg">MagicPatch</span>
                     </li>
     
                     <li class="magicpatch-link list-var">
@@ -149,7 +156,7 @@ let magicComparisonTable = setInterval(() => {
                 <h3>Effectiveness</h3>
                 <ul class="magicpatch-list">
                     <li class="magicpatch-link">
-                        <span class="accent_color">Effective itch relief in 99% of cases</span>
+                        <span class="accent_color_main">Effective itch relief in <strong>99% of cases</strong></span>
                     </li>    
                     <li class="magicpatch-link">
                         <span>Effects may weaken with continuous long term use, due to tolerance buildup</span>
@@ -166,16 +173,16 @@ let magicComparisonTable = setInterval(() => {
                 <h3>How it works, ingredients</h3>
                 <ul class="magicpatch-list">
                     <li class="magicpatch-link">
-                        <span class="accent_color">Mechanical relief: Grid-relief technology mechani-cally lifts the skin to drain the lymphatic system and remove insect saliva</span>
+                        <span class="accent_color_main"><strong>Mechanical relief:</strong> Grid-relief technology mechani-cally lifts the skin to drain the lymphatic system and remove insect saliva</span>
                     </li>
                     <li class="magicpatch-link">
-                        <span>Chemical relief: Uses the active steroid ingredient hydrocorti-sone 1%. May also includes parabens, perfumes, and other potentially irritating chemicals</span>
+                        <span><strong>Chemical relief:</strong> Uses the active steroid ingredient hydrocorti-sone 1%. May also includes parabens, perfumes, and other potentially irritating chemicals</span>
                     </li>
                     <li class="magicpatch-link">
-                        <span>Chemical relief: Uses a topical 2% analgesic pain relief as the active ingredient</span>
+                        <span><strong>Chemical relief:</strong> Uses a topical 2% analgesic pain relief as the active ingredient</span>
                     </li>
                     <li class="magicpatch-link">
-                        <span>Chemical relief: Uses the antihistamine active ingredient diphenhy-dramine hydrochloride</span>
+                        <span><strong>Chemical relief:</strong> Uses the antihistamine active ingredient diphenhy-dramine hydrochloride</span>
                     </li>
                 </ul>
             </div>
@@ -183,19 +190,19 @@ let magicComparisonTable = setInterval(() => {
                 <h3>Activation time</h3>
                 <ul class="magicpatch-list">
                     <li class="magicpatch-link">
-                        <span class="accent_color">Relief within 30-60 seconds</span>
+                        <span class="accent_color_main">Relief within <strong>30-60 seconds</strong></span>
                     </li>
     
                     <li class="magicpatch-link">
-                        <span>Takes 2+ minutes</span>
+                        <span>Takes <strong>2+ minutes</strong></span>
                     </li>
     
                     <li class="magicpatch-link">
-                        <span>Takes 2+ minutes</span>
+                        <span>Takes <strong>2+ minutes</strong></span>
                     </li>
     
                     <li class="magicpatch-link">
-                        <span>Takes 2+ minutes</span>
+                        <span>Takes <strong>2+ minutes</strong></span>
                     </li>
                 </ul>
             </div>
@@ -203,18 +210,18 @@ let magicComparisonTable = setInterval(() => {
                 <h3>Duration of effect</h3>
                 <ul class="magicpatch-list">
                     <li class="magicpatch-link">
-                        <span class="accent_color">Up to 4-7 days</span>
+                        <span class="accent_color_main">Up to <strong>4-7 days</strong></span>
                     </li>
     
                     <li class="magicpatch-link">
-                        <span>Up to 8 hours</span>
+                        <span>Up to <strong>8 hours</strong></span>
                     </li>
     
                     <li class="magicpatch-link">
-                        <span>Up to 6 hours</span>
+                        <span>Up to <strong>6 hours</strong></span>
                     </li>
                     <li class="magicpatch-link">
-                        <span>Up to 2 hours</span>
+                        <span>Up to <strong>2 hours</strong></span>
                     </li>
                 </ul>
             </div>
@@ -222,7 +229,7 @@ let magicComparisonTable = setInterval(() => {
                 <h3>How to use</h3>
                 <ul class="magicpatch-list">
                     <li class="magicpatch-link">
-                        <span class="accent_color">Apply a MagicPatch over a bite for immediate itch relief</span>
+                        <span class="accent_color_main">Apply a MagicPatch over a bite for <strong>immediate itch relief</strong></span>
                     </li>
                     <li class="magicpatch-link">
                         <span>Apply to affected areas (not more than 14 days)	</span>
@@ -239,7 +246,7 @@ let magicComparisonTable = setInterval(() => {
                 <h3>Hypoallergenic</h3>
                 <ul class="magicpatch-list">
                     <li class="magicpatch-link">
-                        <span class="accent_color">Hypoallerge-nic product</span>
+                        <span class="accent_color_main">Hypoallerge-nic product</span>
                     </li>
                     <li class="magicpatch-link">
                         <span>Can cause allergic reactions</span>
@@ -256,7 +263,7 @@ let magicComparisonTable = setInterval(() => {
                 <h3>Side effects</h3>
                 <ul class="magicpatch-list">
                     <li class="magicpatch-link">
-                        <span class="accent_color">No side effects</span>
+                        <span class="accent_color_main"><strong>No side effects</strong></span>
                     </li>
                     <li class="magicpatch-link">
                         <span>Stinging, burning, irritation, dryness or redness at the application, acne</span>
@@ -273,16 +280,16 @@ let magicComparisonTable = setInterval(() => {
                 <h3>Suitables for ages</h3>
                 <ul class="magicpatch-list">
                     <li class="magicpatch-link">
-                        <span class="accent_color">0+ *</span>
+                        <span class="accent_color_main"><strong>0+</strong> <span class="accent_color_pink">*</span></span>
                     </li>
                     <li class="magicpatch-link">
-                        <span>2+</span>
+                        <span><strong>2+</strong></span>
                     </li>
                     <li class="magicpatch-link">
-                        <span>2+</span>
+                        <span><strong>2+</strong></span>
                     </li>
                     <li class="magicpatch-link">
-                        <span>2+</span>
+                        <span><strong>2+</strong></span>
                     </li>
                 </ul>
             </div>
@@ -290,7 +297,7 @@ let magicComparisonTable = setInterval(() => {
                 <h3>Portability</h3>
                 <ul class="magicpatch-list">
                     <li class="magicpatch-link">
-                        <span class="accent_color">Easy to store even in pockets</span>
+                        <span class="accent_color_main"><strong>Easy to store even in pockets</strong></span>
                     </li>
                     <li class="magicpatch-link">
                         <span>Needs storage space & can leak</span>
@@ -304,9 +311,9 @@ let magicComparisonTable = setInterval(() => {
                 </ul>
             </div>
     
-            <p>* There are no known age limits, but these should be kept away from kids who would be prone to peeling them off and trying to eat them.</p>
+            <p><span class="accent_color_pink">*</span> There are no known age limits, but these should be kept away from kids who would be prone to peeling them off and trying to eat them.</p>
     
-            <a href="#getNow" class="megicpatch-btn">Get it now!</a>
+            <a href="#getNow" class="megicpatch_btn">Get it now!</a>
         </section>
     `
 
