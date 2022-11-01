@@ -2765,7 +2765,14 @@ p.stock_var {
       }
 
       pushDataLayer("loaded")
-      clarity("set", "pdp_gshopping", "variant_1")
+      const record = setInterval(() => {
+        if (typeof clarity === "function") {
+          clearInterval(record)
+          clarity("set", "pdp_gshopping", "variant_1")
+        }
+      }, 200)
+
+      document.querySelector(".exp")?.remove()
     }
   }
-}, 2500)
+}, 1500)
