@@ -90,12 +90,6 @@ if (window.location.pathname === "/free-workshop/") {
 .enroll_box .info_box > div.img_wrap {
   max-width: 413px;
 }
-
-.popup_new > div:last-child .popup_third_box .btn_continue.disabled_var {
-  background: #c0c5cd;
-  cursor: inherit;
-  pointer-events: none;
-}
 /*start_step */
 .start_step{
   display: none;
@@ -128,7 +122,7 @@ if (window.location.pathname === "/free-workshop/") {
     justify-content: space-between;
     max-width: 844px;
     margin: 0 auto;
-    padding: 0;
+    padding: 0 0 20px;
 }
 .start_step ul li{
     width: 49%;
@@ -138,6 +132,10 @@ if (window.location.pathname === "/free-workshop/") {
     justify-content: flex-start;
     position: relative;
     cursor: pointer;
+    transition: all 350ms ease-in-out;
+}
+.start_step ul li:hover{
+  box-shadow: 10px 4px 15px 1px rgb(39 32 32 / 50%);
 }
 .start_step ul li + li{
     margin-left: 20px;
@@ -171,12 +169,14 @@ if (window.location.pathname === "/free-workshop/") {
 }
 
 .popup_new .img_wrap {
-  max-width: 440px;
   width: 40%;
 }
 
 .popup_new .img_wrap img {
   border-radius: 10px;
+}
+.popup_new .img_wrap img:nth-child(1){
+  max-width: 445px;
 }
 
 .popup_new > div:last-child {
@@ -262,7 +262,7 @@ if (window.location.pathname === "/free-workshop/") {
 }
 
 .popup_new > div:last-child .progress_bar > div p:nth-child(1) span {
-  display: none;
+  margin-left: 10px;
 }
 
 .popup_new > div:last-child .progress_bar > div p:nth-child(2) span {
@@ -326,19 +326,39 @@ if (window.location.pathname === "/free-workshop/") {
 
 
 /*popup_second */
-.popup_new > div:last-child .popup_second,
-.popup_new > div:last-child .popup_third_box {
+.popup_new > div:last-child .popup_second {
   display: none;
 }
 
-.popup_new > div:last-child .popup_second > h2,
-.popup_new > div:last-child .popup_third_box > h2 {
+.popup_new > div:last-child .popup_second > h2{
   font-weight: 700;
   font-size: 24px;
   line-height: 125%;
   text-align: center;
   color: #734f22;
-  margin: 40px 0 56px;
+  margin: 40px 0 10px;
+}
+
+.last_step_title{
+  display: none;
+    margin: 40px auto 20px;
+    max-width: 618px;
+}
+.last_step_title h2{
+  font-weight: 700 !important;
+    font-size: 26px !important;
+    line-height: 30px !important;
+    color: #734F22 !important;
+    margin-bottom: 10px !important;
+}
+.last_step_title p{
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  color: #734F22 !important;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .popup_new > div:last-child .popup_second ul {
@@ -404,7 +424,6 @@ if (window.location.pathname === "/free-workshop/") {
 
 .popup_new > div:last-child .popup_first.active_popup,
 .popup_new > div:last-child .popup_second.active_popup,
-.popup_new > div:last-child .popup_third_box.active_popup,
 .start_step.active_popup{
   display: block;
 }
@@ -416,149 +435,6 @@ if (window.location.pathname === "/free-workshop/") {
 .dog_second,
 .dog_third {
   display: none;
-}
-
-/*choosen */
-.popup_new .chosen-container .chosen-drop {
-  max-height: 240px;
-}
-
-.chosen-container .chosen-results li {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22px;
-  color: #193973 !important;
-}
-
-.chosen-container .chosen-results li em {
-  font-weight: 700;
-  text-decoration: unset;
-}
-
-/*chosen_select */
-.chosen_select {
-  position: relative;
-  max-width: 520px;
-  margin: 0 auto 80px;
-}
-
-.chosen_select label {
-  border: 1px solid #e8f1f9;
-  border-radius: 10px;
-  outline: unset;
-  display: flex;
-  width: 100%;
-  height: 44px;
-  max-width: 520px;
-  margin: 0 0 8px;
-  align-items: center;
-  padding: 5px 18px;
-   transition: all 250ms cubic-bezier(0.45, 0.05, 0.55, 0.95);
-}
-
-.chosen_select label.on_focus{
-    border: 1px solid #6FB3FA;
-  box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 60%); 
-}
-
-.chosen_select label:hover{
-  border: 1px solid #6FB3FA;
-  box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 60%); 
-}
-
-
-.chosen_select p.hover_text{
-  display: flex;
-  align-items: center;
-  position: absolute;
-    bottom: -30px;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 20px;
-    text-align: center;
-    color: #808080 !important;
-    left: 6px;
-    margin: 0;
-     transition: all 250ms cubic-bezier(0.45, 0.05, 0.55, 0.95);
-}
-
-.chosen_select p.hover_text svg{
-  margin-right: 8px;
-}
-
-.chosen_select label svg {
-  max-width: 24px;
-  height: 24px;
-  width: 100%;
-}
-
-.chosen_select label svg#removeTextInput {
-  cursor: pointer;
-  display: none;
-}
-
-.chosen_select label > input {
-  width: 100%;
-  outline: unset;
-  border-radius: 10px;
-  border: none;
-  padding: 0;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 20px;
-  color: #193973;
-  height: 100%;
-  margin: 0 0 0 8px;
-}
-
-.chosen_select label > input::placeholder {
-  font-weight: 400;
-  font-size: 17px;
-  line-height: 20px;
-  color: #a9b4b8;
-}
-
-.chosen_select label > input:focus {
-  box-shadow: unset;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 20px;
-  color: #000000;
-}
-
-.chosen_select div {
-  border: 1px solid #e8f1f9;
-  border-radius: 10px;
-  padding: 10px 19px 0px 16px;
-  max-width: 520px;
-}
-
-.chosen_select div ul {
-  overflow-x: auto;
-  max-height: 240px;
-}
-
-.chosen_select ul::-webkit-scrollbar {
-  width: 2px;
-}
-
-.chosen_select ul::-webkit-scrollbar-thumb {
-  background: #6f767b;
-  border-radius: 10px;
-}
-
-.chosen_select ul li {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22px;
-  color: #193973 !important;
-  padding: 6px 10px;
-  text-align: left;
-  cursor: pointer;
-}
-
-.chosen_select ul li:hover{  
-  background: #E8F1F9;
 }
 
 /* */
@@ -667,12 +543,15 @@ if (window.location.pathname === "/free-workshop/") {
 #firstModal .modal-body {
   display: none;
   background: unset !important;
-  padding: 0 15px;
-  border: 2px solid #e8f1f9;
-  border-radius: 10px;
-  max-width: 844px;
+  padding: 30px;
+  max-width: 559px;
   width: 100%;
   margin: 0 auto;
+}
+
+#firstModal .modal-body.is_active{
+  border: 1px solid #E8F1F9;
+  border-radius: 10px;
 }
 
 .header_popup {
@@ -693,17 +572,20 @@ if (window.location.pathname === "/free-workshop/") {
 
 .body_popup {
   background: #ffffff;
-  padding: 25px 56px 28px;
-  border-radius: 10px;
 }
 
-.body_popup > h2 {
+.new_block_breed{
+  margin-top: 24px;
+}
+
+.body_popup > h2,
+.new_block_breed > h2 {
   font-weight: 600 !important;
-  font-size: 22px !important;
+  font-size: 18px !important;
   line-height: 30px !important;
   text-align: center;
   color: #193973 !important;
-  margin-bottom: 24px !important;
+  margin-bottom: 10px !important;
 }
 
 .button_input_name,
@@ -736,7 +618,7 @@ if (window.location.pathname === "/free-workshop/") {
 }
 
 .button_input_name {
-  margin: 65px auto 0;
+  margin: 24px auto 0;
 }
 
 .button_input_name:focus,
@@ -754,8 +636,26 @@ if (window.location.pathname === "/free-workshop/") {
 #firstModal #subs-mobile,
 #firstModal #contact-submit,
 .benefits,
-.popup_adress {
+.popup_adress,
+.privacy_policy_wrap {
   display: none;
+}
+
+.privacy_policy_wrap{
+  max-width: 400px;
+  margin: 20px auto 0;
+  text-align: center;
+}
+.privacy_policy_wrap p{
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #808080 !important;
+  margin: 0 !important;
+}
+.privacy_policy_wrap p a{
+  text-decoration: underline;
+  color: inherit;
 }
 
 #firstModal #subs-email,
@@ -773,26 +673,8 @@ if (window.location.pathname === "/free-workshop/") {
 }
 
 #firstModal form span.top-levels {
-  right: 277px !important;
+  right: 139px !important;
 }
-
-#firstModal form span.top-levels#subs-email2-top-levels,
-#firstModal form span.top-levels#subs-mobile2-top-levels,
-#firstModal form span.top-levels#subs-email-top-levels,
-#firstModal form span.top-levels#subs-mobile-top-levels {
-  right: 267px !important;
-}
-
-@media only screen and (min-width: 768px) and (max-width: 857px) {
-  #firstModal form span.top-levels,
-  #firstModal form span.top-levels#subs-email2-top-levels,
-  #firstModal form span.top-levels#subs-mobile2-top-levels,
-  #firstModal form span.top-levels#subs-email-top-levels,
-  #firstModal form span.top-levels#subs-mobile-top-levels {
-    right: 254px !important;
-  }
-}
-
 #firstModal #finalForm {
   display: block;
   background: #ffffff;
@@ -813,7 +695,8 @@ if (window.location.pathname === "/free-workshop/") {
   margin-bottom: 56px;
 }
 
-#firstModal .form-control {
+#firstModal .form-control,
+.new_block_breed input {
   width: 100% !important;
   margin: 0 auto 16px !important;
   padding: 10px 18px;
@@ -938,8 +821,8 @@ if (window.location.pathname === "/free-workshop/") {
 }
 
 .popup_adress .body_popup > h2 {
-  max-width: 512px;
-  margin: 0 auto !important;
+      margin: 0px auto 20px !important;
+    max-width: 508px;
 }
 
 #firstModal form .text_for_work_shop {
@@ -964,209 +847,6 @@ if (window.location.pathname === "/free-workshop/") {
 
     </style>
     `
-
-      let arrayBreedDog = [
-        "Yorkshire Terrier",
-        "Wolfdog",
-        "Wire Fox Terrier",
-        "White German Shepherd",
-        "Whippet",
-        "West Highland White Terrier",
-        "Welsh Terrier",
-        "Welsh Springer Spaniel",
-        "Weimaraner",
-        "Vizsla",
-        "Tosa Inu",
-        "Tibetan Terrier",
-        "Tibetan Spaniel",
-        "Tasy",
-        "Spanish Water Dog",
-        "Soft Coated Wheaten Terrier",
-        "Smoushond",
-        "Smooth Fox Terrier",
-        "Skye Terrier",
-        "Siberian Husky",
-        "Shiloh Shepherd",
-        "Shih Tzu",
-        "Shiba Inu",
-        "Shetland Sheepdog",
-        "Scottish Terrier",
-        "Schipperke",
-        "Samoyed",
-        "Saluki",
-        "Saint Bernard",
-        "Rottweiler",
-        "Rhodesian Ridgeback",
-        "Thai Ridgeback",
-        "Rat Terrier",
-        "Pumi",
-        "Puli",
-        "Pug",
-        "Presa Canario",
-        "Portuguese Water Dog",
-        "Poodle",
-        "Toy Poodle",
-        "Pomeranian",
-        "Pointer",
-        "Pudelpointer",
-        "Plott Hound",
-        "Pit Bull",
-        "Pharaoh Hound",
-        "Pembroke Welsh Corgi",
-        "Pekingese",
-        "Patterdale Terrier",
-        "Papillon",
-        "Otterhound",
-        "Old English Sheepdog",
-        "Nova Scotia Duck Tolling Retriever",
-        "Norwich Terrier",
-        "Norwegian Elkhound",
-        "Norfolk Terrier",
-        "Newfoundland",
-        "Munsterlander",
-        "Mudi",
-        "Mountain Cur",
-        "Miniature Schnauzer",
-        "Miniature Pinscher",
-        "Mastiff",
-        "Tibetan Mastiff",
-        "Neapolitan Mastiff",
-        "Manchester Terrier",
-        "Maltese",
-        "Malinois",
-        "Lowchen",
-        "Lhasa Apso",
-        "Leonberger",
-        "Lapphund",
-        "Landseer",
-        "Lakeland Terrier",
-        "Labrador Retriever",
-        "Kuvasz",
-        "Komondor",
-        "King Shepherd",
-        "Kerry Blue Terrier",
-        "Keeshond",
-        "Jindo",
-        "Japanese Spitz",
-        "Japanese Chin",
-        "Jack Russell Terrier",
-        "Parson Russell Terrier",
-        "Italian Spinone",
-        "Irish Wolfhound",
-        "Irish Water Spaniel",
-        "Irish Terrier",
-        "Irish Setter",
-        "Ibizan Hound",
-        "Hovawart",
-        "Havanese",
-        "Greyhound",
-        "Italian Greyhound",
-        "Greater Swiss Mountain Dog",
-        "Great Dane",
-        "Gordon Setter",
-        "Golden Retriever",
-        "Glen of Imaal Terrier",
-        "Giant Schnauzer",
-        "German Wirehaired Pointer",
-        "German Spitz",
-        "German Shorthaired Pointer",
-        "German Shepherd",
-        "German Pinscher",
-        "Flat-Coated Retriever",
-        "Finnish Spitz",
-        "Field Spaniel",
-        "Eurasier",
-        "Entlebucher",
-        "English Toy Spaniel",
-        "English Springer Spaniel",
-        "English Setter",
-        "English Foxhound",
-        "English BullDog",
-        "Olde English BullDogge",
-        "French BullDog",
-        "Dutch Shepherd",
-        "Drever",
-        "Doberman Pinscher",
-        "Dingo",
-        "Dalmatian",
-        "Dachshund",
-        "Curly-Coated Retriever",
-        "Coton De Tulear",
-        "Cocker Spaniel",
-        "English Cocker Spaniel",
-        "Clumber Spaniel",
-        "Chow Chow",
-        "Chinese Shar-Pei",
-        "Chinese Crested",
-        "Chihuahua",
-        "Chesapeake Bay Retriever",
-        "Cavalier King Charles Spaniel",
-        "Caucasian Mountain Dog",
-        "Catahoula",
-        "Carolina Dog",
-        "Cardigan Welsh Corgi",
-        "Cane Corso",
-        "Canaan Dog",
-        "Cairn Terrier",
-        "Bull Terrier",
-        "Staffordshire Bull Terrier",
-        "Bull Mastiff",
-        "Brussels Griffon",
-        "Brittany Dog",
-        "Briquet",
-        "Briard",
-        "Brandlbracke",
-        "Boykin Spaniel",
-        "Boxer",
-        "Boston Terrier",
-        "Borzoi",
-        "Border Terrier",
-        "Border Collie",
-        "Boerboel",
-        "Blue Heeler",
-        "Bloodhound",
-        "Black Russian Terrier",
-        "Black and Tan Coonhound",
-        "Redbone Coonhound",
-        "Biewer",
-        "Bichon Frise",
-        "Bernese Mountain Dog",
-        "Berger Pyrenees",
-        "Berger Picard",
-        "Bergamasco",
-        "Belgian Tervuren",
-        "Belgian Sheepdog",
-        "Bedlington Terrier",
-        "Beauceron",
-        "Bearded Collie",
-        "Beagle",
-        "Basset Hound",
-        "Basset Griffon",
-        "Basenji",
-        "Barbet",
-        "Australian Terrier",
-        "Australian Shepherd",
-        "Australian Kelpie",
-        "Australian Cattle Dog",
-        "Armant",
-        "Argentine Dogo",
-        "Anatolian Shepherd",
-        "American Staffordshire Terrier",
-        "American Pit Bull Terrier",
-        "American Hairless Terrier",
-        "Mexican Hairless Terrier",
-        "American Foxhound",
-        "American Eskimo",
-        "American BullDog",
-        "Alaskan Malamute",
-        "Alaskan Klee Kai",
-        "Alaskan Husky",
-        "Akita",
-        "Akbash",
-        "Airedale Terrier",
-        "Afghan Hound",
-        "Affenpinscher",
-      ]
 
       let popupNew = /*html*/ `
     <div class="popup_new_wrap">
@@ -1196,8 +876,8 @@ if (window.location.pathname === "/free-workshop/") {
         <div class="popup_new">
           <div class="img_wrap">
                 <img src="https://conversionratestore.github.io/projects/knineti/img/dog_select_problem.jpg" alt="dog" class="dog_first">
-                <img src="https://conversionratestore.github.io/projects/knineti/img/dog_age_block.jpg" alt="dog" class="dog_second">
-                <img src="https://conversionratestore.github.io/projects/knineti/img/dog_breed_block.jpg" alt="dog" class="dog_third">
+                <img src="https://conversionratestore.github.io/projects/knineti/img/dog_breed_block.jpg" alt="dog" class="dog_second">
+                <img src="https://conversionratestore.github.io/projects/knineti/img/dog_last_block.jpg" alt="dog" class="dog_third">
             </div>
     
             <div>
@@ -1210,10 +890,11 @@ if (window.location.pathname === "/free-workshop/") {
                     <div>
                        <p class="active_btn_first" class="close" id="closestepthree" data-dismiss="modal" style="display: block;" data-original-title="" title="" tabIndex="0">
                            <img src="https://conversionratestore.github.io/projects/knineti/img/previous_btn.svg" alt="previous button">
+                           <span>Back</span>
                        </p>
                         <p class="active_btn_second" tabIndex="0">
                            <img src="https://conversionratestore.github.io/projects/knineti/img/previous_btn.svg" alt="previous button">
-                           <span>Previous</span>
+                           <span>Back</span>
                        </p>
                        <p><span>1</span>/<span>3</span></p>
                     </div>
@@ -1273,60 +954,12 @@ if (window.location.pathname === "/free-workshop/") {
     
     
                 <div class="popup_second">
-                    <h2>What’s your dog’s age?</h2>
-                    <ul>
-                        <li>
-                            <input class="radio_box" name="ageDog" id="puppy" type="radio">
-                            <label for="puppy" tabIndex="0">
-                                <span class="radio_style"></span>
-                                <span>Puppy</span>
-                                <span>Up to 12 months</span>
-                            </label>
-                        </li>
-                        <li>
-                            <input class="radio_box" name="ageDog" id="adult" type="radio">
-                            <label for="adult" tabIndex="0">
-                                <span class="radio_style"></span>
-                                <span>Adult</span>
-                                <span>From 1 to 7 years</span>
-                            </label>
-                        </li>
-                        <li>
-                            <input class="radio_box" name="ageDog" id="senior" type="radio">
-                            <label for="senior" tabIndex="0">
-                                <span class="radio_style"></span>
-                                <span>Older Adult/Senior</span>
-                                <span>More than 7 years</span>
-                            </label>
-                        </li>
-                    </ul>
-                    <div class="btn_continue" tabIndex="0">Continue</div>
-                </div> 
-    
-                <div class="popup_third_box">
-                    <h2>
-                        What breed is your dog?
-                    </h2>
-    
-                    <div class="chosen_select">
-                      <label>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M11.04 17.2798C7.58405 17.2798 4.80005 14.4958 4.80005 11.0398C4.80005 7.5838 7.58405 4.7998 11.04 4.7998C14.496 4.7998 17.28 7.5838 17.28 11.0398C17.28 14.4958 14.496 17.2798 11.04 17.2798ZM11.04 5.7598C8.11205 5.7598 5.76005 8.1118 5.76005 11.0398C5.76005 13.9678 8.11205 16.3198 11.04 16.3198C13.968 16.3198 16.32 13.9678 16.32 11.0398C16.32 8.1118 13.968 5.7598 11.04 5.7598Z" fill="#A9B4B8"/>
-                        <path d="M15.6873 15.0078L19.9977 19.3182L19.3189 19.9969L15.0085 15.6865L15.6873 15.0078Z" fill="#A9B4B8"/>
-                        </svg>
-                        <input type="text" placeholder='Enter your dog’s breed'>
-    
-                        <svg id="removeTextInput" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M13.0604 11.9996L17.7802 7.27982C17.9168 7.13837 17.9924 6.94892 17.9907 6.75227C17.989 6.55562 17.9101 6.36751 17.7711 6.22846C17.632 6.0894 17.4439 6.01053 17.2472 6.00882C17.0506 6.00711 16.8611 6.0827 16.7197 6.21932L11.9999 10.9391L7.28019 6.21932C7.13874 6.0827 6.94929 6.00711 6.75264 6.00882C6.55599 6.01053 6.36788 6.0894 6.22882 6.22846C6.08977 6.36751 6.01089 6.55562 6.00918 6.75227C6.00747 6.94892 6.08307 7.13837 6.21969 7.27982L10.9394 11.9996L6.21969 16.7193C6.14806 16.7885 6.09092 16.8713 6.05161 16.9628C6.01231 17.0543 5.99162 17.1527 5.99075 17.2523C5.98989 17.3519 6.00886 17.4506 6.04657 17.5428C6.08428 17.635 6.13997 17.7187 6.21039 17.7891C6.28081 17.8595 6.36455 17.9152 6.45672 17.9529C6.5489 17.9907 6.64765 18.0096 6.74724 18.0088C6.84682 18.0079 6.94524 17.9872 7.03674 17.9479C7.12825 17.9086 7.211 17.8515 7.28019 17.7798L11.9999 13.0601L16.7197 17.7798C16.8611 17.9164 17.0506 17.992 17.2472 17.9903C17.4439 17.9886 17.632 17.9097 17.7711 17.7707C17.9101 17.6316 17.989 17.4435 17.9907 17.2469C17.9924 17.0502 17.9168 16.8608 17.7802 16.7193L13.0604 11.9996Z" fill="#808080"/>
-                        </svg>
-                      </label>
-                      <div>
-                        <ul></ul>
-                      </div>
+                    <div class="last_step_title">
+                      <h2>Discover how to eliminate <span class="your_dog_name">[dog’s name]</span> behavior problems today!</h2>
+                      <p>Get access to FREE online workshop which has helped train 2.7 million dogs.</p>                      
                     </div>
-                    <div class="btn_continue disabled_var" tabIndex="0">Continue</div>
-                </div>
-    
+                    <h2>Let's get acquainted!</h2>
+                </div>     
             </div>
     </div>
     </div>
@@ -1334,7 +967,14 @@ if (window.location.pathname === "/free-workshop/") {
     `
 
       let buttonInputName = /*html*/ `
+        <div class="new_block_breed">
+          <h2>What breed is your dog?</h2>
+          <input type="text" class="" data-html="true" name="breed" id="breedDog" placeholder="Your dog’s breed" tabindex="0">
+        </div>
         <div class="button_input_name" tabindex="0">Continue</div>
+        <div class="privacy_policy_wrap">
+          <p>Your email address and mobile number won't be shared with anyone. Please review our <a href="#" class="privacy_policy">Privacy policy</a> for more information.</p>
+        </div>
         <div class="benefits">
             <ul>
                 <li>
@@ -1372,31 +1012,21 @@ if (window.location.pathname === "/free-workshop/") {
     <div class="popup_third">       
         <div class="popup_name">
             <div class="body_popup">
-                <h2>How should we address you and your <br> dog?</h2>
+                <h2>How should we address you and your dog?</h2>
             </div>
         </div>
     
         <div class="popup_adress">
             <div class="body_popup">
-                <p>The workshop will be conducted by Dr. Alexa Diaz, PhD (one of the foremost service dog trainers in the U.S.) and Eric Presnall (host of the Animal Planet TV show "Who Let the Dogs Out").</p>
-                <h2>Enter your email and mobile number to access this FREE online workshop now</h2>
+                <h2>We’ll email and text you the link for the workshop and tips to train your dog.</h2>
             </div>
         </div>
     </div>
     `
 
-      let textForWorkShop = /*html */ `
-    <p class="text_for_work_shop">We’ll email and text you the link for the workshop and tips to train your dog.</p>
-    `
-
       document.head.insertAdjacentHTML("beforeend", popupStyle)
 
-      function setListBreedDog(title) {
-        return `  <li data-breed="${title}">${title}</li>`
-      }
-
       // #firstModal
-      // document.querySelectorAll('#firstModal') -> click on btn popup
       let a = setInterval(() => {
         if (document.querySelector("#firstModal .vis-ver-0_0.modal-header.modal-header-style.modal-of-header.style-border.modal-header1")) {
           clearInterval(a)
@@ -1414,17 +1044,7 @@ if (window.location.pathname === "/free-workshop/") {
                           </div>`
               )
 
-              document.querySelector("#firstModal.modal .modal-dialog > .img_wrap").insertAdjacentHTML(
-                "afterend",
-                `<div class="btn_wrapp">     
-                 <p class="active_btn_fourth" tabIndex="0">
-                <img src="https://conversionratestore.github.io/projects/knineti/img/previous_btn.svg" alt="previous button">
-                <span>Previous</span></p>
-                <button type="button" class="close" id="closestepthree" data-dismiss="modal" style="display: block;" data-original-title="" title="">
-                    <spam class="btn_space" data-original-title="" title="">×</spam>
-                </button>
-                </div>  `
-              )
+              document.querySelector(".popup_new > div:last-child .popup_second > h2")?.after(document.querySelector("#firstModal .modal-body"))
 
               // click on btn My dog is a puppy (aged less than 1 year)
               document.querySelector(".start_step ul li:first-child").addEventListener("click", function (e) {
@@ -1449,38 +1069,8 @@ if (window.location.pathname === "/free-workshop/") {
                 document.querySelector(".popup_new")?.classList.add("active_popup")
                 document.querySelector(".popup_new").style.display = "flex"
               })
-
-              // click on button.close
-              if (document.querySelector("#firstModal .btn_wrapp button.close")) {
-                document.querySelector("#firstModal .btn_wrapp button.close").addEventListener("click", () => {
-                  if (document.querySelector("#firstModal .btn_wrapp > p").classList.contains("active_btn_fourth")) {
-                    pushDataLayer(`Click on Closed on step "How should we address you and your dog?"`)
-                  }
-
-                  if (document.querySelector("#firstModal .btn_wrapp > p").classList.contains("active_btn_fifth")) {
-                    pushDataLayer(`Click on Closed on step "Enter your email and mobile number to access"`)
-                  }
-                })
-              }
-
-              // btn back fourth
-              if (document.querySelector("#firstModal.modal .modal-dialog .btn_wrapp")) {
-                document.querySelector("#firstModal.modal .modal-dialog .btn_wrapp > p").addEventListener("click", function () {
-                  // btn back fourth
-                  if (this?.classList.contains("active_btn_fourth")) {
-                    pushDataLayer(`Click on Previous on step "How should we address you and yourdog?"`)
-                    document.querySelector(".popup_new").style.display = "flex"
-                    document.querySelector("#firstModal .modal-body").style.display = "none"
-                    document.querySelector("#firstModal .btn_wrapp").style.display = "none"
-                  }
-                })
-              }
             }
           }, 10)
-
-          arrayBreedDog.forEach((el) => {
-            document.querySelector(".chosen_select ul").insertAdjacentHTML("afterbegin", setListBreedDog(el))
-          })
 
           // click on label checkbox
           document.querySelectorAll("#firstModal .custom_checkbox + label").forEach((el) => {
@@ -1498,6 +1088,7 @@ if (window.location.pathname === "/free-workshop/") {
               this.closest(".popup_first")?.classList.remove("active_popup")
 
               document.querySelector(".popup_new > div:last-child .progress_bar > div p:first-child.active_btn_first").style.display = "none"
+              document.querySelector("#firstModal .modal-body").style.display = "block"
               if (document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(1)")?.classList.contains("active_btn_first")) {
                 document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(1)")?.classList.remove("active_btn_first")
               }
@@ -1520,35 +1111,6 @@ if (window.location.pathname === "/free-workshop/") {
                 localStorage.setItem("data-behavior", arr)
               } else {
                 localStorage.setItem("data-behavior", arr)
-              }
-            })
-          }
-
-          //   click on second btn Continue
-          document.querySelector(".popup_new > div:last-child .popup_second .btn_continue").addEventListener("click", function (el) {
-            pushDataLayer(`Click on Continue on step "What’s your dog’s age?`)
-            this.closest(".popup_second")?.classList.remove("active_popup")
-
-            document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2).active_btn_second")?.classList.remove("active_btn_second")
-            document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2)")?.classList.add("active_btn_third")
-            document.querySelector(".popup_new > div:last-child .popup_third_box")?.classList.add("active_popup")
-            document.querySelector(".popup_new .img_wrap .dog_second").style.display = "none"
-            document.querySelector(".popup_new .img_wrap .dog_third").style.display = "block"
-            document.querySelector(".popup_new > div:last-child .progress_bar > ul li:nth-child(3)")?.classList.add("active_step")
-            document.querySelector(".popup_new > div:last-child .progress_bar > div p:last-child span:nth-child(1)").textContent = "3"
-          })
-
-          //   click on third btn Continue
-          if (document.querySelector(".popup_new > div:last-child .popup_third_box .btn_continue")) {
-            document.querySelector(".popup_new > div:last-child .popup_third_box .btn_continue").addEventListener("click", function () {
-              if (document.querySelector(".chosen_select label > input")) {
-                let inputValue = document.querySelector(".chosen_select label > input").value
-                pushDataLayer(`Click on Continue on step "What breed is your dog? ${inputValue}`)
-              }
-              document.querySelector(".popup_new").style.display = "none"
-              document.querySelector("#firstModal .modal-body").style.display = "block"
-              if (document.querySelector("#firstModal .btn_wrapp")) {
-                document.querySelector("#firstModal .btn_wrapp").style.display = "flex"
               }
             })
           }
@@ -1590,22 +1152,32 @@ if (window.location.pathname === "/free-workshop/") {
                 this?.classList.add("active_btn_second")
 
                 document.querySelector(".popup_new > div:last-child .popup_first .btn_continue").setAttribute("data-lst-dog", "2")
-                document.querySelector(".popup_new > div:last-child .popup_third_box")?.classList.remove("active_popup")
-                document.querySelector(".popup_new > div:last-child .popup_second")?.classList.add("active_popup")
+
                 document.querySelector(".popup_new .img_wrap .dog_third").style.display = "none"
                 document.querySelector(".popup_new .img_wrap .dog_second").style.display = "block"
+
+                document.querySelector(".popup_new > div:last-child .popup_second > h2").style.display = "block"
+                document.querySelector(".new_block_breed").style.display = "block"
+                document.querySelector("#firstModal .button_input_name").style.display = "flex"
+                document.querySelector("#firstModal #subs-name").style.display = "flex"
+                document.querySelector("#firstModal #dog-name").style.display = "flex"
+                document.querySelector("#firstModal .popup_name").style.display = "block"
+                document.querySelector("#firstModal #dog-name-top-levels").style.display = "block"
+                document.querySelector("#firstModal #subs-name-top-levels").style.display = "block"
+
+                document.querySelector("#firstModal form span.top-levels#subs-email-top-levels").style.display = "none"
+                document.querySelector("#firstModal form span.top-levels#subs-mobile-top-levels").style.display = "none"
+                document.querySelector(".last_step_title").style.display = "none"
+                document.querySelector("#firstModal #subs-email").style.display = "none"
+                document.querySelector("#firstModal #subs-mobile").style.display = "none"
+                document.querySelector("#firstModal #contact-submit").style.display = "none"
+                document.querySelector("#firstModal .popup_adress").style.display = "none"
+                document.querySelector("#firstModal .privacy_policy_wrap").style.display = "none"
+                document.querySelector("#firstModal .modal-body").classList.remove("is_active")
+
                 document.querySelector(".popup_new > div:last-child .progress_bar > ul li:nth-child(3)")?.classList.remove("active_step")
                 document.querySelector(".popup_new > div:last-child .progress_bar > div p:last-child span:nth-child(1)").textContent = "2"
               }
-            })
-          }
-
-          if (document.querySelector(".popup_new > div:last-child .popup_second ul")) {
-            document.querySelectorAll(".popup_new > div:last-child .popup_second ul li label").forEach((el) => {
-              el.addEventListener("click", function () {
-                console.log(el)
-                pushDataLayer(`${this.getAttribute("for")} selected`)
-              })
             })
           }
 
@@ -1613,7 +1185,7 @@ if (window.location.pathname === "/free-workshop/") {
           document.querySelector("#firstModal #subs-name").placeholder = "Your name"
           document.querySelector("#firstModal #dog-name").placeholder = "Dog’s name"
           document.querySelector("#firstModal #subs-email").placeholder = "Enter your email"
-          document.querySelector("#firstModal #subs-mobile").placeholder = "Enter your phone number"
+          document.querySelector("#firstModal #subs-mobile").placeholder = "Enter your mobile number"
           document.querySelector("#firstModal #contact-submit").textContent = "Get workshop link"
           document.querySelector("#firstModal #dog-name-top-levels").textContent = "Dog’s name"
           document.querySelector("#firstModal #subs-name-top-levels").textContent = "Your name"
@@ -1630,8 +1202,6 @@ if (window.location.pathname === "/free-workshop/") {
           document
             .querySelector(`#firstModal input[name='first_name']`)
             .insertAdjacentHTML("afterend", `<span class="input_error_text">Please enter Your name without spaces, numbers or special characters</span>`)
-
-          document.querySelector("#firstModal #contact-submit").insertAdjacentHTML("beforebegin", textForWorkShop)
 
           // create new element popup finalForm -> input name, email, number
           document.querySelector("#firstModal .row-md-12.style-of-row-free-workshop > div:first-child").insertAdjacentHTML("afterend", popup_third)
@@ -1655,107 +1225,6 @@ if (window.location.pathname === "/free-workshop/") {
             document.querySelector("#firstModal #contact-submit").addEventListener("click", function () {
               pushDataLayer("Get workshop link clicked")
             })
-          }
-
-          // choose select
-          if (document.querySelector(".chosen_select")) {
-            filteInputText()
-            // remove all text input
-            document.querySelector("#removeTextInput").addEventListener("click", function (e) {
-              pushDataLayer("Click on Closed on step 'What breed is your dog?'")
-              document.querySelector(".chosen_select ul").innerHTML = ""
-              arrayBreedDog.forEach((el) => {
-                document.querySelector(".chosen_select ul").insertAdjacentHTML("afterbegin", setListBreedDog(el))
-              })
-              this.previousElementSibling.value = ""
-              document.querySelector(".chosen_select div").style.display = "block"
-              document.querySelector(".popup_new > div:last-child .popup_third_box .btn_continue")?.classList.add("disabled_var")
-              filteInputText()
-            })
-
-            // filter
-            document.querySelector(".chosen_select label > input").addEventListener("focus", () => {
-              document.querySelector(".chosen_select label")?.classList.add("on_focus")
-              document.querySelector(".chosen_select").insertAdjacentHTML(
-                "beforeend",
-                `<p class="hover_text"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_732_846)"><path d="M11.8087 9.26711L7.222 1.3227C6.96695 0.880953 6.51013 0.617188 5.99999 0.617188C5.48988 0.617188 5.03303 0.880953 4.77799 1.3227L0.191302 9.26708C-0.0637675 9.70888 -0.0637675 10.2364 0.191302 10.6781C0.446372 11.1199 0.903168 11.3837 1.41331 11.3837H10.5867C11.0968 11.3837 11.5536 11.1199 11.8087 10.6782C12.0638 10.2364 12.0638 9.70888 11.8087 9.26711ZM11.1999 10.3266C11.0719 10.5483 10.8426 10.6806 10.5867 10.6806H1.41331C1.15732 10.6806 0.928106 10.5483 0.800137 10.3266C0.672169 10.105 0.672169 9.84032 0.800137 9.61865L5.38687 1.67424C5.51484 1.45257 5.74406 1.32024 6.00002 1.32024C6.25595 1.32024 6.4852 1.45257 6.61316 1.67424L11.1999 9.61865C11.3278 9.84032 11.3278 10.105 11.1999 10.3266Z" fill="#808080"/><path d="M6.35147 4.125H5.64844V7.6402H6.35147V4.125Z" fill="#808080"/><path d="M5.99995 8.34375C5.74151 8.34375 5.53125 8.55401 5.53125 8.81245C5.53125 9.0709 5.74151 9.28115 5.99995 9.28115C6.25837 9.28115 6.46865 9.0709 6.46865 8.81245C6.46865 8.55401 6.2584 8.34375 5.99995 8.34375Z" fill="#808080"/></g><defs><clipPath id="clip0_732_846"><rect width="12" height="12" fill="white"/></clipPath></defs></svg>
-              Choose your dog breed to continue</p>`
-              )
-            })
-
-            document.querySelector(".chosen_select label > input").addEventListener("blur", () => {
-              if (document.querySelector(".chosen_select label")?.classList.contains("on_focus")) {
-                document.querySelector(".chosen_select label")?.classList.remove("on_focus")
-
-                if (document.querySelector(".chosen_select > p")) {
-                  document.querySelector(".chosen_select > p").remove()
-                }
-                if (document.querySelector(".chosen_select label > input").value === "") {
-                  document.querySelector(".chosen_select label svg#removeTextInput").style.display = "none"
-                }
-              }
-            })
-
-            document.querySelector(".chosen_select label > input").addEventListener("input", function (e) {
-              if (e.value !== "") {
-                document.querySelector(".chosen_select label svg#removeTextInput").style.display = "block"
-              }
-
-              document.querySelector(".chosen_select ul").innerHTML = ""
-              arrayBreedDog.forEach((el) => {
-                document.querySelector(".chosen_select ul").insertAdjacentHTML("afterbegin", setListBreedDog(el))
-              })
-
-              document.querySelector(".chosen_select div").style.display = "block"
-              document.querySelector(".popup_new > div:last-child .popup_third_box .btn_continue")?.classList.add("disabled_var")
-              filteInputText()
-            })
-
-            function filteInputText() {
-              let filterValue = document.querySelector(".chosen_select label > input").value.toUpperCase()
-              let notFound = true
-
-              document.querySelectorAll(".chosen_select ul li").forEach(function (el) {
-                el.addEventListener("click", function () {
-                  document.querySelector(".chosen_select label > input").value = el.textContent
-                  document.querySelector(".chosen_select div").style.display = "none"
-                  document.querySelector(".popup_new > div:last-child .popup_third_box .btn_continue.disabled_var")?.classList.remove("disabled_var")
-                  if (document.querySelector(".chosen_select label > input").value !== "") {
-                    document.querySelector(".chosen_select label svg#removeTextInput").style.display = "block"
-                  }
-                })
-
-                let text = el.textContent.toUpperCase()
-                if (text.includes(filterValue)) {
-                  el?.classList.add("show")
-                  el?.classList.remove("hide")
-                  notFound = false
-                  includesSymb(filterValue, text, el.firstChild)
-                } else {
-                  el?.classList.add("hide")
-                  el?.classList.remove("show")
-                }
-              })
-
-              if (notFound) {
-                document.querySelector(".chosen_select ul").innerHTML = `<li>Oops, nothing found!</li>`
-              }
-            }
-          }
-
-          function includesSymb(text, cont, element) {
-            let root = element
-            let content = cont
-
-            let rng = document.createRange()
-
-            rng.setStart(root, content.indexOf(text))
-
-            rng.setEnd(root, content.indexOf(text) + text.length)
-
-            let highlightDiv = document.createElement("strong")
-
-            rng.surroundContents(highlightDiv)
           }
         }
       }, 10)
@@ -1785,24 +1254,45 @@ if (window.location.pathname === "/free-workshop/") {
 
         if (document.querySelector(`${parent} input.input_error`) === null && parent === `#firstModal`) {
           pushDataLayer(`Click on Continue on step "How should we address you and your dog?"`)
+
+          if (document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2)").classList.contains("active_btn_second")) {
+            document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2)").classList.remove("active_btn_second")
+            document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2)").classList.add("active_btn_third")
+            document.querySelector("#firstModal .modal-body").classList.add("is_active")
+          }
+          document.querySelector(".popup_new > div:last-child .progress_bar > ul li:nth-child(3)")?.classList.add("active_step")
+          document.querySelector(".popup_new > div:last-child .progress_bar > div p:last-child span:nth-child(1)").textContent = "3"
+
+          document.querySelector(".popup_new .img_wrap .dog_second").style.display = "none"
+          document.querySelector(".popup_new > div:last-child .popup_second > h2").style.display = "none"
+          document.querySelector(".new_block_breed").style.display = "none"
           document.querySelector("#firstModal .button_input_name").style.display = "none"
           document.querySelector("#firstModal #subs-name").style.display = "none"
           document.querySelector("#firstModal #dog-name").style.display = "none"
           document.querySelector("#firstModal #dog-name-top-levels").style.display = "none"
           document.querySelector("#firstModal #subs-name-top-levels").style.display = "none"
 
+          if (document.querySelector("#firstModal #subs-email").value !== "") {
+            document.querySelector("#firstModal form span.top-levels#subs-email-top-levels").style.display = "block"
+          }
+          if (document.querySelector("#firstModal #subs-mobile").value !== "") {
+            document.querySelector("#firstModal form span.top-levels#subs-mobile-top-levels").style.display = "block"
+          }
+          document.querySelector(".last_step_title").style.display = "block"
+          document.querySelector(".popup_new .img_wrap .dog_third").style.display = "block"
           document.querySelector("#firstModal #subs-email").style.display = "flex"
           document.querySelector("#firstModal #subs-mobile").style.display = "flex"
           document.querySelector("#firstModal #contact-submit").style.display = "flex"
 
-          document.querySelector("#firstModal .text_for_work_shop").style.display = "block"
-          document.querySelector("#firstModal .benefits").style.display = "block"
+          localStorage.setItem("dogName", document.querySelector("#firstModal #dog-name").value)
+
+          if (localStorage.getItem("dogName")) {
+            document.querySelector(".your_dog_name").textContent = localStorage.getItem("dogName")
+          }
+
+          document.querySelector("#firstModal .privacy_policy_wrap").style.display = "block"
           document.querySelector("#firstModal .popup_adress").style.display = "block"
           document.querySelector("#firstModal .popup_name").style.display = "none"
-          if (document.querySelector(".modal.in .modal-dialog .btn_wrapp > p")?.classList.contains("active_btn_fourth")) {
-            document.querySelector(".modal.in .modal-dialog .btn_wrapp > p")?.classList.remove("active_btn_fourth")
-            document.querySelector(".modal.in .modal-dialog .btn_wrapp > p")?.classList.add("active_btn_fifth")
-          }
         }
       }
 
