@@ -40,6 +40,7 @@ if (window.location.pathname === "/free-workshop/") {
 .img_wrap img {
   width: 100%;
   height: 100%;
+  border-radius: 10px;
 }
 
 .btn_continue {
@@ -956,7 +957,7 @@ if (window.location.pathname === "/free-workshop/") {
   max-width: 628px;
   height: max-content;
   padding: 32px 13px 24px;
-  margin: 60px auto;
+  margin: 40px auto;
   background: #fdfdfd;
   border-radius: 10px;
   transition: all 0.5s ease 0s;
@@ -971,17 +972,17 @@ if (window.location.pathname === "/free-workshop/") {
 .content_popup div{
   padding: 0 11px;
   overflow-y: scroll;
-  height: 530px;
+  height: 500px;
 }
 .content_popup div::-webkit-scrollbar-thumb {
     background: #6F767B;
     border-radius: 10px;
     border: 2px solid #6F767B;
 }
-*::-webkit-scrollbar {
+.content_popup div::-webkit-scrollbar {
   width: 2px;
 }
-*::-webkit-scrollbar-track {
+.content_popup div::-webkit-scrollbar-track {
   background: transparent;
 }
 .content_popup h2{
@@ -1502,7 +1503,6 @@ if (window.location.pathname === "/free-workshop/") {
 
                 function onOpenPopup() {
                   overlay.classList.remove("is_hidden")
-                  body.style.overflow = "hidden"
                   document.querySelector(".backdrop_popup .container_popup").insertAdjacentHTML(
                     "beforeend",
                     `    <div class="content_popup">
@@ -1539,7 +1539,6 @@ if (window.location.pathname === "/free-workshop/") {
 
                 function onClosePopup() {
                   overlay.classList.add("is_hidden")
-                  body.style.overflow = "auto"
                   setTimeout(() => {
                     document.querySelector(".content_popup").remove()
                   }, 400)
