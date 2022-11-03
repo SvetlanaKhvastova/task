@@ -927,8 +927,109 @@ if (window.location.pathname === "/free-workshop/") {
 	visibility: visible;
 }
 
+/*backdrop_popup */
+.backdrop_popup{
+    position: fixed !important;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    opacity: 1;
+    background: rgb(0 0 0 / 70%);
+    transition: all 0.5s ease 0s;
+    z-index: 9005;
+    display: block;
+    max-height: 100%;
+}
+.backdrop_popup.is_hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.backdrop_popup .container_popup {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+  max-width: 628px;
+  height: max-content;
+  padding: 32px 13px 24px;
+  margin: 60px auto;
+  background: #fdfdfd;
+  border-radius: 10px;
+  transition: all 0.5s ease 0s;
+}
+.backdrop_popup .container_popup > svg {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  outline: none;
+  cursor: pointer;
+}
+.content_popup div{
+  padding: 0 11px;
+  overflow-y: scroll;
+  height: 530px;
+}
+.content_popup div::-webkit-scrollbar-thumb {
+    background: #6F767B;
+    border-radius: 10px;
+    border: 2px solid #6F767B;
+}
+*::-webkit-scrollbar {
+  width: 2px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+.content_popup h2{
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 20px;
+  color: #734F22;
+  margin: 0 0 24px;
+  padding: 0 0 18px;
+  border-bottom: 1px solid rgb(119 119 125 / 30%);
+}
+.content_popup p{
+  font-weight: 400;
+  font-size: 14px !important;
+  line-height: 24px;
+  color: #77777D !important;
+  margin: 0;
+}
+.content_popup p + p{
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .content_popup div{
+    height: 400px;
+  }
+}
+
     </style>
     `
+
+      // popup
+      let popUpPrivacy = /*html */ `
+  <div class="backdrop_popup is_hidden" data-modal>
+    <div class="container_popup">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0_303_473)">
+          <path d="M20 6.41L18.59 5L13 10.59L7.41 5L6 6.41L11.59 12L6 17.59L7.41 19L13 13.41L18.59 19L20 17.59L14.41 12L20 6.41Z" fill="#989898" />
+        </g>
+        <defs>
+          <clipPath id="clip0_303_473">
+            <rect width="24" height="24" fill="white" />
+          </clipPath>
+        </defs>
+      </svg>
+    </div>
+  </div>
+`
 
       let popupNew = /*html*/ `
     <div class="popup_new_wrap">
@@ -938,7 +1039,7 @@ if (window.location.pathname === "/free-workshop/") {
             <ul>
                 <li>
                     <div class="img_wrap">
-                        <img src="https://conversionratestore.github.io/projects/knineti/img/puppy_dog.png" alt="dog">
+                        <img src="https://conversionratestore.github.io/projects/knineti/img/puppy_dog.jpg" alt="dog">
                     </div>
                     <div>
                         <p>I have puppy ( up to 1 year ) </p>
@@ -946,7 +1047,7 @@ if (window.location.pathname === "/free-workshop/") {
                 </li>
                 <li>
                     <div class="img_wrap">
-                        <img src="https://conversionratestore.github.io/projects/knineti/img/adult_dog.png" alt="dog">
+                        <img src="https://conversionratestore.github.io/projects/knineti/img/adult_dog.jpg" alt="dog">
                     </div>
                     <div>
                         <p>I have adult dog ( 1+ year )</p>
@@ -1330,6 +1431,7 @@ if (window.location.pathname === "/free-workshop/") {
       }
 
       document.head.insertAdjacentHTML("beforeend", popupStyle)
+      document.body.insertAdjacentHTML("afterbegin", popUpPrivacy)
 
       // #firstModal
       let a = setInterval(() => {
@@ -1374,6 +1476,75 @@ if (window.location.pathname === "/free-workshop/") {
                 document.querySelector(".popup_new")?.classList.add("active_popup")
                 document.querySelector(".popup_new").style.display = "flex"
               })
+
+              if (document.querySelector(".privacy_policy_wrap p a")) {
+                let body = document.body,
+                  overlay = document.querySelector(".backdrop_popup")
+
+                document.querySelector(".privacy_policy_wrap p a").addEventListener("click", (e) => {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  console.log(`link`)
+                  onOpenPopup()
+                })
+
+                // click on btn close popup
+                document.querySelector(".backdrop_popup .container_popup > svg")?.addEventListener("click", (e) => {
+                  onClosePopup()
+                })
+
+                // click on overlay popup
+                overlay.addEventListener("click", (e) => {
+                  if (e.target.matches(".backdrop_popup")) {
+                    onClosePopup()
+                  }
+                })
+
+                function onOpenPopup() {
+                  overlay.classList.remove("is_hidden")
+                  body.style.overflow = "hidden"
+                  document.querySelector(".backdrop_popup .container_popup").insertAdjacentHTML(
+                    "beforeend",
+                    `    <div class="content_popup">
+      <h2>Usage and Disclosure of Personal Information</h2>
+      <div>
+      <p>
+        We may use your Personal Information, and/or transfer your Personal Information for any legal purpose including, without limitation: (1) to deliver the Program and/or the
+        Products to you that you have requested; (2) to validate your compliance with the Terms & Conditions; (3) for content improvement and feedback purposes; (4) to reach you,
+        when necessary, regarding your use of our Website, our Program or our Products; and (5) to bring retail opportunities and promotional offers to you by email, direct mail,
+        telemarketing, and/or online banner advertising.
+      </p>
+      <p>
+        We will not disclose Personal Information collected from customers of our Website to third parties, except to companies with which we are actively affiliated, to
+        contractors we use to support our business (such as technical support, delivery services, and financial institutions) whereby we will require such third parties to treat
+        such Personal Information in accordance with this Privacy Policy, and in connection with the sale, assignment, or other transfer of the business of our Website to which the
+        information relates. We may hire third parties to review certain Personal Information to advise us on demographic and marketing related issues, but only after such third
+        parties have agreed to maintain the confidentiality, security, and integrity of any Personal Information contained in accordance with this Privacy Policy.
+      </p>
+      <p>
+        When your information is provided to third parties, these third parties may include providers of direct marketing services and applications. We or these third parties may
+        supplement the information we collect online with outside records to enhance our ability to serve you, to tailor our Website, our Program and our Products to you, and/or to
+        offer you targeted advertising and other opportunities to purchase products and services that we believe may be of interest to you. We will NEVER share your credit card
+        information with third parties unless you have given us explicit permission to do so, such as in order to fulfill a third party offer that you have accepted from us. By
+        permitting us to collect this information, you will be able to receive free information on products and services that may be of interest to you. You also enable us to
+        personalize your experience with us so that we can provide you with the highest quality of service. By submitting your email address on our Website, you agree to receive
+        email from us and our third party advertisers. We, and our third party advertisers, may maintain separate email lists for different purposes. You may cancel your
+        participation in any of these email lists at any time by clicking the opt out link or other unsubscribe option that is included in the email. We only send emails to people
+        who have voluntarily provided us with such contact information, either directly, or through a third party. We do not send unsolicited commercial emails.
+      </p>
+      </div>
+    </div>`
+                  )
+                }
+
+                function onClosePopup() {
+                  overlay.classList.add("is_hidden")
+                  body.style.overflow = "auto"
+                  setTimeout(() => {
+                    document.querySelector(".content_popup").remove()
+                  }, 400)
+                }
+              }
             }
           }, 10)
 
@@ -1727,4 +1898,270 @@ if (window.location.pathname === "/free-workshop/") {
       document.querySelector(".exp")?.remove()
     }
   }, 10)
+}
+
+//
+if (window.location.pathname === "/mc/") {
+  let startFuncMc = setInterval(() => {
+    if (document.querySelector("#player")) {
+      clearInterval(startFuncMc)
+
+      let eventVar = "desktop"
+
+      if (window.innerWidth <= 768) {
+        eventVar = "mobile"
+      }
+
+      function pushDataLayer(actionDataLayer, labelDataLayer) {
+        window.dataLayer = window.dataLayer || []
+        if (labelDataLayer) {
+          console.log(actionDataLayer + " : " + labelDataLayer)
+          dataLayer.push({
+            event: "event-to-ga",
+            eventCategory: `Exp: New reg/fw flow ${eventVar}`,
+            eventAction: `${actionDataLayer}`,
+            eventLabel: `${labelDataLayer}`,
+          })
+        } else {
+          console.log(actionDataLayer)
+          dataLayer.push({
+            event: "event-to-ga",
+            eventCategory: `Exp: New reg/fw flow ${eventVar}`,
+            eventAction: `${actionDataLayer}`,
+          })
+        }
+      }
+
+      let style = /*html */ `
+      <style>
+        #myHeaderr .top_menu_box{
+            display: none !important;
+        }
+        #myHeaderr{
+            padding: 0 !important;
+        }
+        /* sticky_new_header*/
+        .sticky_new_header{
+            background: #FFFFFF;
+            border-bottom: 3px solid #794E15;
+            text-align: center;
+        }
+        .sticky_new_header p.special_offer_text{
+            background: #794E15;
+            padding: 8px;
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 130%;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #FFFFFF !important;
+            margin: 0;
+        }
+        .sticky_new_header > div{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+        .sticky_new_header .last_price_text{
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 24px;
+            text-decoration-line: line-through;
+            color: rgb(128 128 128 / 75%) !important;
+            margin: 0;
+        }
+        .sticky_new_header .new_price_text{
+            font-weight: 700;
+            font-size: 32px;
+            line-height: 24px;
+            color: #173775 !important;
+            margin: 0 16px 0 8px;
+        }
+        .sticky_new_header .you_save_text{
+            display: flex;
+            align-items: center;
+            text-align: center;
+            font-weight: 700;
+            font-size: 12px;
+            line-height: 14px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            padding: 4px 8px;
+            margin: 0;
+            background: #794E15;
+            border-radius: 4px;
+        }
+        .sticky_new_header button.new_btn{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 48px;
+            max-width: 235px;
+            width: 100%;
+            outline: none;
+            border: none;
+            background: #173775;
+            box-shadow: 5px 5px 10px rgb(39 32 32 / 80%);
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 20px;
+            text-align: center;
+            text-transform: uppercase;
+            color: #FFFFFF !important;
+            transition: all 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
+            margin: 0 0 0 24px;
+        }
+        [data-enrollbtn] svg{
+            margin-left: 8px;
+        }
+        .sticky_new_header button.new_btn:hover,
+        .sticky_new_header button.new_btn:focus{
+            box-shadow: unset;
+        }
+         @media (max-width: 768px) {
+            .sticky_new_header{
+                border-bottom: 2px solid #794E15;
+            }
+            .sticky_new_header p.special_offer_text{
+              padding: 6px;
+              font-size: 14px;
+            }
+            .sticky_new_header > div{
+                flex-wrap: wrap;
+            }
+            .sticky_new_header .new_price_text{
+              font-size: 28px;
+              line-height: 24px;
+              margin: 0 8px;
+            }
+            .sticky_new_header .last_price_text{
+                margin: 0 0 0 35px;
+            }
+            p.special_offer_text{
+                padding: 6px;
+                font-weight: 700;
+                font-size: 14px;
+            }
+            .sticky_new_header button.new_btn{
+              margin: 16px 0 0;
+            }
+         }
+          @media (max-width: 280px) {
+            .sticky_new_header .last_price_text{
+                margin: 0;
+            }
+          }
+      </style>
+      `
+
+      let notFirstVisitStickyBlock = /*html */ ` 
+        <div class="sticky_new_header">
+          <p class="special_offer_text">Special Offer - Ends <span class="count_days">7</span> <span class="text_days">days</span></p>
+          <div>
+              <span class="last_price_text">$497</span>
+              <span class="new_price_text">$297</span>
+              <span class="you_save_text">You save $200</span>
+              <button data-enrollbtn='(sticky header)' class="new_btn enroll_now_btn_new">EnRoll now 
+                <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0.741797 8.23307L3.97513 4.99974L0.741797 1.76641C0.416797 1.44141 0.416797 0.916406 0.741797 0.591406C1.0668 0.266406 1.5918 0.266406 1.9168 0.591406L5.7418 4.41641C6.0668 4.74141 6.0668 5.26641 5.7418 5.59141L1.9168 9.4164C1.5918 9.7414 1.0668 9.7414 0.741797 9.4164C0.42513 9.0914 0.416797 8.55807 0.741797 8.23307Z" fill="white"/>
+                </svg>
+              </button>
+          </div>
+        </div>
+    `
+      document.head.insertAdjacentHTML("beforeend", style)
+      document.querySelector("#myHeaderr").insertAdjacentHTML("beforeend", notFirstVisitStickyBlock)
+
+      getEndsDays()
+
+      //getEndsDays
+      function getEndsDays() {
+        if (document.querySelector("#myHeaderr h4.box_text")) {
+          let paramsLocation = new URLSearchParams(window.location.search)
+          let dQueryDate = atob(paramsLocation.get("d"))
+          let dsp = dQueryDate.split("-")
+
+          let today = new Date(new Date().setDate(new Date().getDate())).toDateString().split(" ")
+          let dayStart = new Date(new Date(dsp[0], dsp[1] - 1, dsp[2]).setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate())).toDateString().split(" ")
+          let dayFirst = new Date(new Date(dsp[0], dsp[1] - 1, dsp[2]).setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 1)).toDateString().split(" ")
+          let daySecond = new Date(new Date(dsp[0], dsp[1] - 1, dsp[2]).setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 2)).toDateString().split(" ")
+          let dayThird = new Date(new Date(dsp[0], dsp[1] - 1, dsp[2]).setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 3)).toDateString().split(" ")
+          let dayFourth = new Date(new Date(dsp[0], dsp[1] - 1, dsp[2]).setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 4)).toDateString().split(" ")
+          let dayFifth = new Date(new Date(dsp[0], dsp[1] - 1, dsp[2]).setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 5)).toDateString().split(" ")
+          let daySixth = new Date(new Date(dsp[0], dsp[1] - 1, dsp[2]).setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 6)).toDateString().split(" ")
+          let daySeventh = new Date(new Date(dsp[0], dsp[1] - 1, dsp[2]).setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 7)).toDateString().split(" ")
+          let todayFormat = `${today[0]}${today[1]}${today[2]}${today[3]}`
+          let dayStartFormat = `${dayStart[0]}${dayStart[1]}${dayStart[2]}${dayStart[3]}`
+          let dayFirstFormat = `${dayFirst[0]}${dayFirst[1]}${dayFirst[2]}${dayFirst[3]}`
+          let daySecondFormat = `${daySecond[0]}${daySecond[1]}${daySecond[2]}${daySecond[3]}`
+          let dayThirdFormat = `${dayThird[0]}${dayThird[1]}${dayThird[2]}${dayThird[3]}`
+          let dayFourthFormat = `${dayFourth[0]}${dayFourth[1]}${dayFourth[2]}${dayFourth[3]}`
+          let dayFifthFormat = `${dayFifth[0]}${dayFifth[1]}${dayFifth[2]}${dayFifth[3]}`
+          let daySixthFormat = `${daySixth[0]}${daySixth[1]}${daySixth[2]}${daySixth[3]}`
+          let daySeventhFormat = `${daySeventh[0]}${daySeventh[1]}${daySeventh[2]}${daySeventh[3]}`
+
+          if (todayFormat === dayStartFormat) {
+            days = "in 7"
+            textDays = "days"
+          } else if (todayFormat === dayFirstFormat) {
+            days = "in 6"
+            textDays = "days"
+          } else if (todayFormat === daySecondFormat) {
+            days = "in 5"
+            textDays = "days"
+          } else if (todayFormat === dayThirdFormat) {
+            days = "in 4"
+            textDays = "days"
+          } else if (todayFormat === dayFourthFormat) {
+            days = "in 3"
+            textDays = "days"
+          } else if (todayFormat === dayFifthFormat) {
+            days = "in 2"
+            textDays = "days"
+          } else if (todayFormat === daySixthFormat) {
+            days = "tomorrow"
+            textDays = ""
+          } else if (todayFormat === daySeventhFormat) {
+            days = "today"
+            textDays = ""
+          }
+          //
+
+          if (document.querySelector(".sticky_new_header")) {
+            document.querySelectorAll(".count_days").forEach((el) => {
+              el.textContent = days
+            })
+            document.querySelectorAll(".text_days").forEach((el) => {
+              el.textContent = textDays
+            })
+
+            document.querySelectorAll("[data-enrollbtn]").forEach((el) => {
+              el.addEventListener("click", (e) => {
+                e.preventDefault()
+                pushDataLayer(`Enroll now ${el.getAttribute("data-enrollbtn")} clicked`)
+                document.querySelector("#myHeaderr a.enroll_now_btn").click()
+              })
+            })
+
+            //observer
+            const options = {
+              root: null,
+              threshold: 0.5,
+            }
+
+            let observerNewHeader = new IntersectionObserver((entries) => {
+              if (!entries[0].isIntersecting) return
+              pushDataLayer(`View element on screen`, `Special offer - ends ${days} ${textDays} (header)`)
+              observerNewHeader.disconnect()
+            })
+
+            observerNewHeader.observe(document.querySelector(".sticky_new_header"), options)
+          }
+        }
+      }
+    }
+  })
 }
