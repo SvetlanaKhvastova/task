@@ -361,67 +361,6 @@ if (window.location.pathname === "/free-workshop/") {
   text-align: center;
 }
 
-.popup_new > div:last-child .popup_second ul {
-  display: flex;
-  flex-direction: column;
-  gap: 34px;
-  padding: 0;
-  margin: 0 0 77px;
-}
-
-.popup_new > div:last-child .popup_second ul li {
-  width: 100%;
-}
-
-.popup_new > div:last-child .popup_second ul li .radio_box {
-  position: absolute;
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-}
-
-.popup_new > div:last-child .popup_second ul li label {
-  border: 1px solid #e8f1f9;
-  border-radius: 10px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-direction: column;
-  max-height: 78px;
-  padding: 10px 18px;
-  margin: 0;
-  cursor: pointer;
-  text-align: left;
-}
-
-.popup_new > div:last-child .popup_second ul li label span:nth-child(2) {
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 150%;
-  color: #193973;
-  margin-bottom: 8px;
-}
-
-.popup_new > div:last-child .popup_second ul li label span:nth-child(3) {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 125%;
-  color: #808080;
-}
-
-.popup_new > div:last-child .popup_second ul li .radio_box:checked + label {
-  border: 3px solid #193973;
-}
-
-.first_block_checkbox label:focus,
-.first_block_checkbox label:hover,
-.popup_new > div:last-child .popup_second ul li label:focus,
-.popup_new > div:last-child .popup_second ul li label:hover {
-  border-color: #66afe9;
-  box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 60%);
-  outline: 0;
-}
-
 .popup_new > div:last-child .popup_first.active_popup,
 .popup_new > div:last-child .popup_second.active_popup,
 .start_step.active_popup{
@@ -435,6 +374,149 @@ if (window.location.pathname === "/free-workshop/") {
 .dog_second,
 .dog_third {
   display: none;
+}
+
+*choosen */
+.popup_new .chosen-container .chosen-drop {
+  max-height: 240px;
+}
+
+.chosen-container .chosen-results li {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #193973 !important;
+}
+
+.chosen-container .chosen-results li em {
+  font-weight: 700;
+  text-decoration: unset;
+}
+
+/*chosen_select */
+.chosen_select {
+  position: relative;
+  max-width: 304px;
+  margin: 0 auto 16px;
+}
+
+.chosen_select label {
+  border: 1px solid #e8f1f9;
+  border-radius: 10px;
+  outline: unset;
+  display: flex;
+  width: 100%;
+  height: 44px;
+  max-width: 520px;
+  margin: 0 0 8px;
+  align-items: center;
+  padding: 5px 18px;
+   transition: all 250ms cubic-bezier(0.45, 0.05, 0.55, 0.95);
+}
+
+.chosen_select label.on_focus{
+    border: 1px solid #6FB3FA;
+  box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 60%); 
+}
+
+.chosen_select label:hover{
+  border: 1px solid #6FB3FA;
+  box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 60%); 
+}
+
+
+.chosen_select p.hover_text{
+  display: flex;
+  align-items: center;
+  position: absolute;
+    bottom: -30px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    color: #808080 !important;
+    left: 6px;
+    margin: 0;
+     transition: all 250ms cubic-bezier(0.45, 0.05, 0.55, 0.95);
+}
+
+.chosen_select p.hover_text svg{
+  margin-right: 8px;
+}
+
+.chosen_select label svg {
+  max-width: 24px;
+  height: 24px;
+  width: 100%;
+}
+
+.chosen_select label svg#removeTextInput {
+  cursor: pointer;
+  display: none;
+}
+
+.chosen_select label > input {
+  width: 100% !important;
+  outline: unset;
+  border-radius: 10px;
+  border: none;
+  padding: 0;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  color: #193973 !important;
+  height: 100%;
+  margin: 0 0 0 8px !important;
+}
+
+.chosen_select label > input::placeholder {
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 20px;
+  color: #a9b4b8;
+}
+
+.chosen_select label > input:focus {
+  box-shadow: unset;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  color: #000000;
+}
+
+.chosen_select div {
+  border: 1px solid #e8f1f9;
+  border-radius: 10px;
+  padding: 10px 19px 0px 16px;
+  max-width: 520px;
+}
+
+.chosen_select div ul {
+  overflow-x: auto;
+  max-height: 240px;
+}
+
+.chosen_select ul::-webkit-scrollbar {
+  width: 2px;
+}
+
+.chosen_select ul::-webkit-scrollbar-thumb {
+  background: #6f767b;
+  border-radius: 10px;
+}
+
+.chosen_select ul li {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #193973 !important;
+  padding: 6px 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.chosen_select ul li:hover{  
+  background: #E8F1F9;
 }
 
 /* */
@@ -966,10 +1048,229 @@ if (window.location.pathname === "/free-workshop/") {
    
     `
 
+      let arrayBreedDog = [
+        "Yorkshire Terrier",
+        "Wolfdog",
+        "Wire Fox Terrier",
+        "White German Shepherd",
+        "Whippet",
+        "West Highland White Terrier",
+        "Welsh Terrier",
+        "Welsh Springer Spaniel",
+        "Weimaraner",
+        "Vizsla",
+        "Tosa Inu",
+        "Tibetan Terrier",
+        "Tibetan Spaniel",
+        "Tasy",
+        "Spanish Water Dog",
+        "Soft Coated Wheaten Terrier",
+        "Smoushond",
+        "Smooth Fox Terrier",
+        "Skye Terrier",
+        "Siberian Husky",
+        "Shiloh Shepherd",
+        "Shih Tzu",
+        "Shiba Inu",
+        "Shetland Sheepdog",
+        "Scottish Terrier",
+        "Schipperke",
+        "Samoyed",
+        "Saluki",
+        "Saint Bernard",
+        "Rottweiler",
+        "Rhodesian Ridgeback",
+        "Thai Ridgeback",
+        "Rat Terrier",
+        "Pumi",
+        "Puli",
+        "Pug",
+        "Presa Canario",
+        "Portuguese Water Dog",
+        "Poodle",
+        "Toy Poodle",
+        "Pomeranian",
+        "Pointer",
+        "Pudelpointer",
+        "Plott Hound",
+        "Pit Bull",
+        "Pharaoh Hound",
+        "Pembroke Welsh Corgi",
+        "Pekingese",
+        "Patterdale Terrier",
+        "Papillon",
+        "Otterhound",
+        "Old English Sheepdog",
+        "Nova Scotia Duck Tolling Retriever",
+        "Norwich Terrier",
+        "Norwegian Elkhound",
+        "Norfolk Terrier",
+        "Newfoundland",
+        "Munsterlander",
+        "Mudi",
+        "Mountain Cur",
+        "Miniature Schnauzer",
+        "Miniature Pinscher",
+        "Mastiff",
+        "Tibetan Mastiff",
+        "Neapolitan Mastiff",
+        "Manchester Terrier",
+        "Maltese",
+        "Malinois",
+        "Lowchen",
+        "Lhasa Apso",
+        "Leonberger",
+        "Lapphund",
+        "Landseer",
+        "Lakeland Terrier",
+        "Labrador Retriever",
+        "Kuvasz",
+        "Komondor",
+        "King Shepherd",
+        "Kerry Blue Terrier",
+        "Keeshond",
+        "Jindo",
+        "Japanese Spitz",
+        "Japanese Chin",
+        "Jack Russell Terrier",
+        "Parson Russell Terrier",
+        "Italian Spinone",
+        "Irish Wolfhound",
+        "Irish Water Spaniel",
+        "Irish Terrier",
+        "Irish Setter",
+        "Ibizan Hound",
+        "Hovawart",
+        "Havanese",
+        "Greyhound",
+        "Italian Greyhound",
+        "Greater Swiss Mountain Dog",
+        "Great Dane",
+        "Gordon Setter",
+        "Golden Retriever",
+        "Glen of Imaal Terrier",
+        "Giant Schnauzer",
+        "German Wirehaired Pointer",
+        "German Spitz",
+        "German Shorthaired Pointer",
+        "German Shepherd",
+        "German Pinscher",
+        "Flat-Coated Retriever",
+        "Finnish Spitz",
+        "Field Spaniel",
+        "Eurasier",
+        "Entlebucher",
+        "English Toy Spaniel",
+        "English Springer Spaniel",
+        "English Setter",
+        "English Foxhound",
+        "English BullDog",
+        "Olde English BullDogge",
+        "French BullDog",
+        "Dutch Shepherd",
+        "Drever",
+        "Doberman Pinscher",
+        "Dingo",
+        "Dalmatian",
+        "Dachshund",
+        "Curly-Coated Retriever",
+        "Coton De Tulear",
+        "Cocker Spaniel",
+        "English Cocker Spaniel",
+        "Clumber Spaniel",
+        "Chow Chow",
+        "Chinese Shar-Pei",
+        "Chinese Crested",
+        "Chihuahua",
+        "Chesapeake Bay Retriever",
+        "Cavalier King Charles Spaniel",
+        "Caucasian Mountain Dog",
+        "Catahoula",
+        "Carolina Dog",
+        "Cardigan Welsh Corgi",
+        "Cane Corso",
+        "Canaan Dog",
+        "Cairn Terrier",
+        "Bull Terrier",
+        "Staffordshire Bull Terrier",
+        "Bull Mastiff",
+        "Brussels Griffon",
+        "Brittany Dog",
+        "Briquet",
+        "Briard",
+        "Brandlbracke",
+        "Boykin Spaniel",
+        "Boxer",
+        "Boston Terrier",
+        "Borzoi",
+        "Border Terrier",
+        "Border Collie",
+        "Boerboel",
+        "Blue Heeler",
+        "Bloodhound",
+        "Black Russian Terrier",
+        "Black and Tan Coonhound",
+        "Redbone Coonhound",
+        "Biewer",
+        "Bichon Frise",
+        "Bernese Mountain Dog",
+        "Berger Pyrenees",
+        "Berger Picard",
+        "Bergamasco",
+        "Belgian Tervuren",
+        "Belgian Sheepdog",
+        "Bedlington Terrier",
+        "Beauceron",
+        "Bearded Collie",
+        "Beagle",
+        "Basset Hound",
+        "Basset Griffon",
+        "Basenji",
+        "Barbet",
+        "Australian Terrier",
+        "Australian Shepherd",
+        "Australian Kelpie",
+        "Australian Cattle Dog",
+        "Armant",
+        "Argentine Dogo",
+        "Anatolian Shepherd",
+        "American Staffordshire Terrier",
+        "American Pit Bull Terrier",
+        "American Hairless Terrier",
+        "Mexican Hairless Terrier",
+        "American Foxhound",
+        "American Eskimo",
+        "American BullDog",
+        "Alaskan Malamute",
+        "Alaskan Klee Kai",
+        "Alaskan Husky",
+        "Akita",
+        "Akbash",
+        "Airedale Terrier",
+        "Afghan Hound",
+        "Affenpinscher",
+      ]
+
       let buttonInputName = /*html*/ `
         <div class="new_block_breed">
           <h2>What breed is your dog?</h2>
           <input type="text" class="" data-html="true" name="breed" id="breedDog" placeholder="Your dog’s breed" tabindex="0">
+          <div class="chosen_select">
+                  <label>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.04 17.2798C7.58405 17.2798 4.80005 14.4958 4.80005 11.0398C4.80005 7.5838 7.58405 4.7998 11.04 4.7998C14.496 4.7998 17.28 7.5838 17.28 11.0398C17.28 14.4958 14.496 17.2798 11.04 17.2798ZM11.04 5.7598C8.11205 5.7598 5.76005 8.1118 5.76005 11.0398C5.76005 13.9678 8.11205 16.3198 11.04 16.3198C13.968 16.3198 16.32 13.9678 16.32 11.0398C16.32 8.1118 13.968 5.7598 11.04 5.7598Z" fill="#A9B4B8"/>
+                    <path d="M15.6873 15.0078L19.9977 19.3182L19.3189 19.9969L15.0085 15.6865L15.6873 15.0078Z" fill="#A9B4B8"/>
+                    </svg>
+                    <input type="text" placeholder='Enter your dog’s breed'>
+
+                    <svg id="removeTextInput" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.0604 11.9996L17.7802 7.27982C17.9168 7.13837 17.9924 6.94892 17.9907 6.75227C17.989 6.55562 17.9101 6.36751 17.7711 6.22846C17.632 6.0894 17.4439 6.01053 17.2472 6.00882C17.0506 6.00711 16.8611 6.0827 16.7197 6.21932L11.9999 10.9391L7.28019 6.21932C7.13874 6.0827 6.94929 6.00711 6.75264 6.00882C6.55599 6.01053 6.36788 6.0894 6.22882 6.22846C6.08977 6.36751 6.01089 6.55562 6.00918 6.75227C6.00747 6.94892 6.08307 7.13837 6.21969 7.27982L10.9394 11.9996L6.21969 16.7193C6.14806 16.7885 6.09092 16.8713 6.05161 16.9628C6.01231 17.0543 5.99162 17.1527 5.99075 17.2523C5.98989 17.3519 6.00886 17.4506 6.04657 17.5428C6.08428 17.635 6.13997 17.7187 6.21039 17.7891C6.28081 17.8595 6.36455 17.9152 6.45672 17.9529C6.5489 17.9907 6.64765 18.0096 6.74724 18.0088C6.84682 18.0079 6.94524 17.9872 7.03674 17.9479C7.12825 17.9086 7.211 17.8515 7.28019 17.7798L11.9999 13.0601L16.7197 17.7798C16.8611 17.9164 17.0506 17.992 17.2472 17.9903C17.4439 17.9886 17.632 17.9097 17.7711 17.7707C17.9101 17.6316 17.989 17.4435 17.9907 17.2469C17.9924 17.0502 17.9168 16.8608 17.7802 16.7193L13.0604 11.9996Z" fill="#808080"/>
+                    </svg>
+                  </label>
+                  <div>
+                    <ul></ul>
+                  </div>
+                </div>
         </div>
         <div class="button_input_name" tabindex="0">Continue</div>
         <div class="privacy_policy_wrap">
@@ -1023,6 +1324,10 @@ if (window.location.pathname === "/free-workshop/") {
         </div>
     </div>
     `
+
+      function setListBreedDog(title) {
+        return `  <li data-breed="${title}">${title}</li>`
+      }
 
       document.head.insertAdjacentHTML("beforeend", popupStyle)
 
@@ -1225,6 +1530,121 @@ if (window.location.pathname === "/free-workshop/") {
             document.querySelector("#firstModal #contact-submit").addEventListener("click", function () {
               pushDataLayer("Get workshop link clicked")
             })
+          }
+
+          // choose select
+          if (document.querySelector(".chosen_select")) {
+            filteInputText()
+            // remove all text input
+            document.querySelector("#removeTextInput").addEventListener("click", function (e) {
+              pushDataLayer("Click on Closed on step 'What breed is your dog?'")
+              document.querySelector(".chosen_select ul").innerHTML = ""
+              arrayBreedDog.forEach((el) => {
+                document.querySelector(".chosen_select ul").insertAdjacentHTML("afterbegin", setListBreedDog(el))
+              })
+              this.previousElementSibling.value = ""
+              document.querySelector(".chosen_select div").style.display = "block"
+              document.querySelector(".popup_new > div:last-child .popup_third_box .btn_continue")?.classList.add("disabled_var")
+              filteInputText()
+            })
+
+            // filter
+            document.querySelector(".chosen_select label > input").addEventListener("focus", () => {
+              document.querySelector(".chosen_select label")?.classList.add("on_focus")
+              document.querySelector(".chosen_select").insertAdjacentHTML(
+                "beforeend",
+                `<p class="hover_text"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_732_846)"><path d="M11.8087 9.26711L7.222 1.3227C6.96695 0.880953 6.51013 0.617188 5.99999 0.617188C5.48988 0.617188 5.03303 0.880953 4.77799 1.3227L0.191302 9.26708C-0.0637675 9.70888 -0.0637675 10.2364 0.191302 10.6781C0.446372 11.1199 0.903168 11.3837 1.41331 11.3837H10.5867C11.0968 11.3837 11.5536 11.1199 11.8087 10.6782C12.0638 10.2364 12.0638 9.70888 11.8087 9.26711ZM11.1999 10.3266C11.0719 10.5483 10.8426 10.6806 10.5867 10.6806H1.41331C1.15732 10.6806 0.928106 10.5483 0.800137 10.3266C0.672169 10.105 0.672169 9.84032 0.800137 9.61865L5.38687 1.67424C5.51484 1.45257 5.74406 1.32024 6.00002 1.32024C6.25595 1.32024 6.4852 1.45257 6.61316 1.67424L11.1999 9.61865C11.3278 9.84032 11.3278 10.105 11.1999 10.3266Z" fill="#808080"/><path d="M6.35147 4.125H5.64844V7.6402H6.35147V4.125Z" fill="#808080"/><path d="M5.99995 8.34375C5.74151 8.34375 5.53125 8.55401 5.53125 8.81245C5.53125 9.0709 5.74151 9.28115 5.99995 9.28115C6.25837 9.28115 6.46865 9.0709 6.46865 8.81245C6.46865 8.55401 6.2584 8.34375 5.99995 8.34375Z" fill="#808080"/></g><defs><clipPath id="clip0_732_846"><rect width="12" height="12" fill="white"/></clipPath></defs></svg>
+              Choose your dog breed to continue</p>`
+              )
+            })
+
+            document.querySelector(".chosen_select label > input").addEventListener("keydown", (e) => {
+              document.querySelector(".chosen_select label")?.classList.add("on_focus")
+              let x = document.querySelector(`${e.target}`).closest("label").nextElementSibling
+
+              // if (e.keyCode == 40) {
+              //   console.log(x)
+              // } else if (e.keyCode == 38) {
+              //   console.log(x)
+              // } else if (e.keyCode == 13) {
+              //   console.log(x)
+              //   e.preventDefault()
+              // }
+            })
+
+            document.querySelector(".chosen_select label > input").addEventListener("blur", () => {
+              if (document.querySelector(".chosen_select label")?.classList.contains("on_focus")) {
+                document.querySelector(".chosen_select label")?.classList.remove("on_focus")
+
+                if (document.querySelector(".chosen_select > p")) {
+                  document.querySelector(".chosen_select > p").remove()
+                }
+                if (document.querySelector(".chosen_select label > input").value === "") {
+                  document.querySelector(".chosen_select label svg#removeTextInput").style.display = "none"
+                }
+              }
+            })
+
+            document.querySelector(".chosen_select label > input").addEventListener("input", function (e) {
+              if (e.value !== "") {
+                document.querySelector(".chosen_select label svg#removeTextInput").style.display = "block"
+              }
+
+              document.querySelector(".chosen_select ul").innerHTML = ""
+              arrayBreedDog.forEach((el) => {
+                document.querySelector(".chosen_select ul").insertAdjacentHTML("afterbegin", setListBreedDog(el))
+              })
+
+              document.querySelector(".chosen_select div").style.display = "block"
+              document.querySelector(".popup_new > div:last-child .popup_third_box .btn_continue")?.classList.add("disabled_var")
+              filteInputText()
+            })
+
+            function filteInputText() {
+              let filterValue = document.querySelector(".chosen_select label > input").value.toUpperCase()
+              let notFound = true
+
+              document.querySelectorAll(".chosen_select ul li").forEach(function (el) {
+                el.addEventListener("click", function () {
+                  document.querySelector(".chosen_select label > input").value = el.textContent
+                  document.querySelector(".chosen_select div").style.display = "none"
+                  document.querySelector(".popup_new > div:last-child .popup_third_box .btn_continue.disabled_var")?.classList.remove("disabled_var")
+                  if (document.querySelector(".chosen_select label > input").value !== "") {
+                    document.querySelector(".chosen_select label svg#removeTextInput").style.display = "block"
+                  }
+                })
+
+                let text = el.textContent.toUpperCase()
+                if (text.includes(filterValue)) {
+                  el?.classList.add("show")
+                  el?.classList.remove("hide")
+                  notFound = false
+                  includesSymb(filterValue, text, el.firstChild)
+                } else {
+                  el?.classList.add("hide")
+                  el?.classList.remove("show")
+                }
+              })
+
+              if (notFound) {
+                document.querySelector(".chosen_select ul").innerHTML = `<li>Oops, nothing found!</li>`
+              }
+            }
+          }
+
+          function includesSymb(text, cont, element) {
+            let root = element
+            let content = cont
+
+            let rng = document.createRange()
+
+            rng.setStart(root, content.indexOf(text))
+
+            rng.setEnd(root, content.indexOf(text) + text.length)
+
+            let highlightDiv = document.createElement("strong")
+
+            rng.surroundContents(highlightDiv)
           }
         }
       }, 10)
