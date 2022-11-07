@@ -2,6 +2,32 @@ let stickyBanner = setInterval(() => {
   if (document.querySelector("#menu-list")) {
     clearInterval(stickyBanner)
 
+    let eventVar = "desktop"
+
+    if (window.innerWidth <= 768) {
+      eventVar = "mobile"
+    }
+
+    function pushDataLayer(actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || []
+      if (labelDataLayer) {
+        console.log(actionDataLayer + " : " + labelDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Sticky ZIP ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        })
+      } else {
+        console.log(actionDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Sticky ZIP ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+        })
+      }
+    }
+
     let style = /*html */ `
     <style>
         .sticky_banner{
@@ -186,17 +212,20 @@ let stickyBanner = setInterval(() => {
                 error = stickyBox.querySelector(".zip_error")
 
               if (closeBtn) {
-                closeBtn.addEventListener("click", () => {
-                  console.log(`closeBtn`)
-                  sessionStorage.setItem("sticky_banner", "true")
-                  stickyBox.classList.add("is_hidden")
+                closeBtn.addEventListener("click", (e) => {
+                  if (!e.target.getAttribute("data-test")) {
+                    pushDataLayer("Sticky banner closed")
+                    sessionStorage.setItem("sticky_banner", "true")
+                    stickyBox.classList.add("is_hidden")
+                  }
+                  e.target.setAttribute("data-test", "1")
                 })
               }
               if (btnSend) {
                 btnSend.addEventListener("click", (e) => {
                   e.preventDefault()
                   if (!e.target.getAttribute("data-test")) {
-                    console.log(e.target)
+                    pushDataLayer("Compare Quoutes clicked")
 
                     if (window.location.pathname === "/insurance/auto/how-much-car-insurance-do-you-need/") {
                       document.querySelector("form.css-1lpx304 button").click()
@@ -207,8 +236,6 @@ let stickyBanner = setInterval(() => {
                       window.location.pathname === "/insurance/auto/cheapest-car-insurance-texas/"
                     ) {
                       document.querySelector("form.css-8atqhb button").click()
-                    } else if (window.location.pathname === "/insurance/auto/most-stolen-cars-in-america/") {
-                      // /insurance/auto/most-stolen-cars-in-america/ - нет функционала
                     } else if (window.location.pathname === "/insurance/auto/resources/protecting-against-fraud/") {
                       document.querySelector("form.css-6d9zwi button").click()
                     }
@@ -216,6 +243,7 @@ let stickyBanner = setInterval(() => {
                     if (document.querySelector(".chakra-form__error-message.css-vamxt0") !== null) {
                       error.classList.add("is_error")
                       label.classList.add("is_error")
+                      pushDataLayer("ZIP filed error shown")
                     } else {
                       error.classList.remove("is_error")
                       label.classList.remove("is_error")
@@ -232,6 +260,19 @@ let stickyBanner = setInterval(() => {
               }
 
               if (input) {
+                input.addEventListener("focus", (e) => {
+                  if (!e.target.getAttribute("data-test")) {
+                    pushDataLayer("ZIP field selected (focus)")
+                  }
+                  e.target.setAttribute("data-test", "1")
+
+                  setTimeout(() => {
+                    if (e.target.getAttribute("data-test")) {
+                      e.target.removeAttribute("data-test")
+                    }
+                  }, 300)
+                })
+
                 input.addEventListener("input", (e) => {
                   var nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set
 
@@ -263,5 +304,29 @@ let stickyBanner = setInterval(() => {
         }
       }
     }
+
+    if (document.querySelector(".sticky_banner")) {
+      const options = {
+        root: null,
+        threshold: 1,
+      }
+
+      let observerNewHeader = new IntersectionObserver((entries) => {
+        if (!entries[0].isIntersecting) return
+        pushDataLayer(`Sticky ZIP banner appearance`)
+        observerNewHeader.disconnect()
+      })
+
+      observerNewHeader.observe(document.querySelector(".sticky_banner"), options)
+    }
+
+    pushDataLayer("loaded")
+    const record = setInterval(() => {
+      if (typeof clarity === "function") {
+        clearInterval(record)
+
+        clarity("set", "sticky_zip", "variant_1")
+      }
+    }, 200)
   }
 }, 100)
