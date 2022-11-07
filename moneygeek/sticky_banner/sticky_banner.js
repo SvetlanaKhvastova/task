@@ -9,7 +9,15 @@ let stickyBanner = setInterval(() => {
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.26);
             border-radius: 5px;
             padding: 16px;
-            position: relative;
+            top: 12px;
+            left: 0;
+            width: 300px;
+            display: none;
+            z-index: 55555555;
+        }
+        .sticky_banner.is_fixed{            
+            position: absolute;
+            display: block;
         }
         .btn_close_sticky{
             position: absolute;
@@ -87,7 +95,7 @@ let stickyBanner = setInterval(() => {
             color: #DB3732;
             margin: 0;
         }
-        .is_hidden{
+        .sticky_banner.is_hidden{
             display: none;
         }
         .zip_error.is_error{
@@ -95,6 +103,27 @@ let stickyBanner = setInterval(() => {
         }
         .sticky_banner label.is_error{
             border-color: #DB3732;
+        }
+
+        @media (max-width: 1110px){
+            .sticky_banner{
+                width: 100%;
+                top: -50px;
+                border-radius: unset;
+                box-shadow: 0px 2px 0px #EFEFF1;
+            }
+            .sticky_banner p{
+                max-width: 311px;
+                font-size: 24px;
+                line-height: 28px;
+                margin-bottom: 12px;
+            }
+            .sticky_banner button{
+                margin-top: 10px;
+            }
+            .sticky_banner label{
+                padding: 8px 12px;
+            }
         }
     </style>
     `
@@ -132,48 +161,107 @@ let stickyBanner = setInterval(() => {
     `
 
     document.body.insertAdjacentHTML("afterbegin", style)
-    document.querySelector("#sub-navigation").insertAdjacentHTML("afterbegin", stickyBlock)
 
-    let stickyBox = document.querySelector(".sticky_banner"),
-      label = stickyBox.querySelector("label"),
-      input = stickyBox.querySelector("input"),
-      closeBtn = stickyBox.querySelector(".btn_close_sticky"),
-      btnSend = stickyBox.querySelector("button"),
-      error = stickyBox.querySelector(".zip_error")
-
-    if (closeBtn) {
-      closeBtn.addEventListener("click", () => {
-        sessionStorage.setItem("sticky_banner", "true")
-        stickyBox.classList.add("is_hidden")
-      })
+    if (!sessionStorage.getItem("sticky_banner")) {
+      document.querySelector("#sub-navigation").insertAdjacentHTML("afterbegin", stickyBlock)
     }
-    if (btnSend) {
-      btnSend.addEventListener("click", (e) => {
-        e.preventDefault()
-        document.querySelector("#KAWIB_CTA_button button").click()
-        if (document.querySelector("#field-13-feedback") !== null) {
-          error.classList.add("is_error")
-          label.classList.add("is_error")
+
+    window.addEventListener("scroll", function () {
+      onLoadStickyBanner()
+    })
+
+    onLoadStickyBanner()
+
+    function onLoadStickyBanner() {
+      if (document.querySelector(".sticky_banner")) {
+        if (document.querySelector(".css-2s6hek")?.getBoundingClientRect().bottom <= 0 || document.querySelector(".css-1ih2ha8")?.getBoundingClientRect().bottom <= 0) {
+          if (!document.querySelector(".sticky_banner").classList.contains("is_fixed")) {
+            document.querySelector(".sticky_banner").classList.add("is_fixed")
+            if (document.querySelector(".sticky_banner")) {
+              let stickyBox = document.querySelector(".sticky_banner"),
+                label = stickyBox.querySelector("label"),
+                input = stickyBox.querySelector("input"),
+                closeBtn = stickyBox.querySelector(".btn_close_sticky"),
+                btnSend = stickyBox.querySelector("button"),
+                error = stickyBox.querySelector(".zip_error")
+
+              if (closeBtn) {
+                closeBtn.addEventListener("click", () => {
+                  console.log(`closeBtn`)
+                  sessionStorage.setItem("sticky_banner", "true")
+                  stickyBox.classList.add("is_hidden")
+                })
+              }
+              if (btnSend) {
+                btnSend.addEventListener("click", (e) => {
+                  e.preventDefault()
+                  if (!e.target.getAttribute("data-test")) {
+                    console.log(e.target)
+
+                    if (window.location.pathname === "/insurance/auto/how-much-car-insurance-do-you-need/") {
+                      document.querySelector("form.css-1lpx304 button").click()
+                    } else if (
+                      window.location.pathname === "/insurance/auto/temporary-and-month-to-month-car-insurance/" ||
+                      window.location.pathname === "/insurance/auto/non-owner-car-insurance-north-carolina/" ||
+                      window.location.pathname === "/insurance/auto/high-risk-car-insurance/" ||
+                      window.location.pathname === "/insurance/auto/cheapest-car-insurance-texas/"
+                    ) {
+                      document.querySelector("form.css-8atqhb button").click()
+                    } else if (window.location.pathname === "/insurance/auto/most-stolen-cars-in-america/") {
+                      // /insurance/auto/most-stolen-cars-in-america/ - нет функционала
+                    } else if (window.location.pathname === "/insurance/auto/resources/protecting-against-fraud/") {
+                      document.querySelector("form.css-6d9zwi button").click()
+                    }
+
+                    if (document.querySelector(".chakra-form__error-message.css-vamxt0") !== null) {
+                      error.classList.add("is_error")
+                      label.classList.add("is_error")
+                    } else {
+                      error.classList.remove("is_error")
+                      label.classList.remove("is_error")
+                    }
+                  }
+                  e.target.setAttribute("data-test", "1")
+
+                  setTimeout(() => {
+                    if (e.target.getAttribute("data-test")) {
+                      e.target.removeAttribute("data-test")
+                    }
+                  }, 500)
+                })
+              }
+
+              if (input) {
+                input.addEventListener("input", (e) => {
+                  var nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set
+
+                  nativeInputValueSetter.call(document.querySelector('[name="zip"]'), e.target.value)
+
+                  if (document.querySelector(".chakra-form__error-message.css-vamxt0")) {
+                    error.classList.remove("is_error")
+                    label.classList.remove("is_error")
+                  }
+                  var ev2 = new Event("input", { bubbles: true })
+                  document.querySelector('[name="zip"]').dispatchEvent(ev2)
+                })
+              }
+
+              if (document.querySelector('[name="zip"]')) {
+                document.querySelector('[name="zip"]').addEventListener("input", (e) => {
+                  input.value = e.target.value
+
+                  if (document.querySelector(".chakra-form__error-message.css-vamxt0")) {
+                    error.classList.remove("is_error")
+                    label.classList.remove("is_error")
+                  }
+                })
+              }
+            }
+          }
         } else {
-          error.classList.remove("is_error")
-          label.classList.remove("is_error")
+          document.querySelector(".sticky_banner").classList.remove("is_fixed")
         }
-      })
-    }
-
-    if (input) {
-      input.addEventListener("input", (e) => {
-        var nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set
-
-        nativeInputValueSetter.call(document.querySelector('[name="zip"]'), e.target.value)
-        var ev2 = new Event("input", { bubbles: true })
-        document.querySelector('[name="zip"]').dispatchEvent(ev2)
-
-        if (document.querySelector("#field-13-feedback")) {
-          error.classList.remove("is_error")
-          label.classList.remove("is_error")
-        }
-      })
+      }
     }
   }
 }, 100)
