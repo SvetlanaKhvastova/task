@@ -122,6 +122,19 @@ margin: 0;
 .enroll_box .info_box > div.img_wrap {
   max-width: 413px;
 }
+.tooltip_mob{
+  display: none;
+      align-items: center;
+    justify-content: center;
+  margin: 12px 0 -5px;
+}
+.last_step_title .tooltip_mob p{
+  font-weight: 400 !important;
+font-size: 14px !important;
+line-height: 20px !important;
+color: #193973 !important;
+margin: 0 4px 0 0 !important;
+}
 .tooltip_box{
   display: none;
   background: #E8F1F9;
@@ -334,9 +347,11 @@ margin: 0;
 }
 
 .first_block_checkbox input.custom_checkbox {
-  position: absolute;
-  z-index: -1;
-  opacity: 0;
+    z-index: -1;
+    opacity: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .first_block_checkbox label {
@@ -1139,8 +1154,25 @@ line-height: 150%;
 }
 
 @media (max-width: 768px) {
+  #firstModal .modal-content{
+        width: 100% !important;
+    padding: 0 15px !important;
+  }
+  .popup_new > div:last-child .progress_bar > ul{
+    margin: 0 0 12px;
+    height: 17px;
+  }
+  .popup_new > div:last-child .progress_bar > ul li {
+    width: 24.64%;
+}
+.popup_new > div:last-child .progress_bar > div p:nth-child(2) span,
+.popup_new > div:last-child .progress_bar > div p:nth-child(1) span,
+.dog_third p{
+  display: none !important;
+}
   #firstModal .modal-dialog{
-    width: 100%;
+    width: 100% !important;
+        margin: 10px 0 !important;
   }
   #firstModal .modal-body{
     padding: 0;
@@ -1195,6 +1227,7 @@ line-height: 150%;
   }
   .start_step ul{
     flex-wrap: wrap;
+    padding: 0 0 46px;
   }
   .start_step ul li{
     width: 100%;
@@ -1213,14 +1246,20 @@ line-height: 150%;
 }
 .popup_new .img_wrap {
     width: 100%;
+    margin-top: 20px;
 }
 .button_input_name{
-      margin: 12px auto 0;
+      margin: 24px auto 0;
+      max-width: unset;
 }
 #firstModal .form-control, 
 .new_block_breed input, 
 #firstModal #subs-mobile{
   padding: 10px 16px !important;
+      max-width: unset;
+}
+.new_block_breed{
+      max-width: unset;
 }
 /*.benefits */
 .benefits {
@@ -1228,6 +1267,7 @@ line-height: 150%;
 }
 .benefits ul{
   flex-direction: column;
+  padding: 0 0 50px;
 }
 .benefits ul li{
   width: 100% !important;
@@ -1235,6 +1275,44 @@ line-height: 150%;
 }
 .benefits ul li + li{
   margin: 24px 0 0;
+}
+.first_block_checkbox label{
+  width: 100%;
+}
+.first_block_checkbox{
+  gap: 12px;
+}
+.first_block_checkbox{
+  margin: 0 auto 24px;
+}
+.btn_continue{
+  max-width: unset;
+  margin: 0 0 46px;
+}
+.popup_new > div:last-child .popup_first > p{
+      line-height: 129%;
+}
+.popup_new > div:last-child .popup_first > h2{
+      font-size: 22px !important;
+    line-height: 28px;
+        margin: 32px 0 12px;
+}
+.popup_new > div:last-child .popup_second > h2{
+      margin: 24px 0 0;
+          font-size: 22px !important;
+    line-height: 28px;
+}
+.privacy_policy_wrap{
+      margin: 16px auto 60px;
+}
+.tooltip_box{
+  max-width: unset;
+}
+#firstModal form span.top-levels{
+      right: 15px !important;
+}
+p.mobile_descr{
+      margin: -36px 0 0;
 }
 }
 
@@ -1258,6 +1336,46 @@ line-height: 150%;
     </div>
   </div>
 `
+
+      let tooltipMobBox = /*html */ `
+      <div class="tooltip_mob_box">
+
+        <p>Your hosts for the workshop will be  <span>Dr. Alexa Diaz PhD</span> (one of the United States' greatest dog trainers) and <span>Eric Presnall</span> (Host of the hit Animal Planet TV show "Who Let the Dogs Out").</p>
+                               <div class="benefits_mob">
+                           <ul>
+                             <li>
+                               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                 <path
+                                   d="M12 2C6.48583 2 2 6.48583 2 12C2 17.5142 6.48583 22 12 22C17.5142 22 22 17.5142 22 12C22 6.48583 17.5142 2 12 2ZM12.8333 12C12.8333 12.2975 12.675 12.5733 12.4167 12.7217C12.2875 12.7958 12.1442 12.8333 12 12.8333C11.8558 12.8333 11.7125 12.7958 11.5833 12.7217L8.69667 11.055C8.2975 10.825 8.16167 10.315 8.39167 9.91667C8.62167 9.51833 9.13167 9.38 9.53 9.61167L11.1667 10.5567V7C11.1667 6.53917 11.54 6.16667 12 6.16667C12.46 6.16667 12.8333 6.53917 12.8333 7V12Z"
+                                   fill="#699CD0"
+                                 />
+                               </svg>
+ 
+                               <p>Watch on demand at your convenience</p>
+                             </li>
+                             <li>
+                               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                 <path
+                                   d="M4.5 21C4.5 21 3 21 3 19.5C3 18 4.5 13.5 12 13.5C19.5 13.5 21 18 21 19.5C21 21 19.5 21 19.5 21H4.5ZM12 12C13.1935 12 14.3381 11.5259 15.182 10.682C16.0259 9.83807 16.5 8.69347 16.5 7.5C16.5 6.30653 16.0259 5.16193 15.182 4.31802C14.3381 3.47411 13.1935 3 12 3C10.8065 3 9.66193 3.47411 8.81802 4.31802C7.97411 5.16193 7.5 6.30653 7.5 7.5C7.5 8.69347 7.97411 9.83807 8.81802 10.682C9.66193 11.5259 10.8065 12 12 12Z"
+                                   fill="#699CD0"
+                                 />
+                               </svg>
+ 
+                               <p>This workshop has helped train 2.7 million dogs</p>
+                             </li>
+                             <li>
+                               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                 <path
+                                   d="M12 1.5C6.20156 1.5 1.5 6.20156 1.5 12C1.5 17.7984 6.20156 22.5 12 22.5C17.7984 22.5 22.5 17.7984 22.5 12C22.5 6.20156 17.7984 1.5 12 1.5ZM15.3773 12.1617L10.2586 15.8859C10.2305 15.9061 10.1975 15.9181 10.163 15.9207C10.1285 15.9233 10.094 15.9164 10.0633 15.9006C10.0325 15.8849 10.0067 15.861 9.98863 15.8315C9.97057 15.802 9.96099 15.7681 9.96094 15.7336V8.28984C9.96082 8.25522 9.9703 8.22124 9.98832 8.19167C10.0063 8.1621 10.0322 8.1381 10.063 8.12232C10.0938 8.10654 10.1284 8.09961 10.1629 8.10229C10.1975 8.10497 10.2306 8.11716 10.2586 8.1375L15.3773 11.8594C15.4015 11.8765 15.4213 11.8991 15.4349 11.9254C15.4485 11.9517 15.4556 11.9809 15.4556 12.0105C15.4556 12.0402 15.4485 12.0694 15.4349 12.0957C15.4213 12.122 15.4015 12.1446 15.3773 12.1617Z"
+                                   fill="#699CD0"
+                                 />
+                               </svg>
+                               <p>Workshop duration: 56 minutes</p>
+                             </li>
+                           </ul>
+                         </div>
+      </div>
+      `
 
       let popupNew = /*html*/ `
     <div class="popup_new_wrap">
@@ -1383,7 +1501,22 @@ line-height: 150%;
                 <div class="popup_second">
                     <div class="last_step_title">
                       <h2>Discover how to eliminate <span class="your_dog_name">[dog’s name]</span> behavior problems today!</h2>
-                      <p>Access the workshop that has helped transform the behavior of 2.7 million dogs, for FREE, today:</p>                      
+                      <p>Access the workshop that has helped transform the behavior of 2.7 million dogs, for FREE, today:</p>  
+                      <div class="tooltip_mob" data-tolltipMob>
+                        <p>View workshop details</p>
+                                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <g clip-path="url(#clip0_2433_7202)">
+                              <path d="M7.99479 1.33463C11.6767 1.33463 14.6615 4.3194 14.6615 8.0013C14.6615 11.6832 11.6767 14.668 7.99479 14.668C4.31289 14.668 1.32812 11.6832 1.32812 8.0013C1.32812 4.3194 4.31289 1.33463 7.99479 1.33463Z" stroke="#193973" stroke-linecap="round" stroke-linejoin="round"/>
+                              <path d="M8 10.668V8.0013" stroke="#193973" stroke-linecap="round" stroke-linejoin="round"/>
+                              <path d="M8 5.33203H8.016" stroke="#193973" stroke-linecap="round" stroke-linejoin="round"/>
+                              </g>
+                              <defs>
+                              <clipPath id="clip0_2433_7202">
+                              <rect width="16" height="16" fill="white" transform="matrix(1 0 0 -1 0 16)"/>
+                              </clipPath>
+                              </defs>
+                              </svg>
+                      </div>                   
                     </div>
                     <h2>We'd love to know more about your dog. Introduce us!</h2>
                      <p class="mobile_descr">Your hosts for the workshop will be  <span>Dr. Alexa Diaz PhD</span> (one of the United States' greatest dog trainers) and <span>Eric Presnall</span> (Host of the hit Animal Planet TV show "Who Let the Dogs Out").</p>
@@ -1948,13 +2081,30 @@ line-height: 150%;
                 document.querySelector("#firstModal .modal-body").classList.remove("is_active")
 
                 if (innerWidth <= 768) {
-                  document.querySelector("mobile_descr").style.display = "none"
+                  document.querySelector(".mobile_descr").style.display = "none"
+                  document.querySelector(".tooltip_mob").style.display = "none"
                 }
 
                 document.querySelector(".popup_new > div:last-child .progress_bar > ul li:nth-child(4)")?.classList.remove("active_step")
                 document.querySelector(".popup_new > div:last-child .progress_bar > div p:last-child span:nth-child(1)").textContent = "3"
               }
             })
+          }
+
+          if (innerWidth <= 768) {
+            document.querySelector(".start_step ul li:nth-child(1) img").src = "https://conversionratestore.github.io/projects/knineti/img/puppy_dog_mob.jpg"
+            document.querySelector(".start_step ul li:nth-child(2) img").src = "https://conversionratestore.github.io/projects/knineti/img/adult_dog_mob.jpg"
+
+            let s = setInterval(() => {
+              if (document.querySelector(".progress_bar")) {
+                clearInterval(s)
+                document.querySelector(".progress_bar")?.after(document.querySelector(".popup_new .img_wrap"))
+
+                document.querySelector("img.dog_first").src = "https://conversionratestore.github.io/projects/knineti/img/dog_select_problem_mob.jpg"
+                document.querySelector("img.dog_second").src = "https://conversionratestore.github.io/projects/knineti/img/dog_breed_block_mob.jpg"
+                document.querySelector(".dog_third img").src = "https://conversionratestore.github.io/projects/knineti/img/dog_last_block_mob.jpg"
+              }
+            }, 10)
           }
 
           //FORM
@@ -2233,6 +2383,7 @@ line-height: 150%;
 
           if (innerWidth <= 768) {
             document.querySelector("p.mobile_descr").style.display = "block"
+            document.querySelector(".tooltip_mob").style.display = "flex"
           }
 
           if (document.querySelector("#firstModal #subs-email").value !== "") {
@@ -2246,12 +2397,39 @@ line-height: 150%;
           clearInterval(tippyRun)
 
           document.querySelectorAll("[data-title]").forEach((el) => {
+            if (innerWidth <= 768) {
+              tippy(el, {
+                content: el.getAttribute("data-title"),
+                trigger: "click",
+                placement: "bottom",
+                appendTo: function () {
+                  return document.querySelector(".tooltip_box")
+                },
+              })
+            } else {
+              tippy(el, {
+                content: el.getAttribute("data-title"),
+                placement: "bottom",
+                appendTo: function () {
+                  return document.querySelector(".tooltip_box")
+                },
+              })
+            }
+          })
+        }
+      }, 500)
+
+      let tippyRun2 = setInterval(() => {
+        if (typeof tippy === "function" && document.querySelector("[data-tolltipMob]")) {
+          clearInterval(tippyRun2)
+
+          document.querySelectorAll("[data-tolltipMob]").forEach((el) => {
             tippy(el, {
-              content: el.getAttribute("data-title"),
-              // trigger: "click",
+              content: tooltipMobBox,
+              trigger: "click",
               placement: "bottom",
               appendTo: function () {
-                return document.querySelector(".tooltip_box")
+                return document.querySelector(".tooltip_mob")
               },
             })
           })
