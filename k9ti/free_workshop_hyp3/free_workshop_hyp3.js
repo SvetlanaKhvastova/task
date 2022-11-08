@@ -3,6 +3,16 @@ if (window.location.pathname === "/free-workshop/") {
     if (document.querySelector(".entry-content")) {
       clearInterval(startFunkDesk)
 
+      let scriptPopper = document.createElement("script")
+      scriptPopper.src = "https://unpkg.com/popper.js@1"
+      scriptPopper.async = false
+      document.body.appendChild(scriptPopper)
+
+      let scriptTippy = document.createElement("script")
+      scriptTippy.src = "https://unpkg.com/tippy.js@5"
+      scriptTippy.async = false
+      document.body.appendChild(scriptTippy)
+
       function pushDataLayer(actionDataLayer, labelDataLayer) {
         window.dataLayer = window.dataLayer || []
         if (labelDataLayer) {
@@ -69,7 +79,9 @@ if (window.location.pathname === "/free-workshop/") {
   text-transform: none;
   transition: all 250ms cubic-bezier(0.45, 0.05, 0.55, 0.95);
 }
-
+.btn_continue svg{
+  margin-left: 8px;
+}
 /*join_text */
 .join_text {
   background: #193973;
@@ -85,6 +97,23 @@ if (window.location.pathname === "/free-workshop/") {
   color: #ffffff !important;
 }
 
+.email_text{
+  background: #E8F1F9;
+  border-radius: 4px;
+  padding: 4px 11px;
+  display: none;
+margin: 4px auto 24px;
+    max-width: 304px;
+    text-align: center;
+}
+.email_text p{
+font-weight: 600;
+font-size: 14px;
+line-height: 20px;
+color: #193973 !important;
+margin: 0;
+}
+
 #contact-submit:hover,
 .btn_continue:hover,
 .button_input_name:hover {
@@ -96,6 +125,25 @@ if (window.location.pathname === "/free-workshop/") {
 }
 .tooltip_box{
   display: none;
+  background: #E8F1F9;
+  border-radius: 4px;
+  padding: 4px 16px;
+  max-width: 304px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: left;
+  cursor: pointer;
+}
+.tooltip_box p{
+  display: inline;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: #193973 !important;
+  margin: 0;
+}
+.tooltip_box svg{
+  margin: 0 0 -4px 0;
 }
 /*start_step */
 .start_step{
@@ -117,7 +165,7 @@ if (window.location.pathname === "/free-workshop/") {
     font-size: 20px;
     line-height: 30px;
     color: #808080 !important;
-    margin: 0 auto 27px;
+    margin: 0 auto 32px;
     text-align: center;
 }
 .start_step > p span{
@@ -209,7 +257,7 @@ if (window.location.pathname === "/free-workshop/") {
   line-height: 125%;
   text-align: center;
   color: #808080 !important;
-  margin: 0 0 30px;
+  margin: 0 0 24px;
 }
 
 .popup_new > div:last-child .progress_bar > ul {
@@ -348,22 +396,26 @@ if (window.location.pathname === "/free-workshop/") {
 
 .last_step_title{
   display: none;
-    margin: 40px auto 20px;
-    max-width: 618px;
+  margin: 40px 0;
+  text-align: center;
 }
 .last_step_title h2{
   font-weight: 700 !important;
     font-size: 26px !important;
-    line-height: 30px !important;
+    line-height: 32px !important;
     color: #734F22 !important;
-    margin-bottom: 10px !important;
+    margin-bottom: 20px !important;
+}
+.last_step_title h2 .your_dog_name{
+    color: #193973;
+    text-transform: capitalize;
 }
 .last_step_title p{
   font-weight: 400;
   font-size: 20px;
   line-height: 30px;
   color: #734F22 !important;
-  max-width: 500px;
+  max-width: 600px;
   margin: 0 auto;
   text-align: center;
 }
@@ -383,7 +435,28 @@ if (window.location.pathname === "/free-workshop/") {
   display: none;
 }
 
-*choosen */
+.dog_third{
+  position: relative;
+}
+.dog_third p{
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    max-width: 426px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    padding: 10px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #808080 !important;
+    margin: 0 10px;
+    text-align: center;
+}
+.dog_third p span{
+  font-weight: 700;
+}
+/*choosen */
 .popup_new .chosen-container .chosen-drop {
   max-height: 240px;
 }
@@ -635,8 +708,8 @@ if (window.location.pathname === "/free-workshop/") {
 #firstModal .modal-body {
   display: none;
   background: unset !important;
-  padding: 30px;
-  max-width: 559px;
+  padding: 24px;
+  max-width: 448px;
   width: 100%;
   margin: 0 auto;
 }
@@ -664,10 +737,6 @@ if (window.location.pathname === "/free-workshop/") {
 
 .body_popup {
   background: #ffffff;
-}
-
-.new_block_breed{
-  margin-top: 24px;
 }
 
 .body_popup > h2,
@@ -704,9 +773,8 @@ if (window.location.pathname === "/free-workshop/") {
   text-transform: none;
   transition: all 250ms cubic-bezier(0.45, 0.05, 0.55, 0.95);
 }
-
-#firstModal #contact-submit {
-  margin: 0 !important;
+.button_input_name svg{
+  margin-left: 8px;
 }
 
 .button_input_name {
@@ -732,15 +800,46 @@ if (window.location.pathname === "/free-workshop/") {
   display: none;
 }
 
+.benefits{
+  margin-top: 40px;
+}
+.benefits ul{
+  display: flex;
+  justify-content: space-between;
+}
+
+.benefits ul li{
+  display: flex;
+  justify-content: flex-start;
+  width: 24%;
+}
+.benefits ul li:nth-child(2){
+  width: 32%;
+}
+.benefits ul li + li{
+  margin-left: 20px;
+}
+.benefits ul li svg{
+  max-width: 24px;
+  width: 100%;
+}
+.benefits ul li p{
+  margin: 0 0 0 8px;
+  font-weight: 400;
+font-size: 16px;
+line-height: 20px;
+color: #808080 !important;
+}
+
 .privacy_policy_wrap{
   max-width: 400px;
-  margin: 20px auto 0;
+  margin: 16px auto 0;
   text-align: center;
 }
 .privacy_policy_wrap p{
   font-weight: 400;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 24px;
   color: #808080 !important;
   margin: 0 !important;
 }
@@ -750,13 +849,10 @@ if (window.location.pathname === "/free-workshop/") {
 }
 
 #firstModal #subs-email,
-#firstModal #subs-mobile,
-#firstModal #contact-submit,
-#firstModal #subs-email2,
-#firstModal #subs-mobile2 {
-  max-width: 331px;
+#firstModal #contact-submit {
+  max-width: 304px;
   width: 100% !important;
-  margin: 0 auto 16px !important;
+  margin: 0 auto !important;
 }
 
 #firstModal .fa {
@@ -764,7 +860,7 @@ if (window.location.pathname === "/free-workshop/") {
 }
 
 #firstModal form span.top-levels {
-  right: 139px !important;
+  right: 81px !important;
 }
 #firstModal #finalForm {
   display: block;
@@ -774,7 +870,6 @@ if (window.location.pathname === "/free-workshop/") {
 
 #firstModal .form-group {
   margin: 0;
-  padding: 0 0 24px;
 }
 
 #firstModal #finalForm .popup_third .body_popup > h2 {
@@ -787,7 +882,8 @@ if (window.location.pathname === "/free-workshop/") {
 }
 
 #firstModal .form-control,
-.new_block_breed input {
+.new_block_breed input,
+#firstModal #subs-mobile {
   width: 100% !important;
   margin: 0 auto 16px !important;
   padding: 10px 18px;
@@ -802,29 +898,6 @@ if (window.location.pathname === "/free-workshop/") {
   color: #a0a1a8 !important;
   max-width: 304px;
   box-shadow: none;
-}
-
-.benefits ul {
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  margin: 15px auto 15px 195px;
-  gap: 10px;
-  max-width: 415px;
-}
-
-.benefits ul li {
-  display: flex;
-  align-items: center;
-}
-
-.benefits ul li > p {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 125%;
-  color: #808080 !important;
-  margin: 0 0 0 16px;
-  text-align: left;
 }
 
 .security_box {
@@ -1067,7 +1140,10 @@ if (window.location.pathname === "/free-workshop/") {
           <div class="img_wrap">
                 <img src="https://conversionratestore.github.io/projects/knineti/img/dog_select_problem.jpg" alt="dog" class="dog_first">
                 <img src="https://conversionratestore.github.io/projects/knineti/img/dog_breed_block.jpg" alt="dog" class="dog_second">
-                <img src="https://conversionratestore.github.io/projects/knineti/img/dog_last_block.jpg" alt="dog" class="dog_third">
+                <div class="dog_third">
+                  <img src="https://conversionratestore.github.io/projects/knineti/img/dog_last_block.jpg" alt="dog">
+                  <p>Your hosts for the workshop will be <span>Dr. Alexa Diaz PHD</span> (one of the United States' greatest dog trainers) and <span>Eric Presnall</span> (Host of the hit Animal Planet TV show "Who Let the Dogs Out").</p>
+                </div>
             </div>
     
             <div>
@@ -1140,7 +1216,19 @@ if (window.location.pathname === "/free-workshop/") {
                         <input class="custom_checkbox" type="checkbox" id="other" name="other" value="other">
                         <label for="other" tabIndex="0">Other</label>
                     </div>
-                    <div class="btn_continue" tabIndex="0">Continue</div>
+                    <div class="btn_continue" tabIndex="0">
+                      Continue
+                    <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g clip-path="url(#clip0_2433_7192)">
+                      <path d="M2.66683 7.83464H10.7802L7.0535 4.10797L8.00016 3.16797L13.3335 8.5013L8.00016 13.8346L7.06016 12.8946L10.7802 9.16797H2.66683V7.83464Z" fill="white"/>
+                      </g>
+                      <defs>
+                      <clipPath id="clip0_2433_7192">
+                      <rect width="16" height="16" fill="white" transform="matrix(-1 0 0 1 16 0.5)"/>
+                      </clipPath>
+                      </defs>
+                    </svg>  
+                    </div>
                 </div>
     
     
@@ -1150,6 +1238,39 @@ if (window.location.pathname === "/free-workshop/") {
                       <p>Access the workshop that has helped transform the behavior of 2.7 million dogs, for FREE, today:</p>                      
                     </div>
                     <h2>Introduce us to your dog</h2>
+                        <div class="benefits">
+                          <ul>
+                            <li>
+                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                  d="M12 2C6.48583 2 2 6.48583 2 12C2 17.5142 6.48583 22 12 22C17.5142 22 22 17.5142 22 12C22 6.48583 17.5142 2 12 2ZM12.8333 12C12.8333 12.2975 12.675 12.5733 12.4167 12.7217C12.2875 12.7958 12.1442 12.8333 12 12.8333C11.8558 12.8333 11.7125 12.7958 11.5833 12.7217L8.69667 11.055C8.2975 10.825 8.16167 10.315 8.39167 9.91667C8.62167 9.51833 9.13167 9.38 9.53 9.61167L11.1667 10.5567V7C11.1667 6.53917 11.54 6.16667 12 6.16667C12.46 6.16667 12.8333 6.53917 12.8333 7V12Z"
+                                  fill="#699CD0"
+                                />
+                              </svg>
+
+                              <p>Watch on demand at your convenience</p>
+                            </li>
+                            <li>
+                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                  d="M4.5 21C4.5 21 3 21 3 19.5C3 18 4.5 13.5 12 13.5C19.5 13.5 21 18 21 19.5C21 21 19.5 21 19.5 21H4.5ZM12 12C13.1935 12 14.3381 11.5259 15.182 10.682C16.0259 9.83807 16.5 8.69347 16.5 7.5C16.5 6.30653 16.0259 5.16193 15.182 4.31802C14.3381 3.47411 13.1935 3 12 3C10.8065 3 9.66193 3.47411 8.81802 4.31802C7.97411 5.16193 7.5 6.30653 7.5 7.5C7.5 8.69347 7.97411 9.83807 8.81802 10.682C9.66193 11.5259 10.8065 12 12 12Z"
+                                  fill="#699CD0"
+                                />
+                              </svg>
+
+                              <p>This workshop has helped train 2.7 million dogs</p>
+                            </li>
+                            <li>
+                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                  d="M12 1.5C6.20156 1.5 1.5 6.20156 1.5 12C1.5 17.7984 6.20156 22.5 12 22.5C17.7984 22.5 22.5 17.7984 22.5 12C22.5 6.20156 17.7984 1.5 12 1.5ZM15.3773 12.1617L10.2586 15.8859C10.2305 15.9061 10.1975 15.9181 10.163 15.9207C10.1285 15.9233 10.094 15.9164 10.0633 15.9006C10.0325 15.8849 10.0067 15.861 9.98863 15.8315C9.97057 15.802 9.96099 15.7681 9.96094 15.7336V8.28984C9.96082 8.25522 9.9703 8.22124 9.98832 8.19167C10.0063 8.1621 10.0322 8.1381 10.063 8.12232C10.0938 8.10654 10.1284 8.09961 10.1629 8.10229C10.1975 8.10497 10.2306 8.11716 10.2586 8.1375L15.3773 11.8594C15.4015 11.8765 15.4213 11.8991 15.4349 11.9254C15.4485 11.9517 15.4556 11.9809 15.4556 12.0105C15.4556 12.0402 15.4485 12.0694 15.4349 12.0957C15.4213 12.122 15.4015 12.1446 15.3773 12.1617Z"
+                                  fill="#699CD0"
+                                />
+                              </svg>
+                              <p>Workshop duration: 56 minutes</p>
+                            </li>
+                          </ul>
+                        </div>
                 </div>     
             </div>
     </div>
@@ -1380,45 +1501,38 @@ if (window.location.pathname === "/free-workshop/") {
                   </div>
                 </div>
         </div>
-        <div class="tooltip_box">
+        <div data-tolltip data-title="Receive key insights for dealing with housebreaking issues, barking, jumping, biting, and other forms of disobedience and unwanted behavior." class="tooltip_box">
           <p>
             We’ll occasionally send you key dog training alerts & tips
           </p>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_2433_7202)">
+<path d="M7.99479 1.33463C11.6767 1.33463 14.6615 4.3194 14.6615 8.0013C14.6615 11.6832 11.6767 14.668 7.99479 14.668C4.31289 14.668 1.32812 11.6832 1.32812 8.0013C1.32812 4.3194 4.31289 1.33463 7.99479 1.33463Z" stroke="#193973" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8 10.668V8.0013" stroke="#193973" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8 5.33203H8.016" stroke="#193973" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_2433_7202">
+<rect width="16" height="16" fill="white" transform="matrix(1 0 0 -1 0 16)"/>
+</clipPath>
+</defs>
+</svg>
         </div>
-        <div class="button_input_name step_second" tabindex="0">Continue</div>
+        <div class="button_input_name step_second" tabindex="0">
+           Continue
+        <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_2433_7192)">
+<path d="M2.66683 7.83464H10.7802L7.0535 4.10797L8.00016 3.16797L13.3335 8.5013L8.00016 13.8346L7.06016 12.8946L10.7802 9.16797H2.66683V7.83464Z" fill="white"/>
+</g>
+<defs>
+<clipPath id="clip0_2433_7192">
+<rect width="16" height="16" fill="white" transform="matrix(-1 0 0 1 16 0.5)"/>
+</clipPath>
+</defs>
+</svg>
+        </div>
         <div class="privacy_policy_wrap">
           <p>Your personal information won't be shared with anyone. <br> Please review our <a href="#" class="privacy_policy">Privacy policy</a> for more information.</p>
-        </div>
-        <div class="benefits">
-            <ul>
-                <li>
-                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5.25 24.5C5.25 24.5 3.5 24.5 3.5 22.75C3.5 21 5.25 15.75 14 15.75C22.75 15.75 24.5 21 24.5 22.75C24.5 24.5 22.75 24.5 22.75 24.5H5.25ZM14 14C15.3924 14 16.7277 13.4469 17.7123 12.4623C18.6969 11.4777 19.25 10.1424 19.25 8.75C19.25 7.35761 18.6969 6.02226 17.7123 5.03769C16.7277 4.05312 15.3924 3.5 14 3.5C12.6076 3.5 11.2723 4.05312 10.2877 5.03769C9.30312 6.02226 8.75 7.35761 8.75 8.75C8.75 10.1424 9.30312 11.4777 10.2877 12.4623C11.2723 13.4469 12.6076 14 14 14Z" fill="#699CD0"/>
-                    </svg>
-                    <p>This workshop has helped train 2.7 million dogs</p>
-                </li>
-                <li>
-                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M13.9997 2.3335C7.56667 2.3335 2.33301 7.56716 2.33301 14.0002C2.33301 20.4332 7.56667 25.6668 13.9997 25.6668C20.4327 25.6668 25.6663 20.4332 25.6663 14.0002C25.6663 7.56716 20.4327 2.3335 13.9997 2.3335ZM13.9997 23.3335C8.85351 23.3335 4.66634 19.1463 4.66634 14.0002C4.66634 8.854 8.85351 4.66683 13.9997 4.66683C19.1458 4.66683 23.333 8.854 23.333 14.0002C23.333 19.1463 19.1458 23.3335 13.9997 23.3335Z" fill="#699CD0"/>
-                        <path d="M15.1663 8.1665H12.833V14.4828L16.6748 18.3247L18.3245 16.675L15.1663 13.5168V8.1665Z" fill="#699CD0"/>
-                    </svg>
-                    <p>Watch on demand at your convenience</p>
-                </li>
-                <li>
-                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14 1.75C7.23516 1.75 1.75 7.23516 1.75 14C1.75 20.7648 7.23516 26.25 14 26.25C20.7648 26.25 26.25 20.7648 26.25 14C26.25 7.23516 20.7648 1.75 14 1.75ZM17.9402 14.1887L11.9684 18.5336C11.9356 18.5571 11.897 18.5712 11.8568 18.5742C11.8166 18.5772 11.7764 18.5691 11.7405 18.5507C11.7046 18.5324 11.6745 18.5044 11.6534 18.4701C11.6323 18.4357 11.6212 18.3962 11.6211 18.3559V9.67148C11.621 9.63109 11.632 9.59144 11.653 9.55695C11.6741 9.52245 11.7042 9.49444 11.7402 9.47604C11.7761 9.45763 11.8165 9.44955 11.8568 9.45267C11.897 9.4558 11.9357 9.47002 11.9684 9.49375L17.9402 13.8359C17.9684 13.8559 17.9915 13.8823 18.0073 13.913C18.0232 13.9437 18.0315 13.9777 18.0315 14.0123C18.0315 14.0469 18.0232 14.0809 18.0073 14.1116C17.9915 14.1423 17.9684 14.1687 17.9402 14.1887Z" fill="#699CD0"/>
-                    </svg>
-                    <p>Workshop duration: 56 minutes</p>
-                </li>
-            </ul>
-    
-            <div class="security_box">
-                <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.83801 1.59C4.88559 1.85248 3.93965 2.1379 3.00101 2.446C2.91529 2.47376 2.8391 2.52504 2.78111 2.59399C2.72312 2.66295 2.68567 2.7468 2.67301 2.836C2.11901 6.993 3.39901 10.026 4.92601 12.024C5.57252 12.8784 6.34341 13.6311 7.21301 14.257C7.55901 14.501 7.86501 14.677 8.10601 14.79C8.22601 14.847 8.32401 14.885 8.39901 14.908C8.43181 14.9195 8.46562 14.9279 8.50001 14.933C8.53398 14.9275 8.56743 14.9191 8.60001 14.908C8.67601 14.885 8.77401 14.847 8.89401 14.79C9.13401 14.677 9.44101 14.5 9.78701 14.257C10.6566 13.6311 11.4275 12.8784 12.074 12.024C13.601 10.027 14.881 6.993 14.327 2.836C14.3145 2.74676 14.277 2.66285 14.219 2.59388C14.161 2.52491 14.0848 2.47366 13.999 2.446C13.348 2.233 12.249 1.886 11.162 1.591C10.052 1.29 9.03101 1.067 8.50001 1.067C7.97001 1.067 6.94801 1.29 5.83801 1.591V1.59ZM5.57201 0.56C6.65701 0.265 7.81001 0 8.50001 0C9.19001 0 10.343 0.265 11.428 0.56C12.538 0.86 13.657 1.215 14.315 1.43C14.5901 1.52085 14.834 1.68747 15.0187 1.9107C15.2034 2.13394 15.3213 2.40474 15.359 2.692C15.955 7.169 14.572 10.487 12.894 12.682C12.1824 13.621 11.334 14.4479 10.377 15.135C10.0461 15.3728 9.69549 15.5819 9.32901 15.76C9.04901 15.892 8.74801 16 8.50001 16C8.25201 16 7.95201 15.892 7.67101 15.76C7.30452 15.5819 6.95391 15.3728 6.62301 15.135C5.66603 14.4478 4.81759 13.621 4.10601 12.682C2.42801 10.487 1.04501 7.169 1.64101 2.692C1.67869 2.40474 1.79665 2.13394 1.98132 1.9107C2.166 1.68747 2.4099 1.52085 2.68501 1.43C3.6402 1.11681 4.60281 0.826725 5.57201 0.56Z" fill="#9DA1AA"/>
-                    <path d="M10 6.49995C10.0002 6.81027 9.90407 7.11301 9.72497 7.36644C9.54587 7.61986 9.29258 7.8115 9 7.91495L9.385 9.90495C9.39901 9.97732 9.39684 10.0519 9.37864 10.1233C9.36045 10.1948 9.32668 10.2613 9.27976 10.3182C9.23283 10.375 9.17392 10.4208 9.10723 10.4523C9.04054 10.4837 8.96772 10.5 8.894 10.4999H8.106C8.03236 10.4998 7.95966 10.4834 7.8931 10.4519C7.82653 10.4204 7.76774 10.3746 7.72093 10.3178C7.67412 10.261 7.64044 10.1945 7.6223 10.1231C7.60416 10.0517 7.60201 9.97724 7.616 9.90495L8 7.91495C7.74076 7.82329 7.5117 7.66214 7.33786 7.44911C7.16401 7.23608 7.05206 6.97936 7.01425 6.70701C6.97644 6.43465 7.01422 6.15715 7.12345 5.90481C7.23269 5.65248 7.40919 5.43502 7.63365 5.27621C7.85812 5.1174 8.12192 5.02335 8.39623 5.00433C8.67053 4.9853 8.94479 5.04205 9.18903 5.16835C9.43327 5.29466 9.63809 5.48567 9.78111 5.72051C9.92414 5.95535 9.99986 6.22498 10 6.49995Z" fill="#9DA1AA"/>
-                </svg>
-                <p>Your email address and mobile number won't be shared with anyone. <br> Please review our privacy policy for more information.</p>
-            </div>
         </div>
     `
 
@@ -1616,7 +1730,7 @@ if (window.location.pathname === "/free-workshop/") {
 
               //   btn back active_btn_third
               if (this?.classList.contains("active_btn_third")) {
-                pushDataLayer(`Click on Previous on step "What breed is your dog?"`)
+                pushDataLayer(`Click on Previous on step "Who is [dog's name] owner"`)
                 this?.classList.remove("active_btn_third")
                 this?.classList.add("active_btn_second")
 
@@ -1632,6 +1746,7 @@ if (window.location.pathname === "/free-workshop/") {
                 document.querySelector("#firstModal #dog-name-top-levels").style.display = "block"
                 document.querySelector(".new_block_breed input").style.display = "block"
 
+                document.querySelector(".tooltip_box").style.display = "none"
                 document.querySelector("#firstModal #subs-name").style.display = "none"
                 document.querySelector("#firstModal #subs-mobile").style.display = "none"
                 document.querySelector(`#firstModal .input_error_text.name`).style.display = "none"
@@ -1643,19 +1758,24 @@ if (window.location.pathname === "/free-workshop/") {
               }
 
               if (this?.classList.contains("active_btn_fourth")) {
-                pushDataLayer(`Click on Previous on step "Who is [dog's name] owner?"`)
+                pushDataLayer(`Click on Previous on step "Discover how to eliminate ...’s behavior problems today!"`)
                 this?.classList.remove("active_btn_fourth")
                 this?.classList.add("active_btn_third")
 
                 document.querySelector(".popup_new > div:last-child .popup_first .btn_continue").setAttribute("data-lst-dog", "2")
 
-                document.querySelector("#firstModal .button_input_name").style.display = "flex"
-                document.querySelector("#firstModal #dog-name").style.display = "flex"
-                document.querySelector("#firstModal #dog-name-top-levels").style.display = "block"
-                document.querySelector(".new_block_breed input").style.display = "block"
-
-                document.querySelector("#firstModal #subs-name").style.display = "none"
-                document.querySelector("#firstModal #subs-mobile").style.display = "none"
+                document.querySelector("#firstModal .button_input_name.step_third").style.display = "flex"
+                document.querySelector(".tooltip_box").style.display = "block"
+                document.querySelector(".popup_new .img_wrap .dog_second").style.display = "block"
+                document.querySelector(".popup_new > div:last-child .popup_second > h2").style.display = "block"
+                document.querySelector("#firstModal #subs-name").style.display = "flex"
+                document.querySelector("#firstModal #subs-mobile").style.display = "flex"
+                document.querySelector("#firstModal #subs-email").style.display = "none"
+                document.querySelector("#firstModal #contact-submit").style.display = "none"
+                document.querySelector(".last_step_title").style.display = "none"
+                document.querySelector(".popup_new .img_wrap .dog_third").style.display = "none"
+                document.querySelector(".benefits").style.display = "none"
+                document.querySelector(".email_text").style.display = "none"
                 document.querySelector("#firstModal .modal-body").classList.remove("is_active")
 
                 document.querySelector(".popup_new > div:last-child .progress_bar > ul li:nth-child(4)")?.classList.remove("active_step")
@@ -1686,6 +1806,7 @@ if (window.location.pathname === "/free-workshop/") {
             .querySelector(`#firstModal input[name='first_name']`)
             .insertAdjacentHTML("afterend", `<span class="input_error_text name">Please enter Your name without spaces, numbers or special characters</span>`)
 
+          document.querySelector("#firstModal #subs-email")?.insertAdjacentHTML("afterend", `<div class="email_text"><p>We’ll email you the link for the workshop</p></div>`)
           // create new element popup finalForm -> input name, email, number
 
           if (document.querySelector("#firstModal form .form-group")) {
@@ -1849,19 +1970,22 @@ if (window.location.pathname === "/free-workshop/") {
           if (document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2)").classList.contains("active_btn_second")) {
             document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2)").classList.remove("active_btn_second")
             document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2)").classList.add("active_btn_third")
-            document.querySelector("#firstModal .modal-body").classList.add("is_active")
           }
           document.querySelector(".popup_new > div:last-child .progress_bar > ul li:nth-child(3)")?.classList.add("active_step")
           document.querySelector(".popup_new > div:last-child .progress_bar > div p:last-child span:nth-child(1)").textContent = "3"
 
-          document.querySelector("#firstModal .button_input_name").classList.remove("step_second")
-          document.querySelector("#firstModal .button_input_name").classList.add("step_third")
           document.querySelector(".new_block_breed input").style.display = "none"
           document.querySelector("#firstModal #dog-name").style.display = "none"
           document.querySelector("#firstModal #dog-name-top-levels").style.display = "none"
 
           document.querySelector("#firstModal #subs-name").style.display = "flex"
           document.querySelector("#firstModal #subs-mobile").style.display = "flex"
+          document.querySelector(".tooltip_box").style.display = "block"
+
+          setTimeout(() => {
+            document.querySelector("#firstModal .button_input_name").classList.remove("step_second")
+            document.querySelector("#firstModal .button_input_name").classList.add("step_third")
+          }, 100)
 
           localStorage.setItem("dogName", document.querySelector("#firstModal #dog-name").value)
 
@@ -1889,31 +2013,46 @@ if (window.location.pathname === "/free-workshop/") {
         if (document.querySelector(`${parent} input[name='first_name'].input_error`) === null && parent === `#firstModal`) {
           pushDataLayer(`Click on Continue on step "How should we address you and your dog?"`)
 
-          if (document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2)").classList.contains("active_btn_second")) {
+          if (document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2)").classList.contains("active_btn_third")) {
             document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2)").classList.remove("active_btn_third")
             document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2)").classList.add("active_btn_fourth")
-            document.querySelector("#firstModal .modal-body").classList.add("is_active")
           }
           document.querySelector(".popup_new > div:last-child .progress_bar > ul li:nth-child(4)")?.classList.add("active_step")
           document.querySelector(".popup_new > div:last-child .progress_bar > div p:last-child span:nth-child(1)").textContent = "4"
 
           document.querySelector(".popup_new .img_wrap .dog_second").style.display = "none"
           document.querySelector(".popup_new > div:last-child .popup_second > h2").style.display = "none"
-          document.querySelector("#firstModal .button_input_name").style.display = "none"
+          document.querySelector("#firstModal .button_input_name.step_third").style.display = "none"
           document.querySelector("#firstModal #subs-name").style.display = "none"
           document.querySelector("#firstModal #subs-name-top-levels").style.display = "none"
           document.querySelector("#firstModal #subs-mobile").style.display = "none"
-
-          if (document.querySelector("#firstModal #subs-mobile").value !== "") {
-            document.querySelector("#firstModal form span.top-levels#subs-mobile-top-levels").style.display = "none"
-          }
-
+          document.querySelector(".tooltip_box").style.display = "none"
+          document.querySelector("#firstModal .modal-body").classList.add("is_active")
           document.querySelector(".last_step_title").style.display = "block"
           document.querySelector(".popup_new .img_wrap .dog_third").style.display = "block"
           document.querySelector("#firstModal #subs-email").style.display = "flex"
           document.querySelector("#firstModal #contact-submit").style.display = "flex"
+          document.querySelector(".email_text").style.display = "block"
+          document.querySelector(".benefits").style.display = "block"
         }
       }
+
+      let tippyRun = setInterval(() => {
+        if (typeof tippy === "function" && document.querySelector("[data-tolltip]")) {
+          clearInterval(tippyRun)
+
+          document.querySelectorAll("[data-title]").forEach((el) => {
+            tippy(el, {
+              content: el.getAttribute("data-title"),
+              // trigger: "click",
+              placement: "bottom",
+              appendTo: function () {
+                return document.querySelector(".tooltip_box")
+              },
+            })
+          })
+        }
+      }, 500)
 
       pushDataLayer("loaded")
       const record = setInterval(() => {
