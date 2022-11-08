@@ -57,17 +57,16 @@ if (window.location.pathname === "/free-workshop/") {
 }
 
 .btn_continue {
-  background: #193973;
+  background: #173775;
   border-radius: 10px;
   margin: 0 0 0 auto;
   max-width: 304px;
   width: 100%;
-  height: 45px;
+  height: 48px;
   font-weight: 600;
-  font-size: 18px;
-  line-height: 25px;
+  font-size: 14px;
+  line-height: 19px;
   text-align: center;
-  letter-spacing: -0.01em;
   color: #ffffff !important;
   outline: none;
   border: none;
@@ -75,8 +74,8 @@ if (window.location.pathname === "/free-workshop/") {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: none;
-  text-transform: none;
+  box-shadow: 5px 5px 10px rgba(39, 32, 32, 0.8);
+  text-transform: uppercase;
   transition: all 250ms cubic-bezier(0.45, 0.05, 0.55, 0.95);
 }
 .btn_continue svg{
@@ -117,7 +116,7 @@ margin: 0;
 #contact-submit:hover,
 .btn_continue:hover,
 .button_input_name:hover {
-  box-shadow: 4px -4px 10px #272020;
+  box-shadow: unset !important;
 }
 
 .enroll_box .info_box > div.img_wrap {
@@ -130,7 +129,7 @@ margin: 0;
   padding: 4px 16px;
   max-width: 304px;
   width: 100%;
-  margin: 0 auto;
+  margin: -8px auto 0;
   text-align: left;
   cursor: pointer;
 }
@@ -164,8 +163,9 @@ margin: 0;
     font-weight: 400;
     font-size: 20px;
     line-height: 30px;
-    color: #808080 !important;
+    color: #747474 !important;
     margin: 0 auto 32px;
+    max-width: 844px;
     text-align: center;
 }
 .start_step > p span{
@@ -256,7 +256,7 @@ margin: 0;
   font-size: 16px;
   line-height: 125%;
   text-align: center;
-  color: #808080 !important;
+  color: #747474 !important;
   margin: 0 0 24px;
 }
 
@@ -301,7 +301,7 @@ margin: 0;
   font-weight: 400;
   font-size: 16px;
   line-height: 125%;
-  color: #808080 !important;
+  color: #747474 !important;
   margin: 0;
   display: flex;
   align-items: center;
@@ -391,7 +391,15 @@ margin: 0;
   line-height: 125%;
   text-align: center;
   color: #734f22;
-  margin: 40px 0 10px;
+  margin: 40px auto 10px;
+  max-width: 603px;
+}
+.popup_new > div:last-child .popup_second > h2.step_three{
+  max-width: 435px;
+}
+.popup_new > div:last-child .popup_second > h2 span{
+  color: #193973;
+  text-transform: capitalize;
 }
 
 .last_step_title{
@@ -404,7 +412,8 @@ margin: 0;
     font-size: 26px !important;
     line-height: 32px !important;
     color: #734F22 !important;
-    margin-bottom: 20px !important;
+margin: 0 auto 12px !important;
+    max-width: 715px;
 }
 .last_step_title h2 .your_dog_name{
     color: #193973;
@@ -415,7 +424,7 @@ margin: 0;
   font-size: 20px;
   line-height: 30px;
   color: #734F22 !important;
-  max-width: 600px;
+  max-width: 591px;
   margin: 0 auto;
   text-align: center;
 }
@@ -431,14 +440,16 @@ margin: 0;
 }
 
 .dog_second,
-.dog_third {
+.dog_third,
+.mobile_descr {
   display: none;
 }
 
 .dog_third{
   position: relative;
 }
-.dog_third p{
+.dog_third p,
+p.mobile_descr{
     position: absolute;
     bottom: 10px;
     left: 0;
@@ -447,13 +458,23 @@ margin: 0;
     border-radius: 10px;
     padding: 10px;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 20px;
-    color: #808080 !important;
+    color: #747474 !important;
     margin: 0 10px;
     text-align: center;
 }
-.dog_third p span{
+p.mobile_descr{
+    position: unset;
+    border: 1px solid #6FB3FA;
+    margin: 24px 0 0;
+    font-weight: 400;
+    font-size: 14px !important;
+    line-height: 20px !important;
+    color: #747474 !important;
+}
+.dog_third p span,
+p.mobile_descr span{
   font-weight: 700;
 }
 /*choosen */
@@ -682,7 +703,7 @@ margin: 0;
 
 #firstModal .modal-dialog {
   width: 95% !important;
-  margin: 10px auto;
+  margin: 10px auto !important;
 }
 
 #firstModal .modal-dialog > .img_wrap {
@@ -751,17 +772,17 @@ margin: 0;
 
 .button_input_name,
 #firstModal #contact-submit {
-  background: #193973;
+  background: #173775;
   border-radius: 10px;
   margin: 0 auto;
   max-width: 304px;
   width: 100%;
-  height: 45px;
+  height: 48px;
   font-weight: 600;
-  font-size: 18px;
-  line-height: 25px;
+  font-size: 14px;
+  line-height: 19px;
   text-align: center;
-  letter-spacing: -0.01em;
+  text-transform: uppercase;
   color: #ffffff !important;
   outline: none;
   border: none;
@@ -769,8 +790,7 @@ margin: 0;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: none;
-  text-transform: none;
+  box-shadow: 5px 5px 10px rgba(39, 32, 32, 0.8);
   transition: all 250ms cubic-bezier(0.45, 0.05, 0.55, 0.95);
 }
 .button_input_name svg{
@@ -784,7 +804,7 @@ margin: 0;
 .button_input_name:focus,
 #contact-submit:focus,
 .btn_continue:focus {
-  box-shadow: 2px 2px 6px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: unset;
 }
 
 #firstModal #finalForm .style-text,
@@ -805,7 +825,7 @@ margin: 0;
 }
 .benefits ul{
   display: flex;
-  justify-content: space-between;
+      justify-content: space-evenly;
 }
 
 .benefits ul li{
@@ -828,7 +848,7 @@ margin: 0;
   font-weight: 400;
 font-size: 16px;
 line-height: 20px;
-color: #808080 !important;
+color: #747474 !important;
 }
 
 .privacy_policy_wrap{
@@ -840,7 +860,7 @@ color: #808080 !important;
   font-weight: 400;
   font-size: 14px;
   line-height: 24px;
-  color: #808080 !important;
+  color: #747474 !important;
   margin: 0 !important;
 }
 .privacy_policy_wrap p a{
@@ -885,7 +905,7 @@ color: #808080 !important;
 .new_block_breed input,
 #firstModal #subs-mobile {
   width: 100% !important;
-  margin: 0 auto 16px !important;
+  margin: 0 auto 12px !important;
   padding: 10px 18px;
   border: 1px solid #dee8f1;
   box-sizing: border-box;
@@ -898,6 +918,20 @@ color: #808080 !important;
   color: #a0a1a8 !important;
   max-width: 304px;
   box-shadow: none;
+}
+
+.new_block_breed{
+  position: relative;
+  max-width: 304px;
+  margin: 0 auto;
+}
+.label_breed{
+  display: none;
+    position: absolute;
+    right: 12px;
+    top: 0;
+    font-size: 10px;
+    color: #808080;
 }
 
 .security_box {
@@ -973,8 +1007,8 @@ color: #808080 !important;
 }
 
 .input_error_text {
-  font-size: 10px;
-  line-height: 20px;
+  font-size: 12px;
+  line-height: 16px;
   color: #f15050;
   margin: -12px auto 10px;
   display: none;
@@ -1084,10 +1118,120 @@ color: #808080 !important;
   margin-top: 20px;
 }
 
+.tippy-tooltip{
+  box-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.2));
+  background: #FFFFFF;
+  border-radius: 8px;
+  color: #747474;
+  font-weight: 400;
+font-size: 14px;
+line-height: 150%;
+}
+.tippy-content{
+  padding: 8px 16px;
+}
+.tippy-tooltip[data-placement^=bottom]>.tippy-arrow{
+      border-bottom-color: #FFFFFF;
+}
+.tippy-tooltip[data-placement^=top]>.tippy-arrow{
+  border-top-color: #FFFFFF;
+}
+
 @media (max-width: 768px) {
+  #firstModal .modal-dialog{
+    width: 100%;
+  }
+  #firstModal .modal-body{
+    padding: 0;
+  }
+  #firstModal .modal-body > .row{
+    margin: 0;
+  }
+  .popup-first-body{
+    width: 95% !important;
+  }
+  #firstModal .modal-body.is_active{
+        border: unset;
+    border-radius: unset;
+  }
+  #firstModal #subs-email, #firstModal #contact-submit{
+    max-width: unset;
+  }
   .content_popup div{
     height: 400px;
   }
+  .email_text{
+    max-width: unset;
+    padding: 4px 18px;
+    text-align: left;
+  }
+  .last_step_title{
+    margin: 24px 0 0;
+  }
+  .last_step_title h2{
+    font-size: 22px !important;
+    line-height: 28px !important;
+  }
+  #firstModal .form-control, .new_block_breed input, #firstModal #subs-mobile{
+    padding: 10px 18px;
+  }
+  #firstModal .modal-dialog > .img_wrap{
+    margin: 20px 0;
+  }
+  .start_step h2{
+        font-size: 22px !important;
+    line-height: 26px !important;
+        margin: 0 auto 12px !important;
+  }
+  .start_step > p{
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0 auto 24px;
+  }
+  .start_step ul{
+    flex-wrap: wrap;
+  }
+  .start_step ul li{
+    width: 100%;
+  }
+  .start_step ul li + li {
+      margin: 24px 0 0;
+  }
+  .popup_new{
+    width: 100%;
+  }
+  .popup_new.active_popup{    
+    flex-direction: column;
+  }
+  .popup_new > div:last-child {
+    width: 100%;
+}
+.popup_new .img_wrap {
+    width: 100%;
+}
+.button_input_name{
+      margin: 12px auto 0;
+}
+#firstModal .form-control, 
+.new_block_breed input, 
+#firstModal #subs-mobile{
+  padding: 10px 16px !important;
+}
+/*.benefits */
+.benefits {
+    margin-top: 24px;
+}
+.benefits ul{
+  flex-direction: column;
+}
+.benefits ul li{
+  width: 100% !important;
+  align-items: center;
+}
+.benefits ul li + li{
+  margin: 24px 0 0;
+}
 }
 
     </style>
@@ -1115,14 +1259,14 @@ color: #808080 !important;
     <div class="popup_new_wrap">
         <div class="start_step active_popup">
             <h2>Learn how to train your dog to become as <span>obedient</span> as a service dog</h2>
-            <p>Take a <span>1-minute quiz</span> about your dog <br> and know how to deal with barking, housebreaking, nipping and more.</p>
+            <p>Take a <span>1-minute quiz</span> about your dog and know how to deal with barking, housebreaking, nipping and more.</p>
             <ul>
                 <li>
                     <div class="img_wrap">
                         <img src="https://conversionratestore.github.io/projects/knineti/img/puppy_dog.jpg" alt="dog">
                     </div>
                     <div>
-                        <p>I have puppy ( up to 1 year ) </p>
+                        <p>I have a puppy (up to 1 year old)</p>
                     </div>
                 </li>
                 <li>
@@ -1130,7 +1274,7 @@ color: #808080 !important;
                         <img src="https://conversionratestore.github.io/projects/knineti/img/adult_dog.jpg" alt="dog">
                     </div>
                     <div>
-                        <p>I have adult dog ( 1+ year )</p>
+                        <p>I have an adult dog (over 1 year old)</p>
                     </div>
                 </li>
             </ul>
@@ -1142,7 +1286,7 @@ color: #808080 !important;
                 <img src="https://conversionratestore.github.io/projects/knineti/img/dog_breed_block.jpg" alt="dog" class="dog_second">
                 <div class="dog_third">
                   <img src="https://conversionratestore.github.io/projects/knineti/img/dog_last_block.jpg" alt="dog">
-                  <p>Your hosts for the workshop will be <span>Dr. Alexa Diaz PHD</span> (one of the United States' greatest dog trainers) and <span>Eric Presnall</span> (Host of the hit Animal Planet TV show "Who Let the Dogs Out").</p>
+                  <p>Your hosts for the workshop will be  <span>Dr. Alexa Diaz PhD</span> (one of the United States' greatest dog trainers) and <span>Eric Presnall</span> (Host of the hit Animal Planet TV show "Who Let the Dogs Out").</p>
                 </div>
             </div>
     
@@ -1180,7 +1324,7 @@ color: #808080 !important;
                         </label>
         
                         <input class="custom_checkbox" id="pulling" type="checkbox" name="pulling" value="pulling">
-                        <label for="pulling" tabIndex="0">Pulling leash
+                        <label for="pulling" tabIndex="0">Leash Pulling
                         </label>
         
                         <input class="custom_checkbox" id="housebreaking" type="checkbox" name="housebreaking" value="housebreaking">
@@ -1192,11 +1336,11 @@ color: #808080 !important;
                         </label>
         
                         <input class="custom_checkbox" id="called" type="checkbox" name="called" value="called">
-                        <label for="called" tabIndex="0">Not coming when called
+                        <label for="called" tabIndex="0">Ignoring calls
                         </label>
         
                         <input class="custom_checkbox" id="listen" type="checkbox" name="listen" value="listen">
-                        <label for="listen" tabIndex="0">Doesn't listen</label>
+                        <label for="listen" tabIndex="0">Ignoring Commands</label>
         
                         <input class="custom_checkbox" id="chewing" type="checkbox" name="chewing" value="chewing">
                         <label for="chewing" tabIndex="0">Chewing</label>
@@ -1237,7 +1381,8 @@ color: #808080 !important;
                       <h2>Discover how to eliminate <span class="your_dog_name">[dog’s name]</span> behavior problems today!</h2>
                       <p>Access the workshop that has helped transform the behavior of 2.7 million dogs, for FREE, today:</p>                      
                     </div>
-                    <h2>Introduce us to your dog</h2>
+                    <h2>We'd love to know more about your dog. Introduce us!</h2>
+                     <p class="mobile_descr">Your hosts for the workshop will be  <span>Dr. Alexa Diaz PhD</span> (one of the United States' greatest dog trainers) and <span>Eric Presnall</span> (Host of the hit Animal Planet TV show "Who Let the Dogs Out").</p>
                         <div class="benefits">
                           <ul>
                             <li>
@@ -1484,6 +1629,7 @@ color: #808080 !important;
       let buttonInputName = /*html*/ `
         <div class="new_block_breed">
           <input type="text" class="" data-html="true" name="breed" id="breedDog" placeholder="Enter your dog’s breed" tabindex="0">
+          <span class="label_breed">Dog’s breed</span>
           <div class="chosen_select">
                   <label>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1503,7 +1649,7 @@ color: #808080 !important;
         </div>
         <div data-tolltip data-title="Receive key insights for dealing with housebreaking issues, barking, jumping, biting, and other forms of disobedience and unwanted behavior." class="tooltip_box">
           <p>
-            We’ll occasionally send you key dog training alerts & tips
+            You'll receive the workshop link as well as other key training materials
           </p>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_2433_7202)">
@@ -1588,6 +1734,9 @@ color: #808080 !important;
               })
 
               if (document.querySelector(".privacy_policy_wrap p a")) {
+                if (innerWidth <= 768) {
+                  document.querySelector(".privacy_policy_wrap br").remove()
+                }
                 let overlay = document.querySelector(".backdrop_popup")
 
                 document.querySelector(".privacy_policy_wrap p a").addEventListener("click", (e) => {
@@ -1632,14 +1781,15 @@ color: #808080 !important;
       <p>
         When your information is provided to third parties, these third parties may include providers of direct marketing services and applications. We or these third parties may
         supplement the information we collect online with outside records to enhance our ability to serve you, to tailor our Website, our Program and our Products to you, and/or to
-        offer you targeted advertising and other opportunities to purchase products and services that we believe may be of interest to you. We will NEVER share your credit card
+        offer you targeted advertising and other opportunities to purchase products and services that we believe may be of interest to you.
+      </p>
+      <p>We will NEVER share your credit card
         information with third parties unless you have given us explicit permission to do so, such as in order to fulfill a third party offer that you have accepted from us. By
         permitting us to collect this information, you will be able to receive free information on products and services that may be of interest to you. You also enable us to
         personalize your experience with us so that we can provide you with the highest quality of service. By submitting your email address on our Website, you agree to receive
         email from us and our third party advertisers. We, and our third party advertisers, may maintain separate email lists for different purposes. You may cancel your
         participation in any of these email lists at any time by clicking the opt out link or other unsubscribe option that is included in the email. We only send emails to people
-        who have voluntarily provided us with such contact information, either directly, or through a third party. We do not send unsolicited commercial emails.
-      </p>
+        who have voluntarily provided us with such contact information, either directly, or through a third party. We do not send unsolicited commercial emails.</p>
       </div>
     </div>`
                   )
@@ -1716,7 +1866,7 @@ color: #808080 !important;
               //   btn back active_btn_second
               if (this?.classList.contains("active_btn_second")) {
                 arr = []
-                pushDataLayer(`Click on Previous on step "Introduce us to your dog"`)
+                pushDataLayer(`Click on Previous on step "We'd love to know more about your dog. Introduce us!"`)
                 this.style.display = "none"
                 document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(1)").style.display = "flex"
                 document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(1)")?.classList.add("active_btn_first")
@@ -1730,7 +1880,7 @@ color: #808080 !important;
 
               //   btn back active_btn_third
               if (this?.classList.contains("active_btn_third")) {
-                pushDataLayer(`Click on Previous on step "Who is [dog's name] owner"`)
+                pushDataLayer(`Click on Previous on step "Enter your details to receive help for Mark’s behavior"`)
                 this?.classList.remove("active_btn_third")
                 this?.classList.add("active_btn_second")
 
@@ -1739,12 +1889,22 @@ color: #808080 !important;
                 document.querySelector(".popup_new .img_wrap .dog_third").style.display = "none"
                 document.querySelector(".popup_new .img_wrap .dog_second").style.display = "block"
 
-                document.querySelector(".popup_new > div:last-child .popup_second > h2").textContent = "Introduce us to your dog"
+                if (document.querySelector(".popup_new > div:last-child .popup_second > h2").classList.contains("step_three")) {
+                  document.querySelector(".popup_new > div:last-child .popup_second > h2").classList.remove("step_three")
+                }
+                document.querySelector(".popup_new > div:last-child .popup_second > h2").textContent = "We'd love to know more about your dog. Introduce us!"
                 document.querySelector("#firstModal .button_input_name").classList.remove("step_third")
                 document.querySelector("#firstModal .button_input_name").classList.add("step_second")
                 document.querySelector("#firstModal #dog-name").style.display = "flex"
-                document.querySelector("#firstModal #dog-name-top-levels").style.display = "block"
+                document.querySelector("#firstModal #subs-name-top-levels").style.display = "none"
+                document.querySelector("#firstModal #subs-mobile-top-levels").style.display = "none"
                 document.querySelector(".new_block_breed input").style.display = "block"
+                if (document.querySelector("#firstModal #dog-name").value !== "") {
+                  document.querySelector("#firstModal #dog-name-top-levels").style.display = "block"
+                }
+                if (document.querySelector(".new_block_breed input").value !== "") {
+                  document.querySelector(".new_block_breed .label_breed").style.display = "block"
+                }
 
                 document.querySelector(".tooltip_box").style.display = "none"
                 document.querySelector("#firstModal #subs-name").style.display = "none"
@@ -1771,12 +1931,21 @@ color: #808080 !important;
                 document.querySelector("#firstModal #subs-name").style.display = "flex"
                 document.querySelector("#firstModal #subs-mobile").style.display = "flex"
                 document.querySelector("#firstModal #subs-email").style.display = "none"
+                document.querySelector("#firstModal #subs-email-top-levels").style.display = "none"
                 document.querySelector("#firstModal #contact-submit").style.display = "none"
                 document.querySelector(".last_step_title").style.display = "none"
                 document.querySelector(".popup_new .img_wrap .dog_third").style.display = "none"
+                if (document.querySelector("#firstModal #subs-mobile").value !== "") {
+                  document.querySelector("#firstModal #subs-mobile-top-levels").style.display = "block"
+                }
+                document.querySelector("#firstModal #subs-name-top-levels").style.display = "block"
                 document.querySelector(".benefits").style.display = "none"
                 document.querySelector(".email_text").style.display = "none"
                 document.querySelector("#firstModal .modal-body").classList.remove("is_active")
+
+                if (innerWidth <= 768) {
+                  document.querySelector("mobile_descr").style.display = "none"
+                }
 
                 document.querySelector(".popup_new > div:last-child .progress_bar > ul li:nth-child(4)")?.classList.remove("active_step")
                 document.querySelector(".popup_new > div:last-child .progress_bar > div p:last-child span:nth-child(1)").textContent = "3"
@@ -1833,6 +2002,17 @@ color: #808080 !important;
           if (document.querySelector("#firstModal #contact-submit")) {
             document.querySelector("#firstModal #contact-submit").addEventListener("click", function () {
               pushDataLayer("Get workshop link clicked")
+            })
+          }
+
+          if (document.querySelector(".new_block_breed")) {
+            document.querySelector(".new_block_breed input#breedDog").addEventListener("input", (e) => {
+              console.log(e)
+              if (e.target.value !== "") {
+                document.querySelector(".label_breed").style.display = "block"
+              } else {
+                document.querySelector(".label_breed").style.display = "none"
+              }
             })
           }
 
@@ -1978,6 +2158,14 @@ color: #808080 !important;
           document.querySelector("#firstModal #dog-name").style.display = "none"
           document.querySelector("#firstModal #dog-name-top-levels").style.display = "none"
 
+          if (document.querySelector("#firstModal #subs-name").value !== "") {
+            document.querySelector("#firstModal #subs-name-top-levels").style.display = "block"
+          }
+          if (document.querySelector("#firstModal #subs-mobile").value !== "") {
+            document.querySelector("#firstModal #subs-mobile-top-levels").style.display = "block"
+          }
+          document.querySelector(".new_block_breed .label_breed").style.display = "none"
+
           document.querySelector("#firstModal #subs-name").style.display = "flex"
           document.querySelector("#firstModal #subs-mobile").style.display = "flex"
           document.querySelector(".tooltip_box").style.display = "block"
@@ -1988,9 +2176,12 @@ color: #808080 !important;
           }, 100)
 
           localStorage.setItem("dogName", document.querySelector("#firstModal #dog-name").value)
+          document.querySelector(".popup_new > div:last-child .popup_second > h2").classList.add("step_three")
 
           if (localStorage.getItem("dogName")) {
-            document.querySelector(".popup_new > div:last-child .popup_second > h2").textContent = `Who is ${localStorage.getItem("dogName")} owner?`
+            document.querySelector(".popup_new > div:last-child .popup_second > h2").innerHTML = `Enter your details to receive help for <span>${localStorage.getItem(
+              "dogName"
+            )}’s</span> behavior`
             if (document.querySelector(".last_step_title h2 .your_dog_name")) {
               document.querySelector(".last_step_title h2 .your_dog_name").textContent = `${localStorage.getItem("dogName")}’s`
             }
@@ -2024,8 +2215,9 @@ color: #808080 !important;
           document.querySelector(".popup_new > div:last-child .popup_second > h2").style.display = "none"
           document.querySelector("#firstModal .button_input_name.step_third").style.display = "none"
           document.querySelector("#firstModal #subs-name").style.display = "none"
-          document.querySelector("#firstModal #subs-name-top-levels").style.display = "none"
           document.querySelector("#firstModal #subs-mobile").style.display = "none"
+          document.querySelector("#firstModal #subs-name-top-levels").style.display = "none"
+          document.querySelector("#firstModal #subs-mobile-top-levels").style.display = "none"
           document.querySelector(".tooltip_box").style.display = "none"
           document.querySelector("#firstModal .modal-body").classList.add("is_active")
           document.querySelector(".last_step_title").style.display = "block"
@@ -2034,6 +2226,14 @@ color: #808080 !important;
           document.querySelector("#firstModal #contact-submit").style.display = "flex"
           document.querySelector(".email_text").style.display = "block"
           document.querySelector(".benefits").style.display = "block"
+
+          if (innerWidth <= 768) {
+            document.querySelector("p.mobile_descr").style.display = "block"
+          }
+
+          if (document.querySelector("#firstModal #subs-email").value !== "") {
+            document.querySelector("#firstModal #subs-email-top-levels").style.display = "block"
+          }
         }
       }
 

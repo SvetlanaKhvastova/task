@@ -92,7 +92,7 @@ let stickyBanner = setInterval(() => {
             font-weight: 400;
             font-size: 16px;
             line-height: 26px;
-            color: #B2B2B2;
+            color: #000000;
             border-left: 1px solid #D3D4D6;
             border-bottom: unset;
             border-top: unset;
@@ -189,7 +189,7 @@ let stickyBanner = setInterval(() => {
     document.body.insertAdjacentHTML("afterbegin", style)
 
     if (!sessionStorage.getItem("sticky_banner")) {
-      document.querySelector("#sub-navigation").insertAdjacentHTML("afterbegin", stickyBlock)
+      document.querySelector("#sub-navigation").insertAdjacentHTML("beforeend", stickyBlock)
     }
 
     window.addEventListener("scroll", function () {
@@ -199,8 +199,16 @@ let stickyBanner = setInterval(() => {
     onLoadStickyBanner()
 
     function onLoadStickyBanner() {
+      let positionVar = 0
+      if (window.innerWidth <= 1110) {
+        positionVar = 60
+      }
+
       if (document.querySelector(".sticky_banner")) {
-        if (document.querySelector(".css-2s6hek")?.getBoundingClientRect().bottom <= 0 || document.querySelector(".css-1ih2ha8")?.getBoundingClientRect().bottom <= 0) {
+        if (
+          document.querySelector(".css-2s6hek")?.getBoundingClientRect().bottom <= positionVar ||
+          document.querySelector(".css-1ih2ha8")?.getBoundingClientRect().bottom <= positionVar
+        ) {
           if (!document.querySelector(".sticky_banner").classList.contains("is_fixed")) {
             document.querySelector(".sticky_banner").classList.add("is_fixed")
             if (document.querySelector(".sticky_banner")) {
