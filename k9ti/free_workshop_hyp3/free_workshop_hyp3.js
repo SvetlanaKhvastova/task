@@ -1173,6 +1173,9 @@ line-height: 150%;
     font-size: 22px !important;
     line-height: 28px !important;
   }
+  .last_step_title p{
+    
+  }
   #firstModal .form-control, .new_block_breed input, #firstModal #subs-mobile{
     padding: 10px 18px;
   }
