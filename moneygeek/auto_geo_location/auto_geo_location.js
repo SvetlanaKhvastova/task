@@ -62,6 +62,7 @@ let autoGeoLocation = setInterval(() => {
         }
         .auto_location_block label{
             display: flex;
+            justify-content: space-between;
             background: #FFFFFF;
             border: 1px solid #D3D4D6;
             border-radius: 4px;
@@ -69,7 +70,8 @@ let autoGeoLocation = setInterval(() => {
             padding: 7px 12px;
         }
         .auto_location_block label svg{
-            flex: 1 0 16px;
+            width: 100%;
+            max-width: 16px;
             margin-right: 12px;
         }
         .auto_location_block input{
@@ -85,6 +87,8 @@ let autoGeoLocation = setInterval(() => {
             border-right: unset;
             padding: 0 0 0 12px;
             margin: 0;
+            max-width: 126px;
+            width: 100%;
         }
         .auto_location_block input:focus,
         .auto_location_block input:hover{
@@ -105,6 +109,7 @@ let autoGeoLocation = setInterval(() => {
             text-align: right;
             color: #555555;
             width: max-content;
+            margin: 0 0 0 auto;
         }
         .zip_error{
             display: none;
@@ -192,6 +197,9 @@ let autoGeoLocation = setInterval(() => {
               } else {
                 error.classList.remove("is_error")
                 label.classList.remove("is_error")
+                if (document.querySelector(".auto_region svg")) {
+                  document.querySelector(".auto_region").innerHTML = ""
+                }
               }
             }
             e.target.setAttribute("data-test", "1")
@@ -233,6 +241,12 @@ let autoGeoLocation = setInterval(() => {
             document.querySelector(".auto_region").innerHTML = `<svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M9.5 1.59766C9.5 0.785156 8.8125 0.0976562 8 0.0976562C7.15625 0.0976562 6.5 0.785156 6.5 1.59766C6.5 2.44141 7.15625 3.09766 8 3.09766C8.8125 3.09766 9.5 2.44141 9.5 1.59766ZM8 13.0977C7.15625 13.0977 6.5 13.7852 6.5 14.5977C6.5 15.4414 7.15625 16.0977 8 16.0977C8.8125 16.0977 9.5 15.4414 9.5 14.5977C9.5 13.7852 8.8125 13.0977 8 13.0977ZM14.5 6.59766C13.6562 6.59766 13 7.28516 13 8.09766C13 8.94141 13.6562 9.59766 14.5 9.59766C15.3125 9.59766 16 8.94141 16 8.09766C16 7.28516 15.3125 6.59766 14.5 6.59766ZM3 8.09766C3 7.28516 2.3125 6.59766 1.5 6.59766C0.65625 6.59766 0 7.28516 0 8.09766C0 8.94141 0.65625 9.59766 1.5 9.59766C2.3125 9.59766 3 8.94141 3 8.09766ZM3.375 11.2227C2.5625 11.2227 1.875 11.8789 1.875 12.7227C1.875 13.5352 2.5625 14.2227 3.375 14.2227C4.21875 14.2227 4.875 13.5352 4.875 12.7227C4.875 11.8789 4.21875 11.2227 3.375 11.2227ZM12.5938 11.2227C11.75 11.2227 11.0938 11.8789 11.0938 12.7227C11.0938 13.5352 11.75 14.2227 12.5938 14.2227C13.4062 14.2227 14.0938 13.5352 14.0938 12.7227C14.0938 11.8789 13.4062 11.2227 12.5938 11.2227ZM3.375 2.00391C2.5625 2.00391 1.875 2.69141 1.875 3.50391C1.875 4.34766 2.5625 5.00391 3.375 5.00391C4.21875 5.00391 4.875 4.34766 4.875 3.50391C4.875 2.69141 4.21875 2.00391 3.375 2.00391Z" fill="#555555"/>
 </svg>`
+
+            setTimeout(() => {
+              if (document.querySelector(".auto_region svg")) {
+                document.querySelector(".auto_region").innerHTML = ""
+              }
+            }, 1000)
           })
         }
 
