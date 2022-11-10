@@ -14,7 +14,7 @@ let autoGeoLocation = setInterval(() => {
         console.log(actionDataLayer + " : " + labelDataLayer)
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: Sticky ZIP ${eventVar}`,
+          eventCategory: `Exp: Autofill ZIP ${eventVar}`,
           eventAction: `${actionDataLayer}`,
           eventLabel: `${labelDataLayer}`,
         })
@@ -22,7 +22,7 @@ let autoGeoLocation = setInterval(() => {
         console.log(actionDataLayer)
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: Sticky ZIP ${eventVar}`,
+          eventCategory: `Exp: Autofill ZIP ${eventVar}`,
           eventAction: `${actionDataLayer}`,
         })
       }
@@ -33,9 +33,10 @@ let autoGeoLocation = setInterval(() => {
       .css-amzw5g {
   height: fit-content !important;
 }
-#KAWIB_Zip_input,
-#KAWIB_CTA_button {
-  display: none;
+form.css-8atqhb .chakra-input__group,
+form.css-8atqhb button.chakra-button,
+form.css-8atqhb .chakra-form__error-message {
+  display: none !important;
 }
 .auto_location_block p {
   font-family: "Brandon Grotesque", sans-serif;
@@ -162,6 +163,23 @@ let autoGeoLocation = setInterval(() => {
     document.body.insertAdjacentHTML("afterbegin", style)
     document.querySelector("form.css-8atqhb").insertAdjacentHTML("afterbegin", autoLocationBlock)
 
+    if (document.querySelector(".auto_region")) {
+      if (document.querySelector(".auto_region") !== "") {
+        const options = {
+          root: null,
+          threshold: 1,
+        }
+
+        let observerNewHeader = new IntersectionObserver((entries) => {
+          if (!entries[0].isIntersecting) return
+          pushDataLayer(`State resolved from IP and shown`)
+          observerNewHeader.disconnect()
+        })
+
+        observerNewHeader.observe(document.querySelector(".auto_region"), options)
+      }
+    }
+
     onClickControlVer()
     fetchLocation()
 
@@ -179,9 +197,9 @@ let autoGeoLocation = setInterval(() => {
             if (!e.target.getAttribute("data-test")) {
               pushDataLayer("Compare Quoutes clicked")
 
-              document.querySelector("form.css-8atqhb #KAWIB_CTA_button button").click()
+              document.querySelector("form.css-8atqhb button.chakra-button").click()
 
-              if (document.querySelector(".chakra-form__error-message.css-vamxt0") !== null) {
+              if (document.querySelector("form.css-8atqhb .chakra-form__error-message") !== null) {
                 document.querySelector(".auto_region").innerHTML = ""
                 error.classList.add("is_error")
                 label.classList.add("is_error")
@@ -223,7 +241,7 @@ let autoGeoLocation = setInterval(() => {
 
             nativeInputValueSetter.call(document.querySelector('[name="zip"]'), e.target.value)
 
-            if (document.querySelector(".chakra-form__error-message.css-vamxt0")) {
+            if (document.querySelector("form.css-8atqhb .chakra-form__error-message")) {
               error.classList.remove("is_error")
               label.classList.remove("is_error")
             }
@@ -255,7 +273,7 @@ let autoGeoLocation = setInterval(() => {
           document.querySelector('[name="zip"]').addEventListener("input", (e) => {
             input.value = e.target.value
 
-            if (document.querySelector(".chakra-form__error-message.css-vamxt0")) {
+            if (document.querySelector("form.css-8atqhb .chakra-form__error-message")) {
               error.classList.remove("is_error")
               label.classList.remove("is_error")
             }
@@ -289,5 +307,14 @@ let autoGeoLocation = setInterval(() => {
 
       // region
     }
+
+    pushDataLayer("loaded")
+    const record = setInterval(() => {
+      if (typeof clarity === "function") {
+        clearInterval(record)
+
+        clarity("set", "autofill_zip", "variant_1")
+      }
+    }, 200)
   }
 }, 100)
