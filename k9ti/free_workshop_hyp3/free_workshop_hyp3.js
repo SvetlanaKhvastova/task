@@ -13,13 +13,19 @@ if (window.location.pathname === "/free-workshop/") {
       scriptTippy.async = false
       document.body.appendChild(scriptTippy)
 
+      let eventVar = "desktop"
+
+      if (window.innerWidth <= 768) {
+        eventVar = "mobile"
+      }
+
       function pushDataLayer(actionDataLayer, labelDataLayer) {
         window.dataLayer = window.dataLayer || []
         if (labelDataLayer) {
           console.log(actionDataLayer + " : " + labelDataLayer)
           dataLayer.push({
             event: "event-to-ga",
-            eventCategory: `Exp: Improved registration flow`,
+            eventCategory: `Exp: New reg Hyp3 ${eventVar}`,
             eventAction: `${actionDataLayer}`,
             eventLabel: `${labelDataLayer}`,
           })
@@ -27,7 +33,7 @@ if (window.location.pathname === "/free-workshop/") {
           console.log(actionDataLayer)
           dataLayer.push({
             event: "event-to-ga",
-            eventCategory: `Exp: Improved registration flow`,
+            eventCategory: `Exp: New reg Hyp3 ${eventVar}`,
             eventAction: `${actionDataLayer}`,
           })
         }
@@ -1433,6 +1439,7 @@ if (window.location.pathname === "/free-workshop/") {
                     </defs>
                   </svg>
                 </div>
+                <span class="visability_btn_continue"></span>
               </div>
 
               <div class="popup_second">
@@ -1807,6 +1814,37 @@ if (window.location.pathname === "/free-workshop/") {
 
               document.querySelector(".popup_new > div:last-child .popup_second > h2")?.after(document.querySelector("#firstModal .modal-body"))
 
+              if (document.querySelector(".start_step")) {
+                visability("Dog`s Age", document.querySelector(".start_step"))
+              }
+              if (document.querySelector(".btn_continue")) {
+                visability("btn Continue on step 'What unwanted behavior do you want to address?'", document.querySelector(".visability_btn_continue"))
+              }
+              if (document.querySelector(".button_input_name").classList.contains("step_second")) {
+                visability("btn Continue on step 'We'd love to know more about your dog. Introduce us!'", document.querySelector(".button_input_name.step_second"))
+              }
+              if (document.querySelector(".benefits")) {
+                visability("block 'Watch on-demand at your convenience...' on step 4", document.querySelector(".benefits ul li:last-child"))
+              }
+              if (document.querySelector(".dog_third p")) {
+                visability("text 'Your hosts..' on step 4", document.querySelector(".dog_third p span:nth-child(2)"))
+              }
+              if (document.querySelector("p.mobile_descr")) {
+                visability("text 'Your hosts..' on step 4", document.querySelector("p.mobile_descr span:nth-child(2)"))
+              }
+              let findBtn = setInterval(() => {
+                if (document.querySelector(".button_input_name").classList.contains("step_third")) {
+                  clearInterval(findBtn)
+                  visability("btn Continue on step 'Enter your details to receive help for Dog’s behavior'", document.querySelector(".privacy_policy_wrap"))
+                }
+              }, 100)
+              let findBtn2 = setInterval(() => {
+                if (document.querySelector("#firstModal .visability_subs_submit")) {
+                  clearInterval(findBtn2)
+                  visability("btn Get workshop link", document.querySelector(".visability_subs_submit"))
+                }
+              }, 100)
+
               // click on btn My dog is a puppy (aged less than 1 year)
               document.querySelector(".start_step ul li:first-child").addEventListener("click", function (e) {
                 e.preventDefault()
@@ -1842,18 +1880,20 @@ if (window.location.pathname === "/free-workshop/") {
                 document.querySelector(".privacy_policy_wrap p a").addEventListener("click", (e) => {
                   e.preventDefault()
                   e.stopPropagation()
-                  console.log(`link`)
+                  pushDataLayer(`lick on Privacy policy ${e.target.getAttribute("step")}`)
                   onOpenPopup()
                 })
 
                 // click on btn close popup
                 document.querySelector(".backdrop_popup .container_popup > svg")?.addEventListener("click", (e) => {
+                  pushDataLayer("Click on btn close pop-up")
                   onClosePopup()
                 })
 
                 // click on overlay popup
                 overlay.addEventListener("click", (e) => {
                   if (e.target.matches(".backdrop_popup")) {
+                    pushDataLayer("Click on overlay pop-up")
                     onClosePopup()
                   }
                 })
@@ -1893,10 +1933,22 @@ if (window.location.pathname === "/free-workshop/") {
                             the email. We only send emails to people who have voluntarily provided us with such contact information, either directly, or through a third party. We do not send
                             unsolicited commercial emails.
                           </p>
+                          <span class="visability_last_text"></span>
                         </div>
                       </div>
                   `
                   )
+
+                  if (document.querySelector(".content_popup")) {
+                    pushDataLayer(`Shown pop-up`)
+                  }
+
+                  let findBtn3 = setInterval(() => {
+                    if (document.querySelector(".visability_last_text")) {
+                      clearInterval(clearInterval(findBtn3))
+                      visability("Scroll pop-up", document.querySelector(".visability_last_text"))
+                    }
+                  }, 100)
                 }
 
                 function onClosePopup() {
@@ -1912,7 +1964,6 @@ if (window.location.pathname === "/free-workshop/") {
           // click on label checkbox
           document.querySelectorAll("#firstModal .custom_checkbox + label").forEach((el) => {
             el.addEventListener("click", function () {
-              console.log(`behavior`, el)
               pushDataLayer(`${this.getAttribute("for")} selected`)
             })
           })
@@ -1921,7 +1972,10 @@ if (window.location.pathname === "/free-workshop/") {
           //   click on first btn Continue
           if (document.querySelector(".popup_new > div:last-child .popup_first .btn_continue")) {
             document.querySelector(".popup_new > div:last-child .popup_first .btn_continue").addEventListener("click", function (el) {
-              pushDataLayer(`Click on Continue on step "What unwanted behavior do you want to address`)
+              pushDataLayer(`Click on Continue on step "What unwanted behavior do you want to address?`)
+              if (document.querySelector(".privacy_policy_wrap p a")) {
+                document.querySelector(".privacy_policy_wrap p a").setAttribute("step", "2")
+              }
               this.closest(".popup_first")?.classList.remove("active_popup")
               document.querySelector("#firstModal .modal-dialog > .img_wrap").scrollIntoView({ block: "center", behavior: "smooth" })
 
@@ -1985,7 +2039,10 @@ if (window.location.pathname === "/free-workshop/") {
 
               //   btn back active_btn_third
               if (this?.classList.contains("active_btn_third")) {
-                pushDataLayer(`Click on Previous on step "Enter your details to receive help for Mark’s behavior"`)
+                pushDataLayer(`Click on Previous on step "Enter your details to receive help for Dod’s behavior"`)
+                if (document.querySelector(".privacy_policy_wrap p a")) {
+                  document.querySelector(".privacy_policy_wrap p a").setAttribute("step", "2")
+                }
                 this?.classList.remove("active_btn_third")
                 this?.classList.add("active_btn_second")
 
@@ -2023,7 +2080,10 @@ if (window.location.pathname === "/free-workshop/") {
               }
 
               if (this?.classList.contains("active_btn_fourth")) {
-                pushDataLayer(`Click on Previous on step "Discover how to eliminate ...’s behavior problems today!"`)
+                pushDataLayer(`Click on Previous on step "Discover how to eliminate Dog’s behavior problems today!"`)
+                if (document.querySelector(".privacy_policy_wrap p a")) {
+                  document.querySelector(".privacy_policy_wrap p a").setAttribute("step", "3")
+                }
                 this?.classList.remove("active_btn_fourth")
                 this?.classList.add("active_btn_third")
 
@@ -2129,6 +2189,28 @@ if (window.location.pathname === "/free-workshop/") {
             })
           }
 
+          if (document.querySelector("#firstModal #dog-name")) {
+            getEventInput("#dog-name")
+          }
+          if (document.querySelector(".new_block_breed input")) {
+            getEventInput(".new_block_breed input")
+          }
+          if (document.querySelector("#firstModal #subs-name")) {
+            getEventInput("#subs-name")
+          }
+          if (document.querySelector("#firstModal #subs-mobile")) {
+            getEventInput("#subs-mobile")
+          }
+          if (document.querySelector("#firstModal #subs-email")) {
+            getEventInput("#subs-email")
+          }
+
+          function getEventInput(name) {
+            document.querySelector(`#firstModal ${name}`).addEventListener("click", (el) => {
+              pushDataLayer(`Click input ${el.target.getAttribute("name")}`)
+            })
+          }
+
           if (document.querySelector(".new_block_breed")) {
             document.querySelector(".new_block_breed input#breedDog").addEventListener("input", (e) => {
               console.log(e)
@@ -2138,119 +2220,6 @@ if (window.location.pathname === "/free-workshop/") {
                 document.querySelector(".label_breed").style.display = "none"
               }
             })
-          }
-
-          // choose select
-          if (document.querySelector(".chosen_select")) {
-            filteInputText()
-            // remove all text input
-            document.querySelector("#removeTextInput").addEventListener("click", function (e) {
-              pushDataLayer("Click on Closed on step 'What breed is your dog?'")
-              document.querySelector(".chosen_select ul").innerHTML = ""
-              arrayBreedDog.forEach((el) => {
-                document.querySelector(".chosen_select ul").insertAdjacentHTML("afterbegin", setListBreedDog(el))
-              })
-              this.previousElementSibling.value = ""
-              document.querySelector(".chosen_select div").style.display = "block"
-              filteInputText()
-            })
-
-            // filter
-            document.querySelector(".chosen_select label > input").addEventListener("focus", () => {
-              document.querySelector(".chosen_select label")?.classList.add("on_focus")
-              document.querySelector(".chosen_select").insertAdjacentHTML(
-                "beforeend",
-                `<p class="hover_text"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_732_846)"><path d="M11.8087 9.26711L7.222 1.3227C6.96695 0.880953 6.51013 0.617188 5.99999 0.617188C5.48988 0.617188 5.03303 0.880953 4.77799 1.3227L0.191302 9.26708C-0.0637675 9.70888 -0.0637675 10.2364 0.191302 10.6781C0.446372 11.1199 0.903168 11.3837 1.41331 11.3837H10.5867C11.0968 11.3837 11.5536 11.1199 11.8087 10.6782C12.0638 10.2364 12.0638 9.70888 11.8087 9.26711ZM11.1999 10.3266C11.0719 10.5483 10.8426 10.6806 10.5867 10.6806H1.41331C1.15732 10.6806 0.928106 10.5483 0.800137 10.3266C0.672169 10.105 0.672169 9.84032 0.800137 9.61865L5.38687 1.67424C5.51484 1.45257 5.74406 1.32024 6.00002 1.32024C6.25595 1.32024 6.4852 1.45257 6.61316 1.67424L11.1999 9.61865C11.3278 9.84032 11.3278 10.105 11.1999 10.3266Z" fill="#808080"/><path d="M6.35147 4.125H5.64844V7.6402H6.35147V4.125Z" fill="#808080"/><path d="M5.99995 8.34375C5.74151 8.34375 5.53125 8.55401 5.53125 8.81245C5.53125 9.0709 5.74151 9.28115 5.99995 9.28115C6.25837 9.28115 6.46865 9.0709 6.46865 8.81245C6.46865 8.55401 6.2584 8.34375 5.99995 8.34375Z" fill="#808080"/></g><defs><clipPath id="clip0_732_846"><rect width="12" height="12" fill="white"/></clipPath></defs></svg>
-              Choose your dog breed to continue</p>`
-              )
-            })
-
-            document.querySelector(".chosen_select label > input").addEventListener("keydown", (e) => {
-              document.querySelector(".chosen_select label")?.classList.add("on_focus")
-              let x = document.querySelector(`${e.target}`).closest("label").nextElementSibling
-
-              // if (e.keyCode == 40) {
-              //   console.log(x)
-              // } else if (e.keyCode == 38) {
-              //   console.log(x)
-              // } else if (e.keyCode == 13) {
-              //   console.log(x)
-              //   e.preventDefault()
-              // }
-            })
-
-            document.querySelector(".chosen_select label > input").addEventListener("blur", () => {
-              if (document.querySelector(".chosen_select label")?.classList.contains("on_focus")) {
-                document.querySelector(".chosen_select label")?.classList.remove("on_focus")
-
-                if (document.querySelector(".chosen_select > p")) {
-                  document.querySelector(".chosen_select > p").remove()
-                }
-                if (document.querySelector(".chosen_select label > input").value === "") {
-                  document.querySelector(".chosen_select label svg#removeTextInput").style.display = "none"
-                }
-              }
-            })
-
-            document.querySelector(".chosen_select label > input").addEventListener("input", function (e) {
-              if (e.value !== "") {
-                document.querySelector(".chosen_select label svg#removeTextInput").style.display = "block"
-              }
-
-              document.querySelector(".chosen_select ul").innerHTML = ""
-              arrayBreedDog.forEach((el) => {
-                document.querySelector(".chosen_select ul").insertAdjacentHTML("afterbegin", setListBreedDog(el))
-              })
-
-              document.querySelector(".chosen_select div").style.display = "block"
-              filteInputText()
-            })
-
-            function filteInputText() {
-              let filterValue = document.querySelector(".chosen_select label > input").value.toUpperCase()
-              let notFound = true
-
-              document.querySelectorAll(".chosen_select ul li").forEach(function (el) {
-                el.addEventListener("click", function () {
-                  document.querySelector(".chosen_select label > input").value = el.textContent
-                  document.querySelector(".chosen_select div").style.display = "none"
-
-                  if (document.querySelector(".chosen_select label > input").value !== "") {
-                    document.querySelector(".chosen_select label svg#removeTextInput").style.display = "block"
-                  }
-                })
-
-                let text = el.textContent.toUpperCase()
-                if (text.includes(filterValue)) {
-                  el?.classList.add("show")
-                  el?.classList.remove("hide")
-                  notFound = false
-                  includesSymb(filterValue, text, el.firstChild)
-                } else {
-                  el?.classList.add("hide")
-                  el?.classList.remove("show")
-                }
-              })
-
-              if (notFound) {
-                document.querySelector(".chosen_select ul").innerHTML = `<li>Oops, nothing found!</li>`
-              }
-            }
-          }
-
-          function includesSymb(text, cont, element) {
-            let root = element
-            let content = cont
-
-            let rng = document.createRange()
-
-            rng.setStart(root, content.indexOf(text))
-
-            rng.setEnd(root, content.indexOf(text) + text.length)
-
-            let highlightDiv = document.createElement("strong")
-
-            rng.surroundContents(highlightDiv)
           }
         }
       }, 10)
@@ -2266,6 +2235,10 @@ if (window.location.pathname === "/free-workshop/") {
       // validate formu
       function validationDogNameForm(parent) {
         let inputDogName = document.querySelector(`${parent} input[name='dog_name']`).value.match(/^[a-zA-Z]+$/)
+        pushDataLayer(`Click on Continue on step "We'd love to know more about your dog. Introduce us!"`)
+        if (document.querySelector(".privacy_policy_wrap p a")) {
+          document.querySelector(".privacy_policy_wrap p a").setAttribute("step", "3")
+        }
 
         // dog_name
         if (inputDogName === null) {
@@ -2278,8 +2251,6 @@ if (window.location.pathname === "/free-workshop/") {
         }
 
         if (document.querySelector(`${parent} input[name='dog_name'].input_error`) === null && parent === `#firstModal`) {
-          pushDataLayer(`Click on Continue on step "How should we address you and your dog?"`)
-
           if (document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2)").classList.contains("active_btn_second")) {
             document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2)").classList.remove("active_btn_second")
             document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2)").classList.add("active_btn_third")
@@ -2324,6 +2295,10 @@ if (window.location.pathname === "/free-workshop/") {
 
       function validationNameForm(parent) {
         let inputValueName = document.querySelector(`${parent} input[name='first_name']`).value.match(/^[a-zA-Z]+$/)
+        pushDataLayer(`Click on Continue on step "Enter your details to receive help for Dog’s behavior"`)
+        if (document.querySelector(".privacy_policy_wrap p a")) {
+          document.querySelector(".privacy_policy_wrap p a").setAttribute("step", "4")
+        }
 
         // first_name
         if (inputValueName === null) {
@@ -2336,8 +2311,6 @@ if (window.location.pathname === "/free-workshop/") {
         }
 
         if (document.querySelector(`${parent} input[name='first_name'].input_error`) === null && parent === `#firstModal`) {
-          pushDataLayer(`Click on Continue on step "How should we address you and your dog?"`)
-
           if (document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2)").classList.contains("active_btn_third")) {
             document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2)").classList.remove("active_btn_third")
             document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2)").classList.add("active_btn_fourth")
@@ -2358,6 +2331,7 @@ if (window.location.pathname === "/free-workshop/") {
           document.querySelector(".popup_new .img_wrap .dog_third").style.display = "block"
           document.querySelector("#firstModal #subs-email").style.display = "flex"
           document.querySelector("#firstModal #contact-submit").style.display = "flex"
+          document.querySelector("#firstModal #contact-submit").insertAdjacentHTML("afterend", `<span class="visability_subs_submit"></span>`)
           document.querySelector(".email_text").style.display = "block"
           document.querySelector(".benefits").style.display = "block"
 
@@ -2384,6 +2358,12 @@ if (window.location.pathname === "/free-workshop/") {
                 appendTo: function () {
                   return document.querySelector(".tooltip_box")
                 },
+                onTrigger(e) {
+                  pushDataLayer(`Clicks on hints 'You'll receive the workshop link as well as other key training materials'`)
+                },
+                onShown(e) {
+                  pushDataLayer(`Shown 'You'll receive the workshop link as well as other key training materials'`)
+                },
               })
             } else {
               tippy(el, {
@@ -2391,6 +2371,12 @@ if (window.location.pathname === "/free-workshop/") {
                 placement: "bottom",
                 appendTo: function () {
                   return document.querySelector(".tooltip_box")
+                },
+                onTrigger(e) {
+                  pushDataLayer(`Hover on hints 'You'll receive the workshop link as well as other key training materials'`)
+                },
+                onShown(e) {
+                  pushDataLayer(`Shown 'You'll receive the workshop link as well as other key training materials'`)
                 },
               })
             }
@@ -2409,17 +2395,39 @@ if (window.location.pathname === "/free-workshop/") {
               appendTo: function () {
                 return document.querySelector(".tooltip_mob")
               },
+              onTrigger(e) {
+                pushDataLayer(`Clicks on hints 'View workshop details'`)
+              },
+              onShown(e) {
+                pushDataLayer(`Shown 'View workshop details'`)
+              },
             })
           })
         }
       }, 500)
+
+      function visability(event, elem) {
+        const options = {
+          root: null,
+          threshold: 1.0,
+        }
+
+        let observerNewHeader = new IntersectionObserver((entries) => {
+          if (!entries[0].isIntersecting) return
+          pushDataLayer(`${event} visability`)
+
+          observerNewHeader.disconnect()
+        })
+
+        observerNewHeader.observe(elem, options)
+      }
 
       pushDataLayer("loaded")
       const record = setInterval(() => {
         if (typeof clarity === "function") {
           clearInterval(record)
 
-          clarity("set", "reg_popup_impr", "variant_1")
+          clarity("set", "new_reg_hyp3", "variant_1")
         }
       }, 200)
       document.querySelector(".exp")?.remove()
@@ -2445,7 +2453,7 @@ if (window.location.pathname === "/mc/") {
           console.log(actionDataLayer + " : " + labelDataLayer)
           dataLayer.push({
             event: "event-to-ga",
-            eventCategory: `Exp: New reg/fw flow ${eventVar}`,
+            eventCategory: `Exp: New reg Hyp3 ${eventVar}`,
             eventAction: `${actionDataLayer}`,
             eventLabel: `${labelDataLayer}`,
           })
@@ -2453,7 +2461,7 @@ if (window.location.pathname === "/mc/") {
           console.log(actionDataLayer)
           dataLayer.push({
             event: "event-to-ga",
-            eventCategory: `Exp: New reg/fw flow ${eventVar}`,
+            eventCategory: `Exp: New reg Hyp3 ${eventVar}`,
             eventAction: `${actionDataLayer}`,
           })
         }
@@ -2689,6 +2697,16 @@ if (window.location.pathname === "/mc/") {
           }
         }
       }
+
+      pushDataLayer("loaded")
+      const record = setInterval(() => {
+        if (typeof clarity === "function") {
+          clearInterval(record)
+
+          clarity("set", "new_reg_hyp3", "variant_1")
+        }
+      }, 200)
+      document.querySelector(".exp")?.remove()
     }
   })
 }
