@@ -62,7 +62,7 @@ if (window.location.pathname === "/free-workshop/") {
       .btn_continue {
         background: #173775;
         border-radius: 10px;
-        margin: 0 0 0 auto;
+        margin: 0 0 15px auto;
         max-width: 304px;
         width: 100%;
         height: 48px;
@@ -1047,6 +1047,9 @@ if (window.location.pathname === "/free-workshop/") {
       }
 
       @media (max-width: 768px) {
+        .backdrop_popup .container_popup{
+          max-width: 350px;
+        }
         #firstModal .modal-content {
           width: 100% !important;
           padding: 0 15px !important;
@@ -1216,9 +1219,12 @@ if (window.location.pathname === "/free-workshop/") {
         }
         .content_popup h2 {
           font-size: 17px !important;
+          max-width: 355px;
+          margin-left: auto;
+          margin-right: auto;
         }
         .backdrop_popup .container_popup > svg {
-          right: 10px;
+          right: 15px;
         }
         .tippy-content .tooltip_mob_box > p {
           font-weight: 400 !important;
@@ -1260,6 +1266,70 @@ if (window.location.pathname === "/free-workshop/") {
         }
         .tooltip_mob .tippy-tooltip {
           max-width: 328px !important;
+        }
+      }
+      @media (max-width: 320px) {
+        .backdrop_popup .container_popup{
+          max-width: 295px;
+        }
+        .content_popup h2{
+          font-size: 13px !important;
+        }
+        .content_popup p{
+          font-size: 10px !important;
+        }
+        .content_popup p + p {
+            margin-top: 10px;
+        }
+        .start_step ul li p{
+          font-size: 15px;
+        }
+        .start_step h2{
+          font-size: 19px !important;
+        }
+        .popup_new > div:last-child .popup_first > h2{
+          font-size: 20px !important;
+        }
+        .popup_new > div:last-child .popup_second > h2{
+          font-size: 18px !important;
+        }
+        .tooltip_box p{
+          font-size: 12px;
+        }
+        .privacy_policy_wrap p{
+          font-size: 11px;
+        }
+        .last_step_title p{
+          font-size: 13px;
+        }
+        p.mobile_descr{
+          font-size: 11px !important;
+        }
+        .benefits ul li p{
+          font-size: 14px;
+        }
+        .email_text p{
+          font-size: 12px;
+        }
+      }
+      @media (max-width: 280px) {
+        .start_step ul li p{
+          font-size: 13px;
+        }
+        .start_step > p{
+          font-size: 14px;
+        }
+        .start_step h2{
+          font-size: 18px !important;
+        }
+        .popup_new > div:last-child .popup_first > h2{
+          font-size: 19px !important;
+        }
+        .popup_new > div:last-child .popup_second > h2{
+          font-size: 17px !important;
+        }
+        .tooltip_box p{
+          font-size: 11px;
         }
       }
 
@@ -1385,7 +1455,7 @@ if (window.location.pathname === "/free-workshop/") {
 
               <div class="popup_first active_popup">
                 <h2>What unwanted behavior do you want to address?</h2>
-                <p>Select any problems you’ve experienced in the last 2 months</p>
+                <p>Select the problems you've experienced in the past 2 months</p>
                 <div class="first_block_checkbox">
                   <input class="custom_checkbox" id="barking" type="checkbox" name="barking" value="barking" />
                   <label for="barking" tabindex="0">Barking </label>
@@ -1794,6 +1864,10 @@ if (window.location.pathname === "/free-workshop/") {
       document.head.insertAdjacentHTML("beforeend", popupStyle)
       document.body.insertAdjacentHTML("afterbegin", popUpPrivacy)
 
+      if (localStorage.getItem("is_visited")) {
+        document.body.style.overflow = "unset"
+      }
+
       // #firstModal
       let a = setInterval(() => {
         if (document.querySelector("#firstModal .vis-ver-0_0.modal-header.modal-header-style.modal-of-header.style-border.modal-header1")) {
@@ -1856,6 +1930,9 @@ if (window.location.pathname === "/free-workshop/") {
                 document.querySelector(".start_step")?.classList.remove("active_popup")
                 document.querySelector(".popup_new")?.classList.add("active_popup")
                 document.querySelector(".popup_new").style.display = "flex"
+                if (!localStorage.getItem("is_visited")) {
+                  localStorage.setItem("is_visited", true)
+                }
               })
 
               // click on btn My dog is a young or adult dog (aged 1 year or more)
@@ -1869,6 +1946,9 @@ if (window.location.pathname === "/free-workshop/") {
                 document.querySelector(".start_step")?.classList.remove("active_popup")
                 document.querySelector(".popup_new")?.classList.add("active_popup")
                 document.querySelector(".popup_new").style.display = "flex"
+                if (!localStorage.getItem("is_visited")) {
+                  localStorage.setItem("is_visited", true)
+                }
               })
 
               if (document.querySelector(".privacy_policy_wrap p a")) {
@@ -2703,7 +2783,7 @@ if (window.location.pathname === "/mc/") {
         if (typeof clarity === "function") {
           clearInterval(record)
 
-          clarity("set", "new_reg_hyp3", "variant_1")
+          clarity("set", "new_reg_hyp3", "variant_2")
         }
       }, 200)
       document.querySelector(".exp")?.remove()
