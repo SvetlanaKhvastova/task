@@ -98,7 +98,7 @@ let startFunk = setInterval(() => {
     .text_still_stock p{
         font-family: 'Montserrat', sans-serif;
         font-weight: 400;
-        font-size: 13px;
+        font-size: 14px;
         line-height: 22px;
         color: #111111;
         margin: 0;
@@ -107,16 +107,32 @@ let startFunk = setInterval(() => {
         display: flex;
         flex-direction: column;
         margin-top: 30px;
-        gap: 15px;
+        gap: 20px;
         overflow: auto;
-        padding: 0 10px 0 0;
+        padding: 0 12px 0 0;
         height: 86px;
     }
+    .product_list::-webkit-scrollbar-thumb {
+        background: #111111;
+      }
+      .product_list::-webkit-scrollbar {
+        width: 2px;
+      }
+      .product_list::-webkit-scrollbar-track {
+        background: transparent;
+      }
     .product_wrap{
         display: flex;
         align-items: flex-start;
         justify-content: flex-start;
         gap: 16px;
+        transition: all 250ms cubic-bezier(0.45, 0.05, 0.55, 0.95);
+    }
+    .product_wrap:not(:first-child){
+        display: none;
+    }
+    .product_wrap:first-child{
+        display: flex !important;
     }
     .img_wrap{
         max-width: 80px;
@@ -141,7 +157,7 @@ let startFunk = setInterval(() => {
     .inform_wrap p{
         font-family: 'Montserrat', sans-serif;
         font-weight: 400;
-        font-size: 13px;
+        font-size: 14px;
         line-height: 22px;
         letter-spacing: 0.01em;
         color: #111111;
@@ -171,7 +187,27 @@ let startFunk = setInterval(() => {
         cursor: pointer;
         background: #D74C3E;
         padding: 5px;
-        margin-top: 30px;
+        margin-top: 24px;
+    }
+    .toggle_block_more{
+        align-items: center;
+        justify-content: center;
+        width: max-content;
+        margin: 24px auto 0;
+        cursor: pointer;
+        transition: all 250ms cubic-bezier(0.45, 0.05, 0.55, 0.95);
+        display: none;
+    }
+    .toggle_block_more.open svg{
+        transform: rotateX(180deg);
+    }
+    .toggle_block_more p{
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 18px;
+        text-transform: uppercase;
+        color: #D74C3E;
+        margin: 0 8px 0 0;
     }
     @media (max-width: 768px) {
         .overlay_popup .container_popup{
@@ -248,7 +284,12 @@ let startFunk = setInterval(() => {
             <div class="text_still_stock">
                 <p>This is a popular product <br> Complete your order now while it is still in stock</p>
             </div>
-            <div class="product_list">
+            <div class="product_list"></div>
+            <div class="toggle_block_more">
+                <p>See all products</p>
+                <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1L6 6L11 1" stroke="#D74C3E"/>
+                </svg>
             </div>
             <button>complete my order now</button>
         </div>
@@ -330,21 +371,20 @@ let startFunk = setInterval(() => {
           document.body.style.overflow = "hidden"
           if (!document.querySelector(".overlay_popup .content_popup")) {
             containerPopup?.insertAdjacentHTML("beforeend", contentPopup)
+          }
 
+          if (document.querySelector(".overlay_popup .content_popup")) {
             if (innerWidth <= 768) {
               if (document.querySelector(".text_still_stock p")) {
                 document.querySelector(".text_still_stock p").textContent = "This is a popular product. Complete your order now while it is still in stock"
               }
             }
-          }
-
-          if (document.querySelector(".overlay_popup .content_popup")) {
             if (localStorage.getItem("data-popup")) {
               data = JSON.parse(localStorage.getItem("data-popup"))
               console.log(`data`, data)
               data.forEach((el) => {
                 document.querySelector(".product_list").insertAdjacentHTML(
-                  "afterbegin",
+                  "beforeend",
                   `
                             <div class="product_wrap">
                                 <div class="img_wrap">
@@ -354,11 +394,11 @@ let startFunk = setInterval(() => {
                                     <h3>${el.name}</h3>
                                     <p>${el.descr}</p>
                                     <div class="price_wrap_mob">
-                                        <span>$${el.price}</span>
+                                        <span>$${(+el.price.split("$")[1] * +el.count).toFixed(2)}</span>
                                     </div>
                                 </div>
                                 <div class="price_wrap">
-                                    <span class="my_price">$${+el.price.split("$")[1] * +el.count}</span>
+                                    <span class="my_price">$${(+el.price.split("$")[1] * +el.count).toFixed(2)}</span>
                                 </div>
                             </div>
                               `
@@ -366,22 +406,47 @@ let startFunk = setInterval(() => {
               })
             }
 
-            if (innerWidth <= 768) {
-              if (document.querySelectorAll(".product_list .product_wrap").length >= 2) {
-                document.querySelector(".product_list").style.height = "245px"
-              } else {
-                document.querySelector(".product_list").style.height = "105px"
-              }
+            if (document.querySelectorAll(".product_list .product_wrap").length >= 2) {
+              document.querySelector(".toggle_block_more").style.display = "flex"
             } else {
-              if (document.querySelectorAll(".product_list .product_wrap").length >= 2) {
-                document.querySelector(".product_list").style.height = "186px"
-              } else {
-                document.querySelector(".product_list").style.height = "86px"
-              }
+              document.querySelector(".toggle_block_more").style.display = "none"
+            }
+
+            if (document.querySelector(".toggle_block_more")) {
+              document.querySelector(".toggle_block_more").addEventListener("click", (el) => {
+                console.log(el.currentTarget)
+                el.currentTarget.classList.toggle("open")
+                if (el.currentTarget.classList.contains("open")) {
+                  el.currentTarget.querySelector("p").textContent = "Less products"
+                  document.querySelectorAll(".product_wrap").forEach((el) => {
+                    el.style.display = "flex"
+                    if (el.classList.contains("hidden")) {
+                      el.classList.remove("hidden")
+                    }
+                  })
+                  if (innerWidth <= 768) {
+                    document.querySelector(".product_list").style.height = "222px"
+                  } else {
+                    document.querySelector(".product_list").style.height = "185px"
+                  }
+                } else {
+                  el.currentTarget.querySelector("p").textContent = "See all products"
+                  document.querySelectorAll(".product_wrap").forEach((el) => {
+                    el.classList.add("hidden")
+                    el.style.display = "none"
+                  })
+                  if (innerWidth <= 768) {
+                    document.querySelector(".product_list").style.height = "105px"
+                  } else {
+                    document.querySelector(".product_list").style.height = "86px"
+                  }
+                }
+              })
             }
 
             document.querySelector(".content_popup button").addEventListener("click", () => {
               document.querySelector('#CartContainer button[name="checkout"]')?.click()
+              // window.location.pathname = "/checkout"
             })
           }
         }
