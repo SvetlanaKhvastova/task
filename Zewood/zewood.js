@@ -256,7 +256,7 @@ let startFunk = setInterval(() => {
 
     document.head.insertAdjacentHTML("beforeend", popupStyle)
     document.body.insertAdjacentHTML("afterbegin", popUp)
-    document.querySelector(".overlay_popup .content_popup")?.insertAdjacentHTML("beforeend", contentPopup)
+    document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup)
 
     //  get inform Cart START
     getCartInform()
