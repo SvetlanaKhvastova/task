@@ -110,7 +110,7 @@ let startFunk = setInterval(() => {
         gap: 20px;
         overflow: auto;
         padding: 0 12px 0 0;
-        height: 86px;
+        height: 90px;
     }
     .product_list::-webkit-scrollbar-thumb {
         background: #111111;
@@ -316,7 +316,7 @@ let startFunk = setInterval(() => {
 
         //show EXIT INTENT popup desktop
         addEvent(document, "mouseout", function (e) {
-          if (e.toElement == null && e.relatedTarget == null && sessionStorage.getItem("exit_popup_loaded") == null) {
+          if (e.toElement == null && e.relatedTarget == null && sessionStorage.getItem("exit_popup_loaded") == null && document.querySelector(".ajaxcart__product") !== null) {
             sessionStorage.setItem("exit_popup_loaded", "true") //refresh status popup
             onOpenPopup() //show popup
           }
@@ -344,7 +344,7 @@ let startFunk = setInterval(() => {
             }, 70)
             currentSpeed = newPosition - lastPosition
 
-            if (currentSpeed > 70 && sessionStorage.getItem("exit_popup_loaded") == null) {
+            if (currentSpeed > 70 && sessionStorage.getItem("exit_popup_loaded") == null && document.querySelector(".ajaxcart__product") !== null) {
               sessionStorage.setItem("exit_popup_loaded", "true") //refresh status popup
               onOpenPopup() //show popup
               document.removeEventListener("scroll", scrollSpeed)
@@ -388,10 +388,10 @@ let startFunk = setInterval(() => {
                   `
                             <div class="product_wrap">
                                 <div class="img_wrap">
-                                    <img src="${el.imgSrc}" alt="product zewood" />
+                                   <a href="${el.href}"><img src="${el.imgSrc}" alt="product zewood" /></a>
                                 </div>
                                 <div class="inform_wrap">
-                                    <h3>${el.name}</h3>
+                                    <a href="${el.href}"><h3>${el.name}</h3></a>
                                     <p>${el.descr}</p>
                                     <div class="price_wrap_mob">
                                         <span>$${(+el.price.split("$")[1] * +el.count).toFixed(2)}</span>
@@ -418,6 +418,7 @@ let startFunk = setInterval(() => {
                 el.currentTarget.classList.toggle("open")
                 if (el.currentTarget.classList.contains("open")) {
                   el.currentTarget.querySelector("p").textContent = "Less products"
+                  document.querySelector(".text_still_stock").style.display = "none"
                   document.querySelectorAll(".product_wrap").forEach((el) => {
                     el.style.display = "flex"
                     if (el.classList.contains("hidden")) {
@@ -431,6 +432,7 @@ let startFunk = setInterval(() => {
                   }
                 } else {
                   el.currentTarget.querySelector("p").textContent = "See all products"
+                  document.querySelector(".text_still_stock").style.display = "block"
                   document.querySelectorAll(".product_wrap").forEach((el) => {
                     el.classList.add("hidden")
                     el.style.display = "none"
@@ -438,7 +440,7 @@ let startFunk = setInterval(() => {
                   if (innerWidth <= 768) {
                     document.querySelector(".product_list").style.height = "105px"
                   } else {
-                    document.querySelector(".product_list").style.height = "86px"
+                    document.querySelector(".product_list").style.height = "90px"
                   }
                 }
               })
@@ -470,6 +472,9 @@ let startFunk = setInterval(() => {
           if (!isProgress && mutation.addedNodes[0] !== document.querySelector("#mr-div-embedded-cp-any-drawer")) {
             isProgress = true
             console.log(`observer>>>>>>>>>>>>>>>`, mutation)
+            if (localStorage.getItem("data-popup") && document.querySelector(".ajaxcart__product") === null) {
+              localStorage.removeItem("data-popup")
+            }
             getCartInform()
             exitIntentPopup()
 
@@ -499,7 +504,8 @@ let startFunk = setInterval(() => {
             descr = "",
             price = "",
             count = "",
-            imgSrc = ""
+            imgSrc = "",
+            href = ""
 
           if (el.querySelector(".ajaxcart__product-name")) {
             name = el.querySelector(".ajaxcart__product-name").textContent
@@ -516,6 +522,9 @@ let startFunk = setInterval(() => {
           if (el.querySelector(".ajaxcart__product-image img")) {
             imgSrc = el.querySelector(".ajaxcart__product-image img").src
           }
+          if (el.querySelector(".ajaxcart__product-image")) {
+            href = el.querySelector(".ajaxcart__product-image").href
+          }
 
           arr.push({
             name: name,
@@ -523,6 +532,7 @@ let startFunk = setInterval(() => {
             price: price,
             count: count,
             imgSrc: imgSrc,
+            href: href,
           })
         })
 
