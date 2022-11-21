@@ -378,6 +378,7 @@ let startFunk = setInterval(() => {
             setTimeout(() => {
                 document.querySelector(".content_popup")?.remove()
             }, 1000)
+            // 
         }
 
     }
