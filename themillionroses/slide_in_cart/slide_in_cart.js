@@ -16,7 +16,7 @@ let startFunk = setInterval(() => {
             opacity: 1;
             background: rgba(217, 217, 217, 0.5);
             transition: all 0.5s ease 0s;
-            z-index: 9005;
+            z-index: 1111111111119005;
             display: block;
             }
             .popup_slide_in.is_hidden {
@@ -133,7 +133,7 @@ let startFunk = setInterval(() => {
                 text-transform: uppercase;
                 color: #000000;
                 cursor: pointer;
-                margin-top: 45px;
+                margin-top: 25px;
                 transition: all 0.5s ease 0s;
             }
             .btn_checkout:hover{
@@ -182,8 +182,46 @@ let startFunk = setInterval(() => {
                 justify-content: space-between;
                 align-items: center;
             }
-            .btn_remove_item{
+            .btn_remove_item,
+            .decrement, 
+            .increment{
                 cursor: pointer;
+            }
+            .cart_popup_qty{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .count_var{
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 20px;
+                text-transform: uppercase;
+                color: #000000;
+                margin: 0 7px;
+            }
+            .decrement, 
+            .increment{
+                width: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .decrement svg{
+                display: block;
+            }
+            .my_price{
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 15px;
+                color: #000000;
+                margin-right: 16px;
+            }
+            .empty_cart_info{
+                font-size: 30px;
+                font-weight: 400;
+                line-height: 52px;
+                margin: auto;
             }
         </style>
         `
@@ -226,7 +264,7 @@ let startFunk = setInterval(() => {
                     <div class="cart_popup_footer">
                         <div class="sub_total_wrap"> 
                             <span>SubTotal</span>
-                            <span class="sub_total_price">$699,80</span>
+                            <span class="sub_total_price">$00,00</span>
                         </div>
                         <form action="/cart" method="post">
                             <label>
@@ -253,6 +291,7 @@ let startFunk = setInterval(() => {
             document.querySelector('#cart-icon-bubble').addEventListener('click', (e) => {
                 e.preventDefault()
                 console.log(`>>>MyCart`)
+                getCartCheckout()
                 onOpenPopup(slideInCartContent)
             })
 
@@ -286,7 +325,6 @@ let startFunk = setInterval(() => {
 
             setTimeout(() => {
                 document.querySelector('.cart_popup_scroll').innerHTML = ''
-                document.querySelector(".content_popup")?.remove()
             }, 1000)
             // 
         }
@@ -294,6 +332,7 @@ let startFunk = setInterval(() => {
         if (document.querySelector('.product-form [name="add"]')) {
             document.querySelector('.product-form [name="add"]').addEventListener('click', (e) => {
                 e.preventDefault()
+                e.stopPropagation()
                 console.log(`>>>>>>>>>>>>>>>>>>>>>>id`, e.target.closest('form').querySelector('[name="id"]').value)
                 addToCartCheckout(e.target.closest('form').querySelector('[name="id"]').value)
 
@@ -340,7 +379,9 @@ let startFunk = setInterval(() => {
                     return response.json()
                 }).then(data => {
                     console.log(data)
-                    document.querySelector('.sub_total_price').textContent = `$${data.total_price}`
+                    document.querySelector('.sub_total_price').textContent = `$${(data.total_price / 100).toFixed(2)}`
+                    document.querySelector('.cdk-cart-count').textContent = `${data.item_count}`
+
                     data.items.forEach(el => {
                         document.querySelector('.cart_popup_scroll').insertAdjacentHTML('beforeend', `                         
                     <div class="product_wrap" id=${el.id}>
@@ -365,7 +406,7 @@ let startFunk = setInterval(() => {
                                     </defs>
                                     </svg>
                                 </span>
-                                <input type="number" class="count_var" value=${el.quantity}>
+                                <span class="count_var">${el.quantity}</span>
                                 <span class="increment">
                                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_606_238)">
@@ -382,7 +423,7 @@ let startFunk = setInterval(() => {
                                 </span>
                             </div>
                             <div class="cart_popup_price">
-                                <span class="my_price">$${el.price}</span>
+                                <span class="my_price">$${(el.price / 100).toFixed(2)}</span>
                                 <svg class="btn_remove_item" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                     d="M0.576968 11.2788C0.516249 11.3454 0.482651 11.4345 0.48341 11.527C0.484169 11.6196 0.519226 11.7081 0.581028 11.7735C0.642831 11.839 0.726435 11.8761 0.813834 11.8769C0.901233 11.8777 0.985434 11.8421 1.0483 11.7778L6.00363 6.53243L11.0563 11.6727C11.1039 11.7206 11.1639 11.7526 11.2286 11.7646C11.2933 11.7766 11.36 11.7682 11.4202 11.7403C11.4804 11.7124 11.5315 11.6663 11.5671 11.6078C11.6027 11.5494 11.6212 11.4811 11.6203 11.4115C11.6195 11.3651 11.6101 11.3194 11.5926 11.2769C11.5751 11.2343 11.5498 11.1959 11.5183 11.1637L6.47497 6.03267L11.4196 0.797844C11.4506 0.765075 11.4752 0.726164 11.492 0.683332C11.5088 0.6405 11.5175 0.594586 11.5175 0.548211C11.5175 0.501837 11.5089 0.45591 11.4922 0.413052C11.4755 0.370195 11.4509 0.331247 11.42 0.298432C11.389 0.265617 11.3523 0.239578 11.3118 0.221801C11.2714 0.204024 11.228 0.194857 11.1842 0.194824C11.1404 0.194792 11.097 0.203893 11.0566 0.22161C11.0161 0.239326 10.9793 0.265311 10.9483 0.298079L5.9943 5.54349L0.942301 0.404668C0.911184 0.370535 0.873886 0.343395 0.832638 0.324869C0.79139 0.306344 0.747038 0.296814 0.702233 0.296848C0.657427 0.296882 0.613088 0.306481 0.571866 0.325069C0.530643 0.343658 0.493383 0.370855 0.462312 0.405035C0.431241 0.439216 0.406996 0.479678 0.391028 0.524004C0.37506 0.56833 0.367696 0.61561 0.369375 0.663017C0.371054 0.710425 0.381743 0.756987 0.400802 0.799922C0.419861 0.842857 0.4469 0.881283 0.480301 0.912903L5.5223 6.04326L0.576968 11.2788Z"
@@ -394,17 +435,64 @@ let startFunk = setInterval(() => {
                     </div>`)
                     })
 
+                    if (document.querySelector('.cart_popup_scroll').children.length < 1) {
+                        document.querySelector('.cart_popup_scroll').insertAdjacentHTML('afterbegin', `<h3 class="empty_cart_info">Your cart is empty</h3>`)
+                    }
+
+
                     if (document.querySelector('.btn_remove_item')) {
                         document.querySelectorAll('.btn_remove_item').forEach(el => {
                             el.addEventListener('click', (e) => {
                                 console.log(`>>>>>CLICK`)
                                 e.target.closest('.product_wrap').remove()
 
-                                removeItemCartCheckout(e.target.closest('.product_wrap').getAttribute('id'))
+                                changeCartCheckout(e.target.closest('.product_wrap').getAttribute('id'), 0)
+
+
+                                // if (document.querySelector('.cart_popup_scroll').children.length < 1) {
+                                //     document.querySelector('.cart_popup_scroll').insertAdjacentHTML('afterbegin', `<h3 class="empty_cart_info">Your cart is empty</h3>`)
+                                // }
+
                             })
                         })
-
                     }
+
+                    if (document.querySelector('.increment')) {
+                        document.querySelectorAll('.increment').forEach(item => {
+                            item.addEventListener('click', (e) => {
+                                let qvt = +e.target.closest('div.cart_popup_qty').querySelector('.count_var').textContent
+                                e.target.closest('div.cart_popup_qty').querySelector('.count_var').textContent = qvt + 1
+
+                                changeCartCheckout(e.target.closest('.product_wrap').getAttribute('id'), e.target.closest('div.cart_popup_qty').querySelector('.count_var').textContent)
+                            })
+                        })
+                    }
+
+                    if (document.querySelector('.decrement')) {
+                        document.querySelectorAll('.decrement').forEach(item => {
+                            item.addEventListener('click', (e) => {
+                                let qvt = +e.target.closest('div.cart_popup_qty').querySelector('.count_var').textContent
+
+                                if (+e.target.closest('div.cart_popup_qty').querySelector('.count_var').textContent >= 0) {
+                                    e.target.closest('div.cart_popup_qty').querySelector('.count_var').textContent = qvt - 1
+                                    changeCartCheckout(e.target.closest('.product_wrap').getAttribute('id'), e.target.closest('div.cart_popup_qty').querySelector('.count_var').textContent)
+                                }
+
+                                if (+e.target.closest('div.cart_popup_qty').querySelector('.count_var').textContent === 0) {
+                                    console.log(`textContent = 0`)
+                                    e.target.closest('.product_wrap').remove()
+                                    changeCartCheckout(e.target.closest('.product_wrap').getAttribute('id'), e.target.closest('div.cart_popup_qty').querySelector('.count_var').textContent)
+                                }
+
+                                if (document.querySelector('.cart_popup_scroll').children.length < 1) {
+                                    document.querySelector('.cart_popup_scroll').insertAdjacentHTML('afterbegin', `<h3 class="empty_cart_info">Your cart is empty</h3>`)
+                                }
+
+                            })
+                        })
+                    }
+
+
 
                 })
                 .catch((error) => {
@@ -413,14 +501,10 @@ let startFunk = setInterval(() => {
         }
 
         //remove item cart on checkout
-        async function removeItemCartCheckout(idValue) {
+        async function changeCartCheckout(idValue, qntValue) {
             let formData = {
-                items: [
-                    {
-                        id: idValue,
-                        quantity: 0,
-                    },
-                ],
+                id: idValue,
+                quantity: qntValue,
             }
 
             await fetch("/cart/change.js", {
@@ -432,7 +516,10 @@ let startFunk = setInterval(() => {
             })
                 .then((response) => {
                     response.json()
-                    getToCartCheckout()
+                }).then((data) => {
+                    console.log(data)
+                    document.querySelector('.cart_popup_scroll').innerHTML = ''
+                    getCartCheckout()
                 })
                 .catch((error) => {
                     console.error("Error:", error)

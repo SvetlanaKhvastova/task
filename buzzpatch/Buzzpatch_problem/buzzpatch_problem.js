@@ -39,11 +39,11 @@ let problemStart = setInterval(() => {
           }
           .buzzpatch_problems h2 span{
               display: block;
-              font-weight: 600;
-              font-family: "Roboto", sans-serif;
+              font-weight: 700;
+              font-family: "Roboto", sans-serif !important;
           }
            .buzzpatch_problems h2 span.accent_color{
-              font-family: 'DINEngschrift LT', sans-serif;
+              font-family: 'DINEngschrift LT', sans-serif !important;
               font-weight: 400;
               font-size: 36px;
               line-height: 43px;
@@ -88,16 +88,19 @@ let problemStart = setInterval(() => {
               justify-content: flex-start;
            }
           .buzzpatch_accardion_link p{
+              font-family: "Roboto", sans-serif !important;
               font-weight: 400;
               font-size: 16px !important;
               line-height: 150% !important;
+              letter-spacing: 0 !important;
               color: #0C0B0B;
               margin: 0;
            }
-           .buzzpatch_accardion_link p strong{
-            font-weight: 700 !important;
+           .buzzpatch_accardion_link p span{
+              font-weight: 700 !important;
+              font-family: "Roboto", sans-serif !important;
            }
-           .buzzpatch_accardion_link span{
+           .buzzpatch_accardion_link > span{
               position: relative;
               background: #FFEBF2;
               border-radius: 60px;
@@ -106,7 +109,7 @@ let problemStart = setInterval(() => {
               margin-left: 10px;
               padding: 12px;
            }
-          .buzzpatch_accardion_link span::before{
+          .buzzpatch_accardion_link > span::before{
               position: absolute;
               content: "";
               width: 100%;
@@ -127,14 +130,17 @@ let problemStart = setInterval(() => {
               padding-top: 16px;
            }
            .buzzpatch_accardion_lists p{
+              font-family: "Roboto", sans-serif !important;
               font-weight: 400;
               font-size: 16px !important;
+              letter-spacing: 0 !important;
               line-height: 150% !important;
               color: #212529;
               margin: 0;
            }
-           .buzzpatch_accardion_lists p strong{
+           .buzzpatch_accardion_lists p span{
              font-weight: 700 !important;
+             font-family: "Roboto", sans-serif !important;
            }
            .buzzpatch_accardion_lists p + p{
               margin-top: 15px;
@@ -206,7 +212,7 @@ let problemStart = setInterval(() => {
         <ul class="buzzpatch_accardion">
           <li class="buzzpatch_accardion_block" data-visability='1'>
             <div class="buzzpatch_accardion_link">
-              <p>I want my <strong>kids/grandkids protected from mosquito bites</strong> at all times</p>
+              <p>I want my <span>kids/grandkids protected from mosquito bites</span> at all times</p>
               <span></span>
             </div>
             <div class="buzzpatch_accardion_lists" data-visability-open='1'>
@@ -219,12 +225,12 @@ let problemStart = setInterval(() => {
           </li>
           <li class="buzzpatch_accardion_block" data-visability='2'>
             <div class="buzzpatch_accardion_link">
-              <p><strong>My child is sensitive and/or allergic to mosquito bites,</strong> and needs an effective, <strong>soy-free,</strong> and allergen-free anti-mosquito solution</p>
+              <p><span>My child is sensitive and/or allergic to mosquito bites,</span> and needs an effective, <span>soy-free,</span> and allergen-free anti-mosquito solution</p>
               <span></span>
             </div>
             <div class="buzzpatch_accardion_lists" data-visability-open='2'>
               <div>
-                <p>Unlike other mosquito repellents, <strong>BuzzPatch uses a natural soy-free formula</strong> to disrupt mosquitoes’ sensory organs, effectively keeping your child hidden from mosquitoes so that they won’t be bitten.</p>
+                <p>Unlike other mosquito repellents, <span>BuzzPatch uses a natural soy-free formula</span> to disrupt mosquitoes’ sensory organs, effectively keeping your child hidden from mosquitoes so that they won’t be bitten.</p>
                 <p>For children who are sensitive or allergy prone, just a single mosquito bite can be all it takes to ruin their day.</p>
                 <p>Fortunately, BuzzPatch can save your child from bites, scratches, swelling and infections, by repelling mosquitoes naturally.</p>
                 <a href="#getNow" class="buzzpatch_accardion_btn" data-btn="2">GET Buzzpatch</a>
@@ -233,7 +239,7 @@ let problemStart = setInterval(() => {
           </li>
           <li class="buzzpatch_accardion_block" data-visability='3'>
             <div class="buzzpatch_accardion_link">
-              <p>I am looking for a <strong>chemical-free, natural, and organic anti-mosquito solution</strong> that is safe for regular use</p>
+              <p>I am looking for a <span>chemical-free, natural, and organic anti-mosquito solution</span> that is safe for regular use</p>
               <span></span>
             </div>
             <div class="buzzpatch_accardion_lists" data-visability-open='3'>
@@ -247,7 +253,7 @@ let problemStart = setInterval(() => {
           </li>
           <li class="buzzpatch_accardion_block" data-visability='4'>
             <div class="buzzpatch_accardion_link">
-              <p><strong>My child dislikes putting on sprays,</strong> so I’m looking for an effective alternative</p>
+              <p><span>My child dislikes putting on sprays,</span> so I’m looking for an effective alternative</p>
               <span></span>
             </div>
             <div class="buzzpatch_accardion_lists" data-visability-open='4'>
@@ -261,7 +267,7 @@ let problemStart = setInterval(() => {
           </li>
           <li class="buzzpatch_accardion_block" data-visability='5'>
             <div class="buzzpatch_accardion_link">
-              <p>I am looking for an anti-mosquito <strong>solution suitable for both kids and adults</strong></p>
+              <p>I am looking for an anti-mosquito <span>solution suitable for both kids and adults</span></p>
               <span></span>
             </div>
             <div class="buzzpatch_accardion_lists" data-visability-open='5'>
@@ -274,7 +280,7 @@ let problemStart = setInterval(() => {
           </li>
           <li class="buzzpatch_accardion_block" data-visability='6'>
             <div class="buzzpatch_accardion_link">
-              <p><strong>I am planning to travel/go on vacation/to a camp,</strong> so I need a portable and effective anti-mosquito solution</p>
+              <p><span>I am planning to travel/go on vacation/to a camp,</span> so I need a portable and effective anti-mosquito solution</p>
               <span></span>
             </div>
             <div class="buzzpatch_accardion_lists" data-visability-open='6'>
@@ -288,7 +294,7 @@ let problemStart = setInterval(() => {
           </li>
           <li class="buzzpatch_accardion_block" data-visability='7'>
             <div class="buzzpatch_accardion_link">
-              <p><strong>I'm planning an outdoor event</strong> and need protection for me/my family</p>
+              <p><span>I'm planning an outdoor event</span> and need protection for me/my family</p>
               <span></span>
             </div>
             <div class="buzzpatch_accardion_lists" data-visability-open='7'>
@@ -304,6 +310,7 @@ let problemStart = setInterval(() => {
       </div>
       `
 
+    document.head.insertAdjacentHTML('beforeend', `<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">`)
     document.head.insertAdjacentHTML("beforeend", problemStyle)
     document.querySelector("#flowers").insertAdjacentHTML("afterend", problemHtml)
 
@@ -320,14 +327,6 @@ let problemStart = setInterval(() => {
       obs.observe(document.querySelector('.buzzpatch_accardion li[data-visability="5"]'))
       obs.observe(document.querySelector('.buzzpatch_accardion li[data-visability="6"]'))
       obs.observe(document.querySelector('.buzzpatch_accardion li[data-visability="7"]'))
-
-      obs.observe(document.querySelector('.buzzpatch_accardion_lists[data-visability-open="1"]'))
-      obs.observe(document.querySelector('.buzzpatch_accardion_lists[data-visability-open="2"]'))
-      obs.observe(document.querySelector('.buzzpatch_accardion_lists[data-visability-open="3"]'))
-      obs.observe(document.querySelector('.buzzpatch_accardion_lists[data-visability-open="4"]'))
-      obs.observe(document.querySelector('.buzzpatch_accardion_lists[data-visability-open="5"]'))
-      obs.observe(document.querySelector('.buzzpatch_accardion_lists[data-visability-open="6"]'))
-      obs.observe(document.querySelector('.buzzpatch_accardion_lists[data-visability-open="7"]'))
 
       function visibility(entries) {
         entries.forEach(i => {
@@ -356,29 +355,6 @@ let problemStart = setInterval(() => {
             if (i.target.getAttribute('data-visability') === "7") {
               pushDataLayer(`Visibility block ${i.target.getAttribute('data-visability')}`)
             }
-
-            if (i.target.getAttribute('data-visability-open') === "1") {
-              pushDataLayer(`Visibility block opened ${i.target.getAttribute('data-visability-open')}`)
-            }
-            if (i.target.getAttribute('data-visability-open') === "2") {
-              pushDataLayer(`Visibility block opened ${i.target.getAttribute('data-visability-open')}`)
-            }
-            if (i.target.getAttribute('data-visability-open') === "3") {
-              pushDataLayer(`Visibility block opened ${i.target.getAttribute('data-visability-open')}`)
-            }
-            if (i.target.getAttribute('data-visability-open') === "4") {
-              pushDataLayer(`Visibility block opened ${i.target.getAttribute('data-visability-open')}`)
-            }
-            if (i.target.getAttribute('data-visability-open') === "5") {
-              pushDataLayer(`Visibility block opened ${i.target.getAttribute('data-visability-open')}`)
-            }
-            if (i.target.getAttribute('data-visability-open') === "6") {
-              pushDataLayer(`Visibility block opened ${i.target.getAttribute('data-visability-open')}`)
-            }
-            if (i.target.getAttribute('data-visability-open') === "7") {
-              pushDataLayer(`Visibility block opened ${i.target.getAttribute('data-visability-open')}`)
-            }
-
 
             obs.unobserve(i.target)
           }
