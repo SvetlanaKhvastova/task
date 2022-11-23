@@ -68,9 +68,11 @@ let startFunk = setInterval(() => {
                 margin: 0 0 0 8px;
             }
             .cart_popup_footer{
-                padding: 24px 0;
-                margin: auto 24px 0;
+                padding: 24px 0 0;
+                margin: 0  24px 24px;
                 border-top: 1px solid #E1E1E1;
+                height: 100%;
+                position: relative;
             }
             .sub_total_wrap{
                 display: flex;
@@ -108,16 +110,21 @@ let startFunk = setInterval(() => {
                 width: 100%;
                 resize: both;
                 min-height: 50px;
-                max-height: 230px;
+                max-height: 80px;
                 min-width: 542px;
                 max-width: 542px;
                 font-weight: 500;
                 font-size: 14px;
                 line-height: 20px;
-                color: #757575;
+                color: #000000;
                 margin-top: 12px;
                 padding: 14px 16px;
                 border: 1px solid #4A4A4A;
+            }
+            .cart_popup_footer form label textarea::placeholder{
+                color: #757575;
+                font-size: 16px;
+                font-weight: 400;
             }
             .btn_checkout{
                 display: flex;
@@ -135,6 +142,9 @@ let startFunk = setInterval(() => {
                 cursor: pointer;
                 margin-top: 25px;
                 transition: all 0.5s ease 0s;
+                position: absolute;
+                bottom: 0;
+                left: 0;
             }
             .btn_checkout:hover{
                 background: #000000;
@@ -146,6 +156,10 @@ let startFunk = setInterval(() => {
                 flex-direction: column;
                 gap: 24px;
                 overflow-y: auto;
+                height: 290px;
+            }
+            .cart_popup_scroll.my_height{
+                height: 920px;
             }
             .product_wrap{
                 display: flex;
@@ -202,6 +216,7 @@ let startFunk = setInterval(() => {
             }
             .decrement, 
             .increment{
+                height: 20px;
                 width: 20px;
                 display: flex;
                 align-items: center;
@@ -222,6 +237,74 @@ let startFunk = setInterval(() => {
                 font-weight: 400;
                 line-height: 52px;
                 margin: auto;
+            }
+            @media (max-width: 768px) {
+                .popup_slide_in .container_popup{
+                    max-width: 335px;
+                }
+                .cart_popup_header{
+                    padding: 16px;
+                }
+                .cart_continue_shopping span{
+                    line-height: 15px;
+                }
+                .cart_popup_scroll{
+                    padding: 16px;
+                    height: 216px;
+                }
+                .product_wrap{
+                    gap: 12px;
+                }
+                .inform_wrap h2{
+                    font-size: 14px;
+                    line-height: 19px;
+                }
+                .img_wrap{
+                    flex: 1 0 120px;
+                    max-width: 120px;
+                    max-height: 120px;
+                }
+                .price_wrap{
+                    gap: 5px;
+                }
+                .my_price{
+                    font-size: 14px;
+                    line-height: 20px;
+                    margin-right: 12px;
+                }
+                .cart_popup_footer{
+                    padding: 16px 0 0;
+                    margin: 0 16px 16px;
+                }
+                .sub_total_wrap span:nth-child(1){
+                    font-size: 12px;
+                    line-height: 15px;
+                }
+                .sub_total_price{
+                    font-size: 16px;
+                    line-height: 19px;
+                }
+                .sub_total_wrap{
+                    margin-bottom: 30px;
+                }
+                .cart_popup_footer form label textarea{
+                    min-width: 303px;
+                    max-width: 303px;
+                }
+                .btn_checkout{
+                    height: 48px;
+                    font-weight: 500;
+                    font-size: 12px;
+                    background: #000000;
+                    color: #FFFFFF;
+                }
+                .empty_cart_info{
+                    font-size: 24px;
+                    margin: 0 auto auto;
+                }
+                .cart_popup_scroll.my_height{
+                    height: 670px;
+                }
             }
         </style>
         `
@@ -316,6 +399,7 @@ let startFunk = setInterval(() => {
             body.style.display = "block"
 
             document.querySelector(".container_popup").insertAdjacentHTML("beforeend", block)
+            document.querySelector('.cart_popup_scroll')?.insertAdjacentHTML('afterbegin', `<span class="loading">Loading......</span>`)
         }
 
         function onClosePopup() {
@@ -325,6 +409,7 @@ let startFunk = setInterval(() => {
 
             setTimeout(() => {
                 document.querySelector('.cart_popup_scroll').innerHTML = ''
+                document.querySelector('.sub_total_price').innerHTML = '$00,00'
             }, 1000)
             // 
         }
@@ -379,8 +464,11 @@ let startFunk = setInterval(() => {
                     return response.json()
                 }).then(data => {
                     console.log(data)
+                    document.querySelector('.cart_popup_scroll').innerHTML = ''
                     document.querySelector('.sub_total_price').textContent = `$${(data.total_price / 100).toFixed(2)}`
-                    document.querySelector('.cdk-cart-count').textContent = `${data.item_count}`
+                    if (document.querySelector('.cdk-cart-count')) {
+                        document.querySelector('.cdk-cart-count').textContent = `${data.item_count}`
+                    }
 
                     data.items.forEach(el => {
                         document.querySelector('.cart_popup_scroll').insertAdjacentHTML('beforeend', `                         
@@ -438,21 +526,22 @@ let startFunk = setInterval(() => {
                     if (document.querySelector('.cart_popup_scroll').children.length < 1) {
                         document.querySelector('.cart_popup_scroll').insertAdjacentHTML('afterbegin', `<h3 class="empty_cart_info">Your cart is empty</h3>`)
                     }
+                    if (document.querySelector('.cart_popup_scroll').children.length >= 2) {
+                        document.querySelector('.cart_popup_scroll').classList.add('my_height')
+                    } else {
+                        if (document.querySelector('.cart_popup_scroll').classList.contains('my_height')) {
+                            document.querySelector('.cart_popup_scroll').classList.remove('my_height')
+                        }
+                    }
 
 
                     if (document.querySelector('.btn_remove_item')) {
                         document.querySelectorAll('.btn_remove_item').forEach(el => {
                             el.addEventListener('click', (e) => {
                                 console.log(`>>>>>CLICK`)
-                                e.target.closest('.product_wrap').remove()
+                                // e.target.closest('.product_wrap').remove()
 
                                 changeCartCheckout(e.target.closest('.product_wrap').getAttribute('id'), 0)
-
-
-                                // if (document.querySelector('.cart_popup_scroll').children.length < 1) {
-                                //     document.querySelector('.cart_popup_scroll').insertAdjacentHTML('afterbegin', `<h3 class="empty_cart_info">Your cart is empty</h3>`)
-                                // }
-
                             })
                         })
                     }
@@ -482,10 +571,6 @@ let startFunk = setInterval(() => {
                                     console.log(`textContent = 0`)
                                     e.target.closest('.product_wrap').remove()
                                     changeCartCheckout(e.target.closest('.product_wrap').getAttribute('id'), e.target.closest('div.cart_popup_qty').querySelector('.count_var').textContent)
-                                }
-
-                                if (document.querySelector('.cart_popup_scroll').children.length < 1) {
-                                    document.querySelector('.cart_popup_scroll').insertAdjacentHTML('afterbegin', `<h3 class="empty_cart_info">Your cart is empty</h3>`)
                                 }
 
                             })
@@ -519,6 +604,7 @@ let startFunk = setInterval(() => {
                 }).then((data) => {
                     console.log(data)
                     document.querySelector('.cart_popup_scroll').innerHTML = ''
+                    document.querySelector('.cart_popup_scroll')?.insertAdjacentHTML('afterbegin', `<span class="loading">Loading......</span>`)
                     getCartCheckout()
                 })
                 .catch((error) => {
