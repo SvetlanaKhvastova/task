@@ -1,28 +1,28 @@
 let magicComparisonTable = setInterval(() => {
-  if (document.querySelector("#children-safe")) {
-    clearInterval(magicComparisonTable)
+    if (document.querySelector("#children-safe")) {
+        clearInterval(magicComparisonTable)
 
-    function pushDataLayer(actionDataLayer, labelDataLayer) {
-      window.dataLayer = window.dataLayer || []
-      if (labelDataLayer) {
-        console.log(actionDataLayer + " : " + labelDataLayer)
-        dataLayer.push({
-          event: "event-to-ga",
-          eventCategory: `Exp: - comparison table mp`,
-          eventAction: `${actionDataLayer}`,
-          eventLabel: `${labelDataLayer}`,
-        })
-      } else {
-        console.log(actionDataLayer)
-        dataLayer.push({
-          event: "event-to-ga",
-          eventCategory: `Exp: - comparison table mp`,
-          eventAction: `${actionDataLayer}`,
-        })
-      }
-    }
+        function pushDataLayer(actionDataLayer, labelDataLayer) {
+            window.dataLayer = window.dataLayer || []
+            if (labelDataLayer) {
+                console.log(actionDataLayer + " : " + labelDataLayer)
+                dataLayer.push({
+                    event: "event-to-ga",
+                    eventCategory: `Exp: - comparison table mp`,
+                    eventAction: `${actionDataLayer}`,
+                    eventLabel: `${labelDataLayer}`,
+                })
+            } else {
+                console.log(actionDataLayer)
+                dataLayer.push({
+                    event: "event-to-ga",
+                    eventCategory: `Exp: - comparison table mp`,
+                    eventAction: `${actionDataLayer}`,
+                })
+            }
+        }
 
-    let megicpatchStyle = /*html*/ `
+        let megicpatchStyle = /*html*/ `
         <style>
             .accent_color_main{
                 font-weight: 400;
@@ -174,10 +174,10 @@ let magicComparisonTable = setInterval(() => {
             }
         </style>
     `
-    let magicpatchTable = /*html*/ `
+        let magicpatchTable = /*html*/ `
         <section class="magicpatch_section">    
             <h2>MAGICPATCH vs OTHER ITCH RELIEF SOLUTIONS</h2>
-            <div class="magicpatch_box">
+            <div class="magicpatch_box" data-visability="1">
                 <ul class="magicpatch_list">
                     <li class="list_var">
                         <img src="https://conversionratestore.github.io/projects/buzzpatch/img/magic_magicpatch.png" alt="magicpatch">
@@ -199,7 +199,7 @@ let magicComparisonTable = setInterval(() => {
                     </li>
                 </ul>
             </div>
-            <div class="magicpatch_box event_visible">
+            <div class="magicpatch_box event_visible" data-visability="2">
                 <h3>Effectiveness</h3>
                 <ul class="magicpatch_list">
                     <li>
@@ -216,7 +216,7 @@ let magicComparisonTable = setInterval(() => {
                     </li>
                 </ul>
             </div>
-            <div class="magicpatch_box">
+            <div class="magicpatch_box" data-visability="3">
                 <h3>How it works, ingredients</h3>
                 <ul class="magicpatch_list">
                     <li>
@@ -233,7 +233,7 @@ let magicComparisonTable = setInterval(() => {
                     </li>
                 </ul>
             </div>
-            <div class="magicpatch_box">
+            <div class="magicpatch_box" data-visability="4">
                 <h3>Activation time</h3>
                 <ul class="magicpatch_list">
                     <li>
@@ -250,7 +250,7 @@ let magicComparisonTable = setInterval(() => {
                     </li>
                 </ul>
             </div>
-            <div class="magicpatch_box">
+            <div class="magicpatch_box" data-visability="5">
                 <h3>Duration of effect</h3>
                 <ul class="magicpatch_list">
                     <li>
@@ -267,7 +267,7 @@ let magicComparisonTable = setInterval(() => {
                     </li>
                 </ul>
             </div>
-            <div class="magicpatch_box">
+            <div class="magicpatch_box" data-visability="6">
                 <h3>How to use</h3>
                 <ul class="magicpatch_list">
                     <li>
@@ -284,7 +284,7 @@ let magicComparisonTable = setInterval(() => {
                     </li>
                 </ul>
             </div>
-            <div class="magicpatch_box">
+            <div class="magicpatch_box" data-visability="7">
                 <h3>Hypoallergenic</h3>
                 <ul class="magicpatch_list">
                     <li>
@@ -301,7 +301,7 @@ let magicComparisonTable = setInterval(() => {
                     </li>
                 </ul>
             </div>
-            <div class="magicpatch_box">
+            <div class="magicpatch_box" data-visability="8">
                 <h3>Side effects</h3>
                 <ul class="magicpatch_list">
                     <li>
@@ -318,7 +318,7 @@ let magicComparisonTable = setInterval(() => {
                     </li>
                 </ul>
             </div>
-            <div class="magicpatch_box">
+            <div class="magicpatch_box" data-visability="9">
                 <h3>Suitables for ages</h3>
                 <ul class="magicpatch_list">
                     <li>
@@ -335,7 +335,7 @@ let magicComparisonTable = setInterval(() => {
                     </li>
                 </ul>
             </div>
-            <div class="magicpatch_box">
+            <div class="magicpatch_box" data-visability="10">
                 <h3>Portability</h3>
                 <ul class="magicpatch_list">
                     <li>
@@ -355,48 +355,111 @@ let magicComparisonTable = setInterval(() => {
     
             <p><span class="accent_color_pink">*</span> There are no known age limits, but these should be kept away from kids who would be prone to peeling them off and trying to eat them.</p>
     
-            <a href="#getNow" class="megicpatch_btn">Get it now!</a>
+            <a href="#getNow" class="megicpatch_btn"  data-visability="11">Get it now!</a>
         </section>
     `
 
-    document.head.insertAdjacentHTML("beforeend", megicpatchStyle)
-    document.querySelector("body .included .boxes .row:nth-child(2)").insertAdjacentHTML("beforebegin", magicpatchTable)
+        document.head.insertAdjacentHTML("beforeend", megicpatchStyle)
+        document.querySelector("body .included .boxes .row:nth-child(2)").insertAdjacentHTML("beforebegin", magicpatchTable)
 
-    $(document).ready(function () {
-      $(".magicpatch_section").on("click", "a", function (event) {
-        event.preventDefault()
+        $(document).ready(function () {
+            $(".magicpatch_section").on("click", "a", function (event) {
+                event.preventDefault()
 
-        pushDataLayer("click on Get it now")
+                pushDataLayer("click on Get it now")
 
-        let id = $(this).attr("href"),
-          top = $(id).offset().top - 10
+                let id = $(this).attr("href"),
+                    top = $(id).offset().top - 10
 
-        $("body,html").animate({ scrollTop: top }, 1000)
-      })
-    })
+                $("body,html").animate({ scrollTop: top }, 1000)
+            })
+        })
 
-    if (document.querySelector(".event_visible")) {
-      const options = {
-        root: null,
-        threshold: 0.9,
-      }
 
-      let observerNewHeader = new IntersectionObserver((entries) => {
-        if (!entries[0].isIntersecting) return
-        pushDataLayer(`Visibility block`)
-        observerNewHeader.disconnect()
-      })
 
-      observerNewHeader.observe(document.querySelector(".event_visible"), options)
+        if (document.querySelector(".magicpatch_section")) {
+            let obs = new IntersectionObserver(visibility, {
+                threshold: 0.9
+            })
+
+            let obs2 = new IntersectionObserver(visibility2, {
+                threshold: 0.9
+            })
+
+            obs.observe(document.querySelector('.magicpatch_box[data-visability="1"]'))
+            obs.observe(document.querySelector('.magicpatch_box[data-visability="2"]'))
+            obs.observe(document.querySelector('.magicpatch_box[data-visability="3"]'))
+            obs.observe(document.querySelector('.magicpatch_box[data-visability="4"]'))
+            obs.observe(document.querySelector('.magicpatch_box[data-visability="5"]'))
+            obs.observe(document.querySelector('.magicpatch_box[data-visability="6"]'))
+            obs.observe(document.querySelector('.magicpatch_box[data-visability="7"]'))
+            obs.observe(document.querySelector('.magicpatch_box[data-visability="8"]'))
+            obs.observe(document.querySelector('.magicpatch_box[data-visability="9"]'))
+            obs.observe(document.querySelector('.magicpatch_box[data-visability="10"]'))
+            obs.observe(document.querySelector('.megicpatch_btn'))
+
+
+
+            function visibility(entries) {
+                entries.forEach(i => {
+                    if (i.isIntersecting) {
+                        setTimeout(function () {
+                            obs2.observe(i.target)
+                        }, 1000)
+                    }
+                })
+            }
+
+            function visibility2(entries) {
+                entries.forEach(i => {
+                    if (i.isIntersecting) {
+                        if (i.target.getAttribute('data-visability') === "1") {
+                            pushDataLayer(`Visibility block`, 'Header of comparison table')
+                        }
+                        if (i.target.getAttribute('data-visability') === "2") {
+                            pushDataLayer(`Visibility block`, 'Effectiveness')
+                        }
+                        if (i.target.getAttribute('data-visability') === "3") {
+                            pushDataLayer(`Visibility block`, 'How it works, ingredients')
+                        }
+                        if (i.target.getAttribute('data-visability') === "4") {
+                            pushDataLayer(`Visibility block`, 'Activation time')
+                        }
+                        if (i.target.getAttribute('data-visability') === "5") {
+                            pushDataLayer(`Visibility block`, 'Duration of effect')
+                        }
+                        if (i.target.getAttribute('data-visability') === "6") {
+                            pushDataLayer(`Visibility block`, 'How to use')
+                        }
+                        if (i.target.getAttribute('data-visability') === "7") {
+                            pushDataLayer(`Visibility block`, 'Hypoallergenic')
+                        }
+                        if (i.target.getAttribute('data-visability') === "8") {
+                            pushDataLayer(`Visibility block`, 'Side effects')
+                        }
+                        if (i.target.getAttribute('data-visability') === "9") {
+                            pushDataLayer(`Visibility block`, 'Suitables for ages')
+                        }
+                        if (i.target.getAttribute('data-visability') === "10") {
+                            pushDataLayer(`Visibility block`, 'Portability')
+                        }
+                        if (i.target.getAttribute('data-visability') === "11") {
+                            pushDataLayer(`Visibility btn`, 'Get it now!')
+                        }
+                        obs.unobserve(i.target)
+                    }
+                    obs2.unobserve(i.target)
+                })
+            }
+        }
+
+        pushDataLayer("loaded")
+
+        const record = setInterval(() => {
+            if (typeof clarity === "function") {
+                clearInterval(record)
+                clarity("set", "comparison table_mp")
+            }
+        }, 200)
     }
-
-    pushDataLayer("loaded")
-
-    const record = setInterval(() => {
-      if (typeof clarity === "function") {
-        clearInterval(record)
-        clarity("set", "comparison table_mp")
-      }
-    }, 200)
-  }
 })

@@ -151,12 +151,14 @@ let startFunk = setInterval(() => {
                 color: #FFFFFF;
             }
             .cart_popup_scroll{
+                position: relative;
                 padding: 24px;
                 display: flex;
                 flex-direction: column;
                 gap: 24px;
                 overflow-y: auto;
                 height: 290px;
+                transition: all 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
             }
             .cart_popup_scroll.my_height{
                 height: 920px;
@@ -237,6 +239,21 @@ let startFunk = setInterval(() => {
                 font-weight: 400;
                 line-height: 52px;
                 margin: auto;
+            }
+            .blur_var{
+                pointer-events: none;
+                filter: blur(10px);
+            }
+            .loading{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 1.8rem;
+                display: inline-block;
+            }
+            .loading svg{
+                animation: rotator 1.4s linear infinite;
             }
             @media (max-width: 768px) {
                 .popup_slide_in .container_popup{
@@ -374,8 +391,12 @@ let startFunk = setInterval(() => {
             document.querySelector('#cart-icon-bubble').addEventListener('click', (e) => {
                 e.preventDefault()
                 console.log(`>>>MyCart`)
-                getCartCheckout()
                 onOpenPopup(slideInCartContent)
+                document.querySelector('.cart_popup_scroll')?.insertAdjacentHTML('afterbegin', `<span class="loading"><svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle></svg></span>`)
+                document.querySelectorAll('.cart_popup_scroll .product_wrap')?.forEach(el => {
+                    el.classList.add('blur_var')
+                })
+                getCartCheckout()
             })
 
         }
@@ -399,26 +420,42 @@ let startFunk = setInterval(() => {
             body.style.display = "block"
 
             document.querySelector(".container_popup").insertAdjacentHTML("beforeend", block)
-            document.querySelector('.cart_popup_scroll')?.insertAdjacentHTML('afterbegin', `<span class="loading">Loading......</span>`)
+            document.querySelector('.cart_popup_scroll')?.insertAdjacentHTML('afterbegin', `<span class="loading"><svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle></svg></span>`)
+            document.querySelectorAll('.cart_popup_scroll .product_wrap')?.forEach(el => {
+                el.classList.remove('blur_var')
+            })
         }
 
         function onClosePopup() {
             overlay.classList.add("is_hidden")
             body.style.overflow = "auto"
-
-
-            setTimeout(() => {
-                document.querySelector('.cart_popup_scroll').innerHTML = ''
-                document.querySelector('.sub_total_price').innerHTML = '$00,00'
-            }, 1000)
-            // 
         }
 
         if (document.querySelector('.product-form [name="add"]')) {
-            document.querySelector('.product-form [name="add"]').addEventListener('click', (e) => {
+            document.querySelector('.product-form #cdkproductATC[name="add"]').addEventListener('click', (e) => {
                 e.preventDefault()
                 e.stopPropagation()
-                console.log(`>>>>>>>>>>>>>>>>>>>>>>id`, e.target.closest('form').querySelector('[name="id"]').value)
+                console.log(`>>>>>>>>>>>>>>>>>>>>>>id btn`, e.target.closest('form').querySelector('[name="id"]').value)
+                onOpenPopup(slideInCartContent)
+                document.querySelector('.cart_popup_scroll')?.insertAdjacentHTML('afterbegin', `<span class="loading"><svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle></svg></span>`)
+                document.querySelectorAll('.cart_popup_scroll .product_wrap')?.forEach(el => {
+                    el.classList.add('blur_var')
+                })
+                addToCartCheckout(e.target.closest('form').querySelector('[name="id"]').value)
+
+            })
+
+        }
+
+        if (document.querySelector('.product-form #customily-cart-btn[name="add"]')) {
+            document.querySelector('.product-form #customily-cart-btn[name="add"]').addEventListener('click', (e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                console.log(`>>>>>>>>>>>>>>>>>>>>>>id customily btn`, e.target.closest('form').querySelector('[name="id"]').value)
+                document.querySelector('.cart_popup_scroll')?.insertAdjacentHTML('afterbegin', `<span class="loading"><svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle></svg></span>`)
+                document.querySelectorAll('.cart_popup_scroll .product_wrap')?.forEach(el => {
+                    el.classList.add('blur_var')
+                })
                 addToCartCheckout(e.target.closest('form').querySelector('[name="id"]').value)
 
                 onOpenPopup(slideInCartContent)
@@ -465,19 +502,45 @@ let startFunk = setInterval(() => {
                 }).then(data => {
                     console.log(data)
                     document.querySelector('.cart_popup_scroll').innerHTML = ''
+                    if (document.querySelector('.cart_popup_scroll .product_wrap')?.classList.contains('blur_var')) {
+                        document.querySelectorAll('.cart_popup_scroll .product_wrap')?.forEach(el => {
+                            el.classList.remove('blur_var')
+                        })
+                    }
                     document.querySelector('.sub_total_price').textContent = `$${(data.total_price / 100).toFixed(2)}`
                     if (document.querySelector('.cdk-cart-count')) {
                         document.querySelector('.cdk-cart-count').textContent = `${data.item_count}`
                     }
-
                     data.items.forEach(el => {
+                        let varTitle = ""
+                        let prop = ""
+                        if (el.properties) {
+                            if (Object.keys(el.properties).length != 0) {
+                                for (let key in el.properties) {
+                                    if (el.properties.hasOwnProperty(key)) {
+                                        console.log(`<span>${key}:</span> <span>${el.properties[key]}</span>`)
+                                    }
+                                }
+
+                                prop = `<span>${Object.keys(el.properties)[0]}:</span> <span>${Object.values(el.properties)[0]}</span>`
+                            }
+                        }
+
+                        if (el.variant_title !== null) {
+                            varTitle = el.variant_title
+                        }
+
                         document.querySelector('.cart_popup_scroll').insertAdjacentHTML('beforeend', `                         
-                    <div class="product_wrap" id=${el.id}>
+                    <div class="product_wrap" id=${el.key}>
                         <div class="img_wrap">
                             <a href="${el.url}"><img src="${el.image}" alt="" /></a>
                         </div>
                         <div class="inform_wrap">
-                            <h2><a href="${el.url}">${el.title}</a></h2>
+                            <div>
+                                <h2><a href="${el.url}">${el.title}</a></h2>
+                                <div>${prop}</div>
+                                <div>${varTitle}</div>
+                            </div>
                         <div class="price_wrap">
                             <div class="cart_popup_qty">
                                 <span class="decrement">
@@ -511,7 +574,7 @@ let startFunk = setInterval(() => {
                                 </span>
                             </div>
                             <div class="cart_popup_price">
-                                <span class="my_price">$${(el.price / 100).toFixed(2)}</span>
+                                <span class="my_price">$${(el.final_line_price / 100).toFixed(2)}</span>
                                 <svg class="btn_remove_item" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                     d="M0.576968 11.2788C0.516249 11.3454 0.482651 11.4345 0.48341 11.527C0.484169 11.6196 0.519226 11.7081 0.581028 11.7735C0.642831 11.839 0.726435 11.8761 0.813834 11.8769C0.901233 11.8777 0.985434 11.8421 1.0483 11.7778L6.00363 6.53243L11.0563 11.6727C11.1039 11.7206 11.1639 11.7526 11.2286 11.7646C11.2933 11.7766 11.36 11.7682 11.4202 11.7403C11.4804 11.7124 11.5315 11.6663 11.5671 11.6078C11.6027 11.5494 11.6212 11.4811 11.6203 11.4115C11.6195 11.3651 11.6101 11.3194 11.5926 11.2769C11.5751 11.2343 11.5498 11.1959 11.5183 11.1637L6.47497 6.03267L11.4196 0.797844C11.4506 0.765075 11.4752 0.726164 11.492 0.683332C11.5088 0.6405 11.5175 0.594586 11.5175 0.548211C11.5175 0.501837 11.5089 0.45591 11.4922 0.413052C11.4755 0.370195 11.4509 0.331247 11.42 0.298432C11.389 0.265617 11.3523 0.239578 11.3118 0.221801C11.2714 0.204024 11.228 0.194857 11.1842 0.194824C11.1404 0.194792 11.097 0.203893 11.0566 0.22161C11.0161 0.239326 10.9793 0.265311 10.9483 0.298079L5.9943 5.54349L0.942301 0.404668C0.911184 0.370535 0.873886 0.343395 0.832638 0.324869C0.79139 0.306344 0.747038 0.296814 0.702233 0.296848C0.657427 0.296882 0.613088 0.306481 0.571866 0.325069C0.530643 0.343658 0.493383 0.370855 0.462312 0.405035C0.431241 0.439216 0.406996 0.479678 0.391028 0.524004C0.37506 0.56833 0.367696 0.61561 0.369375 0.663017C0.371054 0.710425 0.381743 0.756987 0.400802 0.799922C0.419861 0.842857 0.4469 0.881283 0.480301 0.912903L5.5223 6.04326L0.576968 11.2788Z"
@@ -539,8 +602,6 @@ let startFunk = setInterval(() => {
                         document.querySelectorAll('.btn_remove_item').forEach(el => {
                             el.addEventListener('click', (e) => {
                                 console.log(`>>>>>CLICK`)
-                                // e.target.closest('.product_wrap').remove()
-
                                 changeCartCheckout(e.target.closest('.product_wrap').getAttribute('id'), 0)
                             })
                         })
@@ -603,8 +664,10 @@ let startFunk = setInterval(() => {
                     response.json()
                 }).then((data) => {
                     console.log(data)
-                    document.querySelector('.cart_popup_scroll').innerHTML = ''
-                    document.querySelector('.cart_popup_scroll')?.insertAdjacentHTML('afterbegin', `<span class="loading">Loading......</span>`)
+                    document.querySelector('.cart_popup_scroll')?.insertAdjacentHTML('afterbegin', `<span class="loading"><svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle></svg></span>`)
+                    document.querySelectorAll('.cart_popup_scroll .product_wrap')?.forEach(el => {
+                        el.classList.add('blur_var')
+                    })
                     getCartCheckout()
                 })
                 .catch((error) => {
