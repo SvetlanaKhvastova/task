@@ -7,7 +7,9 @@ let newFunk = setInterval(() => {
             .payment_inform_wrapp p.subtitle_text,
             .payment_inform_wrapp .cus_info,
             .payment_order p.subtitle_text,
-            .paymen_method p.subtitle_text{
+            .paymen_method p.subtitle_text,
+            .payment_inform_wrapp,
+            .paymen_method{
                 display: none;
             }
             .steps ul{
@@ -125,8 +127,87 @@ let newFunk = setInterval(() => {
                 color: #FFFFFF;
             }
             .is_hidden{
-                display: none;
+                display: none !important;
             }
+
+            .payment_inform_box{
+                max-width: 536px;
+                width: 100%;
+                flex-direction: column;
+                margin: 0 auto !important;
+                -webkit-perspective: 1200;
+                perspective: 1200;
+                transform-style: preserve-3d;
+            }
+            .payment_inform_box li{
+                width: 100% !important;
+                transition: .7s linear;  
+            }
+            .rotate_var{
+                transform: rotateY(-180deg);
+            }
+            .scene_box{
+                width: 100%;
+                -webkit-perspective: 1200;
+                perspective: 1200;
+                -moz-transform: perspective(1200px);
+                -webkit-transform-style: preserve-3d;
+                -moz-transform-style: preserve-3d; 
+                transform-style: preserve-3d;
+            }
+            .card_box{
+                position: relative;
+                height: 500px;
+                -webkit-transform-style: preserve-3d;
+                -moz-transform-style: preserve-3d;
+                transform-style: preserve-3d;
+                -webkit-transition: .7s linear;
+                -moz-transition: .7s linear;
+                -o-transition: .7s linear;
+                transition: .7s linear;  
+            }
+            .first_step, .second_step, .third_step {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                -webkit-backface-visibility: hidden;
+                -moz-backface-visibility: hidden;
+                backface-visibility: hidden;
+                }
+
+                .first_step {
+                z-index: 1;
+                -webkit-transform: rotateY(0deg);
+                -moz-transform: rotateY(0deg);
+                -ms-transform: rotateY(0deg);
+                transform: rotateY(0deg);
+                }
+                .second_step {
+                -webkit-transform: rotateY(180deg);
+                -moz-transform: rotateY(180deg);
+                -ms-transform: rotateY(180deg);
+                transform: rotateY(180deg);
+                }
+
+                .third_step {
+                -webkit-transform: rotateY(180deg);
+                -moz-transform: rotateY(180deg);
+                -ms-transform: rotateY(180deg);
+                transform: rotateY(180deg);
+                }
+
+                #address-form > .row{
+                    display: none;
+                }
+
+                .scene_box.is_open .card_box{
+                -webkit-transform: rotateY(-180deg);
+                -moz-transform: rotateY(-180deg);
+                -ms-transform: rotateY(-180deg);
+                transform: rotateY(-180deg);
+                }
             
         </style>
         `
@@ -134,9 +215,15 @@ let newFunk = setInterval(() => {
         let books = /*html */ `
             <div class="scene_box">
                 <div class="card_box">
-                    <div class="first_step"></div>
-                    <div class="second_step"></div>
-                    <div class="third_step"></div>
+                    <ul class="first_step">
+                        <li class="test"></li>
+                    </ul>
+                    <ul class="second_step">
+                        <li class="test"></li>
+                    </ul>
+                    <ul class="third_step">
+                        <li class="test"></li>
+                    </ul>
                 </div>
             </div>
         `
@@ -201,10 +288,15 @@ let newFunk = setInterval(() => {
 
 
         document.head.insertAdjacentHTML("beforeend", newStyle)
-        document.querySelector('form#address-form').insertAdjacentHTML('beforebegin', steps)
-        document.querySelector('form#address-form').insertAdjacentHTML('afterbegin', checkStep)
-        document.querySelector('form#address-form').insertAdjacentHTML('afterend', newBtnContinue)
-        document.querySelector('form#address-form').insertAdjacentHTML('beforeend', books)
+        document.querySelector('form#address-form')?.insertAdjacentHTML('beforebegin', steps)
+        document.querySelector('form#address-form')?.insertAdjacentHTML('afterbegin', checkStep)
+        document.querySelector('form#address-form')?.insertAdjacentHTML('afterend', newBtnContinue)
+        // document.querySelector('.payment_inform_box')?.insertAdjacentHTML('beforeend', books)
+
+        // document.querySelector('.scene_box .first_step li.test')?.after(document.querySelector('.payment_order'))
+        // document.querySelector('.scene_box .first_step li.payment_order')?.after(document.querySelector('.payment_plan_wrapp'))
+        // document.querySelector('.scene_box .second_step li.test')?.after(document.querySelector('.payment_inform_wrapp'))
+        // document.querySelector('.scene_box .third_step li.test')?.after(document.querySelector('.paymen_method'))
 
         document.querySelector('.payment_plan_wrapp #payment_plan_id').textContent = 'Choose Payment plan'
 
@@ -230,6 +322,16 @@ let newFunk = setInterval(() => {
                             if (item.getAttribute('data-checkStep') === `2`) {
                                 item.classList.add('active_step')
                             }
+
+                            // document.querySelector('.scene_box').classList.add('is_open')
+                            document.querySelector('.payment_order').classList.add('rotate_var')
+                            document.querySelector('.payment_plan_wrapp.payment_plan').classList.add('rotate_var')
+
+                            setTimeout(() => {
+                                document.querySelector('.payment_order').classList.add('is_hidden')
+                                document.querySelector('.payment_plan_wrapp.payment_plan').classList.add('is_hidden')
+                                document.querySelector('.payment_inform_wrapp').style.display = 'block'
+                            }, 400)
 
                             setTimeout(() => {
                                 e.target.setAttribute('data-count', `2`)
@@ -282,6 +384,9 @@ let newFunk = setInterval(() => {
                             if (document.querySelector('.btn_continue').getAttribute('data-count') === `2`) {
                                 document.querySelector('.btn_continue').setAttribute('data-count', `1`)
                             }
+                            // if (document.querySelector('.scene_box').classList.contains('is_open')) {
+                            //     document.querySelector('.scene_box').classList.remove('is_open')
+                            // }
                         })
                     }
 
