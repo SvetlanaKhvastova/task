@@ -49,3 +49,9 @@ document.head.appendChild(scriptCustom)
 setTimeout(function () {
   document.querySelector(".exp")?.remove()
 }, 2000)
+
+// 
+let scriptCustom = document.createElement("script")
+scriptCustom.src = "https://conversionratestore.github.io/projects/themillionroses/slide_in_cart.js"
+scriptCustom.async = false
+document.head.appendChild(scriptCustom)
