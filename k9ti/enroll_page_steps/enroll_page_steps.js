@@ -2,6 +2,43 @@ let newFunk = setInterval(() => {
     if (document.querySelector(".payment_inform_box")) {
         clearInterval(newFunk)
 
+
+        let scriptPopper = document.createElement("script")
+        scriptPopper.src = "https://unpkg.com/popper.js@1"
+        scriptPopper.async = false
+        document.body.appendChild(scriptPopper)
+
+        let scriptTippy = document.createElement("script")
+        scriptTippy.src = "https://unpkg.com/tippy.js@5"
+        scriptTippy.async = false
+        document.body.appendChild(scriptTippy)
+
+        let eventVar = "desktop"
+
+        if (window.innerWidth <= 768) {
+            eventVar = "mobile"
+        }
+
+        function pushDataLayer(actionDataLayer, labelDataLayer) {
+            window.dataLayer = window.dataLayer || []
+            if (labelDataLayer) {
+                console.log(actionDataLayer + " : " + labelDataLayer)
+                dataLayer.push({
+                    event: "event-to-ga",
+                    eventCategory: `Exp:  ${eventVar}`,
+                    eventAction: `${actionDataLayer}`,
+                    eventLabel: `${labelDataLayer}`,
+                })
+            } else {
+                console.log(actionDataLayer)
+                dataLayer.push({
+                    event: "event-to-ga",
+                    eventCategory: `Exp: ${eventVar}`,
+                    eventAction: `${actionDataLayer}`,
+                })
+            }
+        }
+
         let newStyle =/*html */  `
         <style>
             .payment_inform_wrapp p.subtitle_text,
@@ -12,10 +49,212 @@ let newFunk = setInterval(() => {
             .paymen_method{
                 display: none;
             }
+            .payment_order{
+                margin-bottom: 30px !important;
+            }
+            .payment_inform_box .payment_plan_wrapp p.subtitle_text{
+                font-weight: 700;
+                font-size: 18px;
+                line-height: 24px;
+                text-transform: uppercase;
+                color: #754E0C !important;
+                margin-bottom: 15px;
+            }
+            .payment_plan_wrapp.payment_plan .input_wrapper{
+                padding: 16px;
+            }
+            .payment_plan_wrapp.payment_plan .input_wrapper .onetime_sec{
+                margin-bottom: 13px;
+            }
+            .payment_inform_box .payment_plan_wrapp .input_wrapper > div label{
+                font-size: 14px;
+                line-height: 19px;
+                color: #16377B !important;
+            }
+            .payment_inform_box .payment_plan_wrapp .input_wrapper > div.monthly_sec label{
+                color: #808080 !important;
+            }
+            .payment_inform_box .payment_plan_wrapp .input_wrapper > div >input:checked + label .radio_style .ellipse{
+                width: 8.4px;
+                height: 8.4px;
+            }
+            section .reviews_box{
+                margin-top: 60px !important;
+            }
+            .tooltip_box{
+                width: 14px;
+                height: 14px;
+                margin-left: 4px;
+                cursor: pointer;
+            }
+            .tippy-tooltip{
+                max-width: 424px !important;
+                background: #FFFFFF;
+                border-radius: 8px;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 150%;
+                color: #808080;
+                box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.15);
+                filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.15));
+            }
+            .tippy-content{
+                padding: 16px;
+            }
+            .tippy-tooltip[data-placement^=bottom]>.tippy-arrow{
+                border-bottom-color: #FFFFFF;
+            }
+            .tippy-tooltip[data-placement^="top"] > .tippy-arrow {
+                border-top-color: #ffffff;
+            }
+            .payment_inform_wrapp{
+                margin: 19px 0px -30px !important;
+            }
+            .first_block span.top-level{
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 20px !important;
+                top: -12px !important;
+                left: 12px !important;
+                padding: 0 6px !important;
+            }
+            body .first_block form input, 
+            body form select, 
+            body form #email, 
+            body form input#cvv, 
+            body .contact-form input[type=text], 
+            body .contact-form input[type=email], 
+            body .contact-form textarea, 
+            body form select.checkout-address,
+            body select.mm, 
+            body input#cvv {
+                border: 1px solid #E7E7E7 !important;
+                border-radius: 4px !important;
+                padding-top: 11px !important;
+                padding-bottom: 11px !important;
+                margin: 0 !important;
+                padding-right: 35px !important;
+            }
+            .customer_information_wrapper > .row:nth-child(7) > .col-md-12,
+            .customer_information_wrapper > .row:nth-child(8) > .col-md-12,
+            .paypament-details > .row:nth-child(3) > .col-md-6{
+                position: relative;
+            }
+            .customer_information_wrapper > .row:nth-child(7) > .col-md-12::after,
+            .customer_information_wrapper > .row:nth-child(8) > .col-md-12::after,
+            .paypament-details > .row:nth-child(3) > .col-md-6::after{
+                content: '';
+                position: absolute;
+                right: 10px;
+                top: 12px;
+                width: 20px;
+                height: 20px;
+                background: url(https://conversionratestore.github.io/projects/knineti/img/expand_more_black.svg) no-repeat center center;
+                pointer-events: none;
+                transition: all 0.3s ease;
+            }
+            .customer_information_wrapper > .row:nth-child(7) > .col-md-12.is_open::after,
+            .customer_information_wrapper > .row:nth-child(8) > .col-md-12.is_open::after,
+            .paypament-details > .row:nth-child(3) > .col-md-6.is_open::after{
+                transform: rotateX(180deg);
+
+            }
+            .customer_information_wrapper p.email-form-error,
+            .customer_information_wrapper p.form-error, 
+            .customer_information_wrapper span.form-error,
+            .paypament-details p.form-error, 
+            .paypament-details span.form-error{
+                margin-top: 10px !important;
+                margin-bottom: 0 !important;
+            }
+            .customer_information_wrapper > .row{
+                margin-bottom: 22px;
+                width: 100%;
+                padding: 0;
+                margin-left: 0;
+                margin-right: 0;
+            }
+            .payment_inform_box li > div.paypament-details .row{
+                margin-bottom: 22px !important;
+            }
+            .customer_information_wrapper{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                margin: 0;
+            }
+            .customer_information_wrapper > .row:nth-child(7),
+            .customer_information_wrapper > .row:nth-child(8){
+                width: 48.6%;
+            }
+            .customer_information_wrapper > .row:nth-child(8){
+                margin-left: 15px;
+            }
+            .customer_information_wrapper > .row:nth-child(2),
+            .customer_information_wrapper > .row:nth-child(5){
+                display: flex;
+                justify-content: space-between;
+            }
+            .customer_information_wrapper > .row:nth-child(2) > .col-md-6:nth-child(2),
+            .customer_information_wrapper > .row:nth-child(5) > .col-md-6:nth-child(2){
+                margin-left: 15px;
+            }
+            .customer_information_wrapper > .row:nth-child(2) > .col-md-6,
+            .customer_information_wrapper > .row:nth-child(5) > .col-md-6{
+                width: 48.6%;
+            }
+            .customer_information_wrapper > .row > .col-md-6,
+            .customer_information_wrapper > .row > .col-md-12{
+                padding: 0;
+            }
+            .paymen_method{
+                margin-top: 10px;
+            }
+            img.ssl-logo{
+                top: 0 !important;
+            }
+            body .payment_inform_box li > div.paypament-details .row:nth-child(1), 
+            body .payment_inform_box li > div.paypament-details .row:nth-child(2){
+                margin-top: 110px !important;
+                margin-bottom: 22px !important;
+                width: 48.6% !important;
+            }
+            body form .payment_inform_box li > div.paypament-details .row:nth-child(3) > div.col-md-6{
+                margin-right: 15px !important;
+            }
+            body .first_block .submit_btn input#submit{
+                margin: 0 auto !important;
+                background: #233973;
+                max-width: 260px;
+                height: 58px;
+                font-weight: 600;
+                font-size: 16px !important;
+                line-height: 22px;
+                text-align: center;
+                letter-spacing: -0.01em;
+                text-transform: uppercase;
+                border-radius: 10px !important;
+                color: #FFFFFF !important;
+            }
+            body .first_block .submit_btn input#submit_disabled{
+                margin: 0 auto !important;
+            }
+            .payment_inform_box li.paymen_method p.support_text{
+                color: #808080 !important;
+                margin: 9px 0 0 !important;
+            }
+            body .scroll_bar{
+                margin-bottom: 20px !important;
+            }
+            .steps{
+                margin-bottom: 30px;
+                padding-top: 15px;
+            }
             .steps ul{
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                padding: 0;
             }
             .steps ul li{
                 display: flex;
@@ -79,6 +318,13 @@ let newFunk = setInterval(() => {
                 background: #16377B;
             }
             /*check_step */
+            .check_step{
+                margin: 0 auto 15px;
+                max-width: 536px;
+            }
+            .check_step ul {
+                padding: 0;
+            }
             .check_step ul li{
                 display: none;
                 align-items: center;
@@ -129,23 +375,26 @@ let newFunk = setInterval(() => {
             .is_hidden{
                 display: none !important;
             }
-
             .payment_inform_box{
                 max-width: 536px;
                 width: 100%;
                 flex-direction: column;
                 margin: 0 auto !important;
+                /*
                 -webkit-perspective: 1200;
                 perspective: 1200;
                 transform-style: preserve-3d;
+                */
             }
             .payment_inform_box li{
                 width: 100% !important;
                 transition: .7s linear;  
             }
+            /*
             .rotate_var{
                 transform: rotateY(-180deg);
             }
+            */
             .scene_box{
                 width: 100%;
                 -webkit-perspective: 1200;
@@ -299,6 +548,18 @@ let newFunk = setInterval(() => {
         // document.querySelector('.scene_box .third_step li.test')?.after(document.querySelector('.paymen_method'))
 
         document.querySelector('.payment_plan_wrapp #payment_plan_id').textContent = 'Choose Payment plan'
+        if (document.querySelector("#selected-state-us option:last-child")) {
+            document.querySelector("#selected-state-us option:last-child").textContent = 'Select State'
+        }
+
+        document.querySelector('.payment_inform_box .payment_plan_wrapp .input_wrapper > div.monthly_sec label')?.insertAdjacentHTML('beforeend', `<span class="tooltip_box" data-tolltip
+                data-title="If you choose the 3 month installment payment plan when you purchase, your card will automatically be charged the same amount as your initial installment payment 30 days and 60 days after your initial installment payment.">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M12.6 7C12.6 10.0928 10.0928 12.6 7 12.6C3.90721 12.6 1.4 10.0928 1.4 7C1.4 3.90721 3.90721 1.4 7 1.4C10.0928 1.4 12.6 3.90721 12.6 7ZM14 7C14 10.866 10.866 14 7 14C3.13401 14 0 10.866 0 7C0 3.13401 3.13401 0 7 0C10.866 0 14 3.13401 14 7ZM6.29954 4.2C6.29954 3.8134 6.61295 3.5 6.99954 3.5C7.38614 3.5 7.69954 3.8134 7.69954 4.2C7.69954 4.5866 7.38614 4.9 6.99954 4.9C6.61295 4.9 6.29954 4.5866 6.29954 4.2ZM6.29954 6.3C6.29954 5.9134 6.61295 5.6 6.99954 5.6C7.38614 5.6 7.69954 5.9134 7.69954 6.3V9.8C7.69954 10.1866 7.38614 10.5 6.99954 10.5C6.61295 10.5 6.29954 10.1866 6.29954 9.8V6.3Z"
+                    fill="#16377B" />
+                </svg>
+            </span>`)
 
         if (document.querySelector('.btn_continue')) {
             document.querySelector('.btn_continue').addEventListener('click', (e) => {
@@ -323,39 +584,20 @@ let newFunk = setInterval(() => {
                                 item.classList.add('active_step')
                             }
 
+                            document.querySelector('.payment_order').classList.add('is_hidden')
+                            document.querySelector('.payment_plan_wrapp.payment_plan').classList.add('is_hidden')
+                            document.querySelector('.payment_inform_wrapp').style.display = 'block'
                             // document.querySelector('.scene_box').classList.add('is_open')
-                            document.querySelector('.payment_order').classList.add('rotate_var')
-                            document.querySelector('.payment_plan_wrapp.payment_plan').classList.add('rotate_var')
-
-                            setTimeout(() => {
-                                document.querySelector('.payment_order').classList.add('is_hidden')
-                                document.querySelector('.payment_plan_wrapp.payment_plan').classList.add('is_hidden')
-                                document.querySelector('.payment_inform_wrapp').style.display = 'block'
-                            }, 400)
+                            // document.querySelector('.payment_order').classList.add('rotate_var')
+                            // document.querySelector('.payment_plan_wrapp.payment_plan').classList.add('rotate_var')
+                            onScrollTop()
 
                             setTimeout(() => {
                                 e.target.setAttribute('data-count', `2`)
                             }, 600)
                         }
                         if (e.target.getAttribute('data-count') === `2`) {
-                            if (el.getAttribute('data-step') === '2') {
-                                el.classList.add('visited_step')
-                                el.classList.remove('active_step')
-                                el.querySelector('p:nth-of-type(2)').classList.add('active_step')
-                            }
-                            if (el.getAttribute('data-step') === '3') {
-                                el.classList.add('active_step')
-                            }
-                            if (item.getAttribute('data-checkStep') === `2`) {
-                                item.classList.remove('active_step')
-                            }
-                            if (item.getAttribute('data-checkStep') === `3`) {
-                                item.classList.add('active_step')
-                            }
-                            setTimeout(() => {
-                                e.target.setAttribute('data-count', `3`)
-                                e.target.classList.add('is_hidden')
-                            }, 600)
+                            validateBtnStepSecond(el, item, e.target)
                         }
                     })
 
@@ -380,10 +622,16 @@ let newFunk = setInterval(() => {
                             el.currentTarget.classList.remove('active_step')
                             el.currentTarget.previousElementSibling.classList.add('active_step')
 
+                            document.querySelector('.payment_order').classList.remove('is_hidden')
+                            document.querySelector('.payment_plan_wrapp.payment_plan').classList.remove('is_hidden')
+                            document.querySelector('.payment_inform_wrapp').style.display = 'none'
+
 
                             if (document.querySelector('.btn_continue').getAttribute('data-count') === `2`) {
                                 document.querySelector('.btn_continue').setAttribute('data-count', `1`)
                             }
+
+                            onScrollTop()
                             // if (document.querySelector('.scene_box').classList.contains('is_open')) {
                             //     document.querySelector('.scene_box').classList.remove('is_open')
                             // }
@@ -406,16 +654,153 @@ let newFunk = setInterval(() => {
                             el.currentTarget.classList.remove('active_step')
                             el.currentTarget.previousElementSibling.classList.add('active_step')
 
+                            document.querySelector('.payment_inform_wrapp').classList.remove('is_hidden')
+                            document.querySelector('.paymen_method').style.display = 'none'
+                            document.querySelector('#address-form > .row').style.display = 'none'
+
                             if (document.querySelector('.btn_continue').getAttribute('data-count') === `3`) {
                                 document.querySelector('.btn_continue').setAttribute('data-count', `2`)
                                 document.querySelector('.btn_continue').classList.remove('is_hidden')
                             }
+
+                            onScrollTop()
                         })
                     }
 
                 })
             })
         }
+
+
+        if (document.querySelector('#submit')) {
+            document.querySelector('#submit').addEventListener('click', () => {
+                window.alert = function () { };
+            })
+        }
+
+        document.querySelectorAll('form select').forEach(el => {
+            el.addEventListener('click', (e) => {
+                if (e.target.closest('.col-md-12')) {
+                    e.target.closest('.col-md-12').classList.toggle('is_open')
+                }
+                if (e.target.closest('.col-md-6')) {
+                    e.target.closest('.col-md-6').classList.toggle('is_open')
+                }
+            })
+        })
+
+        document.addEventListener("click", (e) => {
+            if (!e.target.matches('form select')) {
+                document.querySelectorAll('form .col-md-12').forEach(el => {
+                    if (el.classList.contains('is_open')) {
+                        el.classList.remove('is_open')
+                    }
+                })
+                document.querySelectorAll('form .col-md-6').forEach(el => {
+                    if (el.classList.contains('is_open')) {
+                        el.classList.remove('is_open')
+                    }
+                })
+            }
+        })
+
+        function onScrollTop() {
+            document.querySelector(".steps").scrollIntoView({ block: "start", behavior: "smooth" })
+        }
+
+        function validateBtnStepSecond(el, item, e) {
+            document.querySelector('#submit').click()
+
+            let fName = $('#first-name').next().is(':visible')
+            let lName = $('#last-name').next().is(':visible')
+            let email = $('#email').next().is(':visible')
+            let address = $('#address1').next().is(':visible')
+            let city = $('#city').next().is(':visible')
+            let zipCode = $('#zip').next().is(':visible')
+            let selectCountry = $('#selected-country').next().is(':visible')
+            let selectState = $('#selected-state-us').next().is(':visible')
+            let number = $('#phone').next().is(':visible')
+            let cardNumber = $('#cardno').next()[0]
+            let nameCard = $('#cardname').next()[0]
+            let month = $('#month').next()[0]
+            let year = $('#year1').next()[0]
+            let cvv = $('#cvv').next().next()[0]
+
+            if (!fName && !lName && !email && !address && !city && !zipCode && !selectCountry && !selectState && !number) {
+                if (el.getAttribute('data-step') === '2') {
+                    el.classList.add('visited_step')
+                    el.classList.remove('active_step')
+                    el.querySelector('p:nth-of-type(2)').classList.add('active_step')
+                }
+                if (el.getAttribute('data-step') === '3') {
+                    el.classList.add('active_step')
+                }
+                if (item.getAttribute('data-checkStep') === `2`) {
+                    item.classList.remove('active_step')
+                }
+                if (item.getAttribute('data-checkStep') === `3`) {
+                    item.classList.add('active_step')
+                }
+
+                document.querySelector('.payment_inform_wrapp').classList.add('is_hidden')
+                document.querySelector('.paymen_method').style.display = 'block'
+
+                cardNumber.style.display = 'none'
+                nameCard.style.display = 'none'
+                month.style.display = 'none'
+                year.style.display = 'none'
+                cvv.style.display = 'none'
+
+                document.querySelector('#address-form > .row').style.display = 'block'
+                e.classList.add('is_hidden')
+
+                onScrollTop()
+
+                setTimeout(() => {
+                    e.setAttribute('data-count', `3`)
+                }, 600)
+            }
+        }
+
+
+        let tippyRun = setInterval(() => {
+            if (typeof tippy === "function" && document.querySelector("[data-tolltip]")) {
+                clearInterval(tippyRun)
+                document.querySelectorAll("[data-title]").forEach((el) => {
+                    if (innerWidth <= 768) {
+                        tippy(el, {
+                            content: el.getAttribute("data-title"),
+                            trigger: "click",
+                            placement: "bottom",
+                            appendTo: function () {
+                                return document.querySelector(".tooltip_box")
+                            },
+                            onTrigger(e) {
+                                pushDataLayer(`Clicks on hints ''`)
+                            },
+                            onShown(e) {
+                                pushDataLayer(`Shown ''`)
+                            },
+                        })
+                    } else {
+                        tippy(el, {
+                            content: el.getAttribute("data-title"),
+                            // placement: "bottom",
+                            // trigger: "click",
+                            appendTo: function () {
+                                return document.querySelector(".tooltip_box")
+                            },
+                            onTrigger(e) {
+                                pushDataLayer(`Hover on hints ''`)
+                            },
+                            onShown(e) {
+                                pushDataLayer(`Shown ''`)
+                            },
+                        })
+                    }
+                })
+            }
+        }, 500)
 
     }
 }, 10)
