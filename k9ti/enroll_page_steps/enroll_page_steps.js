@@ -101,6 +101,26 @@ let newFunk = setInterval(() => {
                 box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.15);
                 filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.15));
             }
+            .new_guarantee_mob .tippy-tooltip{
+                left: 55px !important;
+            }
+            .new_guarantee_mob .tippy-tooltip[data-placement^=bottom]>.tippy-arrow{
+                left: 343px !important;
+                }
+            .new_guarantee_mob .tippy-tooltip[data-placement^="top"] > .tippy-arrow {
+                left: 343px !important;
+            }
+            @media (min-width: 768px) {
+                .tippy-tooltip{
+                    left: 55px !important;
+                }
+                .tippy-tooltip[data-placement^=bottom]>.tippy-arrow{
+                left: 343px !important;
+                }
+                .tippy-tooltip[data-placement^="top"] > .tippy-arrow {
+                    left: 343px !important;
+                }
+            }
             .tippy-content{
                 padding: 16px;
             }
@@ -169,6 +189,7 @@ let newFunk = setInterval(() => {
             .paypament-details span.form-error{
                 margin-top: 10px !important;
                 margin-bottom: 0 !important;
+                display: none;
             }
             .customer_information_wrapper > .row{
                 margin-bottom: 22px;
@@ -387,84 +408,14 @@ let newFunk = setInterval(() => {
                 width: 100%;
                 flex-direction: column;
                 margin: 0 auto !important;
-                /*
-                -webkit-perspective: 1200;
-                perspective: 1200;
-                transform-style: preserve-3d;
-                */
             }
             .payment_inform_box li{
                 width: 100% !important;
                 transition: .7s linear;  
             }
-            /*
-            .rotate_var{
-                transform: rotateY(-180deg);
-            }
-            */
-            .scene_box{
-                width: 100%;
-                -webkit-perspective: 1200;
-                perspective: 1200;
-                -moz-transform: perspective(1200px);
-                -webkit-transform-style: preserve-3d;
-                -moz-transform-style: preserve-3d; 
-                transform-style: preserve-3d;
-            }
-            .card_box{
-                position: relative;
-                height: 500px;
-                -webkit-transform-style: preserve-3d;
-                -moz-transform-style: preserve-3d;
-                transform-style: preserve-3d;
-                -webkit-transition: .7s linear;
-                -moz-transition: .7s linear;
-                -o-transition: .7s linear;
-                transition: .7s linear;  
-            }
-            .first_step, .second_step, .third_step {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                -webkit-backface-visibility: hidden;
-                -moz-backface-visibility: hidden;
-                backface-visibility: hidden;
-                }
-
-                .first_step {
-                z-index: 1;
-                -webkit-transform: rotateY(0deg);
-                -moz-transform: rotateY(0deg);
-                -ms-transform: rotateY(0deg);
-                transform: rotateY(0deg);
-                }
-                .second_step {
-                -webkit-transform: rotateY(180deg);
-                -moz-transform: rotateY(180deg);
-                -ms-transform: rotateY(180deg);
-                transform: rotateY(180deg);
-                }
-
-                .third_step {
-                -webkit-transform: rotateY(180deg);
-                -moz-transform: rotateY(180deg);
-                -ms-transform: rotateY(180deg);
-                transform: rotateY(180deg);
-                }
-
                 #address-form > .row{
                     display: none;
                 }
-
-                .scene_box.is_open .card_box{
-                -webkit-transform: rotateY(-180deg);
-                -moz-transform: rotateY(-180deg);
-                -ms-transform: rotateY(-180deg);
-                transform: rotateY(-180deg);
-                }
-
                 .scroll_test{
                     padding: 10px 0 0;
                 }
@@ -497,6 +448,29 @@ let newFunk = setInterval(() => {
                     margin: 0 0 0 auto !important;
                 }
                 @media (max-width: 768px) {
+                    .payment_inform_box .payment_plan_wrapp.payment_plan  .input_wrapper > div label{
+                        align-items: flex-start;
+                    }
+                    .payment_inform_box .input_wrapper .radio_style{
+                        margin-top: 4px;
+                    }
+                    .tooltip_box{
+                        display: inline-block;
+                        width: 30px;
+                        height: 18px;
+                        padding: 4px;
+                        position: relative;
+                    }
+                    .tooltip_box svg{
+                        position: absolute;
+                        top: 8px;
+                        left: 0;
+                    }
+                    .new_guarantee_mob .tooltip_box{
+                        display: unset;
+                        padding: 0;
+                        position: unset;
+                    }
                     .tippy-popper{
                         padding: 0 15px;
                     }
@@ -511,6 +485,22 @@ let newFunk = setInterval(() => {
                     }
                     .tippy-content{
                         padding: 11px 12px;
+                    }
+                    .new_guarantee_mob .tippy-tooltip{
+                        left: 9px !important;
+                    }
+                    .new_guarantee_mob .tippy-tooltip[data-placement^=bottom]>.tippy-arrow{
+                        left: 287px !important;
+                    }
+                    .monthly_sec .tippy-tooltip{
+                        top: -30px !important;
+                        left: -11px !important;
+                    }
+                    .monthly_sec .tippy-tooltip[data-placement^="top"] > .tippy-arrow{
+                        left: 82px !important;
+                    }
+                    .monthly_sec .tippy-tooltip[data-placement^=bottom]>.tippy-arrow{
+                        left: 82px !important;
                     }
                     body .payment_inform_box p.subtitle_text{
                         margin-bottom: 15px !important;
@@ -543,6 +533,74 @@ let newFunk = setInterval(() => {
                     }
                     .customer_information_wrapper > .row:nth-child(8){
                         margin-left: 0;
+                    }
+                    body .first_block form input, 
+                    body form select, 
+                    body form #email, 
+                    body form input#cvv, 
+                    body .contact-form input[type=text], 
+                    body .contact-form input[type=email], 
+                    body .contact-form textarea, 
+                    body form select.checkout-address,
+                    body select.mm, 
+                    body input#cvv {
+                        height: 42px !important;
+                    }
+                    .payment_inform_wrapp {
+                        margin: 19px 0px -20px !important;
+                    }
+                    .payment_inform_box li.paymen_method{
+                        margin: 0 !important;
+                    }
+                    body .first_block .submit_btn input#submit{
+                        max-width: unset;
+                        height: 58px !important;
+                    }
+                    body .payment_inform_box li > div.paypament-details .row:nth-child(1),
+                    body .payment_inform_box li > div.paypament-details .row:nth-child(2){
+                        width: 100% !important;   
+                    }
+                    body .payment_inform_box li > div.paypament-details .row:nth-child(1){
+                        margin-top: 70px !important;
+                        margin-bottom: 0 !important;
+                    }
+                    body .payment_inform_box li > div.paypament-details .row:nth-child(2){
+                        margin-top: 22px !important;
+                    }
+                }
+                @media (max-width: 320px) {
+                    .new_guarantee_mob{
+                        padding: 12px 17px;
+                    }
+                    .new_guarantee_mob p{
+                        font-size: 13px;
+                    }
+                    .new_guarantee_mob .tippy-tooltip{
+                        left: 0px !important;
+                    }
+                    .new_guarantee_mob .tippy-tooltip[data-placement^=bottom]>.tippy-arrow{
+                        left: 261px !important;
+                    }
+                }
+                @media (max-width: 280px) {
+                    .new_guarantee_mob p{
+                        font-size: 11px;
+                    }
+                    .check_step span{
+                        font-size: 17px;
+                    }
+                    .tippy-tooltip{
+                        font-size: 10px;
+                    }
+                    .payment_inform_box li > div > p{
+                        font-size: 9px !important;
+                    }
+                    .new_guarantee_mob .tippy-tooltip[data-placement^=bottom]>.tippy-arrow{
+                        left: 221px !important;
+                    }
+                    .monthly_sec .tippy-tooltip {
+                        top: -47px !important;
+                        left: 30px !important;
                     }
                 }
             
@@ -628,12 +686,6 @@ let newFunk = setInterval(() => {
         document.querySelector('form#address-form')?.insertAdjacentHTML('beforebegin', steps)
         document.querySelector('form#address-form')?.insertAdjacentHTML('afterbegin', checkStep)
         document.querySelector('form#address-form')?.insertAdjacentHTML('afterend', newBtnContinue)
-        // document.querySelector('.payment_inform_box')?.insertAdjacentHTML('beforeend', books)
-
-        // document.querySelector('.scene_box .first_step li.test')?.after(document.querySelector('.payment_order'))
-        // document.querySelector('.scene_box .first_step li.payment_order')?.after(document.querySelector('.payment_plan_wrapp'))
-        // document.querySelector('.scene_box .second_step li.test')?.after(document.querySelector('.payment_inform_wrapp'))
-        // document.querySelector('.scene_box .third_step li.test')?.after(document.querySelector('.paymen_method'))
 
         document.querySelector('.payment_plan_wrapp #payment_plan_id').textContent = 'Choose Payment plan'
         if (document.querySelector("#selected-state-us option:last-child")) {
@@ -674,8 +726,8 @@ let newFunk = setInterval(() => {
                           </defs>
                         </svg>
                         <p>90 days unconditional money-back guarantee</p>
-                        <svg class="tooltip_box" data-tolltip
-                          data-title="If you are not satisfied with the masterclass, please contact us within 90 days of your enrollment to get a full refund"
+                        <svg class="tooltip_box" data-tolltipMob
+                          data-titlemob="If you are not satisfied with the masterclass, please contact us within 90 days of your enrollment to get a full refund"
                           width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M18 10C18 14.4183 14.4183 18 10 18C5.58172 18 2 14.4183 2 10C2 5.58172 5.58172 2 10 2C14.4183 2 18 5.58172 18 10ZM20 10C20 15.5228 15.5228 20 10 20C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0C15.5228 0 20 4.47715 20 10ZM8.99935 6C8.99935 5.44772 9.44706 5 9.99935 5C10.5516 5 10.9993 5.44772 10.9993 6C10.9993 6.55228 10.5516 7 9.99935 7C9.44706 7 8.99935 6.55228 8.99935 6ZM8.99935 9C8.99935 8.44772 9.44706 8 9.99935 8C10.5516 8 10.9993 8.44772 10.9993 9V14C10.9993 14.5523 10.5516 15 9.99935 15C9.44706 15 8.99935 14.5523 8.99935 14V9Z"
@@ -710,13 +762,14 @@ let newFunk = setInterval(() => {
                             document.querySelector('.payment_order').classList.add('is_hidden')
                             document.querySelector('.payment_plan_wrapp.payment_plan').classList.add('is_hidden')
                             document.querySelector('.payment_inform_wrapp').style.display = 'block'
-                            // document.querySelector('.scene_box').classList.add('is_open')
-                            // document.querySelector('.payment_order').classList.add('rotate_var')
-                            // document.querySelector('.payment_plan_wrapp.payment_plan').classList.add('rotate_var')
+
                             onScrollTop()
 
                             setTimeout(() => {
                                 e.target.setAttribute('data-count', `2`)
+                                if (!document.querySelector('.testik')) {
+                                    e.target.insertAdjacentHTML('afterend', `<span class="testik"></span>`)
+                                }
                             }, 600)
                         }
                         if (e.target.getAttribute('data-count') === `2`) {
@@ -733,6 +786,10 @@ let newFunk = setInterval(() => {
                 e.addEventListener('click', el => {
                     if (el.currentTarget.getAttribute('data-checkStep') === `2` && el.currentTarget.classList.contains('active_step')) {
                         document.querySelectorAll('.steps ul li').forEach(i => {
+                            if (!el.currentTarget.getAttribute("data-test")) {
+                                pushDataLayer('Click on btn Back step "Contact information')
+                            }
+                            el.currentTarget.setAttribute("data-test", "1")
                             if (i.getAttribute('data-step') === '1') {
                                 i.classList.remove('visited_step')
                                 i.classList.add('active_step')
@@ -755,16 +812,15 @@ let newFunk = setInterval(() => {
                             }
 
                             onScrollTop()
-                            // if (document.querySelector('.scene_box').classList.contains('is_open')) {
-                            //     document.querySelector('.scene_box').classList.remove('is_open')
-                            // }
                         })
                     }
 
                     if (el.currentTarget.getAttribute('data-checkStep') === `3` && el.currentTarget.classList.contains('active_step')) {
                         document.querySelectorAll('.steps ul li').forEach(i => {
-                            console.log(`document.querySelectorAll('.steps ul li')`, i)
-                            console.log(`data-checkStep 3`)
+                            if (!el.currentTarget.getAttribute("data-test")) {
+                                pushDataLayer('Click on btn Back step "Payment method"')
+                            }
+                            el.currentTarget.setAttribute("data-test", "1")
                             if (i.getAttribute('data-step') === '2' && i.classList.contains('visited_step')) {
                                 i.classList.remove('visited_step')
                                 i.classList.add('active_step')
@@ -783,12 +839,18 @@ let newFunk = setInterval(() => {
 
                             if (document.querySelector('.btn_continue').getAttribute('data-count') === `3`) {
                                 document.querySelector('.btn_continue').setAttribute('data-count', `2`)
-                                document.querySelector('.btn_continue').classList.remove('is_hidden')
+                                document.querySelector('.btn_continue_wrap').classList.remove('is_hidden')
                             }
 
                             onScrollTop()
                         })
                     }
+
+                    setTimeout(() => {
+                        if (e.getAttribute("data-test")) {
+                            e.removeAttribute("data-test")
+                        }
+                    }, 500)
 
                 })
             })
@@ -879,7 +941,7 @@ let newFunk = setInterval(() => {
                 cvv.style.display = 'none'
 
                 document.querySelector('#address-form > .row').style.display = 'block'
-                e.classList.add('is_hidden')
+                e.closest('.btn_continue_wrap').classList.add('is_hidden')
 
                 onScrollTop()
 
@@ -890,6 +952,49 @@ let newFunk = setInterval(() => {
         }
 
 
+        let tippyRunMob = setInterval(() => {
+            if (typeof tippy === "function" && document.querySelector("[data-titlemob]")) {
+                clearInterval(tippyRunMob)
+                document.querySelectorAll("[data-titlemob]").forEach((el) => {
+                    if (innerWidth <= 768) {
+                        tippy(el, {
+                            content: el.getAttribute("data-titlemob"),
+                            trigger: "click",
+                            placement: "bottom-end",
+                            appendTo: function () {
+                                return el.parentElement
+                            },
+                            onTrigger(inst, e) {
+                                e.stopPropagation()
+                                e.preventDefault()
+                                console.log(e)
+                                // console.log(e.reference)
+                                pushDataLayer(`Clicks on hints ''`)
+                            },
+                            onShown(e) {
+                                pushDataLayer(`Shown ''`)
+                            },
+                        })
+                    } else {
+                        tippy(el, {
+                            content: el.getAttribute("data-titleMob"),
+                            placement: "top-end",
+                            trigger: "click",
+                            appendTo: function () {
+                                return document.querySelector(".tooltip_box")
+                            },
+                            onTrigger(e) {
+                                pushDataLayer(`Hover on hints ''`)
+                            },
+                            onShown(e) {
+                                pushDataLayer(`Shown ''`)
+                            },
+                        })
+                    }
+                })
+            }
+        }, 500)
+
         let tippyRun = setInterval(() => {
             if (typeof tippy === "function" && document.querySelector("[data-tolltip]")) {
                 clearInterval(tippyRun)
@@ -898,11 +1003,14 @@ let newFunk = setInterval(() => {
                         tippy(el, {
                             content: el.getAttribute("data-title"),
                             trigger: "click",
-                            placement: "bottom",
+                            placement: "top",
                             appendTo: function () {
                                 return el.parentElement
                             },
-                            onTrigger(e) {
+                            onTrigger(inst, e) {
+                                e.stopPropagation()
+                                e.preventDefault()
+                                console.log(e)
                                 pushDataLayer(`Clicks on hints ''`)
                             },
                             onShown(e) {
@@ -912,7 +1020,7 @@ let newFunk = setInterval(() => {
                     } else {
                         tippy(el, {
                             content: el.getAttribute("data-title"),
-                            // placement: "bottom",
+                            placement: "top-end",
                             // trigger: "click",
                             appendTo: function () {
                                 return document.querySelector(".tooltip_box")
@@ -928,6 +1036,58 @@ let newFunk = setInterval(() => {
                 })
             }
         }, 500)
+
+
+        if (document.querySelector(".steps")) {
+            let obs = new IntersectionObserver(visibility, {
+                threshold: 1
+            })
+
+            obs.observe(document.querySelector('.payment_plan_wrapp.payment_plan'))
+            obs.observe(document.querySelector('.btn_continue[data-count="1"]'))
+
+            let int = setInterval(() => {
+                if (document.querySelector('.testik')) {
+                    clearInterval(int)
+                    obs.observe(document.querySelector('.testik'))
+                }
+            }, 100)
+
+
+
+            obs.observe(document.querySelector('.submit_btn input#submit'))
+
+            function visibility(entries) {
+                entries.forEach(i => {
+                    if (i.isIntersecting) {
+                        if (i.target.classList.contains('payment_plan_wrapp')) {
+                            pushDataLayer('Visibility block Choose Payment plan')
+                        }
+                        if (i.target.getAttribute('data-count') === "1") {
+                            pushDataLayer(`Visibility btn Continue 1 ${i.target.getAttribute('data-count')}`)
+                        }
+                        if (i.target.classList.contains('testik')) {
+                            pushDataLayer(`Visibility btn Continue 2`)
+                        }
+                        if (i.target.getAttribute('id') === "submit") {
+                            pushDataLayer('Visibility btn Enroll now')
+                        }
+
+                        obs.unobserve(i.target)
+                    }
+                })
+            }
+        }
+
+
+        pushDataLayer("loaded")
+
+        const record = setInterval(() => {
+            if (typeof clarity === "function") {
+                clearInterval(record)
+                clarity("set", "", "variant_1")
+            }
+        }, 200)
 
     }
 }, 10)
