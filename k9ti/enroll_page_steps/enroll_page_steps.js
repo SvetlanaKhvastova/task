@@ -25,7 +25,7 @@ let newFunk = setInterval(() => {
                 console.log(actionDataLayer + " : " + labelDataLayer)
                 dataLayer.push({
                     event: "event-to-ga",
-                    eventCategory: `Exp:  ${eventVar}`,
+                    eventCategory: `Exp: Enroll Improvements ${eventVar}`,
                     eventAction: `${actionDataLayer}`,
                     eventLabel: `${labelDataLayer}`,
                 })
@@ -33,7 +33,7 @@ let newFunk = setInterval(() => {
                 console.log(actionDataLayer)
                 dataLayer.push({
                     event: "event-to-ga",
-                    eventCategory: `Exp: ${eventVar}`,
+                    eventCategory: `Exp: Enroll Improvements ${eventVar}`,
                     eventAction: `${actionDataLayer}`,
                 })
             }
@@ -49,7 +49,8 @@ let newFunk = setInterval(() => {
             .paymen_method{
                 display: none;
             }
-            .text_mobile{
+            .text_mobile,
+            .customer_information_wrapper > .row:nth-child(9){
                 display: none !important;
             }
             .payment_order{
@@ -687,9 +688,15 @@ let newFunk = setInterval(() => {
         document.querySelector('form#address-form')?.insertAdjacentHTML('afterbegin', checkStep)
         document.querySelector('form#address-form')?.insertAdjacentHTML('afterend', newBtnContinue)
 
-        document.querySelector('.payment_plan_wrapp #payment_plan_id').textContent = 'Choose Payment plan'
+
+        if (document.querySelector('.payment_plan_wrapp #payment_plan_id')) {
+            document.querySelector('.payment_plan_wrapp #payment_plan_id').textContent = 'Choose Payment plan'
+        }
         if (document.querySelector("#selected-state-us option:last-child")) {
             document.querySelector("#selected-state-us option:last-child").textContent = 'Select State'
+        }
+        if (document.querySelector('#phone')) {
+            document.querySelector('#phone').value = '00000000000'
         }
 
         document.querySelector('.payment_inform_box .payment_plan_wrapp .input_wrapper > div.monthly_sec label span:nth-child(2)')?.insertAdjacentHTML('beforeend', `<span class="tooltip_box" data-tolltip
@@ -969,10 +976,10 @@ let newFunk = setInterval(() => {
                                 e.preventDefault()
                                 console.log(e)
                                 // console.log(e.reference)
-                                pushDataLayer(`Clicks on hints ''`)
+                                pushDataLayer(`Clicks on hints '90 days unconditional money-back guarantee'`)
                             },
                             onShown(e) {
-                                pushDataLayer(`Shown ''`)
+                                pushDataLayer(`Shown 'If you are not satisfied with the masterclass, please contact us within 90 days of your enrollment to get a full refund'`)
                             },
                         })
                     } else {
@@ -984,10 +991,10 @@ let newFunk = setInterval(() => {
                                 return document.querySelector(".tooltip_box")
                             },
                             onTrigger(e) {
-                                pushDataLayer(`Hover on hints ''`)
+                                pushDataLayer(`Hover on hints '90 days unconditional money-back guarantee'`)
                             },
                             onShown(e) {
-                                pushDataLayer(`Shown ''`)
+                                pushDataLayer(`Shown 'If you are not satisfied with the masterclass, please contact us within 90 days of your enrollment to get a full refund'`)
                             },
                         })
                     }
@@ -1011,10 +1018,10 @@ let newFunk = setInterval(() => {
                                 e.stopPropagation()
                                 e.preventDefault()
                                 console.log(e)
-                                pushDataLayer(`Clicks on hints ''`)
+                                pushDataLayer(`Clicks on hints '3 monthly payments'`)
                             },
                             onShown(e) {
-                                pushDataLayer(`Shown ''`)
+                                pushDataLayer(`Shown '3 monthly payments'`)
                             },
                         })
                     } else {
@@ -1026,10 +1033,10 @@ let newFunk = setInterval(() => {
                                 return document.querySelector(".tooltip_box")
                             },
                             onTrigger(e) {
-                                pushDataLayer(`Hover on hints ''`)
+                                pushDataLayer(`Hover on hints '3 monthly payments'`)
                             },
                             onShown(e) {
-                                pushDataLayer(`Shown ''`)
+                                pushDataLayer(`Shown '3 monthly payments'`)
                             },
                         })
                     }
@@ -1085,9 +1092,9 @@ let newFunk = setInterval(() => {
         const record = setInterval(() => {
             if (typeof clarity === "function") {
                 clearInterval(record)
-                clarity("set", "", "variant_1")
+                clarity("set", "enroll_improvements", "variant_1")
             }
         }, 200)
-
+        document.querySelector(".exp")?.remove()
     }
 }, 10)
