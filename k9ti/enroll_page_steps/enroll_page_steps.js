@@ -82,6 +82,9 @@ let newFunk = setInterval(() => {
                 width: 8.4px;
                 height: 8.4px;
             }
+            .payment_inform_box .payment_plan_wrapp .input_wrapper > div.monthly_sec label > span:nth-child(2) > span:nth-child(1){
+                margin-left: 2px;
+            }
             section .reviews_box{
                 margin-top: 60px !important;
             }
@@ -109,7 +112,7 @@ let newFunk = setInterval(() => {
                 left: 343px !important;
                 }
             .new_guarantee_mob .tippy-tooltip[data-placement^="top"] > .tippy-arrow {
-                left: 343px !important;
+                left: 262px !important;
             }
             @media (min-width: 768px) {
                 .tippy-tooltip{
@@ -411,8 +414,7 @@ let newFunk = setInterval(() => {
                 margin: 0 auto !important;
             }
             .payment_inform_box li{
-                width: 100% !important;
-                transition: .7s linear;  
+                width: 100% !important;  
             }
                 #address-form > .row{
                     display: none;
@@ -488,7 +490,8 @@ let newFunk = setInterval(() => {
                         padding: 11px 12px;
                     }
                     .new_guarantee_mob .tippy-tooltip{
-                        left: 9px !important;
+                        left: -10px !important;
+                        top: -15px !important;
                     }
                     .new_guarantee_mob .tippy-tooltip[data-placement^=bottom]>.tippy-arrow{
                         left: 287px !important;
@@ -695,9 +698,14 @@ let newFunk = setInterval(() => {
         if (document.querySelector("#selected-state-us option:last-child")) {
             document.querySelector("#selected-state-us option:last-child").textContent = 'Select State'
         }
-        if (document.querySelector('#phone')) {
-            document.querySelector('#phone').value = '00000000000'
-        }
+
+        let intNumber = setInterval(() => {
+            if (document.querySelector('#phone')) {
+                clearInterval(intNumber)
+                document.querySelector('#phone').value = '00000000000'
+                console.log(`>>>>>>>>>>>>>TEL`, document.querySelector('#phone').value)
+            }
+        }, 100)
 
         document.querySelector('.payment_inform_box .payment_plan_wrapp .input_wrapper > div.monthly_sec label span:nth-child(2)')?.insertAdjacentHTML('beforeend', `<span class="tooltip_box" data-tolltip
                 data-title="If you choose the 3 month installment payment plan when you purchase, your card will automatically be charged the same amount as your initial installment payment 30 days and 60 days after your initial installment payment.">
@@ -710,7 +718,7 @@ let newFunk = setInterval(() => {
 
 
         if (window.innerWidth <= 768) {
-            document.querySelector('.text_mobile')?.insertAdjacentHTML('afterend', `<div class="scroll_test"></div><div class="new_guarantee_mob">
+            document.querySelector('.text_mobile')?.insertAdjacentHTML('afterend', `<div class="scroll_test"></div><div data-tolltipMob  data-titlemob="If you are not satisfied with the masterclass, please contact us within 90 days of your enrollment to get a full refund" class="new_guarantee_mob">
                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <g clip-path="url(#clip0_181_3455)">
                             <path
@@ -733,8 +741,7 @@ let newFunk = setInterval(() => {
                           </defs>
                         </svg>
                         <p>90 days unconditional money-back guarantee</p>
-                        <svg class="tooltip_box" data-tolltipMob
-                          data-titlemob="If you are not satisfied with the masterclass, please contact us within 90 days of your enrollment to get a full refund"
+                        <svg class="tooltip_box"
                           width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M18 10C18 14.4183 14.4183 18 10 18C5.58172 18 2 14.4183 2 10C2 5.58172 5.58172 2 10 2C14.4183 2 18 5.58172 18 10ZM20 10C20 15.5228 15.5228 20 10 20C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0C15.5228 0 20 4.47715 20 10ZM8.99935 6C8.99935 5.44772 9.44706 5 9.99935 5C10.5516 5 10.9993 5.44772 10.9993 6C10.9993 6.55228 10.5516 7 9.99935 7C9.44706 7 8.99935 6.55228 8.99935 6ZM8.99935 9C8.99935 8.44772 9.44706 8 9.99935 8C10.5516 8 10.9993 8.44772 10.9993 9V14C10.9993 14.5523 10.5516 15 9.99935 15C9.44706 15 8.99935 14.5523 8.99935 14V9Z"
@@ -749,6 +756,10 @@ let newFunk = setInterval(() => {
                 document.querySelectorAll('.steps ul li').forEach(el => {
                     document.querySelectorAll('.check_step ul li').forEach(item => {
                         if (e.target.getAttribute('data-count') === `1`) {
+                            if (!e.currentTarget.getAttribute("data-test")) {
+                                pushDataLayer('Click on btn Continue step "Order summary')
+                            }
+                            e.currentTarget.setAttribute("data-test", "1")
                             if (el.getAttribute('data-step') === '1') {
                                 el.classList.add('visited_step')
                                 el.classList.remove('active_step')
@@ -780,11 +791,25 @@ let newFunk = setInterval(() => {
                             }, 600)
                         }
                         if (e.target.getAttribute('data-count') === `2`) {
+                            if (!e.currentTarget.getAttribute("data-test")) {
+                                pushDataLayer('Click on btn Continue step "Contact information')
+                                if (document.querySelector('#phone').value === "") {
+                                    document.querySelector('#phone').value = '00000000000'
+                                    console.log(`>>>>>>>>>>>>>TEL еще раз`, document.querySelector('#phone').value)
+                                }
+                            }
+                            e.currentTarget.setAttribute("data-test", "1")
                             validateBtnStepSecond(el, item, e.target)
                         }
                     })
 
                 })
+
+                setTimeout(() => {
+                    if (e.target.getAttribute("data-test")) {
+                        e.target.removeAttribute("data-test")
+                    }
+                }, 500)
             })
         }
 
@@ -865,8 +890,11 @@ let newFunk = setInterval(() => {
 
 
         if (document.querySelector('#submit')) {
-            document.querySelector('#submit').addEventListener('click', () => {
+            document.querySelector('#submit').addEventListener('click', (e) => {
                 window.alert = function () { };
+                if (!e.target.classList.contains("on_click")) {
+                    pushDataLayer('Click on btn Enroll now')
+                }
             })
         }
 
@@ -905,7 +933,14 @@ let newFunk = setInterval(() => {
         }
 
         function validateBtnStepSecond(el, item, e) {
+            document.querySelector('#submit').classList.add("on_click")
             document.querySelector('#submit').click()
+
+            setTimeout(() => {
+                if (document.querySelector('#submit').classList.contains("on_click")) {
+                    document.querySelector('#submit').classList.remove("on_click")
+                }
+            }, 7000)
 
             let fName = $('#first-name').next().is(':visible')
             let lName = $('#last-name').next().is(':visible')
@@ -969,29 +1004,12 @@ let newFunk = setInterval(() => {
                             trigger: "click",
                             placement: "bottom-end",
                             appendTo: function () {
-                                return el.parentElement
+                                return el
                             },
                             onTrigger(inst, e) {
                                 e.stopPropagation()
                                 e.preventDefault()
-                                console.log(e)
-                                // console.log(e.reference)
                                 pushDataLayer(`Clicks on hints '90 days unconditional money-back guarantee'`)
-                            },
-                            onShown(e) {
-                                pushDataLayer(`Shown 'If you are not satisfied with the masterclass, please contact us within 90 days of your enrollment to get a full refund'`)
-                            },
-                        })
-                    } else {
-                        tippy(el, {
-                            content: el.getAttribute("data-titleMob"),
-                            placement: "top-end",
-                            trigger: "click",
-                            appendTo: function () {
-                                return document.querySelector(".tooltip_box")
-                            },
-                            onTrigger(e) {
-                                pushDataLayer(`Hover on hints '90 days unconditional money-back guarantee'`)
                             },
                             onShown(e) {
                                 pushDataLayer(`Shown 'If you are not satisfied with the masterclass, please contact us within 90 days of your enrollment to get a full refund'`)
@@ -1017,7 +1035,6 @@ let newFunk = setInterval(() => {
                             onTrigger(inst, e) {
                                 e.stopPropagation()
                                 e.preventDefault()
-                                console.log(e)
                                 pushDataLayer(`Clicks on hints '3 monthly payments'`)
                             },
                             onShown(e) {
