@@ -2,6 +2,12 @@ let startFunk = setInterval(() => {
   if (document.body && document.querySelector(".product-single__meta") != null) {
     clearInterval(startFunk)
 
+    document.querySelectorAll("input[type=radio]").forEach((item) => {
+      if (item.value === "default") {
+        item.click()
+      }
+    })
+
 
     let scriptPopper = document.createElement("script")
     scriptPopper.src = "https://unpkg.com/popper.js@1"
@@ -55,6 +61,7 @@ let startFunk = setInterval(() => {
   margin-bottom: 16px;
   cursor: pointer;
 }
+
 .donation_amount_flex p {
   font-weight: 500;
   font-size: 14px;
@@ -64,11 +71,13 @@ let startFunk = setInterval(() => {
   letter-spacing: normal;
   margin: 0;
 }
+
 .text_absol {
   position: relative;
   margin-right: 25px;
   display: inline-block;
 }
+
 .text_absol::after {
   content: "";
   position: absolute;
@@ -79,14 +88,17 @@ let startFunk = setInterval(() => {
   top: 50%;
   transform: translateY(-50%);
 }
+
 /*donation_inform */
 .donation_inform {
-  margin-top: 46px;
+  margin-top: 23px;
 }
+
 .donation_inform .text_absol::after {
   top: 11px;
 }
-.donation_inform ul.background_wrap .text_absol::after{
+
+.donation_inform ul.background_wrap .text_absol::after {
   top: 2px;
   width: 17px;
   height: 17px;
@@ -94,6 +106,7 @@ let startFunk = setInterval(() => {
   transform: unset;
   background: url(${imgFolderUrl}ukrainian_flag.png) top left / auto 17px no-repeat no-repeat;
 }
+
 .donation_inform h3 {
   font-weight: 700;
   font-size: 20px;
@@ -103,6 +116,7 @@ let startFunk = setInterval(() => {
   letter-spacing: normal;
   margin-bottom: 16px;
 }
+
 ul.background_wrap {
   display: flex;
   justify-content: space-between;
@@ -110,7 +124,8 @@ ul.background_wrap {
   list-style: none;
   flex-wrap: wrap;
 }
-ul.background_wrap > li {
+
+ul.background_wrap>li {
   width: 48.5%;
   background: rgba(63, 63, 63, 0.05);
   padding: 16px;
@@ -119,58 +134,55 @@ ul.background_wrap > li {
   align-items: flex-start;
   margin: 0;
 }
-ul.background_wrap > li + li {
+
+ul.background_wrap>li+li {
   margin: 0 0 0 16px;
 }
-ul.background_wrap > li .img_wrap {
+
+ul.background_wrap>li .img_wrap {
   max-width: 102px;
   max-height: 120px;
   width: 100%;
   height: 100%;
   margin-bottom: 8px;
 }
+
 .img_wrap img {
   width: 100%;
   height: 100%;
 }
-ul.background_wrap > li p.title_list {
-  font-size: 16px;
-}
-ul.background_wrap > li p {
+
+ul.background_wrap>li p {
   font-weight: 500;
   font-size: 14px;
   line-height: 24px;
   color: #3f3f3f;
   margin: 0;
 }
+
+ul.background_wrap>li p.title_list {
+  font-size: 16px;
+}
+
 .already_donat_list {
   color: #015bc1;
   list-style-type: disc;
   margin: 4px 0 0 20px;
 }
+
 .already_donat_list li {
   margin: 0;
 }
-.already_donat_list li + li {
+
+.already_donat_list li+li {
   margin-top: 8px;
 }
-.donation_inform > div:last-child {
-  margin-top: 32px;
-}
-ul.background_wrap > li p.goal_text {
+
+ul.background_wrap>li p.goal_text {
   font-weight: 400;
   margin-bottom: 4px;
 }
-p.goal_text strong {
-  font-size: 18px;
-}
-a.link_text {
-  font-style: italic;
-  font-weight: 700;
-  text-decoration-line: underline;
-  color: #1f508b;
-}
-/* */
+
 /* popap_box */
 .backdrop_modal {
   position: fixed !important;
@@ -180,20 +192,23 @@ a.link_text {
   width: 100vw;
   height: 100%;
   opacity: 1;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgb(63 63 63 / 35%);
   transition: all 0.5s ease 0s;
   z-index: 9005;
   display: block;
   max-height: 100%;
 }
+
 .backdrop_modal.is_hidden {
   opacity: 0;
   pointer-events: none;
 }
+
 .backdrop_modal.is_hidden .container_popup {
   transform: translateX(100%);
   transition: all 0.8s ease 0s;
 }
+
 .backdrop_modal .container_popup {
   display: block;
   position: absolute;
@@ -208,50 +223,63 @@ a.link_text {
   overflow: auto;
   max-height: 100vh;
 }
-.backdrop_modal .container_popup > svg {
+
+.backdrop_modal .container_popup>svg {
   position: absolute;
   top: 24px;
   right: 24px;
   outline: none;
   cursor: pointer;
 }
+
 /*content_popup */
-.content_popup > img {
+.content_popup>img {
   max-width: 40px;
   max-height: 40px;
   display: block;
 }
-.content_popup > h2 {
+
+.content_popup>h2 {
   margin: 0 0 8px;
   font-weight: 700;
   font-size: 24px;
   line-height: 150%;
   color: #3f3f3f;
 }
-.content_popup > p {
+
+.content_popup>p {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
   color: #3f3f3f;
   margin: 0 0 16px;
 }
+
 .by_it_now_btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #1f508b;
-  border: none;
+  background: #FFFFFF;
+  border: 2px solid #3F3F3F;
   outline: none;
   height: 50px;
-  width: 100%;
+  width: calc(100% - 5px);
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 3px;
-  color: #ffffff;
-  margin: 16px 0 24px;
+  color: #3F3F3F;
+  margin: 0 0 21px;
   cursor: pointer;
+  box-shadow: 5px 5px 0 0 #3f3f3f;
+  transition: transform .05s, box-shadow .05s;
 }
+
+.by_it_now_btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 1px 1px 0 0 #3f3f3f;
+}
+
 ul.main_popup_list {
   background: rgba(63, 63, 63, 0.05);
   padding: 16px;
@@ -260,34 +288,41 @@ ul.main_popup_list {
   display: flex;
   flex-direction: column;
 }
-ul.main_popup_list > li {
-  margin: 0 0 0 16px;
+
+ul.main_popup_list>li {
+  margin: 0 0 0 15px;
 }
-ul.main_popup_list > li + li {
+
+ul.main_popup_list>li+li {
   margin-top: 16px;
 }
-ul.main_popup_list > li p {
+
+ul.main_popup_list>li p {
   font-weight: 500;
   font-size: 14px;
   line-height: 24px;
   color: #3f3f3f;
   margin: 0;
 }
-ul.main_popup_list > li ul.already_donat_list {
+
+ul.main_popup_list>li ul.already_donat_list {
   color: #000000;
   list-style-type: disc;
   margin: 4px 0 0 20px;
   font-size: 13px;
 }
-ul.main_popup_list .already_donat_list li + li {
+
+ul.main_popup_list .already_donat_list li+li {
   margin: 0;
 }
+
 .content_popup p.goal_text {
   font-size: 14px;
   line-height: 24px;
   color: #3f3f3f;
   margin: 0;
 }
+
 .content_popup .text_absol::after {
   width: 16px;
   height: 16px;
@@ -296,435 +331,350 @@ ul.main_popup_list .already_donat_list li + li {
   top: 1px;
   transform: unset;
 }
-/*size_guide */
-.size_guide > h2 {
-  font-weight: 700;
-  font-size: 22px;
-  line-height: 25px;
-  letter-spacing: 2.2px;
-  text-transform: uppercase;
-  color: #3f3f3f;
-  margin: 0;
-}
-.size_guide > p {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 24px;
-  color: #3f3f3f;
-  margin: 16px 0;
-}
-.accardion_size {
-  margin: 0;
-  list-style: none;
-}
-.accardion_lists table p {
-  margin: 0;
-  font-size: 14px;
-  line-height: 25.5px;
-}
-.accardion_size table {
-  margin: 20px 0 0;
-}
-.accardion_size table td,
-.accardion_size table th {
-  padding: 6px 8px;
-}
-.accardion_size table td:first-child {
-  width: 90px;
-}
-ul.composition {
-  list-style-type: disc;
-  margin: 0 0 0 40px;
-}
-ul.composition li {
-  font-size: 14px;
-  line-height: 24px;
-  margin: 0;
-}
-ul.composition li + li {
-  margin-top: 5px;
-}
-.accardion_lists {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-}
-.active_block {
-  max-height: fit-content;
-  opacity: 1;
-  margin: 10px 0 0;
-}
-.accardion_size > li {
-  margin: 0;
-}
-.accardion_size > li + li {
-  margin-top: 20px;
-}
-.accardion_link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-}
-.accardion_link h3 {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 24px;
-  text-transform: uppercase;
-  color: #3f3f3f;
-  margin: 0;
-}
-.accardion_link span {
-  position: relative;
-  width: 24px;
-  height: 24px;
-  display: inline-flex;
-  transition: all 0.5s ease 0s;
-}
-.accardion_link span::before {
-  position: absolute;
-  content: "";
-  width: 100%;
-  height: 100%;
-  background: url(https://conversionratestore.github.io/projects/saintjavelin/img/expand_more.svg) no-repeat center center;
-  top: 0;
-  right: 0;
-  background-size: contain;
-  transition: all 0.5s ease 0s;
-}
-.accardion_link.active span::before {
-  transform: rotate(180deg);
-}
-/* */
-.mistake {
-  position: absolute;
-  top: 50%;
-  left: 91px;
-  transform: translateY(-50%);
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 12px;
-  letter-spacing: -0.4px;
-  color: #d71d1d;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-.mistake.patch_var{
-  left: 132px;
-}
-.mistake.type_var{
-  left: 88px;
-}
-.mistake.size_var {
-  left: 82px;
-}
-.mistake.is_hidden,
-.mistake.is_visited {
-  opacity: 0;
-}
-.mistake > svg {
-  margin-right: 5px;
-}
-.size_guide_var {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 25px;
-  letter-spacing: -0.4px;
-  text-decoration-line: underline;
-  color: #3f3f3f;
-  cursor: pointer;
-}
-.buy_it_now {
-  background: #064f90;
-  margin-top: 10px;
-}
-.buy_it_now:hover {
-  background: #064f90 !important;
-}
-.add_to_cart {
-  padding: 10px 25px;
-}
+
 /*range-wrapper */
+.range_bar_wrap {
+  border-left: 1px solid #3F3F3F;
+  border-right: 1px solid #3F3F3F;
+}
+
 .range-wrapper {
   width: 100%;
-  height: 28px;
+  height: 20px;
   position: relative;
   display: flex;
   align-items: center;
-  margin-bottom: 24px;
+  padding: 25px 0;
 }
+
 .range-line {
   background: rgb(31 80 139 / 10%);
   width: 100%;
   position: relative;
-  height: 28px;
+  height: 20px;
   overflow: hidden;
 }
+
 .range-donated {
   position: absolute;
   left: 0;
   top: 0;
   height: 100%;
   background: #fad41a;
+  border-right: 1px solid #3F3F3F;
 }
+
 .total-raised {
   position: relative;
   display: block;
 }
+
 .total-raised::before {
   position: absolute;
   content: attr(data-price);
-  right: -15px;
-  top: 2px;
+  right: 111px;
+  top: 1px;
   font-weight: 700;
-  font-size: 14px;
-  line-height: 24px;
+  font-size: 13px;
+  line-height: 18px;
   color: #3f3f3f;
 }
+
 .range-wrapper:before,
 .range-wrapper:after {
   content: "";
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  height: 28px;
+  height: 20px;
   background: #fad41a;
   width: 8px;
 }
+
 .range-wrapper:before {
   left: 0;
 }
+
 .range-wrapper:after {
   background: rgb(31 80 139 / 0%);
   right: 0;
 }
+
 .range-wrapper.active:after {
   background: #fad41a;
 }
+
 .range-wrapper .sum,
 .step.active[data-price]:before {
-  font-family: "Novarese-Bold", sans-serif;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 22px;
-  color: #000000;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  color: #3F3F3F;
   position: absolute;
-  text-align: center;
-  width: 101px;
-  right: 8px;
-  transform: translateX(50%);
-  bottom: calc(100% + 7px);
+  left: 9px;
+  top: -5px;
 }
+
 .range-wrapper .sum {
-  display: none;
+  left: unset;
+  right: 9px;
 }
+
 .step.active[data-price]:before {
   content: attr(data-price);
 }
-.steps .step.step-small.active[data-price]:before {
-  bottom: calc(100% + 47px);
-}
+
 .step.active[data-price]:after {
-  content: "NOW";
-  left: 50%;
-  transform: translateX(-50%);
-  top: calc(100% + 9px);
+  content: "Now";
+  left: 9px;
+  bottom: -5px;
   position: absolute;
-  font-family: "Novarese-Medium", sans-serif;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 12px;
   line-height: 18px;
-  color: #000000;
-  white-space: nowrap;
+  color: #3F3F3F;
 }
+
 .steps {
   position: absolute;
   left: 0;
   top: 0;
   height: 100%;
   width: 100%;
-  padding: 0 8px;
   z-index: 1;
 }
+
 .steps .step {
   width: 1px;
-  opacity: 0.2;
-  background: #000;
-  position: relative;
 }
+
 .steps:after {
   content: "30 NOV";
-  right: 8px;
-  transform: translateX(50%);
+  right: 9px;
   position: absolute;
-  top: calc(100% + 9px);
-  font-family: "Novarese-Medium", sans-serif;
+  bottom: -5px;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 12px;
   line-height: 18px;
-  color: #000000;
-  white-space: nowrap;
-  display: none;
+  color: #3F3F3F;
 }
-.steps .step.active {
-  opacity: 0;
-}
+
 .steps .step-small {
   height: 8px;
-  opacity: 0;
-  display: none;
 }
+
 .steps .step-big {
-  height: 28px;
-  opacity: 0;
+  height: 20px;
 }
+
 /*flex*/
 .flex {
   display: flex;
 }
+
 .items-end {
   align-items: flex-end;
 }
+
 .justify-between {
   justify-content: space-between;
 }
+
 .content_popup .range-wrapper {
   margin: 4px 0 16px;
 }
+
 .content_popup .total-raised::before {
   right: -50px;
 }
+
 .donation_inform.is_full .total-raised::before {
   right: 5px;
 }
+
 .container_popup.is_full .content_popup .total-raised::before {
   right: -5px;
 }
+
+/*baner_help */
+.baner_help {
+  background: #F5F5F5;
+  padding: 13px 140px;
+}
+
+.baner_help>ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  gap: 90px;
+}
+
+.baner_help>ul li {
+  width: 50%;
+  margin: 0;
+}
+
+.baner_help>ul li[data-tolltip] {
+  display: flex;
+  align-items: center;
+  max-width: fit-content;
+}
+
+.baner_help>ul li[data-tolltip] h2 {
+  margin: 0 2px 0 0;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  text-transform: uppercase;
+  color: #3F3F3F;
+}
+
+.tippy-tooltip {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #3F3F3F;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 20px rgba(63, 63, 63, 0.2);
+  max-width: 415px !important;
+  border-radius: unset;
+  left: 15px !important;
+}
+
+.tippy-content {
+  padding: 24px;
+}
+
+.tippy-tooltip[data-placement^=bottom]>.tippy-arrow {
+  border-bottom-color: #FFFFFF;
+  left: unset !important;
+  right: 15px !important;
+}
+
+.error_block.is_hidden {
+  opacity: 0;
+}
+
+.error_block {
+  opacity: 1;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+  transition: all 1.5s ease;
+}
+
+.error_block span {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.4px;
+  color: #D71D1D;
+  margin-left: 4px;
+}
+.payment-buttons{
+  position: relative;
+}
+.over_click{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 @media (max-width: 1020px) {
-  ul.background_wrap > li {
+  ul.background_wrap>li {
     width: 47.5%;
   }
   .total-raised::before {
     right: -35px;
   }
 }
+
 @media (max-width: 768px) {
   .range-wrapper {
     margin-bottom: 16px;
   }
+
   .donation_amount_flex svg {
     width: 31px;
     height: 31px;
   }
+
   .total-raised::before {
     right: -64px;
   }
+
   .backdrop_modal .container_popup {
     max-width: 358px;
   }
-  .backdrop_modal .container_popup > svg {
+
+  .backdrop_modal .container_popup>svg {
     top: 16px;
     right: 16px;
   }
-  .content_popup > h2 {
+
+  .content_popup>h2 {
     margin: 4px 0 8px;
   }
+
   .content_popup p.goal_text strong {
     font-size: 14px;
   }
-  ul.main_popup_list > li {
+
+  ul.main_popup_list>li {
     margin: 0 0 0 26px;
   }
+
   /* */
-  .donation_inform h3 {
-    margin-bottom: 8px;
-  }
-  ul.background_wrap > li {
+  ul.background_wrap>li {
     width: 100%;
   }
-  ul.background_wrap > li + li {
+
+  ul.background_wrap>li+li {
     margin: 16px 0 0;
   }
-  ul.background_wrap > li .img_wrap {
+
+  ul.background_wrap>li .img_wrap {
     max-width: 68px;
     max-height: 80px;
     margin-bottom: 4px;
   }
+
   .already_donat_list {
     margin: 4px 0 0 16px;
   }
-  .donation_inform > div:last-child h3 {
-    margin-bottom: 16px;
-  }
+
   .donation_inform {
     margin-bottom: 32px;
   }
+
   /* */
-  .size_guide > h2 {
+  .size_guide>h2 {
     margin: 0;
   }
-  .accardion_size > li + li {
+
+  .accardion_size>li+li {
     margin-top: 16px;
   }
-  .product-single__prices > :last-child {
+
+  .product-single__prices> :last-child {
     font-size: 18px;
     line-height: 24px;
   }
+
   .sales-point .icon-and-text {
     justify-content: start;
   }
 }
-@media (max-width: 320px) {
-  .total-raised::before {
-    font-size: 12px;
-    right: -50px;
-  }
-}
-.mistake {
-  font-size: 10px;
-}
-.donation_inform h3 {
-  font-size: 17px;
-}
-ul.background_wrap > li p.title_list {
-  font-size: 14px;
-}
-ul.background_wrap > li p {
-  font-size: 13px;
-}
-.content_popup > h2 {
-  font-size: 20px;
-}
-.accardion_lists table p {
-  font-size: 10px;
-}
 
-@media (max-width: 280px) {
-  .mistake {
-    left: 64px;
-  }
-  .mistake.size_var {
-    left: 57px;
-  }
-  .donation_inform h3 {
-    font-size: 15px;
-  }
-  ul.background_wrap > li p.title_list {
-    font-size: 11px;
-  }
-  ul.background_wrap > li p {
-    font-size: 10px;
-  }
-  p.goal_text strong {
-    font-size: 12px;
-  }
-  .accardion_lists table p {
-    font-size: 8px;
-  }
-}
+@media (max-width: 320px) {}
 
-
+@media (max-width: 280px) {}
     </style>
       `
 
@@ -748,7 +698,7 @@ ul.background_wrap > li p {
             <div class="img_wrap">
               <img src="${imgFolderUrl}sj.png" alt="saintjavelin" />
             </div>
-            <p class="title_list">So far we've raised <strong>over $1 million</strong> in support of <span class="text_absol">Ukraine</span></p>
+            <p class="title_list">So far we've raised <strong>over $1 million</strong> in support of <span>Ukraine</span></p>
           </li>
           <li>
             <div class="img_wrap">
@@ -768,7 +718,7 @@ ul.background_wrap > li p {
 
     let banerHelp = /*html */ `
       <div class="baner_help">
-        <ul class="background_wrap">
+        <ul>
           <li data-tolltip data-title="Our goal is to fundraise $1 million by Nov 30th to buy winter clothing and generators for 3,000 Ukrainian soldiers">
             <h2 >Ukraine needs your help</h2>
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -778,15 +728,16 @@ ul.background_wrap > li p {
             </svg>
           </li>
           <li>
-            <p class="goal_text">Fundraising goal by the end of November 2022: <strong>$1 million</strong></p>
-            <div class="range-wrapper">
-                  <div class="range-line">
-                    <div class="range-donated" style="width:0%">
-                        <span class="total-raised"></span>
+            <div class="range_bar_wrap">
+              <div class="range-wrapper">
+                    <div class="range-line">
+                      <div class="range-donated" style="width:0%">
+                          <span class="total-raised"></span>
+                      </div>
                     </div>
-                  </div>
-                  <div class="steps flex justify-between items-end"></div>
-                  <p class="sum"></p>
+                    <div class="steps flex justify-between items-end"></div>
+                    <p class="sum"></p>
+              </div>
             </div>
           </li>
         </ul>
@@ -822,7 +773,13 @@ ul.background_wrap > li p {
             </p>
           </div>
           <div class="bar"></div>
-          <button class="by_it_now_btn">BUY IT NOW</button>
+          <div class="error_block is_hidden">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.3335 10H8.66683V11.3333H7.3335V10ZM7.3335 4.66668H8.66683V8.66668H7.3335V4.66668ZM7.9935 1.33334C4.3135 1.33334 1.3335 4.32001 1.3335 8.00001C1.3335 11.68 4.3135 14.6667 7.9935 14.6667C11.6802 14.6667 14.6668 11.68 14.6668 8.00001C14.6668 4.32001 11.6802 1.33334 7.9935 1.33334ZM8.00016 13.3333C5.0535 13.3333 2.66683 10.9467 2.66683 8.00001C2.66683 5.05334 5.0535 2.66668 8.00016 2.66668C10.9468 2.66668 13.3335 5.05334 13.3335 8.00001C13.3335 10.9467 10.9468 13.3333 8.00016 13.3333Z" fill="#D71D1D"/>
+              </svg>
+              <span>Please select color and size first</span>
+          </div>
+          <button class="by_it_now_btn">BUY NOW TO DONATE</button>
           <ul class="main_popup_list">
             <li>
               <p>So far we've raised <strong>over $1 million</strong> in support of <span class="text_absol">Ukraine</span></p>
@@ -865,23 +822,44 @@ ul.background_wrap > li p {
       boxForDonationInform.insertAdjacentHTML("beforeend", donationInform)
     }
 
+
+    // click on Make a Selection
+    if (document.querySelector("[name='add'].btn--tertiary.btn--full.bold_clone")) {
+      document.querySelector('.payment-buttons').insertAdjacentHTML('afterbegin', `<span class="over_click">sdfghjklkjhgfdsdfghjkjhgfd</span>`)
+      document.querySelector('.over_click').addEventListener('click', () => {
+        document.querySelector('.product-block').scrollIntoView({ block: "start", behavior: "smooth" })
+      })
+    }
+
     document.querySelector(".donation_amount_flex")?.addEventListener("click", () => {
       pushDataLayer("Сlick on donate to support Ukraine")
       onOpenPopup(contentpopup)
-      let clonedNodeBar = document.querySelector(".range-wrapper").cloneNode(true)
+      let clonedNodeBar = document.querySelector(".range_bar_wrap").cloneNode(true)
 
       if (clonedNodeBar) {
-        if (!document.querySelector(".bar .range-wrapper")) {
+        if (!document.querySelector(".bar .range_bar_wrap")) {
           document.querySelector(".bar")?.appendChild(clonedNodeBar)
         }
       }
 
       if (document.querySelector(".backdrop_modal .content_popup")) {
         document.querySelector(".backdrop_modal .content_popup .by_it_now_btn")?.addEventListener("click", (e) => {
-          e.preventDefault()
+          if (!e.target.getAttribute("data-test")) {
+            e.preventDefault()
+            pushDataLayer("Сlick on Buy it now button", "Pop up All profits go towards helping Ukraine resist the invasion")
+            if (document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden")) {
+              if (!document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden").getAttribute("disabled")) {
+                document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden").click()
+                onClosePopup()
+              } else {
+                if (document.querySelector('.error_block').classList.contains('is_hidden')) {
+                  document.querySelector('.error_block').classList.remove('is_hidden')
+                }
+              }
+            }
 
-          pushDataLayer("Сlick on Buy it now button", "Pop up All profits go towards helping Ukraine resist the invasion")
-
+          }
+          e.target.setAttribute("data-test", "1")
         })
       }
       if (innerWidth <= 768) {
@@ -890,6 +868,15 @@ ul.background_wrap > li p {
         }
       }
     })
+
+    let findBtnInt = setInterval(() => {
+      if (document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden")) {
+        if (!document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden").getAttribute("disabled")) {
+          clearInterval(findBtnInt)
+          document.querySelector('.error_block').classList.add('is_hidden')
+        }
+      }
+    }, 100)
 
 
     // click on btn close popup
@@ -939,6 +926,7 @@ ul.background_wrap > li p {
       }, 1000)
     }
 
+    // on hover/click hint
     let tippyRun = setInterval(() => {
       if (typeof tippy === "function" && document.querySelector("[data-tolltip]")) {
         clearInterval(tippyRun)
@@ -947,7 +935,7 @@ ul.background_wrap > li p {
             tippy(el, {
               content: el.getAttribute("data-title"),
               trigger: "click",
-              placement: "top",
+              placement: "bottom",
               appendTo: function () {
                 return el.parentElement
               },
@@ -963,8 +951,8 @@ ul.background_wrap > li p {
           } else {
             tippy(el, {
               content: el.getAttribute("data-title"),
-              placement: "top-end",
-              // trigger: "click",
+              placement: "bottom-end",
+              trigger: "click",
               appendTo: function () {
                 return el.parentElement
               },
@@ -980,72 +968,74 @@ ul.background_wrap > li p {
       }
     }, 500)
 
-    //
-    fetch("https://conversionrate.top/api/saint-javelin/total-donorbox", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "GET",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data)
+    fetchBar()
+    function fetchBar() {
+      fetch("https://conversionrate.top/api/saint-javelin/total-donorbox", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "GET",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data)
 
-        // add on page
-        // document.body.insertAdjacentHTML("afterbegin", style)
-        // document.body.insertAdjacentHTML("afterbegin", progressBarHTML)
+          // add on page
+          // document.body.insertAdjacentHTML("afterbegin", style)
+          // document.body.insertAdjacentHTML("afterbegin", progressBarHTML)
 
-        let donated = +data[0]["total_raised"],
-          sum = +data[0]["goal_amt"],
-          rangeDonated = (donated * 100) / sum,
-          wand = (rangeDonated * 90) / 100,
-          indexWand = donated < 15000 ? 0 : Math.floor(wand)
+          let donated = +data[0]["total_raised"],
+            sum = +data[0]["goal_amt"],
+            rangeDonated = (donated * 100) / sum,
+            wand = (rangeDonated * 90) / 100,
+            indexWand = donated < 15000 ? 0 : Math.floor(wand)
 
-        let step = ``
+          let step = ``
 
-        for (let i = 0; i < 91; i++) {
-          step += `<div class="step ${i <= indexWand ? "active" : ""} ${i % 9 ? "step-small" : "step-big"}"></div>`
-        }
+          for (let i = 0; i < 91; i++) {
+            step += `<div class="step ${i <= indexWand ? "active" : ""} ${i % 9 ? "step-small" : "step-big"}"></div>`
+          }
 
-        document.querySelectorAll(".steps").forEach((el) => {
-          el.innerHTML = step
-        })
-        document.querySelectorAll(".range-donated").forEach((el) => {
-          el.style = `width: ${donated <= 10000 ? 0 : donated < 15000 ? 0.5 : rangeDonated}%`
-          if (el.style.width >= "80%") {
-            console.log(el.style.width)
-            if (document.querySelector(".container_popup")) {
-              document.querySelector(".container_popup").classList.add("is_full")
-              document.querySelector(".donation_inform").classList.add("is_full")
+          document.querySelectorAll(".steps").forEach((el) => {
+            el.innerHTML = step
+          })
+          document.querySelectorAll(".range-donated").forEach((el) => {
+            el.style = `width: ${donated <= 10000 ? 0 : donated < 15000 ? 0.5 : rangeDonated}%`
+            if (el.style.width >= "80%") {
+              console.log(el.style.width)
+              if (document.querySelector(".container_popup")) {
+                document.querySelector(".container_popup").classList.add("is_full")
+                document.querySelector(".donation_inform").classList.add("is_full")
+              }
             }
+          })
+          document.querySelectorAll(".sum").forEach((el) => {
+            el.innerHTML = "$" + new Intl.NumberFormat("ru-RU").format(sum.toFixed(0))
+          })
+
+          let stepActive = document.querySelectorAll(".step.active")
+          let totalDonate = document.querySelectorAll(".total-raised")
+          if (donated > (sum * 88) / 100) {
+            stepActive[79].setAttribute("data-price", "$" + new Intl.NumberFormat("ru-RU").format(donated.toFixed(0)))
+            totalDonate.forEach((el) => {
+              el.setAttribute("data-price", new Intl.NumberFormat("ru-RU").format(rangeDonated.toFixed(0)) + "%")
+            })
+          } else {
+            stepActive[indexWand].setAttribute("data-price", "$" + new Intl.NumberFormat("ru-RU").format(donated.toFixed(0)))
+            totalDonate.forEach((el) => {
+              el.setAttribute("data-price", new Intl.NumberFormat("ru-RU").format(rangeDonated.toFixed(0)) + "%")
+            })
+          }
+          if (donated >= sum) {
+            document.querySelectorAll(".range-wrapper").forEach((el) => {
+              el.classList.add("active")
+            })
           }
         })
-        document.querySelectorAll(".sum").forEach((el) => {
-          el.innerHTML = "$" + new Intl.NumberFormat("ru-RU").format(sum.toFixed(0))
+        .catch((error) => {
+          console.error("Error:", error)
         })
-
-        let stepActive = document.querySelectorAll(".step.active")
-        let totalDonate = document.querySelectorAll(".total-raised")
-        if (donated > (sum * 88) / 100) {
-          stepActive[79].setAttribute("data-price", new Intl.NumberFormat("ru-RU").format(rangeDonated) + "%")
-          totalDonate.forEach((el) => {
-            el.setAttribute("data-price", new Intl.NumberFormat("ru-RU").format(rangeDonated) + "%")
-          })
-        } else {
-          stepActive[indexWand].setAttribute("data-price", new Intl.NumberFormat("ru-RU").format(rangeDonated) + "%")
-          totalDonate.forEach((el) => {
-            el.setAttribute("data-price", new Intl.NumberFormat("ru-RU").format(rangeDonated) + "%")
-          })
-        }
-        if (donated >= sum) {
-          document.querySelectorAll(".range-wrapper").forEach((el) => {
-            el.classList.add("active")
-          })
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error)
-      })
+    }
 
     pushDataLayer("loaded")
     clarity("set", "new_design_pdp", "variant_1")

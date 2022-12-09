@@ -1,131 +1,616 @@
-.css-amzw5g {
-  height: fit-content !important;
+/*donation_amount_flex */
+.donation_amount_flex {
+  background: #fff9db;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px;
+  margin-bottom: 16px;
+  cursor: pointer;
 }
-form.css-8atqhb .chakra-input__group,
-form.css-8atqhb button.chakra-button {
-  display: none !important;
+
+.donation_amount_flex p {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  color: #3f3f3f;
+  display: inline;
+  letter-spacing: normal;
+  margin: 0;
 }
-.auto_location_block button {
-  margin: 12px 0 0;
+
+.text_absol {
+  position: relative;
+  margin-right: 25px;
+  display: inline-block;
+}
+
+.text_absol::after {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: url(${imgFolderUrl}ukrainian_flag.png) top left / auto 24px no-repeat no-repeat;
+  right: -28px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/*donation_inform */
+.donation_inform {
+  margin-top: 23px;
+}
+
+.donation_inform .text_absol::after {
+  top: 11px;
+}
+
+.donation_inform ul.background_wrap .text_absol::after {
+  top: 2px;
+  width: 17px;
+  height: 17px;
+  right: -22px;
+  transform: unset;
+  background: url(${imgFolderUrl}ukrainian_flag.png) top left / auto 17px no-repeat no-repeat;
+}
+
+.donation_inform h3 {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+  color: #3f3f3f;
+  text-transform: unset;
+  letter-spacing: normal;
+  margin-bottom: 16px;
+}
+
+ul.background_wrap {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+ul.background_wrap>li {
+  width: 48.5%;
+  background: rgba(63, 63, 63, 0.05);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0;
+}
+
+ul.background_wrap>li+li {
+  margin: 0 0 0 16px;
+}
+
+ul.background_wrap>li .img_wrap {
+  max-width: 102px;
+  max-height: 120px;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 8px;
+}
+
+.img_wrap img {
+  width: 100%;
+  height: 100%;
+}
+
+ul.background_wrap>li p {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  color: #3f3f3f;
+  margin: 0;
+}
+
+ul.background_wrap>li p.title_list {
+  font-size: 16px;
+}
+
+.already_donat_list {
+  color: #015bc1;
+  list-style-type: disc;
+  margin: 4px 0 0 20px;
+}
+
+.already_donat_list li {
+  margin: 0;
+}
+
+.already_donat_list li+li {
+  margin-top: 8px;
+}
+
+ul.background_wrap>li p.goal_text {
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+
+/* popap_box */
+.backdrop_modal {
+  position: fixed !important;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  opacity: 1;
+  background: rgb(63 63 63 / 35%);
+  transition: all 0.5s ease 0s;
+  z-index: 9005;
+  display: block;
+  max-height: 100%;
+}
+
+.backdrop_modal.is_hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.backdrop_modal.is_hidden .container_popup {
+  transform: translateX(100%);
+  transition: all 0.8s ease 0s;
+}
+
+.backdrop_modal .container_popup {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  max-width: 383px;
+  height: 100%;
+  padding: 48px 24px 24px;
+  margin: 0;
+  background: #fdfdfd;
+  transition: all 0.5s ease 0s;
+  overflow: auto;
+  max-height: 100vh;
+}
+
+.backdrop_modal .container_popup>svg {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  outline: none;
+  cursor: pointer;
+}
+
+/*content_popup */
+.content_popup>img {
+  max-width: 40px;
+  max-height: 40px;
+  display: block;
+}
+
+.content_popup>h2 {
+  margin: 0 0 8px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 150%;
+  color: #3f3f3f;
+}
+
+.content_popup>p {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #3f3f3f;
+  margin: 0 0 16px;
+}
+
+.by_it_now_btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #ffc659;
-  border-radius: 6px;
-  width: 100%;
-  height: 56px;
-  font-weight: 600;
+  background: #FFFFFF;
+  border: 2px solid #3F3F3F;
+  outline: none;
+  height: 50px;
+  width: calc(100% - 5px);
+  font-weight: 400;
   font-size: 16px;
-  line-height: 19px;
-  text-transform: uppercase;
-  color: #1e1b4d;
+  line-height: 24px;
+  letter-spacing: 3px;
+  color: #3F3F3F;
+  margin: 0 0 21px;
+  cursor: pointer;
+  box-shadow: 5px 5px 0 0 #3f3f3f;
+  transition: transform .05s, box-shadow .05s;
 }
-/* select*/
-.select {
+
+.by_it_now_btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 1px 1px 0 0 #3f3f3f;
+}
+
+ul.main_popup_list {
+  background: rgba(63, 63, 63, 0.05);
+  padding: 16px;
+  margin: 0;
+  color: #015bc1;
+  display: flex;
+  flex-direction: column;
+}
+
+ul.main_popup_list>li {
+  margin: 0 0 0 15px;
+}
+
+ul.main_popup_list>li+li {
+  margin-top: 16px;
+}
+
+ul.main_popup_list>li p {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  color: #3f3f3f;
+  margin: 0;
+}
+
+ul.main_popup_list>li ul.already_donat_list {
+  color: #000000;
+  list-style-type: disc;
+  margin: 4px 0 0 20px;
+  font-size: 13px;
+}
+
+ul.main_popup_list .already_donat_list li+li {
+  margin: 0;
+}
+
+.content_popup p.goal_text {
+  font-size: 14px;
+  line-height: 24px;
+  color: #3f3f3f;
+  margin: 0;
+}
+
+.content_popup .text_absol::after {
+  width: 16px;
+  height: 16px;
+  background: url(https://conversionratestore.github.io/projects/saintjavelin/img/ukrainian_flag.png) top left / auto 16px no-repeat no-repeat;
+  right: -20px;
+  top: 1px;
+  transform: unset;
+}
+
+/*range-wrapper */
+.range_bar_wrap {
+  border-left: 1px solid #3F3F3F;
+  border-right: 1px solid #3F3F3F;
+}
+
+.range-wrapper {
+  width: 100%;
+  height: 20px;
   position: relative;
-}
-.select_header {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  background: #ffffff;
-  border: 1px solid #d3d4d6;
-  border-radius: 4px;
-  padding: 7px 12px;
-  position: relative;
+  padding: 25px 0;
 }
-.select_header::after {
+
+.range-line {
+  background: rgb(31 80 139 / 10%);
+  width: 100%;
+  position: relative;
+  height: 20px;
+  overflow: hidden;
+}
+
+.range-donated {
   position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: #fad41a;
+  border-right: 1px solid #3F3F3F;
+}
+
+.total-raised {
+  position: relative;
+  display: block;
+}
+
+.total-raised::before {
+  position: absolute;
+  content: attr(data-price);
+  right: 111px;
+  top: 1px;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 18px;
+  color: #3f3f3f;
+}
+
+.range-wrapper:before,
+.range-wrapper:after {
   content: "";
+  position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  right: 12px;
-  background: url(https://conversionratestore.github.io/projects/moneygeek/img/arr_gray_down.svg) center center no-repeat;
-  width: 20px;
+  height: 20px;
+  background: #fad41a;
+  width: 8px;
+}
+
+.range-wrapper:before {
+  left: 0;
+}
+
+.range-wrapper:after {
+  background: rgb(31 80 139 / 0%);
+  right: 0;
+}
+
+.range-wrapper.active:after {
+  background: #fad41a;
+}
+
+.range-wrapper .sum,
+.step.active[data-price]:before {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  color: #3F3F3F;
+  position: absolute;
+  left: 9px;
+  top: -5px;
+}
+
+.range-wrapper .sum {
+  left: unset;
+  right: 9px;
+}
+
+.step.active[data-price]:before {
+  content: attr(data-price);
+}
+
+.step.active[data-price]:after {
+  content: "Now";
+  left: 9px;
+  bottom: -5px;
+  position: absolute;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  color: #3F3F3F;
+}
+
+.steps {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+.steps .step {
+  width: 1px;
+}
+
+.steps:after {
+  content: "30 NOV";
+  right: 9px;
+  position: absolute;
+  bottom: -5px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  color: #3F3F3F;
+}
+
+.steps .step-small {
+  height: 8px;
+}
+
+.steps .step-big {
   height: 20px;
 }
-.select_header.rotate_arrow::after {
-  transform: translateY(-50%) rotateX(180deg);
+
+/*flex*/
+.flex {
+  display: flex;
 }
-.select_header > label {
+
+.items-end {
+  align-items: flex-end;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.content_popup .range-wrapper {
+  margin: 4px 0 16px;
+}
+
+.content_popup .total-raised::before {
+  right: -50px;
+}
+
+.donation_inform.is_full .total-raised::before {
+  right: 5px;
+}
+
+.container_popup.is_full .content_popup .total-raised::before {
+  right: -5px;
+}
+
+/*baner_help */
+.baner_help {
+  background: #F5F5F5;
+  padding: 13px 140px;
+}
+
+.baner_help>ul {
+  margin: 0;
+  padding: 0;
   display: flex;
   align-items: center;
-}
-.select_current {
-  font-weight: 400;
-  font-size: 18px !important;
-  line-height: 27px !important;
-  color: #555555 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: none !important;
-  outline: unset !important;
-}
-.select_header svg {
-  width: 100%;
-  max-width: 16px;
-  margin-right: 10px;
-}
-.select_body {
-  position: absolute;
-  width: 100%;
-  height: 280px;
-  margin: 4px 0 0;
-  background: #ffffff;
-  border: 1px solid #d3d4d6;
-  box-shadow: 0px 4px 8px rgb(0 0 0 / 15%);
-  border-radius: 4px;
-  opacity: 0;
-  visibility: hidden;
-  z-index: 1;
-  padding: 12px;
-}
-.select_body ul::-webkit-scrollbar {
-  width: 4px;
-}
-.select_body ul::-webkit-scrollbar-thumb {
-  background: #555555;
-  border-radius: 2px;
-}
-.select.is_active .select_body {
-  opacity: 1;
-  visibility: unset;
-}
-.select_body.auto_height {
-  max-height: 280px;
-  height: auto;
-}
-.select_body ul {
-  height: 100%;
-  overflow: auto;
+  justify-content: center;
   list-style: none;
-  padding: 0;
+  gap: 90px;
+}
+
+.baner_help>ul li {
+  width: 50%;
   margin: 0;
 }
-.select_body ul li {
+
+.baner_help>ul li[data-tolltip] {
+  display: flex;
+  align-items: center;
+  max-width: fit-content;
+}
+
+.baner_help>ul li[data-tolltip] h2 {
+  margin: 0 2px 0 0;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  text-transform: uppercase;
+  color: #3F3F3F;
+}
+
+.tippy-tooltip {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #3F3F3F;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 20px rgba(63, 63, 63, 0.2);
+  max-width: 415px !important;
+  border-radius: unset;
+  left: 15px !important;
+}
+
+.tippy-content {
+  padding: 24px;
+}
+
+.tippy-tooltip[data-placement^=bottom]>.tippy-arrow {
+  border-bottom-color: #FFFFFF;
+  left: unset !important;
+  right: 15px !important;
+}
+
+.error_block.is_hidden {
+  opacity: 0;
+}
+
+.error_block {
+  opacity: 1;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+  transition: all 1.5s ease;
+}
+
+.error_block span {
   font-weight: 500;
-  font-size: 18px;
-  line-height: 27px;
-  color: #555555;
-  padding: 6px 15px;
-  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.4px;
+  color: #D71D1D;
+  margin-left: 4px;
 }
-.select_body ul li:hover,
-.select_body ul li:focus,
-.is_active_label {
-  background: #3d87f7;
-  cursor: pointer;
-  color: #ffffff !important;
+
+@media (max-width: 1020px) {
+  ul.background_wrap>li {
+    width: 47.5%;
+  }
+
+  .total-raised::before {
+    right: -35px;
+  }
 }
-.select_body ul li.oops:hover {
-  background: unset !important;
-  cursor: initial;
-  color: initial !important;
+
+@media (max-width: 768px) {
+  .range-wrapper {
+    margin-bottom: 16px;
+  }
+
+  .donation_amount_flex svg {
+    width: 31px;
+    height: 31px;
+  }
+
+  .total-raised::before {
+    right: -64px;
+  }
+
+  .backdrop_modal .container_popup {
+    max-width: 358px;
+  }
+
+  .backdrop_modal .container_popup>svg {
+    top: 16px;
+    right: 16px;
+  }
+
+  .content_popup>h2 {
+    margin: 4px 0 8px;
+  }
+
+  .content_popup p.goal_text strong {
+    font-size: 14px;
+  }
+
+  ul.main_popup_list>li {
+    margin: 0 0 0 26px;
+  }
+
+  /* */
+  ul.background_wrap>li {
+    width: 100%;
+  }
+
+  ul.background_wrap>li+li {
+    margin: 16px 0 0;
+  }
+
+  ul.background_wrap>li .img_wrap {
+    max-width: 68px;
+    max-height: 80px;
+    margin-bottom: 4px;
+  }
+
+  .already_donat_list {
+    margin: 4px 0 0 16px;
+  }
+
+  .donation_inform {
+    margin-bottom: 32px;
+  }
+
+  /* */
+  .size_guide>h2 {
+    margin: 0;
+  }
+
+  .accardion_size>li+li {
+    margin-top: 16px;
+  }
+
+  .product-single__prices> :last-child {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .sales-point .icon-and-text {
+    justify-content: start;
+  }
 }
-.hide {
-  visibility: hidden;
-  position: absolute;
-}
-.show {
-  visibility: visible;
-}
+
+@media (max-width: 320px) {}
+
+@media (max-width: 280px) {}
