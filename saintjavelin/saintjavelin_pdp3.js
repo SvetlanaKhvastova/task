@@ -386,7 +386,7 @@ ul.main_popup_list .already_donat_list li+li {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  height: 20px;
+  height: 19px;
   background: #fad41a;
   width: 8px;
 }
@@ -449,7 +449,7 @@ ul.main_popup_list .already_donat_list li+li {
 }
 
 .steps:after {
-  content: "30 NOV";
+  content: "30 Nov";
   right: 9px;
   position: absolute;
   bottom: -5px;
@@ -481,35 +481,44 @@ ul.main_popup_list .already_donat_list li+li {
 }
 
 .content_popup .range-wrapper {
-  margin: 4px 0 16px;
+  margin: 16px 0 0;
 }
-
-.content_popup .total-raised::before {
-  right: -50px;
+.content_popup .range-wrapper .sum{
+  right: 5px;
+}
+.content_popup .step.active[data-price]:before{
+  left: 5px;
 }
 
 .donation_inform.is_full .total-raised::before {
   right: 5px;
 }
 
-.container_popup.is_full .content_popup .total-raised::before {
-  right: -5px;
+.step.active[data-price]:after{
+  left: 5px;
+}
+.content_popup .range-wrapper:before{
+  left: -0.5px;
 }
 
+.content_popup .steps:after{
+  right: 5px;
+}
 /*baner_help */
 .baner_help {
   background: #F5F5F5;
-  padding: 13px 140px;
+  padding: 13px 15px;
 }
 
 .baner_help>ul {
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   list-style: none;
   gap: 90px;
+  max-width: 988px;
 }
 
 .baner_help>ul li {
@@ -822,15 +831,6 @@ ul.main_popup_list .already_donat_list li+li {
       boxForDonationInform.insertAdjacentHTML("beforeend", donationInform)
     }
 
-
-    // click on Make a Selection
-    if (document.querySelector("[name='add'].btn--tertiary.btn--full.bold_clone")) {
-      document.querySelector('.payment-buttons').insertAdjacentHTML('afterbegin', `<span class="over_click">sdfghjklkjhgfdsdfghjkjhgfd</span>`)
-      document.querySelector('.over_click').addEventListener('click', () => {
-        document.querySelector('.product-block').scrollIntoView({ block: "start", behavior: "smooth" })
-      })
-    }
-
     document.querySelector(".donation_amount_flex")?.addEventListener("click", () => {
       pushDataLayer("Сlick on donate to support Ukraine")
       onOpenPopup(contentpopup)
@@ -869,15 +869,29 @@ ul.main_popup_list .already_donat_list li+li {
       }
     })
 
-    let findBtnInt = setInterval(() => {
+    let findBtnAddToCart = setInterval(() => {
       if (document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden")) {
         if (!document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden").getAttribute("disabled")) {
-          clearInterval(findBtnInt)
-          document.querySelector('.error_block').classList.add('is_hidden')
+          clearInterval(findBtnAddToCart)
+          document.querySelector('.error_block')?.classList.add('is_hidden')
+          document.querySelector('.over_click')?.remove()
         }
       }
-    }, 100)
+    }, 10)
 
+    // click on Make a Selection
+    let findBtnMakeSelect = setInterval(() => {
+      if (document.querySelector("[name='add'].btn--tertiary.btn--full.bold_clone") && document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden")?.getAttribute("disabled")) {
+        clearInterval(findBtnMakeSelect)
+        if (!document.querySelector('.over_click')) {
+          document.querySelector('.payment-buttons')?.insertAdjacentHTML('afterbegin', `<span class="over_click"></span>`)
+        }
+
+        document.querySelector('.over_click')?.addEventListener('click', () => {
+          document.querySelector('.product-block').scrollIntoView({ block: "start", behavior: "smooth" })
+        })
+      }
+    }, 10)
 
     // click on btn close popup
     document.querySelector(".backdrop_modal .container_popup > svg")?.addEventListener("click", (e) => {
