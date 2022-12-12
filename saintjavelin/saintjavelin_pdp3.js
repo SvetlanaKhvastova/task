@@ -8,7 +8,6 @@ let startFunk = setInterval(() => {
       }
     })
 
-
     let scriptPopper = document.createElement("script")
     scriptPopper.src = "https://unpkg.com/popper.js@1"
     scriptPopper.async = false
@@ -47,7 +46,6 @@ let startFunk = setInterval(() => {
         })
       }
     }
-
 
     let style = /*html */ `
     <style>
@@ -337,6 +335,9 @@ ul.main_popup_list .already_donat_list li+li {
   border-left: 1px solid #3F3F3F;
   border-right: 1px solid #3F3F3F;
 }
+.range_bar_wrap.is_hidden{
+  display: none;
+}
 
 .range-wrapper {
   width: 100%;
@@ -550,7 +551,6 @@ ul.main_popup_list .already_donat_list li+li {
   box-shadow: 0px 4px 20px rgba(63, 63, 63, 0.2);
   max-width: 415px !important;
   border-radius: unset;
-  left: 15px !important;
 }
 
 .tippy-content {
@@ -559,8 +559,6 @@ ul.main_popup_list .already_donat_list li+li {
 
 .tippy-tooltip[data-placement^=bottom]>.tippy-arrow {
   border-bottom-color: #FFFFFF;
-  left: unset !important;
-  right: 15px !important;
 }
 
 .error_block.is_hidden {
@@ -604,19 +602,61 @@ ul.main_popup_list .already_donat_list li+li {
   }
 }
 
-@media (max-width: 768px) {
-  .range-wrapper {
-    margin-bottom: 16px;
+@media (min-width: 1060px) {
+  .tippy-tooltip {
+    left: 15px !important;
   }
+  .tippy-tooltip[data-placement^=bottom]>.tippy-arrow {
+    left: unset !important;
+    right: 15px !important;
+  }
+}
+
+@media (max-width: 887px) {
+  .baner_help>ul li[data-tolltip] h2{
+    font-size: 19px;
+  }
+  .donation_amount_flex p{
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 768px) {
+  .baner_help{
+        padding: 16px 24px;
+  }
+  .baner_help>ul{
+    flex-direction: column;
+    gap: 16px;
+  }
+  .baner_help>ul li{
+    width: 100%;
+  }
+  .baner_help>ul li[data-tolltip] h2 {
+    font-size: 18px;
+}
+.baner_help>ul li[data-tolltip] svg{
+  width: 18px;
+    height: 18px;
+}
+.total-raised::before {
+      right: 111px;
+      font-size: 11px;
+}
 
   .donation_amount_flex svg {
-    width: 31px;
-    height: 31px;
+width: 16px;
+    height: 16px;
+    min-width: 16px;
   }
 
-  .total-raised::before {
-    right: -64px;
+  .donation_amount_flex{
+    padding: 5px 12px 7px;
   }
+  .donation_amount_flex p {
+    font-size: 14px;
+    margin-right: 12px;
+}
 
   .backdrop_modal .container_popup {
     max-width: 358px;
@@ -635,11 +675,13 @@ ul.main_popup_list .already_donat_list li+li {
     font-size: 14px;
   }
 
-  ul.main_popup_list>li {
-    margin: 0 0 0 26px;
-  }
-
   /* */
+  .donation_inform {
+    margin-bottom: 32px;
+  }
+  .donation_inform h3{
+        margin-bottom: 8px;
+  }
   ul.background_wrap>li {
     width: 100%;
   }
@@ -657,33 +699,100 @@ ul.main_popup_list .already_donat_list li+li {
   .already_donat_list {
     margin: 4px 0 0 16px;
   }
-
-  .donation_inform {
-    margin-bottom: 32px;
-  }
-
-  /* */
-  .size_guide>h2 {
-    margin: 0;
-  }
-
-  .accardion_size>li+li {
-    margin-top: 16px;
-  }
-
-  .product-single__prices> :last-child {
-    font-size: 18px;
-    line-height: 24px;
-  }
-
-  .sales-point .icon-and-text {
-    justify-content: start;
-  }
+  ul.main_popup_list .already_donat_list li+li {
+    margin-top: 4px;
+}
+.error_block{
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+.content_popup .range-wrapper:before {
+    left: 0;
+}
+.tippy-tooltip{
+      max-width: 342px !important;
+          top: 5px !important;
+}
+.tippy-tooltip[data-placement^=bottom]>.tippy-arrow{
+      left: 291px !important;
+}
+.tippy-content {
+    padding: 16px;
 }
 
-@media (max-width: 320px) {}
+}
 
-@media (max-width: 280px) {}
+@media (max-width: 360px) {
+  .backdrop_modal .container_popup {
+    max-width: 341px;
+}
+}
+
+@media (max-width: 320px) {
+.baner_help>ul li[data-tolltip] h2 {
+    font-size: 16px;
+}
+.donation_inform h3{
+      font-size: 18px;
+}
+ul.background_wrap>li p.title_list {
+    font-size: 14px;
+}
+ul.background_wrap>li p{
+  font-size: 12px;
+}
+.backdrop_modal .container_popup {
+    max-width: 302px;
+}
+.content_popup>h2{
+      font-size: 22px;
+}
+.content_popup>p{
+      font-size: 14px;
+}
+ul.main_popup_list>li p{
+      font-size: 11px;
+}
+.by_it_now_btn{
+    font-size: 13px;
+}
+.tippy-tooltip[data-placement^=bottom]>.tippy-arrow {
+    left: 260px !important;
+}
+}
+
+@media (max-width: 280px) {
+  .baner_help>ul li[data-tolltip] h2 {
+    font-size: 13px;
+}
+.donation_amount_flex p {
+    font-size: 11px;
+}
+.donation_inform h3 {
+    font-size: 16px;
+}
+ul.background_wrap>li p.title_list {
+    font-size: 13px;
+}
+.content_popup>h2 {
+    font-size: 19px;
+}
+.backdrop_modal .container_popup {
+    max-width: 268px;
+}
+.content_popup>p {
+    font-size: 12px;
+}
+ul.main_popup_list>li p {
+    font-size: 10px;
+}
+.by_it_now_btn {
+    font-size: 11px;
+}
+.tippy-tooltip[data-placement^=bottom]>.tippy-arrow {
+    left: 219px !important;
+}
+}
     </style>
       `
 
@@ -737,7 +846,7 @@ ul.main_popup_list .already_donat_list li+li {
             </svg>
           </li>
           <li>
-            <div class="range_bar_wrap">
+            <div class="range_bar_wrap is_hidden">
               <div class="range-wrapper">
                     <div class="range-line">
                       <div class="range-donated" style="width:0%">
@@ -811,11 +920,10 @@ ul.main_popup_list .already_donat_list li+li {
       </div>
     `
 
-
     document.body.insertAdjacentHTML("afterbegin", donatePopup)
     document.body.insertAdjacentHTML("afterbegin", style)
 
-    document.querySelector('#shopify-section-header').insertAdjacentHTML("afterend", banerHelp)
+    document.querySelector("#shopify-section-header").insertAdjacentHTML("afterend", banerHelp)
 
     let priceBlock = document.querySelector(".product-block.product-block--price"),
       imgBlock = document.querySelector(".product-block .aos-animate"),
@@ -823,7 +931,9 @@ ul.main_popup_list .already_donat_list li+li {
       body = document.body,
       overlay = document.querySelector(".backdrop_modal")
 
-    priceBlock.insertAdjacentHTML("afterend", donationAmount)
+    if (!document.querySelector("[name='add'].btn--tertiary.btn--full span").textContent.includes("Sold")) {
+      priceBlock.insertAdjacentHTML("afterend", donationAmount)
+    }
 
     if (innerWidth <= 768) {
       imgBlock.closest(".product-block").insertAdjacentHTML("beforebegin", donationInform)
@@ -836,13 +946,48 @@ ul.main_popup_list .already_donat_list li+li {
       onOpenPopup(contentpopup)
       let clonedNodeBar = document.querySelector(".range_bar_wrap").cloneNode(true)
 
-      if (clonedNodeBar) {
-        if (!document.querySelector(".bar .range_bar_wrap")) {
-          document.querySelector(".bar")?.appendChild(clonedNodeBar)
+      setTimeout(() => {
+        if (clonedNodeBar) {
+          if (!document.querySelector(".bar .range_bar_wrap")) {
+            document.querySelector(".bar")?.appendChild(clonedNodeBar)
+          }
         }
-      }
+      }, 100)
 
       if (document.querySelector(".backdrop_modal .content_popup")) {
+        let errColor = ""
+        let errType = ""
+        let errPatchType = ""
+        let errSize = ""
+        document.querySelectorAll(".product-block .variant__label.hidden-label").forEach((el) => {
+          if (el.textContent.includes("Color")) {
+            errColor = "color"
+          }
+          if (el.textContent.includes("PATCH TYPE")) {
+            errPatchType = "patch type"
+          }
+
+          if (el.textContent.includes("Type")) {
+            errType = "type"
+          }
+
+          if (el.textContent.includes("Size")) {
+            errSize = "size"
+          }
+        })
+
+        if (errColor !== "" && errPatchType === "" && errType === "" && errSize === "") {
+          document.querySelector(".error_block span").textContent = `Please select ${errColor} first`
+        } else if (errColor === "" && errPatchType !== "" && errType === "" && errSize === "") {
+          document.querySelector(".error_block span").textContent = `Please select ${errPatchType} first`
+        } else if (errColor === "" && errPatchType === "" && errType !== "" && errSize === "") {
+          document.querySelector(".error_block span").textContent = `Please select ${errType} first`
+        } else if (errColor === "" && errPatchType === "" && errType === "" && errSize !== "") {
+          document.querySelector(".error_block span").textContent = `Please select ${errSize} first`
+        } else if (errColor !== "" && errPatchType === "" && errType === "" && errSize !== "") {
+          document.querySelector(".error_block span").textContent = `Please select ${errColor} and ${errSize} first`
+        }
+
         document.querySelector(".backdrop_modal .content_popup .by_it_now_btn")?.addEventListener("click", (e) => {
           if (!e.target.getAttribute("data-test")) {
             e.preventDefault()
@@ -852,12 +997,20 @@ ul.main_popup_list .already_donat_list li+li {
                 document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden").click()
                 onClosePopup()
               } else {
-                if (document.querySelector('.error_block').classList.contains('is_hidden')) {
-                  document.querySelector('.error_block').classList.remove('is_hidden')
+                if (document.querySelector(".error_block").classList.contains("is_hidden")) {
+                  document.querySelector(".error_block").classList.remove("is_hidden")
+                }
+              }
+            } else if (!document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden")) {
+              if (!document.querySelector("[name='add'].btn--tertiary.btn--full").getAttribute("disabled")) {
+                document.querySelector("[name='add'].btn--tertiary.btn--full").click()
+                onClosePopup()
+              } else {
+                if (document.querySelector(".error_block").classList.contains("is_hidden")) {
+                  document.querySelector(".error_block").classList.remove("is_hidden")
                 }
               }
             }
-
           }
           e.target.setAttribute("data-test", "1")
         })
@@ -873,22 +1026,43 @@ ul.main_popup_list .already_donat_list li+li {
       if (document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden")) {
         if (!document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden").getAttribute("disabled")) {
           clearInterval(findBtnAddToCart)
-          document.querySelector('.error_block')?.classList.add('is_hidden')
-          document.querySelector('.over_click')?.remove()
+          document.querySelector(".error_block")?.classList.add("is_hidden")
+          document.querySelector(".over_click")?.remove()
+        }
+      } else if (!document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden")) {
+        if (!document.querySelector("[name='add'].btn--tertiary.btn--full").getAttribute("disabled")) {
+          clearInterval(findBtnAddToCart)
+          document.querySelector(".error_block")?.classList.add("is_hidden")
+          document.querySelector(".over_click")?.remove()
         }
       }
     }, 10)
 
     // click on Make a Selection
     let findBtnMakeSelect = setInterval(() => {
-      if (document.querySelector("[name='add'].btn--tertiary.btn--full.bold_clone") && document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden")?.getAttribute("disabled")) {
+      if (
+        document.querySelector("[name='add'].btn--tertiary.btn--full.bold_clone") &&
+        document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden")?.getAttribute("disabled")
+      ) {
         clearInterval(findBtnMakeSelect)
-        if (!document.querySelector('.over_click')) {
-          document.querySelector('.payment-buttons')?.insertAdjacentHTML('afterbegin', `<span class="over_click"></span>`)
+        if (!document.querySelector(".over_click")) {
+          document.querySelector(".payment-buttons")?.insertAdjacentHTML("afterbegin", `<span class="over_click"></span>`)
         }
 
-        document.querySelector('.over_click')?.addEventListener('click', () => {
-          document.querySelector('.product-block').scrollIntoView({ block: "start", behavior: "smooth" })
+        document.querySelector(".over_click")?.addEventListener("click", () => {
+          document.querySelector(".product-block").scrollIntoView({ block: "start", behavior: "smooth" })
+        })
+      } else if (
+        !document.querySelector("[name='add'].btn--tertiary.btn--full.bold_clone") &&
+        document.querySelector("[name='add'].btn--tertiary.btn--full")?.getAttribute("disabled")
+      ) {
+        clearInterval(findBtnMakeSelect)
+        if (!document.querySelector(".over_click")) {
+          document.querySelector(".payment-buttons")?.insertAdjacentHTML("afterbegin", `<span class="over_click"></span>`)
+        }
+
+        document.querySelector(".over_click")?.addEventListener("click", () => {
+          document.querySelector(".product-block").scrollIntoView({ block: "start", behavior: "smooth" })
         })
       }
     }, 10)
@@ -997,6 +1171,9 @@ ul.main_popup_list .already_donat_list li+li {
           // add on page
           // document.body.insertAdjacentHTML("afterbegin", style)
           // document.body.insertAdjacentHTML("afterbegin", progressBarHTML)
+          if (document.querySelector(".range_bar_wrap").classList.contains("is_hidden")) {
+            document.querySelector(".range_bar_wrap").classList.remove("is_hidden")
+          }
 
           let donated = +data[0]["total_raised"],
             sum = +data[0]["goal_amt"],
