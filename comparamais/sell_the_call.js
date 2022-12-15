@@ -2,6 +2,8 @@ let startFunk = setInterval(() => {
     if (document.querySelector('#hlApp')) {
         clearInterval(startFunk)
 
+
+
         const imgFolderUrl = "https://conversionratestore.github.io/projects/comparamais/img/"
 
         let eventVar = "desktop"
@@ -28,6 +30,10 @@ let startFunk = setInterval(() => {
                     eventAction: `${actionDataLayer}`,
                 })
             }
+        }
+
+        if (location.search !== "?experiement=HL-Simulator-Sell_the_call") {
+            window.history.replaceState(null, null, '?experiement=HL-Simulator-Sell_the_call')
         }
 
         let newStyle =/*html */ `
