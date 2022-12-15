@@ -68,3 +68,9 @@ document.head.appendChild(scriptCustom)
 setTimeout(function () {
   document.querySelector(".exp")?.remove()
 }, 7000)
+
+//
+let scriptCustom = document.createElement("script")
+scriptCustom.src = "https://github.com/Flopsi69/crs/tree/main/comparamais/editUser/index2.js"
+scriptCustom.async = false
+document.head.appendChild(scriptCustom)
