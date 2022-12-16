@@ -145,3 +145,22 @@ const record = setInterval(() => {
 //         inline: "center",
 //     });
 // </script>
+
+
+// Zoom img on click.Teamwork. : рукопожатие:
+let zoomScript = document.createElement('script')
+zoomScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/jquery-zoom/1.7.11/jquery.zoom.js'
+zoomScript.async = false
+document.body.appendChild(zoomScript)
+const waitForZoom = setInterval(() => {
+  if (typeof $(document).zoom === 'function') {
+    clearInterval(waitForZoom)
+    $('.slider_for .slick-slide').zoom({
+      on: 'click',
+      touch: true
+    });
+  }
+}, 100)
+// https://www.jacklmoore.com/zoom/
+// https://atomiks.github.io/tippyjs/
+// https://swiperjs.com/swiper-api
