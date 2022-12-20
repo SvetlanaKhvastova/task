@@ -30,6 +30,9 @@ let stickyBanner = setInterval(() => {
 
     let style = /*html */ `
     <style>
+        .css-15hxzhe{
+          z-index: 1;
+        }
         .sticky_banner{
             background: #FFFFFF;
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.26);
@@ -39,7 +42,7 @@ let stickyBanner = setInterval(() => {
             left: 0;
             width: 300px;
             display: none;
-            z-index: 55555555;
+            z-index: 55;
             margin: 0;
         }
         .sticky_banner.is_fixed{            
@@ -165,7 +168,8 @@ let stickyBanner = setInterval(() => {
     `
 
     let stickyBlock = /*html */ `
-    <div class="sticky_banner">
+    <div></div>
+    <section class="sticky_banner">
         <svg class="btn_close_sticky" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_82_1006)">
             <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="#555555"/>
@@ -193,35 +197,40 @@ let stickyBanner = setInterval(() => {
         </label>
         <span class="zip_error">Write your zip code</span>
         <button>Compare quotes</button>
-    </div>
+    </section>
     `
 
     document.body.insertAdjacentHTML("afterbegin", style)
 
     if (!sessionStorage.getItem("sticky_banner")) {
       if (document.querySelector("#sub-navigation")) {
-        setTimeout(() => {
-          if (window.innerWidth <= 1110) {
-            document.querySelector("#sub-navigation").insertAdjacentHTML("beforeend", stickyBlock)
-          } else {
-            document.querySelector("#sub-navigation").insertAdjacentHTML("afterbegin", stickyBlock)
+        let s = setInterval(() => {
+          if (document.querySelector('#social-section')) {
+            clearInterval(s)
+            setTimeout(() => {
+              if (window.innerWidth <= 1110) {
+                document.querySelector("#sub-navigation").insertAdjacentHTML("beforeend", stickyBlock)
+              } else {
+                document.querySelector("#sub-navigation").insertAdjacentHTML("afterbegin", stickyBlock)
+              }
+
+              if (document.querySelector(".sticky_banner")) {
+                const options = {
+                  root: null,
+                  threshold: 1,
+                }
+
+                let observerNewHeader = new IntersectionObserver((entries) => {
+                  if (!entries[0].isIntersecting) return
+                  pushDataLayer(`Sticky ZIP banner appearance`)
+                  observerNewHeader.disconnect()
+                })
+
+                observerNewHeader.observe(document.querySelector(".sticky_banner"), options)
+              }
+            }, 1000)
           }
-
-          if (document.querySelector(".sticky_banner")) {
-            const options = {
-              root: null,
-              threshold: 1,
-            }
-
-            let observerNewHeader = new IntersectionObserver((entries) => {
-              if (!entries[0].isIntersecting) return
-              pushDataLayer(`Sticky ZIP banner appearance`)
-              observerNewHeader.disconnect()
-            })
-
-            observerNewHeader.observe(document.querySelector(".sticky_banner"), options)
-          }
-        }, 1000)
+        }, 10)
       }
     }
 
@@ -239,8 +248,9 @@ let stickyBanner = setInterval(() => {
 
       if (document.querySelector(".sticky_banner")) {
         if (
-          document.querySelector(".css-2s6hek")?.getBoundingClientRect().bottom <= positionVar ||
-          document.querySelector(".css-1ih2ha8")?.getBoundingClientRect().bottom <= positionVar
+          document.querySelector(".css-2s6hek")?.getBoundingClientRect().bottom <= positionVar && window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/" ||
+          document.querySelector(".css-1ih2ha8")?.getBoundingClientRect().bottom <= positionVar && window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/" ||
+          window.location.pathname === "/insurance/auto/car-insurance-estimate-calculator/" && document.querySelector(".css-1ngo9xx")?.getBoundingClientRect().bottom <= positionVar
         ) {
           if (!document.querySelector(".sticky_banner").classList.contains("is_fixed")) {
             document.querySelector(".sticky_banner").classList.add("is_fixed")
@@ -274,7 +284,9 @@ let stickyBanner = setInterval(() => {
                 btnSend.addEventListener("click", (e) => {
                   e.preventDefault()
                   if (!e.target.getAttribute("data-test")) {
-                    pushDataLayer("Compare Quoutes clicked")
+                    if (!e.target.classList.contains("on_click")) {
+                      pushDataLayer("Compare Quoutes clicked")
+                    }
 
                     if (window.location.pathname === "/insurance/auto/how-much-car-insurance-do-you-need/") {
                       document.querySelector("form.css-1lpx304 button").click()
@@ -282,11 +294,43 @@ let stickyBanner = setInterval(() => {
                       window.location.pathname === "/insurance/auto/temporary-and-month-to-month-car-insurance/" ||
                       window.location.pathname === "/insurance/auto/non-owner-car-insurance-north-carolina/" ||
                       window.location.pathname === "/insurance/auto/high-risk-car-insurance/" ||
-                      window.location.pathname === "/insurance/auto/cheapest-car-insurance-texas/"
+                      window.location.pathname === "/insurance/auto/cheapest-car-insurance-texas/" ||
+                      window.location.pathname === "/insurance/auto/cheapest-full-coverage-car-insurance/" ||
+                      window.location.pathname === "/insurance/auto/best-home-auto-bundle/" ||
+                      window.location.pathname === "/insurance/auto/cheapest-car-insurance-california/" ||
+
+                      window.location.pathname === "/insurance/auto/cheap-car-insurance-no-deposit/" ||
+                      window.location.pathname === "/insurance/auto/cheap-sr22-car-insurance/" ||
+                      window.location.pathname === "/insurance/auto/best-cheap-car-insurance-after-tickets-accidents/" ||
+                      window.location.pathname === "/insurance/auto/best-cheap-car-insurance-new-drivers/" ||
+                      window.location.pathname === "/insurance/auto/cheapest-liability-only-car-insurance/" ||
+                      window.location.pathname === "/insurance/auto/cheapest-car-insurance-quotes-companies/" ||
+                      window.location.pathname === "/insurance/auto/best-cheap-car-insurance-after-a-dui/" ||
+                      window.location.pathname === "/insurance/auto/best-cheapest-car-insurance-for-students/" ||
+                      window.location.pathname === "/insurance/auto/best-cheap-car-insurance-under-25-year-old/" ||
+                      window.location.pathname === "/insurance/auto/cheapest-car-insurance-florida/" ||
+                      window.location.pathname === "/insurance/auto/compare-quotes/" ||
+                      window.location.pathname === "/insurance/auto/best-cheap-car-insurance-for-18-year-olds/" ||
+                      window.location.pathname === "/insurance/auto/cheapest-car-insurance-pennsylvania/" ||
+                      window.location.pathname === "/insurance/auto/cheapest-car-insurance-georgia/" ||
+                      window.location.pathname === "/insurance/auto/best-cheap-car-insurance-houston-tx/" ||
+                      window.location.pathname === "/insurance/auto/chevrolet-corvette-insurance/" ||
+                      window.location.pathname === "/insurance/auto/best-cheap-car-insurance-for-19-year-olds/" ||
+                      window.location.pathname === "/insurance/auto/how-to-get-car-insurance-with-bad-credit/" ||
+                      window.location.pathname === "/insurance/auto/first-time-drivers-buyers-car-insurance/" ||
+                      window.location.pathname === "/insurance/auto/best-car-insurance-guide/" ||
+                      window.location.pathname === "/insurance/auto/best-cheap-car-insurance-for-21-year-olds/" ||
+                      window.location.pathname === "/insurance/auto/cheapest-car-insurance-ohio/" ||
+                      window.location.pathname === "/insurance/auto/best-cheap-car-insurance-miami-fl/" ||
+                      window.location.pathname === "/insurance/auto/best-cheap-car-insurance-atlanta-ga/" ||
+                      window.location.pathname === "/insurance/auto/best-cheap-car-insurance-tampa-fl/"
                     ) {
                       document.querySelector("form.css-8atqhb button").click()
                     } else if (window.location.pathname === "/insurance/auto/resources/protecting-against-fraud/") {
                       document.querySelector("form.css-6d9zwi button").click()
+                    } else if (window.location.pathname === "/insurance/auto/anonymous-car-insurance-quote-no-personal-information/" ||
+                      window.location.pathname === "/insurance/auto/car-insurance-estimate-calculator/") {
+                      document.querySelector("form.css-nbmzhw button").click()
                     }
 
                     if (document.querySelector(".chakra-form__error-message.css-vamxt0") !== null) {
@@ -307,6 +351,7 @@ let stickyBanner = setInterval(() => {
                   }, 500)
                 })
               }
+
 
               if (input) {
                 input.addEventListener("focus", (e) => {
@@ -333,6 +378,30 @@ let stickyBanner = setInterval(() => {
                   }
                   var ev2 = new Event("input", { bubbles: true })
                   document.querySelector('[name="zip"]').dispatchEvent(ev2)
+                })
+
+                document.querySelector('.sticky_banner input').addEventListener("keydown", (e) => {
+                  if (e.keyCode === 13 || e.which === 13) {
+                    e.preventDefault()
+                    if (!e.target.getAttribute("data-test")) {
+                      pushDataLayer('Enter on input')
+                      btnSend.classList.add("on_click")
+                      btnSend.click()
+
+                      setTimeout(() => {
+                        if (btnSend.classList.contains("on_click")) {
+                          btnSend.classList.remove("on_click")
+                        }
+                      }, 7000)
+                    }
+                    e.target.setAttribute("data-test", "1")
+
+                    setTimeout(() => {
+                      if (e.target.getAttribute("data-test")) {
+                        e.target.removeAttribute("data-test")
+                      }
+                    }, 500)
+                  }
                 })
               }
 
