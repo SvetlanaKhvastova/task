@@ -84,6 +84,7 @@ let stickyBanner = setInterval(() => {
           }
           .sticky_banner label{
               display: flex;
+              justify-content: space-between;
               background: #FFFFFF;
               border: 1px solid #D3D4D6;
               border-radius: 4px;
@@ -92,6 +93,8 @@ let stickyBanner = setInterval(() => {
           }
           .sticky_banner label svg{
               flex: 1 0 16px;
+              max-width: 16px;
+              width: 100%;
               margin-right: 12px;
           }
           .sticky_banner input{
@@ -107,6 +110,7 @@ let stickyBanner = setInterval(() => {
               border-right: unset;
               padding: 0 0 0 12px;
               margin: 0;
+              max-width: 126px;
           }
           .sticky_banner input:focus,
           .sticky_banner input:hover{
@@ -362,7 +366,7 @@ form.css-8atqhb .chakra-form__error-message {
 
                                     let observerNewHeader = new IntersectionObserver((entries) => {
                                         if (!entries[0].isIntersecting) return
-                                        pushDataLayer(`Sticky ZIP banner appearance`)
+                                        pushDataLayer(`Sticky banner appearance`)
                                         observerNewHeader.disconnect()
                                     })
 
@@ -404,7 +408,7 @@ form.css-8atqhb .chakra-form__error-message {
                                     input = stickyBox.querySelector("input"),
                                     closeBtn = stickyBox.querySelector(".btn_close_sticky"),
                                     btnSend = stickyBox.querySelector("button"),
-                                    error = stickyBox.querySelector(".zip_error")
+                                    error = document.querySelectorAll(".zip_error")
 
                                 if (closeBtn) {
                                     closeBtn.addEventListener("click", (e) => {
@@ -425,11 +429,11 @@ form.css-8atqhb .chakra-form__error-message {
                                         e.preventDefault()
                                         if (!e.target.getAttribute("data-test")) {
                                             if (!e.target.classList.contains("on_click")) {
-                                                pushDataLayer("Compare Quoutes clicked")
+                                                pushDataLayer("Sticky Compare Quoutes clicked")
                                             }
 
                                             if (window.location.pathname === "/insurance/auto/how-much-car-insurance-do-you-need/") {
-                                                document.querySelector("form.css-1lpx304 button").click()
+                                                document.querySelector("form.css-1lpx304 button[type='submit']").click()
                                             } else if (
                                                 window.location.pathname === "/insurance/auto/temporary-and-month-to-month-car-insurance/" ||
                                                 window.location.pathname === "/insurance/auto/non-owner-car-insurance-north-carolina/" ||
@@ -465,21 +469,32 @@ form.css-8atqhb .chakra-form__error-message {
                                                 window.location.pathname === "/insurance/auto/best-cheap-car-insurance-atlanta-ga/" ||
                                                 window.location.pathname === "/insurance/auto/best-cheap-car-insurance-tampa-fl/"
                                             ) {
-                                                document.querySelector("form.css-8atqhb button").click()
+                                                document.querySelector("form.css-8atqhb button[type='submit']").click()
                                             } else if (window.location.pathname === "/insurance/auto/resources/protecting-against-fraud/") {
-                                                document.querySelector("form.css-6d9zwi button").click()
+                                                document.querySelector("form.css-6d9zwi button[type='submit']").click()
                                             } else if (window.location.pathname === "/insurance/auto/anonymous-car-insurance-quote-no-personal-information/" ||
                                                 window.location.pathname === "/insurance/auto/car-insurance-estimate-calculator/") {
-                                                document.querySelector("form.css-nbmzhw button").click()
+                                                document.querySelector("form.css-nbmzhw button[type='submit']").click()
                                             }
 
                                             if (document.querySelector(".chakra-form__error-message.css-vamxt0") !== null) {
-                                                error.classList.add("is_error")
+                                                error.forEach(er => {
+                                                    er.classList.add("is_error")
+                                                })
                                                 label.classList.add("is_error")
-                                                pushDataLayer("ZIP filed error shown")
+                                                document.querySelector(".auto_location_block label")?.classList.add("is_error")
+                                                pushDataLayer("Sticky filed error shown")
                                             } else {
-                                                error.classList.remove("is_error")
+                                                error.forEach(er => {
+                                                    er.classList.remove("is_error")
+                                                })
                                                 label.classList.remove("is_error")
+                                                document.querySelector(".auto_location_block label")?.classList.remove("is_error")
+                                                if (document.querySelector(".auto_region svg")) {
+                                                    document.querySelectorAll(".auto_region").forEach(e => {
+                                                        e.innerHTML = ""
+                                                    })
+                                                }
                                             }
                                         }
                                         e.target.setAttribute("data-test", "1")
@@ -558,26 +573,34 @@ form.css-8atqhb .chakra-form__error-message {
                         label = autoLocBox.querySelector("label"),
                         input = autoLocBox.querySelector("input"),
                         btnSend = autoLocBox.querySelector("button"),
-                        error = autoLocBox.querySelector(".zip_error")
+                        error = document.querySelectorAll(".zip_error")
 
                     if (btnSend) {
                         btnSend.addEventListener("click", (e) => {
                             e.preventDefault()
                             if (!e.target.getAttribute("data-test")) {
-                                pushDataLayer("Compare Quoutes clicked")
+                                if (!e.target.classList.contains("on_click")) {
+                                    pushDataLayer("ZIP Compare Quoutes clicked")
+                                }
 
                                 document.querySelector("form.css-8atqhb button.chakra-button").click()
 
-                                if (document.querySelector("form.css-8atqhb .chakra-form__error-message") !== null) {
+                                if (document.querySelector(".chakra-form__error-message") !== null) {
                                     document.querySelectorAll(".auto_region").forEach(e => {
                                         e.innerHTML = ""
                                     })
-                                    error.classList.add("is_error")
+                                    document.querySelectorAll(".zip_error").forEach(er => {
+                                        er.classList.add("is_error")
+                                    })
                                     label.classList.add("is_error")
+                                    document.querySelector(".sticky_banner label")?.classList.add("is_error")
                                     pushDataLayer("ZIP filed error shown")
                                 } else {
-                                    error.classList.remove("is_error")
+                                    document.querySelectorAll(".zip_error").forEach(er => {
+                                        er.classList.remove("is_error")
+                                    })
                                     label.classList.remove("is_error")
+                                    document.querySelector(".sticky_banner label")?.classList.remove("is_error")
                                     if (document.querySelector(".auto_region svg")) {
                                         document.querySelectorAll(".auto_region").forEach(e => {
                                             e.innerHTML = ""
@@ -663,8 +686,6 @@ form.css-8atqhb .chakra-form__error-message {
                     }, 10)
 
                 })
-
-            // region
         }
 
         function onInput(e, error, label) {
@@ -673,7 +694,9 @@ form.css-8atqhb .chakra-form__error-message {
             nativeInputValueSetter.call(document.querySelectorAll('[name="zip"]')[0], e.target.value)
 
             if (document.querySelector(".chakra-form__error-message.css-vamxt0")) {
-                error.classList.remove("is_error")
+                error.forEach(er => {
+                    er.classList.remove("is_error")
+                })
                 label.classList.remove("is_error")
             }
             let ev2 = new Event("input", { bubbles: true })
@@ -718,7 +741,7 @@ form.css-8atqhb .chakra-form__error-message {
                         if (btnSend.classList.contains("on_click")) {
                             btnSend.classList.remove("on_click")
                         }
-                    }, 7000)
+                    }, 1500)
                 }
                 e.target.setAttribute("data-test", "1")
 
@@ -736,7 +759,9 @@ form.css-8atqhb .chakra-form__error-message {
                     input.value = e.target.value
 
                     if (document.querySelector(".chakra-form__error-message.css-vamxt0")) {
-                        error.classList.remove("is_error")
+                        error.forEach(er => {
+                            er.classList.remove("is_error")
+                        })
                         label.classList.remove("is_error")
                     }
                 })
