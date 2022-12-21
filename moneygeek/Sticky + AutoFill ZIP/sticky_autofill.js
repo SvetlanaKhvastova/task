@@ -1,8 +1,8 @@
-let autoGeoLocation = setInterval(() => {
-    if (document.querySelector("#___gatsby")) {
-        clearInterval(autoGeoLocation)
+let stickyBanner = setInterval(() => {
+    if (document.querySelector("#menu-list")) {
+        clearInterval(stickyBanner)
 
-        console.log(">>>>>>>>>>>>>>>Variant B")
+        console.log(">>>>>>>>>>>>>>>Variant C")
 
         let eventVar = "desktop"
 
@@ -16,7 +16,7 @@ let autoGeoLocation = setInterval(() => {
                 console.log(actionDataLayer + " : " + labelDataLayer)
                 dataLayer.push({
                     event: "event-to-ga",
-                    eventCategory: `Exp: Autofill ZIP Variant B ${eventVar}`,
+                    eventCategory: `Exp: Sticky ZIP ${eventVar}`,
                     eventAction: `${actionDataLayer}`,
                     eventLabel: `${labelDataLayer}`,
                 })
@@ -24,7 +24,7 @@ let autoGeoLocation = setInterval(() => {
                 console.log(actionDataLayer)
                 dataLayer.push({
                     event: "event-to-ga",
-                    eventCategory: `Exp: Autofill ZIP Variant B ${eventVar}`,
+                    eventCategory: `Exp: Sticky ZIP ${eventVar}`,
                     eventAction: `${actionDataLayer}`,
                 })
             }
@@ -32,248 +32,261 @@ let autoGeoLocation = setInterval(() => {
 
         let style = /*html */ `
       <style>
-        .css-amzw5g {
-    height: fit-content !important;
-  }
-  form.css-8atqhb .chakra-input__group,
-  form.css-8atqhb button.chakra-button,
-  form.css-8atqhb .chakra-form__error-message {
-    display: none !important;
-  }
-  .auto_location_block p {
-    font-family: "Brandon Grotesque", sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
-    color: #ffffff;
-    margin-bottom: 4px;
-  }
-  .auto_location_block button {
-    margin: 12px 0 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #ffc659;
-    border-radius: 6px;
-    width: 100%;
-    height: 56px;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 19px;
-    text-transform: uppercase;
-    color: #1e1b4d;
-  }
-  .auto_location_block label {
-    display: flex;
-    justify-content: space-between;
-    background: #ffffff;
-    border: 1px solid #d3d4d6;
-    border-radius: 4px;
-    align-items: center;
-    padding: 7px 12px;
-  }
-  .auto_location_block label svg {
-    width: 100%;
-    max-width: 16px;
-    margin-right: 12px;
-  }
-  .auto_location_block input {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 26px;
-    color: #555555;
-    border-left: 1px solid #d3d4d6;
-    border-bottom: unset;
-    border-top: unset;
-    border-radius: 0;
-    border-right: unset;
-    padding: 0 0 0 12px;
-    margin: 0;
-    max-width: 126px;
-    width: 100%;
-  }
-  .auto_location_block input:focus,
-  .auto_location_block input:hover {
-    border-color: #d3d4d6;
-  }
-  .auto_location_block input::placeholder {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 26px;
-    color: #b2b2b2;
-  }
-  .auto_region {
-    font-family: "Brandon Grotesque", sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 26px;
-    text-align: right;
-    color: #555555;
-    width: max-content;
-    margin: 0 0 0 auto;
-  }
-  .zip_error {
-    display: none;
-    font-family: "Brandon Grotesque", sans-serif;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 16px;
-    color: #db3732;
-    margin: 0;
-  }
-  .zip_error.is_error {
-    display: block;
-  }
-  .auto_location_block label.is_error {
-    border-color: #db3732;
-  }
-  
-  @media (max-width: 1110px) {
-    .auto_location_block label {
-      padding: 8px 12px;
-    }
-  }
-
-  .sticky_banner{
-            background: #FFFFFF;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.26);
-            border-radius: 5px;
-            padding: 16px;
-            top: 12px;
-            left: 0;
-            width: 300px;
-            display: none;
-            z-index: 55;
-            margin: 0;
-        }
-        .sticky_banner.is_fixed{            
-            display: block;
-            margin: -15px 0 25px;
-            position: relative;
-        }
-        .btn_close_sticky{
-            position: absolute;
-            right: 11px;
-            top: 11px;
-            cursor: pointer;
-        }
-        .sticky_banner p{
-            font-family: "Brandon Grotesque", sans-serif;
-            font-weight: 600;
-            font-size: 20px;
-            line-height: 22px;
-            color: #555555;
-            margin-bottom: 16px;
-            max-width: 208px;
-        }
-        .sticky_banner button{
-            margin: 8px 0 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #526EFF;
-            border-radius: 6px;
-            width: 100%;
-            height: 48px;
-            font-weight: 600;
-            font-size: 16px;
-            line-height: 19px;
-            text-transform: uppercase;
-            color: #FFFFFF;
-        }
-        .sticky_banner label{
-            display: flex;
-            background: #FFFFFF;
-            border: 1px solid #D3D4D6;
-            border-radius: 4px;
-            align-items: center;
-            padding: 7px 12px;
-        }
-        .sticky_banner label svg{
-            flex: 1 0 16px;
-            margin-right: 12px;
-        }
-        .sticky_banner input{
-            font-style: normal;
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 26px;
-            color: #000000;
-            border-left: 1px solid #D3D4D6;
-            border-bottom: unset;
-            border-top: unset;
-            border-radius: 0;
-            border-right: unset;
-            padding: 0 0 0 12px;
-            margin: 0;
-        }
-        .sticky_banner input:focus,
-        .sticky_banner input:hover{
-            border-color: #D3D4D6;
-        }
-        .sticky_banner input::placeholder{
-            font-style: normal;
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 26px;
-            color: #B2B2B2;
-        }
-        .zip_error{
-            display: none;
-            font-family: "Brandon Grotesque", sans-serif;
-            font-weight: 600;
-            font-size: 12px;
-            line-height: 16px;
-            color: #DB3732;
-            margin: 0;
-        }
-        .sticky_banner.is_hidden{
-            display: none;
-        }
-        .zip_error.is_error{
-            display: block;
-        }
-        .sticky_banner label.is_error{
-            border-color: #DB3732;
-        }
-
-        @media (max-width: 1110px){
-            .sticky_banner.is_fixed{            
-                position: absolute;
-                display: block;
-                margin: 0;
-            }
-            .sticky_banner.is_hidden{
+          .css-15hxzhe{
+            z-index: 1;
+          }
+          .sticky_banner{
+              background: #FFFFFF;
+              box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.26);
+              border-radius: 5px;
+              padding: 16px;
+              top: 12px;
+              left: 0;
+              width: 300px;
               display: none;
-            }
-            .sticky_banner{
-                width: 100%;
-                top: -50px;
-                border-radius: unset;
-                box-shadow: 0px 2px 0px #EFEFF1;
-            }
-            .sticky_banner p{
-                max-width: 311px;
-                font-size: 24px;
-                line-height: 28px;
-                margin-bottom: 12px;
-            }
-            .sticky_banner button{
-                margin-top: 10px;
-            }
-            .sticky_banner label{
-                padding: 8px 12px;
-            }
-        }
+              z-index: 55;
+              margin: 0;
+          }
+          .sticky_banner.is_fixed{            
+              display: block;
+              margin: -15px 0 25px;
+              position: relative;
+          }
+          .btn_close_sticky{
+              position: absolute;
+              right: 11px;
+              top: 11px;
+              cursor: pointer;
+          }
+          .sticky_banner p{
+              font-family: "Brandon Grotesque", sans-serif;
+              font-weight: 600;
+              font-size: 20px;
+              line-height: 22px;
+              color: #555555;
+              margin-bottom: 16px;
+              max-width: 208px;
+          }
+          .sticky_banner button{
+              margin: 8px 0 0;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              background: #526EFF;
+              border-radius: 6px;
+              width: 100%;
+              height: 48px;
+              font-weight: 600;
+              font-size: 16px;
+              line-height: 19px;
+              text-transform: uppercase;
+              color: #FFFFFF;
+          }
+          .sticky_banner label{
+              display: flex;
+              background: #FFFFFF;
+              border: 1px solid #D3D4D6;
+              border-radius: 4px;
+              align-items: center;
+              padding: 7px 12px;
+          }
+          .sticky_banner label svg{
+              flex: 1 0 16px;
+              margin-right: 12px;
+          }
+          .sticky_banner input{
+              font-style: normal;
+              font-weight: 400;
+              font-size: 16px;
+              line-height: 26px;
+              color: #000000;
+              border-left: 1px solid #D3D4D6;
+              border-bottom: unset;
+              border-top: unset;
+              border-radius: 0;
+              border-right: unset;
+              padding: 0 0 0 12px;
+              margin: 0;
+          }
+          .sticky_banner input:focus,
+          .sticky_banner input:hover{
+              border-color: #D3D4D6;
+          }
+          .sticky_banner input::placeholder{
+              font-style: normal;
+              font-weight: 400;
+              font-size: 16px;
+              line-height: 26px;
+              color: #B2B2B2;
+          }
+          .zip_error{
+              display: none;
+              font-family: "Brandon Grotesque", sans-serif;
+              font-weight: 600;
+              font-size: 12px;
+              line-height: 16px;
+              color: #DB3732;
+              margin: 0;
+          }
+          .sticky_banner.is_hidden{
+              display: none;
+          }
+          .zip_error.is_error{
+              display: block;
+          }
+          .sticky_banner label.is_error{
+              border-color: #DB3732;
+          }
   
+          @media (max-width: 1110px){
+              .sticky_banner.is_fixed{            
+                  position: absolute;
+                  display: block;
+                  margin: 0;
+              }
+              .sticky_banner.is_hidden{
+                display: none;
+              }
+              .sticky_banner{
+                  width: 100%;
+                  top: -50px;
+                  border-radius: unset;
+                  box-shadow: 0px 2px 0px #EFEFF1;
+              }
+              .sticky_banner p{
+                  max-width: 311px;
+                  font-size: 24px;
+                  line-height: 28px;
+                  margin-bottom: 12px;
+              }
+              .sticky_banner button{
+                  margin-top: 10px;
+              }
+              .sticky_banner label{
+                  padding: 8px 12px;
+              }
+          }
+
+          .css-amzw5g {
+  height: fit-content !important;
+}
+form.css-8atqhb .chakra-input__group,
+form.css-8atqhb button.chakra-button,
+form.css-8atqhb .chakra-form__error-message {
+  display: none !important;
+}
+.auto_location_block p {
+  font-family: "Brandon Grotesque", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+.auto_location_block button {
+  margin: 12px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffc659;
+  border-radius: 6px;
+  width: 100%;
+  height: 56px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  text-transform: uppercase;
+  color: #1e1b4d;
+}
+.auto_location_block label {
+  display: flex;
+  justify-content: space-between;
+  background: #ffffff;
+  border: 1px solid #d3d4d6;
+  border-radius: 4px;
+  align-items: center;
+  padding: 7px 12px;
+}
+.auto_location_block label svg {
+  width: 100%;
+  max-width: 16px;
+  margin-right: 12px;
+}
+.auto_location_block input {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #555555;
+  border-left: 1px solid #d3d4d6;
+  border-bottom: unset;
+  border-top: unset;
+  border-radius: 0;
+  border-right: unset;
+  padding: 0 0 0 12px;
+  margin: 0;
+  max-width: 126px;
+  width: 100%;
+}
+.auto_location_block input:focus,
+.auto_location_block input:hover {
+  border-color: #d3d4d6;
+}
+.auto_location_block input::placeholder {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #b2b2b2;
+}
+.auto_region {
+  font-family: "Brandon Grotesque", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 26px;
+  text-align: right;
+  color: #555555;
+  width: max-content;
+  margin: 0 0 0 auto;
+}
+.zip_error {
+  display: none;
+  font-family: "Brandon Grotesque", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: #db3732;
+  margin: 0;
+}
+.zip_error.is_error {
+  display: block;
+}
+.auto_location_block label.is_error {
+  border-color: #db3732;
+}
+
+@media (max-width: 1110px) {
+  .auto_location_block label {
+    padding: 8px 12px;
+  }
+}
       </style>
       `
 
-        let autoLocationBlock = /*html */ `
-      <div class="auto_location_block">
-          <p>Your Zip Code</p>
+        let stickyBlock = /*html */ `
+      <div></div>
+      <section class="sticky_banner">
+          <svg class="btn_close_sticky" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_82_1006)">
+              <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="#555555"/>
+              </g>
+              <defs>
+              <clipPath id="clip0_82_1006">
+              <rect width="24" height="24" fill="white"/>
+              </clipPath>
+              </defs>
+          </svg>
+          <p>Compare rates and save on auto insurance today!</p>
           <label>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g clip-path="url(#clip0_82_998)">
@@ -287,26 +300,16 @@ let autoGeoLocation = setInterval(() => {
                   </defs>
               </svg>
               <input type="number" autocomplete="off" pattern="[0-9]*" name="zipCode"  placeholder="Your zip code" class="">
-              <span class="auto_region"></span>
+              <span class="auto_region var_sticky"></span>
           </label>
           <span class="zip_error">Write your zip code</span>
           <button>Compare quotes</button>
-      </div>
+      </section>
       `
 
-        let stickyBlock = /*html */ `
-<div class="sticky_banner">
-    <svg class="btn_close_sticky" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g clip-path="url(#clip0_82_1006)">
-        <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="#555555"/>
-        </g>
-        <defs>
-        <clipPath id="clip0_82_1006">
-        <rect width="24" height="24" fill="white"/>
-        </clipPath>
-        </defs>
-    </svg>
-    <p>Compare rates and save on auto insurance today!</p>
+        let autoLocationBlock = /*html */ `
+<div class="auto_location_block">
+    <p>Your Zip Code</p>
     <label>
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_82_998)">
@@ -320,6 +323,7 @@ let autoGeoLocation = setInterval(() => {
             </defs>
         </svg>
         <input type="number" autocomplete="off" pattern="[0-9]*" name="zipCode"  placeholder="Your zip code" class="">
+        <span class="auto_region var_auto_loc"></span>
     </label>
     <span class="zip_error">Write your zip code</span>
     <button>Compare quotes</button>
@@ -327,199 +331,156 @@ let autoGeoLocation = setInterval(() => {
 `
 
         document.body.insertAdjacentHTML("afterbegin", style)
-        document.querySelector("form.css-8atqhb").insertAdjacentHTML("afterbegin", autoLocationBlock)
 
-        if (!sessionStorage.getItem("sticky_banner")) {
-            if (document.querySelector("#sub-navigation")) {
-                let s = setInterval(() => {
-                    if (document.querySelector('#social-section')) {
-                        clearInterval(s)
-                        setTimeout(() => {
-                            if (window.innerWidth <= 1110) {
-                                document.querySelector("#sub-navigation").insertAdjacentHTML("beforeend", stickyBlock)
-                            } else {
-                                document.querySelector("#sub-navigation").insertAdjacentHTML("afterbegin", stickyBlock)
-                            }
 
-                            if (document.querySelector(".sticky_banner")) {
-                                const options = {
-                                    root: null,
-                                    threshold: 1,
-                                }
+        onSticky()
 
-                                let observerNewHeader = new IntersectionObserver((entries) => {
-                                    if (!entries[0].isIntersecting) return
-                                    pushDataLayer(`Sticky ZIP banner appearance`)
-                                    observerNewHeader.disconnect()
-                                })
-
-                                observerNewHeader.observe(document.querySelector(".sticky_banner"), options)
-                            }
-                        }, 1000)
-                    }
-                }, 10)
-            }
+        if (document.querySelector("form.css-8atqhb")) {
+            onAutoFillLocation()
         }
 
-        window.addEventListener("scroll", function () {
-            onLoadStickyBanner()
-        })
+        fetchLocation()
 
-        onLoadStickyBanner()
+        function onSticky() {
+            if (!sessionStorage.getItem("sticky_banner")) {
+                if (document.querySelector("#sub-navigation")) {
+                    let s = setInterval(() => {
+                        if (document.querySelector('#social-section')) {
+                            clearInterval(s)
+                            setTimeout(() => {
+                                if (window.innerWidth <= 1110) {
+                                    document.querySelector("#sub-navigation").insertAdjacentHTML("beforeend", stickyBlock)
+                                } else {
+                                    document.querySelector("#sub-navigation").insertAdjacentHTML("afterbegin", stickyBlock)
+                                }
 
-        function onLoadStickyBanner() {
-            let positionVar = 0
-            if (window.innerWidth <= 1110) {
-                positionVar = 60
+                                if (document.querySelector(".sticky_banner")) {
+                                    const options = {
+                                        root: null,
+                                        threshold: 1,
+                                    }
+
+                                    let observerNewHeader = new IntersectionObserver((entries) => {
+                                        if (!entries[0].isIntersecting) return
+                                        pushDataLayer(`Sticky ZIP banner appearance`)
+                                        observerNewHeader.disconnect()
+                                    })
+
+                                    observerNewHeader.observe(document.querySelector(".sticky_banner"), options)
+                                }
+                            }, 1000)
+                        }
+                    }, 10)
+                }
             }
 
-            if (document.querySelector(".sticky_banner")) {
-                if (
-                    document.querySelector(".css-2s6hek")?.getBoundingClientRect().bottom <= positionVar && window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/" ||
-                    document.querySelector(".css-1ih2ha8")?.getBoundingClientRect().bottom <= positionVar && window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/" ||
-                    window.location.pathname === "/insurance/auto/car-insurance-estimate-calculator/" && document.querySelector(".css-1ngo9xx")?.getBoundingClientRect().bottom <= positionVar
-                ) {
-                    if (!document.querySelector(".sticky_banner").classList.contains("is_fixed")) {
-                        document.querySelector(".sticky_banner").classList.add("is_fixed")
-                        if (window.innerWidth > 1110) {
-                            document.querySelector("#social-section").style.display = "none"
-                            document.querySelector(".social").style.display = "none"
-                        }
-                        if (document.querySelector(".sticky_banner")) {
-                            let stickyBox = document.querySelector(".sticky_banner"),
-                                label = stickyBox.querySelector("label"),
-                                input = stickyBox.querySelector("input"),
-                                closeBtn = stickyBox.querySelector(".btn_close_sticky"),
-                                btnSend = stickyBox.querySelector("button"),
-                                error = stickyBox.querySelector(".zip_error")
+            window.addEventListener("scroll", function () {
+                onLoadStickyBanner()
+            })
 
-                            if (closeBtn) {
-                                closeBtn.addEventListener("click", (e) => {
-                                    if (!e.target.getAttribute("data-test")) {
-                                        pushDataLayer("Sticky banner closed")
-                                        sessionStorage.setItem("sticky_banner", "true")
-                                        stickyBox.classList.add("is_hidden")
-                                        if (window.innerWidth > 1110) {
-                                            document.querySelector("#social-section").style.display = "block"
-                                            document.querySelector(".social").style.display = "block"
-                                        }
-                                    }
-                                    e.target.setAttribute("data-test", "1")
-                                })
+            onLoadStickyBanner()
+
+            function onLoadStickyBanner() {
+                let positionVar = 0
+                if (window.innerWidth <= 1110) {
+                    positionVar = 60
+                }
+
+                if (document.querySelector(".sticky_banner")) {
+                    if (
+                        document.querySelector(".css-2s6hek")?.getBoundingClientRect().bottom <= positionVar && window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/" ||
+                        document.querySelector(".css-1ih2ha8")?.getBoundingClientRect().bottom <= positionVar && window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/" ||
+                        window.location.pathname === "/insurance/auto/car-insurance-estimate-calculator/" && document.querySelector(".css-1ngo9xx")?.getBoundingClientRect().bottom <= positionVar
+                    ) {
+                        if (!document.querySelector(".sticky_banner").classList.contains("is_fixed")) {
+                            document.querySelector(".sticky_banner").classList.add("is_fixed")
+                            if (window.innerWidth > 1110) {
+                                document.querySelector("#social-section").style.display = "none"
+                                document.querySelector(".social").style.display = "none"
                             }
-                            if (btnSend) {
-                                btnSend.addEventListener("click", (e) => {
-                                    e.preventDefault()
-                                    if (!e.target.getAttribute("data-test")) {
-                                        if (!e.target.classList.contains("on_click")) {
-                                            pushDataLayer("Compare Quoutes clicked")
+                            if (document.querySelector(".sticky_banner")) {
+                                let stickyBox = document.querySelector(".sticky_banner"),
+                                    label = stickyBox.querySelector("label"),
+                                    input = stickyBox.querySelector("input"),
+                                    closeBtn = stickyBox.querySelector(".btn_close_sticky"),
+                                    btnSend = stickyBox.querySelector("button"),
+                                    error = stickyBox.querySelector(".zip_error")
+
+                                if (closeBtn) {
+                                    closeBtn.addEventListener("click", (e) => {
+                                        if (!e.target.getAttribute("data-test")) {
+                                            pushDataLayer("Sticky banner closed")
+                                            sessionStorage.setItem("sticky_banner", "true")
+                                            stickyBox.classList.add("is_hidden")
+                                            if (window.innerWidth > 1110) {
+                                                document.querySelector("#social-section").style.display = "block"
+                                                document.querySelector(".social").style.display = "block"
+                                            }
                                         }
-
-                                        if (window.location.pathname === "/insurance/auto/how-much-car-insurance-do-you-need/") {
-                                            document.querySelector("form.css-1lpx304 button").click()
-                                        } else if (
-                                            window.location.pathname === "/insurance/auto/temporary-and-month-to-month-car-insurance/" ||
-                                            window.location.pathname === "/insurance/auto/non-owner-car-insurance-north-carolina/" ||
-                                            window.location.pathname === "/insurance/auto/high-risk-car-insurance/" ||
-                                            window.location.pathname === "/insurance/auto/cheapest-car-insurance-texas/" ||
-                                            window.location.pathname === "/insurance/auto/cheapest-full-coverage-car-insurance/" ||
-                                            window.location.pathname === "/insurance/auto/best-home-auto-bundle/" ||
-                                            window.location.pathname === "/insurance/auto/cheapest-car-insurance-california/" ||
-
-                                            window.location.pathname === "/insurance/auto/cheap-car-insurance-no-deposit/" ||
-                                            window.location.pathname === "/insurance/auto/cheap-sr22-car-insurance/" ||
-                                            window.location.pathname === "/insurance/auto/best-cheap-car-insurance-after-tickets-accidents/" ||
-                                            window.location.pathname === "/insurance/auto/best-cheap-car-insurance-new-drivers/" ||
-                                            window.location.pathname === "/insurance/auto/cheapest-liability-only-car-insurance/" ||
-                                            window.location.pathname === "/insurance/auto/cheapest-car-insurance-quotes-companies/" ||
-                                            window.location.pathname === "/insurance/auto/best-cheap-car-insurance-after-a-dui/" ||
-                                            window.location.pathname === "/insurance/auto/best-cheapest-car-insurance-for-students/" ||
-                                            window.location.pathname === "/insurance/auto/best-cheap-car-insurance-under-25-year-old/" ||
-                                            window.location.pathname === "/insurance/auto/cheapest-car-insurance-florida/" ||
-                                            window.location.pathname === "/insurance/auto/compare-quotes/" ||
-                                            window.location.pathname === "/insurance/auto/best-cheap-car-insurance-for-18-year-olds/" ||
-                                            window.location.pathname === "/insurance/auto/cheapest-car-insurance-pennsylvania/" ||
-                                            window.location.pathname === "/insurance/auto/cheapest-car-insurance-georgia/" ||
-                                            window.location.pathname === "/insurance/auto/best-cheap-car-insurance-houston-tx/" ||
-                                            window.location.pathname === "/insurance/auto/chevrolet-corvette-insurance/" ||
-                                            window.location.pathname === "/insurance/auto/best-cheap-car-insurance-for-19-year-olds/" ||
-                                            window.location.pathname === "/insurance/auto/how-to-get-car-insurance-with-bad-credit/" ||
-                                            window.location.pathname === "/insurance/auto/first-time-drivers-buyers-car-insurance/" ||
-                                            window.location.pathname === "/insurance/auto/best-car-insurance-guide/" ||
-                                            window.location.pathname === "/insurance/auto/best-cheap-car-insurance-for-21-year-olds/" ||
-                                            window.location.pathname === "/insurance/auto/cheapest-car-insurance-ohio/" ||
-                                            window.location.pathname === "/insurance/auto/best-cheap-car-insurance-miami-fl/" ||
-                                            window.location.pathname === "/insurance/auto/best-cheap-car-insurance-atlanta-ga/" ||
-                                            window.location.pathname === "/insurance/auto/best-cheap-car-insurance-tampa-fl/"
-                                        ) {
-                                            document.querySelector("form.css-8atqhb button").click()
-                                        } else if (window.location.pathname === "/insurance/auto/resources/protecting-against-fraud/") {
-                                            document.querySelector("form.css-6d9zwi button").click()
-                                        } else if (window.location.pathname === "/insurance/auto/anonymous-car-insurance-quote-no-personal-information/" ||
-                                            window.location.pathname === "/insurance/auto/car-insurance-estimate-calculator/") {
-                                            document.querySelector("form.css-nbmzhw button").click()
-                                        }
-
-                                        if (document.querySelector(".chakra-form__error-message.css-vamxt0") !== null) {
-                                            error.classList.add("is_error")
-                                            label.classList.add("is_error")
-                                            pushDataLayer("ZIP filed error shown")
-                                        } else {
-                                            error.classList.remove("is_error")
-                                            label.classList.remove("is_error")
-                                        }
-                                    }
-                                    e.target.setAttribute("data-test", "1")
-
-                                    setTimeout(() => {
-                                        if (e.target.getAttribute("data-test")) {
-                                            e.target.removeAttribute("data-test")
-                                        }
-                                    }, 500)
-                                })
-                            }
-
-
-                            if (input) {
-                                input.addEventListener("focus", (e) => {
-                                    if (!e.target.getAttribute("data-test")) {
-                                        pushDataLayer("ZIP field selected (focus)")
-                                    }
-                                    e.target.setAttribute("data-test", "1")
-
-                                    setTimeout(() => {
-                                        if (e.target.getAttribute("data-test")) {
-                                            e.target.removeAttribute("data-test")
-                                        }
-                                    }, 300)
-                                })
-
-                                input.addEventListener("input", (e) => {
-                                    var nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set
-
-                                    nativeInputValueSetter.call(document.querySelector('[name="zip"]'), e.target.value)
-
-                                    if (document.querySelector(".chakra-form__error-message.css-vamxt0")) {
-                                        error.classList.remove("is_error")
-                                        label.classList.remove("is_error")
-                                    }
-                                    var ev2 = new Event("input", { bubbles: true })
-                                    document.querySelector('[name="zip"]').dispatchEvent(ev2)
-                                })
-
-                                document.querySelector('.sticky_banner input').addEventListener("keydown", (e) => {
-                                    if (e.keyCode === 13 || e.which === 13) {
+                                        e.target.setAttribute("data-test", "1")
+                                    })
+                                }
+                                if (btnSend) {
+                                    btnSend.addEventListener("click", (e) => {
                                         e.preventDefault()
                                         if (!e.target.getAttribute("data-test")) {
-                                            pushDataLayer('Enter on input')
-                                            btnSend.classList.add("on_click")
-                                            btnSend.click()
+                                            if (!e.target.classList.contains("on_click")) {
+                                                pushDataLayer("Compare Quoutes clicked")
+                                            }
 
-                                            setTimeout(() => {
-                                                if (btnSend.classList.contains("on_click")) {
-                                                    btnSend.classList.remove("on_click")
-                                                }
-                                            }, 7000)
+                                            if (window.location.pathname === "/insurance/auto/how-much-car-insurance-do-you-need/") {
+                                                document.querySelector("form.css-1lpx304 button").click()
+                                            } else if (
+                                                window.location.pathname === "/insurance/auto/temporary-and-month-to-month-car-insurance/" ||
+                                                window.location.pathname === "/insurance/auto/non-owner-car-insurance-north-carolina/" ||
+                                                window.location.pathname === "/insurance/auto/high-risk-car-insurance/" ||
+                                                window.location.pathname === "/insurance/auto/cheapest-car-insurance-texas/" ||
+                                                window.location.pathname === "/insurance/auto/cheapest-full-coverage-car-insurance/" ||
+                                                window.location.pathname === "/insurance/auto/best-home-auto-bundle/" ||
+                                                window.location.pathname === "/insurance/auto/cheapest-car-insurance-california/" ||
+
+                                                window.location.pathname === "/insurance/auto/cheap-car-insurance-no-deposit/" ||
+                                                window.location.pathname === "/insurance/auto/cheap-sr22-car-insurance/" ||
+                                                window.location.pathname === "/insurance/auto/best-cheap-car-insurance-after-tickets-accidents/" ||
+                                                window.location.pathname === "/insurance/auto/best-cheap-car-insurance-new-drivers/" ||
+                                                window.location.pathname === "/insurance/auto/cheapest-liability-only-car-insurance/" ||
+                                                window.location.pathname === "/insurance/auto/cheapest-car-insurance-quotes-companies/" ||
+                                                window.location.pathname === "/insurance/auto/best-cheap-car-insurance-after-a-dui/" ||
+                                                window.location.pathname === "/insurance/auto/best-cheapest-car-insurance-for-students/" ||
+                                                window.location.pathname === "/insurance/auto/best-cheap-car-insurance-under-25-year-old/" ||
+                                                window.location.pathname === "/insurance/auto/cheapest-car-insurance-florida/" ||
+                                                window.location.pathname === "/insurance/auto/compare-quotes/" ||
+                                                window.location.pathname === "/insurance/auto/best-cheap-car-insurance-for-18-year-olds/" ||
+                                                window.location.pathname === "/insurance/auto/cheapest-car-insurance-pennsylvania/" ||
+                                                window.location.pathname === "/insurance/auto/cheapest-car-insurance-georgia/" ||
+                                                window.location.pathname === "/insurance/auto/best-cheap-car-insurance-houston-tx/" ||
+                                                window.location.pathname === "/insurance/auto/chevrolet-corvette-insurance/" ||
+                                                window.location.pathname === "/insurance/auto/best-cheap-car-insurance-for-19-year-olds/" ||
+                                                window.location.pathname === "/insurance/auto/how-to-get-car-insurance-with-bad-credit/" ||
+                                                window.location.pathname === "/insurance/auto/first-time-drivers-buyers-car-insurance/" ||
+                                                window.location.pathname === "/insurance/auto/best-car-insurance-guide/" ||
+                                                window.location.pathname === "/insurance/auto/best-cheap-car-insurance-for-21-year-olds/" ||
+                                                window.location.pathname === "/insurance/auto/cheapest-car-insurance-ohio/" ||
+                                                window.location.pathname === "/insurance/auto/best-cheap-car-insurance-miami-fl/" ||
+                                                window.location.pathname === "/insurance/auto/best-cheap-car-insurance-atlanta-ga/" ||
+                                                window.location.pathname === "/insurance/auto/best-cheap-car-insurance-tampa-fl/"
+                                            ) {
+                                                document.querySelector("form.css-8atqhb button").click()
+                                            } else if (window.location.pathname === "/insurance/auto/resources/protecting-against-fraud/") {
+                                                document.querySelector("form.css-6d9zwi button").click()
+                                            } else if (window.location.pathname === "/insurance/auto/anonymous-car-insurance-quote-no-personal-information/" ||
+                                                window.location.pathname === "/insurance/auto/car-insurance-estimate-calculator/") {
+                                                document.querySelector("form.css-nbmzhw button").click()
+                                            }
+
+                                            if (document.querySelector(".chakra-form__error-message.css-vamxt0") !== null) {
+                                                error.classList.add("is_error")
+                                                label.classList.add("is_error")
+                                                pushDataLayer("ZIP filed error shown")
+                                            } else {
+                                                error.classList.remove("is_error")
+                                                label.classList.remove("is_error")
+                                            }
                                         }
                                         e.target.setAttribute("data-test", "1")
 
@@ -528,150 +489,139 @@ let autoGeoLocation = setInterval(() => {
                                                 e.target.removeAttribute("data-test")
                                             }
                                         }, 500)
-                                    }
-                                })
-                            }
+                                    })
+                                }
 
-                            if (document.querySelector('[name="zip"]')) {
-                                document.querySelector('[name="zip"]').addEventListener("input", (e) => {
-                                    input.value = e.target.value
 
-                                    if (document.querySelector(".chakra-form__error-message.css-vamxt0")) {
-                                        error.classList.remove("is_error")
-                                        label.classList.remove("is_error")
-                                    }
-                                })
+                                if (input) {
+                                    input.addEventListener("focus", (e) => {
+                                        if (!e.target.getAttribute("data-test")) {
+                                            pushDataLayer("Sticky field selected (focus)")
+                                        }
+                                        e.target.setAttribute("data-test", "1")
+
+                                        setTimeout(() => {
+                                            if (e.target.getAttribute("data-test")) {
+                                                e.target.removeAttribute("data-test")
+                                            }
+                                        }, 300)
+                                    })
+
+                                    input.addEventListener("input", (e) => {
+                                        onInput(e, error, label)
+                                    })
+
+                                    input.addEventListener("keydown", (e) => {
+                                        onKeyDown(e, btnSend)
+                                    })
+                                }
+
+                                removeErrMainInput(input, error, label)
                             }
                         }
+                    } else {
+                        if (window.innerWidth > 1110) {
+                            document.querySelector("#social-section").style.display = "block"
+                            document.querySelector(".social").style.display = "block"
+                        }
+                        document.querySelector(".sticky_banner").classList.remove("is_fixed")
                     }
-                } else {
-                    if (window.innerWidth > 1110) {
-                        document.querySelector("#social-section").style.display = "block"
-                        document.querySelector(".social").style.display = "block"
-                    }
-                    document.querySelector(".sticky_banner").classList.remove("is_fixed")
                 }
             }
         }
 
-        // 
-        if (document.querySelector(".auto_region")) {
-            if (document.querySelector(".auto_region") !== "") {
-                const options = {
-                    root: null,
-                    threshold: 1,
-                }
+        function onAutoFillLocation() {
+            document.querySelector("form.css-8atqhb").insertAdjacentHTML("afterbegin", autoLocationBlock)
 
-                let observerNewHeader = new IntersectionObserver((entries) => {
-                    if (!entries[0].isIntersecting) return
-                    pushDataLayer(`State resolved from IP and shown`)
-                    observerNewHeader.disconnect()
-                })
+            if (document.querySelector(".auto_region.var_auto_loc")) {
+                if (document.querySelector(".auto_region.var_auto_loc") !== "") {
+                    const options = {
+                        root: null,
+                        threshold: 1,
+                    }
 
-                observerNewHeader.observe(document.querySelector(".auto_region"), options)
-            }
-        }
-
-        onClickControlVer()
-        fetchLocation()
-
-        function onClickControlVer() {
-            if (document.querySelector(".auto_location_block")) {
-                let stickyBox = document.querySelector(".auto_location_block"),
-                    label = stickyBox.querySelector("label"),
-                    input = stickyBox.querySelector("input"),
-                    btnSend = stickyBox.querySelector("button"),
-                    error = stickyBox.querySelector(".zip_error")
-
-                if (btnSend) {
-                    btnSend.addEventListener("click", (e) => {
-                        e.preventDefault()
-                        if (!e.target.getAttribute("data-test")) {
-                            pushDataLayer("Compare Quoutes clicked")
-
-                            document.querySelector("form.css-8atqhb button.chakra-button").click()
-
-                            if (document.querySelector("form.css-8atqhb .chakra-form__error-message") !== null) {
-                                document.querySelector(".auto_region").innerHTML = ""
-                                error.classList.add("is_error")
-                                label.classList.add("is_error")
-                                pushDataLayer("ZIP filed error shown")
-                            } else {
-                                error.classList.remove("is_error")
-                                label.classList.remove("is_error")
-                                if (document.querySelector(".auto_region svg")) {
-                                    document.querySelector(".auto_region").innerHTML = ""
-                                }
-                            }
-                        }
-                        e.target.setAttribute("data-test", "1")
-
-                        setTimeout(() => {
-                            if (e.target.getAttribute("data-test")) {
-                                e.target.removeAttribute("data-test")
-                            }
-                        }, 500)
-                    })
-                }
-
-                if (input) {
-                    input.addEventListener("focus", (e) => {
-                        if (!e.target.getAttribute("data-test")) {
-                            pushDataLayer("ZIP field selected (focus)")
-                        }
-                        e.target.setAttribute("data-test", "1")
-
-                        setTimeout(() => {
-                            if (e.target.getAttribute("data-test")) {
-                                e.target.removeAttribute("data-test")
-                            }
-                        }, 300)
+                    let observerNewHeader = new IntersectionObserver((entries) => {
+                        if (!entries[0].isIntersecting) return
+                        pushDataLayer(`State resolved from IP and shown`)
+                        observerNewHeader.disconnect()
                     })
 
-                    input.addEventListener("input", (e) => {
-                        var nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set
-
-                        nativeInputValueSetter.call(document.querySelector('[name="zip"]'), e.target.value)
-
-                        if (document.querySelector("form.css-8atqhb .chakra-form__error-message")) {
-                            error.classList.remove("is_error")
-                            label.classList.remove("is_error")
-                        }
-                        var ev2 = new Event("input", { bubbles: true })
-                        document.querySelector('[name="zip"]').dispatchEvent(ev2)
-
-                        document.querySelector(".auto_region").innerHTML = `<svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M9.5 1.59766C9.5 0.785156 8.8125 0.0976562 8 0.0976562C7.15625 0.0976562 6.5 0.785156 6.5 1.59766C6.5 2.44141 7.15625 3.09766 8 3.09766C8.8125 3.09766 9.5 2.44141 9.5 1.59766ZM8 13.0977C7.15625 13.0977 6.5 13.7852 6.5 14.5977C6.5 15.4414 7.15625 16.0977 8 16.0977C8.8125 16.0977 9.5 15.4414 9.5 14.5977C9.5 13.7852 8.8125 13.0977 8 13.0977ZM14.5 6.59766C13.6562 6.59766 13 7.28516 13 8.09766C13 8.94141 13.6562 9.59766 14.5 9.59766C15.3125 9.59766 16 8.94141 16 8.09766C16 7.28516 15.3125 6.59766 14.5 6.59766ZM3 8.09766C3 7.28516 2.3125 6.59766 1.5 6.59766C0.65625 6.59766 0 7.28516 0 8.09766C0 8.94141 0.65625 9.59766 1.5 9.59766C2.3125 9.59766 3 8.94141 3 8.09766ZM3.375 11.2227C2.5625 11.2227 1.875 11.8789 1.875 12.7227C1.875 13.5352 2.5625 14.2227 3.375 14.2227C4.21875 14.2227 4.875 13.5352 4.875 12.7227C4.875 11.8789 4.21875 11.2227 3.375 11.2227ZM12.5938 11.2227C11.75 11.2227 11.0938 11.8789 11.0938 12.7227C11.0938 13.5352 11.75 14.2227 12.5938 14.2227C13.4062 14.2227 14.0938 13.5352 14.0938 12.7227C14.0938 11.8789 13.4062 11.2227 12.5938 11.2227ZM3.375 2.00391C2.5625 2.00391 1.875 2.69141 1.875 3.50391C1.875 4.34766 2.5625 5.00391 3.375 5.00391C4.21875 5.00391 4.875 4.34766 4.875 3.50391C4.875 2.69141 4.21875 2.00391 3.375 2.00391Z" fill="#555555"/>
-  </svg>`
-
-                        setTimeout(() => {
-                            if (document.querySelector(".auto_region svg")) {
-                                document.querySelector(".auto_region").innerHTML = ""
-                            }
-                        }, 700)
-
-                        if (localStorage.getItem("auto_region")) {
-                            temp = JSON.parse(localStorage.getItem("auto_region"))
-                            temp.forEach((el) => {
-                                if (e.target.value === el.code) {
-                                    document.querySelector(".auto_region").innerHTML = el.name
-                                }
-                            })
-                        }
-                    })
-                }
-
-                if (document.querySelector('[name="zip"]')) {
-                    document.querySelector('[name="zip"]').addEventListener("input", (e) => {
-                        input.value = e.target.value
-
-                        if (document.querySelector("form.css-8atqhb .chakra-form__error-message")) {
-                            error.classList.remove("is_error")
-                            label.classList.remove("is_error")
-                        }
-                    })
+                    observerNewHeader.observe(document.querySelector(".auto_region.var_auto_loc"), options)
                 }
             }
+
+            onClickControlVer()
+
+            function onClickControlVer() {
+                if (document.querySelector(".auto_location_block")) {
+                    let autoLocBox = document.querySelector(".auto_location_block"),
+                        label = autoLocBox.querySelector("label"),
+                        input = autoLocBox.querySelector("input"),
+                        btnSend = autoLocBox.querySelector("button"),
+                        error = autoLocBox.querySelector(".zip_error")
+
+                    if (btnSend) {
+                        btnSend.addEventListener("click", (e) => {
+                            e.preventDefault()
+                            if (!e.target.getAttribute("data-test")) {
+                                pushDataLayer("Compare Quoutes clicked")
+
+                                document.querySelector("form.css-8atqhb button.chakra-button").click()
+
+                                if (document.querySelector("form.css-8atqhb .chakra-form__error-message") !== null) {
+                                    document.querySelectorAll(".auto_region").forEach(e => {
+                                        e.innerHTML = ""
+                                    })
+                                    error.classList.add("is_error")
+                                    label.classList.add("is_error")
+                                    pushDataLayer("ZIP filed error shown")
+                                } else {
+                                    error.classList.remove("is_error")
+                                    label.classList.remove("is_error")
+                                    if (document.querySelector(".auto_region svg")) {
+                                        document.querySelectorAll(".auto_region").forEach(e => {
+                                            e.innerHTML = ""
+                                        })
+                                    }
+                                }
+                            }
+                            e.target.setAttribute("data-test", "1")
+
+                            setTimeout(() => {
+                                if (e.target.getAttribute("data-test")) {
+                                    e.target.removeAttribute("data-test")
+                                }
+                            }, 500)
+                        })
+                    }
+
+                    if (input) {
+                        input.addEventListener("focus", (e) => {
+                            if (!e.target.getAttribute("data-test")) {
+                                pushDataLayer("ZIP field selected (focus)")
+                            }
+                            e.target.setAttribute("data-test", "1")
+
+                            setTimeout(() => {
+                                if (e.target.getAttribute("data-test")) {
+                                    e.target.removeAttribute("data-test")
+                                }
+                            }, 300)
+                        })
+
+                        input.addEventListener("input", (e) => {
+                            onInput(e, error, label)
+                        })
+
+                        input.addEventListener("keydown", (e) => {
+                            onKeyDown(e, btnSend)
+                        })
+                    }
+
+                    removeErrMainInput(input, error, label)
+                }
+            }
+
         }
 
         function fetchLocation() {
@@ -681,23 +631,116 @@ let autoGeoLocation = setInterval(() => {
                 .then((jsonResponse) => {
                     console.log(jsonResponse)
 
-                    var nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set
+                    if (document.querySelectorAll("[name='zip']")[0]) {
+                        var nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set
+                        nativeInputValueSetter.call(document.querySelectorAll("[name='zip']")[0], jsonResponse.postal)
+                        var ev2 = new Event("input", { bubbles: true })
+                        document.querySelectorAll("[name='zip']")[0].dispatchEvent(ev2)
 
-                    nativeInputValueSetter.call(document.querySelector('[name="zip"]'), jsonResponse.postal)
-                    if (document.querySelector(".auto_region")) {
-                        document.querySelector(".auto_region").textContent = jsonResponse.region
-                        arr.push({
-                            code: jsonResponse.postal,
-                            name: jsonResponse.region,
-                        })
-                        localStorage.setItem("auto_region", JSON.stringify(arr))
+                        if (document.querySelector(".auto_region.var_auto_loc")) {
+                            document.querySelector(".auto_region.var_auto_loc").textContent = jsonResponse.region
+                            arr.push({
+                                code: jsonResponse.postal,
+                                name: jsonResponse.region,
+                            })
+                            localStorage.setItem("auto_region", JSON.stringify(arr))
+                        }
                     }
 
-                    var ev2 = new Event("input", { bubbles: true })
-                    document.querySelector('[name="zip"]').dispatchEvent(ev2)
+                    let a = setInterval(() => {
+                        if (document.querySelector('.sticky_banner input')) {
+                            clearInterval(a)
+                            document.querySelector('.sticky_banner input').value = jsonResponse.postal
+                            document.querySelector(".auto_region.var_sticky").textContent = jsonResponse.region
+                            if (!localStorage.getItem("auto_region")) {
+                                arr.push({
+                                    code: jsonResponse.postal,
+                                    name: jsonResponse.region,
+                                })
+                                localStorage.setItem("auto_region", JSON.stringify(arr))
+                            }
+                        }
+                    }, 10)
+
                 })
 
             // region
+        }
+
+        function onInput(e, error, label) {
+            var nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set
+
+            nativeInputValueSetter.call(document.querySelectorAll('[name="zip"]')[0], e.target.value)
+
+            if (document.querySelector(".chakra-form__error-message.css-vamxt0")) {
+                error.classList.remove("is_error")
+                label.classList.remove("is_error")
+            }
+            let ev2 = new Event("input", { bubbles: true })
+            document.querySelectorAll('[name="zip"]')[0].dispatchEvent(ev2)
+
+
+            document.querySelectorAll(".auto_region").forEach(i => {
+                i.innerHTML = `<svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.5 1.59766C9.5 0.785156 8.8125 0.0976562 8 0.0976562C7.15625 0.0976562 6.5 0.785156 6.5 1.59766C6.5 2.44141 7.15625 3.09766 8 3.09766C8.8125 3.09766 9.5 2.44141 9.5 1.59766ZM8 13.0977C7.15625 13.0977 6.5 13.7852 6.5 14.5977C6.5 15.4414 7.15625 16.0977 8 16.0977C8.8125 16.0977 9.5 15.4414 9.5 14.5977C9.5 13.7852 8.8125 13.0977 8 13.0977ZM14.5 6.59766C13.6562 6.59766 13 7.28516 13 8.09766C13 8.94141 13.6562 9.59766 14.5 9.59766C15.3125 9.59766 16 8.94141 16 8.09766C16 7.28516 15.3125 6.59766 14.5 6.59766ZM3 8.09766C3 7.28516 2.3125 6.59766 1.5 6.59766C0.65625 6.59766 0 7.28516 0 8.09766C0 8.94141 0.65625 9.59766 1.5 9.59766C2.3125 9.59766 3 8.94141 3 8.09766ZM3.375 11.2227C2.5625 11.2227 1.875 11.8789 1.875 12.7227C1.875 13.5352 2.5625 14.2227 3.375 14.2227C4.21875 14.2227 4.875 13.5352 4.875 12.7227C4.875 11.8789 4.21875 11.2227 3.375 11.2227ZM12.5938 11.2227C11.75 11.2227 11.0938 11.8789 11.0938 12.7227C11.0938 13.5352 11.75 14.2227 12.5938 14.2227C13.4062 14.2227 14.0938 13.5352 14.0938 12.7227C14.0938 11.8789 13.4062 11.2227 12.5938 11.2227ZM3.375 2.00391C2.5625 2.00391 1.875 2.69141 1.875 3.50391C1.875 4.34766 2.5625 5.00391 3.375 5.00391C4.21875 5.00391 4.875 4.34766 4.875 3.50391C4.875 2.69141 4.21875 2.00391 3.375 2.00391Z" fill="#555555"/>
+                </svg>`
+            })
+
+            setTimeout(() => {
+                if (document.querySelector(".auto_region svg")) {
+                    document.querySelectorAll(".auto_region").forEach(i => {
+                        i.innerHTML = ""
+                    })
+                }
+            }, 700)
+
+            if (localStorage.getItem("auto_region")) {
+                temp = JSON.parse(localStorage.getItem("auto_region"))
+                temp.forEach((item) => {
+                    if (e.target.value === item.code) {
+                        document.querySelectorAll(".auto_region").forEach(e => {
+                            e.innerHTML = item.name
+                        })
+                    }
+                })
+            }
+        }
+
+        function onKeyDown(e, btnSend) {
+            if (e.keyCode === 13 || e.which === 13) {
+                e.preventDefault()
+                if (!e.target.getAttribute("data-test")) {
+                    pushDataLayer('Enter on input')
+                    btnSend.classList.add("on_click")
+                    btnSend.click()
+
+                    setTimeout(() => {
+                        if (btnSend.classList.contains("on_click")) {
+                            btnSend.classList.remove("on_click")
+                        }
+                    }, 7000)
+                }
+                e.target.setAttribute("data-test", "1")
+
+                setTimeout(() => {
+                    if (e.target.getAttribute("data-test")) {
+                        e.target.removeAttribute("data-test")
+                    }
+                }, 500)
+            }
+        }
+
+        function removeErrMainInput(input, error, label) {
+            if (document.querySelectorAll('[name="zip"]')[0]) {
+                document.querySelectorAll('[name="zip"]')[0].addEventListener("input", (e) => {
+                    input.value = e.target.value
+
+                    if (document.querySelector(".chakra-form__error-message.css-vamxt0")) {
+                        error.classList.remove("is_error")
+                        label.classList.remove("is_error")
+                    }
+                })
+            }
         }
 
         pushDataLayer("loaded")
@@ -705,7 +748,7 @@ let autoGeoLocation = setInterval(() => {
             if (typeof clarity === "function") {
                 clearInterval(record)
 
-                clarity("set", "autofill_zip_variant_b", "variant_1")
+                clarity("set", "sticky_zip", "variant_1")
             }
         }, 200)
     }
