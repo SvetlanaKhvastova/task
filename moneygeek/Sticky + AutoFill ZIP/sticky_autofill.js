@@ -16,7 +16,7 @@ let stickyBanner = setInterval(() => {
                 console.log(actionDataLayer + " : " + labelDataLayer)
                 dataLayer.push({
                     event: "event-to-ga",
-                    eventCategory: `Exp: Sticky ZIP ${eventVar}`,
+                    eventCategory: `Exp: Sticky AutoFilled ZIP ${eventVar}`,
                     eventAction: `${actionDataLayer}`,
                     eventLabel: `${labelDataLayer}`,
                 })
@@ -24,7 +24,7 @@ let stickyBanner = setInterval(() => {
                 console.log(actionDataLayer)
                 dataLayer.push({
                     event: "event-to-ga",
-                    eventCategory: `Exp: Sticky ZIP ${eventVar}`,
+                    eventCategory: `Exp: Sticky AutoFilled ZIP ${eventVar}`,
                     eventAction: `${actionDataLayer}`,
                 })
             }
@@ -580,7 +580,7 @@ form.css-8atqhb .chakra-form__error-message {
                             e.preventDefault()
                             if (!e.target.getAttribute("data-test")) {
                                 if (!e.target.classList.contains("on_click")) {
-                                    pushDataLayer("ZIP Compare Quoutes clicked")
+                                    pushDataLayer("AutoFilled ZIP Compare Quoutes clicked")
                                 }
 
                                 document.querySelector("form.css-8atqhb button.chakra-button").click()
@@ -594,7 +594,7 @@ form.css-8atqhb .chakra-form__error-message {
                                     })
                                     label.classList.add("is_error")
                                     document.querySelector(".sticky_banner label")?.classList.add("is_error")
-                                    pushDataLayer("ZIP filed error shown")
+                                    pushDataLayer("AutoFilled ZIP filed error shown")
                                 } else {
                                     document.querySelectorAll(".zip_error").forEach(er => {
                                         er.classList.remove("is_error")
@@ -621,7 +621,7 @@ form.css-8atqhb .chakra-form__error-message {
                     if (input) {
                         input.addEventListener("focus", (e) => {
                             if (!e.target.getAttribute("data-test")) {
-                                pushDataLayer("ZIP field selected (focus)")
+                                pushDataLayer("AutoFilled ZIP field selected (focus)")
                             }
                             e.target.setAttribute("data-test", "1")
 
@@ -773,7 +773,7 @@ form.css-8atqhb .chakra-form__error-message {
             if (typeof clarity === "function") {
                 clearInterval(record)
 
-                clarity("set", "sticky_zip", "variant_1")
+                clarity("set", `sticky_autofilled_zip${eventVar}`, "variant_1")
             }
         }, 200)
     }
