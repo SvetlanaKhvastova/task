@@ -1,36 +1,36 @@
 let stickyBanner = setInterval(() => {
-    if (document.querySelector("#menu-list")) {
-        clearInterval(stickyBanner)
+  if (document.querySelector("#menu-list")) {
+    clearInterval(stickyBanner)
 
-        console.log(">>>>>>>>>>>>>>>Variant C")
+    console.log(">>>>>>>>>>>>>>>Variant C")
 
-        let eventVar = "desktop"
+    let eventVar = "desktop"
 
-        if (window.innerWidth <= 768) {
-            eventVar = "mobile"
-        }
+    if (window.innerWidth <= 768) {
+      eventVar = "mobile"
+    }
 
-        function pushDataLayer(actionDataLayer, labelDataLayer) {
-            window.dataLayer = window.dataLayer || []
-            if (labelDataLayer) {
-                console.log(actionDataLayer + " : " + labelDataLayer)
-                dataLayer.push({
-                    event: "event-to-ga",
-                    eventCategory: `Exp: Sticky AutoFilled ZIP ${eventVar}`,
-                    eventAction: `${actionDataLayer}`,
-                    eventLabel: `${labelDataLayer}`,
-                })
-            } else {
-                console.log(actionDataLayer)
-                dataLayer.push({
-                    event: "event-to-ga",
-                    eventCategory: `Exp: Sticky AutoFilled ZIP ${eventVar}`,
-                    eventAction: `${actionDataLayer}`,
-                })
-            }
-        }
+    function pushDataLayer(actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || []
+      if (labelDataLayer) {
+        console.log(actionDataLayer + " : " + labelDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Sticky AutoFilled ZIP ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        })
+      } else {
+        console.log(actionDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Sticky AutoFilled ZIP ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+        })
+      }
+    }
 
-        let style = /*html */ `
+    let style = /*html */ `
       <style>
           .css-15hxzhe{
             z-index: 1;
@@ -277,7 +277,7 @@ form.css-8atqhb .chakra-form__error-message {
       </style>
       `
 
-        let stickyBlock = /*html */ `
+    let stickyBlock = /*html */ `
       <div></div>
       <section class="sticky_banner">
           <svg class="btn_close_sticky" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -311,7 +311,7 @@ form.css-8atqhb .chakra-form__error-message {
       </section>
       `
 
-        let autoLocationBlock = /*html */ `
+    let autoLocationBlock = /*html */ `
 <div class="auto_location_block">
     <p>Your Zip Code</p>
     <label>
@@ -334,447 +334,446 @@ form.css-8atqhb .chakra-form__error-message {
 </div>
 `
 
-        document.body.insertAdjacentHTML("afterbegin", style)
+    document.body.insertAdjacentHTML("afterbegin", style)
 
+    onSticky()
 
-        onSticky()
+    if (document.querySelector("form.css-8atqhb")) {
+      onAutoFillLocation()
+    }
 
-        if (document.querySelector("form.css-8atqhb")) {
-            onAutoFillLocation()
-        }
+    fetchLocation()
 
-        fetchLocation()
-
-        function onSticky() {
-            if (!sessionStorage.getItem("sticky_banner")) {
-                if (document.querySelector("#sub-navigation")) {
-                    let s = setInterval(() => {
-                        if (document.querySelector('#social-section')) {
-                            clearInterval(s)
-                            setTimeout(() => {
-                                if (window.innerWidth <= 1110) {
-                                    document.querySelector("#sub-navigation").insertAdjacentHTML("beforeend", stickyBlock)
-                                } else {
-                                    document.querySelector("#sub-navigation").insertAdjacentHTML("afterbegin", stickyBlock)
-                                }
-
-                                if (document.querySelector(".sticky_banner")) {
-                                    const options = {
-                                        root: null,
-                                        threshold: 1,
-                                    }
-
-                                    let observerNewHeader = new IntersectionObserver((entries) => {
-                                        if (!entries[0].isIntersecting) return
-                                        pushDataLayer(`Sticky banner appearance`)
-                                        observerNewHeader.disconnect()
-                                    })
-
-                                    observerNewHeader.observe(document.querySelector(".sticky_banner"), options)
-                                }
-                            }, 1000)
-                        }
-                    }, 10)
-                }
-            }
-
-            window.addEventListener("scroll", function () {
-                onLoadStickyBanner()
-            })
-
-            onLoadStickyBanner()
-
-            function onLoadStickyBanner() {
-                let positionVar = 0
+    function onSticky() {
+      if (!sessionStorage.getItem("sticky_banner")) {
+        if (document.querySelector("#sub-navigation")) {
+          let s = setInterval(() => {
+            if (document.querySelector("#social-section")) {
+              clearInterval(s)
+              setTimeout(() => {
                 if (window.innerWidth <= 1110) {
-                    positionVar = 60
+                  document.querySelector("#sub-navigation").insertAdjacentHTML("beforeend", stickyBlock)
+                } else {
+                  document.querySelector("#sub-navigation").insertAdjacentHTML("afterbegin", stickyBlock)
                 }
 
                 if (document.querySelector(".sticky_banner")) {
-                    if (
-                        document.querySelector(".css-2s6hek")?.getBoundingClientRect().bottom <= positionVar && window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/" ||
-                        document.querySelector(".css-1ih2ha8")?.getBoundingClientRect().bottom <= positionVar && window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/" ||
-                        window.location.pathname === "/insurance/auto/car-insurance-estimate-calculator/" && document.querySelector(".css-1ngo9xx")?.getBoundingClientRect().bottom <= positionVar
-                    ) {
-                        if (!document.querySelector(".sticky_banner").classList.contains("is_fixed")) {
-                            document.querySelector(".sticky_banner").classList.add("is_fixed")
-                            if (window.innerWidth > 1110) {
-                                document.querySelector("#social-section").style.display = "none"
-                                document.querySelector(".social").style.display = "none"
-                            }
-                            if (document.querySelector(".sticky_banner")) {
-                                let stickyBox = document.querySelector(".sticky_banner"),
-                                    label = stickyBox.querySelector("label"),
-                                    input = stickyBox.querySelector("input"),
-                                    closeBtn = stickyBox.querySelector(".btn_close_sticky"),
-                                    btnSend = stickyBox.querySelector("button"),
-                                    error = document.querySelectorAll(".zip_error")
+                  const options = {
+                    root: null,
+                    threshold: 1,
+                  }
 
-                                if (closeBtn) {
-                                    closeBtn.addEventListener("click", (e) => {
-                                        if (!e.target.getAttribute("data-test")) {
-                                            pushDataLayer("Sticky banner closed")
-                                            sessionStorage.setItem("sticky_banner", "true")
-                                            stickyBox.classList.add("is_hidden")
-                                            if (window.innerWidth > 1110) {
-                                                document.querySelector("#social-section").style.display = "block"
-                                                document.querySelector(".social").style.display = "block"
-                                            }
-                                        }
-                                        e.target.setAttribute("data-test", "1")
-                                    })
-                                }
-                                if (btnSend) {
-                                    btnSend.addEventListener("click", (e) => {
-                                        e.preventDefault()
-                                        if (!e.target.getAttribute("data-test")) {
-                                            if (!e.target.classList.contains("on_click")) {
-                                                pushDataLayer("Sticky Compare Quoutes clicked")
-                                            }
+                  let observerNewHeader = new IntersectionObserver((entries) => {
+                    if (!entries[0].isIntersecting) return
+                    pushDataLayer(`Sticky banner appearance`)
+                    observerNewHeader.disconnect()
+                  })
 
-                                            if (window.location.pathname === "/insurance/auto/how-much-car-insurance-do-you-need/") {
-                                                document.querySelector("form.css-1lpx304 button[type='submit']").click()
-                                            } else if (
-                                                window.location.pathname === "/insurance/auto/temporary-and-month-to-month-car-insurance/" ||
-                                                window.location.pathname === "/insurance/auto/non-owner-car-insurance-north-carolina/" ||
-                                                window.location.pathname === "/insurance/auto/high-risk-car-insurance/" ||
-                                                window.location.pathname === "/insurance/auto/cheapest-car-insurance-texas/" ||
-                                                window.location.pathname === "/insurance/auto/cheapest-full-coverage-car-insurance/" ||
-                                                window.location.pathname === "/insurance/auto/best-home-auto-bundle/" ||
-                                                window.location.pathname === "/insurance/auto/cheapest-car-insurance-california/" ||
-
-                                                window.location.pathname === "/insurance/auto/cheap-car-insurance-no-deposit/" ||
-                                                window.location.pathname === "/insurance/auto/cheap-sr22-car-insurance/" ||
-                                                window.location.pathname === "/insurance/auto/best-cheap-car-insurance-after-tickets-accidents/" ||
-                                                window.location.pathname === "/insurance/auto/best-cheap-car-insurance-new-drivers/" ||
-                                                window.location.pathname === "/insurance/auto/cheapest-liability-only-car-insurance/" ||
-                                                window.location.pathname === "/insurance/auto/cheapest-car-insurance-quotes-companies/" ||
-                                                window.location.pathname === "/insurance/auto/best-cheap-car-insurance-after-a-dui/" ||
-                                                window.location.pathname === "/insurance/auto/best-cheapest-car-insurance-for-students/" ||
-                                                window.location.pathname === "/insurance/auto/best-cheap-car-insurance-under-25-year-old/" ||
-                                                window.location.pathname === "/insurance/auto/cheapest-car-insurance-florida/" ||
-                                                window.location.pathname === "/insurance/auto/compare-quotes/" ||
-                                                window.location.pathname === "/insurance/auto/best-cheap-car-insurance-for-18-year-olds/" ||
-                                                window.location.pathname === "/insurance/auto/cheapest-car-insurance-pennsylvania/" ||
-                                                window.location.pathname === "/insurance/auto/cheapest-car-insurance-georgia/" ||
-                                                window.location.pathname === "/insurance/auto/best-cheap-car-insurance-houston-tx/" ||
-                                                window.location.pathname === "/insurance/auto/chevrolet-corvette-insurance/" ||
-                                                window.location.pathname === "/insurance/auto/best-cheap-car-insurance-for-19-year-olds/" ||
-                                                window.location.pathname === "/insurance/auto/how-to-get-car-insurance-with-bad-credit/" ||
-                                                window.location.pathname === "/insurance/auto/first-time-drivers-buyers-car-insurance/" ||
-                                                window.location.pathname === "/insurance/auto/best-car-insurance-guide/" ||
-                                                window.location.pathname === "/insurance/auto/best-cheap-car-insurance-for-21-year-olds/" ||
-                                                window.location.pathname === "/insurance/auto/cheapest-car-insurance-ohio/" ||
-                                                window.location.pathname === "/insurance/auto/best-cheap-car-insurance-miami-fl/" ||
-                                                window.location.pathname === "/insurance/auto/best-cheap-car-insurance-atlanta-ga/" ||
-                                                window.location.pathname === "/insurance/auto/best-cheap-car-insurance-tampa-fl/"
-                                            ) {
-                                                document.querySelector("form.css-8atqhb button[type='submit']").click()
-                                            } else if (window.location.pathname === "/insurance/auto/resources/protecting-against-fraud/") {
-                                                document.querySelector("form.css-6d9zwi button[type='submit']").click()
-                                            } else if (window.location.pathname === "/insurance/auto/anonymous-car-insurance-quote-no-personal-information/" ||
-                                                window.location.pathname === "/insurance/auto/car-insurance-estimate-calculator/") {
-                                                document.querySelector("form.css-nbmzhw button[type='submit']").click()
-                                            }
-
-                                            if (document.querySelector(".chakra-form__error-message.css-vamxt0") !== null) {
-                                                error.forEach(er => {
-                                                    er.classList.add("is_error")
-                                                })
-                                                label.classList.add("is_error")
-                                                document.querySelector(".auto_location_block label")?.classList.add("is_error")
-                                                pushDataLayer("Sticky filed error shown")
-                                            } else {
-                                                error.forEach(er => {
-                                                    er.classList.remove("is_error")
-                                                })
-                                                label.classList.remove("is_error")
-                                                document.querySelector(".auto_location_block label")?.classList.remove("is_error")
-                                                if (document.querySelector(".auto_region svg")) {
-                                                    document.querySelectorAll(".auto_region").forEach(e => {
-                                                        e.innerHTML = ""
-                                                    })
-                                                }
-                                            }
-                                        }
-                                        e.target.setAttribute("data-test", "1")
-
-                                        setTimeout(() => {
-                                            if (e.target.getAttribute("data-test")) {
-                                                e.target.removeAttribute("data-test")
-                                            }
-                                        }, 500)
-                                    })
-                                }
-
-
-                                if (input) {
-                                    input.addEventListener("focus", (e) => {
-                                        if (!e.target.getAttribute("data-test")) {
-                                            pushDataLayer("Sticky field selected (focus)")
-                                        }
-                                        e.target.setAttribute("data-test", "1")
-
-                                        setTimeout(() => {
-                                            if (e.target.getAttribute("data-test")) {
-                                                e.target.removeAttribute("data-test")
-                                            }
-                                        }, 300)
-                                    })
-
-                                    input.addEventListener("input", (e) => {
-                                        onInput(e, error, label)
-                                    })
-
-                                    input.addEventListener("keydown", (e) => {
-                                        onKeyDown(e, btnSend)
-                                    })
-                                }
-
-                                removeErrMainInput(input, error, label)
-                            }
-                        }
-                    } else {
-                        if (window.innerWidth > 1110) {
-                            document.querySelector("#social-section").style.display = "block"
-                            document.querySelector(".social").style.display = "block"
-                        }
-                        document.querySelector(".sticky_banner").classList.remove("is_fixed")
-                    }
+                  observerNewHeader.observe(document.querySelector(".sticky_banner"), options)
                 }
+              }, 1000)
             }
+          }, 10)
+        }
+      }
+
+      window.addEventListener("scroll", function () {
+        onLoadStickyBanner()
+      })
+
+      onLoadStickyBanner()
+
+      function onLoadStickyBanner() {
+        let positionVar = 0
+        if (window.innerWidth <= 1110) {
+          positionVar = 60
         }
 
-        function onAutoFillLocation() {
-            document.querySelector("form.css-8atqhb").insertAdjacentHTML("afterbegin", autoLocationBlock)
+        if (document.querySelector(".sticky_banner")) {
+          if (
+            (document.querySelector(".css-2s6hek")?.getBoundingClientRect().bottom <= positionVar &&
+              window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/") ||
+            (document.querySelector(".css-1ih2ha8")?.getBoundingClientRect().bottom <= positionVar &&
+              window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/") ||
+            (window.location.pathname === "/insurance/auto/car-insurance-estimate-calculator/" &&
+              document.querySelector(".css-1ngo9xx")?.getBoundingClientRect().bottom <= positionVar)
+          ) {
+            if (!document.querySelector(".sticky_banner").classList.contains("is_fixed")) {
+              document.querySelector(".sticky_banner").classList.add("is_fixed")
+              if (window.innerWidth > 1110) {
+                document.querySelector("#social-section").style.display = "none"
+                document.querySelector(".social").style.display = "none"
+              }
+              if (document.querySelector(".sticky_banner")) {
+                let stickyBox = document.querySelector(".sticky_banner"),
+                  label = stickyBox.querySelector("label"),
+                  input = stickyBox.querySelector("input"),
+                  closeBtn = stickyBox.querySelector(".btn_close_sticky"),
+                  btnSend = stickyBox.querySelector("button"),
+                  error = document.querySelectorAll(".zip_error")
 
-            if (document.querySelector(".auto_region.var_auto_loc")) {
-                if (document.querySelector(".auto_region.var_auto_loc") !== "") {
-                    const options = {
-                        root: null,
-                        threshold: 1,
+                if (closeBtn) {
+                  closeBtn.addEventListener("click", (e) => {
+                    if (!e.target.getAttribute("data-test")) {
+                      pushDataLayer("Sticky banner closed")
+                      sessionStorage.setItem("sticky_banner", "true")
+                      stickyBox.classList.add("is_hidden")
+                      if (window.innerWidth > 1110) {
+                        document.querySelector("#social-section").style.display = "block"
+                        document.querySelector(".social").style.display = "block"
+                      }
                     }
-
-                    let observerNewHeader = new IntersectionObserver((entries) => {
-                        if (!entries[0].isIntersecting) return
-                        pushDataLayer(`State resolved from IP and shown`)
-                        observerNewHeader.disconnect()
-                    })
-
-                    observerNewHeader.observe(document.querySelector(".auto_region.var_auto_loc"), options)
+                    e.target.setAttribute("data-test", "1")
+                  })
                 }
-            }
+                if (btnSend) {
+                  btnSend.addEventListener("click", (e) => {
+                    e.preventDefault()
+                    if (!e.target.getAttribute("data-test")) {
+                      if (!e.target.classList.contains("on_click")) {
+                        pushDataLayer("Sticky Compare Quoutes clicked")
+                      }
 
-            onClickControlVer()
+                      if (window.location.pathname === "/insurance/auto/how-much-car-insurance-do-you-need/") {
+                        document.querySelector("form.css-1lpx304 button[type='submit']").click()
+                      } else if (
+                        window.location.pathname === "/insurance/auto/temporary-and-month-to-month-car-insurance/" ||
+                        window.location.pathname === "/insurance/auto/non-owner-car-insurance-north-carolina/" ||
+                        window.location.pathname === "/insurance/auto/high-risk-car-insurance/" ||
+                        window.location.pathname === "/insurance/auto/cheapest-car-insurance-texas/" ||
+                        window.location.pathname === "/insurance/auto/cheapest-full-coverage-car-insurance/" ||
+                        window.location.pathname === "/insurance/auto/best-home-auto-bundle/" ||
+                        window.location.pathname === "/insurance/auto/cheapest-car-insurance-california/" ||
+                        window.location.pathname === "/insurance/auto/cheap-car-insurance-no-deposit/" ||
+                        window.location.pathname === "/insurance/auto/cheap-sr22-car-insurance/" ||
+                        window.location.pathname === "/insurance/auto/best-cheap-car-insurance-after-tickets-accidents/" ||
+                        window.location.pathname === "/insurance/auto/best-cheap-car-insurance-new-drivers/" ||
+                        window.location.pathname === "/insurance/auto/cheapest-liability-only-car-insurance/" ||
+                        window.location.pathname === "/insurance/auto/cheapest-car-insurance-quotes-companies/" ||
+                        window.location.pathname === "/insurance/auto/best-cheap-car-insurance-after-a-dui/" ||
+                        window.location.pathname === "/insurance/auto/best-cheapest-car-insurance-for-students/" ||
+                        window.location.pathname === "/insurance/auto/best-cheap-car-insurance-under-25-year-old/" ||
+                        window.location.pathname === "/insurance/auto/cheapest-car-insurance-florida/" ||
+                        window.location.pathname === "/insurance/auto/compare-quotes/" ||
+                        window.location.pathname === "/insurance/auto/best-cheap-car-insurance-for-18-year-olds/" ||
+                        window.location.pathname === "/insurance/auto/cheapest-car-insurance-pennsylvania/" ||
+                        window.location.pathname === "/insurance/auto/cheapest-car-insurance-georgia/" ||
+                        window.location.pathname === "/insurance/auto/best-cheap-car-insurance-houston-tx/" ||
+                        window.location.pathname === "/insurance/auto/chevrolet-corvette-insurance/" ||
+                        window.location.pathname === "/insurance/auto/best-cheap-car-insurance-for-19-year-olds/" ||
+                        window.location.pathname === "/insurance/auto/how-to-get-car-insurance-with-bad-credit/" ||
+                        window.location.pathname === "/insurance/auto/first-time-drivers-buyers-car-insurance/" ||
+                        window.location.pathname === "/insurance/auto/best-car-insurance-guide/" ||
+                        window.location.pathname === "/insurance/auto/best-cheap-car-insurance-for-21-year-olds/" ||
+                        window.location.pathname === "/insurance/auto/cheapest-car-insurance-ohio/" ||
+                        window.location.pathname === "/insurance/auto/best-cheap-car-insurance-miami-fl/" ||
+                        window.location.pathname === "/insurance/auto/best-cheap-car-insurance-atlanta-ga/" ||
+                        window.location.pathname === "/insurance/auto/best-cheap-car-insurance-tampa-fl/"
+                      ) {
+                        document.querySelector("form.css-8atqhb button[type='submit']").click()
+                      } else if (window.location.pathname === "/insurance/auto/resources/protecting-against-fraud/") {
+                        document.querySelector("form.css-6d9zwi button[type='submit']").click()
+                      } else if (
+                        window.location.pathname === "/insurance/auto/anonymous-car-insurance-quote-no-personal-information/" ||
+                        window.location.pathname === "/insurance/auto/car-insurance-estimate-calculator/"
+                      ) {
+                        document.querySelector("form.css-nbmzhw button[type='submit']").click()
+                      }
 
-            function onClickControlVer() {
-                if (document.querySelector(".auto_location_block")) {
-                    let autoLocBox = document.querySelector(".auto_location_block"),
-                        label = autoLocBox.querySelector("label"),
-                        input = autoLocBox.querySelector("input"),
-                        btnSend = autoLocBox.querySelector("button"),
-                        error = document.querySelectorAll(".zip_error")
-
-                    if (btnSend) {
-                        btnSend.addEventListener("click", (e) => {
-                            e.preventDefault()
-                            if (!e.target.getAttribute("data-test")) {
-                                if (!e.target.classList.contains("on_click")) {
-                                    pushDataLayer("AutoFilled ZIP Compare Quoutes clicked")
-                                }
-
-                                document.querySelector("form.css-8atqhb button.chakra-button").click()
-
-                                if (document.querySelector(".chakra-form__error-message") !== null) {
-                                    document.querySelectorAll(".auto_region").forEach(e => {
-                                        e.innerHTML = ""
-                                    })
-                                    document.querySelectorAll(".zip_error").forEach(er => {
-                                        er.classList.add("is_error")
-                                    })
-                                    label.classList.add("is_error")
-                                    document.querySelector(".sticky_banner label")?.classList.add("is_error")
-                                    pushDataLayer("AutoFilled ZIP filed error shown")
-                                } else {
-                                    document.querySelectorAll(".zip_error").forEach(er => {
-                                        er.classList.remove("is_error")
-                                    })
-                                    label.classList.remove("is_error")
-                                    document.querySelector(".sticky_banner label")?.classList.remove("is_error")
-                                    if (document.querySelector(".auto_region svg")) {
-                                        document.querySelectorAll(".auto_region").forEach(e => {
-                                            e.innerHTML = ""
-                                        })
-                                    }
-                                }
-                            }
-                            e.target.setAttribute("data-test", "1")
-
-                            setTimeout(() => {
-                                if (e.target.getAttribute("data-test")) {
-                                    e.target.removeAttribute("data-test")
-                                }
-                            }, 500)
+                      if (document.querySelector(".chakra-form__error-message.css-vamxt0") !== null) {
+                        error.forEach((er) => {
+                          er.classList.add("is_error")
                         })
-                    }
-
-                    if (input) {
-                        input.addEventListener("focus", (e) => {
-                            if (!e.target.getAttribute("data-test")) {
-                                pushDataLayer("AutoFilled ZIP field selected (focus)")
-                            }
-                            e.target.setAttribute("data-test", "1")
-
-                            setTimeout(() => {
-                                if (e.target.getAttribute("data-test")) {
-                                    e.target.removeAttribute("data-test")
-                                }
-                            }, 300)
-                        })
-
-                        input.addEventListener("input", (e) => {
-                            onInput(e, error, label)
-                        })
-
-                        input.addEventListener("keydown", (e) => {
-                            onKeyDown(e, btnSend)
-                        })
-                    }
-
-                    removeErrMainInput(input, error, label)
-                }
-            }
-
-        }
-
-        function fetchLocation() {
-            let arr = []
-            fetch("https://ipinfo.io/json?token=625d68b69a156c")
-                .then((response) => response.json())
-                .then((jsonResponse) => {
-                    console.log(jsonResponse)
-
-                    if (document.querySelectorAll("[name='zip']")[0]) {
-                        var nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set
-                        nativeInputValueSetter.call(document.querySelectorAll("[name='zip']")[0], jsonResponse.postal)
-                        var ev2 = new Event("input", { bubbles: true })
-                        document.querySelectorAll("[name='zip']")[0].dispatchEvent(ev2)
-
-                        if (document.querySelector(".auto_region.var_auto_loc")) {
-                            document.querySelector(".auto_region.var_auto_loc").textContent = jsonResponse.region
-                            arr.push({
-                                code: jsonResponse.postal,
-                                name: jsonResponse.region,
-                            })
-                            localStorage.setItem("auto_region", JSON.stringify(arr))
-                        }
-                    }
-
-                    let a = setInterval(() => {
-                        if (document.querySelector('.sticky_banner input')) {
-                            clearInterval(a)
-                            document.querySelector('.sticky_banner input').value = jsonResponse.postal
-                            document.querySelector(".auto_region.var_sticky").textContent = jsonResponse.region
-                            if (!localStorage.getItem("auto_region")) {
-                                arr.push({
-                                    code: jsonResponse.postal,
-                                    name: jsonResponse.region,
-                                })
-                                localStorage.setItem("auto_region", JSON.stringify(arr))
-                            }
-                        }
-                    }, 10)
-
-                })
-        }
-
-        function onInput(e, error, label) {
-            var nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set
-
-            nativeInputValueSetter.call(document.querySelectorAll('[name="zip"]')[0], e.target.value)
-
-            if (document.querySelector(".chakra-form__error-message.css-vamxt0")) {
-                error.forEach(er => {
-                    er.classList.remove("is_error")
-                })
-                label.classList.remove("is_error")
-            }
-            let ev2 = new Event("input", { bubbles: true })
-            document.querySelectorAll('[name="zip"]')[0].dispatchEvent(ev2)
-
-
-            document.querySelectorAll(".auto_region").forEach(i => {
-                i.innerHTML = `<svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9.5 1.59766C9.5 0.785156 8.8125 0.0976562 8 0.0976562C7.15625 0.0976562 6.5 0.785156 6.5 1.59766C6.5 2.44141 7.15625 3.09766 8 3.09766C8.8125 3.09766 9.5 2.44141 9.5 1.59766ZM8 13.0977C7.15625 13.0977 6.5 13.7852 6.5 14.5977C6.5 15.4414 7.15625 16.0977 8 16.0977C8.8125 16.0977 9.5 15.4414 9.5 14.5977C9.5 13.7852 8.8125 13.0977 8 13.0977ZM14.5 6.59766C13.6562 6.59766 13 7.28516 13 8.09766C13 8.94141 13.6562 9.59766 14.5 9.59766C15.3125 9.59766 16 8.94141 16 8.09766C16 7.28516 15.3125 6.59766 14.5 6.59766ZM3 8.09766C3 7.28516 2.3125 6.59766 1.5 6.59766C0.65625 6.59766 0 7.28516 0 8.09766C0 8.94141 0.65625 9.59766 1.5 9.59766C2.3125 9.59766 3 8.94141 3 8.09766ZM3.375 11.2227C2.5625 11.2227 1.875 11.8789 1.875 12.7227C1.875 13.5352 2.5625 14.2227 3.375 14.2227C4.21875 14.2227 4.875 13.5352 4.875 12.7227C4.875 11.8789 4.21875 11.2227 3.375 11.2227ZM12.5938 11.2227C11.75 11.2227 11.0938 11.8789 11.0938 12.7227C11.0938 13.5352 11.75 14.2227 12.5938 14.2227C13.4062 14.2227 14.0938 13.5352 14.0938 12.7227C14.0938 11.8789 13.4062 11.2227 12.5938 11.2227ZM3.375 2.00391C2.5625 2.00391 1.875 2.69141 1.875 3.50391C1.875 4.34766 2.5625 5.00391 3.375 5.00391C4.21875 5.00391 4.875 4.34766 4.875 3.50391C4.875 2.69141 4.21875 2.00391 3.375 2.00391Z" fill="#555555"/>
-                </svg>`
-            })
-
-            setTimeout(() => {
-                if (document.querySelector(".auto_region svg")) {
-                    document.querySelectorAll(".auto_region").forEach(i => {
-                        i.innerHTML = ""
-                    })
-                }
-            }, 700)
-
-            if (localStorage.getItem("auto_region")) {
-                temp = JSON.parse(localStorage.getItem("auto_region"))
-                temp.forEach((item) => {
-                    if (e.target.value === item.code) {
-                        document.querySelectorAll(".auto_region").forEach(e => {
-                            e.innerHTML = item.name
-                        })
-                    }
-                })
-            }
-        }
-
-        function onKeyDown(e, btnSend) {
-            if (e.keyCode === 13 || e.which === 13) {
-                e.preventDefault()
-                if (!e.target.getAttribute("data-test")) {
-                    pushDataLayer('Enter on input')
-                    btnSend.classList.add("on_click")
-                    btnSend.click()
-
-                    setTimeout(() => {
-                        if (btnSend.classList.contains("on_click")) {
-                            btnSend.classList.remove("on_click")
-                        }
-                    }, 1500)
-                }
-                e.target.setAttribute("data-test", "1")
-
-                setTimeout(() => {
-                    if (e.target.getAttribute("data-test")) {
-                        e.target.removeAttribute("data-test")
-                    }
-                }, 500)
-            }
-        }
-
-        function removeErrMainInput(input, error, label) {
-            if (document.querySelectorAll('[name="zip"]')[0]) {
-                document.querySelectorAll('[name="zip"]')[0].addEventListener("input", (e) => {
-                    input.value = e.target.value
-
-                    if (document.querySelector(".chakra-form__error-message.css-vamxt0")) {
-                        error.forEach(er => {
-                            er.classList.remove("is_error")
+                        label.classList.add("is_error")
+                        document.querySelector(".auto_location_block label")?.classList.add("is_error")
+                        pushDataLayer("Sticky filed error shown")
+                      } else {
+                        error.forEach((er) => {
+                          er.classList.remove("is_error")
                         })
                         label.classList.remove("is_error")
+                        document.querySelector(".auto_location_block label")?.classList.remove("is_error")
+                        if (document.querySelector(".auto_region svg")) {
+                          document.querySelectorAll(".auto_region").forEach((e) => {
+                            e.innerHTML = ""
+                          })
+                        }
+                      }
                     }
-                })
+                    e.target.setAttribute("data-test", "1")
+
+                    setTimeout(() => {
+                      if (e.target.getAttribute("data-test")) {
+                        e.target.removeAttribute("data-test")
+                      }
+                    }, 500)
+                  })
+                }
+
+                if (input) {
+                  input.addEventListener("focus", (e) => {
+                    if (!e.target.getAttribute("data-test")) {
+                      pushDataLayer("Sticky field selected (focus)")
+                    }
+                    e.target.setAttribute("data-test", "1")
+
+                    setTimeout(() => {
+                      if (e.target.getAttribute("data-test")) {
+                        e.target.removeAttribute("data-test")
+                      }
+                    }, 300)
+                  })
+
+                  input.addEventListener("input", (e) => {
+                    onInput(e, error, label)
+                  })
+
+                  input.addEventListener("keydown", (e) => {
+                    onKeyDown(e, btnSend)
+                  })
+                }
+
+                removeErrMainInput(input, error, label)
+              }
             }
+          } else {
+            if (window.innerWidth > 1110) {
+              document.querySelector("#social-section").style.display = "block"
+              document.querySelector(".social").style.display = "block"
+            }
+            document.querySelector(".sticky_banner").classList.remove("is_fixed")
+          }
         }
-
-        pushDataLayer("loaded")
-        const record = setInterval(() => {
-            if (typeof clarity === "function") {
-                clearInterval(record)
-
-                clarity("set", `sticky_autofilled_zip${eventVar}`, "variant_1")
-            }
-        }, 200)
+      }
     }
+
+    function onAutoFillLocation() {
+      document.querySelector("form.css-8atqhb").insertAdjacentHTML("afterbegin", autoLocationBlock)
+
+      if (document.querySelector(".auto_region.var_auto_loc")) {
+        if (document.querySelector(".auto_region.var_auto_loc") !== "") {
+          const options = {
+            root: null,
+            threshold: 1,
+          }
+
+          let observerNewHeader = new IntersectionObserver((entries) => {
+            if (!entries[0].isIntersecting) return
+            pushDataLayer(`State resolved from IP and shown`)
+            observerNewHeader.disconnect()
+          })
+
+          observerNewHeader.observe(document.querySelector(".auto_region.var_auto_loc"), options)
+        }
+      }
+
+      onClickControlVer()
+
+      function onClickControlVer() {
+        if (document.querySelector(".auto_location_block")) {
+          let autoLocBox = document.querySelector(".auto_location_block"),
+            label = autoLocBox.querySelector("label"),
+            input = autoLocBox.querySelector("input"),
+            btnSend = autoLocBox.querySelector("button"),
+            error = document.querySelectorAll(".zip_error")
+
+          if (btnSend) {
+            btnSend.addEventListener("click", (e) => {
+              e.preventDefault()
+              if (!e.target.getAttribute("data-test")) {
+                if (!e.target.classList.contains("on_click")) {
+                  pushDataLayer("AutoFilled ZIP Compare Quoutes clicked")
+                }
+
+                document.querySelector("form.css-8atqhb button.chakra-button").click()
+
+                if (document.querySelector(".chakra-form__error-message") !== null) {
+                  document.querySelectorAll(".auto_region").forEach((e) => {
+                    e.innerHTML = ""
+                  })
+                  document.querySelectorAll(".zip_error").forEach((er) => {
+                    er.classList.add("is_error")
+                  })
+                  label.classList.add("is_error")
+                  document.querySelector(".sticky_banner label")?.classList.add("is_error")
+                  pushDataLayer("AutoFilled ZIP filed error shown")
+                } else {
+                  document.querySelectorAll(".zip_error").forEach((er) => {
+                    er.classList.remove("is_error")
+                  })
+                  label.classList.remove("is_error")
+                  document.querySelector(".sticky_banner label")?.classList.remove("is_error")
+                  if (document.querySelector(".auto_region svg")) {
+                    document.querySelectorAll(".auto_region").forEach((e) => {
+                      e.innerHTML = ""
+                    })
+                  }
+                }
+              }
+              e.target.setAttribute("data-test", "1")
+
+              setTimeout(() => {
+                if (e.target.getAttribute("data-test")) {
+                  e.target.removeAttribute("data-test")
+                }
+              }, 500)
+            })
+          }
+
+          if (input) {
+            input.addEventListener("focus", (e) => {
+              if (!e.target.getAttribute("data-test")) {
+                pushDataLayer("AutoFilled ZIP field selected (focus)")
+              }
+              e.target.setAttribute("data-test", "1")
+
+              setTimeout(() => {
+                if (e.target.getAttribute("data-test")) {
+                  e.target.removeAttribute("data-test")
+                }
+              }, 300)
+            })
+
+            input.addEventListener("input", (e) => {
+              onInput(e, error, label)
+            })
+
+            input.addEventListener("keydown", (e) => {
+              onKeyDown(e, btnSend)
+            })
+          }
+
+          removeErrMainInput(input, error, label)
+        }
+      }
+    }
+
+    function fetchLocation() {
+      let arr = []
+      fetch("https://ipinfo.io/json?token=625d68b69a156c")
+        .then((response) => response.json())
+        .then((jsonResponse) => {
+          console.log(jsonResponse)
+
+          if (document.querySelectorAll("[name='zip']")[0]) {
+            var nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set
+            nativeInputValueSetter.call(document.querySelectorAll("[name='zip']")[0], jsonResponse.postal)
+            var ev2 = new Event("input", { bubbles: true })
+            document.querySelectorAll("[name='zip']")[0].dispatchEvent(ev2)
+
+            if (document.querySelector(".auto_region.var_auto_loc")) {
+              document.querySelector(".auto_region.var_auto_loc").textContent = jsonResponse.region
+              arr.push({
+                code: jsonResponse.postal,
+                name: jsonResponse.region,
+              })
+              localStorage.setItem("auto_region", JSON.stringify(arr))
+            }
+          }
+
+          let a = setInterval(() => {
+            if (document.querySelector(".sticky_banner input")) {
+              clearInterval(a)
+              document.querySelector(".sticky_banner input").value = jsonResponse.postal
+              document.querySelector(".auto_region.var_sticky").textContent = jsonResponse.region
+              if (!localStorage.getItem("auto_region")) {
+                arr.push({
+                  code: jsonResponse.postal,
+                  name: jsonResponse.region,
+                })
+                localStorage.setItem("auto_region", JSON.stringify(arr))
+              }
+            }
+          }, 10)
+        })
+    }
+
+    function onInput(e, error, label) {
+      var nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set
+
+      nativeInputValueSetter.call(document.querySelectorAll('[name="zip"]')[0], e.target.value)
+
+      if (document.querySelector(".chakra-form__error-message.css-vamxt0")) {
+        error.forEach((er) => {
+          er.classList.remove("is_error")
+        })
+        label.classList.remove("is_error")
+      }
+      let ev2 = new Event("input", { bubbles: true })
+      document.querySelectorAll('[name="zip"]')[0].dispatchEvent(ev2)
+
+      document.querySelectorAll(".auto_region").forEach((i) => {
+        i.innerHTML = `<svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.5 1.59766C9.5 0.785156 8.8125 0.0976562 8 0.0976562C7.15625 0.0976562 6.5 0.785156 6.5 1.59766C6.5 2.44141 7.15625 3.09766 8 3.09766C8.8125 3.09766 9.5 2.44141 9.5 1.59766ZM8 13.0977C7.15625 13.0977 6.5 13.7852 6.5 14.5977C6.5 15.4414 7.15625 16.0977 8 16.0977C8.8125 16.0977 9.5 15.4414 9.5 14.5977C9.5 13.7852 8.8125 13.0977 8 13.0977ZM14.5 6.59766C13.6562 6.59766 13 7.28516 13 8.09766C13 8.94141 13.6562 9.59766 14.5 9.59766C15.3125 9.59766 16 8.94141 16 8.09766C16 7.28516 15.3125 6.59766 14.5 6.59766ZM3 8.09766C3 7.28516 2.3125 6.59766 1.5 6.59766C0.65625 6.59766 0 7.28516 0 8.09766C0 8.94141 0.65625 9.59766 1.5 9.59766C2.3125 9.59766 3 8.94141 3 8.09766ZM3.375 11.2227C2.5625 11.2227 1.875 11.8789 1.875 12.7227C1.875 13.5352 2.5625 14.2227 3.375 14.2227C4.21875 14.2227 4.875 13.5352 4.875 12.7227C4.875 11.8789 4.21875 11.2227 3.375 11.2227ZM12.5938 11.2227C11.75 11.2227 11.0938 11.8789 11.0938 12.7227C11.0938 13.5352 11.75 14.2227 12.5938 14.2227C13.4062 14.2227 14.0938 13.5352 14.0938 12.7227C14.0938 11.8789 13.4062 11.2227 12.5938 11.2227ZM3.375 2.00391C2.5625 2.00391 1.875 2.69141 1.875 3.50391C1.875 4.34766 2.5625 5.00391 3.375 5.00391C4.21875 5.00391 4.875 4.34766 4.875 3.50391C4.875 2.69141 4.21875 2.00391 3.375 2.00391Z" fill="#555555"/>
+                </svg>`
+      })
+
+      setTimeout(() => {
+        if (document.querySelector(".auto_region svg")) {
+          document.querySelectorAll(".auto_region").forEach((i) => {
+            i.innerHTML = ""
+          })
+        }
+      }, 700)
+
+      if (localStorage.getItem("auto_region")) {
+        temp = JSON.parse(localStorage.getItem("auto_region"))
+        temp.forEach((item) => {
+          if (e.target.value === item.code) {
+            document.querySelectorAll(".auto_region").forEach((e) => {
+              e.innerHTML = item.name
+            })
+          }
+        })
+      }
+    }
+
+    function onKeyDown(e, btnSend) {
+      if (e.keyCode === 13 || e.which === 13) {
+        e.preventDefault()
+        if (!e.target.getAttribute("data-test")) {
+          pushDataLayer("Enter on input")
+          btnSend.classList.add("on_click")
+          btnSend.click()
+
+          setTimeout(() => {
+            if (btnSend.classList.contains("on_click")) {
+              btnSend.classList.remove("on_click")
+            }
+          }, 1500)
+        }
+        e.target.setAttribute("data-test", "1")
+
+        setTimeout(() => {
+          if (e.target.getAttribute("data-test")) {
+            e.target.removeAttribute("data-test")
+          }
+        }, 500)
+      }
+    }
+
+    function removeErrMainInput(input, error, label) {
+      if (document.querySelectorAll('[name="zip"]')[0]) {
+        document.querySelectorAll('[name="zip"]')[0].addEventListener("input", (e) => {
+          input.value = e.target.value
+
+          if (document.querySelector(".chakra-form__error-message.css-vamxt0")) {
+            error.forEach((er) => {
+              er.classList.remove("is_error")
+            })
+            label.classList.remove("is_error")
+          }
+        })
+      }
+    }
+
+    pushDataLayer("loaded")
+    const record = setInterval(() => {
+      if (typeof clarity === "function") {
+        clearInterval(record)
+
+        clarity("set", `sticky_autofilled_zip${eventVar}`, "variant_1")
+      }
+    }, 200)
+  }
 }, 100)
