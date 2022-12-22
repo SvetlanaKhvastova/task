@@ -16,7 +16,7 @@ let stickyBanner = setInterval(() => {
         console.log(actionDataLayer + " : " + labelDataLayer)
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: Sticky AutoFilled ZIP ${eventVar}`,
+          eventCategory: `Exp: Sticky AutoFilled ZIP Variant C ${eventVar}`,
           eventAction: `${actionDataLayer}`,
           eventLabel: `${labelDataLayer}`,
         })
@@ -24,7 +24,7 @@ let stickyBanner = setInterval(() => {
         console.log(actionDataLayer)
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: Sticky AutoFilled ZIP ${eventVar}`,
+          eventCategory: `Exp: Sticky AutoFilled ZIP Variant C ${eventVar}`,
           eventAction: `${actionDataLayer}`,
         })
       }
@@ -273,6 +273,10 @@ form.css-8atqhb .chakra-form__error-message {
   .auto_location_block label {
     padding: 8px 12px;
   }
+  .sticky_banner input,
+  .auto_location_block input{
+    max-width: 200px;
+  }
 }
       </style>
       `
@@ -388,7 +392,6 @@ form.css-8atqhb .chakra-form__error-message {
         if (window.innerWidth <= 1110) {
           positionVar = 60
         }
-
         if (document.querySelector(".sticky_banner")) {
           if (
             (document.querySelector(".css-2s6hek")?.getBoundingClientRect().bottom <= positionVar &&
@@ -468,7 +471,49 @@ form.css-8atqhb .chakra-form__error-message {
                         window.location.pathname === "/insurance/auto/cheapest-car-insurance-ohio/" ||
                         window.location.pathname === "/insurance/auto/best-cheap-car-insurance-miami-fl/" ||
                         window.location.pathname === "/insurance/auto/best-cheap-car-insurance-atlanta-ga/" ||
-                        window.location.pathname === "/insurance/auto/best-cheap-car-insurance-tampa-fl/"
+                        window.location.pathname === "/insurance/auto/best-cheap-car-insurance-tampa-fl/" ||
+                        window.location.pathname === "/insurance/homeowners/best-condo-insurance/" ||
+                        window.location.pathname === "/insurance/homeowners/best-cheap-homeowners-insurance-miami-fl/" ||
+                        window.location.pathname === "/insurance/homeowners/what-is-dwelling-coverage/" ||
+                        window.location.pathname === "/insurance/homeowners/high-risk/" ||
+                        window.location.pathname === "/insurance/homeowners/best-cheap-homeowners-insurance-tampa-fl/" ||
+                        window.location.pathname === "/insurance/homeowners/cost-cheap-homeowners-insurance-oklahoma/" ||
+                        window.location.pathname === "/insurance/homeowners/cheap-homeowners-insurance/" ||
+                        window.location.pathname === "/insurance/homeowners/best-homeowners-insurance/" ||
+                        window.location.pathname === "/insurance/homeowners/best-cheap-homeowners-insurance-orlando-fl/" ||
+                        window.location.pathname === "/insurance/homeowners/best-cheap-homeowners-insurance-pensacola/" ||
+                        window.location.pathname === "/insurance/homeowners/getting-home-insurance-with-bad-credit/" ||
+                        window.location.pathname === "/insurance/homeowners/best-cheap-homeowners-insurance-fort-myers/" ||
+                        window.location.pathname === "/insurance/homeowners/best-homeowners-insurance-california/" ||
+                        window.location.pathname === "/insurance/homeowners/best-homeowners-insurance-mississippi/" ||
+                        window.location.pathname === "/insurance/homeowners/best-homeowners-insurance-new-jersey/" ||
+                        window.location.pathname === "/insurance/homeowners/cost-cheap-homeowners-insurance-pennsylvania/" ||
+                        window.location.pathname === "/insurance/homeowners/reviews/allstate/" ||
+                        window.location.pathname === "/insurance/renters/cheap-renters-insurance-coverage/" ||
+                        window.location.pathname === "/insurance/renters/best-cheap-renters-insurance-in-alabama/" ||
+                        window.location.pathname === "/insurance/renters/pet-liability-renters-coverage/" ||
+                        window.location.pathname === "/insurance/renters/best-cheap-renters-insurance-in-dallas-tx/" ||
+                        window.location.pathname === "/insurance/renters/best-cheap-renters-insurance-in-seattle-wa/" ||
+                        window.location.pathname === "/insurance/renters/mobile-home-renters-insurance/" ||
+                        window.location.pathname === "/insurance/renters/best-cheap-renters-insurance-in-austin-tx/" ||
+                        window.location.pathname === "/insurance/renters/average-cost-of-renters-insurance/" ||
+                        window.location.pathname === "/insurance/renters/best-cheap-renters-insurance-in-michigan/" ||
+                        window.location.pathname === "/insurance/renters/best-cheap-renters-insurance-in-colorado/" ||
+                        window.location.pathname === "/insurance/renters/best-cheap-renters-insurance-in-san-diego-ca/" ||
+                        window.location.pathname === "/insurance/renters/best-cheap-renters-insurance-in-philadelphia-pa/" ||
+                        window.location.pathname === "/insurance/renters/best-cheap-renters-insurance-in-georgia/" ||
+                        window.location.pathname === "/insurance/auto/best-car-insurance-florida/" ||
+                        window.location.pathname === "/insurance/auto/non-owner-car-insurance/" ||
+                        window.location.pathname === "/insurance/auto/non-owner-sr22-car-insurance/" ||
+                        window.location.pathname === "/insurance/auto/honda-cr-v-insurance/" ||
+                        window.location.pathname === "/insurance/auto/best-cheap-car-insurance-los-angeles-ca/" ||
+                        window.location.pathname === "/insurance/auto/how-to-get-car-insurance-for-low-income/" ||
+                        window.location.pathname === "/insurance/auto/how-to-switch-car-insurance-companies/" ||
+                        window.location.pathname === "/insurance/auto/best-cheap-car-insurance-for-17-year-olds/" ||
+                        window.location.pathname === "/insurance/auto/cheapest-car-insurance-new-jersey/" ||
+                        window.location.pathname === "/insurance/auto/state-laws-minimum-requirements-florida/" ||
+                        window.location.pathname === "/insurance/auto/best-cheap-car-insurance-for-16-year-olds/" ||
+                        window.location.pathname === "/insurance/auto/cheapest-car-insurance-new-york/"
                       ) {
                         document.querySelector("form.css-8atqhb button[type='submit']").click()
                       } else if (window.location.pathname === "/insurance/auto/resources/protecting-against-fraud/") {
@@ -478,6 +523,11 @@ form.css-8atqhb .chakra-form__error-message {
                         window.location.pathname === "/insurance/auto/car-insurance-estimate-calculator/"
                       ) {
                         document.querySelector("form.css-nbmzhw button[type='submit']").click()
+                      } else if (
+                        window.location.pathname === "/insurance/homeowners/reviews/travelers/" ||
+                        window.location.pathname === "/insurance/homeowners/reviews/progressive/"
+                      ) {
+                        document.querySelector("form.css-1azpkau button[type='submit']").click()
                       }
 
                       if (document.querySelector(".chakra-form__error-message.css-vamxt0") !== null) {
@@ -636,6 +686,7 @@ form.css-8atqhb .chakra-form__error-message {
 
             input.addEventListener("input", (e) => {
               onInput(e, error, label)
+              document.querySelector(".sticky_banner input").value = e.target.value
             })
 
             input.addEventListener("keydown", (e) => {
@@ -674,6 +725,7 @@ form.css-8atqhb .chakra-form__error-message {
           let a = setInterval(() => {
             if (document.querySelector(".sticky_banner input")) {
               clearInterval(a)
+              console.log(`sticky_banner HELLO`)
               document.querySelector(".sticky_banner input").value = jsonResponse.postal
               document.querySelector(".auto_region.var_sticky").textContent = jsonResponse.region
               if (!localStorage.getItem("auto_region")) {
@@ -772,7 +824,7 @@ form.css-8atqhb .chakra-form__error-message {
       if (typeof clarity === "function") {
         clearInterval(record)
 
-        clarity("set", `sticky_autofilled_zip${eventVar}`, "variant_1")
+        clarity("set", `sticky_autofilled_zip_variant_c${eventVar}`, "variant_1")
       }
     }, 200)
   }
