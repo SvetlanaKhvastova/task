@@ -55,7 +55,7 @@ let startFunk = setInterval(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 4px 8px;
+  padding: 5px 12px;
   margin-bottom: 16px;
   cursor: pointer;
 }
@@ -68,6 +68,12 @@ let startFunk = setInterval(() => {
   display: inline;
   letter-spacing: normal;
   margin: 0;
+}
+
+.donation_amount_flex svg.svg_popup{
+  width: 100%;
+  height: 16px;
+  max-width: 16px;
 }
 
 .text_absol {
@@ -160,6 +166,7 @@ ul.background_wrap>li p {
 
 ul.background_wrap>li p.title_list {
   font-size: 16px;
+  max-width: 270px;
 }
 
 .already_donat_list {
@@ -450,7 +457,7 @@ ul.main_popup_list .already_donat_list li+li {
 }
 
 .steps:after {
-  content: "30 Nov";
+  content: "31 Dec";
   right: 9px;
   position: absolute;
   bottom: -5px;
@@ -518,25 +525,29 @@ ul.main_popup_list .already_donat_list li+li {
   align-items: center;
   justify-content: center;
   list-style: none;
-  gap: 90px;
+  gap: 58px;
   max-width: 988px;
 }
 
 .baner_help>ul li {
-  width: 50%;
   margin: 0;
+}
+
+.baner_help>ul li:nth-child(2){
+  width: 60%;
 }
 
 .baner_help>ul li[data-tolltip] {
   display: flex;
   align-items: center;
   max-width: fit-content;
+  width: 33%;
 }
 
 .baner_help>ul li[data-tolltip] h2 {
-  margin: 0 2px 0 0;
+  margin: 0;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 22px;
   line-height: 30px;
   text-transform: uppercase;
   color: #3F3F3F;
@@ -604,7 +615,7 @@ ul.main_popup_list .already_donat_list li+li {
 
 @media (min-width: 1060px) {
   .tippy-tooltip {
-    left: 15px !important;
+    left: 10px !important;
   }
   .tippy-tooltip[data-placement^=bottom]>.tippy-arrow {
     left: unset !important;
@@ -615,6 +626,8 @@ ul.main_popup_list .already_donat_list li+li {
 @media (max-width: 887px) {
   .baner_help>ul li[data-tolltip] h2{
     font-size: 19px;
+    text-align: center;
+    max-width: 278px;
   }
   .donation_amount_flex p{
     font-size: 9px;
@@ -630,7 +643,7 @@ ul.main_popup_list .already_donat_list li+li {
     gap: 16px;
   }
   .baner_help>ul li{
-    width: 100%;
+    width: 100% !important;
   }
   .baner_help>ul li[data-tolltip] h2 {
     font-size: 18px;
@@ -798,7 +811,7 @@ ul.main_popup_list>li p {
 
     let donationAmount = /*html */ `
     <div class="donation_amount_flex">
-        <p>Your purchase will help raise money for <span class="text_absol">Ukraine</span></p>
+        <p>Your purchase will help to support the Ukrainian resistance this <span class="text_absol">winter</span></p>
         <svg class="svg_popup" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M7.99984 1.33332C4.33317 1.33332 1.33317 4.33332 1.33317 7.99999C1.33317 11.6667 4.33317 14.6667 7.99984 14.6667C11.6665 14.6667 14.6665 11.6667 14.6665 7.99999C14.6665 4.33332 11.6665 1.33332 7.99984 1.33332Z" stroke="#3F3F3F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M8 10.6667L8 7.33332" stroke="#3F3F3F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -837,19 +850,20 @@ ul.main_popup_list>li p {
     let banerHelp = /*html */ `
       <div class="baner_help">
         <ul>
-          <li data-tolltip data-title="Our goal is to fundraise $1 million by Nov 30th to buy winter clothing and generators for 3,000 Ukrainian soldiers">
-            <h2 >Ukraine needs your help</h2>
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M11.9165 8.25002L10.0832 8.25002L10.0832 6.41669L11.9165 6.41669L11.9165 8.25002ZM11.9165 15.5834L10.0832 15.5834L10.0832 10.0834L11.9165 10.0834L11.9165 15.5834ZM11.009 20.1667C16.069 20.1667 20.1665 16.06 20.1665 11C20.1665 5.94002 16.069 1.83335 11.009 1.83335C5.93984 1.83335 1.83317 5.94002 1.83317 11C1.83317 16.06 5.93984 20.1667 11.009 20.1667ZM10.9998 3.66669C15.0515 3.66669 18.3332 6.94835 18.3332 11C18.3332 15.0517 15.0515 18.3334 10.9998 18.3334C6.94817 18.3334 3.6665 15.0517 3.6665 11C3.66651 6.94835 6.94817 3.66669 10.9998 3.66669Z"
-                fill="#3F3F3F" />
-            </svg>
+          <li data-tolltip data-title="Our goal is to fundraise $1 million by Dec 31st to buy winter clothing and generators for 3,000 Ukrainian soldiers">
+            <h2 >Shop to help Ukraine keep warm this winter
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M11.9165 8.25002L10.0832 8.25002L10.0832 6.41669L11.9165 6.41669L11.9165 8.25002ZM11.9165 15.5834L10.0832 15.5834L10.0832 10.0834L11.9165 10.0834L11.9165 15.5834ZM11.009 20.1667C16.069 20.1667 20.1665 16.06 20.1665 11C20.1665 5.94002 16.069 1.83335 11.009 1.83335C5.93984 1.83335 1.83317 5.94002 1.83317 11C1.83317 16.06 5.93984 20.1667 11.009 20.1667ZM10.9998 3.66669C15.0515 3.66669 18.3332 6.94835 18.3332 11C18.3332 15.0517 15.0515 18.3334 10.9998 18.3334C6.94817 18.3334 3.6665 15.0517 3.6665 11C3.66651 6.94835 6.94817 3.66669 10.9998 3.66669Z"
+                  fill="#3F3F3F" />
+              </svg>
+            </h2>
           </li>
           <li>
-            <div class="range_bar_wrap is_hidden">
+            <div class="range_bar_wrap">
               <div class="range-wrapper">
                     <div class="range-line">
-                      <div class="range-donated" style="width:0%">
+                      <div class="range-donated" style="width:87%">
                           <span class="total-raised"></span>
                       </div>
                     </div>
@@ -883,11 +897,10 @@ ul.main_popup_list>li p {
       <div class="content_popup">
           <img src="${imgFolderUrl}ukrainian_flag.png" alt="ukrainian flag" />
           <h2>All profits go towards helping Ukraine resist the invasion</h2>
-          <p>Our new campaign aims to fundraise $1 million by Nov 30th to buy winter clothing and generators for 3,000 Ukrainian soldiers</p>
+          <p>Our new campaign aims to fundraise $1 million by Dec 31st to buy winter clothing and generators for 3,000 Ukrainian soldiers</p>
           <div>
             <p class="goal_text">
-              Fundraising goal by the end of November 2022: <br />
-              <strong>$1 million</strong>
+            Fundraising goal by the end of December 2022: <strong>$1 million</strong>
             </p>
           </div>
           <div class="bar"></div>
@@ -932,26 +945,39 @@ ul.main_popup_list>li p {
       overlay = document.querySelector(".backdrop_modal")
 
 
-    let obs = new IntersectionObserver(visibility, {
-      threshold: 0
+    // let obs = new IntersectionObserver(visibility, {
+    //   threshold: 0
+    // })
+
+    // document.querySelectorAll("[name='add'].btn--tertiary.btn--full").forEach(el => {
+    //   obs.observe(el)
+    // })
+
+    // function visibility(entries) {
+    //   entries.forEach(i => {
+    //     if (i.isIntersecting) {
+    //       console.log(`>>>>>>>>>TARGEt`, i.target)
+    //       if (i.target.classList.contains("btn--full")) {
+    //         if (!document.querySelector("[name='add'].btn--tertiary.btn--full span").textContent.includes("Sold")) {
+    //           console.log(`>>>>>>>>>>>>>>>>btn--full`)
+    //           priceBlock.insertAdjacentHTML("afterend", donationAmount)
+    //         }
+    //       }
+
+    //       obs.unobserve(i.target)
+    //     }
+    //   })
+    // }
+
+    document.querySelectorAll("[name='add'].btn--tertiary.btn--full").forEach(el => {
+      if (!el.querySelector("span").textContent.includes("Sold")) {
+        console.log(`>>>>>>>>>>>>>>>>btn--full`)
+        if (!document.querySelector('[data-product-blocks] .donation_amount_flex')) {
+          priceBlock.insertAdjacentHTML("afterend", donationAmount)
+        }
+      }
     })
 
-    obs.observe(document.querySelector("[name='add'].btn--tertiary.btn--full"))
-
-    function visibility(entries) {
-      entries.forEach(i => {
-        if (i.isIntersecting) {
-          console.log(i.target)
-          if (i.target.classList.contains("btn--full")) {
-            if (!document.querySelector("[name='add'].btn--tertiary.btn--full span").textContent.includes("Sold")) {
-              priceBlock.insertAdjacentHTML("afterend", donationAmount)
-            }
-          }
-
-          obs.unobserve(i.target)
-        }
-      })
-    }
 
 
     if (innerWidth <= 768) {
