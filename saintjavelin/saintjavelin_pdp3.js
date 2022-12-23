@@ -33,7 +33,7 @@ let startFunk = setInterval(() => {
         console.log(actionDataLayer + " : " + labelDataLayer)
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp — New design pdp' ${eventVar}`,
+          eventCategory: `Exp — pdp_emphasize_ukr_help ${eventVar}`,
           eventAction: `${actionDataLayer}`,
           eventLabel: `${labelDataLayer}`,
         })
@@ -41,7 +41,7 @@ let startFunk = setInterval(() => {
         console.log(actionDataLayer)
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp — New design pdp' ${eventVar}`,
+          eventCategory: `Exp — pdp_emphasize_ukr_help ${eventVar}`,
           eventAction: `${actionDataLayer}`,
         })
       }
@@ -57,6 +57,7 @@ let startFunk = setInterval(() => {
   justify-content: space-between;
   padding: 5px 12px;
   margin-bottom: 16px;
+  margin-top: -20px;
   cursor: pointer;
 }
 
@@ -326,6 +327,7 @@ ul.main_popup_list .already_donat_list li+li {
   line-height: 24px;
   color: #3f3f3f;
   margin: 0;
+  max-width: 330px;
 }
 
 .content_popup .text_absol::after {
@@ -383,7 +385,7 @@ ul.main_popup_list .already_donat_list li+li {
   right: 111px;
   top: 1px;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 18px;
   color: #3f3f3f;
 }
@@ -553,6 +555,11 @@ ul.main_popup_list .already_donat_list li+li {
   color: #3F3F3F;
 }
 
+.baner_help>ul li[data-tolltip] h2 > svg{
+  display: inline-block;
+    margin-bottom: -4px;
+}
+
 .tippy-tooltip {
   font-weight: 400;
   font-size: 14px;
@@ -613,28 +620,63 @@ ul.main_popup_list .already_donat_list li+li {
   }
 }
 
-@media (min-width: 1060px) {
+@media (min-width: 1179px) {
   .tippy-tooltip {
     left: 10px !important;
   }
+}
+
+@media only screen and ( min-width: 1160px ) and ( max-width: 1178px ) {
+  .tippy-tooltip {
+    left: 10px !important;
+  }
+}
+@media only screen and ( min-width: 1155px ) and ( max-width: 1160px ) {
+  .tippy-tooltip {
+    left: 3px !important;
+  }
+}
+
+@media (min-width: 1130px) {
   .tippy-tooltip[data-placement^=bottom]>.tippy-arrow {
-    left: unset !important;
     right: 15px !important;
+    left: unset !important;
+  }
+}
+
+@media only screen and ( min-width: 1100px ) and ( max-width: 1155px ) {
+  .tippy-tooltip[data-placement^=bottom]>.tippy-arrow {
+    right: 110px !important;
+    left: unset !important;
+  }
+  .tippy-tooltip {
+    left: 2px !important;
+  }
+}
+
+@media ( max-width: 1006px ) {
+  .baner_help>ul li[data-tolltip] h2{
+    font-size: 20px;
   }
 }
 
 @media (max-width: 887px) {
   .baner_help>ul li[data-tolltip] h2{
-    font-size: 19px;
-    text-align: center;
-    max-width: 278px;
+    font-size: 21px;
   }
+}
+}
+
+@media (max-width: 887px) {
   .donation_amount_flex p{
     font-size: 9px;
   }
 }
 
 @media (max-width: 768px) {
+  .content_popup>p{
+    max-width: 300px;
+  }
   .baner_help{
         padding: 16px 24px;
   }
@@ -647,10 +689,13 @@ ul.main_popup_list .already_donat_list li+li {
   }
   .baner_help>ul li[data-tolltip] h2 {
     font-size: 18px;
+    text-align: center;
+    max-width: 278px;
 }
-.baner_help>ul li[data-tolltip] svg{
+.baner_help>ul li[data-tolltip] h2 > svg{
   width: 18px;
     height: 18px;
+    margin-bottom: -3px;
 }
 .total-raised::before {
       right: 111px;
@@ -665,6 +710,9 @@ width: 16px;
 
   .donation_amount_flex{
     padding: 5px 12px 7px;
+    margin-left: -5px;
+    margin-right: -5px;
+    margin-top: -20px;
   }
   .donation_amount_flex p {
     font-size: 14px;
@@ -727,7 +775,7 @@ width: 16px;
           top: 5px !important;
 }
 .tippy-tooltip[data-placement^=bottom]>.tippy-arrow{
-      left: 291px !important;
+      left: 282px !important;
 }
 .tippy-content {
     padding: 16px;
@@ -739,12 +787,12 @@ width: 16px;
   .backdrop_modal .container_popup {
     max-width: 341px;
 }
+.donation_amount_flex p{
+  font-size: 11px;
+}
 }
 
 @media (max-width: 320px) {
-.baner_help>ul li[data-tolltip] h2 {
-    font-size: 16px;
-}
 .donation_inform h3{
       font-size: 18px;
 }
@@ -770,7 +818,7 @@ ul.main_popup_list>li p{
     font-size: 13px;
 }
 .tippy-tooltip[data-placement^=bottom]>.tippy-arrow {
-    left: 260px !important;
+    left: 267px !important;
 }
 }
 
@@ -779,7 +827,7 @@ ul.main_popup_list>li p{
     font-size: 13px;
 }
 .donation_amount_flex p {
-    font-size: 11px;
+    font-size: 9px;
 }
 .donation_inform h3 {
     font-size: 16px;
@@ -803,8 +851,11 @@ ul.main_popup_list>li p {
     font-size: 11px;
 }
 .tippy-tooltip[data-placement^=bottom]>.tippy-arrow {
-    left: 219px !important;
+    left: 192px !important;
 }
+}
+.range-wrapper > .steps.is_hidden{
+display: none;
 }
     </style>
       `
@@ -825,13 +876,13 @@ ul.main_popup_list>li p {
       <div>
         <h3>All our profits go towards helping <span class="text_absol">Ukraine</span></h3>
         <ul class="background_wrap">
-          <li>
+          <li data-visability="1">
             <div class="img_wrap">
               <img src="${imgFolderUrl}sj.png" alt="saintjavelin" />
             </div>
-            <p class="title_list">So far we've raised <strong>over $1 million</strong> in support of <span>Ukraine</span></p>
+            <p class="title_list">So far we've raised <strong>over $1 million</strong> in support of <span class="text_absol">Ukraine</span></p>
           </li>
-          <li>
+          <li data-visability="2">
             <div class="img_wrap">
               <img src="${imgFolderUrl}ua.png" alt="Ukrainian flag" />
             </div>
@@ -867,7 +918,7 @@ ul.main_popup_list>li p {
                           <span class="total-raised"></span>
                       </div>
                     </div>
-                    <div class="steps flex justify-between items-end"></div>
+                    <div class="steps flex justify-between items-end is_hidden"></div>
                     <p class="sum"></p>
               </div>
             </div>
@@ -991,7 +1042,7 @@ ul.main_popup_list>li p {
       if (document.querySelector(".donation_amount_flex")) {
         clearInterval(findBlock)
         document.querySelector(".donation_amount_flex")?.addEventListener("click", () => {
-          pushDataLayer("Сlick on donate to support Ukraine")
+          pushDataLayer("Сlick on block 'Your purchase will help to support the Ukrainian resistance this winter'")
           onOpenPopup(contentpopup)
           let clonedNodeBar = document.querySelector(".range_bar_wrap").cloneNode(true)
 
@@ -1040,29 +1091,66 @@ ul.main_popup_list>li p {
             document.querySelector(".backdrop_modal .content_popup .by_it_now_btn")?.addEventListener("click", (e) => {
               if (!e.target.getAttribute("data-test")) {
                 e.preventDefault()
-                pushDataLayer("Сlick on Buy it now button", "Pop up All profits go towards helping Ukraine resist the invasion")
+                pushDataLayer("Сlick on btn 'BUY NOW TO DONATE'", "Pop up All profits go towards helping Ukraine resist the invasion")
                 if (document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden")) {
                   if (!document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden").getAttribute("disabled")) {
+                    document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden").classList.add("on_click")
                     document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden").click()
+
+                    setTimeout(() => {
+                      if (document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden").classList.contains("on_click")) {
+                        document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden").classList.remove("on_click")
+                      }
+                    }, 1000)
                     onClosePopup()
                   } else {
                     if (document.querySelector(".error_block").classList.contains("is_hidden")) {
                       document.querySelector(".error_block").classList.remove("is_hidden")
+                      pushDataLayer('Shown text error')
                     }
                   }
                 } else if (!document.querySelector("[name='add'].btn--tertiary.btn--full.bold_hidden")) {
                   if (!document.querySelector("[name='add'].btn--tertiary.btn--full").getAttribute("disabled")) {
+                    document.querySelector("[name='add'].btn--tertiary.btn--full").classList.add("on_click")
                     document.querySelector("[name='add'].btn--tertiary.btn--full").click()
+
+                    setTimeout(() => {
+                      if (document.querySelector("[name='add'].btn--tertiary.btn--full").classList.contains("on_click")) {
+                        document.querySelector("[name='add'].btn--tertiary.btn--full").classList.remove("on_click")
+                      }
+                    }, 1000)
                     onClosePopup()
                   } else {
                     if (document.querySelector(".error_block").classList.contains("is_hidden")) {
                       document.querySelector(".error_block").classList.remove("is_hidden")
+                      pushDataLayer('Shown text error')
                     }
                   }
                 }
               }
               e.target.setAttribute("data-test", "1")
             })
+
+            let obs1 = new IntersectionObserver(visibility, {
+              threshold: 1
+            })
+
+            if (document.querySelector('.main_popup_list')) {
+              obs1.observe(document.querySelector('.main_popup_list'))
+            }
+
+
+            function visibility(entries) {
+              entries.forEach(i => {
+                if (i.isIntersecting) {
+                  if (i.target.classList.contains('main_popup_list')) {
+                    pushDataLayer('Visibility gray block after btn "BUY NOW TO DONATE"')
+                  }
+
+                  obs1.unobserve(i.target)
+                }
+              })
+            }
           }
           if (innerWidth <= 768) {
             if (document.querySelector(".content_popup p.goal_text br")) {
@@ -1103,6 +1191,7 @@ ul.main_popup_list>li p {
         }
 
         document.querySelector(".over_click")?.addEventListener("click", () => {
+          pushDataLayer("Сlick on btn 'Make a selection'")
           document.querySelector(".product-block").scrollIntoView({ block: "start", behavior: "smooth" })
         })
       } else if (
@@ -1115,6 +1204,7 @@ ul.main_popup_list>li p {
         }
 
         document.querySelector(".over_click")?.addEventListener("click", () => {
+          pushDataLayer("Сlick on btn 'Make a selection'")
           document.querySelector(".product-block").scrollIntoView({ block: "start", behavior: "smooth" })
         })
       }
@@ -1122,22 +1212,16 @@ ul.main_popup_list>li p {
 
     // click on btn close popup
     document.querySelector(".backdrop_modal .container_popup > svg")?.addEventListener("click", (e) => {
-      if (e.currentTarget.nextElementSibling.classList.contains("size_guide")) {
-        pushDataLayer("Сlick on close", "Pop up Size guide")
-      } else {
-        pushDataLayer("Сlick on btn close", "Pop up All profits go towards helping Ukraine resist the invasion")
-      }
+      pushDataLayer("Сlick on btn close", "Pop up All profits go towards helping Ukraine resist the invasion")
+
       onClosePopup()
     })
 
     // click on overlay popup
     overlay.addEventListener("click", (e) => {
       if (e.target.matches(".backdrop_modal")) {
-        if (e.target.querySelector(".size_guide")) {
-          pushDataLayer("Сlick on overlay close", "Pop up Size guide")
-        } else {
-          pushDataLayer("Сlick on overlay close", "Pop up All profits go towards helping Ukraine resist the invasion")
-        }
+        pushDataLayer("Сlick on overlay close", "Pop up All profits go towards helping Ukraine resist the invasion")
+
         onClosePopup()
       }
     })
@@ -1183,10 +1267,10 @@ ul.main_popup_list>li p {
               onTrigger(inst, e) {
                 e.stopPropagation()
                 e.preventDefault()
-                pushDataLayer(`Clicks on hints ''`)
+                pushDataLayer(`Clicks on hints block baner "Shop to help Ukraine keep warm this winter"`)
               },
               onShown(e) {
-                pushDataLayer(`Shown ''`)
+                pushDataLayer(`Shown 'Our goal is to fundraise $1 million by Dec 31st to buy winter clothing and generators for 3,000 Ukrainian soldiers'`)
               },
             })
           } else {
@@ -1198,10 +1282,10 @@ ul.main_popup_list>li p {
                 return el.parentElement
               },
               onTrigger(e) {
-                pushDataLayer(`Hover on hints ''`)
+                pushDataLayer(`Hover on hints block baner "Shop to help Ukraine keep warm this winter"`)
               },
               onShown(e) {
-                pushDataLayer(`Shown ''`)
+                pushDataLayer(`Shown 'Our goal is to fundraise $1 million by Dec 31st to buy winter clothing and generators for 3,000 Ukrainian soldiers'`)
               },
             })
           }
@@ -1210,8 +1294,8 @@ ul.main_popup_list>li p {
     }, 500)
 
     fetchBar()
-    function fetchBar() {
-      fetch("https://conversionrate.top/api/saint-javelin/total-donorbox", {
+    async function fetchBar() {
+      await fetch("https://conversionrate.top/api/saint-javelin/total-donorbox", {
         headers: {
           "Content-Type": "application/json",
         },
@@ -1219,14 +1303,14 @@ ul.main_popup_list>li p {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data)
-
-          // add on page
-          // document.body.insertAdjacentHTML("afterbegin", style)
-          // document.body.insertAdjacentHTML("afterbegin", progressBarHTML)
+          // console.log(data)
           if (document.querySelector(".range_bar_wrap").classList.contains("is_hidden")) {
             document.querySelector(".range_bar_wrap").classList.remove("is_hidden")
           }
+          if (document.querySelector(".range-wrapper > .steps").classList.contains("is_hidden")) {
+            document.querySelector(".range-wrapper > .steps").classList.remove("is_hidden")
+          }
+          pushDataLayer('Get information progressBar')
 
           let donated = +data[0]["total_raised"],
             sum = +data[0]["goal_amt"],
@@ -1281,7 +1365,147 @@ ul.main_popup_list>li p {
         })
     }
 
+
+    let obs = new IntersectionObserver(visibility, {
+      threshold: 1
+    })
+
+    obs.observe(document.querySelector('.baner_help'))
+
+    if (document.querySelector('.donation_amount_flex')) {
+      obs.observe(document.querySelector('.donation_amount_flex'))
+    }
+    obs.observe(document.querySelector('.donation_inform  ul.background_wrap>li:nth-child(1)'))
+    obs.observe(document.querySelector('.donation_inform ul.background_wrap>li:nth-child(2)'))
+
+    if (document.querySelector('.main_popup_list')) {
+      obs.observe(document.querySelector('.main_popup_list'))
+    }
+
+
+    function visibility(entries) {
+      entries.forEach(i => {
+        if (i.isIntersecting) {
+          if (i.target.classList.contains('baner_help')) {
+            pushDataLayer('Visibility block baner `Shop to help Ukraine keep warm this winter`')
+          }
+          if (i.target.classList.contains('donation_amount_flex')) {
+            pushDataLayer('Visibility block `Your purchase will help to support the Ukrainian resistance this winter`')
+          }
+          if (i.target.getAttribute('data-visability') === "1") {
+            pushDataLayer('Visibility main block `So far we...`')
+          }
+          if (i.target.getAttribute('data-visability') === "2") {
+            pushDataLayer('Visibility main block `We already donated:`')
+          }
+          if (i.target.classList.contains('main_popup_list')) {
+            pushDataLayer('Visibility gray block after btn "BUY NOW TO DONATE"')
+          }
+
+          obs.unobserve(i.target)
+        }
+      })
+    }
+
+
+    // observer
+    let observer = new MutationObserver(() => {
+      if (document) {
+        observer.disconnect()
+        document.querySelector('form [data-testid="Checkout-button"')?.addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            if (!e.target.classList.contains("on_click")) {
+              pushDataLayer("Сlick on Buy it now button")
+            }
+          }
+          e.target.setAttribute("data-test", "1")
+
+
+          setTimeout(() => {
+            if (e.target.getAttribute('data-test')) {
+              e.target.removeAttribute('data-test');
+            }
+          }, 500);
+        })
+
+        document.querySelector(".shopify-payment-button__more-options[data-testid='sheet-open-button']")?.addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            if (!e.target.classList.contains("on_click")) {
+              pushDataLayer("Сlick on More payment options")
+            }
+          }
+          e.target.setAttribute("data-test", "1")
+
+
+          setTimeout(() => {
+            if (e.target.getAttribute('data-test')) {
+              e.target.removeAttribute('data-test');
+            }
+          }, 500);
+        })
+        document.querySelector('[data-testid="ShopifyPay-button"]')?.addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            if (!e.target.classList.contains("on_click")) {
+              pushDataLayer("Сlick on Buy now with ShopPay")
+            }
+          }
+          e.target.setAttribute("data-test", "1")
+        })
+        document.querySelector("[data-testid='ApplePay-button']")?.addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            if (!e.target.classList.contains("on_click")) {
+              pushDataLayer("Сlick on ApplePay")
+            }
+          }
+          e.target.setAttribute("data-test", "1")
+
+          setTimeout(() => {
+            if (e.target.getAttribute('data-test')) {
+              e.target.removeAttribute('data-test');
+            }
+          }, 500);
+        })
+        document.querySelector("[data-testid='GooglePay-button']")?.addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            pushDataLayer("Сlick on GooglePay")
+          }
+          e.target.setAttribute("data-test", "1")
+
+          setTimeout(() => {
+            if (e.target.getAttribute('data-test')) {
+              e.target.removeAttribute('data-test');
+            }
+          }, 500);
+        })
+
+        document.querySelector("[data-button_style=shadow] .btn--tertiary.btn--full")?.addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            if (!e.target.classList.contains("on_click")) {
+              pushDataLayer("Сlick on Add to cart button")
+            }
+          }
+          e.target.setAttribute("data-test", "1")
+
+          setTimeout(() => {
+            if (e.target.getAttribute('data-test')) {
+              e.target.removeAttribute('data-test');
+            }
+          }, 500);
+        })
+      }
+
+      observer.observe(document, {
+        childList: true,
+        subtree: true,
+      })
+    })
+
+    observer.observe(document, {
+      childList: true,
+      subtree: true,
+    })
+
     pushDataLayer("loaded")
-    clarity("set", "new_design_pdp", "variant_1")
+    clarity("set", "pdp_emphasize_ukr_help", "variant_1")
   }
 }, 100)
