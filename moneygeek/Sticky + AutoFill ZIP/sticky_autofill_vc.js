@@ -273,10 +273,6 @@ form.css-8atqhb .chakra-form__error-message {
   .auto_location_block label {
     padding: 8px 12px;
   }
-  .sticky_banner input,
-  .auto_location_block input{
-    max-width: 200px;
-  }
 }
       </style>
       `
@@ -316,6 +312,7 @@ form.css-8atqhb .chakra-form__error-message {
       `
 
     let autoLocationBlock = /*html */ `
+    <div></div>
 <div class="auto_location_block">
     <p>Your Zip Code</p>
     <label>
@@ -705,30 +702,15 @@ form.css-8atqhb .chakra-form__error-message {
         .then((response) => response.json())
         .then((jsonResponse) => {
           console.log(jsonResponse)
+          if (jsonResponse.postal) {
+            if (document.querySelectorAll("[name='zip']")[0]) {
+              var nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set
+              nativeInputValueSetter.call(document.querySelectorAll("[name='zip']")[0], jsonResponse.postal)
+              var ev2 = new Event("input", { bubbles: true })
+              document.querySelectorAll("[name='zip']")[0].dispatchEvent(ev2)
 
-          if (document.querySelectorAll("[name='zip']")[0]) {
-            var nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set
-            nativeInputValueSetter.call(document.querySelectorAll("[name='zip']")[0], jsonResponse.postal)
-            var ev2 = new Event("input", { bubbles: true })
-            document.querySelectorAll("[name='zip']")[0].dispatchEvent(ev2)
-
-            if (document.querySelector(".auto_region.var_auto_loc")) {
-              document.querySelector(".auto_region.var_auto_loc").textContent = jsonResponse.region
-              arr.push({
-                code: jsonResponse.postal,
-                name: jsonResponse.region,
-              })
-              localStorage.setItem("auto_region", JSON.stringify(arr))
-            }
-          }
-
-          let a = setInterval(() => {
-            if (document.querySelector(".sticky_banner input")) {
-              clearInterval(a)
-              console.log(`sticky_banner HELLO`)
-              document.querySelector(".sticky_banner input").value = jsonResponse.postal
-              document.querySelector(".auto_region.var_sticky").textContent = jsonResponse.region
-              if (!localStorage.getItem("auto_region")) {
+              if (document.querySelector(".auto_region.var_auto_loc")) {
+                document.querySelector(".auto_region.var_auto_loc").textContent = jsonResponse.region
                 arr.push({
                   code: jsonResponse.postal,
                   name: jsonResponse.region,
@@ -736,7 +718,24 @@ form.css-8atqhb .chakra-form__error-message {
                 localStorage.setItem("auto_region", JSON.stringify(arr))
               }
             }
-          }, 10)
+
+            let a = setInterval(() => {
+              if (document.querySelector(".sticky_banner input")) {
+                clearInterval(a)
+                console.log(`sticky_banner HELLO`)
+                document.querySelector(".sticky_banner input").value = jsonResponse.postal
+                document.querySelector(".auto_region.var_sticky").textContent = jsonResponse.region
+                if (!localStorage.getItem("auto_region")) {
+                  arr.push({
+                    code: jsonResponse.postal,
+                    name: jsonResponse.region,
+                  })
+                  localStorage.setItem("auto_region", JSON.stringify(arr))
+                }
+              }
+            }, 10)
+          }
+
         })
     }
 
@@ -828,4 +827,4 @@ form.css-8atqhb .chakra-form__error-message {
       }
     }, 200)
   }
-}, 100)
+}, 700)
