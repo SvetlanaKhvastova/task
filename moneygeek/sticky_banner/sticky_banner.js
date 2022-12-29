@@ -33,6 +33,9 @@ let stickyBanner = setInterval(() => {
         .css-15hxzhe{
           z-index: 1;
         }
+        header{
+          z-index: 10 !important;
+        }
         .sticky_banner{
             background: #FFFFFF;
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.26);
@@ -205,7 +208,7 @@ let stickyBanner = setInterval(() => {
     if (!sessionStorage.getItem("sticky_banner")) {
       if (document.querySelector("#sub-navigation")) {
         let s = setInterval(() => {
-          if (document.querySelector('#social-section')) {
+          if (document.querySelector("#social-section")) {
             clearInterval(s)
             setTimeout(() => {
               if (window.innerWidth <= 1110) {
@@ -248,9 +251,12 @@ let stickyBanner = setInterval(() => {
 
       if (document.querySelector(".sticky_banner")) {
         if (
-          document.querySelector(".css-2s6hek")?.getBoundingClientRect().bottom <= positionVar && window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/" ||
-          document.querySelector(".css-1ih2ha8")?.getBoundingClientRect().bottom <= positionVar && window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/" ||
-          window.location.pathname === "/insurance/auto/car-insurance-estimate-calculator/" && document.querySelector(".css-1ngo9xx")?.getBoundingClientRect().bottom <= positionVar
+          (document.querySelector(".css-2s6hek")?.getBoundingClientRect().bottom <= positionVar &&
+            window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/") ||
+          (document.querySelector(".css-1ih2ha8")?.getBoundingClientRect().bottom <= positionVar &&
+            window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/") ||
+          (window.location.pathname === "/insurance/auto/car-insurance-estimate-calculator/" &&
+            document.querySelector(".css-1ngo9xx")?.getBoundingClientRect().bottom <= positionVar)
         ) {
           if (!document.querySelector(".sticky_banner").classList.contains("is_fixed")) {
             document.querySelector(".sticky_banner").classList.add("is_fixed")
@@ -298,7 +304,6 @@ let stickyBanner = setInterval(() => {
                       window.location.pathname === "/insurance/auto/cheapest-full-coverage-car-insurance/" ||
                       window.location.pathname === "/insurance/auto/best-home-auto-bundle/" ||
                       window.location.pathname === "/insurance/auto/cheapest-car-insurance-california/" ||
-
                       window.location.pathname === "/insurance/auto/cheap-car-insurance-no-deposit/" ||
                       window.location.pathname === "/insurance/auto/cheap-sr22-car-insurance/" ||
                       window.location.pathname === "/insurance/auto/best-cheap-car-insurance-after-tickets-accidents/" ||
@@ -328,8 +333,10 @@ let stickyBanner = setInterval(() => {
                       document.querySelector("form.css-8atqhb button").click()
                     } else if (window.location.pathname === "/insurance/auto/resources/protecting-against-fraud/") {
                       document.querySelector("form.css-6d9zwi button").click()
-                    } else if (window.location.pathname === "/insurance/auto/anonymous-car-insurance-quote-no-personal-information/" ||
-                      window.location.pathname === "/insurance/auto/car-insurance-estimate-calculator/") {
+                    } else if (
+                      window.location.pathname === "/insurance/auto/anonymous-car-insurance-quote-no-personal-information/" ||
+                      window.location.pathname === "/insurance/auto/car-insurance-estimate-calculator/"
+                    ) {
                       document.querySelector("form.css-nbmzhw button").click()
                     }
 
@@ -351,7 +358,6 @@ let stickyBanner = setInterval(() => {
                   }, 500)
                 })
               }
-
 
               if (input) {
                 input.addEventListener("focus", (e) => {
@@ -380,11 +386,11 @@ let stickyBanner = setInterval(() => {
                   document.querySelector('[name="zip"]').dispatchEvent(ev2)
                 })
 
-                document.querySelector('.sticky_banner input').addEventListener("keydown", (e) => {
+                document.querySelector(".sticky_banner input").addEventListener("keydown", (e) => {
                   if (e.keyCode === 13 || e.which === 13) {
                     e.preventDefault()
                     if (!e.target.getAttribute("data-test")) {
-                      pushDataLayer('Enter on input')
+                      pushDataLayer("Enter on input")
                       btnSend.classList.add("on_click")
                       btnSend.click()
 
