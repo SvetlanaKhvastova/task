@@ -74,3 +74,15 @@ let scriptCustom = document.createElement("script")
 scriptCustom.src = "https://github.com/Flopsi69/crs/tree/main/comparamais/editUser/index2.js"
 scriptCustom.async = false
 document.head.appendChild(scriptCustom)
+
+// 
+document.head.insertAdjacentHTML("beforeend", `<style class="exp">body {opacity: 0 !important;}</style>`)
+
+let scriptCustom = document.createElement("script")
+scriptCustom.src = "https://conversionratestore.github.io/projects/buzzpatch/sleepypatch_free_shipping.js"
+scriptCustom.async = false
+document.head.appendChild(scriptCustom)
+
+setTimeout(function () {
+  document.querySelector(".exp")?.remove()
+}, 500)
