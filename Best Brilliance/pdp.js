@@ -498,6 +498,29 @@ let startFunk = setInterval(() => {
             .affirm-as-low-as{
                 display: none;
             }
+            /*certified_popup */
+            .certified_popup{
+                display: flex;
+                justify-content: center;
+            }
+            .certified_popup h2{
+                font-weight: 500;
+                font-size: 24px;
+                line-height: 31px;
+                text-align: center;
+                color: #242424;
+                margin: 0 auto 16px;
+                max-width: 258px;
+            }
+            .certified_popup h3{
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 20px;
+                text-align: center;
+                color: #313131;
+                margin: 0 auto 28px;
+                width: 248px;
+            }
 
             @media (max-width: 768px) {
                 .Product__Wrapper #btn_try_on,
@@ -806,22 +829,22 @@ let startFunk = setInterval(() => {
                     <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/support-bestbrilliance/15min?hide_landing_page_details=1&hide_gdpr_banner=1&text_color=242424&primary_color=492e6b'});return false;">Book personal appointment with expert</button>
                 </div>
             </div>
-            <div class="other_questions_block">
-                <h3>Other Questions?</h3>
-                <p>We are here <b>24/7</b> to answer question you may have.</p>
-                <ul>
-                    <li>
-                    <div class="img_wrap">
-                        <img src="${dir}tel.svg" alt="tel">
-                    </div>
-                    <a href="tel:+18669784466">+1 (866) 978-4466</a>
-                    </li>
-                    <li>
+                <div class="other_questions_block">
+                    <h3>Other Questions?</h3>
+                    <p>We are here <b>24/7</b> to answer question you may have.</p>
+                    <ul>
+                        <li>
                         <div class="img_wrap">
-                            <img src="${dir}chat.svg" alt="chat">
+                            <img src="${dir}tel.svg" alt="tel">
                         </div>
-                        <a class="new_btn_chat" href="#">Live chat 24/7</a>
-                    </li>
+                        <a href="tel:+18669784466">+1 (866) 978-4466</a>
+                        </li>
+                        <li>
+                            <div class="img_wrap">
+                                <img src="${dir}chat.svg" alt="chat">
+                            </div>
+                            <a class="new_btn_chat" href="#">Live chat 24/7</a>
+                        </li>
                     </ul>
                 </div>
             </section>
@@ -865,8 +888,50 @@ let startFunk = setInterval(() => {
             </div>
         </div>
     `
+    let popUp = /*html */ `
+        <div class="overlay_popup is_hidden">
+            <div class="container_popup">
+                <svg width="16" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7.29305 7.99981L-0.000976562 15.293L0.706088 16.0001L8.0002 8.70688L15.2943 16.0001L16.0014 15.293L8.70735 7.99981L16.0013 0.706783L15.2942 -0.000366211L8.0002 7.29275L0.706199 -0.000366195L-0.000865313 0.706783L7.29305 7.99981Z" fill="#111111"/>
+                </svg>
+            </div>
+        </div>
+    `
+
+    let contentPopup = /*html */ `
+            <div class="certified_popup">
+                <div>
+                    <h2>This item comes with a certificate</h2>
+                    <div class="img_wrap">
+                        <img width=350 src="${dir}certified_popup.jpg" alt="certified" />
+                    </div>
+                </div>
+                <div>
+                    <h3>To review a copy of the certificate, please contact us</h3>
+                    <ul>
+                    <li>
+                        <div class="img_wrap">
+                            <img src="${dir}tel.svg" alt="tel" />
+                        </div>
+                        <span>24/7 Customer service </span>
+                        <a href="tel:+18669784466">+1 (866) 978-4466</a>
+                    </li>
+                    <li>
+                        <div class="img_wrap">
+                            <img src="${dir}chat.svg" alt="chat" />
+                        </div>
+                        <span>Chat with a diamond expert</span>
+                        <a class="new_btn_chat" href="#">Contact us</a>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+      `
 
     document.head.insertAdjacentHTML("beforeend", styles)
+    // document.body.insertAdjacentHTML("afterbegin", popUp)
+    // document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup)
+
     document.querySelector("#section-text-with-image-product")?.insertAdjacentHTML("beforebegin", newBlock)
 
     document.querySelector(".Product__InfoWrapper form .ProductForm__Variants")?.after(document.querySelector(".ProductMeta__PriceList.Heading"))
