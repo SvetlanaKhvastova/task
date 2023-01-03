@@ -25,6 +25,9 @@ let startFunk = setInterval(() => {
                 transform: translateX(-50%);
                 top: -50px;
             }
+            .video_img.mob_var{
+                display: none;
+            }
             .video_img img{
                 width: 40px;
             }
@@ -33,6 +36,7 @@ let startFunk = setInterval(() => {
             }
             .full_descr_block .img_wrap{
                 max-width: 600px;
+                position: relative;
             }
             .inform_wrap{
                 margin-left: 80px;
@@ -82,7 +86,7 @@ let startFunk = setInterval(() => {
             }
             .answer_questions_block ul li{
                 display: flex;
-                align-items: center;
+                align-items: flex-start;
                 justify-content: flex-start;
                 font-weight: 400;
                 font-size: 14px;
@@ -416,8 +420,8 @@ let startFunk = setInterval(() => {
                 opacity: 1;
                 font-weight: 500;
                 font-size: 12px;
-                line-height: 20px;
                 color: #313131;
+                width: min-content;
             }
             .ProductMeta .cb_swatch_block.active{
                 border: 2px solid #313131 !important;
@@ -425,6 +429,7 @@ let startFunk = setInterval(() => {
                 height: 50px;
                 text-align: center;
                 position: relative;
+                line-height: 20px;
             }
             .ProductMeta .cb_swatch_block.active::before{
                 position: absolute;
@@ -461,9 +466,31 @@ let startFunk = setInterval(() => {
             }
             .ProductMeta .cb_variant_swatchers_container{
                 gap: 8px;
+                margin-top: 40px;
             }
             .ProductMeta .cb_variant_swatchers_container a {
                 flex: unset;
+            }
+            .ProductMeta .cb_variant_swatchers_container a > p{
+                position: absolute;
+                width: max-content;
+                left: 50%;
+                transform: translateX(-50%);
+                top: -20px;
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 14px;
+                text-transform: capitalize;
+                color: #666666;
+                opacity: 0;
+                cursor: initial;
+                transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+            }
+            .ProductMeta .cb_swatch_block.active + p{
+                opacity: 1;
+            }
+            .ProductMeta .cb_variant_swatchers_container a:hover > p{
+                opacity: 1;
             }
             .pdp-description,
             .sale-msg-box-light,
@@ -542,6 +569,9 @@ let startFunk = setInterval(() => {
                     background: #313131;
                     border-radius: 9px;
                 }
+                .ProductMeta .cb_variant_swatchers_container{
+                    gap: 5px;
+                }
                 /*new_btn_try_on */
                 button.new_btn_try_on{
                     background: #C3D3FF !important;
@@ -550,13 +580,21 @@ let startFunk = setInterval(() => {
                 .descr_box{
                     padding: 18px;
                 }
-                .video_img {
+                .video_img{
+                    display: none;
+                }
+                .video_img.mob_var {
                     width: 48px;
                     height: 48px;
-                    top: 184px;
+                    bottom: -24px;
+                    top: unset;
+                    display: none;
                 }
-                .video_img img {
+                .video_img.mob_var img {
                     width: 26px;
+                }
+                .video_img.mob_var{
+                    display: flex;
                 }
                 .full_descr_block{
                     flex-direction: column;
@@ -655,6 +693,89 @@ let startFunk = setInterval(() => {
                     padding: 12px 18px;
                 }
             }
+            @media (max-width: 360px) {
+                .ProductMeta__Title.Heading.u-h2{
+                    font-size: 17px;
+                }
+                .present_descr_wrap > p span{
+                    font-size: 10px;
+                }
+                .other_questions_block ul li a{
+                    font-size: 16px;
+                }
+                .answer_questions_block ul li{
+                    font-size: 13px;
+                }
+            }
+            @media (max-width: 320px) {
+                .ProductMeta__Title.Heading.u-h2{
+                    font-size: 14px;
+                }
+                .present_descr_wrap > p span{
+                    font-size: 8px;
+                }
+                .other_questions_block ul li a{
+                    font-size: 13px;
+                }
+                .answer_questions_block ul li{
+                    font-size: 11px;
+                }
+                .answer_questions_block > p:last-child{
+                    font-size: 12px;
+                }
+                .answer_questions_block > p:first-child{
+                    left: 16px;
+                    font-size: 14px;
+                    padding: 0 5px;
+                }
+                .select_free_ring_sizer a{
+                    font-size: 12px;
+                }
+                .select_free_ring_sizer p{
+                    font-size: 12px;
+                }
+                .inform_wrap button{
+                    font-size: 11px;
+                }
+            }
+            @media (max-width: 280px) {
+                .video-btns button{
+                    font-size: 10px;
+                }
+                .ProductMeta__Title.Heading.u-h2 {
+                    font-size: 13px;
+                }
+                .ProductMeta__Vendor.Heading.u-h5{
+                    font-size: 11px;
+                }
+                .select_free_ring_sizer a {
+                    font-size: 10px;
+                }
+                .select_free_ring_sizer p {
+                    font-size: 11px;
+                }
+                .present_descr_wrap > p span {
+                    font-size: 6px;
+                }
+                .present_absolute p{
+                    font-size: 10px;
+                }
+                .inform_wrap > p{
+                    font-size: 11px;
+                }
+                .answer_questions_block > p:last-child {
+                    font-size: 10px;
+                }
+                .other_questions_block ul li a {
+                    font-size: 11px;
+                }
+                .other_questions_block > p{
+                    font-size: 11px;
+                }
+                .answer_questions_block ul li {
+                    font-size: 9px;
+                }
+            }
         </style>
         `
     let newBlock = /*html */ `
@@ -663,6 +784,7 @@ let startFunk = setInterval(() => {
             <div class="full_descr_block">
                 <div class="img_wrap">
                     <img src="${dir}details_img.jpg" alt="laptop">
+                    <div class="video_img mob_var"><img src="${dir}video_camera.png" alt="video icon"></div>
                 </div>
                 <div class="inform_wrap">
                     <h2>Find the perfect ring with Personal Online Jeweler</h2>
@@ -770,7 +892,14 @@ let startFunk = setInterval(() => {
       )
 
     document.querySelectorAll(".cb_swatch_block div").forEach((i) => {
-      i.textContent = i.textContent.split(" ")[0]
+      let s = i.textContent.split(" ")
+      if (s[0] === "Platinum") {
+        i.textContent = "Pt"
+        i.closest("a").insertAdjacentHTML("beforeend", `<p class="new_color_text">${s[0]}</p>`)
+      } else {
+        i.textContent = s[0]
+        i.closest("a").insertAdjacentHTML("beforeend", `<p class="new_color_text">${s[1]}</p>`)
+      }
     })
 
     if (window.innerWidth < 768) {
