@@ -6,6 +6,16 @@ let startFunk = setInterval(() => {
     scriptCustomSlider.src = "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"
     scriptCustomSlider.async = false
     document.head.appendChild(scriptCustomSlider)
+    //
+    let scriptCustomTimer = document.createElement("script")
+    scriptCustomTimer.src = "https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.0/flipclock.min.js"
+    scriptCustomTimer.async = false
+    document.head.appendChild(scriptCustomTimer)
+
+    let scriptCustomTimerStyle = document.createElement("link")
+    scriptCustomTimerStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.0/flipclock.css"
+    scriptCustomTimerStyle.rel = "stylesheet"
+    document.head.appendChild(scriptCustomTimerStyle)
 
     let dir = "https://conversionratestore.github.io/projects/secretfoodtours/img/"
 
@@ -103,7 +113,7 @@ let startFunk = setInterval(() => {
         font-size: 20px;
         line-height: 20px;
         color: #212529;
-        margin: 30px 0 12px;
+        margin: 48px 0 12px;
     }
     .voucher_block{
         position: relative;
@@ -111,7 +121,7 @@ let startFunk = setInterval(() => {
         align-items: center;
         justify-content: center;
         border: 3px dashed #EBEBE7;
-        padding: 15px;
+        height: 50px;
     }
     .voucher_block span{
         font-family: 'Josefin Sans', sans-serif;
@@ -127,7 +137,7 @@ let startFunk = setInterval(() => {
     }
     .voucher_block span.copied{
         position: absolute;
-        top: 39px;
+        top: 0;
         left: 118px;
         font-weight: 500;
         font-size: 9px;
@@ -159,7 +169,120 @@ let startFunk = setInterval(() => {
     .img_wrap{
         max-width: 500px;
     }
-
+    .mob_var{
+        display: none;
+    }
+    /* */
+    .info_block .flip-clock-wrapper{
+        margin: 0 auto;
+        max-width: 212px;
+    }
+    .info_block .flip-clock-wrapper ul{
+        box-shadow: unset;
+        width: 32px;
+        height: 48px;
+        line-height: 30px;
+        border-radius: unset;
+        background: #EBEBE7;
+        margin: 1px;
+    }
+    .info_block .flip-clock-divider{
+        width: 20px;
+        height: 48px;
+        margin: 1px 0;
+    }
+    .info_block .flip-clock-divider .flip-clock-label{
+        top: unset;
+        bottom: -1.5em;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 14px;
+        color: #859F94;
+    }
+    .info_block .flip-clock-dot{
+        background: #212529;
+        box-shadow: unset;
+        width: 5px;
+        height: 5px;
+        left: 8px;
+    }
+    .info_block .flip-clock-wrapper ul li a div div.inn{
+        color: #212529;
+        text-shadow: unset;
+        text-align: center;
+        background-color: #EBEBE7;
+        border-radius: unset;
+        font-size: 30px;
+        line-height: 55px;
+    }
+    .info_block .flip-clock-wrapper ul li a div.down{
+        border-radius: unset !important;
+    }
+    .info_block .flip-clock-divider.minutes .flip-clock-dot{
+        display: none;
+    }
+    .info_block .flip-clock-divider.seconds .flip-clock-label{
+        right: -62px;
+    }
+    .info_block .flip-clock-divider.minutes .flip-clock-label {
+        right: -59px;
+    }
+    .info_block .flip-clock-wrapper ul.play li.flip-clock-before .down .shadow{
+        background: unset;
+    }
+    @media (max-width: 768px) {
+        .overlay_popup .container_popup{
+            max-width: 335px;
+            margin: 25% auto;
+        }
+        .content_popup{
+            flex-direction: column-reverse;
+        }
+        .content_popup > div {
+            width: 100%;
+        }
+        .overlay_popup .container_popup > .btn_close{
+            top: 16px;
+            right: 16px;
+            width: 36px;
+            height: 36px;
+        }
+        .overlay_popup .container_popup > .btn_close svg{
+            width: 15px;
+            height: 15px;
+        }
+        .info_block {
+            padding: 20px 20px 24px;
+            text-align: center;
+        }
+        .info_block > h2{
+            margin: 0 auto 24px;
+            max-width: 250px;
+            font-size: 20px;
+            line-height: 28px;
+        }
+        .info_block > h3{
+            font-size: 18px;
+            line-height: 18px;
+            margin: 42px 0 14px;
+        }
+        .info_block > button{
+            margin: 24px 0 12px;
+            font-size: 14px;
+            line-height: 14px;
+        }
+        .info_block > p{
+            margin: 0 auto;
+            max-width: 185px;
+            line-height: 20px;
+        }
+        .mob_var{
+            display: block;
+        }
+        .desk_var{
+            display: none;
+        }
+    }
 
     </style>
     `
@@ -181,7 +304,9 @@ let startFunk = setInterval(() => {
         <div class="content_popup">
             <div class="info_block">
                 <h2>Book now and get <b>10% off</b> your tickets</h2>
-                <div class="counter"></div>
+                <div class="countdown-wrapper">
+                    <div id="countdown" class="countdown"></div>
+                </div>
                 <h3>Apply discount code on checkout:</h3>
                 <div class="voucher_block">
                     <svg data-clipboard-text="BOOK10" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -193,11 +318,13 @@ let startFunk = setInterval(() => {
                 <p>The discount does not apply to private tours or bookings</p>
             </div>
             <div class="img_wrap">
-                <img src="${dir}popup_img.jpg" alt="woman">
+                <img class="desk_var" src="${dir}popup_img.jpg" alt="woman">
+                <img class="mob_var" src="${dir}popup_img_mob.jpg" alt="woman">
             </div>
         </div>
     `
 
+    document.head.insertAdjacentHTML("beforeend", `<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;700&display=swap" rel="stylesheet">`)
     document.head.insertAdjacentHTML("beforeend", popupStyle)
     document.body.insertAdjacentHTML("afterbegin", popUp)
     document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup)
@@ -269,6 +396,62 @@ let startFunk = setInterval(() => {
             containerPopup?.insertAdjacentHTML("beforeend", contentPopup)
           }
           if (document.querySelector(".overlay_popup .content_popup")) {
+            let clock = setInterval(() => {
+              if (typeof FlipClock === "function") {
+                clearInterval(clock)
+                let countdown, init_countdown, set_countdown
+
+                countdown = init_countdown = function () {
+                  countdown = new FlipClock($(".countdown"), {
+                    clockFace: "MinuteCounter",
+                    language: "en",
+                    autoStart: false,
+                    countdown: true,
+                    showSeconds: true,
+                    callbacks: {
+                      start: function () {
+                        return console.log("The clock has started!")
+                      },
+                      stop: function () {
+                        return console.log("The clock has stopped!")
+                      },
+                      interval: function () {
+                        let time
+                        time = this.factory.getTime().time
+                        if (time) {
+                          return console.log("Clock interval", time)
+                        }
+                      },
+                    },
+                  })
+                  return countdown
+                }
+
+                set_countdown = function (minutes, start) {
+                  let elapsed, end, left_secs, now, seconds
+                  if (countdown.running) {
+                    return
+                  }
+                  seconds = minutes * 60
+                  now = new Date()
+                  start = new Date(start)
+                  end = start.getTime() + seconds * 1000
+                  left_secs = Math.round((end - now.getTime()) / 1000)
+                  elapsed = false
+                  if (left_secs < 0) {
+                    left_secs *= -1
+                    elapsed = true
+                  }
+                  countdown.setTime(left_secs)
+                  return countdown.start()
+                }
+
+                init_countdown()
+
+                set_countdown(10, new Date())
+              }
+            }, 100)
+
             document.querySelector(".info_block > button")?.addEventListener("click", () => {
               onClosePopup()
             })
@@ -288,7 +471,7 @@ let startFunk = setInterval(() => {
         if (typeof ClipboardJS === "function") {
           clearInterval(a)
 
-          var clipboard = new ClipboardJS(".voucher_block svg")
+          let clipboard = new ClipboardJS(".voucher_block svg")
 
           clipboard.on("success", function (e) {
             console.info("Action:", e.action)
