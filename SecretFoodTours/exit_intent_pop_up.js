@@ -1,5 +1,5 @@
 let startFunk = setInterval(() => {
-  if (document) {
+  if (document.querySelector('.tour-intro')) {
     clearInterval(startFunk)
 
     let scriptCustomSlider = document.createElement("script")
@@ -57,7 +57,7 @@ let startFunk = setInterval(() => {
         display: flex;
         overflow-y: auto;
         z-index: 1000000000;
-        transition: all 0.3s ease;
+        transition: all 0.5s ease;
     }
     .overlay_popup.is_hidden{
         opacity: 0;
@@ -137,8 +137,8 @@ let startFunk = setInterval(() => {
     }
     .voucher_block span.copied{
         position: absolute;
-        top: 0;
-        left: 118px;
+        top: 15px;
+        left: 80px;
         font-weight: 500;
         font-size: 9px;
         line-height: 14px;
@@ -157,6 +157,8 @@ let startFunk = setInterval(() => {
         background: #144732;
         margin: 30px 0 24px;
         cursor: pointer;
+        outline: unset;
+        border: none;
     }
     .info_block > p{
         font-family: 'Josefin Sans', sans-serif;
@@ -230,13 +232,30 @@ let startFunk = setInterval(() => {
     .info_block .flip-clock-wrapper ul.play li.flip-clock-before .down .shadow{
         background: unset;
     }
+    @media only screen and ( min-width: 768px ) and ( max-width: 1000px ) {
+      .info_block{
+        padding: 20px;
+      }
+      .info_block > h2{
+        font-size: 24px;
+        margin: 0 auto 10px;
+        max-width: 385px;
+      }
+      .info_block > h3{
+        margin: 34px 0 12px;
+      }
+      .info_block > button{
+        margin: 15px 0 15px;
+      }
+    }
     @media (max-width: 768px) {
         .overlay_popup .container_popup{
             max-width: 335px;
-            margin: 25% auto;
+            margin: 30px auto auto;
         }
         .content_popup{
             flex-direction: column-reverse;
+            margin-bottom: 30px;
         }
         .content_popup > div {
             width: 100%;
@@ -249,7 +268,6 @@ let startFunk = setInterval(() => {
         }
         .overlay_popup .container_popup > .btn_close svg{
             width: 15px;
-            height: 15px;
         }
         .info_block {
             padding: 20px 20px 24px;
@@ -282,6 +300,35 @@ let startFunk = setInterval(() => {
         .desk_var{
             display: none;
         }
+        .voucher_block span.copied{
+          left: 20px;
+        }
+    }
+    @media (max-width: 320px) {
+      .overlay_popup .container_popup{
+        max-width: 299px;
+      }
+      .info_block > h3{
+        font-size: 16px;
+      }
+      .voucher_block span.copied{
+        left: 3px;
+      }
+    }
+    @media (max-width: 280px) {
+      .overlay_popup .container_popup{
+        max-width: 258px;
+      }
+      .info_block > h2{
+        font-size: 17px;
+      }
+      .info_block > h3{
+        font-size: 14px;
+      }
+      .voucher_block span.copied{
+        left: 16px;
+        top: 0;
+      }
     }
 
     </style>
@@ -377,18 +424,6 @@ let startFunk = setInterval(() => {
           document.addEventListener("scroll", scrollSpeed)
         }
 
-        // click on btn close popup
-        btnClose.addEventListener("click", (e) => {
-          onClosePopup()
-        })
-
-        // click on overlay popup
-        overlay.addEventListener("click", (e) => {
-          if (e.target.matches(".overlay_popup")) {
-            onClosePopup()
-          }
-        })
-
         function onOpenPopup() {
           overlay.classList.remove("is_hidden")
           document.body.style.overflow = "hidden"
@@ -410,19 +445,41 @@ let startFunk = setInterval(() => {
                     showSeconds: true,
                     callbacks: {
                       start: function () {
-                        return console.log("The clock has started!")
+                        // return console.log("The clock has started!")
                       },
                       stop: function () {
-                        return console.log("The clock has stopped!")
+                        pushDataLayer(`Time spent on Pop-up ${10 * 60 - this.factory.getTime().time}s`)
+                        // return console.log("The clock has stopped!")
                       },
                       interval: function () {
                         let time
                         time = this.factory.getTime().time
                         if (time) {
-                          return console.log("Clock interval", time)
+                          // return console.log("Clock interval", time)
                         }
                       },
                     },
+                  })
+                  // click on btn close popup
+                  btnClose.addEventListener("click", (e) => {
+                    countdown.stop()
+                    pushDataLayer("Сlick on btn close")
+                    onClosePopup()
+                  })
+
+                  // click on overlay popup
+                  overlay.addEventListener("click", (e) => {
+                    if (e.target.matches(".overlay_popup")) {
+                      countdown.stop()
+                      pushDataLayer("Сlick on overlay close")
+                      onClosePopup()
+                    }
+                  })
+
+                  document.querySelector(".info_block > button")?.addEventListener("click", () => {
+                    countdown.stop()
+                    pushDataLayer("Сlick on the Finish booking button")
+                    onClosePopup()
                   })
                   return countdown
                 }
@@ -442,6 +499,7 @@ let startFunk = setInterval(() => {
                     left_secs *= -1
                     elapsed = true
                   }
+
                   countdown.setTime(left_secs)
                   return countdown.start()
                 }
@@ -450,17 +508,14 @@ let startFunk = setInterval(() => {
 
                 set_countdown(10, new Date())
               }
-            }, 100)
-
-            document.querySelector(".info_block > button")?.addEventListener("click", () => {
-              onClosePopup()
-            })
+            }, 300)
           }
         }
 
         function onClosePopup() {
           overlay.classList.add("is_hidden")
           document.body.style.overflow = "unset"
+
           setTimeout(() => {
             document.querySelector(".content_popup")?.remove()
           }, 400)
@@ -474,9 +529,10 @@ let startFunk = setInterval(() => {
           let clipboard = new ClipboardJS(".voucher_block svg")
 
           clipboard.on("success", function (e) {
-            console.info("Action:", e.action)
-            console.info("Text:", e.text)
-            console.info("Trigger:", e.trigger)
+            // console.info("Action:", e.action)
+            // console.info("Text:", e.text)
+            // console.info("Trigger:", e.trigger)
+            pushDataLayer("Сlick on btn copy voucher")
 
             document.querySelector(".copied")?.remove()
             document.querySelector(".voucher_block").insertAdjacentHTML("beforeend", `<span class="copied">copied!</span>`)
@@ -484,7 +540,7 @@ let startFunk = setInterval(() => {
 
             setTimeout(() => {
               document.querySelector(".copied")?.remove()
-            }, 800)
+            }, 3000)
           })
         }
       }, 1000)
