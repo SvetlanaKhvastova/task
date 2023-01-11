@@ -50,7 +50,7 @@ let stickyBanner = setInterval(() => {
               z-index: 55;
               margin: 0;
           }
-          .sticky_banner.is_fixed{            
+          .sticky_banner.is_fixed_var{            
               display: block;
               margin: -15px 0 25px;
               position: relative;
@@ -146,7 +146,7 @@ let stickyBanner = setInterval(() => {
           }
   
           @media (max-width: 1110px){
-              .sticky_banner.is_fixed{            
+              .sticky_banner.is_fixed_var{            
                   position: absolute;
                   display: block;
                   margin: 0;
@@ -399,10 +399,14 @@ form.css-8atqhb .chakra-form__error-message {
             (document.querySelector(".css-1ih2ha8")?.getBoundingClientRect().bottom <= positionVar &&
               window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/") ||
             (window.location.pathname === "/insurance/auto/car-insurance-estimate-calculator/" &&
-              document.querySelector(".css-1ngo9xx")?.getBoundingClientRect().bottom <= positionVar)
+              document.querySelector(".css-1h9j791")?.getBoundingClientRect().bottom <= positionVar) ||
+            (window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/" &&
+              document.querySelector(".css-polczn")?.getBoundingClientRect().bottom <= positionVar) ||
+            (window.location.pathname !== "/insurance/auto/car-insurance-estimate-calculator/" &&
+              document.querySelector(".css-1ohdh4c")?.getBoundingClientRect().bottom <= positionVar)
           ) {
-            if (!document.querySelector(".sticky_banner").classList.contains("is_fixed")) {
-              document.querySelector(".sticky_banner").classList.add("is_fixed")
+            if (!document.querySelector(".sticky_banner").classList.contains("is_fixed_var")) {
+              document.querySelector(".sticky_banner").classList.add("is_fixed_var")
               if (window.innerWidth > 1110) {
                 document.querySelector("#social-section").style.display = "none"
                 document.querySelector(".social").style.display = "none"
@@ -522,7 +526,11 @@ form.css-8atqhb .chakra-form__error-message {
                         window.location.pathname === "/insurance/auto/anonymous-car-insurance-quote-no-personal-information/" ||
                         window.location.pathname === "/insurance/auto/car-insurance-estimate-calculator/"
                       ) {
-                        document.querySelector("form.css-nbmzhw button[type='submit']").click()
+                        if (document.querySelector("form.css-nbmzhw button[type='submit']")) {
+                          document.querySelector("form.css-nbmzhw button[type='submit']").click()
+                        } else {
+                          document.querySelector("form.css-pup90p button[type='submit']").click()
+                        }
                       } else if (
                         window.location.pathname === "/insurance/homeowners/reviews/travelers/" ||
                         window.location.pathname === "/insurance/homeowners/reviews/progressive/"
@@ -591,7 +599,7 @@ form.css-8atqhb .chakra-form__error-message {
               document.querySelector("#social-section").style.display = "block"
               document.querySelector(".social").style.display = "block"
             }
-            document.querySelector(".sticky_banner").classList.remove("is_fixed")
+            document.querySelector(".sticky_banner").classList.remove("is_fixed_var")
           }
         }
       }
