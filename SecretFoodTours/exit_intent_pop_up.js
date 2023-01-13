@@ -392,6 +392,7 @@ let startFunk = setInterval(() => {
     document.head.insertAdjacentHTML("beforeend", popupStyle)
     document.body.insertAdjacentHTML("afterbegin", popUp)
     document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup)
+
     let removeClass = setInterval(() => {
       if (document.querySelector('body.om-effect-overlay')) {
         clearInterval(removeClass)
