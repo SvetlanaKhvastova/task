@@ -5,7 +5,6 @@ let startFunk = setInterval(() => {
     script.src = "https://code.jquery.com/jquery-3.4.1.min.js"
     script.async = false
     document.head.appendChild(script)
-
     let scriptCustomSlider = document.createElement("script")
     scriptCustomSlider.src = "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"
     scriptCustomSlider.async = false
@@ -15,12 +14,10 @@ let startFunk = setInterval(() => {
     scriptCustomTimer.src = "https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.0/flipclock.min.js"
     scriptCustomTimer.async = false
     document.head.appendChild(scriptCustomTimer)
-
     let scriptCustomTimerStyle = document.createElement("link")
     scriptCustomTimerStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.0/flipclock.css"
     scriptCustomTimerStyle.rel = "stylesheet"
     document.head.appendChild(scriptCustomTimerStyle)
-
     let dir = "https://conversionratestore.github.io/projects/secretfoodtours/img/"
     let eventVar = "desktop"
     if (window.innerWidth <= 768) {
@@ -47,9 +44,14 @@ let startFunk = setInterval(() => {
     }
     let popupStyle = /*html */ `
     <style>
-        body .CampaignType--popup,
-        body .om-effect-overlay .CampaignType--popup {
-            display: none !important;
+      .CampaignType--popup{
+        opacity: 0 !important;
+      }
+        html.om-position-popup body.om-effect-overlay {
+          overflow: unset !important;
+      }
+      html.om-position-popup body.open_var{
+            overflow: hidden !important;
         }
     .overlay_popup {
         position: fixed;
@@ -178,7 +180,6 @@ let startFunk = setInterval(() => {
     .mob_var{
         display: none;
     }
-    /* */
     .info_block .flip-clock-wrapper{
         margin: 0 auto;
         max-width: 212px;
@@ -351,11 +352,8 @@ let startFunk = setInterval(() => {
         font-size: 16px;
       }
     }
-
     </style>
     `
-
-    // popup
     let popUp = /*html */ `
         <div class="overlay_popup is_hidden">
           <div class="container_popup">
@@ -367,7 +365,6 @@ let startFunk = setInterval(() => {
           </div>
         </div>
 `
-
     let contentPopup = /*html */ `
         <div class="content_popup">
             <div class="info_block">
@@ -386,68 +383,61 @@ let startFunk = setInterval(() => {
                 <p>The discount does not apply to private tours or bookings</p>
             </div>
             <div class="img_wrap">
-                <img class="desk_var" src="${dir}popup_img.jpg" alt="woman">
+                <img class="desk_var" src="${dir}popup_img_desk.jpg" alt="woman">
                 <img class="mob_var" src="${dir}popup_img_mob.jpg" alt="woman">
             </div>
         </div>
     `
-
     document.head.insertAdjacentHTML("beforeend", `<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;700&display=swap" rel="stylesheet">`)
     document.head.insertAdjacentHTML("beforeend", popupStyle)
     document.body.insertAdjacentHTML("afterbegin", popUp)
     document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup)
-
+    let removeClass = setInterval(() => {
+      if (document.querySelector('body.om-effect-overlay')) {
+        clearInterval(removeClass)
+        document.querySelector('.CampaignType--popup')?.remove()
+      }
+    }, 10)
     exitIntentPopup()
-    //   EXIT INTENT popup
-    function exitIntentPopup() {
+    function exitIntentPopup() {//   EXIT INTENT popup
       if (document.querySelector(".overlay_popup")) {
         let overlay = document.querySelector(".overlay_popup"),
           containerPopup = overlay.querySelector(".container_popup"),
           btnClose = overlay.querySelector(".btn_close")
-
-        //show EXIT INTENT popup desktop
-        addEvent(document, "mouseout", function (e) {
+        addEvent(document, "mouseout", function (e) {//show EXIT INTENT popup desktop
           if (e.toElement == null && e.relatedTarget == null && sessionStorage.getItem("exit_popup_loaded") == null) {
             sessionStorage.setItem("exit_popup_loaded", "true") //refresh status popup
             onOpenPopup() //show popup
           }
         })
-
-        //exit intent
-        function addEvent(obj, evt, fn) {
+        function addEvent(obj, evt, fn) {//exit intent
           if (obj.addEventListener) {
             obj.addEventListener(evt, fn, false)
           } else if (obj.attachEvent) {
             obj.attachEvent("on" + evt, fn)
           }
         }
-
-        //show EXIT INTENT popup mobile
-        if (window.innerWidth <= 768) {
+        if (window.innerWidth <= 768) { //show EXIT INTENT popup mobile
           let lastPosition = 0,
             newPosition = 0,
             currentSpeed = 0
-
           let scrollSpeed = () => {
             lastPosition = window.scrollY
             setTimeout(() => {
               newPosition = window.scrollY
             }, 70)
             currentSpeed = newPosition - lastPosition
-
             if (currentSpeed > 70 && sessionStorage.getItem("exit_popup_loaded") == null) {
               sessionStorage.setItem("exit_popup_loaded", "true") //refresh status popup
               onOpenPopup() //show popup
               document.removeEventListener("scroll", scrollSpeed)
             }
           }
-
           document.addEventListener("scroll", scrollSpeed)
         }
-
         function onOpenPopup() {
           overlay.classList.remove("is_hidden")
-          document.body.style.overflow = "hidden"
+          document.querySelector('body').classList.add('open_var')
           if (!document.querySelector(".overlay_popup .content_popup")) {
             containerPopup?.insertAdjacentHTML("beforeend", contentPopup)
           }
@@ -456,9 +446,7 @@ let startFunk = setInterval(() => {
             let clock = setInterval(() => {
               if (typeof FlipClock === "function" && typeof jQuery === "function" && document.querySelector("#countdown")) {
                 clearInterval(clock)
-
                 let countdown, init_countdown, set_countdown
-
                 countdown = init_countdown = function () {
                   countdown = new FlipClock($(".countdown"), {
                     clockFace: "MinuteCounter",
@@ -469,7 +457,6 @@ let startFunk = setInterval(() => {
                     callbacks: {
                       start: function () {
                         timerEventDesk(document.querySelector(".info_block"), "start")
-                        // return console.log("The clock has started!")
                       },
                       stop: function () {
                         if (this.factory.getTime().time === 0) {
@@ -478,28 +465,17 @@ let startFunk = setInterval(() => {
                             document.querySelector(".info_block > h2").insertAdjacentHTML("afterend", `<div class="text_after_countdown">Time is slipping away...</div>`)
                           }
                         }
-                        // return console.log("The clock has stopped!")
-                      },
-                      interval: function () {
-                        let time
-                        time = this.factory.getTime().time
-                        if (time) {
-                          //   console.log("Clock interval", time)
-                        }
-                      },
+                      }
                     },
                   })
-
                   function timerEventDesk(el, trigger) {
                     let time = 0
                     let currentTime = 0
-
                     let s = setInterval(() => {
                       if (trigger === "start") {
                         currentTime = ++time
                         el.setAttribute("data-time", currentTime)
                       }
-
                       if (trigger === "stop") {
                         clearInterval(s)
                         currentTime = el.getAttribute("data-time")
@@ -507,16 +483,13 @@ let startFunk = setInterval(() => {
                       }
                     }, 1000)
                   }
-                  // click on btn close popup
-                  btnClose.addEventListener("click", (e) => {
+                  btnClose.addEventListener("click", (e) => { // click on btn close popup
                     countdown.stop()
                     pushDataLayer("Сlick on btn close")
                     timerEventDesk(document.querySelector(".info_block"), "stop")
                     onClosePopup()
                   })
-
-                  // click on overlay popup
-                  overlay.addEventListener("click", (e) => {
+                  overlay.addEventListener("click", (e) => {// click on overlay popup
                     if (e.target.matches(".overlay_popup")) {
                       countdown.stop()
                       с("Сlick on overlay close")
@@ -524,7 +497,6 @@ let startFunk = setInterval(() => {
                       onClosePopup()
                     }
                   })
-
                   document.querySelector(".info_block > button")?.addEventListener("click", () => {
                     countdown.stop()
                     pushDataLayer("Click on Book a tour button")
@@ -533,7 +505,6 @@ let startFunk = setInterval(() => {
                   })
                   return countdown
                 }
-
                 set_countdown = function (minutes, start) {
                   let elapsed, end, left_secs, now, seconds
                   if (countdown.running) {
@@ -550,42 +521,34 @@ let startFunk = setInterval(() => {
                     left_secs *= -1
                     elapsed = true
                   }
-
                   countdown.setTime(left_secs)
                   return countdown.start()
                 }
-
                 init_countdown()
-
                 set_countdown(10, new Date())
               }
             }, 500)
           }
         }
-
         function onClosePopup() {
           overlay.classList.add("is_hidden")
-          document.body.style.overflow = "unset"
-
+          if (document.querySelector('body').classList.contains('open_var')) {
+            document.querySelector('body').classList.remove('open_var')
+          }
           setTimeout(() => {
             document.querySelector(".content_popup")?.remove()
           }, 400)
         }
       }
-
       let a = setInterval(() => {
         if (typeof ClipboardJS === "function") {
           clearInterval(a)
-
           let clipboard = new ClipboardJS(".voucher_block svg")
-
           clipboard.on("success", function (e) {
             pushDataLayer("Click on copy promo code")
-
             document.querySelector(".copied")?.remove()
             document.querySelector(".voucher_block").insertAdjacentHTML("beforeend", `<span class="copied">copied!</span>`)
             e.clearSelection()
-
             setTimeout(() => {
               document.querySelector(".copied")?.remove()
             }, 3000)
@@ -593,12 +556,10 @@ let startFunk = setInterval(() => {
         }
       }, 1000)
     }
-
     pushDataLayer("loaded")
     const record = setInterval(() => {
       if (typeof clarity === "function") {
         clearInterval(record)
-
         clarity("set", "exit_intent_book_now_pop_up”", "variant_1")
       }
     }, 200)

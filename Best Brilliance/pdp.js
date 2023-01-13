@@ -1,10 +1,10 @@
 let startFunk = setInterval(() => {
-  if (document.querySelector("#shopify-section-product-template")) {
-    clearInterval(startFunk)
+    if (document.querySelector("#shopify-section-product-template")) {
+        clearInterval(startFunk)
 
-    let dir = "https://conversionratestore.github.io/projects/best_brilliance//img/"
+        let dir = "https://conversionratestore.github.io/projects/best_brilliance//img/"
 
-    let styles = /*html */ `
+        let styles = /*html */ `
         <style>
             /*descr_box */
             .descr_box{
@@ -508,7 +508,6 @@ let startFunk = setInterval(() => {
             .pdp-description,
             .sale-msg-box-light,
             .settingsmsg,
-            .affirm-as-low-as,
             .under-price{
                 display: none;
             }
@@ -829,7 +828,7 @@ let startFunk = setInterval(() => {
             }
         </style>
         `
-    let newBlock = /*html */ `
+        let newBlock = /*html */ `
           <section class="descr_box">
             <div class="video_img"><img src="${dir}video_camera.png" alt="video icon"></div>
             <div class="full_descr_block">
@@ -878,7 +877,7 @@ let startFunk = setInterval(() => {
             </section>
         `
 
-    let presentBlock = /*html */ `
+        let presentBlock = /*html */ `
             <div class="new_present_box">
                 <div class="img_wrap">
                     <img src="${dir}moissanite_earrings.jpg" alt="earrings">
@@ -898,7 +897,7 @@ let startFunk = setInterval(() => {
             </div>
         `
 
-    let discount = /*html */ `
+        let discount = /*html */ `
         <div class="more_inform_price">
             <div class="price_includes_block">
                 <img src="${dir}diamond.svg" alt="diamond" />
@@ -919,7 +918,7 @@ let startFunk = setInterval(() => {
             <p>Extra 20% off will be automatically applied at checkout</p>
         </div>
     `
-    let popUp = /*html */ `
+        let popUp = /*html */ `
         <div class="overlay_popup is_hidden">
             <div class="container_popup">
                 <svg width="16" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -929,7 +928,7 @@ let startFunk = setInterval(() => {
         </div>
     `
 
-    let contentPopup = /*html */ `
+        let contentPopup = /*html */ `
             <div class="certified_popup">
                 <div>
                     <h2>This item comes with a certificate</h2>
@@ -959,73 +958,73 @@ let startFunk = setInterval(() => {
             </div>
       `
 
-    document.head.insertAdjacentHTML("beforeend", styles)
-    // document.body.insertAdjacentHTML("afterbegin", popUp)
-    // document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup)
+        document.head.insertAdjacentHTML("beforeend", styles)
+        // document.body.insertAdjacentHTML("afterbegin", popUp)
+        // document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup)
 
-    document.querySelector("#section-text-with-image-product")?.insertAdjacentHTML("beforebegin", newBlock)
+        document.querySelector("#section-text-with-image-product")?.insertAdjacentHTML("beforebegin", newBlock)
 
-    document.querySelector(".Product__InfoWrapper form .ProductForm__Variants")?.after(document.querySelector(".ProductMeta__PriceList.Heading"))
-    document.querySelector(".ProductMeta__PriceList.Heading")?.insertAdjacentHTML("afterend", discount)
-    // document.querySelector(".more_inform_price")?.after(document.querySelector(".under-price"))
+        document.querySelector(".Product__InfoWrapper form .ProductForm__Variants")?.after(document.querySelector(".ProductMeta__PriceList.Heading"))
+        document.querySelector(".ProductMeta__PriceList.Heading")?.insertAdjacentHTML("afterend", discount)
+        // document.querySelector(".more_inform_price")?.after(document.querySelector(".under-price"))
 
-    if (document.querySelector(".sale-msg-box-light")) {
-      document.querySelector("#cb-atc-btn")?.insertAdjacentHTML("beforebegin", presentBlock)
-    }
+        if (document.querySelector(".sale-msg-box-light")) {
+            document.querySelector("#cb-atc-btn")?.insertAdjacentHTML("beforebegin", presentBlock)
+        }
 
-    document
-      .querySelector(".Product__Info form #cb-atc-btn")
-      ?.insertAdjacentHTML(
-        "afterend",
-        `<button class="expert__new_btn" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/support-bestbrilliance/15min?hide_landing_page_details=1&hide_gdpr_banner=1&text_color=242424&primary_color=492e6b'});return false;">Book appointment with expert</button>`
-      )
+        document
+            .querySelector(".Product__Info form #cb-atc-btn")
+            ?.insertAdjacentHTML(
+                "afterend",
+                `<button class="expert__new_btn" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/support-bestbrilliance/15min?hide_landing_page_details=1&hide_gdpr_banner=1&text_color=242424&primary_color=492e6b'});return false;">Book appointment with expert</button>`
+            )
 
-    document
-      .querySelector(".Product__OffScreen .Popover__Content")
-      ?.insertAdjacentHTML(
-        "beforebegin",
-        `<div class="select_free_ring_sizer"><p>Not sure about size?</p> <a target="_blank" href="https://bestbrilliance.com/pages/free-ring-size">Order free ring sizer</a></div>`
-      )
+        document
+            .querySelector(".Product__OffScreen .Popover__Content")
+            ?.insertAdjacentHTML(
+                "beforebegin",
+                `<div class="select_free_ring_sizer"><p>Not sure about size?</p> <a target="_blank" href="https://bestbrilliance.com/pages/free-ring-size">Order free ring sizer</a></div>`
+            )
 
-    document.querySelectorAll(".cb_swatch_block div").forEach((i) => {
-      let s = i.textContent.split(" ")
-      if (s[0] === "Platinum") {
-        i.textContent = "Pt"
-        i.closest("a").insertAdjacentHTML("beforeend", `<p class="new_color_text">${s[0]}</p>`)
-      } else {
-        i.textContent = s[0]
-        i.closest("a").insertAdjacentHTML("beforeend", `<p class="new_color_text">${s[1]}</p>`)
-      }
-    })
+        document.querySelectorAll(".cb_swatch_block div").forEach((i) => {
+            let s = i.textContent.split(" ")
+            if (s[0] === "Platinum") {
+                i.textContent = "Pt"
+                i.closest("a").insertAdjacentHTML("beforeend", `<p class="new_color_text">${s[0]}</p>`)
+            } else {
+                i.textContent = s[0]
+                i.closest("a").insertAdjacentHTML("beforeend", `<p class="new_color_text">${s[1]}</p>`)
+            }
+        })
 
-    document.querySelector(".new_btn_chat")?.addEventListener("click", (e) => {
-      e.preventDefault()
-      zE("messenger", "open")
-    })
+        document.querySelector(".new_btn_chat")?.addEventListener("click", (e) => {
+            e.preventDefault()
+            zE("messenger", "open")
+        })
 
-    if (window.innerWidth < 768) {
-      let q = setInterval(() => {
-        if ($(".Product__Wrapper #btn_try_on").is(":visible")) {
-          clearInterval(q)
-          document.querySelector("#btn_try_on").style.display = "none"
-          document.querySelector(".Product__Wrapper .Product__ActionItem.video-btns")?.insertAdjacentHTML(
-            "beforeend",
-            `<button class="new_btn_try_on"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        if (window.innerWidth < 768) {
+            let q = setInterval(() => {
+                if ($(".Product__Wrapper #btn_try_on").is(":visible")) {
+                    clearInterval(q)
+                    document.querySelector("#btn_try_on").style.display = "none"
+                    document.querySelector(".Product__Wrapper .Product__ActionItem.video-btns")?.insertAdjacentHTML(
+                        "beforeend",
+                        `<button class="new_btn_try_on"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_603_2718)"><path d="M5.70674 16.0069C5.52274 16.0069 5.3734 15.8575 5.3734 15.6735V15.0935C5.3734 14.8875 5.31074 14.6895 5.19274 14.5202L4.5214 13.5622C4.13007 13.0022 3.79874 12.4135 3.53674 11.8135C3.20674 11.0582 2.49474 9.63152 1.4254 8.56152C1.38874 8.52486 1.3614 8.48019 1.34474 8.43152C1.33007 8.38819 1.21074 7.99552 1.4874 7.61152C1.7834 7.20152 2.40274 6.99285 3.3274 6.99285C4.1914 6.99285 4.87407 7.55019 5.3274 8.07886V1.99219C5.3274 1.25685 5.9254 0.658854 6.66074 0.658854C6.9354 0.658854 7.19007 0.742188 7.40207 0.884854C7.58474 0.365521 8.08007 -0.0078125 8.66074 -0.0078125C9.2414 -0.0078125 9.73674 0.365521 9.9194 0.884854C10.1314 0.742188 10.3867 0.658854 10.6607 0.658854C11.3961 0.658854 11.9941 1.25685 11.9941 1.99219V3.50485C12.1901 3.39085 12.4181 3.32552 12.6607 3.32552C13.4287 3.32552 14.0267 3.92352 14.0267 4.65885V9.32552L13.9661 10.6202C13.8987 12.0442 13.3554 13.4269 12.4354 14.5142C12.2887 14.6875 12.2074 14.9089 12.2074 15.1362V15.6729C12.2074 15.8569 12.0581 16.0062 11.8741 16.0062C11.6901 16.0062 11.5407 15.8569 11.5407 15.6729V15.1362C11.5407 14.7515 11.6781 14.3775 11.9261 14.0835C12.7521 13.1082 13.2401 11.8675 13.3001 10.5895L13.3601 9.31019V4.65885C13.3601 4.29085 13.0607 3.99219 12.6934 3.99219C12.2934 3.99219 11.9941 4.29085 11.9941 4.65885V8.65886C11.9941 8.84286 11.8447 8.99219 11.6607 8.99219C11.4767 8.99219 11.3274 8.84286 11.3274 8.65886V1.99219C11.3274 1.62419 11.0281 1.32552 10.6607 1.32552C10.2934 1.32552 9.99407 1.62419 9.99407 1.99219V8.65886C9.99407 8.84286 9.84474 8.99219 9.66074 8.99219C9.47674 8.99219 9.3274 8.84286 9.3274 8.65886V1.32552C9.3274 0.957521 9.02807 0.658854 8.66074 0.658854C8.2934 0.658854 7.99407 0.957521 7.99407 1.32552V8.65886C7.99407 8.84286 7.84474 8.99219 7.66074 8.99219C7.47674 8.99219 7.3274 8.84286 7.3274 8.65886V1.99219C7.3274 1.62419 7.02807 1.32552 6.66074 1.32552C6.2934 1.32552 5.99407 1.62419 5.99407 1.99219V9.15886C5.99407 9.31286 5.8874 9.44752 5.7374 9.48286C5.5874 9.51819 5.43207 9.44552 5.36274 9.30686C5.35407 9.29086 4.52407 7.65819 3.3274 7.65819C2.3914 7.65819 2.11074 7.89219 2.03407 7.99219C1.98474 8.05619 1.9734 8.12086 1.97274 8.16685C3.02074 9.24419 3.73207 10.5935 4.1474 11.5455C4.39207 12.1062 4.7014 12.6555 5.0674 13.1789L5.73874 14.1369C5.9354 14.4189 6.04007 14.7495 6.04007 15.0929V15.6729C6.04007 15.8575 5.89074 16.0069 5.70674 16.0069Z" fill="#110011"/>
                 </g><defs><clipPath id="clip0_603_2718"><rect width="16" height="16" fill="white"/></clipPath></defs></svg>Try it on</button>`
-          )
+                    )
 
-          document.querySelector(".new_btn_try_on")?.addEventListener("click", () => {
-            document.querySelector("#btn_try_on").click()
-          })
+                    document.querySelector(".new_btn_try_on")?.addEventListener("click", () => {
+                        document.querySelector("#btn_try_on").click()
+                    })
+                }
+            }, 10)
+
+            document.querySelector(".full_descr_block .img_wrap img").src = `${dir}details_mob.jpg`
+
+            document.querySelector(".Popover__Header").addEventListener("touchend", (el) => {
+                document.querySelector(".Product__OffScreen .Popover__Close").click()
+            })
         }
-      }, 10)
-
-      document.querySelector(".full_descr_block .img_wrap img").src = `${dir}details_mob.jpg`
-
-      document.querySelector(".Popover__Header").addEventListener("touchend", (el) => {
-        document.querySelector(".Product__OffScreen .Popover__Close").click()
-      })
     }
-  }
 }, 100)
