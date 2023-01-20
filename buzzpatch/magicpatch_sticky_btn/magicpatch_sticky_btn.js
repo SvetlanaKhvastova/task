@@ -32,7 +32,7 @@ let startBtn = setInterval(() => {
             width: 100%;
         }
         header .js-heading .js-btn.btn-primary {
-          margin-top: -175px !important;
+          margin-top: -125px !important;
         }
         .sticky_wrapp{
             position: fixed;
