@@ -386,7 +386,7 @@ let socialProof = setInterval(() => {
 
             document.querySelector('ul.reviews_wrap.part_two')?.after(document.querySelector('.contacts_us'))
             document.querySelector('.show_more_btn')?.addEventListener('click', (e) => {
-                pushDataLayer('Click')
+                pushDataLayer('Click on Show more link')
                 e.currentTarget.style.display = 'none'
                 document.querySelector('.social_proof ul.reviews_wrap.part_two').style.display = 'flex'
                 document.querySelector("ul.reviews_wrap.part_two")?.scrollIntoView({ block: "start", behavior: "smooth" })
@@ -394,6 +394,132 @@ let socialProof = setInterval(() => {
         }
 
         if (document.querySelector(".social_proof")) {
+            window.flowplayerObj = flowplayer(container, {
+                /*ga: {
+                      ga_instances:["UA-148724098-1"],//UA-129535204-1
+                      media_title: ["Free_Workshop_Video"],
+                    },*/
+                clip: {
+                    sources: [{
+                        type: "video/mp4",
+                        src: vdo_src
+                    }]
+                },
+                autoplay: true,
+                // splash: posters,
+                fullscreen: true,
+                autoBuffering: true,
+                keyboard: false,
+                tooltip: false,
+                ratio: 0.55
+            }).on("load", function () {
+                flowplayerObj.sliders.timeline.disable(0);
+                console.log('load');
+
+                setCookie("time10", "", -1);
+                setCookie("time15", "", -1);
+                setCookie("time20", "", -1);
+                setCookie("time30", "", -1);
+
+                /*setCookie("mv_jwpos",0,-1),*/
+                setCookie("completeVed", 1, 365);
+                var t = getCookie("completeVed");
+                setCookie("close", 1, 365);
+            }).on("pause", function () {
+                $('[href="https://flowplayer.com/hello/?from=player"]').hide();
+                $(".fp-play").addClass("fp-visible");
+                $(".fp-pause").removeClass("fp-visible");
+                $(".fp-play svg").css('opacity', '1');
+                $(".fp-play svg").width(100);
+
+                /* video player tracing */
+                gtag('event', 'action', {
+                    'event_category': window.location,
+                    'event_action': 'pause',
+                    'event_label': 'time: ' + flowplayerObj.video.time + ' sec'
+                });
+                /* video player tracing */
+            }).on("resume", function () {
+                if (getCookie("tapped_ver") == "") {
+                    setCookie("tapped_ver", "Yes", 1);
+                    wp_action_update_video_cta("tapped");
+                }
+                $('[href="https://flowplayer.com/hello/?from=player"]').hide();
+                flowplayerObj.mute(false);
+                $(".fp-pause").removeClass("fp-visible");
+                $(".fp-play svg").css('opacity', '0');
+
+                /* video player tracing */
+                gtag('event', 'action', {
+                    'event_category': window.location,
+                    'event_action': 'resume',
+                    'event_label': 'time: ' + flowplayerObj.video.time + ' sec'
+                });
+                /* video player tracing */
+            }).on("ready", function (e, i) {
+                flowplayerObj.sliders.timeline.disable(!0), getCookie("mv_jwpos") && flowplayerObj.seek(getCookie("mv_jwpos")), flowplayerObj.mute(!1)
+            }).on("finish", function (e, i) {
+                /* video player tracing */
+                gtag('event', 'action', {
+                    'event_category': window.location,
+                    'event_action': 'finish',
+                    'event_label': 'time: ' + flowplayerObj.video.time + ' sec'
+                });
+                /* video player tracing */
+                setCookie("mv_jwpos", 0, -1), setCookie("completeVed", 1, 365);
+                var t = getCookie("completeVed");
+                //videoCompleted(t);
+                $('.after-refresh').show();
+
+
+            }).on("progress", function (e, i) {
+                if (Math.round(flowplayerObj.video.time) > 2) {
+                    if (getCookie("played_ver") == "") {
+                        setCookie("played_ver", "Yes", 1);
+                        wp_action_update_video_cta("played");
+                    }
+                }
+                if (getCookie("close") == 1) {
+                    if (Math.round(flowplayerObj.video.time) == 300 && getCookie("time10") == "") {
+                        console.log('5 min');
+                        gtag('event', 'action', {
+                            'event_category': window.location,
+                            'event_action': '5 min'
+                        });
+                        setCookie("time10", "yes", 365);
+                    };
+
+                    if (Math.round(flowplayerObj.video.time) == 900 && getCookie("time15") == "") {
+                        console.log('15 min');
+                        gtag('event', 'action', {
+                            'event_category': window.location,
+                            'event_action': '15 min'
+                        });
+                        setCookie("time15", "yes", 365);
+                    };
+
+                    if (Math.round(flowplayerObj.video.time) == 1800 && getCookie("time20") == "") {
+                        console.log('30 min');
+                        gtag('event', 'action', {
+                            'event_category': window.location,
+                            'event_action': '30 min'
+                        });
+                        setCookie("time20", "yes", 365);
+                    };
+
+                    if (Math.round(flowplayerObj.video.time) == 3000 && getCookie("time30") == "") {
+                        console.log('50 min');
+                        gtag('event', 'action', {
+                            'event_category': window.location,
+                            'event_action': '50 min'
+                        });
+                        setCookie("time30", "yes", 365);
+                        setCookie("close", 0, -1);
+                    };
+                };
+                setCookie("mv_jwpos", flowplayerObj.video.time, 7), updateValues();
+            });
+
             let obs = new IntersectionObserver(visibility, {
                 threshold: 1,
             })
@@ -422,28 +548,28 @@ let socialProof = setInterval(() => {
                         }
                         switch (i.target.getAttribute('data-visability')) {
                             case "1":
-                                pushDataLayer(`Visibility block ${i.target.getAttribute('data-visability')}`)
+                                pushDataLayer(`Visibility video block`)
                                 break
                             case "2":
-                                pushDataLayer(`Visibility block ${i.target.getAttribute('data-visability')}`)
+                                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute('data-visability')}`)
                                 break
                             case "3":
-                                pushDataLayer(`Visibility block ${i.target.getAttribute('data-visability')}`)
+                                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute('data-visability')}`)
                                 break
                             case "4":
-                                pushDataLayer(`Visibility block ${i.target.getAttribute('data-visability')}`)
+                                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute('data-visability')}`)
                                 break
                             case "5":
-                                pushDataLayer(`Visibility block ${i.target.getAttribute('data-visability')}`)
+                                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute('data-visability')}`)
                                 break
                             case "6":
-                                pushDataLayer(`Visibility block ${i.target.getAttribute('data-visability')}`)
+                                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute('data-visability')}`)
                                 break
                             case "7":
-                                pushDataLayer(`Visibility block ${i.target.getAttribute('data-visability')}`)
+                                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute('data-visability')}`)
                                 break
                             case "8":
-                                pushDataLayer(`Visibility block ${i.target.getAttribute('data-visability')}`)
+                                pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute('data-visability')}`)
                                 break
                             default:
                                 break
@@ -462,7 +588,7 @@ let socialProof = setInterval(() => {
         const record = setInterval(() => {
             if (typeof clarity === "function") {
                 clearInterval(record)
-                clarity("set", "social proof'", "variant_1")
+                clarity("set", "exp_social_proof", "variant_1")
             }
         }, 200)
         document.querySelector(".exp")?.remove()

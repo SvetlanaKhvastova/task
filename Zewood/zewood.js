@@ -7,32 +7,6 @@ let startFunk = setInterval(() => {
       observe: true,
     }
 
-    let eventVar = "desktop"
-
-    if (window.innerWidth <= 768) {
-      eventVar = "mobile"
-    }
-
-    function pushDataLayer(actionDataLayer, labelDataLayer) {
-      window.dataLayer = window.dataLayer || []
-      if (labelDataLayer) {
-        console.log(actionDataLayer + " : " + labelDataLayer)
-        dataLayer.push({
-          event: "event-to-ga",
-          eventCategory: `Exp: ${eventVar}`,
-          eventAction: `${actionDataLayer}`,
-          eventLabel: `${labelDataLayer}`,
-        })
-      } else {
-        console.log(actionDataLayer)
-        dataLayer.push({
-          event: "event-to-ga",
-          eventCategory: `Exp: ${eventVar}`,
-          eventAction: `${actionDataLayer}`,
-        })
-      }
-    }
-
     let popupStyle = /*html */ `
     <style>
     .price_wrap_mob{
@@ -299,30 +273,30 @@ let startFunk = setInterval(() => {
     document.body.insertAdjacentHTML("afterbegin", popUp)
     document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup)
 
-    //  get inform Cart START
+
     getCartInform()
 
-    //   remove localStorage if CART => null
+
     if (localStorage.getItem("data-popup") && document.querySelector(".ajaxcart__product") === null) {
       localStorage.removeItem("data-popup")
     }
 
-    //   EXIT INTENT popup
+
     function exitIntentPopup() {
       if (document.querySelector(".overlay_popup") && localStorage.getItem("data-popup")) {
         let overlay = document.querySelector(".overlay_popup"),
           containerPopup = overlay.querySelector(".container_popup"),
           btnClose = overlay.querySelector("svg")
 
-        //show EXIT INTENT popup desktop
+
         addEvent(document, "mouseout", function (e) {
-          if (e.toElement == null && e.relatedTarget == null && sessionStorage.getItem("exit_popup_loaded") == null) {
-            sessionStorage.setItem("exit_popup_loaded", "true") //refresh status popup
-            onOpenPopup() //show popup
+          if (e.toElement == null && e.relatedTarget == null && sessionStorage.getItem("exit_popup_loaded") == null && document.querySelector(".ajaxcart__product") !== null) {
+            sessionStorage.setItem("exit_popup_loaded", "true")
+            onOpenPopup()
           }
         })
 
-        //exit intent
+
         function addEvent(obj, evt, fn) {
           if (obj.addEventListener) {
             obj.addEventListener(evt, fn, false)
@@ -331,7 +305,7 @@ let startFunk = setInterval(() => {
           }
         }
 
-        //show EXIT INTENT popup mobile
+
         if (window.innerWidth <= 768) {
           let lastPosition = 0,
             newPosition = 0,
@@ -344,9 +318,9 @@ let startFunk = setInterval(() => {
             }, 70)
             currentSpeed = newPosition - lastPosition
 
-            if (currentSpeed > 70 && sessionStorage.getItem("exit_popup_loaded") == null) {
-              sessionStorage.setItem("exit_popup_loaded", "true") //refresh status popup
-              onOpenPopup() //show popup
+            if (currentSpeed > 70 && sessionStorage.getItem("exit_popup_loaded") == null && document.querySelector(".ajaxcart__product") !== null) {
+              sessionStorage.setItem("exit_popup_loaded", "true")
+              onOpenPopup()
               document.removeEventListener("scroll", scrollSpeed)
             }
           }
@@ -354,12 +328,12 @@ let startFunk = setInterval(() => {
           document.addEventListener("scroll", scrollSpeed)
         }
 
-        // click on btn close popup
+
         btnClose.addEventListener("click", (e) => {
           onClosePopup()
         })
 
-        // click on overlay popup
+
         overlay.addEventListener("click", (e) => {
           if (e.target.matches(".overlay_popup")) {
             onClosePopup()
@@ -369,6 +343,14 @@ let startFunk = setInterval(() => {
         function onOpenPopup() {
           overlay.classList.remove("is_hidden")
           document.body.style.overflow = "hidden"
+
+          document.head.insertAdjacentHTML('beforeend', `
+            <style class="fix_popup">
+                .needsclick.kl-private-reset-css-Xuajs1 {
+                    opacity: 0 !important;
+                }
+            </style>`)
+
           if (!document.querySelector(".overlay_popup .content_popup")) {
             containerPopup?.insertAdjacentHTML("beforeend", contentPopup)
           }
@@ -386,22 +368,22 @@ let startFunk = setInterval(() => {
                 document.querySelector(".product_list").insertAdjacentHTML(
                   "beforeend",
                   `
-                            <div class="product_wrap">
+                           <div class="product_wrap">
                                 <div class="img_wrap">
-                                    <img src="${el.imgSrc}" alt="product zewood" />
+                                   <a href="${el.href}"><img src="${el.imgSrc}" alt="product zewood" /></a>
                                 </div>
                                 <div class="inform_wrap">
-                                    <h3>${el.name}</h3>
+                                    <a href="${el.href}"><h3>${el.name}</h3></a>
                                     <p>${el.descr}</p>
                                     <div class="price_wrap_mob">
-                                        <span>$${(+el.price.split("$")[1] * +el.count).toFixed(2)}</span>
+                                        <span>${el.price}</span>
                                     </div>
                                 </div>
                                 <div class="price_wrap">
-                                    <span class="my_price">$${(+el.price.split("$")[1] * +el.count).toFixed(2)}</span>
+                                    <span class="my_price">${el.price}</span>
                                 </div>
                             </div>
-                              `
+                  `
                 )
               })
             }
@@ -418,6 +400,7 @@ let startFunk = setInterval(() => {
                 el.currentTarget.classList.toggle("open")
                 if (el.currentTarget.classList.contains("open")) {
                   el.currentTarget.querySelector("p").textContent = "Less products"
+                  document.querySelector(".text_still_stock").style.display = "none"
                   document.querySelectorAll(".product_wrap").forEach((el) => {
                     el.style.display = "flex"
                     if (el.classList.contains("hidden")) {
@@ -431,6 +414,7 @@ let startFunk = setInterval(() => {
                   }
                 } else {
                   el.currentTarget.querySelector("p").textContent = "See all products"
+                  document.querySelector(".text_still_stock").style.display = "block"
                   document.querySelectorAll(".product_wrap").forEach((el) => {
                     el.classList.add("hidden")
                     el.style.display = "none"
@@ -438,15 +422,15 @@ let startFunk = setInterval(() => {
                   if (innerWidth <= 768) {
                     document.querySelector(".product_list").style.height = "105px"
                   } else {
-                    document.querySelector(".product_list").style.height = "86px"
+                    document.querySelector(".product_list").style.height = "90px"
                   }
                 }
               })
             }
 
             document.querySelector(".content_popup button").addEventListener("click", () => {
-              document.querySelector('#CartContainer button[name="checkout"]')?.click()
-              // window.location.pathname = "/checkout"
+              // document.querySelector('#CartContainer button[name="checkout"]')?.click()
+              window.location.pathname = "/checkout"
             })
           }
         }
@@ -457,11 +441,12 @@ let startFunk = setInterval(() => {
           setTimeout(() => {
             document.querySelector(".content_popup")?.remove()
           }, 400)
+          document.querySelector('.fix_popup').remove()
         }
       }
     }
 
-    // Observer Cart
+
     let observer, observeTarget
     let isProgress = false
     if (settings.observe) {
@@ -470,6 +455,9 @@ let startFunk = setInterval(() => {
           if (!isProgress && mutation.addedNodes[0] !== document.querySelector("#mr-div-embedded-cp-any-drawer")) {
             isProgress = true
             console.log(`observer>>>>>>>>>>>>>>>`, mutation)
+            if (localStorage.getItem("data-popup") && document.querySelector(".ajaxcart__product") === null) {
+              localStorage.removeItem("data-popup")
+            }
             getCartInform()
             exitIntentPopup()
 
@@ -490,7 +478,7 @@ let startFunk = setInterval(() => {
       }, 500)
     }
 
-    //  get inform Cart => name,descr,price,count,imgSrc
+
     function getCartInform() {
       if (document.querySelector(".ajaxcart__product")) {
         let arr = []
@@ -499,7 +487,8 @@ let startFunk = setInterval(() => {
             descr = "",
             price = "",
             count = "",
-            imgSrc = ""
+            imgSrc = "",
+            href = ""
 
           if (el.querySelector(".ajaxcart__product-name")) {
             name = el.querySelector(".ajaxcart__product-name").textContent
@@ -507,14 +496,18 @@ let startFunk = setInterval(() => {
           if (el.querySelector(".ajaxcart__product-meta")) {
             descr = el.querySelector(".ajaxcart__product-meta").textContent
           }
-          if (el.querySelector(".ajaxcart__price .money")) {
-            price = el.querySelector(".ajaxcart__price .money").textContent
+          if (el.querySelector(".ajaxcart__price")) {
+            price = el.querySelector(".ajaxcart__price").getAttribute('data-price')
+            console.log(`price`, price)
           }
           if (el.querySelector("input[name='updates[]']")) {
             count = el.querySelector("input[name='updates[]']").value
           }
           if (el.querySelector(".ajaxcart__product-image img")) {
             imgSrc = el.querySelector(".ajaxcart__product-image img").src
+          }
+          if (el.querySelector(".ajaxcart__product-image")) {
+            href = el.querySelector(".ajaxcart__product-image").href
           }
 
           arr.push({
@@ -523,6 +516,7 @@ let startFunk = setInterval(() => {
             price: price,
             count: count,
             imgSrc: imgSrc,
+            href: href,
           })
         })
 
@@ -536,14 +530,5 @@ let startFunk = setInterval(() => {
         console.log(`arr`, arr)
       }
     }
-
-    pushDataLayer("loaded")
-    const record = setInterval(() => {
-      if (typeof clarity === "function") {
-        clearInterval(record)
-
-        clarity("set", "", "variant_1")
-      }
-    }, 200)
   }
 }, 100)
