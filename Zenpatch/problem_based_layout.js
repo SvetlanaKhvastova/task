@@ -111,6 +111,7 @@ let problemBlockStart = setInterval(() => {
               background: url(https://conversionratestore.github.io/projects/zenpatch/img/check.svg) no-repeat center center;
               top: 0;
               left: 0;
+              transition: all 0.3s ease;
           }
           .buzzpatch_accardion_link.active span::before {
               transform: rotate(180deg);
@@ -196,42 +197,43 @@ let problemBlockStart = setInterval(() => {
 
     let arr = {
       1: [
-        `My child has <b>high energy</b> and I need safe sotution to help him be more focused and calm`,
-        `<p>Children with ADHD may struggle with emotional regulation, leading to impulsive behaviors, irritability, and mood swings.</p>
-        <p>Left unchecked, this can create a situation where your child has a hard time communicating, paying attention, and understanding or expressing their own emotional needs. This can in turn lead to negative social, learning and emotional development outcomes.</p>
-        <p>That's why the ZenPatch is so important for keeping your child chilled, calm and relaxed. Each patch makes it easier for your child to regulate their emotions and energy - allowing them to perform better socially, academically, and emotionally.</p>`,
-      ],
-      2: [
-        "My child suffers from anxiety and nervousness",
-        `<p>Children with autism often process emotions differently, which can leave them vulnerable to anxiety, frustration, and stress.</p>
-        <p>Left unchecked, this can create a situation where your child struggles to engage with the world around them in healthy ways - making it harder for them to form relationships or develop a positive mental outlook.</p>
-        <p>Fortunately, ZenPatch can help calm an anxious nervous system, minimising feelings of distress so that your child can navigate the world more easily, and form the positive experiences that they need to develop into an independent adult.</p>`,
-      ],
-      3: [
-        "I am looking for an easy-to-use solution that helps to calm my child down at school",
+        `Your child has <b>too much energy</b> and needs a safe solution to help become more focused and calm`,
         `<p>Keeping up with a high energy child can leave you physically and emotionally drained.</p>
         <p>Without a way to manage their high energy, your child may struggle with adhering to boundaries, engaging with activities, and communicating with others.</p>
         <p>Over time, this can create frustration for your child - as nothing feels stimulating enough, while also leaving you feeling like you'll never be able to catch a moment of peace.</p>
-        <p>Fortunately, ZenPatch can help keep your child chilled, calm and relaxed. This will make it easier for you to manage your child's high energy, so you can finally enjoy some time to yourself.</p>`,
+        <p>Fortunately, ZenPatch can help keep your child chilled, calm and relaxed. This will make it easier for you to manage your child's high energy, so you can finally enjoy some time to yourself.</p>
+        `,
       ],
-      4: [
-        "I am looking for a chemical-free solution that helps to calm my child down before bedtime",
+      2: [
+        "Your child suffers from <b>anxiety and nervousness</b>",
         `<p>Children who struggle with anxiety and nervousness may find it difficult to engage with the world around them in healthy ways - making it harder for them to form relationships or develop a positive mental outlook.</p>
         <p>Over the long term this can negatively affect confidence, and lead to loneliness and even depression.</p>
         <p>ZenPatch can help calm an anxious nervous system, minimising feelings of distress so that your child can navigate the world more easily, and form the positive experience that they need to develop into a confident adult.</p>`,
       ],
-      5: [
-        "I am looking for a natural solution that helps to reduce ADHD symptoms for my child",
+      3: [
+        "You are looking for an easy-to-use solution that will help <b>calm your child down at school</b>",
         `<p>If your child struggles to stay calm at school, then they're more likely to be punished for disruptive behavior, miss out on education, and fall behind in class.</p>
         <p>If these issues occur frequently, then negative learning outcomes and social isolation may become an issue, as your child struggles to fit into the calm environment that a classroom requires, and feel disengaged from learning opportunities.</p>
         <p>Fortunately, ZenPatch can help keep your child chilled, calm and relaxed. This makes it easier for your child to regulate their emotions and energy - allowing them to perform better socially, academically, and emotionally.</p>`,
       ],
-      6: [
-        "I am looking for a natural solution that helps to reduce autism symptoms for my child",
+      4: [
+        "You are looking for a chemical-free solution that will help <b>calm your child at bedtime</b>",
         `<p>If your little one struggles to calm down at night, then chances are they'll refuse to settle into a solid bedtime routine.</p>
-        <p>Without adequate and regular sleep, the issue can compound itself, leading to more sleepless nights, disrupted bedtime routines, and time spent awake trying to soothe, convince, or negotiate your child back to bed.</p>
-        <p>Thankfully, ZenPatch has been designed to save the sanity of parents nationwide. It's simple 'Zen release' formula helps little ones relax and settle into their bedtimes faster than ever.</p>
+        <p>Without adequate and regular sleep, the issue can compound itself, leading to more sleepless nights, disrupted bedtime routines, and time spent awake trying to soothe, convince, or negotiate your child back to bed. </p>
+        <p>Thankfully, ZenPatch has been designed to save the sanity of parents nationwide. It's simple 'Zen release' formula helps little ones relax and settle into their bedtimes faster than ever. </p>
         <p>Better yet, it supports a healthy bedtime routine without any artificial ingredients, chemicals, or drugs, it works without any of the nasty side effects commonly found in other sleep aids, such as grogginess, headaches, or mood disturbances.</p>`,
+      ],
+      5: [
+        "You are looking for a natural solution to help manage your child's <b>ADHD</b> symptoms",
+        `<p>Children with ADHD may struggle with emotional regulation, leading to impulsive behaviors, irritability, and mood swings.</p>
+        <p>Left unchecked, this can create a situation where your child has a hard time communicating, paying attention, and understanding or expressing their own emotional needs. This can in turn lead to negative social, learning and emotional development outcomes.</p>
+        <p>That's why the ZenPatch is so important for keeping your child chilled, calm and relaxed. Each patch makes it easier for your child to regulate their emotions and energy - allowing them to perform better socially, academically, and emotionally.</p>`,
+      ],
+      6: [
+        "You are looking for a natural solution to help manage your child's <b>autism</b> symptoms",
+        `<p>Children with autism often process emotions differently, which can leave them vulnerable to anxiety, frustration, and stress.</p>
+        <p>Left unchecked, this can create a situation where your child struggles to engage with the world around them in healthy ways - making it harder for them to form relationships or develop a positive mental outlook.</p>
+        <p>Fortunately, ZenPatch can help calm an anxious nervous system, minimising feelings of distress so that your child can navigate the world more easily, and form the positive experiences that they need to develop into an independent adult.</p>`,
       ],
     }
 
@@ -369,6 +371,11 @@ let problemBlockStart = setInterval(() => {
     })
 
     pushDataLayer("loaded")
-    clarity("set", "zenpatch_problem_based_layout”", "variant_1")
+    const record = setInterval(() => {
+      if (typeof clarity === "function") {
+        clearInterval(record)
+        clarity("set", "zenpatch_problem_based_layout”", "variant_1")
+      }
+    }, 200)
   }
 }, 10)
