@@ -45,11 +45,12 @@ let problemBlockStart = setInterval(() => {
               font-family: 'Din Condensed',Roboto,sans-serif !important;
               font-weight: 700;
               font-size: 40px;
-              line-height: 48px;
+              line-height: 32px !important;
               text-transform: uppercase;
               color: #FFFFFF;
               background: #2C7C73;
-              margin: 8px 0;
+              margin: 0 !important;
+              padding: 12px 0 0 !important;
            }
            .buzzpatch_accardion{
               list-style-type: none;
@@ -79,7 +80,7 @@ let problemBlockStart = setInterval(() => {
            .buzzpatch_accardion_link{
               display: flex;
               align-items: center;
-              justify-content: flex-start;
+              justify-content: space-between;
            }
           .buzzpatch_accardion_link p{
               font-family: 'Inter', sans-serif !important;
@@ -257,9 +258,7 @@ let problemBlockStart = setInterval(() => {
     let problemHtml = /*html */ `
       <div class="buzzpatch_problems">
         <h2>
-          <span>What</span>
-          <span class="accent_color">problems</span>
-          <span>are you looking to solve?</span>
+          <span class="accent_color">ZenPatch is perfect if</span>
         </h2>
   
         <ul class="buzzpatch_accardion"></ul>
