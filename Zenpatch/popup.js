@@ -2,6 +2,25 @@ let startFunkPopup = setInterval(() => {
     if (document) {
         clearInterval(startFunkPopup)
 
+        getCookie('_ga')
+
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            let valueCookie
+            let timeNewUser
+            if (parts.length === 2) {
+                valueCookie = parts.pop().split(';').shift();
+                timeNewUser = +(valueCookie.split('.').pop() + '000')
+                console.log(`timeNewUser`, new Date(timeNewUser))
+                console.log(`timeNow`, new Date())
+                console.log(+new Date() - +new Date(timeNewUser))
+                if (+new Date() - +new Date(timeNewUser) <= 10000) {
+                    console.log(`New User`)
+                }
+            }
+        }
+
         let scriptCustomTimer = document.createElement("script")
         scriptCustomTimer.src = "https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.0/flipclock.min.js"
         scriptCustomTimer.async = false
@@ -123,6 +142,9 @@ let startFunkPopup = setInterval(() => {
         .email_opt_in{
             padding: 5px 20px 30px;
             text-align: center;
+        }
+        .email_opt_in.is_hidden{
+            display: none;
         }
         .email_opt_in p{
             font-family: "Roboto", sans-serif;
@@ -303,6 +325,54 @@ let startFunkPopup = setInterval(() => {
         .countdown .flip-clock-divider.hours .flip-clock-label {
             right: -47px !important;
         }
+        /*btn_trigger_popup */
+        .btn_trigger_popup{
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background: #F9BF07;
+            border-radius: 27px;
+            width: 100%;
+            max-width: 331px;
+            margin: 16px auto;
+            padding: 11px 14px 11px 56px;
+            position: relative;
+        }
+        .btn_trigger_popup::before{
+            position: absolute;
+            content: '';
+            top: 50%;
+            transform: translateY(-50%);
+            left: 16px;
+            width: 28px;
+            height: 19px;
+            background: url(https://conversionratestore.github.io/projects/zenpatch/img/discount.svg) no-repeat center center;
+            background-size: contain;
+        }
+        body .btn_trigger_popup > p{
+            font-family: "Roboto", sans-serif;
+            font-weight: 700;
+            font-size: 12px !important;
+            line-height: 18px !important;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #010101;
+            margin: 0;
+        }
+        .btn_trigger_popup svg{
+            margin: 0 0 0 auto;
+        }
+        .btn_trigger_popup.applied_discount{
+            background: #E5E6E9;
+            border: 1px solid #E5E6E9;
+        }
+        .btn_trigger_popup.applied_discount svg{
+            display: none;
+        }
+        .btn_trigger_popup.applied_discount.is_hidden,
+        .btn_trigger_popup.not_applied_discount.is_hidden{
+            display: none;
+        }
         @media (max-width: 320px) {
             .header_popup::before{
                 width: 102%;
@@ -316,15 +386,18 @@ let startFunkPopup = setInterval(() => {
             .success_block p{
                 font-size: 15px !important;
             }
+            body .btn_trigger_popup > p{
+                font-size: 11px !important;
+            }
         }
 
         </style>
         `
 
         let popUp = /*html */ `
-                <div class="overlay_popup">
+                <div class="overlay_popup is_hidden">
                     <div class="container_popup">
-                        <div class="btn_close">
+                        <div class="btn_close" data-close>
                             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M2.19995 2.27234L11.8 11.8723M2.19995 11.8723L11.8 2.27234L2.19995 11.8723Z" stroke="white" stroke-width="2.625" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
@@ -351,7 +424,7 @@ let startFunkPopup = setInterval(() => {
                         </label>
                         <button type="submit" class="green_btn">Claim Bonus Offer</button>
                     </form>
-                    <button class="no_thanks_btn">No thanks, I don't want extra savings</button>
+                    <button class="no_thanks_btn" data-close>No thanks, I don't want extra savings</button>
                 </div>
                 <div class="success_block is_hidden">
                     <h2>Congratulations!</h2>
@@ -360,20 +433,97 @@ let startFunkPopup = setInterval(() => {
                         <span>tnpc7680ae65</span>
                     </div>
                     <p>Discount code will be automatically applied at checkout</p>
-                    <button class="green_btn">Continue shopping</button>
+                    <button class="green_btn" data-close>Continue shopping</button>
                 </div>
             </div>
         `
 
-        document.head.insertAdjacentHTML("beforeend", popupStyle)
-        document.body.insertAdjacentHTML("afterbegin", popUp)
-        document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup)
+        let triggerPopup = /*html */`
+        <div class="btn_trigger_popup not_applied_discount" data-popup>
+            <p>Get aDDITIONAL 10% OFF </p>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M9.64657 9L5 4.13389L6.2707 3L12 9L6.2707 15L5 13.8661L9.64657 9Z" fill="black"/>
+            </svg>
+        </div>
+        <div class="btn_trigger_popup applied_discount is_hidden">
+            <p>aDDITIONAL 10% OFF applied next</p>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M9.64657 9L5 4.13389L6.2707 3L12 9L6.2707 15L5 13.8661L9.64657 9Z" fill="black"/>
+            </svg>
+        </div>
+        `
 
-        if (document.querySelector(".overlay_popup .content_popup")) {
+        document.head.insertAdjacentHTML("beforeend", popupStyle)
+        document.querySelector('#addToCart')?.insertAdjacentHTML('beforebegin', triggerPopup)
+        document.body.insertAdjacentHTML("afterbegin", popUp)
+        let countdown
+
+        const popupTrigger = document.querySelectorAll('[data-popup]'),
+            popup = document.querySelector('.overlay_popup')
+
+        function closePopup() {
+            popup.classList.add('is_hidden')
+            document.body.style.overflow = ''
+        }
+
+        function openPopup() {
+            if (!document.querySelector(".overlay_popup .container_popup .content_popup")) {
+                document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup)
+            }
+            popup.classList.remove('is_hidden');
+            document.body.style.overflow = 'hidden'
+
+            clearInterval(popupTimerId)
+            if (document.querySelector(".overlay_popup .content_popup")) {
+                document.querySelectorAll('[data-close]')
+                    .forEach(el => {
+                        console.log(el)
+                        el.addEventListener('click', () => {
+                            closePopup()
+                        })
+                    })
+
+                // click pn btn Claim Bonus Offer 
+                document.querySelector('form .green_btn')?.addEventListener('click', (e) => {
+                    e.preventDefault()
+                    countdown.stop()
+                    document.querySelector('.btn_trigger_popup.not_applied_discount').classList.add('is_hidden')
+                    document.querySelector('.btn_trigger_popup.applied_discount').classList.remove('is_hidden')
+                    setDiscountCheckout()
+
+                    if (document.querySelector('.success_block').classList.contains('is_hidden')) {
+                        document.querySelector('.success_block').classList.remove('is_hidden')
+                    }
+                    if (!document.querySelector('.email_opt_in ').classList.contains('is_hidden')) {
+                        document.querySelector('.email_opt_in').classList.add('is_hidden')
+                    }
+                })
+            }
+        }
+        popupTrigger.forEach(btn => {
+            if (!btn.classList.contains('applied_discount')) {
+                btn.addEventListener('click', openPopup);
+            }
+        });
+
+        popup.addEventListener('click', (e) => {
+            if (e.target === popup) {
+                closePopup()
+            }
+        });
+
+        const popupTimerId = setTimeout(() => {
+            openPopup()
+            if (document.querySelector(".overlay_popup .content_popup")) {
+                countTimer()
+            }
+        }, 10000)
+
+        function countTimer() {
             let clock = setInterval(() => {
                 if (typeof FlipClock === "function" && typeof jQuery === "function" && document.querySelector("#countdown")) {
                     clearInterval(clock)
-                    let countdown, init_countdown, set_countdown
+                    let init_countdown, set_countdown
                     countdown = init_countdown = function () {
                         countdown = new FlipClock($(".countdown"), {
                             language: "en",
@@ -386,7 +536,7 @@ let startFunkPopup = setInterval(() => {
 
                                 },
                                 stop: function () {
-
+                                    console.log(`stop countdown`)
                                 }
                             },
                         })
@@ -417,6 +567,79 @@ let startFunkPopup = setInterval(() => {
                 }
             }, 500)
 
+
+
         }
+        // change EVENT btn addToCart and setDiscountCheckout
+        function setDiscountCheckout() {
+            let idValue = document.querySelector(".js-packs input[type=radio]:checked+label").previousElementSibling.value
+            // observer
+            let observer = new MutationObserver(() => {
+                if (document) {
+                    observer.disconnect()
+                    idValue = document.querySelector(".js-packs input[type=radio]:checked+label").previousElementSibling.value
+                    observer.observe(document, {
+                        childList: true,
+                        subtree: true,
+                    })
+                }
+            })
+
+            observer.observe(document, {
+                childList: true,
+                subtree: true,
+            })
+
+            document.querySelector("#addToCart")?.addEventListener("click", function (e) {
+                e.preventDefault()
+
+                addToCartCheckout(idValue)
+            })
+
+
+            async function addToCartCheckout(idValue) {
+                // clearCart
+                await fetch("/cart/clear.js", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                })
+                    .then((response) => {
+                        return response.json()
+                    })
+                    .catch((error) => {
+                        console.error("Error:", error)
+                    })
+
+                formData = {
+                    items: [
+                        {
+                            id: idValue,
+                            quantity: 1,
+                        },
+                    ],
+                }
+
+                await fetch("/cart/add.js", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData),
+                })
+                    .then((response) => {
+                        return response.json()
+                    })
+                    .catch((error) => {
+                        console.error("Error:", error)
+                    })
+
+                setTimeout(() => {
+                    window.location.href = "/checkout?discount=tnpc7680ae65"
+                }, 300)
+            }
+        }
+
     }
 }, 100)
