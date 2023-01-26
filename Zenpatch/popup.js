@@ -2,9 +2,11 @@ let startFunkPopup = setInterval(() => {
     if (document) {
         clearInterval(startFunkPopup)
 
-        getCookie('_ga')
+        let popupTimerId
+        let active = false
+        getNewUser('_ga')
 
-        function getCookie(name) {
+        function getNewUser(name) {
             const value = `; ${document.cookie}`;
             const parts = value.split(`; ${name}=`);
             let valueCookie
@@ -13,10 +15,15 @@ let startFunkPopup = setInterval(() => {
                 valueCookie = parts.pop().split(';').shift();
                 timeNewUser = +(valueCookie.split('.').pop() + '000')
                 console.log(`timeNewUser`, new Date(timeNewUser))
-                console.log(`timeNow`, new Date())
-                console.log(+new Date() - +new Date(timeNewUser))
                 if (+new Date() - +new Date(timeNewUser) <= 10000) {
                     console.log(`New User`)
+                    active = true
+                    popupTimerId = setTimeout(() => {
+                        openPopup()
+                        if (document.querySelector(".overlay_popup .content_popup")) {
+                            countTimer()
+                        }
+                    }, 10000)
                 }
             }
         }
@@ -458,6 +465,10 @@ let startFunkPopup = setInterval(() => {
         document.body.insertAdjacentHTML("afterbegin", popUp)
         let countdown
 
+        if (localStorage.getItem("appliedDiscount")) {
+            changeVisabilityApplieddiscount()
+        }
+
         const popupTrigger = document.querySelectorAll('[data-popup]'),
             popup = document.querySelector('.overlay_popup')
 
@@ -473,11 +484,15 @@ let startFunkPopup = setInterval(() => {
             popup.classList.remove('is_hidden');
             document.body.style.overflow = 'hidden'
 
+            if (!document.querySelector('.countdown.flip-clock-wrapper') && active === false) {
+                countTimer()
+            }
+
             clearInterval(popupTimerId)
+
             if (document.querySelector(".overlay_popup .content_popup")) {
                 document.querySelectorAll('[data-close]')
                     .forEach(el => {
-                        console.log(el)
                         el.addEventListener('click', () => {
                             closePopup()
                         })
@@ -485,18 +500,13 @@ let startFunkPopup = setInterval(() => {
 
                 // click pn btn Claim Bonus Offer 
                 document.querySelector('form .green_btn')?.addEventListener('click', (e) => {
-                    e.preventDefault()
-                    countdown.stop()
-                    document.querySelector('.btn_trigger_popup.not_applied_discount').classList.add('is_hidden')
-                    document.querySelector('.btn_trigger_popup.applied_discount').classList.remove('is_hidden')
-                    setDiscountCheckout()
-
-                    if (document.querySelector('.success_block').classList.contains('is_hidden')) {
-                        document.querySelector('.success_block').classList.remove('is_hidden')
+                    if (!e.target.getAttribute('data-test')) {
+                        e.preventDefault()
+                        countdown.stop()
+                        localStorage.setItem("appliedDiscount", "yes")
+                        changeVisabilityApplieddiscount()
                     }
-                    if (!document.querySelector('.email_opt_in ').classList.contains('is_hidden')) {
-                        document.querySelector('.email_opt_in').classList.add('is_hidden')
-                    }
+                    e.target.setAttribute('data-test', '1');
                 })
             }
         }
@@ -512,13 +522,6 @@ let startFunkPopup = setInterval(() => {
             }
         });
 
-        const popupTimerId = setTimeout(() => {
-            openPopup()
-            if (document.querySelector(".overlay_popup .content_popup")) {
-                countTimer()
-            }
-        }, 10000)
-
         function countTimer() {
             let clock = setInterval(() => {
                 if (typeof FlipClock === "function" && typeof jQuery === "function" && document.querySelector("#countdown")) {
@@ -533,7 +536,7 @@ let startFunkPopup = setInterval(() => {
                             showSeconds: true,
                             callbacks: {
                                 start: function () {
-
+                                    console.log(`start countdown`)
                                 },
                                 stop: function () {
                                     console.log(`stop countdown`)
@@ -566,9 +569,6 @@ let startFunkPopup = setInterval(() => {
                     set_countdown(15, new Date())
                 }
             }, 500)
-
-
-
         }
         // change EVENT btn addToCart and setDiscountCheckout
         function setDiscountCheckout() {
@@ -592,7 +592,6 @@ let startFunkPopup = setInterval(() => {
 
             document.querySelector("#addToCart")?.addEventListener("click", function (e) {
                 e.preventDefault()
-
                 addToCartCheckout(idValue)
             })
 
@@ -636,8 +635,26 @@ let startFunkPopup = setInterval(() => {
                     })
 
                 setTimeout(() => {
-                    window.location.href = "/checkout?discount=tnpc7680ae65"
+                    if (!localStorage.getItem("restartFunc")) {
+                        window.location.href = "/checkout?discount=tnpc7680ae65"
+                        localStorage.setItem("restartFunc", 'true')
+                    } else {
+                        window.location.pathname = "/checkout"
+                    }
                 }, 300)
+            }
+        }
+
+        function changeVisabilityApplieddiscount() {
+            document.querySelector('.btn_trigger_popup.not_applied_discount')?.classList.add('is_hidden')
+            document.querySelector('.btn_trigger_popup.applied_discount')?.classList.remove('is_hidden')
+            setDiscountCheckout()
+
+            if (document.querySelector('.success_block')?.classList.contains('is_hidden')) {
+                document.querySelector('.success_block')?.classList.remove('is_hidden')
+            }
+            if (!document.querySelector('.email_opt_in')?.classList.contains('is_hidden')) {
+                document.querySelector('.email_opt_in')?.classList.add('is_hidden')
             }
         }
 
