@@ -15,7 +15,7 @@ let startFunkPopup = setInterval(() => {
                 valueCookie = parts.pop().split(';').shift();
                 timeNewUser = +(valueCookie.split('.').pop() + '000')
                 console.log(`timeNewUser`, new Date(timeNewUser))
-                if (+new Date() - +new Date(timeNewUser) <= 10000) {
+                if (+new Date() - +new Date(timeNewUser) <= 5 * 60 * 1000) {
                     console.log(`New User`)
                     active = true
                     popupTimerId = setTimeout(() => {
@@ -40,6 +40,10 @@ let startFunkPopup = setInterval(() => {
 
         let popupStyle = /*html */`
         <style>
+            #zenpatch-mood-calming-stickers-the-natural-patch-co .ju_Con,
+            #zenpatch-mood-calming-stickers-the-natural-patch-co #ju_overlay{
+                display: none !important;
+            }
         .overlay_popup {
             position: fixed;
             top: 0;
