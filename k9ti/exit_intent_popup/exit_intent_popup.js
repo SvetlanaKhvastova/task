@@ -211,6 +211,7 @@ const sendEvent = (eventAction, eventLabel = "") => {
 
   window.dataLayer = window.dataLayer || []
   dataLayer.push(obj)
+  console.log(obj)
 }
 
 const stopTimeout = () => {
@@ -242,120 +243,6 @@ const hidePopup = (label) => {
   stopTimeout()
 }
 
-/** Parse HTML, CSS and run functions. */
-document.head.insertAdjacentHTML("beforeend", style)
-
-const waitForBody = setInterval(() => {
-  if (document.body) {
-    clearInterval(waitForBody)
-
-    document.body.insertAdjacentHTML("afterbegin", popup)
-  }
-}, 100)
-
-waitForEl(".my_popup_close_wrapper").then((el) => el.addEventListener("click", () => hidePopup("close")))
-waitForEl(".content_no").then((el) => el.addEventListener("click", () => hidePopup("No thanks")))
-
-const waitForBtns = setInterval(() => {
-  if (document.querySelector(".submit_btn input") && document.querySelector(".content_btn")) {
-    clearInterval(waitForBtns)
-
-    document.querySelector(".content_btn").addEventListener("click", () => {
-      document.querySelector(".my_overlay").classList.remove("show_popup")
-      sendEvent("click on Complete purchase button")
-
-      stopTimeout()
-
-      const filledInputs = [...document.querySelectorAll(".payment_inform_box input:not(#onetime_pay):not(#monthly_pay)")].every((input) => {
-        return input.value.length
-      })
-
-      if (filledInputs) {
-        document.querySelector(".submit_btn input").focus()
-        document.querySelector(".submit_btn input").click()
-      } else {
-        for (const input of document.querySelectorAll(".payment_inform_box input:not(#onetime_pay):not(#monthly_pay)")) {
-          if (!input.value.length) {
-            input.focus()
-            break
-          }
-        }
-      }
-    })
-
-    if (sessionStorage.getItem("popupAppeared") == null) {
-      // show popup
-      switch (device) {
-        case "Desktop":
-          let x = 0,
-            y = 0
-          window.addEventListener("mousemove", function (e) {
-            x = e.clientX
-            y = e.clientY
-          })
-          document.body.addEventListener(
-            "mouseleave",
-            function () {
-              if (x < 50 || y < 50 || x > window.innerWidth - 50 || y > window.innerHeight - 50) {
-                showPopup()
-              }
-            },
-            { once: true }
-          )
-          break
-        case "Mobile":
-          let lastPosition = 0,
-            newPosition = 0,
-            currentSpeed = 0
-
-          let scrollSpeed = () => {
-            lastPosition = window.scrollY
-            setTimeout(() => {
-              newPosition = window.scrollY
-            }, 70)
-            currentSpeed = newPosition - lastPosition
-
-            if (currentSpeed > 70) {
-              document.removeEventListener("scroll", scrollSpeed)
-              showPopup()
-            }
-          }
-
-          document.addEventListener("scroll", scrollSpeed)
-          break
-        default:
-          break
-      }
-    }
-  }
-}, 100)
-
-// observer
-const runObserver = () => {
-  // Mutation Observer
-  const target = document.body
-  const config = {
-    childList: true,
-    subtree: true,
-  }
-
-  let observer = new MutationObserver((mutations) => {
-    for (let mutation of mutations) {
-      console.log(mutation)
-    }
-  })
-
-  observer.observe(target, config)
-}
-
-$(".paypament-details .order_form_field").keyup(function () {
-  onEventDesk()
-})
-
-$(".paypament-details .order_form_field").blur(function () {
-  onEventDesk()
-})
-
 function onEventDesk() {
   if (sessionStorage.getItem("popupAppeared") == null) {
     // show popup
@@ -382,6 +269,120 @@ function onEventDesk() {
     }
   }
 }
+
+/** Parse HTML, CSS and run functions. */
+document.head.insertAdjacentHTML("beforeend", style)
+
+const waitForBody = setInterval(() => {
+  if (document.body) {
+    clearInterval(waitForBody)
+
+    document.body.insertAdjacentHTML("afterbegin", popup)
+
+    waitForEl(".my_popup_close_wrapper").then((el) => el.addEventListener("click", () => hidePopup("close")))
+    waitForEl(".content_no").then((el) => el.addEventListener("click", () => hidePopup("No thanks")))
+
+    const waitForBtns = setInterval(() => {
+      if (document.querySelector(".submit_btn input") && document.querySelector(".content_btn")) {
+        clearInterval(waitForBtns)
+
+        document.querySelector(".content_btn").addEventListener("click", () => {
+          document.querySelector(".my_overlay").classList.remove("show_popup")
+          sendEvent("click on Complete purchase button")
+
+          stopTimeout()
+
+          const filledInputs = [...document.querySelectorAll(".payment_inform_box input:not(#onetime_pay):not(#monthly_pay)")].every((input) => {
+            return input.value.length
+          })
+
+          if (filledInputs) {
+            document.querySelector(".submit_btn input").focus()
+            document.querySelector(".submit_btn input").click()
+          } else {
+            for (const input of document.querySelectorAll(".payment_inform_box input:not(#onetime_pay):not(#monthly_pay)")) {
+              if (!input.value.length) {
+                input.focus()
+                break
+              }
+            }
+          }
+        })
+
+        if (sessionStorage.getItem("popupAppeared") == null) {
+          // show popup
+          switch (device) {
+            case "Desktop":
+              let x = 0,
+                y = 0
+              window.addEventListener("mousemove", function (e) {
+                x = e.clientX
+                y = e.clientY
+              })
+              document.body.addEventListener(
+                "mouseleave",
+                function () {
+                  if (x < 50 || y < 50 || x > window.innerWidth - 50 || y > window.innerHeight - 50) {
+                    showPopup()
+                  }
+                },
+                { once: true }
+              )
+              break
+            case "Mobile":
+              let speedValue = /android/i.test(navigator.userAgent) ? 190 : 160
+
+              let lastPosition = 0,
+                newPosition = 0,
+                currentSpeed = 0
+
+              let scrollSpeed = () => {
+                lastPosition = window.scrollY
+                setTimeout(() => {
+                  newPosition = window.scrollY
+                }, 100)
+
+                currentSpeed = newPosition - lastPosition
+
+                if (currentSpeed > speedValue) {
+                  document.removeEventListener("scroll", scrollSpeed)
+                  showPopup()
+                }
+              }
+
+              document.addEventListener("scroll", scrollSpeed)
+
+              waitForEl('#submit').then(el => {
+                el.addEventListener('click', () => {
+                  document.removeEventListener("scroll", scrollSpeed)
+
+                  if (sessionStorage.getItem("popupAppeared") == null) {
+                    lastPosition = 0
+                    newPosition = 0
+                    currentSpeed = 0
+
+                    document.addEventListener("scroll", scrollSpeed)
+                  }
+                })
+              })
+
+              break
+            default:
+              break
+          }
+        }
+      }
+    }, 100)
+
+    $(".paypament-details .order_form_field").keyup(function () {
+      onEventDesk()
+    })
+
+    $(".paypament-details .order_form_field").blur(function () {
+      onEventDesk()
+    })
+  }
+}, 100)
 
 sendEvent("loaded")
 const record = setInterval(() => {
