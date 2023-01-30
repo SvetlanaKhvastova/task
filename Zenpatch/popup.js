@@ -2,8 +2,28 @@ let startFunkPopup = setInterval(() => {
     if (document) {
         clearInterval(startFunkPopup)
 
+        function pushDataLayer(actionDataLayer, labelDataLayer) {
+            window.dataLayer = window.dataLayer || []
+            if (labelDataLayer) {
+                console.log(actionDataLayer + " : " + labelDataLayer)
+                dataLayer.push({
+                    event: "event-to-ga",
+                    eventCategory: `Exp: - Zenpatch_problem_based_layout'`,
+                    eventAction: `${actionDataLayer}`,
+                    eventLabel: `${labelDataLayer}`,
+                })
+            } else {
+                console.log(actionDataLayer)
+                dataLayer.push({
+                    event: "event-to-ga",
+                    eventCategory: `Exp: - Zenpatch_problem_based_layout'`,
+                    eventAction: `${actionDataLayer}`,
+                })
+            }
+        }
+
         let popupTimerId
-        let active = false
+        let active = falselinklists
         getNewUser('_ga')
 
         function getNewUser(name) {
@@ -11,13 +31,14 @@ let startFunkPopup = setInterval(() => {
             const parts = value.split(`; ${name}=`);
             let valueCookie
             let timeNewUser
-            if (parts.length === 2) {
+            if (parts.length === 2 && !localStorage.getItem("newUser")) {
                 valueCookie = parts.pop().split(';').shift();
                 timeNewUser = +(valueCookie.split('.').pop() + '000')
                 console.log(`timeNewUser`, new Date(timeNewUser))
                 if (+new Date() - +new Date(timeNewUser) <= 5 * 60 * 1000) {
                     console.log(`New User`)
                     active = true
+                    localStorage.setItem("newUser", 'true')
                     popupTimerId = setTimeout(() => {
                         openPopup()
                         if (document.querySelector(".overlay_popup .content_popup")) {
@@ -384,6 +405,19 @@ let startFunkPopup = setInterval(() => {
         .btn_trigger_popup.not_applied_discount.is_hidden{
             display: none;
         }
+        input.error{
+        border: 2px solid #ef4836 !important;
+        }
+        .input_validation_email {
+            position: absolute;
+            width: 100%;
+            padding: 2px 0 0 8px;
+            color: #ef4836;
+            text-align: center;
+            font-size: 10px;
+            line-height: 1.25;
+            display: none;
+        }
         @media (max-width: 320px) {
             .header_popup::before{
                 width: 102%;
@@ -408,7 +442,7 @@ let startFunkPopup = setInterval(() => {
         let popUp = /*html */ `
                 <div class="overlay_popup is_hidden">
                     <div class="container_popup">
-                        <div class="btn_close" data-close>
+                        <div class="btn_close" data-close="btn close popup">
                             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M2.19995 2.27234L11.8 11.8723M2.19995 11.8723L11.8 2.27234L2.19995 11.8723Z" stroke="white" stroke-width="2.625" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
@@ -430,12 +464,13 @@ let startFunkPopup = setInterval(() => {
                         <div id="countdown" class="countdown"></div>
                     </div>
                     <form action="#">
-                        <label for="">
-                            <input type="email" name="" id="" placeholder="Enter your email to claim">
+                        <label>
+                            <input type="email" name="myEmail" id="myEmail" placeholder="Enter your email to claim">
+                            <div class="input_validation_email">Your email doesn't seem to be valid</div>
                         </label>
                         <button type="submit" class="green_btn">Claim Bonus Offer</button>
                     </form>
-                    <button class="no_thanks_btn" data-close>No thanks, I don't want extra savings</button>
+                    <button class="no_thanks_btn" data-close="No thanks">No thanks, I don't want extra savings</button>
                 </div>
                 <div class="success_block is_hidden">
                     <h2>Congratulations!</h2>
@@ -444,7 +479,7 @@ let startFunkPopup = setInterval(() => {
                         <span>tnpc7680ae65</span>
                     </div>
                     <p>Discount code will be automatically applied at checkout</p>
-                    <button class="green_btn" data-close>Continue shopping</button>
+                    <button class="green_btn" data-close="Continue shopping">Continue shopping</button>
                 </div>
             </div>
         `
@@ -465,202 +500,323 @@ let startFunkPopup = setInterval(() => {
         `
 
         document.head.insertAdjacentHTML("beforeend", popupStyle)
-        document.querySelector('#addToCart')?.insertAdjacentHTML('beforebegin', triggerPopup)
-        document.body.insertAdjacentHTML("afterbegin", popUp)
-        let countdown
 
-        if (localStorage.getItem("appliedDiscount")) {
-            changeVisabilityApplieddiscount()
-        }
+        if (!localStorage.getItem("restartFunc")) {
+            document.querySelector('#addToCart')?.insertAdjacentHTML('beforebegin', triggerPopup)
+            document.body.insertAdjacentHTML("afterbegin", popUp)
+            let countdown
 
-        const popupTrigger = document.querySelectorAll('[data-popup]'),
-            popup = document.querySelector('.overlay_popup')
-
-        function closePopup() {
-            popup.classList.add('is_hidden')
-            document.body.style.overflow = ''
-        }
-
-        function openPopup() {
-            if (!document.querySelector(".overlay_popup .container_popup .content_popup")) {
-                document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup)
-            }
-            popup.classList.remove('is_hidden');
-            document.body.style.overflow = 'hidden'
-
-            if (!document.querySelector('.countdown.flip-clock-wrapper') && active === false) {
-                countTimer()
+            if (localStorage.getItem("appliedDiscount") && !localStorage.getItem("restartFunc")) {
+                changeVisabilityApplieddiscount()
             }
 
-            clearInterval(popupTimerId)
+            const popupTrigger = document.querySelectorAll('[data-popup]'),
+                popup = document.querySelector('.overlay_popup')
 
-            if (document.querySelector(".overlay_popup .content_popup")) {
-                document.querySelectorAll('[data-close]')
-                    .forEach(el => {
-                        el.addEventListener('click', () => {
-                            closePopup()
-                        })
-                    })
-
-                // click pn btn Claim Bonus Offer 
-                document.querySelector('form .green_btn')?.addEventListener('click', (e) => {
-                    if (!e.target.getAttribute('data-test')) {
-                        e.preventDefault()
-                        countdown.stop()
-                        localStorage.setItem("appliedDiscount", "yes")
-                        changeVisabilityApplieddiscount()
-                    }
-                    e.target.setAttribute('data-test', '1');
-                })
+            function closePopup() {
+                popup.classList.add('is_hidden')
+                document.body.style.overflow = ''
             }
-        }
-        popupTrigger.forEach(btn => {
-            if (!btn.classList.contains('applied_discount')) {
-                btn.addEventListener('click', openPopup);
-            }
-        });
 
-        popup.addEventListener('click', (e) => {
-            if (e.target === popup) {
-                closePopup()
-            }
-        });
+            function openPopup() {
+                if (!document.querySelector(".overlay_popup .container_popup .content_popup")) {
+                    document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup)
+                }
+                popup.classList.remove('is_hidden')
+                document.body.style.overflow = 'hidden'
 
-        function countTimer() {
-            let clock = setInterval(() => {
-                if (typeof FlipClock === "function" && typeof jQuery === "function" && document.querySelector("#countdown")) {
-                    clearInterval(clock)
-                    let init_countdown, set_countdown
-                    countdown = init_countdown = function () {
-                        countdown = new FlipClock($(".countdown"), {
-                            language: "en",
-                            clockFace: 'DailyCounter',
-                            countdown: true,
-                            autoStart: false,
-                            showSeconds: true,
-                            callbacks: {
-                                start: function () {
-                                    console.log(`start countdown`)
-                                },
-                                stop: function () {
-                                    console.log(`stop countdown`)
+                clearInterval(popupTimerId)
+                active = false
+
+                if (!document.querySelector('.countdown.flip-clock-wrapper') && active === false) {
+                    console.log(`active`, active)
+                    countTimer()
+                }
+
+
+
+                if (document.querySelector(".overlay_popup .content_popup")) {
+                    document.querySelectorAll('[data-close]')
+                        .forEach(el => {
+                            el.addEventListener('click', (e) => {
+                                if (!e.target.getAttribute('data-test')) {
+                                    pushDataLayer(`Click ${el.getAttribute("data-close")}`)
+                                    closePopup()
                                 }
-                            },
+                                e.target.setAttribute('data-test', '1')
+
+                                setTimeout(() => {
+                                    if (e.target.getAttribute("data-test")) {
+                                        e.target.removeAttribute("data-test")
+                                    }
+                                }, 200)
+                            })
                         })
 
-                        return countdown
-                    }
-                    set_countdown = function (minutes, start) {
-                        let elapsed, end, left_secs, now, seconds
-                        if (countdown.running) {
-                            return
+                    // click pn btn Claim Bonus Offer 
+                    document.querySelector('form .green_btn')?.addEventListener('click', (e) => {
+                        if (!e.target.getAttribute('data-test')) {
+                            e.preventDefault()
+                            pushDataLayer("Сlick on Claim Bonus Offer")
+                            validationForm()
                         }
-                        seconds = minutes * 60
-                        now = new Date()
-                        start = new Date(start)
-                        end = start.getTime() + seconds * 1000
-                        left_secs = Math.round((end - now.getTime()) / 1000)
-                        elapsed = false
-                        if (left_secs < 0) {
-                            console.log(`left_secs`, left_secs)
-                            left_secs *= -1
-                            elapsed = true
+                        e.target.setAttribute('data-test', '1')
+
+                        setTimeout(() => {
+                            if (e.target.getAttribute("data-test")) {
+                                e.target.removeAttribute("data-test")
+                            }
+                        }, 200)
+                    })
+
+                    document.querySelector(`input[name='myEmail']`).addEventListener("focus", (e) => {
+                        if (!e.target.getAttribute("data-test")) {
+                            pushDataLayer("Input (focus)")
                         }
-                        countdown.setTime(left_secs)
-                        return countdown.start()
-                    }
-                    init_countdown()
-                    set_countdown(15, new Date())
+                        e.target.setAttribute("data-test", "1")
+
+                        setTimeout(() => {
+                            if (e.target.getAttribute("data-test")) {
+                                e.target.removeAttribute("data-test")
+                            }
+                        }, 300)
+                    })
                 }
-            }, 500)
-        }
-        // change EVENT btn addToCart and setDiscountCheckout
-        function setDiscountCheckout() {
-            let idValue = document.querySelector(".js-packs input[type=radio]:checked+label").previousElementSibling.value
-            // observer
-            let observer = new MutationObserver(() => {
-                if (document) {
-                    observer.disconnect()
-                    idValue = document.querySelector(".js-packs input[type=radio]:checked+label").previousElementSibling.value
-                    observer.observe(document, {
-                        childList: true,
-                        subtree: true,
+            }
+            popupTrigger.forEach(btn => {
+                if (!btn.classList.contains('applied_discount')) {
+                    btn.addEventListener('click', () => {
+                        pushDataLayer("Сlick on applied_discount")
+                        openPopup()
                     })
                 }
             })
 
-            observer.observe(document, {
-                childList: true,
-                subtree: true,
+            popup.addEventListener('click', (e) => {
+                if (e.target === popup) {
+                    pushDataLayer("Сlick on overlay close")
+                    closePopup()
+                }
             })
 
-            document.querySelector("#addToCart")?.addEventListener("click", function (e) {
-                e.preventDefault()
-                addToCartCheckout(idValue)
-            })
+            function countTimer() {
+                let clock = setInterval(() => {
+                    if (typeof FlipClock === "function" && typeof jQuery === "function" && document.querySelector("#countdown")) {
+                        clearInterval(clock)
+                        let init_countdown, set_countdown
+                        countdown = init_countdown = function () {
+                            countdown = new FlipClock($(".countdown"), {
+                                language: "en",
+                                clockFace: 'DailyCounter',
+                                countdown: true,
+                                autoStart: false,
+                                showSeconds: true,
+                                callbacks: {
+                                    start: function () {
+                                        console.log(`start countdown`)
+                                    },
+                                    stop: function () {
+                                        console.log(`stop countdown`)
+                                    }
+                                },
+                            })
 
-
-            async function addToCartCheckout(idValue) {
-                // clearCart
-                await fetch("/cart/clear.js", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
+                            return countdown
+                        }
+                        set_countdown = function (minutes, start) {
+                            let elapsed, end, left_secs, now, seconds
+                            if (countdown.running) {
+                                return
+                            }
+                            seconds = minutes * 60
+                            now = new Date()
+                            start = new Date(start)
+                            end = start.getTime() + seconds * 1000
+                            left_secs = Math.round((end - now.getTime()) / 1000)
+                            elapsed = false
+                            if (left_secs < 0) {
+                                console.log(`left_secs`, left_secs)
+                                left_secs *= -1
+                                elapsed = true
+                            }
+                            countdown.setTime(left_secs)
+                            return countdown.start()
+                        }
+                        init_countdown()
+                        set_countdown(15, new Date())
+                    }
+                }, 500)
+            }
+            // change EVENT btn addToCart and setDiscountCheckout
+            function setDiscountCheckout() {
+                let idValue = document.querySelector(".js-packs input[type=radio]:checked+label").previousElementSibling.value
+                // observer
+                let observer = new MutationObserver(() => {
+                    if (document) {
+                        observer.disconnect()
+                        idValue = document.querySelector(".js-packs input[type=radio]:checked+label").previousElementSibling.value
+                        observer.observe(document, {
+                            childList: true,
+                            subtree: true,
+                        })
+                    }
                 })
-                    .then((response) => {
-                        return response.json()
-                    })
-                    .catch((error) => {
-                        console.error("Error:", error)
-                    })
 
-                formData = {
-                    items: [
-                        {
-                            id: idValue,
-                            quantity: 1,
+                observer.observe(document, {
+                    childList: true,
+                    subtree: true,
+                })
+
+                document.querySelector("#addToCart")?.addEventListener("click", function (e) {
+                    e.preventDefault()
+                    pushDataLayer('Click on addToCart')
+                    addToCartCheckout(idValue)
+                })
+
+
+                async function addToCartCheckout(idValue) {
+                    // clearCart
+                    await fetch("/cart/clear.js", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
                         },
-                    ],
+                    })
+                        .then((response) => {
+                            return response.json()
+                        })
+                        .catch((error) => {
+                            console.error("Error:", error)
+                        })
+
+                    formData = {
+                        items: [
+                            {
+                                id: idValue,
+                                quantity: 1,
+                            },
+                        ],
+                    }
+
+                    await fetch("/cart/add.js", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(formData),
+                    })
+                        .then((response) => {
+                            return response.json()
+                        })
+                        .catch((error) => {
+                            console.error("Error:", error)
+                        })
+
+                    setTimeout(() => {
+                        if (!localStorage.getItem("restartFunc")) {
+                            window.location.href = "/checkout?discount=tnpc7680ae65"
+                            localStorage.setItem("restartFunc", 'true')
+                        } else {
+                            window.location.pathname = "/checkout"
+                        }
+                    }, 300)
+                }
+            }
+
+            function changeVisabilityApplieddiscount() {
+                document.querySelector('.btn_trigger_popup.not_applied_discount')?.classList.add('is_hidden')
+                document.querySelector('.btn_trigger_popup.applied_discount')?.classList.remove('is_hidden')
+                setDiscountCheckout()
+
+                if (document.querySelector('.success_block')?.classList.contains('is_hidden')) {
+                    document.querySelector('.success_block')?.classList.remove('is_hidden')
+                }
+                if (!document.querySelector('.email_opt_in')?.classList.contains('is_hidden')) {
+                    document.querySelector('.email_opt_in')?.classList.add('is_hidden')
+                }
+            }
+            // Visability
+            let obs = new IntersectionObserver(visibility, {
+                threshold: 1,
+            })
+            let obs2 = new IntersectionObserver(visibility2, {
+                threshold: 1,
+            })
+            let int = setInterval(() => {
+                if (document.querySelector(".email_opt_in")) {
+                    clearInterval(int)
+                    obs.observe(document.querySelector(".email_opt_in"))
+                }
+            }, 100)
+            let int2 = setInterval(() => {
+                if (document.querySelector('.success_block')) {
+                    clearInterval(int2)
+                    obs.observe(document.querySelector('.success_block'))
+                }
+            }, 100)
+            if (document.querySelector('.not_applied_discount')) {
+                obs.observe(document.querySelector('.not_applied_discount'))
+            }
+            let int3 = setInterval(() => {
+                if (document.querySelector('.applied_discount') && document.querySelector('.overlay_popup').classList.contains('is_hidden')) {
+                    clearInterval(int3)
+                    obs.observe(document.querySelector('.applied_discount'))
+                }
+            }, 100)
+            function visibility(entries) {
+                entries.forEach((i) => {
+                    if (i.isIntersecting) {
+                        setTimeout(function () {
+                            obs2.observe(i.target)
+                        }, 500)
+                    }
+                })
+            }
+            function visibility2(entries) {
+                entries.forEach((i) => {
+                    if (i.isIntersecting) {
+                        if (i.target.classList.contains("email_opt_in")) {
+                            pushDataLayer("Visibility email_opt_in")
+                        }
+                        if (i.target.classList.contains("success_block")) {
+                            pushDataLayer("Visibility success_block")
+                        }
+                        if (i.target.classList.contains("not_applied_discount")) {
+                            pushDataLayer("Visibility not_applied_discount ")
+                        }
+                        if (i.target.classList.contains("applied_discount") && document.querySelector('.overlay_popup').classList.contains('is_hidden')) {
+                            pushDataLayer("Visibility applied_discount ")
+                        }
+                        obs.unobserve(i.target)
+                    }
+                    obs2.unobserve(i.target)
+                })
+            }
+            // validationForm
+            function validationForm() {
+                let inputValueEmail = document.querySelector(`input[name='myEmail']`).value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/)
+                if (inputValueEmail === null) {
+                    document.querySelector(`input[name='email']`).classList.add("error")
+                    document.querySelector(`.input_validation_email`).style.display = "block"
+                } else {
+                    document.querySelector(`input[name='email']`).classList.remove("error")
+                    document.querySelector(`.input_validation_email`).style.display = "none"
                 }
 
-                await fetch("/cart/add.js", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(formData),
-                })
-                    .then((response) => {
-                        return response.json()
-                    })
-                    .catch((error) => {
-                        console.error("Error:", error)
-                    })
-
-                setTimeout(() => {
-                    if (!localStorage.getItem("restartFunc")) {
-                        window.location.href = "/checkout?discount=tnpc7680ae65"
-                        localStorage.setItem("restartFunc", 'true')
-                    } else {
-                        window.location.pathname = "/checkout"
-                    }
-                }, 300)
+                if (inputValueEmail !== null) {
+                    countdown.stop()
+                    localStorage.setItem("appliedDiscount", "yes")
+                    changeVisabilityApplieddiscount()
+                }
             }
         }
 
-        function changeVisabilityApplieddiscount() {
-            document.querySelector('.btn_trigger_popup.not_applied_discount')?.classList.add('is_hidden')
-            document.querySelector('.btn_trigger_popup.applied_discount')?.classList.remove('is_hidden')
-            setDiscountCheckout()
-
-            if (document.querySelector('.success_block')?.classList.contains('is_hidden')) {
-                document.querySelector('.success_block')?.classList.remove('is_hidden')
+        pushDataLayer("loaded")
+        const record = setInterval(() => {
+            if (typeof clarity === "function") {
+                clearInterval(record)
+                clarity("set", "zenpatch_problem_based_layout”", "variant_1")
             }
-            if (!document.querySelector('.email_opt_in')?.classList.contains('is_hidden')) {
-                document.querySelector('.email_opt_in')?.classList.add('is_hidden')
-            }
-        }
-
+        }, 200)
     }
 }, 100)

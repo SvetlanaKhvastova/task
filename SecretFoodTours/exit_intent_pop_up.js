@@ -493,7 +493,7 @@ let startFunk = setInterval(() => {
                   overlay.addEventListener("click", (e) => {// click on overlay popup
                     if (e.target.matches(".overlay_popup")) {
                       countdown.stop()
-                      с("Сlick on overlay close")
+                      pushDataLayer("Сlick on overlay close")
                       timerEventDesk(document.querySelector(".info_block"), "stop")
                       onClosePopup()
                     }
