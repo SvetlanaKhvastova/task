@@ -504,6 +504,74 @@ li {
   left: 50%;
   transform: translateX(-50%);
 }
+/* resultsBlock */
+#resultsBlock {
+  margin-bottom: 90px;
+}
+.results_block {
+  max-width: 1288px;
+}
+.results_block .third_title {
+  text-align: center;
+}
+.results_block .get_luminette_btn {
+  margin: 0 auto;
+}
+.border_line {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(6.75deg, #3797f1 5.31%, #1b7fe7 94.73%);
+  display: flex;
+  align-items: center;
+  margin: 122px 0;
+}
+.border_line span {
+  background: linear-gradient(6.75deg, #3797f1 5.31%, #1b7fe7 94.73%);
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  position: relative;
+}
+.border_line span::before,
+.border_line span::after {
+  position: absolute;
+  content: "";
+  top: -50px;
+  left: 0;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 28px;
+  width: max-content;
+}
+.border_line span:nth-child(1):before {
+  content: "Buy Luminette3";
+}
+.border_line span:nth-child(2):before {
+  content: "Wear Luminette3";
+}
+.border_line span:nth-child(3):before {
+  content: "Feel energized and enjoy your life";
+}
+.border_line span:nth-child(1)::after {
+  content: "Today";
+  top: 50px;
+}
+.border_line span:nth-child(2)::after {
+  content: "20 minutes for 10 days";
+  top: 50px;
+}
+.border_line span:nth-child(3)::after {
+  top: 50px;
+  content: "After 5-10 days";
+}
+.border_line span:nth-child(1) {
+  margin-right: 277px;
+  margin-left: 126px;
+}
+.border_line span:nth-child(2) {
+  margin-right: 273px;
+}
 /* stripesFeatures */
 #stripesFeatures {
   background: linear-gradient(180deg, #406184 13.02%, rgba(64, 97, 132, 0.86) 41.15%, rgba(18, 141, 255, 0) 100%);
@@ -692,14 +760,143 @@ li {
 }
 
 /* guarantee */
-#guarantee {
+#guaranteeBlock {
+  margin-bottom: 90px;
+}
+#guaranteeBlock .guarantee_block {
   background: linear-gradient(96.91deg, #f8f9fa 0%, #fdfdfd 100.36%);
   box-shadow: 0px 44px 66px rgba(59, 83, 108, 0.22);
   border-radius: 16px;
+  padding: 32px 100px 32px 40px;
+  display: flex;
+  gap: 50px;
+  justify-content: space-between;
+  align-items: center;
+}
+.tooltip_box_inside {
+  position: relative;
+  max-width: 668px;
+  height: max-content;
+}
+.tooltip_box_inside p {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: 16px;
+  gap: 4px;
+}
+#guaranteeBlock .guarantee_block > div:nth-child(2) {
+  max-width: 429px;
+}
+.guarantee_block .sub_title {
+  margin-bottom: 16px;
+}
+.guarantee_block .sub_title span {
+  font-weight: 400;
+}
+.guarantee_block ul.tooltip_wrap {
+  position: relative;
+  display: flex;
+  margin: 24px 0;
+  max-width: 355px;
+  background: #f4f6fa;
+  border-radius: 16px;
+}
+.guarantee_block ul.tooltip_wrap::before {
+  position: absolute;
+  content: "";
+  width: 1px;
+  height: 100%;
+  background: #ffffff;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+.guarantee_block ul.tooltip_wrap li {
+  padding: 6px;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.guarantee_block ul.tooltip_wrap li p {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 32px;
+  width: max-content;
+}
+
+.btn_guarantee_wrap {
+  text-align: center;
+}
+.btn_guarantee_wrap > div {
+  border-radius: 16px;
+  margin-top: -49px;
+  padding: 60px 6px 12px;
+  background: #f4f6fa;
+}
+.btn_guarantee_wrap > div p:nth-child(1) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+}
+.btn_guarantee_wrap > div p:nth-child(2) {
+  font-size: 14px;
+  line-height: 22px;
+  margin-top: 4px;
+}
+.get_in_for_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 76px;
+  background: linear-gradient(6.75deg, #3797f1 5.31%, #1b7fe7 94.73%);
+  border-radius: 114.099px;
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 28px;
+  letter-spacing: 1px;
+  color: #ffffff;
+  z-index: 1;
+  position: relative;
+  cursor: pointer;
 }
 /* reviews */
-#reviews {
+#reviewsBlock {
   background: #406184;
+}
+.amazon_trusted_wrap {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.amazon_trusted_wrap li {
+  max-width: 600px;
+}
+.trusted_var {
+  background: rgb(64 97 132 / 7%);
+}
+.amazon_var {
+  background: radial-gradient(
+    81.5% 54.14% at 0% 47.87%,
+    #000000 0%,
+    rgba(0, 0, 0, 0.869792) 24.48%,
+    rgba(0, 0, 0, 0.70021) 51.04%,
+    rgba(0, 0, 0, 0.31) 77.08%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  opacity: 0.07;
 }
 footer {
   background: #406184;
