@@ -345,6 +345,7 @@ let problemBlockStart = setInterval(() => {
     })
 
     $(".buzzpatch_accardion_link").click(function (e) {
+      console.log(e.currentTarget)
       $(this).toggleClass("active")
       $(this).closest("li").toggleClass("active")
       $(this).next(".buzzpatch_accardion_lists").slideToggle()
