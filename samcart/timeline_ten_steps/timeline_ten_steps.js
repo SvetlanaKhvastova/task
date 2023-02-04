@@ -444,7 +444,7 @@ let mut = new MutationObserver(function (muts) {
               placement: "bottom-start",
             })
             el.addEventListener("mouseover", () => {
-              action = "hover on tooltipe"
+              action = "hover on ipe"
               let label = el.closest(".timeline_title").innerText
               pushDataLayer(action, label)
             })
