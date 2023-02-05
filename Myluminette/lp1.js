@@ -155,3 +155,12 @@ let tippyRun = setInterval(() => {
     })
   }
 }, 500)
+
+// see MORE
+document.querySelectorAll("[data-more]").forEach((el) => {
+  el.addEventListener("click", (e) => {
+    console.log(el.nextElementSibling)
+    el.classList.add("disN")
+    el.nextElementSibling.classList.add("disB")
+  })
+})
