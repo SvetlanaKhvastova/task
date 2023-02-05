@@ -48,6 +48,25 @@ if (window.innerWidth > 768) {
   }, 100)
 }
 
+if (window.innerWidth <= 768) {
+  let slickInterval = setInterval(() => {
+    if (typeof jQuery(".how_wear_list").slick === "function" && document.querySelector(".how_wear_list")) {
+      clearInterval(slickInterval)
+
+      //  slider
+      setTimeout(() => {
+        let slider = $(".how_wear_list").slick({
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+          focusOnSelect: true,
+          dots: true,
+        })
+      }, 200)
+    }
+  }, 100)
+}
+
 // FAQs ///////////////////////
 $(".accardion_link").click(function (e) {
   console.log(e.currentTarget)
@@ -125,7 +144,7 @@ let arrTooltipTable = {
     </div>`,
   ],
   "What’s in the box?": [
-    `<div class="tooltip_bar"><div class="box_img"><img src="img/tooltip_img1.jpg" alt="box" /></div><ul><li>Your Luminette</li><li>A protective case</li><li>A micro USB wall charger</li><li>A microfiber cleaning cloth</li><li>Guarantee certificate</li><li>Your instruction manual</li></ul></div>`,
+    `<div class="tooltip_bar img_box"><div class="box_img"><img src="img/tooltip_img1.jpg" alt="box" /></div><ul><li>Your Luminette</li><li>A protective case</li><li>A micro USB wall charger</li><li>A microfiber cleaning cloth</li><li>Guarantee certificate</li><li>Your instruction manual</li></ul></div>`,
   ],
 }
 for (let key in arrTooltipTable) {
@@ -147,8 +166,29 @@ let tippyRun = setInterval(() => {
         content: el.getAttribute("data-tooltip"),
         // trigger: "click",
         placement: "top",
-        appendTo: function () {
-          return el
+        // interactive: true,
+        onShow(instance) {
+          let a = setInterval(() => {
+            if (document.querySelector(".tippy-popper")) {
+              clearInterval(a)
+              console.log(el.getAttribute("data-title") === "What’s in the box?")
+              if (el.getAttribute("data-title") === "What’s in the box?") {
+                document.querySelector(".tippy-popper").classList.add("my_style")
+              }
+              if (window.innerWidth <= 768) {
+                const scrollTarget = document.querySelector(".tippy-popper")
+
+                const topOffset = 120
+                const elementPosition = scrollTarget.getBoundingClientRect().top
+                const offsetPosition = elementPosition - topOffset
+
+                window.scrollBy({
+                  top: offsetPosition,
+                  behavior: "smooth",
+                })
+              }
+            }
+          }, 10)
         },
         onTrigger(e) {},
       })
@@ -162,5 +202,42 @@ document.querySelectorAll("[data-more]").forEach((el) => {
     console.log(el.nextElementSibling)
     el.classList.add("disN")
     el.nextElementSibling.classList.add("disB")
+  })
+})
+//  show_more
+document.querySelectorAll(".show_more").forEach((el) => {
+  el.addEventListener("click", (e) => {
+    el.classList.add("disN")
+    el.previousElementSibling.querySelectorAll(".disN").forEach((i) => {
+      i.classList.add("disB")
+      if (i.getAttribute("data-scroll")) {
+        const scrollTarget = i
+
+        const topOffset = 70
+        const elementPosition = scrollTarget.getBoundingClientRect().top
+        const offsetPosition = elementPosition - topOffset
+
+        window.scrollBy({
+          top: offsetPosition,
+          behavior: "smooth",
+        })
+      }
+    })
+  })
+})
+// show_more_txt
+document.querySelectorAll(".show_more_txt").forEach((el) => {
+  el.addEventListener("click", (e) => {
+    el.classList.add("is_hidden")
+    el.closest(".rw_descr")
+      .querySelectorAll("[data-hiddenTxt]")
+      .forEach((i) => {
+        i.classList.remove("is_hidden")
+      })
+    el.closest(".rw_descr")
+      .querySelectorAll("[data-visabTxt]")
+      .forEach((i) => {
+        i.classList.add("is_hidden")
+      })
   })
 })

@@ -671,25 +671,25 @@ li {
   text-align: center;
 }
 
-.how_wear_block ul {
+.how_wear_block .how_wear_list {
   display: flex;
   gap: 20px;
 }
 
-.how_wear_block ul li {
+.how_wear_block .how_wear_list > .how_wear_link {
   width: 25%;
   background: linear-gradient(95.3deg, #f8f9fa 27.98%, #fdfdfd 95.76%);
   box-shadow: 0px 22px 33px rgba(59, 83, 108, 0.22);
   border-radius: 8px;
 }
 
-.how_wear_block ul li > div:nth-child(2) {
+.how_wear_block .how_wear_list > .how_wear_link > div:nth-child(2) {
   padding: 25px;
   text-align: center;
   position: relative;
 }
 
-.how_wear_block ul li > div:nth-child(2)::before {
+.how_wear_block .how_wear_list > .how_wear_link > div:nth-child(2)::before {
   position: absolute;
   content: "";
   width: 32px;
@@ -1164,7 +1164,7 @@ li {
   padding: 0;
   cursor: pointer;
 }
-.slick-dots li button {
+#reviewsBlock .slick-dots li button {
   font-size: 0;
   line-height: 0;
   display: block;
@@ -1178,7 +1178,7 @@ li {
   background: #517193;
   border-radius: 50%;
 }
-.slick-dots li.slick-active button {
+#reviewsBlock .slick-dots li.slick-active button {
   background: #ffffff;
 }
 .rw_person {
@@ -1493,18 +1493,18 @@ li {
 .tippy-content .img_wrap img {
   max-width: 96px;
 }
-.tooltip_box_inside .tooltip_bar ul {
+.img_box.tooltip_bar ul {
   display: flex;
   flex-direction: column;
   gap: 12px;
   align-items: flex-start;
   margin-top: 12px;
 }
-.tooltip_box_inside .tooltip_bar ul li {
+.img_box.tooltip_bar ul li {
   position: relative;
   padding: 0 0 0 28px;
 }
-.tooltip_box_inside .tooltip_bar ul li::before {
+.img_box.tooltip_bar ul li::before {
   position: absolute;
   content: "";
   width: 20px;
@@ -1515,11 +1515,16 @@ li {
   background: url(img/icon17.svg) no-repeat center center;
   border-radius: 50%;
 }
-.tooltip_box_inside .tooltip_bar .box_img {
+.img_box.tooltip_bar .box_img {
   max-width: 287px;
   margin: 0 auto;
 }
-.mob_var {
+.my_style.tippy-popper .tippy-tooltip[data-placement^="bottom"] > .tippy-arrow,
+.my_style.tippy-popper .tippy-tooltip[data-placement^="top"] > .tippy-arrow {
+  left: 234px !important;
+}
+.mob_var,
+.border_line_mob {
   display: none;
 }
 @media (max-width: 768px) {
@@ -1537,10 +1542,6 @@ li {
   }
   .fourth_title {
     font-size: 32px;
-  }
-  /* .how_wear_block */
-  .how_wear_block ul {
-    flex-direction: column;
   }
   .border_line {
     display: none;
@@ -1564,6 +1565,7 @@ li {
   }
   .sticky_header a.get_luminette_btn {
     max-width: 186px;
+    margin: 0;
   }
   /* #hero */
   #hero {
@@ -1857,7 +1859,6 @@ li {
   #safetyBlock {
     margin-bottom: 60px;
   }
-  /* #safetyBlock */
   #safetyBlock .safety_block {
     flex-direction: column;
     padding: 20px;
@@ -1897,6 +1898,135 @@ li {
   }
   .read_the_study_btn span {
     margin-right: 12px;
+  }
+  /* #howWearBlock */
+  #howWearBlock {
+    margin-bottom: 60px;
+  }
+  .how_wear_block .third_title {
+    margin-bottom: 24px;
+    text-align: left;
+    margin-right: -5%;
+  }
+  .how_wear_block .how_wear_list {
+    display: block;
+    margin: -5%;
+    padding: 5%;
+    overflow: hidden;
+    width: calc(100% + 10%);
+  }
+  .how_wear_block .how_wear_list .how_wear_link {
+    width: 100%;
+  }
+  .how_wear_block .how_wear_list .how_wear_link > div:nth-child(2) {
+    padding: 22px 10px 16px;
+    text-align: center;
+  }
+  .how_wear_block .how_wear_list .how_wear_link img {
+    border-radius: 8px 8px 0 0;
+  }
+  #howWearBlock .slick-list {
+    padding: 0 14% 0 0 !important;
+    overflow: visible;
+  }
+
+  #howWearBlock .slick-slide {
+    background: linear-gradient(95.3deg, #f8f9fa 27.98%, #fdfdfd 95.76%);
+    box-shadow: 0px 22px 33px rgba(59, 83, 108, 0.22);
+    border-radius: 8px;
+    margin-right: 20px;
+    max-width: 246px;
+    width: 100% !important;
+  }
+  #howWearBlock .slick-dots {
+    margin-top: 30px;
+  }
+  #howWearBlock .slick-dots li button {
+    font-size: 0;
+    line-height: 0;
+    display: block;
+    width: 8px;
+    height: 8px;
+    cursor: pointer;
+    color: transparent;
+    border: 0;
+    outline: none;
+    border: 1px solid #4e4f51;
+    background: #ffffff;
+    border-radius: 50%;
+  }
+  #howWearBlock .slick-dots li.slick-active button {
+    background: #4e4f51;
+  }
+  #howWearBlock .slick-dots li {
+    margin: 0 13px;
+  }
+  /* #resultsBlock */
+  #resultsBlock {
+    margin-bottom: 60px;
+  }
+  .results_block .third_title {
+    text-align: left;
+    max-width: 290px;
+  }
+  .results_block .get_luminette_btn {
+    max-width: unset;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 28px;
+    letter-spacing: 1px;
+  }
+  .border_line_mob {
+    display: block;
+    margin: 30px 0;
+  }
+  .border_line_mob ul {
+    display: flex;
+    justify-content: center;
+    gap: 36px;
+  }
+  .border_line_mob ul li {
+    width: 47%;
+  }
+  .border_line_mob ul li:nth-child(1) {
+    width: 40%;
+    position: relative;
+  }
+  .border_line_mob ul li:nth-child(1)::after {
+    position: absolute;
+    content: "";
+    width: 1px;
+    height: 100%;
+    background: url(img/line_mob.svg) no-repeat;
+    right: -17.5px;
+    top: 8px;
+  }
+  .border_line_mob ul li p + p {
+    min-height: 48px;
+    margin-top: 24px;
+  }
+  .border_line_mob ul li:nth-child(1) p {
+    text-align: right;
+  }
+  .border_line_mob ul b {
+    position: relative;
+  }
+  .border_line_mob ul li p:nth-child(1) b::before {
+    background: rgba(116, 230, 255, 1);
+  }
+  .border_line_mob ul b::before {
+    position: absolute;
+    content: "";
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    left: -25px;
+    top: 5px;
+    z-index: 1;
+    background: rgba(116, 230, 255, 1);
+  }
+  .border_line_mob ul li p:nth-child(3) b::before {
+    background: linear-gradient(rgba(116, 230, 255, 1), rgba(93, 158, 255, 1));
   }
   /*  stripesFeatures*/
   #stripesFeatures {
@@ -2183,5 +2313,40 @@ li {
   }
   #safetyBlock .see_more.mob_var {
     margin-top: 16px;
+  }
+  /* tippy-tooltip */
+  .tippy-popper {
+    max-width: 100% !important;
+  }
+  .tippy-popper {
+    padding: 0 5px;
+  }
+  /* show_more */
+  .show_more.mob_var {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(255 255 255 / 20%);
+    border-radius: 123px;
+    max-width: 200px;
+    height: 62px;
+    margin: 16px auto 0;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0.01em;
+    color: #ffffff;
+  }
+  .show_more_txt.mob_var {
+    display: block;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: #517193;
+    margin-top: 8px;
+    text-align: left;
+  }
+  .is_hidden {
+    display: none !important;
   }
 }
