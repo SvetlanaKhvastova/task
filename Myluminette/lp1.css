@@ -1165,30 +1165,6 @@ li {
   transition: all 0.4s;
 }
 
-.reviews_block .slider .slick-dots li.slick-next {
-  left: 137px;
-  opacity: 1;
-}
-
-.reviews_block .slider .slick-dots li.slick-next-next {
-  left: 180px;
-}
-
-.reviews_block .slider .slick-dots li.slick-next-max {
-  opacity: 0;
-  left: 202px;
-}
-
-.reviews_block .slider .slick-dots li.slick-prev-prev {
-  left: 12px;
-}
-
-.reviews_block .slider .slick-dots li.slick-prev {
-  left: 55px;
-  opacity: 1;
-}
-
-
 .reviews_block .slick-slide>div {
   padding: 0 30px;
 }
@@ -1219,6 +1195,12 @@ li {
 
 .reviews_block .slick-dots {
   margin: 42px 0;
+  max-width: 160px;
+  width: 100%;
+  position: relative;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .reviews_block .slick-arrow {
@@ -1246,7 +1228,7 @@ li {
   right: -0;
 }
 
-.slick-dots li {
+.how_wear_list .slick-dots li {
   position: relative;
   display: inline-block;
   width: 8px;
@@ -1257,6 +1239,42 @@ li {
   transition-property: left, opacity;
   transition-duration: 375ms;
   transition-timing-function: ease-out;
+}
+
+.reviews_block .slick-dots li {
+  position: absolute;
+  transition-property: left, opacity;
+  transition-duration: 375ms;
+  transition-timing-function: ease-out;
+}
+
+.reviews_block .slider .slick-dots li.slick-prev-max {
+  opacity: 0;
+  left: -12px;
+}
+
+.reviews_block .slider .slick-dots li.slick-next-max {
+  opacity: 0;
+  left: 202px;
+}
+
+.reviews_block .slider .slick-dots li.slick-prev-prev {
+  left: -2px;
+}
+
+.reviews_block .slider .slick-dots li.slick-next-next {
+  left: 150px;
+}
+
+.reviews_block .slider .slick-dots li.slick-prev {
+  left: 37px;
+  opacity: 1;
+}
+
+
+.reviews_block .slider .slick-dots li.slick-next {
+  left: 113px;
+  opacity: 1;
 }
 
 #reviewsBlock .slick-dots li button {
@@ -1274,8 +1292,18 @@ li {
   border-radius: 50%;
 }
 
+#reviewsBlock .slider .slick-dots li.slick-next button,
+#reviewsBlock .slider .slick-dots li.slick-prev button {
+  background-color: var(--background-primary);
+}
+
 #reviewsBlock .slick-dots li.slick-active button {
   background: var(--background-primary);
+}
+
+.reviews_block.slider .slick-dots li.slick-active {
+  left: calc(50% - 4px);
+  margin: 0 auto;
 }
 
 .rw_person {
@@ -2427,6 +2455,7 @@ li {
   .rw_descr {
     overflow-y: unset;
     max-height: unset;
+    height: unset;
     padding: 0;
     margin: 0;
   }

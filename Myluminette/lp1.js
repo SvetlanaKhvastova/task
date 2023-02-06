@@ -22,6 +22,7 @@ if (window.innerWidth > 768) {
           centerMode: true,
           centerPadding: 0,
           dots: true,
+          speed: 375,
           prevArrow: `
               <div class="prev_btn" >
                 <svg width="11" height="19" viewBox="0 0 11 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -84,6 +85,7 @@ if (window.innerWidth > 768) {
         };
 
         classificateDots(0);
+        slider.on('beforeChange', (_e, _slick, _curr, next) => classificateDots(next));
       }, 200)
     }
   }, 100)

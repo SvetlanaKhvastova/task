@@ -1,5 +1,5 @@
 let startBtn = setInterval(() => {
-  if (document.querySelector("#mainContent")) {
+  if (document.querySelector("#mainContent") && getpack3SalePrice) {
     clearInterval(startBtn)
 
     //event
@@ -124,4 +124,4 @@ let startBtn = setInterval(() => {
       }
     }, 100)
   }
-}, 100)
+}, 300)
