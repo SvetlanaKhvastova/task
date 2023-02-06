@@ -20,29 +20,70 @@ if (window.innerWidth > 768) {
           slidesToScroll: 1,
           arrows: true,
           centerMode: true,
-          adaptiveHeight: true,
-          // autoplay: true,
-          autoplaySpeed: 3000,
+          centerPadding: 0,
           dots: true,
           prevArrow: `
-                       <div class="prev_btn" >
-               <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                 <g opacity="0.3">
-                 <path d="M25 30L15 20L25 10" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                 </g>
-               </svg>
-                       </div>
+              <div class="prev_btn" >
+                <svg width="11" height="19" viewBox="0 0 11 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9.5 1L2 9.5L9.5 17.5" stroke="white" stroke-width="2"/>
+                </svg>              
+              </div>
                    `,
           nextArrow: `
               <div class="next_btn" >
-               <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                 <g opacity="0.3">
-                 <path d="M15 30L25 20L15 10" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                 </g>
-               </svg>
+                <svg width="11" height="19" viewBox="0 0 11 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1.5 18L9 9.5L1.5 1.5" stroke="white" stroke-width="2"/>
+                </svg>              
                </div>
            `,
         })
+
+        const classificateDots = (prevDotIndex) => {
+          const prevPrevDotIndex = prevDotIndex - 1;
+          const nextDotIndex = prevDotIndex + 2;
+          const nextNextDotIndex = prevDotIndex + 3;
+
+          const $dots = slider
+            .find('.slick-dots > li')
+            .removeClass(`
+              slick-prev 
+              slick-next 
+              slick-prev-prev 
+              slick-next-next 
+              slick-prev-max 
+              slick-next-max
+            `);
+
+          for (let i = 0; i < prevPrevDotIndex; i++) {
+            slider
+              .find(`li:nth-child(${i})`)
+              .addClass('slick-prev-max');
+          }
+
+          for (let i = $dots.length; i > nextNextDotIndex; i--) {
+            slider
+              .find(`li:nth-child(${i})`)
+              .addClass('slick-next-max');
+          }
+
+          slider
+            .find(`li:nth-child(${prevDotIndex > 0 ? prevDotIndex : $dots.length})`)
+            .addClass('slick-prev');
+
+          slider
+            .find(`li:nth-child(${prevPrevDotIndex ?? 0}`)
+            .addClass('slick-prev-prev');
+
+          slider
+            .find(`li:nth-child(${nextDotIndex > $dots.length ? 1 : nextDotIndex})`)
+            .addClass('slick-next');
+
+          slider
+            .find(`li:nth-child(${nextNextDotIndex ?? 0})`)
+            .addClass('slick-next-next');
+        };
+
+        classificateDots(0);
       }, 200)
     }
   }, 100)
@@ -56,8 +97,9 @@ if (window.innerWidth <= 768) {
       //  slider
       setTimeout(() => {
         let slider = $(".how_wear_list").slick({
-          slidesToShow: 1,
+          slidesToShow: 1.15,
           slidesToScroll: 1,
+          infinite: false,
           arrows: false,
           focusOnSelect: true,
           dots: true,
@@ -190,7 +232,7 @@ let tippyRun = setInterval(() => {
             }
           }, 10)
         },
-        onTrigger(e) {},
+        onTrigger(e) { },
       })
     })
   }
@@ -208,7 +250,7 @@ document.querySelectorAll("[data-more]").forEach((el) => {
 document.querySelectorAll(".show_more").forEach((el) => {
   el.addEventListener("click", (e) => {
     el.classList.add("disN")
-    el.previousElementSibling.querySelectorAll(".disN").forEach((i) => {
+    document.querySelectorAll(".slider_link.disN").forEach((i) => {
       i.classList.add("disB")
       if (i.getAttribute("data-scroll")) {
         const scrollTarget = i
