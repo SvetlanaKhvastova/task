@@ -285,3 +285,12 @@ document.querySelectorAll(".show_more_txt").forEach((el) => {
       })
   })
 })
+// video modal
+document.querySelector('.play-button-wrapper').addEventListener('click', () => {
+  // open modal video
+  {/* <iframe width="560" height="315" src="https://www.youtube.com/embed/hZpBFn_YKMY"
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe> */}
+})
+

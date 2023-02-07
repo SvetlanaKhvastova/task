@@ -1,5 +1,5 @@
 let startFunkPopup = setInterval(() => {
-  if (document) {
+  if (document.querySelector('#zenpatch-mood-calming-stickers-the-natural-patch-co')) {
     clearInterval(startFunkPopup)
 
     function pushDataLayer(actionDataLayer, labelDataLayer) {
@@ -563,6 +563,10 @@ let startFunkPopup = setInterval(() => {
               e.preventDefault()
               pushDataLayer("Claim bonus offer button")
               validationForm()
+              if (document.querySelector('.input_validation_email').textContent === "You've already given us that email address before") {
+                document.querySelector('.input_validation_email').textContent = "Your email doesn't seem to be valid"
+                validationForm()
+              }
             }
             e.target.setAttribute("data-test", "1")
 
@@ -832,12 +836,23 @@ let startFunkPopup = setInterval(() => {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify(formData),
-            })
-              .then((response) => {
-                countdown.stop()
-                localStorage.setItem("appliedDiscount", "yes")
-                changeVisabilityApplieddiscount()
-                return response.json()
+            }).then(response => response.json())
+              .then((data) => {
+                console.log(data)
+                if (data.status === 'error') {
+                  document.querySelector('.input_validation_email').textContent = "You've already given us that email address before"
+                  document.querySelector(`.input_validation_email`).style.display = "block"
+                  document.querySelector(`input[name='email']`).classList.remove("error")
+                  console.log(`dfghgfdfgh`)
+                } else {
+                  document.querySelector('.input_validation_email').textContent = "Your email doesn't seem to be valid"
+
+                  document.querySelector(`input[name='email']`).classList.remove("error")
+                  document.querySelector(`.input_validation_email`).style.display = "none"
+                  countdown.stop()
+                  localStorage.setItem("appliedDiscount", "yes")
+                  changeVisabilityApplieddiscount()
+                }
               })
               .catch((error) => {
                 console.error("Error:", error)
@@ -859,4 +874,4 @@ let startFunkPopup = setInterval(() => {
       }
     }, 200)
   }
-}, 100)
+}, 400)
