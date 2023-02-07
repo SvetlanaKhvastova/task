@@ -23,20 +23,8 @@ if (window.innerWidth > 768) {
           centerPadding: 0,
           dots: true,
           speed: 375,
-          prevArrow: `
-              <div class="prev_btn" >
-                <svg width="11" height="19" viewBox="0 0 11 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9.5 1L2 9.5L9.5 17.5" stroke="white" stroke-width="2"/>
-                </svg>              
-              </div>
-                   `,
-          nextArrow: `
-              <div class="next_btn" >
-                <svg width="11" height="19" viewBox="0 0 11 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1.5 18L9 9.5L1.5 1.5" stroke="white" stroke-width="2"/>
-                </svg>              
-               </div>
-           `,
+          prevArrow: `.prev_btn`,
+          nextArrow: `.next_btn`,
         })
 
         const classificateDots = (prevDotIndex) => {
