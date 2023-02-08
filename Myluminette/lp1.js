@@ -1,3 +1,15 @@
+// cdn animation
+let scriptCustomGSup = document.createElement("script")
+scriptCustomGSup.src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"
+scriptCustomGSup.async = false
+document.head.appendChild(scriptCustomGSup)
+
+let scriptCustomScrollTrigger = document.createElement("script")
+scriptCustomScrollTrigger.src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"
+scriptCustomScrollTrigger.async = false
+document.head.appendChild(scriptCustomScrollTrigger)
+
+// cdn slider
 let scriptCustomSlider = document.createElement("script")
 scriptCustomSlider.src = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
 scriptCustomSlider.async = false
@@ -8,6 +20,78 @@ scriptCustomSliderStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/slick-car
 scriptCustomSliderStyle.rel = "stylesheet"
 document.head.appendChild(scriptCustomSliderStyle)
 
+
+let startGSap = setInterval(() => {
+  if (typeof gsap === 'object') {
+    clearInterval(startGSap)
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const tl = gsap.timeline({ defaults: { duration: 1 } })
+
+    tl.from('#hero h1', { opacity: 0, y: 30 })
+      .from('#hero .hero_cart', { opacity: 0, y: 30 })
+      .from('#hero .hero_reviews', { opacity: 0, y: 30 })
+
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: '#howToUseBlock',
+        marker: true,
+        start: 'center bottom',
+        scrub: 1
+      }
+    })
+
+    tl.from('#howToUseBlock .how_to_use_block>div:nth-child(2) ul li:nth-child(1)', { opacity: 0, x: 50 })
+      .from('#howToUseBlock .how_to_use_block>div:nth-child(2) ul li:nth-child(2)', { opacity: 0, x: 50 })
+      .from('#howToUseBlock .how_to_use_block>div:nth-child(2) ul li:nth-child(3)', { opacity: 0, x: 50 })
+
+
+    const tl2 = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#howWearBlock',
+        marker: true,
+        start: 'top center',
+        scrub: 1
+      }
+    })
+
+    tl2.from('.first_child', { opacity: 0, x: -30 })
+      .from('.second_child', { opacity: 0, x: -30 })
+      .from('.third_child', { opacity: 0, x: -30 })
+
+    gsap.registerEffect({
+      name: "scale",
+      defaults: { duration: 1 },
+      effect: (targets, config) => {
+        return gsap.to(targets, { duration: config.duration, scale: 1.3 });
+      }
+    },);
+
+    gsap.registerEffect(
+      {
+        name: "scaleOut",
+        defaults: { duration: 1 },
+        effect: (targets, config) => {
+          return gsap.to(targets, { duration: config.duration, scale: 1 });
+        }
+      });
+
+    document.querySelectorAll("[data-scale]").forEach(function (box) {
+      box.addEventListener("mouseenter", function () {
+        (gsap.effects.scale(this));
+      });
+    });
+
+    document.querySelectorAll("[data-scale]").forEach(function (box) {
+      box.addEventListener("mouseleave", function () {
+        gsap.effects.scaleOut(this);
+      });
+    });
+  }
+}, 100)
+
+// slider desk
 if (window.innerWidth > 768) {
   let slickInterval = setInterval(() => {
     if (typeof jQuery(".slider_nav").slick === "function" && document.querySelector(".slider_nav")) {
@@ -79,6 +163,7 @@ if (window.innerWidth > 768) {
   }, 100)
 }
 
+// slider mob
 if (window.innerWidth <= 768) {
   let slickInterval = setInterval(() => {
     if (typeof jQuery(".how_wear_list").slick === "function" && document.querySelector(".how_wear_list")) {
