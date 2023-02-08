@@ -100,20 +100,20 @@ if (window.innerWidth <= 768) {
 }
 
 // FAQs ///////////////////////
-$(".accardion_link").click(function (e) {
+$("#faqsBlock .accardion_link").click(function (e) {
   console.log(e.currentTarget)
   $(this).toggleClass("active")
   $(this).closest("li").toggleClass("active")
   $(this).next(".accardion_lists").slideToggle()
-  if ($(".accardion_link").not(this)) {
-    $(".accardion_link").not(this).next(".accardion_lists").css("display", "none")
-    $(".accardion_link").not(this).removeClass("active")
-    $(".accardion_link").not(this).closest("li").removeClass("active")
+  if ($("#faqsBlock .accardion_link").not(this)) {
+    $("#faqsBlock .accardion_link").not(this).next(".accardion_lists").css("display", "none")
+    $("#faqsBlock .accardion_link").not(this).removeClass("active")
+    $("#faqsBlock .accardion_link").not(this).closest("li").removeClass("active")
   }
 })
 
 // scroll to el...../////////////////////
-document.querySelector(".hero_reviews").addEventListener("click", () => {
+document.querySelector("#hero .hero_reviews").addEventListener("click", () => {
   document.querySelector("#reviewsBlock").scrollIntoView({ block: "start", behavior: "smooth" })
 })
 document.querySelectorAll(".get_luminette_btn").forEach((e) => {
@@ -273,12 +273,41 @@ document.querySelectorAll(".show_more_txt").forEach((el) => {
       })
   })
 })
+
 // video modal
+let overlay = document.querySelector(".overlay_popup"),
+  containerPopup = overlay.querySelector(".container_popup")
+
+overlay.addEventListener("click", (e) => {
+  if (e.target.matches(".overlay_popup")) {
+    onClosePopup()
+  }
+})
+
+function onOpenPopup() {
+  overlay.classList.remove("is_hidden")
+  document.body.style.overflow = "hidden"
+
+  if (!document.querySelector(".overlay_popup .content_popup")) {
+    containerPopup?.insertAdjacentHTML("beforeend", `<div class="content_popup video_var">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/hZpBFn_YKMY" title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen></iframe>
+  </div>`)
+  }
+}
+
+function onClosePopup() {
+  overlay.classList.add("is_hidden")
+  document.body.style.overflow = "unset"
+
+  setTimeout(() => {
+    document.querySelector(".content_popup")?.remove()
+  }, 400)
+}
+
 document.querySelector('.play-button-wrapper').addEventListener('click', () => {
-  // open modal video
-  {/* <iframe width="560" height="315" src="https://www.youtube.com/embed/hZpBFn_YKMY"
-              title="YouTube video player" frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen></iframe> */}
+  onOpenPopup()
 })
 
