@@ -30,29 +30,33 @@ let startGSap = setInterval(() => {
 
     tl.from("#hero h1", { opacity: 0, y: 30 }).from("#hero .hero_cart", { opacity: 0, y: 30 }).from("#hero .hero_reviews", { opacity: 0, y: 30 })
 
-    gsap.timeline({
+    const tl1 = gsap.timeline({
       scrollTrigger: {
-        trigger: "#howToUseBlock",
+        trigger: "#keepsBlock .keeps_block .get_luminette_btn",
         marker: true,
-        start: "center bottom",
-        scrub: 1,
+        start: "top center",
+        end: "top bottom",
       },
     })
 
-    tl.from("#howToUseBlock .how_to_use_block>div:nth-child(2) ul li:nth-child(1)", { opacity: 0, x: 50 })
-      .from("#howToUseBlock .how_to_use_block>div:nth-child(2) ul li:nth-child(2)", { opacity: 0, x: 50 })
-      .from("#howToUseBlock .how_to_use_block>div:nth-child(2) ul li:nth-child(3)", { opacity: 0, x: 50 })
+    tl1
+      .from("#howToUseBlock .how_to_use_block>div:nth-child(2) ul li:nth-child(1)", { opacity: 0, x: 50, duration: 2 })
+      .from("#howToUseBlock .how_to_use_block>div:nth-child(2) ul li:nth-child(2)", { opacity: 0, x: 50, duration: 2 })
+      .from("#howToUseBlock .how_to_use_block>div:nth-child(2) ul li:nth-child(3)", { opacity: 0, x: 50, duration: 2 })
 
     const tl2 = gsap.timeline({
       scrollTrigger: {
         trigger: "#howWearBlock",
         marker: true,
         start: "top center",
-        scrub: 1,
+        end: "top bottom",
       },
     })
 
-    tl2.from(".first_child", { opacity: 0, x: -30 }).from(".second_child", { opacity: 0, x: -30 }).from(".third_child", { opacity: 0, x: -30 })
+    tl2
+      .from(".first_child", { opacity: 0, x: -30, duration: 2 })
+      .from(".second_child", { opacity: 0, x: -30, duration: 1 })
+      .from(".third_child", { opacity: 0, x: -30, duration: 1 })
 
     gsap.registerEffect({
       name: "scale",
