@@ -25,3 +25,19 @@ function getNewUser(name) {
     }
   }
 }
+
+//
+let a = {
+  method: [
+    {
+      title: "Method of delivery",
+      paragraph:
+        "For any orders from the UK, the parcels are shipped from Amazon's warehouses located in the UK with Amazon's selected carrier. Before delivering your order, the carrier will send you a SMS or Email, informing you of the day it will be delivered. You have the option of delaying delivery for up to 3 days. If you do not reply, the delivery date will be that proposed by the transporter.",
+    },
+  ],
+  delay: [
+    { paragraph1: "For <strong>Belgium</strong> and <strong>Luxembourg</strong> :", paragraph2: "<strong>1 to 3</strong> working days" },
+    { paragraph1: "For <strong>France, Germany</strong> and <strong>the Netherlands :</strong>", paragraph2: "<strong>2 to 4</strong> working days" },
+    { paragraph1: "For all <strong>other countries in Europe :</strong>", paragraph2: "<strong>2 to 5</strong> working days" },
+  ],
+}
