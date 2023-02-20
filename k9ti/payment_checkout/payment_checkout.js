@@ -24,7 +24,7 @@ let paymentCheckout = setInterval(() => {
         console.log(actionDataLayer + " : " + labelDataLayer)
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: Enroll Improvements ${eventVar}`,
+          eventCategory: `Exp:  ${eventVar}`,
           eventAction: `${actionDataLayer}`,
           eventLabel: `${labelDataLayer}`,
         })
@@ -32,7 +32,7 @@ let paymentCheckout = setInterval(() => {
         console.log(actionDataLayer)
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: Enroll Improvements ${eventVar}`,
+          eventCategory: `Exp:  ${eventVar}`,
           eventAction: `${actionDataLayer}`,
         })
       }
@@ -80,6 +80,7 @@ let paymentCheckout = setInterval(() => {
                 color: #16377B;
             }
             .new_full_price{
+                display: block;
                 color: rgba(128, 128, 128, 1);
                 text-decoration: line-through;
             }
@@ -90,6 +91,22 @@ let paymentCheckout = setInterval(() => {
             .text_var{
                 display: flex;
                 align-items: center;
+            }
+            .payment_inform_box li > div > p.discount_row{
+                margin: 4px 0 0 !important;
+                line-height: 167% !important;
+            }
+            .payment_inform_box li > div > p.saved_box{
+                margin: 5px 0 0 auto !important;
+                max-width: max-content;
+                background: #992337;
+                border-radius: 4px;
+                padding: 3px 6px;
+                font-weight: 700 !important;
+                font-size: 12px !important;
+                line-height: 16px !important;
+                color: #FFFFFF !important;
+                text-transform: unset !important;
             }
             @media (max-width: 1066px) {
                 .text_var{
@@ -107,7 +124,7 @@ let paymentCheckout = setInterval(() => {
                 }
                 .monthly_sec .new_text_radio_btn .tippy-tooltip{
                     left: 23px !important;
-                    top: -50px !important;
+                    top: -77px !important;
                 }
                 .new_text_radio_btn .tippy-tooltip[data-placement^="top"]>.tippy-arrow {
                     left: 164px !important;
@@ -116,13 +133,13 @@ let paymentCheckout = setInterval(() => {
             @media (max-width: 496px) {
                 .monthly_sec .new_text_radio_btn .tippy-tooltip{
                     left: -24px !important;
-                    top: -31px !important;
+                    top: -59px !important;
                 }
             }
-            @media (max-width: 380px) {
+            @media (max-width: 392px) {
                 .monthly_sec .new_text_radio_btn .tippy-tooltip{
                     left: 23px !important;
-                    top: -50px !important;
+                    top: -77px !important;
                 }
             }
             @media (max-width: 320px) {
@@ -143,13 +160,29 @@ let paymentCheckout = setInterval(() => {
       sessionStorage.setItem("data-checked", "onetime_pay")
     }
 
+    let price = +document.querySelector(".total_price").textContent.split("$")[1]
+    let oldPrice = +document.querySelector(".total_actual").textContent.split("$")[1]
+    let diffPrice = (oldPrice - price).toFixed(2)
+    let percent = Math.floor(100 - (price * 100) / oldPrice)
+
+    if (diffPrice) {
+      document
+        .querySelector(".discount_row")
+        .insertAdjacentHTML(
+          "beforebegin",
+          `<p class="saved_box">You just saved $<span class="diff_price">${diffPrice}</span> (<span class="percent_var">${percent}</span>% off)</p>`
+        )
+    }
+
     document.querySelector("#payment_plan_id").textContent = "Choose Payment plan"
     document.querySelector(".payment_inform_box .payment_plan_wrapp .input_wrapper > div.monthly_sec label span:nth-child(2)").textContent = ""
     document.querySelector(".payment_inform_box .payment_plan_wrapp .input_wrapper > div.onetime_sec label span:nth-child(2)").textContent = ""
 
     document.querySelector(".payment_inform_box .payment_plan_wrapp .input_wrapper > div.monthly_sec label span:nth-child(2)")?.insertAdjacentHTML(
       "afterend",
-      `<div class="new_text_radio_btn"><span class="new_your_price">$99</span> <span class="accent_var">/month for 3 months</span> <span class="text_var">(immediate access, three payments spread over 3 months) <span class="tooltip_box" data-newtolltip
+      `<div class="new_text_radio_btn"><span class="new_full_price">$${(oldPrice / 3).toFixed(2)}/month</span> <span class="new_your_price">$${(price / 3).toFixed(
+        0
+      )}</span><span class="accent_var">/month, 3 installments</span> <span class="text_var">(immediate access, three payments spread over 3 months) <span class="tooltip_box" data-newtolltip
                 data-title="If you choose the 3 month installment payment plan when you purchase, your card will automatically be charged the same amount as your initial installment payment 30 days and 60 days after your initial installment payment.">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -163,7 +196,9 @@ let paymentCheckout = setInterval(() => {
       .querySelector(".payment_inform_box .payment_plan_wrapp .input_wrapper > div.onetime_sec label span:nth-child(2)")
       ?.insertAdjacentHTML(
         "afterend",
-        `<div class="new_text_radio_btn"><span class="new_your_price">$297</span> <span class="new_full_price">$1705.10</span> <span>one-time payment</span></div>`
+        `<div class="new_text_radio_btn onetime_var"><span class="new_full_price">$${oldPrice.toFixed(2)}</span> <span class="new_your_price">$${price.toFixed(
+          0
+        )}</span> <span>one-time payment</span></div>`
       )
 
     let tippyRun = setInterval(() => {
@@ -249,9 +284,9 @@ let paymentCheckout = setInterval(() => {
         }
 
         if (sessionStorage.getItem("data-payment").includes("onetime_pay")) {
-          textContent = "<b>$297 one-time payment</b>"
+          textContent = `<b>$${price.toFixed(0)} one-time payment</b>`
         } else {
-          textContent = `<b>$99/month for 3 months</b><br>(immediate access today, pay the rest later)`
+          textContent = `<b>$${(price / 3).toFixed(0)}/month for 3 months</b><br>(immediate access today, pay the rest later)`
         }
 
         document.querySelector("body .payment_inform_box").insertAdjacentHTML("afterend", `<div class="payment_var"><p>${textContent}</p></div>`)
