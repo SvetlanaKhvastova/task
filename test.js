@@ -28,34 +28,109 @@ function getNewUser(name) {
 
 //
 let a = {
-  "method": {
-    "title": "Method of delivery",
-    "descr": {
-      "europe": ["For any orders from the UK, the parcels are shipped from Amazon's warehouses located in the UK with Amazon's selected carrier. Before delivering your order, the carrier will send you a SMS or Email, informing you of the day it will be delivered. You have the option of delaying delivery for up to 3 days. If you do not reply, the delivery date will be that proposed by the transporter."],
-      "naus": ["Orders are shipped from our logistics center located in Boise, Idaho. We use the services of Fedex Ground or USPS. Before they deliver your package, the carrier sends you a email warning you of the day of its passage."],
-      "naca": ["We work most often with Fulfilled-by-Amazon (FBA) logistics which has warehouses in Canada. We usually use the carrier Purolator to send the parcels. Before they deliver your package, the carrier sends you a email warning you of the day of its passage."],
-      "oc": ["We usually work with the Belgian national postal service or with the Deutsche Post. Before delivering your order, the carrier will send you an email with a tracking link."],
-      "other": ["Orders are shipped from our logistics center located in Boise, Idaho. We use the services of Fedex Ground or USPS. Before they deliver your package, the carrier sends you a email warning you of the day of its passage."]
+  "na_text": [
+    {
+      "paragraph1_html": "For USA and Canada:",
+      "paragraph2_html": "3 to 5 working days",
+      "img": [
+        "us",
+        "ca"
+      ]
     }
-  },
-  "times": {
-    "delay": {
-      "na": ["For USA and Canada:", "3 to 5 working days"],
-      "oc": ["For Australia and New Zealand:", "5 to 7 working days"],
-      "europe": {
-        "line1": ["For <strong>Belgium</strong> and <strong>Luxembourg</strong> :", "<strong>1 to 3</strong> working days"],
-        "line2": ["For <strong>France, Germany</strong> and <strong>the Netherlands :</strong>", "<strong>2 to 4</strong> working days"],
-        "line3": ["For all <strong>other countries in Europe :</strong>", "<strong>2 to 5</strong> working days"]
-      }
+  ],
+  "oc_text": [
+    {
+      "paragraph1_html": "For Australia and New Zealand:",
+      "paragraph2_html": "5 to 7 working days",
+      "img": [
+        "au",
+        "nz"
+      ]
+    }
+  ],
+  "europe_text": [
+    {
+      "paragraph1_html": "For <strong>Belgium</strong> and <strong>Luxembourg</strong> :",
+      "paragraph2_html": "<strong>1 to 3</strong> working days",
+      "img": [
+        "be",
+        "lx",
+        "en"
+      ]
     },
-    "countries": {
-      "na": ["us", "ca"],
-      "oc": ["au", "nz"],
-      "europe": {
-        "line1": ["fr", "de", "nl"],
-        "line2": ["be", "lx", "en"],
-        "line3": ["eu", "ch", "no"]
-      }
+    {
+      "paragraph1_html": "For <strong>France, Germany</strong> and <strong>the Netherlands :</strong>",
+      "paragraph2_html": "<strong>2 to 4</strong> working days",
+      "img": [
+        "fr",
+        "de",
+        "nl"
+      ]
+    },
+    {
+      "paragraph1_html": "For all <strong>other countries in Europe :</strong>",
+      "paragraph2_html": "<strong>2 to 5</strong> working days",
+      "img": [
+        "eu",
+        "ch",
+        "no"
+      ]
     }
-  }
+  ]
+}
+
+let s = {
+  "team": [
+    {
+      "first_name": "Eric",
+      "last_name": "Delloye",
+      "title": "general_manager",
+      "img": "eric_delloye_lucimed"
+    },
+    {
+      "first_name": "Louis",
+      "last_name": "Grauls",
+      "title": "marketing_manager",
+      "img": "louis_grauls_lucimed"
+    },
+    {
+      "first_name": "Laurence",
+      "last_name": "Andre",
+      "title": "sales_manager",
+      "img": "laurence_andre_lucimed"
+    },
+    {
+      "first_name": "Justine",
+      "last_name": "Wasterlain",
+      "title": "support",
+      "img": "justine_retamar_lucimed"
+    }
+  ],
+  "inventors": [
+    {
+      "first_name": "Robert",
+      "last_name": "Poirrier",
+      "img": "robert_poirrier.png"
+    },
+    {
+      "first_name": "Yvon",
+      "last_name": "Renotte",
+      "img": "yvon_renotte.jpg"
+    },
+    {
+      "first_name": "Vincent",
+      "last_name": "Moreau",
+      "img": "vincent_moreau.png"
+    },
+    {
+      "first_name": "Gilles",
+      "last_name": "Vandewalle",
+      "img": "gilles_vandewalle.jpg"
+    },
+    {
+      "first_name": "Daniel",
+      "last_name": "Neu",
+      "img": "daniel_neu.jpg"
+    }
+  ]
 }

@@ -104,6 +104,13 @@ let startFunkPopup = setInterval(() => {
             border-radius: 50%;
             z-index: 1111;
         }
+        .overlay_popup .container_popup > .btn_close span{
+          background: url(https://conversionratestore.github.io/projects/zenpatch/img/btn_close.svg) center center no-repeat;
+          background-size: contain;
+          width: 14px;
+          height: 14px;
+          display: block;
+        }
         .content_popup{
             background: #FFFFFF;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
@@ -443,9 +450,7 @@ let startFunkPopup = setInterval(() => {
                 <div class="overlay_popup is_hidden">
                     <div class="container_popup">
                         <div class="btn_close" data-close="Close extra 10 percent popup">
-                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2.19995 2.27234L11.8 11.8723M2.19995 11.8723L11.8 2.27234L2.19995 11.8723Z" stroke="white" stroke-width="2.625" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
+                          <span></span>
                         </div>
                     </div>
                 </div>
