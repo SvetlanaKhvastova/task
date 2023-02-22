@@ -50,14 +50,13 @@ setTimeout(function () {
   document.querySelector(".exp")?.remove()
 }, 2000)
 
-// 
+//
 let scriptCustom = document.createElement("script")
 scriptCustom.src = "https://conversionratestore.github.io/projects/themillionroses/slide_in_cart.js"
 scriptCustom.async = false
 document.head.appendChild(scriptCustom)
 
-
-// 
+//
 document.head.insertAdjacentHTML("beforeend", `<style class="exp">body {opacity: 0 !important;}</style>`)
 
 let scriptCustom = document.createElement("script")
@@ -75,7 +74,7 @@ scriptCustom.src = "https://github.com/Flopsi69/crs/tree/main/comparamais/editUs
 scriptCustom.async = false
 document.head.appendChild(scriptCustom)
 
-// 
+//
 document.head.insertAdjacentHTML("beforeend", `<style class="exp">body {opacity: 0 !important;}</style>`)
 
 let scriptCustom = document.createElement("script")
@@ -86,3 +85,9 @@ document.head.appendChild(scriptCustom)
 setTimeout(function () {
   document.querySelector(".exp")?.remove()
 }, 500)
+
+//
+let script = document.createElement("script")
+script.src = "https://conversionratestore.github.io/projects/moneygeek/auto_calculator_btn.js"
+script.async = false
+document.head.appendChild(script)
