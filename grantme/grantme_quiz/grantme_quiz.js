@@ -4,10 +4,80 @@ let myFunk = setInterval(() => {
 
     let newStyle = /*html */ `
     <style>
+      .program_assessment_var{
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 26px;
+        color: #2B3D50;
+        text-align: center;
+        margin: 0 0 11px;
+      }
+      .form-group{
+        position: relative;
+      }
+      .back_btn_var{
+          display: flex;
+          align-items: center;
+          font-weight: 700;
+          font-size: 12px;
+          line-height: 14px;
+          text-align: left;
+          text-transform: uppercase;
+          color: #3D78BA;
+          margin-bottom: 16px;
+      }
+      .back_btn_var svg{
+        margin-right: 9px;
+       }
+       #edit-are-you-a-current-student- .back_btn_var{
+        opacity: 0;
+       }
+      .time-left {
+          font-weight: 700;
+          font-size: 12px;
+          line-height: 14px;
+          text-transform: uppercase;
+          color: #8B8B8B;
+          position: absolute;
+          right: 0;
+          top: 0;
+      }
+      .path-grantme-program-assessment .quiz-question{
+        font-weight: 900 !important;
+      }
+      .quiz-section{
+        font-weight: 700 !important;
+line-height: 14px !important;
+border-top: 1px solid #E6E6E6;
+    padding-top: 16px;
+      }
+      .path-grantme-program-assessment .navbar .logo {
+    padding: 16px 0;
+}
+.navbar-header .logo img{
+  width: 100% !important;
+    max-width: 90px !important;
+}
+      .webform-progress ul{
+        display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+      }
+        .path-scholarship-eligibility-quiz .webform-progress ul li {
+            background: #E9F3FA;
+        }
+        .path-scholarship-eligibility-quiz .webform-progress ul li + li{
+          margin-left: 1px;
+        }
+        .path-scholarship-eligibility-quiz .webform-progress ul li:last-of-type,
+        .path-scholarship-eligibility-quiz .webform-progress ul li:first-of-type{
+            border-radius: 0;
+        }
         .row{
             margin-left: 0 !important;
             margin-right: 0 !important;
         }
+        .col-md-8,
         .col-md-4{
             padding-left: 0 !important;
             padding-right: 0 !important;
@@ -17,13 +87,62 @@ let myFunk = setInterval(() => {
             padding-right: 20px;
         }
         #edit-qa13-wrap{
-            margin-bottom: 0 !important;
+            margin-bottom: 16px !important;
             display: none;
+        }
+        .path-grantme-program-assessment .webform-card-wrapper .panel .panel-body{
+          padding-bottom: 0;
+        }
+        #edit-q1,
+        #edit-qa17-wrap{
+          margin-bottom: 130px !important;
+        }
+        #edit-qa2-wrap,
+        #edit-qa3-wrap,
+        #edit-qa4-wrap,
+        #edit-qa5-wrap,
+        #edit-qa6-wrap,
+        #edit-qa7-wrap,
+        #edit-qa8-wrap,
+        #edit-qa14-wrap,
+        #edit-qa9-wrap,
+        #edit-qa10-wrap,
+        #edit-qa11-wrap,
+        #edit-qa12-wrap{
+          margin-bottom: 30px !important;
         }
         #edit-processed-text-10,
         #edit-processed-text-44 .scholarship-eligibility-quiz-quote,
         #edit-processed-text-12,
-        #edit-cards-prev--15{
+        .path-grantme-program-assessment h3.quiz-title,
+        [for="edit-if-selected-for-our-program-30-minutes"],
+        #edit-cards-next,
+        #edit-cards-next--2,
+        #edit-cards-next--3,
+        #edit-cards-next--4,
+        #edit-cards-next--5,
+        #edit-cards-next--6,
+        #edit-cards-next--7,
+        #edit-cards-next--8,
+        #edit-cards-next--9,
+        #edit-cards-next--10,
+        #edit-cards-next--13,
+        #edit-cards-next--14,
+        #edit-cards-prev--2,
+        #edit-cards-prev--3,
+        #edit-cards-prev--4,
+        #edit-cards-prev--5,
+        #edit-cards-prev--6,
+        #edit-cards-prev--7,
+        #edit-cards-prev--8,
+        #edit-cards-prev--9, 
+        #edit-cards-prev--10,
+        #edit-cards-prev--11,
+        #edit-cards-prev--12,
+        #edit-cards-prev--13,
+        #edit-cards-prev--14,
+        #edit-cards-prev--15,
+        html.js .webform-cards .form-actions:not(#edit-actions-13, #edit-actions-14, #edit-actions-10){
             display: none !important;
         }
         .path-scholarship-eligibility-quiz .webform-submission-form label{
@@ -36,18 +155,58 @@ let myFunk = setInterval(() => {
             height: 44px;
             margin: 0;
         }
+        .skip_var label{
+          background: unset !important;
+          border: unset !important;
+          font-weight: 700 !important;
+          font-size: 14px !important;
+          line-height: 17px !important;
+          text-align: center !important;
+          color: #8C8C8C !important;
+          width: max-content;
+          margin: 0 auto !important;
+        }
+        .skip_var.form-type-radio{
+          margin: 22px auto 0 !important;
+        }
+        /*back_btn_wrap */
+        .back_btn_wrap{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding-bottom: 16px;
+          border-bottom: 1px solid #E6E6E6;
+        }
+        .guarantee_block .scroll_var{
+          margin-top: 16px;
+          display: block;
+        }
+        .back_btn_wrap .back_btn_var{
+          margin: 0;
+        }
+        .back_btn_wrap p{
+            font-weight: 700;
+            font-size: 12px;
+            line-height: 14px;
+            text-align: center;
+            text-transform: uppercase;
+            color: #8B8B8B;
+        }
         /*loader_wrap */
-        .loader_wrap{
-            padding: 44px 20px 41px;
+        .loader_wrap .back_btn_wrap{
+          padding: 16px 20px;
+        }
+        .loader_list{
+            padding: 20px 20px 41px;
             margin: 0;
             list-style: none;
         }
-        .loader_wrap li {
+        .loader_list li {
             position: relative;
             padding: 0 0 0 29px;
             transition: 0.3s;
         }
-        .loader_wrap li::before{
+        .loader_list li::before{
             position: absolute;
             content: '';
             width: 16px;
@@ -78,27 +237,27 @@ let myFunk = setInterval(() => {
             transform: rotate(360deg);
             }
         }
-        .loader_wrap li.active::before{
+        .loader_list li.active::before{
             -webkit-animation: infinite-spinning 2s infinite linear;
             animation: infinite-spinning 2s infinite linear;
             background: url(https://conversionratestore.github.io/projects/grantme/img/part_load.svg) no-repeat;
             background-size: contain;
         }
-        .loader_wrap li.finish::before{
+        .loader_list li.finish::before{
             background: url(https://conversionratestore.github.io/projects/grantme/img/checked.svg) no-repeat;
             background-size: contain;
             height: 10px;
         }
-        .loader_wrap li span{
+        .loader_list li span{
             font-weight: 400;
             font-size: 18px;
             line-height: 26px;
             color: #8B8B8B;
         }
-        .loader_wrap li.finish span{
+        .loader_list li.finish span{
             color: #2B3D50;
         }
-        .loader_wrap li + li{
+        .loader_list li + li{
             margin-top: 16px;
         }
         /*guarantee_block */
@@ -310,14 +469,18 @@ let myFunk = setInterval(() => {
     let text6 = ""
     let text7 = "you"
 
-    if (parent) {
-      text1 = "child’s"
-      text2 = "you child is"
-      text3 = "your child"
-      text4 = "child’s"
-      text5 = "your child"
-      text6 = "child"
-      text7 = "your child"
+    if (localStorage.getItem("name") === "Parent of Student") {
+      console.log(parent, `parent`)
+      parent = true
+      if (parent) {
+        text1 = "child’s"
+        text2 = "you child is"
+        text3 = "your child"
+        text4 = "child’s"
+        text5 = "your child"
+        text6 = "child"
+        text7 = "your child"
+      }
     }
 
     let reviews = /*html */ `
@@ -328,18 +491,29 @@ let myFunk = setInterval(() => {
     `
 
     let loaderWrap = /*html */ `
-    <ul class="loader_wrap">
-      <li class=""><span>Reviewing your responses</span></li>
-      <li class=""><span>Calculating your ${text1} score</span></li>
-      <li><span>Assessing admission chances</span></li>
-      <li><span>Searching for scholarship opportunities</span></li>
-      <li><span>Checking how much funding ${text2} eligible for</span></li>
-      <li><span>Preparing your results</span></li>
-    </ul>
+    <div class="loader_wrap">
+      <div class="back_btn_wrap">
+          <span class="back_btn_var"><svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1L2 7L8 13" stroke="#3D78BA" stroke-width="2"/></svg>Back</span>
+          <p>1 minute left</p>
+      </div>
+      <ul class="loader_list">
+        <li><span>Reviewing your responses</span></li>
+        <li><span>Calculating your ${text1} score</span></li>
+        <li><span>Assessing admission chances</span></li>
+        <li><span>Searching for scholarship opportunities</span></li>
+        <li><span>Checking how much funding ${text2} eligible for</span></li>
+        <li><span>Preparing your results</span></li>
+      </ul>
+    </div>
       `
 
     let guaranteeBlock = /*html */ `
     <div class="guarantee_block">
+      <div class="back_btn_wrap">
+        <span class="back_btn_var"><svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1L2 7L8 13" stroke="#3D78BA" stroke-width="2"/></svg>Back</span>
+        <p>1 minute left</p>
+      </div>
+      <span class="scroll_var"></span>
       <div class="grant_me_wrap">
         <div>
           <svg width="57" height="57" viewBox="0 0 55 56" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -450,7 +624,376 @@ let myFunk = setInterval(() => {
             </li>`
     }
 
+    function renderLabel(text, class_f, class_s, name, id, msg, once = "", err = "") {
+      return `<div class="form-item js-form-item form-type-radio js-form-type-radio ${class_f} ${class_s} radio">
+      <label for="${id}" class="control-label option"
+        ><input
+          data-drupal-selector="${id}"
+          class="form-radio"
+          type="radio"
+          id="${id}"
+          name="${name}"
+          value="${id}"
+          required="required"
+          data-msg-required="${msg}"
+          data-once="${once}"
+          data-webform-required-error="${err}"
+        />${text}</label
+      >
+    </div>`
+    }
+
+    document.head.insertAdjacentHTML("beforeend", `<link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap" rel="stylesheet">`)
     document.head.insertAdjacentHTML("beforeend", newStyle)
+
+    // render text Program Assessment
+    if (!document.querySelector(".program_assessment_var")) {
+      document.querySelector(".navbar").insertAdjacentHTML("afterend", `<p class="program_assessment_var">Program Assessment</p>`)
+    }
+    // render back_btn_var
+    document.querySelectorAll(".time-left").forEach((el) => {
+      if (!el.closest("#edit-processed-text-10")) {
+        el.insertAdjacentHTML(
+          "beforebegin",
+          `<span class="back_btn_var"><svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1L2 7L8 13" stroke="#3D78BA" stroke-width="2"/></svg>Back</span>`
+        )
+      }
+    })
+    // render btn Skip and I don’t know
+    document
+      .querySelector("#edit-what-is-your-citizenship")
+      .insertAdjacentHTML(
+        "beforeend",
+        renderLabel(
+          "Skip",
+          "form-item-what-is-your-citizenship skip_var",
+          "js-form-item-what-is-your-citizenship",
+          "what_is_your_citizenship",
+          "skip-what-is-your-citizenship",
+          "What is your citizenship? field is required."
+        )
+      )
+    document
+      .querySelector("#edit-what-year-of-study-are-you-currently-in")
+      .insertAdjacentHTML(
+        "beforeend",
+        renderLabel(
+          "Skip",
+          "form-item-what-year-of-study-are-you-currently-in skip_var",
+          "js-form-item-what-year-of-study-are-you-currently-in",
+          "what_year_of_study_are_you_currently_in",
+          "skip-what-year-of-study-are-you-currently-in",
+          "Please choose a year of study",
+          "webform-required-error",
+          "Please choose a year of study"
+        )
+      )
+    document
+      .querySelector("#edit-what-is-your-gpa")
+      .insertAdjacentHTML(
+        "beforeend",
+        renderLabel(
+          "I don’t know",
+          "js-form-type-radio form-item-what-is-your-gpa",
+          "js-form-item-what-is-your-gpa",
+          "what_is_your_gpa",
+          "i-dont-know-what-is-your-gpa",
+          "This field is required.",
+          "webform-required-error",
+          "This field is required."
+        )
+      )
+    document
+      .querySelector("#edit-what-is-your-gpa")
+      .insertAdjacentHTML(
+        "beforeend",
+        renderLabel(
+          "Skip",
+          "js-form-type-radio form-item-what-is-your-gpa skip_var",
+          "js-form-item-what-is-your-gpa",
+          "what_is_your_gpa",
+          "skip-what-is-your-gpa",
+          "This field is required.",
+          "webform-required-error",
+          "This field is required."
+        )
+      )
+    document
+      .querySelector("#edit-what-program-are-you-looking-to-study-currently-studying")
+      .insertAdjacentHTML(
+        "beforeend",
+        renderLabel(
+          "I don’t know",
+          "form-item-what-program-are-you-looking-to-study-currently-studying",
+          "js-form-item-what-program-are-you-looking-to-study-currently-studying",
+          "what_program_are_you_looking_to_study_currently_studying",
+          "i-dont-know-what-program-are-you-looking-to-study-currently-studying",
+          "This field is required.",
+          "webform-required-error",
+          "This field is required."
+        )
+      )
+    document
+      .querySelector("#edit-what-program-are-you-looking-to-study-currently-studying")
+      .insertAdjacentHTML(
+        "beforeend",
+        renderLabel(
+          "Skip",
+          "form-item-what-program-are-you-looking-to-study-currently-studying skip_var",
+          "js-form-item-what-program-are-you-looking-to-study-currently-studying",
+          "what_program_are_you_looking_to_study_currently_studying",
+          "skip-what-program-are-you-looking-to-study-currently-studying",
+          "This field is required.",
+          "webform-required-error",
+          "This field is required."
+        )
+      )
+    document
+      .querySelector("#edit-how-many-extracurricular-or-volunteer-activities-do-you-partici")
+      .insertAdjacentHTML(
+        "beforeend",
+        renderLabel(
+          "I don’t know",
+          "form-item-how-many-extracurricular-or-volunteer-activities-do-you-partici",
+          "js-form-item-how-many-extracurricular-or-volunteer-activities-do-you-partici",
+          "how_many_extracurricular_or_volunteer_activities_do_you_partici",
+          "i-dont-know-how-many-extracurricular-or-volunteer-activities-do-you-partici",
+          "This field is required.",
+          "webform-required-error",
+          "This field is required."
+        )
+      )
+    document
+      .querySelector("#edit-how-many-extracurricular-or-volunteer-activities-do-you-partici")
+      .insertAdjacentHTML(
+        "beforeend",
+        renderLabel(
+          "Skip",
+          "form-item-how-many-extracurricular-or-volunteer-activities-do-you-partici skip_var",
+          "js-form-item-how-many-extracurricular-or-volunteer-activities-do-you-partici",
+          "how_many_extracurricular_or_volunteer_activities_do_you_partici",
+          "skip-how-many-extracurricular-or-volunteer-activities-do-you-partici",
+          "This field is required.",
+          "webform-required-error",
+          "This field is required."
+        )
+      )
+    document
+      .querySelector("#edit-if-selected-for-our-program-")
+      .insertAdjacentHTML(
+        "beforeend",
+        renderLabel(
+          "I don’t know",
+          "js-form-type-radio form-item-if-selected-for-our-program-",
+          "js-form-item-if-selected-for-our-program-",
+          "if_selected_for_our_program_",
+          "i-dont-know-if-selected-for-our-program",
+          "This field is required.",
+          "webform-required-error",
+          "This field is required."
+        )
+      )
+    document
+      .querySelector("#edit-if-selected-for-our-program-")
+      .insertAdjacentHTML(
+        "beforeend",
+        renderLabel(
+          "Skip",
+          "js-form-type-radio form-item-if-selected-for-our-program- skip_var",
+          "js-form-item-if-selected-for-our-program-",
+          "if_selected_for_our_program_",
+          "skip-if-selected-for-our-program",
+          "This field is required.",
+          "webform-required-error",
+          "This field is required."
+        )
+      )
+    document
+      .querySelector("#edit-what-is-your-family-s-approximate-yearly-household-income")
+      .insertAdjacentHTML(
+        "beforeend",
+        renderLabel(
+          "Skip",
+          "js-form-type-radio form-item-what-is-your-family-s-approximate-yearly-household-income skip_var",
+          "js-form-item-what-is-your-family-s-approximate-yearly-household-income",
+          "what_is_your_family_s_approximate_yearly_household_income",
+          "skip-what-is-your-family-s-approximate-yearly-household-income",
+          "Please indicate your yearly household income.",
+          "webform-required-error",
+          "Please indicate your yearly household income."
+        )
+      )
+    document
+      .querySelector("#edit-are-you-currently-studying-in-canada")
+      .insertAdjacentHTML(
+        "beforeend",
+        renderLabel(
+          "Skip",
+          "form-item-are-you-currently-studying-in-canada skip_var",
+          "js-form-item-are-you-currently-studying-in-canada",
+          "are_you_currently_studying_in_canada",
+          "skip-are-you-currently-studying-in-canada"
+        )
+      )
+    //click label
+    document.querySelectorAll(".js-webform-radios input[type=radio]").forEach((el) => {
+      el.addEventListener("click", (i) => {
+        if (!i.currentTarget.getAttribute("data-test")) {
+          console.log(i.currentTarget)
+          if (i.currentTarget.closest("#edit-are-you-a-current-student-")) {
+            document.querySelector("#edit-cards-next").click()
+            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            i.currentTarget.closest("section").querySelector(".back_btn_var").style.opacity = "1"
+            localStorage.setItem("name", i.currentTarget.getAttribute("value"))
+
+            document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:nth-child(2)").classList.add("is-complete")
+          }
+          if (i.currentTarget.closest("#edit-what-were-you-looking-for-today-")) {
+            document.querySelector("#edit-cards-next--2").click()
+            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:nth-child(3)").classList.add("is-complete")
+          }
+          if (i.currentTarget.closest("#edit-what-is-your-citizenship-")) {
+            document.querySelector("#edit-cards-next--3").click()
+            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:nth-child(4)").classList.add("is-complete")
+          }
+          if (i.currentTarget.closest("#edit-what-year-of-university-are-you-currently-in-") || i.currentTarget.closest("#edit-what-year-of-study-are-you-currently-in-")) {
+            document.querySelector("#edit-cards-next--4").click()
+            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            if (i.currentTarget.closest("#edit-what-year-of-university-are-you-currently-in-")) {
+              document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:nth-child(5)").classList.add("is-complete")
+            }
+            if (i.currentTarget.closest("#edit-what-year-of-study-are-you-currently-in-")) {
+              document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:nth-child(8)").classList.add("is-complete")
+            }
+          }
+          if (i.currentTarget.closest("#edit-are-you-currently-studying-in-canada-")) {
+            document.querySelector("#edit-cards-next--5").click()
+            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:nth-child(6)").classList.add("is-complete")
+          }
+          if (i.currentTarget.closest("#edit-what-year-of-university-are-you-currently-in-")) {
+            document.querySelector("#edit-cards-next--6").click()
+            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:nth-child(7)").classList.add("is-complete")
+          }
+          if (i.currentTarget.closest("#edit-how-old-are-you-")) {
+            document.querySelector("#edit-cards-next--7").click()
+            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:nth-child(8)").classList.add("is-complete")
+          }
+          if (i.currentTarget.closest("#edit-what-is-your-gpa-")) {
+            document.querySelector("#edit-cards-next--8").click()
+            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:nth-child(9)").classList.add("is-complete")
+          }
+          if (i.currentTarget.closest("#edit-what-program-are-you-looking-to-study-currently-studying-")) {
+            document.querySelector("#edit-cards-next--9").click()
+            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:nth-child(10)").classList.add("is-complete")
+          }
+          if (i.currentTarget.closest("#edit-how-many-extracurricular-or-volunteer-activities-do-you-particip")) {
+            document.querySelector("#edit-cards-next--10").click()
+            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:nth-child(11)").classList.add("is-complete")
+          }
+          // if (i.currentTarget.closest("#edit-what-school-are-you-interested-in-attending-")) {
+          //   document.querySelector("#edit-cards-next--11").click()
+          //   console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+          //   document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:nth-child(12)").classList.add("is-complete")
+          // }
+          // if (i.currentTarget.closest("#edit-what-field-of-study-are-you-looking-to-study-currently-studying-")) {
+          //   document.querySelector("#edit-cards-next--12").click()
+          //   console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+          // }
+          if (i.currentTarget.closest("#edit-if-selected-for-our-program")) {
+            document.querySelector("#edit-cards-next--13").click()
+            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:nth-child(14)").classList.add("is-complete")
+          }
+          if (i.currentTarget.closest("#edit-what-is-your-family-s-approximate-yearly-household-income-")) {
+            document.querySelector("#edit-cards-next--14").click()
+            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            if (!document.querySelector(".loader_wrap")) {
+              document.querySelector("#edit-what-is-your-contact-info- .webform-card-wrapper").insertAdjacentHTML("afterbegin", loaderWrap)
+            }
+            if (document.querySelector(".loader_wrap")) {
+              document.querySelector(".loader_list")?.scrollIntoView({ block: "start", behavior: "smooth" })
+              startPreloader()
+              function startPreloader() {
+                console.log("startPreloader")
+                let idx = 0
+                var delay = 0.7
+
+                for (let item of document.querySelectorAll(".loader_list li")) {
+                  setTimeout(() => {
+                    let el = document.querySelector(".loader_list li.active")
+                    if (el) {
+                      el.classList.remove("active")
+                      el.classList.add("finish")
+                    }
+
+                    item.classList.add("active")
+                  }, idx * delay * 1000)
+
+                  idx++
+
+                  if (idx == 3) {
+                    setTimeout(() => {
+                      let el = document.querySelector(".loader_list li.active")
+
+                      if (el) {
+                        el.classList.remove("active")
+                        el.classList.add("finish")
+                      }
+                      setTimeout(() => {
+                        if (document.querySelectorAll(".loader_list li.finish").length === 6) {
+                          document.querySelector(".loader_wrap").style.display = "none"
+                          document.querySelector("#edit-qa13-wrap").style.display = "block"
+                          document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:last-child").classList.add("is-complete")
+                          document.querySelector(".scroll_var")?.scrollIntoView({ block: "start", behavior: "smooth" })
+                        }
+                      }, 300)
+                    }, idx * delay * 1000 + 3000)
+                  }
+                }
+              }
+            }
+            document.querySelector(".loader_wrap .back_btn_var")?.addEventListener("click", (i) => {
+              if (i.currentTarget.closest(".loader_wrap")) {
+                document.querySelector("#edit-cards-prev--15").click()
+                console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+                document.querySelector("#edit-qa13-wrap").style.display = "none"
+                if (document.querySelector(".loader_wrap")) {
+                  document.querySelector(".loader_wrap").remove()
+                }
+              }
+            })
+          }
+          if (i.currentTarget.closest("#edit-what-is-your-contact-info-")) {
+            document.querySelector("#edit-cards-next--15").click()
+            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+          }
+        }
+        i.currentTarget.setAttribute("data-test", "1")
+
+        setTimeout(() => {
+          if (el.getAttribute("data-test")) {
+            el.removeAttribute("data-test")
+          }
+        }, 500)
+      })
+    })
+
+    document.querySelector("#edit-cards-next--11").addEventListener("click", () => {
+      document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:nth-child(12)").classList.add("is-complete")
+    })
+
+    document.querySelector("#edit-cards-next--12").addEventListener("click", () => {
+      document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:nth-child(13)").classList.add("is-complete")
+    })
+
     //last step
     document.querySelector("#edit-processed-text-44").insertAdjacentHTML("afterbegin", reviews)
     if (document.querySelector(".new_reviews")) {
@@ -478,6 +1021,7 @@ let myFunk = setInterval(() => {
           console.log(e.target)
           e.target.style.display = "none"
           document.querySelector('[data-count="3"]').style.display = "block"
+          document.querySelector('[data-count="3"]')?.scrollIntoView({ block: "start", behavior: "smooth" })
         })
       }
     }
@@ -495,41 +1039,100 @@ let myFunk = setInterval(() => {
     </p>`
     )
 
-    document.querySelector("#edit-what-is-your-contact-info- .webform-card-wrapper").insertAdjacentHTML("afterbegin", loaderWrap)
-    if (document.querySelector(".loader_wrap")) {
-      function startPreloader() {
-        console.log("startPreloader")
-        let idx = 0
-        var delay = 0.7
-
-        for (let item of document.querySelectorAll(".loader_wrap li")) {
-          setTimeout(() => {
-            let el = document.querySelector(".loader_wrap li.active")
-            if (el) {
-              el.classList.remove("active")
-              el.classList.add("finish")
+    // click on back_btn_var
+    document.querySelectorAll(".back_btn_var").forEach((el) => {
+      el.addEventListener("click", (i) => {
+        if (!i.currentTarget.getAttribute("data-test")) {
+          console.log(i.currentTarget)
+          if (i.currentTarget.closest("#edit-are-you-a-current-student-")) {
+            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            i.currentTarget.closest("section").querySelector(".back_btn_var").style.opacity = "0"
+            document.querySelectorAll("#edit-are-you-a-current-student.js-webform-radios input[type=radio]").forEach((input) => {
+              if (input.checked === true) {
+                console.log(input.checked)
+                input.checked = false
+                if (localStorage.getItem("name")) {
+                  localStorage.removeItem("name")
+                }
+                if (input.closest("label").classList.contains("active")) {
+                  input.closest("label").classList.remove("active")
+                }
+              }
+            })
+            if (document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:nth-child(1)").classList.contains("is-complete")) {
+              document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:nth-child(1)").classList.remove("is-complete")
             }
-
-            item.classList.add("active")
-          }, idx * delay * 1000)
-
-          idx++
-
-          if (idx == 3) {
-            setTimeout(() => {
-              let el = document.querySelector(".loader_wrap li.active")
-
-              el.classList.remove("active")
-              el.classList.add("finish")
-            }, idx * delay * 1000 + 2000)
+          }
+          if (i.currentTarget.closest("#edit-what-were-you-looking-for-today-")) {
+            document.querySelector("#edit-cards-prev--2").click()
+            document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:nth-child(1)").classList.add("is-complete")
+            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+          }
+          if (i.currentTarget.closest("#edit-what-is-your-citizenship-")) {
+            document.querySelector("#edit-cards-prev--3").click()
+            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+          }
+          if (i.currentTarget.closest("#edit-what-year-of-university-are-you-currently-in-") || i.currentTarget.closest("#edit-what-year-of-study-are-you-currently-in-")) {
+            document.querySelector("#edit-cards-prev--4").click()
+            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+          }
+          if (i.currentTarget.closest("#edit-are-you-currently-studying-in-canada-")) {
+            document.querySelector("#edit-cards-prev--5").click()
+            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+          }
+          if (i.currentTarget.closest("#edit-what-year-of-university-are-you-currently-in-")) {
+            document.querySelector("#edit-cards-prev--6").click()
+            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+          }
+          if (i.currentTarget.closest("#edit-how-old-are-you-")) {
+            document.querySelector("#edit-cards-prev--7").click()
+            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+          }
+          if (i.currentTarget.closest("#edit-what-is-your-gpa-")) {
+            document.querySelector("#edit-cards-prev--8").click()
+            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+          }
+          if (i.currentTarget.closest("#edit-what-program-are-you-looking-to-study-currently-studying-")) {
+            document.querySelector("#edit-cards-prev--9").click()
+            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+          }
+          if (i.currentTarget.closest("#edit-how-many-extracurricular-or-volunteer-activities-do-you-particip")) {
+            document.querySelector("#edit-cards-prev--10").click()
+            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+          }
+          if (i.currentTarget.closest("#edit-what-school-are-you-interested-in-attending-")) {
+            document.querySelector("#edit-cards-prev--11").click()
+            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+          }
+          if (i.currentTarget.closest("#edit-what-field-of-study-are-you-looking-to-study-currently-studying-")) {
+            document.querySelector("#edit-cards-prev--12").click()
+            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+          }
+          if (i.currentTarget.closest("#edit-if-selected-for-our-program")) {
+            document.querySelector("#edit-cards-prev--13").click()
+            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+          }
+          if (i.currentTarget.closest("#edit-what-is-your-family-s-approximate-yearly-household-income-")) {
+            document.querySelector("#edit-cards-prev--14").click()
+            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+          }
+          if (i.currentTarget.closest(".guarantee_block")) {
+            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            document.querySelector("#edit-cards-prev--15").click()
+            document.querySelector("#edit-qa13-wrap").style.display = "none"
+            if (document.querySelector(".loader_wrap")) {
+              document.querySelector(".loader_wrap").remove()
+            }
           }
         }
-      }
-      startPreloader()
-      setTimeout(() => {
-        document.querySelector(".loader_wrap").style.display = "none"
-        document.querySelector("#edit-qa13-wrap").style.display = "block"
-      }, 5000)
-    }
+        i.currentTarget.setAttribute("data-test", "1")
+
+        setTimeout(() => {
+          if (el.getAttribute("data-test")) {
+            el.removeAttribute("data-test")
+          }
+        }, 500)
+      })
+    })
   }
 }, 300)
