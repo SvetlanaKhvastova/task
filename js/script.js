@@ -91,3 +91,8 @@ let script = document.createElement("script")
 script.src = "https://conversionratestore.github.io/projects/moneygeek/auto_calculator_btn.js"
 script.async = false
 document.head.appendChild(script)
+//
+let script = document.createElement("script")
+script.src = "https://conversionratestore.github.io/projects/grantme/grantme_quiz.js"
+script.async = false
+document.head.appendChild(script)

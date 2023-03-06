@@ -2,20 +2,57 @@ let myFunk = setInterval(() => {
   if (document.querySelector("#webform-submission-grantme-program-assessment-add-form")) {
     clearInterval(myFunk)
 
+    // cdn slider
+    let scriptCustomSlider = document.createElement("script")
+    scriptCustomSlider.src = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
+    scriptCustomSlider.async = false
+    document.head.appendChild(scriptCustomSlider)
+
+    let scriptCustomSliderStyle = document.createElement("link")
+    scriptCustomSliderStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
+    scriptCustomSliderStyle.rel = "stylesheet"
+    document.head.appendChild(scriptCustomSliderStyle)
+
+    let eventVar = "desktop"
+
+    if (window.innerWidth <= 768) {
+      eventVar = "mobile"
+    }
+
+    function pushDataLayer(actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || []
+      if (labelDataLayer) {
+        console.log(actionDataLayer + " : " + labelDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Exp: Remove barriers on quiz ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        })
+      } else {
+        console.log(actionDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Exp: Remove barriers on quiz ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+        })
+      }
+    }
+
     let newStyle = /*html */ `
     <style>
-      .program_assessment_var{
-        font-weight: 700;
-        font-size: 18px;
-        line-height: 26px;
-        color: #2B3D50;
-        text-align: center;
-        margin: 0 0 11px;
-      }
-      .form-group{
-        position: relative;
-      }
-      .back_btn_var{
+        .program_assessment_var {
+          font-weight: 700;
+          font-size: 18px;
+          line-height: 26px;
+          color: #2b3d50;
+          text-align: center;
+          margin: 0 0 11px;
+        }
+        .form-group {
+          position: relative;
+        }
+        .back_btn_var {
           display: flex;
           align-items: center;
           font-weight: 700;
@@ -23,78 +60,79 @@ let myFunk = setInterval(() => {
           line-height: 14px;
           text-align: left;
           text-transform: uppercase;
-          color: #3D78BA;
+          color: #3d78ba;
           margin-bottom: 16px;
-      }
-      .back_btn_var svg{
-        margin-right: 9px;
-       }
-       #edit-are-you-a-current-student- .back_btn_var{
-        opacity: 0;
-       }
-      .time-left {
+        }
+        .back_btn_var svg {
+          margin-right: 9px;
+        }
+        #edit-are-you-a-current-student- .back_btn_var {
+          opacity: 0;
+          visibility: hidden;
+        }
+        .time-left {
           font-weight: 700;
           font-size: 12px;
           line-height: 14px;
           text-transform: uppercase;
-          color: #8B8B8B;
+          color: #8b8b8b;
           position: absolute;
           right: 0;
           top: 0;
-      }
-      .path-grantme-program-assessment .quiz-question{
-        font-weight: 900 !important;
-      }
-      .quiz-section{
-        font-weight: 700 !important;
-line-height: 14px !important;
-border-top: 1px solid #E6E6E6;
-    padding-top: 16px;
-      }
-      .path-grantme-program-assessment .navbar .logo {
-    padding: 16px 0;
-}
-.navbar-header .logo img{
-  width: 100% !important;
-    max-width: 90px !important;
-}
-      .webform-progress ul{
-        display: flex;
-            justify-content: space-between;
-            padding: 0 20px;
-      }
-        .path-scholarship-eligibility-quiz .webform-progress ul li {
-            background: #E9F3FA;
         }
-        .path-scholarship-eligibility-quiz .webform-progress ul li + li{
+        .path-grantme-program-assessment .quiz-question {
+          font-weight: 900 !important;
+        }
+        .quiz-section {
+          font-weight: 700 !important;
+          line-height: 14px !important;
+          border-top: 1px solid #e6e6e6;
+          padding-top: 16px;
+        }
+        .path-grantme-program-assessment .navbar .logo {
+          padding: 16px 0;
+        }
+        .navbar-header .logo img {
+          width: 100% !important;
+          max-width: 90px !important;
+        }
+        .webform-progress ul {
+          display: flex;
+          justify-content: space-between;
+          padding: 0 20px;
+        }
+        .path-scholarship-eligibility-quiz .webform-progress ul li {
+          background: #e9f3fa;
+        }
+        .path-scholarship-eligibility-quiz .webform-progress ul li + li {
           margin-left: 1px;
         }
         .path-scholarship-eligibility-quiz .webform-progress ul li:last-of-type,
-        .path-scholarship-eligibility-quiz .webform-progress ul li:first-of-type{
-            border-radius: 0;
+        .path-scholarship-eligibility-quiz .webform-progress ul li:first-of-type {
+          border-radius: 0;
         }
-        .row{
-            margin-left: 0 !important;
-            margin-right: 0 !important;
+        .row {
+          margin-left: 0 !important;
+          margin-right: 0 !important;
         }
         .col-md-8,
-        .col-md-4{
-            padding-left: 0 !important;
-            padding-right: 0 !important;
+        .col-md-4 {
+          padding-left: 0 !important;
+          padding-right: 0 !important;
         }
-        .panel-body{
-            padding-left: 20px;
-            padding-right: 20px;
+        .panel-body {
+          padding-left: 20px;
+          padding-right: 20px;
         }
-        #edit-qa13-wrap{
-            margin-bottom: 16px !important;
-            display: none;
+        #edit-qa13-wrap {
+          margin-bottom: 16px !important;
+          display: none;
         }
-        .path-grantme-program-assessment .webform-card-wrapper .panel .panel-body{
+        .path-grantme-program-assessment .webform-card-wrapper .panel .panel-body {
           padding-bottom: 0;
         }
         #edit-q1,
-        #edit-qa17-wrap{
+        #edit-qa17-wrap {
           margin-bottom: 130px !important;
         }
         #edit-qa2-wrap,
@@ -108,7 +146,7 @@ border-top: 1px solid #E6E6E6;
         #edit-qa9-wrap,
         #edit-qa10-wrap,
         #edit-qa11-wrap,
-        #edit-qa12-wrap{
+        #edit-qa12-wrap {
           margin-bottom: 30px !important;
         }
         #edit-processed-text-10,
@@ -135,328 +173,654 @@ border-top: 1px solid #E6E6E6;
         #edit-cards-prev--6,
         #edit-cards-prev--7,
         #edit-cards-prev--8,
-        #edit-cards-prev--9, 
+        #edit-cards-prev--9,
         #edit-cards-prev--10,
         #edit-cards-prev--11,
         #edit-cards-prev--12,
         #edit-cards-prev--13,
         #edit-cards-prev--14,
         #edit-cards-prev--15,
-        html.js .webform-cards .form-actions:not(#edit-actions-13, #edit-actions-14, #edit-actions-10){
-            display: none !important;
+        html.js .webform-cards .form-actions:not(#edit-actions-13, #edit-actions-14, #edit-actions-10),
+        #edit-what-school-are-you-interested-in-attending-
+          .js-form-type-select.form-item-what-school-are-you-interested-in-attending.js-form-item-what-school-are-you-interested-in-attending.form-no-label.form-group,
+        #edit-what-field-of-study-are-you-looking-to-study-currently-studying-
+          .js-form-type-select.form-item-what-field-of-study-are-you-looking-to-study-currently-studying.js-form-item-what-field-of-study-are-you-looking-to-study-currently-studying {
+          display: none !important;
         }
-        .path-scholarship-eligibility-quiz .webform-submission-form label{
-            margin-bottom: 6px;
+        .path-scholarship-eligibility-quiz .webform-submission-form label {
+          margin-bottom: 6px;
         }
-        form #edit-actions-10-submit{
-            width: 100%;
-            font-size: 16px;
-            line-height: 19px;
-            height: 44px;
-            margin: 0;
+        form #edit-actions-10-submit {
+          width: 100%;
+          font-size: 16px;
+          line-height: 19px;
+          height: 44px;
+          margin: 0;
         }
-        .skip_var label{
+        .skip_var label {
           background: unset !important;
           border: unset !important;
           font-weight: 700 !important;
           font-size: 14px !important;
           line-height: 17px !important;
           text-align: center !important;
-          color: #8C8C8C !important;
+          color: #8c8c8c !important;
           width: max-content;
           margin: 0 auto !important;
         }
-        .skip_var.form-type-radio{
+        .skip_var.form-type-radio {
           margin: 22px auto 0 !important;
+          text-align: center;
         }
         /*back_btn_wrap */
-        .back_btn_wrap{
+        .back_btn_wrap {
           display: flex;
           justify-content: space-between;
           align-items: center;
           padding-bottom: 16px;
-          border-bottom: 1px solid #E6E6E6;
+          border-bottom: 1px solid #e6e6e6;
         }
-        .guarantee_block .scroll_var{
+        .guarantee_block .scroll_var {
           margin-top: 16px;
           display: block;
         }
-        .back_btn_wrap .back_btn_var{
+        .back_btn_wrap .back_btn_var {
           margin: 0;
         }
-        .back_btn_wrap p{
-            font-weight: 700;
-            font-size: 12px;
-            line-height: 14px;
-            text-align: center;
-            text-transform: uppercase;
-            color: #8B8B8B;
+        .back_btn_wrap p {
+          font-weight: 700;
+          font-size: 12px;
+          line-height: 14px;
+          text-align: center;
+          text-transform: uppercase;
+          color: #8b8b8b;
         }
         /*loader_wrap */
-        .loader_wrap .back_btn_wrap{
+        .loader_wrap .back_btn_wrap {
           padding: 16px 20px;
         }
-        .loader_list{
-            padding: 20px 20px 41px;
-            margin: 0;
-            list-style: none;
+        .loader_list {
+          padding: 20px 20px 41px;
+          margin: 0;
+          list-style: none;
         }
         .loader_list li {
-            position: relative;
-            padding: 0 0 0 29px;
-            transition: 0.3s;
+          position: relative;
+          padding: 0 0 0 29px;
+          transition: 0.3s;
         }
-        .loader_list li::before{
-            position: absolute;
-            content: '';
-            width: 16px;
-            height: 16px;
-            background: url(https://conversionratestore.github.io/projects/grantme/img/full_load.svg) no-repeat;
-            background-size: contain;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
+        .loader_list li::before {
+          position: absolute;
+          content: "";
+          width: 16px;
+          height: 16px;
+          background: url(https://conversionratestore.github.io/projects/grantme/img/full_load.svg) no-repeat;
+          background-size: contain;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
         }
         @-webkit-keyframes infinite-spinning {
-            from {
+          from {
             -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-            }
-            to {
+            transform: translateY(-50%) rotate(0deg);
+          }
+          to {
             -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-            }
+            transform: translateY(-50%) rotate(360deg);
+          }
         }
         @keyframes infinite-spinning {
-            from {
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-            }
-            to {
-            -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-            }
+          from {
+            -webkit-transform: translateY(-50%) rotate(0deg);
+            transform: translateY(-50%) rotate(0deg);
+          }
+          to {
+            -webkit-transform: translateY(-50%) rotate(360deg);
+            transform: translateY(-50%) rotate(360deg);
+          }
         }
-        .loader_list li.active::before{
-            -webkit-animation: infinite-spinning 2s infinite linear;
-            animation: infinite-spinning 2s infinite linear;
-            background: url(https://conversionratestore.github.io/projects/grantme/img/part_load.svg) no-repeat;
-            background-size: contain;
+        .loader_list li.active::before {
+          -webkit-animation: infinite-spinning 2s infinite linear;
+          animation: infinite-spinning 2s infinite linear;
+          background: url(https://conversionratestore.github.io/projects/grantme/img/part_load.svg) no-repeat;
+          background-size: contain;
         }
-        .loader_list li.finish::before{
-            background: url(https://conversionratestore.github.io/projects/grantme/img/checked.svg) no-repeat;
-            background-size: contain;
-            height: 10px;
+        .loader_list li.finish::before {
+          background: url(https://conversionratestore.github.io/projects/grantme/img/checked.svg) no-repeat;
+          background-size: contain;
+          height: 10px;
         }
-        .loader_list li span{
-            font-weight: 400;
-            font-size: 18px;
-            line-height: 26px;
-            color: #8B8B8B;
+        .loader_list li span {
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 26px;
+          color: #8b8b8b;
         }
-        .loader_list li.finish span{
-            color: #2B3D50;
+        .loader_list li.finish span {
+          color: #2b3d50;
         }
-        .loader_list li + li{
-            margin-top: 16px;
+        .loader_list li + li {
+          margin-top: 16px;
         }
         /*guarantee_block */
-        .guarantee_block{
-            margin-bottom: 24px;
+        .guarantee_block {
+          margin-bottom: 24px;
         }
-        .grant_me_wrap{
-            background: #2B3D50;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 16px;
-            margin-bottom: 16px;
+        .grant_me_wrap {
+          background: #2b3d50;
+          border-radius: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 12px 16px;
+          margin-bottom: 16px;
         }
-        .grant_me_wrap p{
-            font-weight: 400;
-            font-size: 15px;
-            line-height: 26px;
-            color: #FFFFFF;
-            margin: 0 0 0 16px;
+        .grant_me_wrap p {
+          font-weight: 400;
+          font-size: 15px;
+          line-height: 26px;
+          color: #ffffff;
+          margin: 0 0 0 16px;
         }
-        .benefits_wrap > p{
-            font-weight: 700;
-            font-size: 16px;
-            line-height: 24px;
-            color: #2B3D50;
-            margin-bottom: 16px;
+        .benefits_wrap > p {
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 24px;
+          color: #2b3d50;
+          margin-bottom: 16px;
         }
-        .benefits_wrap ul{
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        .benefits_wrap ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
         }
         .benefits_wrap ul li {
-            position: relative;
-            padding-left: 52px;
+          position: relative;
+          padding-left: 52px;
         }
-        .benefits_wrap ul li::before{
-            position: absolute;
-            content: '';
-            width: 40px;
-            height: 40px;
-            background: url(https://conversionratestore.github.io/projects/grantme/img/graduation_hat.svg) no-repeat;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
+        .benefits_wrap ul li::before {
+          position: absolute;
+          content: "";
+          width: 40px;
+          height: 40px;
+          background: url(https://conversionratestore.github.io/projects/grantme/img/graduation_hat.svg) no-repeat;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
         }
-        .benefits_wrap ul li:nth-child(2):before{
-            background: url(https://conversionratestore.github.io/projects/grantme/img/scholarship.svg) no-repeat;
+        .benefits_wrap ul li:nth-child(2):before {
+          background: url(https://conversionratestore.github.io/projects/grantme/img/scholarship.svg) no-repeat;
         }
-        .benefits_wrap ul li:nth-child(3):before{
-            background: url(https://conversionratestore.github.io/projects/grantme/img/product.svg) no-repeat;
+        .benefits_wrap ul li:nth-child(3):before {
+          background: url(https://conversionratestore.github.io/projects/grantme/img/product.svg) no-repeat;
         }
-        .benefits_wrap ul li:nth-child(4):before{
-            background: url(https://conversionratestore.github.io/projects/grantme/img/diploma.svg) no-repeat;
+        .benefits_wrap ul li:nth-child(4):before {
+          background: url(https://conversionratestore.github.io/projects/grantme/img/diploma.svg) no-repeat;
         }
-        .benefits_wrap ul li + li{
-            margin-top: 12px;
+        .benefits_wrap ul li + li {
+          margin-top: 12px;
         }
-        .benefits_wrap ul li span{
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 24px;
-            color: #2B3D50;
+        .benefits_wrap ul li span {
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 24px;
+          color: #2b3d50;
         }
         /*reviews_block */
-        .reviews_block{
-            padding: 20px 20px 40px;
+        .reviews_block {
+          padding: 20px 20px 40px;
         }
-        ul.new_reviews{
-            padding: 0;
+        .new_reviews {
+          padding: 0;
+          margin: 0;
+          display: flex;
+          gap: 20px;
+          flex-direction: column;
+          list-style: none;
+        }
+        .new_reviews .reviews_link {
+          background: #ffffff;
+          border-radius: 6px;
+          padding: 20px;
+        }
+        .new_reviews .reviews_link > p {
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 24px;
+          color: #2b3d50;
+          margin: 0;
+        }
+        .new_reviews .reviews_link > p.date_experience_var {
+          margin-top: 16px;
+        }
+        .inform_box {
+          display: flex;
+          position: relative;
+        }
+        .inform_box .img_wrap {
+          max-width: 50px;
+          max-height: 50px;
+          margin-right: 16px;
+        }
+        .inform_box .img_wrap img {
+          width: 100%;
+          height: 100%;
+        }
+        .name_var {
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 19px;
+          color: #2b3d50;
+          margin: 0 0 6px;
+        }
+        .revw_var {
+          font-weight: 700;
+          font-size: 14px;
+          line-height: 17px;
+          color: #8b8b8b;
+          margin: 0;
+        }
+        .local_wrap {
+          position: absolute;
+          display: flex;
+          align-items: center;
+          right: 0;
+          bottom: 8px;
+        }
+        .local_var {
+          font-weight: 700;
+          font-size: 14px;
+          line-height: 17px;
+          color: #2b3d50;
+          margin: 0 0 0 6px;
+        }
+        .stars_box {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          background: #f3f3f3;
+          margin: 16px -20px;
+          padding: 16px 20px;
+        }
+        .stars_var {
+          display: flex;
+          align-items: center;
+        }
+        .stars_var img {
+          max-width: 88px;
+          max-height: 16px;
+        }
+        .stars_var span {
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 19px;
+          color: #2b3d50;
+          margin: 0 0 0 4px;
+        }
+        .date_var {
+          display: flex;
+          align-items: center;
+        }
+        .date_var span {
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 17px;
+          color: #2b3d50;
+          margin: 0 0 0 6px;
+        }
+        .load_more_btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 44px;
+          font-weight: 700;
+          font-size: 14px;
+          line-height: 17px;
+          letter-spacing: 0.05em;
+          text-align: center;
+          color: #ffffff;
+          margin-top: 20px;
+          border: 2px solid #ffffff;
+          border-radius: 6px;
+        }
+        [data-count="3"] {
+          display: none;
+        }
+        .policy_var {
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 22px;
+          color: #2b3d50;
+        }
+        .policy_var a {
+          color: rgba(61, 120, 186, 1);
+          text-decoration: underline;
+        }
+        .is_hidden {
+          display: none;
+        }
+
+        .checkbox_block + .checkbox_block {
+          margin-top: 12px;
+        }
+        .checkbox_block input.custom_checkbox {
+          position: absolute;
+          z-index: -1;
+          opacity: 0;
+        }
+        .checkbox_block label {
+          width: 100%;
+          border: 2px solid #3d78ba;
+          border-radius: 6px;
+          padding: 12px;
+          margin: 0 auto !important;
+          font-weight: 700;
+          font-size: 16px !important;
+          line-height: 22px !important;
+          color: #3d78ba !important;
+          user-select: none;
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+          text-align: left;
+        }
+
+        .checkbox_block .custom_checkbox + label::before {
+          content: "";
+          display: inline-block;
+          width: 22px;
+          height: 22px;
+          flex-shrink: 0;
+          flex-grow: 0;
+          background: #ffffff;
+          border: 2px solid #3d78ba;
+          border-radius: 4px;
+          margin-right: 12px;
+        }
+
+        .checkbox_block .custom_checkbox:checked + label::before {
+          background-image: url(https://conversionratestore.github.io/projects/grantme/img/checkbox.svg);
+          background-size: auto;
+          background-repeat: no-repeat;
+          background-position: center center;
+        }
+        #edit-cards-next--11,
+        #edit-cards-next--12 {
+          width: 100%;
+        }
+        #edit-cards-next--11.btn-default[disabled],
+        #edit-cards-next--11.btn-default[disabled]:hover,
+        #edit-cards-next--11.btn-default[disabled]:focus {
+          background: #e0e0e0;
+          border-radius: 6px;
+          border: 1px solid #e0e0e0;
+          color: #ffffff;
+        }
+        .checkbox_block label[for="skip_school_are_you_interested_in_attending_var"],
+        .checkbox_block label[for="skip_study_are_you_looking_to_study_currently_studying_var"] {
+          border: unset;
+          text-align: center;
+          color: #8c8c8c !important;
+          font-size: 14px !important;
+          line-height: 17px !important;
+          display: block;
+          padding: 0;
+          width: max-content;
+        }
+        .checkbox_block label[for="skip_school_are_you_interested_in_attending_var"] {
+          display: none;
+        }
+        .checkbox_block .custom_checkbox + label[for="skip_school_are_you_interested_in_attending_var"]::before,
+        .checkbox_block .custom_checkbox + label[for="skip_study_are_you_looking_to_study_currently_studying_var"]::before {
+          display: none;
+        }
+        #edit-actions-13,
+        #edit-actions-14 {
+          margin: 30px 0 !important;
+        }
+        textarea.other_textarea {
+          resize: none;
+          border-radius: 6px;
+          border: 2px solid #3d78ba;
+          border-top-left-radius: unset;
+          border-top-right-radius: unset;
+          width: 100%;
+          margin-top: -4px;
+          padding: 12px 16px;
+          min-height: 74px;
+          color: #3d78ba;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 24px;
+        }
+        textarea.other_textarea::placeholder {
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 24px;
+          color: #999999;
+        }
+        @media (min-width: 991px) {
+          .path-grantme-program-assessment #block-landingpageheaderquiz .col-md-4.bluebg {
             margin: 0;
+          }
+          .navbar-header .logo img {
+            max-width: 240px !important;
+          }
+          .path-grantme-program-assessment .navbar .logo {
+            padding: 35px 0 30px;
+          }
+          .program_assessment_var {
+            margin: 0 0 16px;
+          }
+          .path-grantme-program-assessment .quiz-question {
+            line-height: 26px;
+            margin-bottom: 14px;
+          }
+          .webform-progress ul {
+            margin: 16px 0;
+          }
+          #webform-submission-grantme-program-assessment-add-form .col.col-md-4.bluebg.hidden-xs.hidden-sm {
+            height: 46px;
+          }
+          .program_assessment_wrap {
             display: flex;
-            gap: 20px;
-            flex-direction: column;
-            list-style: none;
-        }
-        ul.new_reviews li{
-            background: #FFFFFF;
-            border-radius: 6px;
-            padding: 20px;
-        }
-        ul.new_reviews li > p{
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 24px;
-            color: #2B3D50;
-            margin: 0;
-        }
-        ul.new_reviews li > p.date_experience_var{
-            margin-top: 16px;
-        }
-        .inform_box{
-            display: flex;
-            position: relative;
-        }
-        .inform_box .img_wrap{
-            max-width: 50px;
-            max-height: 50px;
-            margin-right: 16px;
-        }
-        .inform_box .img_wrap img{
+          }
+          .program_assessment_var {
+            margin: 0 auto;
+            float: left;
+          }
+          .program_assessment_wrap > div {
+            width: 33.33333333%;
+          }
+          .path-grantme-program-assessment .seqq-img {
+            border-top: 1px solid rgb(230 230 230 / 10%);
+            padding-top: 40px;
+          }
+          .path-scholarship-eligibility-quiz .seqq-row {
+            margin-top: 28px;
+          }
+          .back_btn_var {
+            width: max-content;
+            cursor: pointer;
+          }
+          .skip_var.form-type-radio {
+            margin: 30px auto 0 !important;
+          }
+          #edit-qa13-wrap,
+          #edit-processed-text-44 {
             width: 100%;
-            height: 100%;
-        }
-        .name_var{
-            font-weight: 700;
-            font-size: 16px;
-            line-height: 19px;
-            color: #2B3D50;
-            margin: 0 0 6px;
-        }
-        .revw_var{
-            font-weight: 700;
-            font-size: 14px;
-            line-height: 17px;
-            color: #8B8B8B;
-            margin: 0;
-        }
-        .local_wrap{
+          }
+          #edit-processed-text-44 {
+            background: #f3f3f3;
+          }
+          #edit-qa13-wrap {
+            margin-bottom: 40px !important;
+          }
+          .load_more_btn {
+            display: none;
+          }
+          [data-count="3"] {
+            display: block;
+          }
+          .new_reviews {
+            display: block;
+          }
+          .grant_me_wrap {
+            padding: 24px 30px;
+            margin-bottom: 30px;
+          }
+          .grant_me_wrap div {
+            max-width: 54px;
+            max-height: 54px;
+          }
+          .grant_me_wrap p b {
+            display: block;
+          }
+          .guarantee_block .scroll_var {
+            margin-top: 30px;
+          }
+          .benefits_wrap ul li {
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            width: max-content;
+          }
+          .loader_wrap {
+            max-width: 600px;
+            margin: 0 auto;
+          }
+          .loader_list {
+            padding: 50px 0 106px;
+            max-width: 350px;
+            margin: 0 auto;
+          }
+          form > .row > .col.col-md-8.last_step_var {
+            width: 100%;
+          }
+          .path-grantme-program-assessment #block-landingpageheaderquiz .col-md-4.bluebg.last_step_var,
+          #webform-submission-grantme-program-assessment-add-form .col.col-md-4.bluebg.hidden-xs.hidden-sm.last_step_var {
+            display: none;
+          }
+          .program_assessment_wrap.last_step_var {
+            display: block;
+          }
+          .program_assessment_var.last_step_var {
+            float: unset;
+          }
+          #block-landingpageheaderquiz .row > .col.col-md-8.col-xs-12.last_step_var {
+            width: 100%;
+          }
+          .policy_var {
+            margin-bottom: 24px !important;
+          }
+          .new_reviews .slick-arrow {
             position: absolute;
-            display: flex;
-            align-items: center;
-            right: 0;
-            bottom: 8px;
-        }
-        .local_var{
-            font-weight: 700;
-            font-size: 14px;
-            line-height: 17px;
-            color: #2B3D50;
-            margin: 0 0 0 6px;
-        }
-        .stars_box{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #F3F3F3;
-            margin: 16px -20px;
-            padding: 16px 20px;
-        }
-        .stars_var{
-            display: flex;
-            align-items: center;
-        }
-        .stars_var img{
-            max-width: 88px;
-            max-height: 16px;
-        }
-        .stars_var span{
-            font-weight: 700;
-            font-size: 16px;
-            line-height: 19px;
-            color: #2B3D50;
-            margin: 0 0 0 4px;
-        }
-        .date_var{
-            display: flex;
-            align-items: center;
-        }
-        .date_var span{
-            font-weight: 400;
-            font-size: 14px;
-            line-height: 17px;
-            color: #2B3D50;
-            margin: 0 0 0 6px;
-        }
-        .load_more_btn{
+            bottom: -80px;
+            z-index: 2;
+            cursor: pointer;
+            opacity: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 100%;
-            height: 44px;
-            font-weight: 700;
-            font-size: 14px;
-            line-height: 17px;
-            letter-spacing: 0.05em;
-            text-align: center;
-            color: #FFFFFF;
-            margin-top: 20px;
-            border: 2px solid #FFFFFF;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            border: 2px solid #3d78ba;
+            line-height: 0;
+            font-size: 0;
+          }
+          .new_reviews .slick-arrow.slick-prev {
+            left: 45%;
+          }
+          .new_reviews .slick-arrow.slick-next {
+            right: 45%;
+          }
+          .new_reviews .slick-arrow.slick-next::after,
+          .new_reviews .slick-arrow.slick-prev::after {
+            position: absolute;
+            content: "";
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 16px;
+            height: 16px;
+          }
+          .new_reviews .slick-arrow.slick-next::after {
+            background-image: url(https://conversionratestore.github.io/projects/grantme/img/slick-next.svg);
+            background-size: auto;
+            background-repeat: no-repeat;
+            background-position: center center;
+          }
+          .new_reviews .slick-arrow.slick-prev::after {
+            background-image: url(https://conversionratestore.github.io/projects/grantme/img/slick-prev.svg);
+            background-size: auto;
+            background-repeat: no-repeat;
+            background-position: center center;
+          }
+          .slick-slide > div {
+            padding: 0 10px;
+          }
+          .slider_wrapper {
+            overflow: hidden;
+            margin: 0 auto;
+            padding: 0 0 80px;
+          }
+          .new_reviews .slick-list {
+            overflow: visible;
+          }
+          .reviews_block {
+            position: relative;
+            padding: 40px 74px;
+            opacity: 0;
+            transition: all 0.35s ease;
+          }
+          .reviews_block.ative_right:after {
+            position: absolute;
+            content: "";
+            right: 0;
+            top: 0;
+            background: linear-gradient(270deg, #f3f3f3 20%, rgba(243, 243, 243, 0) 100%);
+            width: 390px;
+            height: 100%;
+          }
+          .reviews_block.ative_left:before {
+            position: absolute;
+            content: "";
+            left: 0;
+            top: 0;
+            background: linear-gradient(90deg, #f3f3f3 20%, rgba(243, 243, 243, 0) 100%);
+            width: 390px;
+            height: 100%;
+            z-index: 1;
+          }
+          #edit-actions-13,
+          #edit-actions-14 {
+            margin: 24px 0 !important;
+          }
+          .checkbox,
+          .radio {
+            margin-top: 16px;
+            margin-bottom: 16px;
+          }
+          .form-group {
+            margin-bottom: 14px;
+          }
+          .path-scholarship-eligibility-quiz .js-webform-radios label:not(.error) {
+            height: 46px;
+            border: 2px solid #3d78ba;
             border-radius: 6px;
-        }
-        [data-count="3"]{
-            display: none;
-        }
-        .policy_var{
-            font-weight: 400;
-            font-size: 14px;
             line-height: 22px;
-            color: #2B3D50;
-        }
-        .policy_var a{
-            color: rgba(61, 120, 186, 1);
-            text-decoration: underline;
-        }
-        .is_hidden{
-            display: none;
+          }
+          .checkbox_block .custom_checkbox:checked + label::before {
+            background-size: auto 73%;
+          }
+          #edit-what-field-of-study-are-you-looking-to-study-currently-studying- .quiz-right-wrap,
+          #edit-what-school-are-you-interested-in-attending- .quiz-right-wrap,
+          #edit-how-many-extracurricular-or-volunteer-activities-do-you-particip .quiz-right-wrap {
+            min-height: 100vh;
+          }
         }
     </style>
     `
@@ -466,8 +830,10 @@ border-top: 1px solid #E6E6E6;
     let text4 = ""
 
     let reviews = /*html */ `
-    <div class="reviews_block">
-        <ul class="new_reviews"></ul>
+    <div class="reviews_block ative_right">
+      <div class="slider_wrapper">
+        <div class="new_reviews"></div>
+      </div>
         <span class="load_more_btn">LOAD MORE</span>
     </div>
     `
@@ -567,7 +933,7 @@ border-top: 1px solid #E6E6E6;
     }
 
     function setReviews(name, img, revw, local, star, date, descr, dateExperience, count) {
-      return `<li data-count="${count}">
+      return `<div class="reviews_link" data-count="${count}">
                 <div class="inform_box">
                     <div class="img_wrap">
                         <img src="${img}" alt=" img ${name}" />
@@ -603,7 +969,7 @@ border-top: 1px solid #E6E6E6;
                 </div>
                 <p class="descr_var">${descr}</p>
                 <p class="date_experience_var"><b>${dateExperience}</b></p>
-            </li>`
+            </div>`
     }
 
     function renderLabel(text, class_f, class_s, name, id, msg, once = "", err = "") {
@@ -625,30 +991,30 @@ border-top: 1px solid #E6E6E6;
     </div>`
     }
 
-    function renderLabelCheckBox(text, id) {
-      return `<div class="form-item js-form-item form-type-select js-form-type-select form-item-what-school-are-you-interested-in-attending js-form-item-what-school-are-you-interested-in-attending form-no-label form-group">
-      <label for="${id}" class="control-label option"
-        ><input
-          data-drupal-selector="${id}"
-          class="form-checkbox"
-          type="checkbox"
-          id="${id}"
-          name=""
-          value="${id}"
-          required="required"
-        />${text}</label
-      >
-    </div>`
+    function renderLabelCheckBox(selector, text, id, value) {
+      return `<div class="checkbox_block ${selector}">
+               <input class="custom_checkbox" id="${id}" type="radio" name="${selector}" value="${value}" />
+                <label for="${id}" tabindex="0">${text}</label>
+              </div>`
     }
 
     let arrLabel = {
-      "University of British Columbia (UBC)": "ubc",
-      "University of Toronto": "toronto",
-      "University of Waterloo": "waterloo",
-      "McMaster University": "mcmaster",
-      "University of Alberta": "alberta",
-      "Queen's University": "queens",
-      Other: "other",
+      "University of British Columbia (UBC)": ["ubc", "984"],
+      "University of Toronto": ["toronto", "907"],
+      "University of Waterloo": ["waterloo", "1006"],
+      "McMaster University": ["mcmaster", "819"],
+      "University of Alberta": ["alberta", "983"],
+      "Queen's University": ["queens", "889"],
+      Other: ["other", "2913"],
+    }
+
+    let arrLabel2 = {
+      "Psychology (BA)": ["psychology", "497"],
+      "Law (BA)": ["law", "489"],
+      "Accounting and Finance": ["finance", "2413"],
+      "Business (Bcom)": ["business", "442"],
+      "Kinesiology (BKin)": ["kinesiology", "517"],
+      Other: ["other2", "521"],
     }
 
     document.head.insertAdjacentHTML("beforeend", `<link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap" rel="stylesheet">`)
@@ -656,26 +1022,41 @@ border-top: 1px solid #E6E6E6;
 
     document.querySelectorAll("#edit-actions-13").forEach((el) => {
       for (let key in arrLabel) {
-        el.insertAdjacentHTML("beforebegin", renderLabelCheckBox(key, arrLabel[key]))
+        el.insertAdjacentHTML("beforebegin", renderLabelCheckBox("school_are_you_interested_in_attending_var", key, arrLabel[key][0], arrLabel[key][1]))
       }
     })
 
+    document.querySelectorAll("#edit-actions-14").forEach((el) => {
+      for (let key in arrLabel2) {
+        el.insertAdjacentHTML("beforebegin", renderLabelCheckBox("study_are_you_looking_to_study_currently_studying_var", key, arrLabel2[key][0], arrLabel2[key][1]))
+      }
+    })
+
+    document.querySelector("#edit-actions-14").insertAdjacentHTML("beforebegin", `<textarea class="other_textarea" placeholder="Description"></textarea>`)
+
+    if (document.querySelector("#edit-what-school-are-you-interested-in-attending").value === "") {
+      document.querySelector("#edit-cards-next--11").disabled = true
+    }
+    // if (document.querySelector("#edit-what-field-of-study-are-you-looking-to-study-currently-studying").value === "") {
+    //   document.querySelector("#edit-cards-next--12").disabled = true
+    // }
+
     document
       .querySelector("#edit-actions-13")
+      .insertAdjacentHTML("afterend", renderLabelCheckBox("school_are_you_interested_in_attending_var", "Skip", "skip_school_are_you_interested_in_attending_var", "2913"))
+
+    document
+      .querySelector("#edit-actions-14")
       .insertAdjacentHTML(
         "afterend",
-        renderLabel(
-          "Skip",
-          "form-item-what-school-are-you-interested-in-attending skip_var",
-          "js-form-item-what-school-are-you-interested-in-attending",
-          "what-school-are-you-interested-in-attending",
-          "skip-what-school-are-you-interested-in-attending"
-        )
+        renderLabelCheckBox("study_are_you_looking_to_study_currently_studying_var", "Skip", "skip_study_are_you_looking_to_study_currently_studying_var", "521")
       )
 
     // render text Program Assessment
     if (!document.querySelector(".program_assessment_var")) {
-      document.querySelector(".navbar").insertAdjacentHTML("afterend", `<p class="program_assessment_var">Program Assessment</p>`)
+      document
+        .querySelector(".navbar")
+        .insertAdjacentHTML("afterend", `<div class='program_assessment_wrap'><p class="program_assessment_var">Program Assessment</p><div></div></div>`)
     }
     // render back_btn_var
     document.querySelectorAll(".time-left").forEach((el) => {
@@ -721,7 +1102,7 @@ border-top: 1px solid #E6E6E6;
         "beforeend",
         renderLabel(
           "I don’t know",
-          "js-form-type-radio form-item-what-is-your-gpa",
+          "js-form-type-radio form-item-what-is-your-gpa i_dont_know_var",
           "js-form-item-what-is-your-gpa",
           "what_is_your_gpa",
           "i-dont-know-what-is-your-gpa",
@@ -751,7 +1132,7 @@ border-top: 1px solid #E6E6E6;
         "beforeend",
         renderLabel(
           "I don’t know",
-          "form-item-what-program-are-you-looking-to-study-currently-studying",
+          "form-item-what-program-are-you-looking-to-study-currently-studying i_dont_know_var",
           "js-form-item-what-program-are-you-looking-to-study-currently-studying",
           "what_program_are_you_looking_to_study_currently_studying",
           "i-dont-know-what-program-are-you-looking-to-study-currently-studying",
@@ -781,7 +1162,7 @@ border-top: 1px solid #E6E6E6;
         "beforeend",
         renderLabel(
           "I don’t know",
-          "form-item-how-many-extracurricular-or-volunteer-activities-do-you-partici",
+          "form-item-how-many-extracurricular-or-volunteer-activities-do-you-partici i_dont_know_var",
           "js-form-item-how-many-extracurricular-or-volunteer-activities-do-you-partici",
           "how_many_extracurricular_or_volunteer_activities_do_you_partici",
           "i-dont-know-how-many-extracurricular-or-volunteer-activities-do-you-partici",
@@ -811,7 +1192,7 @@ border-top: 1px solid #E6E6E6;
         "beforeend",
         renderLabel(
           "I don’t know",
-          "js-form-type-radio form-item-if-selected-for-our-program-",
+          "js-form-type-radio form-item-if-selected-for-our-program- i_dont_know_var",
           "js-form-item-if-selected-for-our-program-",
           "if_selected_for_our_program_",
           "i-dont-know-if-selected-for-our-program",
@@ -885,14 +1266,22 @@ border-top: 1px solid #E6E6E6;
           )
       }
 
+      // click on load more btn
       if (document.querySelector(".load_more_btn")) {
         document.querySelector(".load_more_btn").addEventListener("click", (e) => {
-          console.log(e.target)
+          pushDataLayer("Load more")
           e.target.style.display = "none"
           document.querySelector('[data-count="3"]').style.display = "block"
           document.querySelector('[data-count="3"]')?.scrollIntoView({ block: "start", behavior: "smooth" })
         })
       }
+    }
+
+    // input on textarea
+    if (document.querySelector(".other_textarea")) {
+      document.querySelector(".other_textarea").addEventListener("blur", () => {
+        pushDataLayer("event blur on textarea 'Description'")
+      })
     }
 
     document.querySelector("#edit-processed-text-10").insertAdjacentHTML("beforebegin", guaranteeBlock)
@@ -908,9 +1297,12 @@ border-top: 1px solid #E6E6E6;
     </p>`
     )
     //click input
-    document.querySelectorAll(".js-webform-radios input[type=radio]").forEach((el) => {
+    document.querySelectorAll("input[type=radio]").forEach((el) => {
       el.addEventListener("click", (i) => {
         if (!i.currentTarget.getAttribute("data-test")) {
+          if (i.currentTarget.closest("div").classList.contains("skip_var") || i.currentTarget.closest("div").classList.contains("i_dont_know_var")) {
+            pushDataLayer(`checked ${i.currentTarget.closest("label").textContent}`, i.currentTarget.closest("section").querySelector("h4").textContent)
+          }
           document.querySelectorAll(".webform-progress ul li").forEach((el) => {
             let int = setInterval(() => {
               if (
@@ -922,10 +1314,11 @@ border-top: 1px solid #E6E6E6;
               }
             }, 10)
           })
-          console.log(i.currentTarget)
+
           if (i.currentTarget.closest("#edit-are-you-a-current-student-")) {
             document.querySelector("#edit-cards-next").click()
             i.currentTarget.closest("section").querySelector(".back_btn_var").style.opacity = "1"
+            i.currentTarget.closest("section").querySelector(".back_btn_var").style.visibility = "unset"
             localStorage.setItem("name", i.currentTarget.getAttribute("value"))
             if (localStorage.getItem("name") === "Parent of Student") {
               document.querySelectorAll(".guarantee_block .text_first").forEach((el) => {
@@ -960,7 +1353,6 @@ border-top: 1px solid #E6E6E6;
           }
           if (i.currentTarget.closest("#edit-what-is-your-citizenship-")) {
             document.querySelector("#edit-cards-next--3").click()
-            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
             i.currentTarget
               .closest("#edit-what-is-your-citizenship-")
               .querySelectorAll(".radio label")
@@ -973,7 +1365,6 @@ border-top: 1px solid #E6E6E6;
           }
           if (i.currentTarget.closest("#edit-what-year-of-university-are-you-currently-in-") || i.currentTarget.closest("#edit-what-year-of-study-are-you-currently-in-")) {
             document.querySelector("#edit-cards-next--4").click()
-            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
             if (i.currentTarget.closest("#edit-what-year-of-university-are-you-currently-in-")) {
               i.currentTarget
                 .closest("#edit-what-year-of-university-are-you-currently-in-")
@@ -999,7 +1390,6 @@ border-top: 1px solid #E6E6E6;
           }
           if (i.currentTarget.closest("#edit-are-you-currently-studying-in-canada-")) {
             document.querySelector("#edit-cards-next--5").click()
-            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
             i.currentTarget
               .closest("#edit-are-you-currently-studying-in-canada-")
               .querySelectorAll(".radio label")
@@ -1012,15 +1402,12 @@ border-top: 1px solid #E6E6E6;
           }
           if (i.currentTarget.closest("#edit-what-year-of-university-are-you-currently-in-")) {
             document.querySelector("#edit-cards-next--6").click()
-            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
           }
           if (i.currentTarget.closest("#edit-how-old-are-you-")) {
             document.querySelector("#edit-cards-next--7").click()
-            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
           }
           if (i.currentTarget.closest("#edit-what-is-your-gpa-")) {
             document.querySelector("#edit-cards-next--8").click()
-            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
             i.currentTarget
               .closest("#edit-what-is-your-gpa-")
               .querySelectorAll(".radio label")
@@ -1033,7 +1420,6 @@ border-top: 1px solid #E6E6E6;
           }
           if (i.currentTarget.closest("#edit-what-program-are-you-looking-to-study-currently-studying-")) {
             document.querySelector("#edit-cards-next--9").click()
-            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
             i.currentTarget
               .closest("#edit-what-program-are-you-looking-to-study-currently-studying-")
               .querySelectorAll(".radio label")
@@ -1046,7 +1432,6 @@ border-top: 1px solid #E6E6E6;
           }
           if (i.currentTarget.closest("#edit-how-many-extracurricular-or-volunteer-activities-do-you-particip")) {
             document.querySelector("#edit-cards-next--10").click()
-            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
             i.currentTarget
               .closest("#edit-how-many-extracurricular-or-volunteer-activities-do-you-particip")
               .querySelectorAll(".radio label")
@@ -1057,18 +1442,29 @@ border-top: 1px solid #E6E6E6;
               })
             i.currentTarget.closest("label").classList.add("active")
           }
-          if (i.currentTarget.closest("#edit-what-school-are-you-interested-in-attending-")) {
-            document.querySelector("#edit-cards-next--11").click()
-            document.querySelector("#edit-what-school-are-you-interested-in-attending").value = i.currentTarget.value
-            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+          if (i.currentTarget.closest("#edit-qa9-wrap")) {
+            document.querySelector("#edit-what-school-are-you-interested-in-attending").value = i.target.getAttribute("value")
+            if (document.querySelector("#edit-what-school-are-you-interested-in-attending").value !== "") {
+              document.querySelector("#edit-cards-next--11").disabled = false
+            }
+            pushDataLayer(`checked ${i.currentTarget.nextElementSibling.textContent}`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            if (i.target.getAttribute("id") === "skip_school_are_you_interested_in_attending_var") {
+              document.querySelector("#edit-what-school-are-you-interested-in-attending").setAttribute("skip", true)
+              document.querySelector("#edit-cards-next--11").click()
+            }
           }
-          // if (i.currentTarget.closest("#edit-what-field-of-study-are-you-looking-to-study-currently-studying-")) {
-          //   document.querySelector("#edit-cards-next--12").click()
-          //   console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
-          // }
+          if (i.currentTarget.closest("#edit-qa10-wrap")) {
+            document.querySelector("#edit-what-field-of-study-are-you-looking-to-study-currently-studying").value = i.target.getAttribute("value")
+            pushDataLayer(`checked ${i.currentTarget.nextElementSibling.textContent}`, i.currentTarget.closest("section").querySelector("h4").textContent)
+            // if (document.querySelector("#edit-what-field-of-study-are-you-looking-to-study-currently-studying").value !== "") {
+            //   document.querySelector("#edit-cards-next--12").disabled = false
+            // }
+            if (i.target.getAttribute("id") === "skip_study_are_you_looking_to_study_currently_studying_var") {
+              document.querySelector("#edit-cards-next--12").click()
+            }
+          }
           if (i.currentTarget.closest("#edit-if-selected-for-our-program")) {
             document.querySelector("#edit-cards-next--13").click()
-            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
             i.currentTarget
               .closest("#edit-if-selected-for-our-program")
               .querySelectorAll(".radio label.control-label")
@@ -1081,6 +1477,59 @@ border-top: 1px solid #E6E6E6;
           }
           if (i.currentTarget.closest("#edit-what-is-your-family-s-approximate-yearly-household-income-")) {
             document.querySelector("#edit-cards-next--14").click()
+            // slider mob
+            if (window.innerWidth >= 991) {
+              setTimeout(() => {
+                document.querySelector(".reviews_block").style.opacity = "1"
+              }, 200)
+              let slickInterval = setInterval(() => {
+                if (typeof jQuery(".new_reviews").slick === "function" && document.querySelector(".new_reviews .reviews_link")) {
+                  clearInterval(slickInterval)
+
+                  //  slider
+                  let slider = $(".new_reviews").slick({
+                    slidesToShow: 2.5,
+                    slidesToScroll: 1,
+                    arrows: true,
+                    dots: false,
+                    adaptiveHeight: true,
+                    infinite: false,
+                  })
+                  slider.on("swipe", function () {
+                    pushDataLayer("swipe slider")
+                    if (document.querySelector(".slick-slide:last-child").classList.contains("slick-active")) {
+                      document.querySelector(".reviews_block").classList.add("ative_left")
+                      document.querySelector(".reviews_block").classList.remove("ative_right")
+                    }
+                    if (document.querySelector(".slick-slide:first-child").classList.contains("slick-active")) {
+                      document.querySelector(".reviews_block").classList.remove("ative_left")
+                      document.querySelector(".reviews_block").classList.add("ative_right")
+                    }
+                  })
+
+                  document.querySelectorAll(".new_reviews .slick-arrow").forEach((el) => {
+                    el.addEventListener("click", () => {
+                      pushDataLayer("click on btn slider")
+                      if (document.querySelector(".slick-slide:last-child").classList.contains("slick-active")) {
+                        document.querySelector(".reviews_block").classList.add("ative_left")
+                        document.querySelector(".reviews_block").classList.remove("ative_right")
+                      }
+                      if (document.querySelector(".slick-slide:first-child").classList.contains("slick-active")) {
+                        document.querySelector(".reviews_block").classList.remove("ative_left")
+                        document.querySelector(".reviews_block").classList.add("ative_right")
+                      }
+                    })
+                  })
+                }
+              }, 100)
+            }
+            document.querySelector("form > .row > .col.col-md-8").classList.add("last_step_var")
+            document.querySelector(".path-grantme-program-assessment #block-landingpageheaderquiz .col-md-4.bluebg").classList.add("last_step_var")
+            document.querySelector("#webform-submission-grantme-program-assessment-add-form .col.col-md-4.bluebg.hidden-xs.hidden-sm").classList.add("last_step_var")
+            document.querySelector("#block-landingpageheaderquiz .row > .col.col-md-8.col-xs-12").classList.add("last_step_var")
+            document.querySelector(".program_assessment_var").classList.add("last_step_var")
+            document.querySelector(".program_assessment_wrap").classList.add("last_step_var")
+
             i.currentTarget
               .closest("#edit-what-is-your-family-s-approximate-yearly-household-income-")
               .querySelectorAll(".radio label")
@@ -1090,7 +1539,6 @@ border-top: 1px solid #E6E6E6;
                 }
               })
             i.currentTarget.closest("label").classList.add("active")
-            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
             if (!document.querySelector(".loader_wrap")) {
               document.querySelector("#edit-what-is-your-contact-info- .webform-card-wrapper").insertAdjacentHTML("afterbegin", loaderWrap)
             }
@@ -1152,9 +1600,16 @@ border-top: 1px solid #E6E6E6;
             }
             document.querySelector(".loader_wrap .back_btn_var")?.addEventListener("click", (i) => {
               if (i.currentTarget.closest(".loader_wrap")) {
+                document.querySelector("form > .row > .col.col-md-8").classList.remove("last_step_var")
+                document.querySelector(".path-grantme-program-assessment #block-landingpageheaderquiz .col-md-4.bluebg").classList.remove("last_step_var")
+                document.querySelector("#webform-submission-grantme-program-assessment-add-form .col.col-md-4.bluebg.hidden-xs.hidden-sm").classList.remove("last_step_var")
+                document.querySelector("#block-landingpageheaderquiz .row > .col.col-md-8.col-xs-12").classList.remove("last_step_var")
+                document.querySelector(".program_assessment_var").classList.remove("last_step_var")
+                document.querySelector(".program_assessment_wrap").classList.remove("last_step_var")
+
                 document.querySelector(".path-scholarship-eligibility-quiz .webform-progress ul li:last-child").style.background = "rgb(233, 243, 250)"
                 document.querySelector("#edit-cards-prev--15").click()
-                console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+                pushDataLayer(`Back`, i.currentTarget.closest("section").querySelector("h4").textContent)
                 document.querySelector("#edit-qa13-wrap").style.display = "none"
                 if (document.querySelector(".loader_wrap")) {
                   document.querySelector(".loader_wrap").remove()
@@ -1164,7 +1619,6 @@ border-top: 1px solid #E6E6E6;
           }
           if (i.currentTarget.closest("#edit-what-is-your-contact-info-")) {
             document.querySelector("#edit-cards-next--15").click()
-            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
           }
         }
         i.currentTarget.setAttribute("data-test", "1")
@@ -1177,22 +1631,10 @@ border-top: 1px solid #E6E6E6;
       })
     })
 
-    document.querySelector("#skip-what-school-are-you-interested-in-attending").addEventListener("click", (i) => {
-      console.log(i.currentTarget.value)
-      document.querySelector("#edit-what-school-are-you-interested-in-attending").value = i.currentTarget.value
-      document.querySelector("#edit-what-school-are-you-interested-in-attending").selectedIndex = "1"
-      document.querySelector("#edit-cards-next--11").click()
-      console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
-    })
-
-    document.querySelector("#edit-cards-next--11").addEventListener("click", () => {})
-
-    document.querySelector("#edit-cards-next--12").addEventListener("click", () => {})
     // click on back_btn_var
     document.querySelectorAll(".back_btn_var").forEach((el) => {
       el.addEventListener("click", (i) => {
         if (!i.currentTarget.getAttribute("data-test")) {
-          console.log(i.currentTarget)
           document.querySelectorAll(".webform-progress ul li").forEach((el) => {
             let int = setInterval(() => {
               if (!el.classList.contains("is-active") && !el.classList.contains("is-complete")) {
@@ -1202,11 +1644,11 @@ border-top: 1px solid #E6E6E6;
             }, 100)
           })
           if (i.currentTarget.closest("#edit-are-you-a-current-student-")) {
-            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            pushDataLayer("Back", i.currentTarget.closest("section").querySelector("h4").textContent)
             i.currentTarget.closest("section").querySelector(".back_btn_var").style.opacity = "0"
+            i.currentTarget.closest("section").querySelector(".back_btn_var").style.visibility = "hidden"
             document.querySelectorAll("#edit-are-you-a-current-student.js-webform-radios input[type=radio]").forEach((input) => {
               if (input.checked === true) {
-                console.log(input.checked)
                 input.checked = false
                 if (localStorage.getItem("name")) {
                   localStorage.removeItem("name")
@@ -1226,60 +1668,71 @@ border-top: 1px solid #E6E6E6;
           }
           if (i.currentTarget.closest("#edit-what-were-you-looking-for-today-")) {
             document.querySelector("#edit-cards-prev--2").click()
-
-            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            pushDataLayer("Back", i.currentTarget.closest("section").querySelector("h4").textContent)
           }
           if (i.currentTarget.closest("#edit-what-is-your-citizenship-")) {
             document.querySelector("#edit-cards-prev--3").click()
-            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            pushDataLayer("Back", i.currentTarget.closest("section").querySelector("h4").textContent)
           }
           if (i.currentTarget.closest("#edit-what-year-of-university-are-you-currently-in-") || i.currentTarget.closest("#edit-what-year-of-study-are-you-currently-in-")) {
             document.querySelector("#edit-cards-prev--4").click()
-            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            pushDataLayer("Back", i.currentTarget.closest("section").querySelector("h4").textContent)
           }
           if (i.currentTarget.closest("#edit-are-you-currently-studying-in-canada-")) {
             document.querySelector("#edit-cards-prev--5").click()
-            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            pushDataLayer("Back", i.currentTarget.closest("section").querySelector("h4").textContent)
           }
           if (i.currentTarget.closest("#edit-what-year-of-university-are-you-currently-in-")) {
             document.querySelector("#edit-cards-prev--6").click()
-            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            pushDataLayer("Back", i.currentTarget.closest("section").querySelector("h4").textContent)
           }
           if (i.currentTarget.closest("#edit-how-old-are-you-")) {
             document.querySelector("#edit-cards-prev--7").click()
-            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            pushDataLayer("Back", i.currentTarget.closest("section").querySelector("h4").textContent)
           }
           if (i.currentTarget.closest("#edit-what-is-your-gpa-")) {
             document.querySelector("#edit-cards-prev--8").click()
-            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            pushDataLayer("Back", i.currentTarget.closest("section").querySelector("h4").textContent)
           }
           if (i.currentTarget.closest("#edit-what-program-are-you-looking-to-study-currently-studying-")) {
             document.querySelector("#edit-cards-prev--9").click()
-            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            pushDataLayer("Back", i.currentTarget.closest("section").querySelector("h4").textContent)
           }
           if (i.currentTarget.closest("#edit-how-many-extracurricular-or-volunteer-activities-do-you-particip")) {
             document.querySelector("#edit-cards-prev--10").click()
-            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            pushDataLayer("Back", i.currentTarget.closest("section").querySelector("h4").textContent)
           }
           if (i.currentTarget.closest("#edit-what-school-are-you-interested-in-attending-")) {
             document.querySelector("#edit-cards-prev--11").click()
-            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            pushDataLayer("Back", i.currentTarget.closest("section").querySelector("h4").textContent)
           }
           if (i.currentTarget.closest("#edit-what-field-of-study-are-you-looking-to-study-currently-studying-")) {
             document.querySelector("#edit-cards-prev--12").click()
-            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            pushDataLayer("Back", i.currentTarget.closest("section").querySelector("h4").textContent)
+            if (document.querySelector("#edit-what-school-are-you-interested-in-attending").getAttribute("skip") === "true") {
+              document.querySelector("#edit-what-school-are-you-interested-in-attending").value = ""
+              document.querySelector("#edit-cards-next--11").disabled = true
+              document.querySelector("#edit-what-school-are-you-interested-in-attending").removeAttribute("skip")
+            }
           }
           if (i.currentTarget.closest("#edit-if-selected-for-our-program")) {
             document.querySelector("#edit-cards-prev--13").click()
-            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            pushDataLayer("Back", i.currentTarget.closest("section").querySelector("h4").textContent)
           }
           if (i.currentTarget.closest("#edit-what-is-your-family-s-approximate-yearly-household-income-")) {
             document.querySelector("#edit-cards-prev--14").click()
-            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            pushDataLayer("Back", i.currentTarget.closest("section").querySelector("h4").textContent)
           }
           if (i.currentTarget.closest(".guarantee_block")) {
-            console.log(`>>>>>>>>>>>>>step ${i.currentTarget.closest("section").querySelector("h4").textContent}`)
+            pushDataLayer("Back", i.currentTarget.closest("section").querySelector("h4").textContent)
             document.querySelector("#edit-cards-prev--15").click()
+
+            document.querySelector("form > .row > .col.col-md-8").classList.remove("last_step_var")
+            document.querySelector(".path-grantme-program-assessment #block-landingpageheaderquiz .col-md-4.bluebg").classList.remove("last_step_var")
+            document.querySelector("#webform-submission-grantme-program-assessment-add-form .col.col-md-4.bluebg.hidden-xs.hidden-sm").classList.remove("last_step_var")
+            document.querySelector("#block-landingpageheaderquiz .row > .col.col-md-8.col-xs-12").classList.remove("last_step_var")
+            document.querySelector(".program_assessment_var").classList.remove("last_step_var")
+            document.querySelector(".program_assessment_wrap").classList.remove("last_step_var")
             document.querySelector("#edit-qa13-wrap").style.display = "none"
             if (document.querySelector(".loader_wrap")) {
               document.querySelector(".loader_wrap").remove()
@@ -1295,5 +1748,100 @@ border-top: 1px solid #E6E6E6;
         }, 500)
       })
     })
+
+    // Hover or click on bullets
+    let evTxt = "Hover"
+    let ev = "mouseenter"
+
+    if (window.innerWidth <= 991) {
+      evTxt = "Click"
+      ev = "click"
+    }
+
+    document.querySelectorAll(".benefits_wrap ul li").forEach((el) => {
+      el.addEventListener(`${ev}`, (e) => {
+        pushDataLayer(e.currentTarget.querySelector("span").textContent, evTxt)
+      })
+    })
+
+    let obs = new IntersectionObserver(visibility, {
+      threshold: 1,
+    })
+
+    let obs2 = new IntersectionObserver(visibility2, {
+      threshold: 1,
+    })
+
+    obs.observe(document.querySelector(".policy_var"))
+    obs.observe(document.querySelector(".guarantee_block"))
+
+    let int = setInterval(() => {
+      if (document.querySelector('.reviews_link[data-count="1"]')) {
+        clearInterval(int)
+        obs.observe(document.querySelector('.reviews_link[data-count="1"]'))
+      }
+    }, 100)
+    let int2 = setInterval(() => {
+      if (document.querySelector('.reviews_link[data-count="2"]')) {
+        clearInterval(int2)
+        obs.observe(document.querySelector('.reviews_link[data-count="2"]'))
+      }
+    }, 100)
+    let int3 = setInterval(() => {
+      if (document.querySelector('.reviews_link[data-count="3"]')) {
+        clearInterval(int3)
+        obs.observe(document.querySelector('.reviews_link[data-count="3"]'))
+      }
+    }, 100)
+
+    function visibility(entries) {
+      entries.forEach((i) => {
+        if (i.isIntersecting) {
+          setTimeout(function () {
+            obs2.observe(i.target)
+          }, 100)
+        }
+      })
+    }
+
+    function visibility2(entries) {
+      entries.forEach((i) => {
+        if (i.isIntersecting) {
+          if (i.target.classList.contains("policy_var")) {
+            pushDataLayer(`Visibility new text under CTA button`)
+          }
+          if (i.target.classList.contains("reviews_block")) {
+            pushDataLayer(`Visibility reviews section`)
+          }
+          if (i.target.classList.contains("guarantee_block")) {
+            pushDataLayer(`Visibility summary flow`)
+          }
+          switch (i.target.getAttribute("data-count")) {
+            case "1":
+              pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute("data-count")}`)
+              break
+            case "2":
+              pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute("data-count")}`)
+              break
+            case "3":
+              pushDataLayer(`Visibility on reviews`, `${i.target.getAttribute("data-count")}`)
+              break
+            default:
+              break
+          }
+
+          obs.unobserve(i.target)
+        }
+        obs2.unobserve(i.target)
+      })
+    }
+
+    pushDataLayer("loaded")
+    const record = setInterval(() => {
+      if (typeof clarity === "function") {
+        clearInterval(record)
+        clarity("set", "remove_barriers_on_quiz", "variant_1")
+      }
+    }, 200)
   }
 }, 300)

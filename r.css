@@ -1,603 +1,779 @@
-.payment_inform_wrapp p.subtitle_text,
-.payment_inform_wrapp .cus_info,
-.payment_order p.subtitle_text,
-.paymen_method p.subtitle_text,
-.payment_inform_wrapp,
-.paymen_method {
-  display: none;
-}
-
-.payment_inform_wrapp {
-  margin: 19px 0px -20px !important;
-}
-
-.text_mobile,
-.customer_information_wrapper>.row:nth-child(9) {
-  display: none !important;
-}
-
-.payment_order {
-  margin-bottom: 30px !important;
-}
-
-.payment_inform_box .payment_plan_wrapp p.subtitle_text {
+.program_assessment_var {
   font-weight: 700;
   font-size: 18px;
-  line-height: 24px;
+  line-height: 26px;
+  color: #2b3d50;
+  text-align: center;
+  margin: 0 0 11px;
+}
+.form-group {
+  position: relative;
+}
+.back_btn_var {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: left;
   text-transform: uppercase;
-  color: #754E0C !important;
-  margin-bottom: 15px;
+  color: #3d78ba;
+  margin-bottom: 16px;
 }
-
-.payment_plan_wrapp.payment_plan .input_wrapper {
-  padding: 16px;
+.back_btn_var svg {
+  margin-right: 9px;
 }
-
-.payment_plan_wrapp.payment_plan .input_wrapper .onetime_sec {
-  margin-bottom: 13px;
+#edit-are-you-a-current-student- .back_btn_var {
+  opacity: 0;
 }
-
-.payment_inform_box .payment_plan_wrapp .input_wrapper>div label {
-  font-size: 14px;
-  line-height: 19px;
-  color: #16377B !important;
-}
-
-.payment_inform_box .payment_plan_wrapp.payment_plan .input_wrapper>div label {
-  align-items: flex-start;
-}
-
-.payment_inform_box .input_wrapper .radio_style {
-  margin-top: 4px;
-}
-
-.payment_inform_box .payment_plan_wrapp .input_wrapper>div.monthly_sec label {
-  color: #808080 !important;
-}
-
-.payment_inform_box .payment_plan_wrapp .input_wrapper>div>input:checked+label .radio_style .ellipse {
-  width: 8.4px;
-  height: 8.4px;
-}
-
-.payment_inform_box .payment_plan_wrapp .input_wrapper>div.monthly_sec label>span:nth-child(2)>span:nth-child(1) {
-  margin-left: 2px;
-  display: block;
-}
-
-section .reviews_box {
-  margin-top: 60px !important;
-}
-
-.tooltip_box {
-  margin-left: 4px;
-  cursor: pointer;
-  display: inline-block;
-  width: 30px;
-  height: 18px;
-  padding: 4px;
-  position: relative;
-}
-
-.tooltip_box svg {
+.time-left {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  text-transform: uppercase;
+  color: #8b8b8b;
   position: absolute;
-  top: 8px;
-  left: 0;
+  right: 0;
+  top: 0;
 }
-
-.tippy-tooltip {
-  max-width: 320px !important;
-  background: #FFFFFF;
-  border-radius: 8px;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 150%;
-  color: #808080;
-  box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.15);
-  filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.15));
+.path-grantme-program-assessment .quiz-question {
+  font-weight: 900 !important;
 }
-
-.new_guarantee_mob .tippy-tooltip {
-  left: -10px !important;
-  top: -15px !important;
+.quiz-section {
+  font-weight: 700 !important;
+  line-height: 14px !important;
+  border-top: 1px solid #e6e6e6;
+  padding-top: 16px;
 }
-
-.new_guarantee_mob .tippy-tooltip[data-placement^=bottom]>.tippy-arrow {
-  left: 287px !important;
+.path-grantme-program-assessment .navbar .logo {
+  padding: 16px 0;
 }
-
-.new_guarantee_mob .tippy-tooltip[data-placement^="top"]>.tippy-arrow {
-  left: 262px !important;
+.navbar-header .logo img {
+  width: 100% !important;
+  max-width: 90px !important;
 }
-
-.tippy-tooltip[data-placement^=bottom]>.tippy-arrow {
-  border-bottom-color: #FFFFFF;
+.webform-progress ul {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
 }
-
-.tippy-tooltip[data-placement^="top"]>.tippy-arrow {
-  border-top-color: #ffffff;
+.path-scholarship-eligibility-quiz .webform-progress ul li {
+  background: #e9f3fa;
 }
-
-.first_block span.top-level {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px !important;
-  top: -12px !important;
-  left: 12px !important;
-  padding: 0 6px !important;
+.path-scholarship-eligibility-quiz .webform-progress ul li + li {
+  margin-left: 1px;
 }
-
-body .first_block form input,
-body form select,
-body form #email,
-body form input#cvv,
-body .contact-form input[type=text],
-body .contact-form input[type=email],
-body .contact-form textarea,
-body form select.checkout-address,
-body select.mm,
-body input#cvv {
-  border: 1px solid #E7E7E7 !important;
-  border-radius: 4px !important;
-  padding-top: 11px !important;
-  padding-bottom: 11px !important;
-  margin: 0 !important;
-  padding-right: 35px !important;
-  height: 42px !important;
+.path-scholarship-eligibility-quiz .webform-progress ul li:last-of-type,
+.path-scholarship-eligibility-quiz .webform-progress ul li:first-of-type {
+  border-radius: 0;
 }
-
-.customer_information_wrapper>.row:nth-child(7)>.col-md-12,
-.customer_information_wrapper>.row:nth-child(8)>.col-md-12,
-.paypament-details>.row:nth-child(3)>.col-md-6 {
-  position: relative;
+.row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
-
-.customer_information_wrapper>.row:nth-child(7)>.col-md-12::after,
-.customer_information_wrapper>.row:nth-child(8)>.col-md-12::after,
-.paypament-details>.row:nth-child(3)>.col-md-6::after {
-  content: '';
-  position: absolute;
-  right: 10px;
-  top: 12px;
-  width: 20px;
-  height: 20px;
-  background: url(https://conversionratestore.github.io/projects/knineti/img/expand_more_black.svg) no-repeat center center;
-  pointer-events: none;
-  transition: all 0.3s ease;
+.col-md-8,
+.col-md-4 {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
-
-.customer_information_wrapper>.row:nth-child(7)>.col-md-12.is_open::after,
-.customer_information_wrapper>.row:nth-child(8)>.col-md-12.is_open::after,
-.paypament-details>.row:nth-child(3)>.col-md-6.is_open::after {
-  transform: rotateX(180deg);
-
+.panel-body {
+  padding-left: 20px;
+  padding-right: 20px;
 }
-
-.customer_information_wrapper p.email-form-error,
-.customer_information_wrapper p.form-error,
-.customer_information_wrapper span.form-error,
-.paypament-details p.form-error,
-.paypament-details span.form-error {
-  margin-top: 10px !important;
-  margin-bottom: 0 !important;
+#edit-qa13-wrap {
+  margin-bottom: 16px !important;
   display: none;
 }
-
-.customer_information_wrapper>.row {
-  margin-bottom: 22px;
+.path-grantme-program-assessment .webform-card-wrapper .panel .panel-body {
+  padding-bottom: 0;
+}
+#edit-q1,
+#edit-qa17-wrap {
+  margin-bottom: 130px !important;
+}
+#edit-qa2-wrap,
+#edit-qa3-wrap,
+#edit-qa4-wrap,
+#edit-qa5-wrap,
+#edit-qa6-wrap,
+#edit-qa7-wrap,
+#edit-qa8-wrap,
+#edit-qa14-wrap,
+#edit-qa9-wrap,
+#edit-qa10-wrap,
+#edit-qa11-wrap,
+#edit-qa12-wrap {
+  margin-bottom: 30px !important;
+}
+#edit-processed-text-10,
+#edit-processed-text-44 .scholarship-eligibility-quiz-quote,
+#edit-processed-text-12,
+.path-grantme-program-assessment h3.quiz-title,
+[for="edit-if-selected-for-our-program-30-minutes"],
+#edit-cards-next,
+#edit-cards-next--2,
+#edit-cards-next--3,
+#edit-cards-next--4,
+#edit-cards-next--5,
+#edit-cards-next--6,
+#edit-cards-next--7,
+#edit-cards-next--8,
+#edit-cards-next--9,
+#edit-cards-next--10,
+#edit-cards-next--13,
+#edit-cards-next--14,
+#edit-cards-prev--2,
+#edit-cards-prev--3,
+#edit-cards-prev--4,
+#edit-cards-prev--5,
+#edit-cards-prev--6,
+#edit-cards-prev--7,
+#edit-cards-prev--8,
+#edit-cards-prev--9,
+#edit-cards-prev--10,
+#edit-cards-prev--11,
+#edit-cards-prev--12,
+#edit-cards-prev--13,
+#edit-cards-prev--14,
+#edit-cards-prev--15,
+html.js .webform-cards .form-actions:not(#edit-actions-13, #edit-actions-14, #edit-actions-10),
+#edit-what-school-are-you-interested-in-attending-
+  .js-form-type-select.form-item-what-school-are-you-interested-in-attending.js-form-item-what-school-are-you-interested-in-attending.form-no-label.form-group,
+#edit-what-field-of-study-are-you-looking-to-study-currently-studying-
+  .js-form-type-select.form-item-what-field-of-study-are-you-looking-to-study-currently-studying.js-form-item-what-field-of-study-are-you-looking-to-study-currently-studying {
+  display: none !important;
+}
+.path-scholarship-eligibility-quiz .webform-submission-form label {
+  margin-bottom: 6px;
+}
+form #edit-actions-10-submit {
   width: 100%;
-  padding: 0;
-  margin-left: 0;
-  margin-right: 0;
-}
-
-.payment_inform_box li>div.paypament-details .row {
-  margin-bottom: 22px !important;
-}
-
-.customer_information_wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  font-size: 16px;
+  line-height: 19px;
+  height: 44px;
   margin: 0;
 }
-
-.customer_information_wrapper>.row:nth-child(7),
-.customer_information_wrapper>.row:nth-child(8) {
-  width: 100%;
+.skip_var label {
+  background: unset !important;
+  border: unset !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  line-height: 17px !important;
+  text-align: center !important;
+  color: #8c8c8c !important;
+  width: max-content;
+  margin: 0 auto !important;
 }
-
-.customer_information_wrapper>.row:nth-child(8) {
-  margin-left: 0;
+.skip_var.form-type-radio {
+  margin: 22px auto 0 !important;
+  text-align: center;
 }
-
-.customer_information_wrapper>.row:nth-child(2),
-.customer_information_wrapper>.row:nth-child(5) {
+/*back_btn_wrap */
+.back_btn_wrap {
   display: flex;
   justify-content: space-between;
-  flex-direction: column;
+  align-items: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e6e6e6;
 }
-
-.customer_information_wrapper>.row:nth-child(2)>.col-md-6:nth-child(2),
-.customer_information_wrapper>.row:nth-child(5)>.col-md-6:nth-child(2) {
-  margin-left: 0;
-  margin-top: 22px;
+.guarantee_block .scroll_var {
+  margin-top: 16px;
+  display: block;
 }
-
-.customer_information_wrapper>.row:nth-child(2)>.col-md-6,
-.customer_information_wrapper>.row:nth-child(5)>.col-md-6 {
-  width: 100%;
+.back_btn_wrap .back_btn_var {
+  margin: 0;
 }
-
-.customer_information_wrapper>.row>.col-md-6,
-.customer_information_wrapper>.row>.col-md-12 {
-  padding: 0;
-}
-
-.paymen_method {
-  margin-top: 10px;
-}
-
-img.ssl-logo {
-  top: 0 !important;
-  display: none;
-}
-
-body .payment_inform_box p.subtitle_text {
-  margin-bottom: 15px !important;
-}
-
-body .payment_inform_box {
-  margin-bottom: 30px !important;
-}
-
-body .payment_inform_box li>div.paypament-details .row:nth-child(1),
-body .payment_inform_box li>div.paypament-details .row:nth-child(2) {
-  margin-top: 0px !important;
-  margin-bottom: 22px !important;
-  width: 100% !important;
-}
-
-body .payment_inform_box li>div.paypament-details .row:nth-child(1) {
-  margin-top: 0px !important;
-  margin-bottom: 0 !important;
-}
-
-body .payment_inform_box li>div.paypament-details .row:nth-child(2) {
-  margin-top: 22px !important;
-}
-
-body form .payment_inform_box li>div.paypament-details .row:nth-child(3)>div.col-md-6 {
-  margin-right: 15px !important;
-}
-
-body .first_block .submit_btn input#submit {
-  margin: 0 auto !important;
-  background: #233973;
-  max-width: unset;
-  height: 58px !important;
-  font-weight: 600;
-  font-size: 16px !important;
-  line-height: 22px;
+.back_btn_wrap p {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
   text-align: center;
-  letter-spacing: -0.01em;
   text-transform: uppercase;
-  border-radius: 10px !important;
-  color: #FFFFFF !important;
+  color: #8b8b8b;
 }
-
-body .first_block .submit_btn input#submit_disabled {
-  margin: 0 auto !important;
+/*loader_wrap */
+.loader_wrap .back_btn_wrap {
+  padding: 16px 20px;
 }
-
-.payment_inform_box li.paymen_method {
-  margin: 0 !important;
+.loader_list {
+  padding: 20px 20px 41px;
+  margin: 0;
+  list-style: none;
 }
-
-.payment_inform_box li.paymen_method p.support_text {
-  color: #808080 !important;
-  margin: 9px 0 0 !important;
+.loader_list li {
+  position: relative;
+  padding: 0 0 0 29px;
+  transition: 0.3s;
 }
-
-body .scroll_bar {
-  margin-bottom: 0 !important;
+.loader_list li::before {
+  position: absolute;
+  content: "";
+  width: 16px;
+  height: 16px;
+  background: url(https://conversionratestore.github.io/projects/grantme/img/full_load.svg) no-repeat;
+  background-size: contain;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
-
-.steps {
-  margin-bottom: 30px;
-  padding-top: 15px;
+@-webkit-keyframes infinite-spinning {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: translateY(-50%) rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: translateY(-50%) rotate(360deg);
+  }
 }
-
-.steps ul {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
+@keyframes infinite-spinning {
+  from {
+    -webkit-transform: translateY(-50%) rotate(0deg);
+    transform: translateY(-50%) rotate(0deg);
+  }
+  to {
+    -webkit-transform: translateY(-50%) rotate(360deg);
+    transform: translateY(-50%) rotate(360deg);
+  }
 }
-
-.steps ul li {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.loader_list li.active::before {
+  -webkit-animation: infinite-spinning 2s infinite linear;
+  animation: infinite-spinning 2s infinite linear;
+  background: url(https://conversionratestore.github.io/projects/grantme/img/part_load.svg) no-repeat;
+  background-size: contain;
 }
-
-.steps ul li+li {
-  margin-left: 10px;
+.loader_list li.finish::before {
+  background: url(https://conversionratestore.github.io/projects/grantme/img/checked.svg) no-repeat;
+  background-size: contain;
+  height: 10px;
 }
-
-.steps ul li>span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #E7E7E7;
+.loader_list li span {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 26px;
+  color: #8b8b8b;
+}
+.loader_list li.finish span {
+  color: #2b3d50;
+}
+.loader_list li + li {
+  margin-top: 16px;
+}
+/*guarantee_block */
+.guarantee_block {
+  margin-bottom: 24px;
+}
+.grant_me_wrap {
+  background: #2b3d50;
   border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+}
+.grant_me_wrap p {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 26px;
+  color: #ffffff;
+  margin: 0 0 0 16px;
+}
+.benefits_wrap > p {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #2b3d50;
+  margin-bottom: 16px;
+}
+.benefits_wrap ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.benefits_wrap ul li {
+  position: relative;
+  padding-left: 52px;
+}
+.benefits_wrap ul li::before {
+  position: absolute;
+  content: "";
+  width: 40px;
+  height: 40px;
+  background: url(https://conversionratestore.github.io/projects/grantme/img/graduation_hat.svg) no-repeat;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.benefits_wrap ul li:nth-child(2):before {
+  background: url(https://conversionratestore.github.io/projects/grantme/img/scholarship.svg) no-repeat;
+}
+.benefits_wrap ul li:nth-child(3):before {
+  background: url(https://conversionratestore.github.io/projects/grantme/img/product.svg) no-repeat;
+}
+.benefits_wrap ul li:nth-child(4):before {
+  background: url(https://conversionratestore.github.io/projects/grantme/img/diploma.svg) no-repeat;
+}
+.benefits_wrap ul li + li {
+  margin-top: 12px;
+}
+.benefits_wrap ul li span {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #2b3d50;
+}
+/*reviews_block */
+.reviews_block {
+  padding: 20px 20px 40px;
+}
+.new_reviews {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  list-style: none;
+}
+.new_reviews .reviews_link {
+  background: #ffffff;
+  border-radius: 6px;
+  padding: 20px;
+}
+.new_reviews .reviews_link > p {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #2b3d50;
+  margin: 0;
+}
+.new_reviews .reviews_link > p.date_experience_var {
+  margin-top: 16px;
+}
+.inform_box {
+  display: flex;
+  position: relative;
+}
+.inform_box .img_wrap {
+  max-width: 50px;
+  max-height: 50px;
+  margin-right: 16px;
+}
+.inform_box .img_wrap img {
+  width: 100%;
+  height: 100%;
+}
+.name_var {
   font-weight: 700;
   font-size: 16px;
   line-height: 19px;
-  color: #808080;
-  width: 32px;
-  height: 32px;
-  margin-right: 10px;
-  position: relative;
+  color: #2b3d50;
+  margin: 0 0 6px;
 }
-
-.steps ul li.active_step>span {
-  background: #16377B;
-  color: #FFFFFF;
-}
-
-.steps ul li.visited_step>span {
-  background: #E9F1F9;
-  border: 1px solid #DFE8F0;
-  line-height: 0;
-  font-size: 0;
-}
-
-.steps ul li.visited_step>span::after {
-  position: absolute;
-  content: '';
-  background: url(https://conversionratestore.github.io/projects/knineti/img/check_step.svg) no-repeat;
-  z-index: 1111;
-  width: 12px;
-  height: 9px;
-  background-repeat: no-repeat;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.steps p+p {
-  margin-left: 4px;
-}
-
-.steps p>span {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  display: inline-block;
-  background: #E7E7E7;
-}
-
-.steps p>span+span {
-  margin-left: 4px;
-}
-
-.steps p.active_step>span {
-  background: #16377B;
-}
-
-/*check_step */
-.check_step {
-  margin: 0 auto 15px;
-  max-width: 536px;
-}
-
-.check_step ul {
-  padding: 0;
-}
-
-.check_step ul li {
-  display: none;
-  align-items: center;
-  max-width: fit-content;
-}
-
-[data-checkstep="2"],
-[data-checkstep="3"] {
-  cursor: pointer;
-}
-
-.check_step ul li.active_step {
-  display: flex;
-}
-
-.check_step span {
+.revw_var {
   font-weight: 700;
-  font-size: 18px;
-  line-height: 24px;
-  text-transform: uppercase;
-  color: #754E0C;
+  font-size: 14px;
+  line-height: 17px;
+  color: #8b8b8b;
+  margin: 0;
 }
-
-.check_step svg {
-  margin-right: 16px;
-}
-
-/*btn_continue */
-.btn_continue_wrap {
+.local_wrap {
+  position: absolute;
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-top: 30px;
+  right: 0;
+  bottom: 8px;
 }
-
-.btn_continue {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #233973;
-  border-radius: 10px;
-  outline: none;
-  border: none;
-  height: 58px;
-  max-width: unset;
-  width: 100%;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 22px;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
-  color: #FFFFFF;
+.local_var {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: #2b3d50;
+  margin: 0 0 0 6px;
 }
-
-.is_hidden {
-  display: none !important;
-}
-
-.payment_inform_box {
-  max-width: 536px;
-  width: 100%;
-  flex-direction: column;
-  margin: 0 auto !important;
-}
-
-.payment_inform_box li {
-  width: 100% !important;
-}
-
-#address-form>.row {
-  display: none;
-}
-
-.scroll_test {
-  padding: 10px 0 0;
-}
-
-.new_guarantee_mob {
+.stars_box {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 22px;
-  background: #E9F1F9;
-  border-radius: 8px;
-  margin: 0 0 15px;
+  background: #f3f3f3;
+  margin: 16px -20px;
+  padding: 16px 20px;
 }
-
-.new_guarantee_mob svg:nth-child(1) {
-  flex: 0 0 40px;
-  width: 100%;
-  height: 100%;
+.stars_var {
+  display: flex;
+  align-items: center;
 }
-
-.new_guarantee_mob p {
-  max-width: 185px;
-  margin: 0 0 0 20px;
+.stars_var img {
+  max-width: 88px;
+  max-height: 16px;
+}
+.stars_var span {
   font-weight: 700;
   font-size: 16px;
-  line-height: 22px;
-  color: #16377B !important;
+  line-height: 19px;
+  color: #2b3d50;
+  margin: 0 0 0 4px;
 }
-
-.new_guarantee_mob .tooltip_box {
-  flex: 0 0 20px;
-  height: 100%;
+.date_var {
+  display: flex;
+  align-items: center;
+}
+.date_var span {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #2b3d50;
+  margin: 0 0 0 6px;
+}
+.load_more_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  margin: 0 0 0 auto !important;
-  display: unset;
-  padding: 0;
-  position: unset
-}
-
-ul.img_pay {
-  border: 1px solid #754E0C;
-  border-radius: 4px;
-  position: relative;
-  padding: 22px 14px 14px !important;
-  margin: 20px 0 26px;
-}
-
-ul.img_pay::before {
-  position: absolute;
-  content: 'Fully secured SSL Checkout';
+  height: 44px;
   font-weight: 700;
   font-size: 14px;
-  line-height: 24px;
-  color: #233973;
-  top: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 0 8px;
-  background: #FFFFFF;
+  line-height: 17px;
+  letter-spacing: 0.05em;
+  text-align: center;
+  color: #ffffff;
+  margin-top: 20px;
+  border: 2px solid #ffffff;
+  border-radius: 6px;
+}
+[data-count="3"] {
+  display: none;
+}
+.policy_var {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #2b3d50;
+}
+.policy_var a {
+  color: rgba(61, 120, 186, 1);
+  text-decoration: underline;
+}
+.is_hidden {
+  display: none;
+}
+
+.checkbox_block + .checkbox_block {
+  margin-top: 12px;
+}
+.checkbox_block input.custom_checkbox {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+.checkbox_block label {
+  width: 100%;
+  border: 2px solid #3d78ba;
+  border-radius: 6px;
+  padding: 12px;
+  margin: 0 auto !important;
+  font-weight: 700;
+  font-size: 16px !important;
+  line-height: 22px !important;
+  color: #3d78ba !important;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-align: left;
+}
+
+.checkbox_block .custom_checkbox + label::before {
+  content: "";
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  flex-grow: 0;
+  background: #ffffff;
+  border: 2px solid #3d78ba;
+  border-radius: 4px;
+  margin-right: 12px;
+}
+
+.checkbox_block .custom_checkbox:checked + label::before {
+  background-image: url(https://conversionratestore.github.io/projects/grantme/img/checkbox.svg);
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+#edit-cards-next--11,
+#edit-cards-next--12 {
+  width: 100%;
+}
+#edit-cards-next--11.btn-default[disabled],
+#edit-cards-next--11.btn-default[disabled]:hover,
+#edit-cards-next--11.btn-default[disabled]:focus {
+  background: #e0e0e0;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  color: #ffffff;
+}
+.checkbox_block label[for="skip_school_are_you_interested_in_attending_var"],
+.checkbox_block label[for="skip_study_are_you_looking_to_study_currently_studying_var"] {
+  border: unset;
+  text-align: center;
+  color: #8c8c8c !important;
+  font-size: 14px !important;
+  line-height: 17px !important;
+  display: block;
+  padding: 0;
   width: max-content;
 }
-
-ul.img_pay li {
-  margin: 0 auto !important;
-  max-width: 405px !important;
+.checkbox_block label[for="skip_school_are_you_interested_in_attending_var"] {
+  display: none;
 }
-
-.tippy-popper {
-  padding: 0 !important;
+.checkbox_block .custom_checkbox + label[for="skip_school_are_you_interested_in_attending_var"]::before,
+.checkbox_block .custom_checkbox + label[for="skip_study_are_you_looking_to_study_currently_studying_var"]::before {
+  display: none;
 }
-
-.tippy-content {
-  padding: 11px 12px;
+#edit-actions-13,
+#edit-actions-14 {
+  margin: 30px 0 !important;
 }
-
-.monthly_sec .tippy-tooltip {
-  top: -30px !important;
-  left: -11px !important;
+textarea.other_textarea {
+  resize: none;
+  border-radius: 6px;
+  border: 2px solid #3d78ba;
+  border-top-left-radius: unset;
+  border-top-right-radius: unset;
+  width: 100%;
+  margin-top: -4px;
+  padding: 12px 16px;
+  min-height: 74px;
+  color: #3d78ba;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
 }
-
-.monthly_sec .tippy-tooltip[data-placement^="top"]>.tippy-arrow {
-  left: 82px !important;
+textarea.other_textarea::placeholder {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #999999;
 }
-
-.monthly_sec .tippy-tooltip[data-placement^=bottom]>.tippy-arrow {
-  left: 82px !important;
-}
-
-@media (max-width: 320px) {
-  .new_guarantee_mob {
-    padding: 12px 17px;
+@media (min-width: 991px) {
+  .path-grantme-program-assessment #block-landingpageheaderquiz .col-md-4.bluebg {
+    margin: 0;
   }
-
-  .new_guarantee_mob p {
-    font-size: 13px;
+  .navbar-header .logo img {
+    max-width: 240px !important;
   }
-
-  .new_guarantee_mob .tippy-tooltip {
-    left: 0px !important;
+  .path-grantme-program-assessment .navbar .logo {
+    padding: 35px 0 30px;
   }
-
-  .new_guarantee_mob .tippy-tooltip[data-placement^=bottom]>.tippy-arrow {
-    left: 261px !important;
+  .program_assessment_var {
+    margin: 0 0 16px;
   }
-}
-
-@media (max-width: 280px) {
-  .new_guarantee_mob p {
-    font-size: 11px;
+  .path-grantme-program-assessment .quiz-question {
+    line-height: 26px;
+    margin-bottom: 14px;
   }
-
-  .check_step span {
-    font-size: 17px;
+  .webform-progress ul {
+    margin: 16px 0;
   }
-
-  .tippy-tooltip {
-    font-size: 10px;
+  #webform-submission-grantme-program-assessment-add-form .col.col-md-4.bluebg.hidden-xs.hidden-sm {
+    height: 46px;
   }
-
-  .payment_inform_box li>div>p {
-    font-size: 9px !important;
+  .program_assessment_wrap {
+    display: flex;
   }
-
-  .new_guarantee_mob .tippy-tooltip[data-placement^=bottom]>.tippy-arrow {
-    left: 221px !important;
+  .program_assessment_var {
+    margin: 0 auto;
+    float: left;
   }
-
-  .monthly_sec .tippy-tooltip {
-    top: -47px !important;
-    left: 30px !important;
+  .program_assessment_wrap > div {
+    width: 33.33333333%;
+  }
+  .path-grantme-program-assessment .seqq-img {
+    border-top: 1px solid rgb(230 230 230 / 10%);
+    padding-top: 40px;
+  }
+  .path-scholarship-eligibility-quiz .seqq-row {
+    margin-top: 28px;
+  }
+  .back_btn_var {
+    width: max-content;
+    cursor: pointer;
+  }
+  .skip_var.form-type-radio {
+    margin: 30px auto 0 !important;
+  }
+  #edit-qa13-wrap,
+  #edit-processed-text-44 {
+    width: 100%;
+  }
+  #edit-processed-text-44 {
+    background: #f3f3f3;
+  }
+  #edit-qa13-wrap {
+    margin-bottom: 40px !important;
+  }
+  .load_more_btn {
+    display: none;
+  }
+  [data-count="3"] {
+    display: block;
+  }
+  .new_reviews {
+    display: block;
+  }
+  .grant_me_wrap {
+    padding: 24px 30px;
+    margin-bottom: 30px;
+  }
+  .grant_me_wrap div {
+    max-width: 54px;
+    max-height: 54px;
+  }
+  .grant_me_wrap p b {
+    display: block;
+  }
+  .guarantee_block .scroll_var {
+    margin-top: 30px;
+  }
+  .benefits_wrap ul li {
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+  }
+  .loader_wrap {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .loader_list {
+    padding: 50px 0 106px;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+  form > .row > .col.col-md-8.last_step_var {
+    width: 100%;
+  }
+  .path-grantme-program-assessment #block-landingpageheaderquiz .col-md-4.bluebg.last_step_var,
+  #webform-submission-grantme-program-assessment-add-form .col.col-md-4.bluebg.hidden-xs.hidden-sm.last_step_var {
+    display: none;
+  }
+  .program_assessment_wrap.last_step_var {
+    display: block;
+  }
+  .program_assessment_var.last_step_var {
+    float: unset;
+  }
+  #block-landingpageheaderquiz .row > .col.col-md-8.col-xs-12.last_step_var {
+    width: 100%;
+  }
+  .policy_var {
+    margin-bottom: 24px !important;
+  }
+  .new_reviews .slick-arrow {
+    position: absolute;
+    bottom: -80px;
+    z-index: 2;
+    cursor: pointer;
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #3d78ba;
+    line-height: 0;
+    font-size: 0;
+  }
+  .new_reviews .slick-arrow.slick-prev {
+    left: 45%;
+  }
+  .new_reviews .slick-arrow.slick-next {
+    right: 45%;
+  }
+  .new_reviews .slick-arrow.slick-next::after,
+  .new_reviews .slick-arrow.slick-prev::after {
+    position: absolute;
+    content: "";
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+  }
+  .new_reviews .slick-arrow.slick-next::after {
+    background-image: url(https://conversionratestore.github.io/projects/grantme/img/slick-next.svg);
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .new_reviews .slick-arrow.slick-prev::after {
+    background-image: url(https://conversionratestore.github.io/projects/grantme/img/slick-prev.svg);
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .slick-slide > div {
+    padding: 0 10px;
+  }
+  .slider_wrapper {
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 0 0 80px;
+  }
+  .new_reviews .slick-list {
+    overflow: visible;
+  }
+  .reviews_block {
+    position: relative;
+    padding: 40px 74px;
+    opacity: 0;
+    transition: all 0.35s ease;
+  }
+  .reviews_block.ative_right:after {
+    position: absolute;
+    content: "";
+    right: 0;
+    top: 0;
+    background: linear-gradient(270deg, #f3f3f3 20%, rgba(243, 243, 243, 0) 100%);
+    width: 390px;
+    height: 100%;
+  }
+  .reviews_block.ative_left:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 0;
+    background: linear-gradient(90deg, #f3f3f3 20%, rgba(243, 243, 243, 0) 100%);
+    width: 390px;
+    height: 100%;
+    z-index: 1;
+  }
+  #edit-actions-13,
+  #edit-actions-14 {
+    margin: 24px 0 !important;
+  }
+  .checkbox,
+  .radio {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+  .form-group {
+    margin-bottom: 14px;
+  }
+  .path-scholarship-eligibility-quiz .js-webform-radios label:not(.error) {
+    height: 46px;
+    border: 2px solid #3d78ba;
+    border-radius: 6px;
+    line-height: 22px;
+  }
+  .checkbox_block .custom_checkbox:checked + label::before {
+    background-size: auto 73%;
+  }
+  #edit-what-field-of-study-are-you-looking-to-study-currently-studying- .quiz-right-wrap,
+  #edit-what-school-are-you-interested-in-attending- .quiz-right-wrap,
+  #edit-how-many-extracurricular-or-volunteer-activities-do-you-particip .quiz-right-wrap {
+    min-height: 100vh;
   }
 }
