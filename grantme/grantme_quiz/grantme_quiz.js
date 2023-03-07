@@ -25,7 +25,7 @@ let myFunk = setInterval(() => {
         console.log(actionDataLayer + " : " + labelDataLayer)
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: Exp: Remove barriers on quiz ${eventVar}`,
+          eventCategory: `Exp: Remove barriers on quiz ${eventVar}`,
           eventAction: `${actionDataLayer}`,
           eventLabel: `${labelDataLayer}`,
         })
@@ -33,7 +33,7 @@ let myFunk = setInterval(() => {
         console.log(actionDataLayer)
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: Exp: Remove barriers on quiz ${eventVar}`,
+          eventCategory: `Exp: Remove barriers on quiz ${eventVar}`,
           eventAction: `${actionDataLayer}`,
         })
       }
@@ -41,6 +41,16 @@ let myFunk = setInterval(() => {
 
     let newStyle = /*html */ `
     <style>
+      .webform-submission-grantme-program-assessment-form .webform-button--submit:after, 
+      .custom-ajax-throbber-submit:after,
+       .path-request-consultation .acuity-booking .form-submit:after{
+        right: 50% !important;
+        top: 44px !important;
+        transform: translateX(10px) !important;
+       }
+      .i_dont_know_var {
+        display: none !important;
+      }
         .program_assessment_var {
           font-weight: 700;
           font-size: 18px;
@@ -196,6 +206,9 @@ let myFunk = setInterval(() => {
           line-height: 19px;
           height: 44px;
           margin: 0;
+        }
+        .skip_var{
+          display: none !important;
         }
         .skip_var label {
           background: unset !important;
@@ -527,9 +540,10 @@ let myFunk = setInterval(() => {
           text-align: left;
         }
 
-        .checkbox_block .custom_checkbox + label::before {
-          content: "";
-          display: inline-block;
+        .checkbox_block .custom_checkbox + label span{
+          display: flex;
+          align-items: center;
+          justify-content: center;
           width: 22px;
           height: 22px;
           flex-shrink: 0;
@@ -539,12 +553,15 @@ let myFunk = setInterval(() => {
           border-radius: 4px;
           margin-right: 12px;
         }
-
-        .checkbox_block .custom_checkbox:checked + label::before {
+        
+        .checkbox_block .custom_checkbox:checked + label span::before {
+          content: "";
           background-image: url(https://conversionratestore.github.io/projects/grantme/img/checkbox.svg);
           background-size: auto;
           background-repeat: no-repeat;
-          background-position: center center;
+          width: 14px;
+          height: 14px;
+          display: block;
         }
         #edit-cards-next--11,
         #edit-cards-next--12 {
@@ -569,11 +586,10 @@ let myFunk = setInterval(() => {
           padding: 0;
           width: max-content;
         }
-        .checkbox_block label[for="skip_school_are_you_interested_in_attending_var"] {
-          display: none;
-        }
-        .checkbox_block .custom_checkbox + label[for="skip_school_are_you_interested_in_attending_var"]::before,
-        .checkbox_block .custom_checkbox + label[for="skip_study_are_you_looking_to_study_currently_studying_var"]::before {
+        .checkbox_block .custom_checkbox + label[for="skip_school_are_you_interested_in_attending_var"] span::before,
+        .checkbox_block .custom_checkbox + label[for="skip_school_are_you_interested_in_attending_var"] span,
+        .checkbox_block .custom_checkbox + label[for="skip_study_are_you_looking_to_study_currently_studying_var"] span,
+        .checkbox_block .custom_checkbox + label[for="skip_study_are_you_looking_to_study_currently_studying_var"] span::before {
           display: none;
         }
         #edit-actions-13,
@@ -730,6 +746,7 @@ let myFunk = setInterval(() => {
             border: 2px solid #3d78ba;
             line-height: 0;
             font-size: 0;
+            background: #F3F3F3 !important;
           }
           .new_reviews .slick-arrow.slick-prev {
             left: 45%;
@@ -812,9 +829,6 @@ let myFunk = setInterval(() => {
             border: 2px solid #3d78ba;
             border-radius: 6px;
             line-height: 22px;
-          }
-          .checkbox_block .custom_checkbox:checked + label::before {
-            background-size: auto 73%;
           }
           #edit-what-field-of-study-are-you-looking-to-study-currently-studying- .quiz-right-wrap,
           #edit-what-school-are-you-interested-in-attending- .quiz-right-wrap,
@@ -994,7 +1008,7 @@ let myFunk = setInterval(() => {
     function renderLabelCheckBox(selector, text, id, value) {
       return `<div class="checkbox_block ${selector}">
                <input class="custom_checkbox" id="${id}" type="radio" name="${selector}" value="${value}" />
-                <label for="${id}" tabindex="0">${text}</label>
+                <label for="${id}" tabindex="0"><span class=""></span>${text}</label>
               </div>`
     }
 
@@ -1281,6 +1295,11 @@ let myFunk = setInterval(() => {
     if (document.querySelector(".other_textarea")) {
       document.querySelector(".other_textarea").addEventListener("blur", () => {
         pushDataLayer("event blur on textarea 'Description'")
+      })
+      document.querySelector(".other_textarea").addEventListener("click", () => {
+        if (document.querySelector('input[id="other2"]').checked !== true) {
+          document.querySelector('input[id="other2"]').checked = true
+        }
       })
     }
 
