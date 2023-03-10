@@ -2,6 +2,26 @@ let startNewFunk = setInterval(() => {
   if (document.querySelector(".bp-comparison")) {
     clearInterval(startNewFunk)
 
+    function pushDataLayer(actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || []
+      if (labelDataLayer) {
+        console.log(actionDataLayer + " : " + labelDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: New comparison table`,
+          eventAction: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        })
+      } else {
+        console.log(actionDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: New comparison table`,
+          eventAction: `${actionDataLayer}`,
+        })
+      }
+    }
+
     let newStyle = /*html */ `
     <style>
         .bp-comparison .js-mobile.bp-mob-table-container{
@@ -22,8 +42,6 @@ let startNewFunk = setInterval(() => {
         }
         .cell_wrap{
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
             list-style: none;
             margin: 0;
             padding: 0 0 16px;
@@ -33,7 +51,7 @@ let startNewFunk = setInterval(() => {
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 45%;
+            width: calc((100% * 2) / 3);
         }
         .cell_wrap li:nth-child(2){
             border-left: 1px solid #E2E2E2;
@@ -47,14 +65,14 @@ let startNewFunk = setInterval(() => {
         .cell_wrap span{
             font-family: "Roboto", sans-serif !important;
             font-weight: 400;
-            font-size: 14px;
-            line-height: 21px;
+            font-size: 13.5px;
+            line-height: 18px;
             color: #515151;
             text-align: center;
         }
         .cell_wrap span.accent_var{
             color: #2A7C72;
-            font-weight: 700;
+            font-weight: 600;
         }
         .new_row.sticky_header_tabl{
             background: #BDD7B7;
@@ -77,7 +95,7 @@ let startNewFunk = setInterval(() => {
             text-transform: uppercase;
             color: #0C0B0B !important;
         }
-        .try_new_btn{
+        a.try_new_btn{
             padding: 20px 10px;
             width: 100%;
             max-width: 331px;
@@ -97,6 +115,13 @@ let startNewFunk = setInterval(() => {
             justify-content: center;
             margin: 50px auto;
         }
+        a.try_new_btn:hover,
+        a.try_new_btn:active{
+            background-color: #0c0b0b;
+            border: none;
+            color: #fff;
+            text-decoration: unset;
+        }
         .new_row.sticky_header_tabl .cell_wrap img{
             display: block;
             width: 40px;
@@ -104,13 +129,30 @@ let startNewFunk = setInterval(() => {
             margin-bottom: 4px;
         }
         .new_row.sticky_header_tabl.is_fixed{
+            display: none;
             margin: 0 -10px -10px;
             width: 106%;
             border: unset;
             border-radius: unset;
         }
         header .navbar.fixed-top{
-            box-shadow: 0px 1px 10px rgba(72, 67, 69, 0.36);
+            box-shadow: 0px 1px 10px rgba(72, 67, 69, 0.36) !important;
+        }
+        @media (max-width: 320px) {
+            .new_row.sticky_header_tabl .cell_wrap span{
+                font-size: 13px;
+            }
+            .cell_wrap span{
+                font-size: 11px;
+            }
+        }
+        @media (max-width: 280px) {
+            .new_row.sticky_header_tabl .cell_wrap span{
+                font-size: 11px;
+            }
+            .cell_wrap span{
+                font-size: 9px;
+            }
         }
 
     </style>
@@ -132,14 +174,14 @@ let startNewFunk = setInterval(() => {
         `Loose bowel movements, headache, sleepiness`,
         ``,
       ],
-      "Easiness of usage": [
+      "Ease of use": [
         ``,
         ``,
         ``,
         `Apply sticker close to the head on your clothes`,
         `Requires diffusers. Potential skin and inhalation irritant, or stains bedding & clothes.`,
-        `Tables or Drops(Requires Supervision)(Potential choking hazard)`,
-        ``,
+        `Tables or drops(Requires Supervision)(Potential choking hazard)`,
+        `is_visability`,
       ],
       "Long-lasting effects": [
         ``,
@@ -147,7 +189,7 @@ let startNewFunk = setInterval(() => {
         ``,
         `Up to 8 hours`,
         `Depends on method of application and equipment used`,
-        `May have no effect, or last too long - leaving your child tired & groggy the next day.`,
+        `May have no effect, or last too long - leaving your child tired & groggy the next day`,
         ``,
       ],
       "Easy for all ages to use": [``, ``, ``, `0+`, `Must be kept away from children`, `Must be kept away from children`, ``],
@@ -195,23 +237,25 @@ let startNewFunk = setInterval(() => {
         ?.insertAdjacentHTML("afterbegin", setText(key, arrText[key][0], arrText[key][1], arrText[key][2], arrText[key][3], arrText[key][4], arrText[key][5], arrText[key][6]))
     }
 
-    document.querySelector(".try_new_btn").addEventListener("click", (e) => {
-      e.preventDefault()
-      document.querySelector(".bp-comparison .js-mobile.bp-mob-table-container .btn.js-btn.btn-primary.get-it").click()
-      //   document.querySelector("#getNow")?.scrollIntoView({ block: "start", behavior: "smooth" })
+    //   click on btn TRY ZENPATCH STICKERS
+    $(document).ready(function () {
+      $(".new_table").on("click", "a", function (event) {
+        event.preventDefault()
+
+        console.log(`first`)
+
+        let id = $(this).attr("href"),
+          top = $(id).offset().top - 10
+
+        $("body,html").animate({ scrollTop: top }, 600)
+      })
     })
 
-    // sticky btn
-    const element = document.querySelector(".new_row.sticky_header_tabl")
-    const elemClose = document.querySelector(".new_table .new_row:last-of-type")
-
-    function visible(target) {
-      console.log(target)
-      if (target.getBoundingClientRect().top < 77) {
-        if (!document.querySelector("header .navbar .is_fixed")) {
-          document.querySelector("header .navbar").insertAdjacentHTML(
-            "beforeend",
-            `<div class="new_row sticky_header_tabl is_fixed">
+    // sticky header table
+    if (!document.querySelector("header .navbar .is_fixed")) {
+      document.querySelector("header .navbar").insertAdjacentHTML(
+        "beforeend",
+        `<div class="new_row sticky_header_tabl is_fixed">
             <h3>header</h3>
             <ul class="cell_wrap">
                 <li>
@@ -228,12 +272,21 @@ let startNewFunk = setInterval(() => {
                 </li>
             </ul>
         </div>`
-          )
+      )
+    }
+    const element = document.querySelector(".new_table .new_row.sticky_header_tabl")
+    const elemClose = document.querySelector(".new_table .new_row:last-of-type")
+
+    function visible(target) {
+      if (target.getBoundingClientRect().top < 72) {
+        if (document.querySelector(".new_row.sticky_header_tabl.is_fixed")) {
+          document.querySelector(".new_row.sticky_header_tabl.is_fixed").style.display = "block"
         }
       }
-      if (target.getBoundingClientRect().top > 77 || elemClose.getBoundingClientRect().bottom < 170) {
-        document.querySelector("header .navbar .is_fixed")?.remove()
-        console.log(`not`, elemClose.getBoundingClientRect().bottom)
+      if (target.getBoundingClientRect().top > 72 || elemClose.getBoundingClientRect().bottom < 170) {
+        if (document.querySelector(".new_row.sticky_header_tabl.is_fixed")) {
+          document.querySelector(".new_row.sticky_header_tabl.is_fixed").style.display = "none"
+        }
       }
     }
 
@@ -242,5 +295,62 @@ let startNewFunk = setInterval(() => {
     })
 
     visible(element)
+
+    //   visibility event
+    let obs = new IntersectionObserver(visibility, {
+      threshold: 0.9,
+    })
+
+    let obs2 = new IntersectionObserver(visibility2, {
+      threshold: 0.9,
+    })
+
+    obs.observe(document.querySelector(".new_row.is_visability"))
+    let int = setInterval(() => {
+      if (document.querySelector("a.try_new_btn")) {
+        clearInterval(int)
+        obs.observe(document.querySelector("a.try_new_btn"))
+      }
+    }, 10)
+
+    obs.observe(document.querySelector(".bp-comparison.js-mobile h2.js-title.text-dark"))
+
+    function visibility(entries) {
+      entries.forEach((i) => {
+        if (i.isIntersecting) {
+          setTimeout(function () {
+            obs2.observe(i.target)
+          }, 3000)
+        }
+      })
+    }
+
+    function visibility2(entries) {
+      entries.forEach((i) => {
+        if (i.isIntersecting) {
+          if (i.target.classList.contains("js-title")) {
+            pushDataLayer(`Visibility H2 comparison table`)
+          }
+          if (i.target.classList.contains("try_new_btn")) {
+            console.log(`try_new_btn`)
+            pushDataLayer(`Visibility Try zenpatch stickers button comparison table`)
+          }
+          if (i.target.classList.contains("is_visability")) {
+            pushDataLayer(`Visibility Easiness of usage text area`)
+          }
+
+          obs.unobserve(i.target)
+        }
+        obs2.unobserve(i.target)
+      })
+    }
+
+    pushDataLayer("loaded")
+    const record = setInterval(() => {
+      if (typeof clarity === "function") {
+        clearInterval(record)
+        clarity("set", "new_comparison_table", "variant_1")
+      }
+    }, 200)
   }
 }, 100)
