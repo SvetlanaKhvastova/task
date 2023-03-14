@@ -1612,7 +1612,7 @@ let myFunk = setInterval(() => {
                   clearInterval(slickInterval)
 
                   //  slider
-                  let slider = $(".new_reviews").slick({
+                  let slider = jQuery(".new_reviews").slick({
                     slidesToShow: 2.5,
                     slidesToScroll: 1,
                     arrows: true,
@@ -1878,18 +1878,20 @@ let myFunk = setInterval(() => {
     let observer = new MutationObserver(() => {
       if (document.querySelector("#edit-qa13-wrap")) {
         observer.disconnect()
-        // console.log(`observer`)
+        console.log(`observer`)
 
-        if ($("strong.error").is(":visible")) {
+        if (jQuery("strong.error").is(":visible")) {
           if (!document.querySelector("form #edit-actions-10-submit").classList.contains("disabled")) {
             document.querySelector("form #edit-actions-10-submit").classList.add("disabled")
           }
           document.querySelector("form #edit-actions-10-submit").disabled = true
+          console.log(document.querySelector("form #edit-actions-10-submit").disabled)
         } else {
+          document.querySelector("form #edit-actions-10-submit").disabled = false
           if (document.querySelector("form #edit-actions-10-submit").classList.contains("disabled")) {
             document.querySelector("form #edit-actions-10-submit").classList.remove("disabled")
+            console.log(`second`, document.querySelector("form #edit-actions-10-submit").disabled)
           }
-          document.querySelector("form #edit-actions-10-submit").disabled = false
         }
 
         observer.observe(document.querySelector("#edit-qa13-wrap"), {
