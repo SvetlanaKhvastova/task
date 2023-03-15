@@ -1,484 +1,674 @@
 let newPage = setInterval(() => {
-  if (document) {
+  if (document.querySelector("#player")) {
     clearInterval(newPage)
     let styleFreeWorkShop = /*html */ `
     <style>
+      .count_sec .white-block.fst_red_spc .content > .col-md-8,
+      .count_sec .white-block.fst_red_spc .content > .col-md-4,
+      #myCarousel .banner_txt > .enroll_btn_txt,
       .after-refresh > section.count_sec:nth-child(8),
-        .after-refresh > section.count_sec:nth-child(30){
-          display: none !important;
-        }
-        .after-refresh > section.count_sec:nth-child(27){
-          background: #FFFFFF !important;
-        }
-        .after-refresh > section.count_sec:nth-child(28){
-          background: #DDE8F1 !important;
-        }
-        .content .page h2{
-          font-weight: 700 !important;
-          font-size: 32px !important;
-          line-height: 40px !important;
-          color: #734F22 !important;
-          margin-left: auto !important;
-          margin-right: auto !important;
-        }
-         .entry-content p{
-          font-weight: 400 !important;
-          font-size: 16px !important;
-          line-height: 26px !important;
-          color: #4B4B4B !important;
-        }
-        .after-refresh > section.count_sec:nth-child(27) img{
-    width: 318px !important;
-    height: 252px !important;
-    border-radius: 16px;
-        }
-        .after-refresh > section.count_sec:nth-child(27)  p{
-          margin-bottom: 16px !important;
-        }
-        /* */
-      button.new_enroll_now_btn{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #193973;
-            box-shadow: 5px 5px 10px rgba(39, 32, 32, 0.8);
-            border-radius: 10px;
-            max-width: 181px;
-            width: 100%;
-            height: 62px;
-            font-weight: 600;
-            font-size: 16px;
-            line-height: 22px;
-            letter-spacing: 0.02em;
-            text-transform: uppercase;
-            color: #FFFFFF;
-            margin: 0;
-            outline: unset;
-            border: unset;
-        }
-        /*reviews_bgr */
-        .reviews_bgr{
-            background: #DDE8F1;
-        }
-        .reviews_wrap{
-            background: rgba(255, 255, 255, 0.6);
-            border: 2px solid #193973;
-            border-radius: 16px;
-            padding: 40px;
-            max-width: 1000px;
-            margin: 0 auto !important;
-            width: 100%;
-        }
-        .reviews_wrap.is_true{
-            background: #DDE8F1;
-        }
-        body .want-to-obey .reviews_wrap h3{
-            font-weight: 700 !important;
-            font-size: 20px !important;
-            line-height: 27px !important;
-            color: #193973 !important;
-            margin: 0 auto 12px !important;
-            max-width: 600px;
-        }
-        .reviews_wrap > p{
-            font-weight: 700;
-            font-size: 16px;
-            line-height: 26px;
-            color: #193973 !important;
-            margin: 8px 0 0;
-            text-align: center;
-        }
-        .reviews_wrap .reviews_stars{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .reviews_wrap .reviews_stars > span{
-            font-weight: 600;
-            font-size: 14px;
-            line-height: 19px;
-            letter-spacing: 0.02em;
-            text-transform: uppercase;
-            color: #193973;
-            margin: 0 0 0 4px;
-        }
-        .reviews_wrap .reviews_stars .star_wrap{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .reviews_wrap .reviews_stars .star_wrap span + span{
-            margin-left: 4px;
-        }
-        .reviews_wrap .reviews_stars .star_wrap span{
-            width: 24px;
-            height: 24px;
-            background: url(https://conversionratestore.github.io/projects/knineti/img/new_star.svg) no-repeat center center;
-        }
-        /*ten_week_bgr */
-        .ten_week_bgr{
-            background: #FFFFFF;
-        }
-        .ten_week_bgr .ten_week_box{
-            width: 100%;
-            max-width: 1000px;
-            margin: 0 auto 60px;
-        }
-        .ten_week_bgr .ten_week_box h2{
-            font-weight: 700;
-            font-size: 32px;
-            line-height: 40px;
-            color: #FFFFFF !important;
-            background: #734F22;
-            border-radius: 16px;
-            padding: 20px;
-            margin: 0 0 20px;
-        }
-        .all_inform_wrap{
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        body .want-to-obey .all_inform_wrap > h3{
-            font-weight: 700 !important;
-            font-size: 32px !important;
-            line-height: 40px !important;
-            color: #193973 !important;
-            margin: 40px 0 20px !important;
-        }
-        body .all_inform_wrap > p{
-            font-weight: 400 !important;
-            font-size: 16px !important;
-            line-height: 26px !important;
-            color: #4B4B4B !important;
-            margin: 0;
-        }
-        body .all_inform_wrap > p.color_var{
-            font-weight: 700 !important;
-            font-size: 20px !important;
-            line-height: 27px !important;
-            color: #193973 !important;
-        }
-        body .all_inform_wrap > p + p{
-            margin-top: 16px;
-        }
-        .all_inform_wrap > span{
-            display: block;
-            font-weight: 700;
-            font-size: 16px;
-            line-height: 26px;
-            color: #4B4B4B;
-            margin: 0 0 16px;
-            text-align: center;
-        }
-        .all_inform_wrap .img_wrap{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 0 24px;
-        }
-        .all_inform_wrap .img_wrap img:nth-child(1){
-            width: 335px;
-        }
-        .all_inform_wrap .img_wrap img:nth-child(2){
-            width: 331px;
-            max-height: 102px;
-        }
-        .all_inform_wrap .img_wrap img + img{
-            margin-left: 53px;
-        }
-        .all_inform_wrap .text_descr{
-            border: 2px solid #DDE8F1;
-            border-radius: 16px;
-            background: #FFFFFF;
-            padding: 20px;
-            margin: 16px 0 0;
-        }
-        .all_inform_wrap .text_descr p:nth-child(1){
-            font-weight: 700 !important;
-            font-size: 20px !important;
-            line-height: 27px !important;
-            color: #734F22 !important;
-            margin: 0 0 12px !important;
-        }
-        .all_inform_wrap .text_descr p:nth-child(2){
-            font-weight: 400 !important;
-            font-size: 16px !important;
-            line-height: 26px !important;
-            color: #4B4B4B !important;
-            margin: 0 !important;
-        }
-        /*time_offer_box */
-        .time_offer_box{
-          margin-top: 40px;
-        }
-        .time_offer_box .heder_wrap{
-            border: 2px solid #734F22;
-            border-bottom: 0;
-            border-radius: 16px 16px 0 0;
-            background: #193973;
-            padding: 20px;
-        }
-        .time_offer_box .heder_wrap p{
-          font-weight: 700 !important;
-          font-size: 20px !important;
-          line-height: 27px !important;
-          text-align: center;
-          color: #FFFFFF !important;
-          margin: 0 !important;
-        }
-        .time_offer_box .body_wrap{
-            border: 2px solid #734F22;
-            border-top: 0;
-            border-radius: 0 0 16px 16px;
-            background: #FFFFFF;
-            padding: 20px;
-            text-align: center;
-        }
-        .price_wrap p:nth-child(1){
-            font-weight: 700 !important;
-            font-size: 20px !important;
-            line-height: 27px !important;
-            color: #734F22 !important;
-            margin: 0 !important;
-        }
-        .price_wrap p:nth-child(2){
-            font-weight: 400 !important;
-            font-size: 32px !important;
-            line-height: 40px !important;
-            color: #193973 !important;
-            margin: 8px 0 !important;
-        }
-        .price_wrap p:nth-child(3){
-              font-weight: 400 !important;
-              font-size: 16px !important;
-              line-height: 26px !important;
-              color: #193973 !important;
-              margin: 0 !important;
-        }
-        .time_offer_box .body_wrap button.new_enroll_now_btn{
-            margin: 20px auto 0;
-        }
-        .time_offer_box .body_wrap button svg{
-            margin-left: 7.5px;
-        }
-        .time_offer_box .body_wrap > p{
-            max-width: 300px;
-            font-weight: 400 !important;
-            font-size: 16px !important;
-            line-height: 26px !important;
-            color: #FFFFFF !important;
-            margin: 16px auto 0;
-            background: #794E15;
-            border-radius: 4px;
-            padding: 6px 18.5px;
-        }
-        .img_guarantee{
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          max-width: 303px;
-          margin: 20px auto 0;
-        }
-        .img_guarantee img{
-          max-width: 75px;
-        }
-        .img_guarantee span{
-          font-weight: 700;
-          font-size: 16px;
-          line-height: 26px;
-          color: #734F22;
-          margin-left: 12px;
-          text-align: left;
-        }
-        /*new_accardion */
-        li.new_accardion_block{
-          list-style-type: none;
-          position: relative;
-          margin: 0 !important;
-          border: 2px solid #DDE8F1;
-          border-radius: 16px;
-        }
-        li.new_accardion_block + li{
-          margin-top: 16px !important;
-        }
-        .new_accardion_link{
-          border-radius: 14px;
-            display: flex;
-              justify-content: space-between;
-            align-items: flex-start;
-              background: #DDE8F1;
-              padding: 20px;
-            cursor: pointer;
-        }
-        .new_accardion_link p{
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          margin: 0;
-        }
-        .new_accardion_link p span:nth-child(1){
-          font-weight: 700;
-          font-size: 16px;
-          line-height: 22px;
-          color: #734F22 !important;
-        }
-        .new_accardion_link p span:nth-child(2){
-            font-weight: 700;
-            font-size: 20px;
-            line-height: 27px;
-            color: #193973;
-            margin-top: 1px;
-        }
-        .new_accardion_lists{
-            border-radius: 14px;
-                border-top: unset;
-          display: none;
-          background: #FFFFFF;
-          padding: 8px 16px 16px;
-        }
-        .new_accardion_lists p{
-          font-weight: 400;
-          font-size: 16px;
-          line-height: 26px;
-          color: #4B4B4B !important;
-          margin: 0;
-        }
-        .new_accardion_lists p + p{
-          margin-top: 16px;
-        }
-        .new_accardion_link > span{
-              position: relative;
-              background: #FFFFFF;
-              border-radius: 50%;
-              width: 24px;
-              height: 24px;
-              margin-left: 10px;
-              padding: 12px;
-           }
+      .after-refresh > section.count_sec:nth-child(30) {
+        display: none !important;
+      }
+      .after-refresh > section.count_sec:nth-child(27) {
+        background: #ffffff !important;
+      }
+      .after-refresh > section.count_sec:nth-child(28) {
+        background: #dde8f1 !important;
+      }
+      .content .page h2 {
+        font-weight: 700 !important;
+        font-size: 32px !important;
+        line-height: 40px !important;
+        color: #734f22 !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+      .entry-content p {
+        font-weight: 400 !important;
+        font-size: 16px !important;
+        line-height: 26px !important;
+        color: #4b4b4b !important;
+      }
+      .after-refresh > section.count_sec:nth-child(27) img {
+        width: 318px !important;
+        height: 252px !important;
+        border-radius: 16px;
+      }
+      .after-refresh > section.count_sec:nth-child(27) p {
+        margin-bottom: 16px !important;
+      }
+      #myCarousel .item_mc {
+        height: 620px;
+      }
+      .fst_red_spc {
+        padding: 60px 0 !important;
+      }
+      #below_video_text {
+        margin-top: 20px;
+      }
+      #below_video_text .enroll_btn_txt {
+        margin: unset;
+      }
+      #below_video_text .button-header.enroll_now_main {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 15px;
+      }
+      #below_video_text .top_video_guarantee {
+        margin-left: 30px;
+      }
+      #below_video_text .top_video_guarantee img {
+        max-width: 75px;
+        width: 100%;
+        margin: 0;
+      }
+      #below_video_text .button-header a {
+        max-width: 210px;
+        width: 100%;
+        background: #193973;
+        box-shadow: 5px 5px 10px rgba(39, 32, 32, 0.8);
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 22px;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        margin: 0;
+        padding: 0;
+        height: 62px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 250ms cubic-bezier(0.45, 0.05, 0.55, 0.95);
+      }
+      #below_video_text .enroll_btn_txt p {
+        color: #734f22 !important;
+        font-weight: 700 !important;
+        margin: 0 !important;
+      }
+      #below_video_text .enroll_btn_txt p span.dis_price {
+        font-weight: 400 !important;
+      }
+      #myHeaderr {
+        padding: 22px 0 !important;
+      }
+      #myHeaderr .box_btn {
+        margin: 0;
+      }
+      #myHeaderr .box_btn .button_space {
+        padding: 0;
+      }
+      #myHeaderr a.blue-large {
+        max-width: 164px;
+        width: 100%;
+        min-width: 164px;
+        background: #193973;
+        box-shadow: 5px 5px 10px rgba(39, 32, 32, 0.8);
+        border-radius: 10px;
+        height: 48px;
+        transition: all 250ms cubic-bezier(0.45, 0.05, 0.55, 0.95);
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #myHeaderr .top_menu_box {
+        max-width: 700px;
+      }
+      #myHeaderr .top_menu_box > .row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #myHeaderr .top_menu_box > .row > .text_btn_one {
+        margin-left: 20px;
+      }
+      #myHeaderr h4 {
+        margin: 0 !important;
+        font-weight: 700 !important;
+        font-size: 20px !important;
+        line-height: 27px !important;
+      }
+      .image_left > img,
+      .testi_img.lead_img > img,
+      .card.image1 > img,
+      .image_right.disc-img1 > img {
+        border-radius: 16px;
+        padding: 0;
+      }
+      .flowplayer_video_container {
+        border-radius: 16px;
+      }
 
-            .new_accardion_link > span::before{
-              position: absolute;
-              content: "";
-              width: 100%;
-              height: 100%;
-              background: url(https://conversionratestore.github.io/projects/knineti/img/arrow_accardion.svg) no-repeat center center;
-              top: 0;
-              left: 0;
-              transition: all 0.3s ease;
-              transform: rotate(180deg);
-    }
-          .new_accardion_link.active span::before {
-              transform: rotate(0deg);
-          }
-          .new_accardion_link.active{
-            
-          }
-          .time_offer_box li.new_accardion_block:nth-child(1) .new_accardion_lists{
-    display: block;
-          }
-          /*question_first_bgr */
-          .question_first_bgr,
-          .question_second_bgr{
-                background: #FFFFFF;
-                padding: 60px 0;
-          }
-          .question_first_wrap,
-          .question_second_wrap{
-                max-width: 800px;
-                margin: 0 auto;
-          }
-          body .question_first_wrap h2,
-          body .question_second_wrap h2{
-                font-weight: 700 !important;
-                font-size: 32px !important;
-                line-height: 40px !important;
-                color: #734F22 !important;
-                margin: 0 auto 40px auto !important;
-                width: 100% !important;
-              }
-         body .question_second_wrap h2{
-            max-width: 704px !important;
+      /* */
+      button.new_enroll_now_btn,
+      .white-block a.button-blue-large,
+      .pattern-block a.button-blue-large {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #193973;
+        box-shadow: 5px 5px 10px rgba(39, 32, 32, 0.8);
+        border-radius: 10px;
+        max-width: 181px;
+        width: 100%;
+        height: 62px;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 22px;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: #ffffff;
+        margin: 0 auto !important;
+        outline: unset;
+        border: unset;
+        cursor: pointer;
+        transition: all 250ms cubic-bezier(0.45, 0.05, 0.55, 0.95);
+      }
+      #myHeaderr a.blue-large:hover,
+      #below_video_text .button-header a:hover,
+      button.new_enroll_now_btn:hover {
+        box-shadow: unset;
+      }
+      /*special_gift_bgr */
+      .special_gift_bgr {
+        background: #dde8f1;
+      }
+      .special_gift_box {
+        max-width: 800px;
+        text-align: center;
+        margin: 0 auto;
+        padding: 0 0 50px;
+      }
+      body .want-to-obey .special_gift_box h2 {
+        color: #193973 !important;
+        margin-bottom: 16px !important;
+      }
+      body .special_gift_box p {
+        font-size: 20px !important;
+        line-height: 27px !important;
+        margin: 0 !important;
+      }
+      body .special_gift_box p + p {
+        margin-top: 16px !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      body .special_gift_box p > svg {
+        margin: 0 6px 0 8px;
+      }
+      body .special_gift_box p span {
+        color: rgba(115, 79, 34, 1) !important;
+        font-weight: 700;
+      }
+      .white-block p:first-child {
+        margin-top: unset !important;
+      }
+      /*first_visit_block */
+      .first_visit_block .descr_box {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+      }
+      .first_visit_block .descr_box .img_wrap {
+        border-radius: 16px;
+        max-width: 338px;
+        width: 100%;
+        margin-left: 23px;
+      }
+      .first_visit_block .descr_box p {
+        line-height: 24px !important;
+        margin: 0 !important;
+      }
+      .first_visit_block .descr_box p + p {
+        margin-top: 16px !important;
+      }
+      .first_visit_block button.watch_free_workshop_btn {
+        margin: 40px auto 0 !important;
+        max-width: 252px;
+      }
+      /*reviews_bgr */
+      .after-refresh > .reviews_bgr {
+        margin-top: -22px;
+        position: relative;
+        z-index: 1;
+      }
+      .reviews_bgr {
+        background: #dde8f1;
+      }
+      .ten_week_bgr .reviews_bgr {
+        border-radius: 16px;
+        margin-top: 60px;
+      }
+      .reviews_wrap {
+        background: rgba(255, 255, 255, 0.6);
+        border: 2px solid #193973;
+        border-radius: 16px;
+        padding: 40px;
+        max-width: 1000px;
+        margin: 0 auto !important;
+        width: 100%;
+      }
+      .reviews_wrap.is_true {
+        background: #dde8f1;
+      }
+      body .want-to-obey .reviews_wrap h3 {
+        font-weight: 700 !important;
+        font-size: 20px !important;
+        line-height: 27px !important;
+        color: #193973 !important;
+        margin: 0 auto 12px !important;
+        max-width: 600px;
+      }
+      .reviews_wrap > p {
+        font-weight: 700 !important;
+        font-size: 16px !important;
+        line-height: 26px !important;
+        color: #193973 !important;
+        margin: 8px 0 0;
+        text-align: center;
+      }
+      .reviews_wrap .reviews_stars {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .reviews_wrap .reviews_stars > span {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 19px;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: #193973;
+        margin: 0 0 0 4px;
+      }
+      .reviews_wrap .reviews_stars .star_wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .reviews_wrap .reviews_stars .star_wrap span + span {
+        margin-left: 4px;
+      }
+      .reviews_wrap .reviews_stars .star_wrap span {
+        width: 24px;
+        height: 24px;
+        background: url(https://conversionratestore.github.io/projects/knineti/img/new_star.svg) no-repeat center center;
+      }
+      /*ten_week_bgr */
+      .ten_week_bgr {
+        background: #ffffff;
+      }
+      .ten_week_bgr .ten_week_box {
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto 60px;
+      }
+      .ten_week_bgr .ten_week_box h2 {
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 40px;
+        color: #ffffff !important;
+        background: #734f22;
+        border-radius: 16px;
+        padding: 20px;
+        margin: 0 0 20px;
+      }
+      .all_inform_wrap {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      body .want-to-obey .all_inform_wrap > h3 {
+        font-weight: 700 !important;
+        font-size: 32px !important;
+        line-height: 40px !important;
+        color: #193973 !important;
+        margin: 40px 0 20px !important;
+      }
+      body .all_inform_wrap > p {
+        font-weight: 400 !important;
+        font-size: 16px !important;
+        line-height: 26px !important;
+        color: #4b4b4b !important;
+        margin: 0;
+      }
+      body .all_inform_wrap > p.color_var {
+        font-weight: 700 !important;
+        font-size: 20px !important;
+        line-height: 27px !important;
+        color: #193973 !important;
+      }
+      body .all_inform_wrap > p + p {
+        margin-top: 16px;
+      }
+      .all_inform_wrap > span {
+        display: block;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 26px;
+        color: #4b4b4b;
+        margin: 0 0 16px;
+        text-align: center;
+      }
+      .all_inform_wrap .img_wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 0 24px;
+      }
+      .all_inform_wrap .img_wrap img:nth-child(1) {
+        width: 335px;
+      }
+      .all_inform_wrap .img_wrap img:nth-child(2) {
+        width: 331px;
+        max-height: 102px;
+      }
+      .all_inform_wrap .img_wrap img + img {
+        margin-left: 53px;
+      }
+      .all_inform_wrap .text_descr {
+        border: 2px solid #dde8f1;
+        border-radius: 16px;
+        background: #ffffff;
+        padding: 20px;
+        margin: 16px 0 0;
+      }
+      .all_inform_wrap .text_descr p:nth-child(1) {
+        font-weight: 700 !important;
+        font-size: 20px !important;
+        line-height: 27px !important;
+        color: #734f22 !important;
+        margin: 0 0 12px !important;
+      }
+      .all_inform_wrap .text_descr p:nth-child(2) {
+        font-weight: 400 !important;
+        font-size: 16px !important;
+        line-height: 26px !important;
+        color: #4b4b4b !important;
+        margin: 0 !important;
+      }
+      /*time_offer_box */
+      .time_offer_box {
+        margin-top: 40px;
+      }
+      .time_offer_box .heder_wrap {
+        border: 2px solid #734f22;
+        border-bottom: 0;
+        border-radius: 16px 16px 0 0;
+        background: #193973;
+        padding: 20px;
+      }
+      .time_offer_box .heder_wrap p {
+        font-weight: 700 !important;
+        font-size: 20px !important;
+        line-height: 27px !important;
+        text-align: center;
+        color: #ffffff !important;
+        margin: 0 !important;
+      }
+      .time_offer_box .body_wrap {
+        border: 2px solid #734f22;
+        border-top: 0;
+        border-radius: 0 0 16px 16px;
+        background: #ffffff;
+        padding: 20px;
+        text-align: center;
+      }
+      .price_wrap p:nth-child(1) {
+        font-weight: 700 !important;
+        font-size: 20px !important;
+        line-height: 27px !important;
+        color: #734f22 !important;
+        margin: 0 !important;
+      }
+      .price_wrap p:nth-child(2) {
+        font-weight: 400 !important;
+        font-size: 32px !important;
+        line-height: 40px !important;
+        color: #193973 !important;
+        margin: 8px 0 !important;
+      }
+      .price_wrap p:nth-child(3) {
+        font-weight: 400 !important;
+        font-size: 16px !important;
+        line-height: 26px !important;
+        color: #193973 !important;
+        margin: 0 !important;
+      }
+      .time_offer_box .body_wrap button.new_enroll_now_btn {
+        margin: 20px auto 0 !important;
+      }
+      .time_offer_box .body_wrap button svg {
+        margin-left: 7.5px;
+      }
+      .time_offer_box .body_wrap > p {
+        max-width: 300px;
+        font-weight: 400 !important;
+        font-size: 16px !important;
+        line-height: 26px !important;
+        color: #ffffff !important;
+        margin: 16px auto 0;
+        background: #794e15;
+        border-radius: 4px;
+        padding: 6px 18.5px;
+      }
+      .img_guarantee {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 303px;
+        margin: 20px auto 0;
+      }
+      .img_guarantee img {
+        max-width: 75px;
+      }
+      .img_guarantee span {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 26px;
+        color: #734f22;
+        margin-left: 12px;
+        text-align: left;
+      }
+      /*new_accardion */
+      li.new_accardion_block {
+        list-style-type: none;
+        position: relative;
+        margin: 0 !important;
+        border: 2px solid #dde8f1;
+        border-radius: 16px;
+      }
+      li.new_accardion_block + li {
+        margin-top: 16px !important;
+      }
+      .new_accardion_link {
+        border-radius: 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        background: #dde8f1;
+        padding: 20px;
+        cursor: pointer;
+      }
+      .new_accardion_link p {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 0;
+      }
+      .new_accardion_link p span:nth-child(1) {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 22px;
+        color: #734f22 !important;
+      }
+      .new_accardion_link p span:nth-child(2) {
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 27px;
+        color: #193973;
+        margin-top: 1px;
+      }
+      .new_accardion_lists {
+        border-radius: 14px;
+        border-top: unset;
+        display: none;
+        background: #ffffff;
+        padding: 8px 16px 16px;
+      }
+      .new_accardion_lists p {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 26px;
+        color: #4b4b4b !important;
+        margin: 0;
+      }
+      .new_accardion_lists p + p {
+        margin-top: 16px;
+      }
+      .new_accardion_link > span {
+        position: relative;
+        background: #ffffff;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        margin-left: 10px;
+        padding: 12px;
+      }
 
-          }
-          .question_first_wrap button.new_enroll_now_btn,
-          .question_second_wrap button.new_enroll_now_btn{
-            margin: 40px auto 0 auto;
-          }
-          .question_first_wrap li.new_accardion_block,
-          .question_second_wrap li.new_accardion_block{
-            background: #DDE8F1;
-            padding: 20px;
-          }
-          .question_first_wrap .new_accardion_link,
-          .question_second_wrap .new_accardion_link{
-                border-radius: unset;
-                padding: unset;
-                background: unset;
-          }
-          .question_first_wrap .new_accardion_link p,
-          .question_second_wrap .new_accardion_link p{
-                  font-weight: 700;
-                  font-size: 16px;
-                  line-height: 22px;
-                  color: #193973 !important;
-                  margin: 0;
-          }
-          .question_first_wrap .new_accardion_lists,
-          .question_second_wrap .new_accardion_lists{
-                  border-radius: unset;
-                  border-top: 2px solid #FFFFFF;
-                  background: unset;
-                  padding: 12px 0 0;
-                  margin-top: 12px;
-          }
-          /*learn_more_scroll_btn */
-          .learn_more_scroll_btn{
-            background: #734F22;
-            box-shadow: 5px 5px 10px rgba(39, 32, 32, 0.8);
-            border-radius: 10px;
-            max-width: 384px;
-            width: 100%;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 21px;
-          }
-          .learn_more_scroll_btn > div{
-            display: flex;
-            flex-direction: column;
-          }
-          .learn_more_scroll_btn > div svg{
-            animation: arrow-down 2s infinite;
-          }
-                    .learn_more_scroll_btn > div svg:nth-child(2){
-            animation-delay: -0.2s;
-          }
-          .learn_more_scroll_btn > div svg:nth-child(1){
-            animation-delay: -0.4s;
-          }
-          .learn_more_scroll_btn span{
-            font-weight: 600;
-            font-size: 14px;
-            line-height: 19px;
-            letter-spacing: 0.02em;
-            text-transform: uppercase;
-            color: #FFFFFF;
-            margin: 0 5px;
-          }
-          @keyframes arrow-down {
-    0%{
-        opacity: 0;
-        transform: translateY(-0px);
-    }
-    50%{
-        opacity: 1;
-    }
-    100%{
-        opacity: 0;
-        transform: translateY(0px);
-    }
-}
+      .new_accardion_link > span::before {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: url(https://conversionratestore.github.io/projects/knineti/img/arrow_accardion.svg) no-repeat center center;
+        top: 0;
+        left: 0;
+        transition: all 0.3s ease;
+        transform: rotate(180deg);
+      }
+      .new_accardion_link.active span::before {
+        transform: rotate(0deg);
+      }
+      .new_accardion_link.active {
+      }
+      .ten_week_bgr li.new_accardion_block:nth-child(1) .new_accardion_lists {
+        display: block;
+      }
+      /*question_first_bgr */
+      .question_first_bgr,
+      .question_second_bgr {
+        background: #ffffff;
+        padding: 60px 0;
+      }
+      .question_first_wrap,
+      .question_second_wrap {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      body .question_first_wrap h2,
+      body .question_second_wrap h2 {
+        font-weight: 700 !important;
+        font-size: 32px !important;
+        line-height: 40px !important;
+        color: #734f22 !important;
+        margin: 0 auto 40px auto !important;
+        width: 100% !important;
+      }
+      body .question_second_wrap h2 {
+        max-width: 704px !important;
+      }
+      .question_first_wrap button.new_enroll_now_btn,
+      .question_second_wrap button.new_enroll_now_btn {
+        margin: 40px auto 0 auto !important;
+      }
+      .question_first_wrap li.new_accardion_block,
+      .question_second_wrap li.new_accardion_block {
+        background: #dde8f1;
+      }
+      .question_first_wrap .new_accardion_link,
+      .question_second_wrap .new_accardion_link {
+        border-radius: unset;
+        padding: unset;
+        background: unset;
+        padding: 20px;
+      }
+      .question_first_wrap .new_accardion_link p,
+      .question_second_wrap .new_accardion_link p {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 22px;
+        color: #193973 !important;
+        margin: 0;
+      }
+      .question_first_wrap .new_accardion_lists,
+      .question_second_wrap .new_accardion_lists {
+        border-radius: unset;
+        background: unset;
+        padding: 0 20px 20px;
+      }
+      .question_first_wrap .new_accardion_lists > div,
+      .question_second_wrap .new_accardion_lists > div {
+        border-top: 2px solid #ffffff;
+        padding-top: 15px;
+      }
+      /*learn_more_scroll_btn */
+      .learn_more_bgr {
+        background: #dde8f1;
+        padding: 10px 0 48px;
+      }
+      .learn_more_scroll_btn {
+        background: #734f22;
+        box-shadow: 5px 5px 10px rgba(39, 32, 32, 0.8);
+        border-radius: 10px;
+        max-width: 384px;
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 21px;
+        cursor: pointer;
+      }
+      .learn_more_scroll_btn > div {
+        display: flex;
+        flex-direction: column;
+      }
+      .learn_more_scroll_btn > div svg {
+        animation: arrow-down 2s infinite;
+      }
+      .learn_more_scroll_btn > div svg:nth-child(2) {
+        animation-delay: -0.2s;
+      }
+      .learn_more_scroll_btn > div svg:nth-child(1) {
+        animation-delay: -0.6s;
+      }
+      .learn_more_scroll_btn span {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 19px;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: #ffffff;
+        margin: 0 5px;
+      }
+      @keyframes arrow-down {
+        0% {
+          opacity: 0;
+          transform: translateY(-0px);
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(0px);
+        }
+      }
+
     </style>
     `
 
@@ -616,7 +806,7 @@ let newPage = setInterval(() => {
             <div class="ten_week_box">
                 <h2>10-week dog training program</h2>
                 <div class="all_inform_wrap">
-                    <p class="color_var">Get the skills and confidence you need to train your new puppy to be as calm and obedient as a service dog – without shedding thousands for an expensive trainer</p>
+                    <p class="color_var">Get the skills and confidence you need to train your <span class="dog_age_var">new puppy</span> to be as calm and obedient as a service dog – without shedding thousands for an expensive trainer</p>
                     <p>Ditch those basic SIT and STAY commands from the internet that don’t work.</p>
                     <p>
                     Take a deep dive into service dog training secrets to stop your naughty best friend from barking, jumping, and pulling on their leash - and become a calm, obedient
@@ -658,10 +848,10 @@ let newPage = setInterval(() => {
         </div>
       `
 
-    function setList(count, title, text) {
+    function setList(count, title, text, dataSelector) {
       return `
                 <li class="new_accardion_block" data-visability='${count}'>
-                    <div class="new_accardion_link">
+                    <div class="new_accardion_link" data-selector="${dataSelector}">
                         <p>${title}</p>
                         <span></span>
                     </div>
@@ -674,12 +864,104 @@ let newPage = setInterval(() => {
         `
     }
 
+    let specialGift = /*html */ `
+        <div class="special_gift_bgr">
+      <div class="special_gift_box">
+        <h2>Eliminate your dog's behavior problems today!</h2>
+        <p>Click the play button above to watch your free workshop.</p>
+        <p>
+          Get a
+          <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M1.375 17.6429C1.375 18.4062 1.97656 19 2.75 19H9.625V12.2143H1.375V17.6429ZM12.375 19H19.25C19.9805 19 20.625 18.4062 20.625 17.6429V12.2143H12.375V19ZM20.625 5.42857H18.7773C19.0781 4.91964 19.25 4.3683 19.25 3.73214C19.25 1.69643 17.5312 0 15.4688 0C13.6641 0 12.5039 0.933036 11.043 2.92634C9.53906 0.933036 8.37891 0 6.61719 0C4.51172 0 2.83594 1.69643 2.83594 3.73214C2.83594 4.3683 2.96484 4.91964 3.26562 5.42857H1.375C0.601562 5.42857 0 6.06473 0 6.78571V10.1786C0 10.5603 0.300781 10.8571 0.6875 10.8571H21.3125C21.6562 10.8571 22 10.5603 22 10.1786V6.78571C22 6.06473 21.3555 5.42857 20.625 5.42857ZM6.57422 5.42857C5.62891 5.42857 4.85547 4.70759 4.85547 3.73214C4.85547 2.79911 5.62891 2.03571 6.57422 2.03571C7.43359 2.03571 8.07812 2.20536 10.3125 5.42857H6.57422ZM15.4688 5.42857H11.7305C13.9648 2.20536 14.5664 2.03571 15.4688 2.03571C16.4141 2.03571 17.1875 2.79911 17.1875 3.73214C17.1875 4.70759 16.4141 5.42857 15.4688 5.42857Z"
+              fill="#734F22"
+            />
+          </svg>
+          <span>SPECIAL GIFT</span> at the end of the workshop!
+        </p>
+      </div>
+    </div>`
+
+    let firstVisitNewBlock = /*html */ `
+        <div class="first_visit_block">
+      <div class="descr_box">
+        <div>
+          <p>
+            <b>YouTube and $9.99 dog training books</b> will make you think that verbal commands such as "sit", "stay", etc. are all that you need.... but if you follow that advice you
+            will be making one of the <b>BIGGEST mistakes</b> in dog training.
+          </p>
+          <p>
+            <b>The above workshop will reveal</b> the real way to get service-dog levels of obedience from your dog - as taught by REAL & nationally recognized service-dog training
+            professionals.
+          </p>
+          <p>
+            Note: This workshop is not about helping your dog become an officially certified service dog. Rather, this workshop will help "normal" dogs like yours become as calm
+            and well-trained as a service dog.
+          </p>
+        </div>
+        <div class="img_wrap">
+          <img src="https://conversionratestore.github.io/projects/knineti/img/first_time_img.png" alt="girl and dog" />
+        </div>
+      </div>
+      <button class="new_enroll_now_btn watch_free_workshop_btn">Watch free workshop</button>
+    </div>
+    `
+
     document.head.insertAdjacentHTML("beforeend", styleFreeWorkShop)
 
-    document.querySelectorAll(".after-refresh section.count_sec")[0]?.insertAdjacentHTML("beforebegin", reviewsBox)
+    //is the first time
+    if (!localStorage.getItem("firstTime")) {
+      localStorage.setItem("firstTime", true)
+    }
+
+    // is NOT the first time
+    window.onunload = unloadPage
+    function unloadPage() {
+      console.log("unload event detected!")
+
+      if (localStorage.getItem("firstTime") && !localStorage.getItem("notFirstTime")) {
+        localStorage.setItem("notFirstTime", true)
+      }
+    }
+    // Step 1
+    // src=tpst and it’s the first time the user is visiting the page ///////////////////////////////////
+    document.querySelectorAll(".want-to-obey .count_sec")[0].insertAdjacentHTML("beforebegin", specialGift)
+    document.querySelectorAll(".want-to-obey .count_sec")[0].querySelector("h2").textContent =
+      "There is a reason why service dogs always form extraordinarily strong bonds with their human partners..."
+    document.querySelectorAll(".want-to-obey .count_sec")[0].querySelector("h2").insertAdjacentHTML("afterend", firstVisitNewBlock)
+
+    document.querySelectorAll(".watch_free_workshop_btn")?.forEach((el) => {
+      el.addEventListener("click", () => {
+        scrollToVideo(el)
+      })
+    })
+
+    // scrollToVideo
+    function scrollToVideo(el) {
+      console.log(`scrollToVideo`)
+
+      if (document.querySelector(".flowplayer.is-paused .fp-ui")) {
+        if (!document.querySelector("video")) {
+          document.querySelector(".flowplayer.is-paused .fp-ui").scrollIntoView({ block: "center", behavior: "smooth" })
+
+          document.querySelector(".flowplayer.is-paused .fp-ui").click()
+        } else {
+          if (document.querySelector("video").paused) {
+            document.querySelector(".flowplayer.is-paused .fp-ui").scrollIntoView({ block: "center", behavior: "smooth" })
+            document.querySelector(".flowplayer.is-paused .fp-ui").click()
+          }
+        }
+      }
+
+      if (document.querySelector("video")) {
+        document.querySelector("video").scrollIntoView({ block: "center", behavior: "smooth" })
+      }
+    }
+    // Step 2
+    // ///////////////////////////////////////////////////////////////////////////////
     document.querySelectorAll(".after-refresh section.count_sec")[0]?.insertAdjacentHTML(
       "beforebegin",
-      `    <div class="learn_more_scroll_btn">
+      `<div class="learn_more_bgr"><div class="learn_more_scroll_btn">
       <div>
         <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -711,11 +993,29 @@ let newPage = setInterval(() => {
           />
         </svg>
       </div>
-    </div>`
+    </div></div>`
     )
     document.querySelectorAll(".after-refresh section.count_sec")[1]?.insertAdjacentHTML("afterend", tenWeekBox)
     if (document.querySelector(".ten_week_bgr")) {
       document.querySelector(".ten_week_bgr").after(document.querySelectorAll(".after-refresh section.count_sec")[18])
+      document.querySelector(".time_offer_box")?.insertAdjacentHTML("afterend", reviewsBox)
+      document.querySelector(".ten_week_bgr .reviews_wrap").classList.add("is_true")
+
+      document.querySelector(".time_offer_box .body_wrap button.new_enroll_now_btn").addEventListener("click", () => {
+        document.querySelector(".Breed-Specific.count_sec .enroll_now_main .button-blue-large.showModal.grab_butn.enroll_now_btn.dsk_ntn_onen").click()
+      })
+    }
+
+    if (document.querySelector(".learn_more_scroll_btn")) {
+      document.querySelector(".learn_more_scroll_btn").addEventListener("click", () => {
+        const headerOffset = 100
+        const elementPosition = document.querySelector(".ten_week_bgr").getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        })
+      })
     }
 
     document
@@ -732,19 +1032,33 @@ let newPage = setInterval(() => {
         `<div class="question_second_bgr"><div class="question_second_wrap"><h2>Our best customers are those who ask the most questions. Find answers below </h2><ol class="question_accardion"></ol><button class="new_enroll_now_btn">Enroll NOW <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg"></div></div>`
       )
 
+    if (document.querySelector(".question_first_bgr")) {
+      document.querySelector(".question_first_wrap button.new_enroll_now_btn").addEventListener("click", () => {
+        document.querySelector(".enroll_now_main .button-blue-large.showModal.grab_butn.enroll_now_btn.dst_fsq_btl").click()
+      })
+    }
+
+    if (document.querySelector(".question_second_bgr")) {
+      document.querySelector(".question_second_wrap button.new_enroll_now_btn").addEventListener("click", () => {
+        document.querySelector(".enroll_now_main .button-blue-large.showModal.grab_butn.enroll_now_btn.dst_fsq_btl").click()
+      })
+    }
+
     if (document.querySelector(".new_accardion")) {
       for (let key in arrInfo) {
-        document.querySelector(".new_accardion").insertAdjacentHTML("beforeend", setList(key, arrInfo[key][0], arrInfo[key][1]))
+        document.querySelector(".new_accardion").insertAdjacentHTML("beforeend", setList(key, arrInfo[key][0], arrInfo[key][1], "tenWeek"))
       }
     }
     if (document.querySelector(".question_first_wrap .question_accardion")) {
       for (let key in arrQuestion) {
-        document.querySelector(".question_first_wrap .question_accardion").insertAdjacentHTML("beforeend", setList(key, arrQuestion[key][0], arrQuestion[key][1]))
+        document.querySelector(".question_first_wrap .question_accardion").insertAdjacentHTML("beforeend", setList(key, arrQuestion[key][0], arrQuestion[key][1], "questionFirst"))
       }
     }
     if (document.querySelector(".question_second_wrap .question_accardion")) {
       for (let key in arrQuestion) {
-        document.querySelector(".question_second_wrap .question_accardion").insertAdjacentHTML("beforeend", setList(key, arrQuestion[key][0], arrQuestion[key][1]))
+        document
+          .querySelector(".question_second_wrap .question_accardion")
+          .insertAdjacentHTML("beforeend", setList(key, arrQuestion[key][0], arrQuestion[key][1], "questionSecond"))
       }
     }
     // title
@@ -779,17 +1093,20 @@ let newPage = setInterval(() => {
     document.querySelectorAll(".after-refresh section.count_sec")[23].querySelector("h2").textContent = `Get your dog to listen to you even without treats`
     document.querySelectorAll(".after-refresh section.count_sec")[24].querySelector("h2").textContent = `“...he listens to me all the time now...”`
 
-    $(".new_accardion_link").click(function (e) {
+    // accardion ten_week_bgr
+
+    let headerOffset = 10
+    $('.new_accardion_link[data-selector="tenWeek"]').click(function (e) {
       console.log(e.currentTarget)
       $(this).toggleClass("active")
       $(this).closest("li").toggleClass("active")
       $(this).next(".new_accardion_lists").slideToggle()
-      if ($(".new_accardion_link").not(this)) {
-        $(".new_accardion_link").not(this).next(".new_accardion_lists").css("display", "none")
-        $(".new_accardion_link").not(this).removeClass("active")
-        $(".new_accardion_link").not(this).closest("li").removeClass("active")
+      if ($('.new_accardion_link[data-selector="tenWeek"]').not(this)) {
+        $('.new_accardion_link[data-selector="tenWeek"]').not(this).next(".new_accardion_lists").css("display", "none")
+        $('.new_accardion_link[data-selector="tenWeek"]').not(this).removeClass("active")
+        $('.new_accardion_link[data-selector="tenWeek"]').not(this).closest("li").removeClass("active")
       }
-      const headerOffset = 70
+      // const headerOffset = 100
       const elementPosition = this.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset
       window.scrollTo({
@@ -797,5 +1114,171 @@ let newPage = setInterval(() => {
         behavior: "smooth",
       })
     })
+
+    // accardion question_first_bgr
+    $('.new_accardion_link[data-selector="questionFirst"]').click(function (e) {
+      console.log(e.currentTarget)
+      $(this).toggleClass("active")
+      $(this).closest("li").toggleClass("active")
+      $(this).next(".new_accardion_lists").slideToggle()
+      if ($('.new_accardion_link[data-selector="questionFirst"]').not(this)) {
+        $('.new_accardion_link[data-selector="questionFirst"]').not(this).next(".new_accardion_lists").css("display", "none")
+        $('.new_accardion_link[data-selector="questionFirst"]').not(this).removeClass("active")
+        $('.new_accardion_link[data-selector="questionFirst"]').not(this).closest("li").removeClass("active")
+      }
+      // const headerOffset = 100
+      const elementPosition = this.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      })
+    })
+
+    // accardion question_second_bgr
+    $('.new_accardion_link[data-selector="questionSecond"]').click(function (e) {
+      console.log(e.currentTarget)
+      $(this).toggleClass("active")
+      $(this).closest("li").toggleClass("active")
+      $(this).next(".new_accardion_lists").slideToggle()
+      if ($('.new_accardion_link[data-selector="questionSecond"]').not(this)) {
+        $('.new_accardion_link[data-selector="questionSecond"]').not(this).next(".new_accardion_lists").css("display", "none")
+        $('.new_accardion_link[data-selector="questionSecond"]').not(this).removeClass("active")
+        $('.new_accardion_link[data-selector="questionSecond"]').not(this).closest("li").removeClass("active")
+      }
+      // const headerOffset = 100
+      const elementPosition = this.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      })
+    })
+
+    // day Seven
+    let params = new URLSearchParams(window.location.search)
+    let dQueryDate = atob(params.get("d"))
+    let dsp = dQueryDate.split("-")
+    let daySeven = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 7)).toDateString().split(" ")
+    let month = ""
+
+    switch (daySeven[1]) {
+      case "Jan":
+        month = "January"
+        break
+      case "Feb":
+        month = "February"
+        break
+      case "Mar":
+        month = "March"
+        break
+      case "Apr":
+        month = "April"
+        break
+      case "May":
+        month = "May"
+        break
+      case "Jun":
+        month = "June"
+        break
+      case "Jul":
+        month = "July"
+        break
+      case "Aug":
+        month = "August"
+        break
+      case "Sep":
+        month = "September"
+        break
+      case "Oct":
+        month = "October"
+        break
+      case "Nov":
+        month = "November"
+        break
+      case "Dec":
+        month = "December"
+        break
+      default:
+        break
+    }
+
+    if (document.querySelector(".date_ends_text span")) {
+      document.querySelector(".date_ends_text span").textContent = `${month} ${daySeven[2]}, ${daySeven[3]}`
+      console.log(`daySeven`, daySeven, `${month} ${daySeven[2]}, ${daySeven[3]}`)
+    }
+    // dog Age
+    let dogAge = new URL(document.location).searchParams.get("age")
+    if (document.querySelector(".dog_age_var")) {
+      document.querySelector(".dog_age_var").textContent = dogAge
+    }
+
+    if (localStorage.getItem("notFirstTime")) {
+      headerOffset = 100
+      if (document.querySelectorAll(".want-to-obey .count_sec")[0]) {
+        document.querySelectorAll(".want-to-obey .count_sec")[0].style.display = "none"
+      }
+      document.querySelector(".special_gift_bgr").style.display = "none"
+    }
+
+    if (localStorage.getItem("notTime")) {
+      document.querySelectorAll(".want-to-obey .count_sec")[0].style.display = "none"
+      document.querySelector(".special_gift_bgr").style.display = "none"
+      if (!document.querySelector(".after-refresh > .reviews_bgr")) {
+        document.querySelectorAll(".after-refresh section.count_sec")[0]?.insertAdjacentHTML("beforebegin", reviewsBox)
+      }
+      document.querySelector(".ten_week_bgr .reviews_bgr").style.display = "none"
+      document.querySelector(".learn_more_bgr").style.display = "none"
+    }
+
+    // timer
+    timerVideo()
+
+    function timerVideo() {
+      let intevalVideo = setInterval(() => {
+        if (document.querySelector("video")) {
+          clearInterval(intevalVideo)
+
+          setTimeout(() => {
+            // let counter
+            // document.querySelector("video").currentTime = 35 * 60
+            const videoItem = document.querySelector("video")
+
+            function timeUpdate() {
+              console.log(videoItem.currentTime)
+              let timer = 35.74 * 60
+              // let timer = 1 * 60
+
+              let currentTime = Math.floor(videoItem.currentTime)
+
+              timer -= currentTime
+
+              if (timer < 0) {
+                if (!localStorage.getItem("notTime")) {
+                  localStorage.setItem("notTime", true)
+                }
+                document.querySelectorAll(".want-to-obey .count_sec")[0].style.display = "none"
+                document.querySelector(".after-refresh").style.display = "block"
+                document.querySelector(".special_gift_bgr").style.display = "none"
+                if (!document.querySelector(".after-refresh > .reviews_bgr")) {
+                  document.querySelectorAll(".after-refresh section.count_sec")[0]?.insertAdjacentHTML("beforebegin", reviewsBox)
+                }
+                document.querySelector(".ten_week_bgr .reviews_bgr").style.display = "none"
+                document.querySelector(".learn_more_bgr").style.display = "none"
+                let int = setInterval(() => {
+                  if (document.querySelector(".after-refresh > .reviews_bgr")) {
+                    clearInterval(int)
+
+                    videoItem.removeEventListener("timeupdate", timeUpdate)
+                  }
+                }, 10)
+              }
+            }
+
+            videoItem.addEventListener("timeupdate", timeUpdate)
+          }, 1000)
+        }
+      }, 100)
+    }
   }
-}, 100)
+}, 500)
