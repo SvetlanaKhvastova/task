@@ -1106,6 +1106,33 @@ body .question_second_wrap h2 {
     margin-bottom: 16px;
     border-radius: 0;
   }
+  .all_inform_wrap{
+    padding: 0 30px;
+  }
+  body .all_inform_wrap > p.color_var{
+        font-size: 16px !important;
+    line-height: 22px !important;
+  }
+  body .want-to-obey .all_inform_wrap > h3{
+        margin: 36px 0 8px !important;
+        font-size: 20px !important;
+    line-height: 27px !important;
+  }
+  .all_inform_wrap > span{
+    margin: 0 0 19px;
+  }
+  .all_inform_wrap .img_wrap{
+        margin: 0 0 31px;
+  }
+  .all_inform_wrap .img_wrap img:nth-child(2) {
+    width: 140px;
+  }
+  .all_inform_wrap .img_wrap img + img {
+    margin-left: 24px;
+}
+.all_inform_wrap .img_wrap img:nth-child(1) {
+    width: 151px;
+}
 }
 
     </style>
