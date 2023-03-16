@@ -1041,6 +1041,9 @@ body .question_second_wrap h2 {
   line-height: 26px;
   color: #193973;
 }
+.title_mob_var{
+  display: none;
+}
 @media (max-width: 768px) {
   #myHeaderr .box_btn .button_space{
     margin: 0 !important;
@@ -1059,7 +1062,7 @@ body .question_second_wrap h2 {
     max-width: 263px !important;
   }
   #myCarousel .item_mc {
-    height: 240px;
+    height: 230px;
   }
   .learn_more_scroll_btn span{
     font-size: 13px;
@@ -1133,6 +1136,173 @@ body .question_second_wrap h2 {
 .all_inform_wrap .img_wrap img:nth-child(1) {
     width: 151px;
 }
+li.new_accardion_block + li {
+    margin-top: 12px !important;
+}
+.new_accardion_link{
+  padding: 12px 16px 16px;
+}
+.new_accardion_link p span:nth-child(1){
+      font-size: 14px;
+    line-height: 19px;
+}
+.new_accardion_link p span:nth-child(2){
+      font-size: 16px;
+    line-height: 22px;
+}
+ul.new_accardion{
+  margin: 0;
+  padding: 0;
+}
+.all_inform_wrap .text_descr{
+      margin: 12px 0 0;
+      padding: 16px;
+}
+.all_inform_wrap .text_descr p:nth-child(1){
+      font-size: 16px !important;
+    line-height: 22px !important;
+    margin: 0 0 8px !important;
+}
+.time_offer_box{
+  padding: 0 30px;
+}
+.time_offer_box .heder_wrap{
+      padding: 16px;
+}
+.time_offer_box .heder_wrap p{
+      font-size: 16px !important;
+    line-height: 22px !important;
+}
+.time_offer_box .body_wrap{
+  border-radius: 0 0 16px 16px;
+}
+.price_wrap p:nth-child(2){
+      font-size: 20px !important;
+    line-height: 27px !important;
+}
+.time_offer_box .body_wrap button.new_enroll_now_btn{
+  width: 100%;
+    max-width: 100%;
+}
+.time_offer_box .body_wrap > p{
+      padding: 4px 8px;
+          margin: 20px auto 0;
+}
+.ten_week_bgr .reviews_bgr{
+      margin: 40px 30px 0;
+}
+.reviews_wrap{
+  padding: 16px;
+}
+body .want-to-obey .reviews_wrap h3{
+  font-size: 16px !important;
+    line-height: 22px !important;
+}
+.reviews_wrap > p{
+  font-size: 14px !important;
+}
+.question_first_bgr, .question_second_bgr{
+      padding: 40px 0;
+    margin: 0 30px;
+}
+body .question_first_bgr h2, body .question_second_bgr h2{
+    margin-bottom: 20px !important;
+}
+.question_first_wrap .new_accardion_link, .question_second_wrap .new_accardion_link{
+  padding: 16px;
+}
+.question_first_wrap .new_accardion_link p, .question_second_wrap .new_accardion_link p{
+  font-weight: 700 !important;
+    font-size: 16px !important;
+    line-height: 22px !important;
+}
+.question_first_wrap .new_accardion_lists, .question_second_wrap .new_accardion_lists{
+  padding: 0 16px 16px;
+}
+.question_first_wrap .new_accardion_lists > div, .question_second_wrap .new_accardion_lists > div{
+  padding-top: 16px;
+}
+.question_first_wrap button.new_enroll_now_btn, .question_second_wrap button.new_enroll_now_btn{
+  margin: 20px auto 0 auto !important;
+    max-width: 100%;
+}
+body.override .site-inner {
+    padding-bottom: 0;
+}
+.first_visit_block button.watch_free_workshop_btn {
+    margin: 16px auto 0 !important;
+    max-width: 100%;
+}
+.first_visit_block .descr_box{
+  flex-direction: column-reverse;
+}
+.first_visit_block .descr_box .img_wrap{
+  margin-left: 0;
+  max-width: 100%;
+}
+.first_visit_block .descr_box .img_wrap > img{
+      margin: 0;
+    max-width: 100%;
+}
+.special_gift_bgr {
+    background: #FFFFFF;
+}
+.special_gift_box{
+  padding: 28px 0 0;
+  margin: 0 30px;
+}
+body .want-to-obey .special_gift_box h2{
+  margin-bottom: 8px !important;
+}
+body .special_gift_box p {
+    font-size: 16px !important;
+    line-height: 26px !important;
+}
+body .special_gift_box p + p{
+  margin: 8px auto 0 !important;
+      max-width: 270px;
+      display: block;
+}
+body .special_gift_box p > svg {
+    margin: 0 4px -3px 4px;
+}
+.count_sec .white-block.fst_red_spc{
+padding-top: 28px !important;
+}
+.count_sec .white-block.fst_red_spc h2{
+  display: none !important;
+}
+.count_sec .white-block.fst_red_spc h2.title_mob_var{
+  display: block !important;
+      margin: 16px 0;
+}
+.after-refresh > .reviews_bgr{
+          padding: 0 30px 10px;
+      margin: 0;
+}.
+#below_video_text{
+
+}
+#below_video_text .enroll_btn_txt p{
+    margin: -15px 0 0 !important;
+    font-size: 12px !important;
+    line-height: 26px !important;
+}
+#below_video_text .top_video_guarantee {
+    margin-left: 16px;
+}
+#below_video_text .top_video_guarantee img{
+  max-width: 75px !important;
+}
+#below_video_text .button-header a{
+      max-width: 224px;
+    margin: 0 !important;
+    font-size: 16px !important;
+}
+#below_video_text .button-header.enroll_now_main{
+      margin-top: 8px;
+}
+
 }
 
     </style>
@@ -1352,6 +1522,7 @@ body .question_second_wrap h2 {
         <div class="first_visit_block">
       <div class="descr_box">
         <div>
+          <h2 class="title_mob_var">There is a reason why service dogs always form extraordinarily strong bonds with their human partners...</h2>
           <p>
             <b>YouTube and $9.99 dog training books</b> will make you think that verbal commands such as "sit", "stay", etc. are all that you need.... but if you follow that advice you
             will be making one of the <b>BIGGEST mistakes</b> in dog training.
@@ -1474,7 +1645,10 @@ body .question_second_wrap h2 {
 
     if (document.querySelector(".learn_more_scroll_btn")) {
       document.querySelector(".learn_more_scroll_btn").addEventListener("click", () => {
-        const headerOffset = 80
+        let headerOffset = 80
+        if (window.innerWidth <= 768) {
+          headerOffset = 150
+        }
         const elementPosition = document.querySelector(".ten_week_bgr").getBoundingClientRect().top
         const offsetPosition = elementPosition + window.pageYOffset - headerOffset
         window.scrollTo({
@@ -1619,6 +1793,9 @@ body .question_second_wrap h2 {
     // accardion ten_week_bgr
 
     let headerOffset = 10
+    if (window.innerWidth <= 768) {
+      headerOffset = 20
+    }
     $('.new_accardion_link[data-selector="tenWeek"]').click(function (e) {
       console.log(e.currentTarget)
       $(this).toggleClass("active")
@@ -1738,6 +1915,9 @@ body .question_second_wrap h2 {
 
     if (localStorage.getItem("notFirstTime")) {
       headerOffset = 80
+      if (window.innerWidth <= 768) {
+        headerOffset = 150
+      }
       if (document.querySelectorAll(".want-to-obey .count_sec")[0]) {
         document.querySelectorAll(".want-to-obey .count_sec")[0].style.display = "none"
       }
@@ -1752,6 +1932,9 @@ body .question_second_wrap h2 {
       }
       document.querySelector(".ten_week_bgr .reviews_bgr").style.display = "none"
       document.querySelector(".learn_more_bgr").style.display = "none"
+      if (window.innerWidth <= 768) {
+        document.querySelector("body #myCarousel .item_mc.show_mobile").style.height = "370px"
+      }
     }
 
     // timer
@@ -1779,6 +1962,9 @@ body .question_second_wrap h2 {
               if (timer < 0) {
                 if (!localStorage.getItem("notTime")) {
                   localStorage.setItem("notTime", true)
+                }
+                if (window.innerWidth <= 768) {
+                  document.querySelector("body #myCarousel .item_mc.show_mobile").style.height = "370px"
                 }
                 document.querySelectorAll(".want-to-obey .count_sec")[0].style.display = "none"
                 document.querySelector(".after-refresh").style.display = "block"
