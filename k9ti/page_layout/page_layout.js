@@ -131,16 +131,9 @@ let newPage = setInterval(() => {
 .image_right.disc-img1 > img {
   border-radius: 16px;
   padding: 0;
-  width: 100%;
-  height: 100%;
+  width: 100% !important;
+  height: 100% !important;
 }
-/*
-      .after-refresh .count_sec:nth-of-type(25) .flowplayer_video_container {
-        border-radius: 16px;
-            max-width: 318px;
-                padding-top: 46.25%;
-      }
-      */
 .dividing_line {
   border: unset !important;
 }
@@ -463,7 +456,12 @@ p.dash_logo_text > img {
 .after-refresh .count_sec:nth-of-type(14) .all_content.trtn_red_spc > .row.row1030.bottom_space_add,
 .after-refresh .count_sec:nth-of-type(12) .all_content.elv_red_spc > .row.row1030.bottom_space_add,
 .after-refresh .count_sec:nth-of-type(11) .white-block.bottom_space_less > .row.row1030,
-.after-refresh .count_sec:nth-of-type(9) .white-block.nine_red_spc > .row.row1030 {
+.after-refresh .count_sec:nth-of-type(9) .white-block.nine_red_spc > .row.row1030,
+.after-refresh .count_sec:nth-of-type(10) .all_content.ten_red_spc > .row.row1030,
+.after-refresh .count_sec:nth-of-type(13) .white-block.twlv_red_spc > .row.row1030,
+.after-refresh .count_sec:nth-of-type(15) .white-block.bottom_space_less > .row.row1030,
+.after-refresh .count_sec:nth-of-type(2) .white-block.trd_red_spc > .row.row1030,
+.after-refresh .count_sec:nth-of-type(24) .all_content.eighttn_red_spc > .row.row1030   {
   display: none;
 }
 .after-refresh .count_sec:nth-of-type(21) h2 {
@@ -492,6 +490,24 @@ p.dash_logo_text > img {
 .after-refresh .count_sec:nth-of-type(25) h2 {
   margin-bottom: 2px;
 }
+@media (min-width: 769px){
+  .after-refresh .count_sec:nth-of-type(25) .flowplayer_video_container.interview_video,
+.after-refresh .count_sec:nth-of-type(8) .flowplayer_video_container.interview_video_in{
+  padding-top: 51.25%;
+  max-width: 318px;
+    margin: 0 !important;
+}
+.after-refresh .count_sec:nth-of-type(25) .row.row1030 .content > .col-md-6:nth-child(1),
+.after-refresh .count_sec:nth-of-type(8) .row.row1030 .content > .col-md-6:nth-child(1){
+  width: 36%;
+    padding-right: 0;
+}
+.after-refresh .count_sec:nth-of-type(25) .row.row1030 .content > .col-md-6.interview_last_video,
+.after-refresh .count_sec:nth-of-type(8) .row.row1030 .content > .col-md-6:nth-child(2){
+  width: 64%;
+    padding-right: 0;
+}
+    }
 body .after-refresh .count_sec:nth-of-type(25) .enroll_now_main {
   padding: 0;
 }
@@ -1067,7 +1083,12 @@ body .question_second_wrap h2 {
 .new_block_save,
 .new_block_come_to_you,
 .new_block_leash_pulling,
-.new_bloc_two_commands{
+.new_bloc_two_commands,
+.new_block_pay_attention,
+.new_block_impulse_control,
+.new_block_stop_barking,
+.new_block_sit_stay,
+.new_block_without_treats{
   display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -1077,21 +1098,30 @@ body .question_second_wrap h2 {
   flex-direction: row-reverse;
   margin-bottom: 40px;
 }
-.new_bloc_two_commands{
+.new_bloc_two_commands,
+.new_block_stop_barking,
+.new_block_sit_stay,
+.new_block_without_treats{
   flex-direction: row-reverse;
 }
-.new_block_leash_pulling{
+.new_block_leash_pulling,
+.new_block_impulse_control{
   flex-direction: row-reverse;
   margin-bottom: 32px;
 }
 .new_block_transform .text_descr_var,
 .new_block_save .text_descr_var,
-.new_block_come_to_you .text_descr_var{
+.new_block_come_to_you .text_descr_var,
+.new_block_pay_attention .text_descr_var{
   margin-right: 25px;
 }
 .new_block_jump .text_descr_var,
 .new_block_leash_pulling .text_descr_var,
-.new_bloc_two_commands .text_descr_var{
+.new_bloc_two_commands .text_descr_var,
+.new_block_impulse_control .text_descr_var,
+.new_block_stop_barking .text_descr_var,
+.new_block_sit_stay .text_descr_var,
+.new_block_without_treats .all_text_var{
   margin-left: 25px;
 }
 .new_block_transform .text_descr_var p,
@@ -1099,7 +1129,12 @@ body .question_second_wrap h2 {
 .new_block_save .text_descr_var p,
 .new_block_come_to_you .text_descr_var p,
 .new_block_leash_pulling .text_descr_var p,
-.new_bloc_two_commands .text_descr_var p{
+.new_bloc_two_commands .text_descr_var p,
+.new_block_pay_attention .text_descr_var p,
+.new_block_impulse_control .text_descr_var p,
+.new_block_stop_barking .text_descr_var p,
+.new_block_sit_stay .text_descr_var p,
+.new_block_without_treats .all_text_var p{
   margin: 0 !important;
 }
 .new_block_transform .text_descr_var p:first-child,
@@ -1107,26 +1142,113 @@ body .question_second_wrap h2 {
 .new_block_save .text_descr_var p:first-child,
 .new_block_come_to_you .text_descr_var p:first-child,
 .new_block_leash_pulling .text_descr_var p:first-child,
-.new_bloc_two_commands .text_descr_var p:first-child{
+.new_bloc_two_commands .text_descr_var p:first-child,
+.new_block_pay_attention .text_descr_var p:first-child,
+.new_block_impulse_control .text_descr_var p:first-child,
+.new_block_stop_barking .text_descr_var p:first-child,
+.new_block_sit_stay .text_descr_var p:first-child,
+.after-refresh > section.count_sec:nth-child(27) .new_block_without_treats .all_text_var p:first-child{
   margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
 .new_block_transform .text_descr_var p + p,
 .new_block_jump .text_descr_var p + p,
 .new_block_save .text_descr_var p + p,
 .new_block_come_to_you .text_descr_var p +p,
 .new_block_leash_pulling .text_descr_var p +p,
-.new_bloc_two_commands .text_descr_var p +p{
+.new_bloc_two_commands .text_descr_var p +p,
+.new_block_pay_attention .text_descr_var p + p,
+.new_block_impulse_control .text_descr_var p + p,
+.new_block_stop_barking .text_descr_var p + p{
   margin-top: 12px !important;
+}
+.new_block_sit_stay .text_descr_var p +p,
+.after-refresh > section.count_sec:nth-child(27) .new_block_without_treats .all_text_var p + p{
+  margin-top: 16px !important;
+  margin-bottom: 0 !important;
 }
 .new_block_transform .img_wrap,
 .new_block_jump .img_wrap,
 .new_block_save .img_wrap,
 .new_block_come_to_you .img_wrap,
 .new_block_leash_pulling .img_wrap,
-.new_bloc_two_commands .img_wrap{
+.new_bloc_two_commands .img_wrap,
+.new_block_pay_attention .img_wrap,
+.new_block_impulse_control .img_wrap,
+.new_block_stop_barking .img_wrap,
+.new_block_sit_stay .img_wrap,
+.new_block_without_treats .all_img_var .img_wrap{
   flex: 1 0 318px;
 }
+.new_block_without_treats .all_img_var .img_wrap + .img_wrap{
+margin-top: 20px;
+}
+.new_block_without_treats .text_descr_var.paw_wrap_var{
+margin: 15px 0;
+}
+.paw_wrap_var p{
+  position: relative;
+  padding-left: 38px;
+}
+.paw_wrap_var p::before{
+  content: "";
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  top: 0;
+  left: 0;
+  background: url(https://conversionratestore.github.io/projects/knineti/img/footprint.svg) no-repeat center center;
+}
+p.italic_text_var{
+  position: relative;
+  font-style: italic;
+  padding: 0 22px;
+}
+p.italic_text_var span{
+  display: block;
+  margin-top: 16px;
+}
+p.italic_text_var::before,
+p.italic_text_var::after{
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 0;
+  left: 0;
+  background: url(https://conversionratestore.github.io/projects/knineti/img/quote-left.svg) no-repeat center center;
+}
+p.italic_text_var::after{
+  background: url(https://conversionratestore.github.io/projects/knineti/img/quote-right.svg) no-repeat center center;
+  left: unset;
+  right: 0;
+  top: unset;
+    bottom: 0;
+}
+.about_person_var > span:first-child{
+  font-weight: 700;
+  display: block;
+}
+.after-refresh .count_sec:nth-of-type(1) .content .col-md-8 > p:nth-child(5){
+  margin-bottom: 0 !important;
+}
 @media (max-width: 768px) {
+  .after-refresh .count_sec:nth-of-type(20) .all_content.fiftn_red_spc > .row.row1030.bottom_space_add,
+.after-refresh .count_sec:nth-of-type(19) .all_content > .row.row1030,
+.after-refresh .count_sec:nth-of-type(14) .all_content.trtn_red_spc > .row.row1030.bottom_space_add,
+.after-refresh .count_sec:nth-of-type(12) .all_content.elv_red_spc > .row.row1030.bottom_space_add,
+.after-refresh .count_sec:nth-of-type(11) .white-block.bottom_space_less > .row.row1030,
+.after-refresh .count_sec:nth-of-type(9) .white-block.nine_red_spc > .row.row1030,
+.after-refresh .count_sec:nth-of-type(10) .all_content.ten_red_spc > .row.row1030,
+.after-refresh .count_sec:nth-of-type(13) .white-block.twlv_red_spc > .row.row1030,
+.after-refresh .count_sec:nth-of-type(15) .white-block.bottom_space_less > .row.row1030,
+.after-refresh .count_sec:nth-of-type(2) .white-block.trd_red_spc > .row.row1030,
+.after-refresh .count_sec:nth-of-type(24) .all_content.eighttn_red_spc > .row.row1030   {
+  display: block;
+}
+.new_block_transform, .new_block_jump, .new_block_save, .new_block_come_to_you, .new_block_leash_pulling, .new_bloc_two_commands, .new_block_pay_attention, .new_block_impulse_control, .new_block_stop_barking, .new_block_sit_stay, .new_block_without_treats{
+  display: none;
+}
   #myHeaderr .box_btn .button_space{
     margin: 0 !important;
   }
@@ -1635,7 +1757,7 @@ margin-bottom: 0;
   margin-bottom: 28px !important;
 }
 .after-refresh .count_sec:nth-of-type(22) img{
-  max-width: 188px !important;
+  max-width: 193px !important;
 }
 .after-refresh .count_sec:nth-of-type(23) h2 {
     margin-bottom: 8px;
@@ -1786,9 +1908,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
       ],
       12: [
         `12. What if I have already taught my dog using verbal commands like sit, stay, etc.?`,
-        `<p></p>
-        <p></p>
-        <p></p>`,
+        `<p>Don’t worry - your dog can easily unlearn their previous training and master the new training that you’ll learn in the masterclass.</p>`,
       ],
       13: [
         `13. My dog has a specific behavioral problem. Will the masterclass help me fix this problem?`,
@@ -1803,11 +1923,11 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     let arrInfo = {
       1: [
         `<span>Weeks 1 and 2</span><span>How to get your dog's undivided attention</span>`,
-        `<p>During week 1, you will establish the foundation for training your dog to become as calm as a service dog. You will learn the 6-step process that service dog trainers follow and how to slowly wean your dog away from treats. The focus will be on teaching your dog the two fundamental commands - WATCH and TOUCH, which are crucial for building trust and strengthening the human-animal bond. In week 2, you will continue to solidify the TOUCH and WATCH commands, but in a different environment - outside your home. This will help you and your dog deal with a whole different set of issues, especially in distracting areas such as dog parks.</p>`,
+        `<p>Discover the 6-step process service dog trainers use to get dogs to become calm and obedient, as well as the WATCH and TOUCH commands to grab your dog’s attention without relying only on treats.</p>`,
       ],
       2: [
         `<span>Week 3:</span><span>How to get your dog to sit still in any situation</span>`,
-        `<p>Even if your dog already knows how to sit, learn the special way service dog trainers train dogs to SIT which leads to far better and longer-lasting results.</p>`,
+        `<p>Even if your dog already knows how to sit, learn the special way service dog trainers train dogs to SIT, which leads to far better and longer-lasting results.</p>`,
       ],
       3: [
         `<span>Week 4:</span><span>How to stop your dog from pulling on the leash</span>`,
@@ -1818,12 +1938,12 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         `<p>Did you know that a wagging tail doesn't always mean your dog is happy? Avoid common mistakes likes these and learn how to read your dog's body language so you can train them more effectively at times when they are most receptive to your lessons.</p>`,
       ],
       5: [
-        `<span>Week 6:</span><span>How to stop your dog from barking and jumping</span>`,
-        `<p>Discover how to stop your dog from barking and jumping at your guests by giving them a job to do (like going to bed). </p>`,
+        `<span>Week 6:</span><span>How to stop your dog from barking at the door, being aggressive, and destroying your home</span>`,
+        `<p>Learn how to give your dog a job to do (like going to their bed) so they stop barking when the doorbell rings or someone visits. Also, find out how to prevent destructive chewing and 'resource guarding', which is when your dog gets aggressive when someone tries to take their toys or food away.</p>`,
       ],
       6: [
-        `<span>Week 7:</span><span>How to stop your dog from being aggressive and destroying your home </span>`,
-        `<p>Learn how to stop destructive chewing and 'resource guarding' where a dog becomes aggressive when someone takes their toys or food.</p>`,
+        `<span>Week 7:</span><span>How to train your dog to have good manners: calm at mealtimes, polite greetings for guests, and no more jumping</span>`,
+        `<p>Learn how to stop your dog from jumping on you when you come home, during mealtimes, etc.</p><p>Also learn how to teach your dog to calmly greet your guests instead of jumping on them and avoid dominant – sometimes dangerous – behavior in larger adult dogs.</p>`,
       ],
       7: [
         `<span>Week 8:</span><span>How to get your dog to come to you whenever you call them</span>`,
@@ -2084,6 +2204,119 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
   </div>
     `
 
+    let newBlockPayAttention = /*html */`
+    <div class="new_block_pay_attention">
+    <div class="text_descr_var">
+      <p>It’s one thing to train your dog to focus on you inside a quiet room in your house.</p>
+      <p>It’s quite another to train them to maintain that focus when there are a huge number of distractions.</p>
+      <p>Service dog trainers use something called <b>“setups” to train dogs to tune out all distractions</b>, and that’s what
+        you’ll do next during the masterclass.</p>
+      <p class="italic_text_var">I've been training Oscar for the last couple of weeks now using what I learned from
+        your program about how to
+        get him to remain calm when there are distractions. The change in him is almost unbelievable! When I take him
+        out for a walk, he now ignores every other dog that we meet and maintains constant eye contact with me. And this
+        was a dog who (before your program) used to get over-excited and bark like crazy at the sight of each and every
+        animal!</p>
+      <p class="about_person_var"><span>Barbara Wilson</span><span>Oakland, California</span></p>
+    </div>
+    <div class="img_wrap">
+      <img src="https://conversionratestore.github.io/projects/knineti/img/var4.png" alt="person and dog">
+    </div>
+  </div>
+    `
+
+    let newBlockStopBarking = /*html */`
+    <div class="new_block_stop_barking">
+    <div class="text_descr_var">
+      <p>When you come across other dogs and people in public, and you want your dog to interact with them, you’ll first
+        use the WATCH and TOUCH commands to make sure that your dog is calm and focused on you.</p>
+      <p>Then, you’ll teach your dog <b>a new command called “Say Hello”</b> which tells your dog that they now have
+        permission
+        to calmly greet the other dog or person.</p>
+      <p class="italic_text_var">When you come across other dogs and people in public, and you want your dog to interact with them, you’ll first use the WATCH and TOUCH commands to make sure that your dog is calm and focused on you.
+      <span>Then, you’ll teach your dog a new command called “Say Hello” which tells your dog that they now have permission to calmly greet the other dog or person.</span>
+      </p>
+      <p class="about_person_var"><span>Jessica Kendricks</span><span>Buffalo, New York</span></p>
+    </div>
+    <div class="img_wrap">
+      <img src="https://conversionratestore.github.io/projects/knineti/img/var7.png" alt="dogs">
+    </div>
+  </div>
+    `
+
+    let newBlockImpulseControl = /*html */`
+    <div class="new_block_impulse_control">
+    <div class="text_descr_var">
+      <p>If you tell a service dog to sit in a particular location, they will automatically stay in that position
+        indefinitely until you give them permission to move.</p>
+      <p>You can leave them for hours at a time in that location, and they won’t move an inch.</p>
+      <p>That level of impulse control is what separates service dogs from “normal” dogs, and so you will round off your
+        dog’s training by teaching them the same <b>advanced impulse control techniques</b> that are usually only known
+        by
+        service dog trainers.</p>
+      <p>Once again, these techniques are not difficult to teach - any regular dog owner can use these techniques once
+        they know how.</p>
+      <p class="italic_text_var">Wow - having had dogs throughout my life, I thought I knew everything that there was to
+        know about dog training. Clearly, I was wrong! 🙂 I had no idea that normal dogs could have the kind of impulse
+        control that I've only seen service dogs have. Your masterclass has been a complete eye-opener for me. Buddy is
+        so much better behaved than all my previous dogs had been.</p>
+      <p class="about_person_var"><span>Jennifer Aumand</span><span>Boca Raton, Florida</span></p>
+    </div>
+    <div class="img_wrap">
+      <img src="https://conversionratestore.github.io/projects/knineti/img/var9.png" alt="dog">
+    </div>
+  </div>
+    `
+    let newBlockSitStay = /*html */`
+    <div class="new_block_sit_stay">
+    <div class="text_descr_var paw_wrap_var">
+      <p>They use commands based on body language, and not verbal commands.</p>
+      <p>They use a principle from behavioral psychology called Operant Conditioning (don’t worry - it’s incredibly easy
+        to learn this and we’ll show you how).</p>
+      <p>And, they use a specific 6-step process that’s usually only known to people in the service dog training
+        industry.</p>
+    </div>
+    <div class="img_wrap">
+      <img src="https://conversionratestore.github.io/projects/knineti/img/var2.png" alt="dogs and girl">
+    </div>
+  </div>
+    `
+
+    let newBlockWithoutTreats = /*html */`
+    <div class="new_block_without_treats">
+    <div class="all_text_var">
+      <div class="text_descr_var">
+        <p>Let’s face it - any Tom, Dick or Mary with some bacon in their hands can train a dog to sit in less than 3
+          minutes. 🙂 No biggie.</p>
+        <p>There are 1000s of free Youtube videos which will show you how to do just that.</p>
+        <p>The real challenge though is to get your dog to:</p>
+      </div>
+      <div class="text_descr_var paw_wrap_var">
+        <p>maintain eye contact with you and not blink an eyelid when someone else’s dog starts barking or lunging
+          towards your dog during one of your walks, or</p>
+        <p>sit calmly and remain sitting wherever you’ve asked them to sit in a crowded farmer’s market with the most
+          yummy and smelly meals being prepared all around them, or</p>
+        <p>remain calmly in their bed even though a bunch of screaming kids may be running around your house near their
+          bed.</p>
+      </div>
+      <div class="text_descr_var">
+        <p>THAT level of calmness, obedience and impulse control - something that only service dogs typically exhibit -
+          is what this masterclass is designed to help you achieve with your dog.</p>
+        <p>And we will show you how to wean your dog away from treats so that they continue to remain calm and listen to
+          you without any food bribes.</p>
+      </div>
+    </div>
+    <div class="all_img_var">
+      <div class="img_wrap">
+        <img src="https://conversionratestore.github.io/projects/knineti/img/var12.png" alt="dogs">
+      </div>
+      <div class="img_wrap">
+        <img src="https://conversionratestore.github.io/projects/knineti/img/var13.png" alt="dogs">
+      </div>
+    </div>
+  </div>
+    `
+
     document.head.insertAdjacentHTML("beforeend", styleFreeWorkShop)
 
     //is the first time
@@ -2323,7 +2556,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     document.querySelectorAll(".after-refresh section.count_sec")[15].querySelector("h2").textContent = `Say goodbye to all naughty behavior problems`
     document.querySelectorAll(".after-refresh section.count_sec")[16].querySelector("h2").textContent = `Enroll now to get instant access to the online masterclass`
     document.querySelectorAll(".after-refresh section.count_sec")[17].querySelector("h2").textContent = `Learn from the comfort of your home at your own pace`
-    document.querySelectorAll(".after-refresh section.count_sec")[18].querySelector("h2").textContent = `Jump on a live call with us to get answers to your questions`
+    document.querySelectorAll(".after-refresh section.count_sec")[18].querySelector("h2").textContent = `10 weeks of personalized guidance & coaching`
     document.querySelectorAll(".after-refresh section.count_sec")[19].querySelector("h2").textContent = `Transform your dog in as little as 10 to 15 minutes per day`
     document.querySelectorAll(".after-refresh section.count_sec")[20].querySelector("h2").textContent = `Save up to $3,703 on dog training fees`
     document.querySelectorAll(".after-refresh section.count_sec")[21].querySelector("h2").textContent = `Help us save rescue dogs’ lives`
@@ -2333,6 +2566,21 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
 
 
     // render new block
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(24) .new_block_without_treats")) {
+      document.querySelector('.after-refresh .count_sec:nth-of-type(24) h2').insertAdjacentHTML('afterend', newBlockWithoutTreats)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(2) .new_block_sit_stay")) {
+      document.querySelector('.after-refresh .count_sec:nth-of-type(2) h2').insertAdjacentHTML('afterend', newBlockSitStay)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(15) .new_block_impulse_control")) {
+      document.querySelector('.after-refresh .count_sec:nth-of-type(15) h2').insertAdjacentHTML('afterend', newBlockImpulseControl)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(15) .new_block_stop_barking")) {
+      document.querySelector('.after-refresh .count_sec:nth-of-type(13) h2').insertAdjacentHTML('afterend', newBlockStopBarking)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(10) .new_block_pay_attention")) {
+      document.querySelector('.after-refresh .count_sec:nth-of-type(10) h2').insertAdjacentHTML('afterend', newBlockPayAttention)
+    }
     if (!document.querySelector(".after-refresh .count_sec:nth-of-type(9) .new_bloc_two_commands")) {
       document.querySelector('.after-refresh .count_sec:nth-of-type(9) h2').insertAdjacentHTML('afterend', newBlockTwoCommands)
     }
@@ -2351,8 +2599,17 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
     if (!document.querySelector(".after-refresh .count_sec:nth-of-type(20) .new_block_transform")) {
       document.querySelector('.after-refresh .count_sec:nth-of-type(20) h2').insertAdjacentHTML('afterend', newBlockTransform)
     }
-    // accardion ten_week_bgr
 
+    if (window.innerWidth <= 768) {
+      document.querySelector('.after-refresh .count_sec:nth-of-type(1) img').src = 'https://conversionratestore.github.io/projects/knineti/img/var1_mob.png'
+      document.querySelector('.after-refresh .count_sec:nth-of-type(9) .image_left > img').src = 'https://conversionratestore.github.io/projects/knineti/img/var2_mob.png'
+      document.querySelector('.after-refresh .count_sec:nth-of-type(12) .image_left > img').src = 'https://conversionratestore.github.io/projects/knineti/img/var3_mob.png'
+      document.querySelector('.after-refresh .count_sec:nth-of-type(20) .image_left > img').src = 'https://conversionratestore.github.io/projects/knineti/img/var4_mob.png'
+      document.querySelector('.after-refresh .count_sec:nth-of-type(24) .disc-img1 > img').src = 'https://conversionratestore.github.io/projects/knineti/img/var5_mob.png'
+      document.querySelector('.after-refresh .count_sec:nth-of-type(24) .card.image1 > img').src = 'https://conversionratestore.github.io/projects/knineti/img/var6_mob.png'
+      document.querySelector(".after-refresh .count_sec:nth-of-type(22) img").src = "https://conversionratestore.github.io/projects/knineti/img/ASPCA_new_mob.png"
+    }
+    // accardion ten_week_bgr
     let headerOffset = 10
     if (window.innerWidth <= 768) {
       headerOffset = 20
@@ -2367,7 +2624,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         $('.new_accardion_link[data-selector="tenWeek"]').not(this).removeClass("active")
         $('.new_accardion_link[data-selector="tenWeek"]').not(this).closest("li").removeClass("active")
       }
-      // const headerOffset = 100
+
       const elementPosition = this.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset
       window.scrollTo({
@@ -2387,7 +2644,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         $('.new_accardion_link[data-selector="questionFirst"]').not(this).removeClass("active")
         $('.new_accardion_link[data-selector="questionFirst"]').not(this).closest("li").removeClass("active")
       }
-      // const headerOffset = 100
+
       const elementPosition = this.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset
       window.scrollTo({
@@ -2407,7 +2664,7 @@ body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
         $('.new_accardion_link[data-selector="questionSecond"]').not(this).removeClass("active")
         $('.new_accardion_link[data-selector="questionSecond"]').not(this).closest("li").removeClass("active")
       }
-      // const headerOffset = 100
+
       const elementPosition = this.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset
       window.scrollTo({
