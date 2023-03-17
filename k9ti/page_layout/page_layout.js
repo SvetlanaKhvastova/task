@@ -161,7 +161,13 @@ let newPage = setInterval(() => {
   margin-bottom: 2px;
 }
 .after-refresh .count_sec:nth-of-type(2) .white-block {
-  padding-bottom: 20px;
+  padding-bottom: 60px;
+}
+.after-refresh .count_sec:nth-of-type(2) .white-block ul{
+  padding: 0;
+}
+.after-refresh .count_sec:nth-of-type(2) .white-block ul li:last-child p{
+  margin-bottom: 0;
 }
 .after-refresh .count_sec:nth-of-type(3) h2 {
   max-width: 793px;
@@ -195,6 +201,9 @@ let newPage = setInterval(() => {
 }
 .after-refresh .count_sec:nth-of-type(6) h2 {
   max-width: 727px;
+}
+.after-refresh .count_sec:nth-of-type(6) .flowplayer_video_container{
+  border-radius: 16px;
 }
 .after-refresh .count_sec .pattern-block {
   padding: 60px 0;
@@ -449,6 +458,14 @@ p.dash_logo_text > img {
 .after-refresh .count_sec:nth-of-type(20) h2 {
   margin-bottom: 2px;
 }
+.after-refresh .count_sec:nth-of-type(20) .all_content.fiftn_red_spc > .row.row1030.bottom_space_add,
+.after-refresh .count_sec:nth-of-type(19) .all_content > .row.row1030,
+.after-refresh .count_sec:nth-of-type(14) .all_content.trtn_red_spc > .row.row1030.bottom_space_add,
+.after-refresh .count_sec:nth-of-type(12) .all_content.elv_red_spc > .row.row1030.bottom_space_add,
+.after-refresh .count_sec:nth-of-type(11) .white-block.bottom_space_less > .row.row1030,
+.after-refresh .count_sec:nth-of-type(9) .white-block.nine_red_spc > .row.row1030 {
+  display: none;
+}
 .after-refresh .count_sec:nth-of-type(21) h2 {
   margin-bottom: 2px;
 }
@@ -519,7 +536,7 @@ button.new_enroll_now_btn,
   width: 100%;
   height: 62px;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 16px !important;
   line-height: 22px;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -1044,6 +1061,71 @@ body .question_second_wrap h2 {
 .title_mob_var{
   display: none;
 }
+/* */
+.new_block_transform,
+.new_block_jump,
+.new_block_save,
+.new_block_come_to_you,
+.new_block_leash_pulling,
+.new_bloc_two_commands{
+  display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 60px;
+}
+.new_block_jump{
+  flex-direction: row-reverse;
+  margin-bottom: 40px;
+}
+.new_bloc_two_commands{
+  flex-direction: row-reverse;
+}
+.new_block_leash_pulling{
+  flex-direction: row-reverse;
+  margin-bottom: 32px;
+}
+.new_block_transform .text_descr_var,
+.new_block_save .text_descr_var,
+.new_block_come_to_you .text_descr_var{
+  margin-right: 25px;
+}
+.new_block_jump .text_descr_var,
+.new_block_leash_pulling .text_descr_var,
+.new_bloc_two_commands .text_descr_var{
+  margin-left: 25px;
+}
+.new_block_transform .text_descr_var p,
+.new_block_jump .text_descr_var p,
+.new_block_save .text_descr_var p,
+.new_block_come_to_you .text_descr_var p,
+.new_block_leash_pulling .text_descr_var p,
+.new_bloc_two_commands .text_descr_var p{
+  margin: 0 !important;
+}
+.new_block_transform .text_descr_var p:first-child,
+.new_block_jump .text_descr_var p:first-child,
+.new_block_save .text_descr_var p:first-child,
+.new_block_come_to_you .text_descr_var p:first-child,
+.new_block_leash_pulling .text_descr_var p:first-child,
+.new_bloc_two_commands .text_descr_var p:first-child{
+  margin-top: 0 !important;
+}
+.new_block_transform .text_descr_var p + p,
+.new_block_jump .text_descr_var p + p,
+.new_block_save .text_descr_var p + p,
+.new_block_come_to_you .text_descr_var p +p,
+.new_block_leash_pulling .text_descr_var p +p,
+.new_bloc_two_commands .text_descr_var p +p{
+  margin-top: 12px !important;
+}
+.new_block_transform .img_wrap,
+.new_block_jump .img_wrap,
+.new_block_save .img_wrap,
+.new_block_come_to_you .img_wrap,
+.new_block_leash_pulling .img_wrap,
+.new_bloc_two_commands .img_wrap{
+  flex: 1 0 318px;
+}
 @media (max-width: 768px) {
   #myHeaderr .box_btn .button_space{
     margin: 0 !important;
@@ -1075,6 +1157,7 @@ body .question_second_wrap h2 {
   .content .page h2{
     font-size: 20px !important;
     line-height: 27px !important;
+    margin-bottom: 4px;
   }
   .top_space_add{
     padding-top: 20px;
@@ -1108,6 +1191,11 @@ body .question_second_wrap h2 {
     padding: 12px 16px;
     margin-bottom: 16px;
     border-radius: 0;
+  }
+  .ten_week_bgr .ten_week_box h2 span{
+    max-width: 208px;
+    display: block;
+    margin: 0 auto;
   }
   .all_inform_wrap{
     padding: 0 30px;
@@ -1275,6 +1363,7 @@ padding-top: 28px !important;
 .count_sec .white-block.fst_red_spc h2.title_mob_var{
   display: block !important;
       margin: 16px 0;
+      font-size: 19px !important;
 }
 .after-refresh > .reviews_bgr{
           padding: 0 30px 10px;
@@ -1302,7 +1391,339 @@ padding-top: 28px !important;
 #below_video_text .button-header.enroll_now_main{
       margin-top: 8px;
 }
-
+.after-refresh .count_sec .white-block{
+  padding: 40px 0 !important;
+}
+.after-refresh .count_sec:nth-of-type(3) .testi_img img{
+  max-width: 200px !important;
+}
+.after-refresh .count_sec:nth-of-type(5) .testi_img.lead_img + p > b {
+    font-size: 16px;
+    line-height: 22px;
+}
+.after-refresh .count_sec:nth-of-type(5) .fifth_red_spc{
+  padding: 0 0 24px !important;
+}
+.top_space_add {
+    padding-top: 40px !important;
+}
+.after-refresh .count_sec:nth-of-type(6) h2{
+  margin-bottom: 0;
+    padding: 0;
+}
+.after-refresh .count_sec:nth-of-type(6) .pattern-block p{
+  margin-bottom: 0;
+}
+.after-refresh .count_sec:nth-of-type(6) .pattern-block p:first-child{
+  font-size: 16px !important;
+    line-height: 22px !important;
+    margin-bottom: 8px;
+    margin-top: 28px !important;
+}
+.after-refresh .count_sec:nth-of-type(6) .fst_v.gray_color{
+  padding: 12px 0 !important;
+}
+.after-refresh .count_sec:nth-of-type(6) .flowplayer_video_container{
+  border-radius: 16px;
+  padding-top: 56.25% !important;
+}
+.after-refresh .count_sec:nth-of-type(6) .Hazel{
+  margin-bottom: 0 !important;
+}
+button.new_enroll_now_btn, .white-block a.button-blue-large, .pattern-block a.button-blue-large{
+  max-width: 100%;
+}
+.after-refresh .count_sec:nth-of-type(6) .enroll_now_main {
+    margin: 28px 0 0;
+}
+.after-refresh .count_sec:nth-of-type(6) .pattern-block .row1030 .col-md-12 > p:not(:last-of-type, .sub_head_examples), .after-refresh .count_sec:nth-of-type(6) .pattern-block .row1030 .col-md-12 > em > p{
+  padding: 0;
+}
+.after-refresh .count_sec:nth-of-type(6) .pattern-block .row1030 .col-md-12 > p:not(.sub_head_examples):nth-child(4) span:nth-child(1), .after-refresh .count_sec:nth-of-type(8) .quick_transcript_one p:nth-child(2) span:nth-child(1), .after-refresh .count_sec:nth-of-type(10) .content > .col-md-8 p:nth-child(5) span:nth-child(1), .after-refresh .count_sec:nth-of-type(13) .content > .col-md-8 p:nth-child(4) span:nth-child(1), .after-refresh .count_sec:nth-of-type(15) .content > .col-md-8 p:nth-child(6) span:nth-child(1), .after-refresh .count_sec:nth-of-type(16) .row1030 > .col-md-12:not(.aftermasterclass) > p:nth-child(4) span:nth-child(1), .after-refresh .count_sec:nth-of-type(23) .content > .col-md-6.col-sm-6:not(.dividing_line) > p:nth-child(4) span:nth-child(1), .after-refresh .count_sec:nth-of-type(25) .quick_transcript > p:nth-child(2) span:nth-child(1){
+  font-size: 14px;
+    line-height: 19px;
+}
+.after-refresh .count_sec:nth-of-type(6) i.fa.fa-quote-left {
+  top: 10px;
+}
+.after-refresh .count_sec:nth-of-type(6) i.fa.fa-quote-right{
+  bottom: -10px;
+}
+.after-refresh .count_sec:nth-of-type(7) .seven_red_spc{
+  padding-bottom: 40px;
+}
+.after-refresh .count_sec:nth-of-type(7) h2{
+  padding: 0 !important;
+}
+.image_left img{
+  max-width: 100% !important;
+}
+.after-refresh .count_sec:nth-of-type(7) .content > .col-md-4, .after-refresh .count_sec:nth-of-type(10) .content > .col-md-4, .after-refresh .count_sec:nth-of-type(12) .content > .col-md-4, .after-refresh .count_sec:nth-of-type(14) .content > .col-md-4, .after-refresh .count_sec:nth-of-type(20) .content > .col-md-4{
+  padding: 0 15px;
+}
+.after-refresh .count_sec:nth-of-type(7) .content > .col-md-4{
+  margin-top: 20px;
+}
+.pattern-block {
+    padding: 40px 0;
+}
+.after-refresh .count_sec:nth-of-type(8) .all_content {
+    padding-bottom: 40px;
+}
+.after-refresh .count_sec:nth-of-type(8) .enroll_now_main > a {
+    margin-top: 4px !important;
+}
+.after-refresh .count_sec:nth-of-type(8) .quick_transcript_one p:nth-child(1) {
+    padding: 0;
+}
+.after-refresh .count_sec:nth-of-type(8) .flowplayer_video_container {
+    padding-top: 73% !important;
+    border-radius: 16px;
+}
+.after-refresh .count_sec:nth-of-type(8) i.fa.fa-quote-left {
+  top: -12px;
+}
+.after-refresh .count_sec:nth-of-type(8) i.fa.fa-quote-right {
+  bottom: -10px;
+}
+.after-refresh .count_sec:nth-of-type(9) h2 {
+    margin-bottom: 8px;
+}
+.after-refresh .count_sec:nth-of-type(9) p:first-child{
+  margin-top: 20px !important;
+}
+.after-refresh .count_sec:nth-of-type(9) p:last-child{
+  margin-bottom: 0;
+}
+.after-refresh .count_sec:nth-of-type(10) .content > .col-md-8 p:nth-child(4){
+  padding: 0;
+  margin-top: 36px;
+}
+.after-refresh .count_sec:nth-of-type(10) i.fa.fa-quote-left{
+  top: -12px;
+}
+.after-refresh .count_sec:nth-of-type(10) i.fa.fa-quote-right {
+  bottom: -10px;
+}
+.all_content > .bottom_space_add {
+    padding-bottom: 0;
+}
+.after-refresh .count_sec:nth-of-type(11) h2 {
+    margin-bottom: 8px;
+}
+after-refresh .count_sec:nth-of-type(11) .enroll_now_main {
+    margin: 8px 0 0;
+    padding: 0 15px;
+}
+.after-refresh .count_sec:nth-of-type(12) h2 {
+    margin-bottom: 8px;
+}
+.after-refresh .count_sec:nth-of-type(12) p:last-child,
+.after-refresh .count_sec:nth-of-type(14) p:last-child{
+  margin-bottom: 20px;
+}
+.after-refresh .count_sec:nth-of-type(13) h2, .after-refresh .count_sec:nth-of-type(14) h2, .after-refresh .count_sec:nth-of-type(15) h2 {
+    margin-bottom: 8px;
+}
+.after-refresh .count_sec:nth-of-type(13) .content > .col-md-8 p:nth-child(3) {
+    padding: 0;
+    margin-top: 36px;
+}
+.after-refresh .count_sec:nth-of-type(13) .content > .col-md-8 p:nth-child(4) {
+    margin-bottom: 0;
+}
+.after-refresh .count_sec:nth-of-type(13) i.fa.fa-quote-left,
+.after-refresh .count_sec:nth-of-type(15) i.fa.fa-quote-left,
+.after-refresh .count_sec:nth-of-type(16) i.fa.fa-quote-left,
+.after-refresh .count_sec:nth-of-type(23) i.fa.fa-quote-left,
+.after-refresh .count_sec:nth-of-type(25) i.fa.fa-quote-left{
+  top: -12px;
+}
+.after-refresh .count_sec:nth-of-type(13) i.fa.fa-quote-right,
+.after-refresh .count_sec:nth-of-type(15) i.fa.fa-quote-right,
+.after-refresh .count_sec:nth-of-type(16) i.fa.fa-quote-right,
+.after-refresh .count_sec:nth-of-type(23) i.fa.fa-quote-right,
+.after-refresh .count_sec:nth-of-type(25) i.fa.fa-quote-right {
+  bottom: -10px;
+}
+.after-refresh .count_sec:nth-of-type(15) .enroll_now_main {
+    margin: 4px 0 0;
+    padding: 0 15px;
+}
+.after-refresh .count_sec:nth-of-type(15) .content > .col-md-8 p:nth-child(5) {
+    padding: 0;
+    margin-top: 36px;
+}
+.after-refresh .count_sec:nth-of-type(16) h2 {
+    margin-bottom: 8px;
+}
+.after-refresh .count_sec:nth-of-type(16) .row1030 > .col-md-12 {
+    padding-bottom: 4px;
+}
+.currently_table .right_td{
+  padding-left: 12px !important;
+}
+.currently_table .left_td{
+  padding-right: 12px !important;
+}
+.currently_table th{
+  padding: 8px 11.5px !important;
+    font-size: 16px !important;
+    line-height: 22px !important;
+}
+.after-refresh .count_sec:nth-of-type(16) .all_content > .bottom_space_add {
+    padding-bottom: 26px;
+}
+.after-refresh .count_sec:nth-of-type(16) .row1030 > .col-md-12:not(.aftermasterclass) > p:nth-child(1), .after-refresh .count_sec:nth-of-type(16) .row1030 > .col-md-12:not(.aftermasterclass) > em:nth-child(2), .after-refresh .count_sec:nth-of-type(16) .row1030 > .col-md-12:not(.aftermasterclass) > p:nth-child(3){
+  padding: 0;
+}
+.after-refresh .count_sec:nth-of-type(16) .row1030 > .col-md-12:not(.aftermasterclass) > p:nth-child(4) {
+    margin-bottom: 20px;
+}
+.after-refresh .count_sec:nth-of-type(16) .row1030 > .col-md-12:not(.aftermasterclass) > p:nth-child(4) + .new_enroll_now_btn {
+    margin-bottom: 0 !important;
+}
+.after-refresh .count_sec:nth-of-type(17) h2 {
+    margin-bottom: 8px;
+}
+.after-refresh .count_sec:nth-of-type(17) .white-block .image_left.training_video_touch {
+    padding-top: 20px !important;
+}
+.after-refresh .count_sec:nth-of-type(17) .white-block .new_enroll_now_btn {
+    margin: 20px 15px 0 15px !important;
+    padding: 0;
+    max-width: 315px;
+    width: 100%;
+}
+.after-refresh .count_sec:nth-of-type(18) h2 {
+    margin-bottom: 8px;
+}
+.after-refresh .count_sec:nth-of-type(18) ul li:last-child p{
+  margin-bottom: 0 !important;
+}
+.after-refresh .count_sec:nth-of-type(19) h2 {
+    margin-bottom: 8px;
+}
+.after-refresh .count_sec:nth-of-type(19) .all_content{
+  padding: 0;
+}
+.after-refresh .count_sec:nth-of-type(20) h2 {
+    margin-bottom: 8px;
+}
+.after-refresh .count_sec:nth-of-type(19) p:nth-child(3){
+margin-bottom: 0;
+}
+.after-refresh .count_sec:nth-of-type(20) p:last-child {
+  margin-bottom: 20px !important;
+}
+.after-refresh .count_sec:nth-of-type(21) h2 {
+    margin-bottom: 8px;
+}
+.after-refresh .count_sec:nth-of-type(21) .enroll_now_main > a {
+    margin-top: 4px !important;
+}
+.after-refresh .count_sec:nth-of-type(21) .enroll_now_main {
+    padding: 0 15px;
+}
+.after-refresh .count_sec:nth-of-type(22) h2 {
+    margin-bottom: 8px;
+}
+.after-refresh .count_sec:nth-of-type(22) .seventn_red_spc {
+    padding-bottom: 40px !important;
+}
+.after-refresh .count_sec:nth-of-type(22) p:last-child {
+  margin-bottom: 28px !important;
+}
+.after-refresh .count_sec:nth-of-type(22) img{
+  max-width: 188px !important;
+}
+.after-refresh .count_sec:nth-of-type(23) h2 {
+    margin-bottom: 8px;
+}
+.after-refresh .count_sec:nth-of-type(23) .enroll_now_main > a {
+    margin-top: 20px !important;
+}
+.after-refresh .count_sec:nth-of-type(23) .enroll_now_main {
+    padding: 0 15px;
+}
+.dividing_line + div {
+    border-left: unset;
+}
+.after-refresh .count_sec:nth-of-type(23) .guarantee img {
+    padding-bottom: 10px !important;
+    max-width: 135px !important;
+}
+.after-refresh .count_sec:nth-of-type(23) .content > .col-md-6.col-sm-6:not(.dividing_line) > p:nth-child(2), .after-refresh .count_sec:nth-of-type(23) .content > .col-md-6.col-sm-6:not(.dividing_line) > p:nth-child(3) {
+    padding: 0;
+}
+.dividing_line p:last-child{
+  margin-bottom: 36px !important;
+}
+.after-refresh .count_sec:nth-of-type(24) ul{
+padding-bottom: 4px !important;
+}
+.after-refresh .count_sec:nth-of-type(24) .treats-img2{
+  padding-bottom: 10px;
+}
+.after-refresh .count_sec:nth-of-type(25) h2 {
+    margin-bottom: 4px;
+}
+.after-refresh .count_sec:nth-of-type(25) .quick_transcript > p:nth-child(1) {
+    padding: 0;
+}
+body .after-refresh .count_sec:nth-of-type(25) .enroll_now_main > a {
+    margin-top: 4px !important;
+}
+body .after-refresh .count_sec:nth-of-type(25) .enroll_now_main {
+    padding: 0 15px;
+}
+body .after-refresh .count_sec:nth-of-type(25) .flowplayer_video_container {
+    padding-top: 59% !important;
+}
+body .after-refresh .count_sec:nth-of-type(25) .quick_transcript {
+    margin-top: 20px;
+}
+}
+@media (max-width: 360px) {
+  .all_inform_wrap .img_wrap img:nth-child(2) {
+    width: 117px;
+}
+.all_inform_wrap .img_wrap img:nth-child(1) {
+    width: 134px;
+}
+.time_offer_box .body_wrap > p,
+.img_guarantee span{
+  font-size: 14px !important;
+}
+.after-refresh .count_sec:nth-of-type(17) .white-block .new_enroll_now_btn{
+  max-width: 300px;
+}
+}
+@media (max-width: 320px) {
+  #below_video_text .button-header a{
+    max-width: 168px;
+  }
+  body .want-to-obey .reviews_wrap h3,
+  .new_accardion_link p span:nth-child(2),
+  .all_inform_wrap .text_descr p:nth-child(1),
+  .all_inform_wrap .text_descr p:nth-child(2){
+    font-size: 14px !important;
+  }
+  .reviews_wrap > p {
+    font-size: 12px !important;
+}
+.all_inform_wrap .img_wrap img:nth-child(2) {
+    width: 101px;
+}
+.all_inform_wrap .img_wrap img:nth-child(1) {
+    width: 117px;
+}
+.price_wrap p:nth-child(2){
+  font-size: 16px !important;
+}
+.time_offer_box .body_wrap > p, .img_guarantee span{
+  font-size: 12px !important;
+}
 }
 
     </style>
@@ -1544,6 +1965,125 @@ padding-top: 28px !important;
     </div>
     `
 
+    let newBlockTransform =/*html */ `
+    <div class="new_block_transform">
+    <div class="text_descr_var">
+      <p>While the methods taught in the masterclass are extremely powerful and yet easy to use, before you enroll for
+        it, <b>we want to make sure that this program is right for you.</b>
+      </p>
+      <p>Obviously, your dog is not going to magically transform itself overnight and become as well-behaved as a
+        service dog. 🙂</p>
+      <p>So this WILL require some work from you. You’ll need to spend 10 - 15 minutes every day training your dog and
+        it will take 1-2 weeks for you to see significant improvements in your dog’s behavior.</p>
+      <p> If you don’t think you can commit 10 - 15 minutes every day, then we respectfully ask that you not join this
+        program as you won’t benefit from it.</p>
+      <p> But if you can spend that time, and if you are as committed to transforming your relationship with your dog as
+        we are, then we’d love to have you enroll for the program right away.</p>
+    </div>
+    <div class="img_wrap">
+      <img src="https://conversionratestore.github.io/projects/knineti/img/var11.png" alt="woman and dog">
+    </div>
+  </div>
+    `
+
+    let newBlockJump =/*html */ `
+    <div class="new_block_jump">
+    <div class="text_descr_var">
+      <p>Every Saturday at 3 pm Eastern time, we’ll have a live Q&A call for all our masterclass participants where you
+        can ask our trainers any questions you have about that week’s class, or about any problems you are having with
+        your dog.
+      </p>
+      <p>The Q&A calls will happen each week during the 10 week masterclass.</p>
+      <p>If you can’t attend one of the live calls, just email us your question before it and we’ll answer it during
+        the Q&A session. We’ll upload a recording of each Q&A call, so you can listen to the recording at a time that is
+        convenient for you.</p>
+    </div>
+    <div class="img_wrap">
+      <img src="https://conversionratestore.github.io/projects/knineti/img/var10.png" alt="man and dog">
+    </div>
+  </div>
+    `
+
+    let newBlockSave = /*html */`
+    <div class="new_block_save">
+    <div class="text_descr_var">
+      <p>Auto SIT means that during your walks, your dog will be automatically programmed to sit as soon as you stop
+        walking.</p>
+      <p>You won’t need to actually tell your dog to sit - they will just do it automatically (just like service dogs
+        do).</p>
+      <p>This is really easy to do but is also <b>an incredibly powerful way for you to control your dog during your
+          walks.</b>
+      </p>
+      <p>And it will also potentially save their lives because they will also automatically stop and sit at curbs and
+        wait for your permission to cross the road (instead of just wandering into oncoming traffic).</p>
+    </div>
+    <div class="img_wrap">
+      <img src="https://conversionratestore.github.io/projects/knineti/img/var8.png" alt="man and dog">
+    </div>
+  </div>
+    `
+
+    let newBlockComeToYou = /*html */`
+    <div class="new_block_come_to_you">
+    <div class="text_descr_var">
+      <p>This is precisely where the training of just about every “normal” dog completely falls apart.</p>
+      <p>Their owner would have spent dozens of hours training them to “sit” and “come” at home, but when they are taken
+        to a crowded park, or to a friend’s home, or some other unfamiliar place, they become completely out of control
+        and seem to forget all their training.</p>
+      <p>The owner keeps saying “SIT!” and the dog keeps acting as if they have no clue what she (the owner) is talking
+        about. Or she keeps shouting “Rover, COME!” and the dog keeps playing deaf 🙂</p>
+      <p>The problem here is that the dog hasn’t been trained to transfer their training to new locations.</p>
+      <p>So you’ll implement the same techniques that service dog trainers use to <b>transfer a dog’s training to
+          unfamiliar locations.</b></p>
+    </div>
+    <div class="img_wrap">
+      <img src="https://conversionratestore.github.io/projects/knineti/img/var6.png" alt="man and dog">
+    </div>
+  </div>
+    `
+
+    let newBlockLeashPulling = /*html */`
+    <div class="new_block_leash_pulling">
+    <div class="text_descr_var">
+      <p>Once your dog has learned how to tune out distractions, you’ll then train them to focus their entire attention
+        on you during your walks.</p>
+      <p>So if your dog currently pulls on their leash while walking, they will now start walking loosely on their leash
+        while constantly maintaining eye contact with you.</p>
+      <p>Or, if your dog currently barks at or tries to chase after other dogs during your walks, they will now not even
+        glance at any other dog that they come across, simply because their attention will now be entirely focused on
+        you.</p>
+    </div>
+    <div class="img_wrap">
+      <img src="https://conversionratestore.github.io/projects/knineti/img/var5.png" alt="man and dog">
+    </div>
+  </div>
+    `
+
+    let newBlockTwoCommands = /*html */`
+    <div class="new_bloc_two_commands">
+    <div class="text_descr_var">
+      <p>Have you noticed how highly trained dogs maintain constant eye contact with their handlers?</p>
+      <p>Most people think that this only happens because the dog has undergone years of specialized training and
+        bonding with their handler… but that’s not true.</p>
+      <p>The reason they can do this is that they have been trained on the <b>2 foundational commands that ALL service
+          dogs
+          are trained on: WATCH and TOUCH.</b></p>
+      <p>Getting your dog to learn these 2 commands doesn’t take years of training - a week or so is all that it takes.
+      </p>
+      <p>These 2 commands are one of the main reasons that service dogs are so much calmer and more well-behaved than
+        other dogs.</p>
+      <p>And that’s why you’ll begin the masterclass by using your body language to teach your dog these 2 commands, so
+        that they start focusing all their attention on you.</p>
+      <p>Unfortunately, most regular dog owners don’t know about these 2 foundational commands, which is precisely why
+        most regular dogs never get trained properly - after all, if the foundations of a building are weak, the
+        building can never be stable!</p>
+    </div>
+    <div class="img_wrap">
+      <img src="https://conversionratestore.github.io/projects/knineti/img/var3.png" alt="man and dog">
+    </div>
+  </div>
+    `
+
     document.head.insertAdjacentHTML("beforeend", styleFreeWorkShop)
 
     //is the first time
@@ -1595,6 +2135,7 @@ padding-top: 28px !important;
       }
     }
     // Step 2
+
     // ///////////////////////////////////////////////////////////////////////////////
     document.querySelectorAll(".after-refresh section.count_sec")[0]?.insertAdjacentHTML(
       "beforebegin",
@@ -1790,6 +2331,26 @@ padding-top: 28px !important;
     document.querySelectorAll(".after-refresh section.count_sec")[23].querySelector("h2").textContent = `Get your dog to listen to you even without treats`
     document.querySelectorAll(".after-refresh section.count_sec")[24].querySelector("h2").textContent = `“...he listens to me all the time now...”`
 
+
+    // render new block
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(9) .new_bloc_two_commands")) {
+      document.querySelector('.after-refresh .count_sec:nth-of-type(9) h2').insertAdjacentHTML('afterend', newBlockTwoCommands)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(11) .new_block_leash_pulling")) {
+      document.querySelector('.after-refresh .count_sec:nth-of-type(11) h2').insertAdjacentHTML('afterend', newBlockLeashPulling)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(12) .new_block_come_to_you")) {
+      document.querySelector('.after-refresh .count_sec:nth-of-type(12) h2').insertAdjacentHTML('afterend', newBlockComeToYou)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(14) .new_block_save")) {
+      document.querySelector('.after-refresh .count_sec:nth-of-type(14) h2').insertAdjacentHTML('afterend', newBlockSave)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(19) .new_block_jump")) {
+      document.querySelector('.after-refresh .count_sec:nth-of-type(19) h2').insertAdjacentHTML('afterend', newBlockJump)
+    }
+    if (!document.querySelector(".after-refresh .count_sec:nth-of-type(20) .new_block_transform")) {
+      document.querySelector('.after-refresh .count_sec:nth-of-type(20) h2').insertAdjacentHTML('afterend', newBlockTransform)
+    }
     // accardion ten_week_bgr
 
     let headerOffset = 10
