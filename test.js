@@ -151,3 +151,15 @@ let d = {
     ],
   },
 }
+
+//
+
+if (i.target.classList.contains("testik")) {
+  pushDataLayer(`View element on screen`, `Long page. Bonus #1: How to Housetrain Your Dog (worth $69.70)`)
+}
+if (i.target.classList.contains("testik")) {
+  pushDataLayer(`View element on screen`, `Long page. Bonus #2: Cure Your Dog's Separation Anxiety (worth $69.70)`)
+}
+if (i.target.classList.contains("testik")) {
+  pushDataLayer(`View element on screen`, `Long page. Bonus #3: How to Get Kids to Interact with Your Dog (worth $69.70)`)
+}
