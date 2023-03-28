@@ -51,7 +51,7 @@ let videoReviews = setInterval(() => {
 }
 #headline-94582-131-125 .elHeadline {
   font-family: "Oxygen", sans-serif;
-  font-size: 15px !important;
+  font-size: 14px !important;
   line-height: 24px;
   color: #9e0031;
 }
@@ -293,7 +293,7 @@ a.schedule_new_btn {
 }
 .is_sticky_box {
   padding: 20px;
-  position: fixed;
+  position: sticky;
   bottom: 0;
   left: 0;
   right: 0;
@@ -478,7 +478,7 @@ a.schedule_new_btn {
     margin-top: 0;
   }
   .review_card_descr {
-    min-height: 485px;
+    min-height: 422px;
   }
   .review_card .review_card_title {
     min-height: 40px;
@@ -619,17 +619,42 @@ a.schedule_new_btn {
     height: 83%;
   }
 }
+@media (min-width: 1085px){
+.review_card_descr {
+     min-height: 590px;
+  }
+}
+@media (min-width: 1110px){
+.review_card_descr {
+     min-height: 569px;
+  }
+}
 @media (min-width: 1139px){
       .review_card_descr {
-    min-height: 591px;
+    min-height: 545px;
   }
 }
 @media (min-width: 1230px){
       .review_card_descr {
-    min-height: 527px;
+    min-height: 505px;
   }
 }
-@media (min-width: 1470px){
+@media (min-width: 1249px){
+      .review_card_descr {
+    min-height: 485px;
+  }
+}
+@media (min-width: 1342px){
+      .review_card_descr {
+    min-height: 464px;
+  }
+}
+@media (min-width: 1370px){
+      .review_card_descr {
+    min-height: 443px;
+  }
+}
+@media (min-width: 1451px){
       .review_card_descr {
     min-height: 422px;
   }
@@ -779,15 +804,17 @@ a.schedule_new_btn {
           >Schedule A Free<br/>College Planning Session Now</a></div>`
         )
       }
-      const element = document.querySelector("#container-60629")
+      const element = document.querySelectorAll(".timeline_item_new")[7]
       function visible(target) {
-        if (target.getBoundingClientRect().bottom < 0) {
+        if (target.getBoundingClientRect().y < window.innerHeight - target.clientHeight - 110) {
           if (document.querySelector(".is_sticky_box")) {
+            document.querySelector(".schedule_new_btn.second_var").style.display = "none"
             document.querySelector(".is_sticky_box").style.display = "block"
             document.querySelector("#reviewsBlock").style.paddingBottom = "130px"
           }
         } else {
           if (document.querySelector(".is_sticky_box")) {
+            document.querySelector(".schedule_new_btn.second_var").style.display = "block"
             document.querySelector(".is_sticky_box").style.display = "none"
             document.querySelector("#reviewsBlock").style.paddingBottom = "32px"
           }
@@ -828,6 +855,12 @@ a.schedule_new_btn {
           })
           slider.on("swipe", function () {
             pushDataLayer("Swipe slider")
+          })
+
+          document.querySelectorAll(".slick-dots li").forEach((el) => {
+            el.addEventListener("click", (i, idx) => {
+              pushDataLayer(`Click ${i.target.getAttribute("id")}`)
+            })
           })
 
           document.querySelectorAll(".review_nav .slick-arrow").forEach((el) => {
@@ -961,12 +994,6 @@ a.schedule_new_btn {
       threshold: 1,
     })
 
-    let intTime = setInterval(() => {
-      if (document.querySelector(".timeline_new")) {
-        clearInterval(intTime)
-        obs.observe(document.querySelector(".timeline_new"))
-      }
-    }, 100)
     let int = setInterval(() => {
       if (document.querySelector('[data-visab="1"]')) {
         clearInterval(int)
@@ -1063,6 +1090,43 @@ a.schedule_new_btn {
         obs2.unobserve(i.target)
       })
     }
+
+    //
+    let obs3 = new IntersectionObserver(visibility3, {
+      threshold: 1,
+    })
+    let obs4 = new IntersectionObserver(visibility4, {
+      threshold: 1,
+    })
+
+    let intTime = setInterval(() => {
+      if (document.querySelector(".timeline_new_note")) {
+        clearInterval(intTime)
+        obs3.observe(document.querySelector(".timeline_new_note"))
+      }
+    }, 100)
+
+    function visibility3(entries) {
+      entries.forEach((i) => {
+        if (i.isIntersecting) {
+          setTimeout(function () {
+            obs4.observe(i.target)
+          }, 3000)
+        }
+      })
+    }
+    function visibility4(entries) {
+      entries.forEach((i) => {
+        if (i.isIntersecting) {
+          if (i.target.classList.contains("timeline_new_note")) {
+            pushDataLayer(`Timeline section (visibility)`)
+          }
+
+          obs3.unobserve(i.target)
+        }
+        obs4.unobserve(i.target)
+      })
+    }
     //   document.querySelector("video").currentTime
     pushDataLayer("loaded")
     const record = setInterval(() => {
@@ -1071,5 +1135,7 @@ a.schedule_new_btn {
         clarity("set", "new_video_and_reviews", "variant_1")
       }
     }, 200)
+
+    document.querySelector(".exp")?.remove()
   }
 }, 500)
