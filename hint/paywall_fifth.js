@@ -1,34 +1,34 @@
-// document.querySelector("#id-6b5352f7").getElementsByClassName.display = "none"
 let startF = setInterval(() => {
   if (document.querySelector("#compatibility-_choose-plan_")) {
     clearInterval(startF)
     let styleNew = /*html */ `
     <style>
-        #id-a0fe7af7 .block.show_all{
+        #id-a4ca2feb .block.show_all{
             background: #FFFFFF;
             padding: 24px 20px 0;
         }
-        #id-a0fe7af7 .block.show_all div{
+        #id-a4ca2feb .block.show_all div{
             padding: 0 !important;
         }
-        #id-a0fe7af7 .block.show_all .rich-text{
+        #id-a4ca2feb .block.show_all .rich-text{
             padding: 0 !important;
         }
-        #id-a0fe7af7 .block.show_all .rich-text h4:nth-child(1){
+        #id-a4ca2feb .block.show_all .rich-text h4:nth-child(1){
             font-weight: 700;
             font-size: 18px;
             line-height: 24px;
             color: #111111;
             margin-bottom: 10px;
         }
-        #id-a0fe7af7 .block.show_all .rich-text h4:nth-child(2){
+        #id-a4ca2feb .block.show_all .rich-text h4:nth-child(2){
             display: none;
         }
-        #id-a0fe7af7 .block.show_all .rich-text h4:nth-child(3){
+        .your_descr{
             font-weight: 400;
-            font-size: 16px;
+            font-size: 14px;
             line-height: 24px;
             color: #505051;
+            margin: 0;
         }
         .what_you_get_block{
             padding: 20px 20px 30px;
@@ -42,6 +42,7 @@ let startF = setInterval(() => {
             color: #505051;
             text-align: center;
             position: relative;
+            margin: 0;
         }
         .what_you_get_block h3 span{
             background: #FFFFFF;
@@ -150,10 +151,15 @@ let startF = setInterval(() => {
     document.head.insertAdjacentHTML("beforeend", `<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600&display=swap" rel="stylesheet">`)
     document.head.insertAdjacentHTML("beforeend", styleNew)
 
+    document.querySelector("#id-a4ca2feb .block.show_all .rich-text h4:nth-child(3)").textContent =
+      "Based on your answers and birth chart, we’ve created a personalized Compatibility reading"
+
     if (!document.querySelector(".what_you_get_block")) {
-      document.querySelector("#id-a0fe7af7 .block.show_all").insertAdjacentHTML(
+      document.querySelector("#id-a4ca2feb .block.show_all").insertAdjacentHTML(
         "afterend",
         `    <div class="what_you_get_block">
+                        <p class="your_name">Hey <b>Gemini</b>,</p>
+                        <p class="your_descr">Based on your answers and birth chart, we’ve created a personalized Compatibility reading</p>
                       <h3 class="text_center_var"><span>What you get</span></h3>
                       <ul>
                         <li>1-1 chat with professional astrologer</li>
@@ -173,13 +179,5 @@ let startF = setInterval(() => {
                     </div>`
       )
     }
-
-    let v = setInterval(() => {
-      if (window.location.hash === "#screen-0824ea7e") {
-        clearInterval(v)
-        document.querySelector("#id-6b5352f7").getElementsByClassName.display = "none"
-        document.querySelector("#id-6b5352f7 button#button-28497955").click()
-      }
-    }, 300)
   }
 }, 500)

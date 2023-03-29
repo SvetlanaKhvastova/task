@@ -40,6 +40,11 @@ let videoReviews = setInterval(() => {
 
     let styleNew = /*html */ `
     <style>
+@media (max-width: 1310px){
+  .ControlBar_module_noProgressBar__036b51d7 .ControlBar_module_progressBarAndButtons__036b51d7{
+   margin-top: -28px !important;
+  }
+}
  .timeline {
   display: none !important;
 }
@@ -590,7 +595,7 @@ a.schedule_new_btn {
   }
 
   .timeline_new .timeline_list_new:before {
-    height: 182%;
+    height: 380%;
   }
   .timeline_list_new::-webkit-scrollbar {
     width: 3px;
@@ -657,6 +662,161 @@ a.schedule_new_btn {
 @media (min-width: 1451px){
       .review_card_descr {
     min-height: 422px;
+  }
+}
+@media (min-width: 773px){
+      .timeline_new .timeline_list_new:before {
+        height: 369%;
+  }
+}
+@media (min-width: 784px){
+      .timeline_new .timeline_list_new:before {
+        height: 364%;
+  }
+}
+@media (min-width: 797px){
+      .timeline_new .timeline_list_new:before {
+        height: 358%;
+  }
+}
+@media (min-width: 813px){
+      .timeline_new .timeline_list_new:before {
+        height: 350%;
+  }
+}
+@media (min-width: 823px){
+      .timeline_new .timeline_list_new:before {
+        height: 345%;
+  }
+}
+@media (min-width: 835px){
+      .timeline_new .timeline_list_new:before {
+        height: 339%;
+  }
+}
+@media (min-width: 849px){
+      .timeline_new .timeline_list_new:before {
+        height: 334%;
+  }
+}
+@media (min-width: 862px){
+      .timeline_new .timeline_list_new:before {
+        height: 328%;
+  }
+}
+@media (min-width: 871px){
+      .timeline_new .timeline_list_new:before {
+        height: 324%;
+  }
+}
+@media (min-width: 889px){
+      .timeline_new .timeline_list_new:before {
+        height: 317%;
+  }
+}
+@media (min-width: 910px){
+      .timeline_new .timeline_list_new:before {
+        height: 312%;
+  }
+}
+@media (min-width: 930px){
+      .timeline_new .timeline_list_new:before {
+        height: 306%;
+  }
+}
+@media (min-width: 950px){
+      .timeline_new .timeline_list_new:before {
+        height: 267%;
+  }
+}
+@media (min-width: 957px){
+      .timeline_new .timeline_list_new:before {
+        height: 262%;
+  }
+}
+@media (min-width: 967px){
+      .timeline_new .timeline_list_new:before {
+        height: 256%;
+  }
+}
+@media (min-width: 982px){
+      .timeline_new .timeline_list_new:before {
+        height: 252%;
+  }
+}
+@media (min-width: 1000px){
+      .timeline_new .timeline_list_new:before {
+        height: 248%;
+  }
+}
+@media (min-width: 1010px){
+      .timeline_new .timeline_list_new:before {
+        height: 245%;
+  }
+}
+@media (min-width: 1027px){
+      .timeline_new .timeline_list_new:before {
+        height: 240%;
+  }
+}
+@media (min-width: 1037px){
+      .timeline_new .timeline_list_new:before {
+        height: 238%;
+  }
+}
+@media (min-width: 1047px){
+      .timeline_new .timeline_list_new:before {
+        height: 235%;
+  }
+}
+@media (min-width: 1068px){
+      .timeline_new .timeline_list_new:before {
+        height: 230%;
+  }
+}
+@media (min-width: 1095px){
+      .timeline_new .timeline_list_new:before {
+        height: 225%;
+  }
+}
+@media (min-width: 1117px){
+      .timeline_new .timeline_list_new:before {
+        height: 219%;
+  }
+}
+@media (min-width: 1136px){
+      .timeline_new .timeline_list_new:before {
+        height: 215%;
+  }
+}
+@media (min-width: 1161px){
+      .timeline_new .timeline_list_new:before {
+        height: 210%;
+  }
+}
+@media (min-width: 1180px){
+      .timeline_new .timeline_list_new:before {
+        height: 206%;
+  }
+}
+@media (min-width: 1220px){
+      .timeline_new .timeline_list_new:before {
+        height: 190%;
+  }
+}
+@media (min-width: 1225px){
+      .timeline_new .timeline_list_new:before {
+        height: 188%;
+  }
+}
+@media (min-width: 1250px){
+      .timeline_new .timeline_list_new:before {
+        height: 185%;
+  }
+}
+@media (min-width: 1275px){
+      .timeline_new .timeline_list_new:before {
+        height: 182%;
   }
 }
     </style>
@@ -878,23 +1038,39 @@ a.schedule_new_btn {
     }
     if (window.innerWidth > 768) {
       let waitVideo = setInterval(() => {
-        if (document.querySelector(".start-session")) {
-          clearInterval(waitVideo)
-          document.querySelector(".start-session").addEventListener("click", function (e) {
-            console.log(`click`)
-            console.log(this)
-            handleTimeline()
-            if (!this.classList.contains("active")) {
-              e.preventDefault()
-              e.stopPropagation()
+        // if (document.querySelector(".start-session")) {
+        //   clearInterval(waitVideo)
 
-              this.classList.add("active")
-              this.click()
-              return false
-            }
+        //
+        // document.querySelector(".start-session").addEventListener("click", function (e) {
+        //   console.log(`click`)
+        //   console.log(this)
+        //   handleTimeline()
+        //   if (!this.classList.contains("active")) {
+        //     e.preventDefault()
+        //     e.stopPropagation()
+
+        //     this.classList.add("active")
+        //     this.click()
+        //     return false
+        //   }
+        // })
+        // }
+        if (typeof Vimeo == "object") {
+          clearInterval(waitVideo)
+          const iframeDesk = document.querySelector("#row-165 iframe")
+          const playerDesk = new Vimeo.Player(iframeDesk)
+
+          if (playerDesk.setVolume) {
+            playerDesk.setVolume(1)
+          }
+          console.log(playerDesk, `playerDesk>>>>>>>>>>>>>>..`)
+          playerDesk.on("play", function () {
+            console.log("played the video!")
+            handleTimeline()
           })
         }
-      }, 200)
+      }, 300)
     } else {
       let intervalVimeo = setInterval(() => {
         if (typeof Vimeo == "object") {
@@ -905,6 +1081,7 @@ a.schedule_new_btn {
           if (player.setVolume) {
             player.setVolume(1)
           }
+          console.log(player, `player>>>>>>>>>>>>`)
           player.on("play", function () {
             console.log("played the video!")
             handleTimeline()
