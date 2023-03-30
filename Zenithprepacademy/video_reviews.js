@@ -40,11 +40,6 @@ let videoReviews = setInterval(() => {
 
     let styleNew = /*html */ `
     <style>
-@media (max-width: 1310px){
-  .ControlBar_module_noProgressBar__036b51d7 .ControlBar_module_progressBarAndButtons__036b51d7{
-   margin-top: -28px !important;
-  }
-}
  .timeline {
   display: none !important;
 }
@@ -483,7 +478,7 @@ a.schedule_new_btn {
     margin-top: 0;
   }
   .review_card_descr {
-    min-height: 422px;
+    min-height: 524px;
   }
   .review_card .review_card_title {
     min-height: 40px;
@@ -624,9 +619,34 @@ a.schedule_new_btn {
     height: 83%;
   }
 }
+@media (min-width: 1010px){
+.review_card_descr {
+     min-height: 515px;
+  }
+}
+@media (min-width: 1020px){
+.review_card_descr {
+     min-height: 506px;
+  }
+}
+@media (min-width: 1037px){
+.review_card_descr {
+     min-height: 484px;
+  }
+}
 @media (min-width: 1085px){
 .review_card_descr {
-     min-height: 590px;
+     min-height: 483px;
+  }
+}
+@media (min-width: 1086px){
+.review_card_descr {
+     min-height: 592px;
+  }
+}
+@media (min-width: 1100px){
+.review_card_descr {
+     min-height: 566px;
   }
 }
 @media (min-width: 1110px){
@@ -929,10 +949,12 @@ a.schedule_new_btn {
             </div>
         `
     }
-
     document.head.insertAdjacentHTML("beforeend", styleNew)
+    if (document.querySelector(".mobile-iframe").src !== "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0") {
+      document.querySelector(".mobile-iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0"
+    }
     document.querySelector(".mobile-iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0"
-    document.querySelector("#row-165 iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0"
+    // document.querySelector("#row-165 iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0"
     document.querySelector(".timeline").insertAdjacentHTML("afterend", timelineEl)
     if (!document.querySelector("#reviewsBlock")) {
       document.querySelector("#container-60629").insertAdjacentHTML("afterend", reviewsHtml)
@@ -1006,9 +1028,9 @@ a.schedule_new_btn {
             infinite: false,
             responsive: [
               {
-                breakpoint: 1086,
+                breakpoint: 1087,
                 settings: {
-                  slidesToShow: 1.55,
+                  slidesToShow: 2,
                 },
               },
             ],
@@ -1038,56 +1060,40 @@ a.schedule_new_btn {
     }
     if (window.innerWidth > 768) {
       let waitVideo = setInterval(() => {
-        // if (document.querySelector(".start-session")) {
-        //   clearInterval(waitVideo)
-
-        //
-        // document.querySelector(".start-session").addEventListener("click", function (e) {
-        //   console.log(`click`)
-        //   console.log(this)
-        //   handleTimeline()
-        //   if (!this.classList.contains("active")) {
-        //     e.preventDefault()
-        //     e.stopPropagation()
-
-        //     this.classList.add("active")
-        //     this.click()
-        //     return false
-        //   }
-        // })
-        // }
-        if (typeof Vimeo == "object") {
+        if (document.querySelector(".start-session")) {
           clearInterval(waitVideo)
-          const iframeDesk = document.querySelector("#row-165 iframe")
-          const playerDesk = new Vimeo.Player(iframeDesk)
-
-          if (playerDesk.setVolume) {
-            playerDesk.setVolume(1)
-          }
-          console.log(playerDesk, `playerDesk>>>>>>>>>>>>>>..`)
-          playerDesk.on("play", function () {
-            console.log("played the video!")
+          document.querySelector(".start-session").addEventListener("click", function (e) {
+            console.log(`click`)
+            console.log(this)
             handleTimeline()
+            if (!this.classList.contains("active")) {
+              e.preventDefault()
+              e.stopPropagation()
+
+              this.classList.add("active")
+              this.click()
+              return false
+            }
           })
         }
-      }, 300)
+      }, 200)
     } else {
       let intervalVimeo = setInterval(() => {
         if (typeof Vimeo == "object") {
           clearInterval(intervalVimeo)
           const iframe = document.querySelector(".mobile-iframe")
           const player = new Vimeo.Player(iframe)
+          console.log(player, `player`)
 
           if (player.setVolume) {
             player.setVolume(1)
           }
-          console.log(player, `player>>>>>>>>>>>>`)
           player.on("play", function () {
             console.log("played the video!")
             handleTimeline()
           })
         }
-      }, 200)
+      }, 100)
     }
     function handleTimeline() {
       if (!document.querySelector(".timeline_item_new.active")) {
@@ -1315,4 +1321,4 @@ a.schedule_new_btn {
 
     document.querySelector(".exp")?.remove()
   }
-}, 500)
+}, 400)
