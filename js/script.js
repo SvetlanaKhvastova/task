@@ -102,3 +102,22 @@ let script = document.createElement("script")
 script.src = "https://conversionratestore.github.io/projects/zenithprepacademy/video_reviews.js"
 script.async = false
 document.head.appendChild(script)
+//
+// let intTimeSrc = setInterval(() => {
+//   if (document.querySelector(".mobile-iframe")) {
+//     clearInterval(intTimeSrc)
+//     document.querySelector(".mobile-iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0"
+//     console.log(`changed src`)
+//   }
+// }, 10)
+
+document.head.insertAdjacentHTML("beforeend", `<style class="exp">body {opacity: 0 !important;}</style>`)
+
+let script = document.createElement("script")
+script.src = "https://conversionratestore.github.io/projects/zenithprepacademy/video_reviews.js"
+script.async = false
+document.head.appendChild(script)
+
+setTimeout(function () {
+  document.querySelector(".exp")?.remove()
+}, 4000)

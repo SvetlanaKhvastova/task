@@ -1,5 +1,5 @@
 let videoReviews = setInterval(() => {
-  if (document.querySelector("#container-60629")) {
+  if (document.querySelector(".timeline")) {
     clearInterval(videoReviews)
     if (window.innerWidth > 768) {
       // cdn slider
@@ -40,7 +40,8 @@ let videoReviews = setInterval(() => {
 
     let styleNew = /*html */ `
     <style>
- .timeline {
+ .timeline,
+ .mobile-iframe:not(.new_iframe) {
   display: none !important;
 }
 #col-full-100-165-114 .elHeadline.hsSize3 {
@@ -886,7 +887,7 @@ a.schedule_new_btn {
       <div class='timeline_list_new'>
         <div class='timeline_item_new'>
           <div class='timeline_item_new_title'>Intro</div>
-          <div class='timeline_item_new_time'>(0:50)</div>
+          <div class='timeline_item_new_time'>(0:58)</div>
         </div>
 
         <div class='timeline_item_new'>
@@ -895,7 +896,7 @@ a.schedule_new_btn {
         </div>
 
         <div class='timeline_item_new'>
-          <div class='timeline_item_new_title'>Strategies and 5 factors that сontrol сollege application process</div>
+          <div class='timeline_item_new_title'>Strategies and five factors that affect the college application process</div>
           <div class='timeline_item_new_time'>(10:52)</div>
         </div>
 
@@ -949,15 +950,40 @@ a.schedule_new_btn {
             </div>
         `
     }
+
     document.head.insertAdjacentHTML("beforeend", styleNew)
-    if (document.querySelector(".mobile-iframe").src !== "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0") {
-      document.querySelector(".mobile-iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0"
+    // if (window.innerWidth <= 768) {
+    //   let intTimeSrc = setInterval(() => {
+    //     if (document.querySelector(".mobile-iframe")) {
+    //       clearInterval(intTimeSrc)
+    //       if (document.querySelector(".mobile-iframe").src !== "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0") {
+    //         document.querySelector(".mobile-iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0"
+    //       }
+    //       console.log(`changed src`)
+    //     }
+    //   }, 10)
+    // }
+    if (window.innerWidth <= 768) {
+      let intTimeSrc = setInterval(() => {
+        if (document.querySelector(".elCustomJS_code > div")) {
+          clearInterval(intTimeSrc)
+          if (!document.querySelector(".new_iframe")) {
+            document
+              .querySelector(".elCustomJS_code > div")
+              .insertAdjacentHTML(
+                "beforeend",
+                `<iframe class="mobile-iframe new_iframe" src="https://player.vimeo.com/video/790201146?h=eda73cb7b6&title=0&byline=0&portrait=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ZPA - National Webinar (August 2022)" data-ready="true"></iframe>`
+              )
+          }
+          console.log(`render new iframe`)
+        }
+      }, 10)
     }
-    document.querySelector(".mobile-iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0"
-    // document.querySelector("#row-165 iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0"
-    document.querySelector(".timeline").insertAdjacentHTML("afterend", timelineEl)
+
+    document.querySelector("#row-165 iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0"
+    document.querySelector(".timeline")?.insertAdjacentHTML("afterend", timelineEl)
     if (!document.querySelector("#reviewsBlock")) {
-      document.querySelector("#container-60629").insertAdjacentHTML("afterend", reviewsHtml)
+      document.querySelector("#container-60629")?.insertAdjacentHTML("afterend", reviewsHtml)
     }
     if (document.querySelector("#reviewsBlock")) {
       for (let key in arrR) {
@@ -966,14 +992,14 @@ a.schedule_new_btn {
     }
     if (window.innerWidth <= 768) {
       if (!document.querySelector(".first_var")) {
-        document.querySelector("#row-165").insertAdjacentHTML(
+        document.querySelector("#row-165")?.insertAdjacentHTML(
           "beforebegin",
           `<a target="_blank" class="schedule_new_btn first_var" data-count="1" rel="noopener noreferrer" href="https://webinar.zenithprepacademy.com/booking-page1666161342817"
           >Schedule A Free<br/>College Planning Session Now</a>`
         )
       }
       if (!document.querySelector(".second_var")) {
-        document.querySelector("#row-165").insertAdjacentHTML(
+        document.querySelector("#row-165")?.insertAdjacentHTML(
           "afterend",
           `<a target="_blank" class="schedule_new_btn second_var" data-count="2" rel="noopener noreferrer" href="https://webinar.zenithprepacademy.com/booking-page1666161342817"
           >Schedule A Free<br/>College Planning Session Now</a>`
@@ -1008,7 +1034,7 @@ a.schedule_new_btn {
       visible(element)
     } else {
       if (!document.querySelector(".first_var")) {
-        document.querySelector("#row-165").insertAdjacentHTML(
+        document.querySelector("#row-165")?.insertAdjacentHTML(
           "afterend",
           `<a target="_blank" class="schedule_new_btn first_var" data-count="1" rel="noopener noreferrer" href="https://webinar.zenithprepacademy.com/booking-page1666161342817"
           >Schedule A Free<br/>College Planning Session Now</a>`
@@ -1076,14 +1102,15 @@ a.schedule_new_btn {
             }
           })
         }
-      }, 200)
+      }, 100)
     } else {
       let intervalVimeo = setInterval(() => {
         if (typeof Vimeo == "object") {
           clearInterval(intervalVimeo)
-          const iframe = document.querySelector(".mobile-iframe")
+          const iframe = document.querySelector(".new_iframe")
           const player = new Vimeo.Player(iframe)
           console.log(player, `player`)
+          console.log(document.querySelector(".new_iframe").src, `src`)
 
           if (player.setVolume) {
             player.setVolume(1)
@@ -1096,19 +1123,20 @@ a.schedule_new_btn {
       }, 100)
     }
     function handleTimeline() {
-      if (!document.querySelector(".timeline_item_new.active")) {
-        document.querySelector(".timeline_item_new").classList.add("active")
-      }
+      // if (!document.querySelector(".timeline_item_new.active")) {
+      //   document.querySelector(".timeline_item_new").classList.add("active")
+      // }
       let iframe = document.querySelector(".fluid-width-video-wrapper iframe")
       if (window.innerWidth < 768) {
-        iframe = document.querySelector(".mobile-iframe")
+        iframe = document.querySelector(".new_iframe")
       }
       let playerEl = new Vimeo.Player(iframe)
       setInterval(() => {
         playerEl.getCurrentTime().then(function (time) {
-          if (!document.querySelector(".timeline_item_new.active")) return false
+          // if (!document.querySelector(".timeline_item_new.active")) return false
 
-          if (time >= 50 && time < 3 * 60 + 56) {
+          if (time >= 58 && time < 3 * 60 + 56) {
+            document.querySelector(".timeline_item_new:nth-child(1)").classList.add("active")
           } else if (time >= 3 * 60 + 56 && time < 10 * 60 + 52) {
             if (time >= 3 * 60 + 56) {
               console.log(`TIME>>>>>`)
