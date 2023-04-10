@@ -1,11 +1,11 @@
 let startFunk = setInterval(() => {
   if (document) {
-    clearInterval(startFunk)
+    clearInterval(startFunk);
 
     /********* Settings **********/
     const settings = {
       observe: true,
-    }
+    };
 
     let popupStyle = /*html */ `
     <style>
@@ -238,7 +238,7 @@ let startFunk = setInterval(() => {
         }
     }
     </style>
-    `
+    `;
 
     // popup
     let popUp = /*html */ `
@@ -249,7 +249,7 @@ let startFunk = setInterval(() => {
             </svg>
           </div>
         </div>
-`
+`;
 
     let contentPopup = /*html */ `
         <div class="content_popup">
@@ -267,103 +267,98 @@ let startFunk = setInterval(() => {
             </div>
             <button>complete my order now</button>
         </div>
-    `
+    `;
 
-    document.head.insertAdjacentHTML("beforeend", popupStyle)
-    document.body.insertAdjacentHTML("afterbegin", popUp)
-    document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup)
+    document.head.insertAdjacentHTML("beforeend", popupStyle);
+    document.body.insertAdjacentHTML("afterbegin", popUp);
+    document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup);
 
-
-    getCartInform()
-
+    getCartInform();
 
     if (localStorage.getItem("data-popup") && document.querySelector(".ajaxcart__product") === null) {
-      localStorage.removeItem("data-popup")
+      localStorage.removeItem("data-popup");
     }
-
 
     function exitIntentPopup() {
       if (document.querySelector(".overlay_popup") && localStorage.getItem("data-popup")) {
         let overlay = document.querySelector(".overlay_popup"),
           containerPopup = overlay.querySelector(".container_popup"),
-          btnClose = overlay.querySelector("svg")
-
+          btnClose = overlay.querySelector("svg");
 
         addEvent(document, "mouseout", function (e) {
           if (e.toElement == null && e.relatedTarget == null && sessionStorage.getItem("exit_popup_loaded") == null && document.querySelector(".ajaxcart__product") !== null) {
-            sessionStorage.setItem("exit_popup_loaded", "true")
-            onOpenPopup()
+            sessionStorage.setItem("exit_popup_loaded", "true");
+            onOpenPopup();
           }
-        })
-
+        });
 
         function addEvent(obj, evt, fn) {
           if (obj.addEventListener) {
-            obj.addEventListener(evt, fn, false)
+            obj.addEventListener(evt, fn, false);
           } else if (obj.attachEvent) {
-            obj.attachEvent("on" + evt, fn)
+            obj.attachEvent("on" + evt, fn);
           }
         }
-
 
         if (window.innerWidth <= 768) {
           let lastPosition = 0,
             newPosition = 0,
-            currentSpeed = 0
+            currentSpeed = 0;
 
           let scrollSpeed = () => {
-            lastPosition = window.scrollY
+            lastPosition = window.scrollY;
             setTimeout(() => {
-              newPosition = window.scrollY
-            }, 70)
-            currentSpeed = newPosition - lastPosition
+              newPosition = window.scrollY;
+            }, 70);
+            currentSpeed = newPosition - lastPosition;
 
             if (currentSpeed > 70 && sessionStorage.getItem("exit_popup_loaded") == null && document.querySelector(".ajaxcart__product") !== null) {
-              sessionStorage.setItem("exit_popup_loaded", "true")
-              onOpenPopup()
-              document.removeEventListener("scroll", scrollSpeed)
+              sessionStorage.setItem("exit_popup_loaded", "true");
+              onOpenPopup();
+              document.removeEventListener("scroll", scrollSpeed);
             }
-          }
+          };
 
-          document.addEventListener("scroll", scrollSpeed)
+          document.addEventListener("scroll", scrollSpeed);
         }
 
-
         btnClose.addEventListener("click", (e) => {
-          onClosePopup()
-        })
-
+          onClosePopup();
+        });
 
         overlay.addEventListener("click", (e) => {
           if (e.target.matches(".overlay_popup")) {
-            onClosePopup()
+            onClosePopup();
           }
-        })
+        });
 
         function onOpenPopup() {
-          overlay.classList.remove("is_hidden")
-          document.body.style.overflow = "hidden"
+          overlay.classList.remove("is_hidden");
+          document.body.style.overflow = "hidden";
 
-          document.head.insertAdjacentHTML('beforeend', `
+          document.head.insertAdjacentHTML(
+            "beforeend",
+            `
             <style class="fix_popup">
                 .needsclick.kl-private-reset-css-Xuajs1 {
                     opacity: 0 !important;
                 }
-            </style>`)
+            </style>`
+          );
 
           if (!document.querySelector(".overlay_popup .content_popup")) {
-            containerPopup?.insertAdjacentHTML("beforeend", contentPopup)
+            containerPopup?.insertAdjacentHTML("beforeend", contentPopup);
           }
 
           if (document.querySelector(".overlay_popup .content_popup")) {
             if (innerWidth <= 768) {
               if (document.querySelector(".text_still_stock p")) {
-                document.querySelector(".text_still_stock p").textContent = "This is a popular product. Complete your order now while it is still in stock"
+                document.querySelector(".text_still_stock p").textContent = "This is a popular product. Complete your order now while it is still in stock";
               }
             }
             if (localStorage.getItem("data-popup")) {
-              data = JSON.parse(localStorage.getItem("data-popup"))
-              console.log(`data`, data)
+              data = JSON.parse(localStorage.getItem("data-popup"));
+              console.log(`data`, data);
               data.forEach((el) => {
                 document.querySelector(".product_list").insertAdjacentHTML(
                   "beforeend",
@@ -384,130 +379,128 @@ let startFunk = setInterval(() => {
                                 </div>
                             </div>
                   `
-                )
-              })
+                );
+              });
             }
 
             if (document.querySelectorAll(".product_list .product_wrap").length >= 2) {
-              document.querySelector(".toggle_block_more").style.display = "flex"
+              document.querySelector(".toggle_block_more").style.display = "flex";
             } else {
-              document.querySelector(".toggle_block_more").style.display = "none"
+              document.querySelector(".toggle_block_more").style.display = "none";
             }
 
             if (document.querySelector(".toggle_block_more")) {
               document.querySelector(".toggle_block_more").addEventListener("click", (el) => {
-                console.log(el.currentTarget)
-                el.currentTarget.classList.toggle("open")
+                console.log(el.currentTarget);
+                el.currentTarget.classList.toggle("open");
                 if (el.currentTarget.classList.contains("open")) {
-                  el.currentTarget.querySelector("p").textContent = "Less products"
-                  document.querySelector(".text_still_stock").style.display = "none"
+                  el.currentTarget.querySelector("p").textContent = "Less products";
+                  document.querySelector(".text_still_stock").style.display = "none";
                   document.querySelectorAll(".product_wrap").forEach((el) => {
-                    el.style.display = "flex"
+                    el.style.display = "flex";
                     if (el.classList.contains("hidden")) {
-                      el.classList.remove("hidden")
+                      el.classList.remove("hidden");
                     }
-                  })
+                  });
                   if (innerWidth <= 768) {
-                    document.querySelector(".product_list").style.height = "222px"
+                    document.querySelector(".product_list").style.height = "222px";
                   } else {
-                    document.querySelector(".product_list").style.height = "185px"
+                    document.querySelector(".product_list").style.height = "185px";
                   }
                 } else {
-                  el.currentTarget.querySelector("p").textContent = "See all products"
-                  document.querySelector(".text_still_stock").style.display = "block"
+                  el.currentTarget.querySelector("p").textContent = "See all products";
+                  document.querySelector(".text_still_stock").style.display = "block";
                   document.querySelectorAll(".product_wrap").forEach((el) => {
-                    el.classList.add("hidden")
-                    el.style.display = "none"
-                  })
+                    el.classList.add("hidden");
+                    el.style.display = "none";
+                  });
                   if (innerWidth <= 768) {
-                    document.querySelector(".product_list").style.height = "105px"
+                    document.querySelector(".product_list").style.height = "105px";
                   } else {
-                    document.querySelector(".product_list").style.height = "90px"
+                    document.querySelector(".product_list").style.height = "90px";
                   }
                 }
-              })
+              });
             }
 
             document.querySelector(".content_popup button").addEventListener("click", () => {
               // document.querySelector('#CartContainer button[name="checkout"]')?.click()
-              window.location.pathname = "/checkout"
-            })
+              window.location.pathname = "/checkout";
+            });
           }
         }
 
         function onClosePopup() {
-          overlay.classList.add("is_hidden")
-          document.body.style.overflow = "unset"
+          overlay.classList.add("is_hidden");
+          document.body.style.overflow = "unset";
           setTimeout(() => {
-            document.querySelector(".content_popup")?.remove()
-          }, 400)
-          document.querySelector('.fix_popup').remove()
+            document.querySelector(".content_popup")?.remove();
+          }, 400);
+          document.querySelector(".fix_popup").remove();
         }
       }
     }
 
-
-    let observer, observeTarget
-    let isProgress = false
+    let observer, observeTarget;
+    let isProgress = false;
     if (settings.observe) {
       observer = new MutationObserver((mutations) => {
         for (let mutation of mutations) {
           if (!isProgress && mutation.addedNodes[0] !== document.querySelector("#mr-div-embedded-cp-any-drawer")) {
-            isProgress = true
-            console.log(`observer>>>>>>>>>>>>>>>`, mutation)
+            isProgress = true;
+            console.log(`observer>>>>>>>>>>>>>>>`, mutation);
             if (localStorage.getItem("data-popup") && document.querySelector(".ajaxcart__product") === null) {
-              localStorage.removeItem("data-popup")
+              localStorage.removeItem("data-popup");
             }
-            getCartInform()
-            exitIntentPopup()
+            getCartInform();
+            exitIntentPopup();
 
             setTimeout(() => {
-              isProgress = false
-            }, 2500)
+              isProgress = false;
+            }, 2500);
           }
         }
-      })
+      });
 
       let intrevalObserver = setInterval(() => {
         if (document.querySelector("#CartDrawer")) {
-          clearInterval(intrevalObserver)
-          observeTarget = document.querySelector("#CartDrawer")
+          clearInterval(intrevalObserver);
+          observeTarget = document.querySelector("#CartDrawer");
 
-          observer.observe(observeTarget, { childList: true, subtree: true })
+          observer.observe(observeTarget, { childList: true, subtree: true });
         }
-      }, 500)
+      }, 500);
     }
-
 
     function getCartInform() {
       if (document.querySelector(".ajaxcart__product")) {
-        let arr = []
+        let arr = [];
         document.querySelectorAll(".ajaxcart__product").forEach((el) => {
           let name = "",
             descr = "",
             price = "",
             count = "",
             imgSrc = "",
-            href = ""
+            href = "";
 
           if (el.querySelector(".ajaxcart__product-name")) {
-            name = el.querySelector(".ajaxcart__product-name").textContent
+            name = el.querySelector(".ajaxcart__product-name").textContent;
           }
           if (el.querySelector(".ajaxcart__product-meta")) {
-            descr = el.querySelector(".ajaxcart__product-meta").textContent
+            descr = el.querySelector(".ajaxcart__product-meta").textContent;
           }
           if (el.querySelector(".ajaxcart__price")) {
-            price = el.querySelector(".ajaxcart__price").getAttribute('data-price')
-            console.log(`price`, price)
+            price = el.querySelector(".ajaxcart__price").getAttribute("data-price");
+            console.log(`price`, price);
           }
           if (el.querySelector("input[name='updates[]']")) {
-            count = el.querySelector("input[name='updates[]']").value
+            count = el.querySelector("input[name='updates[]']").value;
           }
           if (el.querySelector(".ajaxcart__product-image img")) {
-            imgSrc = el.querySelector(".ajaxcart__product-image img").src
+            imgSrc = el.querySelector(".ajaxcart__product-image img").src;
           }
           if (el.querySelector(".ajaxcart__product-image")) {
-            href = el.querySelector(".ajaxcart__product-image").href
+            href = el.querySelector(".ajaxcart__product-image").href;
           }
 
           arr.push({
@@ -517,18 +510,18 @@ let startFunk = setInterval(() => {
             count: count,
             imgSrc: imgSrc,
             href: href,
-          })
-        })
+          });
+        });
 
         if (localStorage.getItem("data-popup")) {
-          localStorage.removeItem("data-popup")
-          localStorage.setItem("data-popup", JSON.stringify(arr))
+          localStorage.removeItem("data-popup");
+          localStorage.setItem("data-popup", JSON.stringify(arr));
         } else {
-          localStorage.setItem("data-popup", JSON.stringify(arr))
+          localStorage.setItem("data-popup", JSON.stringify(arr));
         }
 
-        console.log(`arr`, arr)
+        console.log(`arr`, arr);
       }
     }
   }
-}, 100)
+}, 100);
