@@ -1,7 +1,7 @@
 // pricing page
 let startFunk = setInterval(() => {
   if (document.querySelector(".new-price-list")) {
-    clearInterval(startFunk)
+    clearInterval(startFunk);
 
     let styleVar = /*html */ `
       <style>
@@ -442,8 +442,8 @@ table tbody tr:first-child td {
 table tbody tr:not(:nth-child(1)) td:nth-child(3) {
   background: #f9fcff;
   color: #1d3871;
-  transition: all 2s cubic-bezier(0.075, 0.82, 0.165, 1);
-}
+  
+}transition: all 2s cubic-bezier(0.075, 0.82, 0.165, 1);
 
 table tbody tr:not(:nth-child(1)) td:nth-child(3) svg.minus_var {
   fill: #1d3871;
@@ -839,7 +839,7 @@ main {
 }
 
       </style>
-    `
+    `;
 
     let renederHtml = /*html */ `
     <header>
@@ -1123,351 +1123,347 @@ main {
         </div>
       </div>
     </main>
-      `
-    document.head.insertAdjacentHTML("beforeend", styleVar)
-    document.querySelector(".site-container").insertAdjacentHTML("afterbegin", renederHtml)
+      `;
+    document.head.insertAdjacentHTML("beforeend", styleVar);
+    document.querySelector(".site-container").insertAdjacentHTML("afterbegin", renederHtml);
 
     //
-    let scriptPopper = document.createElement("script")
-    scriptPopper.src = "https://unpkg.com/popper.js@1"
-    scriptPopper.async = false
-    document.body.appendChild(scriptPopper)
+    let scriptPopper = document.createElement("script");
+    scriptPopper.src = "https://unpkg.com/popper.js@1";
+    scriptPopper.async = false;
+    document.body.appendChild(scriptPopper);
 
-    let scriptTippy = document.createElement("script")
-    scriptTippy.src = "https://unpkg.com/tippy.js@5"
-    scriptTippy.async = false
-    document.body.appendChild(scriptTippy)
+    let scriptTippy = document.createElement("script");
+    scriptTippy.src = "https://unpkg.com/tippy.js@5";
+    scriptTippy.async = false;
+    document.body.appendChild(scriptTippy);
     // //////////////////////////////////////////////////////
 
     // Tooltip
     let arrTooltipTable = {
-      1: [
-        `The Total Transformation Masterclass uses videos of real dogs to demonstrate how you can instil service-dog levels of calmness, obedience, and impulse control into your canine companion`,
-      ],
+      1: [`The Total Transformation Masterclass uses videos of real dogs to demonstrate how you can instil service-dog levels of calmness, obedience, and impulse control into your canine companion`],
       2: [`You may spread the payment over 3 months by choosing instalments at Checkout`],
       3: [`You may spread the payment over 3 months by choosing instalments at Checkout`],
       4: [`You may spread the payment over 3 months by choosing instalments at Checkout`],
-      5: [
-        `The Total Transformation Masterclass uses videos of real dogs to demonstrate how you can instil service dog levels of calmness, obedience, and impulse control into your canine companion. <br/> <span> Plus:</span> Housebreaking, Separation Anxiety, and Biting/Nipping Prevention <span>BONUS classes</span>`,
-      ],
+      5: [`The Total Transformation Masterclass uses videos of real dogs to demonstrate how you can instil service dog levels of calmness, obedience, and impulse control into your canine companion. <br/> <span> Plus:</span> Housebreaking, Separation Anxiety, and Biting/Nipping Prevention <span>BONUS classes</span>`],
       6: [`Calls held every Saturday at 3PM EST`],
-    }
+    };
 
     // setTooltipBarTable
     function setTooltipBarTable(event, tooltip) {
-      return `<img data-id="${event}" data-title="${tooltip}" src="https://conversionratestore.github.io/projects/knineti/img/new_alert_circle.svg" alt="tooltip icon">`
+      return `<img data-id="${event}" data-title="${tooltip}" src="https://conversionratestore.github.io/projects/knineti/img/new_alert_circle.svg" alt="tooltip icon">`;
     }
 
     if (document.querySelector(".choose_plan")) {
       document.querySelectorAll("p[data-tolltip]").forEach((el) => {
-        let atr = el.getAttribute("data-tolltip")
-        let product
+        let atr = el.getAttribute("data-tolltip");
+        let product;
 
         if (atr === "1") {
-          product = "1"
+          product = "1";
         } else if (atr === "2") {
-          product = 2
+          product = 2;
         } else if (atr === "3") {
-          product = 3
+          product = 3;
         } else if (atr === "4") {
-          product = 4
+          product = 4;
         } else if (atr === "5") {
-          product = 5
+          product = 5;
         } else if (atr === "6") {
-          product = 6
+          product = 6;
         }
 
-        let arrTooltipTableVar = arrTooltipTable[product]
+        let arrTooltipTableVar = arrTooltipTable[product];
 
         for (let key in arrTooltipTableVar) {
-          el.insertAdjacentHTML("beforeend", setTooltipBarTable(product, arrTooltipTableVar[key]))
+          el.insertAdjacentHTML("beforeend", setTooltipBarTable(product, arrTooltipTableVar[key]));
         }
-      })
+      });
     }
 
     let tippyRun = setInterval(() => {
       if (typeof tippy === "function" && document.querySelector("p[data-tolltip]")) {
-        clearInterval(tippyRun)
+        clearInterval(tippyRun);
 
         document.querySelectorAll("img[data-title]").forEach((el) => {
           tippy(el, {
             content: el.getAttribute("data-title"),
             // trigger: "click",
             appendTo: function () {
-              return document.querySelector(".choose_plan")
+              return document.querySelector(".choose_plan");
             },
-          })
-        })
+          });
+        });
       }
-    }, 500)
+    }, 500);
 
     // plan pricing Switch
     const planSwitch = (slideMenu) => (e) => {
       slideMenu.forEach((links) => {
         if (links === e.currentTarget) {
-          e.currentTarget.closest("th").classList.add("active_plan")
+          e.currentTarget.closest("th").classList.add("active_plan");
 
-          let s = e.currentTarget.closest("th").getAttribute("data-count")
+          let s = e.currentTarget.closest("th").getAttribute("data-count");
           if (window.innerWidth > 768) {
             if (s === "premium") {
               document.querySelectorAll("table tbody tr:not(:nth-child(1)) td:nth-child(2)").forEach((el) => {
-                el.style.background = "#FFFFFF"
-                el.style.color = "#808080"
-                el.querySelector("svg").style.stroke = "#808080"
+                el.style.background = "#FFFFFF";
+                el.style.color = "#808080";
+                el.querySelector("svg").style.stroke = "#808080";
                 if (el.querySelector("svg").classList.contains("minus_var")) {
-                  el.querySelector("svg").style.fill = "#808080"
+                  el.querySelector("svg").style.fill = "#808080";
                 }
-              })
+              });
               document.querySelectorAll("table tbody tr:not(:nth-child(1)) td:nth-child(3)").forEach((el) => {
-                el.style.background = "#f9fcff"
-                el.style.color = "#1D3871"
-                el.querySelector("svg").style.stroke = "#1D3871"
-              })
+                el.style.background = "#f9fcff";
+                el.style.color = "#1D3871";
+                el.querySelector("svg").style.stroke = "#1D3871";
+              });
               document.querySelectorAll("table tbody tr:not(:nth-child(1)) td:nth-child(4)").forEach((el) => {
-                el.style.background = "#FFFFFF"
-                el.style.color = "#808080"
-                el.querySelector("svg").style.stroke = "#808080"
-              })
+                el.style.background = "#FFFFFF";
+                el.style.color = "#808080";
+                el.querySelector("svg").style.stroke = "#808080";
+              });
               document.querySelectorAll(".enroll_link_wrap:nth-child(3)").forEach((el) => {
-                el.style.opacity = "1"
-              })
+                el.style.opacity = "1";
+              });
               document.querySelectorAll(".enroll_link_wrap:nth-child(2)").forEach((el) => {
-                el.style.opacity = "0"
-              })
+                el.style.opacity = "0";
+              });
               document.querySelectorAll(".enroll_link_wrap:nth-child(4)").forEach((el) => {
-                el.style.opacity = "0"
-              })
+                el.style.opacity = "0";
+              });
             }
 
             if (s === "basic") {
               document.querySelectorAll("table tbody tr:not(:nth-child(1))  td:nth-child(2)").forEach((el) => {
-                el.style.background = "#f9fcff"
-                el.style.color = "#1D3871"
-                el.querySelector("svg").style.stroke = "#1D3871"
+                el.style.background = "#f9fcff";
+                el.style.color = "#1D3871";
+                el.querySelector("svg").style.stroke = "#1D3871";
                 if (el.querySelector("svg").classList.contains("minus_var")) {
-                  el.querySelector("svg").style.fill = "#1D3871"
+                  el.querySelector("svg").style.fill = "#1D3871";
                 }
-              })
+              });
               document.querySelectorAll("table tbody tr:not(:nth-child(1)) td:nth-child(3)").forEach((el) => {
-                el.style.background = "#FFFFFF"
-                el.style.color = "#808080"
-                el.querySelector("svg").style.stroke = "#808080"
-              })
+                el.style.background = "#FFFFFF";
+                el.style.color = "#808080";
+                el.querySelector("svg").style.stroke = "#808080";
+              });
               document.querySelectorAll("table tbody tr:not(:nth-child(1)) td:nth-child(4)").forEach((el) => {
-                el.style.background = "#FFFFFF"
-                el.style.color = "#808080"
-                el.querySelector("svg").style.stroke = "#808080"
-              })
+                el.style.background = "#FFFFFF";
+                el.style.color = "#808080";
+                el.querySelector("svg").style.stroke = "#808080";
+              });
               document.querySelectorAll(".enroll_link_wrap:nth-child(2)").forEach((el) => {
-                el.style.opacity = "1"
-              })
+                el.style.opacity = "1";
+              });
               document.querySelectorAll(".enroll_link_wrap:nth-child(3)").forEach((el) => {
-                el.style.opacity = "0"
-              })
+                el.style.opacity = "0";
+              });
               document.querySelectorAll(".enroll_link_wrap:nth-child(4)").forEach((el) => {
-                el.style.opacity = "0"
-              })
+                el.style.opacity = "0";
+              });
             }
             if (s === "deluxe") {
               document.querySelectorAll("table tbody tr:not(:nth-child(1)) td:nth-child(4)").forEach((el) => {
-                el.style.background = "#f9fcff"
-                el.style.color = "#1D3871"
-                el.querySelector("svg").style.stroke = "#1D3871"
-              })
+                el.style.background = "#f9fcff";
+                el.style.color = "#1D3871";
+                el.querySelector("svg").style.stroke = "#1D3871";
+              });
               document.querySelectorAll("table tbody tr:not(:nth-child(1)) td:nth-child(2)").forEach((el) => {
-                el.style.background = "#FFFFFF"
-                el.style.color = "#808080"
-                el.querySelector("svg").style.stroke = "#808080"
+                el.style.background = "#FFFFFF";
+                el.style.color = "#808080";
+                el.querySelector("svg").style.stroke = "#808080";
                 if (el.querySelector("svg").classList.contains("minus_var")) {
-                  el.querySelector("svg").style.fill = "#808080"
+                  el.querySelector("svg").style.fill = "#808080";
                 }
-              })
+              });
               document.querySelectorAll("table tbody tr:not(:nth-child(1)) td:nth-child(3)").forEach((el) => {
-                el.style.background = "#FFFFFF"
-                el.style.color = "#808080"
-                el.querySelector("svg").style.stroke = "#808080"
-              })
+                el.style.background = "#FFFFFF";
+                el.style.color = "#808080";
+                el.querySelector("svg").style.stroke = "#808080";
+              });
               document.querySelectorAll(".enroll_link_wrap:nth-child(4)").forEach((el) => {
-                el.style.opacity = "1"
-              })
+                el.style.opacity = "1";
+              });
               document.querySelectorAll(".enroll_link_wrap:nth-child(3)").forEach((el) => {
-                el.style.opacity = "0"
-              })
+                el.style.opacity = "0";
+              });
               document.querySelectorAll(".enroll_link_wrap:nth-child(2)").forEach((el) => {
-                el.style.opacity = "0"
-              })
+                el.style.opacity = "0";
+              });
             }
           }
 
           if (window.innerWidth <= 768) {
             if (s === "premium") {
               document.querySelectorAll("table tbody tr td:nth-child(2)").forEach((el) => {
-                el.style.background = "#FFFFFF"
-                el.style.color = "#808080"
+                el.style.background = "#FFFFFF";
+                el.style.color = "#808080";
                 if (el.querySelector("svg")) {
-                  el.querySelector("svg").style.stroke = "#808080"
+                  el.querySelector("svg").style.stroke = "#808080";
                   if (el.querySelector("svg").classList.contains("minus_var")) {
-                    el.querySelector("svg").style.fill = "#808080"
+                    el.querySelector("svg").style.fill = "#808080";
                   }
                 }
-              })
+              });
               document.querySelectorAll("table tbody tr td:nth-child(3)").forEach((el) => {
-                el.style.background = "#f9fcff"
-                el.style.color = "#1D3871"
+                el.style.background = "#f9fcff";
+                el.style.color = "#1D3871";
                 if (el.querySelector("svg")) {
-                  el.querySelector("svg").style.stroke = "#1D3871"
+                  el.querySelector("svg").style.stroke = "#1D3871";
                 }
-              })
+              });
               document.querySelectorAll("table tbody tr td:nth-child(4)").forEach((el) => {
-                el.style.background = "#FFFFFF"
-                el.style.color = "#808080"
+                el.style.background = "#FFFFFF";
+                el.style.color = "#808080";
                 if (el.querySelector("svg")) {
-                  el.querySelector("svg").style.stroke = "#808080"
+                  el.querySelector("svg").style.stroke = "#808080";
                 }
-              })
+              });
               document.querySelectorAll(".enroll_mob_wrap .enroll_link_wrap").forEach((el) => {
                 if (el.querySelector("span").textContent === "Premium") {
-                  el.style.display = "block"
+                  el.style.display = "block";
                 } else {
-                  el.style.display = "none"
+                  el.style.display = "none";
                 }
-              })
+              });
             }
 
             if (s === "basic") {
               document.querySelectorAll("table tbody tr td:nth-child(2)").forEach((el) => {
-                el.style.background = "#f9fcff"
-                el.style.color = "#1D3871"
+                el.style.background = "#f9fcff";
+                el.style.color = "#1D3871";
                 if (el.querySelector("svg")) {
-                  el.querySelector("svg").style.stroke = "#1D3871"
+                  el.querySelector("svg").style.stroke = "#1D3871";
                   if (el.querySelector("svg").classList.contains("minus_var")) {
-                    el.querySelector("svg").style.fill = "#1D3871"
+                    el.querySelector("svg").style.fill = "#1D3871";
                   }
                 }
-              })
+              });
               document.querySelectorAll("table tbody tr td:nth-child(3)").forEach((el) => {
-                el.style.background = "#FFFFFF"
-                el.style.color = "#808080"
+                el.style.background = "#FFFFFF";
+                el.style.color = "#808080";
                 if (el.querySelector("svg")) {
-                  el.querySelector("svg").style.stroke = "#808080"
+                  el.querySelector("svg").style.stroke = "#808080";
                 }
-              })
+              });
               document.querySelectorAll("table tbody tr td:nth-child(4)").forEach((el) => {
-                el.style.background = "#FFFFFF"
-                el.style.color = "#808080"
+                el.style.background = "#FFFFFF";
+                el.style.color = "#808080";
                 if (el.querySelector("svg")) {
-                  el.querySelector("svg").style.stroke = "#808080"
+                  el.querySelector("svg").style.stroke = "#808080";
                 }
-              })
+              });
               document.querySelectorAll(".enroll_mob_wrap .enroll_link_wrap").forEach((el) => {
                 if (el.querySelector("span").textContent === "Basic") {
-                  el.style.display = "block"
+                  el.style.display = "block";
                 } else {
-                  el.style.display = "none"
+                  el.style.display = "none";
                 }
-              })
+              });
             }
             if (s === "deluxe") {
               document.querySelectorAll("table tbody tr td:nth-child(4)").forEach((el) => {
-                el.style.background = "#f9fcff"
-                el.style.color = "#1D3871"
+                el.style.background = "#f9fcff";
+                el.style.color = "#1D3871";
                 if (el.querySelector("svg")) {
-                  el.querySelector("svg").style.stroke = "#1D3871"
+                  el.querySelector("svg").style.stroke = "#1D3871";
                 }
-              })
+              });
               document.querySelectorAll("table tbody tr td:nth-child(2)").forEach((el) => {
-                el.style.background = "#FFFFFF"
-                el.style.color = "#808080"
+                el.style.background = "#FFFFFF";
+                el.style.color = "#808080";
                 if (el.querySelector("svg")) {
-                  el.querySelector("svg").style.stroke = "#808080"
+                  el.querySelector("svg").style.stroke = "#808080";
                   if (el.querySelector("svg").classList.contains("minus_var")) {
-                    el.querySelector("svg").style.fill = "#808080"
+                    el.querySelector("svg").style.fill = "#808080";
                   }
                 }
-              })
+              });
               document.querySelectorAll("table tbody tr td:nth-child(3)").forEach((el) => {
-                el.style.background = "#FFFFFF"
-                el.style.color = "#808080"
+                el.style.background = "#FFFFFF";
+                el.style.color = "#808080";
                 if (el.querySelector("svg")) {
-                  el.querySelector("svg").style.stroke = "#808080"
+                  el.querySelector("svg").style.stroke = "#808080";
                 }
-              })
+              });
               document.querySelectorAll(".enroll_mob_wrap .enroll_link_wrap").forEach((el) => {
                 if (el.querySelector("span").textContent === "Deluxe") {
-                  el.style.display = "block"
+                  el.style.display = "block";
                 } else {
-                  el.style.display = "none"
+                  el.style.display = "none";
                 }
-              })
+              });
             }
           }
         } else {
-          links.closest("th").classList.remove("active_plan")
+          links.closest("th").classList.remove("active_plan");
         }
-      })
-    }
+      });
+    };
 
-    const slideMenu = document.querySelectorAll(".btn_plan")
+    const slideMenu = document.querySelectorAll(".btn_plan");
 
     slideMenu.forEach((links) => {
-      links.addEventListener("click", planSwitch(slideMenu))
-    })
+      links.addEventListener("click", planSwitch(slideMenu));
+    });
 
     // click on btn sticky
     if (window.innerWidth <= 768) {
       const planStickySwitch = (slideMenu) => (e) => {
         slideMenu.forEach((links) => {
-          e.preventDefault()
+          e.preventDefault();
 
           if (links === e.currentTarget) {
-            e.currentTarget.classList.add("active_plan")
+            e.currentTarget.classList.add("active_plan");
           } else {
-            links.classList.remove("active_plan")
+            links.classList.remove("active_plan");
           }
 
-          let attr = e.target.getAttribute("data-count")
+          let attr = e.target.getAttribute("data-count");
           if (attr === "basic") {
-            document.querySelectorAll(".plan_header .btn_plan")[0].click()
+            document.querySelectorAll(".plan_header .btn_plan")[0].click();
           }
           if (attr === "premium") {
-            document.querySelectorAll(".plan_header .btn_plan")[1].click()
+            document.querySelectorAll(".plan_header .btn_plan")[1].click();
           }
           if (attr === "deluxe") {
-            document.querySelectorAll(".plan_header .btn_plan")[2].click()
+            document.querySelectorAll(".plan_header .btn_plan")[2].click();
           }
-        })
-      }
+        });
+      };
 
-      const stickyMenu = document.querySelectorAll(".sticky_wrapp ul li")
+      const stickyMenu = document.querySelectorAll(".sticky_wrapp ul li");
 
       stickyMenu.forEach((links) => {
-        links.addEventListener("click", planStickySwitch(stickyMenu))
-      })
+        links.addEventListener("click", planStickySwitch(stickyMenu));
+      });
 
       // sticky btn
-      const element = document.querySelector("tbody")
+      const element = document.querySelector("tbody");
 
       function visible(target) {
         if (target.getBoundingClientRect().top < 0) {
-          document.querySelector(".sticky_wrapp").style.display = "block"
+          document.querySelector(".sticky_wrapp").style.display = "block";
         } else {
-          document.querySelector(".sticky_wrapp").style.display = "none"
+          document.querySelector(".sticky_wrapp").style.display = "none";
         }
       }
 
       window.addEventListener("scroll", function () {
-        visible(element)
-      })
+        visible(element);
+      });
 
-      visible(element)
+      visible(element);
     }
   }
-}, 10)
+}, 10);
 
 //checkout
 let checkoutFunk = setInterval(() => {
   if (document.querySelector(".payment_inform_box")) {
-    clearInterval(checkoutFunk)
+    clearInterval(checkoutFunk);
 
     let styleCheckoutVar = /*html */ `
     <style>
@@ -1537,7 +1533,7 @@ let checkoutFunk = setInterval(() => {
       }
 
     </style>
-    `
+    `;
 
     let newTableBlock = /*html */ `
     <tr class="new_table_block">
@@ -1560,51 +1556,51 @@ let checkoutFunk = setInterval(() => {
 			<td class="actual_price">$299.00</td>
 			<td>$0.00</td>
 		</tr>
-    `
+    `;
 
-    document.head.insertAdjacentHTML("beforeend", styleCheckoutVar)
-    document.querySelector(".payment_order .subtitle_text")?.insertAdjacentHTML("afterend", `<p class="subtitle_text">Order Summary</p>`)
+    document.head.insertAdjacentHTML("beforeend", styleCheckoutVar);
+    document.querySelector(".payment_order .subtitle_text")?.insertAdjacentHTML("afterend", `<p class="subtitle_text">Order Summary</p>`);
     if (document.querySelector(".payment_order .subtitle_text").textContent.includes("Prem")) {
       // Premium plan
-      document.querySelector(".payment_inform_box li > div table thead tr th:nth-child(1)").textContent = "Premium plan"
-      document.querySelector(".payment_inform_box li > div table tbody tr:nth-child(7)")?.insertAdjacentHTML("afterend", newTableBlock)
+      document.querySelector(".payment_inform_box li > div table thead tr th:nth-child(1)").textContent = "Premium plan";
+      document.querySelector(".payment_inform_box li > div table tbody tr:nth-child(7)")?.insertAdjacentHTML("afterend", newTableBlock);
       document.querySelectorAll(".total_actual").forEach((el) => {
-        el.textContent = "$2393.10"
-      })
-      document.querySelector("tr.abtest5_2_full")?.remove()
-      document.querySelector("tr.not_basic_main")?.remove()
+        el.textContent = "$2393.10";
+      });
+      document.querySelector("tr.abtest5_2_full")?.remove();
+      document.querySelector("tr.not_basic_main")?.remove();
     }
 
     if (document.querySelector(".payment_order .subtitle_text").textContent.includes("Deluxe")) {
       // Deluxe plan
-      document.querySelector(".payment_inform_box li > div table thead tr th:nth-child(1)").textContent = "Deluxe Plan"
-      document.querySelector(".payment_inform_box li > div table tbody tr:nth-child(7)")?.insertAdjacentHTML("afterend", newTableBlock)
+      document.querySelector(".payment_inform_box li > div table thead tr th:nth-child(1)").textContent = "Deluxe Plan";
+      document.querySelector(".payment_inform_box li > div table tbody tr:nth-child(7)")?.insertAdjacentHTML("afterend", newTableBlock);
       if (document.querySelector(".name__pricing_plan")) {
-        document.querySelector(".name__pricing_plan").textContent = "Deluxe"
+        document.querySelector(".name__pricing_plan").textContent = "Deluxe";
       }
       if (document.querySelector(".period_access")) {
         document.querySelectorAll(".period_access").forEach((el) => {
-          el.textContent = "(1-year access)"
-        })
+          el.textContent = "(1-year access)";
+        });
       }
       if (document.querySelector(".price_group_calls")) {
-        document.querySelector(".price_group_calls").textContent = "$1999.00"
+        document.querySelector(".price_group_calls").textContent = "$1999.00";
       }
       if (document.querySelector(".price_email_questions")) {
-        document.querySelector(".price_email_questions").textContent = "$599.00"
+        document.querySelector(".price_email_questions").textContent = "$599.00";
       }
 
       document.querySelectorAll(".total_actual").forEach((el) => {
-        el.textContent = "$3993.10"
-      })
-      document.querySelector("tr.abtest5_2_full")?.remove()
-      document.querySelector("tr.not_basic_main")?.remove()
+        el.textContent = "$3993.10";
+      });
+      document.querySelector("tr.abtest5_2_full")?.remove();
+      document.querySelector("tr.not_basic_main")?.remove();
     }
 
     if (document.querySelector(".payment_order .subtitle_text").textContent.includes("Basic")) {
       // Basic plan
-      document.querySelector(".payment_inform_box li > div table thead tr th:nth-child(1)").textContent = "Basic plan"
-      document.querySelector(".payment_inform_box li > div table tbody tr:nth-child(7)")?.after(document.querySelector("tr.abtest5_2_full"))
+      document.querySelector(".payment_inform_box li > div table thead tr th:nth-child(1)").textContent = "Basic plan";
+      document.querySelector(".payment_inform_box li > div table tbody tr:nth-child(7)")?.after(document.querySelector("tr.abtest5_2_full"));
     }
   }
-}, 10)
+}, 10);

@@ -14,7 +14,7 @@ let paymentCheckout = setInterval(() => {
         console.log(actionDataLayer + " : " + labelDataLayer);
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: Installment payment ${eventVar}`,
+          eventCategory: `Exp: Installment payment v2 ${eventVar}`,
           eventAction: `${actionDataLayer}`,
           eventLabel: `${labelDataLayer}`,
         });
@@ -22,7 +22,7 @@ let paymentCheckout = setInterval(() => {
         console.log(actionDataLayer);
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: Installment payment ${eventVar}`,
+          eventCategory: `Exp: Installment payment v2 ${eventVar}`,
           eventAction: `${actionDataLayer}`,
         });
       }
@@ -30,473 +30,533 @@ let paymentCheckout = setInterval(() => {
 
     let paymentCheckoutStyle = /*html */ `
         <style>
-.overlay_popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgb(0 0 0 / 50%);
-  display: flex;
-  overflow-y: auto;
-  z-index: 1000000000;
-  transition: all 0.3s ease;
-}
-.overlay_popup.is_hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-.overlay_popup .container_popup {
-  display: block;
-  position: relative;
-  max-width: 500px;
-  width: 100%;
-  padding: 24px;
-  margin: auto;
-  background: #ffffff;
-  transition: all 0.5s ease 0s;
-  border-radius: 6px;
-}
-.overlay_popup .container_popup > svg {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  outline: none;
-  cursor: pointer;
-}
-.content_popup h2 {
-  font-weight: 700;
-  font-size: 18px !important;
-  line-height: 24px;
-  color: #193973;
-  margin: 0 0 12px !important;
-  text-align: left;
-}
-.content_popup > p {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: #4b4b4b !important;
-  margin: 12px 0 24px !important;
-}
-.content_popup button {
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 22px;
-  text-align: center;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #193973;
-  box-shadow: 5px 5px 10px #272020;
-  border-radius: 6px;
-  max-width: 303px;
-  height: 52px;
-  width: 100%;
-  margin: 24px auto 0;
-  outline: unset;
-  border: unset;
-  transition: all 250ms cubic-bezier(0.45, 0.05, 0.55, 0.95);
-}
-.content_popup button:hover {
-  box-shadow: unset;
-}
-.list_guarantee {
-  background: #e9f1f9;
-  border-radius: 4px;
-  padding: 12px 12px 12px 22px;
-  list-style: none;
-  margin: 0 !important;
-}
-.list_guarantee li {
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 22px;
-  color: #193973;
-  position: relative;
-}
-.list_guarantee li + li {
-  margin-top: 6px;
-}
-.list_guarantee li::before {
-  content: "";
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: #193973;
-  border-radius: 50%;
-  left: -12px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.list_payment {
-  margin: 0 !important;
-  list-style: none;
-  padding: 0 0 0 52px;
-}
-.list_payment li {
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 22px;
-  color: #193973 !important;
-  position: relative;
-  min-height: 40px;
-  display: flex;
-  align-items: center;
-}
-.list_payment li::before {
-  content: "";
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  background: url(https://conversionratestore.github.io/projects/knineti/img/list_payment_img1.svg) no-repeat center center;
-  border-radius: 50%;
-  left: -52px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.list_payment li:nth-child(2):before {
-  background: url(https://conversionratestore.github.io/projects/knineti/img/list_payment_img2.svg) no-repeat center center;
-}
-.list_payment li:nth-child(3):before {
-  background: url(https://conversionratestore.github.io/projects/knineti/img/list_payment_img3.svg) no-repeat center center;
-}
-.list_payment li:nth-child(4):before {
-  background: url(https://conversionratestore.github.io/projects/knineti/img/list_payment_img4.svg) no-repeat center center;
-}
-.list_payment li + li {
-  margin-top: 20px;
-}
-.list_payment li p {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  bottom: -24px;
-  left: -33px;
-}
-.list_payment li:last-child p {
-  display: none;
-}
-.list_payment li p span {
-  width: 2.5px;
-  height: 2.5px;
-  background: #734f22;
-  border-radius: 50%;
-}
-.list_payment li p span + span {
-  margin-top: 4px;
-}
+          .payment_inform_box .payment_plan_wrapp .input_wrapper > div >input:checked + label .radio_style .ellipse{
+            width: 8.2px;
+            height: 8.2px;
+          }
+          .overlay_popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgb(0 0 0 / 50%);
+            display: flex;
+            overflow-y: auto;
+            z-index: 1000000000;
+            transition: all 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
+          }
+          .overlay_popup.is_hidden {
+            opacity: 0;
+            pointer-events: none;
+          }
+          .overlay_popup .container_popup {
+            display: block;
+            position: relative;
+            max-width: 500px;
+            width: 100%;
+            padding: 24px;
+            margin: auto;
+            background: #ffffff;
+            transition: all 0.5s ease 0s;
+            border-radius: 6px;
+          }
+          .overlay_popup .container_popup > svg {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            outline: none;
+            cursor: pointer;
+          }
+          .content_popup h2 {
+            font-weight: 700;
+            font-size: 18px !important;
+            line-height: 24px;
+            color: #193973;
+            margin: 0 0 12px !important;
+            text-align: left;
+          }
+          .content_popup > p {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+            color: #4b4b4b !important;
+            margin: 12px 0 24px !important;
+          }
+          .content_popup button {
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 22px;
+            text-align: center;
+            letter-spacing: -0.01em;
+            text-transform: uppercase;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #193973;
+            box-shadow: 5px 5px 10px #272020;
+            border-radius: 6px;
+            max-width: 303px;
+            height: 52px;
+            width: 100%;
+            margin: 24px auto 0;
+            outline: unset;
+            border: unset;
+            transition: all 250ms cubic-bezier(0.45, 0.05, 0.55, 0.95);
+          }
+          .content_popup button:hover {
+            box-shadow: unset;
+          }
+          .list_guarantee {
+            background: #e9f1f9;
+            border-radius: 4px;
+            padding: 12px 12px 12px 22px;
+            list-style: none;
+            margin: 0 !important;
+          }
+          .list_guarantee li {
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 22px;
+            color: #193973;
+            position: relative;
+          }
+          .list_guarantee li + li {
+            margin-top: 6px;
+          }
+          .list_guarantee li::before {
+            content: "";
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #193973;
+            border-radius: 50%;
+            left: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+          .list_payment {
+            margin: 0 !important;
+            list-style: none;
+            padding: 0 0 0 52px;
+          }
+          .list_payment li {
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 22px;
+            color: #193973 !important;
+            position: relative;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+          }
+          .list_payment li::before {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: url(https://conversionratestore.github.io/projects/knineti/img/list_payment_img1.svg) no-repeat center center;
+            border-radius: 50%;
+            left: -52px;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+          .list_payment li:nth-child(2):before {
+            background: url(https://conversionratestore.github.io/projects/knineti/img/list_payment_img2.svg) no-repeat center center;
+          }
+          .list_payment li:nth-child(3):before {
+            background: url(https://conversionratestore.github.io/projects/knineti/img/list_payment_img3.svg) no-repeat center center;
+          }
+          .list_payment li:nth-child(4):before {
+            background: url(https://conversionratestore.github.io/projects/knineti/img/list_payment_img4.svg) no-repeat center center;
+          }
+          .list_payment li + li {
+            margin-top: 20px;
+          }
+          .list_payment li p {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            bottom: -24px;
+            left: -33px;
+          }
+          .list_payment li:last-child p {
+            display: none;
+          }
+          .list_payment li p span {
+            width: 2.5px;
+            height: 2.5px;
+            background: #734f22;
+            border-radius: 50%;
+          }
+          .list_payment li p span + span {
+            margin-top: 4px;
+          }
 
-.payment_inform_box .input_wrapper > div label .radio_style + span {
-  display: none !important;
-}
-.payment_plan_wrapp.payment_plan .input_wrapper {
-  display: flex !important;
-  flex-direction: column-reverse;
-  padding: 0;
-  border: unset;
-}
-.payment_inform_box li > div.input_wrapper > div:not(:last-child) {
-  margin: 12px 0 0 !important;
-}
-.payment_inform_box .payment_plan_wrapp .input_wrapper > div label {
-  background: #ffffff;
-  border: 1px solid #dfe8f0;
-  border-radius: 10px;
-  padding: 16px;
-}
-.payment_inform_box .payment_plan_wrapp .input_wrapper > div.monthly_sec label {
-  border-bottom: unset !important;
-  border-radius: 10px 10px 0 0;
-  padding-bottom: 13px;
-}
-.payment_inform_box .payment_plan_wrapp .input_wrapper > div > input:checked + label,
-.payment_inform_box .payment_plan_wrapp .input_wrapper > div > input:checked ~ .new_text_label {
-  border: 1px solid #16377b;
-}
-.payment_var {
-  background: #ffffff;
-  border: 1px dashed #e7e7e7;
-  border-radius: 10px 10px 0 0;
-  margin: 0 auto -8px;
-  padding: 12px 12px 20px;
-  text-align: center;
-  max-width: 345px !important;
-  width: 100%;
-}
-.first_block .submit_btn input#submit {
-  max-width: 345px !important;
-}
-.payment_var p {
-  margin: 0 !important;
-  color: #16377b !important;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-}
-.new_text_radio_btn {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 19px;
-  color: #16377b;
-}
-.new_full_price {
-  color: rgba(128, 128, 128, 1);
-  text-decoration: line-through;
-}
-.new_your_price,
-.accent_var {
-  font-weight: 700;
-}
-.text_var {
-  display: flex;
-  align-items: center;
-}
-.payment_inform_box li > div > p.discount_row {
-  margin: 4px 0 0 !important;
-  line-height: 167% !important;
-}
-.payment_inform_box li > div > p.saved_box {
-  margin: 5px 0 0 auto !important;
-  max-width: max-content;
-  background: #992337;
-  border-radius: 4px;
-  padding: 3px 6px;
-  font-weight: 700 !important;
-  font-size: 12px !important;
-  line-height: 16px !important;
-  color: #ffffff !important;
-  text-transform: unset !important;
-}
-.new_text_label {
-  border: 1px solid #dfe8f0;
-  border-top: unset !important;
-  border-radius: 0 0 10px 10px;
-}
-.new_text_label .new_text_label_list {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 14px;
-  padding: 0 21px !important;
-}
-.new_text_label .new_text_label_list .new_text_label_link {
-  margin: 0 !important;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  position: relative;
-}
-.new_text_label .new_text_label_list .new_text_label_link:nth-child(1) {
-  width: 10%;
-}
-.new_text_label .new_text_label_list .new_text_label_link:nth-child(2) {
-  width: 26%;
-}
-.new_text_label .new_text_label_list .new_text_label_link:nth-child(3),
-.new_text_label .new_text_label_list .new_text_label_link:nth-child(4) {
-  width: 17%;
-}
-.new_text_label .new_text_label_list .new_text_label_link:not(:last-child)::after {
-  content: "";
-  position: absolute;
-}
-.new_text_label .new_text_label_list .new_text_label_link > span {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 18px;
-  color: #193973;
-  margin-top: 8px;
-}
-.new_text_label .new_text_label_list .new_text_label_link .circle_wrapp {
-  position: absolute;
-  right: 0;
-  top: 14px;
-  display: flex;
-}
-.new_text_label .new_text_label_list .new_text_label_link .circle_wrapp span {
-  width: 3.2px;
-  height: 3px;
-  background: #734f22;
-  border-radius: 50%;
-}
-.new_text_label .new_text_label_list .new_text_label_link .circle_wrapp span + span {
-  margin-left: 10px;
-}
-.new_text_label .new_text_label_list .new_text_label_link:nth-child(1) .circle_wrapp {
-  right: -70px;
-}
-.new_text_label .new_text_label_list .new_text_label_link:nth-child(2) .circle_wrapp {
-  right: -40px;
-}
-.new_text_label .new_text_label_list .new_text_label_link:nth-child(3) .circle_wrapp {
-  right: -53px;
-}
-.new_text_label .block_back_guarantee_var {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #e9f1f9;
-  padding: 11px 20px;
-  gap: 8px;
-  border-radius: 0 0 10px 10px;
-}
-.new_text_label .block_back_guarantee_var p {
-  margin: 0 !important;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 18px;
-  color: #193973 !important;
-  position: relative;
-}
-.new_text_label .block_back_guarantee_var p:nth-child(1)::after {
-  content: "";
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: #193973;
-  border-radius: 50%;
-  right: -18px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.learn_more_box {
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 20px;
-  text-decoration-line: underline;
-  color: #794e15;
-  display: inline-flex;
-  align-items: center;
-}
-.learn_more_box svg {
-  margin-left: 4px;
-}
-.learn_more_box.mob_var,
-.block_back_guarantee_mob_var {
-  display: none;
-}
-@media (min-width: 1150px) {
-  .payment_plan_wrapp.payment_plan {
-    margin-top: -85px;
-  }
-}
-@media only screen and (min-width: 1111px) and (max-width: 1150px) {
-  .payment_plan_wrapp.payment_plan {
-    margin-top: -34px;
-  }
-  .new_text_radio_btn {
-    font-size: 13px;
-  }
-}
-@media (max-width: 1066px) {
-  .text_var {
-    display: unset;
-  }
-}
-@media only screen and (min-width: 988px) and (max-width: 1111px) {
-  .payment_plan_wrapp.payment_plan {
-    margin-top: -85px;
-  }
-}
-@media only screen and (min-width: 786px) and (max-width: 988px) {
-  .payment_plan_wrapp.payment_plan {
-    margin-top: -185px;
-  }
-}
-@media (max-width: 768px) {
-  .overlay_popup {
-    padding: 20px 0;
-  }
-  .overlay_popup .container_popup {
-    padding: 20px;
-    max-width: 343px;
-  }
-  .content_popup > p {
-    margin-bottom: 20px !important;
-  }
-  .list_payment li::before {
-    top: 0;
-    transform: unset;
-  }
-  .list_payment li p {
-    bottom: -21px;
-  }
-  .list_payment li + li {
-    margin-top: 16px;
-  }
-  .learn_more_box.mob_var {
-    display: flex;
-    margin: 5px 0 21px 37px;
-    width: fit-content;
-  }
-  .new_text_label .new_text_label_list {
-    padding-left: 38px !important;
-  }
-  .new_text_label .new_text_label_list .new_text_label_link .circle_wrapp span:nth-child(3),
-  .new_text_label .new_text_label_list .new_text_label_link .circle_wrapp span:nth-child(4) {
-    display: none;
-  }
-  .learn_more_box.desk_var,
-  .new_text_label .block_back_guarantee_var,
-  .new_text_label .new_text_label_list .new_text_label_link:nth-child(2) {
-    display: none;
-  }
-  .new_text_label .new_text_label_list .new_text_label_link:nth-child(1),
-  .new_text_label .new_text_label_list .new_text_label_link:nth-child(2),
-  .new_text_label .new_text_label_list .new_text_label_link:nth-child(3),
-  .new_text_label .new_text_label_list .new_text_label_link:nth-child(4) {
-    width: 100%;
-  }
-  .block_back_guarantee_mob_var {
-    display: block;
-    padding: 0 16px 0 38px;
-  }
-  .block_back_guarantee_mob_var > div {
-    background: #e9f1f9;
-    border-radius: 4px;
-    padding: 10px 12px 10px 20px;
-  }
-  .block_back_guarantee_mob_var > div p {
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 24px;
-    color: #193973 !important;
-    margin: 0 !important;
-    position: relative;
-  }
-  .block_back_guarantee_mob_var > div p::before {
-    content: "";
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: #193973;
-    border-radius: 50%;
-    top: 10px;
-    left: -10px;
-  }
-  .block_back_guarantee_mob_var > div p + p {
-    margin-top: 4px;
-  }
-  .block_back_guarantee_mob_var > div p span {
-    font-weight: 400;
-  }
-  .payment_var {
-    width: 100%;
-    max-width: 100%;
-  }
-}
-@media (max-width: 320px) {
-  .new_text_radio_btn {
-    font-size: 13px;
-  }
-  .payment_var p {
-    font-size: 13px;
-  }
-}
+          .payment_inform_box .input_wrapper > div label .radio_style + span {
+            display: none !important;
+          }
+          .payment_plan_wrapp.payment_plan .input_wrapper {
+            display: flex !important;
+            flex-direction: column-reverse;
+            padding: 0;
+            border: unset;
+          }
+          .payment_inform_box li > div.input_wrapper > div:not(:last-child) {
+            margin: 12px 0 0 !important;
+          }
+          .payment_inform_box .payment_plan_wrapp .input_wrapper > div label {
+            background: #ffffff;
+            border: 1px solid #dfe8f0;
+            border-radius: 10px;
+            padding: 16px;
+          }
+          .payment_inform_box .payment_plan_wrapp .input_wrapper > div.monthly_sec label {
+            border-bottom: unset !important;
+            border-radius: 10px 10px 0 0;
+            padding-bottom: 13px;
+          }
+          .payment_inform_box .payment_plan_wrapp .input_wrapper > div > input:checked + label,
+          .payment_inform_box .payment_plan_wrapp .input_wrapper > div > input:checked ~ .new_text_label {
+            border: 1px solid #16377b;
+          }
+          .payment_var {
+            background: #ffffff;
+            border: 1px dashed #e7e7e7;
+            border-radius: 10px 10px 0 0;
+            margin: 0 auto -8px;
+            padding: 12px 12px 20px;
+            text-align: center;
+            max-width: 345px !important;
+            width: 100%;
+          }
+          .first_block .submit_btn input#submit {
+            max-width: 345px !important;
+          }
+          .payment_var p {
+            margin: 0 !important;
+            color: #16377b !important;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+          }
+          .new_text_radio_btn {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 19px;
+            color: #16377b;
+          }
+          .new_full_price {
+            color: rgba(128, 128, 128, 1);
+            text-decoration: line-through;
+          }
+          .new_your_price,
+          .accent_var {
+            font-weight: 700;
+          }
+          .text_var {
+            display: flex;
+            align-items: center;
+          }
+          .payment_inform_box li > div > p.discount_row {
+            margin: 4px 0 0 !important;
+            line-height: 167% !important;
+          }
+          .payment_inform_box li > div > p.saved_box {
+            margin: 5px 0 0 auto !important;
+            max-width: max-content;
+            background: #992337;
+            border-radius: 4px;
+            padding: 3px 6px;
+            font-weight: 700 !important;
+            font-size: 12px !important;
+            line-height: 16px !important;
+            color: #ffffff !important;
+            text-transform: unset !important;
+          }
+          .new_text_label {
+            border: 1px solid #dfe8f0;
+            border-top: unset !important;
+            border-radius: 0 0 10px 10px;
+          }
+          .new_text_label .new_text_label_list {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 14px;
+            padding: 0 21px !important;
+          }
+          .new_text_label .new_text_label_list .new_text_label_link {
+            margin: 0 !important;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+          }
+          .new_text_label .new_text_label_list .new_text_label_link:nth-child(1) {
+            width: 10%;
+          }
+          .new_text_label .new_text_label_list .new_text_label_link:nth-child(2) {
+            width: 26%;
+          }
+          .new_text_label .new_text_label_list .new_text_label_link:nth-child(3),
+          .new_text_label .new_text_label_list .new_text_label_link:nth-child(4) {
+            width: 17%;
+          }
+          .new_text_label .new_text_label_list .new_text_label_link:not(:last-child)::after {
+            content: "";
+            position: absolute;
+          }
+          .new_text_label .new_text_label_list .new_text_label_link > span {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 18px;
+            color: #193973;
+            margin-top: 8px;
+          }
+          .new_text_label .new_text_label_list .new_text_label_link .circle_wrapp {
+            position: absolute;
+            right: 0;
+            top: 14px;
+            display: flex;
+          }
+          .new_text_label .new_text_label_list .new_text_label_link .circle_wrapp span {
+            width: 3.2px;
+            height: 3px;
+            background: #734f22;
+            border-radius: 50%;
+          }
+          .new_text_label .new_text_label_list .new_text_label_link .circle_wrapp span + span {
+            margin-left: 10px;
+          }
+          .new_text_label .new_text_label_list .new_text_label_link:nth-child(1) .circle_wrapp {
+            right: -70px;
+          }
+          .new_text_label .new_text_label_list .new_text_label_link:nth-child(2) .circle_wrapp {
+            right: -40px;
+          }
+          .new_text_label .new_text_label_list .new_text_label_link:nth-child(3) .circle_wrapp {
+            right: -53px;
+          }
+          .new_text_label .block_back_guarantee_var {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #e9f1f9;
+            padding: 11px 20px;
+            gap: 8px;
+            border-radius: 0 0 10px 10px;
+          }
+          .new_text_label .block_back_guarantee_var p {
+            margin: 0 !important;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 18px;
+            color: #193973 !important;
+            position: relative;
+          }
+          .new_text_label .block_back_guarantee_var p:nth-child(1)::after {
+            content: "";
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #193973;
+            border-radius: 50%;
+            right: -18px;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+          .learn_more_box {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 20px;
+            text-decoration-line: underline;
+            color: #794e15;
+            display: inline-flex;
+            align-items: center;
+          }
+          .learn_more_box svg {
+            margin-left: 4px;
+          }
+          .learn_more_box.mob_var,
+          .block_back_guarantee_mob_var {
+            display: none;
+          }
+          @media (max-width: 1175px) {
+            .new_text_label .block_back_guarantee_var p:nth-child(1) {
+              width: 43%;
+            }
+          }
+          @media (min-width: 1150px) {
+            .payment_plan_wrapp.payment_plan {
+              margin-top: -85px;
+            }
+          }
+          @media (max-width: 1080px) {
+            .new_text_label .block_back_guarantee_var p:nth-child(1)::after {
+              right: -2px;
+            }
+          }
+          @media (max-width: 980px) {
+            .new_text_label .block_back_guarantee_var p,
+            .new_text_radio_btn {
+              font-size: 13px;
+            }
+          }
+          @media (max-width: 915px) {
+            .new_text_label .block_back_guarantee_var p,
+            .new_text_radio_btn {
+              font-size: 12px;
+            }
+          }
+          @media only screen and (min-width: 1111px) and (max-width: 1150px) {
+            .payment_plan_wrapp.payment_plan {
+              margin-top: -34px;
+            }
+            .new_text_radio_btn {
+              font-size: 13px;
+            }
+          }
+          @media (max-width: 1066px) {
+            .text_var {
+              display: unset;
+            }
+          }
+          @media only screen and (min-width: 988px) and (max-width: 1111px) {
+            .payment_plan_wrapp.payment_plan {
+              margin-top: -85px;
+            }
+          }
+          @media only screen and (min-width: 786px) and (max-width: 988px) {
+            .payment_plan_wrapp.payment_plan {
+              margin-top: -185px;
+            }
+          }
+          @media (max-width: 768px) {
+            .overlay_popup {
+              padding: 20px 0;
+            }
+            .overlay_popup .container_popup {
+              padding: 20px;
+              max-width: 343px;
+            }
+            .content_popup > p {
+              margin-bottom: 20px !important;
+            }
+            .list_payment li::before {
+              top: 0;
+              transform: unset;
+            }
+            .list_payment li p {
+              bottom: -21px;
+            }
+            .list_payment li + li {
+              margin-top: 16px;
+            }
+            .learn_more_box.mob_var {
+              display: flex;
+              margin: 5px 0 21px 37px;
+              width: fit-content;
+            }
+            .new_text_label .new_text_label_list {
+              padding-left: 38px !important;
+            }
+            .new_text_label .new_text_label_list .new_text_label_link .circle_wrapp span:nth-child(3),
+            .new_text_label .new_text_label_list .new_text_label_link .circle_wrapp span:nth-child(4) {
+              display: none;
+            }
+            .learn_more_box.desk_var,
+            .new_text_label .block_back_guarantee_var,
+            .new_text_label .new_text_label_list .new_text_label_link:nth-child(2) {
+              display: none;
+            }
+            .new_text_label .new_text_label_list .new_text_label_link:nth-child(1) {
+              width: 14%;
+            }
+            .new_text_label .new_text_label_list .new_text_label_link:nth-child(3),
+            .new_text_label .new_text_label_list .new_text_label_link:nth-child(4) {
+              width: 30%;
+            }
+            .new_text_label .new_text_label_list .new_text_label_link:nth-child(1) .circle_wrapp {
+              right: -47px;
+            }
+            .new_text_label .new_text_label_list .new_text_label_link:nth-child(3) .circle_wrapp {
+              right: -32px;
+            }
+            .new_text_label .new_text_label_list .new_text_label_link:nth-child(4) .circle_wrapp {
+              display: none;
+            }
+            body .payment_inform_box {
+              margin-bottom: -6px !important;
+            }
+            .payment_inform_box li.paymen_method p.support_text {
+              margin: 9px 0 23px !important;
+            }
+            .block_back_guarantee_mob_var {
+              display: block;
+              padding: 0 16px 0 38px;
+            }
+            .block_back_guarantee_mob_var > div {
+              background: #e9f1f9;
+              border-radius: 4px;
+              padding: 10px 12px 10px 20px;
+            }
+            .block_back_guarantee_mob_var > div p {
+              font-weight: 700;
+              font-size: 14px;
+              line-height: 24px;
+              color: #193973 !important;
+              margin: 0 !important;
+              position: relative;
+            }
+            .block_back_guarantee_mob_var > div p::before {
+              content: "";
+              position: absolute;
+              width: 4px;
+              height: 4px;
+              background: #193973;
+              border-radius: 50%;
+              top: 10px;
+              left: -10px;
+            }
+            .block_back_guarantee_mob_var > div p + p {
+              margin-top: 4px;
+            }
+            .block_back_guarantee_mob_var > div p span {
+              font-weight: 400;
+            }
+            .payment_var {
+              width: 100%;
+              max-width: 100%;
+            }
+            .payment_inform_box .payment_plan_wrapp p.subtitle_text {
+              margin-bottom: 12px !important;
+            }
+          }
+          @media (max-width: 320px) {
+            .overlay_popup .container_popup {
+              max-width: 302px;
+            }
+            .list_guarantee li {
+              font-size: 15px;
+            }
+            .new_text_radio_btn,
+            .new_text_label .new_text_label_list .new_text_label_link > span,
+            .block_back_guarantee_mob_var > div p,
+            .payment_var p {
+              font-size: 11px;
+            }
+            .new_text_label .new_text_label_list .new_text_label_link .circle_wrapp span + span {
+              margin-left: 4px;
+            }
+            .new_text_label .new_text_label_list .new_text_label_link:nth-child(1) .circle_wrapp {
+              right: -35px;
+            }
+            .new_text_label .new_text_label_list .new_text_label_link:nth-child(3) .circle_wrapp {
+              right: -24px;
+            }
+          }
         </style>
         `;
 
@@ -521,20 +581,20 @@ let paymentCheckout = setInterval(() => {
               <li>No interest or borrowing fees</li>
               <li>No impact on your credit score</li>
             </ul>
-            <p>Pay by credit or debit card in 3 smaller payment amounts. Your card will be automatically charged the same as your initial installment amount after 30 and 60 days.</p>
+            <p class="text_payment_visab">Pay by credit or debit card in 3 smaller payment amounts. Your card will be automatically charged the same as your initial installment amount after 30 and 60 days.</p>
             <ul class="list_payment">
               <li>Select the 3-month installment payment plan <p><span></span><span></span></p></li>
               <li>Enter your credit or debit card details <p><span></span><span></span></p></li>
               <li>Make your first payment <p><span></span><span></span></p></li>
               <li>Get immediate access to the Total Transformation Masterclass <p><span></span><span></span></p></li>
             </ul>
-            <button>Complete purchase</button>
+            <button class="complete_purchase_btn">Complete purchase</button>
         </div>
     `;
 
     document.head.insertAdjacentHTML("beforeend", paymentCheckoutStyle);
     document.body.insertAdjacentHTML("afterbegin", popUp);
-    document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup);
+    // document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup);
 
     if (document.querySelector(".payment_inform_box .payment_plan_wrapp .input_wrapper > div.monthly_sec >input:checked") == null && !sessionStorage.getItem("data-checked")) {
       document.querySelector(".payment_inform_box .payment_plan_wrapp .input_wrapper > div.monthly_sec >input").checked = true;
@@ -561,8 +621,8 @@ let paymentCheckout = setInterval(() => {
       <span class="new_your_price">$${(price / 3).toFixed(0)}</span>
       <span class="learn_more_box desk_var"
         >Learn more
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M10.8 6C10.8 8.65097 8.65097 10.8 6 10.8C3.34903 10.8 1.2 8.65097 1.2 6C1.2 3.34903 3.34903 1.2 6 1.2C8.65097 1.2 10.8 3.34903 10.8 6ZM12 6C12 9.31371 9.31371 12 6 12C2.68629 12 0 9.31371 0 6C0 2.68629 2.68629 0 6 0C9.31371 0 12 2.68629 12 6ZM5.39961 3.6C5.39961 3.26863 5.66824 3 5.99961 3C6.33098 3 6.59961 3.26863 6.59961 3.6C6.59961 3.93137 6.33098 4.2 5.99961 4.2C5.66824 4.2 5.39961 3.93137 5.39961 3.6ZM5.39961 5.4C5.39961 5.06863 5.66824 4.8 5.99961 4.8C6.33098 4.8 6.59961 5.06863 6.59961 5.4V8.4C6.59961 8.73137 6.33098 9 5.99961 9C5.66824 9 5.39961 8.73137 5.39961 8.4V5.4Z" fill="#794E15" /></svg
+        <svg class="svg_visab" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="svg_visab" fill-rule="evenodd" clip-rule="evenodd" d="M10.8 6C10.8 8.65097 8.65097 10.8 6 10.8C3.34903 10.8 1.2 8.65097 1.2 6C1.2 3.34903 3.34903 1.2 6 1.2C8.65097 1.2 10.8 3.34903 10.8 6ZM12 6C12 9.31371 9.31371 12 6 12C2.68629 12 0 9.31371 0 6C0 2.68629 2.68629 0 6 0C9.31371 0 12 2.68629 12 6ZM5.39961 3.6C5.39961 3.26863 5.66824 3 5.99961 3C6.33098 3 6.59961 3.26863 6.59961 3.6C6.59961 3.93137 6.33098 4.2 5.99961 4.2C5.66824 4.2 5.39961 3.93137 5.39961 3.6ZM5.39961 5.4C5.39961 5.06863 5.66824 4.8 5.99961 4.8C6.33098 4.8 6.59961 5.06863 6.59961 5.4V8.4C6.59961 8.73137 6.33098 9 5.99961 9C5.66824 9 5.39961 8.73137 5.39961 8.4V5.4Z" fill="#794E15" /></svg
       ></span>
     </div>`
     );
@@ -662,7 +722,6 @@ let paymentCheckout = setInterval(() => {
     }
 
     function getLocalStor(el = "") {
-      console.log(`getLocalStor!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!`);
       document.querySelector(".payment_var")?.remove();
       let class_var = "";
       let text = "";
@@ -683,13 +742,10 @@ let paymentCheckout = setInterval(() => {
         }
       }
 
-      console.log(`TEXT`, text);
       if (sessionStorage.getItem("data-payment")) {
         sessionStorage.removeItem("data-payment");
-        console.log(`>>>>>>>>>>>>>>TEXT1`);
         sessionStorage.setItem("data-payment", text);
       } else {
-        console.log(`>>>>>>>>>>>>>>TEXT2`);
         sessionStorage.setItem("data-payment", text);
       }
 
@@ -750,7 +806,8 @@ let paymentCheckout = setInterval(() => {
         if (e.currentTarget.getAttribute("for") === "onetime_pay") {
           pushDataLayer("Choose payment plan Click", `${price.toFixed(0)}`);
           getLocalStor("onetime_pay");
-        } else {
+        }
+        if (e.currentTarget.getAttribute("for") === "monthly_pay" && !e.target.classList.contains("learn_more_box") && !e.target.classList.contains("svg_visab")) {
           pushDataLayer("Choose payment plan Click", `${(price / 3).toFixed(0)}`);
           getLocalStor("monthly_pay");
         }
@@ -766,11 +823,31 @@ let paymentCheckout = setInterval(() => {
     obs.observe(document.querySelector(".payment_inform_box .payment_plan_wrapp .input_wrapper>div>label[for='monthly_pay']"));
     obs.observe(document.querySelector(".saved_box"));
 
+    let int3 = setInterval(() => {
+      if (document.querySelector(".text_payment_visab")) {
+        clearInterval(int3);
+        obs.observe(document.querySelector(".text_payment_visab"));
+      }
+    }, 100);
+
+    let int4 = setInterval(() => {
+      if (document.querySelector(".complete_purchase_btn")) {
+        clearInterval(int4);
+        obs.observe(document.querySelector(".complete_purchase_btn"));
+      }
+    }, 100);
+
     function visibility(entries) {
       entries.forEach((i) => {
         if (i.isIntersecting) {
           if (i.target.classList.contains("saved_box")) {
             pushDataLayer("Visibility info 'You just saved..'");
+          }
+          if (i.target.classList.contains("complete_purchase_btn")) {
+            pushDataLayer("View second half of popup", "Popup: 3 interest-free monthly installments of $99");
+          }
+          if (i.target.classList.contains("text_payment_visab")) {
+            pushDataLayer("View first half of popup", "Popup: 3 interest-free monthly installments of $99");
           }
           if (i.target.getAttribute("for") === "onetime_pay") {
             pushDataLayer("Choose payment plan visibility", `${price.toFixed(0)}`);
@@ -786,21 +863,26 @@ let paymentCheckout = setInterval(() => {
 
     if (document.querySelector(".overlay_popup")) {
       document.querySelectorAll(".learn_more_box").forEach((el) => {
-        el.addEventListener("click", () => {
+        el.addEventListener("click", (e) => {
+          e.preventDefault();
+          pushDataLayer("Learn more", "3 interest-free monthly installments of $99");
           onOpenPopup();
         });
       });
 
       let overlay = document.querySelector(".overlay_popup"),
         containerPopup = overlay.querySelector(".container_popup"),
-        btnClose = overlay.querySelector("svg");
+        btnClose = overlay.querySelector("svg"),
+        scroll = calcScroll();
 
       btnClose.addEventListener("click", (e) => {
+        pushDataLayer("Close popup", "Popup: 3 interest-free monthly installments of $99");
         onClosePopup();
       });
 
       overlay.addEventListener("click", (e) => {
         if (e.target.matches(".overlay_popup")) {
+          pushDataLayer("Close popup overlay", "Popup: 3 interest-free monthly installments of $99");
           onClosePopup();
         }
       });
@@ -808,6 +890,7 @@ let paymentCheckout = setInterval(() => {
       function onClosePopup() {
         overlay.classList.add("is_hidden");
         document.body.style.overflow = "unset";
+        document.body.style.marginRight = `0px`;
         setTimeout(() => {
           document.querySelector(".content_popup")?.remove();
         }, 400);
@@ -815,29 +898,44 @@ let paymentCheckout = setInterval(() => {
       function onOpenPopup() {
         overlay.classList.remove("is_hidden");
         document.body.style.overflow = "hidden";
+        document.body.style.marginRight = `${scroll}px`;
         if (!document.querySelector(".overlay_popup .content_popup")) {
           containerPopup?.insertAdjacentHTML("beforeend", contentPopup);
         }
 
         if (document.querySelector(".overlay_popup .content_popup")) {
           document.querySelector(".content_popup button").addEventListener("click", () => {
+            pushDataLayer("Complete purchase", "Popup: 3 interest-free monthly installments of $99");
             onClosePopup();
           });
         }
       }
     }
 
+    function calcScroll() {
+      let div = document.createElement("div");
+      div.style.width = "50px";
+      div.style.height = "50px";
+      div.style.overflowY = "scroll";
+      div.style.visibility = "hidden";
+
+      document.body.appendChild(div);
+      let scrollWidth = div.offsetWidth - div.clientWidth;
+      div.remove();
+      return scrollWidth;
+    }
+
     pushDataLayer("loaded");
     const recordMF = setInterval(() => {
       if (typeof window._mfq === "object") {
         clearInterval(recordMF);
-        window._mfq.push(["setVariable", "new_fw_page_layout", "var1"]);
+        window._mfq.push(["setVariable", "installment_payment_v2", "var1"]);
       }
     }, 200);
     const record = setInterval(() => {
       if (typeof clarity === "function") {
         clearInterval(record);
-        clarity("set", "installment_payment", "variant_1");
+        clarity("set", "installment_payment_v2", "variant_1");
       }
     }, 200);
     document.querySelector(".exp")?.remove();
