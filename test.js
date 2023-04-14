@@ -1,27 +1,27 @@
 fetch("https://ipinfo.io/json?token=625d68b69a156c")
   .then((response) => response.json())
   .then((jsonResponse) => {
-    console.log(jsonResponse)
+    console.log(jsonResponse);
     if (jsonResponse.postal) {
-      console.log(jsonResponse)
+      console.log(jsonResponse);
     }
-  })
+  });
 
 //
-getNewUser("_ga")
+getNewUser("_ga");
 
 function getNewUser(name) {
-  const value = `; ${document.cookie}`
-  const parts = value.split(`; ${name}=`)
-  let valueCookie
-  let timeNewUser
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  let valueCookie;
+  let timeNewUser;
   if (parts.length === 2 && !localStorage.getItem("newUser")) {
-    valueCookie = parts.pop().split(";").shift()
-    timeNewUser = +(valueCookie.split(".").pop() + "000")
+    valueCookie = parts.pop().split(";").shift();
+    timeNewUser = +(valueCookie.split(".").pop() + "000");
     if (+new Date() - +new Date(timeNewUser) <= 5 * 60 * 1000) {
-      console.log(`New User`)
+      console.log(`New User`);
     } else {
-      console.log(new Date(timeNewUser))
+      console.log(new Date(timeNewUser));
     }
   }
 }
@@ -59,7 +59,7 @@ let a = {
       img: ["eu", "ch", "no"],
     },
   ],
-}
+};
 
 let s = {
   team: [
@@ -115,7 +115,7 @@ let s = {
       img: "daniel_neu.jpg",
     },
   ],
-}
+};
 
 let d = {
   form: {
@@ -150,16 +150,47 @@ let d = {
       { name: "Colombia", value: "CO" },
     ],
   },
-}
+};
 
 //
 
 if (i.target.classList.contains("testik")) {
-  pushDataLayer(`View element on screen`, `Long page. Bonus #1: How to Housetrain Your Dog (worth $69.70)`)
+  pushDataLayer(`View element on screen`, `Long page. Bonus #1: How to Housetrain Your Dog (worth $69.70)`);
 }
 if (i.target.classList.contains("testik")) {
-  pushDataLayer(`View element on screen`, `Long page. Bonus #2: Cure Your Dog's Separation Anxiety (worth $69.70)`)
+  pushDataLayer(`View element on screen`, `Long page. Bonus #2: Cure Your Dog's Separation Anxiety (worth $69.70)`);
 }
 if (i.target.classList.contains("testik")) {
-  pushDataLayer(`View element on screen`, `Long page. Bonus #3: How to Get Kids to Interact with Your Dog (worth $69.70)`)
+  pushDataLayer(`View element on screen`, `Long page. Bonus #3: How to Get Kids to Interact with Your Dog (worth $69.70)`);
 }
+
+if (typeof Flickity == "function" && document.querySelector(".product-gallery__main") != null && document.querySelector(".product-gallery__thumbnails")) {
+  $(".product-gallery__main").data("flickity").options.adaptiveHeight = false;
+  console.log(`adaptiveHeight = false`);
+}
+
+let startSlider = setInterval(function () {
+  if (typeof Flickity == "function" && document.querySelector(".product-gallery__main") != null && document.querySelector(".product-gallery__thumbnails") != null && window.matchMedia("(min-width: 769px)").matches == true) {
+    clearInterval(startSlider);
+    $(".product-gallery__main").data("flickity").options.adaptiveHeight = false;
+    console.log(`adaptiveHeight = false`);
+  }
+}, 300);
+
+//
+jQuery.getJSON(window.Shopify.routes.root + "products/melatonin-5-mg.js", function (product) {
+  console.log(first);
+  alert("The title of this product is " + product.title);
+});
+
+fetch("/products/melatonin-5-mg.js", {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(formData),
+}).then((response) => {
+  return response.json();
+});
+
+toChekout(40749200048243, 1);
