@@ -9,7 +9,7 @@ if (window.innerWidth <= 768) {
           console.log(actionDataLayer + " : " + labelDataLayer);
           dataLayer.push({
             event: "event-to-ga",
-            eventCategory: `Exp:Text content`,
+            eventCategory: `Exp: Sleepypatch: BA test with old slide in flow`,
             eventAction: `${actionDataLayer}`,
             eventLabel: `${labelDataLayer}`,
           });
@@ -17,7 +17,7 @@ if (window.innerWidth <= 768) {
           console.log(actionDataLayer);
           dataLayer.push({
             event: "event-to-ga",
-            eventCategory: `Exp: Text content`,
+            eventCategory: `Exp: Sleepypatch: BA test with old slide in flow`,
             eventAction: `${actionDataLayer}`,
           });
         }
@@ -44,7 +44,7 @@ if (window.innerWidth <= 768) {
             background: #FFFFFF !important;
         }
         #getNow{
-            background: linear-gradient(180deg,#FFFFFF 0%,#F9F8F6 27.82%);
+            background: linear-gradient(180deg,#FFFFFF 10%,#F9F8F6 171.82%);
             padding-bottom: 50px;
         }
         #purchase{
@@ -57,10 +57,6 @@ if (window.innerWidth <= 768) {
         body #purchase .js-heading>h2{
             font-weight: 700!important;
             margin-bottom: 0;
-        }
-        body #getNow .days{
-            max-width: 100%;
-            margin: 20px auto auto;
         }
         body.slide{
             overflow-y: visible !important;
@@ -79,6 +75,12 @@ if (window.innerWidth <= 768) {
           transform: rotate(-10deg);
           border-radius: 50px;
         }
+        body #purchase .prices{
+          margin: 0 !important; 
+        }
+        body .bestseller{
+          border-radius: 2px !important;
+        }
       </style>
       `;
 
@@ -95,15 +97,6 @@ if (window.innerWidth <= 768) {
         );
       }
 
-      let s = setInterval(() => {
-        if (document.querySelector("#getNow .days")) {
-          clearInterval(s);
-          console.log(`!!!!!!!!!!!!!!!!!!!!!!!! IMG SRC`);
-          document.querySelector("#getNow .days").src = "http://web.archive.org/web/20220710004356im_/https://cdn.shopify.com/s/files/1/0387/0749/4956/files/30day-graphic_600x.png";
-          document.querySelector("#getNow .days").srcset = "http://web.archive.org/web/20220710004356im_/https://cdn.shopify.com/s/files/1/0387/0749/4956/files/30day-graphic_600x.png";
-        }
-      }, 100);
-
       document.querySelectorAll("#open").forEach((el) => {
         el.href = "#getNow";
       });
@@ -112,7 +105,19 @@ if (window.innerWidth <= 768) {
         el.addEventListener("click", (e) => {
           e.preventDefault();
           e.stopPropagation();
-          console.log(`click >>>>>>>>>>>>>>>>>>>`);
+          console.log(`click >>>>>>>>>>>>>>>>>>>`, e.target.getAttribute("href"));
+          let href = e.target.getAttribute("href").substring(1);
+
+          const scrollTarget = document.getElementById(href);
+
+          const topOffset = 0;
+          const elementPosition = scrollTarget.getBoundingClientRect().top;
+          const offsetPosition = elementPosition - topOffset;
+
+          window.scrollBy({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
         });
       });
 
