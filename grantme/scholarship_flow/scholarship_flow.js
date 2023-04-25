@@ -2,6 +2,16 @@ let startFunk = setInterval(() => {
   if (document.querySelector("#block-scheduleconsulationheaderblock")) {
     clearInterval(startFunk);
 
+    let scriptCalendar = document.createElement("script");
+    scriptCalendar.src = "https://conversionratestore.github.io/projects/jquery.simple-calendar.js";
+    scriptCalendar.async = false;
+    document.head.appendChild(scriptCalendar);
+
+    let scriptCalendarStyle = document.createElement("link");
+    scriptCalendarStyle.href = "https://conversionratestore.github.io/projects/simple-calendar.scss";
+    scriptCalendarStyle.rel = "stylesheet";
+    document.head.appendChild(scriptCalendarStyle);
+
     let scriptPopper = document.createElement("script");
     scriptPopper.src = "https://unpkg.com/popper.js@1";
     scriptPopper.async = false;
@@ -26,6 +36,9 @@ let startFunk = setInterval(() => {
     <style>
  .accent_var {
   color: #ebbd45;
+}
+.path-start-free-trial.path-schedule-consultation #scholarshipListContent .col-lg-7.center{
+    padding: 0 !important;
 }
 .navbar-default {
   border-bottom: 1px solid #294c6d;
@@ -93,7 +106,7 @@ let startFunk = setInterval(() => {
     background: #e9f3fa;
     padding: 40px 16px;
 }
-.new_schedule_box h2 {
+.new_schedule_box > h2 {
   font-weight: 600;
   font-size: 24px;
   line-height: 36px;
@@ -137,9 +150,38 @@ let startFunk = setInterval(() => {
 .new_schedule {
   max-width: 358px;
   width: 100%;
-  height: 484px;
   background: #ffffff;
   border-radius: 6px;
+  padding: 20px;
+}
+.new_schedule .nav_steps{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+.new_schedule .nav_steps svg{
+    cursor: pointer;
+}
+svg.is_hidden{
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+.new_schedule .nav_steps > p:nth-of-type(1){
+    font-family: 'Bitter', serif;
+font-weight: 600 !important;
+font-size: 18px !important;
+line-height: 25px !important;
+color: #2B3E51 !important;
+margin: 0 !important;
+}
+.new_schedule .nav_steps > p:nth-of-type(2){
+font-weight: 400 !important;
+font-size: 16px !important;
+line-height: 24px !important;
+color: #676767 !important;
+margin: 0 !important;
 }
 .our_consultants_wrapper {
   margin-top: 24px;
@@ -607,6 +649,126 @@ body .consultation_descr_box > div.no_commitments_wrapper p {
 .sticky_box .reviews_btn_wrapper p:last-child{
     margin-left: 1px !important;
 }
+.calendar {
+      position: relative;
+  overflow: hidden;
+  text-transform: capitalize;
+  text-align: center;
+  max-width: 325px;
+    margin: 0 auto;
+}
+    .calendar a {
+    text-decoration: none;
+    color: inherit;
+  }
+.calendar header{
+    margin-bottom: 12px;
+}
+  .calendar header .simple-calendar-btn {
+display: flex;
+align-items: center;
+justify-content: center;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    color: #3E78BA;
+    border-radius: 50%;
+    }
+
+    .calendar header .simple-calendar-btn:before {
+      content: '';
+      position: absolute;
+top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+      width: 8px;
+      height: 16px;
+      background: url(https://conversionratestore.github.io/projects/grantme/img/btn_next_calendar.svg) no-repeat center center;
+    }
+    .calendar header .simple-calendar-btn.btn-prev:before {
+      background: url(https://conversionratestore.github.io/projects/grantme/img/btn_prev_calendar.svg) no-repeat center center;
+    }
+
+    .calendar header .btn-prev {
+      top: 0;
+      right: 54px;
+    }
+
+    .calendar header .btn-next {
+      top: 0;
+      right: 0;
+    }
+
+         .calendar header .month {
+            font-family: "Lato", sans-serif;
+padding: 0;
+    display: flex;
+    margin: 0;
+    align-items: center;
+    justify-content: flex-start;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: #3E78BA;
+    }
+         .calendar header .month .year {
+margin-left: 10px;
+      }
+       .calendar table {
+    width: 100%;
+    border-spacing: 0px;
+  }
+
+  .calendar thead {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #2B4F6A;
+    text-transform: uppercase;
+  }
+  .calendar thead td{
+    width: 42px;
+    height: 42px;
+  }
+    .calendar td {
+    padding: 2px;
+  }
+    .calendar .day {
+    font-family: "Lato", sans-serif;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 37px;
+    height: 37px;
+    font-weight: 400;
+    font-size: 16px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    color: #676767;
+    }
+    .calendar .day:hover {
+      border: 2px solid #6691CC;
+    } 
+    .calendar .day.wrong-month {
+      display: none;
+    }
+    .calendar .day.has-event {
+background: #E9F3FA;
+color: #2B4F6A;
+      }
+    .calendar .day.disabled {
+      cursor: default;
+    }
+    .calendar .day.disabled:hover {
+        border: 2px solid transparent;
+      }
+  .calendar .event-container{
+    display: none !important;
+  }
 @media (min-width: 768px) {
     .navbar-default.is_fixed{
     position: sticky;
@@ -714,7 +876,6 @@ body .consultation_descr_box > div.no_commitments_wrapper p{
 .new_schedule{
     max-width: 100%;
     margin: 0 24px;
-    height: 386px;
     width: auto;
 }
     .greetings_box .win_scholarships_txt{
@@ -769,7 +930,7 @@ body .consultation_descr_box > div.no_commitments_wrapper p{
     border-bottom: 1px solid #F2F2F2;
     gap: 28px;
 }
-.new_schedule_box h2{
+.new_schedule_box > h2{
         margin: 0 24px;
     max-width: unset;
 }
@@ -1049,7 +1210,27 @@ margin-top: 162px;
           <span>30 minutes</span>
           <span>Zoom call</span>
       </div>
-      <div class="new_schedule"></div>
+      <div class="new_schedule">
+            <div class="nav_steps">
+                <svg class="is_hidden" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_245_77182)">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M14.3981 6.57776C15.1836 6.57776 15.8203 7.21449 15.8203 7.99999C15.8203 8.78545 15.1836 9.42221 14.3981 9.42221H4.76517L8.34995 13.4551C8.8718 14.0422 8.81893 14.9411 8.23187 15.463C7.64477 15.9848 6.74582 15.9319 6.22401 15.3448L0.535121 8.94484C0.0561161 8.406 0.0561161 7.59394 0.535121 7.0551L6.22401 0.655098C6.74582 0.0680303 7.64477 0.0151507 8.23187 0.53699C8.81893 1.05883 8.8718 1.95778 8.34995 2.54484L4.76517 6.57776H14.3981Z" fill="#2B4F6A" />
+                </g>
+                <defs>
+                    <clipPath id="clip0_245_77182">
+                    <rect width="16" height="16" fill="white" transform="matrix(-1 0 0 1 16 0)" />
+                    </clipPath>
+                </defs>
+                </svg>
+                <p>Select a Date</p>
+                <p><span class="step_active">1</span>/3</p>
+            </div>
+            <div class="calendar_container" id="calendarContainer"></div>
+            <div>
+                <span>Time Zone:</span>
+                <select name="selectik" id="newSelect"></select>
+            </div>
+      </div>
       <div class="our_consultants_wrapper">
         <h3>No suitable times for you?</h3>
         <p>Call us <a href="tel:+8004934084">(800) 493-4084</a></p>
@@ -1157,14 +1338,6 @@ margin-top: 162px;
               <img src="https://grantme.ca/wp-content/uploads/2022/08/Graph-3-1.png" alt="step 1" />
             </div>
           </div>
-          <div class="competition_imgs">
-            <ul class="competition_media_list">
-              <li class="competition_img">
-                <figure class="competiton_img_figure"><img src="https://grantme.ca/wp-content/uploads/2022/08/Graph-3-1.png" alt="step1" class="step1 img_hidden" /></figure>
-              </li>
-            </ul>
-          </div>
-          <div class="clear"></div>
         </div>
       </div>
     </section>
@@ -1421,5 +1594,46 @@ margin-top: 162px;
         slider.on("swipe", function () {});
       }
     }, 100);
+
+    let calendar = setInterval(() => {
+      if (typeof jQuery("#calendarContainer").simpleCalendar === "function") {
+        clearInterval(calendar);
+        console.log(`calendar`);
+
+        jQuery("#calendarContainer").simpleCalendar({
+          months: ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
+          days: ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"],
+          displayYear: true, // Display year in header
+          fixedStartDay: true, // Week begin always by monday or by day set by number 0 = sunday, 7 = saturday, false = month always begin by first day of the month
+          displayEvent: true, // Display existing event
+          disableEventDetails: false, // disable showing event details
+          disableEmptyDetails: true, // disable showing empty date details
+          events: [
+            {
+              startDate: new Date(new Date().setHours(new Date().getHours() + 48)).toISOString(),
+              endDate: new Date(new Date().setHours(new Date().getHours() + 49)).getTime(),
+              summary: "New event",
+            },
+            {
+              startDate: new Date(new Date().setHours(new Date().getHours() - 24)).toISOString(),
+              endDate: new Date(new Date().setHours(new Date().getHours() - 23)).getTime(),
+              summary: "New event 2",
+            },
+          ], // List of events
+          onInit: function (calendar) {}, // Callback after first initialization
+          onMonthChange: function (month, year) {}, // Callback on month change
+          onDateSelect: function (date, events) {
+            console.log(events);
+          }, // Callback on date selection
+          onEventSelect: function (e) {}, // Callback on event selection - use $(this).data('event') to access the event
+          onEventCreate: function ($el) {}, // Callback fired when an HTML event is created - see $(this).data('event')
+          onDayCreate: function ($el, d, m, y) {}, // Callback fired when an HTML day is created   - see $(this).data('today'), .data('todayEvents')
+        });
+      }
+    }, 500);
+
+    document.querySelectorAll(".select2-library option").forEach((el) => {
+      console.log(el);
+    });
   }
 }, 500);
