@@ -39,14 +39,14 @@ let startFunk = setInterval(() => {
 
     let newStyle = /*html */ `
     <style>
- .accent_var {
+.accent_var {
   color: #ebbd45;
 }
-.our-scholars{
-    margin: 0 !important;
+.our-scholars {
+  margin: 0 !important;
 }
-.path-start-free-trial.path-schedule-consultation #scholarshipListContent .col-lg-7.center{
-    padding: 0 !important;
+.path-start-free-trial.path-schedule-consultation #scholarshipListContent .col-lg-7.center {
+  padding: 0 !important;
 }
 .navbar-default {
   border-bottom: 1px solid #294c6d;
@@ -110,9 +110,10 @@ let startFunk = setInterval(() => {
   top: 14px;
   right: -28px;
 }
-.new_schedule_box{
-    background: #e9f3fa;
-    padding: 40px 16px;
+.new_schedule_box {
+  background: #e9f3fa;
+  padding: 40px 16px;
+  margin: 0 auto;
 }
 .new_schedule_box > h2 {
   font-weight: 600;
@@ -162,63 +163,65 @@ let startFunk = setInterval(() => {
   border-radius: 6px;
   padding: 20px;
 }
-.new_schedule .nav_steps{
-    display: flex;
-        align-items: flex-start;
-    justify-content: space-between;
+.new_schedule .nav_steps {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 }
-.new_schedule .nav_steps svg{
-    cursor: pointer;
-    max-width: 16px;
-    width: 100%;
-    margin-top: 4px;
+.new_schedule .nav_steps svg {
+  cursor: pointer;
+  max-width: 16px;
+  width: 100%;
+  margin-top: 4px;
 }
 .new_schedule .nav_steps svg[data-navsteps="3"],
-.new_schedule .nav_steps svg[data-navsteps="2"]{
- margin-top: 5px; 
+.new_schedule .nav_steps svg[data-navsteps="2"] {
+  margin-top: 5px;
 }
-svg.svg_is_hidden{
-    opacity: 0;
-    overflow: hidden;
-    pointer-events: none;
+svg.svg_is_hidden {
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
 }
-.new_schedule .nav_steps > p:nth-of-type(1){
-    font-family: 'Bitter', serif;
-font-weight: 600 !important;
-font-size: 18px !important;
-line-height: 25px !important;
-color: #2B3E51 !important;
-margin: 0 !important;
-text-align: center !important;
+.new_schedule .nav_steps > p:nth-of-type(1) {
+  font-family: "Bitter", serif;
+  font-weight: 600 !important;
+  font-size: 18px !important;
+  line-height: 25px !important;
+  color: #2b3e51 !important;
+  margin: 0 !important;
+  text-align: center !important;
 }
-.new_schedule .nav_steps > p:nth-of-type(2){
-font-weight: 400 !important;
-font-size: 16px !important;
-line-height: 24px !important;
-color: #676767 !important;
-margin: 0 !important;
+.new_schedule .nav_steps > p:nth-of-type(2) {
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  color: #676767 !important;
+  margin: 0 !important;
 }
-.time_zone_wrapper{
-    text-align: left;
-    margin-top: 24px;
+.time_zone_wrapper {
+  text-align: left;
+  margin-top: 24px;
 }
-.time_zone_wrapper > span{
-    display: block;
-    font-family: "Lato", sans-serif;
-    font-weight: 700;
-font-size: 16px;
-line-height: 25px;
-color: #3E78BA;
-margin: 0 0 8px;
+.time_zone_wrapper > span {
+  display: block;
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 25px;
+  color: #3e78ba;
+  margin: 0 0 8px;
 }
-#selectDropdown{
-   border: unset;
-    outline: unset;
-    padding-left: 24px;
-    position: relative;
+.select_dropdown_wrapper {
+  padding-left: 24px;
+  position: relative;
 }
-#selectDropdown::before{
-    position: absolute;
+#selectDropdown {
+  border: unset;
+  outline: unset;
+}
+.select_dropdown_wrapper::before {
+  position: absolute;
   content: "";
   width: 16px;
   height: 16px;
@@ -360,8 +363,8 @@ body .our_consultants_wrapper h3 {
 .as_seen_on_box > div {
   border: 1px solid #f2f2f2;
   border-radius: 6px;
-      max-width: 998px;
-    margin: 0 auto;
+  max-width: 998px;
+  margin: 0 auto;
 }
 .as_seen_on_box .img_wrapper {
   background: #f2f2f2;
@@ -434,8 +437,8 @@ body .our_consultants_wrapper h3 {
   max-width: 334px;
 }
 .persuasive_comparison_table_box .table {
-    margin: 0 auto;
-        max-width: 794px;
+  margin: 0 auto;
+  max-width: 794px;
   background: #ffffff;
   border: 1px solid #f2f2f2;
   border-radius: 6px;
@@ -492,7 +495,7 @@ body .our_consultants_wrapper h3 {
 }
 .persuasive_comparison_table_box .odds_txt_wrapper {
   margin: 16px auto 0;
-        max-width: 794px;
+  max-width: 794px;
   padding: 16px;
   background: #e9f3fa;
   border-radius: 6px;
@@ -662,680 +665,706 @@ body .consultation_descr_box > div.no_commitments_wrapper p {
 .footer-start-free-trial {
   margin: 0 !important;
 }
-.sticky_box{
-    position: fixed;
-    bottom: 0;
-    z-index: 999;
-    background: #2B3E51;
-    width: 100%;
-    margin: 0;
-    padding: 16px;
-    display: none;
-    justify-content: space-between;
+.sticky_box {
+  position: fixed;
+  bottom: 0;
+  z-index: 999;
+  background: #2b3e51;
+  width: 100%;
+  margin: 0;
+  padding: 16px;
+  display: none;
+  justify-content: space-between;
 }
-.sticky_box .reviews_btn_wrapper{
-    display: block;
+.sticky_box .reviews_btn_wrapper {
+  display: block;
 }
-.sticky_box .book_free_call_btn{
-    max-width: 156px;
-    margin: 0 0 0 10px;
-    height: 48px;
-    font-size: 16px;
-    line-height: 16px;
-    color: #2B3E51;
+.sticky_box .book_free_call_btn {
+  max-width: 156px;
+  margin: 0 0 0 10px;
+  height: 48px;
+  font-size: 16px;
+  line-height: 16px;
+  color: #2b3e51;
 }
-.sticky_box .reviews_btn_wrapper svg{
-    display: block;
-    margin-bottom: 6px;
+.sticky_box .reviews_btn_wrapper svg {
+  display: block;
+  margin-bottom: 6px;
 }
-.sticky_box .reviews_btn_wrapper p{
-    display: inline-block;
+.sticky_box .reviews_btn_wrapper p {
+  display: inline-block;
 }
-.sticky_box .reviews_btn_wrapper p:last-child{
-    margin-left: 1px !important;
+.sticky_box .reviews_btn_wrapper p:last-child {
+  margin-left: 1px !important;
 }
-.calendar_container{
-    margin-top: 30px;
+.calendar_container {
+  margin-top: 30px;
 }
 .calendar {
-      position: relative;
+  position: relative;
   overflow: hidden;
   text-transform: capitalize;
   text-align: center;
   max-width: 325px;
-    margin: 0 auto;
+  margin: 0 auto;
 }
-    .calendar a {
-    text-decoration: none;
-    color: inherit;
-  }
-.calendar header{
-    margin-bottom: 12px;
+.calendar a {
+  text-decoration: none;
+  color: inherit;
 }
-  .calendar header .simple-calendar-btn {
-display: flex;
-align-items: center;
-justify-content: center;
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    color: #3E78BA;
-    border-radius: 50%;
-    }
+.calendar header {
+  margin-bottom: 12px;
+}
+.calendar header .simple-calendar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  color: #3e78ba;
+  border-radius: 50%;
+}
 
-    .calendar header .simple-calendar-btn:before {
-      content: '';
-      position: absolute;
-top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-      width: 8px;
-      height: 16px;
-      background: url(https://conversionratestore.github.io/projects/grantme/img/btn_next_calendar.svg) no-repeat center center;
-    }
-    .calendar header .simple-calendar-btn.btn-prev:before {
-      background: url(https://conversionratestore.github.io/projects/grantme/img/btn_prev_calendar.svg) no-repeat center center;
-    }
+.calendar header .simple-calendar-btn:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 16px;
+  background: url(https://conversionratestore.github.io/projects/grantme/img/btn_next_calendar.svg) no-repeat center center;
+}
+.calendar header .simple-calendar-btn.btn-prev:before {
+  background: url(https://conversionratestore.github.io/projects/grantme/img/btn_prev_calendar.svg) no-repeat center center;
+}
 
-    .calendar header .btn-prev {
-      top: 0;
-      right: 54px;
-    }
+.calendar header .btn-prev {
+  top: 0;
+  right: 54px;
+}
 
-    .calendar header .btn-next {
-      top: 0;
-      right: 0;
-    }
+.calendar header .btn-next {
+  top: 0;
+  right: 0;
+}
 
-         .calendar header .month {
-            font-family: "Lato", sans-serif;
-padding: 0;
-    display: flex;
-    margin: 0;
-    align-items: center;
-    justify-content: flex-start;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 24px;
-    color: #3E78BA;
-    }
-         .calendar header .month .year {
-margin-left: 10px;
-      }
-       .calendar table {
-    width: 100%;
-    border-spacing: 0px;
-  }
+.calendar header .month {
+  font-family: "Lato", sans-serif;
+  padding: 0;
+  display: flex;
+  margin: 0;
+  align-items: center;
+  justify-content: flex-start;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #3e78ba;
+}
+.calendar header .month .year {
+  margin-left: 10px;
+}
+.calendar table {
+  width: 100%;
+  border-spacing: 0px;
+}
 
-  .calendar thead {
-    font-family: "Lato", sans-serif;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 16px;
-    color: #2B4F6A;
-    text-transform: uppercase;
-  }
-  .calendar thead td{
-    width: 42px;
-    height: 42px;
-  }
-    .calendar td {
-    padding: 2px;
-  }
-    .calendar .day {
-    font-family: "Lato", sans-serif;
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 37px;
-    height: 37px;
-    font-weight: 400;
-    font-size: 16px;
-    border-radius: 50%;
-    border: 2px solid transparent;
-    cursor: pointer;
-    color: #676767;
-    }
-    .calendar .day:hover {
-      border: 2px solid #6691CC;
-    } 
-    .calendar .day.wrong-month {
-      display: none;
-    }
-    .calendar .day.has-event {
-background: #E9F3FA;
-color: #2B4F6A;
-      }
-    .calendar .day.disabled {
-      cursor: default;
-    }
-    .calendar .day.disabled:hover {
-        border: 2px solid transparent;
-      }
-  .calendar .event-container{
-    display: none !important;
-  }
+.calendar thead {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #2b4f6a;
+  text-transform: uppercase;
+}
+.calendar thead td {
+  width: 42px;
+  height: 42px;
+}
+.calendar td {
+  padding: 2px;
+}
+.calendar .day {
+  font-family: "Lato", sans-serif;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 37px;
+  height: 37px;
+  font-weight: 400;
+  font-size: 16px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  color: #676767;
+}
+.calendar .day:hover {
+  border: 2px solid #6691cc;
+}
+.calendar .day.wrong-month {
+  display: none;
+}
+.calendar .day.has-event {
+  background: #e9f3fa;
+  color: #2b4f6a;
+}
+.calendar .day.disabled {
+  cursor: default;
+}
+.calendar .day.disabled:hover {
+  border: 2px solid transparent;
+}
+.calendar .event-container {
+  display: none !important;
+}
 .chosen_select.is_hidden,
 .calc_step_third.is_hidden,
 #calendarContainer.is_hidden,
 .time_zone_wrapper.is_hidden,
 .your_parent_information_wrapper.is_hidden,
 .add_guests_btn.is_hidden,
-label.is_hidden{
-    display: none;
-  }
-      /*chosen_select */
-      .chosen_select {
-        position: relative;
-        max-width: 304px;
-        margin: 24px auto 16px;
-        display: flex;
-    flex-direction: column;
-        justify-content: flex-start;
-    min-height: 309px;
-      }
-      .confirm_time_btn{
-            margin: auto 0 0;
-    background: #3E78BA;
-    border-radius: 6px;
-    height: 62px;
-    outline: none;
-    border: none;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 20px;
-    color: #FFFFFF;
-      }
-      .confirm_time_btn:disabled{
-        background: #CCCCCC;
-      }
-      .chosen_select div.select_custom{
-border: 1px solid #CCCCCC;
-    border-radius: 6px;
-    padding: 17px 20px;
-    cursor: pointer;
-      }
-      .chosen_select div.select_custom p{
-        font-family: "Lato", sans-serif;
-        font-weight: 400;
-font-size: 16px;
-line-height: 14px;
-color: #676767;
-      }
-      .chosen_select div.select_custom p[data-selected]{
-color: #3E78BA;
-      }
-    .chosen_select div.select_custom.is_active{
-border-color: #3E78BA;
-      }
-      .chosen_select div.options_custom {
-background: #FFFFFF;
-    border: 1px solid #CCCCCC;
-    box-shadow: 0px 2px 2px rgba(28, 5, 77, 0.05), 0px 12px 8px rgba(0, 0, 0, 0.02);
-    border-radius: 6px;
-    margin-top: 4px;
-    display: block;
-      }
-      .chosen_select div.options_custom.is_hidden{
-        display: none;
-      }
-      .chosen_select div.options_custom ul {
-    overflow-x: auto;
-    max-height: 184px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-        border-radius: 6px;
-      }
-      .chosen_select ul::-webkit-scrollbar {
-        width: 4px;
-      }
-      .chosen_select ul::-webkit-scrollbar-thumb {
-        background: #6f767b;
-        border-radius: 10px;
-      }
-      .chosen_select ul li {
-        font-family: "Lato", sans-serif;
-font-weight: 700;
-font-size: 16px;
-line-height: 20px;
-color: #2B4F6A;
-        padding: 12px;
-        text-align: center;
-        cursor: pointer;
-      }
-      .chosen_select ul li:hover {
-        background:  #CCCCCC;
-      }
-            .chosen_select ul li.is_active {
-        background: #E9F3FA;
-        color: #3E78BA;
-      }
-      .calc_step_third{
-        display: block;
-        margin-top: 16px;
-      }
-      .calc_step_third > p{
-        font-family: "Lato", sans-serif;
-        display: flex;
-        flex-direction: column;
-        margin: 0;
-        font-weight: 400;
-font-size: 16px !important;
-line-height: 24px !important;
-color: #2B4F6A;
-      }
-      .calc_step_third > p > span{
-        padding-left: 24px;
-        position: relative;
-      }
-      .calc_step_third > p > span + span{
-        margin-top: 12px;
-      }
-      .calc_step_third > p > span::before{
-              content: '';
-      position: absolute;
-top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-      width: 16px;
-      height: 16px;
-      background: url(https://conversionratestore.github.io/projects/grantme/img/mini_clock.svg) no-repeat center center;
-      }
-      .calc_step_third > p > span:nth-child(2):before{
-background: url(https://conversionratestore.github.io/projects/grantme/img/mini_calendar.svg) no-repeat center center;
-      }
-            .calc_step_third > p > span:nth-child(3):before{
-background: url(https://conversionratestore.github.io/projects/grantme/img/mini_planet.svg) no-repeat center center;
-      }
-      .calc_step_third > h3{
-font-weight: 600 !important;
-font-size: 18px !important;
-line-height: 25px !important;
-text-align: center !important;
-color: #2B3E51 !important;
-margin: 16px 0 !important;
-padding: 0 !important;
-      }
-      #yourInformationForm .schedule_call_btn{
-        font-family: "Lato", sans-serif;
-            height: 62px;
-    background: #EBBD45;
-    border-radius: 6px;
-    width: 100%;
-    outline: none;
-    border: none;
-    color: #2B3E51;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 20px;
-    cursor: pointer;
-      }
-      .your_parent_information_wrapper{
-        margin: 12px 0 24px;
-      }
-      #yourInformationForm .schedule_call_btn:disabled{
-        background: #CCCCCC;
-        color: #FFFFFF;
-      }
-      .add_guests_btn{
-        cursor: pointer;
-        font-weight: 700;
-font-size: 16px;
-line-height: 16px;
-color: #3E78BA;
-margin: 24px auto 16px;
-text-align: center;
-display: block;
-text-decoration-line: underline;
-max-width: max-content;
-      }
-      #yourInformationForm label{
-        width: 100%;
-    height: 48px;
-    padding: 20px 12px 4px;
-        border: 1px solid #3E78BA;
-border-radius: 6px;
-margin: 0;
-position: relative;
-      }
-      #yourInformationForm label.no_content{
-        border: 1px solid #CCCCCC;
-      }
-      #yourInformationForm label:focus{
-border: 1px solid #3E78BA;
-      }
-      #yourInformationForm label > span{
-font-family: "Lato", sans-serif;
-        font-weight: 400;
-font-size: 16px;
-line-height: 24px;
-color: #8B8B8B;
-position: absolute;
-top: 50%;
-    left: 12px;
-    transform: translateY(-50%);
-      }
-    #yourInformationForm label > span b{
-        color:rgba(235, 62, 68, 1);
-    }
-      #yourInformationForm label + label{
-        margin-top: 12px;
-      }
-      #yourInformationForm input{
-        font-family: "Lato", sans-serif;
-        width: 100%;
-        outline: none;
-        border: none;
-        height: 100%;
-    border-radius: 6px;
-    font-weight: 400;
-font-size: 16px;
-line-height: 24px;
-color: #2B3E51;
-      }
-      #yourInformationForm label > span.is_active{
-    top: 4px;
-    left: 12px;
-    transform: unset;
-    font-size: 12px;
-line-height: 16px;
-      }
-      .text_validation {
-            color: red;
-    font-size: 13px !important;
-    margin-top: 1px;
-      }
+label.is_hidden {
+  display: none;
+}
+/*chosen_select */
+.chosen_select {
+  position: relative;
+  max-width: 304px;
+  margin: 24px auto 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 309px;
+}
+.confirm_time_btn {
+  margin: auto 0 0;
+  background: #3e78ba;
+  border-radius: 6px;
+  height: 62px;
+  outline: none;
+  border: none;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  color: #ffffff;
+}
+.confirm_time_btn:disabled {
+  background: #cccccc;
+}
+.chosen_select div.select_custom {
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  padding: 17px 20px;
+  cursor: pointer;
+  position: relative;
+}
+.chosen_select div.select_custom::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background: url(https://conversionratestore.github.io/projects/grantme/img/arr_select.svg) no-repeat center center;
+  transition: all 300ms cubic-bezier(0.4, 0, 1, 1);
+}
+.chosen_select div.select_custom.is_visit::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+.chosen_select div.select_custom p {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 14px;
+  color: #676767;
+}
+.chosen_select div.select_custom p[data-selected] {
+  color: #3e78ba;
+}
+.chosen_select div.select_custom.is_active {
+  border-color: #3e78ba;
+}
+.chosen_select div.options_custom {
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  box-shadow: 0px 2px 2px rgba(28, 5, 77, 0.05), 0px 12px 8px rgba(0, 0, 0, 0.02);
+  border-radius: 6px;
+  margin-top: 4px;
+  display: block;
+}
+.chosen_select div.options_custom {
+  display: none;
+}
+.chosen_select div.options_custom ul {
+  overflow-x: auto;
+  max-height: 184px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 6px;
+}
+.chosen_select ul::-webkit-scrollbar {
+  width: 4px;
+}
+.chosen_select ul::-webkit-scrollbar-thumb {
+  background: #6f767b;
+  border-radius: 10px;
+}
+.chosen_select ul li {
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #2b4f6a;
+  padding: 12px;
+  text-align: center;
+  cursor: pointer;
+}
+.chosen_select ul li:hover {
+  background: rgb(204 204 204 / 30%);
+}
+.chosen_select ul li.is_active {
+  background: #e9f3fa;
+  color: #3e78ba;
+}
+.calc_step_third {
+  display: block;
+  margin-top: 16px;
+}
+.calc_step_third > p {
+  font-family: "Lato", sans-serif;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-weight: 400;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  color: #2b4f6a;
+}
+.calc_step_third > p > span {
+  padding-left: 24px;
+  position: relative;
+}
+.calc_step_third > p > span + span {
+  margin-top: 12px;
+}
+.calc_step_third > p > span::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background: url(https://conversionratestore.github.io/projects/grantme/img/mini_clock.svg) no-repeat center center;
+}
+.calc_step_third > p > span:nth-child(2):before {
+  background: url(https://conversionratestore.github.io/projects/grantme/img/mini_calendar.svg) no-repeat center center;
+}
+.calc_step_third > p > span:nth-child(3):before {
+  background: url(https://conversionratestore.github.io/projects/grantme/img/mini_planet.svg) no-repeat center center;
+}
+.calc_step_third > h3 {
+  font-weight: 600 !important;
+  font-size: 18px !important;
+  line-height: 25px !important;
+  text-align: center !important;
+  color: #2b3e51 !important;
+  margin: 16px 0 !important;
+  padding: 0 !important;
+}
+#yourInformationForm .schedule_call_btn {
+  font-family: "Lato", sans-serif;
+  height: 62px;
+  background: #ebbd45;
+  border-radius: 6px;
+  width: 100%;
+  outline: none;
+  border: none;
+  color: #2b3e51;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  cursor: pointer;
+}
+.your_parent_information_wrapper {
+  margin: 12px 0 24px;
+}
+#yourInformationForm .schedule_call_btn:disabled {
+  background: #cccccc;
+  color: #ffffff;
+}
+.add_guests_btn {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 16px;
+  color: #3e78ba;
+  margin: 24px auto 16px;
+  text-align: center;
+  display: block;
+  text-decoration-line: underline;
+  max-width: max-content;
+}
+#yourInformationForm label {
+  width: 100%;
+  height: 48px;
+  padding: 20px 12px 4px;
+  border: 1px solid #3e78ba;
+  border-radius: 6px;
+  margin: 0;
+  position: relative;
+}
+#yourInformationForm label.no_content {
+  border: 1px solid #cccccc;
+}
+#yourInformationForm label:focus {
+  border: 1px solid #3e78ba;
+}
+#yourInformationForm label > span {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #8b8b8b;
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+}
+#yourInformationForm label > span b {
+  color: rgba(235, 62, 68, 1);
+}
+
+#yourInformationForm .your_information_wrapper > div + div,
+#yourInformationForm .your_parent_information_wrapper > div + div,
+#yourInformationForm .your_information_wrapper > div > div + div,
+#yourInformationForm .your_parent_information_wrapper > div > div + div {
+  margin-top: 12px;
+}
+#yourInformationForm input {
+  font-family: "Lato", sans-serif;
+  width: 100%;
+  outline: none;
+  border: none;
+  height: 100%;
+  border-radius: 6px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #2b3e51;
+}
+#yourInformationForm label > span.is_active {
+  top: 4px;
+  left: 12px;
+  transform: unset;
+  font-size: 12px;
+  line-height: 16px;
+}
+.text_validation {
+  color: red;
+  font-size: 13px !important;
+  margin-top: 1px;
+}
 @media (min-width: 768px) {
-    .navbar-default.is_fixed{
+  .navbar-default.is_fixed {
     position: sticky;
     top: 0;
     left: 0;
     z-index: 111111111;
-}
-    .navbar-default .region.region-navigation{
-display: flex;
+  }
+  .navbar-default .region.region-navigation {
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    }
-    .sticky_header{
-width: 100%;
+  }
+  .sticky_header {
+    width: 100%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 30px;
-    }
-    .sticky_header .book_free_call_btn{
-height: 48px;
+  }
+  .sticky_header .book_free_call_btn {
+    height: 48px;
     max-width: 196px;
     font-weight: 700;
     font-size: 16px;
     line-height: 16px;
     margin: 0;
     display: none;
-    }
-    .navbar-default.is_fixed .sticky_header .book_free_call_btn{
-        display: flex;
-    }
-    .sticky_header .reviews_btn_wrapper p:nth-of-type(1){
-font-weight: 400 !important;
+  }
+  .navbar-default.is_fixed .sticky_header .book_free_call_btn {
+    display: flex;
+  }
+  .sticky_header .reviews_btn_wrapper p:nth-of-type(1) {
+    font-weight: 400 !important;
     font-size: 18px !important;
     line-height: 25px !important;
-   margin: 0 8px 0 12px !important;
-    }
-    .sticky_header .reviews_btn_wrapper p:last-child {
+    margin: 0 8px 0 12px !important;
+  }
+  .sticky_header .reviews_btn_wrapper p:last-child {
     font-weight: 400 !important;
     text-decoration-line: unset;
     margin: 0 !important;
-}
-.sticky_header .reviews_btn_wrapper .accent_var {
-    color: #2DAF6B;
-}
-    .navbar-default {
+  }
+  .sticky_header .reviews_btn_wrapper .accent_var {
+    color: #2daf6b;
+  }
+  .navbar-default {
     border-bottom: unset;
-    background: #3E5062;
+    background: #3e5062;
     padding: 4px 0;
-}
-.navbar-default .container {
+  }
+  .navbar-default .container {
     width: 100%;
     max-width: 1202px;
     padding: 0 16px;
-}
-#block-landingpageheader{
+  }
+  #block-landingpageheader {
     flex: 0 0 141px;
-}
-.navbar-header .logo img {
+  }
+  .navbar-header .logo img {
     width: 141px;
-}
-    .path-schedule-consultation #scholarshipListContent .academy-waiting{
-        display: flex !important;
-            align-items: stretch !important;
+  }
+  .path-schedule-consultation #scholarshipListContent .academy-waiting {
+    display: flex !important;
+    align-items: stretch !important;
     justify-content: center !important;
     min-height: unset !important;
-    }
-    .reviews_btn_box{
-        display: none;
-    }
-    .consultation_descr_box{
-        padding: 24px 38px 24px 24px;
-        margin: 42px 0 0;
-    }
-    .consultation_descr_box h2{
-        font-weight: 600;
+  }
+  .reviews_btn_box {
+    display: none;
+  }
+  .consultation_descr_box {
+    padding: 24px 38px 24px 24px;
+    margin: 42px 0 0;
+  }
+  .consultation_descr_box h2 {
+    font-weight: 600;
     font-size: 18px;
     line-height: 24px;
     letter-spacing: inherit;
     position: relative;
-    }
-    .consultation_descr_box h2::before{
-  position: absolute;
-  content: "";
-  background: url(https://conversionratestore.github.io/projects/grantme/img/title_arrow.svg) no-repeat center center;
-  width: 24px;
-  height: 24px;
-  top: 0;
-  right: 0;
-    }
-    body .consultation_descr_box > div h3 {
-margin: 0 0 8px !important;
-    }
-    body .consultation_descr_box > div ul li{
-        color: #CCCCCC;
-    }
-    body .consultation_descr_box > div ul li span{
-        color: white;
-    }
-    body .consultation_descr_box > div + div {
+  }
+  .consultation_descr_box h2::before {
+    position: absolute;
+    content: "";
+    background: url(https://conversionratestore.github.io/projects/grantme/img/title_arrow.svg) no-repeat center center;
+    width: 24px;
+    height: 24px;
+    top: 0;
+    right: 0;
+  }
+  body .consultation_descr_box > div h3 {
+    margin: 0 0 8px !important;
+  }
+  body .consultation_descr_box > div ul li {
+    color: #cccccc;
+  }
+  body .consultation_descr_box > div ul li span {
+    color: white;
+  }
+  body .consultation_descr_box > div + div {
     margin-top: 20px;
-}
-body .consultation_descr_box > div.no_commitments_wrapper p{
+  }
+  body .consultation_descr_box > div.no_commitments_wrapper p {
     font-weight: 600 !important;
-}
-.new_schedule{
+  }
+  .new_schedule {
     max-width: 100%;
     margin: 16px 24px 0;
     width: auto;
     padding: 24px 0;
-    border-top: 1px solid #F2F2F2;
-}
-    .greetings_box .win_scholarships_txt{
-        font-weight: 400 !important;
-    }
-    .greetings_box .name_txt{
-        font-size: 18px !important;
+    border-top: 1px solid #f2f2f2;
+    border-radius: 0;
+  }
+  .greetings_box .win_scholarships_txt {
+    font-weight: 400 !important;
+  }
+  .greetings_box .name_txt {
+    font-size: 18px !important;
     line-height: 25px !important;
-    color: #CCCCCC;
-    }
-    .greetings_box .name_txt span:last-child {
+    color: #cccccc;
+  }
+  .greetings_box .name_txt span:last-child {
     display: inline-block;
-    }
-    .greetings_box .tooltip_wrapper{
-        font-size: 36px !important;
-            margin: 16px 0;
-            max-width: 460px;
-    }
-    .path-schedule-consultation .block-schedule-consulation-header #scholarshipListContent .col-lg-5{
-        padding: 0;
-        width: 50%;
-    }
-    .path-schedule-consultation #scholarshipListContent, .path-book-call.path-start-free-trial.path-schedule-consultation #scholarshipListContent {
+  }
+  .greetings_box .tooltip_wrapper {
+    font-size: 36px !important;
+    margin: 16px 0;
+    max-width: 460px;
+  }
+  .path-schedule-consultation .block-schedule-consulation-header #scholarshipListContent .col-lg-5 {
+    padding: 0;
+    width: 50%;
+  }
+  .path-schedule-consultation #scholarshipListContent,
+  .path-book-call.path-start-free-trial.path-schedule-consultation #scholarshipListContent {
     padding: 60px 16px;
-}
-.path-start-free-trial #scholarshipListContent .academy-waiting{
+  }
+  .path-start-free-trial #scholarshipListContent .academy-waiting {
     align-items: flex-start;
     justify-content: center;
-}
-.path-start-free-trial.path-schedule-consultation #scholarshipListContent .col-lg-7.center {
-  padding: 0;
-  width: 50%;
-  margin-left: -6px;
-}
-.new_schedule_box {
-    background: #FFFFFF;
+  }
+  .path-start-free-trial.path-schedule-consultation #scholarshipListContent .col-lg-7.center {
+    padding: 0;
+    width: 50%;
+    margin-left: -6px;
+  }
+  .new_schedule_box {
+    background: #ffffff;
     padding: 24px 0 0;
     border-radius: 6px;
-}
-.our_consultants_wrapper{
-    background: #E9F3FA;
+    margin: 0;
+  }
+  .our_consultants_wrapper {
+    background: #e9f3fa;
     padding: 24px 32px;
     text-align: left;
     border-radius: 0 0 6px 6px;
     margin: 0;
-}
-.new_schedule_box .new_schedule_descr {
+  }
+  .new_schedule_box .new_schedule_descr {
     align-items: center;
     justify-content: center;
     margin: 8px 24px 0;
     max-width: unset;
     gap: 28px;
-}
-.new_schedule_box > h2{
-        margin: 0 24px;
+  }
+  .new_schedule_box > h2 {
+    margin: 0 24px;
     max-width: unset;
-}
-body .our_consultants_wrapper h3{
-        font-size: 16px !important;
-            margin: 0 16px 16px 0 !important;
-            display: inline-block;
-}
-.our_consultants_wrapper > div p{
+  }
+  body .our_consultants_wrapper h3 {
+    font-size: 16px !important;
+    margin: 0 16px 16px 0 !important;
+    display: inline-block;
+  }
+  .our_consultants_wrapper > div p {
     max-width: unset;
-}
-.our_consultants_wrapper > div {
+  }
+  .our_consultants_wrapper > div {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-}
-.our_consultants_wrapper > p{
-        font-size: 16px !important;
+  }
+  .our_consultants_wrapper > p {
+    font-size: 16px !important;
     line-height: 24px;
-        margin-bottom: 0;
-        display: inline-block;
-}
-    .as_seen_on_box {
+    margin-bottom: 0;
+    display: inline-block;
+  }
+  .as_seen_on_box {
     padding: 100px 16px;
-}
-.as_seen_on_box h2{
+  }
+  .as_seen_on_box h2 {
     font-weight: 600 !important;
-font-size: 48px !important;
-line-height: 72px !important;
-margin-bottom: 56px !important;
-}
-.as_seen_on_box .img_wrapper{
+    font-size: 48px !important;
+    line-height: 72px !important;
+    margin-bottom: 56px !important;
+  }
+  .as_seen_on_box .img_wrapper {
     padding: 40px;
     gap: 140px;
     justify-content: center;
     align-items: center;
-}
-.as_seen_on_box .img_wrapper img:nth-child(1) {
+  }
+  .as_seen_on_box .img_wrapper img:nth-child(1) {
     max-width: 121px;
-}
-.as_seen_on_box .img_wrapper img:nth-child(2) {
+  }
+  .as_seen_on_box .img_wrapper img:nth-child(2) {
     max-width: 120px;
-}
-.as_seen_on_box .img_wrapper img:nth-child(3) {
+  }
+  .as_seen_on_box .img_wrapper img:nth-child(3) {
     max-width: 135px;
-}
-.as_seen_on_box .count_txt_wrapper{
+  }
+  .as_seen_on_box .count_txt_wrapper {
     padding: 40px;
     align-items: center;
-        justify-content: center;
+    justify-content: center;
     gap: 120px;
-}
-.as_seen_on_box .count_txt_wrapper > div span{
+  }
+  .as_seen_on_box .count_txt_wrapper > div span {
     font-weight: 600;
-font-size: 36px;
-line-height: 36px;
-}
-.as_seen_on_box .count_txt_wrapper > div p{
+    font-size: 36px;
+    line-height: 36px;
+  }
+  .as_seen_on_box .count_txt_wrapper > div p {
     font-size: 18px;
-line-height: 25px;
-}
-.what_users_say_box {
+    line-height: 25px;
+  }
+  .what_users_say_box {
     padding: 50px 16px 0;
-}
-.what_users_say_box h2{
+  }
+  .what_users_say_box h2 {
     font-weight: 600;
-font-size: 48px;
-line-height: 72px;
-margin-bottom: 56px;
-}
-    .persuasive_comparison_table_box{
-        padding: 100px 16px;
-    }
-    .persuasive_comparison_table_box h2{
-            font-weight: 600;
-        font-size: 48px;
-line-height: 72px;
+    font-size: 48px;
+    line-height: 72px;
+    margin-bottom: 56px;
+  }
+  .persuasive_comparison_table_box {
+    padding: 100px 16px;
+  }
+  .persuasive_comparison_table_box h2 {
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 72px;
     max-width: 813px;
     margin: 0 auto 56px;
-    }
-    .persuasive_comparison_table_box .table .thead{
-        padding: 20px 40px;
-    }
-    .persuasive_comparison_table_box .table .tbody {
+  }
+  .persuasive_comparison_table_box .table .thead {
+    padding: 20px 40px;
+  }
+  .persuasive_comparison_table_box .table .tbody {
     padding: 0 40px 20px;
-}
-.persuasive_comparison_table_box .table .tbody .tr .td:nth-child(2), .persuasive_comparison_table_box .table .tbody .tr .td:nth-child(3), .persuasive_comparison_table_box .table .thead .th:nth-child(2), .persuasive_comparison_table_box .table .thead .th:nth-child(3) {
+  }
+  .persuasive_comparison_table_box .table .tbody .tr .td:nth-child(2),
+  .persuasive_comparison_table_box .table .tbody .tr .td:nth-child(3),
+  .persuasive_comparison_table_box .table .thead .th:nth-child(2),
+  .persuasive_comparison_table_box .table .thead .th:nth-child(3) {
     flex: 0 0 150px;
-}
-.persuasive_comparison_table_box .table .tbody .tr .td:nth-child(1), .persuasive_comparison_table_box .table .thead .th:nth-child(1) {
+  }
+  .persuasive_comparison_table_box .table .tbody .tr .td:nth-child(1),
+  .persuasive_comparison_table_box .table .thead .th:nth-child(1) {
     flex: 0 0 302px;
-}
-.persuasive_comparison_table_box .table .tbody .tr .td{
+  }
+  .persuasive_comparison_table_box .table .tbody .tr .td {
     padding: 20px 0;
-}
-    .persuasive_comparison_table_box .table .thead .th span{
-        font-family: 'Bitter', serif;
-        font-weight: 600;
-font-size: 18px;
-line-height: 24px;
-    }
-    .persuasive_comparison_table_box .table .tbody .td span{
-        font-family: 'Bitter', serif;
-        font-weight: 700;
-font-size: 18px;
-line-height: 25px;
-    }
-    .persuasive_comparison_table_box .odds_txt_wrapper{
-        margin-top: 20px;
+  }
+  .persuasive_comparison_table_box .table .thead .th span {
+    font-family: "Bitter", serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .persuasive_comparison_table_box .table .tbody .td span {
+    font-family: "Bitter", serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 25px;
+  }
+  .persuasive_comparison_table_box .odds_txt_wrapper {
+    margin-top: 20px;
     align-items: flex-start;
     justify-content: center;
-    }
-    .persuasive_comparison_table_box .odds_txt_wrapper p{
-        font-family: 'Bitter', serif;
-        font-weight: 700;
-font-size: 18px;
-line-height: 24px;
-margin: 0 0 0 12px;
-    }
-    .competition-section{
-        position: relative;
-        padding: 260px 0 0;
-    }
-    .competition-section::before{
+  }
+  .persuasive_comparison_table_box .odds_txt_wrapper p {
+    font-family: "Bitter", serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    margin: 0 0 0 12px;
+  }
+  .competition-section {
+    position: relative;
+    padding: 260px 0 0;
+  }
+  .competition-section::before {
     content: "";
     position: absolute;
     top: 0;
@@ -1345,86 +1374,103 @@ margin: 0 0 0 12px;
     background-color: #fff;
     z-index: 0;
     border-radius: 0 0 180px 180px;
-    }
-.competition_item{
+  }
+  .competition_item {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-}
-.competition_item img{
+  }
+  .competition_item img {
     width: 53%;
     margin: -55px 0 0;
-}
-.competition_item > div{
+  }
+  .competition_item > div {
     flex: 0 0 45%;
-}
-.competition_item#competition_step3{
+  }
+  .competition_item#competition_step3 {
     border-top: unset;
-}
-.calc_step_third > p{
-        flex-direction: unset;
-            align-items: center;
-                max-width: 452px;
-       margin: 0 auto 24px;
+  }
+  .calc_step_third > p {
+    flex-direction: unset;
+    align-items: center;
+    max-width: 452px;
+    margin: 0 auto 24px;
     justify-content: space-between;
-}
-.calc_step_third > p > span + span{
+  }
+  .calc_step_third > p > span + span {
     margin: 0;
-}
-.calc_step_third > h3{
+  }
+  .calc_step_third > h3 {
     margin: 0 0 24px !important;
-    border-top: 1px solid #F2F2F2;
+    border-top: 1px solid #f2f2f2;
     padding-top: 16px !important;
-}
-.calc_step_third{
+  }
+  .calc_step_third {
     margin: 24px 0 0;
-}
-#yourInformationForm{
+  }
+  #yourInformationForm {
     max-width: 486px;
     margin: 0 auto;
-}
-#yourInformationForm .your_information_wrapper > div,
-#yourInformationForm .your_parent_information_wrapper > div{
+  }
+  #yourInformationForm .your_information_wrapper > div,
+  #yourInformationForm .your_parent_information_wrapper > div {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 16px;
-}
-#yourInformationForm .your_information_wrapper > div  label,
-#yourInformationForm .your_parent_information_wrapper > div  label{
-width: 48%;
-margin: 0;
-}
-.your_parent_information_wrapper{
+  }
+  #yourInformationForm .your_information_wrapper > div + div,
+  #yourInformationForm .your_parent_information_wrapper > div + div,
+  #yourInformationForm .your_information_wrapper > div > div + div,
+  #yourInformationForm .your_parent_information_wrapper > div > div + div {
+    margin: 0 !important;
+  }
+  #yourInformationForm .your_information_wrapper > div > div,
+  #yourInformationForm .your_parent_information_wrapper > div > div {
+    width: 48%;
+    margin: 0;
+  }
+  #yourInformationForm .your_information_wrapper > div:nth-child(2) > div,
+  #yourInformationForm .your_parent_information_wrapper > div:nth-child(2) > div {
+    width: 100%;
+  }
+  #yourInformationForm .your_information_wrapper > div:nth-child(2) > div:nth-child(2),
+  #yourInformationForm .your_parent_information_wrapper > div:nth-child(2) > div:nth-child(2) {
+    display: none;
+  }
+  .your_parent_information_wrapper {
     margin: 16px 0 24px;
-}
-.chosen_select{
+  }
+  .chosen_select {
     margin: 24px auto 0;
-}
-.time_zone_wrapper {
+  }
+  .time_zone_wrapper {
     text-align: center;
-        margin: 24px 0 -8px;
-}
-.time_zone_wrapper > span{
+    margin: 24px 0 -8px;
+  }
+  .time_zone_wrapper > span {
     display: inline;
-}
-.select_custom {
-padding: 16px 20px;
-}
-.chosen_select{
+  }
+  .select_dropdown_wrapper {
+    display: inline;
+    margin-left: 12px;
+  }
+  .select_custom {
+    padding: 16px 20px;
+  }
+  .chosen_select {
     min-height: 304px;
-        max-width: 486px;
-}
-.calendar{
+    max-width: 486px;
+  }
+  .calendar {
     padding-bottom: 15px;
-}
+  }
 }
 @media (min-width: 1200px) {
-    .competition_item#competition_step1 > div{
-margin-top: 162px;
+  .competition_item#competition_step1 > div {
+    margin-top: 162px;
+  }
 }
-}
-
     </style>
     `;
 
@@ -1566,7 +1612,7 @@ margin-top: 162px;
             <div class="calendar_container" id="calendarContainer"></div>
             <div class="chosen_select is_hidden">
                 <div class="select_custom"><p>Select a time</p></div>
-                <div class="options_custom is_hidden"><ul></ul></div>
+                <div class="options_custom"><ul></ul></div>
                 <button class="confirm_time_btn" disabled>Confirm</button>
             </div>
                 <div class="calc_step_third is_hidden">
@@ -1577,56 +1623,79 @@ margin-top: 162px;
                     <form id="yourInformationForm">
                         <div class="your_information_wrapper">
                         <div>
-                            <label class="no_content">
-                                <span>First name <b>*</b></span>
-                                <input size="60" maxlength="128" required="required" aria-required="true" type="text" name="firstName" id="newFirstName" />
-                            </label>
-                            <label class="no_content">
-                                <span>Last Name <b>*</b></span>
-                                <input size="60" maxlength="128" required="required" aria-required="true" type="text" name="lastName" id="newLastName" />
-                            </label>
+                            <div>
+                                <label class="no_content">
+                                    <span>First name <b>*</b></span>
+                                    <input size="60" maxlength="128" required="required" aria-required="true" type="text" name="firstName" id="newFirstName" />
+                                </label>
+                            </div>
+                            <div>
+                                <label class="no_content">
+                                    <span>Last Name <b>*</b></span>
+                                    <input size="60" maxlength="128" required="required" aria-required="true" type="text" name="lastName" id="newLastName" />
+                                </label>
+                            </div>
                         </div>
-                        <label class="no_content">
-                            <span>Phone number <b>*</b></span>
-                            <input inputmode="numeric" size="60" maxlength="128" required="required" aria-required="true" type="phone" name="phoneNumber" id="newPhoneNumber" />
-                        </label>
-                        <label class="no_content is_hidden">
-                            <span>Email <b>*</b></span>
-                            <input value='test@test.com' size="60" maxlength="254" required="required" aria-required="true" type="email" name="email" id="newEmail" />
-                        </label>
+                        <div>
+                            <div>
+                                <label class="no_content">
+                                    <span>Phone number <b>*</b></span>
+                                    <input inputmode="numeric" size="60" maxlength="128" required="required" aria-required="true" type="phone" name="phoneNumber" id="newPhoneNumber" />
+                                </label>
+                            </div>
+                            <div>
+                                <label class="no_content is_hidden">
+                                    <span>Email <b>*</b></span>
+                                    <input value='test@test.com' size="60" maxlength="254" required="required" aria-required="true" type="email" name="email" id="newEmail" />
+                                </label>
+                            </div>
+                        </div>
                         </div>
                         <span class="add_guests_btn">Add Guests</span>
                         <div class="your_parent_information_wrapper is_hidden">
                             <div>
-                                <label class="no_content">
-                                    <span>Guest first name</span>
-                                    <input size="60" maxlength="128" required="required" aria-required="true" type="text" name="newFirstNameGuest" id="newFirstNameGuest" />
-                                </label>
-                                <label class="no_content">
-                                    <span>Guest last name</span>
-                                    <input size="60" maxlength="128" required="required" aria-required="true" type="text" name="newLastNameGuest" id="newLastNameGuest" />
-                                </label>
+                                <div>
+                                    <label class="no_content">
+                                        <span>Guest first name</span>
+                                        <input size="60" maxlength="128" required="required" aria-required="true" type="text" name="newFirstNameGuest" id="newFirstNameGuest" />
+                                    </label>
+                                </div>
+                                <div>
+                                    <label class="no_content">
+                                        <span>Guest last name</span>
+                                        <input size="60" maxlength="128" required="required" aria-required="true" type="text" name="newLastNameGuest" id="newLastNameGuest" />
+                                    </label>
+                                </div>
                             </div>
-                        <label class="no_content">
-                            <span>Guest phone number</span>
-                            <input inputmode="numeric" size="60" maxlength="128" required="required" aria-required="true" type="text" name="newPhoneNumberGuest" id="newPhoneNumberGuest" />
-                        </label>
-                        <label class="no_content is_hidden">
-                            <span>Guest email</span>
-                            <input size="60" maxlength="254" required="required" aria-required="true" type="email" name="newEmailGuest" id="newEmailGuest" />
-                        </label>
+                            <div>
+                                <div>
+                                    <label class="no_content">
+                                        <span>Guest phone number</span>
+                                        <input inputmode="numeric" size="60" maxlength="128" required="required" aria-required="true" type="text" name="newPhoneNumberGuest" id="newPhoneNumberGuest" />
+                                    </label>
+                                </div>
+                                <div>
+                                    <label class="no_content is_hidden">
+                                        <span>Guest email</span>
+                                        <input size="60" maxlength="254" required="required" aria-required="true" type="email" name="newEmailGuest" id="newEmailGuest" />
+                                    </label>
+                                </div>
+                            </div>
+
                         </div>
                         <button class="schedule_call_btn" disabled type="submit">Schedule a Call</button>
                     </form>
                  </div>
             <div class="time_zone_wrapper">
                 <span>Time Zone:</span>
-                <select name="select_dropdown" id="selectDropdown"></select>
+                <div class="select_dropdown_wrapper">
+                    <select name="select_dropdown" id="selectDropdown"></select>
+                </div>
             </div>
       </div>
       <div class="our_consultants_wrapper">
         <h3>No suitable times for you?</h3>
-        <p>Call us <a href="tel:+8004934084">(800) 493-4084</a></p>
+        <p>Call us <a href="tel:+18004934084">(800) 493-4084</a></p>
         <div>
           <img src="https://conversionratestore.github.io/projects/grantme/img/our_consultants.png" alt="Our consultants" />
           <p>Our consultants are ready to help you</p>
@@ -1877,12 +1946,12 @@ margin-top: 162px;
     document.querySelector("#block-whattoexpectonthecallscheduleconsultation").insertAdjacentHTML("afterend", slider);
 
     if (document.querySelector(".greetings_box")) {
-      document.querySelector(".person_name_var").textContent = document.querySelector("#edit-parent-first-name").value;
       document.querySelector(".funding_price").textContent = document.querySelector(".marketing b.clr-yellow").textContent;
       let paramsLocation = new URLSearchParams(window.location.search);
       console.log(paramsLocation.get("user_type"));
 
       if (paramsLocation.get("user_type") === "parent") {
+        document.querySelector(".person_name_var").textContent = document.querySelector("#edit-parent-first-name").value;
         document.querySelector(".your_person_var").textContent = "Your Child Is";
         if (document.querySelector("#edit-parent-first-name").value !== "") {
           document.querySelector(`#yourInformationForm input[name='firstName']`).value = document.querySelector("#edit-parent-first-name").value;
@@ -1901,6 +1970,7 @@ margin-top: 162px;
           validationForm(document.querySelector(`#yourInformationForm input[name='phoneNumber']`));
         }
       } else {
+        document.querySelector(".person_name_var").textContent = document.querySelector("#edit-first-name").value;
         document.querySelector(".your_person_var").textContent = "You Are";
         if (document.querySelector("#edit-first-name").value !== "") {
           document.querySelector(`#yourInformationForm input[name='firstName']`).value = document.querySelector("#edit-first-name").value;
@@ -1999,7 +2069,7 @@ margin-top: 162px;
         console.log(el);
         el.addEventListener("click", () => {
           if (!el.closest(".navbar-default")?.classList.contains("is_fixed")) {
-            document.querySelector(".report_card_section").scrollIntoView({ block: "center", behavior: "smooth" });
+            document.querySelector("#block-trustpilotwidgetstartfreetrial").scrollIntoView({ block: "start", behavior: "smooth" });
           }
         });
       });
@@ -2053,6 +2123,7 @@ margin-top: 162px;
           onDateSelect: function (date, events) {
             if (events.length > 0) {
               console.log(events);
+              document.querySelector(".path-start-free-trial.path-schedule-consultation #scholarshipListContent .col-lg-7.center").scrollIntoView({ block: "start", behavior: "smooth" });
               document.querySelector(".nav_steps svg").setAttribute("data-navsteps", "2");
               if (document.querySelector(".nav_steps svg").classList.contains("svg_is_hidden")) {
                 document.querySelector(".nav_steps svg").classList.remove("svg_is_hidden");
@@ -2073,6 +2144,7 @@ margin-top: 162px;
     //   click on svg Back
     if (document.querySelector(".new_schedule")) {
       document.querySelector(".new_schedule .nav_steps svg").addEventListener("click", (el) => {
+        document.querySelector(".path-start-free-trial.path-schedule-consultation #scholarshipListContent .col-lg-7.center").scrollIntoView({ block: "start", behavior: "smooth" });
         if (el.currentTarget.getAttribute("data-navsteps") === "2") {
           console.log(`2 >>>>>>>>>>>>>>>`);
           document.querySelector(".nav_steps svg").setAttribute("data-navsteps", "1");
@@ -2112,15 +2184,30 @@ margin-top: 162px;
         document.querySelector(".chosen_select ul").insertAdjacentHTML("afterbegin", setListBreedDog(el));
       });
 
-      document.querySelector(".chosen_select div.select_custom").addEventListener("click", () => {
-        document.querySelector(".chosen_select div.options_custom").classList.toggle("is_hidden");
+      document.querySelector(".chosen_select div.select_custom").addEventListener("click", (e) => {
+        jQuery(".chosen_select div.options_custom").toggleClass("is_hidden");
+        if (jQuery(".chosen_select div.options_custom").hasClass("is_hidden")) {
+          jQuery(".chosen_select div.options_custom").slideDown();
+        } else {
+          jQuery(".chosen_select div.options_custom").slideUp();
+        }
+        e.currentTarget.classList.toggle("is_visit");
       });
       document.querySelectorAll(".chosen_select ul li").forEach(function (el) {
         el.addEventListener("click", function (e) {
           document.querySelector(".chosen_select div.select_custom p").textContent = e.target.textContent;
           document.querySelector(".chosen_select div.select_custom p").setAttribute("data-selected", e.target.getAttribute("data-time"));
           document.querySelector(".chosen_select div.select_custom").classList.add("is_active");
-          document.querySelector(".chosen_select div.options_custom").classList.add("is_hidden");
+          document.querySelector(".chosen_select div.select_custom").classList?.remove("is_visit");
+          document.querySelector(".chosen_select div.options_custom").classList.remove("is_hidden");
+          if (jQuery(".chosen_select div.options_custom").hasClass("is_hidden")) {
+            console.log(`CLICK`);
+            jQuery(".chosen_select div.options_custom").slideDown();
+          } else {
+            console.log(`CLICK 222`);
+            jQuery(".chosen_select div.options_custom").slideUp();
+          }
+
           document.querySelectorAll(".chosen_select ul li").forEach((i) => {
             i.classList?.remove("is_active");
           });
@@ -2135,6 +2222,7 @@ margin-top: 162px;
       // Click on confirm_time_btn
       document.querySelector(".confirm_time_btn").addEventListener("click", (e) => {
         e.preventDefault();
+        document.querySelector(".path-start-free-trial.path-schedule-consultation #scholarshipListContent .col-lg-7.center").scrollIntoView({ block: "start", behavior: "smooth" });
         document.querySelector(".nav_steps svg").setAttribute("data-navsteps", "3");
         document.querySelector(".new_schedule .nav_steps > p:nth-of-type(1)").textContent = `Free Call with a Student  Success Specialist`;
         document.querySelector(".new_schedule .nav_steps > p .step_active").textContent = "3";
@@ -2148,6 +2236,59 @@ margin-top: 162px;
       document.querySelectorAll("#yourInformationForm input").forEach((i) => {
         i.addEventListener("input", (e) => {
           validationForm(e.target);
+
+          let paramsLocation = new URLSearchParams(window.location.search);
+          if (paramsLocation.get("user_type") === "parent") {
+            if (e.target.getAttribute("name") === "firstName") {
+              document.querySelector("#edit-parent-first-name").value = e.target.value;
+            }
+            if (e.target.getAttribute("name") === "lastName") {
+              document.querySelector("#edit-parent-last-name").value = e.target.value;
+            }
+            if (e.target.getAttribute("name") === "email") {
+              document.querySelector("#edit-parent-email").value = e.target.value;
+            }
+            if (e.target.getAttribute("name") === "phoneNumber") {
+              document.querySelector("#edit-parent-phone-number").value = e.target.value;
+            }
+            if (e.target.getAttribute("name") === "newFirstNameGuest") {
+              document.querySelector("#edit-first-name").value = e.target.value;
+            }
+            if (e.target.getAttribute("name") === "newLastNameGuest") {
+              document.querySelector("#edit-last-name").value = e.target.value;
+            }
+            if (e.target.getAttribute("name") === "newEmailGuest") {
+              document.querySelector("#edit-email").value = e.target.value;
+            }
+            if (e.target.getAttribute("name") === "newPhoneNumberGuest") {
+              document.querySelector("#edit-phone-number").value = e.target.value;
+            }
+          } else {
+            if (e.target.getAttribute("name") === "firstName") {
+              document.querySelector("#edit-first-name").value = e.target.value;
+            }
+            if (e.target.getAttribute("name") === "lastName") {
+              document.querySelector("#edit-last-name").value = e.target.value;
+            }
+            if (e.target.getAttribute("name") === "email") {
+              document.querySelector("#edit-email").value = e.target.value;
+            }
+            if (e.target.getAttribute("name") === "phoneNumber") {
+              document.querySelector("#edit-phone-number").value = e.target.value;
+            }
+            if (e.target.getAttribute("name") === "newFirstNameGuest") {
+              document.querySelector("#edit-parent-first-name").value = e.target.value;
+            }
+            if (e.target.getAttribute("name") === "newLastNameGuest") {
+              document.querySelector("#edit-parent-last-name").value = e.target.value;
+            }
+            if (e.target.getAttribute("name") === "newEmailGuest") {
+              document.querySelector("#edit-parent-email").value = e.target.value;
+            }
+            if (e.target.getAttribute("name") === "newPhoneNumberGuest") {
+              document.querySelector("#edit-parent-phone-number").value = e.target.value;
+            }
+          }
           if (!e.target.previousElementSibling.classList.contains("is_active")) {
             e.target.previousElementSibling.classList.add("is_active");
           }
@@ -2174,26 +2315,35 @@ margin-top: 162px;
       document.querySelector("#yourInformationForm .schedule_call_btn").addEventListener("click", (e) => {
         e.preventDefault();
 
-        if (document.querySelector(`#yourInformationForm input[name='newFirstNameGuest']`).value === "") {
-          document.querySelector(`#yourInformationForm input[name='newFirstNameGuest']`).value = "test";
-          document.querySelector(`#yourInformationForm input[name='newFirstNameGuest']`).closest("label").classList?.remove("no_content");
-          document.querySelector(`#yourInformationForm input[name='newFirstNameGuest']`).previousElementSibling.classList?.add("is_active");
+        let paramsLocation = new URLSearchParams(window.location.search);
+        if (paramsLocation.get("user_type") === "parent") {
+          if (document.querySelector(`#yourInformationForm input[name='newFirstNameGuest']`).value === "") {
+            document.querySelector("#edit-first-name").value = "test";
+          }
+          if (document.querySelector(`#yourInformationForm input[name='newLastNameGuest']`).value === "") {
+            document.querySelector("#edit-last-name").value = "test";
+          }
+          if (document.querySelector(`#yourInformationForm input[name='newEmailGuest']`).value === "") {
+            document.querySelector("#edit-email").value = "test@test.com";
+          }
+          if (document.querySelector(`#yourInformationForm input[name='newPhoneNumberGuest']`).value === "") {
+            document.querySelector("#edit-phone-number").value = "(000) 000-0000";
+          }
+        } else {
+          if (document.querySelector(`#yourInformationForm input[name='newFirstNameGuest']`).value === "") {
+            document.querySelector("#edit-parent-first-name").value = "test";
+          }
+          if (document.querySelector(`#yourInformationForm input[name='newLastNameGuest']`).value === "") {
+            document.querySelector("#edit-parent-last-name").value = "test";
+          }
+          if (document.querySelector(`#yourInformationForm input[name='newEmailGuest']`).value === "") {
+            document.querySelector("#edit-parent-email").value = "test@test.com";
+          }
+          if (document.querySelector(`#yourInformationForm input[name='newPhoneNumberGuest']`).value === "") {
+            document.querySelector("#edit-parent-phone-number").value = "(000) 000-0000";
+          }
         }
-        if (document.querySelector(`#yourInformationForm input[name='newLastNameGuest']`).value === "") {
-          document.querySelector(`#yourInformationForm input[name='newLastNameGuest']`).value = "test";
-          document.querySelector(`#yourInformationForm input[name='newLastNameGuest']`).closest("label").classList?.remove("no_content");
-          document.querySelector(`#yourInformationForm input[name='newLastNameGuest']`).previousElementSibling.classList?.add("is_active");
-        }
-        if (document.querySelector(`#yourInformationForm input[name='newEmailGuest']`).value === "") {
-          document.querySelector(`#yourInformationForm input[name='newEmailGuest']`).value = "test@test.com";
-          document.querySelector(`#yourInformationForm input[name='newEmailGuest']`).closest("label").classList?.remove("no_content");
-          document.querySelector(`#yourInformationForm input[name='newEmailGuest']`).previousElementSibling.classList?.add("is_active");
-        }
-        if (document.querySelector(`#yourInformationForm input[name='newPhoneNumberGuest']`).value === "") {
-          document.querySelector(`#yourInformationForm input[name='newPhoneNumberGuest']`).value = "(000) 000-0000";
-          document.querySelector(`#yourInformationForm input[name='newPhoneNumberGuest']`).closest("label").classList?.remove("no_content");
-          document.querySelector(`#yourInformationForm input[name='newPhoneNumberGuest']`).previousElementSibling.classList?.add("is_active");
-        }
+
         // document.querySelector("#edit-book-call")?.click();
       });
     }
