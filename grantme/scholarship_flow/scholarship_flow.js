@@ -32,10 +32,18 @@ let startFunk = setInterval(() => {
     scriptCustomStyle.rel = "stylesheet";
     document.head.appendChild(scriptCustomStyle);
 
+    let scriptCustomMask = document.createElement("script");
+    scriptCustomMask.src = "https://cdnjs.cloudflare.com/ajax/libs/imask/6.6.0/imask.min.js";
+    scriptCustomMask.async = false;
+    document.head.appendChild(scriptCustomMask);
+
     let newStyle = /*html */ `
     <style>
  .accent_var {
   color: #ebbd45;
+}
+.our-scholars{
+    margin: 0 !important;
 }
 .path-start-free-trial.path-schedule-consultation #scholarshipListContent .col-lg-7.center{
     padding: 0 !important;
@@ -156,14 +164,20 @@ let startFunk = setInterval(() => {
 }
 .new_schedule .nav_steps{
     display: flex;
-    align-items: center;
+        align-items: flex-start;
     justify-content: space-between;
-    margin-bottom: 30px;
 }
 .new_schedule .nav_steps svg{
     cursor: pointer;
+    max-width: 16px;
+    width: 100%;
+    margin-top: 4px;
 }
-svg.is_hidden{
+.new_schedule .nav_steps svg[data-navsteps="3"],
+.new_schedule .nav_steps svg[data-navsteps="2"]{
+ margin-top: 5px; 
+}
+svg.svg_is_hidden{
     opacity: 0;
     overflow: hidden;
     pointer-events: none;
@@ -175,6 +189,7 @@ font-size: 18px !important;
 line-height: 25px !important;
 color: #2B3E51 !important;
 margin: 0 !important;
+text-align: center !important;
 }
 .new_schedule .nav_steps > p:nth-of-type(2){
 font-weight: 400 !important;
@@ -182,6 +197,35 @@ font-size: 16px !important;
 line-height: 24px !important;
 color: #676767 !important;
 margin: 0 !important;
+}
+.time_zone_wrapper{
+    text-align: left;
+    margin-top: 24px;
+}
+.time_zone_wrapper > span{
+    display: block;
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+font-size: 16px;
+line-height: 25px;
+color: #3E78BA;
+margin: 0 0 8px;
+}
+#selectDropdown{
+   border: unset;
+    outline: unset;
+    padding-left: 24px;
+    position: relative;
+}
+#selectDropdown::before{
+    position: absolute;
+  content: "";
+  width: 16px;
+  height: 16px;
+  background: url(https://conversionratestore.github.io/projects/grantme/img/planet.svg) no-repeat center center;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
 }
 .our_consultants_wrapper {
   margin-top: 24px;
@@ -598,6 +642,7 @@ body .consultation_descr_box > div.no_commitments_wrapper p {
 }
 .report_card_section {
   padding: 0 16px;
+  display: none;
 }
 .report_card_section > h2 {
   font-size: 30px;
@@ -648,6 +693,9 @@ body .consultation_descr_box > div.no_commitments_wrapper p {
 }
 .sticky_box .reviews_btn_wrapper p:last-child{
     margin-left: 1px !important;
+}
+.calendar_container{
+    margin-top: 30px;
 }
 .calendar {
       position: relative;
@@ -769,6 +817,237 @@ color: #2B4F6A;
   .calendar .event-container{
     display: none !important;
   }
+.chosen_select.is_hidden,
+.calc_step_third.is_hidden,
+#calendarContainer.is_hidden,
+.time_zone_wrapper.is_hidden,
+.your_parent_information_wrapper.is_hidden,
+.add_guests_btn.is_hidden,
+label.is_hidden{
+    display: none;
+  }
+      /*chosen_select */
+      .chosen_select {
+        position: relative;
+        max-width: 304px;
+        margin: 24px auto 16px;
+        display: flex;
+    flex-direction: column;
+        justify-content: flex-start;
+    min-height: 309px;
+      }
+      .confirm_time_btn{
+            margin: auto 0 0;
+    background: #3E78BA;
+    border-radius: 6px;
+    height: 62px;
+    outline: none;
+    border: none;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+    color: #FFFFFF;
+      }
+      .confirm_time_btn:disabled{
+        background: #CCCCCC;
+      }
+      .chosen_select div.select_custom{
+border: 1px solid #CCCCCC;
+    border-radius: 6px;
+    padding: 17px 20px;
+    cursor: pointer;
+      }
+      .chosen_select div.select_custom p{
+        font-family: "Lato", sans-serif;
+        font-weight: 400;
+font-size: 16px;
+line-height: 14px;
+color: #676767;
+      }
+      .chosen_select div.select_custom p[data-selected]{
+color: #3E78BA;
+      }
+    .chosen_select div.select_custom.is_active{
+border-color: #3E78BA;
+      }
+      .chosen_select div.options_custom {
+background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    box-shadow: 0px 2px 2px rgba(28, 5, 77, 0.05), 0px 12px 8px rgba(0, 0, 0, 0.02);
+    border-radius: 6px;
+    margin-top: 4px;
+    display: block;
+      }
+      .chosen_select div.options_custom.is_hidden{
+        display: none;
+      }
+      .chosen_select div.options_custom ul {
+    overflow-x: auto;
+    max-height: 184px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+        border-radius: 6px;
+      }
+      .chosen_select ul::-webkit-scrollbar {
+        width: 4px;
+      }
+      .chosen_select ul::-webkit-scrollbar-thumb {
+        background: #6f767b;
+        border-radius: 10px;
+      }
+      .chosen_select ul li {
+        font-family: "Lato", sans-serif;
+font-weight: 700;
+font-size: 16px;
+line-height: 20px;
+color: #2B4F6A;
+        padding: 12px;
+        text-align: center;
+        cursor: pointer;
+      }
+      .chosen_select ul li:hover {
+        background:  #CCCCCC;
+      }
+            .chosen_select ul li.is_active {
+        background: #E9F3FA;
+        color: #3E78BA;
+      }
+      .calc_step_third{
+        display: block;
+        margin-top: 16px;
+      }
+      .calc_step_third > p{
+        font-family: "Lato", sans-serif;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        font-weight: 400;
+font-size: 16px !important;
+line-height: 24px !important;
+color: #2B4F6A;
+      }
+      .calc_step_third > p > span{
+        padding-left: 24px;
+        position: relative;
+      }
+      .calc_step_third > p > span + span{
+        margin-top: 12px;
+      }
+      .calc_step_third > p > span::before{
+              content: '';
+      position: absolute;
+top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      background: url(https://conversionratestore.github.io/projects/grantme/img/mini_clock.svg) no-repeat center center;
+      }
+      .calc_step_third > p > span:nth-child(2):before{
+background: url(https://conversionratestore.github.io/projects/grantme/img/mini_calendar.svg) no-repeat center center;
+      }
+            .calc_step_third > p > span:nth-child(3):before{
+background: url(https://conversionratestore.github.io/projects/grantme/img/mini_planet.svg) no-repeat center center;
+      }
+      .calc_step_third > h3{
+font-weight: 600 !important;
+font-size: 18px !important;
+line-height: 25px !important;
+text-align: center !important;
+color: #2B3E51 !important;
+margin: 16px 0 !important;
+padding: 0 !important;
+      }
+      #yourInformationForm .schedule_call_btn{
+        font-family: "Lato", sans-serif;
+            height: 62px;
+    background: #EBBD45;
+    border-radius: 6px;
+    width: 100%;
+    outline: none;
+    border: none;
+    color: #2B3E51;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+    cursor: pointer;
+      }
+      .your_parent_information_wrapper{
+        margin: 12px 0 24px;
+      }
+      #yourInformationForm .schedule_call_btn:disabled{
+        background: #CCCCCC;
+        color: #FFFFFF;
+      }
+      .add_guests_btn{
+        cursor: pointer;
+        font-weight: 700;
+font-size: 16px;
+line-height: 16px;
+color: #3E78BA;
+margin: 24px auto 16px;
+text-align: center;
+display: block;
+text-decoration-line: underline;
+max-width: max-content;
+      }
+      #yourInformationForm label{
+        width: 100%;
+    height: 48px;
+    padding: 20px 12px 4px;
+        border: 1px solid #3E78BA;
+border-radius: 6px;
+margin: 0;
+position: relative;
+      }
+      #yourInformationForm label.no_content{
+        border: 1px solid #CCCCCC;
+      }
+      #yourInformationForm label:focus{
+border: 1px solid #3E78BA;
+      }
+      #yourInformationForm label > span{
+font-family: "Lato", sans-serif;
+        font-weight: 400;
+font-size: 16px;
+line-height: 24px;
+color: #8B8B8B;
+position: absolute;
+top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+      }
+    #yourInformationForm label > span b{
+        color:rgba(235, 62, 68, 1);
+    }
+      #yourInformationForm label + label{
+        margin-top: 12px;
+      }
+      #yourInformationForm input{
+        font-family: "Lato", sans-serif;
+        width: 100%;
+        outline: none;
+        border: none;
+        height: 100%;
+    border-radius: 6px;
+    font-weight: 400;
+font-size: 16px;
+line-height: 24px;
+color: #2B3E51;
+      }
+      #yourInformationForm label > span.is_active{
+    top: 4px;
+    left: 12px;
+    transform: unset;
+    font-size: 12px;
+line-height: 16px;
+      }
+      .text_validation {
+            color: red;
+    font-size: 13px !important;
+    margin-top: 1px;
+      }
 @media (min-width: 768px) {
     .navbar-default.is_fixed{
     position: sticky;
@@ -834,6 +1113,7 @@ font-weight: 400 !important;
         display: flex !important;
             align-items: stretch !important;
     justify-content: center !important;
+    min-height: unset !important;
     }
     .reviews_btn_box{
         display: none;
@@ -875,8 +1155,10 @@ body .consultation_descr_box > div.no_commitments_wrapper p{
 }
 .new_schedule{
     max-width: 100%;
-    margin: 0 24px;
+    margin: 16px 24px 0;
     width: auto;
+    padding: 24px 0;
+    border-top: 1px solid #F2F2F2;
 }
     .greetings_box .win_scholarships_txt{
         font-weight: 400 !important;
@@ -920,14 +1202,13 @@ body .consultation_descr_box > div.no_commitments_wrapper p{
     padding: 24px 32px;
     text-align: left;
     border-radius: 0 0 6px 6px;
+    margin: 0;
 }
 .new_schedule_box .new_schedule_descr {
     align-items: center;
     justify-content: center;
-    margin: 16px 24px 24px;
+    margin: 8px 24px 0;
     max-width: unset;
-    padding: 0 0 16px;
-    border-bottom: 1px solid #F2F2F2;
     gap: 28px;
 }
 .new_schedule_box > h2{
@@ -1080,6 +1361,63 @@ margin: 0 0 0 12px;
 .competition_item#competition_step3{
     border-top: unset;
 }
+.calc_step_third > p{
+        flex-direction: unset;
+            align-items: center;
+                max-width: 452px;
+       margin: 0 auto 24px;
+    justify-content: space-between;
+}
+.calc_step_third > p > span + span{
+    margin: 0;
+}
+.calc_step_third > h3{
+    margin: 0 0 24px !important;
+    border-top: 1px solid #F2F2F2;
+    padding-top: 16px !important;
+}
+.calc_step_third{
+    margin: 24px 0 0;
+}
+#yourInformationForm{
+    max-width: 486px;
+    margin: 0 auto;
+}
+#yourInformationForm .your_information_wrapper > div,
+#yourInformationForm .your_parent_information_wrapper > div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+#yourInformationForm .your_information_wrapper > div  label,
+#yourInformationForm .your_parent_information_wrapper > div  label{
+width: 48%;
+margin: 0;
+}
+.your_parent_information_wrapper{
+    margin: 16px 0 24px;
+}
+.chosen_select{
+    margin: 24px auto 0;
+}
+.time_zone_wrapper {
+    text-align: center;
+        margin: 24px 0 -8px;
+}
+.time_zone_wrapper > span{
+    display: inline;
+}
+.select_custom {
+padding: 16px 20px;
+}
+.chosen_select{
+    min-height: 304px;
+        max-width: 486px;
+}
+.calendar{
+    padding-bottom: 15px;
+}
 }
 @media (min-width: 1200px) {
     .competition_item#competition_step1 > div{
@@ -1129,7 +1467,7 @@ margin-top: 162px;
     <section class="greetings_box">
       <p class="name_txt">Awesome, <span class="person_name_var">Name</span>! <span>Based on the information you have provided,</span></p>
       <p class="tooltip_wrapper">
-        <span class="your_person_var">Your Child Is</span> Eligible For <span class="accent_var funding_price">$96,250</span> <span class="txt_relative">In Funding <svg data-title='Atlas cedarwood oil has natural sedative properties that can help reduce stress and anxiety. Its calming effects on the nervous system can promote relaxation and improve sleep quality, which can be beneficial for children with anxiety or sleep disturbances.' data-tolltip class="tooltip_btn" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <span class="your_person_var">You Are</span> Eligible For <span class="accent_var funding_price">$96,250</span> <span class="txt_relative">In Funding <svg data-title='Atlas cedarwood oil has natural sedative properties that can help reduce stress and anxiety. Its calming effects on the nervous system can promote relaxation and improve sleep quality, which can be beneficial for children with anxiety or sleep disturbances.' data-tolltip class="tooltip_btn" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M9 15H11V9H9V15ZM10 7C10.2833 7 10.521 6.904 10.713 6.712C10.905 6.52 11.0007 6.28267 11 6C11 5.71667 10.904 5.479 10.712 5.287C10.52 5.095 10.2827 4.99933 10 5C9.71667 5 9.479 5.096 9.287 5.288C9.095 5.48 8.99933 5.71733 9 6C9 6.28333 9.096 6.521 9.288 6.713C9.48 6.905 9.71733 7.00067 10 7ZM10 20C8.61667 20 7.31667 19.7373 6.1 19.212C4.88333 18.6867 3.825 17.9743 2.925 17.075C2.025 16.175 1.31267 15.1167 0.788 13.9C0.263333 12.6833 0.000666667 11.3833 0 10C0 8.61667 0.262667 7.31667 0.788 6.1C1.31333 4.88333 2.02567 3.825 2.925 2.925C3.825 2.025 4.88333 1.31267 6.1 0.788C7.31667 0.263333 8.61667 0.000666667 10 0C11.3833 0 12.6833 0.262667 13.9 0.788C15.1167 1.31333 16.175 2.02567 17.075 2.925C17.975 3.825 18.6877 4.88333 19.213 6.1C19.7383 7.31667 20.0007 8.61667 20 10C20 11.3833 19.7373 12.6833 19.212 13.9C18.6867 15.1167 17.9743 16.175 17.075 17.075C16.175 17.975 15.1167 18.6877 13.9 19.213C12.6833 19.7383 11.3833 20.0007 10 20ZM10 18C12.2333 18 14.125 17.225 15.675 15.675C17.225 14.125 18 12.2333 18 10C18 7.76667 17.225 5.875 15.675 4.325C14.125 2.775 12.2333 2 10 2C7.76667 2 5.875 2.775 4.325 4.325C2.775 5.875 2 7.76667 2 10C2 12.2333 2.775 14.125 4.325 15.675C5.875 17.225 7.76667 18 10 18Z"
             fill="white"
@@ -1212,7 +1550,7 @@ margin-top: 162px;
       </div>
       <div class="new_schedule">
             <div class="nav_steps">
-                <svg class="is_hidden" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg data-navsteps='1' class="svg_is_hidden" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_245_77182)">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M14.3981 6.57776C15.1836 6.57776 15.8203 7.21449 15.8203 7.99999C15.8203 8.78545 15.1836 9.42221 14.3981 9.42221H4.76517L8.34995 13.4551C8.8718 14.0422 8.81893 14.9411 8.23187 15.463C7.64477 15.9848 6.74582 15.9319 6.22401 15.3448L0.535121 8.94484C0.0561161 8.406 0.0561161 7.59394 0.535121 7.0551L6.22401 0.655098C6.74582 0.0680303 7.64477 0.0151507 8.23187 0.53699C8.81893 1.05883 8.8718 1.95778 8.34995 2.54484L4.76517 6.57776H14.3981Z" fill="#2B4F6A" />
                 </g>
@@ -1226,9 +1564,64 @@ margin-top: 162px;
                 <p><span class="step_active">1</span>/3</p>
             </div>
             <div class="calendar_container" id="calendarContainer"></div>
-            <div>
+            <div class="chosen_select is_hidden">
+                <div class="select_custom"><p>Select a time</p></div>
+                <div class="options_custom is_hidden"><ul></ul></div>
+                <button class="confirm_time_btn" disabled>Confirm</button>
+            </div>
+                <div class="calc_step_third is_hidden">
+                    <p>
+                        <span>30 min</span> <span class="new_selected_datetime"><span>21:15 - 22:00</span>, <span>Friday, May 25, 2023</span></span> <span>EET</span>
+                    </p>
+                    <h3>Enter Details</h3>
+                    <form id="yourInformationForm">
+                        <div class="your_information_wrapper">
+                        <div>
+                            <label class="no_content">
+                                <span>First name <b>*</b></span>
+                                <input size="60" maxlength="128" required="required" aria-required="true" type="text" name="firstName" id="newFirstName" />
+                            </label>
+                            <label class="no_content">
+                                <span>Last Name <b>*</b></span>
+                                <input size="60" maxlength="128" required="required" aria-required="true" type="text" name="lastName" id="newLastName" />
+                            </label>
+                        </div>
+                        <label class="no_content">
+                            <span>Phone number <b>*</b></span>
+                            <input inputmode="numeric" size="60" maxlength="128" required="required" aria-required="true" type="phone" name="phoneNumber" id="newPhoneNumber" />
+                        </label>
+                        <label class="no_content is_hidden">
+                            <span>Email <b>*</b></span>
+                            <input value='test@test.com' size="60" maxlength="254" required="required" aria-required="true" type="email" name="email" id="newEmail" />
+                        </label>
+                        </div>
+                        <span class="add_guests_btn">Add Guests</span>
+                        <div class="your_parent_information_wrapper is_hidden">
+                            <div>
+                                <label class="no_content">
+                                    <span>Guest first name</span>
+                                    <input size="60" maxlength="128" required="required" aria-required="true" type="text" name="newFirstNameGuest" id="newFirstNameGuest" />
+                                </label>
+                                <label class="no_content">
+                                    <span>Guest last name</span>
+                                    <input size="60" maxlength="128" required="required" aria-required="true" type="text" name="newLastNameGuest" id="newLastNameGuest" />
+                                </label>
+                            </div>
+                        <label class="no_content">
+                            <span>Guest phone number</span>
+                            <input inputmode="numeric" size="60" maxlength="128" required="required" aria-required="true" type="text" name="newPhoneNumberGuest" id="newPhoneNumberGuest" />
+                        </label>
+                        <label class="no_content is_hidden">
+                            <span>Guest email</span>
+                            <input size="60" maxlength="254" required="required" aria-required="true" type="email" name="newEmailGuest" id="newEmailGuest" />
+                        </label>
+                        </div>
+                        <button class="schedule_call_btn" disabled type="submit">Schedule a Call</button>
+                    </form>
+                 </div>
+            <div class="time_zone_wrapper">
                 <span>Time Zone:</span>
-                <select name="selectik" id="newSelect"></select>
+                <select name="select_dropdown" id="selectDropdown"></select>
             </div>
       </div>
       <div class="our_consultants_wrapper">
@@ -1411,7 +1804,7 @@ margin-top: 162px;
     let stickyBox = /*html */ `
     <div class="sticky_box">
       <div class="reviews_btn_wrapper">
-        <svg width="109" height="20" viewBox="0 0 109 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="109" height="20" viewBox="0 0 109 20" fill="none" xmlns="htactp://www.w3.org/2000/svg">
           <path d="M0 19.1283H19.9722V0.0078125H0V19.1283Z" fill="#2DAF6B" />
           <path d="M17.0255 8.14277L5.69745 16.021L7.35043 11.1519L3.02344 8.14277H8.37182L10.0244 3.27344L11.6771 8.14277H17.0255ZM10.0249 13.0121L13.1186 12.3891L14.3512 16.021L10.0249 13.0121Z" fill="white" />
           <path d="M22.2578 19.1283H42.23V0.0078125H22.2578V19.1283Z" fill="#2DAF6B" />
@@ -1484,12 +1877,47 @@ margin-top: 162px;
     document.querySelector("#block-whattoexpectonthecallscheduleconsultation").insertAdjacentHTML("afterend", slider);
 
     if (document.querySelector(".greetings_box")) {
+      document.querySelector(".person_name_var").textContent = document.querySelector("#edit-parent-first-name").value;
       document.querySelector(".funding_price").textContent = document.querySelector(".marketing b.clr-yellow").textContent;
-      if (document.querySelector(".academy-waiting-left-inside h2.marketing ").textContent.includes("You Are")) {
-        document.querySelector(".your_person_var").textContent = "You Are";
-      }
-      if (document.querySelector(".academy-waiting-left-inside h2.marketing ").textContent.includes("Your Child")) {
+      let paramsLocation = new URLSearchParams(window.location.search);
+      console.log(paramsLocation.get("user_type"));
+
+      if (paramsLocation.get("user_type") === "parent") {
         document.querySelector(".your_person_var").textContent = "Your Child Is";
+        if (document.querySelector("#edit-parent-first-name").value !== "") {
+          document.querySelector(`#yourInformationForm input[name='firstName']`).value = document.querySelector("#edit-parent-first-name").value;
+          validationForm(document.querySelector(`#yourInformationForm input[name='firstName']`));
+        }
+        if (document.querySelector("#edit-parent-last-name").value !== "") {
+          document.querySelector(`#yourInformationForm input[name='lastName']`).value = document.querySelector("#edit-parent-last-name").value;
+          validationForm(document.querySelector(`#yourInformationForm input[name='lastName']`));
+        }
+        if (document.querySelector("#edit-parent-email").value !== "") {
+          document.querySelector(`#yourInformationForm input[name='email']`).value = document.querySelector("#edit-parent-email").value;
+          validationForm(document.querySelector(`#yourInformationForm input[name='email']`));
+        }
+        if (document.querySelector("#edit-parent-phone-number").value !== "") {
+          document.querySelector(`#yourInformationForm input[name='phoneNumber']`).value = document.querySelector("#edit-parent-phone-number").value;
+          validationForm(document.querySelector(`#yourInformationForm input[name='phoneNumber']`));
+        }
+      } else {
+        document.querySelector(".your_person_var").textContent = "You Are";
+        if (document.querySelector("#edit-first-name").value !== "") {
+          document.querySelector(`#yourInformationForm input[name='firstName']`).value = document.querySelector("#edit-first-name").value;
+          validationForm(document.querySelector(`#yourInformationForm input[name='firstName']`));
+        }
+        if (document.querySelector("#edit-last-name").value !== "") {
+          document.querySelector(`#yourInformationForm input[name='lastName']`).value = document.querySelector("#edit-last-name").value;
+          validationForm(document.querySelector(`#yourInformationForm input[name='lastName']`));
+        }
+        if (document.querySelector("#edit-email").value !== "") {
+          document.querySelector(`#yourInformationForm input[name='email']`).value = document.querySelector("#edit-email").value;
+          validationForm(document.querySelector(`#yourInformationForm input[name='email']`));
+        }
+        if (document.querySelector("#edit-phone-number").value !== "") {
+          document.querySelector(`#yourInformationForm input[name='phoneNumber']`).value = document.querySelector("#edit-phone-number").value;
+          validationForm(document.querySelector(`#yourInformationForm input[name='phoneNumber']`));
+        }
       }
       // tooltip
       let tippyRun = setInterval(() => {
@@ -1623,7 +2051,17 @@ margin-top: 162px;
           onInit: function (calendar) {}, // Callback after first initialization
           onMonthChange: function (month, year) {}, // Callback on month change
           onDateSelect: function (date, events) {
-            console.log(events);
+            if (events.length > 0) {
+              console.log(events);
+              document.querySelector(".nav_steps svg").setAttribute("data-navsteps", "2");
+              if (document.querySelector(".nav_steps svg").classList.contains("svg_is_hidden")) {
+                document.querySelector(".nav_steps svg").classList.remove("svg_is_hidden");
+              }
+              document.querySelector(".new_schedule .nav_steps > p:nth-of-type(1)").textContent = "Select a Time (30 min)";
+              document.querySelector(".new_schedule .nav_steps > p .step_active").textContent = "2";
+              document.querySelector("#calendarContainer").classList.add("is_hidden");
+              document.querySelector(".chosen_select").classList.remove("is_hidden");
+            }
           }, // Callback on date selection
           onEventSelect: function (e) {}, // Callback on event selection - use $(this).data('event') to access the event
           onEventCreate: function ($el) {}, // Callback fired when an HTML event is created - see $(this).data('event')
@@ -1632,8 +2070,290 @@ margin-top: 162px;
       }
     }, 500);
 
+    //   click on svg Back
+    if (document.querySelector(".new_schedule")) {
+      document.querySelector(".new_schedule .nav_steps svg").addEventListener("click", (el) => {
+        if (el.currentTarget.getAttribute("data-navsteps") === "2") {
+          console.log(`2 >>>>>>>>>>>>>>>`);
+          document.querySelector(".nav_steps svg").setAttribute("data-navsteps", "1");
+          el.currentTarget.classList.add("svg_is_hidden");
+          document.querySelector(".new_schedule .nav_steps > p:nth-of-type(1)").textContent = "Select a Day";
+          document.querySelector(".new_schedule .nav_steps > p .step_active").textContent = "1";
+          if (document.querySelector("#calendarContainer").classList.contains("is_hidden")) {
+            document.querySelector("#calendarContainer").classList.remove("is_hidden");
+          }
+          document.querySelector(".chosen_select").classList.add("is_hidden");
+        }
+        if (el.currentTarget.getAttribute("data-navsteps") === "3") {
+          console.log(`3 >>>>>>>>>>>>>>>`);
+          document.querySelector(".nav_steps svg").setAttribute("data-navsteps", "2");
+          document.querySelector(".new_schedule .nav_steps > p:nth-of-type(1)").textContent = "Select a Time (30 min)";
+          document.querySelector(".new_schedule .nav_steps > p .step_active").textContent = "2";
+          document.querySelector(".chosen_select").classList.remove("is_hidden");
+          document.querySelector(".time_zone_wrapper").classList.remove("is_hidden");
+          document.querySelector(".calc_step_third").classList.add("is_hidden");
+        }
+      });
+    }
+
     document.querySelectorAll(".select2-library option").forEach((el) => {
-      console.log(el);
+      document.querySelector("#selectDropdown").insertAdjacentHTML("beforeend", `<option class="select__link" value=${el.value}>${el.textContent}</option>`);
     });
+
+    // choose select
+    if (document.querySelector(".chosen_select")) {
+      let arrayBreedDog = ["10:15", "11:45", "18:15", "21:15"];
+
+      function setListBreedDog(title) {
+        return `  <li data-time="${title}">${title}</li>`;
+      }
+
+      arrayBreedDog.forEach((el) => {
+        document.querySelector(".chosen_select ul").insertAdjacentHTML("afterbegin", setListBreedDog(el));
+      });
+
+      document.querySelector(".chosen_select div.select_custom").addEventListener("click", () => {
+        document.querySelector(".chosen_select div.options_custom").classList.toggle("is_hidden");
+      });
+      document.querySelectorAll(".chosen_select ul li").forEach(function (el) {
+        el.addEventListener("click", function (e) {
+          document.querySelector(".chosen_select div.select_custom p").textContent = e.target.textContent;
+          document.querySelector(".chosen_select div.select_custom p").setAttribute("data-selected", e.target.getAttribute("data-time"));
+          document.querySelector(".chosen_select div.select_custom").classList.add("is_active");
+          document.querySelector(".chosen_select div.options_custom").classList.add("is_hidden");
+          document.querySelectorAll(".chosen_select ul li").forEach((i) => {
+            i.classList?.remove("is_active");
+          });
+          e.target.classList.add("is_active");
+
+          if (document.querySelector(".chosen_select div.select_custom p").getAttribute("data-selected") && document.querySelector(".confirm_time_btn:disabled")) {
+            document.querySelector(".confirm_time_btn:disabled").disabled = false;
+          }
+        });
+      });
+
+      // Click on confirm_time_btn
+      document.querySelector(".confirm_time_btn").addEventListener("click", (e) => {
+        e.preventDefault();
+        document.querySelector(".nav_steps svg").setAttribute("data-navsteps", "3");
+        document.querySelector(".new_schedule .nav_steps > p:nth-of-type(1)").textContent = `Free Call with a Student  Success Specialist`;
+        document.querySelector(".new_schedule .nav_steps > p .step_active").textContent = "3";
+        document.querySelector(".chosen_select").classList.add("is_hidden");
+        document.querySelector(".time_zone_wrapper").classList.add("is_hidden");
+        document.querySelector(".calc_step_third").classList.remove("is_hidden");
+      });
+    }
+
+    if (document.querySelectorAll("#yourInformationForm")) {
+      document.querySelectorAll("#yourInformationForm input").forEach((i) => {
+        i.addEventListener("input", (e) => {
+          validationForm(e.target);
+          if (!e.target.previousElementSibling.classList.contains("is_active")) {
+            e.target.previousElementSibling.classList.add("is_active");
+          }
+        });
+        i.addEventListener("blur", (e) => {
+          if (e.target.previousElementSibling.classList.contains("is_active") && e.target.value === "") {
+            e.target.previousElementSibling.classList.remove("is_active");
+          }
+        });
+        i.addEventListener("focus", (e) => {
+          if (!e.target.previousElementSibling.classList.contains("is_active")) {
+            e.target.previousElementSibling.classList.add("is_active");
+          }
+        });
+      });
+
+      //Click on add_guests_btn
+      document.querySelector(".add_guests_btn").addEventListener("click", (e) => {
+        e.target.classList.add("is_hidden");
+        document.querySelector(".your_parent_information_wrapper").classList.remove("is_hidden");
+      });
+
+      //
+      document.querySelector("#yourInformationForm .schedule_call_btn").addEventListener("click", (e) => {
+        e.preventDefault();
+
+        if (document.querySelector(`#yourInformationForm input[name='newFirstNameGuest']`).value === "") {
+          document.querySelector(`#yourInformationForm input[name='newFirstNameGuest']`).value = "test";
+          document.querySelector(`#yourInformationForm input[name='newFirstNameGuest']`).closest("label").classList?.remove("no_content");
+          document.querySelector(`#yourInformationForm input[name='newFirstNameGuest']`).previousElementSibling.classList?.add("is_active");
+        }
+        if (document.querySelector(`#yourInformationForm input[name='newLastNameGuest']`).value === "") {
+          document.querySelector(`#yourInformationForm input[name='newLastNameGuest']`).value = "test";
+          document.querySelector(`#yourInformationForm input[name='newLastNameGuest']`).closest("label").classList?.remove("no_content");
+          document.querySelector(`#yourInformationForm input[name='newLastNameGuest']`).previousElementSibling.classList?.add("is_active");
+        }
+        if (document.querySelector(`#yourInformationForm input[name='newEmailGuest']`).value === "") {
+          document.querySelector(`#yourInformationForm input[name='newEmailGuest']`).value = "test@test.com";
+          document.querySelector(`#yourInformationForm input[name='newEmailGuest']`).closest("label").classList?.remove("no_content");
+          document.querySelector(`#yourInformationForm input[name='newEmailGuest']`).previousElementSibling.classList?.add("is_active");
+        }
+        if (document.querySelector(`#yourInformationForm input[name='newPhoneNumberGuest']`).value === "") {
+          document.querySelector(`#yourInformationForm input[name='newPhoneNumberGuest']`).value = "(000) 000-0000";
+          document.querySelector(`#yourInformationForm input[name='newPhoneNumberGuest']`).closest("label").classList?.remove("no_content");
+          document.querySelector(`#yourInformationForm input[name='newPhoneNumberGuest']`).previousElementSibling.classList?.add("is_active");
+        }
+        // document.querySelector("#edit-book-call")?.click();
+      });
+    }
+
+    function validationForm(target) {
+      let inputValueFirstName = document.querySelector(`#yourInformationForm input[name='firstName']`).value.match(/^[а-яА-ЯёЁa-zA-Z0-9]+$/);
+      let inputValueLastName = document.querySelector(`#yourInformationForm input[name='lastName']`).value.match(/^[а-яА-ЯёЁa-zA-Z0-9]+$/);
+      let inputValueEmail = document.querySelector(`#yourInformationForm input[name='email']`).value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
+      let mask;
+
+      let inputValueFirstNameGuest = document.querySelector(`#yourInformationForm input[name='newFirstNameGuest']`).value.match(/^[а-яА-ЯёЁa-zA-Z0-9]+$/);
+      let inputValueLastNameGuest = document.querySelector(`#yourInformationForm input[name='newLastNameGuest']`).value.match(/^[а-яА-ЯёЁa-zA-Z0-9]+$/);
+      let inputValueEmailGuest = document.querySelector(`#yourInformationForm input[name='newEmailGuest']`).value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
+      let maskGuest;
+
+      if (target.getAttribute("name") === "firstName") {
+        if (inputValueFirstName === null) {
+          document.querySelector(`#yourInformationForm input[name='firstName']`)?.closest("label").classList.add("label_error");
+          if (!document.querySelector(`.text_validation.name_var`)) {
+            document.querySelector(`#yourInformationForm input[name='firstName']`)?.closest("label").insertAdjacentHTML("afterend", `<p class="text_validation name_var">First name field is required.</p>`);
+          }
+        } else {
+          document.querySelector(`#yourInformationForm input[name='firstName']`)?.closest("label").classList.remove("label_error");
+          document.querySelector(`.text_validation.name_var`)?.remove();
+          target.previousElementSibling.classList.add("is_active");
+          if (target.closest("label").classList.contains("no_content")) {
+            target.closest("label").classList.remove("no_content");
+          }
+        }
+      }
+      if (target.getAttribute("name") === "lastName") {
+        if (inputValueLastName === null) {
+          document.querySelector(`#yourInformationForm input[name='lastName']`)?.closest("label").classList.add("label_error");
+          if (!document.querySelector(`.text_validation.lastName_var`)) {
+            document.querySelector(`#yourInformationForm input[name='lastName']`)?.closest("label").insertAdjacentHTML("afterend", `<p class="text_validation lastName_var">Last name field is required.</p>`);
+          }
+        } else {
+          document.querySelector(`#yourInformationForm input[name='lastName']`)?.closest("label").classList.remove("label_error");
+          document.querySelector(`.text_validation.lastName_var`)?.remove();
+          target.previousElementSibling.classList.add("is_active");
+          if (target.closest("label").classList.contains("no_content")) {
+            target.closest("label").classList.remove("no_content");
+          }
+        }
+      }
+      if (target.getAttribute("name") === "email") {
+        if (inputValueEmail === null) {
+          document.querySelector(`#yourInformationForm input[name='email']`)?.closest("label").classList.add("label_error");
+          if (!document.querySelector(`.text_validation.email_var`)) {
+            document.querySelector(`#yourInformationForm input[name='email']`)?.closest("label").insertAdjacentHTML("afterend", `<p class="text_validation email_var">Email does not contain a valid email.</p>`);
+          }
+        } else {
+          document.querySelector(`#yourInformationForm input[name='email']`)?.closest("label").classList.remove("label_error");
+          document.querySelector(`.text_validation.email_var`)?.remove();
+          target.previousElementSibling.classList.add("is_active");
+          if (target.closest("label").classList.contains("no_content")) {
+            target.closest("label").classList.remove("no_content");
+          }
+        }
+      }
+      if (target.getAttribute("name") === "phoneNumber") {
+        let element = document.querySelector(`#yourInformationForm input[name='phoneNumber']`);
+        let maskOptions = {
+          mask: "(000) 000-0000",
+          lazy: true,
+        };
+        let s = setInterval(() => {
+          if (typeof IMask === "function") {
+            clearInterval(s);
+            mask = new IMask(element, maskOptions);
+            console.log(mask._unmaskedValue.length);
+            if (mask._unmaskedValue.length !== 10) {
+              if (!document.querySelector(`.text_validation.phone_number_var`)) {
+                document.querySelector(`#yourInformationForm input[name='phoneNumber']`)?.closest("label").insertAdjacentHTML("afterend", `<p class="text_validation phone_number_var">Phone Number does not contain a valid phone number.</p>`);
+              }
+            }
+            if (mask._unmaskedValue.length === 10) {
+              document.querySelector(`.text_validation.phone_number_var`)?.remove();
+              target.previousElementSibling.classList.add("is_active");
+              if (target.closest("label").classList.contains("no_content")) {
+                target.closest("label").classList.remove("no_content");
+              }
+            }
+          }
+        }, 100);
+      }
+
+      if (inputValueFirstName !== null && inputValueLastName !== null && inputValueEmail !== null && document.querySelector(`.text_validation.phone_number_var`) == null && document.querySelector(`#yourInformationForm input[name='phoneNumber']`).value !== "") {
+        if (document.querySelector("#yourInformationForm .schedule_call_btn:disabled")) {
+          document.querySelector("#yourInformationForm .schedule_call_btn:disabled").disabled = false;
+        }
+      } else {
+        document.querySelector("#yourInformationForm .schedule_call_btn").disabled = true;
+      }
+
+      if (target.getAttribute("name") === "newFirstNameGuest") {
+        if (inputValueFirstNameGuest === null) {
+          document.querySelector(`#yourInformationForm input[name='newFirstNameGuest']`)?.closest("label").classList.add("label_error");
+          if (!document.querySelector(`.text_validation.name_guest_var`)) {
+            document.querySelector(`#yourInformationForm input[name='newFirstNameGuest']`)?.closest("label").insertAdjacentHTML("afterend", `<p class="text_validation name_guest_var">Please enter First name without spaces or special characters.</p>`);
+          }
+        } else {
+          document.querySelector(`#yourInformationForm input[name='newFirstNameGuest']`)?.closest("label").classList.remove("label_error");
+          document.querySelector(`.text_validation.name_guest_var`)?.remove();
+          target.previousElementSibling.classList.add("is_active");
+          if (target.closest("label").classList.contains("no_content")) {
+            target.closest("label").classList.remove("no_content");
+          }
+        }
+      }
+      if (target.getAttribute("name") === "newLastNameGuest") {
+        if (inputValueLastNameGuest === null) {
+          document.querySelector(`#yourInformationForm input[name='newLastNameGuest']`)?.closest("label").classList.add("label_error");
+          if (!document.querySelector(`.text_validation.last_name_guest_var`)) {
+            document.querySelector(`#yourInformationForm input[name='newLastNameGuest']`)?.closest("label").insertAdjacentHTML("afterend", `<p class="text_validation last_name_guest_var">Please enter Last name without spaces or special characters.</p>`);
+          }
+        } else {
+          document.querySelector(`#yourInformationForm input[name='newLastNameGuest']`)?.closest("label").classList.remove("label_error");
+          document.querySelector(`.text_validation.last_name_guest_var`)?.remove();
+          target.previousElementSibling.classList.add("is_active");
+          if (target.closest("label").classList.contains("no_content")) {
+            target.closest("label").classList.remove("no_content");
+          }
+        }
+      }
+      if (target.getAttribute("name") === "newEmailGuest") {
+        if (inputValueEmailGuest === null) {
+          document.querySelector(`#yourInformationForm input[name='newEmailGuest']`)?.closest("label").classList.add("label_error");
+          if (!document.querySelector(`.text_validation.email_guest_var`)) {
+            document.querySelector(`#yourInformationForm input[name='newEmailGuest']`)?.closest("label").insertAdjacentHTML("afterend", `<p class="text_validation email_guest_var">Email does not contain a valid email.</p>`);
+          }
+        } else {
+          document.querySelector(`#yourInformationForm input[name='newEmailGuest']`)?.closest("label").classList.remove("label_error");
+          document.querySelector(`.text_validation.email_guest_var`)?.remove();
+          target.previousElementSibling.classList.add("is_active");
+          if (target.closest("label").classList.contains("no_content")) {
+            target.closest("label").classList.remove("no_content");
+          }
+        }
+      }
+      if (target.getAttribute("name") === "newPhoneNumberGuest") {
+        let element = document.querySelector(`#yourInformationForm input[name='newPhoneNumberGuest']`);
+        let maskOptions = {
+          mask: "(000) 000-0000",
+          lazy: true,
+        };
+        maskGuest = new IMask(element, maskOptions);
+        if (maskGuest._unmaskedValue.length !== 10) {
+          if (!document.querySelector(`.text_validation.phone_number_guest_var`)) {
+            document.querySelector(`#yourInformationForm input[name='newPhoneNumberGuest']`)?.closest("label").insertAdjacentHTML("afterend", `<p class="text_validation phone_number_guest_var">Phone Number does not contain a valid phone number.</p>`);
+          }
+        }
+        if (maskGuest._unmaskedValue.length === 10) {
+          document.querySelector(`.text_validation.phone_number_guest_var`)?.remove();
+          target.previousElementSibling.classList.add("is_active");
+          if (target.closest("label").classList.contains("no_content")) {
+            target.closest("label").classList.remove("no_content");
+          }
+        }
+      }
+    }
   }
 }, 500);

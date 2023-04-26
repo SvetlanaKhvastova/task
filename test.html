@@ -15,11 +15,6 @@
         <form class="acuity-booking" data-drupal-selector="acuity-booking" action="/book-call" method="post" id="acuity-booking" accept-charset="UTF-8" data-once="cvJqueryValidate" novalidate="novalidate">
           <h2 style="display: none">Enter Details</h2>
           <div class="user_information multistep form-group js-form-wrapper form-wrapper" data-drupal-selector="edit-user-information" id="edit-user-information" style="display: none">
-            <div class="form-item js-form-item form-type-textfield js-form-type-textfield form-item-first-name js-form-item-first-name form-group">
-              <label for="edit-first-name" class="control-label js-form-required form-required">First name</label>
-
-              <input placeholder="First Name" data-drupal-selector="edit-first-name" class="form-text required form-control" data-msg-maxlength="First name field has a maximum length of 128." data-msg-required="First name field is required." type="text" id="edit-first-name" name="first_name" value="" size="60" maxlength="128" required="required" aria-required="true" />
-            </div>
             <div class="form-item js-form-item form-type-textfield js-form-type-textfield form-item-last-name js-form-item-last-name form-group">
               <label for="edit-last-name" class="control-label js-form-required form-required">Last name</label>
 
@@ -502,6 +497,53 @@
           ><span class="dropdown-wrapper" aria-hidden="true"></span
         ></span>
       </div>
+    </div>
+
+    <div class="calc_step_third">
+      <p>
+        <span>30 min</span> <span class="new_selected_datetime"><span>21:15 - 22:00</span>, <span>Friday, May 25, 2023</span></span> <span>EET</span>
+      </p>
+      <h2>Enter Details</h2>
+      <form action="">
+        <div class="your_information_wrapper">
+          <label>
+            <span>First name *</span>
+            <input size="60" maxlength="128" required="required" aria-required="true" type="text" name="firstName" id="newFirstName" />
+          </label>
+          <label>
+            <span>Last Name *</span>
+            <input size="60" maxlength="128" required="required" aria-required="true" type="text" name="lastName" id="newLastName" />
+          </label>
+          <label>
+            <span>Phone number *</span>
+            <input placeholder="(___) ___-____" inputmode="numeric" size="60" maxlength="128" required="required" aria-required="true" type="phone" name="phoneNumber" id="newPhoneNumber" />
+          </label>
+          <label>
+            <span>Email *</span>
+            <input size="60" maxlength="254" required="required" aria-required="true" type="email" name="email" id="newEmail" />
+          </label>
+        </div>
+        <span>Add Guests</span>
+        <div class="your_parent_information_wrapper">
+          <label>
+            <span>Parent first name *</span>
+            <input size="60" maxlength="128" required="required" aria-required="true" type="text" name="newFirstNameParent" id="newFirstNameParent" />
+          </label>
+          <label>
+            <span>Parent last name *</span>
+            <input size="60" maxlength="128" required="required" aria-required="true" type="text" name="newLastNameParent" id="newLastNameParent" />
+          </label>
+          <label>
+            <span>Parent phone number *</span>
+            <input placeholder="(___) ___-____" inputmode="numeric" size="60" maxlength="128" required="required" aria-required="true" type="phone" name="newPhoneNumberParent" id="newPhoneNumberParent" />
+          </label>
+          <label>
+            <span>Parent email *</span>
+            <input size="60" maxlength="254" required="required" aria-required="true" type="email" name="newEmailParent" id="newEmailParent" />
+          </label>
+        </div>
+        <button type="submit">Schedule a Call</button>
+      </form>
     </div>
   </body>
 </html>
