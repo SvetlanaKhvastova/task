@@ -114,6 +114,7 @@ let startFunk = setInterval(() => {
   background: #e9f3fa;
   padding: 40px 16px;
   margin: 0 auto;
+  width: 100%;
 }
 .new_schedule_box > h2 {
   font-weight: 600;
@@ -162,6 +163,7 @@ let startFunk = setInterval(() => {
   background: #ffffff;
   border-radius: 6px;
   padding: 20px;
+  margin: 0 auto;
 }
 .new_schedule .nav_steps {
   display: flex;
@@ -189,8 +191,9 @@ svg.svg_is_hidden {
   font-size: 18px !important;
   line-height: 25px !important;
   color: #2b3e51 !important;
-  margin: 0 !important;
+  margin: 0 auto !important;
   text-align: center !important;
+  max-width: 224px;
 }
 .new_schedule .nav_steps > p:nth-of-type(2) {
   font-weight: 400 !important;
@@ -219,6 +222,31 @@ svg.svg_is_hidden {
 #selectDropdown {
   border: unset;
   outline: unset;
+  display: none;
+}
+.time_zone_wrapper .timezone {
+  width: 220px;
+}
+.time_zone_wrapper .timezone > label {
+  display: none;
+}
+body .select2-container.select2-container--open {
+  max-width: 220px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  top: 0 !important;
+}
+.select2-container--default .select2-selection--single {
+  border: 1px solid #aaa !important;
+  padding: 4px 16px;
+  height: 25px;
+}
+.select2-dropdown {
+  border: 1px solid #aaa !important;
+}
+.time_zone_wrapper .timezone > label {
+  display: none;
 }
 .select_dropdown_wrapper::before {
   position: absolute;
@@ -334,6 +362,9 @@ body .our_consultants_wrapper h3 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.sticky_header .reviews_btn_wrapper {
+  cursor: pointer;
 }
 .reviews_btn_wrapper p {
   font-family: "Lato", sans-serif;
@@ -699,6 +730,7 @@ body .consultation_descr_box > div.no_commitments_wrapper p {
 }
 .calendar_container {
   margin-top: 30px;
+  min-height: 298px;
 }
 .calendar {
   position: relative;
@@ -860,6 +892,7 @@ label.is_hidden {
   padding: 17px 20px;
   cursor: pointer;
   position: relative;
+  height: 48px;
 }
 .chosen_select div.select_custom::after {
   content: "";
@@ -899,9 +932,11 @@ label.is_hidden {
 .chosen_select div.options_custom {
   display: none;
 }
+
 .chosen_select div.options_custom ul {
   overflow-x: auto;
   max-height: 184px;
+  min-height: 184px;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -1070,7 +1105,186 @@ label.is_hidden {
   font-size: 13px !important;
   margin-top: 1px;
 }
+.ajax-progress.ajax-progress-fullscreen {
+  width: 100%;
+  left: 0;
+}
+.ajax-progress.ajax-progress-fullscreen {
+  background-color: #fff;
+  opacity: 0.5;
+  background-image: none;
+  z-index: 11000;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.ajax-throbber {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 50%;
+  bottom: 0;
+  right: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+.ajax-throbber.sk-circle {
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+.ajax-throbber .sk-circle-dot {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+#calendarContainer .ajax-throbber .sk-circle-dot:nth-child(1) {
+  transform: rotate(30deg);
+}
+#calendarContainer .ajax-throbber .sk-circle-dot:nth-child(2) {
+  transform: rotate(60deg);
+}
+#calendarContainer .ajax-throbber .sk-circle-dot:nth-child(3) {
+  transform: rotate(90deg);
+}
+#calendarContainer .ajax-throbber .sk-circle-dot:nth-child(4) {
+  transform: rotate(120deg);
+}
+#calendarContainer .ajax-throbber .sk-circle-dot:nth-child(5) {
+  transform: rotate(150deg);
+}
+#calendarContainer .ajax-throbber .sk-circle-dot:nth-child(6) {
+  transform: rotate(180deg);
+}
+#calendarContainer .ajax-throbber .sk-circle-dot:nth-child(7) {
+  transform: rotate(210deg);
+}
+#calendarContainer .ajax-throbber .sk-circle-dot:nth-child(8) {
+  transform: rotate(240deg);
+}
+#calendarContainer .ajax-throbber .sk-circle-dot:nth-child(9) {
+  transform: rotate(270deg);
+}
+#calendarContainer .ajax-throbber .sk-circle-dot:nth-child(10) {
+  transform: rotate(300deg);
+}
+#calendarContainer .ajax-throbber .sk-circle-dot:nth-child(11) {
+  transform: rotate(330deg);
+}
+.testimonials_video {
+  position: relative;
+}
+.container_video.container {
+  margin: 0 auto;
+  padding: 0;
+}
+.testimonials_item {
+  width: 100%;
+  padding: 0;
+  background: #e9f3fa;
+  border-radius: 12px;
+  min-height: 392px;
+  display: block;
+}
+.testimonials_content {
+  height: 538px;
+  align-items: center;
+  overflow: hidden;
+  justify-content: center;
+  display: flex;
+  margin: 0;
+}
+.testimonials_content_text {
+  padding: 24px 16px;
+  font-size: 18px;
+  line-height: 27px;
+}
+.testimonials_man {
+  width: 100%;
+  min-height: 80px;
+  padding: 16px;
+  display: flex;
+}
+.testimonials_img {
+  width: 80px;
+  height: 80px;
+  margin-right: 16px;
+}
+.testimonials_img img {
+  border-radius: 50%;
+}
+.testimonials_name {
+  flex-direction: column;
+  width: calc(100% - 96px);
+  display: flex;
+  align-self: flex-end;
+}
+.testimonials_name h3 {
+  width: 100%;
+  margin: -4px 0 0;
+  font-size: 20px;
+  line-height: 30px;
+  font-family: Bitter, serif;
+  font-weight: 600;
+}
+.testimonials_name .testimonials_school {
+  font-size: 18px;
+  line-height: 27px;
+  width: 100%;
+}
+.testimonials_arrows {
+  display: flex;
+  margin: 10px 20px;
+  align-items: center;
+  justify-content: center;
+}
+.testimonials_arrow_next,
+.testimonials_arrow_prev {
+  border: 0;
+  background: 0 0;
+  padding: 0;
+  margin: 5px 16px;
+}
+.slick-initialized .slick-slide {
+  margin: 0 10px;
+}
+.testimonials_item_last {
+  min-height: 650px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px;
+  text-align: center;
+  justify-content: center;
+}
+.testimonials_item_last .btn {
+  max-width: 159px;
+  margin: 0 auto 16px;
+  padding: 16px 28px;
+  display: inline-block;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  background-color: #ebbd45;
+  color: #2b3e51;
+  outline: none;
+  border: none;
+}
+
 @media (min-width: 768px) {
+  .chosen_select div.options_custom ul {
+    max-height: 222px;
+    min-height: 222px;
+  }
   .navbar-default.is_fixed {
     position: sticky;
     top: 0;
@@ -1387,8 +1601,12 @@ label.is_hidden {
   .competition_item > div {
     flex: 0 0 45%;
   }
+  .competition_item#competition_step3 > div {
+    margin-top: 54px;
+  }
   .competition_item#competition_step3 {
     border-top: unset;
+    padding-top: 0;
   }
   .calc_step_third > p {
     flex-direction: unset;
@@ -1447,24 +1665,61 @@ label.is_hidden {
   .time_zone_wrapper {
     text-align: center;
     margin: 24px 0 -8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .time_zone_wrapper > span {
     display: inline;
+    margin: 0;
   }
   .select_dropdown_wrapper {
-    display: inline;
+    display: flex;
     margin-left: 12px;
+    align-items: center;
+    justify-content: center;
   }
   .select_custom {
     padding: 16px 20px;
   }
   .chosen_select {
-    min-height: 304px;
+    min-height: 345px;
     max-width: 486px;
   }
   .calendar {
     padding-bottom: 15px;
   }
+  .new_schedule .nav_steps > p:nth-of-type(1) {
+    max-width: unset;
+  }
+  .container_video.container{
+    width: 912px;
+  }
+  .testimonials_content{
+    height: 351px;
+  }
+  .testimonials_man{
+    padding: 32px;
+  }
+  .testimonials_name h3{
+    font-size: 26px;
+    line-height: 39px;
+  }
+  .testimonials_content_text {
+    padding: 32px;
+    font-size: 22px;
+    line-height: 33px;
+}
+.testimonials_item_last{
+    min-height: 495px;
+}
+.testimonials_item_last .btn + div{
+    font-size: 18px;
+    max-width: 208px;
+}
+.testimonials_arrows{
+    justify-content: flex-end;
+}
 }
 @media (min-width: 1200px) {
   .competition_item#competition_step1 > div {
@@ -1609,7 +1864,22 @@ label.is_hidden {
                 <p>Select a Date</p>
                 <p><span class="step_active">1</span>/3</p>
             </div>
-            <div class="calendar_container" id="calendarContainer"></div>
+            <div class="calendar_container" id="calendarContainer">
+                      <div class="ajax-throbber sk-circle">
+        <div class="sk-circle-dot"></div>
+        <div class="sk-circle-dot"></div>
+        <div class="sk-circle-dot"></div>
+        <div class="sk-circle-dot"></div>
+        <div class="sk-circle-dot"></div>
+        <div class="sk-circle-dot"></div>
+        <div class="sk-circle-dot"></div>
+        <div class="sk-circle-dot"></div>
+        <div class="sk-circle-dot"></div>
+        <div class="sk-circle-dot"></div>
+        <div class="sk-circle-dot"></div>
+        <div class="sk-circle-dot"></div>
+      </div>
+            </div>
             <div class="chosen_select is_hidden">
                 <div class="select_custom"><p>Select a time</p></div>
                 <div class="options_custom"><ul></ul></div>
@@ -1617,7 +1887,7 @@ label.is_hidden {
             </div>
                 <div class="calc_step_third is_hidden">
                     <p>
-                        <span>30 min</span> <span class="new_selected_datetime"><span>21:15 - 22:00</span>, <span>Friday, May 25, 2023</span></span> <span>EET</span>
+                        <span>30 min</span> <span class="new_selected_datetime"><span class="full_date_time">Friday, May 25, 2023</span></span> <span>EET</span>
                     </p>
                     <h3>Enter Details</h3>
                     <form id="yourInformationForm">
@@ -1689,6 +1959,7 @@ label.is_hidden {
             <div class="time_zone_wrapper">
                 <span>Time Zone:</span>
                 <div class="select_dropdown_wrapper">
+                    <span></span>
                     <select name="select_dropdown" id="selectDropdown"></select>
                 </div>
             </div>
@@ -1944,11 +2215,13 @@ label.is_hidden {
 
     document.querySelector("#block-faqstartfreetrialacademy-2").insertAdjacentHTML("afterend", competitionNextSteps);
     document.querySelector("#block-whattoexpectonthecallscheduleconsultation").insertAdjacentHTML("afterend", slider);
+    if (document.querySelector(".calc_step_third")) {
+      document.querySelector(".calc_step_third > p > span:last-child").textContent = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    }
 
     if (document.querySelector(".greetings_box")) {
       document.querySelector(".funding_price").textContent = document.querySelector(".marketing b.clr-yellow").textContent;
       let paramsLocation = new URLSearchParams(window.location.search);
-      console.log(paramsLocation.get("user_type"));
 
       if (paramsLocation.get("user_type") === "parent") {
         document.querySelector(".person_name_var").textContent = document.querySelector("#edit-parent-first-name").value;
@@ -2003,9 +2276,7 @@ label.is_hidden {
               appendTo: function () {
                 return document.querySelector(".tooltip_wrapper");
               },
-              onTrigger(e) {
-                console.log(`clicked`);
-              },
+              onTrigger(e) {},
             });
           });
         }
@@ -2055,21 +2326,21 @@ label.is_hidden {
             }
           }
         }
-
         window.addEventListener("scroll", function () {
           visible(elemClose);
         });
-
         visible(elemClose);
       }
     }
-
     if (document.querySelector("[data-reviews]")) {
       document.querySelectorAll("[data-reviews]").forEach((el) => {
-        console.log(el);
         el.addEventListener("click", () => {
           if (!el.closest(".navbar-default")?.classList.contains("is_fixed")) {
-            document.querySelector("#block-trustpilotwidgetstartfreetrial").scrollIntoView({ block: "start", behavior: "smooth" });
+            if (window.innerWidth <= 768) {
+              document.querySelector("#block-trustpilotwidgetstartfreetrial").scrollIntoView({ block: "start", behavior: "smooth" });
+            } else {
+              document.querySelector("#block-trustpilotwidgetstartfreetrial").scrollIntoView({ block: "center", behavior: "smooth" });
+            }
           }
         });
       });
@@ -2078,75 +2349,132 @@ label.is_hidden {
     let slickInterval = setInterval(() => {
       if (typeof jQuery(".testimonials_slider").slick === "function") {
         clearInterval(slickInterval);
-
         //  slider
         let slider = jQuery(".testimonials_slider").slick({
-          slidesToShow: 1,
+          slidesToShow: 3,
           slidesToScroll: 1,
           arrows: true,
           prevArrow: ".testimonials_arrow_prev",
           nextArrow: ".testimonials_arrow_next",
           dots: false,
           infinite: false,
+          adaptiveHeight: true,
+          responsive: [
+            {
+              breakpoint: 767,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+              },
+            },
+          ],
         });
         slider.on("swipe", function () {});
       }
     }, 100);
 
+    //   calendar
     let calendar = setInterval(() => {
       if (typeof jQuery("#calendarContainer").simpleCalendar === "function") {
         clearInterval(calendar);
         console.log(`calendar`);
-
-        jQuery("#calendarContainer").simpleCalendar({
-          months: ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
-          days: ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"],
-          displayYear: true, // Display year in header
-          fixedStartDay: true, // Week begin always by monday or by day set by number 0 = sunday, 7 = saturday, false = month always begin by first day of the month
-          displayEvent: true, // Display existing event
-          disableEventDetails: false, // disable showing event details
-          disableEmptyDetails: true, // disable showing empty date details
-          events: [
-            {
-              startDate: new Date(new Date().setHours(new Date().getHours() + 48)).toISOString(),
-              endDate: new Date(new Date().setHours(new Date().getHours() + 49)).getTime(),
-              summary: "New event",
-            },
-            {
-              startDate: new Date(new Date().setHours(new Date().getHours() - 24)).toISOString(),
-              endDate: new Date(new Date().setHours(new Date().getHours() - 23)).getTime(),
-              summary: "New event 2",
-            },
-          ], // List of events
-          onInit: function (calendar) {}, // Callback after first initialization
-          onMonthChange: function (month, year) {}, // Callback on month change
-          onDateSelect: function (date, events) {
-            if (events.length > 0) {
-              console.log(events);
-              document.querySelector(".path-start-free-trial.path-schedule-consultation #scholarshipListContent .col-lg-7.center").scrollIntoView({ block: "start", behavior: "smooth" });
-              document.querySelector(".nav_steps svg").setAttribute("data-navsteps", "2");
-              if (document.querySelector(".nav_steps svg").classList.contains("svg_is_hidden")) {
-                document.querySelector(".nav_steps svg").classList.remove("svg_is_hidden");
-              }
-              document.querySelector(".new_schedule .nav_steps > p:nth-of-type(1)").textContent = "Select a Time (30 min)";
-              document.querySelector(".new_schedule .nav_steps > p .step_active").textContent = "2";
-              document.querySelector("#calendarContainer").classList.add("is_hidden");
-              document.querySelector(".chosen_select").classList.remove("is_hidden");
-            }
-          }, // Callback on date selection
-          onEventSelect: function (e) {}, // Callback on event selection - use $(this).data('event') to access the event
-          onEventCreate: function ($el) {}, // Callback fired when an HTML event is created - see $(this).data('event')
-          onDayCreate: function ($el, d, m, y) {}, // Callback fired when an HTML day is created   - see $(this).data('today'), .data('todayEvents')
-        });
+        document.querySelector("#calendarContainer .ajax-throbber.sk-circle").remove();
+        setCalendar();
+        setNewEvents();
       }
-    }, 500);
+    }, 600);
 
+    function setCalendar() {
+      jQuery("#calendarContainer").simpleCalendar({
+        months: ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
+        days: ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"],
+        displayYear: true,
+        fixedStartDay: true,
+        displayEvent: true,
+        disableEventDetails: false,
+        disableEmptyDetails: true,
+        events: [],
+        onInit: function (calendar) {},
+        onDateSelect: function (date, events) {
+          if (events.length > 0) {
+            document.querySelectorAll(".block-schedule-consulation ul.nav.nav-tabs a span.date").forEach((span) => {
+              if (span.textContent.includes(`${new Intl.DateTimeFormat("en-US", { month: "short" }).format(new Date(date))} ${new Date(date).getDate()}`)) {
+                span.closest("a").click();
+                setTimeout(() => {
+                  setArrTimes();
+                }, 200);
+              }
+            });
+            document.querySelector(".chosen_select div.select_custom p").textContent = "";
+            document.querySelector(".chosen_select div.select_custom p").removeAttribute("data-selected");
+            document.querySelector(".confirm_time_btn").disabled = true;
+
+            document.querySelector(".path-start-free-trial.path-schedule-consultation #scholarshipListContent .col-lg-7.center").scrollIntoView({ block: "start", behavior: "smooth" });
+            document.querySelector(".nav_steps svg").setAttribute("data-navsteps", "2");
+            if (document.querySelector(".nav_steps svg").classList.contains("svg_is_hidden")) {
+              document.querySelector(".nav_steps svg").classList.remove("svg_is_hidden");
+            }
+            document.querySelector(".new_schedule .nav_steps > p:nth-of-type(1)").textContent = "Select a Time (30 min)";
+            document.querySelector(".new_schedule .nav_steps > p .step_active").textContent = "2";
+            document.querySelector("#calendarContainer").classList.add("is_hidden");
+            document.querySelector(".chosen_select").classList.remove("is_hidden");
+            document.querySelector(".time_zone_wrapper").classList.add("is_hidden");
+          }
+        },
+      });
+    }
+
+    function getTimeEvents() {
+      let newEvent = {};
+      document.querySelectorAll("[data-fulldatetime]").forEach((date) => {
+        const dateStr = date.value.substring(0, 10);
+        const timeStr = date.value.substring(11, 19);
+        if (!newEvent[dateStr]) {
+          newEvent[dateStr] = [];
+        }
+        newEvent[dateStr].push(timeStr);
+      });
+      return newEvent;
+    }
+    function setNewEvents() {
+      let newEvent = getTimeEvents();
+      let dates;
+      let finalEvents;
+      dates = Object.keys(newEvent);
+      finalEvents = dates.map((d) => {
+        return { startDate: new Date(d).getTime(), endDate: new Date(d).getTime() + 2000, summary: d };
+      });
+      let container = jQuery("#calendarContainer").simpleCalendar();
+      let jQuerycalendar = container.data("plugin_simpleCalendar");
+      jQuerycalendar.setEvents(finalEvents);
+    }
+
+    document.querySelector(".select_dropdown_wrapper span").after(document.querySelector(".timezone"));
+    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    document.querySelector(".select2-selection__rendered").textContent = timeZone;
+
+    jQuery(".select-wrapper select").on("change", (e) => {
+      console.log(`ONCHANGE`, e);
+      let container = jQuery("#calendarContainer").simpleCalendar();
+      let jQuerycalendar = container.data("plugin_simpleCalendar");
+      jQuerycalendar.setEvents([]);
+
+      if (document.querySelector(".ajax-progress.ajax-progress-fullscreen")) {
+        let f = setInterval(() => {
+          if (!document.querySelector(".ajax-progress.ajax-progress-fullscreen")) {
+            clearInterval(f);
+            console.log(`  clearInterval(f);`);
+            document.querySelector(".path-start-free-trial.path-schedule-consultation #scholarshipListContent .col-lg-7.center").scrollIntoView({ block: "start", behavior: "smooth" });
+            setNewEvents();
+          }
+        }, 10);
+      }
+    });
     //   click on svg Back
     if (document.querySelector(".new_schedule")) {
       document.querySelector(".new_schedule .nav_steps svg").addEventListener("click", (el) => {
         document.querySelector(".path-start-free-trial.path-schedule-consultation #scholarshipListContent .col-lg-7.center").scrollIntoView({ block: "start", behavior: "smooth" });
         if (el.currentTarget.getAttribute("data-navsteps") === "2") {
-          console.log(`2 >>>>>>>>>>>>>>>`);
           document.querySelector(".nav_steps svg").setAttribute("data-navsteps", "1");
           el.currentTarget.classList.add("svg_is_hidden");
           document.querySelector(".new_schedule .nav_steps > p:nth-of-type(1)").textContent = "Select a Day";
@@ -2155,58 +2483,57 @@ label.is_hidden {
             document.querySelector("#calendarContainer").classList.remove("is_hidden");
           }
           document.querySelector(".chosen_select").classList.add("is_hidden");
+          document.querySelector(".time_zone_wrapper").classList.remove("is_hidden");
         }
         if (el.currentTarget.getAttribute("data-navsteps") === "3") {
-          console.log(`3 >>>>>>>>>>>>>>>`);
           document.querySelector(".nav_steps svg").setAttribute("data-navsteps", "2");
           document.querySelector(".new_schedule .nav_steps > p:nth-of-type(1)").textContent = "Select a Time (30 min)";
           document.querySelector(".new_schedule .nav_steps > p .step_active").textContent = "2";
           document.querySelector(".chosen_select").classList.remove("is_hidden");
-          document.querySelector(".time_zone_wrapper").classList.remove("is_hidden");
           document.querySelector(".calc_step_third").classList.add("is_hidden");
         }
       });
     }
-
-    document.querySelectorAll(".select2-library option").forEach((el) => {
-      document.querySelector("#selectDropdown").insertAdjacentHTML("beforeend", `<option class="select__link" value=${el.value}>${el.textContent}</option>`);
-    });
-
     // choose select
-    if (document.querySelector(".chosen_select")) {
-      let arrayBreedDog = ["10:15", "11:45", "18:15", "21:15"];
+    function setListTimes(title, val) {
+      return `  <li data-time="${val}">${title}</li>`;
+    }
 
-      function setListBreedDog(title) {
-        return `  <li data-time="${title}">${title}</li>`;
-      }
+    function setArrTimes(id) {
+      document.querySelector(".chosen_select ul").innerHTML = "";
+      let arrayTime = [];
 
-      arrayBreedDog.forEach((el) => {
-        document.querySelector(".chosen_select ul").insertAdjacentHTML("afterbegin", setListBreedDog(el));
+      document.querySelectorAll(".block-schedule-consulation .tab-content>.active label").forEach((time) => {
+        arrayTime.push({ t: time.querySelector("span").textContent, val: time.querySelector("input").getAttribute("data-fulldatetime") });
       });
 
-      document.querySelector(".chosen_select div.select_custom").addEventListener("click", (e) => {
-        jQuery(".chosen_select div.options_custom").toggleClass("is_hidden");
-        if (jQuery(".chosen_select div.options_custom").hasClass("is_hidden")) {
-          jQuery(".chosen_select div.options_custom").slideDown();
-        } else {
-          jQuery(".chosen_select div.options_custom").slideUp();
-        }
-        e.currentTarget.classList.toggle("is_visit");
+      arrayTime.forEach((el) => {
+        let time = el.t;
+        let value = el.val;
+
+        document.querySelector(".chosen_select ul").insertAdjacentHTML("beforeend", setListTimes(time, value));
       });
       document.querySelectorAll(".chosen_select ul li").forEach(function (el) {
         el.addEventListener("click", function (e) {
-          document.querySelector(".chosen_select div.select_custom p").textContent = e.target.textContent;
-          document.querySelector(".chosen_select div.select_custom p").setAttribute("data-selected", e.target.getAttribute("data-time"));
-          document.querySelector(".chosen_select div.select_custom").classList.add("is_active");
-          document.querySelector(".chosen_select div.select_custom").classList?.remove("is_visit");
-          document.querySelector(".chosen_select div.options_custom").classList.remove("is_hidden");
-          if (jQuery(".chosen_select div.options_custom").hasClass("is_hidden")) {
-            console.log(`CLICK`);
+          e.stopPropagation();
+          document.querySelectorAll(".block-schedule-consulation .tab-content>.active label").forEach((time) => {
+            if (e.target.getAttribute("data-time") === time.querySelector("input").getAttribute("data-fulldatetime")) {
+              time.querySelector("input").click();
+              setTimeout(() => {
+                time.nextElementSibling.click();
+              }, 500);
+            }
+          });
+          jQuery(".chosen_select div.options_custom").toggleClass("active");
+          if (jQuery(".chosen_select div.options_custom").hasClass("active")) {
             jQuery(".chosen_select div.options_custom").slideDown();
           } else {
-            console.log(`CLICK 222`);
             jQuery(".chosen_select div.options_custom").slideUp();
           }
+          document.querySelector(".chosen_select div.select_custom p").textContent = e.target.textContent;
+          document.querySelector(".chosen_select div.select_custom p").setAttribute("data-selected", e.target.getAttribute("data-time"));
+          document.querySelector(".chosen_select div.select_custom").classList?.toggle("is_visit");
+          document.querySelector(".calc_step_third > p .full_date_time").textContent = e.target.getAttribute("data-time");
 
           document.querySelectorAll(".chosen_select ul li").forEach((i) => {
             i.classList?.remove("is_active");
@@ -2218,12 +2545,54 @@ label.is_hidden {
           }
         });
       });
+    }
+
+    let hamburger = jQuery(".chosen_select div.select_custom");
+    let menu = jQuery(".chosen_select div.options_custom");
+
+    jQuery(document).on("click", (e) => {
+      let target = e.target;
+      let its_menu = target == menu || menu.hasClass(target);
+      let its_hamburger = target == hamburger;
+      let menu_is_active = menu.hasClass("active");
+
+      if (!its_menu && !its_hamburger && menu_is_active && menu.has(e.target).length === 0 && e.target.getAttribute("type") !== "checkbox" && !e.target.getAttribute("data-checkboxid")) {
+        console.log(e.target);
+        console.log(`toggle hamburger`);
+        menu.toggleClass("active");
+        if (jQuery(".chosen_select div.options_custom").hasClass("active")) {
+          jQuery(".chosen_select div.options_custom").slideDown();
+        } else {
+          jQuery(".chosen_select div.options_custom").slideUp();
+        }
+        hamburger.toggleClass("is_visit");
+      }
+    });
+
+    if (document.querySelector(".options_custom")) {
+      //   setArrTimes();
+
+      document.querySelector(".chosen_select div.select_custom").addEventListener("click", (e) => {
+        e.stopPropagation();
+        e.target.classList.toggle("is_visit");
+        jQuery(".chosen_select div.options_custom").toggleClass("active");
+        if (jQuery(".chosen_select div.options_custom").hasClass("active")) {
+          jQuery(".chosen_select div.options_custom").slideDown();
+        } else {
+          jQuery(".chosen_select div.options_custom").slideUp();
+        }
+      });
 
       // Click on confirm_time_btn
       document.querySelector(".confirm_time_btn").addEventListener("click", (e) => {
         e.preventDefault();
         document.querySelector(".path-start-free-trial.path-schedule-consultation #scholarshipListContent .col-lg-7.center").scrollIntoView({ block: "start", behavior: "smooth" });
         document.querySelector(".nav_steps svg").setAttribute("data-navsteps", "3");
+        if (document.querySelector(".select-wrapper select").value === "") {
+          document.querySelector(".calc_step_third > p > span:last-child").textContent = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        } else {
+          document.querySelector(".calc_step_third > p > span:last-child").textContent = document.querySelector(".select-wrapper select").value;
+        }
         document.querySelector(".new_schedule .nav_steps > p:nth-of-type(1)").textContent = `Free Call with a Student  Success Specialist`;
         document.querySelector(".new_schedule .nav_steps > p .step_active").textContent = "3";
         document.querySelector(".chosen_select").classList.add("is_hidden");
@@ -2344,7 +2713,7 @@ label.is_hidden {
           }
         }
 
-        // document.querySelector("#edit-book-call")?.click();
+        document.querySelector("#edit-book-call")?.click();
       });
     }
 
