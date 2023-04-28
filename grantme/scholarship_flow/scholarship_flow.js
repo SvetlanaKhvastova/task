@@ -363,8 +363,11 @@ body .our_consultants_wrapper h3 {
   justify-content: space-between;
   align-items: center;
 }
-.sticky_header .reviews_btn_wrapper {
+#navbar .reviews_btn_wrapper {
   cursor: pointer;
+}
+#navbar.is_fixed .reviews_btn_wrapper {
+  cursor: initial;
 }
 .reviews_btn_wrapper p {
   font-family: "Lato", sans-serif;
@@ -893,6 +896,12 @@ label.is_hidden {
   cursor: pointer;
   position: relative;
   height: 48px;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 14px;
+  color: #676767;
+  text-align: left;
 }
 .chosen_select div.select_custom::after {
   content: "";
@@ -908,14 +917,7 @@ label.is_hidden {
 .chosen_select div.select_custom.is_visit::after {
   transform: translateY(-50%) rotate(180deg);
 }
-.chosen_select div.select_custom p {
-  font-family: "Lato", sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 14px;
-  color: #676767;
-}
-.chosen_select div.select_custom p[data-selected] {
+.chosen_select div.select_custom[data-selected] {
   color: #3e78ba;
 }
 .chosen_select div.select_custom.is_active {
@@ -1347,7 +1349,6 @@ label.is_hidden {
   }
   .path-schedule-consultation #scholarshipListContent .academy-waiting {
     display: flex !important;
-    align-items: stretch !important;
     justify-content: center !important;
     min-height: unset !important;
   }
@@ -1416,6 +1417,8 @@ label.is_hidden {
   .path-schedule-consultation .block-schedule-consulation-header #scholarshipListContent .col-lg-5 {
     padding: 0;
     width: 50%;
+    position: sticky;
+    top: 0;
   }
   .path-schedule-consultation #scholarshipListContent,
   .path-book-call.path-start-free-trial.path-schedule-consultation #scholarshipListContent {
@@ -1720,6 +1723,15 @@ label.is_hidden {
 .testimonials_arrows{
     justify-content: flex-end;
 }
+.path-start-free-trial .main-container{
+  overflow: initial;
+}
+.path-start-free-trial .main-container > .row{
+  margin: 0 !important;
+}
+.path-start-free-trial .main-container > .row > .col-sm-12{
+padding: 0;
+}
 }
 @media (min-width: 1200px) {
   .competition_item#competition_step1 > div {
@@ -1881,7 +1893,7 @@ label.is_hidden {
       </div>
             </div>
             <div class="chosen_select is_hidden">
-                <div class="select_custom"><p>Select a time</p></div>
+                <div class="select_custom">Select a time</div>
                 <div class="options_custom"><ul></ul></div>
                 <button class="confirm_time_btn" disabled>Confirm</button>
             </div>
@@ -2212,7 +2224,6 @@ label.is_hidden {
     if (!document.querySelector(".as_seen_on_box")) {
       document.querySelector("#block-scheduleconsulationheaderblock").insertAdjacentHTML("afterend", thirdSection);
     }
-
     document.querySelector("#block-faqstartfreetrialacademy-2").insertAdjacentHTML("afterend", competitionNextSteps);
     document.querySelector("#block-whattoexpectonthecallscheduleconsultation").insertAdjacentHTML("afterend", slider);
     if (document.querySelector(".calc_step_third")) {
@@ -2346,6 +2357,12 @@ label.is_hidden {
       });
     }
 
+    if (window.innerWidth > 768) {
+      document.querySelectorAll('[href="#newScheduleBox"]').forEach((el) => {
+        el.href = "#block-scheduleconsulationheaderblock";
+      });
+    }
+
     let slickInterval = setInterval(() => {
       if (typeof jQuery(".testimonials_slider").slick === "function") {
         clearInterval(slickInterval);
@@ -2405,8 +2422,9 @@ label.is_hidden {
                 }, 200);
               }
             });
-            document.querySelector(".chosen_select div.select_custom p").textContent = "";
-            document.querySelector(".chosen_select div.select_custom p").removeAttribute("data-selected");
+            document.querySelector(".chosen_select div.select_custom").textContent = "";
+            document.querySelector(".chosen_select div.select_custom").removeAttribute("data-selected");
+            document.querySelector(".chosen_select div.select_custom").classList?.remove("is_active");
             document.querySelector(".confirm_time_btn").disabled = true;
 
             document.querySelector(".path-start-free-trial.path-schedule-consultation #scholarshipListContent .col-lg-7.center").scrollIntoView({ block: "start", behavior: "smooth" });
@@ -2530,9 +2548,10 @@ label.is_hidden {
           } else {
             jQuery(".chosen_select div.options_custom").slideUp();
           }
-          document.querySelector(".chosen_select div.select_custom p").textContent = e.target.textContent;
-          document.querySelector(".chosen_select div.select_custom p").setAttribute("data-selected", e.target.getAttribute("data-time"));
+          document.querySelector(".chosen_select div.select_custom").textContent = e.target.textContent;
+          document.querySelector(".chosen_select div.select_custom").setAttribute("data-selected", e.target.getAttribute("data-time"));
           document.querySelector(".chosen_select div.select_custom").classList?.toggle("is_visit");
+          document.querySelector(".chosen_select div.select_custom").classList?.add("is_active");
           document.querySelector(".calc_step_third > p .full_date_time").textContent = e.target.getAttribute("data-time");
 
           document.querySelectorAll(".chosen_select ul li").forEach((i) => {
@@ -2540,7 +2559,7 @@ label.is_hidden {
           });
           e.target.classList.add("is_active");
 
-          if (document.querySelector(".chosen_select div.select_custom p").getAttribute("data-selected") && document.querySelector(".confirm_time_btn:disabled")) {
+          if (document.querySelector(".chosen_select div.select_custom").getAttribute("data-selected") && document.querySelector(".confirm_time_btn:disabled")) {
             document.querySelector(".confirm_time_btn:disabled").disabled = false;
           }
         });
@@ -2572,14 +2591,18 @@ label.is_hidden {
     if (document.querySelector(".options_custom")) {
       //   setArrTimes();
 
-      document.querySelector(".chosen_select div.select_custom").addEventListener("click", (e) => {
+      jQuery(".chosen_select div.select_custom").on("click", (e) => {
         e.stopPropagation();
-        e.target.classList.toggle("is_visit");
-        jQuery(".chosen_select div.options_custom").toggleClass("active");
-        if (jQuery(".chosen_select div.options_custom").hasClass("active")) {
-          jQuery(".chosen_select div.options_custom").slideDown();
-        } else {
-          jQuery(".chosen_select div.options_custom").slideUp();
+        if (!hamburger.has(e.target).length === 0) return;
+        if (hamburger.has(e.target).length === 0) {
+          console.log(e.target);
+          e.target.classList.toggle("is_visit");
+          jQuery(".chosen_select div.options_custom").toggleClass("active");
+          if (jQuery(".chosen_select div.options_custom").hasClass("active")) {
+            jQuery(".chosen_select div.options_custom").slideDown();
+          } else {
+            jQuery(".chosen_select div.options_custom").slideUp();
+          }
         }
       });
 
@@ -2661,10 +2684,20 @@ label.is_hidden {
           if (!e.target.previousElementSibling.classList.contains("is_active")) {
             e.target.previousElementSibling.classList.add("is_active");
           }
+          if (e.target.closest(".your_parent_information_wrapper")) {
+            if (e.target.value === "") {
+              e.target.closest("label").nextElementSibling?.remove();
+            }
+          }
         });
         i.addEventListener("blur", (e) => {
           if (e.target.previousElementSibling.classList.contains("is_active") && e.target.value === "") {
             e.target.previousElementSibling.classList.remove("is_active");
+          }
+          if (e.target.closest(".your_parent_information_wrapper")) {
+            if (e.target.value === "") {
+              e.target.closest("label").nextElementSibling?.remove();
+            }
           }
         });
         i.addEventListener("focus", (e) => {
@@ -2732,7 +2765,7 @@ label.is_hidden {
         if (inputValueFirstName === null) {
           document.querySelector(`#yourInformationForm input[name='firstName']`)?.closest("label").classList.add("label_error");
           if (!document.querySelector(`.text_validation.name_var`)) {
-            document.querySelector(`#yourInformationForm input[name='firstName']`)?.closest("label").insertAdjacentHTML("afterend", `<p class="text_validation name_var">First name field is required.</p>`);
+            document.querySelector(`#yourInformationForm input[name='firstName']`)?.closest("label").insertAdjacentHTML("afterend", `<p class="text_validation name_var">Please enter First name without spaces or special characters.</p>`);
           }
         } else {
           document.querySelector(`#yourInformationForm input[name='firstName']`)?.closest("label").classList.remove("label_error");
@@ -2747,7 +2780,7 @@ label.is_hidden {
         if (inputValueLastName === null) {
           document.querySelector(`#yourInformationForm input[name='lastName']`)?.closest("label").classList.add("label_error");
           if (!document.querySelector(`.text_validation.lastName_var`)) {
-            document.querySelector(`#yourInformationForm input[name='lastName']`)?.closest("label").insertAdjacentHTML("afterend", `<p class="text_validation lastName_var">Last name field is required.</p>`);
+            document.querySelector(`#yourInformationForm input[name='lastName']`)?.closest("label").insertAdjacentHTML("afterend", `<p class="text_validation lastName_var">Please enter Last name without spaces or special characters.</p>`);
           }
         } else {
           document.querySelector(`#yourInformationForm input[name='lastName']`)?.closest("label").classList.remove("label_error");
@@ -2773,7 +2806,7 @@ label.is_hidden {
           }
         }
       }
-      if (target.getAttribute("name") === "phoneNumber") {
+      if (target.getAttribute("name") === "phoneNumber" || document.querySelector(`#yourInformationForm input[name='phoneNumber']`).value === "") {
         let element = document.querySelector(`#yourInformationForm input[name='phoneNumber']`);
         let maskOptions = {
           mask: "(000) 000-0000",
@@ -2800,10 +2833,17 @@ label.is_hidden {
         }, 100);
       }
 
-      if (inputValueFirstName !== null && inputValueLastName !== null && inputValueEmail !== null && document.querySelector(`.text_validation.phone_number_var`) == null && document.querySelector(`#yourInformationForm input[name='phoneNumber']`).value !== "") {
-        if (document.querySelector("#yourInformationForm .schedule_call_btn:disabled")) {
-          document.querySelector("#yourInformationForm .schedule_call_btn:disabled").disabled = false;
-        }
+      if (inputValueFirstName !== null && inputValueLastName !== null && inputValueEmail !== null) {
+        console.log(`>>>>>>>>>>>`, document.querySelector(`.text_validation.phone_number_var`) == null);
+        setTimeout(() => {
+          if (document.querySelector(`.text_validation.phone_number_var`) == null && document.querySelector(`.text_validation.name_guest_var`) == null && document.querySelector(`.text_validation.last_name_guest_var`) == null && document.querySelector(`.text_validation.phone_number_guest_var`) == null) {
+            if (document.querySelector("#yourInformationForm .schedule_call_btn:disabled")) {
+              document.querySelector("#yourInformationForm .schedule_call_btn:disabled").disabled = false;
+            }
+          } else {
+            document.querySelector("#yourInformationForm .schedule_call_btn").disabled = true;
+          }
+        }, 100);
       } else {
         document.querySelector("#yourInformationForm .schedule_call_btn").disabled = true;
       }
