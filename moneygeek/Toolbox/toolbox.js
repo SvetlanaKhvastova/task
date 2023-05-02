@@ -1,14 +1,120 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
+let toolBox = setInterval(() => {
+  if (document.querySelector("#menu-list")) {
+    clearInterval(toolBox);
 
-  <body>
-    <div class="tool_box">
+    let styleToolBox = /*html */ `
+    <style>
+        .overflow_nav_scroll{
+            height: 311px;
+            overflow: auto;
+        }
+        .css-fk0bbl ul{
+            max-height: 422px;
+            height: 100%;
+        }
+        .css-1wbld27 h6{
+            margin: 0 0 20px;
+        }
+        .css-fk0bbl.is-sticky{
+            height: max-content;
+        }
+        .css-fk0bbl a.is-active{
+            background: linear-gradient(90deg, #E4E8FB 0%, #FFFFFF 100%);
+            color: #5474F6;
+        }
+        .css-fk0bbl a{
+            padding: 6px 0 6px 15px;
+        }
+        .overflow_nav_scroll::-webkit-scrollbar{
+             width: 3px; 
+        }
+        .overflow_nav_scroll::-webkit-scrollbar-thumb {
+            background-color: #5474F6;
+        }
+        .site-navigation{
+            position: relative;
+        }
+        .tool_box{
+            max-width: 310px;
+            width: 100%;
+            position: absolute;
+            z-index: 11111;
+            top: 430px;
+            background: #FFFFFF;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.16);
+            border-radius: 6px 6px 5px 5px;
+            border-top: 4px solid #526EFF;
+        }
+        .tool_box_header{
+            display: flex;
+            align-items: center;
+            background: #F5F8FF;
+            padding: 16px 20px;
+            border-radius: 6px 6px 0 0;
+        }
+        .tool_box_header p{
+            font-family: 'Brandon Grotesque',sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 26px;
+            color: #1F1B50;
+            margin: 0 0 0 10px;
+        }
+        .tool_box_body{
+            padding: 20px 12px 20px 20px;
+        }
+        .tool_box_body ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .tool_box_body ul li{
+            margin: 0;
+        }
+        .tool_box_body ul li:not(:last-child){
+            border-bottom: 1px solid #F5F8FF;
+            width: 100%;
+        }
+        .tool_box_body ul li a{
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+            color: #555555;
+            width: 100%;
+            display: block;
+            border: unset;
+            padding: 0;
+            position: relative;
+        }
+        .tool_box_body ul li a::after{
+            position: absolute;
+            content: '';
+            top: 18px;
+            right: 20px;
+            width: 5px;
+            height: 10px;
+            background: url(https://conversionratestore.github.io/projects/moneygeek/img/arr_right.svg) no-repeat center center;
+        }
+        .tool_box_body ul li:nth-child(1) a{
+            padding: 0 45px 10px 0;
+        }
+        .tool_box_body ul li:nth-child(1) a::after{
+            top: 9px;
+        }
+        .tool_box_body ul li:nth-child(2) a{
+            padding: 10px 45px 10px 0;
+        }
+        .tool_box_body ul li:nth-child(3) a{
+            padding: 10px 45px 0 0;
+        }
+        .tool_box_body ul li a:hover{
+            text-decoration: none;
+        }
+    </style>
+    `;
+
+    let toolBoxHtml = /*html */ `
+        <div class="tool_box">
       <div class="tool_box_header">
         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g clip-path="url(#clip0_171_4000)">
@@ -45,5 +151,16 @@
         </ul>
       </div>
     </div>
-  </body>
-</html>
+    `;
+
+    document.body.insertAdjacentHTML("afterbegin", styleToolBox);
+
+    if (!document.querySelector(".overflow_nav_scroll")) {
+      document.querySelector("#sub-navigation h6").insertAdjacentHTML("afterend", `<div class="overflow_nav_scroll"><span></span></div>`);
+    }
+    if (document.querySelector(".overflow_nav_scroll")) {
+      document.querySelector(".overflow_nav_scroll span").after(document.querySelector("#menu-list"));
+      document.querySelector(".overflow_nav_scroll").insertAdjacentHTML("afterend", toolBoxHtml);
+    }
+  }
+}, 100);
