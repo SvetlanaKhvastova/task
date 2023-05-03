@@ -1,5 +1,5 @@
 let startFunk = setInterval(() => {
-  if (document.querySelector("#block-scheduleconsulationheaderblock")) {
+  if (document.querySelector(".block-schedule-consulation #available-slots-wrapper ul.nav.nav-tabs")) {
     clearInterval(startFunk);
 
     let scriptCalendar = document.createElement("script");
@@ -188,6 +188,7 @@ let startFunk = setInterval(() => {
   background: url(https://conversionratestore.github.io/projects/grantme/img/zoom.svg) no-repeat center center;
 }
 .new_schedule {
+  position: relative;
   max-width: 358px;
   width: 100%;
   background: #ffffff;
@@ -1041,6 +1042,9 @@ label.is_hidden {
   margin: 16px 0 !important;
   padding: 0 !important;
 }
+#yourInformationForm{
+  position: relative;
+}
 #yourInformationForm .schedule_call_btn {
   font-family: "Lato", sans-serif;
   height: 62px;
@@ -1119,7 +1123,6 @@ label.is_hidden {
   border-radius: 6px;
   font-weight: 400;
   font-size: 16px;
-  line-height: 24px;
   color: #2b3e51;
 }
 #yourInformationForm label > span.is_active {
@@ -1167,6 +1170,7 @@ label.is_hidden {
   width: 40px;
   height: 40px;
   position: relative;
+  z-index: 1;
 }
 .ajax-throbber .sk-circle-dot {
   width: 100%;
@@ -1174,6 +1178,12 @@ label.is_hidden {
   position: absolute;
   left: 0;
   top: 0;
+}
+.loader_form_var{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 11;
 }
 #calendarContainer .ajax-throbber .sk-circle-dot:nth-child(1) {
   transform: rotate(30deg);
@@ -1224,7 +1234,7 @@ label.is_hidden {
   display: block;
 }
 .testimonials_content {
-  height: 538px;
+  height: 463px;
   align-items: center;
   overflow: hidden;
   justify-content: center;
@@ -1285,8 +1295,11 @@ label.is_hidden {
 .slick-initialized .slick-slide {
   margin: 0 10px;
 }
+.w-chrome, .wistia_swatch{
+border-radius: 12px
+}
 .testimonials_item_last {
-  min-height: 650px;
+  min-height: 575px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1308,7 +1321,6 @@ label.is_hidden {
   outline: none;
   border: none;
 }
-
 @media (min-width: 768px) {
   .chosen_select div.options_custom ul {
     max-height: 222px;
@@ -1814,7 +1826,7 @@ padding: 0;
           />
         </svg></span>
       </p>
-      <p class="win_scholarships_txt"><span class="accent_var">Grade 9 - 10</span> students can win 5x as many scholarships.</p>
+      <p class="win_scholarships_txt"><span class="accent_var grade_var">Grade 9 - 10</span> students can win 5x as many scholarships.</p>
     </section>
     <section class="reviews_btn_box">
       <h2>Book a <span class="accent_var">Free</span> call to find out how to get this scolarship</h2>
@@ -1900,7 +1912,7 @@ padding: 0;
                     </clipPath>
                 </defs>
                 </svg>
-                <p>Select a Date</p>
+                <p>Select a Day</p>
                 <p><span class="step_active">1</span>/3</p>
             </div>
             <div class="calendar_container" id="calendarContainer">
@@ -2041,7 +2053,9 @@ padding: 0;
             <div class="testimonials_video section_grey_radius">
       <div class="container container_video">
         <div class="testimonials_slider">
-          <div class="testimonials_item"></div>
+          <div class="testimonials_item">
+            <script src="https://fast.wistia.com/embed/medias/i6p6x44e4v.jsonp" async></script><script src="https://fast.wistia.com/assets/external/E-v1.js" async></script><div class="wistia_responsive_padding" style="padding:177.5% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><div class="wistia_embed wistia_async_i6p6x44e4v videoFoam=true" style="height:100%;position:relative;width:100%"><div class="wistia_swatch" style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;transition:opacity 200ms;width:100%;"><img src="https://fast.wistia.com/embed/medias/i6p6x44e4v/swatch" style="filter:blur(5px);height:100%;object-fit:contain;width:100%;" alt="" aria-hidden="true" onload="this.parentNode.style.opacity=1;" /></div></div></div></div>
+          </div>
           <div class="testimonials_item">
             <div class="testimonials_content">
               <div class="testimonials_content_text">... Short story long, GrantMe did not just improve my writing abilities and applications but also equipped me with the skills to be a successful student"</div>
@@ -2057,8 +2071,8 @@ padding: 0;
             </div>
           </div>
           <div class="testimonials_item">
-            <script src="https://fast.wistia.com/embed/medias/ytvyjkpqml.jsonp" async="" defer=""></script>
-          </div>
+          <script src="https://fast.wistia.com/embed/medias/jjxyh7vxsw.jsonp" async></script><script src="https://fast.wistia.com/assets/external/E-v1.js" async></script><div class="wistia_responsive_padding" style="padding:177.5% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><div class="wistia_embed wistia_async_jjxyh7vxsw videoFoam=true" style="height:100%;position:relative;width:100%"><div class="wistia_swatch" style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;transition:opacity 200ms;width:100%;"><img src="https://fast.wistia.com/embed/medias/jjxyh7vxsw/swatch" style="filter:blur(5px);height:100%;object-fit:contain;width:100%;" alt="" aria-hidden="true" onload="this.parentNode.style.opacity=1;" /></div></div></div></div>
+        </div>
           <div class="testimonials_item">
             <div class="testimonials_content">
               <div class="testimonials_content_text">“My favourite part of GrantMe was the wonderful essay editing, really helpful feedback, and great turnaround times”</div>
@@ -2072,6 +2086,9 @@ padding: 0;
                 <div class="testimonials_school">Simon Fraser University</div>
               </div>
             </div>
+          </div>
+          <div class="testimonials_item">
+            <script src="https://fast.wistia.com/embed/medias/6utt82y2dy.jsonp" async></script><script src="https://fast.wistia.com/assets/external/E-v1.js" async></script><div class="wistia_responsive_padding" style="padding:177.71% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><div class="wistia_embed wistia_async_6utt82y2dy videoFoam=true" style="height:100%;position:relative;width:100%"><div class="wistia_swatch" style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;transition:opacity 200ms;width:100%;"><img src="https://fast.wistia.com/embed/medias/6utt82y2dy/swatch" style="filter:blur(5px);height:100%;object-fit:contain;width:100%;" alt="" aria-hidden="true" onload="this.parentNode.style.opacity=1;" /></div></div></div></div>
           </div>
           <div class="testimonials_item">
             <div class="testimonials_item_last">
@@ -2253,12 +2270,10 @@ padding: 0;
     }
     document.querySelector("#block-faqstartfreetrialacademy-2").insertAdjacentHTML("afterend", competitionNextSteps);
     document.querySelector("#block-whattoexpectonthecallscheduleconsultation").insertAdjacentHTML("afterend", slider);
-    if (document.querySelector(".calc_step_third")) {
-      document.querySelector(".calc_step_third > p > span:last-child").textContent = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    }
 
     if (document.querySelector(".greetings_box")) {
       document.querySelector(".funding_price").textContent = document.querySelector(".marketing b.clr-yellow").textContent;
+      document.querySelector(".grade_var").textContent = document.querySelector(".u_l")?.textContent;
       let paramsLocation = new URLSearchParams(window.location.search);
 
       if (paramsLocation.get("user_type") === "parent") {
@@ -2305,17 +2320,30 @@ padding: 0;
         if (typeof tippy === "function") {
           clearInterval(tippyRun);
           document.querySelectorAll("[data-title]").forEach((el) => {
-            tippy(el, {
-              content: el.getAttribute("data-title"),
-              //   trigger: "click",
-              placement: "bottom",
-              appendTo: function () {
-                return document.querySelector(".tooltip_wrapper");
-              },
-              onTrigger(e) {
-                pushDataLayer("exp_bookpage_fs_tooltip", "Interaction", "Tooltip", "First screen");
-              },
-            });
+            if (innerWidth <= 768) {
+              tippy(el, {
+                content: el.getAttribute("data-title"),
+                trigger: "click",
+                placement: "bottom",
+                appendTo: function () {
+                  return document.querySelector(".tooltip_wrapper");
+                },
+                onTrigger() {
+                  pushDataLayer("exp_bookpage_fs_tooltip", "Interaction", "Tooltip", "First screen");
+                },
+              });
+            } else {
+              tippy(el, {
+                content: el.getAttribute("data-title"),
+                placement: "bottom",
+                appendTo: function () {
+                  return document.querySelector(".tooltip_wrapper");
+                },
+                onTrigger() {
+                  pushDataLayer("exp_bookpage_fs_tooltip", "Interaction", "Tooltip", "First screen");
+                },
+              });
+            }
           });
         }
       }, 700);
@@ -2407,7 +2435,7 @@ padding: 0;
           nextArrow: ".testimonials_arrow_next",
           dots: false,
           infinite: false,
-          adaptiveHeight: true,
+          // adaptiveHeight: true,
           responsive: [
             {
               breakpoint: 767,
@@ -2441,7 +2469,7 @@ padding: 0;
         document.querySelectorAll(".calendar header .simple-calendar-btn").forEach((el) => {
           el.addEventListener("click", (i) => {
             if (i.target.classList.contains("btn-prev")) {
-              pushDataLayer("exp_bookpage_calendar_prev_mon", "Prevoius month", "Button", "Calendar");
+              pushDataLayer("exp_bookpage_calendar_prev_mon", "Previous month", "Button", "Calendar");
             }
             if (i.target.classList.contains("btn-next")) {
               pushDataLayer("exp_bookpage_calendar_next_mon", "Next month", "Button", "Calendar");
@@ -2463,6 +2491,7 @@ padding: 0;
         events: [],
         onInit: function (calendar) {},
         onDateSelect: function (date, events) {
+          console.log(`events`, events);
           if (events.length > 0) {
             pushDataLayer("exp_bookpage_calendar_day", "Day", "Select", "Calendar");
             document.querySelectorAll(".block-schedule-consulation ul.nav.nav-tabs a span.date").forEach((span) => {
@@ -2473,7 +2502,7 @@ padding: 0;
                 }, 200);
               }
             });
-            document.querySelector(".chosen_select div.select_custom").textContent = "";
+            document.querySelector(".chosen_select div.select_custom").textContent = "Select a time";
             document.querySelector(".chosen_select div.select_custom").removeAttribute("data-selected");
             document.querySelector(".chosen_select div.select_custom").classList?.remove("is_active");
             document.querySelector(".confirm_time_btn").disabled = true;
@@ -2519,8 +2548,20 @@ padding: 0;
     }
 
     document.querySelector(".select_dropdown_wrapper span").after(document.querySelector(".timezone"));
-    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    document.querySelector(".select2-selection__rendered").textContent = timeZone;
+    let t = setInterval(() => {
+      if (typeof Intl.DateTimeFormat === "function" && document.querySelector(".select2-selection__rendered")) {
+        clearInterval(t);
+        const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        console.log(timeZone, `timeZone`);
+        if (document.querySelector(".select2-selection__rendered")) {
+          console.log(`document.querySelector(".select2-selection__rendered")`, document.querySelector(".select2-selection__rendered"));
+          document.querySelector(".select2-selection__rendered").textContent = timeZone;
+          if (document.querySelector(".calc_step_third")) {
+            document.querySelector(".calc_step_third > p > span:last-child").textContent = timeZone;
+          }
+        }
+      }
+    }, 10);
 
     jQuery(".select-wrapper select").on("change", (e) => {
       console.log(`ONCHANGE`, e);
@@ -2678,9 +2719,56 @@ padding: 0;
     }
 
     if (document.querySelectorAll("#yourInformationForm")) {
+      document.querySelectorAll("#yourInformationForm label").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          if (e.currentTarget.querySelector("input").getAttribute("name") === "firstName") {
+            if (!e.currentTarget.getAttribute("data-test")) {
+              pushDataLayer("exp_bookpage_calendar_fname", "Enter details. First name", "Input", "Calendar");
+            }
+            e.currentTarget.setAttribute("data-test", "1");
+          }
+          if (e.currentTarget.querySelector("input").getAttribute("name") === "lastName") {
+            if (!e.currentTarget.getAttribute("data-test")) {
+              pushDataLayer("exp_bookpage_calendar_lname", "Enter details. Last Name", "Input", "Calendar");
+            }
+            e.currentTarget.setAttribute("data-test", "1");
+          }
+
+          if (e.currentTarget.querySelector("input").getAttribute("name") === "phoneNumber") {
+            if (!e.currentTarget.getAttribute("data-test")) {
+              pushDataLayer("exp_bookpage_calendar_phone", "Enter details. Phone number", "Input", "Calendar");
+            }
+            e.currentTarget.setAttribute("data-test", "1");
+          }
+          if (e.currentTarget.querySelector("input").getAttribute("name") === "newFirstNameGuest") {
+            if (!e.currentTarget.getAttribute("data-test")) {
+              pushDataLayer("exp_bookpage_calendar_fname_guest", "Enter details. First name Guest", "Input", "Calendar");
+            }
+            e.currentTarget.setAttribute("data-test", "1");
+          }
+          if (e.currentTarget.querySelector("input").getAttribute("name") === "newLastNameGuest") {
+            if (!e.currentTarget.getAttribute("data-test")) {
+              pushDataLayer("exp_bookpage_calendar_lname_guest", "Enter details. Last Name Guest", "Input", "Calendar");
+            }
+            e.currentTarget.setAttribute("data-test", "1");
+          }
+          if (e.currentTarget.querySelector("input").getAttribute("name") === "newPhoneNumberGuest") {
+            if (!e.currentTarget.getAttribute("data-test")) {
+              pushDataLayer("exp_bookpage_calendar_phone_guest", "Enter details. Phone number Guest", "Input", "Calendar");
+            }
+            e.currentTarget.setAttribute("data-test", "1");
+          }
+          setTimeout(() => {
+            if (el.getAttribute("data-test")) {
+              el.removeAttribute("data-test");
+            }
+          }, 300);
+        });
+      });
       document.querySelectorAll("#yourInformationForm input").forEach((i) => {
         i.addEventListener("input", (e) => {
           validationForm(e.target);
+
           let paramsLocation = new URLSearchParams(window.location.search);
           if (paramsLocation.get("user_type") === "parent") {
             if (e.target.getAttribute("name") === "firstName") {
@@ -2743,25 +2831,6 @@ padding: 0;
           }
         });
         i.addEventListener("blur", (e) => {
-          if (e.target.getAttribute("name") === "firstName") {
-            pushDataLayer("exp_bookpage_calendar_fname", "Enter details. First name", "Input", "Calendar");
-          }
-          if (e.target.getAttribute("name") === "lastName") {
-            pushDataLayer("exp_bookpage_calendar_lname", "Enter details. Last Name", "Input", "Calendar");
-          }
-          if (e.target.getAttribute("name") === "phoneNumber") {
-            pushDataLayer("exp_bookpage_calendar_phone", "Enter details. Phone number", "Input", "Calendar");
-          }
-          if (e.target.getAttribute("name") === "newFirstNameGuest") {
-            pushDataLayer("exp_bookpage_calendar_fname_guest", "Enter details. First name Guest", "Input", "Calendar");
-          }
-          if (e.target.getAttribute("name") === "newLastNameGuest") {
-            pushDataLayer("exp_bookpage_calendar_lname_guest", "Enter details. Last Name Guest", "Input", "Calendar");
-          }
-          if (e.target.getAttribute("name") === "newPhoneNumberGuest") {
-            pushDataLayer("exp_bookpage_calendar_phone_guest", "Enter details. Phone number Guest", "Input", "Calendar");
-          }
-
           if (e.target.previousElementSibling.classList.contains("is_active") && e.target.value === "") {
             e.target.previousElementSibling.classList.remove("is_active");
           }
@@ -2786,9 +2855,33 @@ padding: 0;
       });
 
       //
+      window.onunload = unloadPage;
+      function unloadPage() {
+        console.log("unload event detected!");
+        document.querySelector(".loader_form_var")?.remove();
+      }
       document.querySelector("#yourInformationForm .schedule_call_btn").addEventListener("click", (e) => {
         e.preventDefault();
         pushDataLayer("exp_bookpage_calendar_schedule", "Schedule a Call", "Button", "Calendar");
+        // if (!document.querySelector(".loader_form_var")) {
+        //   document.querySelector(".new_schedule").insertAdjacentHTML(
+        //     "afterbegin",
+        //     `<div class="loader_form_var"><div class="ajax-throbber sk-circle">
+        //   <div class="sk-circle-dot"></div>
+        //   <div class="sk-circle-dot"></div>
+        //   <div class="sk-circle-dot"></div>
+        //   <div class="sk-circle-dot"></div>
+        //   <div class="sk-circle-dot"></div>
+        //   <div class="sk-circle-dot"></div>
+        //   <div class="sk-circle-dot"></div>
+        //   <div class="sk-circle-dot"></div>
+        //   <div class="sk-circle-dot"></div>
+        //   <div class="sk-circle-dot"></div>
+        //   <div class="sk-circle-dot"></div>
+        //   <div class="sk-circle-dot"></div>
+        // </div></div>`
+        //   );
+        // }
 
         let paramsLocation = new URLSearchParams(window.location.search);
         if (paramsLocation.get("user_type") === "parent") {
@@ -3006,13 +3099,18 @@ padding: 0;
     document.querySelector(".hs-faq-beacon-open")?.addEventListener("click", () => {
       pushDataLayer("exp_bookpage_faq_speak", "Speak With an Educator", "Link", "Frequently Asked Questions");
     });
+    document.querySelectorAll(".wistia_responsive_padding").forEach((el) => {
+      el.addEventListener("click", () => {
+        pushDataLayer("exp_bookpage_userssay_int", "Interaction", "Video", "What Our Users Say");
+      });
+    });
+    //
     document.querySelectorAll("#block-faqstartfreetrialacademy-2 #accordion .panel .panel-heading a").forEach((el) => {
       el.addEventListener("click", (link) => {
-        console.log(link.currentTarget.closest(".panel-heading").nextElementSibling.classList.contains("in"));
         if (link.currentTarget.closest(".panel-heading").nextElementSibling.classList.contains("in")) {
-          pushDataLayer("exp_bookpage_faq_close", "{{question_name}}", "Close question", "Frequently Asked Questions");
+          pushDataLayer("exp_bookpage_faq_close", `${link.currentTarget.textContent}`, "Close question", "Frequently Asked Questions");
         } else {
-          pushDataLayer("exp_bookpage_faq_open", "{{question_name}}", "Open question", "Frequently Asked Questions");
+          pushDataLayer("exp_bookpage_faq_open", `${link.currentTarget.textContent}`, "Open question", "Frequently Asked Questions");
         }
       });
     });
@@ -3031,7 +3129,9 @@ padding: 0;
     obs.observe(document.querySelector(".testimonials_arrows"));
     obs.observe(document.querySelector("#competition_step1 img"));
     obs.observe(document.querySelector(".persuasive_comparison_table_box .odds_txt_wrapper"));
-    obs.observe(document.querySelector(".path-start-free-trial .our-scholars"));
+    if (document.querySelector(".path-start-free-trial .our-scholars")) {
+      obs.observe(document.querySelector(".path-start-free-trial .our-scholars"));
+    }
     obs.observe(document.querySelector(".faq-help-text-wrapper"));
     obs.observe(document.querySelector("#competition_step2 img"));
     obs.observe(document.querySelector("#competition_step3 img"));
@@ -3098,5 +3198,6 @@ padding: 0;
         clarity("set", `booking_page_exp${eventVar}`, "variant_1");
       }
     }, 200);
+    document.querySelector(".exp")?.remove();
   }
 }, 500);

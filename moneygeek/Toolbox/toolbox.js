@@ -4,12 +4,120 @@ let toolBox = setInterval(() => {
 
     let styleToolBox = /*html */ `
     <style>
+        .site-navigation > div.social {
+            height: 26px;
+        }
+        #stickywidgetdiv{
+            width: 100% !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            top: unset !important;
+            background: #596DF6;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.16);
+            border-radius: 0;
+        }
+        #stickywidgetdiv .css-1jb1j0h{
+            padding: 16px 20px;
+            max-width: 1150px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        #stickywidgetdiv .css-8atqhb{
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+        #stickywidgetdiv .css-8atqhb button.css-15ih3lh{
+            position: absolute;
+            right: -40px;
+            top: -8px;
+        }
+        #stickywidgetdiv .css-8atqhb button.css-15ih3lh > svg{
+            color: #FFFFFF;
+        }
+        #stickywidgetdiv .css-8atqhb > div:first-child{
+            margin-top: 7px;
+        }
+        #stickywidgetdiv .css-8atqhb #KAWIB_Zip_input{
+            margin: 0 0 0 auto;
+        }
+        #stickywidgetdiv .css-8atqhb > div:last-child{
+            margin: 0 0 0 30px;
+        }
+        #stickywidgetdiv .css-1jdy22u{
+            padding: 0;
+        }
+        #stickywidgetdiv h2.css-wamrm4{
+            font-family: 'Brandon Grotesque',sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 28px;
+            color: #FFFFFF;
+            margin: 0;
+        }
+        #stickywidgetdiv #stickywidgetbutton{
+            height: 46px;
+            max-width: 260px;
+            min-width: 260px;
+            width: 100%;
+        }
+        #stickywidgetdiv #KAWIB_Zip_input input{
+            max-width: 300px;
+            height: 46px;
+            width: 100%;
+            min-width: 300px;
+            padding: 0 10px 0 53px;
+            color: #555555;
+        }
+        #stickywidgetdiv #KAWIB_Zip_input .css-13n4h{
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+            line-height: 26px;
+            font-weight: 600;
+            color: #555555;
+        }
+        #stickywidgetdiv #KAWIB_Zip_input .css-1hx7vxy{
+            height: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-right: 1px solid #D3D4D6;
+        }
+        #banner-widget #KAWIB_CTA_button button{
+            height: 46px;
+            text-transform: uppercase;
+            color: #1E1B4D;
+        }
+        #banner-widget #KAWIB_Zip_input input{
+            height: 46px;
+            width: 100%;
+            padding: 0 10px 0 53px;
+            color: #555555;
+        }
+        #banner-widget #KAWIB_Zip_input .css-1hx7vxy{
+            height: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-right: 1px solid #D3D4D6;
+        }
+        #banner-widget #KAWIB_Zip_input .css-13n4h{
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+            line-height: 26px;
+            font-weight: 600;
+            color: #555555;
+        }
         .overflow_nav_scroll{
-            height: 311px;
+            height: 227px;
             overflow: auto;
         }
         .css-fk0bbl ul{
-            max-height: 422px;
+            max-height:227px;
             height: 100%;
         }
         .css-1wbld27 h6{
@@ -24,6 +132,10 @@ let toolBox = setInterval(() => {
         }
         .css-fk0bbl a{
             padding: 6px 0 6px 15px;
+            color: #888888;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 26px;
         }
         .overflow_nav_scroll::-webkit-scrollbar{
              width: 3px; 
@@ -39,7 +151,7 @@ let toolBox = setInterval(() => {
             width: 100%;
             position: absolute;
             z-index: 11111;
-            top: 430px;
+            top: 349px;
             background: #FFFFFF;
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.16);
             border-radius: 6px 6px 5px 5px;
@@ -61,7 +173,7 @@ let toolBox = setInterval(() => {
             margin: 0 0 0 10px;
         }
         .tool_box_body{
-            padding: 20px 12px 20px 20px;
+            padding: 11px 12px 20px 20px;
         }
         .tool_box_body ul {
             margin: 0;
@@ -161,6 +273,15 @@ let toolBox = setInterval(() => {
     if (document.querySelector(".overflow_nav_scroll")) {
       document.querySelector(".overflow_nav_scroll span").after(document.querySelector("#menu-list"));
       document.querySelector(".overflow_nav_scroll").insertAdjacentHTML("afterend", toolBoxHtml);
+
+      window.addEventListener("scroll", (e) => {
+        if (document.querySelector(".css-fk0bbl #menu-list li:nth-child(5) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(6) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(7) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(8) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(9) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(10) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(11) a.is-active")) {
+          document.querySelector(".css-fk0bbl #menu-list li:last-child").scrollIntoView({ block: "end", behavior: "smooth" });
+        }
+        if (document.querySelector(".css-fk0bbl #menu-list li:nth-child(1) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(2) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(3) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(4) a.is-active")) {
+          document.querySelector(".css-fk0bbl #menu-list li:first-child").scrollIntoView({ block: "start", behavior: "smooth" });
+        }
+      });
     }
   }
 }, 100);
