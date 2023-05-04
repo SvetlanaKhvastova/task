@@ -487,6 +487,10 @@ body .our_consultants_wrapper h3 {
 }
 .persuasive_comparison_table_box {
   padding: 40px 16px 30px;
+  display: none;
+}
+#block-trustpilotwidgetstartfreetrial{
+  padding-top: 40px;
 }
 .persuasive_comparison_table_box h2 {
   font-weight: 700;
@@ -1184,6 +1188,8 @@ label.is_hidden {
   width: 100%;
   height: 100%;
   z-index: 11;
+  left: 0;
+  top: 0;
 }
 #calendarContainer .ajax-throbber .sk-circle-dot:nth-child(1) {
   transform: rotate(30deg);
@@ -1565,6 +1571,9 @@ border-radius: 12px
   }
   .persuasive_comparison_table_box {
     padding: 100px 16px;
+  }
+  #block-trustpilotwidgetstartfreetrial{
+    padding-top: 100px;
   }
   .persuasive_comparison_table_box h2 {
     font-weight: 600;
@@ -2017,7 +2026,7 @@ padding: 0;
       </div>
       <div class="our_consultants_wrapper">
         <h3>No suitable times for you?</h3>
-        <p>Call us <a href="tel:+18004934084">(800) 493-4084</a></p>
+        <p>Call us <a href="tel:+17787711847">(778) 771-1847</a></p>
         <div>
           <img src="https://conversionratestore.github.io/projects/grantme/img/our_consultants.png" alt="Our consultants" />
           <p>Our consultants are ready to help you</p>
@@ -2766,6 +2775,16 @@ padding: 0;
         });
       });
       document.querySelectorAll("#yourInformationForm input").forEach((i) => {
+        if (i.value !== "") {
+          i.previousElementSibling.classList.add("is_active");
+        }
+        setTimeout(() => {
+          if (document.querySelector(`.text_validation.phone_number_var`) !== null) {
+            console.log(`<<<<<<<<<<<<<<<<<,`);
+            document.querySelector("#yourInformationForm .schedule_call_btn").disabled = true;
+          }
+        }, 500);
+
         i.addEventListener("input", (e) => {
           validationForm(e.target);
 
@@ -2863,25 +2882,25 @@ padding: 0;
       document.querySelector("#yourInformationForm .schedule_call_btn").addEventListener("click", (e) => {
         e.preventDefault();
         pushDataLayer("exp_bookpage_calendar_schedule", "Schedule a Call", "Button", "Calendar");
-        // if (!document.querySelector(".loader_form_var")) {
-        //   document.querySelector(".new_schedule").insertAdjacentHTML(
-        //     "afterbegin",
-        //     `<div class="loader_form_var"><div class="ajax-throbber sk-circle">
-        //   <div class="sk-circle-dot"></div>
-        //   <div class="sk-circle-dot"></div>
-        //   <div class="sk-circle-dot"></div>
-        //   <div class="sk-circle-dot"></div>
-        //   <div class="sk-circle-dot"></div>
-        //   <div class="sk-circle-dot"></div>
-        //   <div class="sk-circle-dot"></div>
-        //   <div class="sk-circle-dot"></div>
-        //   <div class="sk-circle-dot"></div>
-        //   <div class="sk-circle-dot"></div>
-        //   <div class="sk-circle-dot"></div>
-        //   <div class="sk-circle-dot"></div>
-        // </div></div>`
-        //   );
-        // }
+        if (!document.querySelector(".loader_form_var")) {
+          document.querySelector(".new_schedule").insertAdjacentHTML(
+            "afterbegin",
+            `<div class="loader_form_var"><div class="ajax-throbber sk-circle">
+          <div class="sk-circle-dot"></div>
+          <div class="sk-circle-dot"></div>
+          <div class="sk-circle-dot"></div>
+          <div class="sk-circle-dot"></div>
+          <div class="sk-circle-dot"></div>
+          <div class="sk-circle-dot"></div>
+          <div class="sk-circle-dot"></div>
+          <div class="sk-circle-dot"></div>
+          <div class="sk-circle-dot"></div>
+          <div class="sk-circle-dot"></div>
+          <div class="sk-circle-dot"></div>
+          <div class="sk-circle-dot"></div>
+        </div></div>`
+          );
+        }
 
         let paramsLocation = new URLSearchParams(window.location.search);
         if (paramsLocation.get("user_type") === "parent") {
@@ -2928,7 +2947,7 @@ padding: 0;
       let maskGuest;
 
       if (target.getAttribute("name") === "firstName") {
-        if (inputValueFirstName === null) {
+        if (inputValueFirstName == null) {
           document.querySelector(`#yourInformationForm input[name='firstName']`)?.closest("label").classList.add("label_error");
           if (!document.querySelector(`.text_validation.name_var`)) {
             document.querySelector(`#yourInformationForm input[name='firstName']`)?.closest("label").insertAdjacentHTML("afterend", `<p class="text_validation name_var">Please enter First name without spaces or special characters.</p>`);
