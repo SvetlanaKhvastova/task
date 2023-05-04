@@ -41,6 +41,15 @@ img {
   margin: 0 auto;
   cursor: pointer;
   text-decoration: none;
+  outline: none;
+  border: none;
+}
+h1 {
+  font-family: "Bitter", serif;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 56px;
+  color: #ffffff;
 }
 h2.sub_title {
   font-family: "Bitter", serif;
@@ -66,12 +75,571 @@ h3.third_title {
 #booking_section .container {
   display: flex;
 }
+.booking_descr {
+  padding: 0;
+  width: 50%;
+  position: sticky;
+  top: 0;
+  height: 100%;
+}
+.greetings_box h1 {
+  margin-bottom: 16px;
+}
+.greetings_box h1 span {
+  color: #ebbd45;
+}
+.greetings_box p {
+  color: #ffffff;
+}
 .consultation_descr_box {
   background: rgba(233, 243, 250, 0.1);
+  border-radius: 6px 0 0 6px;
+  padding: 24px 38px 24px 24px;
+  margin: 40px 0 0;
+}
+.consultation_descr_box h2 {
+  color: #ebbd45;
+  margin: 0 0 20px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: inherit;
+}
+.consultation_descr_box > div + div {
+  margin-top: 24px;
+}
+.consultation_descr_box > div h3 {
+  color: #ffffff;
+  margin: 0 0 12px;
+}
+.consultation_descr_box > div ul {
+  list-style: disc;
+  color: #ffffff;
+  padding-left: 28px;
+}
+.consultation_descr_box > div ul li {
+  color: #ffffff;
+}
+.consultation_descr_box > div ul li p {
+  font-size: 16px;
+  line-height: 24px;
+  color: #cccccc;
+}
+.consultation_descr_box > div ul li p span {
+  font-weight: 700;
+  color: white;
+}
+.consultation_descr_box > div ul li + li {
+  margin-top: 16px;
+}
+.consultation_descr_box > div.no_commitments_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.consultation_descr_box > div.no_commitments_wrapper p {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  margin-left: 8px;
+  color: #ebbd45;
+}
+.our_consultants_wrapper {
+  background: #e9f3fa;
+  padding: 24px 32px;
+  border-radius: 0 0 6px 6px;
+}
+.our_consultants_wrapper h3 {
+  font-family: "Bitter", serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0 16px 16px 0;
+  display: inline-block;
+}
+.our_consultants_wrapper > p {
+  position: relative;
+  font-size: 16px;
+  line-height: 24px;
+  padding-left: 32px;
+  display: inline-block;
+}
+.our_consultants_wrapper > p::before {
+  position: absolute;
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: url(https://conversionratestore.github.io/projects/grantme/img/telephone.svg) no-repeat center center;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+}
+.our_consultants_wrapper > p a {
+  font-weight: 700;
+  color: #2b3e51;
+  text-decoration: underline;
+}
+.our_consultants_wrapper > div {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.our_consultants_wrapper > div img {
+  max-width: 104px;
+  width: 100%;
+  margin: 0 12px 0 0;
+}
+.our_consultants_wrapper > div p {
+  font-size: 16px;
+  line-height: 24px;
+  color: #2b4f6a;
+}
+.new_schedule_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
+  background: #ffffff;
+  padding: 24px 0 0;
+  margin-left: -6px;
   border-radius: 6px;
 }
-#newScheduleBox {
+.new_schedule_box > h3 {
+  margin: 0 24px;
+  text-align: center;
+}
+.new_schedule_box .new_schedule_descr {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 8px 24px 0;
+  max-width: unset;
+  gap: 28px;
+}
+.new_schedule_box .new_schedule_descr span {
+  position: relative;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  padding-left: 28px;
+}
+.new_schedule_box .new_schedule_descr span {
+  font-family: "Lato", sans-serif;
+  position: relative;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #2b3e51;
+  padding-left: 28px;
+}
+.new_schedule_box .new_schedule_descr span::before {
+  position: absolute;
+  content: "";
+  width: 24px;
+  height: 24px;
+  background: url(https://conversionratestore.github.io/projects/grantme/img/dollar.svg) no-repeat center center;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+}
+.new_schedule_box .new_schedule_descr span:nth-child(2):before {
+  background: url(https://conversionratestore.github.io/projects/grantme/img/clock.svg) no-repeat center center;
+}
+.new_schedule_box .new_schedule_descr span:nth-child(3):before {
+  background: url(https://conversionratestore.github.io/projects/grantme/img/zoom.svg) no-repeat center center;
+}
+.new_schedule {
+  position: relative;
+  max-width: 100%;
+  margin: 16px 24px 0;
+  width: auto;
+  padding: 24px 0;
+  border-top: 1px solid #f2f2f2;
   background: #ffffff;
+}
+.new_schedule .nav_steps {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.new_schedule .nav_steps svg {
+  cursor: pointer;
+  max-width: 16px;
+  width: 100%;
+  margin-top: 4px;
+}
+svg.svg_is_hidden {
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.new_schedule .nav_steps > p:nth-of-type(1) {
+  font-family: "Bitter", serif;
+  font-weight: 600;
+}
+.new_schedule .nav_steps > p:nth-of-type(2) {
+  font-size: 16px;
+  line-height: 24px;
+  color: #676767;
+}
+.calendar_container {
+  margin-top: 30px;
+  min-height: 298px;
+}
+.calendar {
+  position: relative;
+  overflow: hidden;
+  text-transform: capitalize;
+  text-align: center;
+  max-width: 325px;
+  margin: 0 auto;
+  padding-bottom: 15px;
+}
+.calendar header {
+  margin-bottom: 12px;
+}
+.calendar header .month {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #3e78ba;
+}
+.calendar header .month .year {
+  margin-left: 10px;
+}
+.calendar header .simple-calendar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  color: #3e78ba;
+  border-radius: 50%;
+}
+.calendar header .btn-prev {
+  top: 0;
+  right: 54px;
+}
+.calendar header .btn-next {
+  top: 0;
+  right: 0;
+}
+.calendar header .simple-calendar-btn:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 16px;
+  background: url(https://conversionratestore.github.io/projects/grantme/img/btn_next_calendar.svg) no-repeat center center;
+}
+.calendar header .simple-calendar-btn.btn-prev:before {
+  background: url(https://conversionratestore.github.io/projects/grantme/img/btn_prev_calendar.svg) no-repeat center center;
+}
+.calendar .event-container {
+  display: none !important;
+}
+.calendar table {
+  width: 100%;
+  border-spacing: 0px;
+}
+.calendar thead {
+  font-size: 12px;
+  line-height: 16px;
+  color: #2b4f6a;
+  text-transform: uppercase;
+}
+.calendar td {
+  padding: 2px;
+}
+.calendar thead td {
+  width: 42px;
+  height: 42px;
+}
+.calendar .day {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 37px;
+  height: 37px;
+  font-size: 16px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  color: #676767;
+}
+.calendar .day.disabled {
+  cursor: default;
+}
+.calendar .day.has-event {
+  background: #e9f3fa;
+  color: #2b4f6a;
+}
+.calendar .day:hover {
+  border: 2px solid #6691cc;
+}
+.calendar .day.disabled:hover {
+  border: 2px solid transparent;
+}
+.chosen_select {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 345px;
+  max-width: 486px;
+  margin: 24px auto 0;
+}
+.calc_step_third {
+  display: block;
+  margin: 24px 0 0;
+}
+.calc_step_third > p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 452px;
+  margin: 0 auto 24px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #2b4f6a;
+}
+.calc_step_third > h3 {
+  font-family: "Bitter", serif;
+  font-weight: 600;
+  font-size: 18px;
+  text-align: center;
+  margin: 0 0 24px;
+  border-top: 1px solid #f2f2f2;
+  padding-top: 16px;
+}
+.calc_step_third > p > span {
+  padding-left: 24px;
+  position: relative;
+}
+.calc_step_third > p > span::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background: url(https://conversionratestore.github.io/projects/grantme/img/mini_clock.svg) no-repeat center center;
+}
+.calc_step_third > p > span:nth-child(2):before {
+  background: url(https://conversionratestore.github.io/projects/grantme/img/mini_calendar.svg) no-repeat center center;
+}
+.calc_step_third > p > span:nth-child(3):before {
+  background: url(https://conversionratestore.github.io/projects/grantme/img/mini_planet.svg) no-repeat center center;
+}
+#yourInformationForm {
+  position: relative;
+  max-width: 486px;
+  margin: 0 auto;
+}
+.add_guests_btn {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 16px;
+  color: #3e78ba;
+  margin: 24px auto 16px;
+  text-align: center;
+  display: block;
+  text-decoration-line: underline;
+  max-width: max-content;
+}
+#yourInformationForm .schedule_call_btn {
+  max-width: unset;
+}
+#yourInformationForm .your_information_wrapper > div,
+#yourInformationForm .your_parent_information_wrapper > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+#yourInformationForm .your_information_wrapper > div > div,
+#yourInformationForm .your_parent_information_wrapper > div > div {
+  width: 48%;
+}
+#yourInformationForm label {
+  display: block;
+  width: 100%;
+  height: 48px;
+  padding: 20px 12px 4px;
+  border: 1px solid #3e78ba;
+  border-radius: 6px;
+  position: relative;
+}
+#yourInformationForm label > span {
+  font-size: 16px;
+  line-height: 24px;
+  color: #8b8b8b;
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+}
+#yourInformationForm label > span.is_active {
+  top: 4px;
+  left: 12px;
+  transform: unset;
+  font-size: 12px;
+  line-height: 16px;
+}
+#yourInformationForm label > span b {
+  color: rgba(235, 62, 68, 1);
+}
+#yourInformationForm input {
+  width: 100%;
+  outline: none;
+  border: none;
+  height: 100%;
+  border-radius: 6px;
+  font-size: 16px;
+}
+#yourInformationForm .your_information_wrapper > div:nth-child(2) > div,
+#yourInformationForm .your_parent_information_wrapper > div:nth-child(2) > div {
+  width: 100%;
+}
+#yourInformationForm .your_information_wrapper > div:nth-child(2) > div:nth-child(2),
+#yourInformationForm .your_parent_information_wrapper > div:nth-child(2) > div:nth-child(2) {
+  display: none;
+}
+.your_parent_information_wrapper {
+  margin: 16px 0 24px;
+}
+.time_zone_wrapper {
+  text-align: center;
+  margin: 24px 0 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.time_zone_wrapper > span {
+  display: inline;
+  font-weight: 700;
+  font-size: 16px;
+  color: #3e78ba;
+}
+.select_dropdown_wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 24px;
+  margin-left: 12px;
+}
+.select_dropdown_wrapper::before {
+  position: absolute;
+  content: "";
+  width: 16px;
+  height: 16px;
+  background: url(https://conversionratestore.github.io/projects/grantme/img/planet.svg) no-repeat center center;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+}
+#selectDropdown {
+  width: 220px;
+  border: 1px solid #aaa;
+  padding: 4px 16px;
+  height: 25px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+#yourInformationForm .schedule_call_btn:disabled {
+  background: #cccccc;
+  color: #ffffff;
+  cursor: initial;
+}
+.chosen_select div.select_custom {
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  padding: 17px 20px;
+  cursor: pointer;
+  position: relative;
+  height: 48px;
+  font-size: 16px;
+  line-height: 14px;
+  color: #676767;
+  text-align: left;
+}
+.chosen_select div.select_custom::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background: url(https://conversionratestore.github.io/projects/grantme/img/arr_select.svg) no-repeat center center;
+  transition: all 300ms cubic-bezier(0.4, 0, 1, 1);
+}
+.chosen_select div.select_custom.is_visit::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+.chosen_select div.select_custom[data-selected] {
+  color: #3e78ba;
+}
+.chosen_select div.select_custom.is_active {
+  border-color: #3e78ba;
+}
+.chosen_select div.options_custom {
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  box-shadow: 0px 2px 2px rgba(28, 5, 77, 0.05), 0px 12px 8px rgba(0, 0, 0, 0.02);
+  border-radius: 6px;
+  margin-top: 4px;
+  display: none;
+}
+.chosen_select div.options_custom ul {
+  overflow-x: auto;
+  max-height: 222px;
+  min-height: 222px;
+  border-radius: 6px;
+}
+.chosen_select ul li {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #2b4f6a;
+  padding: 12px;
+  text-align: center;
+  cursor: pointer;
+}
+.chosen_select ul li:hover {
+  background: rgb(204 204 204 / 30%);
+}
+.chosen_select ul li.is_active {
+  background: #e9f3fa;
+  color: #3e78ba;
+}
+.confirm_time_btn {
+  margin: auto 0 0;
+  background: #3e78ba;
+  border-radius: 6px;
+  height: 62px;
+  outline: none;
+  border: none;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  color: #ffffff;
+  cursor: pointer;
+}
+.confirm_time_btn:disabled {
+  background: #cccccc;
+  cursor: initial;
 }
 /* overview_section */
 #overview_section {
@@ -395,8 +963,16 @@ h3.third_title {
 #ready_to_get_started_section h2 {
   font-weight: 400;
 }
-
 #ready_to_get_started_section p {
   text-align: center;
   margin: 10px 0 22px;
+}
+.chosen_select.is_hidden,
+.calc_step_third.is_hidden,
+#calendarContainer.is_hidden,
+.time_zone_wrapper.is_hidden,
+.your_parent_information_wrapper.is_hidden,
+.add_guests_btn.is_hidden,
+label.is_hidden {
+  display: none;
 }
