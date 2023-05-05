@@ -139,6 +139,7 @@ let startFunk = setInterval(() => {
   position: absolute;
   top: 14px;
   right: -28px;
+  display: none !important;
 }
 .new_schedule_box {
   background: #e9f3fa;
@@ -1859,11 +1860,11 @@ padding: 0;
         </svg>
 
         <p>TrustScore <span class="accent_var">4.8</span></p>
-        <p>(879 reviews)</p>
+        <p>(920+ reviews)</p>
       </div>
     </section>
     <section class="consultation_descr_box">
-      <h2>Book a Free Grade 12 Scolarship Consultation</h2>
+      <h2>Book a Free <span class="grade_var">Grade 12</span> Scolarship Consultation</h2>
       <div>
         <h3>What you’ll learn on the call:</h3>
         <ul>
@@ -2227,7 +2228,7 @@ padding: 0;
         </svg>
 
         <p>TrustScore <span class="accent_var">4.8</span></p>
-        <p>(879 reviews)</p>
+        <p>(920+ reviews)</p>
       </div>
       <a class="book_free_call_btn" href="#newScheduleBox">Book a Free Call</a>
     </div>
@@ -2256,7 +2257,7 @@ padding: 0;
         <p>TrustScore <span class="accent_var"><svg width="15" height="13" viewBox="0 0 15 13" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M14.002 4.9958L2.67436 12.874L4.32699 8.00498L0 4.9958H5.34837L7.001 0.126465L8.65363 4.9958H14.002ZM7.00142 9.86513L10.0951 9.24213L11.3277 12.874L7.00142 9.86513Z" fill="#2DAF6B"/>
 </svg>4.8</span></p>
-        <p>(879 reviews)</p>
+        <p>(920+ reviews)</p>
       </div>
       <a class="book_free_call_btn" href="#newScheduleBox">Book a Free Call</a>
     </div>
@@ -2282,7 +2283,9 @@ padding: 0;
 
     if (document.querySelector(".greetings_box")) {
       document.querySelector(".funding_price").textContent = document.querySelector(".marketing b.clr-yellow").textContent;
-      document.querySelector(".grade_var").textContent = document.querySelector(".u_l")?.textContent;
+      document.querySelectorAll(".grade_var").forEach((el) => {
+        el.textContent = document.querySelector(".u_l")?.textContent;
+      });
       let paramsLocation = new URLSearchParams(window.location.search);
 
       if (paramsLocation.get("user_type") === "parent") {

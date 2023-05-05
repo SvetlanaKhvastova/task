@@ -19,8 +19,11 @@ img {
   height: 100%;
   width: 100%;
 }
+.mob_var {
+  display: none;
+}
 .container {
-  width: 90%;
+  width: 92%;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -66,6 +69,155 @@ h3.third_title {
   font-size: 24px;
   line-height: 36px;
   color: #2b3e51;
+}
+/* header */
+#header {
+  background: #3e5062;
+  padding: 10px 0;
+}
+#header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#header .logo_wrap {
+  flex: 0 0 134px;
+  margin: 0;
+}
+#header .nav_menu_wrapper {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+#header .main_nav_menu {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+#header .main_nav_menu li + li {
+  margin-left: 30px;
+}
+#header .main_nav_menu li a {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #ffffff;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+#header .main_nav_menu li a:hover {
+  color: #ebbd45;
+}
+#header .sub-menu {
+  display: none;
+}
+
+#header .login_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-left: 15px;
+}
+#header .tel_link,
+#header .log_in_link {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 18px;
+  color: #ffffff;
+  text-decoration: none;
+  width: 100%;
+  text-align: center;
+  transition: all 0.3s;
+}
+#header .tel_link:hover,
+#header .log_in_link:hover {
+  color: #ebbd45;
+}
+#header .tel_link {
+  position: relative;
+  padding: 0 24px 0 42px;
+  border-right: 1px solid #cccccc;
+  min-width: 173px;
+}
+#header .tel_link::before {
+  position: absolute;
+  content: "";
+  width: 30px;
+  height: 30px;
+  background: url(https://conversionratestore.github.io/projects/grantme/img/call.svg) no-repeat center center;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+}
+#header .book_call_btn {
+  max-width: 184px;
+  height: 50px;
+  font-size: 18px;
+  line-height: 18px;
+  min-width: 184px;
+}
+/* sticky_header */
+.sticky_header {
+  width: 100%;
+  background: #3e5062;
+  padding: 11px 0;
+  opacity: 0;
+  transition: top 0.7s;
+  height: 0;
+  padding: 0;
+}
+.sticky_header.is_fixed {
+  height: 100%;
+  padding: 11px 0;
+  opacity: 1;
+  position: sticky;
+  top: -1;
+  left: 0;
+  z-index: 111111111;
+}
+.sticky_header .container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 25px;
+}
+.logo_wrap {
+  max-height: 42px;
+  max-width: 134px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto 0 0;
+}
+.sticky_header .book_call_btn {
+  height: 48px;
+  max-width: 318px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  margin: 0;
+}
+.reviews_btn_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.reviews_btn_wrapper p {
+  color: #ffffff;
+}
+.reviews_btn_wrapper p:last-child {
+  font-weight: 700;
+  text-decoration-line: underline;
+}
+.sticky_header .reviews_btn_wrapper p:nth-of-type(1) {
+  margin: 0 8px 0 12px;
+}
+.sticky_header .reviews_btn_wrapper p:last-child {
+  text-decoration-line: unset;
+}
+.sticky_header .reviews_btn_wrapper .accent_var {
+  color: #2daf6b;
 }
 /* booking_section */
 #booking_section {
@@ -975,4 +1127,174 @@ svg.svg_is_hidden {
 .add_guests_btn.is_hidden,
 label.is_hidden {
   display: none;
+}
+@media (max-width: 768px) {
+  .desk_var {
+    display: none;
+  }
+  .mob_var {
+    display: block;
+  }
+  h1 {
+    font-size: 32px;
+    line-height: 48px;
+  }
+  h2.sub_title {
+    font-size: 25px;
+    line-height: 37px;
+  }
+  h3.third_title {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  #header {
+    display: none;
+  }
+  #booking_section {
+    padding: 24px 0 0;
+  }
+  #booking_section .container {
+    flex-direction: column;
+  }
+  .booking_descr {
+    width: 100%;
+    position: unset;
+  }
+  .greetings_box h1 {
+    margin-bottom: 8px;
+  }
+  .greetings_box p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .consultation_descr_box {
+    margin: 16px 0 24px;
+    padding: 24px;
+    border-radius: 6px;
+  }
+  .consultation_descr_box > div:nth-child(2) {
+    display: none;
+  }
+  .consultation_descr_box > div + div {
+    margin-top: 24px;
+  }
+  .new_schedule_box {
+    width: 110%;
+    margin: 0 -5%;
+    background: #e9f3fa;
+    border-radius: unset;
+  }
+  .new_schedule_box > h3 {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+  }
+  .new_schedule_box .new_schedule_descr {
+    margin-top: 10px;
+  }
+  .new_schedule {
+    margin: 20px 16px 0;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 6px;
+  }
+  .our_consultants_wrapper {
+    padding: 24px 16px;
+  }
+  .our_consultants_wrapper h3 {
+    font-size: 18px;
+    margin: 0 0 16px;
+  }
+  .our_consultants_wrapper > p {
+    font-size: 14px;
+    line-height: 21px;
+  }
+  .our_consultants_wrapper > div {
+    margin-top: 12px;
+  }
+  .our_consultants_wrapper > div p {
+    max-width: 196px;
+  }
+  #overview_section {
+    padding: 32px 0 0;
+  }
+  #overview_section .container {
+    gap: 32px;
+    flex-direction: column-reverse;
+  }
+  #overview_section .container > div {
+    width: 100%;
+  }
+  #overview_section .overview_txt_wrapper {
+    font-size: 16px;
+    line-height: 20px;
+  }
+  #as_seen_on_section {
+    padding: 20px 0 40px;
+  }
+  #as_seen_on_section h2 {
+    margin-bottom: 16px;
+  }
+  #as_seen_on_section .count_txt_wrapper {
+    padding: 20px;
+    gap: 40px;
+  }
+  #as_seen_on_section .count_txt_wrapper > div {
+    text-align: center;
+  }
+  #as_seen_on_section .count_txt_wrapper > div span {
+    font-size: 24px;
+    line-height: 36px;
+    margin-bottom: 0;
+  }
+  #as_seen_on_section .count_txt_wrapper > div p {
+    font-size: 14px;
+    line-height: 21px;
+  }
+  #as_seen_on_section .img_wrapper img:nth-child(1) {
+    max-width: 68px;
+  }
+  #as_seen_on_section .img_wrapper img:nth-child(2) {
+    max-width: 53px;
+  }
+  #as_seen_on_section .img_wrapper img:nth-child(3) {
+    max-width: 76px;
+  }
+  #as_seen_on_section .img_wrapper {
+    padding: 28px 40px;
+    gap: 40px;
+  }
+  #what_users_say_section {
+    padding: 0;
+  }
+  #what_users_say_section h2 {
+    margin-bottom: 20px;
+  }
+  .testimonials_arrows {
+    justify-content: center;
+  }
+  #faqs_section {
+    padding-top: 40px;
+  }
+  #faqs_section h2 {
+    font-size: 32px;
+    line-height: 40px;
+    margin-bottom: 20px;
+  }
+  .accardion_link_faqs h3 {
+    font-size: 16px;
+  }
+  #ready_to_get_started_section {
+    background: #2f3d4f;
+  }
+  #ready_to_get_started_section h2 {
+    color: #ffffff;
+    font-size: 32px;
+    line-height: 52px;
+  }
+  #ready_to_get_started_section p {
+    color: #ffffff;
+    margin: 16px 0;
+  }
 }

@@ -281,3 +281,52 @@ const slideMenuFaqs = document.querySelectorAll(".accardion_link_faqs");
 slideMenuFaqs.forEach((el) => {
   el.addEventListener("click", accardionToggleFaqs(slideMenuFaqs));
 });
+
+//
+if (window.innerWidth <= 768) {
+  if (document.querySelector(".sticky_box")) {
+    const element = document.querySelector(".sticky_box");
+    const elemClose = document.querySelector("#block-scheduleconsulationheaderblock");
+
+    function visible(target) {
+      if (target.getBoundingClientRect().bottom < 0) {
+        element.style.display = "flex";
+      } else {
+        element.style.display = "none";
+      }
+    }
+
+    window.addEventListener("scroll", function () {
+      visible(elemClose);
+    });
+
+    visible(elemClose);
+  }
+} else {
+  if (document.querySelector(".sticky_header")) {
+    const element = document.querySelector(".sticky_header");
+    const elemClose = document.querySelector("#booking_section");
+
+    function visible(target) {
+      if (document.querySelector(".our_consultants_wrapper")?.getBoundingClientRect().top < 0) {
+        element.style.top = "-80px";
+      } else {
+        element.style.top = "-1px";
+      }
+
+      if (target.getBoundingClientRect().bottom < 0) {
+        element.classList.add("is_fixed");
+        element.style.top = "-1px";
+      } else {
+        if (element.classList.contains("is_fixed")) {
+          element.classList.remove("is_fixed");
+          element.style.top = "-1px";
+        }
+      }
+    }
+    window.addEventListener("scroll", function () {
+      visible(elemClose);
+    });
+    visible(elemClose);
+  }
+}
