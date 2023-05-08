@@ -89,7 +89,7 @@ function setCalendar() {
         document.querySelector(".chosen_select div.select_custom").classList?.remove("is_active");
         document.querySelector(".confirm_time_btn").disabled = true;
 
-        document.querySelector("#booking_section").scrollIntoView({ block: "start", behavior: "smooth" });
+        document.querySelector("#newScheduleBox").scrollIntoView({ block: "start", behavior: "smooth" });
         document.querySelector(".nav_steps svg").setAttribute("data-navsteps", "2");
         if (document.querySelector(".nav_steps svg").classList.contains("svg_is_hidden")) {
           document.querySelector(".nav_steps svg").classList.remove("svg_is_hidden");
@@ -198,7 +198,7 @@ jQuery(document).on("click", (e) => {
 //   click on svg Back
 if (document.querySelector(".new_schedule")) {
   document.querySelector(".new_schedule .nav_steps svg").addEventListener("click", (el) => {
-    document.querySelector("#booking_section").scrollIntoView({ block: "start", behavior: "smooth" });
+    document.querySelector("#newScheduleBox").scrollIntoView({ block: "start", behavior: "smooth" });
     if (el.currentTarget.getAttribute("data-navsteps") === "2") {
       document.querySelector(".nav_steps svg").setAttribute("data-navsteps", "1");
       el.currentTarget.classList.add("svg_is_hidden");
@@ -245,7 +245,7 @@ if (document.querySelector(".options_custom")) {
   document.querySelector(".confirm_time_btn").addEventListener("click", (e) => {
     e.preventDefault();
 
-    document.querySelector("#booking_section").scrollIntoView({ block: "start", behavior: "smooth" });
+    document.querySelector("#newScheduleBox").scrollIntoView({ block: "start", behavior: "smooth" });
     document.querySelector(".nav_steps svg").setAttribute("data-navsteps", "3");
     if (document.querySelector("#selectDropdown").value === "") {
       document.querySelector(".calc_step_third > p > span:last-child").textContent = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -282,11 +282,11 @@ slideMenuFaqs.forEach((el) => {
   el.addEventListener("click", accardionToggleFaqs(slideMenuFaqs));
 });
 
-//
+// sticky Box
 if (window.innerWidth <= 768) {
   if (document.querySelector(".sticky_box")) {
     const element = document.querySelector(".sticky_box");
-    const elemClose = document.querySelector("#block-scheduleconsulationheaderblock");
+    const elemClose = document.querySelector("#newScheduleBox");
 
     function visible(target) {
       if (target.getBoundingClientRect().bottom < 0) {
@@ -305,7 +305,7 @@ if (window.innerWidth <= 768) {
 } else {
   if (document.querySelector(".sticky_header")) {
     const element = document.querySelector(".sticky_header");
-    const elemClose = document.querySelector("#booking_section");
+    const elemClose = document.querySelector("#newScheduleBox");
 
     function visible(target) {
       if (document.querySelector(".our_consultants_wrapper")?.getBoundingClientRect().top < 0) {
@@ -330,3 +330,35 @@ if (window.innerWidth <= 768) {
     visible(elemClose);
   }
 }
+
+// burger menu
+const btn__burger = document.querySelector("#btnBurger"),
+  btn__close = document.querySelector("#btnClose"),
+  header = document.querySelector("#header"),
+  body = document.querySelector("body"),
+  nav = jQuery(".nav");
+
+btn__burger.addEventListener("click", () => {
+  header.classList.add("menu_open");
+  body.style.overflow = "hidden";
+
+  btn__close.addEventListener("click", () => {
+    header.classList.replace("menu_open", "header");
+    body.style.overflow = "unset";
+  });
+});
+
+// jQuery(document).ready(function () {
+//   nav.on("click", "a", function (event) {
+//     event.preventDefault();
+
+//     let id = jQuery(this).attr("href"),
+//       top = jQuery(id).offset().top - 10;
+
+//     if (header.classList.contains("menu_open")) {
+//       header.classList.remove("menu_open");
+//     }
+
+//     jQuery("body,html").animate({ scrollTop: top }, 1000);
+//   });
+// });

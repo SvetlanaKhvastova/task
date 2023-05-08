@@ -632,6 +632,9 @@ svg.svg_is_hidden {
   border-radius: 6px;
   position: relative;
 }
+#yourInformationForm label.no_content {
+  border: 1px solid #cccccc;
+}
 #yourInformationForm label > span {
   font-size: 16px;
   line-height: 24px;
@@ -806,7 +809,7 @@ svg.svg_is_hidden {
 #overview_section .container > div {
   width: 50%;
 }
-#overview_section .container > div:last-child {
+#overview_section .container > div:nth-child(2) {
   max-width: 544px;
   max-height: 497px;
 }
@@ -1148,14 +1151,51 @@ label.is_hidden {
     font-size: 18px;
     line-height: 24px;
   }
-  #header {
+  .sticky_box {
+    position: fixed;
+    bottom: 0;
+    z-index: 999;
+    background: #2b3e51;
+    width: 100%;
+    margin: 0;
+    padding: 16px;
     display: none;
+    justify-content: space-between;
   }
+  .sticky_box .reviews_btn_wrapper {
+    display: block;
+  }
+  .sticky_box .book_call_btn {
+    max-width: 156px;
+    margin: 0 0 0 10px;
+    height: 48px;
+    font-size: 16px;
+    line-height: 16px;
+  }
+  .sticky_box .reviews_btn_wrapper svg {
+    display: block;
+    margin-bottom: 6px;
+  }
+  .sticky_box .reviews_btn_wrapper p {
+    display: inline-block;
+    font-size: 13px;
+    line-height: 21px;
+  }
+  .sticky_box .reviews_btn_wrapper p .accent_var {
+    color: #ebbd45;
+  }
+  .sticky_box .reviews_btn_wrapper p:last-child {
+    margin-left: 1px !important;
+  }
+
   #booking_section {
     padding: 24px 0 0;
   }
   #booking_section .container {
     flex-direction: column;
+  }
+  .consultation_descr_box > div.no_commitments_wrapper p {
+    font-size: 15px;
   }
   .booking_descr {
     width: 100%;
@@ -1180,7 +1220,7 @@ label.is_hidden {
     margin-top: 24px;
   }
   .new_schedule_box {
-    width: 110%;
+    width: 109%;
     margin: 0 -5%;
     background: #e9f3fa;
     border-radius: unset;
@@ -1216,8 +1256,70 @@ label.is_hidden {
   .our_consultants_wrapper > div p {
     max-width: 196px;
   }
+  .time_zone_wrapper {
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .time_zone_wrapper > span {
+    margin-bottom: 8px;
+  }
+  .calendar_container {
+    min-height: 272px;
+  }
+  .calendar .day {
+    color: #8b8b8b;
+  }
+  .calendar .day.has-event {
+    color: #2b3e51;
+  }
+  .select_dropdown_wrapper {
+    margin: 0;
+  }
+  .calendar {
+    padding: 0;
+  }
+  .chosen_select {
+    min-height: 314px;
+  }
+  .chosen_select div.options_custom ul {
+    max-height: 184px;
+    min-height: 184px;
+  }
+  .new_schedule .nav_steps > p:nth-of-type(1) {
+    text-align: center;
+    max-width: 224px;
+  }
+  .calc_step_third {
+    margin-top: 16px;
+  }
+  .calc_step_third > p {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 16px;
+  }
+  .calc_step_third > p span + span {
+    margin-top: 12px;
+  }
+  .calc_step_third > h3 {
+    border: none;
+    padding: 0;
+    margin-bottom: 16px;
+  }
+  #yourInformationForm .your_information_wrapper > div,
+  #yourInformationForm .your_parent_information_wrapper > div {
+    flex-direction: column;
+  }
+  #yourInformationForm .your_information_wrapper > div > div,
+  #yourInformationForm .your_parent_information_wrapper > div > div {
+    width: 100%;
+  }
+  #yourInformationForm .your_information_wrapper > div > div + div,
+  #yourInformationForm .your_parent_information_wrapper > div > div + div {
+    margin-top: 12px;
+  }
   #overview_section {
-    padding: 32px 0 0;
+    padding: 40px 0 0;
   }
   #overview_section .container {
     gap: 32px;
@@ -1229,6 +1331,15 @@ label.is_hidden {
   #overview_section .overview_txt_wrapper {
     font-size: 16px;
     line-height: 20px;
+  }
+  #overview_section .container .mob_var.expect_from_the_call_box h3 {
+    font-size: 25px;
+    line-height: 37px;
+    letter-spacing: -0.48px;
+    margin-bottom: 12px;
+  }
+  #overview_section .container .mob_var.expect_from_the_call_box p > span {
+    font-weight: 700;
   }
   #as_seen_on_section {
     padding: 20px 0 40px;
@@ -1275,7 +1386,7 @@ label.is_hidden {
     justify-content: center;
   }
   #faqs_section {
-    padding-top: 40px;
+    padding: 40px 0 120px;
   }
   #faqs_section h2 {
     font-size: 32px;
@@ -1287,6 +1398,21 @@ label.is_hidden {
   }
   #ready_to_get_started_section {
     background: #2f3d4f;
+    position: relative;
+    padding-bottom: 120px;
+  }
+  #ready_to_get_started_section::before {
+    background: inherit;
+    content: "";
+    display: block;
+    height: 50%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    z-index: -1;
+    top: 0;
+    transform: skewY(-4deg);
+    transform-origin: 0 100%;
   }
   #ready_to_get_started_section h2 {
     color: #ffffff;
@@ -1296,5 +1422,49 @@ label.is_hidden {
   #ready_to_get_started_section p {
     color: #ffffff;
     margin: 16px 0;
+  }
+  #header .nav_menu_wrapper,
+  #header .login_wrapper {
+    display: none;
+  }
+  .burger_menu {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #btnBurger {
+    background: #3e5062;
+    outline: none;
+    border: none;
+  }
+  #btnClose {
+    background: #ffffff;
+    outline: none;
+    border: none;
+  }
+  .menu_open#header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    z-index: 100;
+  }
+  .burger_close_btn,
+  .menu_open .burger_open_btn,
+  .burger_close_btn {
+    display: none;
+  }
+  .menu_open .burger_close_btn {
+    display: block;
+  }
+  .menu_open#header .burger_menu {
+    border-bottom: 1px solid #cccccc;
   }
 }
