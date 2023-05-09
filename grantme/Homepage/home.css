@@ -70,12 +70,15 @@ h3.third_title {
   line-height: 36px;
   color: #2b3e51;
 }
+[data-reviews] {
+  cursor: pointer;
+}
 /* header */
 #header {
   background: #3e5062;
   padding: 10px 0;
 }
-#header .container {
+#header .container .desk_header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -95,7 +98,7 @@ h3.third_title {
   align-items: center;
   justify-content: center;
 }
-#header .main_nav_menu li + li {
+#header .main_nav_menu > li + li {
   margin-left: 30px;
 }
 #header .main_nav_menu li a {
@@ -106,11 +109,36 @@ h3.third_title {
   text-decoration: none;
   transition: all 0.3s;
 }
+#header .main_nav_menu li:last-child {
+  position: relative;
+}
+#header .main_nav_menu li a.resources_sub_menu {
+  position: relative;
+}
+#header .main_nav_menu li a.resources_sub_menu::after {
+  position: absolute;
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: url(https://conversionratestore.github.io/projects/grantme/img/resources_arr.svg) no-repeat center center;
+  top: 2px;
+  right: -21px;
+}
 #header .main_nav_menu li a:hover {
   color: #ebbd45;
 }
 #header .sub-menu {
   display: none;
+  position: absolute;
+  width: 255px;
+  background-color: #3e5062;
+  z-index: 9999;
+  padding: 10px;
+  top: 100%;
+  left: 0;
+  margin-top: 29px;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.1);
 }
 
 #header .login_wrapper {
@@ -167,6 +195,7 @@ h3.third_title {
   transition: top 0.7s;
   height: 0;
   padding: 0;
+  overflow: hidden;
 }
 .sticky_header.is_fixed {
   height: 100%;
@@ -1423,8 +1452,9 @@ label.is_hidden {
     color: #ffffff;
     margin: 16px 0;
   }
-  #header .nav_menu_wrapper,
-  #header .login_wrapper {
+  #header .container .desk_header,
+  .menu_open#header .logo_wrap,
+  .burger_open_logo {
     display: none;
   }
   .burger_menu {
@@ -1449,7 +1479,9 @@ label.is_hidden {
     align-items: flex-start;
     justify-content: flex-start;
     min-height: 100vh;
+    height: 100%;
     position: fixed;
+    overflow: scroll;
     top: 0;
     left: 0;
     width: 100%;
@@ -1458,7 +1490,8 @@ label.is_hidden {
   }
   .burger_close_btn,
   .menu_open .burger_open_btn,
-  .burger_close_btn {
+  .burger_close_btn,
+  #header .desk_header .tel_link {
     display: none;
   }
   .menu_open .burger_close_btn {
@@ -1466,5 +1499,96 @@ label.is_hidden {
   }
   .menu_open#header .burger_menu {
     border-bottom: 1px solid #cccccc;
+    padding: 0 16px 10px;
+    width: 108%;
+    margin: 0 -16px;
+  }
+  #header .burger_menu .tel_link {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    min-width: unset;
+    border: none;
+  }
+  .menu_open#header .container .desk_header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 88vh;
+  }
+  .burger_open_logo {
+    flex: 0 0 134px;
+    margin: 0;
+    max-height: 42px;
+    max-width: 134px;
+    width: 100%;
+    height: 100%;
+  }
+  .menu_open#header .container .burger_open_logo {
+    display: block;
+  }
+  .menu_open#header .tel_link::before {
+    background: url(https://conversionratestore.github.io/projects/grantme/img/burger_open_call.svg) no-repeat center center;
+  }
+  .menu_open#header .main_nav_menu li a.resources_sub_menu::after {
+    background: url(https://conversionratestore.github.io/projects/grantme/img/resources_arr_mob.svg) no-repeat center center;
+    top: 8px;
+    right: -30px;
+  }
+  #header .main_nav_menu {
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+  }
+  #header .main_nav_menu li a {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+    color: #2b3e51;
+  }
+  #header .main_nav_menu li + li {
+    margin: 18px 0 0;
+  }
+  #header .login_wrapper {
+    flex-direction: column;
+    margin: 0;
+    gap: 30px;
+    width: 100%;
+  }
+  #header .book_call_btn {
+    width: 100%;
+    max-width: unset;
+    height: 62px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+  }
+  #header .log_in_link {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+    color: #2b3e51;
+  }
+  #header .nav_menu_wrapper {
+    width: 100%;
+    display: block;
+    margin: 42px 0 0;
+  }
+  #header .sub-menu {
+    background-color: inherit;
+    position: unset;
+    box-shadow: unset;
+    border-radius: unset;
+    margin: 20px 0;
+    padding: 0 0 0 20px;
+  }
+  #header .sub-menu li + li {
+    margin-top: 10px;
+  }
+  #header .sub-menu li a {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 31px;
   }
 }

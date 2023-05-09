@@ -195,6 +195,28 @@ jQuery(document).on("click", (e) => {
   }
 });
 
+document.querySelectorAll("#yourInformationForm input").forEach((i) => {
+  if (i.value !== "") {
+    i.previousElementSibling.classList.add("is_active");
+  }
+
+  i.addEventListener("input", (e) => {
+    if (!e.target.previousElementSibling.classList.contains("is_active")) {
+      e.target.previousElementSibling.classList.add("is_active");
+    }
+  });
+  i.addEventListener("blur", (e) => {
+    if (e.target.previousElementSibling.classList.contains("is_active") && e.target.value === "") {
+      e.target.previousElementSibling.classList.remove("is_active");
+    }
+  });
+  i.addEventListener("focus", (e) => {
+    if (!e.target.previousElementSibling.classList.contains("is_active")) {
+      e.target.previousElementSibling.classList.add("is_active");
+    }
+  });
+});
+
 //   click on svg Back
 if (document.querySelector(".new_schedule")) {
   document.querySelector(".new_schedule .nav_steps svg").addEventListener("click", (el) => {
@@ -348,17 +370,17 @@ btn__burger.addEventListener("click", () => {
   });
 });
 
-// jQuery(document).ready(function () {
-//   nav.on("click", "a", function (event) {
-//     event.preventDefault();
-
-//     let id = jQuery(this).attr("href"),
-//       top = jQuery(id).offset().top - 10;
-
-//     if (header.classList.contains("menu_open")) {
-//       header.classList.remove("menu_open");
-//     }
-
-//     jQuery("body,html").animate({ scrollTop: top }, 1000);
-//   });
-// });
+// click on btn Book a Call
+document.querySelectorAll('[href="#newScheduleBox"]').forEach((el) => {
+  el.addEventListener("click", (e) => {
+    e.preventDefault();
+    document.querySelector("#newScheduleBox").scrollIntoView({ block: "start", behavior: "smooth" });
+  });
+});
+// click on btn for reviews
+document.querySelectorAll("[data-reviews]").forEach((el) => {
+  el.addEventListener("click", (e) => {
+    e.preventDefault();
+    document.querySelector("#what_users_say_section").scrollIntoView({ block: "start", behavior: "smooth" });
+  });
+});

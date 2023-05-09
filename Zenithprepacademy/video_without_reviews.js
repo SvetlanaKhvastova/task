@@ -306,6 +306,7 @@ let videoReviews = setInterval(() => {
     margin: 0 20px;
     padding: 32px 0;
     background: #ffffff;
+    display: none !important;
   }
   #reviewsBlock > h2 {
     font-family: "Oxygen", sans-serif;
@@ -949,14 +950,14 @@ let videoReviews = setInterval(() => {
 
     document.querySelector("#row-165 iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0";
     document.querySelector(".timeline")?.insertAdjacentHTML("afterend", timelineEl);
-    if (!document.querySelector("#reviewsBlock")) {
-      document.querySelector("#container-60629")?.insertAdjacentHTML("afterend", reviewsHtml);
-    }
-    if (document.querySelector("#reviewsBlock")) {
-      for (let key in arrR) {
-        document.querySelector(".review_nav").insertAdjacentHTML("beforeend", setList(key, arrR[key][0], arrR[key][1], arrR[key][2]));
-      }
-    }
+    // if (!document.querySelector("#reviewsBlock")) {
+    //   document.querySelector("#container-60629")?.insertAdjacentHTML("afterend", reviewsHtml);
+    // }
+    // if (document.querySelector("#reviewsBlock")) {
+    //   for (let key in arrR) {
+    //     document.querySelector(".review_nav").insertAdjacentHTML("beforeend", setList(key, arrR[key][0], arrR[key][1], arrR[key][2]));
+    //   }
+    // }
     if (window.innerWidth <= 768) {
       if (!document.querySelector(".first_var")) {
         document.querySelector("#row-165")?.insertAdjacentHTML(
@@ -1008,49 +1009,49 @@ let videoReviews = setInterval(() => {
         );
       }
     }
-    if (window.innerWidth > 768) {
-      let slickInterval = setInterval(() => {
-        if (typeof jQuery(".review_nav").slick === "function" && document.querySelector(".review_nav .review_card")) {
-          clearInterval(slickInterval);
-          //  slider
-          let slider = jQuery(".review_nav").slick({
-            slidesToShow: 2.55,
-            slidesToScroll: 2,
-            arrows: true,
-            dots: true,
-            infinite: false,
-            responsive: [
-              {
-                breakpoint: 1087,
-                settings: {
-                  slidesToShow: 2,
-                },
-              },
-            ],
-          });
-          slider.on("swipe", function () {
-            pushDataLayer("Swipe slider");
-          });
+    // if (window.innerWidth > 768) {
+    //   let slickInterval = setInterval(() => {
+    //     if (typeof jQuery(".review_nav").slick === "function" && document.querySelector(".review_nav .review_card")) {
+    //       clearInterval(slickInterval);
+    //       //  slider
+    //       let slider = jQuery(".review_nav").slick({
+    //         slidesToShow: 2.55,
+    //         slidesToScroll: 2,
+    //         arrows: true,
+    //         dots: true,
+    //         infinite: false,
+    //         responsive: [
+    //           {
+    //             breakpoint: 1087,
+    //             settings: {
+    //               slidesToShow: 2,
+    //             },
+    //           },
+    //         ],
+    //       });
+    //       slider.on("swipe", function () {
+    //         pushDataLayer("Swipe slider");
+    //       });
 
-          document.querySelectorAll(".slick-dots li").forEach((el) => {
-            el.addEventListener("click", (i, idx) => {
-              pushDataLayer(`Click ${i.target.getAttribute("id")}`);
-            });
-          });
+    //       document.querySelectorAll(".slick-dots li").forEach((el) => {
+    //         el.addEventListener("click", (i, idx) => {
+    //           pushDataLayer(`Click ${i.target.getAttribute("id")}`);
+    //         });
+    //       });
 
-          document.querySelectorAll(".review_nav .slick-arrow").forEach((el) => {
-            el.addEventListener("click", (i) => {
-              if (i.target.classList.contains("slick-prev")) {
-                pushDataLayer("Arrow click", `left`);
-              }
-              if (i.target.classList.contains("slick-next")) {
-                pushDataLayer("Arrow click", `right`);
-              }
-            });
-          });
-        }
-      }, 100);
-    }
+    //       document.querySelectorAll(".review_nav .slick-arrow").forEach((el) => {
+    //         el.addEventListener("click", (i) => {
+    //           if (i.target.classList.contains("slick-prev")) {
+    //             pushDataLayer("Arrow click", `left`);
+    //           }
+    //           if (i.target.classList.contains("slick-next")) {
+    //             pushDataLayer("Arrow click", `right`);
+    //           }
+    //         });
+    //       });
+    //     }
+    //   }, 100);
+    // }
     if (window.innerWidth > 768) {
       let waitVideo = setInterval(() => {
         if (document.querySelector(".start-session")) {

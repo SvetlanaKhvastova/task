@@ -21,9 +21,11 @@ let toolBox = setInterval(() => {
         });
       }
     }
-
     let styleToolBox = /*html */ `
     <style>
+        footer.css-qn3qut{
+            z-index: 3000;
+        }
         .site-navigation > div.social {
             height: 26px;
         }
@@ -35,6 +37,7 @@ let toolBox = setInterval(() => {
             background: #596DF6;
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.16);
             border-radius: 0;
+            z-index: 3001;
         }
         #stickywidgetdiv .css-1jb1j0h{
             padding: 16px 20px;
@@ -170,7 +173,7 @@ let toolBox = setInterval(() => {
             max-width: 310px;
             width: 100%;
             position: absolute;
-            z-index: 11111;
+            z-index: 100;
             top: 349px;
             background: #FFFFFF;
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.16);
@@ -210,7 +213,7 @@ let toolBox = setInterval(() => {
         .tool_box_body ul li a{
             font-weight: 400;
             font-size: 16px;
-            line-height: 24px;
+            line-height: 20px;
             color: #555555;
             width: 100%;
             display: block;
@@ -233,10 +236,11 @@ let toolBox = setInterval(() => {
         .tool_box_body ul li:nth-child(1) a::after{
             top: 9px;
         }
-        .tool_box_body ul li:nth-child(2) a{
+        .tool_box_body ul li:nth-child(2) a,
+        .tool_box_body ul li:nth-child(3) a{
             padding: 10px 45px 10px 0;
         }
-        .tool_box_body ul li:nth-child(3) a{
+        .tool_box_body ul li:nth-child(4) a{
             padding: 10px 45px 0 0;
         }
         .tool_box_body ul li a:hover{
@@ -280,6 +284,9 @@ let toolBox = setInterval(() => {
           <li>
             <a href="https://www.moneygeek.com/insurance/auto/how-to-reduce-your-car-insurance-costs/" target="_blank" rel="noopener noreferrer">Determine How to Reduce the Cost of Car Insurance</a>
           </li>
+          <li>
+            <a href="https://www.moneygeek.com/insurance/auto/compare-quotes/" target="_blank" rel="noopener noreferrer">Car Insurance Comparison Tool</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -299,16 +306,6 @@ let toolBox = setInterval(() => {
       } else {
         document.querySelector(".tool_box").style.top = "349px";
       }
-
-      window.addEventListener("scroll", (e) => {
-        if (document.querySelector(".css-fk0bbl #menu-list li:nth-child(5) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(6) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(7) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(8) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(9) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(10) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(11) a.is-active")) {
-          document.querySelector(".css-fk0bbl #menu-list li:last-child").scrollIntoView({ block: "end", behavior: "smooth" });
-        }
-        if (document.querySelector(".css-fk0bbl #menu-list li:nth-child(1) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(2) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(3) a.is-active") || document.querySelector(".css-fk0bbl #menu-list li:nth-child(4) a.is-active")) {
-          document.querySelector(".css-fk0bbl #menu-list li:first-child").scrollIntoView({ block: "start", behavior: "smooth" });
-        }
-      });
-
       document.querySelector(".overflow_nav_scroll").addEventListener("scroll", (e) => {
         if (+((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 100 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 101 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 102 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 103 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 104 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 105 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 106) {
           pushDataLayer("Scroll to 50%", "Navigation block On This Page");
@@ -330,6 +327,9 @@ let toolBox = setInterval(() => {
             case "https://www.moneygeek.com/insurance/auto/how-to-reduce-your-car-insurance-costs/":
               pushDataLayer("Determine How to Reduce the Cost of Car Insurance", "Car Insurance Toolbox");
               break;
+            case "https://www.moneygeek.com/insurance/auto/compare-quotes/":
+              pushDataLayer("Car Insurance Comparison Tool", "Car Insurance Toolbox");
+              break;
 
             default:
               break;
@@ -337,6 +337,29 @@ let toolBox = setInterval(() => {
         });
       });
     }
+
+    window.addEventListener("scroll", () => {
+      const options = {
+        root: null,
+        threshold: 0.5,
+      };
+      let containerHint = document.querySelector("footer.css-qn3qut");
+      let observer = new IntersectionObserver((entries) => {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            document.querySelector(".tool_box").style.display = "none";
+          } else {
+            document.querySelector(".tool_box").style.display = "block";
+          }
+
+          observer.unobserve(i.target);
+        });
+
+        observer.disconnect();
+      });
+
+      observer.observe(containerHint, options);
+    });
 
     pushDataLayer("loaded");
     const record = setInterval(() => {
