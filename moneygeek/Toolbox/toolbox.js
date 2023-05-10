@@ -144,7 +144,7 @@ let toolBox = setInterval(() => {
             height: 100%;
         }
         .css-1wbld27 h6{
-            margin: 0 0 20px;
+            margin: 0 0 15px;
         }
         .css-fk0bbl.is-sticky{
             height: max-content;
@@ -174,7 +174,7 @@ let toolBox = setInterval(() => {
             width: 100%;
             position: absolute;
             z-index: 100;
-            top: 349px;
+            top: 340px;
             background: #FFFFFF;
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.16);
             border-radius: 6px 6px 5px 5px;
@@ -196,7 +196,7 @@ let toolBox = setInterval(() => {
             margin: 0 0 0 10px;
         }
         .tool_box_body{
-            padding: 11px 12px 20px 20px;
+            padding: 11px 12px 14px 20px;
         }
         .tool_box_body ul {
             margin: 0;
@@ -220,6 +220,7 @@ let toolBox = setInterval(() => {
             border: unset;
             padding: 0;
             position: relative;
+            text-transform: capitalize;
         }
         .tool_box_body ul li a::after{
             position: absolute;
@@ -238,7 +239,7 @@ let toolBox = setInterval(() => {
         }
         .tool_box_body ul li:nth-child(2) a,
         .tool_box_body ul li:nth-child(3) a{
-            padding: 10px 45px 10px 0;
+            padding: 7px 45px 7px 0;
         }
         .tool_box_body ul li:nth-child(4) a{
             padding: 10px 45px 0 0;
@@ -279,13 +280,13 @@ let toolBox = setInterval(() => {
             <a href="https://www.moneygeek.com/insurance/auto/car-insurance-estimate-calculator/#lower-car-insurance-costs" target="_blank" rel="noopener noreferrer">Car Insurance Cost Calculator</a>
           </li>
           <li>
+            <a href="https://www.moneygeek.com/insurance/auto/compare-quotes/" target="_blank" rel="noopener noreferrer">Side by side car insurance comparison tool</a>
+          </li>
+          <li>
             <a href="https://www.moneygeek.com/insurance/auto/how-much-car-insurance-do-you-need/" target="_blank" rel="noopener noreferrer">Determine How Much Car Insurance You need</a>
           </li>
           <li>
             <a href="https://www.moneygeek.com/insurance/auto/how-to-reduce-your-car-insurance-costs/" target="_blank" rel="noopener noreferrer">Determine How to Reduce the Cost of Car Insurance</a>
-          </li>
-          <li>
-            <a href="https://www.moneygeek.com/insurance/auto/compare-quotes/" target="_blank" rel="noopener noreferrer">Car Insurance Comparison Tool</a>
           </li>
         </ul>
       </div>
@@ -304,7 +305,7 @@ let toolBox = setInterval(() => {
       if (document.querySelectorAll("#menu-list li").length < 5) {
         document.querySelector(".tool_box").style.top = "272px";
       } else {
-        document.querySelector(".tool_box").style.top = "349px";
+        document.querySelector(".tool_box").style.top = "340px";
       }
       document.querySelector(".overflow_nav_scroll").addEventListener("scroll", (e) => {
         if (+((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 100 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 101 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 102 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 103 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 104 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 105 || +((+e.target.scrollTop.toFixed(0) / +(+(e.target.scrollHeight - e.target.clientHeight).toFixed(0) / 2)) * 100).toFixed(0) === 106) {
@@ -328,7 +329,7 @@ let toolBox = setInterval(() => {
               pushDataLayer("Determine How to Reduce the Cost of Car Insurance", "Car Insurance Toolbox");
               break;
             case "https://www.moneygeek.com/insurance/auto/compare-quotes/":
-              pushDataLayer("Car Insurance Comparison Tool", "Car Insurance Toolbox");
+              pushDataLayer("Car Insurance Comparison Tool", "Side by side car insurance comparison tool");
               break;
 
             default:

@@ -81,7 +81,7 @@ let videoReviews = setInterval(() => {
   .timeline_new_title_new {
     font-family: "Oxygen", sans-serif;
     font-weight: 700;
-    font-size: 24px !important;
+    font-size: 20px !important;
     line-height: 32px !important;
     color: #2d2d2d;
   }
@@ -299,8 +299,7 @@ let videoReviews = setInterval(() => {
     left: 0;
     right: 0;
     z-index: 10;
-    background: #f7f7f7;
-    display: none;
+    background: #F7F7F7;
   }
   #reviewsBlock {
     margin: 0 20px;
@@ -405,6 +404,9 @@ let videoReviews = setInterval(() => {
   .review_card_descr p + p {
     margin-top: 15px;
   }
+  .containerInner > a.schedule_new_btn {
+      display: none;
+    }
   @media (max-width: 360px) {
     #headline-94582-131-125 .elHeadline,
     a.schedule_new_btn {
@@ -434,6 +436,12 @@ let videoReviews = setInterval(() => {
     }
   }
   @media (min-width: 768px) {
+    .elVideoWrapper {
+      height: 39.5vw !important;
+    }
+    .containerInner > a.schedule_new_btn {
+      display: flex;
+    }
     #reviewsBlock {
       margin: 0;
       padding: 72px 0;
@@ -620,6 +628,9 @@ let videoReviews = setInterval(() => {
     .timeline_list_new {
       height: 83%;
     }
+        .elVideoWrapper {
+        height: 524px !important;
+    }
   }
   @media (min-width: 1010px){
   .review_card_descr {
@@ -758,12 +769,12 @@ let videoReviews = setInterval(() => {
   }
   @media (min-width: 967px){
         .timeline_new .timeline_list_new:before {
-          height: 256%;
+          height: 259%;
     }
   }
   @media (min-width: 982px){
         .timeline_new .timeline_list_new:before {
-          height: 252%;
+          height: 255%;
     }
   }
   @media (min-width: 1000px){
@@ -773,12 +784,12 @@ let videoReviews = setInterval(() => {
   }
   @media (min-width: 1010px){
         .timeline_new .timeline_list_new:before {
-          height: 245%;
+          height: 247%;
     }
   }
   @media (min-width: 1027px){
         .timeline_new .timeline_list_new:before {
-          height: 240%;
+          height: 242%;
     }
   }
   @media (min-width: 1037px){
@@ -793,7 +804,7 @@ let videoReviews = setInterval(() => {
   }
   @media (min-width: 1068px){
         .timeline_new .timeline_list_new:before {
-          height: 230%;
+          height: 232%;
     }
   }
   @media (min-width: 1095px){
@@ -808,7 +819,7 @@ let videoReviews = setInterval(() => {
   }
   @media (min-width: 1136px){
         .timeline_new .timeline_list_new:before {
-          height: 215%;
+          height: 218%;
     }
   }
   @media (min-width: 1161px){
@@ -818,27 +829,27 @@ let videoReviews = setInterval(() => {
   }
   @media (min-width: 1180px){
         .timeline_new .timeline_list_new:before {
-          height: 206%;
+          height: 209%;
     }
   }
   @media (min-width: 1220px){
         .timeline_new .timeline_list_new:before {
-          height: 190%;
+          height: 180.6%;
     }
   }
   @media (min-width: 1225px){
         .timeline_new .timeline_list_new:before {
-          height: 188%;
+          height: 180.6%;
     }
   }
   @media (min-width: 1250px){
         .timeline_new .timeline_list_new:before {
-          height: 185%;
+          height: 180.6%;
     }
   }
   @media (min-width: 1275px){
         .timeline_new .timeline_list_new:before {
-          height: 182%;
+          height: 180.6%;
     }
   }
       </style>
@@ -869,7 +880,7 @@ let videoReviews = setInterval(() => {
           </div>
   
           <div class='timeline_item_new'>
-            <div class='timeline_item_new_title'>Strategies and five factors that affect the college application process</div>
+            <div class='timeline_item_new_title'>Strategies and 5 factors that сontrol сollege application process</div>
             <div class='timeline_item_new_time'>(10:52)</div>
           </div>
   
@@ -925,17 +936,6 @@ let videoReviews = setInterval(() => {
     }
 
     document.head.insertAdjacentHTML("beforeend", styleNew);
-    // if (window.innerWidth <= 768) {
-    //   let intTimeSrc = setInterval(() => {
-    //     if (document.querySelector(".mobile-iframe")) {
-    //       clearInterval(intTimeSrc)
-    //       if (document.querySelector(".mobile-iframe").src !== "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0") {
-    //         document.querySelector(".mobile-iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0"
-    //       }
-    //       console.log(`changed src`)
-    //     }
-    //   }, 10)
-    // }
     if (window.innerWidth <= 768) {
       let intTimeSrc = setInterval(() => {
         if (document.querySelector(".elCustomJS_code > div")) {
@@ -950,14 +950,14 @@ let videoReviews = setInterval(() => {
 
     document.querySelector("#row-165 iframe").src = "https://player.vimeo.com/video/790201146?h=eda73cb7b6&loop=1&title=0&byline=0&portrait=0";
     document.querySelector(".timeline")?.insertAdjacentHTML("afterend", timelineEl);
-    // if (!document.querySelector("#reviewsBlock")) {
-    //   document.querySelector("#container-60629")?.insertAdjacentHTML("afterend", reviewsHtml);
-    // }
-    // if (document.querySelector("#reviewsBlock")) {
-    //   for (let key in arrR) {
-    //     document.querySelector(".review_nav").insertAdjacentHTML("beforeend", setList(key, arrR[key][0], arrR[key][1], arrR[key][2]));
-    //   }
-    // }
+    if (!document.querySelector("#reviewsBlock")) {
+      document.querySelector("#container-60629")?.insertAdjacentHTML("afterend", reviewsHtml);
+    }
+    if (document.querySelector("#reviewsBlock")) {
+      for (let key in arrR) {
+        document.querySelector(".review_nav").insertAdjacentHTML("beforeend", setList(key, arrR[key][0], arrR[key][1], arrR[key][2]));
+      }
+    }
     if (window.innerWidth <= 768) {
       if (!document.querySelector(".first_var")) {
         document.querySelector("#row-165")?.insertAdjacentHTML(
@@ -980,26 +980,26 @@ let videoReviews = setInterval(() => {
             >Schedule A Free<br/>College Planning Session Now</a></div>`
         );
       }
-      const element = document.querySelectorAll(".timeline_item_new")[7];
-      function visible(target) {
-        if (target.getBoundingClientRect().y < window.innerHeight - target.clientHeight - 110) {
-          if (document.querySelector(".is_sticky_box")) {
-            document.querySelector(".schedule_new_btn.second_var").style.display = "none";
-            document.querySelector(".is_sticky_box").style.display = "block";
-            document.querySelector("#reviewsBlock").style.paddingBottom = "130px";
-          }
-        } else {
-          if (document.querySelector(".is_sticky_box")) {
-            document.querySelector(".schedule_new_btn.second_var").style.display = "block";
-            document.querySelector(".is_sticky_box").style.display = "none";
-            document.querySelector("#reviewsBlock").style.paddingBottom = "32px";
-          }
-        }
-      }
-      window.addEventListener("scroll", function () {
-        visible(element);
-      });
-      visible(element);
+      // const element = document.querySelectorAll(".timeline_item_new")[7];
+      // function visible(target) {
+      //   if (target.getBoundingClientRect().y < window.innerHeight - target.clientHeight - 110) {
+      //     if (document.querySelector(".is_sticky_box")) {
+      //       document.querySelector(".schedule_new_btn.second_var").style.display = "none";
+      //       document.querySelector(".is_sticky_box").style.display = "block";
+      //       document.querySelector("#reviewsBlock").style.paddingBottom = "130px";
+      //     }
+      //   } else {
+      //     if (document.querySelector(".is_sticky_box")) {
+      //       document.querySelector(".schedule_new_btn.second_var").style.display = "block";
+      //       document.querySelector(".is_sticky_box").style.display = "none";
+      //       document.querySelector("#reviewsBlock").style.paddingBottom = "32px";
+      //     }
+      //   }
+      // }
+      // window.addEventListener("scroll", function () {
+      //   visible(element);
+      // });
+      // visible(element);
     } else {
       if (!document.querySelector(".first_var")) {
         document.querySelector("#row-165")?.insertAdjacentHTML(
@@ -1009,49 +1009,49 @@ let videoReviews = setInterval(() => {
         );
       }
     }
-    // if (window.innerWidth > 768) {
-    //   let slickInterval = setInterval(() => {
-    //     if (typeof jQuery(".review_nav").slick === "function" && document.querySelector(".review_nav .review_card")) {
-    //       clearInterval(slickInterval);
-    //       //  slider
-    //       let slider = jQuery(".review_nav").slick({
-    //         slidesToShow: 2.55,
-    //         slidesToScroll: 2,
-    //         arrows: true,
-    //         dots: true,
-    //         infinite: false,
-    //         responsive: [
-    //           {
-    //             breakpoint: 1087,
-    //             settings: {
-    //               slidesToShow: 2,
-    //             },
-    //           },
-    //         ],
-    //       });
-    //       slider.on("swipe", function () {
-    //         pushDataLayer("Swipe slider");
-    //       });
+    if (window.innerWidth > 768) {
+      let slickInterval = setInterval(() => {
+        if (typeof jQuery(".review_nav").slick === "function" && document.querySelector(".review_nav .review_card")) {
+          clearInterval(slickInterval);
+          //  slider
+          let slider = jQuery(".review_nav").slick({
+            slidesToShow: 2.55,
+            slidesToScroll: 2,
+            arrows: true,
+            dots: true,
+            infinite: false,
+            responsive: [
+              {
+                breakpoint: 1087,
+                settings: {
+                  slidesToShow: 2,
+                },
+              },
+            ],
+          });
+          slider.on("swipe", function () {
+            pushDataLayer("Swipe slider");
+          });
 
-    //       document.querySelectorAll(".slick-dots li").forEach((el) => {
-    //         el.addEventListener("click", (i, idx) => {
-    //           pushDataLayer(`Click ${i.target.getAttribute("id")}`);
-    //         });
-    //       });
+          document.querySelectorAll(".slick-dots li").forEach((el) => {
+            el.addEventListener("click", (i, idx) => {
+              pushDataLayer(`Click ${i.target.getAttribute("id")}`);
+            });
+          });
 
-    //       document.querySelectorAll(".review_nav .slick-arrow").forEach((el) => {
-    //         el.addEventListener("click", (i) => {
-    //           if (i.target.classList.contains("slick-prev")) {
-    //             pushDataLayer("Arrow click", `left`);
-    //           }
-    //           if (i.target.classList.contains("slick-next")) {
-    //             pushDataLayer("Arrow click", `right`);
-    //           }
-    //         });
-    //       });
-    //     }
-    //   }, 100);
-    // }
+          document.querySelectorAll(".review_nav .slick-arrow").forEach((el) => {
+            el.addEventListener("click", (i) => {
+              if (i.target.classList.contains("slick-prev")) {
+                pushDataLayer("Arrow click", `left`);
+              }
+              if (i.target.classList.contains("slick-next")) {
+                pushDataLayer("Arrow click", `right`);
+              }
+            });
+          });
+        }
+      }, 100);
+    }
     if (window.innerWidth > 768) {
       let waitVideo = setInterval(() => {
         if (document.querySelector(".start-session")) {
