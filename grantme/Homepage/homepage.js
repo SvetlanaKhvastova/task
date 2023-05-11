@@ -6,28 +6,54 @@ let start = setInterval(() => {
     <style>
       .counter_wrapper,
       .main_section:after,
-      .main_section:before{
+      .main_section:before,
+      .tuition_wrapper p:nth-child(4),
+      .tuition_section a.btn {
         display: none;
       }
-      .main_section{
+      .book_a_call_btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 317px;
+        height: 62px;
+        width: 100%;
+        background: #ebbd45;
+        border-radius: 6px;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 20px;
+        color: #2b3e51 !important;
+        margin: 0 auto;
+        transition: all 0.25s ease;
+      }
+      .book_a_call_btn:hover,
+      .elementor-button:hover {
+        color: #3e78ba !important;
+      }
+      .new_txt_tuition {
+        max-width: 993px;
+        margin: 0 auto 32px;
+      }
+      .main_section {
         height: unset;
         min-height: unset;
         padding: 60px 0 0;
       }
-      .main_section p{
+      .main_section p {
         margin: 0;
         line-height: 25px;
       }
-      .main_section h4{
+      .main_section h4 {
         margin: 0 0 42px;
         font-size: 18px;
         line-height: 25px;
         font-weight: 400;
       }
-      .main_section .main_slider_hor{
+      .main_section .main_slider_hor {
         margin-bottom: 16px;
       }
-      .main_section .btn_yellow{
+      .main_section .btn_yellow {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -40,10 +66,10 @@ let start = setInterval(() => {
         padding: 0;
         margin: 0 auto;
       }
-      .counter_section{
+      .counter_section {
         padding: 30px 0 42px;
       }
-      .reviews_btn_wrapper{
+      .reviews_btn_wrapper {
         width: max-content;
         display: flex;
         margin: 0 auto 16px;
@@ -51,22 +77,22 @@ let start = setInterval(() => {
         justify-content: center;
         cursor: pointer;
       }
-      .reviews_btn_wrapper > p:nth-child(2){
+      .reviews_btn_wrapper > p:nth-child(2) {
         margin: 0 8px 0 12px;
       }
-      .reviews_btn_wrapper > p:nth-child(2) span{
-        color: #2DAF6B;
+      .reviews_btn_wrapper > p:nth-child(2) span {
+        color: #2daf6b;
       }
-      #newCounter .additional_txt{
+      #newCounter .additional_txt {
         position: relative;
         font-size: 18px;
         line-height: 25px;
         text-decoration-line: underline;
-        color: #2B3E51;
+        color: #2b3e51;
         margin: 0 auto;
         max-width: max-content;
       }
-      #newCounter .additional_txt::before{
+      #newCounter .additional_txt::before {
         position: absolute;
         content: "";
         width: 85px;
@@ -76,154 +102,244 @@ let start = setInterval(() => {
         left: -92px;
         z-index: 5;
       }
-      #newCounter ul{
+      #newCounter ul {
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
         max-width: 1000px;
         width: 100%;
         list-style: none;
         padding: 0;
         margin: 30px auto 0;
-        border: 1px solid #E9F3FA;
+        border: 1px solid #e9f3fa;
         border-radius: 12px;
       }
-      #newCounter ul > li:nth-child(1){
+      #newCounter ul > li:nth-child(1) {
         width: 56%;
-        background: #E9F3FA;
+        background: #e9f3fa;
         padding: 30px 38px 30px 30px;
-        border: 1px solid #E9F3FA;
+        border: 1px solid #e9f3fa;
         border-radius: 12px;
         text-align: left !important;
+        display: flex;
+        flex-direction: column;
       }
-      #newCounter ul > li:nth-child(2){
+      #newCounter ul > li:nth-child(2) {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         width: 44%;
         padding: 52px 29px 49px 38px;
       }
-      #newCounter .img_wrapper{
+      #newCounter .img_wrapper {
         width: 100%;
         max-width: 84px;
       }
-      #newCounter .schedule_title{
+      #newCounter .schedule_title {
         margin: 24px 0 16px;
       }
-      #newCounter.schedule_txt{
+      #newCounter.schedule_txt {
         font-size: 16px;
         line-height: 24px;
-        color: #2B3E51;
+        color: #2b3e51;
         margin: 0 0 24px;
       }
-      .schedule_a_free_link{
+      .schedule_a_free_link {
         display: flex;
         align-items: center;
         justify-content: center;
         height: 52px;
         max-width: 362px;
         width: 100%;
-        border: 2px solid #3E78BA;
-        border-radius: 6px; 
+        border: 2px solid #3e78ba;
+        border-radius: 6px;
         font-weight: 700;
         font-size: 18px;
         line-height: 25px;
-        color: #3E78BA;
+        color: #3e78ba;
       }
-      .schedule_a_free_link > svg{
+      .schedule_a_free_link > svg {
         margin-left: 12px;
       }
-      #newCounter .counter_block .h1{
+      #newCounter .counter_block .h1 {
         font-size: 76px;
       }
-      #newCounter .counter_block .counter_text{
+      #newCounter .counter_block .counter_text {
         margin: 0;
       }
       .sticky_header_desk {
-  width: 100%;
-  background: #3e5062;
-  padding: 11px 0;
-  opacity: 0;
-  transition: top 0.7s;
-  height: 0;
-  padding: 0;
-  overflow: hidden;
-}
-.sticky_header_desk.is_fixed {
-  height: 100%;
-  padding: 11px 0;
-  opacity: 1;
-  position: sticky;
-  top: 0;
-  left: 0;
-  z-index: 111111111;
-}
-.sticky_header_desk .container {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 25px;
-}
-.logo_wrap {
-  max-height: 42px;
-  max-width: 134px;
-  width: 100%;
-  height: 100%;
-  margin: 0 auto 0 0;
-}
-.sticky_header_desk .book_call_btn {
-  height: 48px;
-  max-width: 318px;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 24px;
-  margin: 0;
-}
-      @media (max-width: 768px) {
+        width: 100%;
+        background: #3e5062;
+        padding: 11px 0;
+        opacity: 0;
+        transition: top 0.7s;
+        height: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      .sticky_header_desk.is_fixed {
+        height: 100%;
+        padding: 11px 0;
+        opacity: 1;
+        position: sticky;
+        top: 0;
+        left: 0;
+        z-index: 111111111;
+      }
+      .sticky_header_desk .container {
+        margin: 0 auto;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 25px;
+        max-width: 1200px;
+        width: 90%;
+      }
+      .logo_wrap {
+        max-height: 42px;
+        max-width: 134px;
+        width: 100%;
+        height: 100%;
+        margin: 0 auto 0 0;
+      }
+      .sticky_header_desk .reviews_btn_wrapper {
+        justify-content: space-between;
+        margin: 0;
+      }
+      .sticky_header_desk .reviews_btn_wrapper p {
+        color: #ffffff;
+      }
+      .sticky_header_desk .reviews_btn_wrapper p:last-child {
+        margin: 0;
+      }
+      .sticky_header_desk .book_a_call_btn {
+        height: 48px;
+        max-width: 318px;
+        font-size: 18px;
+        line-height: 24px;
+        margin: 0;
+      }
+      .tel_link {
+        position: relative;
+        padding: 0 24px 0 42px;
+        border-right: 1px solid #cccccc;
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 18px;
+        color: #ffffff;
+        text-decoration: none;
+        text-align: center;
+        transition: all 0.3s;
+      }
+      .tel_link::before {
+        position: absolute;
+        content: "";
+        width: 30px;
+        height: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        background: url(https://conversionratestore.github.io/projects/grantme/img/burger_open_call.svg) no-repeat center center;
+      }
+      @media (min-width: 1024px) {
+        .elementor-24572 .elementor-element.elementor-element-d790b6a {
+          padding: 10px 0;
+        }
+        .elementor-24572 .elementor-element.elementor-element-d790b6a > .elementor-container {
+          max-width: 1200px;
+          width: 90%;
+          align-items: center;
+          justify-content: space-between;
+        }
+        .elementor-24572 .elementor-element.elementor-element-d3b93f4 {
+          flex: 1 0 134px;
+          width: 100%;
+          max-width: 134px;
+          height: 40px;
+        }
+        .elementor-24572 .elementor-element.elementor-element-2c332a5 img {
+          width: 100%;
+          height: 100%;
+          max-width: unset;
+        }
+        .elementor-24572 .elementor-element.elementor-element-1e45e76.elementor-column.elementor-element[data-element_type="column"] > .elementor-widget-wrap.elementor-element-populated {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+        .elementor-24572 .elementor-element.elementor-element-1e45e76.elementor-column.elementor-element[data-element_type="column"] > .elementor-widget-wrap.elementor-element-populated .tel_link {
+          color: #2b3e51;
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 18px;
+        }
+        .elementor-24572 .elementor-element.elementor-element-1e45e76 {
+          min-width: 465px;
+        }
+        .elementor-24572 .elementor-element.elementor-element-4eb5bf6 {
+          width: 45%;
+        }
+        .hfe-nav-menu__layout-horizontal .hfe-nav-menu {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+        .hfe-nav-menu__layout-horizontal .hfe-nav-menu > li + li {
+          margin-left: 30px;
+        }
+        .elementor-24572 .elementor-element.elementor-element-e3c03f0 .menu-item a.hfe-menu-item {
+          padding: 0;
+        }
+        .elementor-24572 .elementor-element.elementor-element-e3c03f0 .menu-item a.hfe-menu-item:hover,
+        .elementor-widget-heading .elementor-heading-title[class*="elementor-size-"] > a:hover,
+        .sub-menu .menu-item:hover,
+        .sub-menu .menu-item:hover a,
+        .elementor-24572 .elementor-element.elementor-element-1e45e76.elementor-column.elementor-element[data-element_type="column"] > .elementor-widget-wrap.elementor-element-populated .tel_link:hover {
+          background: unset !important;
+          color: #ebbd45 !important;
+          text-decoration: none !important;
+        }
+        .elementor-24572 .elementor-element.elementor-element-e3c03f0 nav.hfe-nav-menu__layout-horizontal:not(.hfe-dropdown) ul.sub-menu {
+          margin-top: 15px;
+        }
+      }
+      @media (max-width: 1025px) {
         .tel_link {
-          position: relative;
           width: 30px;
           height: 30px;
           padding: 0;
-          min-width: unset;
           border: none;
         }
-        .tel_link::before {
-          position: absolute;
-          content: "";
-          width: 30px;
-          height: 30px;
-          top: 50%;
-          transform: translateY(-50%);
-          left: 0;
-          background: url(https://conversionratestore.github.io/projects/grantme/img/burger_open_call.svg) no-repeat center center;
-        }
-        .other_btn_wrapper{
+        .other_btn_wrapper {
           padding: 24px;
           margin-top: 40px;
         }
-        .other_btn_wrapper .log_in_link{
+        .other_btn_wrapper .log_in_link {
           font-weight: 700;
           font-size: 20px;
           line-height: 20px;
-          color: #2B3E51;
+          color: #2b3e51;
           text-align: center;
           display: block;
           width: max-content;
           margin: 0 auto;
         }
-        .other_btn_wrapper .book_a_call_btn{
+        .other_btn_wrapper .book_a_call_btn {
           width: 100%;
-          max-width: 342px;
+          max-width: 100%;
           margin: 30px 0 14px;
         }
-        .other_btn_wrapper .schedule_a_free_link{
+        .other_btn_wrapper .schedule_a_free_link {
           height: 62px;
+          max-width: 100%;
         }
-        .other_btn_wrapper .schedule_a_free_link > svg{
+        .other_btn_wrapper .schedule_a_free_link > svg {
           margin-top: 3px;
         }
-        .sticky_txt{
-          background: #EBBD45;
+        .sticky_txt {
+          background: #ebbd45;
           margin: 0;
           padding: 11px;
           align-items: center;
@@ -231,130 +347,126 @@ let start = setInterval(() => {
           font-weight: 700;
           font-size: 18px;
           line-height: 24px;
-          color: #2B3E51 !important;
+          color: #2b3e51 !important;
           text-decoration: unset !important;
         }
-        .sticky_txt > svg{
+        .sticky_txt > svg {
           margin-left: 10px;
         }
         .logo_wrap,
-        .sticky_txt{
+        .sticky_txt {
           display: none;
+          margin: 0 auto;
         }
-      
         .sticky_header#masthead .logo_wrap,
-        .sticky_header#masthead .sticky_txt{
+        .sticky_header#masthead .sticky_txt {
           display: flex;
         }
-        .sticky_header#masthead{
+        .sticky_header#masthead {
           position: fixed;
           top: 0;
           width: 100%;
-          background: #3E5062 !important;
+          background: #3e5062 !important;
           border: none;
         }
-        .sticky_header#masthead .elementor-24572 .elementor-element.elementor-element-d3b93f4{
+        .sticky_header#masthead .elementor-24572 .elementor-element.elementor-element-d3b93f4 {
           display: none;
         }
-        .sticky_header#masthead .tel_link::before{
-            background: url(https://conversionratestore.github.io/projects/grantme/img/call.svg) no-repeat center center;
+        .sticky_header#masthead .tel_link::before {
+          background: url(https://conversionratestore.github.io/projects/grantme/img/call.svg) no-repeat center center;
         }
-        .sticky_header#masthead .elementor-24572 .elementor-element.elementor-element-e3c03f0 .hfe-nav-menu-icon{
-          color: #FFFFFF;
+        .sticky_header#masthead .elementor-24572 .elementor-element.elementor-element-e3c03f0 .hfe-nav-menu-icon {
+          color: #ffffff;
         }
-        .menu_open#masthead{
+        .menu_open#masthead {
           height: 100vh;
           position: fixed;
-          overflow: scroll;
+          overflow-y: scroll;
           top: 0;
           left: 0;
           width: 100%;
           background: #ffffff !important;
           z-index: 100;
         }
-        .menu_open#masthead .elementor-24572 .elementor-element.elementor-element-e3c03f0 .hfe-nav-menu-icon{
+        .menu_open#masthead .elementor-24572 .elementor-element.elementor-element-e3c03f0 .hfe-nav-menu-icon {
           color: initial;
         }
-        .menu_open#masthead .elementor-24572 .elementor-element.elementor-element-d3b93f4{
+        .menu_open#masthead .elementor-24572 .elementor-element.elementor-element-d3b93f4 {
           display: block;
         }
         .menu_open#masthead .logo_wrap {
-              display: none;
-          }
-        .menu_open#masthead .tel_link::before{
-            background: url(https://conversionratestore.github.io/projects/grantme/img/burger_open_call.svg) no-repeat center center;
+          display: none;
         }
-        .menu_open#masthead .elementor-24572 .elementor-element.elementor-element-e3c03f0 .hfe-dropdown{
+        .menu_open#masthead .tel_link::before {
+          background: url(https://conversionratestore.github.io/projects/grantme/img/burger_open_call.svg) no-repeat center center;
+        }
+        .menu_open#masthead .elementor-24572 .elementor-element.elementor-element-e3c03f0 .hfe-dropdown {
           padding: 36px 0 0;
           box-shadow: unset;
           border-radius: unset !important;
-          border-top: 1px solid #CCCCCC;
+          border-top: 1px solid #cccccc;
           flex-direction: column;
         }
-        .hfe-nav-menu #menu-item-27581{
+        .hfe-nav-menu #menu-item-27581 {
           border: none !important;
         }
-        .menu_open#masthead .hfe-nav-menu__layout-horizontal li.menu-item a{
+        .menu_open#masthead .hfe-nav-menu__layout-horizontal li.menu-item a {
           text-align: left !important;
           padding: 9px 24px !important;
         }
-        .elementor-24572 .elementor-element.elementor-element-e3c03f0 .hfe-nav-menu-icon{
+        .elementor-24572 .elementor-element.elementor-element-e3c03f0 .hfe-nav-menu-icon {
           padding: 0;
         }
-        .elementor-24572 .elementor-element.elementor-element-d790b6a{
+        .elementor-24572 .elementor-element.elementor-element-d790b6a {
           padding: 10px 24px;
         }
-        .elementor-24572 .elementor-element.elementor-element-4eb5bf6{
+        .elementor-24572 .elementor-element.elementor-element-4eb5bf6 {
           width: 40px;
         }
-        .elementor-24572 .elementor-element.elementor-element-d3b93f4{
+        .elementor-24572 .elementor-element.elementor-element-d3b93f4 {
           width: 100%;
           max-width: 134px;
           height: 40px;
         }
         .elementor-24572 .elementor-element.elementor-element-2c332a5 img {
-            width: 100%;
-            max-width: 100%;
-            height: 100%;
+          width: 100%;
+          max-width: 100%;
+          height: 100%;
         }
-        .elementor-section .elementor-container{
+        .elementor-section .elementor-container {
           flex-direction: row-reverse;
           justify-content: space-between;
           align-items: center;
         }
-        .elementor-24572 .elementor-element.elementor-element-e3c03f0 .hfe-nav-menu__toggle{
+        .elementor-24572 .elementor-element.elementor-element-e3c03f0 .hfe-nav-menu__toggle {
           margin: 0;
         }
-        .tuition_wrapper p:nth-child(4),
-        .tuition_section a.btn{
-          display: none;
-        }
-        .counter_section{
+        .counter_section {
           padding: 16px 0 0;
         }
         #newCounter .counter_block .counter_text {
           width: 100%;
         }
-        .main_section{
+        .main_section {
           padding: 24px 0 0;
         }
-        .main_section h1.display{
+        .main_section h1.display {
           font-size: 36px;
           line-height: 44px;
           max-width: 300px;
           margin: 0 auto;
         }
-        .main_slider_hor .h1{
+        .main_slider_hor .h1 {
           font-size: 44px;
           line-height: 44px;
         }
-        .main_section .slick-vertical .slick-slide{
+        .main_section .slick-vertical .slick-slide {
           margin: 0 !important;
         }
-        .main_section p{
+        .main_section p {
           font-size: 18px;
         }
-        .main_section h4{
+        .main_section h4 {
           margin-bottom: 24px;
         }
         .reviews_btn_wrapper > p:nth-child(2) {
@@ -362,40 +474,30 @@ let start = setInterval(() => {
           font-size: 14px;
           line-height: 21px;
         }
-        .reviews_btn_wrapper > p:nth-child(3){
+        .reviews_btn_wrapper > p:nth-child(3) {
           font-weight: 700;
           font-size: 14px;
           line-height: 21px;
           text-decoration-line: underline;
         }
-        #newCounter .additional_txt{
+        #newCounter .additional_txt {
           font-weight: 500;
           font-size: 16px;
           line-height: 22px;
         }
-        #newCounter .additional_txt::before{
+        #newCounter .additional_txt::before {
           width: 55px;
           height: 71px;
           top: 4px;
           left: -61px;
           background-size: contain;
         }
-        #newCounter ul{
-          flex-direction: column;
+        #newCounter ul {
           margin: 24px auto 0;
           border: none;
           border-radius: unset;
         }
-        #newCounter ul > li:nth-child(1){
-          width: 100%;
-          padding: 20px 18px;
-        }
-        #newCounter ul > li:nth-child(2){
-          width: 100%;
-          padding: 50px 18px 20px;
-          gap: 70px;
-        }
-        .schedule_a_free_link{
+        .schedule_a_free_link {
           font-size: 16px;
           line-height: 24px;
           padding: 2px;
@@ -410,7 +512,7 @@ let start = setInterval(() => {
           display: inline-block;
           margin: 0 12px 0 0;
         }
-        #newCounter .schedule_title{
+        #newCounter .schedule_title {
           display: inline-block;
           margin: 0 !important;
           font-weight: 700;
@@ -418,30 +520,26 @@ let start = setInterval(() => {
           line-height: 24px;
           max-width: 210px;
         }
-        #newCounter .schedule_txt{
+        #newCounter .schedule_txt {
           margin: 8px 0 16px;
           font-size: 15px;
         }
-        .book_a_call_btn{
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          max-width: 317px;
-          height: 62px;
+      }
+      @media (max-width: 768px) {
+        #newCounter ul > li:nth-child(1) {
           width: 100%;
-          background: #EBBD45;
-          border-radius: 6px;
-          font-weight: 700;
-          font-size: 20px;
-          line-height: 20px;
-          color: #2B3E51 !important;
+          padding: 20px 18px;
+        }
+        #newCounter ul > li:nth-child(2) {
+          width: 100%;
+          padding: 50px 18px 20px;
+          gap: 70px;
         }
       }
-
     </style>
     `;
 
-    let reviewsHtml = `
+    let reviewsHtml = /*html */ `
     <div class="reviews_btn_wrapper" data-reviews data-count="1">
       <svg width="109" height="20" viewBox="0 0 109 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M0 19.1283H19.9722V0.0078125H0V19.1283Z" fill="#2DAF6B" />
@@ -496,8 +594,8 @@ let start = setInterval(() => {
     </div>`;
 
     let newTxtTuitionSection = /*html */ `
-      <p>Unlock university admission and funding opportunities available to students. Click the button below to book a call now!</p>
-      <a class="book_a_call_btn" href="" target="_blank" rel="noopener noreferrer">Book a call</a>
+      <p class="new_txt_tuition">Unlock university admission and funding opportunities available to students. Click the button below to book a call now!</p>
+      <a class="book_a_call_btn new_btn_tuition" href="" target="_blank" rel="noopener noreferrer">Book a call</a>
     `;
 
     let otherBtnWrapper = /*html */ `
@@ -514,31 +612,32 @@ let start = setInterval(() => {
 
     let stickyHeader = /*html */ `
     <div class="sticky_header_desk">
-      <a href="#" class="logo_wrap">
-        <img src="https://conversionratestore.github.io/projects/grantme/img/sticky_grantme_logo.png" alt="logo" />
-      </a>
-      <div class="reviews_btn_wrapper" data-reviews>
-        <svg width="109" height="20" viewBox="0 0 109 20" fill="none" xmlns="htactp://www.w3.org/2000/svg">
-          <path d="M0 19.1283H19.9722V0.0078125H0V19.1283Z" fill="#2DAF6B" />
-          <path d="M17.0255 8.14277L5.69745 16.021L7.35043 11.1519L3.02344 8.14277H8.37182L10.0244 3.27344L11.6771 8.14277H17.0255ZM10.0249 13.0121L13.1186 12.3891L14.3512 16.021L10.0249 13.0121Z" fill="white" />
-          <path d="M22.2578 19.1283H42.23V0.0078125H22.2578V19.1283Z" fill="#2DAF6B" />
-          <path d="M22.2578 19.1283H32.2439V0.0078125H22.2578V19.1283Z" fill="#2DAF6B" />
-          <path d="M32.4833 12.9379L35.1361 12.389L36.3631 16.1034L32.2028 13.1308L27.8803 16.1034L29.558 11.2167L25.1659 8.19658H30.5946L32.2716 3.30957L33.9493 8.19658H39.3777L32.4833 12.9379Z" fill="white" />
-          <path d="M44.5139 19.1283H64.4861V0.0078125H44.5139V19.1283Z" fill="#2DAF6B" />
-          <path d="M44.5139 19.1283H54.5V0.0078125H44.5139V19.1283Z" fill="#2DAF6B" />
-          <path d="M61.5394 8.14277L50.2114 16.021L51.8643 11.1519L47.5374 8.14277H52.8857L54.5384 3.27344L56.191 8.14277L61.5394 8.14277ZM54.5388 13.0121L57.6325 12.3891L58.8651 16.021L54.5388 13.0121Z" fill="white" />
-          <path d="M66.7715 19.1283H86.7437V0.0078125H66.7715V19.1283Z" fill="#2DAF6B" />
-          <path d="M66.7715 19.1283H76.7576V0.0078125H66.7715V19.1283Z" fill="#2DAF6B" />
-          <path d="M83.7969 8.14277L72.4693 16.021L74.1219 11.1519L69.7949 8.14277H75.1433L76.7959 3.27344L78.4486 8.14277L83.7969 8.14277ZM76.7963 13.0121L79.89 12.3891L81.1226 16.021L76.7963 13.0121Z" fill="white" />
-          <path d="M89.0273 19.1283H109V0.0078125H89.0273V19.1283Z" fill="#2DAF6B" />
-          <path d="M89.0273 19.1283H99.0134V0.0078125H89.0273V19.1283Z" fill="#2DAF6B" />
-          <path d="M106.053 8.14277L94.7251 16.021L96.3778 11.1519L92.0508 8.14277H97.3992L99.0518 3.27344L100.704 8.14277H106.053ZM99.0522 13.0121L102.146 12.3891L103.379 16.021L99.0522 13.0121Z" fill="white" />
-        </svg>
-
-        <p>TrustScore <span class="accent_var">4.8</span></p>
-        <p>(920+ reviews)</p>
+      <div class="container">
+        <a href="#" class="logo_wrap">
+          <img src="https://conversionratestore.github.io/projects/grantme/img/sticky_grantme_logo_new.png" alt="logo" />
+        </a>
+        <div class="reviews_btn_wrapper" data-reviews>
+          <svg width="109" height="20" viewBox="0 0 109 20" fill="none" xmlns="htactp://www.w3.org/2000/svg">
+            <path d="M0 19.1283H19.9722V0.0078125H0V19.1283Z" fill="#2DAF6B" />
+            <path d="M17.0255 8.14277L5.69745 16.021L7.35043 11.1519L3.02344 8.14277H8.37182L10.0244 3.27344L11.6771 8.14277H17.0255ZM10.0249 13.0121L13.1186 12.3891L14.3512 16.021L10.0249 13.0121Z" fill="white" />
+            <path d="M22.2578 19.1283H42.23V0.0078125H22.2578V19.1283Z" fill="#2DAF6B" />
+            <path d="M22.2578 19.1283H32.2439V0.0078125H22.2578V19.1283Z" fill="#2DAF6B" />
+            <path d="M32.4833 12.9379L35.1361 12.389L36.3631 16.1034L32.2028 13.1308L27.8803 16.1034L29.558 11.2167L25.1659 8.19658H30.5946L32.2716 3.30957L33.9493 8.19658H39.3777L32.4833 12.9379Z" fill="white" />
+            <path d="M44.5139 19.1283H64.4861V0.0078125H44.5139V19.1283Z" fill="#2DAF6B" />
+            <path d="M44.5139 19.1283H54.5V0.0078125H44.5139V19.1283Z" fill="#2DAF6B" />
+            <path d="M61.5394 8.14277L50.2114 16.021L51.8643 11.1519L47.5374 8.14277H52.8857L54.5384 3.27344L56.191 8.14277L61.5394 8.14277ZM54.5388 13.0121L57.6325 12.3891L58.8651 16.021L54.5388 13.0121Z" fill="white" />
+            <path d="M66.7715 19.1283H86.7437V0.0078125H66.7715V19.1283Z" fill="#2DAF6B" />
+            <path d="M66.7715 19.1283H76.7576V0.0078125H66.7715V19.1283Z" fill="#2DAF6B" />
+            <path d="M83.7969 8.14277L72.4693 16.021L74.1219 11.1519L69.7949 8.14277H75.1433L76.7959 3.27344L78.4486 8.14277L83.7969 8.14277ZM76.7963 13.0121L79.89 12.3891L81.1226 16.021L76.7963 13.0121Z" fill="white" />
+            <path d="M89.0273 19.1283H109V0.0078125H89.0273V19.1283Z" fill="#2DAF6B" />
+            <path d="M89.0273 19.1283H99.0134V0.0078125H89.0273V19.1283Z" fill="#2DAF6B" />
+            <path d="M106.053 8.14277L94.7251 16.021L96.3778 11.1519L92.0508 8.14277H97.3992L99.0518 3.27344L100.704 8.14277H106.053ZM99.0522 13.0121L102.146 12.3891L103.379 16.021L99.0522 13.0121Z" fill="white" />
+          </svg>
+          <p>TrustScore <span class="accent_var">4.8</span></p>
+          <p>(920+ reviews)</p>
+        </div>
+        <a class="book_a_call_btn" href="/" target="_blank">Book a Free Call</a>
       </div>
-      <a class="book_a_call_btn" href="/" target="_blank">Book a Free Call</a>
     </div>
     `;
 
@@ -546,11 +645,13 @@ let start = setInterval(() => {
     document.querySelector(".main_section .btn_yellow")?.insertAdjacentHTML("beforebegin", reviewsHtml);
     document.querySelector(".counter_section .counter_wrapper.flex")?.insertAdjacentHTML("beforebegin", newCounter);
     document.querySelector(".tuition_section a.btn")?.insertAdjacentHTML("beforebegin", newTxtTuitionSection);
-    if (innerWidth <= 768) {
+
+    // update header
+    if (innerWidth <= 1025) {
       document.querySelector(".elementor-24572 .elementor-element.elementor-element-d3b93f4")?.insertAdjacentHTML(
         "beforebegin",
         `</a><a class="tel_link" href="tel:+18004934084"></a>
-        <a href="/" class="logo_wrap"><img src="https://conversionratestore.github.io/projects/grantme/img/sticky_grantme_logo.png" alt="logo" />
+        <a href="/" class="logo_wrap"><img src="https://conversionratestore.github.io/projects/grantme/img/sticky_grantme_logo_new.png" alt="logo" />
         `
       );
       document.querySelector("#menu-1-e3c03f0").insertAdjacentHTML("afterend", otherBtnWrapper);
@@ -570,10 +671,12 @@ let start = setInterval(() => {
             </defs></svg
         ></a>`
       );
+    } else {
+      document.querySelector(".elementor-24572 .elementor-element.elementor-element-1e45e76.elementor-column.elementor-element[data-element_type=column]>.elementor-widget-wrap.elementor-element-populated").insertAdjacentHTML("afterbegin", `<a class="tel_link" href="tel:+18004934084">(800) 493-4084</a>`);
     }
 
-    // sticky Box
-    if (window.innerWidth <= 768) {
+    // sticky header
+    if (window.innerWidth <= 1025) {
       if (document.querySelector("#masthead")) {
         const element = document.querySelector("#masthead");
         const elemClose = document.querySelector(".schedule_a_free_block");

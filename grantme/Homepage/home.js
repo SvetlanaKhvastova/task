@@ -40,7 +40,14 @@ let slickInterval = setInterval(() => {
         {
           breakpoint: 1280,
           settings: {
-            slidesToShow: 3.2,
+            slidesToShow: 3.8,
+            slidesToScroll: 1,
+          },
+        },
+        {
+          breakpoint: 1160,
+          settings: {
+            slidesToShow: 3.1,
             slidesToScroll: 1,
           },
         },
