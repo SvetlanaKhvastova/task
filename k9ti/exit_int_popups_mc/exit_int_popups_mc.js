@@ -1,10 +1,35 @@
 let startPopup = setInterval(() => {
-  if (document) {
+  if (document.querySelector("#player")) {
     clearInterval(startPopup);
+    let eventVar = "desktop";
+    if (window.innerWidth <= 768) {
+      eventVar = "mobile";
+    }
+    function pushDataLayer(actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || [];
+      if (labelDataLayer) {
+        console.log(actionDataLayer + " : " + labelDataLayer);
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Exit intent popup ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        });
+      } else {
+        console.log(actionDataLayer);
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Exit intent popup ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+        });
+      }
+    }
 
     let popupStyle = /*html */ `
     <style>
-
+      .mobile_var{
+        display: none;
+      }
     body.open_var{
         overflow: hidden;
     }
@@ -18,9 +43,9 @@ let startPopup = setInterval(() => {
         display: flex;
         overflow-y: auto;
         z-index: 1000000000;
-        transition: all 0.5s ease;
+        transition: opacity 0.5s ease;
     }
-    .overlay_popup.is_hidden{
+    .overlay_popup.is_close{
         opacity: 0;
         pointer-events: none;
     }
@@ -125,7 +150,7 @@ let startPopup = setInterval(() => {
     }
     .subtitle_var{
         font-weight: 700;
-        font-size: 16px;
+        font-size: 16px !important;
         line-height: 22px;
         color: #193973 !important;
         margin: 0 0 12px;
@@ -145,7 +170,7 @@ let startPopup = setInterval(() => {
         font-weight: 400;
         font-size: 14px;
         line-height: 21px;
-        color: #4B4B4B !important;
+        color: #734F22 !important;
         margin: 0 0 0 8px;
     }
     .btn_wrapper{
@@ -171,6 +196,10 @@ let startPopup = setInterval(() => {
         border-radius: 10px;
         outline: none;
         border: none;
+    }
+    .blue_accept_btn:hover{
+      box-shadow: unset;
+      transition: all 0.2s ease-in-out;
     }
     .blue_accept_btn:disabled{
         background: #CCCCCC;
@@ -255,23 +284,6 @@ let startPopup = setInterval(() => {
         margin: 0;
         text-align: center;
     }
-    .container_popup.last_step{
-        max-width: 820px;
-    }
-    .container_popup.last_step .img_wrapper{
-        background: #FFFFFF;
-        display: flex;
-        align-items: center;
-        border-right: 2px solid #DDE8F1;
-        width: 43%;
-    }
-    .container_popup.last_step .main_txt_wrapper {
-        width: 57%;
-        padding: 28px 28px 57px;
-    }
-    .container_popup.email_step .main_txt_wrapper{
-        padding-top: 60px;
-    }
     .test_email_label{
         position: relative;
         width: 100%;
@@ -306,17 +318,44 @@ let startPopup = setInterval(() => {
         font-size: 13px !important;
         margin: 1px 0 0 16px;
     }
+    [data-popup="5"] {
+      background: #FFFFFF;
+    }
+    [data-popup="5"] .img_wrapper{
+        display: flex;
+        align-items: center;
+        border-right: 2px solid #DDE8F1;
+        width: 43%;
+    }
+    [data-popup="5"] .main_txt_wrapper {
+        width: 57%;
+        padding: 28px 28px 57px;
+    }
+    .container_popup.email_step .main_txt_wrapper{
+        padding-top: 60px;
+    }
+    [data-popup="5"] .container_popup{
+        max-width: 820px;
+    }
     .is_hidden{
         display: none;
     }
 
     @media (max-width: 768px) {
-        .img_wrapper{
+            .mobile_var{
+        display: block;
+      }
+      .overlay_popup .container_popup{
+            margin: 16px auto auto;
+      }
+        .img_wrapper,
+        [data-popup="5"] .img_wrapper{
             display: none;
         }
-        .main_txt_wrapper{
+        .main_txt_wrapper,
+        [data-popup="5"] .main_txt_wrapper{
             width: 100%;
-            order-radius: 16px;
+            border-radius: 16px;
             padding: 20px;
         }
         .overlay_popup .container_popup{
@@ -331,16 +370,99 @@ let startPopup = setInterval(() => {
             margin-bottom: 16px;
         }
         .important_note_wrapper > p{
-            margin: 0 0 6px;
+            margin: 0 0 0 6px;
             color: #734F22 !important;
         }
-
+        [data-popup="1"] .txt_link::before{
+          content: unset;
+        }
+        [data-popup="1"] .txt_link{
+          padding: 0;
+        }
+        .subtitle_var{
+          position: relative;
+          padding-left: 60px;
+        }
+        .subtitle_var::before{
+          content: '';
+          position: absolute;
+          left: 0px;
+          top: 0px;
+          width: 48px;
+          height: 48px;
+          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training1.svg) no-repeat center center;
+          background-size: contain;
+        }
+        [data-popup="2"] .subtitle_var::before{
+          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training2.svg) no-repeat center center;
+        }
+        [data-popup="3"] .subtitle_var::before{
+          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training3.svg) no-repeat center center;
+        }
+        [data-popup="4"] .subtitle_var::before{
+          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training4.svg) no-repeat center center;
+        }
+        [data-popup="5"] .subtitle_var::before{
+          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training5.svg) no-repeat center center;
+        }
+        [data-popup="5"] .title_var{
+          max-width: 259px;
+        }
+        [data-popup="5"] .txt_list_box{
+          margin: 0;
+          padding: 18px 16px 12px;
+          border: none;
+        }
+        [data-popup="5"] .guaranted_wrapper.mobile_var{
+          margin: 12px 0;
+        }
+        .container_popup.email_step .main_txt_wrapper {
+          padding-top: 144px;
+        }
+        .container_popup.email_step .title_var{
+          position: relative;
+          text-align: center;
+        }
+        .container_popup.email_step .title_var::before{
+          content: '';
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          top: -80px;
+          width: 72px;
+          height: 72px;
+          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training6.svg) no-repeat center center;
+          background-size: contain;
+        }
+        .container_popup.email_step .descr_var{
+          text-align: center;
+        }
+        .container_popup.email_step .test_email_label{
+          margin-bottom: 20px;
+        }
     }
     @media (max-width: 320px) {
-
-    }
-    @media (max-width: 280px) {
-
+        .overlay_popup .container_popup {
+            max-width: 305px;
+        }
+        .subtitle_var{
+            font-size: 14px !important;
+        }
+        .main_txt_wrapper, [data-popup="5"] .main_txt_wrapper{
+          padding: 15px;
+        }
+        .title_var{
+              font-size: 18px !important;
+        }
+        .txt_list_box {
+          padding: 10px;
+        }
+        .txt_link p, .much_more_txt{
+              font-size: 13px;
+        }
+        .do_not_want_btn{
+              font-size: 10px;
+        }
     }
     </style>
     `;
@@ -357,9 +479,9 @@ let startPopup = setInterval(() => {
         </div>
 `;
     let contentPopupFirst = /*html */ `
-        <div class="content_popup">
+        <div class="content_popup" data-popup="1">
             <div class="img_wrapper">
-                <img src="https://conversionratestore.github.io/projects/knineti/img/not_click_img.jpg" alt="" />
+                <img src="https://conversionratestore.github.io/projects/knineti/img/not_click_img_opt.png" alt="" />
             </div>
             <div class="main_txt_wrapper">
                 <h2 class="title_var">Did you know?</h2>
@@ -391,9 +513,9 @@ let startPopup = setInterval(() => {
         </div>
     `;
     let contentPopupSecond = /*html */ `
-        <div class="content_popup">
+        <div class="content_popup" data-popup="2">
             <div class="img_wrapper">
-                <img src="https://conversionratestore.github.io/projects/knineti/img/watched_less_than_5_img.jpg" alt="" />
+                <img src="https://conversionratestore.github.io/projects/knineti/img/watched_less_than_5_img_opt.png" alt="" />
             </div>
             <div class="main_txt_wrapper">
                 <h2 class="title_var">Don’t miss your chance!</h2>
@@ -433,9 +555,9 @@ let startPopup = setInterval(() => {
     `;
 
     let contentPopupThird = /*html */ `
-        <div class="content_popup">
+        <div class="content_popup" data-popup='3'>
             <div class="img_wrapper">
-                <img src="https://conversionratestore.github.io/projects/knineti/img/watched_less_than_30_img.jpg" alt="" />
+                <img src="https://conversionratestore.github.io/projects/knineti/img/watched_less_than_30_img_opt.png" alt="" />
             </div>
             <div class="main_txt_wrapper">
                 <h2 class="title_var">Don’t miss your chance!</h2>
@@ -473,15 +595,15 @@ let startPopup = setInterval(() => {
         </div>
     `;
     let contentPopupFourth = /*html */ `
-        <div class="content_popup">
+        <div class="content_popup" data-popup='4'>
             <div class="img_wrapper">
-                <img src="https://conversionratestore.github.io/projects/knineti/img/watched_less_than_35_img.jpg" alt="" />
+                <img src="https://conversionratestore.github.io/projects/knineti/img/watched_less_than_35_img_opt.png" alt="" />
             </div>
             <div class="main_txt_wrapper">
                 <h2 class="title_var">CONGRATULATIONS!</h2>
                 <p class="descr_var">You've unlocked a <b>40% discount ($200)</b> for UNLIMITED ACCESS to our 10-week Total Transformation Masterclass!</p>
                 <div class="txt_list_box">
-                    <h3 class="subtitle_var">In the next few minutes, you'll discover:</h3>
+                    <h3 class="subtitle_var">In addition, you will receive the following for FREE:</h3>
                     <ul class="txt_list">
                         <li class="txt_link">
                             <p>10 weeks of <b>personal coaching</b> from our training experts</p>
@@ -504,7 +626,7 @@ let startPopup = setInterval(() => {
                     <p><b>IMPORTANT NOTE: </b> This offer is <b>time limited</b>, so please use it while you can.</p>
                 </div>
                 <div class="btn_wrapper">
-                    <button class="blue_accept_btn new_enroll_now_btn">
+                    <button class="blue_accept_btn special_offer_btn">
                         <span>GET MY SPECIAL OFFER</span>
                         <svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1.2418 8.73307L4.47513 5.49974L1.2418 2.26641C0.916797 1.94141 0.916797 1.41641 1.2418 1.09141C1.5668 0.766406 2.0918 0.766406 2.4168 1.09141L6.2418 4.91641C6.5668 5.24141 6.5668 5.76641 6.2418 6.09141L2.4168 9.9164C2.0918 10.2414 1.5668 10.2414 1.2418 9.9164C0.92513 9.5914 0.916797 9.05807 1.2418 8.73307Z" fill="white" />
@@ -515,7 +637,7 @@ let startPopup = setInterval(() => {
         </div>
     `;
     let contentPopupFifth = /*html */ `
-        <div class="content_popup last_step">
+        <div class="content_popup" data-popup="5">
             <div class="img_wrapper">
                 <div class="reviews_wrap">
                     <div class="reviews_block">
@@ -539,32 +661,37 @@ let startPopup = setInterval(() => {
             </div>
             <div class="main_txt_wrapper">
                 <h2 class="title_var">Give the program a try – RISK-FREE</h2>
-                <h3 class="subtitle_var">We offer a market-leading guarantee:</h3>
-                <ul class="txt_list">
-                        <li class="txt_link">
-                            <p>Your dog WILL TOTALLY transform in 10 weeks with the help of <b>personal coaching</b> from our training experts</p>
-                        </li>
-                        <li class="txt_link">
-                            <p>You can pay in <b>3 interest-free installments</b></p>
-                        </li>
-                        <li class="txt_link">
-                            <p>You can claim your <b>money back</b> within <b>90 days</b> if in any way dissatisfied.</p>
-                        </li>
-                </ul>
-            </div>
-            <div class="important_note_wrapper">
-                    <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9.99984 1.91699C5.39984 1.91699 1.6665 5.65033 1.6665 10.2503C1.6665 14.8503 5.39984 18.5837 9.99984 18.5837C14.5998 18.5837 18.3332 14.8503 18.3332 10.2503C18.3332 5.65033 14.5998 1.91699 9.99984 1.91699ZM9.99984 11.0837C9.5415 11.0837 9.1665 10.7087 9.1665 10.2503V6.91699C9.1665 6.45866 9.5415 6.08366 9.99984 6.08366C10.4582 6.08366 10.8332 6.45866 10.8332 6.91699V10.2503C10.8332 10.7087 10.4582 11.0837 9.99984 11.0837ZM10.8332 14.417H9.1665V12.7503H10.8332V14.417Z" fill="#734F22" />
-                    </svg>
-                    <p><b>IMPORTANT NOTE: </b> This offer is <b>time limited</b>, so please use it while you can.</p>
-            </div>
-            <div class="btn_wrapper">
-                    <button class="blue_accept_btn new_enroll_now_btn">
-                        <span>ENROLL NOW</span>
-                        <svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1.2418 8.73307L4.47513 5.49974L1.2418 2.26641C0.916797 1.94141 0.916797 1.41641 1.2418 1.09141C1.5668 0.766406 2.0918 0.766406 2.4168 1.09141L6.2418 4.91641C6.5668 5.24141 6.5668 5.76641 6.2418 6.09141L2.4168 9.9164C2.0918 10.2414 1.5668 10.2414 1.2418 9.9164C0.92513 9.5914 0.916797 9.05807 1.2418 8.73307Z" fill="white" />
+                <div class="txt_list_box">
+                  <h3 class="subtitle_var">We offer a market-leading guarantee:</h3>
+                  <ul class="txt_list">
+                          <li class="txt_link">
+                              <p>Your dog WILL TOTALLY transform in 10 weeks with the help of <b>personal coaching</b> from our training experts</p>
+                          </li>
+                          <li class="txt_link">
+                              <p>You can pay in <b>3 interest-free installments</b></p>
+                          </li>
+                          <li class="txt_link">
+                              <p>You can claim your <b>money back</b> within <b>90 days</b> if in any way dissatisfied.</p>
+                          </li>
+                  </ul>
+                </div>
+                <div class="guaranted_wrapper mobile_var">
+                  <img src="https://conversionratestore.github.io/projects/knineti/img/watched_more_than_35_img.png" alt="guaranted img" />
+                </div>
+                <div class="important_note_wrapper">
+                        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.99984 1.91699C5.39984 1.91699 1.6665 5.65033 1.6665 10.2503C1.6665 14.8503 5.39984 18.5837 9.99984 18.5837C14.5998 18.5837 18.3332 14.8503 18.3332 10.2503C18.3332 5.65033 14.5998 1.91699 9.99984 1.91699ZM9.99984 11.0837C9.5415 11.0837 9.1665 10.7087 9.1665 10.2503V6.91699C9.1665 6.45866 9.5415 6.08366 9.99984 6.08366C10.4582 6.08366 10.8332 6.45866 10.8332 6.91699V10.2503C10.8332 10.7087 10.4582 11.0837 9.99984 11.0837ZM10.8332 14.417H9.1665V12.7503H10.8332V14.417Z" fill="#734F22" />
                         </svg>
-                    </button>
+                        <p><b>IMPORTANT NOTE: </b> This offer is <b>time limited</b>, so please use it while you can.</p>
+                </div>
+                <div class="btn_wrapper">
+                        <button class="blue_accept_btn new_enroll_now_btn">
+                            <span>ENROLL NOW</span>
+                            <svg width="7" height="11" viewBox="0 0 7 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1.2418 8.73307L4.47513 5.49974L1.2418 2.26641C0.916797 1.94141 0.916797 1.41641 1.2418 1.09141C1.5668 0.766406 2.0918 0.766406 2.4168 1.09141L6.2418 4.91641C6.5668 5.24141 6.5668 5.76641 6.2418 6.09141L2.4168 9.9164C2.0918 10.2414 1.5668 10.2414 1.2418 9.9164C0.92513 9.5914 0.916797 9.05807 1.2418 8.73307Z" fill="white" />
+                            </svg>
+                        </button>
+                </div>
             </div>
             </div>
         </div>
@@ -579,13 +706,35 @@ let startPopup = setInterval(() => {
       });
     });
 
+    window.onunload = unloadPage;
+    function unloadPage() {
+      console.log("unload event detected!");
+      if (sessionStorage.getItem("special_offer") && sessionStorage.getItem("exit_popup_loaded") && !sessionStorage.getItem("special_offer_end")) {
+        let start = setInterval(() => {
+          if (document.querySelector(".fp-play.fp-visible")) {
+            clearInterval(start);
+            sessionStorage.setItem("special_offer_end", "true");
+            startVideo();
+            let v = setInterval(() => {
+              if (document.querySelector("video")) {
+                clearInterval(v);
+                document.querySelector("video").currentTime = 60 * 35;
+                console.log(document.querySelector("video").currentTime, `document.querySelector("video").currentTime`);
+              }
+            }, 10);
+          }
+        }, 10);
+      }
+    }
+
     exitIntentPopup();
     function exitIntentPopup() {
       //   EXIT INTENT popup
       if (document.querySelector(".overlay_popup")) {
         let overlay = document.querySelector(".overlay_popup"),
           containerPopup = overlay.querySelector(".container_popup"),
-          btnClose = overlay.querySelector(".btn_close");
+          btnClose = overlay.querySelector(".btn_close"),
+          scroll = calcScroll();
 
         addEvent(document, "mouseout", function (e) {
           //show EXIT INTENT popup desktop
@@ -604,6 +753,26 @@ let startPopup = setInterval(() => {
         }
         if (window.innerWidth <= 768) {
           //show EXIT INTENT popup mobile
+          setTimeout(() => {
+            if (sessionStorage.getItem("exit_popup_loaded") == null && !document.querySelector("video")) {
+              sessionStorage.setItem("exit_popup_loaded", "true"); //refresh status popup
+              onOpenPopup(); //show popup
+            }
+          }, 10000);
+
+          let p = setInterval(() => {
+            if (sessionStorage.getItem("exit_popup_loaded") == null && document.querySelector("video") && !document.querySelector(".fp-play.fp-visible")) {
+              clearInterval(p);
+              let o = setInterval(() => {
+                if (document.querySelector(".fp-play.fp-visible")) {
+                  clearInterval(o);
+                  sessionStorage.setItem("exit_popup_loaded", "true"); //refresh status popup
+                  onOpenPopup(); //show popup
+                }
+              }, 10);
+            }
+          }, 10);
+
           let lastPosition = 0,
             newPosition = 0,
             currentSpeed = 0;
@@ -626,6 +795,7 @@ let startPopup = setInterval(() => {
           pausedVideo();
           overlay.classList.remove("is_hidden");
           document.querySelector("body").classList.add("open_var");
+          document.body.style.marginRight = `${scroll}px`;
 
           if (!document.querySelector(".overlay_popup .content_popup") && !document.querySelector("video")) {
             containerPopup?.insertAdjacentHTML("beforeend", contentPopupFirst);
@@ -653,18 +823,19 @@ let startPopup = setInterval(() => {
         }
 
         btnClose.addEventListener("click", (e) => {
+          pushDataLayer("Close popup (Cross icon)", `${e.target.closest(".container_popup").querySelector(".title_var").textContent}`);
           onClosePopup(); // click on btn close popup
         });
         overlay.addEventListener("click", (e) => {
           if (e.target.matches(".overlay_popup")) {
+            pushDataLayer("Close popup (Out of popup)", `${e.target.querySelector(".title_var").textContent}`);
             onClosePopup(); // click on overlay popup
           }
         });
         function onClosePopup() {
-          overlay.classList.add("is_hidden");
+          overlay.classList.add("is_close");
           if (document.querySelector("body").classList.contains("open_var")) {
             document.querySelector("body").classList.remove("open_var");
-            startVideo();
           }
         }
 
@@ -672,16 +843,35 @@ let startPopup = setInterval(() => {
           document.querySelectorAll(".blue_accept_btn").forEach((el) => {
             el.addEventListener("click", (e) => {
               if (e.currentTarget.classList.contains("new_enroll_now_btn")) {
-                console.log(`new_enroll_now_btn`);
+                pushDataLayer("Enroll now", 'Popup 4: Encourage to click "Enroll"');
                 document.querySelector(".top_menu_box .showModal").click();
               }
+              if (e.currentTarget.classList.contains("special_offer_btn")) {
+                pushDataLayer("Get my special offer", "Popup 3: Mahe the user to get special offer after minute 30 till 35 ($297 instead of $497)");
+                sessionStorage.setItem("special_offer", "true");
+                window.location.reload();
+              }
               if (e.currentTarget.classList.contains("continue_watch_btn")) {
-                console.log(`continue_watch_btn`);
+                switch (e.currentTarget.closest(".content_popup").getAttribute("data-popup")) {
+                  case "1":
+                    pushDataLayer("Start Watching Now", "Popup 1: Encourage to start watching the video");
+                    break;
+                  case "2":
+                    pushDataLayer("Continue watching", "Popup 2.1: Encourage to watch more than 5 minutes of the video.");
+                    break;
+                  case "3":
+                    pushDataLayer("Continue watching", "Popup 2.2: Encourage to watch more than 30 minutes of the video.");
+                    break;
+                  default:
+                    break;
+                }
                 onClosePopup();
+                startVideo();
               }
               if (e.currentTarget.getAttribute("data-validation")) {
-                console.log(`data-validation`);
+                pushDataLayer("Get a reminder", "Popup 2.3: Encourage to watch more than 30 minutes of the video. Email");
                 onClosePopup();
+                startVideo();
               }
             });
           });
@@ -691,16 +881,26 @@ let startPopup = setInterval(() => {
           document.querySelectorAll(".do_not_want_btn").forEach((el) => {
             el.addEventListener("click", (e) => {
               if (e.currentTarget.classList.contains("no_train_btn")) {
-                console.log(`no_train_btn`);
+                pushDataLayer("I don’t want to train my dog", "Popup 1: Encourage to start watching the video");
                 onClosePopup();
               }
               if (e.currentTarget.getAttribute("data-email")) {
-                console.log(`data-email`);
+                switch (e.currentTarget.closest(".content_popup").getAttribute("data-popup")) {
+                  case "2":
+                    pushDataLayer("I don't have time now. Remind me later.", "Popup 2.1: Encourage to watch more than 5 minutes of the video.");
+                    break;
+                  case "3":
+                    pushDataLayer("I don't have time now. Remind me later.', 'Popup 2.2: Encourage to watch more than 30 minutes of the video.");
+                    break;
+                  default:
+                    break;
+                }
+
                 e.currentTarget.closest(".container_popup").classList.add("email_step");
-                e.currentTarget.closest(".container_popup").querySelector(".blue_accept_btn").textContent = "GET A REMINDER";
+                e.currentTarget.closest(".container_popup").querySelector(".blue_accept_btn span").textContent = "GET A REMINDER";
                 e.currentTarget.closest(".container_popup").querySelector(".blue_accept_btn").setAttribute("data-validation", `true`);
                 e.currentTarget.closest(".container_popup").querySelector(".blue_accept_btn").disabled = true;
-                e.currentTarget.closest(".container_popup").querySelector(".img_wrapper img").src = "https://conversionratestore.github.io/projects/knineti/img/email_address_img.jpg";
+                e.currentTarget.closest(".container_popup").querySelector(".img_wrapper img").src = "https://conversionratestore.github.io/projects/knineti/img/email_address_img_opt.png";
                 e.currentTarget.closest(".container_popup").querySelector(".title_var").textContent = "Enter your email address to receive a reminder";
                 e.currentTarget.closest(".container_popup").querySelector(".descr_var").textContent = "We'll email you a link to access the FREE workshop at your convenience.";
                 e.currentTarget
@@ -731,22 +931,22 @@ let startPopup = setInterval(() => {
         const videoItem = document.querySelector("video");
         // document.querySelector("video").currentTime=4*60
 
-        if (videoItem.currentTime <= 5 * 60) {
+        if (videoItem.currentTime < 5 * 60) {
           console.log(`Users who watched less than 5 minutes of video`);
           if (!document.querySelector(".overlay_popup .content_popup")) {
             document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopupSecond);
           }
-        } else if (videoItem.currentTime > 5 * 60 && videoItem.currentTime <= 30 * 60) {
+        } else if (videoItem.currentTime >= 5 * 60 && videoItem.currentTime < 30 * 60) {
           console.log(`Users who watched less than 30 minutes of video but more than 5 minutes of video`);
           if (!document.querySelector(".overlay_popup .content_popup")) {
             document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopupThird);
           }
-        } else if (videoItem.currentTime > 30 * 60 && videoItem.currentTime <= 35 * 60) {
+        } else if (videoItem.currentTime >= 30 * 60 && videoItem.currentTime < 35 * 60) {
           console.log(`Users who watched less than 35 minutes of video but more than 30 minutes of video`);
           if (!document.querySelector(".overlay_popup .content_popup")) {
             document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopupFourth);
           }
-        } else if (videoItem.currentTime > 35 * 60) {
+        } else if (videoItem.currentTime >= 35 * 60) {
           console.log(`Users who watched more than 35 minutes of video`);
           if (!document.querySelector(".overlay_popup .content_popup")) {
             document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopupFifth);
@@ -759,6 +959,9 @@ let startPopup = setInterval(() => {
       document.querySelector(".input_test_email").addEventListener("input", () => {
         validationForm();
       });
+      document.querySelector(".test_email_label").addEventListener("click", () => {
+        pushDataLayer("Input. Email", "Popup 2.3: Encourage to watch more than 30 minutes of the video. Email");
+      });
     }
 
     function validationForm() {
@@ -767,7 +970,7 @@ let startPopup = setInterval(() => {
       if (inputValueEmail === null) {
         document.querySelector(`input[name='emailTest']`)?.closest("label").classList.add("label_error");
         if (!document.querySelector(`.text_validation.email_var`)) {
-          document.querySelector(`input[name='emailTest']`)?.closest("label").insertAdjacentHTML("afterend", `<p class="text_validation email_var">Must be a valid email address</p>`);
+          document.querySelector(`input[name='emailTest']`)?.closest("label").insertAdjacentHTML("afterend", `<p class="text_validation email_var">Please enter a valid email address.</p>`);
         }
         document.querySelector(".blue_accept_btn").disabled = true;
       } else {
@@ -778,17 +981,124 @@ let startPopup = setInterval(() => {
     }
 
     function pausedVideo() {
-      console.log(`pausedVideo`);
-
       if (!document.querySelector(".flowplayer.is-paused .fp-ui")) {
         document.querySelector(".flowplayer .fp-ui").click();
       }
     }
     function startVideo() {
-      console.log(`startVideo`);
       if (document.querySelector(".flowplayer.is-paused .fp-ui")) {
         document.querySelector(".flowplayer.is-paused .fp-ui")?.click();
       }
     }
+    function calcScroll() {
+      let div = document.createElement("div");
+      div.style.width = "50px";
+      div.style.height = "50px";
+      div.style.overflowY = "scroll";
+      div.style.visibility = "hidden";
+
+      document.body.appendChild(div);
+      let scrollWidth = div.offsetWidth - div.clientWidth;
+      div.remove();
+      return scrollWidth;
+    }
+
+    // IntersectionObserver
+    let obs = new IntersectionObserver(visibility, {
+      threshold: 1,
+    });
+    let obs2 = new IntersectionObserver(visibility2, {
+      threshold: 1,
+    });
+    let int = setInterval(() => {
+      if (document.querySelector('[data-popup="1"]')) {
+        clearInterval(int);
+        obs.observe(document.querySelector('[data-popup="1"]'));
+      }
+    }, 100);
+    let int2 = setInterval(() => {
+      if (document.querySelector('[data-popup="2"]')) {
+        clearInterval(int2);
+        obs.observe(document.querySelector('[data-popup="2"]'));
+      }
+    }, 100);
+    let int3 = setInterval(() => {
+      if (document.querySelector('[data-popup="3"]')) {
+        clearInterval(int3);
+        obs.observe(document.querySelector('[data-popup="3"]'));
+      }
+    }, 100);
+    let int4 = setInterval(() => {
+      if (document.querySelector('[data-popup="4"]')) {
+        clearInterval(int4);
+        obs.observe(document.querySelector('[data-popup="4"]'));
+      }
+    }, 100);
+    let int5 = setInterval(() => {
+      if (document.querySelector('[data-popup="5"]')) {
+        clearInterval(int5);
+        obs.observe(document.querySelector('[data-popup="5"]'));
+      }
+    }, 100);
+    let int6 = setInterval(() => {
+      if (document.querySelector(".container_popup.email_step")) {
+        clearInterval(int6);
+        obs.observe(document.querySelector(".container_popup.email_step"));
+      }
+    }, 100);
+    function visibility(entries) {
+      entries.forEach((i) => {
+        if (i.isIntersecting) {
+          setTimeout(function () {
+            obs2.observe(i.target);
+          }, 100);
+        }
+      });
+    }
+    function visibility2(entries) {
+      entries.forEach((i) => {
+        if (i.isIntersecting) {
+          if (i.target.classList.contains("email_step")) {
+            pushDataLayer("View element on screen", "Popup 2.3: Encourage to watch more than 30 minutes of the video. Email");
+          }
+          switch (i.target.getAttribute("data-popup")) {
+            case "1":
+              pushDataLayer("View element on screen", "Popup 1: Encourage to start watching the video");
+              break;
+            case "2":
+              pushDataLayer("View element on screen", "Popup 2.1: Encourage to watch more than 5 minutes of the video.");
+              break;
+            case "3":
+              pushDataLayer("View element on screen", "Popup 2.2: Encourage to watch more than 30 minutes of the video.");
+              break;
+            case "4":
+              pushDataLayer("View element on screen", "Popup 3: Mahe the user to get special offer after minute 30 till 35 ($297 instead of $497)");
+              break;
+            case "5":
+              pushDataLayer("View element on screen", 'Popup 4: Encourage to click "Enroll"');
+              break;
+            default:
+              break;
+          }
+          obs.unobserve(i.target);
+        }
+        obs2.unobserve(i.target);
+      });
+    }
+
+    pushDataLayer("loaded");
+    const recordMF = setInterval(() => {
+      if (typeof window._mfq === "object") {
+        clearInterval(recordMF);
+        window._mfq.push(["setVariable", "exp_exit_intent_popup", "var1"]);
+      }
+    }, 200);
+    const record = setInterval(() => {
+      if (typeof clarity === "function") {
+        clearInterval(record);
+        clarity("set", "exp_exit_intent_popup", "variant_1");
+      }
+    }, 200);
+    document.querySelector(".exp")?.remove();
   }
 }, 100);
