@@ -706,25 +706,25 @@ let startPopup = setInterval(() => {
       });
     });
 
-    window.onunload = unloadPage;
-    function unloadPage() {
-      console.log("unload event detected!");
-      if (sessionStorage.getItem("special_offer") && sessionStorage.getItem("exit_popup_loaded") && !sessionStorage.getItem("special_offer_end")) {
-        let start = setInterval(() => {
-          if (document.querySelector(".fp-play.fp-visible")) {
-            clearInterval(start);
-            sessionStorage.setItem("special_offer_end", "true");
-            startVideo();
-            let v = setInterval(() => {
-              if (document.querySelector("video")) {
-                clearInterval(v);
+    if (sessionStorage.getItem("special_offer") && sessionStorage.getItem("exit_popup_loaded") && !sessionStorage.getItem("special_offer_end")) {
+      let start = setInterval(() => {
+        if (document.querySelector(".fp-play.fp-visible")) {
+          clearInterval(start);
+          startVideo();
+          let v = setInterval(() => {
+            if (document.querySelector("video")) {
+              clearInterval(v);
+              document.querySelector("video").currentTime = 60 * 35;
+              sessionStorage.setItem("special_offer_end", "true");
+              console.log(document.querySelector("video").currentTime, `document.querySelector("video").currentTime`);
+              if (document.querySelector("video").currentTime !== 35 * 60) {
                 document.querySelector("video").currentTime = 60 * 35;
-                console.log(document.querySelector("video").currentTime, `document.querySelector("video").currentTime`);
+                console.log(document.querySelector("video").currentTime, `document.querySelector("video").currentTime !!!!!!!!!!!`);
               }
-            }, 10);
-          }
-        }, 10);
-      }
+            }
+          }, 10);
+        }
+      }, 10);
     }
 
     exitIntentPopup();
@@ -890,7 +890,7 @@ let startPopup = setInterval(() => {
                     pushDataLayer("I don't have time now. Remind me later.", "Popup 2.1: Encourage to watch more than 5 minutes of the video.");
                     break;
                   case "3":
-                    pushDataLayer("I don't have time now. Remind me later.', 'Popup 2.2: Encourage to watch more than 30 minutes of the video.");
+                    pushDataLayer("I don't have time now. Remind me later.", "Popup 2.2: Encourage to watch more than 30 minutes of the video.");
                     break;
                   default:
                     break;
