@@ -1,0 +1,454 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ul {
+  list-style: none;
+}
+
+.sub_title {
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 140%;
+  color: #121620;
+  margin-bottom: 16px;
+}
+.acccent_var {
+  color: rgba(6, 111, 222, 1);
+}
+.person_info_wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.person_info_wrap > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.person_info_wrap .name_var {
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 140%;
+  color: #121620;
+  margin: 2px 0;
+}
+.person_info_wrap .date_born_var {
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.0008em;
+  color: #4a567a;
+  max-width: 143px;
+  margin: 0 auto;
+  text-align: center;
+}
+.person_info_wrap .avatar_blue_box {
+  margin-left: 40px;
+}
+/* personalAstrologerChat */
+#personalAstrologerChat,
+#elementalBalance {
+  background: #fbfbfb;
+  padding: 32px 20px;
+}
+#planRelationship,
+#reviewsBlock {
+  background: #ffffff;
+  padding: 32px 20px;
+}
+#personalAstrologerChat .sub_title {
+  text-align: center;
+}
+#personalAstrologerChat .chat_preveiw {
+  background: #fbfbfb;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  padding: 16px;
+}
+#personalAstrologerChat .your_question_txt,
+#personalAstrologerChat .personal_astrologer_txt {
+  position: relative;
+}
+#personalAstrologerChat .your_question_txt p {
+  margin: 0 50px 0 auto;
+  background: #066fde;
+  border-radius: 8px;
+  padding: 12px;
+  max-width: 224px;
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.0008em;
+  color: #ffffff;
+}
+#personalAstrologerChat .your_question_txt.last_var {
+  margin-top: 12px;
+}
+#personalAstrologerChat .your_question_txt::after,
+#personalAstrologerChat .personal_astrologer_txt::before {
+  content: "";
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  width: 38px;
+  height: 38px;
+  background: url(https://conversionratestore.github.io/projects/hint/img/circle1.png) no-repeat center center;
+  background-size: contain;
+}
+#personalAstrologerChat .personal_astrologer_txt::before {
+  left: 0px;
+  background: url(https://conversionratestore.github.io/projects/hint/img/circle.png) no-repeat center center;
+  background-size: contain;
+}
+
+#personalAstrologerChat .personal_astrologer_txt p {
+  background: #eff2fd;
+  border-radius: 8px;
+  padding: 12px;
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.0008em;
+  color: #202b47;
+  max-width: 224px;
+  margin: auto 0 0 50px;
+}
+#personalAstrologerChat .personal_astrologer_txt.last_var {
+  margin-top: 6px;
+}
+#personalAstrologerChat .personal_astrologer_name {
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 16px;
+  letter-spacing: 0.0008em;
+  color: #8e8e93;
+  margin: 12px 0 6px 62px;
+}
+#personalAstrologerChat .time_var {
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 13px;
+  letter-spacing: 0.07px;
+  color: #8e8e93;
+  text-align: center;
+  margin-bottom: 12px;
+}
+#personalAstrologerChat .time_var span:nth-child(1) {
+  font-weight: 600;
+}
+/* planRelationship */
+#planRelationship .getting_wrap h4 {
+  padding: 16px;
+  background: #fbfbfb;
+  border: 1px solid #dee5f9;
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 140%;
+  color: #202b47;
+  border-radius: 10px 10px 0 0;
+}
+#planRelationship .person_info_wrap {
+  background: #ffffff;
+  border: 1px solid #dee5f9;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 8px;
+}
+#planRelationship .getting_wrap .getting_list {
+  background: #eff2fd;
+  padding: 16px;
+  border-radius: 0 0 10px 10px;
+  border: 1px solid #dee5f9;
+  border-top: unset;
+}
+#planRelationship .getting_wrap .getting_list li {
+  position: relative;
+  padding-left: 48px;
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
+  color: #202b47;
+  max-width: 293px;
+}
+#planRelationship .getting_wrap .getting_list li + li {
+  margin-top: 16px;
+}
+#planRelationship .getting_wrap .getting_list li::before {
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 40px;
+  height: 40px;
+  background: url(https://conversionratestore.github.io/projects/hint/img/plan1.svg) no-repeat center center;
+}
+#planRelationship .getting_wrap .getting_list li:nth-child(2):before {
+  background: url(https://conversionratestore.github.io/projects/hint/img/plan2.svg) no-repeat center center;
+}
+#planRelationship .getting_wrap .getting_list li:nth-child(3):before {
+  background: url(https://conversionratestore.github.io/projects/hint/img/plan3.svg) no-repeat center center;
+}
+#planRelationship .getting_wrap .getting_list li:nth-child(4):before {
+  background: url(https://conversionratestore.github.io/projects/hint/img/plan4.svg) no-repeat center center;
+}
+/* elementalBalance */
+#elementalBalance .percent_wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid #dee5f9;
+  padding: 16px 0;
+}
+#elementalBalance .percent_wrap:last-child {
+  padding-bottom: 0;
+}
+#elementalBalance .percent_wrap > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border: 1px dashed #dee5f9;
+  border-radius: 50%;
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
+  color: #121620;
+  position: relative;
+}
+#elementalBalance .percent_wrap > span:before {
+  content: "";
+  position: absolute;
+  right: -13px;
+  top: -9px;
+  width: 63px;
+  height: 72px;
+  background: url(https://conversionratestore.github.io/projects/hint/img/border1.svg) no-repeat right;
+  background-size: cover;
+}
+#elementalBalance .percent_wrap.first_var > span.last_persent::before {
+  background: url(https://conversionratestore.github.io/projects/hint/img/border2.svg) no-repeat right;
+  background-size: cover;
+  width: 53px;
+  height: 59px;
+  top: -9px;
+}
+#elementalBalance .percent_wrap.second_var > span::before {
+  background: url(https://conversionratestore.github.io/projects/hint/img/border3.svg) no-repeat right;
+  background-size: cover;
+  right: -11px;
+  top: -11px;
+  width: 76px;
+  height: 75px;
+}
+#elementalBalance .percent_wrap.second_var > {
+  background: url(https://conversionratestore.github.io/projects/hint/img/border4.svg) no-repeat right;
+  background-size: cover;
+  width: 62px;
+  height: 67px;
+  top: -7px;
+}
+#elementalBalance .percent_wrap.third_var > span::before {
+  background: url(https://conversionratestore.github.io/projects/hint/img/border5.svg) no-repeat right;
+  background-size: cover;
+  right: -10px;
+  top: -11px;
+  width: 73px;
+  height: 75px;
+}
+#elementalBalance .percent_wrap.third_var > span.last_persent::before {
+  background: url(https://conversionratestore.github.io/projects/hint/img/border6.svg) no-repeat right;
+  background-size: cover;
+  right: -11px;
+  width: 73px;
+  height: 76px;
+}
+#elementalBalance .percent_wrap.fourth_var > span::before {
+  background: url(https://conversionratestore.github.io/projects/hint/img/border7.svg) no-repeat right;
+  background-size: cover;
+  width: 52px;
+  height: 61px;
+  top: -4px;
+  left: 15px;
+}
+#elementalBalance .percent_wrap.fourth_var > span.last_persent::before {
+  background: url(https://conversionratestore.github.io/projects/hint/img/border8.svg) no-repeat right;
+  background-size: cover;
+  width: 69px;
+  height: 78px;
+  top: -12px;
+  left: -2px;
+}
+#elementalBalance .percent_wrap .img_txt_wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 38px;
+}
+#elementalBalance .percent_wrap .img_txt_wrap span {
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 140%;
+  color: #121620;
+  margin-top: 4px;
+}
+#elementalBalance .descr_wrap {
+  background: #ffffff;
+  border: 1px solid #dee5f9;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  padding: 16px;
+}
+#elementalBalance .descr_wrap p {
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
+  color: #202b47;
+}
+#elementalBalance .person_info_wrap {
+  margin-bottom: 16px;
+}
+/* reviewsBlock */
+#reviewsBlock .title_reviews_box {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+#reviewsBlock .title_reviews_box > p {
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 120%;
+  color: #121620;
+  max-width: 213px;
+}
+#reviewsBlock .count_reviews > p:first-child {
+  position: relative;
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 140%;
+  color: #121620;
+  width: 100%;
+  min-width: 103px;
+}
+#reviewsBlock .count_reviews > p:first-child::after {
+  position: absolute;
+  content: "";
+  background: url(https://conversionratestore.github.io/projects/hint/img/stars_box.svg) no-repeat right;
+  width: 76px;
+  height: 12px;
+  left: 26px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#reviewsBlock .count_reviews > p:last-child {
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 140%;
+  color: rgba(32, 43, 71, 1);
+  margin-top: 2px;
+  text-align: right;
+}
+#reviewsBlock .review_card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #dee5f9;
+  border-radius: 8px;
+  padding: 16px;
+}
+#reviewsBlock .review_card + .review_card {
+  margin-top: 12px;
+}
+#reviewsBlock .review_card_info {
+  display: flex;
+}
+#reviewsBlock .review_card_img {
+  width: 31px;
+  height: 31px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #066fde;
+  border-radius: 50%;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 140%;
+  color: #ffffff;
+  margin-right: 8px;
+}
+#reviewsBlock .review_card_name {
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 140%;
+  color: #121620;
+  margin-bottom: 4px;
+}
+#reviewsBlock .review_card_descr {
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #4a567a;
+  margin-top: 12px;
+}
+#reviewsBlock .review_card_star {
+  position: relative;
+}
+#reviewsBlock .review_card_star::before {
+  position: absolute;
+  content: "";
+  background: url(https://conversionratestore.github.io/projects/hint/img/stars_box.svg) no-repeat right;
+  width: 76px;
+  height: 12px;
+}
+#reviewsBlock .verified_txt {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.0008em;
+  color: #75db9c;
+}
+#reviewsBlock .verified_txt svg {
+  margin-right: 4px;
+}
+#reviewsBlock .load_more_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: fit-content;
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  color: #066fde;
+  margin: 34px auto 50px;
+}
+#reviewsBlock .load_more_btn svg {
+  margin-right: 12px;
+}

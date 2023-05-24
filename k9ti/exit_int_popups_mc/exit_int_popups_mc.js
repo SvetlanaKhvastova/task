@@ -1,6 +1,14 @@
 let startPopup = setInterval(() => {
   if (document.querySelector("#player")) {
     clearInterval(startPopup);
+    window._mfq = window._mfq || [];
+    (function () {
+      var mf = document.createElement("script");
+      mf.type = "text/javascript";
+      mf.defer = true;
+      mf.src = "//cdn.mouseflow.com/projects/29f75cc1-dffc-4a86-b3d0-cca4b689c018.js";
+      document.getElementsByTagName("head")[0].appendChild(mf);
+    })();
     let eventVar = "desktop";
     if (window.innerWidth <= 768) {
       eventVar = "mobile";
@@ -347,6 +355,7 @@ let startPopup = setInterval(() => {
       }
       .overlay_popup .container_popup{
             margin: 16px auto auto;
+            max-width: 343px;
       }
         .img_wrapper,
         [data-popup="5"] .img_wrapper{
@@ -358,8 +367,8 @@ let startPopup = setInterval(() => {
             border-radius: 16px;
             padding: 20px;
         }
-        .overlay_popup .container_popup{
-            max-width: 343px;
+        .overlay_popup .container_popup.email_step{
+            margin: auto;
         }
         .title_var {
             font-size: 20px !important;
@@ -390,20 +399,20 @@ let startPopup = setInterval(() => {
           top: 0px;
           width: 48px;
           height: 48px;
-          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training1.svg) no-repeat center center;
+          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training1_opt.svg) no-repeat center center;
           background-size: contain;
         }
         [data-popup="2"] .subtitle_var::before{
-          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training2.svg) no-repeat center center;
+          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training2_opt.svg) no-repeat center center;
         }
         [data-popup="3"] .subtitle_var::before{
-          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training3.svg) no-repeat center center;
+          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training3_opt.svg) no-repeat center center;
         }
         [data-popup="4"] .subtitle_var::before{
-          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training4.svg) no-repeat center center;
+          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training4_opt.svg) no-repeat center center;
         }
         [data-popup="5"] .subtitle_var::before{
-          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training5.svg) no-repeat center center;
+          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training5_opt.svg) no-repeat center center;
         }
         [data-popup="5"] .title_var{
           max-width: 259px;
@@ -431,7 +440,7 @@ let startPopup = setInterval(() => {
           top: -80px;
           width: 72px;
           height: 72px;
-          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training6.svg) no-repeat center center;
+          background: url(https://conversionratestore.github.io/projects/knineti/img/dog_training6_opt.svg) no-repeat center center;
           background-size: contain;
         }
         .container_popup.email_step .descr_var{
@@ -988,6 +997,7 @@ let startPopup = setInterval(() => {
     function startVideo() {
       if (document.querySelector(".flowplayer.is-paused .fp-ui")) {
         document.querySelector(".flowplayer.is-paused .fp-ui")?.click();
+        document.querySelector(".flowplayer.is-paused .fp-ui")?.scrollIntoView({ block: "center", behavior: "smooth" });
       }
     }
     function calcScroll() {
