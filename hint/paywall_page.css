@@ -7,7 +7,67 @@
 ul {
   list-style: none;
 }
-
+header {
+  border-bottom: 1px solid #dee5f9;
+  padding: 8px 20px;
+  background: #eff2fd;
+}
+header > div {
+  border: none;
+}
+header .rich-text p {
+  font-family: "SF Pro Text", sans-serif;
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #4a567a;
+}
+header .rich-text p span.variable-replace {
+  font-weight: 700;
+  font-size: 16px;
+  color: rgba(6, 111, 222, 1);
+}
+header .elements-container-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#button-3db4a9c9 {
+  min-height: 50px;
+  padding: 0;
+  max-width: 164px;
+  margin: 0 0 0 auto;
+  width: 100%;
+}
+#button-3db4a9c9 .label {
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  color: #ffffff;
+}
+#astrologyApp p,
+#personalisedCompatibility p,
+#astrologyTools p,
+#whatUsersSay p,
+#uniqueIdentities p,
+#featuredHint p,
+#astrologistsVideos p,
+#personalAstrologerChat p,
+#planRelationship p,
+#elementalBalance p,
+#reviewsBlock p {
+  margin: 0;
+  padding: 0;
+}
+.main_title {
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 140%;
+  color: #121620;
+}
 .sub_title {
   font-family: "SF Pro Text", sans-serif;
   font-weight: 600;
@@ -51,6 +111,375 @@ ul {
 }
 .person_info_wrap .avatar_blue_box {
   margin-left: 40px;
+}
+.getting_wrap h4 {
+  padding: 16px;
+  background: #fbfbfb;
+  border: 1px solid #dee5f9;
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 140%;
+  color: #202b47;
+  border-radius: 10px 10px 0 0;
+}
+.getting_wrap .getting_list {
+  background: #eff2fd;
+  padding: 16px;
+  border-radius: 0 0 10px 10px;
+  border: 1px solid #dee5f9;
+  border-top: unset;
+}
+.getting_wrap .getting_list li {
+  position: relative;
+  padding-left: 48px;
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
+  color: #202b47;
+  max-width: 293px;
+}
+.getting_wrap .getting_list li + li {
+  margin-top: 16px;
+}
+.getting_wrap .getting_list li::before {
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 40px;
+  height: 40px;
+  background: url(https://conversionratestore.github.io/projects/hint/img/plan1.svg) no-repeat center center;
+}
+.descr_wrap {
+  background: #ffffff;
+  border: 1px solid #dee5f9;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  padding: 16px;
+}
+.descr_wrap p {
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
+  color: #202b47;
+}
+/* astrologyApp */
+#astrologyApp {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 12px 20px;
+  background: #ffffff;
+  border-width: 1px 0px;
+  border-style: solid;
+  border-color: #dee5f9;
+}
+#astrologyApp > div {
+  margin-left: 12px;
+}
+#astrologyApp > div p {
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.0008em;
+  color: #4a567a;
+  margin-bottom: 6px;
+  max-width: 247px;
+}
+#astrologyApp > div > span {
+  position: relative;
+  display: block;
+  width: 92px;
+  height: 12px;
+}
+#astrologyApp > div > span::before {
+  position: absolute;
+  content: "";
+  background: url(https://conversionratestore.github.io/projects/hint/img/stars_box.svg) no-repeat;
+  width: 92px;
+  height: 12px;
+}
+/* personalisedCompatibility */
+#personalisedCompatibility {
+  padding: 16px 20px 32px;
+}
+#personalisedCompatibility .main_title {
+  margin-bottom: 16px;
+}
+#personalisedCompatibility .tab_relationships {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+#personalisedCompatibility .tab_relationships p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  width: 50%;
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 140%;
+  padding: 7px 13px;
+}
+#personalisedCompatibility .tab_relationships p svg {
+  margin: -2px 8px 0 0;
+}
+#personalisedCompatibility .tab_relationships p.romantic_txt {
+  color: #ffffff;
+  background: #066fde;
+}
+#personalisedCompatibility .tab_relationships p.friendship_txt {
+  background: #eff2fd;
+  color: #4a567a;
+  margin-left: 16px;
+}
+#personalisedCompatibility .person_info_wrap {
+  position: relative;
+  align-items: flex-start;
+}
+#personalisedCompatibility h3 {
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 140%;
+  color: #121620;
+  margin-bottom: 16px;
+}
+#personalisedCompatibility .person_info_wrap .name_var {
+  margin-top: 16px;
+}
+#personalisedCompatibility .compatibility_percent_wrap {
+  position: absolute;
+  top: 35px;
+}
+#personalisedCompatibility .compatibility_percent_wrap .count_percent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: #ffeaea;
+  border-radius: 50%;
+  border: 4px solid #ff0000;
+  box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.4);
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.0024em;
+  color: #ff0000;
+  margin-top: 7px;
+}
+/* astrologyTools */
+#astrologyTools {
+  padding: 0 20px;
+}
+#astrologyTools .getting_wrap h4 {
+  font-size: 16px;
+}
+#astrologyTools .getting_wrap .getting_list li {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+#astrologyTools .getting_wrap .getting_list li:nth-child(1):before {
+  background: url(https://conversionratestore.github.io/projects/hint/img/tools1.svg) no-repeat center center;
+}
+#astrologyTools .getting_wrap .getting_list li:nth-child(2):before {
+  background: url(https://conversionratestore.github.io/projects/hint/img/tools2.svg) no-repeat center center;
+}
+#astrologyTools .getting_wrap .getting_list li:nth-child(3):before {
+  background: url(https://conversionratestore.github.io/projects/hint/img/tools3.svg) no-repeat center center;
+}
+#astrologyTools .getting_wrap .getting_list li:nth-child(4):before {
+  background: url(https://conversionratestore.github.io/projects/hint/img/tools4.svg) no-repeat center center;
+}
+#astrologyTools .getting_wrap .getting_list li:nth-child(5):before {
+  background: url(https://conversionratestore.github.io/projects/hint/img/tools5.svg) no-repeat center center;
+}
+/* whatUsersSay */
+#whatUsersSay {
+  padding: 32px 0 16px;
+}
+#whatUsersSay .sub_title {
+  text-align: center;
+}
+/* uniqueIdentities */
+#uniqueIdentities {
+  padding: 0 20px 32px;
+}
+#uniqueIdentities .sub_title {
+  text-align: center;
+}
+#uniqueIdentities .accardion_link_unique_identities {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+#uniqueIdentities .accardion_link_unique_identities > span {
+  position: relative;
+  background: #eff2fd;
+  border-radius: 20px;
+  width: 32px;
+  height: 32px;
+  margin-right: 12px;
+  transition: all 0.5s ease 0s;
+}
+#uniqueIdentities .accardion_link_unique_identities > span::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 16px;
+  background: url(https://conversionratestore.github.io/projects/hint/img/arr_accardion.svg) no-repeat center center;
+  transition: all 0.5s ease 0s;
+  background-size: contain;
+}
+#uniqueIdentities .accardion_link_unique_identities.active_block > span::before {
+  transform: translate(-50%, -50%) rotate(180deg);
+}
+#uniqueIdentities .accardion_block_unique_identities {
+  background: #ffffff;
+  box-shadow: 0px 0px 16px 4px rgba(217, 217, 217, 0.5);
+  border-radius: 10px;
+  position: relative;
+}
+#uniqueIdentities .accardion_block_unique_identities::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50px;
+  height: 45px;
+  border-radius: 0 10px 0 0;
+  background: url(https://conversionratestore.github.io/projects/hint/img/sun.svg) no-repeat center center;
+  background-size: cover;
+}
+#uniqueIdentities [data-color="2"]::after {
+  background: url(https://conversionratestore.github.io/projects/hint/img/moon.svg) no-repeat center center;
+  background-size: cover;
+}
+#uniqueIdentities [data-color="3"]::after {
+  background: url(https://conversionratestore.github.io/projects/hint/img/venus.svg) no-repeat center center;
+  background-size: cover;
+}
+#uniqueIdentities [data-color="4"]::after {
+  background: url(https://conversionratestore.github.io/projects/hint/img/mercury.svg) no-repeat center center;
+  background-size: cover;
+}
+#uniqueIdentities .accardion_block_unique_identities + li {
+  margin-top: 16px;
+}
+#uniqueIdentities .accardion_link_unique_identities h3 {
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.0024em;
+  text-transform: uppercase;
+}
+#uniqueIdentities [data-color="1"] .accardion_link_unique_identities h3 {
+  color: #f5b000;
+}
+#uniqueIdentities [data-color="2"] .accardion_link_unique_identities h3 {
+  color: #4663b7;
+}
+#uniqueIdentities [data-color="3"] .accardion_link_unique_identities h3 {
+  color: #b87006;
+}
+#uniqueIdentities [data-color="4"] .accardion_link_unique_identities h3 {
+  color: #9059a4;
+}
+#uniqueIdentities .accardion_lists_unique_identities {
+  display: none;
+  padding: 0 16px 16px;
+}
+#uniqueIdentities .color_box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 5px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+#uniqueIdentities .color_box_accent {
+  font-family: "SF Pro Text", sans-serif;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.0008em;
+  color: #ffffff;
+  height: 18px;
+  margin-bottom: 8px;
+  padding: 0 10px;
+}
+#uniqueIdentities .color_box_txt {
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #202b47;
+  max-width: 265px;
+}
+#uniqueIdentities .unique_identities_txt {
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
+  color: #4a567a;
+}
+#uniqueIdentities [data-color="1"] .color_box {
+  background: #fff9bf;
+}
+#uniqueIdentities [data-color="2"] .color_box {
+  background: #dee5f9;
+}
+#uniqueIdentities [data-color="3"] .color_box {
+  background: #fde4c1;
+}
+#uniqueIdentities [data-color="4"] .color_box {
+  background: #efe2ff;
+}
+#uniqueIdentities [data-color="1"] .color_box_accent {
+  background: #f5b000;
+}
+#uniqueIdentities [data-color="2"] .color_box_accent {
+  background: #4663b7;
+}
+#uniqueIdentities [data-color="3"] .color_box_accent {
+  background: #b87006;
+}
+#uniqueIdentities [data-color="4"] .color_box_accent {
+  background: #9059a4;
+}
+
+/* featuredHint */
+#featuredHint {
+  padding: 32px 20px;
+}
+#featuredHint .sub_title {
+  text-align: center;
+}
+#featuredHint img {
+  width: 100%;
+  max-width: 335px;
+}
+/* astrologistsVideos */
+#astrologistsVideos {
+  padding: 32px 20px;
+  background: #eff2fd;
 }
 /* personalAstrologerChat */
 #personalAstrologerChat,
@@ -148,53 +577,6 @@ ul {
   font-weight: 600;
 }
 /* planRelationship */
-#planRelationship .getting_wrap h4 {
-  padding: 16px;
-  background: #fbfbfb;
-  border: 1px solid #dee5f9;
-  font-family: "SF Pro Text", sans-serif;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 140%;
-  color: #202b47;
-  border-radius: 10px 10px 0 0;
-}
-#planRelationship .person_info_wrap {
-  background: #ffffff;
-  border: 1px solid #dee5f9;
-  border-radius: 10px;
-  padding: 16px;
-  margin-bottom: 8px;
-}
-#planRelationship .getting_wrap .getting_list {
-  background: #eff2fd;
-  padding: 16px;
-  border-radius: 0 0 10px 10px;
-  border: 1px solid #dee5f9;
-  border-top: unset;
-}
-#planRelationship .getting_wrap .getting_list li {
-  position: relative;
-  padding-left: 48px;
-  font-family: "SF Pro Text", sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 140%;
-  color: #202b47;
-  max-width: 293px;
-}
-#planRelationship .getting_wrap .getting_list li + li {
-  margin-top: 16px;
-}
-#planRelationship .getting_wrap .getting_list li::before {
-  content: "";
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  width: 40px;
-  height: 40px;
-  background: url(https://conversionratestore.github.io/projects/hint/img/plan1.svg) no-repeat center center;
-}
 #planRelationship .getting_wrap .getting_list li:nth-child(2):before {
   background: url(https://conversionratestore.github.io/projects/hint/img/plan2.svg) no-repeat center center;
 }
@@ -203,6 +585,20 @@ ul {
 }
 #planRelationship .getting_wrap .getting_list li:nth-child(4):before {
   background: url(https://conversionratestore.github.io/projects/hint/img/plan4.svg) no-repeat center center;
+}
+#planRelationship .person_info_wrap {
+  background: #ffffff;
+  border: 1px solid #dee5f9;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 8px;
+  align-items: flex-start;
+}
+#planRelationship .person_info_wrap .name_var {
+  margin: 2px 0;
+}
+#planRelationship .person_info_wrap .date_born_var {
+  margin: 0 auto;
 }
 /* elementalBalance */
 #elementalBalance .percent_wrap {
@@ -255,7 +651,7 @@ ul {
   width: 76px;
   height: 75px;
 }
-#elementalBalance .percent_wrap.second_var > {
+#elementalBalance .percent_wrap.second_var > span.last_persent::before {
   background: url(https://conversionratestore.github.io/projects/hint/img/border4.svg) no-repeat right;
   background-size: cover;
   width: 62px;
@@ -307,22 +703,14 @@ ul {
   color: #121620;
   margin-top: 4px;
 }
-#elementalBalance .descr_wrap {
-  background: #ffffff;
-  border: 1px solid #dee5f9;
-  border-radius: 10px;
-  margin-bottom: 16px;
-  padding: 16px;
-}
-#elementalBalance .descr_wrap p {
-  font-family: "SF Pro Text", sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 140%;
-  color: #202b47;
-}
 #elementalBalance .person_info_wrap {
   margin-bottom: 16px;
+}
+#elementalBalance .person_info_wrap .name_var {
+  margin: 2px 0;
+}
+#elementalBalance .person_info_wrap .date_born_var {
+  margin: 0 auto;
 }
 /* reviewsBlock */
 #reviewsBlock .title_reviews_box {
@@ -451,4 +839,54 @@ ul {
 }
 #reviewsBlock .load_more_btn svg {
   margin-right: 12px;
+}
+/*  */
+.video_slider video,
+.video_slider iframe {
+  border-radius: 10px;
+}
+.video_slider .slick-slide {
+  padding: 0 8px;
+}
+.video_slider .video_wrap {
+  position: relative;
+}
+.video_slider .video_wrap::before {
+  position: absolute;
+  content: "";
+  background: url(https://conversionratestore.github.io/projects/hint/img/logo_hint.png) no-repeat;
+  width: 52px;
+  height: 33px;
+  top: 8px;
+  left: 20px;
+}
+.video_slider .slick-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+}
+.slick-dots li button {
+  font-size: 0;
+  line-height: 0;
+  display: block;
+  width: 6px;
+  height: 6px;
+
+  cursor: pointer;
+  color: transparent;
+  border: 0;
+  outline: none;
+  background: #dee5f9;
+  border-radius: 50%;
+  margin: 0 5px;
+}
+.slick-dots li.slick-active button {
+  background: #066fde;
+  border-radius: 100px;
+  width: 20px;
+  height: 6px;
+}
+#astrologistsVideos .video_wrap.is_logo {
+  position: unset;
 }

@@ -1,3 +1,28 @@
+let scriptCustom = document.createElement("script");
+scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js";
+scriptCustom.async = false;
+document.head.appendChild(scriptCustom);
+
+let scriptCustomStyle = document.createElement("link");
+scriptCustomStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css";
+scriptCustomStyle.rel = "stylesheet";
+document.head.appendChild(scriptCustomStyle);
+
+let slickInterval = setInterval(() => {
+  if (typeof jQuery(".video_slider").slick === "function") {
+    clearInterval(slickInterval);
+    //  slider
+    let slider = jQuery(".video_slider").slick({
+      arrows: false,
+      centerMode: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      dots: true,
+      infinite: true,
+    });
+  }
+}, 100);
+
 let arrR = {
   1: [`I`, `Isaiah tommy`, `Precise needles, answers and explanations some thoughts about myself and often told me I was struggling with myself. And totally TRUE! Mindblowing but this app helps me throw more and more throws.`],
   2: [`M`, `Mamafrauts`, `the best Vladana is the BEST astrologer I’ve gotten reading from! She is very thorough and gives detailed info based on what questions you ask her... highly recommend!!! :)`],
@@ -45,5 +70,53 @@ if (document.querySelector("#reviewsBlock")) {
 if (document.querySelector(".load_more_btn")) {
   document.querySelector(".load_more_btn").addEventListener("click", (e) => {
     // e.target.style.display = "none";
+    console.log(`load_more_btn`);
   });
 }
+
+// accardionToggle
+$(".accardion_link_unique_identities").click(function (e) {
+  $(this).toggleClass("active_block");
+  $(this).closest("li").toggleClass("active_block");
+  $(this).next(".accardion_lists_unique_identities").slideToggle();
+  if ($(".accardion_link_unique_identities").not(this)) {
+    $(".accardion_link_unique_identities").not(this).next(".accardion_lists_unique_identities").css("display", "none");
+    $(".accardion_link_unique_identities").not(this).removeClass("active_block");
+    $(".accardion_link_unique_identities").not(this).closest("li").removeClass("active_block");
+  }
+
+  // const headerOffset = 10;
+  // const elementPosition = this.getBoundingClientRect().top;
+  // const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+  // window.scrollTo({
+  //   top: offsetPosition,
+  //   behavior: "smooth",
+  // });
+});
+
+const circle = document.querySelector(".circle-progress");
+const circleRadius = circle.r.baseVal.value;
+const circumference = 2 * Math.PI * circleRadius;
+const circlePercent = document.querySelector(".count_percent");
+let count = 0;
+
+circle.style.strokeDasharray = `${circumference} ${circumference}`;
+circle.style.strokeDashoffset = circumference;
+console.log(circumference);
+
+function setProgress(percent) {
+  const offsetCount = setInterval(() => {
+    if (circle.style.strokeDashoffset >= circumference) {
+      clearInterval(offsetCount);
+    }
+    circle.style.strokeDashoffset -= 1;
+    circle.style.strokeDashoffset = circumference - (percent / 100) * circumference;
+
+    circlePercent.innerHTML = count + "%";
+    if (count >= percent) {
+      clearInterval(offsetCount);
+    }
+    count += 1;
+  }, 10);
+}
+setProgress(80);
