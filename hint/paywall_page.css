@@ -255,28 +255,6 @@ header .elements-container-inner {
 #personalisedCompatibility .person_info_wrap .name_var {
   margin-top: 16px;
 }
-#personalisedCompatibility .compatibility_percent_wrap {
-  position: absolute;
-  top: 35px;
-}
-#personalisedCompatibility .compatibility_percent_wrap .count_percent {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 56px;
-  height: 56px;
-  background: #ffeaea;
-  border-radius: 50%;
-  border: 4px solid #ff0000;
-  box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.4);
-  font-family: "SF Pro Text", sans-serif;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: -0.0024em;
-  color: #ff0000;
-  margin-top: 7px;
-}
 /* astrologyTools */
 #astrologyTools {
   padding: 0 20px;
@@ -705,6 +683,7 @@ header .elements-container-inner {
 }
 #elementalBalance .person_info_wrap {
   margin-bottom: 16px;
+  align-items: flex-start;
 }
 #elementalBalance .person_info_wrap .name_var {
   margin: 2px 0;
@@ -835,7 +814,7 @@ header .elements-container-inner {
   font-size: 18px;
   line-height: 20px;
   color: #066fde;
-  margin: 34px auto 50px;
+  margin: 34px auto 18px;
 }
 #reviewsBlock .load_more_btn svg {
   margin-right: 12px;
@@ -872,8 +851,7 @@ header .elements-container-inner {
   display: block;
   width: 6px;
   height: 6px;
-
-  cursor: pointer;
+  min-height: 6px;
   color: transparent;
   border: 0;
   outline: none;
@@ -889,4 +867,107 @@ header .elements-container-inner {
 }
 #astrologistsVideos .video_wrap.is_logo {
   position: unset;
+}
+.upload-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.4);
+}
+.circle-ring {
+  position: relative;
+}
+.circle-progress {
+  transform-origin: center;
+  transform: rotate(-90deg);
+  transition: stroke-dashoffset linear 3s;
+}
+#personalisedCompatibility .compatibility_percent_wrap {
+  position: absolute;
+  top: 45px;
+}
+#personalisedCompatibility .compatibility_percent_wrap .count_percent {
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.0024em;
+  color: #ff0000;
+  position: absolute;
+}
+/* sticky btn */
+#id-a0fe7af7 > .block[data-blocktype="generic-button"] {
+  bottom: 0;
+  background: #ffffff;
+}
+section > .block > .inner-narrow:not(.elements-v2-container) {
+  padding: 0 20px !important;
+}
+#id-a0fe7af7 > .block[data-blocktype="generic-button"] button.generic-button .label-container + .graphic {
+  margin-top: 4px;
+}
+#text-block-id-b663f480 h6 {
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: 0.0008em;
+  color: #121620;
+}
+.tub-support {
+  margin: 6px 0;
+}
+.tub-support > div {
+  max-width: 274px !important;
+}
+.tub-support > div > .block[data-blocktype="generic-button"] {
+  box-shadow: none;
+  background: none;
+  width: 50%;
+}
+.tub-support button.generic-button {
+  min-height: unset;
+  margin: 0;
+  max-width: unset;
+  text-align: center;
+}
+.tub-support button.generic-button .indicators {
+  height: 20px;
+  width: 18px;
+}
+.tub-support button.link .label {
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.0008em;
+  color: #0066fd;
+}
+.tub-support button.generic-button .content.reverse .label-container + .graphic {
+  height: 20px;
+  width: 20px;
+}
+.tub-support > div > div:nth-child(1) button.generic-button .content.reverse .label-container + .graphic {
+  height: 14px;
+  width: 14px;
+}
+#id-a0fe7af7 > div:nth-child(3) {
+  padding: 36px 25px 0;
+  background: #ffffff;
+}
+#text-block-id-db4b7b19 {
+  padding: 12px 0 0 !important;
+  border-top: 1px solid #c2cad8;
+}
+#text-block-id-db4b7b19 p {
+  font-family: "SF Pro Text", sans-serif;
+  margin: 0;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
+  color: #121620;
 }

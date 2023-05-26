@@ -8,21 +8,42 @@ scriptCustomStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/
 scriptCustomStyle.rel = "stylesheet";
 document.head.appendChild(scriptCustomStyle);
 
-let slickInterval = setInterval(() => {
-  if (typeof jQuery(".video_slider").slick === "function") {
-    clearInterval(slickInterval);
-    //  slider
-    let slider = jQuery(".video_slider").slick({
-      arrows: false,
-      centerMode: true,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      dots: true,
-      infinite: true,
-    });
-  }
-}, 100);
+// progress
+if (document.querySelector(".circle-progress")) {
+  const circle = document.querySelector(".circle-progress");
+  circle.style.strokeDasharray = `0 0`;
+  circle.style.strokeDashoffset = "0";
+  const circleRadius = circle.r.baseVal.value;
+  const circumference = 2 * Math.PI * circleRadius;
+  const circlePercent = document.querySelector(".count_percent");
+  let count = 0;
 
+  circle.style.strokeDasharray = `${circumference} ${circumference}`;
+  circle.style.strokeDashoffset = circumference;
+  console.log(circumference);
+
+  function setProgress(percent) {
+    const offsetCount = setInterval(() => {
+      if (circle.style.strokeDashoffset >= circumference) {
+        clearInterval(offsetCount);
+      }
+      circle.style.strokeDashoffset -= 1;
+      circle.style.strokeDashoffset = circumference - (percent / 100) * circumference;
+
+      circlePercent.innerHTML = count + "%";
+      if (count >= percent) {
+        clearInterval(offsetCount);
+      }
+      count += 1;
+    }, 10);
+  }
+  setProgress(randomInteger(75, 95));
+
+  function randomInteger(min, max) {
+    let rand = min + Math.random() * (max + 1 - min);
+    return Math.floor(rand);
+  }
+}
 let arrR = {
   1: [`I`, `Isaiah tommy`, `Precise needles, answers and explanations some thoughts about myself and often told me I was struggling with myself. And totally TRUE! Mindblowing but this app helps me throw more and more throws.`],
   2: [`M`, `Mamafrauts`, `the best Vladana is the BEST astrologer I’ve gotten reading from! She is very thorough and gives detailed info based on what questions you ask her... highly recommend!!! :)`],
@@ -60,7 +81,8 @@ function setList(img, name, text) {
 </div>
   `;
 }
-if (document.querySelector("#reviewsBlock")) {
+
+if (document.querySelector("#reviewsBlock") && !document.querySelector("#reviewsBlock .review_card")) {
   for (let key in arrR) {
     document.querySelector(".reviews_wrap").insertAdjacentHTML("beforeend", setList(arrR[key][0], arrR[key][1], arrR[key][2]));
   }
@@ -94,29 +116,183 @@ $(".accardion_link_unique_identities").click(function (e) {
   // });
 });
 
-const circle = document.querySelector(".circle-progress");
-const circleRadius = circle.r.baseVal.value;
-const circumference = 2 * Math.PI * circleRadius;
-const circlePercent = document.querySelector(".count_percent");
-let count = 0;
+let slickInterval = setInterval(() => {
+  if (typeof jQuery(".video_slider").slick === "function") {
+    clearInterval(slickInterval);
+    //  slider
+    let slider = jQuery(".video_slider").slick({
+      arrows: false,
+      centerMode: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      dots: true,
+      infinite: true,
+    });
+  }
+}, 200);
+//
+let arrInfo = [];
+const monthsObj = {
+  1: "January",
+  2: "February",
+  3: "March",
+  4: "April",
+  5: "May",
+  6: "June",
+  7: "July",
+  8: "August",
+  9: "September",
+  10: "October",
+  11: "November",
+  12: "December",
+};
+const daysObj = {
+  01: "st",
+  02: "nd",
+  03: "rd",
+  04: "th",
+  05: "th",
+  06: "th",
+  07: "th",
+  08: "th",
+  09: "th",
+  10: "th",
+  11: "th",
+  12: "th",
+  13: "th",
+  14: "th",
+  15: "th",
+  16: "th",
+  17: "th",
+  18: "th",
+  19: "th",
+  20: "th",
+  21: "st",
+  22: "nd",
+  23: "rd",
+  24: "th",
+  25: "th",
+  26: "th",
+  27: "th",
+  28: "th",
+  29: "th",
+  30: "th",
+  31: "st",
+};
+const zeroLength = 2;
+document.querySelector(".continue.generic-button#button-28497955").addEventListener("click", () => {
+  if (localStorage.getItem("zodiac")) {
+    document.querySelectorAll(".avatar_orange_box .name_var").forEach((el) => {
+      if (el.textContent !== localStorage.getItem("zodiac")) {
+        el.textContent = localStorage.getItem("zodiac");
+      }
+    });
+  }
+  if (localStorage.getItem("their_zodiac")) {
+    document.querySelectorAll(".avatar_blue_box .name_var").forEach((el) => {
+      if (el.textContent !== localStorage.getItem("their_zodiac")) {
+        el.textContent = localStorage.getItem("their_zodiac");
+      }
+    });
+  }
+  let yourMonth = monthsObj[+document.querySelectorAll("[name='date-of-birth'] select")[0].value],
+    yourDate = `${document.querySelectorAll("[name='date-of-birth'] select")[1].value}${daysObj[+document.querySelectorAll("[name='date-of-birth'] select")[1].value.padStart(zeroLength, "0")]}`,
+    yourYear = document.querySelectorAll("[name='date-of-birth'] select")[2].value,
+    theirMonth = monthsObj[+document.querySelectorAll("[name='partner-date-of-birth'] select")[0].value],
+    theirDate = `${document.querySelectorAll("[name='partner-date-of-birth'] select")[1].value}${daysObj[+document.querySelectorAll("[name='partner-date-of-birth'] select")[1].value.padStart(zeroLength, "0")]}`,
+    theirYear = document.querySelectorAll("[name='partner-date-of-birth'] select")[2].value,
+    yourPlaceOfBirth = document.querySelectorAll('[name="city-of-birth"] input')[0].value,
+    theyPlaceOfBirth = document.querySelectorAll('[name="partner-place-of-birth"] input')[0].value,
+    yourTimeHBorn = document.querySelectorAll('[name="set-your-time-of-birth"] [data-test-id="tbirth-hours-ipt"]')[0].value.padStart(zeroLength, "0"),
+    yourTimeMBorn = document.querySelectorAll('[name="set-your-time-of-birth"] [data-test-id="tbirth-minutes-ipt"]')[0].value.padStart(zeroLength, "0"),
+    theyTimeHBorn = document.querySelectorAll('[name="partner-time-of-birth"] [data-test-id="tbirth-hours-ipt"]')[0].value.padStart(zeroLength, "0"),
+    theyTimeMBorn = document.querySelectorAll('[name="partner-time-of-birth"] [data-test-id="tbirth-minutes-ipt"]')[0].value.padStart(zeroLength, "0"),
+    yourTBirth = "",
+    theyTBirth = "";
+  if (document.querySelector("[name='set-your-time-of-birth'] .rootSimpleButton.rootSelectedSelectButton button")) {
+    yourTBirth = document.querySelector("[name='set-your-time-of-birth'] .rootSimpleButton.rootSelectedSelectButton button").textContent.toLowerCase();
+  }
+  if (document.querySelector("[name='partner-time-of-birth'] .rootSimpleButton.rootSelectedSelectButton button")) {
+    theyTBirth = document.querySelector("[name='partner-time-of-birth'] .rootSimpleButton.rootSelectedSelectButton button").textContent.toLowerCase();
+  }
 
-circle.style.strokeDasharray = `${circumference} ${circumference}`;
-circle.style.strokeDashoffset = circumference;
-console.log(circumference);
+  arrInfo.push({
+    yourMonth: yourMonth,
+    yourDate: yourDate,
+    yourYear: yourYear,
+    yourPlaceOfBirth: yourPlaceOfBirth,
+    yourTBirth: yourTBirth,
+    yourTimeHBorn: yourTimeHBorn,
+    yourTimeMBorn: yourTimeMBorn,
+    theirMonth: theirMonth,
+    theirDate: theirDate,
+    theirYear: theirYear,
+    theyPlaceOfBirth: theyPlaceOfBirth,
+    theyTimeHBorn: theyTimeHBorn,
+    theyTimeMBorn: theyTimeMBorn,
+    theyTBirth: theyTBirth,
+  });
 
-function setProgress(percent) {
-  const offsetCount = setInterval(() => {
-    if (circle.style.strokeDashoffset >= circumference) {
-      clearInterval(offsetCount);
-    }
-    circle.style.strokeDashoffset -= 1;
-    circle.style.strokeDashoffset = circumference - (percent / 100) * circumference;
+  if (localStorage.getItem("arrInfo")) {
+    localStorage.removeItem("arrInfo");
+    localStorage.setItem("arrInfo", JSON.stringify(arrInfo));
+  } else {
+    localStorage.setItem("arrInfo", JSON.stringify(arrInfo));
+  }
+});
+//
+if (localStorage.getItem("arrInfo")) {
+  temp = JSON.parse(localStorage.getItem("arrInfo"));
+  temp.forEach((item) => {
+    document.querySelectorAll(".your_month_birth").forEach((month) => {
+      month.textContent = item.yourMonth;
+    });
+    document.querySelectorAll(".your_date_birth").forEach((date) => {
+      date.textContent = item.yourDate;
+    });
+    document.querySelectorAll(".your_time_birth").forEach((time) => {
+      if (item.yourTimeHBorn !== "" && item.yourTimeMBorn !== "") {
+        time.textContent = `${item.yourTimeHBorn}:${item.yourTimeMBorn}${item.yourTBirth},`;
+      } else {
+        time.textContent = ``;
+      }
+    });
+    document.querySelectorAll(".your_place_birth").forEach((place) => {
+      place.textContent = item.yourPlaceOfBirth;
+    });
 
-    circlePercent.innerHTML = count + "%";
-    if (count >= percent) {
-      clearInterval(offsetCount);
-    }
-    count += 1;
-  }, 10);
+    document.querySelectorAll(".their_month_birth").forEach((month) => {
+      month.textContent = item.theirMonth;
+    });
+    document.querySelectorAll(".their_date_birth").forEach((date) => {
+      date.textContent = item.theirDate;
+    });
+    document.querySelectorAll(".their_time_birth").forEach((time) => {
+      if (item.theyTimeHBorn !== "" && item.theyTimeMBorn !== "") {
+        time.textContent = `${item.theyTimeHBorn}:${item.theyTimeMBorn}${item.theyTBirth},`;
+      } else {
+        time.textContent = ``;
+      }
+    });
+    document.querySelectorAll(".their_place_birth").forEach((place) => {
+      place.textContent = item.theyPlaceOfBirth;
+    });
+  });
 }
-setProgress(80);
+if (localStorage.getItem("zodiac")) {
+  document.querySelectorAll(".avatar_orange_box .name_var").forEach((el) => {
+    if (el.textContent !== localStorage.getItem("zodiac")) {
+      el.textContent = localStorage.getItem("zodiac");
+    }
+  });
+}
+if (localStorage.getItem("their_zodiac")) {
+  if (document.querySelector(".rich-text span.variable-replace").textContent !== localStorage.getItem("their_zodiac")) {
+    document.querySelector(".rich-text span.variable-replace").textContent = localStorage.getItem("their_zodiac");
+  }
+  document.querySelectorAll(".avatar_blue_box .name_var").forEach((el) => {
+    if (el.textContent !== localStorage.getItem("their_zodiac")) {
+      el.textContent = localStorage.getItem("their_zodiac");
+    }
+  });
+}
