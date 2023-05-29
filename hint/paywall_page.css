@@ -876,6 +876,7 @@ header .elements-container-inner {
   justify-content: center;
   border-radius: 50%;
   box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.4);
+  margin-top: 10px;
 }
 .circle-ring {
   position: relative;
@@ -887,7 +888,7 @@ header .elements-container-inner {
 }
 #personalisedCompatibility .compatibility_percent_wrap {
   position: absolute;
-  top: 45px;
+  top: 39px;
 }
 #personalisedCompatibility .compatibility_percent_wrap .count_percent {
   font-family: "SF Pro Text", sans-serif;
@@ -970,4 +971,7 @@ section > .block > .inner-narrow:not(.elements-v2-container) {
   font-size: 16px;
   line-height: 140%;
   color: #121620;
+}
+.is_hidden {
+  display: none;
 }

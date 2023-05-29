@@ -8,128 +8,6 @@ scriptCustomStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/
 scriptCustomStyle.rel = "stylesheet";
 document.head.appendChild(scriptCustomStyle);
 
-// progress
-if (document.querySelector(".circle-progress")) {
-  const circle = document.querySelector(".circle-progress");
-  circle.style.strokeDasharray = `0 0`;
-  circle.style.strokeDashoffset = "0";
-  const circleRadius = circle.r.baseVal.value;
-  const circumference = 2 * Math.PI * circleRadius;
-  const circlePercent = document.querySelector(".count_percent");
-  let count = 0;
-
-  circle.style.strokeDasharray = `${circumference} ${circumference}`;
-  circle.style.strokeDashoffset = circumference;
-  console.log(circumference);
-
-  function setProgress(percent) {
-    const offsetCount = setInterval(() => {
-      if (circle.style.strokeDashoffset >= circumference) {
-        clearInterval(offsetCount);
-      }
-      circle.style.strokeDashoffset -= 1;
-      circle.style.strokeDashoffset = circumference - (percent / 100) * circumference;
-
-      circlePercent.innerHTML = count + "%";
-      if (count >= percent) {
-        clearInterval(offsetCount);
-      }
-      count += 1;
-    }, 10);
-  }
-  setProgress(randomInteger(75, 95));
-
-  function randomInteger(min, max) {
-    let rand = min + Math.random() * (max + 1 - min);
-    return Math.floor(rand);
-  }
-}
-let arrR = {
-  1: [`I`, `Isaiah tommy`, `Precise needles, answers and explanations some thoughts about myself and often told me I was struggling with myself. And totally TRUE! Mindblowing but this app helps me throw more and more throws.`],
-  2: [`M`, `Mamafrauts`, `the best Vladana is the BEST astrologer I’ve gotten reading from! She is very thorough and gives detailed info based on what questions you ask her... highly recommend!!! :)`],
-  3: [`H`, `HappyFeeetz`, `Great app My astrologer guide is pretty communicative and informative. I do not know much about astrology so she helped me understand some concepts.`],
-  4: [`C`, `Cassandrats`, `Astrology insights with Vladana hint has been a wonderful portal to understanding more about my birth chart and current transits happening- my astrologer Vladana is patient with my questions and always has clear and helpful info connected with the sky!`],
-  5: [`C`, `CeCe JuzMe`, `Rosanna is awesome She has been there every step of the way with my journey. She responses very quickly without hesitation. I would recommend her to anyone.`],
-  6: [`M`, `MrsMMiller`, `AKHO is a STAR herself! I’m so blessed to have found this app and Akho! She is a wonderful astrologist - very clear and extremely thorough with her analysis and answers to my many questions. I feel safe and comfortable communicating with her and I look forward to more time working with her!`],
-  7: [`C`, `Christinamariemelanie`, `Amazing Astrologer!!!! Highly recommend!!!!!!`],
-  8: [`M`, `Mcookie7Mandy`, `Hint is amazing! This app is wonderful and is so easy to use. My personal guide Vladana is so on point with her insights and not fake suggestions that could fit to anyone. Everything is personalized to just you based on only your own information that you give so it can’t be misread or misleading. I love the compatibility insights as well. All in all I’m very pleased and recommend to anyone looking for a reputable website!`],
-  9: [`S`, `StudemanSteve`, `What a lovely app! I've tried a number of horoscope apps, but this one is the most accurate by a long shot. There are days when the app's forecast is so in sync with my actual experience that it feels like the app is directly addressing me. I am really smitten with this app.`],
-  10: [`E`, `ElealonWhyse`, `A clear step by step approach I've been reading my daily horoscope since I was a youngster, so I can confidently say that they are the best horoscopes I've ever had access to. My friends who are unhappy with their horoscopes often come to me to find out what the ""good one"" predicts (aka. the one from this app).`],
-  11: [`C`, `CelyanBasars`, `Best astrology experience I have a background in science, that's why I still have a healthy amount of skepticism. However, one of my friends advised that I check out Hint since I enjoy reading astrology as a tool that helps me to frame my thinking and the world in a viewpoint that is more neutral or positive. There are patterns, so the only thing I can think of is that there must be some kind of scientific basis that we haven't worked out yet. I don't have any belief in anything spiritual, but there are patterns. To sum it all up, I'm not someone who is easily swayed.`],
-  12: [`T`, `Thxrnhill`, `Christi at Hint. THE BEST. she’s the only astrologer i’ve matched up with that’s worked. my day to day horoscopes are very accurate and now finding her my questions are answered in a way that makes me feel satisfied. fav astro app fs.`],
-  13: [`J`, `J1212121234567`, `Chelene Chelene has been with me for a couple of months now, her words has been supportive and uplifting to my situation. Thank you.`],
-  14: [`T`, `Tinkle when`, `The BEST!!!! ♐️🔮 Let me tell you, Hint is my go to app for astrology! So accurate, layout is super simple and easy to navigate. HUGE bonus is the personal astrologers on the site. If you can choose, my recommendation is Vladana. Oh my god, so accurate! She amazing! Very empathetic, and on point!.. and it's included in membership, you don't have to pay extra for learning about yourself. Vladana is very clear when reaching out, communication is through message or she'll send personalized video messages to you!. Reach out now!!!!!!!`],
-};
-
-function setList(img, name, text) {
-  return `
-<div class="review_card">
-  <div class="review_card_info">
-    <p class="review_card_img">${img}</p>
-    <div class="review_card_stars">
-      <p class="review_card_name">${name}</p>
-      <span class="review_card_star"></span>
-    </div>
-  </div>
-  <p class="verified_txt">
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M7 0C3.14005 0 0 3.14005 0 7C0 10.86 3.14005 14 7 14C10.86 14 14 10.86 14 7C14 3.14005 10.86 0 7 0Z" fill="#75DB9C" />
-      <path d="M11.1724 5.31321L6.48867 9.99677C6.34815 10.1373 6.1637 10.208 5.97925 10.208C5.7948 10.208 5.61035 10.1373 5.46984 9.99677L3.12805 7.65499C2.84623 7.3733 2.84623 6.91785 3.12805 6.63616C3.40974 6.35434 3.86506 6.35434 4.14689 6.63616L5.97925 8.46852L10.1535 4.29437C10.4352 4.01255 10.8905 4.01255 11.1724 4.29437C11.4541 4.57606 11.4541 5.03138 11.1724 5.31321Z" fill="white" /></svg
-    >Verified customer
-  </p>
-  <p class="review_card_descr">${text}</p>
-</div>
-  `;
-}
-
-if (document.querySelector("#reviewsBlock") && !document.querySelector("#reviewsBlock .review_card")) {
-  for (let key in arrR) {
-    document.querySelector(".reviews_wrap").insertAdjacentHTML("beforeend", setList(arrR[key][0], arrR[key][1], arrR[key][2]));
-  }
-}
-
-// click on load more btn
-if (document.querySelector(".load_more_btn")) {
-  document.querySelector(".load_more_btn").addEventListener("click", (e) => {
-    // e.target.style.display = "none";
-    console.log(`load_more_btn`);
-  });
-}
-
-// accardionToggle
-$(".accardion_link_unique_identities").click(function (e) {
-  $(this).toggleClass("active_block");
-  $(this).closest("li").toggleClass("active_block");
-  $(this).next(".accardion_lists_unique_identities").slideToggle();
-  if ($(".accardion_link_unique_identities").not(this)) {
-    $(".accardion_link_unique_identities").not(this).next(".accardion_lists_unique_identities").css("display", "none");
-    $(".accardion_link_unique_identities").not(this).removeClass("active_block");
-    $(".accardion_link_unique_identities").not(this).closest("li").removeClass("active_block");
-  }
-
-  // const headerOffset = 10;
-  // const elementPosition = this.getBoundingClientRect().top;
-  // const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-  // window.scrollTo({
-  //   top: offsetPosition,
-  //   behavior: "smooth",
-  // });
-});
-
-let slickInterval = setInterval(() => {
-  if (typeof jQuery(".video_slider").slick === "function") {
-    clearInterval(slickInterval);
-    //  slider
-    let slider = jQuery(".video_slider").slick({
-      arrows: false,
-      centerMode: true,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      dots: true,
-      infinite: true,
-    });
-  }
-}, 200);
 //
 let arrInfo = [];
 const monthsObj = {
@@ -180,107 +58,246 @@ const daysObj = {
   31: "st",
 };
 const zeroLength = 2;
+let yourMonth, yourDate, yourYear, theirMonth, theirDate, theirYear, yourPlaceOfBirth, theyPlaceOfBirth, yourTimeHBorn, yourTimeMBorn, theyTimeHBorn, theyTimeMBorn, yourTBirth, theyTBirth;
+
+document.querySelectorAll("[name='date-of-birth'] select").forEach((el) => {
+  el.addEventListener("change", () => {
+    if (el.previousElementSibling.textContent === "Month") {
+      yourMonth = monthsObj[+el.value];
+      if (el.value !== "") {
+        sessionStorage.setItem("yourMonth", yourMonth);
+        if (sessionStorage.getItem("isCircle")) {
+          sessionStorage.removeItem("isCircle");
+        }
+      }
+    }
+    if (el.previousElementSibling.textContent === "Day") {
+      yourDate = `${el.value}${daysObj[+el.value.padStart(zeroLength, "0")]}`;
+      if (el.value !== "") {
+        sessionStorage.setItem("yourDate", yourDate);
+        if (sessionStorage.getItem("isCircle")) {
+          sessionStorage.removeItem("isCircle");
+        }
+      }
+    }
+    if (el.previousElementSibling.textContent === "Year") {
+      yourYear = el.value;
+      if (el.value !== "") {
+        sessionStorage.setItem("yourYear", yourYear);
+        if (sessionStorage.getItem("isCircle")) {
+          sessionStorage.removeItem("isCircle");
+        }
+      }
+    }
+    console.log(el.value, `change your`);
+  });
+});
+document.querySelectorAll("[name='partner-date-of-birth'] select").forEach((el) => {
+  el.addEventListener("change", () => {
+    if (el.previousElementSibling.textContent === "Month") {
+      theirMonth = monthsObj[+el.value];
+      if (el.value !== "") {
+        sessionStorage.setItem("theirMonth", theirMonth);
+        if (sessionStorage.getItem("isCircle")) {
+          sessionStorage.removeItem("isCircle");
+        }
+      }
+    }
+    if (el.previousElementSibling.textContent === "Day") {
+      theirDate = `${el.value}${daysObj[+el.value.padStart(zeroLength, "0")]}`;
+
+      if (el.value !== "") {
+        sessionStorage.setItem("theirDate", theirDate);
+        if (sessionStorage.getItem("isCircle")) {
+          sessionStorage.removeItem("isCircle");
+        }
+      }
+    }
+    if (el.previousElementSibling.textContent === "Year") {
+      theirYear = el.value;
+      if (el.value !== "") {
+        sessionStorage.setItem("theirYear", theirYear);
+        if (sessionStorage.getItem("isCircle")) {
+          sessionStorage.removeItem("isCircle");
+        }
+      }
+    }
+    console.log(el.value, `change their`);
+  });
+});
+document.querySelectorAll('[name="city-of-birth"] input').forEach((el) => {
+  el.addEventListener("blur", () => {
+    setTimeout(() => {
+      console.log(el.value, `blur your`);
+      yourPlaceOfBirth = el.value.split(",");
+      if (el.value !== "") {
+        if (yourPlaceOfBirth.length > 1) {
+          sessionStorage.setItem("yourPlaceOfBirth", `${yourPlaceOfBirth[0]},${yourPlaceOfBirth[1]}`);
+        } else {
+          sessionStorage.setItem("yourPlaceOfBirth", `${yourPlaceOfBirth[0]}`);
+        }
+        if (sessionStorage.getItem("isCircle")) {
+          sessionStorage.removeItem("isCircle");
+        }
+      }
+    }, 400);
+  });
+});
+document.querySelectorAll('[name="partner-place-of-birth"] input').forEach((el) => {
+  el.addEventListener("blur", () => {
+    setTimeout(() => {
+      theyPlaceOfBirth = el.value.split(",");
+      if (el.value !== "") {
+        if (theyPlaceOfBirth.length > 1) {
+          sessionStorage.setItem("theyPlaceOfBirth", `${theyPlaceOfBirth[0]},${theyPlaceOfBirth[1]}`);
+        } else {
+          sessionStorage.setItem("theyPlaceOfBirth", `${theyPlaceOfBirth[0]}`);
+        }
+        if (sessionStorage.getItem("isCircle")) {
+          sessionStorage.removeItem("isCircle");
+        }
+      }
+    }, 400);
+  });
+});
+document.querySelectorAll('[name="set-your-time-of-birth"] input').forEach((el) => {
+  el.addEventListener("blur", (i) => {
+    if (el.getAttribute("data-test-id") === "tbirth-hours-ipt") {
+      setTimeout(() => {
+        yourTimeHBorn = el.value.padStart(zeroLength, "0");
+        if (el.value !== "") {
+          sessionStorage.setItem("yourTimeHBorn", yourTimeHBorn);
+          if (sessionStorage.getItem("isCircle")) {
+            sessionStorage.removeItem("isCircle");
+          }
+        }
+      }, 400);
+    }
+    if (el.getAttribute("data-test-id") === "tbirth-minutes-ipt") {
+      setTimeout(() => {
+        yourTimeMBorn = el.value.padStart(zeroLength, "0");
+        if (el.value !== "") {
+          sessionStorage.setItem("yourTimeMBorn", yourTimeMBorn);
+          if (sessionStorage.getItem("isCircle")) {
+            sessionStorage.removeItem("isCircle");
+          }
+        }
+      }, 400);
+    }
+  });
+});
+document.querySelectorAll('[name="partner-time-of-birth"] input').forEach((el) => {
+  el.addEventListener("blur", (i) => {
+    if (el.getAttribute("data-test-id") === "tbirth-hours-ipt") {
+      setTimeout(() => {
+        theyTimeHBorn = el.value.padStart(zeroLength, "0");
+        if (el.value !== "") {
+          sessionStorage.setItem("theyTimeHBorn", theyTimeHBorn);
+          if (sessionStorage.getItem("isCircle")) {
+            sessionStorage.removeItem("isCircle");
+          }
+        }
+      }, 400);
+    }
+    if (el.getAttribute("data-test-id") === "tbirth-minutes-ipt") {
+      setTimeout(() => {
+        theyTimeMBorn = el.value.padStart(zeroLength, "0");
+        if (el.value !== "") {
+          sessionStorage.setItem("theyTimeMBorn", theyTimeMBorn);
+          if (sessionStorage.getItem("isCircle")) {
+            sessionStorage.removeItem("isCircle");
+          }
+        }
+      }, 400);
+    }
+  });
+});
+document.querySelectorAll("[name='set-your-time-of-birth'] .rootSimpleButton button").forEach((el) => {
+  el.addEventListener("click", (i) => {
+    yourTBirth = i.target.textContent.toLowerCase();
+    console.log(theyTBirth, `click`);
+    if (i.target.textContent.toLowerCase() !== "") {
+      sessionStorage.setItem("yourTBirth", yourTBirth);
+      if (sessionStorage.getItem("isCircle")) {
+        sessionStorage.removeItem("isCircle");
+      }
+    }
+  });
+});
+document.querySelectorAll("[name='partner-time-of-birth'] .rootSimpleButton button").forEach((el) => {
+  el.addEventListener("click", (i) => {
+    theyTBirth = i.target.textContent.toLowerCase();
+    console.log(theyTBirth, `click`);
+    if (i.target.textContent.toLowerCase() !== "") {
+      sessionStorage.setItem("theyTBirth", theyTBirth);
+      if (sessionStorage.getItem("isCircle")) {
+        sessionStorage.removeItem("isCircle");
+      }
+    }
+  });
+});
+
 document.querySelector(".continue.generic-button#button-28497955").addEventListener("click", () => {
+  if (sessionStorage.getItem("isUnload")) {
+    console.log(`isUnload`);
+    window.location.reload();
+  }
+
+  sessionStorage.setItem("isInfo", "true");
+  sessionStorage.setItem("isUnload", "true");
   if (localStorage.getItem("zodiac")) {
-    document.querySelectorAll(".avatar_orange_box .name_var").forEach((el) => {
+    document.querySelectorAll(".your_name_var.name_var").forEach((el) => {
       if (el.textContent !== localStorage.getItem("zodiac")) {
         el.textContent = localStorage.getItem("zodiac");
       }
     });
   }
   if (localStorage.getItem("their_zodiac")) {
-    document.querySelectorAll(".avatar_blue_box .name_var").forEach((el) => {
+    document.querySelectorAll(".their_name_var.name_var").forEach((el) => {
       if (el.textContent !== localStorage.getItem("their_zodiac")) {
         el.textContent = localStorage.getItem("their_zodiac");
       }
     });
   }
-  let yourMonth = monthsObj[+document.querySelectorAll("[name='date-of-birth'] select")[0].value],
-    yourDate = `${document.querySelectorAll("[name='date-of-birth'] select")[1].value}${daysObj[+document.querySelectorAll("[name='date-of-birth'] select")[1].value.padStart(zeroLength, "0")]}`,
-    yourYear = document.querySelectorAll("[name='date-of-birth'] select")[2].value,
-    theirMonth = monthsObj[+document.querySelectorAll("[name='partner-date-of-birth'] select")[0].value],
-    theirDate = `${document.querySelectorAll("[name='partner-date-of-birth'] select")[1].value}${daysObj[+document.querySelectorAll("[name='partner-date-of-birth'] select")[1].value.padStart(zeroLength, "0")]}`,
-    theirYear = document.querySelectorAll("[name='partner-date-of-birth'] select")[2].value,
-    yourPlaceOfBirth = document.querySelectorAll('[name="city-of-birth"] input')[0].value,
-    theyPlaceOfBirth = document.querySelectorAll('[name="partner-place-of-birth"] input')[0].value,
-    yourTimeHBorn = document.querySelectorAll('[name="set-your-time-of-birth"] [data-test-id="tbirth-hours-ipt"]')[0].value.padStart(zeroLength, "0"),
-    yourTimeMBorn = document.querySelectorAll('[name="set-your-time-of-birth"] [data-test-id="tbirth-minutes-ipt"]')[0].value.padStart(zeroLength, "0"),
-    theyTimeHBorn = document.querySelectorAll('[name="partner-time-of-birth"] [data-test-id="tbirth-hours-ipt"]')[0].value.padStart(zeroLength, "0"),
-    theyTimeMBorn = document.querySelectorAll('[name="partner-time-of-birth"] [data-test-id="tbirth-minutes-ipt"]')[0].value.padStart(zeroLength, "0"),
-    yourTBirth = "",
-    theyTBirth = "";
-  if (document.querySelector("[name='set-your-time-of-birth'] .rootSimpleButton.rootSelectedSelectButton button")) {
-    yourTBirth = document.querySelector("[name='set-your-time-of-birth'] .rootSimpleButton.rootSelectedSelectButton button").textContent.toLowerCase();
-  }
-  if (document.querySelector("[name='partner-time-of-birth'] .rootSimpleButton.rootSelectedSelectButton button")) {
-    theyTBirth = document.querySelector("[name='partner-time-of-birth'] .rootSimpleButton.rootSelectedSelectButton button").textContent.toLowerCase();
-  }
-
-  arrInfo.push({
-    yourMonth: yourMonth,
-    yourDate: yourDate,
-    yourYear: yourYear,
-    yourPlaceOfBirth: yourPlaceOfBirth,
-    yourTBirth: yourTBirth,
-    yourTimeHBorn: yourTimeHBorn,
-    yourTimeMBorn: yourTimeMBorn,
-    theirMonth: theirMonth,
-    theirDate: theirDate,
-    theirYear: theirYear,
-    theyPlaceOfBirth: theyPlaceOfBirth,
-    theyTimeHBorn: theyTimeHBorn,
-    theyTimeMBorn: theyTimeMBorn,
-    theyTBirth: theyTBirth,
-  });
-
-  if (localStorage.getItem("arrInfo")) {
-    localStorage.removeItem("arrInfo");
-    localStorage.setItem("arrInfo", JSON.stringify(arrInfo));
-  } else {
-    localStorage.setItem("arrInfo", JSON.stringify(arrInfo));
-  }
 });
-//
-if (localStorage.getItem("arrInfo")) {
-  temp = JSON.parse(localStorage.getItem("arrInfo"));
-  temp.forEach((item) => {
-    document.querySelectorAll(".your_month_birth").forEach((month) => {
-      month.textContent = item.yourMonth;
-    });
-    document.querySelectorAll(".your_date_birth").forEach((date) => {
-      date.textContent = item.yourDate;
-    });
-    document.querySelectorAll(".your_time_birth").forEach((time) => {
-      if (item.yourTimeHBorn !== "" && item.yourTimeMBorn !== "") {
-        time.textContent = `${item.yourTimeHBorn}:${item.yourTimeMBorn}${item.yourTBirth},`;
-      } else {
-        time.textContent = ``;
-      }
-    });
-    document.querySelectorAll(".your_place_birth").forEach((place) => {
-      place.textContent = item.yourPlaceOfBirth;
-    });
 
-    document.querySelectorAll(".their_month_birth").forEach((month) => {
-      month.textContent = item.theirMonth;
-    });
-    document.querySelectorAll(".their_date_birth").forEach((date) => {
-      date.textContent = item.theirDate;
-    });
-    document.querySelectorAll(".their_time_birth").forEach((time) => {
-      if (item.theyTimeHBorn !== "" && item.theyTimeMBorn !== "") {
-        time.textContent = `${item.theyTimeHBorn}:${item.theyTimeMBorn}${item.theyTBirth},`;
-      } else {
-        time.textContent = ``;
-      }
-    });
-    document.querySelectorAll(".their_place_birth").forEach((place) => {
-      place.textContent = item.theyPlaceOfBirth;
-    });
+//
+if (sessionStorage.getItem("isInfo")) {
+  document.querySelectorAll(".your_month_birth").forEach((month) => {
+    month.textContent = sessionStorage.getItem("yourMonth");
+  });
+  document.querySelectorAll(".your_date_birth").forEach((date) => {
+    date.textContent = sessionStorage.getItem("yourDate");
+  });
+  document.querySelectorAll(".their_month_birth").forEach((month) => {
+    month.textContent = sessionStorage.getItem("theirMonth");
+  });
+  document.querySelectorAll(".their_date_birth").forEach((date) => {
+    date.textContent = sessionStorage.getItem("theirDate");
+  });
+  document.querySelectorAll(".your_place_birth").forEach((place) => {
+    place.textContent = sessionStorage.getItem("yourPlaceOfBirth");
+  });
+  document.querySelectorAll(".their_place_birth").forEach((place) => {
+    place.textContent = sessionStorage.getItem("theyPlaceOfBirth");
+  });
+  document.querySelectorAll(".your_time_birth").forEach((time) => {
+    if (sessionStorage.getItem("yourTimeHBorn") && sessionStorage.getItem("yourTimeMBorn")) {
+      time.textContent = `${sessionStorage.getItem("yourTimeHBorn")}:${sessionStorage.getItem("yourTimeMBorn")} ${sessionStorage.getItem("yourTBirth")},`;
+    } else {
+      time.textContent = ``;
+    }
+  });
+  document.querySelectorAll(".their_time_birth").forEach((time) => {
+    if (sessionStorage.getItem("theyTimeHBorn") && sessionStorage.getItem("theyTimeMBorn")) {
+      time.textContent = `${sessionStorage.getItem("theyTimeHBorn")}:${sessionStorage.getItem("theyTimeMBorn")} ${sessionStorage.getItem("theyTBirth")},`;
+    } else {
+      time.textContent = ``;
+    }
   });
 }
 if (localStorage.getItem("zodiac")) {
-  document.querySelectorAll(".avatar_orange_box .name_var").forEach((el) => {
+  document.querySelectorAll(".your_name_var.name_var").forEach((el) => {
     if (el.textContent !== localStorage.getItem("zodiac")) {
       el.textContent = localStorage.getItem("zodiac");
     }
@@ -290,9 +307,190 @@ if (localStorage.getItem("their_zodiac")) {
   if (document.querySelector(".rich-text span.variable-replace").textContent !== localStorage.getItem("their_zodiac")) {
     document.querySelector(".rich-text span.variable-replace").textContent = localStorage.getItem("their_zodiac");
   }
-  document.querySelectorAll(".avatar_blue_box .name_var").forEach((el) => {
+  document.querySelectorAll(".their_name_var.name_var").forEach((el) => {
     if (el.textContent !== localStorage.getItem("their_zodiac")) {
       el.textContent = localStorage.getItem("their_zodiac");
     }
   });
 }
+
+// progress
+if (document.querySelector(".circle-progress") && !sessionStorage.getItem("isCircle")) {
+  const circle = document.querySelector(".circle-progress");
+  circle.style.strokeDasharray = `0 0`;
+  circle.style.strokeDashoffset = "0";
+  const circleRadius = circle.r.baseVal.value;
+  const circumference = 2 * Math.PI * circleRadius;
+  const circlePercent = document.querySelector(".count_percent");
+  let count = 0;
+
+  circle.style.strokeDasharray = `${circumference} ${circumference}`;
+  circle.style.strokeDashoffset = circumference;
+  console.log(circumference);
+
+  function setProgress(percent) {
+    circle.style.strokeDashoffset = circumference - (percent / 100) * circumference;
+    circlePercent.innerHTML = percent + "%";
+    sessionStorage.setItem("isStrokeDasharray", `${circumference} ${circumference}`);
+    sessionStorage.setItem("isStrokeDashoffset", circumference - (percent / 100) * circumference);
+    sessionStorage.setItem("isCircle", percent);
+  }
+  setProgress(randomInteger(75, 95));
+
+  function randomInteger(min, max) {
+    let rand = min + Math.random() * (max + 1 - min);
+    return Math.floor(rand);
+  }
+}
+
+if (sessionStorage.getItem("isCircle") && sessionStorage.getItem("isStrokeDashoffset") && sessionStorage.getItem("isStrokeDasharray")) {
+  document.querySelector(".count_percent").innerHTML = `${sessionStorage.getItem("isCircle")}%`;
+  document.querySelector(".circle-progress").style.strokeDasharray = sessionStorage.getItem("isStrokeDasharray");
+  document.querySelector(".circle-progress").style.strokeDashoffset = sessionStorage.getItem("isStrokeDashoffset");
+}
+// review
+let arrR = {
+  1: [`I`, `Isaiah tommy`, `Precise needles, answers and explanations some thoughts about myself and often told me I was struggling with myself. And totally TRUE! Mindblowing but this app helps me throw more and more throws.`, ""],
+  2: [`M`, `Mamafrauts`, `the best Vladana is the BEST astrologer I’ve gotten reading from! She is very thorough and gives detailed info based on what questions you ask her... highly recommend!!! :)`, ""],
+  3: [`H`, `HappyFeeetz`, `Great app My astrologer guide is pretty communicative and informative. I do not know much about astrology so she helped me understand some concepts.`, ""],
+  4: [`C`, `Cassandrats`, `Astrology insights with Vladana hint has been a wonderful portal to understanding more about my birth chart and current transits happening- my astrologer Vladana is patient with my questions and always has clear and helpful info connected with the sky!`, `is_hidden first_step first_scroll`],
+  5: [`C`, `CeCe JuzMe`, `Rosanna is awesome She has been there every step of the way with my journey. She responses very quickly without hesitation. I would recommend her to anyone.`, `is_hidden first_step`],
+  6: [`M`, `MrsMMiller`, `AKHO is a STAR herself! I’m so blessed to have found this app and Akho! She is a wonderful astrologist - very clear and extremely thorough with her analysis and answers to my many questions. I feel safe and comfortable communicating with her and I look forward to more time working with her!`, `is_hidden second_step second_scroll`],
+  7: [`C`, `Christinamariemelanie`, `Amazing Astrologer!!!! Highly recommend!!!!!!`, `is_hidden second_step`],
+  8: [`M`, `Mcookie7Mandy`, `Hint is amazing! This app is wonderful and is so easy to use. My personal guide Vladana is so on point with her insights and not fake suggestions that could fit to anyone. Everything is personalized to just you based on only your own information that you give so it can’t be misread or misleading. I love the compatibility insights as well. All in all I’m very pleased and recommend to anyone looking for a reputable website!`, `is_hidden third_step third_scroll`],
+  9: [`S`, `StudemanSteve`, `What a lovely app! I've tried a number of horoscope apps, but this one is the most accurate by a long shot. There are days when the app's forecast is so in sync with my actual experience that it feels like the app is directly addressing me. I am really smitten with this app.`, `is_hidden third_step`],
+  10: [`E`, `ElealonWhyse`, `A clear step by step approach I've been reading my daily horoscope since I was a youngster, so I can confidently say that they are the best horoscopes I've ever had access to. My friends who are unhappy with their horoscopes often come to me to find out what the ""good one"" predicts (aka. the one from this app).`, `is_hidden fourth_step fourth_scroll`],
+  11: [`C`, `CelyanBasars`, `Best astrology experience I have a background in science, that's why I still have a healthy amount of skepticism. However, one of my friends advised that I check out Hint since I enjoy reading astrology as a tool that helps me to frame my thinking and the world in a viewpoint that is more neutral or positive. There are patterns, so the only thing I can think of is that there must be some kind of scientific basis that we haven't worked out yet. I don't have any belief in anything spiritual, but there are patterns. To sum it all up, I'm not someone who is easily swayed.`, `is_hidden fourth_step`],
+  12: [`T`, `Thxrnhill`, `Christi at Hint. THE BEST. she’s the only astrologer i’ve matched up with that’s worked. my day to day horoscopes are very accurate and now finding her my questions are answered in a way that makes me feel satisfied. fav astro app fs.`, `is_hidden fifth_step fifth_scroll`],
+  13: [`J`, `J1212121234567`, `Chelene Chelene has been with me for a couple of months now, her words has been supportive and uplifting to my situation. Thank you.`, `is_hidden fifth_step`],
+  14: [`T`, `Tinkle when`, `The BEST!!!! ♐️🔮 Let me tell you, Hint is my go to app for astrology! So accurate, layout is super simple and easy to navigate. HUGE bonus is the personal astrologers on the site. If you can choose, my recommendation is Vladana. Oh my god, so accurate! She amazing! Very empathetic, and on point!.. and it's included in membership, you don't have to pay extra for learning about yourself. Vladana is very clear when reaching out, communication is through message or she'll send personalized video messages to you!. Reach out now!!!!!!!`, `is_hidden sixth_step sixth_scroll`],
+};
+
+function setList(img, name, text, hidden) {
+  return `
+<div class='review_card ${hidden}'>
+  <div class="review_card_info">
+    <p class="review_card_img">${img}</p>
+    <div class="review_card_stars">
+      <p class="review_card_name">${name}</p>
+      <span class="review_card_star"></span>
+    </div>
+  </div>
+  <p class="verified_txt">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7 0C3.14005 0 0 3.14005 0 7C0 10.86 3.14005 14 7 14C10.86 14 14 10.86 14 7C14 3.14005 10.86 0 7 0Z" fill="#75DB9C" />
+      <path d="M11.1724 5.31321L6.48867 9.99677C6.34815 10.1373 6.1637 10.208 5.97925 10.208C5.7948 10.208 5.61035 10.1373 5.46984 9.99677L3.12805 7.65499C2.84623 7.3733 2.84623 6.91785 3.12805 6.63616C3.40974 6.35434 3.86506 6.35434 4.14689 6.63616L5.97925 8.46852L10.1535 4.29437C10.4352 4.01255 10.8905 4.01255 11.1724 4.29437C11.4541 4.57606 11.4541 5.03138 11.1724 5.31321Z" fill="white" /></svg
+    >Verified customer
+  </p>
+  <p class="review_card_descr">${text}</p>
+</div>
+  `;
+}
+
+if (document.querySelector("#reviewsBlock") && !document.querySelector("#reviewsBlock .review_card")) {
+  for (let key in arrR) {
+    document.querySelector(".reviews_wrap").insertAdjacentHTML("beforeend", setList(arrR[key][0], arrR[key][1], arrR[key][2], arrR[key][3]));
+  }
+}
+
+// click on load more btn
+if (document.querySelector(".load_more_btn")) {
+  document.querySelector(".load_more_btn").addEventListener("click", (e) => {
+    // e.target.style.display = "none";
+    console.log(`load_more_btn`);
+    document.querySelectorAll("#reviewsBlock .review_card").forEach((el) => {
+      if (el.classList.contains("is_hidden") && el.classList.contains("first_step")) {
+        el.classList.remove("is_hidden");
+        el.classList.remove("first_step");
+        if (el.classList.contains("first_scroll")) {
+          el.scrollIntoView({ block: "start", behavior: "smooth" });
+        }
+        setTimeout(() => {
+          e.target.classList.add("first_step");
+        }, 10);
+      }
+      if (el.classList.contains("is_hidden") && el.classList.contains("second_step") && e.target.classList.contains("first_step")) {
+        el.classList.remove("is_hidden");
+        el.classList.remove("second_step");
+        if (el.classList.contains("second_scroll")) {
+          el.scrollIntoView({ block: "start", behavior: "smooth" });
+        }
+        setTimeout(() => {
+          e.target.classList.remove("first_step");
+          e.target.classList.add("second_step");
+        }, 10);
+      }
+      if (el.classList.contains("is_hidden") && el.classList.contains("third_step") && e.target.classList.contains("second_step")) {
+        el.classList.remove("is_hidden");
+        el.classList.remove("third_step");
+        if (el.classList.contains("third_scroll")) {
+          el.scrollIntoView({ block: "start", behavior: "smooth" });
+        }
+        setTimeout(() => {
+          e.target.classList.remove("second_step");
+          e.target.classList.add("third_step");
+        }, 10);
+      }
+      if (el.classList.contains("is_hidden") && el.classList.contains("fourth_step") && e.target.classList.contains("third_step")) {
+        el.classList.remove("is_hidden");
+        el.classList.remove("fourth_step");
+        if (el.classList.contains("fourth_scroll")) {
+          el.scrollIntoView({ block: "start", behavior: "smooth" });
+        }
+        setTimeout(() => {
+          e.target.classList.remove("third_step");
+          e.target.classList.add("fourth_step");
+        }, 10);
+      }
+      if (el.classList.contains("is_hidden") && el.classList.contains("fifth_step") && e.target.classList.contains("fourth_step")) {
+        el.classList.remove("is_hidden");
+        el.classList.remove("fifth_step");
+        if (el.classList.contains("fifth_scroll")) {
+          el.scrollIntoView({ block: "start", behavior: "smooth" });
+        }
+        setTimeout(() => {
+          e.target.classList.remove("fourth_step");
+          e.target.classList.add("fifth_step");
+        }, 10);
+      }
+      if (el.classList.contains("is_hidden") && el.classList.contains("sixth_step") && e.target.classList.contains("fifth_step")) {
+        el.classList.remove("is_hidden");
+        el.classList.remove("sixth_step");
+        e.target.style.display = "none";
+        if (el.classList.contains("sixth_scroll")) {
+          el.scrollIntoView({ block: "start", behavior: "smooth" });
+        }
+        setTimeout(() => {
+          e.target.classList.remove("fifth_step");
+          e.target.classList.add("sixth_step");
+        }, 10);
+      }
+    });
+  });
+}
+// accardionToggle
+$(".accardion_link_unique_identities").click(function (e) {
+  $(this).toggleClass("active_block");
+  $(this).closest("li").toggleClass("active_block");
+  $(this).next(".accardion_lists_unique_identities").slideToggle();
+  if ($(".accardion_link_unique_identities").not(this)) {
+    $(".accardion_link_unique_identities").not(this).next(".accardion_lists_unique_identities").css("display", "none");
+    $(".accardion_link_unique_identities").not(this).removeClass("active_block");
+    $(".accardion_link_unique_identities").not(this).closest("li").removeClass("active_block");
+  }
+});
+// slick slider
+let slickInterval = setInterval(() => {
+  if (typeof jQuery(".video_slider").slick === "function") {
+    clearInterval(slickInterval);
+    //  slider
+    let slider = jQuery(".video_slider").slick({
+      arrows: false,
+      centerMode: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      dots: true,
+      infinite: true,
+    });
+  }
+}, 200);
