@@ -506,40 +506,59 @@ $(".accardion_link_unique_identities").click(function (e) {
 });
 // slick slider
 let slickIntervalU = setInterval(() => {
-  if (typeof jQuery(".slickInterval_u").slick === "function") {
+  if (typeof jQuery(".slickInterval_u").slick === "function" && document.querySelectorAll(".slickInterval_a video").length > 3) {
     clearInterval(slickIntervalU);
     //  slider
     let slider = jQuery(".slickInterval_u").slick({
       arrows: false,
-      // centerMode: true,
       slidesToShow: 1.4,
       slidesToScroll: 1,
       dots: true,
       infinite: false,
     });
   }
-}, 800);
+}, 600);
 
 let slickIntervalA = setInterval(() => {
-  if (typeof jQuery(".slickInterval_a").slick === "function") {
+  if (typeof jQuery(".slickInterval_a").slick === "function" && document.querySelectorAll(".slickInterval_a video").length > 3) {
     clearInterval(slickIntervalA);
     //  slider
     let slider = jQuery(".slickInterval_a").slick({
       arrows: false,
-      // centerMode: true,
       slidesToShow: 1.4,
       slidesToScroll: 1,
       dots: true,
       infinite: false,
     });
   }
-}, 800);
+}, 600);
 
 //
 document.querySelectorAll(".absol_txt span svg").forEach((el) => {
   el.addEventListener("click", (e) => {
-    if (!e.target.closest(".absol_txt").classList.contains("is_hidden")) {
-      e.target.closest(".absol_txt").classList.add("is_hidden");
+    if (!e.currentTarget.closest(".absol_txt").classList.contains("is_hidden")) {
+      e.currentTarget.closest(".absol_txt").classList.add("is_hidden");
+    }
+    if (!e.currentTarget.closest(".absol_txt").nextElementSibling.classList.contains("is_hidden")) {
+      e.currentTarget.closest(".absol_txt").nextElementSibling.classList.add("is_hidden");
+    }
+    el.closest(".video_wrap").querySelector("video").play();
+  });
+});
+document.querySelectorAll(".video_slider .video_wrap > span").forEach((el) => {
+  el.addEventListener("click", (e) => {
+    e.currentTarget.classList.add("is_hidden");
+    if (!e.currentTarget.previousElementSibling.classList.contains("is_hidden")) {
+      e.currentTarget.previousElementSibling.classList.add("is_hidden");
+    }
+    el.closest(".video_wrap").querySelector("video").play();
+  });
+});
+document.querySelectorAll(".video_slider .video_wrap > .absol_txt").forEach((el) => {
+  el.addEventListener("click", (e) => {
+    e.currentTarget.classList.add("is_hidden");
+    if (!e.currentTarget.nextElementSibling.classList.contains("is_hidden")) {
+      e.currentTarget.nextElementSibling.classList.add("is_hidden");
     }
     el.closest(".video_wrap").querySelector("video").play();
   });

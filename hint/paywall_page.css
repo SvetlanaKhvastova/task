@@ -1,11 +1,35 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.simple-checkbox .checkbox {
+  display: none;
 }
-ul {
-  list-style: none;
+.elements-container .container-style-1 {
+  padding: none;
+  background: transparent;
+  border: 1px;
+  border: 1px solid #eff2fd;
+  border-radius: 10px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+body,
+button,
+input,
+select,
+textarea,
+.input-decorator {
+  min-height: 60px;
+}
+.input-box.with-floating-label.floating-label-inline input {
+  padding: 1.7em 0.6em 0.7em 0.5em;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+#screen-d4456073 .block[data-blocktype="generic-button"],
+#id-a4ca2feb .block[data-blocktype="generic-button"],
+#id-18bc26bd .block[data-blocktype="generic-button"],
+#id-a0fe7af7 .block[data-blocktype="generic-button"] {
+  position: sticky;
+  bottom: 0;
 }
 header {
   border-bottom: 1px solid #dee5f9;
@@ -826,6 +850,7 @@ header .elements-container-inner {
 .slickInterval_u.video_slider .slick-slide {
   padding: 0 8px;
 }
+
 .video_slider .video_wrap {
   position: relative;
 }
@@ -837,6 +862,45 @@ header .elements-container-inner {
   height: 33px;
   top: 8px;
   left: 20px;
+  z-index: 1;
+}
+.video_slider .video_wrap.no_logo::before {
+  top: 0;
+  left: 7px;
+  width: 44px;
+  height: 30px;
+  background-size: contain;
+}
+.video_slider .video_wrap > span::after {
+  border-radius: 10px;
+  position: absolute;
+  content: "";
+  background: url(https://conversionratestore.github.io/projects/hint/img/rebecca_bauman.jpg) no-repeat;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.video_slider .video_wrap .first_v::after {
+  background: url(https://conversionratestore.github.io/projects/hint/img/rebecca_bauman_new.png) no-repeat;
+}
+.video_slider .video_wrap .second_v::after {
+  background: url(https://conversionratestore.github.io/projects/hint/img/amanda_holmes.png) no-repeat;
+}
+.video_slider .video_wrap .third_v::after {
+  background: url(https://conversionratestore.github.io/projects/hint/img/mika_ryan.png) no-repeat;
+}
+.video_slider .video_wrap .fourth_v::after {
+  background: url(https://conversionratestore.github.io/projects/hint/img/Chelena.png) no-repeat;
+  background-size: contain;
+}
+.video_slider .video_wrap .fifth_v::after {
+  background: url(https://conversionratestore.github.io/projects/hint/img/Akho.png) no-repeat;
+  background-size: contain;
+}
+.video_slider .video_wrap .sixth_v::after {
+  background: url(https://conversionratestore.github.io/projects/hint/img/Vladana.png) no-repeat;
+  background-size: contain;
 }
 .video_slider .slick-dots {
   display: flex;
@@ -899,17 +963,26 @@ header .elements-container-inner {
   position: absolute;
 }
 /* sticky btn */
-#id-a0fe7af7 > .block[data-blocktype="generic-button"] {
+#id-a0fe7af7 > .block[data-blocktype="generic-button"],
+#screen-d4456073 > .block[data-blocktype="generic-button"],
+#id-a4ca2feb > .block[data-blocktype="generic-button"],
+#id-18bc26bd > .block[data-blocktype="generic-button"] {
   bottom: 0;
   background: #ffffff;
 }
 section > .block > .inner-narrow:not(.elements-v2-container) {
   padding: 0 20px !important;
 }
-#id-a0fe7af7 > .block[data-blocktype="generic-button"] button.generic-button .label-container + .graphic {
+#id-a0fe7af7 > .block[data-blocktype="generic-button"] button.generic-button .label-container + .graphic,
+#screen-d4456073 > .block[data-blocktype="generic-button"] button.generic-button .label-container + .graphic,
+#id-a4ca2feb > .block[data-blocktype="generic-button"] button.generic-button .label-container + .graphic,
+#id-18bc26bd > .block[data-blocktype="generic-button"] button.generic-button .label-container + .graphic {
   margin-top: 4px;
 }
-#text-block-id-b663f480 h6 {
+#text-block-id-b663f480 h6,
+#text-block-id-0bdb01c0 h6,
+#text-block-id-aea44c4d h6,
+#text-block-rich-text-40641351 h6 {
   font-family: "SF Pro Text", sans-serif;
   font-weight: 400;
   font-size: 12px;
@@ -956,15 +1029,24 @@ section > .block > .inner-narrow:not(.elements-v2-container) {
   height: 14px;
   width: 14px;
 }
-#id-a0fe7af7 > div:nth-child(3) {
+#id-a0fe7af7 > div:nth-child(3),
+#screen-d4456073 > div:nth-child(3),
+#id-a4ca2feb > div:nth-child(3),
+#id-18bc26bd > div:nth-child(3) {
   padding: 36px 25px 0;
   background: #ffffff;
 }
-#text-block-id-db4b7b19 {
+#text-block-id-db4b7b19,
+#text-block-id-3aeb883a,
+#text-block-id-be79fdc2,
+#text-block-rich-text-581f7b40 {
   padding: 12px 0 0 !important;
   border-top: 1px solid #c2cad8;
 }
-#text-block-id-db4b7b19 p {
+#text-block-id-db4b7b19 p,
+#text-block-id-3aeb883a p,
+#text-block-id-be79fdc2 p,
+#text-block-rich-text-581f7b40 p {
   font-family: "SF Pro Text", sans-serif;
   margin: 0;
   font-weight: 400;
@@ -975,17 +1057,17 @@ section > .block > .inner-narrow:not(.elements-v2-container) {
 .is_hidden {
   display: none;
 }
-/* !!!!!!!!!!!!!! */
 .absol_txt {
+  max-height: 102px;
+  height: 100%;
   position: absolute;
   left: 12px;
   bottom: 15px;
-  background: rgb(239 242 253 / 90%);
+  background: #eff2fd;
   border-radius: 5px;
   padding: 26px 12px 12px !important;
   z-index: 1;
-  max-width: 229px;
-  width: 100%;
+  width: 90%;
 }
 .absol_txt span {
   position: relative;
