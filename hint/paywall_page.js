@@ -237,14 +237,23 @@ document.querySelectorAll("[name='partner-time-of-birth'] .rootSimpleButton butt
   });
 });
 
-document.querySelector(".continue.generic-button#button-28497955").addEventListener("click", () => {
+document.querySelector(".continue.generic-button#button-28497955")?.addEventListener("click", (e) => {
   if (sessionStorage.getItem("isUnload")) {
     console.log(`isUnload`);
+
+    document.head.insertAdjacentHTML("beforeend", `<style class="exp">body {opacity: 0 !important;}</style>`);
     window.location.reload();
+    setTimeout(function () {
+      if (document.querySelector(".exp")) {
+        document.querySelector(".exp").remove();
+      }
+    }, 1000);
   }
 
   sessionStorage.setItem("isInfo", "true");
-  sessionStorage.setItem("isUnload", "true");
+  setTimeout(() => {
+    sessionStorage.setItem("isUnload", "true");
+  }, 300);
   if (localStorage.getItem("zodiac")) {
     document.querySelectorAll(".your_name_var.name_var").forEach((el) => {
       if (el.textContent !== localStorage.getItem("zodiac")) {
@@ -315,38 +324,46 @@ if (localStorage.getItem("their_zodiac")) {
 }
 
 // progress
-if (document.querySelector(".circle-progress") && !sessionStorage.getItem("isCircle")) {
-  const circle = document.querySelector(".circle-progress");
-  circle.style.strokeDasharray = `0 0`;
-  circle.style.strokeDashoffset = "0";
-  const circleRadius = circle.r.baseVal.value;
-  const circumference = 2 * Math.PI * circleRadius;
-  const circlePercent = document.querySelector(".count_percent");
-  let count = 0;
+if (document.querySelectorAll(".circle-progress") && !sessionStorage.getItem("isCircle")) {
+  const circle = document.querySelectorAll(".circle-progress");
+  circle.forEach((el) => {
+    el.style.strokeDasharray = `0 0`;
+    el.style.strokeDashoffset = "0";
+    const circleRadius = el.r.baseVal.value;
+    const circumference = 2 * Math.PI * circleRadius;
+    const circlePercent = document.querySelectorAll(".count_percent");
 
-  circle.style.strokeDasharray = `${circumference} ${circumference}`;
-  circle.style.strokeDashoffset = circumference;
-  console.log(circumference);
+    el.style.strokeDasharray = `${circumference} ${circumference}`;
+    el.style.strokeDashoffset = circumference;
+    console.log(circumference);
+    function setProgress(percent) {
+      el.style.strokeDashoffset = circumference - (percent / 100) * circumference;
+      circlePercent.forEach((i) => {
+        i.innerHTML = percent + "%";
+      });
+      sessionStorage.setItem("isStrokeDasharray", `${circumference} ${circumference}`);
+      sessionStorage.setItem("isStrokeDashoffset", circumference - (percent / 100) * circumference);
+      sessionStorage.setItem("isCircle", percent);
+    }
+    setProgress(randomInteger(75, 95));
 
-  function setProgress(percent) {
-    circle.style.strokeDashoffset = circumference - (percent / 100) * circumference;
-    circlePercent.innerHTML = percent + "%";
-    sessionStorage.setItem("isStrokeDasharray", `${circumference} ${circumference}`);
-    sessionStorage.setItem("isStrokeDashoffset", circumference - (percent / 100) * circumference);
-    sessionStorage.setItem("isCircle", percent);
-  }
-  setProgress(randomInteger(75, 95));
-
-  function randomInteger(min, max) {
-    let rand = min + Math.random() * (max + 1 - min);
-    return Math.floor(rand);
-  }
+    function randomInteger(min, max) {
+      let rand = min + Math.random() * (max + 1 - min);
+      return Math.floor(rand);
+    }
+  });
 }
 
 if (sessionStorage.getItem("isCircle") && sessionStorage.getItem("isStrokeDashoffset") && sessionStorage.getItem("isStrokeDasharray")) {
-  document.querySelector(".count_percent").innerHTML = `${sessionStorage.getItem("isCircle")}%`;
-  document.querySelector(".circle-progress").style.strokeDasharray = sessionStorage.getItem("isStrokeDasharray");
-  document.querySelector(".circle-progress").style.strokeDashoffset = sessionStorage.getItem("isStrokeDashoffset");
+  document.querySelectorAll(".count_percent").forEach((el) => {
+    el.innerHTML = `${sessionStorage.getItem("isCircle")}%`;
+  });
+  document.querySelectorAll(".circle-progress").forEach((el) => {
+    el.style.strokeDasharray = sessionStorage.getItem("isStrokeDasharray");
+  });
+  document.querySelectorAll(".circle-progress").forEach((el) => {
+    el.style.strokeDashoffset = sessionStorage.getItem("isStrokeDashoffset");
+  });
 }
 // review
 let arrR = {
@@ -389,82 +406,90 @@ function setList(img, name, text, hidden) {
 
 if (document.querySelector("#reviewsBlock") && !document.querySelector("#reviewsBlock .review_card")) {
   for (let key in arrR) {
-    document.querySelector(".reviews_wrap").insertAdjacentHTML("beforeend", setList(arrR[key][0], arrR[key][1], arrR[key][2], arrR[key][3]));
+    document.querySelectorAll(".reviews_wrap").forEach((el) => {
+      el.insertAdjacentHTML("beforeend", setList(arrR[key][0], arrR[key][1], arrR[key][2], arrR[key][3]));
+    });
   }
 }
 
 // click on load more btn
 if (document.querySelector(".load_more_btn")) {
-  document.querySelector(".load_more_btn").addEventListener("click", (e) => {
-    // e.target.style.display = "none";
-    console.log(`load_more_btn`);
-    document.querySelectorAll("#reviewsBlock .review_card").forEach((el) => {
-      if (el.classList.contains("is_hidden") && el.classList.contains("first_step")) {
-        el.classList.remove("is_hidden");
-        el.classList.remove("first_step");
-        if (el.classList.contains("first_scroll")) {
-          el.scrollIntoView({ block: "start", behavior: "smooth" });
-        }
-        setTimeout(() => {
-          e.target.classList.add("first_step");
-        }, 10);
-      }
-      if (el.classList.contains("is_hidden") && el.classList.contains("second_step") && e.target.classList.contains("first_step")) {
-        el.classList.remove("is_hidden");
-        el.classList.remove("second_step");
-        if (el.classList.contains("second_scroll")) {
-          el.scrollIntoView({ block: "start", behavior: "smooth" });
-        }
-        setTimeout(() => {
-          e.target.classList.remove("first_step");
-          e.target.classList.add("second_step");
-        }, 10);
-      }
-      if (el.classList.contains("is_hidden") && el.classList.contains("third_step") && e.target.classList.contains("second_step")) {
-        el.classList.remove("is_hidden");
-        el.classList.remove("third_step");
-        if (el.classList.contains("third_scroll")) {
-          el.scrollIntoView({ block: "start", behavior: "smooth" });
-        }
-        setTimeout(() => {
-          e.target.classList.remove("second_step");
-          e.target.classList.add("third_step");
-        }, 10);
-      }
-      if (el.classList.contains("is_hidden") && el.classList.contains("fourth_step") && e.target.classList.contains("third_step")) {
-        el.classList.remove("is_hidden");
-        el.classList.remove("fourth_step");
-        if (el.classList.contains("fourth_scroll")) {
-          el.scrollIntoView({ block: "start", behavior: "smooth" });
-        }
-        setTimeout(() => {
-          e.target.classList.remove("third_step");
-          e.target.classList.add("fourth_step");
-        }, 10);
-      }
-      if (el.classList.contains("is_hidden") && el.classList.contains("fifth_step") && e.target.classList.contains("fourth_step")) {
-        el.classList.remove("is_hidden");
-        el.classList.remove("fifth_step");
-        if (el.classList.contains("fifth_scroll")) {
-          el.scrollIntoView({ block: "start", behavior: "smooth" });
-        }
-        setTimeout(() => {
-          e.target.classList.remove("fourth_step");
-          e.target.classList.add("fifth_step");
-        }, 10);
-      }
-      if (el.classList.contains("is_hidden") && el.classList.contains("sixth_step") && e.target.classList.contains("fifth_step")) {
-        el.classList.remove("is_hidden");
-        el.classList.remove("sixth_step");
-        e.target.style.display = "none";
-        if (el.classList.contains("sixth_scroll")) {
-          el.scrollIntoView({ block: "start", behavior: "smooth" });
-        }
-        setTimeout(() => {
-          e.target.classList.remove("fifth_step");
-          e.target.classList.add("sixth_step");
-        }, 10);
-      }
+  document.querySelectorAll(".load_more_btn").forEach((link) => {
+    link.addEventListener("click", (e) => {
+      // e.target.style.display = "none";
+      console.log(`load_more_btn`);
+
+      link
+        .closest("#reviewsBlock")
+        .querySelectorAll(" .review_card")
+        .forEach((el) => {
+          if (el.classList.contains("is_hidden") && el.classList.contains("first_step")) {
+            el.classList.remove("is_hidden");
+            el.classList.remove("first_step");
+            if (el.classList.contains("first_scroll")) {
+              el.scrollIntoView({ block: "start", behavior: "smooth" });
+            }
+            setTimeout(() => {
+              e.target.classList.add("first_step");
+            }, 10);
+          }
+          if (el.classList.contains("is_hidden") && el.classList.contains("second_step") && e.target.classList.contains("first_step")) {
+            el.classList.remove("is_hidden");
+            el.classList.remove("second_step");
+            if (el.classList.contains("second_scroll")) {
+              el.scrollIntoView({ block: "start", behavior: "smooth" });
+            }
+            setTimeout(() => {
+              e.target.classList.remove("first_step");
+              e.target.classList.add("second_step");
+            }, 10);
+          }
+          if (el.classList.contains("is_hidden") && el.classList.contains("third_step") && e.target.classList.contains("second_step")) {
+            el.classList.remove("is_hidden");
+            el.classList.remove("third_step");
+            if (el.classList.contains("third_scroll")) {
+              el.scrollIntoView({ block: "start", behavior: "smooth" });
+            }
+            setTimeout(() => {
+              e.target.classList.remove("second_step");
+              e.target.classList.add("third_step");
+            }, 10);
+          }
+          if (el.classList.contains("is_hidden") && el.classList.contains("fourth_step") && e.target.classList.contains("third_step")) {
+            el.classList.remove("is_hidden");
+            el.classList.remove("fourth_step");
+            if (el.classList.contains("fourth_scroll")) {
+              el.scrollIntoView({ block: "start", behavior: "smooth" });
+            }
+            setTimeout(() => {
+              e.target.classList.remove("third_step");
+              e.target.classList.add("fourth_step");
+            }, 10);
+          }
+          if (el.classList.contains("is_hidden") && el.classList.contains("fifth_step") && e.target.classList.contains("fourth_step")) {
+            el.classList.remove("is_hidden");
+            el.classList.remove("fifth_step");
+            if (el.classList.contains("fifth_scroll")) {
+              el.scrollIntoView({ block: "start", behavior: "smooth" });
+            }
+            setTimeout(() => {
+              e.target.classList.remove("fourth_step");
+              e.target.classList.add("fifth_step");
+            }, 10);
+          }
+          if (el.classList.contains("is_hidden") && el.classList.contains("sixth_step") && e.target.classList.contains("fifth_step")) {
+            el.classList.remove("is_hidden");
+            el.classList.remove("sixth_step");
+            e.target.style.display = "none";
+            if (el.classList.contains("sixth_scroll")) {
+              el.scrollIntoView({ block: "start", behavior: "smooth" });
+            }
+            setTimeout(() => {
+              e.target.classList.remove("fifth_step");
+              e.target.classList.add("sixth_step");
+            }, 10);
+          }
+        });
     });
   });
 }
@@ -480,17 +505,42 @@ $(".accardion_link_unique_identities").click(function (e) {
   }
 });
 // slick slider
-let slickInterval = setInterval(() => {
-  if (typeof jQuery(".video_slider").slick === "function") {
-    clearInterval(slickInterval);
+let slickIntervalU = setInterval(() => {
+  if (typeof jQuery(".slickInterval_u").slick === "function") {
+    clearInterval(slickIntervalU);
     //  slider
-    let slider = jQuery(".video_slider").slick({
+    let slider = jQuery(".slickInterval_u").slick({
       arrows: false,
-      centerMode: true,
-      slidesToShow: 1,
+      // centerMode: true,
+      slidesToShow: 1.4,
       slidesToScroll: 1,
       dots: true,
-      infinite: true,
+      infinite: false,
     });
   }
-}, 200);
+}, 800);
+
+let slickIntervalA = setInterval(() => {
+  if (typeof jQuery(".slickInterval_a").slick === "function") {
+    clearInterval(slickIntervalA);
+    //  slider
+    let slider = jQuery(".slickInterval_a").slick({
+      arrows: false,
+      // centerMode: true,
+      slidesToShow: 1.4,
+      slidesToScroll: 1,
+      dots: true,
+      infinite: false,
+    });
+  }
+}, 800);
+
+//
+document.querySelectorAll(".absol_txt span svg").forEach((el) => {
+  el.addEventListener("click", (e) => {
+    if (!e.target.closest(".absol_txt").classList.contains("is_hidden")) {
+      e.target.closest(".absol_txt").classList.add("is_hidden");
+    }
+    el.closest(".video_wrap").querySelector("video").play();
+  });
+});

@@ -442,7 +442,6 @@ header .elements-container-inner {
 #uniqueIdentities [data-color="4"] .color_box_accent {
   background: #9059a4;
 }
-
 /* featuredHint */
 #featuredHint {
   padding: 32px 20px;
@@ -824,7 +823,7 @@ header .elements-container-inner {
 .video_slider iframe {
   border-radius: 10px;
 }
-.video_slider .slick-slide {
+.slickInterval_u.video_slider .slick-slide {
   padding: 0 8px;
 }
 .video_slider .video_wrap {
@@ -865,7 +864,7 @@ header .elements-container-inner {
   width: 20px;
   height: 6px;
 }
-#astrologistsVideos .video_wrap.is_logo {
+#astrologistsVideos .video_wrap.is_logo::before {
   position: unset;
 }
 .upload-box {
@@ -884,7 +883,7 @@ header .elements-container-inner {
 .circle-progress {
   transform-origin: center;
   transform: rotate(-90deg);
-  transition: stroke-dashoffset linear 3s;
+  /* transition: stroke-dashoffset linear 3s; */
 }
 #personalisedCompatibility .compatibility_percent_wrap {
   position: absolute;
@@ -920,7 +919,8 @@ section > .block > .inner-narrow:not(.elements-v2-container) {
   color: #121620;
 }
 .tub-support {
-  margin: 6px 0;
+  padding: 6px 0 !important;
+  display: block;
 }
 .tub-support > div {
   max-width: 274px !important;
@@ -974,4 +974,55 @@ section > .block > .inner-narrow:not(.elements-v2-container) {
 }
 .is_hidden {
   display: none;
+}
+/* !!!!!!!!!!!!!! */
+.absol_txt {
+  position: absolute;
+  left: 12px;
+  bottom: 15px;
+  background: rgb(239 242 253 / 90%);
+  border-radius: 5px;
+  padding: 26px 12px 12px !important;
+  z-index: 1;
+  max-width: 229px;
+  width: 100%;
+}
+.absol_txt span {
+  position: relative;
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.0008em;
+  display: block;
+}
+.absol_txt span::after {
+  position: absolute;
+  content: "";
+  background: url(https://conversionratestore.github.io/projects/hint/img/quote.svg) no-repeat;
+  width: 16px;
+  height: 16px;
+  top: -17px;
+  right: 0;
+}
+.absol_txt span svg {
+  position: absolute;
+  bottom: 40px;
+  left: -9px;
+  z-index: 5;
+}
+.absol_txt span svg.pos_var {
+  bottom: 56px;
+}
+#astrologistsVideos p.absol_txt {
+  max-width: 200px;
+}
+#astrologistsVideos p.absol_txt b.acccent_var {
+  font-weight: 400;
+}
+#astrologistsVideos .absol_txt span {
+  font-size: 11px;
+}
+#astrologistsVideos .absol_txt span svg {
+  bottom: 56px;
 }
