@@ -506,7 +506,7 @@ $(".accardion_link_unique_identities").click(function (e) {
 });
 // slick slider
 let slickIntervalU = setInterval(() => {
-  if (typeof jQuery(".slickInterval_u").slick === "function" && document.querySelectorAll(".slickInterval_a video").length > 3) {
+  if (typeof jQuery(".slickInterval_u").slick === "function") {
     clearInterval(slickIntervalU);
     //  slider
     let slider = jQuery(".slickInterval_u").slick({
@@ -520,7 +520,7 @@ let slickIntervalU = setInterval(() => {
 }, 600);
 
 let slickIntervalA = setInterval(() => {
-  if (typeof jQuery(".slickInterval_a").slick === "function" && document.querySelectorAll(".slickInterval_a video").length > 3) {
+  if (typeof jQuery(".slickInterval_a").slick === "function") {
     clearInterval(slickIntervalA);
     //  slider
     let slider = jQuery(".slickInterval_a").slick({

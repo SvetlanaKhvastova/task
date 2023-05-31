@@ -846,9 +846,13 @@ header .elements-container-inner {
 .video_slider video,
 .video_slider iframe {
   border-radius: 10px;
+  width: 100%;
 }
-.slickInterval_u.video_slider .slick-slide {
+.video_slider .slick-slide {
   padding: 0 8px;
+}
+.slickInterval_a {
+  margin: 0 -20px;
 }
 
 .video_slider .video_wrap {
@@ -1096,9 +1100,6 @@ section > .block > .inner-narrow:not(.elements-v2-container) {
 .absol_txt span svg.pos_var {
   bottom: 56px;
 }
-#astrologistsVideos p.absol_txt {
-  max-width: 200px;
-}
 #astrologistsVideos p.absol_txt b.acccent_var {
   font-weight: 400;
 }
@@ -1107,4 +1108,18 @@ section > .block > .inner-narrow:not(.elements-v2-container) {
 }
 #astrologistsVideos .absol_txt span svg {
   bottom: 56px;
+}
+@media (max-width: 360px) {
+  .absol_txt span {
+    font-size: 11px;
+  }
+  .main_title {
+    font-size: 23px;
+  }
+  #uniqueIdentities .accardion_link_unique_identities h3 {
+    font-size: 15px;
+  }
+  header .rich-text p {
+    font-size: 13px;
+  }
 }
