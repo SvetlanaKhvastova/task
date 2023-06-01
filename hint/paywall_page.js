@@ -563,3 +563,14 @@ document.querySelectorAll(".video_slider .video_wrap > .absol_txt").forEach((el)
     el.closest(".video_wrap").querySelector("video").play();
   });
 });
+
+document.querySelectorAll(".video_wrap video").forEach((el) => {
+  el.addEventListener("play", () => {
+    document.querySelectorAll("video").forEach((i) => {
+      if (el !== i) {
+        console.log(`i`, i);
+        i.pause();
+      }
+    });
+  });
+});
