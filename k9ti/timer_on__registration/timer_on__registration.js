@@ -3,12 +3,40 @@ let startTimer = setInterval(() => {
     clearInterval(startTimer);
 
     if (!localStorage.getItem("timerU")) {
-      localStorage.setItem("timerU", 30);
+      localStorage.setItem("timerU", 17999);
+      //   localStorage.setItem("timerU", 1 * 60 * 60 + 1 * 60 + 59);
       localStorage.setItem("start", new Date().getTime());
     }
     let elapsed = 0;
     if (!localStorage.getItem("timerF")) {
       startTime();
+    }
+
+    //event
+    let eventVar = "desktop";
+
+    if (window.innerWidth <= 768) {
+      eventVar = "mobile";
+    }
+
+    function pushDataLayer(actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || [];
+      if (labelDataLayer) {
+        console.log(actionDataLayer + " : " + labelDataLayer);
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Timer at free workshop page ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        });
+      } else {
+        console.log(actionDataLayer);
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Timer at free workshop page ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+        });
+      }
     }
 
     let newStyle = /*html */ `
@@ -242,6 +270,7 @@ let startTimer = setInterval(() => {
                 display: block;
                 padding: 20px;
                 margin: 0;
+                border-radius: 16px;
             }
             #newMyCarousel .tips_wrapper p{
                 margin: 0 0 12px;
@@ -287,7 +316,7 @@ let startTimer = setInterval(() => {
                 </div>
               <h2 class="new_main_title">Transform your dog today using the same secrets used to train service dogs!</h2>
               <p class="new_txt_descr"><b>(In just 1 hour</b>, you'll also learn all about potty training and fixing 11 common dog behavioral problems)</p>
-              <div class="tips_wrapper desk_var">
+              <div class="tips_wrapper desk_var" data-visability="2">
                 <p>Tips shared in our FREE online workshop <b>work for all dogs and puppies</b> regardless of age or breed</p>
                 <div class="research_conducted_block">
                   <p>Based on research conducted at:</p>
@@ -295,7 +324,7 @@ let startTimer = setInterval(() => {
                 </div>
               </div>
             </div>
-            <div class="timer_wrapper">
+            <div class="timer_wrapper" data-visability="1">
               <h3>Time is running out!</h3>
               <p>Don't miss your chance to reserve a spot in our <b>FREE ONLINE WORKSHOP</b></p>
               <div class="timer" data-time="">
@@ -320,7 +349,7 @@ let startTimer = setInterval(() => {
               </button>
               <span id="btnNewLearnMore">Learn more</span>
             </div>
-            <div class="tips_wrapper mob_var">
+            <div class="tips_wrapper mob_var" data-visability="3">
                 <p>Tips shared in our FREE online workshop <b>work for all dogs and puppies</b> regardless of age or breed</p>
                 <div class="research_conducted_block">
                   <p>Based on research conducted at:</p>
@@ -337,23 +366,44 @@ let startTimer = setInterval(() => {
     }
     if (localStorage.getItem("timerU") && !localStorage.getItem("timerF")) {
       if (+localStorage.getItem("timerU") - elapsed >= 0) {
-        document.querySelector(".timer").dataset.time = +localStorage.getItem("timerU") - elapsed;
+        if (+localStorage.getItem("timerU") - elapsed <= 3600) {
+          console.log(localStorage.getItem("timerU"), `+localStorage.getItem("timerU") - elapsed <= 3600`);
+          localStorage.setItem("timerU", 17999);
+          document.querySelector(".timer").dataset.time = +localStorage.getItem("timerU");
+        } else {
+          if (elapsed <= 60) {
+            elapsed = 0;
+            document.querySelector(".timer").dataset.time = +localStorage.getItem("timerU") - elapsed;
+          } else {
+            document.querySelector(".timer").dataset.time = +localStorage.getItem("timerU") - elapsed;
+          }
+        }
         localStorage.setItem("start", new Date().getTime());
       } else {
         localStorage.setItem("timerF", true);
       }
     }
+    //   click on Join free
     if (document.querySelector("#btnNewJoinFree")) {
       document.querySelector("#btnNewJoinFree").addEventListener("click", (e) => {
         e.preventDefault();
+        pushDataLayer("Join free workshop now", `Timer value: ${document.querySelector(".h").textContent}:${document.querySelector(".m").textContent}:${document.querySelector(".s").textContent}`);
         document.querySelector("#myCarousel .join_for_free").click();
       });
     }
+    //   click on Learn more
     if (document.querySelector("#btnNewLearnMore")) {
       document.querySelector("#btnNewLearnMore").addEventListener("click", (e) => {
         e.preventDefault();
+        pushDataLayer("Learn more", `Timer value: ${document.querySelector(".h").textContent}:${document.querySelector(".m").textContent}:${document.querySelector(".s").textContent}`);
         document.querySelector("#whatsIncluded").scrollIntoView({ block: "start", behavior: "smooth" });
       });
+    }
+
+    window.onunload = unloadPage;
+    function unloadPage() {
+      console.log("unload event detected!");
+      localStorage.setItem("start", new Date().getTime());
     }
 
     function startTime() {
@@ -366,6 +416,8 @@ let startTimer = setInterval(() => {
       }
       const end = new Date().getTime();
       elapsed = Math.round((end - start) / 1000);
+      console.log(new Date(start), `start`);
+      console.log(new Date(end), `end`);
       console.log(elapsed, `elapsed`);
     }
 
@@ -403,7 +455,6 @@ let startTimer = setInterval(() => {
             } else {
               second--;
             }
-            // second === 0 ? clearInterval(intervalMas[i]) : second--;
           }, 1000)
         );
       });
@@ -417,5 +468,66 @@ let startTimer = setInterval(() => {
         el.querySelector(".s").innerHTML = "00";
       });
     }
+    // visibility events
+    let obs = new IntersectionObserver(visibility, {
+      threshold: 0.9,
+    });
+
+    let obs2 = new IntersectionObserver(visibility2, {
+      threshold: 0.9,
+    });
+
+    obs.observe(document.querySelector('.timer_wrapper[data-visability="1"]'));
+    obs.observe(document.querySelector('.tips_wrapper.desk_var[data-visability="2"]'));
+    obs.observe(document.querySelector('.tips_wrapper.mob_var[data-visability="3"]'));
+
+    function visibility(entries) {
+      entries.forEach((i) => {
+        if (i.isIntersecting) {
+          setTimeout(function () {
+            obs2.observe(i.target);
+          }, 100);
+        }
+      });
+    }
+
+    function visibility2(entries) {
+      entries.forEach((i) => {
+        if (i.isIntersecting) {
+          switch (i.target.getAttribute("data-visability")) {
+            case "1":
+              pushDataLayer("View element on screen", "Time is running out");
+              break;
+            case "2":
+              pushDataLayer("View element on screen", "Tips shared in our FREE online workshop");
+              break;
+            case "3":
+              pushDataLayer("View element on screen", "Tips shared in our FREE online workshop");
+              break;
+            default:
+              break;
+          }
+
+          obs.unobserve(i.target);
+        }
+        obs2.unobserve(i.target);
+      });
+    }
+    // recordMF
+    pushDataLayer("loaded");
+    const recordMF = setInterval(() => {
+      if (typeof window._mfq === "object") {
+        clearInterval(recordMF);
+        window._mfq.push(["setVariable", "exp_timer", "var1"]);
+      }
+    }, 200);
+    // clarity
+    const record = setInterval(() => {
+      if (typeof clarity === "function") {
+        clearInterval(record);
+        clarity("set", "exp_timer", "variant_1");
+      }
+    }, 200);
+    document.querySelector(".exp")?.remove();
   }
 }, 100);
