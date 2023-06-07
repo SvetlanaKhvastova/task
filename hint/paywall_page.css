@@ -1122,3 +1122,6 @@ section > .block > .inner-narrow:not(.elements-v2-container) {
     font-size: 13px;
   }
 }
+#astrologyApp img {
+  max-width: 54px;
+}
