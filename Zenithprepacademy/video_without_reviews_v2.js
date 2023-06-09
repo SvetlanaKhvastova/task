@@ -1238,6 +1238,7 @@ let videoReviews = setInterval(() => {
           if (i.target.classList.contains("timeline_new")) {
             pushDataLayer(`Timeline section (visibility)`);
           }
+
           switch (i.target.getAttribute("data-visab")) {
             case "1":
               pushDataLayer("Reviews section (visibility)", `Reviews block ${i.target.querySelector(".review_card_title").textContent}`);

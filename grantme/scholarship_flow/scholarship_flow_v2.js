@@ -402,7 +402,7 @@ body .our_consultants_wrapper h3 {
 .reviews_btn_wrapper p {
   font-family: "Lato", sans-serif;
   font-weight: 400 !important;
-  font-size: 14px !important;
+  font-size: 13px !important;
   line-height: 21px !important;
   color: #ffffff;
   text-align: left !important;
@@ -1356,9 +1356,12 @@ border-radius: 12px
   outline: none;
   border: none;
 }
-@media (min-width: 768px) {
   #yourInformationForm .next_btn_for_parent{
     margin-top: 24px;
+  }
+@media (min-width: 768px) {
+  #yourInformationForm .next_btn_for_parent{
+    margin-top: 58px;
   }
   .chosen_select div.options_custom ul {
     max-height: 222px;
@@ -1755,6 +1758,9 @@ border-radius: 12px
   .your_parent_information_wrapper {
     margin: 16px 0 24px;
   }
+  .your_parent_information_wrapper.new_space {
+    margin: 16px 0 58px;
+  }
   .chosen_select {
     margin: 24px auto 0;
   }
@@ -2022,7 +2028,7 @@ padding: 0;
                             <div>
                                 <label class="no_content">
                                     <span>Email <b>*</b></span>
-                                    <input value='test@test.com' size="60" maxlength="254" required="required" aria-required="true" type="email" name="email" id="newEmail" />
+                                    <input size="60" maxlength="254" required="required" aria-required="true" type="email" name="email" id="newEmail" />
                                 </label>
                             </div>
                         </div>
@@ -2051,10 +2057,10 @@ padding: 0;
                                     </label>
                                 </div>
                                 <div>
-                                    <label class="no_content">
-                                        <span>Guest email</span>
-                                        <input size="60" maxlength="254" required="required" aria-required="true" type="email" name="newEmailGuest" id="newEmailGuest" />
-                                    </label>
+                                <label class="no_content">
+                                    <span>Guest email</span>
+                                    <input size="60" maxlength="254" required="required" aria-required="true" type="email" name="newEmailGuest" id="newEmailGuest" />
+                                </label>
                                 </div>
                             </div>
 
@@ -2341,6 +2347,7 @@ padding: 0;
         document.querySelector("#newFirstNameGuest").previousElementSibling.textContent = "Guest First name";
         document.querySelector("#newLastNameGuest").previousElementSibling.textContent = "Guest Last name";
         document.querySelector("#newPhoneNumberGuest").previousElementSibling.textContent = "Guest Phone number";
+        document.querySelector("#newEmailGuest").previousElementSibling.textContent = "Guest email";
         if (document.querySelector(".add_guests_btn").classList.contains("is_hidden")) {
           document.querySelector(".add_guests_btn").classList.remove("is_hidden");
         }
@@ -2366,6 +2373,9 @@ padding: 0;
           document.querySelector(`#yourInformationForm input[name='phoneNumber']`).value = document.querySelector("#edit-parent-phone-number").value;
           validationForm(document.querySelector(`#yourInformationForm input[name='phoneNumber']`));
         }
+        if (document.querySelector(".your_parent_information_wrapper").classList.contains("new_space")) {
+          document.querySelector(".your_parent_information_wrapper").classList.remove("new_space");
+        }
       } else {
         document.querySelector(".person_name_var").textContent = document.querySelector("#edit-first-name").value;
         document.querySelector(".your_person_var").textContent = "You Are";
@@ -2373,6 +2383,8 @@ padding: 0;
         document.querySelector("#newFirstNameGuest").previousElementSibling.innerHTML = "Parent First name <b>*</b>";
         document.querySelector("#newLastNameGuest").previousElementSibling.innerHTML = "Parent Last name <b>*</b>";
         document.querySelector("#newPhoneNumberGuest").previousElementSibling.innerHTML = "Parent Phone number <b>*</b>";
+        document.querySelector("#newEmailGuest").previousElementSibling.innerHTML = "Parent email <b>*</b>";
+        document.querySelector(".your_parent_information_wrapper").classList.add("new_space");
 
         if (!document.querySelector("#yourInformationForm .schedule_call_btn").classList.contains("is_hidden")) {
           document.querySelector("#yourInformationForm .schedule_call_btn").classList.add("is_hidden");
@@ -2933,6 +2945,12 @@ padding: 0;
             }
             e.currentTarget.setAttribute("data-test", "1");
           }
+          if (e.currentTarget.querySelector("input").getAttribute("name") === "email") {
+            if (!e.currentTarget.getAttribute("data-test")) {
+              pushDataLayer("exp_bookpage_calendar_phone", "Enter details. Email", "Input", "Calendar");
+            }
+            e.currentTarget.setAttribute("data-test", "1");
+          }
           if (e.currentTarget.querySelector("input").getAttribute("name") === "newFirstNameGuest") {
             if (!e.currentTarget.getAttribute("data-test")) {
               pushDataLayer("exp_bookpage_calendar_fname_guest", "Enter details. First name Guest", "Input", "Calendar");
@@ -2948,6 +2966,12 @@ padding: 0;
           if (e.currentTarget.querySelector("input").getAttribute("name") === "newPhoneNumberGuest") {
             if (!e.currentTarget.getAttribute("data-test")) {
               pushDataLayer("exp_bookpage_calendar_phone_guest", "Enter details. Phone number Guest", "Input", "Calendar");
+            }
+            e.currentTarget.setAttribute("data-test", "1");
+          }
+          if (e.currentTarget.querySelector("input").getAttribute("name") === "newEmailGuest") {
+            if (!e.currentTarget.getAttribute("data-test")) {
+              pushDataLayer("exp_bookpage_calendar_phone_guest", "Enter details. Email Guest", "Input", "Calendar");
             }
             e.currentTarget.setAttribute("data-test", "1");
           }
@@ -2999,6 +3023,11 @@ padding: 0;
             if (e.target.getAttribute("name") === "newPhoneNumberGuest") {
               document.querySelector("#edit-phone-number").value = e.target.value;
             }
+            // if (e.target.closest(".your_parent_information_wrapper")) {
+            //   if (e.target.value === "") {
+            //     e.target.closest("label").nextElementSibling?.remove();
+            //   }
+            // }
           } else {
             if (e.target.getAttribute("name") === "firstName") {
               document.querySelector("#edit-first-name").value = e.target.value;
@@ -3027,11 +3056,6 @@ padding: 0;
           }
           if (!e.target.previousElementSibling.classList.contains("is_active")) {
             e.target.previousElementSibling.classList.add("is_active");
-          }
-          if (e.target.closest(".your_parent_information_wrapper")) {
-            if (e.target.value === "") {
-              e.target.closest("label").nextElementSibling?.remove();
-            }
           }
         });
         i.addEventListener("blur", (e) => {
@@ -3087,34 +3111,34 @@ padding: 0;
           );
         }
 
-        let paramsLocation = new URLSearchParams(window.location.search);
-        if (paramsLocation.get("user_type") === "parent") {
-          if (document.querySelector(`#yourInformationForm input[name='newFirstNameGuest']`).value === "") {
-            document.querySelector("#edit-first-name").value = "test";
-          }
-          if (document.querySelector(`#yourInformationForm input[name='newLastNameGuest']`).value === "") {
-            document.querySelector("#edit-last-name").value = "test";
-          }
-          if (document.querySelector(`#yourInformationForm input[name='newEmailGuest']`).value === "") {
-            document.querySelector("#edit-email").value = "test@test.com";
-          }
-          if (document.querySelector(`#yourInformationForm input[name='newPhoneNumberGuest']`).value === "") {
-            document.querySelector("#edit-phone-number").value = "(000) 000-0000";
-          }
-        } else {
-          if (document.querySelector(`#yourInformationForm input[name='newFirstNameGuest']`).value === "") {
-            document.querySelector("#edit-parent-first-name").value = "test";
-          }
-          if (document.querySelector(`#yourInformationForm input[name='newLastNameGuest']`).value === "") {
-            document.querySelector("#edit-parent-last-name").value = "test";
-          }
-          if (document.querySelector(`#yourInformationForm input[name='newEmailGuest']`).value === "") {
-            document.querySelector("#edit-parent-email").value = "test@test.com";
-          }
-          if (document.querySelector(`#yourInformationForm input[name='newPhoneNumberGuest']`).value === "") {
-            document.querySelector("#edit-parent-phone-number").value = "(000) 000-0000";
-          }
-        }
+        // let paramsLocation = new URLSearchParams(window.location.search);
+        // if (paramsLocation.get("user_type") === "parent") {
+        //   if (document.querySelector(`#yourInformationForm input[name='newFirstNameGuest']`).value === "") {
+        //     document.querySelector("#edit-first-name").value = "test";
+        //   }
+        //   if (document.querySelector(`#yourInformationForm input[name='newLastNameGuest']`).value === "") {
+        //     document.querySelector("#edit-last-name").value = "test";
+        //   }
+        //   if (document.querySelector(`#yourInformationForm input[name='newEmailGuest']`).value === "") {
+        //     document.querySelector("#edit-email").value = "test@test.com";
+        //   }
+        //   if (document.querySelector(`#yourInformationForm input[name='newPhoneNumberGuest']`).value === "") {
+        //     document.querySelector("#edit-phone-number").value = "(000) 000-0000";
+        //   }
+        // } else {
+        //   if (document.querySelector(`#yourInformationForm input[name='newFirstNameGuest']`).value === "") {
+        //     document.querySelector("#edit-parent-first-name").value = "test";
+        //   }
+        //   if (document.querySelector(`#yourInformationForm input[name='newLastNameGuest']`).value === "") {
+        //     document.querySelector("#edit-parent-last-name").value = "test";
+        //   }
+        //   if (document.querySelector(`#yourInformationForm input[name='newEmailGuest']`).value === "") {
+        //     document.querySelector("#edit-parent-email").value = "test@test.com";
+        //   }
+        //   if (document.querySelector(`#yourInformationForm input[name='newPhoneNumberGuest']`).value === "") {
+        //     document.querySelector("#edit-parent-phone-number").value = "(000) 000-0000";
+        //   }
+        // }
 
         document.querySelector("#edit-book-call")?.click();
       });
@@ -3134,17 +3158,50 @@ padding: 0;
         if (document.querySelector("#yourInformationForm .schedule_call_btn").classList.contains("is_hidden")) {
           document.querySelector("#yourInformationForm .schedule_call_btn").classList.remove("is_hidden");
         }
+
+        //visibility elem
+        let obs = new IntersectionObserver(visibility, {
+          threshold: 1,
+        });
+
+        let obs2 = new IntersectionObserver(visibility2, {
+          threshold: 1,
+        });
+
+        obs.observe(document.querySelector(".your_parent_information_wrapper"));
+        function visibility(entries) {
+          entries.forEach((i) => {
+            if (i.isIntersecting) {
+              setTimeout(function () {
+                obs2.observe(i.target);
+              }, 100);
+            }
+          });
+        }
+        function visibility2(entries) {
+          entries.forEach((i) => {
+            if (i.isIntersecting) {
+              if (i.target.classList.contains("your_parent_information_wrapper")) {
+                pushDataLayer("exp_bookpage_viewel_fc", "Interaction", "View element on screen", "Free Call with a Student  Success Specialist 'Your Parent Information'");
+              }
+
+              obs.unobserve(i.target);
+            }
+            obs2.unobserve(i.target);
+          });
+        }
       });
     }
 
     function validationForm(target) {
-      let inputValueFirstName = document.querySelector(`#yourInformationForm input[name='firstName']`).value.match(/^[а-яА-ЯёЁa-zA-Z0-9]+$/);
-      let inputValueLastName = document.querySelector(`#yourInformationForm input[name='lastName']`).value.match(/^[а-яА-ЯёЁa-zA-Z0-9]+$/);
+      console.log(target, `target`);
+      let inputValueFirstName = document.querySelector(`#yourInformationForm input[name='firstName']`).value.match(/^.{1,30}$/);
+      let inputValueLastName = document.querySelector(`#yourInformationForm input[name='lastName']`).value.match(/^.{1,30}$/);
       let inputValueEmail = document.querySelector(`#yourInformationForm input[name='email']`).value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
       let mask;
 
-      let inputValueFirstNameGuest = document.querySelector(`#yourInformationForm input[name='newFirstNameGuest']`).value.match(/^[а-яА-ЯёЁa-zA-Z0-9]+$/);
-      let inputValueLastNameGuest = document.querySelector(`#yourInformationForm input[name='newLastNameGuest']`).value.match(/^[а-яА-ЯёЁa-zA-Z0-9]+$/);
+      let inputValueFirstNameGuest = document.querySelector(`#yourInformationForm input[name='newFirstNameGuest']`).value.match(/^.{1,30}$/);
+      let inputValueLastNameGuest = document.querySelector(`#yourInformationForm input[name='newLastNameGuest']`).value.match(/^.{1,30}$/);
       let inputValueEmailGuest = document.querySelector(`#yourInformationForm input[name='newEmailGuest']`).value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
       let maskGuest;
 
@@ -3252,9 +3309,11 @@ padding: 0;
         if (inputValueEmailGuest === null) {
           document.querySelector(`#yourInformationForm input[name='newEmailGuest']`)?.closest("label").classList.add("label_error");
           if (!document.querySelector(`.text_validation.email_guest_var`)) {
-            document.querySelector(`#yourInformationForm input[name='newEmailGuest']`)?.closest("label").insertAdjacentHTML("afterend", `<p class="text_validation email_guest_var">Email does not contain a valid email.</p>`);
+            document.querySelector(`#yourInformationForm input[name='newEmailGuest']`).closest("label").insertAdjacentHTML("afterend", `<p class="text_validation email_guest_var">Email does not contain a valid email.</p>`);
+            console.log(` NULL`);
           }
         } else {
+          console.log(`REMOVE NULL`);
           document.querySelector(`#yourInformationForm input[name='newEmailGuest']`)?.closest("label").classList.remove("label_error");
           document.querySelector(`.text_validation.email_guest_var`)?.remove();
           target.previousElementSibling.classList.add("is_active");
@@ -3301,7 +3360,7 @@ padding: 0;
       } else {
         if (inputValueFirstName !== null && inputValueLastName !== null && inputValueEmail !== null) {
           setTimeout(() => {
-            if (document.querySelector(`.text_validation.phone_number_var`) == null && document.querySelector(`.text_validation.name_guest_var`) == null && document.querySelector(`.text_validation.last_name_guest_var`) == null && document.querySelector(`.text_validation.phone_number_guest_var`) == null) {
+            if (document.querySelector(`.text_validation.phone_number_var`) == null && document.querySelector(`.text_validation.name_var`) == null && document.querySelector(`.text_validation.lastName_var`) == null && document.querySelector(`.text_validation.email_var`) == null) {
               if (document.querySelector("#yourInformationForm .next_btn_for_parent:disabled")) {
                 document.querySelector("#yourInformationForm .next_btn_for_parent:disabled").disabled = false;
               }
@@ -3314,7 +3373,7 @@ padding: 0;
         }
         if (inputValueFirstNameGuest !== null && inputValueLastNameGuest !== null && inputValueEmailGuest !== null) {
           setTimeout(() => {
-            if (document.querySelector(`.text_validation.phone_number_var`) == null && document.querySelector(`.text_validation.name_guest_var`) == null && document.querySelector(`.text_validation.last_name_guest_var`) == null && document.querySelector(`.text_validation.phone_number_guest_var`) == null && document.querySelector(`#yourInformationForm input[name='newPhoneNumberGuest']`).value !== "") {
+            if (document.querySelector(`.text_validation.email_guest_var`) == null && document.querySelector(`.text_validation.name_guest_var`) == null && document.querySelector(`.text_validation.last_name_guest_var`) == null && document.querySelector(`.text_validation.phone_number_guest_var`) == null && document.querySelector(`#yourInformationForm input[name='newPhoneNumberGuest']`).value !== "") {
               if (document.querySelector("#yourInformationForm .schedule_call_btn:disabled")) {
                 document.querySelector("#yourInformationForm .schedule_call_btn:disabled").disabled = false;
               }

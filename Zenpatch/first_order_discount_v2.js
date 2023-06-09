@@ -8,7 +8,7 @@ let startFunkPopupV2 = setInterval(() => {
         console.log(actionDataLayer + " : " + labelDataLayer);
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: - Exp: Changing First order discount`,
+          eventCategory: `Exp: Changing First order discount`,
           eventAction: `${actionDataLayer}`,
           eventLabel: `${labelDataLayer}`,
         });
@@ -16,7 +16,7 @@ let startFunkPopupV2 = setInterval(() => {
         console.log(actionDataLayer);
         dataLayer.push({
           event: "event-to-ga",
-          eventCategory: `Exp: - Exp: Changing First order discount`,
+          eventCategory: `Exp: Changing First order discount`,
           eventAction: `${actionDataLayer}`,
         });
       }
@@ -24,38 +24,54 @@ let startFunkPopupV2 = setInterval(() => {
 
     let popupTimerId;
     let active = false;
-    getNewUser("_ga");
+    // getNewUser("_ga");
 
     if (document.cookie.indexOf("_ga") !== -1) {
       console.log("Куки есть");
     } else {
       console.log("Куки нет");
     }
-    function getNewUser(name) {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      let valueCookie;
-      let timeNewUser;
-      if (parts.length === 2 && !localStorage.getItem("newUser")) {
-        valueCookie = parts.pop().split(";").shift();
-        timeNewUser = +(valueCookie.split(".").pop() + "000");
-        console.log(`timeNewUser`, new Date(timeNewUser));
-        if (+new Date() - +new Date(timeNewUser) <= 5 * 60 * 1000) {
+
+    if (!localStorage.getItem("newUser")) {
+      popupTimerId = setInterval(() => {
+        if (document.querySelector("html body .ju_Con")) {
+          clearInterval(popupTimerId);
           console.log(`New User`);
           active = true;
           localStorage.setItem("newUser", "true");
-          popupTimerId = setInterval(() => {
-            if (document.querySelector("html body .ju_Con")) {
-              clearInterval(popupTimerId);
-              openPopup();
-              if (document.querySelector(".overlay_popup .content_popup")) {
-                countTimer();
-              }
-            }
-          }, 10);
+          openPopup();
+          if (document.querySelector(".overlay_popup .content_popup")) {
+            countTimer();
+          }
         }
-      }
+      }, 10);
     }
+    // function getNewUser(name) {
+    //   const value = `; ${document.cookie}`;
+    //   const parts = value.split(`; ${name}=`);
+    //   let valueCookie;
+    //   let timeNewUser;
+    //   console.log(`timeNewUser`, new Date(timeNewUser));
+    //   if (parts.length === 2 && !localStorage.getItem("newUser")) {
+    //     valueCookie = parts.pop().split(";").shift();
+    //     timeNewUser = +(valueCookie.split(".").pop() + "000");
+    //     console.log(`timeNewUser`, new Date(timeNewUser));
+    //     if (+new Date() - +new Date(timeNewUser) <= 5 * 60 * 1000) {
+    //       console.log(`New User`);
+    //       active = true;
+    //       localStorage.setItem("newUser", "true");
+    //       popupTimerId = setInterval(() => {
+    //         if (document.querySelector("html body .ju_Con")) {
+    //           clearInterval(popupTimerId);
+    //           openPopup();
+    //           if (document.querySelector(".overlay_popup .content_popup")) {
+    //             countTimer();
+    //           }
+    //         }
+    //       }, 10);
+    //     }
+    //   }
+    // }
 
     let scriptCustomTimer = document.createElement("script");
     scriptCustomTimer.src = "https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.0/flipclock.min.js";
@@ -69,6 +85,14 @@ let startFunkPopupV2 = setInterval(() => {
 
     let popupStyle = /*html */ `
         <style>
+          #getNow .days{
+            display: none !important;
+          }
+          #getNow img.new_img_reviews{
+            max-width: 182px !important;
+            margin-top: 16px;
+            display: block;
+          }
           .reviews-slide{
             border-top: unset !important;
           }
@@ -301,6 +325,8 @@ let startFunkPopupV2 = setInterval(() => {
             margin: 0 0 16px !important;
             position: relative;
             width: 100%;
+            outline: none !important;
+            border: none !important;
         }
         .email_opt_in label::before{
             position: absolute;
@@ -321,14 +347,22 @@ let startFunkPopupV2 = setInterval(() => {
             background: unset !important;
             box-shadow: unset !important;
             padding: 0 24px 0 50px !important;
+            outline: none !important;
         }
         .email_opt_in label input::placeholder{
           font-weight: 400;
           color: #9C9C9C;
         }
+        .email_opt_in label:focus-visible{
+            outline-offset: unset !important;
+            box-shadow: unset !important;
+            outline: none !important;
+            border: none !important;
+        }
         .email_opt_in label input:focus-visible{
           outline:1px solid #D3D3D3 !important;
           outline-offset: unset !important;
+          border-radius: 31px !important;
         }
         .no_thanks_btn{
             font-weight: 400;
@@ -677,6 +711,9 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
     document.head.insertAdjacentHTML("beforeend", `<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">`);
     document.head.insertAdjacentHTML("beforeend", popupStyle);
     document.querySelector("#addToCart")?.after(document.querySelector("#getNow .free-shipping-checkout"));
+    if (!document.querySelector("#getNow .new_img_reviews")) {
+      document.querySelector("#getNow .days")?.insertAdjacentHTML("afterend", `<img src="https://conversionratestore.github.io/projects/zenpatch/img/new_img_shipping.png" alt="Reviews 1273" class="new_img_reviews">`);
+    }
     if (!localStorage.getItem("restartFunc")) {
       document.querySelector("#addToCart")?.insertAdjacentHTML("beforebegin", triggerPopup);
       document.querySelector(".button-proceed")?.insertAdjacentHTML("beforebegin", triggerPopup);
@@ -729,10 +766,10 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
               if (!e.target.getAttribute("data-test")) {
                 let step;
                 if ($(".email_opt_in").is(":visible") && el.getAttribute("data-close") === "Close extra 10 percent popup") {
-                  step = 1;
+                  step = "step_1";
                 }
                 if ($(".success_block ").is(":visible") && el.getAttribute("data-close") === "Close extra 10 percent popup") {
-                  step = 2;
+                  step = "step_2";
                 }
                 pushDataLayer(`${el.getAttribute("data-close")}`, step);
                 closePopup();
@@ -850,6 +887,12 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
 
               return countdown;
             };
+
+            document.querySelector("#countdown").addEventListener("click", (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            });
+
             set_countdown = function (minutes, start) {
               let elapsed, end, left_secs, now, seconds;
               if (countdown.running) {
@@ -954,6 +997,25 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
           }, 300);
         }
       }
+
+      document.querySelectorAll("#purchase .slide-packs>ul>li").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          if (!localStorage.getItem("restartFunc")) {
+            if (e.target.classList.contains("active-slide")) {
+              document.querySelector("#addToCart").click();
+            }
+          }
+        });
+      });
+      document.querySelectorAll(".sidebar .list-packs").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          if (!localStorage.getItem("restartFunc")) {
+            if (e.target.classList.contains("active-slide")) {
+              document.querySelector(".sidebar .button-proceed").click();
+            }
+          }
+        });
+      });
 
       function changeVisabilityApplieddiscount() {
         document.querySelectorAll(".btn_trigger_popup.not_applied_discount")?.forEach((el) => {
@@ -1084,12 +1146,13 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
                   document.querySelector(`.input_validation_email`).style.display = "block";
                   document.querySelector(`input[name='email']`).classList.remove("error");
                 } else {
+                  document.querySelector(`.input_validation_email`).style.display = "none";
+                  document.querySelector(`input[name='email']`).classList.remove("error");
                   document.querySelector(".input_validation_email").textContent = "Your email doesn't seem to be valid";
 
-                  document.querySelector(`input[name='email']`).classList.remove("error");
-                  document.querySelector(`.input_validation_email`).style.display = "none";
                   countdown.stop();
                   localStorage.setItem("appliedDiscount", "yes");
+                  top.fbq("track", "Lead");
                   changeVisabilityApplieddiscount();
                 }
               })
