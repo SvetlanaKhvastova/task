@@ -263,3 +263,24 @@ const recordMF = setInterval(() => {
     window._mfq.push(["setVariable", "removing_extras_from_basic_plan", "var1"]);
   }
 }, 200);
+//
+document.querySelector("#button-736a5ca3").addEventListener("click", (e) => {
+  e.preventDefault();
+  let ep = localStorage.getItem("email");
+  window.location.href = `https://purchase.hint.app/payment-2?&email=${ep}&planCode=1_1_week_1900_100&price=100&funnel=your-funnel`;
+});
+document.querySelector("#id-842b1456").addEventListener("click", (e) => {
+  e.preventDefault();
+  let ep = localStorage.getItem("email");
+  window.location.href = `https://purchase.hint.app/payment-2?&email=${ep}&planCode=1_1_week_1900_500&price=500&funnel=your-funnel`;
+});
+document.querySelector("#id-43231a98").addEventListener("click", (e) => {
+  e.preventDefault();
+  let ep = localStorage.getItem("email");
+  window.location.href = `https://purchase.hint.app/payment-2?&email=${ep}&planCode=1_1_week_1900_900&price=900&funnel=your-funnel`;
+});
+document.querySelector("#id-a4f0c16f").addEventListener("click", (e) => {
+  e.preventDefault();
+  let ep = localStorage.getItem("email");
+  window.location.href = `https://purchase.hint.app/payment-2?&email=${ep}&planCode=1_1_week_1900_1321&price=1321&funnel=your-funnel`;
+});

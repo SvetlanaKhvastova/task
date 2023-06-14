@@ -205,7 +205,7 @@ let startFunkPopupV2 = setInterval(() => {
             transition: all 0.5s ease;
         }
         .overlay_popup.is_hidden{
-            opacity: 0;
+            opacity: 0 !important;
             pointer-events: none;
         }
         .overlay_popup .container_popup {
@@ -229,7 +229,7 @@ let startFunkPopupV2 = setInterval(() => {
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            z-index: 1111;
+            z-index: 1;
         }
         .overlay_popup .container_popup > .btn_close span{
           background: url(https://conversionratestore.github.io/projects/zenpatch/img/btn_close.svg) center center no-repeat;
@@ -653,7 +653,7 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
         `;
 
     let popUp = /*html */ `
-                <div class="overlay_popup is_hidden">
+                <div class="overlay_popup is_hidden" style="opacity:0;">
                     <div class="container_popup">
                         <div class="btn_close" data-close="Close extra 10 percent popup">
                           <span></span>
@@ -710,6 +710,7 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
 
     document.head.insertAdjacentHTML("beforeend", `<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">`);
     document.head.insertAdjacentHTML("beforeend", popupStyle);
+    document.body.insertAdjacentHTML("beforeend", popUp);
     document.querySelector("#addToCart")?.after(document.querySelector("#getNow .free-shipping-checkout"));
     if (!document.querySelector("#getNow .new_img_reviews")) {
       document.querySelector("#getNow .days")?.insertAdjacentHTML("afterend", `<img src="https://conversionratestore.github.io/projects/zenpatch/img/new_img_shipping.png" alt="Reviews 1273" class="new_img_reviews">`);
@@ -729,7 +730,7 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
       if (document.querySelector(".sidebar .applied_discount")) {
         document.querySelector(".sidebar .applied_discount").classList.add("sidebar_visab_applied");
       }
-      document.body.insertAdjacentHTML("afterbegin", popUp);
+
       let countdown;
 
       if (localStorage.getItem("appliedDiscount") && !localStorage.getItem("restartFunc")) {
@@ -750,6 +751,7 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
           document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup);
         }
         popup.classList.remove("is_hidden");
+        popup.style.opacity = "1";
         document.body.style.overflow = "hidden";
 
         clearInterval(popupTimerId);
@@ -1010,6 +1012,7 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
                 }, 4);
               }
               if (e.target.classList.contains("active-slide") && e.target.getAttribute("test")) {
+                console.log(`e.target.classList.contains("active-slide") && e.target.getAttribute("test") >>>>>>>>>>>>>>>>>>>.`);
                 localStorage.setItem("natural", true);
                 localStorage.setItem("restartFunc", "true");
                 // setTimeout(() => {
@@ -1029,12 +1032,14 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
 
           document.querySelectorAll(".sidebar .list-packs").forEach((el) => {
             el.addEventListener("click", (e) => {
+              console.log(e.currentTarget, `currentTarget !!!!!!!!!!`);
               if (e.target.classList.contains("active-slide") && !e.target.getAttribute("test")) {
                 setTimeout(() => {
                   e.target.setAttribute("test", "test");
                 }, 4);
               }
-              if (e.target.classList.contains("active-slide") && e.target.getAttribute("test")) {
+              if (e.currentTarget.classList.contains("active-slide") && e.currentTarget.getAttribute("test")) {
+                console.log(`e.target.classList.contains("active-slide") && e.target.getAttribute("test") ?????????????`);
                 localStorage.setItem("natural", true);
                 localStorage.setItem("restartFunc", "true");
                 // setTimeout(() => {
@@ -1049,6 +1054,14 @@ body .sidebar .btn_trigger_popup.applied_discount > p {
                 }
               });
             });
+          });
+
+          document.addEventListener("click", (e) => {
+            console.log("fff", e.target);
+            if (e.target.classList.contains("jdgm--leex-script-loaded")) {
+              localStorage.setItem("natural", true);
+              localStorage.setItem("restartFunc", "true");
+            }
           });
         }
       }
@@ -1216,7 +1229,11 @@ if (window.location.pathname.includes("checkouts")) {
   let startFuncMc = setInterval(() => {
     if (document.querySelector("#order-summary") && localStorage.getItem("natural")) {
       clearInterval(startFuncMc);
-      window.location.href = window.location.href + "?discount=NATURAL10";
+      if (!window.location.href.includes("?")) {
+        window.location.href = window.location.href + "?discount=NATURAL10";
+      } else {
+        window.location.href = window.location.href + "&discount=NATURAL10";
+      }
       if (localStorage.getItem("natural")) {
         localStorage.removeItem("natural");
       }
