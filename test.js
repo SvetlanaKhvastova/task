@@ -284,3 +284,32 @@ document.querySelector("#id-a4f0c16f").addEventListener("click", (e) => {
   let ep = localStorage.getItem("email");
   window.location.href = `https://purchase.hint.app/payment-2?&email=${ep}&planCode=1_1_week_1900_1321&price=1321&funnel=your-funnel`;
 });
+//
+document.querySelector(".payment_order").insertAdjacentHTML(
+  "afterbegin",
+  `    <div>
+      <h2>Limited Time Offer: add Personal Coaching for just $90 more (usually $398)!</h2>
+      <p>Check the box below to take advantage of this offer.</p>
+      <div>
+        <div class="checkbox_block">
+          <input class="custom_checkbox" id="" type="checkbox" name="" value="" />
+          <label for="" tabindex="0">
+            <span class=""> </span>
+            <p>10 weeks of <b>personalized coaching & support</b></p>
+            <p>$398</p>
+            <p>$90.00</p>
+          </label>
+        </div>
+        <p>
+          View less info
+          <svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 6L5 2L1 6" stroke="#734F22" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </p>
+        <ul>
+          <li>Live weekly Q&A group calls with personal coaching (10-week access)</li>
+          <li>Email your questions - answered in separate downloadable weekly call (10-week access)</li>
+        </ul>
+      </div>
+    </div>`
+);

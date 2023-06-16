@@ -1,63 +1,63 @@
 let startFunkPopup = setInterval(() => {
-  if (document.querySelector('#zenpatch-mood-calming-stickers-the-natural-patch-co')) {
-    clearInterval(startFunkPopup)
+  if (document.querySelector("#zenpatch-mood-calming-stickers-the-natural-patch-co")) {
+    clearInterval(startFunkPopup);
 
     function pushDataLayer(actionDataLayer, labelDataLayer) {
-      window.dataLayer = window.dataLayer || []
+      window.dataLayer = window.dataLayer || [];
       if (labelDataLayer) {
-        console.log(actionDataLayer + " : " + labelDataLayer)
+        console.log(actionDataLayer + " : " + labelDataLayer);
         dataLayer.push({
           event: "event-to-ga",
           eventCategory: `Exp: - Exp: Popup first order`,
           eventAction: `${actionDataLayer}`,
           eventLabel: `${labelDataLayer}`,
-        })
+        });
       } else {
-        console.log(actionDataLayer)
+        console.log(actionDataLayer);
         dataLayer.push({
           event: "event-to-ga",
           eventCategory: `Exp: - Exp: Popup first order`,
           eventAction: `${actionDataLayer}`,
-        })
+        });
       }
     }
 
-    let popupTimerId
-    let active = false
-    getNewUser("_ga")
+    let popupTimerId;
+    let active = false;
+    getNewUser("_ga");
 
     function getNewUser(name) {
-      const value = `; ${document.cookie}`
-      const parts = value.split(`; ${name}=`)
-      let valueCookie
-      let timeNewUser
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      let valueCookie;
+      let timeNewUser;
       if (parts.length === 2 && !localStorage.getItem("newUser")) {
-        valueCookie = parts.pop().split(";").shift()
-        timeNewUser = +(valueCookie.split(".").pop() + "000")
-        console.log(`timeNewUser`, new Date(timeNewUser))
+        valueCookie = parts.pop().split(";").shift();
+        timeNewUser = +(valueCookie.split(".").pop() + "000");
+        console.log(`timeNewUser`, new Date(timeNewUser));
         if (+new Date() - +new Date(timeNewUser) <= 5 * 60 * 1000) {
-          console.log(`New User`)
-          active = true
-          localStorage.setItem("newUser", "true")
+          console.log(`New User`);
+          active = true;
+          localStorage.setItem("newUser", "true");
           popupTimerId = setTimeout(() => {
-            openPopup()
+            openPopup();
             if (document.querySelector(".overlay_popup .content_popup")) {
-              countTimer()
+              countTimer();
             }
-          }, 10000)
+          }, 10000);
         }
       }
     }
 
-    let scriptCustomTimer = document.createElement("script")
-    scriptCustomTimer.src = "https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.0/flipclock.min.js"
-    scriptCustomTimer.async = false
-    document.head.appendChild(scriptCustomTimer)
+    let scriptCustomTimer = document.createElement("script");
+    scriptCustomTimer.src = "https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.0/flipclock.min.js";
+    scriptCustomTimer.async = false;
+    document.head.appendChild(scriptCustomTimer);
 
-    let scriptCustomTimerStyle = document.createElement("link")
-    scriptCustomTimerStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.0/flipclock.css"
-    scriptCustomTimerStyle.rel = "stylesheet"
-    document.head.appendChild(scriptCustomTimerStyle)
+    let scriptCustomTimerStyle = document.createElement("link");
+    scriptCustomTimerStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.0/flipclock.css";
+    scriptCustomTimerStyle.rel = "stylesheet";
+    document.head.appendChild(scriptCustomTimerStyle);
 
     let popupStyle = /*html */ `
         <style>
@@ -444,7 +444,7 @@ let startFunkPopup = setInterval(() => {
         }
 
         </style>
-        `
+        `;
 
     let popUp = /*html */ `
                 <div class="overlay_popup is_hidden">
@@ -454,7 +454,7 @@ let startFunkPopup = setInterval(() => {
                         </div>
                     </div>
                 </div>
-        `
+        `;
 
     let contentPopup = /*html */ `
           <div class="content_popup">
@@ -487,7 +487,7 @@ let startFunkPopup = setInterval(() => {
                     <button class="green_btn" data-close="Continue shopping button">Continue shopping</button>
                 </div>
             </div>
-        `
+        `;
 
     let triggerPopup = /*html */ `
         <div class="btn_trigger_popup not_applied_discount" data-popup>
@@ -502,133 +502,133 @@ let startFunkPopup = setInterval(() => {
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M9.64657 9L5 4.13389L6.2707 3L12 9L6.2707 15L5 13.8661L9.64657 9Z" fill="black"/>
             </svg>
         </div>
-        `
+        `;
 
-    document.head.insertAdjacentHTML("beforeend", popupStyle)
+    document.head.insertAdjacentHTML("beforeend", popupStyle);
 
     if (!localStorage.getItem("restartFunc")) {
-      document.querySelector("#addToCart")?.insertAdjacentHTML("beforebegin", triggerPopup)
-      document.body.insertAdjacentHTML("afterbegin", popUp)
-      let countdown
+      document.querySelector("#addToCart")?.insertAdjacentHTML("beforebegin", triggerPopup);
+      document.body.insertAdjacentHTML("afterbegin", popUp);
+      let countdown;
 
       if (localStorage.getItem("appliedDiscount") && !localStorage.getItem("restartFunc")) {
-        changeVisabilityApplieddiscount()
+        changeVisabilityApplieddiscount();
       }
 
       const popupTrigger = document.querySelectorAll("[data-popup]"),
-        popup = document.querySelector(".overlay_popup")
+        popup = document.querySelector(".overlay_popup");
 
       function closePopup() {
-        popup.classList.add("is_hidden")
-        document.body.style.overflow = ""
+        popup.classList.add("is_hidden");
+        document.body.style.overflow = "";
       }
 
       function openPopup() {
         if (!document.querySelector(".overlay_popup .container_popup .content_popup")) {
-          document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup)
+          document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup);
         }
-        popup.classList.remove("is_hidden")
-        document.body.style.overflow = "hidden"
+        popup.classList.remove("is_hidden");
+        document.body.style.overflow = "hidden";
 
-        clearInterval(popupTimerId)
-        active = false
+        clearInterval(popupTimerId);
+        active = false;
 
         if (!document.querySelector(".countdown.flip-clock-wrapper") && active === false) {
-          console.log(`active`, active)
-          countTimer()
+          console.log(`active`, active);
+          countTimer();
         }
 
         if (document.querySelector(".overlay_popup .content_popup")) {
           document.querySelectorAll("[data-close]").forEach((el) => {
             el.addEventListener("click", (e) => {
               if (!e.target.getAttribute("data-test")) {
-                let step
+                let step;
                 if ($(".email_opt_in").is(":visible") && el.getAttribute("data-close") === "Close extra 10 percent popup") {
-                  step = 1
+                  step = 1;
                 }
                 if ($(".success_block ").is(":visible") && el.getAttribute("data-close") === "Close extra 10 percent popup") {
-                  step = 2
+                  step = 2;
                 }
-                pushDataLayer(`${el.getAttribute("data-close")}`, step)
-                closePopup()
+                pushDataLayer(`${el.getAttribute("data-close")}`, step);
+                closePopup();
               }
-              e.target.setAttribute("data-test", "1")
+              e.target.setAttribute("data-test", "1");
 
               setTimeout(() => {
                 if (e.target.getAttribute("data-test")) {
-                  e.target.removeAttribute("data-test")
+                  e.target.removeAttribute("data-test");
                 }
-              }, 200)
-            })
-          })
+              }, 200);
+            });
+          });
 
           // click pn btn Claim Bonus Offer
           document.querySelector("form .green_btn")?.addEventListener("click", (e) => {
             if (!e.target.getAttribute("data-test")) {
-              e.preventDefault()
-              pushDataLayer("Claim bonus offer button")
-              validationForm()
-              if (document.querySelector('.input_validation_email').textContent === "You've already given us that email address before") {
-                document.querySelector('.input_validation_email').textContent = "Your email doesn't seem to be valid"
-                validationForm()
+              e.preventDefault();
+              pushDataLayer("Claim bonus offer button");
+              validationForm();
+              if (document.querySelector(".input_validation_email").textContent === "You've already given us that email address before") {
+                document.querySelector(".input_validation_email").textContent = "Your email doesn't seem to be valid";
+                validationForm();
               }
             }
-            e.target.setAttribute("data-test", "1")
+            e.target.setAttribute("data-test", "1");
 
             setTimeout(() => {
               if (e.target.getAttribute("data-test")) {
-                e.target.removeAttribute("data-test")
+                e.target.removeAttribute("data-test");
               }
-            }, 200)
-          })
+            }, 200);
+          });
 
           document.querySelector(`input[name='myEmail']`)?.addEventListener("focus", (e) => {
             if (!e.target.getAttribute("data-test")) {
-              pushDataLayer("Email input")
+              pushDataLayer("Email input");
             }
-            e.target.setAttribute("data-test", "1")
+            e.target.setAttribute("data-test", "1");
 
             setTimeout(() => {
               if (e.target.getAttribute("data-test")) {
-                e.target.removeAttribute("data-test")
+                e.target.removeAttribute("data-test");
               }
-            }, 300)
-          })
+            }, 300);
+          });
           document.querySelector(`.voucher_block`)?.addEventListener("click", (e) => {
             if (!e.target.getAttribute("data-test")) {
-              pushDataLayer("Discount number")
+              pushDataLayer("Discount number");
             }
-            e.target.setAttribute("data-test", "1")
+            e.target.setAttribute("data-test", "1");
 
             setTimeout(() => {
               if (e.target.getAttribute("data-test")) {
-                e.target.removeAttribute("data-test")
+                e.target.removeAttribute("data-test");
               }
-            }, 300)
-          })
+            }, 300);
+          });
         }
       }
       popupTrigger.forEach((btn) => {
         if (!btn.classList.contains("applied_discount")) {
           btn.addEventListener("click", () => {
-            pushDataLayer("Tap Additional 10 off applied button")
-            openPopup()
-          })
+            pushDataLayer("Tap Additional 10 off applied button");
+            openPopup();
+          });
         }
-      })
+      });
 
       popup.addEventListener("click", (e) => {
         if (e.target === popup) {
-          pushDataLayer("Сlick on overlay close")
-          closePopup()
+          pushDataLayer("Сlick on overlay close");
+          closePopup();
         }
-      })
+      });
 
       function countTimer() {
         let clock = setInterval(() => {
           if (typeof FlipClock === "function" && typeof jQuery === "function" && document.querySelector("#countdown")) {
-            clearInterval(clock)
-            let init_countdown, set_countdown
+            clearInterval(clock);
+            let init_countdown, set_countdown;
             countdown = init_countdown = function () {
               countdown = new FlipClock($(".countdown"), {
                 language: "en",
@@ -638,65 +638,65 @@ let startFunkPopup = setInterval(() => {
                 showSeconds: true,
                 callbacks: {
                   start: function () {
-                    console.log(`start countdown`)
+                    console.log(`start countdown`);
                   },
                   stop: function () {
-                    console.log(`stop countdown`)
+                    console.log(`stop countdown`);
                   },
                 },
-              })
+              });
 
-              return countdown
-            }
+              return countdown;
+            };
             set_countdown = function (minutes, start) {
-              let elapsed, end, left_secs, now, seconds
+              let elapsed, end, left_secs, now, seconds;
               if (countdown.running) {
-                return
+                return;
               }
-              seconds = minutes * 60
-              now = new Date()
-              start = new Date(start)
-              end = start.getTime() + seconds * 1000
-              left_secs = Math.round((end - now.getTime()) / 1000)
-              elapsed = false
+              seconds = minutes * 60;
+              now = new Date();
+              start = new Date(start);
+              end = start.getTime() + seconds * 1000;
+              left_secs = Math.round((end - now.getTime()) / 1000);
+              elapsed = false;
               if (left_secs < 0) {
-                console.log(`left_secs`, left_secs)
-                left_secs *= -1
-                elapsed = true
+                console.log(`left_secs`, left_secs);
+                left_secs *= -1;
+                elapsed = true;
               }
-              countdown.setTime(left_secs)
-              return countdown.start()
-            }
-            init_countdown()
-            set_countdown(15, new Date())
+              countdown.setTime(left_secs);
+              return countdown.start();
+            };
+            init_countdown();
+            set_countdown(15, new Date());
           }
-        }, 500)
+        }, 500);
       }
       // change EVENT btn addToCart and setDiscountCheckout
       function setDiscountCheckout() {
-        let idValue = document.querySelector(".js-packs input[type=radio]:checked+label").previousElementSibling.value
+        let idValue = document.querySelector(".js-packs input[type=radio]:checked+label").previousElementSibling.value;
         // observer
         let observer = new MutationObserver(() => {
           if (document) {
-            observer.disconnect()
-            idValue = document.querySelector(".js-packs input[type=radio]:checked+label").previousElementSibling.value
+            observer.disconnect();
+            idValue = document.querySelector(".js-packs input[type=radio]:checked+label").previousElementSibling.value;
             observer.observe(document, {
               childList: true,
               subtree: true,
-            })
+            });
           }
-        })
+        });
 
         observer.observe(document, {
           childList: true,
           subtree: true,
-        })
+        });
 
         document.querySelector("#addToCart")?.addEventListener("click", function (e) {
-          e.preventDefault()
-          pushDataLayer("Click on addToCart")
-          addToCartCheckout(idValue)
-        })
+          e.preventDefault();
+          pushDataLayer("Click on addToCart");
+          addToCartCheckout(idValue);
+        });
 
         async function addToCartCheckout(idValue) {
           // clearCart
@@ -707,11 +707,11 @@ let startFunkPopup = setInterval(() => {
             },
           })
             .then((response) => {
-              return response.json()
+              return response.json();
             })
             .catch((error) => {
-              console.error("Error:", error)
-            })
+              console.error("Error:", error);
+            });
 
           formData = {
             items: [
@@ -720,7 +720,7 @@ let startFunkPopup = setInterval(() => {
                 quantity: 1,
               },
             ],
-          }
+          };
 
           await fetch("/cart/add.js", {
             method: "POST",
@@ -730,153 +730,150 @@ let startFunkPopup = setInterval(() => {
             body: JSON.stringify(formData),
           })
             .then((response) => {
-              return response.json()
+              return response.json();
             })
             .catch((error) => {
-              console.error("Error:", error)
-            })
+              console.error("Error:", error);
+            });
 
           setTimeout(() => {
             if (!localStorage.getItem("restartFunc")) {
-              window.location.href = "/checkout?discount=NATURAL10"
-              localStorage.setItem("restartFunc", "true")
+              window.location.href = "/checkout?discount=NATURAL10";
+              localStorage.setItem("restartFunc", "true");
             } else {
-              window.location.pathname = "/checkout"
+              window.location.pathname = "/checkout";
             }
-          }, 300)
+          }, 300);
         }
       }
 
       function changeVisabilityApplieddiscount() {
-        document.querySelector(".btn_trigger_popup.not_applied_discount")?.classList.add("is_hidden")
-        document.querySelector(".btn_trigger_popup.applied_discount")?.classList.remove("is_hidden")
-        setDiscountCheckout()
+        document.querySelector(".btn_trigger_popup.not_applied_discount")?.classList.add("is_hidden");
+        document.querySelector(".btn_trigger_popup.applied_discount")?.classList.remove("is_hidden");
+        setDiscountCheckout();
 
         if (document.querySelector(".success_block")?.classList.contains("is_hidden")) {
-          document.querySelector(".success_block")?.classList.remove("is_hidden")
+          document.querySelector(".success_block")?.classList.remove("is_hidden");
         }
         if (!document.querySelector(".email_opt_in")?.classList.contains("is_hidden")) {
-          document.querySelector(".email_opt_in")?.classList.add("is_hidden")
+          document.querySelector(".email_opt_in")?.classList.add("is_hidden");
         }
       }
       // Visability
       let obs = new IntersectionObserver(visibility, {
         threshold: 1,
-      })
+      });
       let obs2 = new IntersectionObserver(visibility2, {
         threshold: 1,
-      })
+      });
       let int = setInterval(() => {
         if (document.querySelector(".email_opt_in")) {
-          clearInterval(int)
-          obs.observe(document.querySelector(".email_opt_in"))
+          clearInterval(int);
+          obs.observe(document.querySelector(".email_opt_in"));
         }
-      }, 100)
+      }, 100);
       let int2 = setInterval(() => {
         if (document.querySelector(".success_block")) {
-          clearInterval(int2)
-          obs.observe(document.querySelector(".success_block"))
+          clearInterval(int2);
+          obs.observe(document.querySelector(".success_block"));
         }
-      }, 100)
+      }, 100);
       if (document.querySelector(".not_applied_discount")) {
-        obs.observe(document.querySelector(".not_applied_discount"))
+        obs.observe(document.querySelector(".not_applied_discount"));
       }
       let int3 = setInterval(() => {
         if (document.querySelector(".applied_discount") && document.querySelector(".overlay_popup").classList.contains("is_hidden")) {
-          clearInterval(int3)
-          obs.observe(document.querySelector(".applied_discount"))
+          clearInterval(int3);
+          obs.observe(document.querySelector(".applied_discount"));
         }
-      }, 100)
+      }, 100);
       function visibility(entries) {
         entries.forEach((i) => {
           if (i.isIntersecting) {
             setTimeout(function () {
-              obs2.observe(i.target)
-            }, 2000)
+              obs2.observe(i.target);
+            }, 2000);
           }
-        })
+        });
       }
       function visibility2(entries) {
         entries.forEach((i) => {
           if (i.isIntersecting) {
             if (i.target.classList.contains("email_opt_in")) {
-              pushDataLayer("Visibility extra 10 percent popup", "step_1")
+              pushDataLayer("Visibility extra 10 percent popup", "step_1");
             }
             if (i.target.classList.contains("success_block")) {
-              pushDataLayer("Visibility extra 10 percent popup", "step_2")
+              pushDataLayer("Visibility extra 10 percent popup", "step_2");
             }
             if (i.target.classList.contains("not_applied_discount")) {
-              pushDataLayer("Visibility Get additional 10 off button")
+              pushDataLayer("Visibility Get additional 10 off button");
             }
             if (i.target.classList.contains("applied_discount") && document.querySelector(".overlay_popup").classList.contains("is_hidden")) {
-              pushDataLayer("Visibility Additional 10 off applied button")
+              pushDataLayer("Visibility Additional 10 off applied button");
             }
-            obs.unobserve(i.target)
+            obs.unobserve(i.target);
           }
-          obs2.unobserve(i.target)
-        })
+          obs2.unobserve(i.target);
+        });
       }
       // validationForm
       function validationForm() {
-        let inputValueEmail = document.querySelector(`input[name='myEmail']`).value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/)
+        let inputValueEmail = document.querySelector(`input[name='myEmail']`).value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/);
         if (inputValueEmail === null) {
-          document.querySelector(`input[name='email']`).classList.add("error")
-          document.querySelector(`.input_validation_email`).style.display = "block"
+          document.querySelector(`input[name='email']`).classList.add("error");
+          document.querySelector(`.input_validation_email`).style.display = "block";
         } else {
-          document.querySelector(`input[name='email']`).classList.remove("error")
-          document.querySelector(`.input_validation_email`).style.display = "none"
+          document.querySelector(`input[name='email']`).classList.remove("error");
+          document.querySelector(`.input_validation_email`).style.display = "none";
         }
 
         if (inputValueEmail !== null) {
-          mailToKlavio(document.querySelector(`input[name='myEmail']`).value)
+          mailToKlavio(document.querySelector(`input[name='myEmail']`).value);
 
           async function mailToKlavio(email) {
             formData = {
-              "email": email,
-              "listId": "Rn9LMT"
-            }
+              email: email,
+              listId: "Rn9LMT",
+            };
             await fetch("https://conversionrate.top/api/naturalpatch/klavio/emailsend", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify(formData),
-            }).then(response => response.json())
+            })
+              .then((response) => response.json())
               .then((data) => {
-                console.log(data)
-                if (data.status === 'error') {
-                  document.querySelector('.input_validation_email').textContent = "You've already given us that email address before"
-                  document.querySelector(`.input_validation_email`).style.display = "block"
-                  document.querySelector(`input[name='email']`).classList.remove("error")
-                  console.log(`dfghgfdfgh`)
+                console.log(data);
+                if (data.status === "error") {
+                  document.querySelector(".input_validation_email").textContent = "You've already given us that email address before";
+                  document.querySelector(`.input_validation_email`).style.display = "block";
+                  document.querySelector(`input[name='email']`).classList.remove("error");
+                  console.log(`dfghgfdfgh`);
                 } else {
-                  document.querySelector('.input_validation_email').textContent = "Your email doesn't seem to be valid"
+                  document.querySelector(".input_validation_email").textContent = "Your email doesn't seem to be valid";
 
-                  document.querySelector(`input[name='email']`).classList.remove("error")
-                  document.querySelector(`.input_validation_email`).style.display = "none"
-                  countdown.stop()
-                  localStorage.setItem("appliedDiscount", "yes")
-                  changeVisabilityApplieddiscount()
+                  document.querySelector(`input[name='email']`).classList.remove("error");
+                  document.querySelector(`.input_validation_email`).style.display = "none";
+                  countdown.stop();
+                  localStorage.setItem("appliedDiscount", "yes");
+                  changeVisabilityApplieddiscount();
                 }
               })
               .catch((error) => {
-                console.error("Error:", error)
-              })
-
+                console.error("Error:", error);
+              });
           }
-
         }
       }
     }
 
-
-
-    pushDataLayer("loaded")
+    pushDataLayer("loaded");
     const record = setInterval(() => {
       if (typeof clarity === "function") {
-        clearInterval(record)
-        clarity("set", "popup_first_order", "variant_1")
+        clearInterval(record);
+        clarity("set", "popup_first_order", "variant_1");
       }
-    }, 200)
+    }, 200);
   }
-}, 400)
+}, 400);
