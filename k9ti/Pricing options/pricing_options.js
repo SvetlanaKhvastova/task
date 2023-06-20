@@ -70,7 +70,7 @@ if (window.location.pathname === "/enroll/") {
         .open{
             display: table-row;
         }
-        /*
+        
         @keyframes slidein {
             from {
                 opacity: 0;
@@ -79,7 +79,7 @@ if (window.location.pathname === "/enroll/") {
                 opacity: 1;
             }
         }
-        */
+      
         .premium_coaching_tr td span:nth-child(1){
             display: block;
             margin-bottom: 16px;
@@ -243,6 +243,129 @@ if (window.location.pathname === "/enroll/") {
         .personalized_coaching_wrap .tippy-tooltip[data-placement^=bottom]>.tippy-arrow{
             left: 107px !important;
         }
+        .list_dropdawn{
+            display: none;
+        }
+        @media (min-width: 768px) {
+            .payment_order .payment_plan_wrapp.payment_plan{
+                width: 100%;
+                margin-top: 20px !important;
+            }
+            ul.payment_inform_box{
+                margin-bottom: 0 !important;
+            }
+            .payment_inform_box li:nth-child(1), .payment_inform_box li:nth-child(2){
+                margin-bottom: 5px !important;
+            }
+        }
+        @media (max-width: 768px) {
+            [data-checkstep="1"],
+            #limitedTimeOffer > h2.new_title > br,
+            .desk_var{
+                display: none !important;
+            }
+            .mobile_var {
+                display: inline-block;
+            }
+            #limitedTimeOffer > h2.new_title{
+                font-size: 16px !important;
+            }
+            .custom_checkbox_wrap{
+                padding: 12px 16px;
+            }
+            p.full_price{
+                margin: 0 4px 0 !important;
+            }
+            .full_info_block > p{
+                display: flex !important;
+                align-items: center;
+            }
+            .full_info_block > p > svg{
+                margin-left: 8px;
+                transform: rotateX(180deg);
+                max-width: 8px;
+                transition: all 300ms cubic-bezier(0.4, 0, 1, 1);
+            }
+            .full_info_block > p.show > svg{
+                transform: rotateX(0deg);
+            }
+            ul.list_dropdawn{
+                margin-top: 12px;
+            }
+            ul.list_dropdawn li{
+                position: relative;
+                width: 100%;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 21px;
+                color: #193973 !important;
+                margin: 0 !important;
+                padding-left: 35px;
+            }
+            ul.list_dropdawn li::before{
+                content: "";
+                position: absolute;
+                width: 24px;
+                height: 24px;
+                top: 0;
+                left: 0;
+                background: url(https://conversionratestore.github.io/projects/knineti/img/footprint.svg) no-repeat center center;
+                background-size: contain;
+            }
+            ul.list_dropdawn li + li{
+                margin-top: 12px !important;
+            }
+            .payment_inform_box li > div#limitedTimeOffer{
+                padding-bottom: 24px;
+            }
+            .payment_inform_box li > div#limitedTimeOffer + .subtitle_text{
+                display: block;
+                font-size: 18px;
+                line-height: 24px;
+                color: #754E0C !important;
+            }
+            .payment_inform_box li > div table tfoot tr td{
+                border: none !important;
+                padding-top: 2px !important;
+            }
+            .payment_inform_box li > div table tbody tr td:nth-child(1){
+                max-width: 175px;
+            }
+            .premium_coaching_tr td:nth-child(1){
+                padding-top: 16px !important;
+                padding-bottom: 16px !important;
+            }
+            .premium_coaching_tr td:nth-child(2),
+            .premium_coaching_tr td:nth-child(3){
+                padding-bottom: 16px !important;
+                padding-top: 56px !important;
+            }
+            .payment_inform_box li > div table tbody tr td:nth-child(2),
+            .payment_inform_box li > div table tbody tr td:nth-child(3){
+                vertical-align: baseline;
+            }
+            .payment_inform_box .payment_plan_wrapp.payment_plan p.subtitle_text{
+                margin-bottom: 20px !important;
+            }
+            .payment_inform_box .payment_plan_wrapp.payment_plan{
+                padding-bottom: 20px !important;
+            }
+            .new_text_radio_btn{
+                font-size: 14px !important;
+                line-height: 21px !important;
+            }
+            .block_back_guarantee_mob_var{
+                padding: 0 16px !important;
+            }
+            .learn_more_box.mob_var{
+                margin: 17px 16px 21px !important;
+            }
+        }
+        @media (max-width: 360px) {
+            .premium_coaching_tr td span:nth-child(1){
+                font-size: 12px;
+            }
+        }
     </style>
     `;
 
@@ -271,6 +394,10 @@ if (window.location.pathname === "/enroll/") {
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M10.8 6C10.8 8.65097 8.65097 10.8 6 10.8C3.34903 10.8 1.2 8.65097 1.2 6C1.2 3.34903 3.34903 1.2 6 1.2C8.65097 1.2 10.8 3.34903 10.8 6ZM12 6C12 9.31371 9.31371 12 6 12C2.68629 12 0 9.31371 0 6C0 2.68629 2.68629 0 6 0C9.31371 0 12 2.68629 12 6ZM5.39961 3.6C5.39961 3.26863 5.66824 3 5.99961 3C6.33098 3 6.59961 3.26863 6.59961 3.6C6.59961 3.93137 6.33098 4.2 5.99961 4.2C5.66824 4.2 5.39961 3.93137 5.39961 3.6ZM5.39961 5.4C5.39961 5.06863 5.66824 4.8 5.99961 4.8C6.33098 4.8 6.59961 5.06863 6.59961 5.4V8.4C6.59961 8.73137 6.33098 9 5.99961 9C5.66824 9 5.39961 8.73137 5.39961 8.4V5.4Z" fill="#734F22"/>
               </svg>
             </p>
+            <ul class="list_dropdawn">
+                <li>Live weekly Q&A group calls with personal coaching <br/> (10-week access)</li>
+                <li>Email your questions - answered in separate downloadable weekly call (10-week access)</li>
+            </ul>
         </div>
       </div>
     </div>
@@ -287,7 +414,6 @@ if (window.location.pathname === "/enroll/") {
       document.head.insertAdjacentHTML("beforeend", styleVar);
       document.querySelector(".payment_order").insertAdjacentHTML("afterbegin", html);
       document.querySelector(".payment_inform_wrapp .customer_information_wrapper").after(document.querySelector(".paymen_method"));
-      document.querySelector(".payment_order").insertAdjacentHTML("afterend", `<li></li>`);
       document.querySelectorAll(".main_version")[0].insertAdjacentHTML(
         "afterend",
         `<tr class="premium_coaching_tr">
@@ -311,7 +437,6 @@ if (window.location.pathname === "/enroll/") {
 
       if (document.querySelector("#limitedTimeOffer")) {
         document.querySelector(".custom_checkbox_wrap label").addEventListener("click", (e) => {
-          console.log(e.currentTarget.previousElementSibling);
           if (!e.currentTarget.previousElementSibling.checked) {
             localStorage.setItem("personalCoaching", true);
             document.querySelector(".premium_coaching_tr").classList.add("open");
@@ -323,28 +448,68 @@ if (window.location.pathname === "/enroll/") {
               }
             }
           }
+          changePrice();
         });
-        for (let key in arrTooltipTable) {
-          document.querySelectorAll("[data-title]").forEach((el) => {
-            el.setAttribute("data-tooltip", arrTooltipTable[key][0]);
-          });
-        }
-        let tippyRun = setInterval(() => {
-          if (typeof tippy === "function" && document.querySelector("p[data-title]")) {
-            clearInterval(tippyRun);
 
+        if (window.innerWidth <= 768) {
+          document.querySelectorAll("[data-title]").forEach((el) => {
+            el.addEventListener("click", (e) => {
+              e.preventDefault();
+              jQuery("ul.list_dropdawn").slideToggle();
+              e.target.classList.toggle("show");
+            });
+          });
+        } else {
+          document.querySelector(".payment_order .subtitle_text + div").after(document.querySelector(".payment_plan_wrapp.payment_plan"));
+          document.querySelector(".payment_order").insertAdjacentHTML("afterend", `<li></li>`);
+          for (let key in arrTooltipTable) {
             document.querySelectorAll("[data-title]").forEach((el) => {
-              tippy(el, {
-                content: el.getAttribute("data-tooltip"),
-                placement: "bottom",
-                // trigger: "click",
-                appendTo: function () {
-                  return document.querySelector(".personalized_coaching_wrap");
-                },
-              });
+              el.setAttribute("data-tooltip", arrTooltipTable[key][0]);
             });
           }
-        }, 500);
+          let tippyRun = setInterval(() => {
+            if (typeof tippy === "function" && document.querySelector("p[data-title]")) {
+              clearInterval(tippyRun);
+
+              document.querySelectorAll("[data-title]").forEach((el) => {
+                tippy(el, {
+                  content: el.getAttribute("data-tooltip"),
+                  placement: "bottom",
+                  // trigger: "click",
+                  appendTo: function () {
+                    return document.querySelector(".personalized_coaching_wrap");
+                  },
+                });
+              });
+            }
+          }, 500);
+        }
+      }
+
+      changePrice();
+      function changePrice() {
+        let prAct1 = +document.querySelector("#org_main_priceid.actual_price").textContent.split("$")[1],
+          prAct2 = +document.querySelector(".payment_inform_box li.payment_order > div tbody tr:nth-child(6) .actual_price").textContent.split("$")[1],
+          prAct3 = +document.querySelector(".payment_inform_box li.payment_order > div tbody tr:nth-child(7) .actual_price").textContent.split("$")[1],
+          prAct4 = +document.querySelector(".payment_inform_box li.payment_order > div tbody tr:nth-child(8) .actual_price").textContent.split("$")[1],
+          premiumCoachPrAct = +document.querySelector(".premium_coaching_tr .actual_price").textContent.split("$")[1],
+          prPay1 = +document.querySelector(".ac_price.pay_price").textContent.split("$")[1],
+          prPay2 = +document.querySelector(".payment_inform_box li.payment_order > div tbody tr:nth-child(6) .pay_price").textContent.split("$")[1],
+          prPay3 = +document.querySelector(".payment_inform_box li.payment_order > div tbody tr:nth-child(7) .pay_price").textContent.split("$")[1],
+          prPay4 = +document.querySelector(".payment_inform_box li.payment_order > div tbody tr:nth-child(8) .pay_price").textContent.split("$")[1],
+          premiumCoachPrPay = +document.querySelector(".premium_coaching_tr .pay_price").textContent.split("$")[1],
+          totalAct,
+          totalPay;
+
+        if (!localStorage.getItem("personalCoaching")) {
+          totalAct = prAct1 + prAct2 + prAct3 + prAct4;
+          totalPay = prPay1 + prPay2 + prPay3 + prPay4;
+        } else {
+          totalAct = prAct1 + prAct2 + prAct3 + prAct4 + premiumCoachPrAct;
+          totalPay = prPay1 + prPay2 + prPay3 + prPay4 + premiumCoachPrPay;
+        }
+
+        console.log(totalAct.toFixed(2), totalPay.toFixed(2));
       }
     }
   }, 100);
