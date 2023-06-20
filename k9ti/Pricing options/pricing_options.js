@@ -413,7 +413,7 @@ if (window.location.pathname === "/enroll/") {
 
       document.head.insertAdjacentHTML("beforeend", styleVar);
       document.querySelector(".payment_order").insertAdjacentHTML("afterbegin", html);
-      document.querySelector(".payment_inform_wrapp .customer_information_wrapper").after(document.querySelector(".paymen_method"));
+
       document.querySelectorAll(".main_version")[0].insertAdjacentHTML(
         "afterend",
         `<tr class="premium_coaching_tr">
@@ -460,6 +460,7 @@ if (window.location.pathname === "/enroll/") {
             });
           });
         } else {
+          document.querySelector(".payment_inform_wrapp .customer_information_wrapper").after(document.querySelector(".paymen_method"));
           document.querySelector(".payment_order .subtitle_text + div").after(document.querySelector(".payment_plan_wrapp.payment_plan"));
           document.querySelector(".payment_order").insertAdjacentHTML("afterend", `<li></li>`);
           for (let key in arrTooltipTable) {
@@ -485,8 +486,30 @@ if (window.location.pathname === "/enroll/") {
           }, 500);
         }
       }
-
       changePrice();
+      // Choose payment plan Click
+      document.querySelectorAll(".payment_inform_box .payment_plan_wrapp .input_wrapper>div>label").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          changePrice();
+        });
+      });
+      // btn_continue 2 Click
+      document.querySelectorAll(".btn_continue")?.forEach((el) => {
+        el.addEventListener("click", (e) => {
+          if (e.target.getAttribute("data-count") === "2") {
+            if ($("#submit").is(":visible")) {
+              changePrice();
+            }
+          }
+        });
+      });
+      // learn_more_box Click
+      document.querySelectorAll(".learn_more_box").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          changePrice();
+        });
+      });
+
       function changePrice() {
         let prAct1 = +document.querySelector("#org_main_priceid.actual_price").textContent.split("$")[1],
           prAct2 = +document.querySelector(".payment_inform_box li.payment_order > div tbody tr:nth-child(6) .actual_price").textContent.split("$")[1],
@@ -508,6 +531,52 @@ if (window.location.pathname === "/enroll/") {
           totalAct = prAct1 + prAct2 + prAct3 + prAct4 + premiumCoachPrAct;
           totalPay = prPay1 + prPay2 + prPay3 + prPay4 + premiumCoachPrPay;
         }
+
+        document.querySelectorAll(".total_actual").forEach((el) => {
+          el.textContent = "$" + totalAct.toFixed(2);
+        });
+        document.querySelectorAll(".onetime_sec .new_full_price").forEach((el) => {
+          el.textContent = "$" + totalAct.toFixed(2);
+        });
+        document.querySelectorAll(".monthly_sec .new_full_price").forEach((el) => {
+          el.textContent = "$" + (totalAct / 3).toFixed(1);
+        });
+        document.querySelectorAll(".total_price").forEach((el) => {
+          el.textContent = "$" + totalPay.toFixed(2);
+        });
+        document.querySelectorAll(".onetime_sec .new_your_price").forEach((el) => {
+          el.textContent = "$" + totalPay.toFixed(2);
+        });
+        document.querySelectorAll(".monthly_sec .new_your_price").forEach((el) => {
+          el.textContent = "$" + (totalPay / 3).toFixed(0);
+        });
+        document.querySelectorAll(".new_text_label .new_text_label_list .new_text_label_link > span > b").forEach((el) => {
+          if (el.textContent === "Immediate access") return;
+
+          el.textContent = "$" + (totalPay / 3).toFixed(0);
+        });
+        document.querySelectorAll(".onetime_pay_var b").forEach((el) => {
+          el.textContent = "$" + totalPay.toFixed(0) + " " + "one-time payment";
+        });
+        document.querySelectorAll(".monthly_pay_var b").forEach((el) => {
+          el.textContent = "3 interest-free monthly installments of " + "$" + (totalPay / 3).toFixed(0);
+        });
+
+        let s = setInterval(() => {
+          if (document.querySelector(".content_popup h2")) {
+            clearInterval(s);
+            document.querySelectorAll(".content_popup h2").forEach((el) => {
+              el.textContent = "3 interest-free monthly installments of " + "$" + (totalPay / 3).toFixed(0);
+            });
+          }
+        }, 10);
+        document.querySelectorAll(".diff_price").forEach((el) => {
+          el.textContent = (totalAct - totalPay).toFixed(2);
+        });
+        document.querySelectorAll(".percent_var").forEach((el) => {
+          el.textContent = (100 - (totalPay * 100) / totalAct).toFixed(0);
+        });
+        //
 
         console.log(totalAct.toFixed(2), totalPay.toFixed(2));
       }
