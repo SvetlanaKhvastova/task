@@ -1,7 +1,36 @@
 if (window.location.pathname === "/enroll/") {
   let startEnroll = setInterval(() => {
-    if (document) {
+    if (document.querySelector(".payment_inform_box")) {
       clearInterval(startEnroll);
+
+      let eventVar = "desktop";
+
+      if (window.innerWidth <= 768) {
+        eventVar = "mobile";
+      }
+      function pushDataLayer(nameDataLayer, deskDataLayer, typeDataLayer, actionDataLayer, labelDataLayer) {
+        window.dataLayer = window.dataLayer || [];
+        if (labelDataLayer) {
+          console.log(nameDataLayer + " " + deskDataLayer + typeDataLayer + actionDataLayer + " : " + labelDataLayer);
+          dataLayer.push({
+            event: "event-to-ga4",
+            event_name: `${nameDataLayer} ${eventVar}`,
+            event_desc: `${deskDataLayer}`,
+            event_type: `${typeDataLayer}`,
+            event_loc: `${actionDataLayer}`,
+            eventLabel: `${labelDataLayer}`,
+          });
+        } else {
+          console.log(nameDataLayer + " " + deskDataLayer + " " + typeDataLayer + " " + actionDataLayer);
+          dataLayer.push({
+            event: "event-to-ga4",
+            event_name: `${nameDataLayer} ${eventVar}`,
+            event_desc: `${deskDataLayer}`,
+            event_type: `${typeDataLayer}`,
+            event_loc: `${actionDataLayer}`,
+          });
+        }
+      }
 
       let scriptPopper = document.createElement("script");
       scriptPopper.src = "https://unpkg.com/popper.js@1";
@@ -439,10 +468,12 @@ if (window.location.pathname === "/enroll/") {
         document.querySelector(".custom_checkbox_wrap label").addEventListener("click", (e) => {
           if (!e.currentTarget.previousElementSibling.checked) {
             localStorage.setItem("personalCoaching", true);
+            pushDataLayer("exp_upsell_option_", "10 weeks", "Checkbox ON", "Limited time offer ... Order summary");
             document.querySelector(".premium_coaching_tr").classList.add("open");
           } else {
             if (localStorage.getItem("personalCoaching")) {
               localStorage.removeItem("personalCoaching");
+              pushDataLayer("exp_upsell_option_", "10 weeks", "Checkbox OFF", "Limited time offer ... Order summary");
               if (document.querySelector(".premium_coaching_tr").classList.contains("open")) {
                 document.querySelector(".premium_coaching_tr").classList.remove("open");
               }
@@ -457,6 +488,11 @@ if (window.location.pathname === "/enroll/") {
               e.preventDefault();
               jQuery("ul.list_dropdawn").slideToggle();
               e.target.classList.toggle("show");
+              if (e.target.classList.contains("show")) {
+                pushDataLayer("exp_upsell_option_", "View full info - open", "Link", "Limited time offer ... Order summary");
+              } else {
+                pushDataLayer("exp_upsell_option_", "View less info - close", "Link", "Limited time offer ... Order summary");
+              }
             });
           });
         } else {
@@ -480,22 +516,53 @@ if (window.location.pathname === "/enroll/") {
                   appendTo: function () {
                     return document.querySelector(".personalized_coaching_wrap");
                   },
+                  onTrigger(e) {
+                    pushDataLayer("exp_upsell_option_", "View full info - open", "Link", "Limited time offer ... Order summary");
+                  },
+                  onUntrigger(e) {
+                    pushDataLayer("exp_upsell_option_", "View less info - close", "Link", "Limited time offer ... Order summary");
+                  },
                 });
               });
             }
           }, 500);
+
+          document.querySelector("#submit").addEventListener("click", () => {
+            document.querySelectorAll(".payment_inform_box .payment_plan_wrapp .input_wrapper>div> input:checked").forEach((i) => {
+              if (i.getAttribute("id") === "onetime_pay") {
+                pushDataLayer("exp_upsell_option_", "Enroll Now - one-time payment", "Button", "Choose payment plan");
+              } else {
+                pushDataLayer("exp_upsell_option_", "Enroll Now - 3 interest-free", "Button", "Choose payment plan");
+              }
+            });
+          });
         }
       }
       changePrice();
       // Choose payment plan Click
       document.querySelectorAll(".payment_inform_box .payment_plan_wrapp .input_wrapper>div>label").forEach((el) => {
         el.addEventListener("click", (e) => {
+          if (e.currentTarget.getAttribute("for") === "onetime_pay") {
+            pushDataLayer("exp_upsell_option_", "one-time payment", "Radio button", "Choose payment plan");
+          } else {
+            pushDataLayer("exp_upsell_option_", "3 interest-free", "Radio button", "Choose payment plan");
+          }
+
           changePrice();
         });
       });
       // btn_continue 2 Click
       document.querySelectorAll(".btn_continue")?.forEach((el) => {
         el.addEventListener("click", (e) => {
+          if (e.target.getAttribute("data-count") === "1") {
+            document.querySelectorAll(".payment_inform_box .payment_plan_wrapp .input_wrapper>div> input:checked").forEach((i) => {
+              if (i.getAttribute("id") === "onetime_pay") {
+                pushDataLayer("exp_upsell_option_", "Continue - one-time payment", "Button", "Choose payment plan");
+              } else {
+                pushDataLayer("exp_upsell_option_", "Continue - 3 interest-free", "Button", "Choose payment plan");
+              }
+            });
+          }
           if (e.target.getAttribute("data-count") === "2") {
             if ($("#submit").is(":visible")) {
               changePrice();
@@ -580,6 +647,46 @@ if (window.location.pathname === "/enroll/") {
 
         console.log(totalAct.toFixed(2), totalPay.toFixed(2));
       }
+
+      //visibility elem
+      let obs = new IntersectionObserver(visibility, {
+        threshold: 1,
+      });
+
+      let obs2 = new IntersectionObserver(visibility2, {
+        threshold: 1,
+      });
+
+      obs.observe(document.querySelector(".personalized_coaching_wrap"));
+
+      function visibility(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            setTimeout(function () {
+              obs2.observe(i.target);
+            }, 5000);
+          }
+        });
+      }
+      function visibility2(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            if (i.target.classList.contains("personalized_coaching_wrap")) {
+              pushDataLayer("exp_upsell_option_", "Visibility", "Additional block", "Limited time offer ... Order summary");
+            }
+
+            obs.unobserve(i.target);
+          }
+          obs2.unobserve(i.target);
+        });
+      }
+
+      const record = setInterval(() => {
+        if (typeof clarity === "function") {
+          clearInterval(record);
+          clarity("set", `upsell_option_${eventVar}`, "variant_1");
+        }
+      }, 200);
     }
   }, 100);
 }
@@ -588,6 +695,36 @@ if (window.location.pathname === "/mc/") {
   let startMC = setInterval(() => {
     if (document.querySelector("#unlimited_personal_coaching")) {
       clearInterval(startMC);
+
+      let eventVar = "desktop";
+
+      if (window.innerWidth <= 768) {
+        eventVar = "mobile";
+      }
+
+      function pushDataLayer(nameDataLayer, deskDataLayer, typeDataLayer, actionDataLayer, labelDataLayer) {
+        window.dataLayer = window.dataLayer || [];
+        if (labelDataLayer) {
+          console.log(nameDataLayer + " " + deskDataLayer + typeDataLayer + actionDataLayer + " : " + labelDataLayer);
+          dataLayer.push({
+            event: "event-to-ga4",
+            event_name: `${nameDataLayer} ${eventVar}`,
+            event_desc: `${deskDataLayer}`,
+            event_type: `${typeDataLayer}`,
+            event_loc: `${actionDataLayer}`,
+            eventLabel: `${labelDataLayer}`,
+          });
+        } else {
+          console.log(nameDataLayer + " " + deskDataLayer + " " + typeDataLayer + " " + actionDataLayer);
+          dataLayer.push({
+            event: "event-to-ga4",
+            event_name: `${nameDataLayer} ${eventVar}`,
+            event_desc: `${deskDataLayer}`,
+            event_type: `${typeDataLayer}`,
+            event_loc: `${actionDataLayer}`,
+          });
+        }
+      }
 
       let newStyle = /*html */ `
         <style>
@@ -749,7 +886,7 @@ if (window.location.pathname === "/mc/") {
                 <p>The Q&A calls will happen each week during the 10-week masterclass.</p>
                 <p>If you can’t attend one of the live calls, just email us your question before it, and we’ll answer it during the Q&A session. We’ll upload a recording of each Q&A call, so you can listen to the recording when convenient to you.</p>
                 <p>With the Personal Coaching package, you'll receive undivided attention and guidance from our experienced trainers, ensuring that no obstacle stands in the way of your dog's progress. Whether you're a novice owner or an experienced handler, this advanced level of support will empower you to overcome challenges, achieve breakthroughs, and foster a deeper bond with your furry friend.</p>
-                <p>The regular price for the Personal Coaching is <b>$398</b>, but for a limited time, you can get it with a <b>77% discount.</b> To add the Personal Coaching package <b>for only $90,</b> simply check the box below and enroll to the Total Transformation Masterclass now.</p>
+                <p data-visib='1'>The regular price for the Personal Coaching is <b>$398</b>, but for a limited time, you can get it with a <b>77% discount.</b> To add the Personal Coaching package <b>for only $90,</b> simply check the box below and enroll to the Total Transformation Masterclass now.</p>
                 <div class="custom_checkbox_wrap">
                     <input class="custom_checkbox" id="personalCoaching" type="checkbox" name="personalCoaching" value="personalCoaching">
                     <label for="personalCoaching" tabIndex="0">Yes, I would like to add Personal Coaching to my Total Transformation Masterclass.</label>
@@ -773,18 +910,98 @@ if (window.location.pathname === "/mc/") {
       if (document.querySelector("#unlimited_personal_coaching .enroll_now_btn.new_btn_var")) {
         document.querySelector("#unlimited_personal_coaching .enroll_now_btn.new_btn_var").addEventListener("click", (e) => {
           e.preventDefault();
+          if (localStorage.getItem("personalCoaching")) {
+            pushDataLayer("exp_upsell_option_", "Enroll now - YES", "Button", "Limited time offer ... Free workshop");
+          } else {
+            pushDataLayer("exp_upsell_option_", "Enroll now - NO", "Button", "Limited time offer ... Free workshop");
+          }
           document.querySelector("#SpecialOffer a.enroll_now_btn").click();
         });
 
         document.querySelector("#unlimited_personal_coaching .custom_checkbox_wrap label").addEventListener("click", (e) => {
           if (!e.target.previousElementSibling.checked) {
+            pushDataLayer("exp_upsell_option_", "Yes i would like to add personal coaching", "Checkbox ON", "Limited time offer ... Free workshop");
             localStorage.setItem("personalCoaching", true);
           } else {
             if (localStorage.getItem("personalCoaching")) {
               localStorage.removeItem("personalCoaching");
+              pushDataLayer("exp_upsell_option_", "Yes i would like to add personal coaching", "Checkbox OFF", "Limited time offer ... Free workshop");
             }
           }
         });
+
+        //visibility elem
+        let obs = new IntersectionObserver(visibility, {
+          threshold: 1,
+        });
+
+        let obs2 = new IntersectionObserver(visibility2, {
+          threshold: 1,
+        });
+
+        obs.observe(document.querySelector("#unlimited_personal_coaching [data-visib='1']"));
+
+        function visibility(entries) {
+          entries.forEach((i) => {
+            if (i.isIntersecting) {
+              setTimeout(function () {
+                obs2.observe(i.target);
+              }, 5000);
+            }
+          });
+        }
+        function visibility2(entries) {
+          entries.forEach((i) => {
+            if (i.isIntersecting) {
+              if (i.target.getAttribute("data-visib")) {
+                pushDataLayer("exp_upsell_option_", "Visibility - 5 sec", "Text area", "Limited time offer ... Free workshop");
+              }
+
+              obs.unobserve(i.target);
+            }
+            obs2.unobserve(i.target);
+          });
+        }
+
+        //
+        let obs3 = new IntersectionObserver(visibility3, {
+          threshold: 1,
+        });
+
+        let obs4 = new IntersectionObserver(visibility4, {
+          threshold: 1,
+        });
+
+        obs3.observe(document.querySelector("#unlimited_personal_coaching .custom_checkbox_wrap"));
+
+        function visibility3(entries) {
+          entries.forEach((i) => {
+            if (i.isIntersecting) {
+              setTimeout(function () {
+                obs4.observe(i.target);
+              }, 100);
+            }
+          });
+        }
+        function visibility4(entries) {
+          entries.forEach((i) => {
+            if (i.isIntersecting) {
+              if (i.target.classList.contains("custom_checkbox_wrap")) {
+                pushDataLayer("exp_upsell_option_", "Visibility", "Checkbox", "Limited time offer ... Free workshop");
+              }
+
+              obs3.unobserve(i.target);
+            }
+            obs4.unobserve(i.target);
+          });
+        }
+
+        const record = setInterval(() => {
+          if (typeof clarity === "function") {
+            clearInterval(record);
+            clarity("set", `upsell_option_${eventVar}`, "variant_1");
+          }
+        }, 200);
       }
     }
   }, 100);
@@ -794,6 +1011,36 @@ if (window.location.pathname === "/thanks-for-ordering/") {
   let startThanks = setInterval(() => {
     if (localStorage.getItem("personalCoaching")) {
       clearInterval(startThanks);
+
+      let eventVar = "desktop";
+
+      if (window.innerWidth <= 768) {
+        eventVar = "mobile";
+      }
+
+      function pushDataLayer(nameDataLayer, deskDataLayer, typeDataLayer, actionDataLayer, labelDataLayer) {
+        window.dataLayer = window.dataLayer || [];
+        if (labelDataLayer) {
+          console.log(nameDataLayer + " " + deskDataLayer + typeDataLayer + actionDataLayer + " : " + labelDataLayer);
+          dataLayer.push({
+            event: "event-to-ga4",
+            event_name: `${nameDataLayer} ${eventVar}`,
+            event_desc: `${deskDataLayer}`,
+            event_type: `${typeDataLayer}`,
+            event_loc: `${actionDataLayer}`,
+            eventLabel: `${labelDataLayer}`,
+          });
+        } else {
+          console.log(nameDataLayer + " " + deskDataLayer + " " + typeDataLayer + " " + actionDataLayer);
+          dataLayer.push({
+            event: "event-to-ga4",
+            event_name: `${nameDataLayer} ${eventVar}`,
+            event_desc: `${deskDataLayer}`,
+            event_type: `${typeDataLayer}`,
+            event_loc: `${actionDataLayer}`,
+          });
+        }
+      }
 
       let newStyle = /*html */ `
         <style>
@@ -895,6 +1142,79 @@ if (window.location.pathname === "/thanks-for-ordering/") {
 			<td class="actual_price">$0</td>
 		</tr>`
       );
+
+      //visibility elem
+      let obs = new IntersectionObserver(visibility, {
+        threshold: 1,
+      });
+
+      let obs2 = new IntersectionObserver(visibility2, {
+        threshold: 1,
+      });
+
+      obs.observe(document.querySelector(".present_box"));
+
+      function visibility(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            setTimeout(function () {
+              obs2.observe(i.target);
+            }, 100);
+          }
+        });
+      }
+      function visibility2(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            if (i.target.classList.contains("present_box")) {
+              pushDataLayer("exp_upsell_option_", "Visibility", "Text area", "Thank you for your purchase");
+            }
+
+            obs.unobserve(i.target);
+          }
+          obs2.unobserve(i.target);
+        });
+      }
+
+      //
+      let obs3 = new IntersectionObserver(visibility3, {
+        threshold: 1,
+      });
+
+      let obs4 = new IntersectionObserver(visibility4, {
+        threshold: 1,
+      });
+
+      obs3.observe(document.querySelector(".present_box"));
+
+      function visibility3(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            setTimeout(function () {
+              obs4.observe(i.target);
+            }, 3000);
+          }
+        });
+      }
+      function visibility4(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            if (i.target.classList.contains("present_box")) {
+              pushDataLayer("exp_upsell_option_", "Visibility - 3 sec", "Text area", "Thank you for your purchase");
+            }
+
+            obs3.unobserve(i.target);
+          }
+          obs4.unobserve(i.target);
+        });
+      }
+
+      const record = setInterval(() => {
+        if (typeof clarity === "function") {
+          clearInterval(record);
+          clarity("set", `upsell_option_${eventVar}`, "variant_1");
+        }
+      }, 200);
     }
   }, 100);
 }
