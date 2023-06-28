@@ -219,8 +219,15 @@ if (window.location.pathname === "/grantme-program-assessment") {
                 margin-top: 16px;
             }
             @media (max-width: 768px) {
+                .path-grantme-program-assessment .navbar .logo{
+                    padding: 16px 0 23px;
+                }
+                #navbar #block-landingpageheaderquiz img{
+                    max-width: 120px !important;
+                    min-width: 120px !important;
+                }
                 #reviewsTxt{
-                    margin: 23px auto 8px;
+                    margin: 0px auto 8px;
                 }
                 #reviewsTxt .reviews_btn_wrapper{
                     margin: 0 0 23px;
@@ -229,13 +236,14 @@ if (window.location.pathname === "/grantme-program-assessment") {
                 }
                 #reviewsTxt > h2{
                     max-width: 300px;
+                    margin: 16px 0 8px;
                 }
                 #reviewsTxt > p{
                     max-width: 300px;
                 }
                 #edit-processed-text-15 .seqq-content article:before{
                     left: calc(50% - 10px) !important;
-                    top: -10px;
+                    top: -10px !important;
                 }
                 #edit-processed-text-15 .seqq-content{
                     margin: 30px 0 0;
@@ -250,7 +258,10 @@ if (window.location.pathname === "/grantme-program-assessment") {
                     margin: 6px 0;
                 }
                 #GrantMeTxt h3{
-                    margin: 24px 0;
+                    margin: 24px 0 16px;
+                }
+                #GrantMeTxt ul{
+                    max-width: 335px;
                 }
                 #GrantMeTxt ul li{
                     min-height: unset;
@@ -260,6 +271,12 @@ if (window.location.pathname === "/grantme-program-assessment") {
                 }
                 .navbar-top .navbar-header .region.region-navigation{
                     margin: 0 auto;
+                }
+                #edit-processed-text-15 .seqq-row {
+                    margin: 0 0 30px;
+                }
+                #edit-are-you-a-current-student- h4.quiz-question{
+                    text-align: left;
                 }
             }
             @media (max-width: 320px) {
@@ -301,7 +318,7 @@ if (window.location.pathname === "/grantme-program-assessment") {
                     </p>
                     <a target="_blank" href="https://www.trustpilot.com/review/grantme.ca?utm_medium=trustbox&amp;utm_source=Slider">(1,021 reviews)</a>
                 </div>
-                <img src="https://conversionratestore.github.io/projects/grantme/img/grantme-program-assessment_img.png" alt="girl" />
+                <img src="https://conversionratestore.github.io/projects/grantme/img/grantme-program-assessment_img.jpg" alt="Graduates" />
                 <h2>Everything Students Need To Get Into University</h2>
                 <p>Find out your odds of getting into your top choice university with this <b>60 second quiz</b> approved by our experts.</p>
             </div>
@@ -338,7 +355,7 @@ if (window.location.pathname === "/grantme-program-assessment") {
               if (document.querySelector(".path-grantme-program-assessment header .container .row").classList.contains("is_logo")) {
                 document.querySelector(".path-grantme-program-assessment header .container .row").classList.remove("is_logo");
               }
-            }, 250);
+            }, 270);
           } else {
             setTimeout(() => {
               document.querySelector(".quiz-title").style.display = "block";
@@ -365,6 +382,26 @@ if (window.location.pathname === "/grantme-program-assessment") {
           document.querySelector("#block-landingpageheaderquiz img").classList.add("is_logo");
           document.querySelector(".path-grantme-program-assessment header .container .row").classList.add("is_logo");
         }
+      });
+
+      // observer pdp
+      let observer = new MutationObserver(() => {
+        if (document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper p span")) {
+          observer.disconnect();
+          console.log(`observer`);
+          if (document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper p span").textContent !== "1 MINUTE LEFT") {
+            document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper p span").textContent = "1 MINUTE LEFT";
+          }
+          observer.observe(document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper p span"), {
+            childList: true,
+            subtree: true,
+          });
+        }
+      });
+
+      observer.observe(document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper p span"), {
+        childList: true,
+        subtree: true,
       });
     }
   }, 100);
@@ -586,6 +623,12 @@ if (window.location.pathname === "/scholarship-eligibility-quiz") {
                 .navbar-top .navbar-header .region.region-navigation{
                     margin: 0 auto;
                 }
+                #edit-are-you-a-current-student- h4.quiz-question{
+                    text-align: left;
+                }
+                #reviewsTxt > p{
+                    max-width: 355px;
+                }
             }
             @media (max-width: 320px) {
                 #GrantMeTxt ul li{
@@ -670,6 +713,26 @@ if (window.location.pathname === "/scholarship-eligibility-quiz") {
           document.querySelector(".path-scholarship-eligibility-quiz .webform-progress").style.display = "none";
           document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper").style.display = "none";
         }
+      });
+
+      // observer pdp
+      let observer = new MutationObserver(() => {
+        if (document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper p span")) {
+          observer.disconnect();
+          console.log(`observer`);
+          if (document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper p span").textContent !== "1 MINUTE LEFT") {
+            document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper p span").textContent = "1 MINUTE LEFT";
+          }
+          observer.observe(document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper p span"), {
+            childList: true,
+            subtree: true,
+          });
+        }
+      });
+
+      observer.observe(document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper p span"), {
+        childList: true,
+        subtree: true,
       });
     }
   }, 100);
