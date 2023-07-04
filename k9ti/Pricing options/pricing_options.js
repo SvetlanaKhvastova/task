@@ -80,7 +80,7 @@ if (window.location.pathname === "/enroll/") {
             margin-top: 8px !important;
             padding: 0 16px;
         }
-        .payment_inform_box li > div > p.saved_box{
+        body .payment_inform_box li > div > p.saved_box{
             line-height: 12px !important;
             padding: 6px 8px !important;
             margin: 10px 16px 0 auto !important;
@@ -652,7 +652,11 @@ if (window.location.pathname === "/enroll/") {
           el.textContent = "$" + totalAct.toFixed(2);
         });
         document.querySelectorAll(".monthly_sec .new_full_price").forEach((el) => {
-          el.textContent = "$" + (totalAct / 3).toFixed(1);
+          if ((totalAct / 3).toFixed(1) === "368.0") {
+            el.textContent = "$" + (totalAct / 3).toFixed(0);
+          } else {
+            el.textContent = "$" + (totalAct / 3).toFixed(1);
+          }
         });
         document.querySelectorAll(".total_price").forEach((el) => {
           el.textContent = "$" + totalPay.toFixed(2);
