@@ -3,6 +3,36 @@ if (window.location.pathname === "/grantme-program-assessment") {
     if (document.querySelector("#edit-are-you-a-current-student-")) {
       clearInterval(startContext);
 
+      let eventVar = "desktop";
+
+      if (window.innerWidth <= 768) {
+        eventVar = "mobile";
+      }
+
+      function pushDataLayer(nameDataLayer, deskDataLayer, typeDataLayer, actionDataLayer, labelDataLayer) {
+        window.dataLayer = window.dataLayer || [];
+        if (labelDataLayer) {
+          console.log(deskDataLayer + typeDataLayer + actionDataLayer + " : " + labelDataLayer);
+          dataLayer.push({
+            event: "event-to-ga4",
+            event_name: `${nameDataLayer} ${eventVar}`,
+            event_desc: `${deskDataLayer}`,
+            event_type: `${typeDataLayer}`,
+            event_loc: `${actionDataLayer}`,
+            eventLabel: `${labelDataLayer}`,
+          });
+        } else {
+          console.log(deskDataLayer + " " + typeDataLayer + " " + actionDataLayer);
+          dataLayer.push({
+            event: "event-to-ga4",
+            event_name: `${nameDataLayer} ${eventVar}`,
+            event_desc: `${deskDataLayer}`,
+            event_type: `${typeDataLayer}`,
+            event_loc: `${actionDataLayer}`,
+          });
+        }
+      }
+
       let newStyle = /*html */ `
         <style>
             .row.webform-progress-wrapper{
@@ -33,6 +63,9 @@ if (window.location.pathname === "/grantme-program-assessment") {
                 height: 100%;
                 min-height: unset;
                 width: 100%;
+                max-width: 540px;
+                margin: auto !important;
+                float: unset;
             }
             #edit-processed-text-15 .seqq-row{
                 display: flex !important;
@@ -196,7 +229,8 @@ if (window.location.pathname === "/grantme-program-assessment") {
                 min-height: 30px;
             }
             #GrantMeTxt{
-                margin: 0 auto 70px;
+                margin: 0 auto;
+                padding-bottom: 70px;
                 max-width: 540px;
             }
             #GrantMeTxt ul li::before{
@@ -267,7 +301,8 @@ if (window.location.pathname === "/grantme-program-assessment") {
                     min-height: unset;
                 }
                 #GrantMeTxt{
-                    margin: 0 auto 30px;
+                    margin: 0 auto;
+                    padding-bottom: 30px;
                 }
                 .navbar-top .navbar-header .region.region-navigation{
                     margin: 0 auto;
@@ -318,7 +353,7 @@ if (window.location.pathname === "/grantme-program-assessment") {
                     </p>
                     <a target="_blank" href="https://www.trustpilot.com/review/grantme.ca?utm_medium=trustbox&amp;utm_source=Slider">(1,021 reviews)</a>
                 </div>
-                <img src="https://conversionratestore.github.io/projects/grantme/img/grantme-program-assessment_img.jpg" alt="Graduates" />
+                <img src="https://conversionratestore.github.io/projects/grantme/img/grantme-program-assessment_img.jpg" alt="Graduates" class="my_img" />
                 <h2>Everything Students Need To Get Into University</h2>
                 <p>Find out your odds of getting into your top choice university with this <b>60 second quiz</b> approved by our experts.</p>
             </div>
@@ -342,47 +377,164 @@ if (window.location.pathname === "/grantme-program-assessment") {
       document.querySelector("#edit-processed-text-15 .seqq-img figcaption p:nth-child(2)").textContent = "Founder & COO";
 
       document.querySelectorAll("#edit-are-you-a-current-student- label").forEach((el) => {
-        el.addEventListener("click", () => {
-          if (window.innerWidth <= 768) {
-            setTimeout(() => {
-              document.querySelector(".quiz-title").style.display = "block";
-              document.querySelector(".row.webform-progress-wrapper").style.display = "block";
-              document.querySelector(".path-scholarship-eligibility-quiz .webform-progress").style.display = "table";
-              document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper").style.display = "block";
-              if (document.querySelector("#block-landingpageheaderquiz img").classList.contains("is_logo")) {
-                document.querySelector("#block-landingpageheaderquiz img").classList.remove("is_logo");
-              }
-              if (document.querySelector(".path-grantme-program-assessment header .container .row").classList.contains("is_logo")) {
-                document.querySelector(".path-grantme-program-assessment header .container .row").classList.remove("is_logo");
-              }
-            }, 270);
-          } else {
-            setTimeout(() => {
-              document.querySelector(".quiz-title").style.display = "block";
-              document.querySelector(".row.webform-progress-wrapper").style.display = "block";
-              document.querySelector(".path-scholarship-eligibility-quiz .webform-progress").style.display = "table";
-              document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper").style.display = "block";
-              if (document.querySelector("#block-landingpageheaderquiz img").classList.contains("is_logo")) {
-                document.querySelector("#block-landingpageheaderquiz img").classList.remove("is_logo");
-              }
-              if (document.querySelector(".path-grantme-program-assessment header .container .row").classList.contains("is_logo")) {
-                document.querySelector(".path-grantme-program-assessment header .container .row").classList.remove("is_logo");
-              }
-            }, 270);
+        el.addEventListener("click", (e) => {
+          if (!e.currentTarget.getAttribute("data-test")) {
+            if (e.currentTarget.getAttribute("for") === "edit-are-you-a-current-student-current-student") {
+              pushDataLayer("exp_context_fs_student", "Current Student", "Button", "First step");
+            }
+            if (e.currentTarget.getAttribute("for") === "edit-are-you-a-current-student-parent-of-student") {
+              pushDataLayer("exp_context_fs_parent", "Parent of Student", "Button", "First step");
+            }
+            if (window.innerWidth <= 768) {
+              setTimeout(() => {
+                document.querySelector(".quiz-title").style.display = "block";
+                document.querySelector(".row.webform-progress-wrapper").style.display = "block";
+                document.querySelector(".path-scholarship-eligibility-quiz .webform-progress").style.display = "table";
+                document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper").style.display = "block";
+                if (document.querySelector("#block-landingpageheaderquiz img").classList.contains("is_logo")) {
+                  document.querySelector("#block-landingpageheaderquiz img").classList.remove("is_logo");
+                }
+                if (document.querySelector(".path-grantme-program-assessment header .container .row").classList.contains("is_logo")) {
+                  document.querySelector(".path-grantme-program-assessment header .container .row").classList.remove("is_logo");
+                }
+              }, 270);
+            } else {
+              setTimeout(() => {
+                document.querySelector(".quiz-title").style.display = "block";
+                document.querySelector(".row.webform-progress-wrapper").style.display = "block";
+                document.querySelector(".path-scholarship-eligibility-quiz .webform-progress").style.display = "table";
+                document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper").style.display = "block";
+                if (document.querySelector("#block-landingpageheaderquiz img").classList.contains("is_logo")) {
+                  document.querySelector("#block-landingpageheaderquiz img").classList.remove("is_logo");
+                }
+                if (document.querySelector(".path-grantme-program-assessment header .container .row").classList.contains("is_logo")) {
+                  document.querySelector(".path-grantme-program-assessment header .container .row").classList.remove("is_logo");
+                }
+              }, 270);
+            }
           }
+          e.currentTarget.setAttribute("data-test", "1");
+
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
+            }
+          }, 500);
         });
       });
 
       document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper .back-link").addEventListener("click", () => {
-        if (document.querySelector("#edit-are-you-a-current-student-").classList.contains("webform-card--active")) {
-          document.querySelector(".quiz-title").style.display = "none";
-          document.querySelector(".row.webform-progress-wrapper").style.display = "none";
-          document.querySelector(".path-scholarship-eligibility-quiz .webform-progress").style.display = "none";
-          document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper").style.display = "none";
-          document.querySelector("#block-landingpageheaderquiz img").classList.add("is_logo");
-          document.querySelector(".path-grantme-program-assessment header .container .row").classList.add("is_logo");
-        }
+        let act = setInterval(() => {
+          if (document.querySelector("#edit-are-you-a-current-student-").classList.contains("webform-card--active")) {
+            clearInterval(act);
+            document.querySelector(".quiz-title").style.display = "none";
+            document.querySelector(".row.webform-progress-wrapper").style.display = "none";
+            document.querySelector(".path-scholarship-eligibility-quiz .webform-progress").style.display = "none";
+            document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper").style.display = "none";
+            document.querySelector("#block-landingpageheaderquiz img").classList.add("is_logo");
+            document.querySelector(".path-grantme-program-assessment header .container .row").classList.add("is_logo");
+          }
+        }, 10);
       });
+
+      document.querySelectorAll("#reviewsTxt .reviews_btn_wrapper > a").forEach((el) => {
+        el.addEventListener("click", () => {
+          pushDataLayer("exp_context_fs_trustpilot", "TrustScore", "Link", "First screen");
+        });
+      });
+      document.querySelectorAll("#edit-are-you-a-current-student- h4.quiz-question").forEach((el) => {
+        el.addEventListener("click", () => {
+          pushDataLayer("exp_context_fs_text", "Are you are a student or a parent?", "Click on text", "First screen");
+        });
+      });
+      document.querySelectorAll("#reviewsTxt > img").forEach((el) => {
+        el.addEventListener("click", () => {
+          pushDataLayer("exp_context_fs_image", "Preview of desktop and mobile interface", "Click on image", "First screen");
+        });
+      });
+      document.querySelectorAll("#GrantMeTxt").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          if (e.currentTarget) {
+            pushDataLayer("exp_context_fs_what_you", "Click", "Text section", "What you`ll get with GrantMe");
+          }
+        });
+      });
+      document.querySelectorAll("#edit-processed-text-15").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          if (e.currentTarget) {
+            pushDataLayer("exp_context_fs_what_you", "Click", "Text section", "What you`ll get with GrantMe");
+          }
+        });
+      });
+      if (window.innerWidth > 768) {
+        document.querySelectorAll("#reviewsTxt > img").forEach((el) => {
+          el.addEventListener("mouseenter", () => {
+            pushDataLayer("exp_context_fs_image_ v", "Preview of desktop and mobile interface", "Visibility or Hover", "First screen");
+          });
+        });
+        document.querySelectorAll("#GrantMeTxt").forEach((el) => {
+          el.addEventListener("mouseenter", (e) => {
+            if (e.currentTarget) {
+              pushDataLayer("exp_context_fs_what_you_v", "What you`ll get with GrantMe", "Visibility or Hover", "What you`ll get with GrantMe");
+            }
+          });
+        });
+        document.querySelectorAll("#edit-processed-text-15").forEach((el) => {
+          el.addEventListener("mouseenter", (e) => {
+            if (e.currentTarget) {
+              pushDataLayer("exp_context_fs_what_you_v", "What you`ll get with GrantMe", "Visibility or Hover", "What you`ll get with GrantMe");
+            }
+          });
+        });
+      }
+
+      //visibility elem
+      let obs = new IntersectionObserver(visibility, {
+        threshold: 1,
+      });
+
+      let obs2 = new IntersectionObserver(visibility2, {
+        threshold: 1,
+      });
+
+      obs.observe(document.querySelector("#edit-are-you-a-current-student- h4.quiz-question"));
+      obs.observe(document.querySelector("#edit-processed-text-15 .seqq-row"));
+      obs.observe(document.querySelector("#reviewsTxt .reviews_btn_wrapper"));
+      obs.observe(document.querySelector("#reviewsTxt > img"));
+
+      function visibility(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            setTimeout(function () {
+              obs2.observe(i.target);
+            }, 5000);
+          }
+        });
+      }
+      function visibility2(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            if (i.target.classList.contains("quiz-question")) {
+              pushDataLayer("exp_context_fs_view_1", "5 secs or more", "View element on screen", "Win scholarship, Graduate Debt-Free");
+            }
+
+            if (i.target.classList.contains("reviews_btn_wrapper")) {
+              pushDataLayer("exp_context_fs_trustpilot_v", "TrustScore", "Visibility", "First screen");
+            }
+            if (window.innerWidth <= 768) {
+              if (i.target.classList.contains("seqq-row")) {
+                pushDataLayer("exp_context_fs_what_you_v", "What you`ll get with GrantMe", "Visibility or Hover", "What you`ll get with GrantMe");
+              }
+              if (i.target.classList.contains("my_img")) {
+                pushDataLayer("exp_context_fs_image_v", "Preview of desktop and mobile interface", "Visibility or Hover", "First screen");
+              }
+            }
+
+            obs.unobserve(i.target);
+          }
+          obs2.unobserve(i.target);
+        });
+      }
 
       // observer pdp
       let observer = new MutationObserver(() => {
@@ -403,6 +555,13 @@ if (window.location.pathname === "/grantme-program-assessment") {
         childList: true,
         subtree: true,
       });
+
+      const record = setInterval(() => {
+        if (typeof clarity === "function") {
+          clearInterval(record);
+          clarity("set", `context_fs${eventVar}`, "variant_1");
+        }
+      }, 200);
     }
   }, 100);
 }
@@ -570,7 +729,8 @@ if (window.location.pathname === "/scholarship-eligibility-quiz") {
                 min-height: 30px;
             }
             #GrantMeTxt{
-                margin: 0 auto 50px;
+                margin: 0 auto;
+                padding-bottom: 50px;
                 max-width: 540px;
             }
             #GrantMeTxt ul li::before{
@@ -618,7 +778,8 @@ if (window.location.pathname === "/scholarship-eligibility-quiz") {
                     min-height: unset;
                 }
                 #GrantMeTxt{
-                    margin: 0 auto 30px;
+                    margin: 0 auto;
+                    padding-bottom: 30px;
                 }
                 .navbar-top .navbar-header .region.region-navigation{
                     margin: 0 auto;
@@ -668,7 +829,7 @@ if (window.location.pathname === "/scholarship-eligibility-quiz") {
                     </p>
                     <a target="_blank" href="https://www.trustpilot.com/review/grantme.ca?utm_medium=trustbox&amp;utm_source=Slider">(1,021 reviews)</a>
                 </div>
-                <img src="https://conversionratestore.github.io/projects/grantme/img/isolated_tablet_laptop_and_smartphone_composition.png" alt="isolated tablet laptop_and smartphone composition" />
+                <img src="https://conversionratestore.github.io/projects/grantme/img/isolated_tablet_laptop_and_smartphone_composition.png" alt="isolated tablet laptop_and smartphone composition" class="my_img" />
                 <h2>Win Scholarships, Graduate Debt-Free</h2>
                 <p>Receive an estimated value and number of scholarships you or your child is eligible for with this <b>60 second quiz</b> approved by our experts.</p>
             </div>
@@ -690,30 +851,148 @@ if (window.location.pathname === "/scholarship-eligibility-quiz") {
       document.querySelector("#edit-processed-text-15 .seqq-img figcaption p:nth-child(2)").textContent = "Founder & COO";
 
       document.querySelectorAll("#edit-are-you-a-current-student- label").forEach((el) => {
-        el.addEventListener("click", () => {
-          if (window.innerWidth <= 768) {
-            setTimeout(() => {
-              document.querySelector(".quiz-title").style.display = "block";
-              document.querySelector(".path-scholarship-eligibility-quiz .webform-progress").style.display = "table";
-              document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper").style.display = "block";
-            }, 250);
-          } else {
-            setTimeout(() => {
-              document.querySelector(".quiz-title").style.display = "block";
-              document.querySelector(".path-scholarship-eligibility-quiz .webform-progress").style.display = "table";
-              document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper").style.display = "block";
-            }, 10);
+        el.addEventListener("click", (e) => {
+          if (!e.currentTarget.getAttribute("data-test")) {
+            if (e.currentTarget.getAttribute("for") === "edit-are-you-a-current-student-current-student") {
+              pushDataLayer("exp_context_fs_student", "Current Student", "Button", "First step");
+            }
+            if (e.currentTarget.getAttribute("for") === "edit-are-you-a-current-student-parent-of-student") {
+              pushDataLayer("exp_context_fs_parent", "Parent of Student", "Button", "First step");
+            }
+            if (window.innerWidth <= 768) {
+              setTimeout(() => {
+                document.querySelector(".quiz-title").style.display = "block";
+                document.querySelector(".path-scholarship-eligibility-quiz .webform-progress").style.display = "table";
+                document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper").style.display = "block";
+              }, 250);
+            } else {
+              setTimeout(() => {
+                document.querySelector(".quiz-title").style.display = "block";
+                document.querySelector(".path-scholarship-eligibility-quiz .webform-progress").style.display = "table";
+                document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper").style.display = "block";
+              }, 10);
+            }
           }
+          e.currentTarget.setAttribute("data-test", "1");
+
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
+            }
+          }, 500);
         });
       });
 
       document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper .back-link").addEventListener("click", () => {
-        if (document.querySelector("#edit-are-you-a-current-student-").classList.contains("webform-card--active")) {
-          document.querySelector(".quiz-title").style.display = "none";
-          document.querySelector(".path-scholarship-eligibility-quiz .webform-progress").style.display = "none";
-          document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper").style.display = "none";
-        }
+        let act = setInterval(() => {
+          if (document.querySelector("#edit-are-you-a-current-student-").classList.contains("webform-card--active")) {
+            clearInterval(act);
+            document.querySelector(".quiz-title").style.display = "none";
+            document.querySelector(".path-scholarship-eligibility-quiz .webform-progress").style.display = "none";
+            document.querySelector(".path-scholarship-eligibility-quiz .back-button-wrapper").style.display = "none";
+          }
+        }, 10);
       });
+
+      document.querySelectorAll("#reviewsTxt .reviews_btn_wrapper > a").forEach((el) => {
+        el.addEventListener("click", () => {
+          pushDataLayer("exp_context_fs_trustpilot", "TrustScore", "Link", "First screen");
+        });
+      });
+      document.querySelectorAll("#edit-are-you-a-current-student- h4.quiz-question").forEach((el) => {
+        el.addEventListener("click", () => {
+          pushDataLayer("exp_context_fs_text", "Are you are a student or a parent?", "Click on text", "First screen");
+        });
+      });
+      document.querySelectorAll("#reviewsTxt > img").forEach((el) => {
+        el.addEventListener("click", () => {
+          pushDataLayer("exp_context_fs_image", "Preview of desktop and mobile interface", "Click on image", "First screen");
+        });
+      });
+      document.querySelectorAll("#GrantMeTxt").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          if (e.currentTarget) {
+            pushDataLayer("exp_context_fs_what_you", "Click", "Text section", "What you`ll get with GrantMe");
+          }
+        });
+      });
+      document.querySelectorAll("#edit-processed-text-15").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          if (e.currentTarget) {
+            pushDataLayer("exp_context_fs_what_you", "Click", "Text section", "What you`ll get with GrantMe");
+          }
+        });
+      });
+
+      if (window.innerWidth > 768) {
+        document.querySelectorAll("#reviewsTxt > img").forEach((el) => {
+          el.addEventListener("mouseenter", () => {
+            pushDataLayer("exp_context_fs_image_ v", "Preview of desktop and mobile interface", "Visibility or Hover", "First screen");
+          });
+        });
+        document.querySelectorAll("#GrantMeTxt").forEach((el) => {
+          el.addEventListener("mouseenter", (e) => {
+            if (e.currentTarget) {
+              pushDataLayer("exp_context_fs_what_you_v", "What you`ll get with GrantMe", "Visibility or Hover", "What you`ll get with GrantMe");
+            }
+          });
+        });
+        document.querySelectorAll("#edit-processed-text-15").forEach((el) => {
+          el.addEventListener("mouseenter", (e) => {
+            if (e.currentTarget) {
+              pushDataLayer("exp_context_fs_what_you_v", "What you`ll get with GrantMe", "Visibility or Hover", "What you`ll get with GrantMe");
+            }
+          });
+        });
+      }
+
+      //visibility elem
+      let obs = new IntersectionObserver(visibility, {
+        threshold: 1,
+      });
+
+      let obs2 = new IntersectionObserver(visibility2, {
+        threshold: 1,
+      });
+
+      obs.observe(document.querySelector("#edit-are-you-a-current-student- h4.quiz-question"));
+      obs.observe(document.querySelector("#edit-processed-text-15 .seqq-row"));
+      obs.observe(document.querySelector("#reviewsTxt .reviews_btn_wrapper"));
+      obs.observe(document.querySelector("#reviewsTxt > img"));
+
+      function visibility(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            setTimeout(function () {
+              obs2.observe(i.target);
+            }, 5000);
+          }
+        });
+      }
+      function visibility2(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            if (i.target.classList.contains("quiz-question")) {
+              pushDataLayer("exp_context_fs_view_1", "5 secs or more", "View element on screen", "Win scholarship, Graduate Debt-Free");
+            }
+
+            if (i.target.classList.contains("reviews_btn_wrapper")) {
+              pushDataLayer("exp_context_fs_trustpilot_v", "TrustScore", "Visibility", "First screen");
+            }
+            if (window.innerWidth <= 768) {
+              if (i.target.classList.contains("seqq-row")) {
+                pushDataLayer("exp_context_fs_what_you_v", "What you`ll get with GrantMe", "Visibility or Hover", "What you`ll get with GrantMe");
+              }
+              if (i.target.classList.contains("my_img")) {
+                pushDataLayer("exp_context_fs_image_v", "Preview of desktop and mobile interface", "Visibility or Hover", "First screen");
+              }
+            }
+
+            obs.unobserve(i.target);
+          }
+          obs2.unobserve(i.target);
+        });
+      }
 
       // observer pdp
       let observer = new MutationObserver(() => {
@@ -734,6 +1013,13 @@ if (window.location.pathname === "/scholarship-eligibility-quiz") {
         childList: true,
         subtree: true,
       });
+
+      const record = setInterval(() => {
+        if (typeof clarity === "function") {
+          clearInterval(record);
+          clarity("set", `context_fs${eventVar}`, "variant_1");
+        }
+      }, 200);
     }
   }, 100);
 }
