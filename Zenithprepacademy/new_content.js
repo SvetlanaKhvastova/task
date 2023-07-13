@@ -184,6 +184,15 @@ let newContent = setInterval(() => {
             #PathToSuccess .container_var{
                 padding-bottom: 130px;
             }
+            #container-60629{
+              padding-bottom: 40px !important;
+            }
+            #row-165{
+              padding-bottom: 0 !important;
+            }
+            .timeline{
+              margin-bottom: 0 !important;
+            }
         }
     </style>
     `;

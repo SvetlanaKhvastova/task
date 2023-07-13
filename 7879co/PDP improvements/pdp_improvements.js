@@ -2,8 +2,156 @@ let startPdp = setInterval(() => {
   if (document.querySelector("#Trustmessaging")) {
     clearInterval(startPdp);
 
+    /********* Settings **********/
+    const settings = {
+      observe: false,
+    };
+
     let stylePdp = /*html */ `
     <style>
+        .overlay_popup {
+            position: fixed !important;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100%;
+            opacity: 1;
+            background: rgba(0, 0, 0, 0.30);
+            transition: all 0.5s ease 0s;
+            z-index: 9005;
+            display: block;
+            max-height: 100%;
+          }
+          .overlay_popup.is_hidden {
+            opacity: 0;
+            pointer-events: none;
+          }
+          .overlay_popup.is_hidden .container_popup {
+            transform: translateX(100%);
+            transition: all 0.8s ease 0s;
+           }
+          .overlay_popup .container_popup {
+            display: block;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            max-width: 560px;
+            height: 100%;
+            padding: 60px;
+            margin: 0;
+            background: #FFF;
+            transition: all 0.5s ease 0s;
+            overflow: auto;
+            max-height: 100vh;
+          }
+          .overlay_popup .container_popup > svg {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            outline: none;
+            cursor: pointer;
+          }
+          .popup_title{
+            color: #000;
+            font-family: 'Roobert TRIAL', sans-serif;
+            font-size: 28px;
+            font-weight: 500;
+            line-height: 44px;
+            margin-bottom: 16px;
+            text-transform: lowercase;
+          }
+          .popup_title::first-letter{
+            text-transform: uppercase;
+          }
+          .popup_txt_wrap{
+            padding: 24px 0;
+            border-top: 1px solid #EAEAEB;
+            border-bottom: 1px solid #EAEAEB;
+          }
+          .popup_txt_wrap p{
+            color: #484850;
+            font-family: 'Roobert TRIAL', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+          }
+          .popup_txt_wrap p + p{
+            margin-top: 12px;
+          }
+        .layout-container .col-span-full .fixed.bottom-0{
+            margin: 0;
+        }
+        .layout-container .col-span-full .fixed.bottom-0 .mx-auto.w-full{
+            height: 56px;
+        }
+        .layout-container .col-span-full .fixed.bottom-0 .mx-auto.w-full > div,
+        .layout-container .col-span-full .fixed.bottom-0 .mx-auto.w-full > div > div{
+            height: 100%;
+            color: #FFF;
+            font-family: 'Roobert TRIAL', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 24px;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+        }
+        .layout-container .col-span-full:nth-child(2){
+            padding: 48px;
+            max-width: 566px;
+        }
+        .layout-container .col-span-full .gap-4{
+            gap: 12px;
+        }
+        .layout-container .mt-2.mb-4.flex.items-end.justify-between.gap-4{
+            margin: 0 0 10px;
+        }
+        .layout-container .col-span-full:nth-child(2) h1{
+            color: #000;
+            font-family: 'Roobert TRIAL', sans-serif;
+            font-size: 28px !important;
+            font-weight: 600;
+            line-height: 36px !important;
+            margin-bottom: 8px;
+        }
+        .stability_box{
+            background: #FFF;
+            border: 1px solid rgba(234, 234, 235, 1);
+            padding: 16px;
+            margin-top: 20px;
+        }
+        .stability_box .stability_title{
+            position: relative;
+            color: #000;
+            font-family: 'Roobert TRIAL', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 22px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding-left: 58px;
+            max-width: 360px;
+        }
+        .stability_box .stability_title::before{
+            position: absolute;
+            content: '';
+            width: 42px;
+            height: 42px;
+            background: url(https://conversionratestore.github.io/projects/7879co/img/gold2.svg) no-repeat;
+            background-size: contain;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+        .stability_box .stability_txt{
+            color:  #484850;
+            font-family: 'Roobert TRIAL', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            margin: 8px 0 0;
+            max-width: 438px;
+        }
         #Trustmessaging,
         #HowWeCompare,
         .mx-auto.max-w-screen-xl > dl{
@@ -315,6 +463,43 @@ let startPdp = setInterval(() => {
     </style>
     `;
 
+    // popup
+    let popUp = /*html */ `
+        <div class="overlay_popup is_hidden">
+          <div class="container_popup">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M4.78138 19.9998C4.62685 19.9998 4.47577 19.954 4.34727 19.8682C4.21877 19.7824 4.11862 19.6603 4.05948 19.5176C4.00033 19.3748 3.98486 19.2177 4.01502 19.0661C4.04518 18.9146 4.1196 18.7753 4.22889 18.6661L18.6661 4.22885C18.8127 4.08232 19.0114 4 19.2186 4C19.4258 4 19.6246 4.08232 19.7711 4.22885C19.9176 4.37538 20 4.57411 20 4.78134C20 4.98856 19.9176 5.1873 19.7711 5.33383L5.33387 19.7711C5.26138 19.8437 5.17526 19.9013 5.08045 19.9406C4.98563 19.9798 4.884 19.9999 4.78138 19.9998Z" fill="black"/>
+            <path d="M19.2186 19.9998C19.116 19.9999 19.0143 19.9798 18.9195 19.9406C18.8247 19.9013 18.7386 19.8437 18.6661 19.7711L4.22885 5.33383C4.08232 5.1873 4 4.98856 4 4.78134C4 4.57411 4.08232 4.37538 4.22885 4.22885C4.37538 4.08232 4.57411 4 4.78134 4C4.98856 4 5.1873 4.08232 5.33383 4.22885L19.7711 18.6661C19.8804 18.7753 19.9548 18.9146 19.9849 19.0661C20.0151 19.2177 19.9996 19.3748 19.9405 19.5176C19.8813 19.6603 19.7812 19.7824 19.6527 19.8682C19.5242 19.954 19.3731 19.9998 19.2186 19.9998Z" fill="black"/>
+            </svg>
+          </div>
+        </div>
+    `;
+    let txtMadeFrom = /*html */ `
+            <h2 class="popup_title txt_made_from">Made from pure platinum</h2>
+            <div class="popup_txt_wrap">
+                <p><b>Hallmarked by the Assay Office:</b> Our purity levels have been confirmed with full traditional UK marks. Each piece is also accompanied by a <b>unique authenticity certificate.</b></p>
+                <p><b>Lifetime Warranty:</b> Automatically included to protect the value of your jewellery against defects.</p>
+                <p><b>30-Day Returns Policy:</b> Customers may return any pieces they find unsatisfying within 30 days.</p>
+            </div>
+    `;
+    let txtOurFees = /*html */ `
+            <h2 class="popup_title">Our fees are fair & transparent</h2>
+            <div class="popup_txt_wrap">
+                <p>At 7879, transparency is at the core of our pricing, selling, and <br/> buy-back processes.</p>
+                <p>We base our prices on the current market value of gold and platinum, determining the cost by the weight of each piece.<br/> With no hidden markups or additional fees, we add a transparent craftsmanship fee on top of the precious metal value. Rest assured, the prices you see may vary as they reflect the fluctuating market values, but once you add an item to your cart, the price remains fixed for 15 minutes during checkout.</p>
+            </div>
+    `;
+
+    let contentPopup = /*html */ `
+        <div class="content_popup"></div>
+    `;
+
+    let stabilityBox = /*html */ `
+        <div class="stability_box">
+            <h3 class="stability_title">Invest in the stability of platinum and gold</h3>
+            <p class="stability_txt">Our jewellery uses investment grade 24k gold and pure platinum. This gives it a value that appreciates over time, and can easily be tracked or exchanged for cash. Additionally, pure gold has a distinct warm glow that just makes it look more appealing.</p>
+        </div>
+    `;
     let newDetailsWrap = /*html */ `
         <div class="new_details_bgr">
             <ul class="new_details_wrap">
@@ -460,25 +645,126 @@ let startPdp = setInterval(() => {
     `;
 
     document.head.insertAdjacentHTML("beforeend", stylePdp);
-    if (!document.querySelector(".title_review")) {
-      document.querySelector("#TrustpilotReviewSection").insertAdjacentHTML("beforebegin", `<h2 class="title_review">More than 6 895 customers already trusted us</h2>`);
+    document.body.insertAdjacentHTML("afterbegin", popUp);
+
+    window.onunload = unloadPage;
+    function unloadPage() {
+      console.log("unload event detected!");
     }
-    if (document.querySelector(".title_review")) {
-      document.querySelector(".title_review").insertAdjacentHTML("beforebegin", advantagesBox);
-    }
-    if (!document.querySelector(".comparison_table_bgr")) {
-      document.querySelector("#TrustpilotReviewSection").insertAdjacentHTML("afterend", comparisonTableBox);
-    }
-    if (!document.querySelector(".new_details_wrap")) {
-      document.querySelector(".mx-auto.max-w-screen-xl").insertAdjacentHTML("afterbegin", newDetailsWrap);
-    }
-    if (document.querySelector(".new_details_wrap")) {
-      if (document.querySelector(".mx-auto.max-w-screen-xl .whitespace-pre-wrap")) {
-        document.querySelector(".product_details_box >.details_title").after(document.querySelector(".mx-auto.max-w-screen-xl .whitespace-pre-wrap"));
+
+    renderHtml();
+
+    if (document.querySelector(".overlay_popup")) {
+      let overlay = document.querySelector(".overlay_popup"),
+        containerPopup = overlay.querySelector(".container_popup"),
+        btnClose = overlay.querySelector("svg"),
+        scroll = calcScroll();
+
+      btnClose.addEventListener("click", (e) => {
+        onClosePopup();
+      });
+
+      overlay.addEventListener("click", (e) => {
+        if (e.target.matches(".overlay_popup")) {
+          onClosePopup();
+        }
+      });
+
+      document.querySelector(".layout-container .col-span-full:nth-child(2) h1").addEventListener("click", () => {
+        onOpenPopup(txtMadeFrom);
+      });
+
+      function onClosePopup() {
+        overlay.classList.add("is_hidden");
+        document.body.style.overflow = "unset";
+        document.body.style.marginRight = `0px`;
+        setTimeout(() => {
+          document.querySelector(".content_popup")?.remove();
+        }, 400);
       }
-      if (document.querySelector(".mx-auto.max-w-screen-xl .my-3.mb-12")) {
-        document.querySelector(".specification_box > .details_title").after(document.querySelector(".mx-auto.max-w-screen-xl .my-3.mb-12"));
+      function onOpenPopup(txt) {
+        overlay.classList.remove("is_hidden");
+        document.body.style.overflow = "hidden";
+        document.body.style.marginRight = `${scroll}px`;
+        if (!document.querySelector(".overlay_popup .content_popup")) {
+          containerPopup?.insertAdjacentHTML("beforeend", contentPopup);
+        }
+        if (document.querySelector(".overlay_popup .content_popup")) {
+          document.querySelector(".overlay_popup .content_popup").insertAdjacentHTML("beforeend", txt);
+        }
+        if (document.querySelector(".txt_made_from")) {
+          document.querySelector(".txt_made_from").textContent = document.querySelector(".layout-container .p-2 .tracking-widest").textContent;
+        }
+      }
+      function calcScroll() {
+        let div = document.createElement("div");
+        div.style.width = "50px";
+        div.style.height = "50px";
+        div.style.overflowY = "scroll";
+        div.style.visibility = "hidden";
+
+        document.body.appendChild(div);
+        let scrollWidth = div.offsetWidth - div.clientWidth;
+        div.remove();
+        return scrollWidth;
       }
     }
+
+    let t = setInterval(() => {
+      if (document.querySelector(".layout-container .mt-2.mb-4.flex.items-end.justify-between.gap-4")) {
+        clearInterval(t);
+        document.querySelector(".layout-container .col-span-full:nth-child(2) h1")?.before(document.querySelector(".layout-container .mt-2.mb-4.flex.items-end.justify-between.gap-4"));
+      }
+    }, 10);
+
+    function renderHtml() {
+      if (!document.querySelector(".stability_box")) {
+        document.querySelector(".col-span-full .mx-auto.px-5").insertAdjacentHTML("afterend", stabilityBox);
+      }
+      if (!document.querySelector(".title_review")) {
+        document.querySelector("#TrustpilotReviewSection")?.insertAdjacentHTML("beforebegin", `<h2 class="title_review">More than 6 895 customers already trusted us</h2>`);
+      }
+      if (document.querySelector(".title_review") && !document.querySelector(".advantages_box_bgr")) {
+        document.querySelector(".title_review").insertAdjacentHTML("beforebegin", advantagesBox);
+      }
+      if (!document.querySelector(".comparison_table_bgr")) {
+        document.querySelector("#TrustpilotReviewSection").insertAdjacentHTML("afterend", comparisonTableBox);
+      }
+      if (document.querySelector(".comparison_table_bgr")) {
+        document.querySelector("#comparisonTable table td p.our_price").textContent = document.querySelector("#left-view h4.text-h4:nth-child(2)").textContent.split("*")[0];
+        document.querySelector("#comparisonTable table td p.street_price").textContent = document.querySelector("#right-view h4.text-h4:nth-child(2)").textContent.split("*")[0];
+      }
+      if (!document.querySelector(".new_details_wrap")) {
+        document.querySelector(".mx-auto.max-w-screen-xl").insertAdjacentHTML("afterbegin", newDetailsWrap);
+      }
+      if (document.querySelector(".new_details_wrap")) {
+        if (document.querySelector(".mx-auto.max-w-screen-xl .whitespace-pre-wrap")) {
+          document.querySelector(".product_details_box >.details_title").after(document.querySelector(".mx-auto.max-w-screen-xl .whitespace-pre-wrap"));
+        }
+        if (document.querySelector(".mx-auto.max-w-screen-xl .my-3.mb-12")) {
+          document.querySelector(".specification_box > .details_title").after(document.querySelector(".mx-auto.max-w-screen-xl .my-3.mb-12"));
+        }
+      }
+    }
+
+    // Observe
+    let observer = new MutationObserver(() => {
+      if (document) {
+        observer.disconnect();
+        console.log(`observer`);
+
+        renderHtml();
+
+        observer.observe(document, {
+          childList: true,
+          subtree: true,
+        });
+      }
+    });
+
+    observer.observe(document, {
+      childList: true,
+      subtree: true,
+    });
   }
 }, 100);
