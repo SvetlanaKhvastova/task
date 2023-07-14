@@ -1026,20 +1026,30 @@ let startPdp = setInterval(() => {
     }
 
     window.addEventListener("scroll", () => {
-      if ($(".new_btn_add_to_basket").is(":visible")) {
-        console.log(`<<<<<<<<<<<<<<<<<<<<,>>>>>>>>>>>>>>>>>>>>`);
-        if (document.querySelector(".new_btn_add_to_basket").getBoundingClientRect().top < 0) {
-          console.log(document.querySelector(".new_btn_add_to_basket").getBoundingClientRect().top);
-          if (!document.querySelector("#add-cart-button-fixed").classList.contains("fixed")) {
-            document.querySelector("#add-cart-button-fixed").classList.add("fixed");
-            document.querySelector("#add-cart-button-fixed").style.display = "block";
-          }
-        } else {
-          if (document.querySelector("#add-cart-button-fixed").classList.contains("fixed")) {
-            document.querySelector("#add-cart-button-fixed").classList.remove("fixed");
-            document.querySelector("#add-cart-button-fixed").style.display = "none";
-          }
-        }
+      //   console.log(`<<<<<<<<<<<<<<<<<<<<,>>>>>>>>>>>>>>>>>>>>`, document.querySelector(".new_btn_add_to_basket").getBoundingClientRect());
+      //   if ($(".new_btn_add_to_basket").is(":visible")) {
+      //     if (document.querySelector(".new_btn_add_to_basket").getBoundingClientRect().top < 0) {
+      //       //   console.log(document.querySelector(".new_btn_add_to_basket").getBoundingClientRect().top);
+      //       if (!document.querySelector("#add-cart-button-fixed").classList.contains("fixed")) {
+      //         document.querySelector("#add-cart-button-fixed").classList.add("fixed");
+      //         document.querySelector("#add-cart-button-fixed").style.display = "block";
+      //       }
+      //     } else {
+      //       if (document.querySelector("#add-cart-button-fixed").classList.contains("fixed")) {
+      //         document.querySelector("#add-cart-button-fixed").classList.remove("fixed");
+      //         document.querySelector("#add-cart-button-fixed").style.display = "none";
+      //       }
+      //     }
+      //   }
+
+      var top = $(".new_btn_add_to_basket").offset().top,
+        sctop = $(this).scrollTop(),
+        winh = $(this).height(),
+        y = top - sctop - winh;
+      if (y > 0 || -y > winh) {
+        console.log(` Не Видим`);
+      } else {
+        console.log("Видим");
       }
     });
 
