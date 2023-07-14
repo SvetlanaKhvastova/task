@@ -7,6 +7,11 @@ let startPdp = setInterval(() => {
       observe: false,
     };
 
+    let script = document.createElement("script");
+    script.src = "https://code.jquery.com/jquery-3.4.1.min.js";
+    script.async = false;
+    document.head.appendChild(script);
+
     let stylePdp = /*html */ `
     <style>
         .overlay_popup {
@@ -344,6 +349,14 @@ let startPdp = setInterval(() => {
             font-size: 14px;
             line-height: 20px;
          }
+         #comparisonTable table tbody tr.colspan{
+             display: none;
+         }
+         #comparisonTable table tbody tr td[colspan="2"]{
+            border-right: 1px solid #EAEAEB;
+            border-left: 1px solid #EAEAEB;
+            background: #FFF;
+         }
         #comparisonTable table td:nth-child(1){
             background: #F4F4F5;
             padding: 10px 16px;
@@ -404,8 +417,11 @@ let startPdp = setInterval(() => {
             width: max-content;
             text-align: center;
             margin: auto;
-            padding-left: 32px;
         }
+        #comparisonTable table td p.yes_var,
+        #comparisonTable table td p.no_var{
+            padding-left: 32px;
+         }
         #comparisonTable table td p.our_price{
             font-size: 16px;
             font-weight: 600;
@@ -460,6 +476,143 @@ let startPdp = setInterval(() => {
             margin: 0 auto 24px;
             max-width: 905px;
         }
+        @media (max-width: 768px) {
+            .mx-auto.max-w-screen-xl{
+                padding: 24px 1rem;
+            }
+            .new_details_bgr {
+                padding: 0;
+            }
+            .new_details_wrap{
+                flex-direction: column;
+                gap: 12px;
+                background: #F4F4F5;
+            }
+            .new_details_wrap > li {
+                width: 100%;
+                border-bottom: 1px solid #EAEAEB;
+                background: #FFF;
+            }
+            .accardion_link_details{
+                padding: 12px 16px;
+                position: relative;
+            }
+            .accardion_link_details > span{
+            display: flex;
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            align-items: center;
+            justify-content: center;
+        }
+        .accardion_link_details > span svg{
+            transition: all 0.3s ease;  
+        }
+        .accardion_link_details.close_block > span svg {
+            transform: rotate(180deg);
+            transition: all 0.3s ease;
+        }
+            .accardion_lists_details{
+                border-top: 1px solid #EAEAEB;
+                background: #FFF;
+                padding: 16px;
+                 transition: all 0.3s ease;
+            }
+            .accardion_lists_details.close_block{
+                opacity: 0;
+                height: 0;
+                padding: 0;
+            }
+            .new_details_wrap .details_title{
+                margin: 0;
+                padding: 0;
+                font-size: 14px;
+                line-height: 20px;
+                border-bottom: none;
+            }
+            .new_details_wrap .trustmessaging_list {
+                margin: 20px 0 0;
+            }
+            .new_details_wrap .trustmessaging_list li + li {
+                margin-top: 4px;
+            }
+            .specification_html .my-3.mb-12{
+                margin: 0;
+            }
+            #advantagesBox .advantages_list{
+                flex-direction: column;
+            }
+            .advantages_box_bgr {
+                padding-top: 32px;
+                margin: 0 1rem 33px;
+            }
+            #advantagesBox{
+                padding: 20px;
+            }
+            #advantagesBox .advantages_list li {
+                width: 100% !important;
+            }
+            #advantagesBox .advantages_list li:nth-child(1){
+                padding: 0;
+            }
+            #advantagesBox .advantages_list li:nth-child(2){
+                border-top: 1px solid #EAEAEB;
+                border-bottom: 1px solid #EAEAEB;
+                border-left: unset;
+                border-right: unset;
+                padding: 20px 0;
+                margin: 20px 0;
+            }
+            #advantagesBox .advantages_list li:nth-child(3){
+                padding: 0;
+            }
+            #advantagesBox .advantages_title{
+                margin-bottom: 8px;
+                font-size: 14px;
+                line-height: 20px;
+            }
+            #advantagesBox .advantages_txt{
+                max-width: 300px;
+            }
+            .title_review{
+                font-size: 24px;
+                line-height: 32px;
+                margin: 0;
+            }
+            #TrustpilotReviewSection{
+                padding: 24px 1rem;
+            }
+            #TrustpilotReviewSection .scrollbar-track-platinum-18{
+                padding: 0;
+            }
+            .comparison_table_bgr{
+                margin: 0 1rem;
+                padding: 0 0 32px;
+            }
+            #comparisonTable{
+                padding: 0;
+            }
+            #comparisonTable table{
+                border-spacing: 0;
+            }
+            #comparisonTable table th:nth-child(1),
+            #comparisonTable table td:nth-child(1){
+                display: none;
+            }
+            #comparisonTable table tbody tr.colspan{
+                display: contents;
+            }
+            #comparisonTable table tbody tr td[colspan="2"] p{
+                font-size: 14px;
+                font-weight: 600;
+            }
+            #comparisonTable table td:nth-child(2), #comparisonTable table th:nth-child(2){
+                width: 50%;
+            }
+        }
     </style>
     `;
 
@@ -489,11 +642,9 @@ let startPdp = setInterval(() => {
                 <p>We base our prices on the current market value of gold and platinum, determining the cost by the weight of each piece.<br/> With no hidden markups or additional fees, we add a transparent craftsmanship fee on top of the precious metal value. Rest assured, the prices you see may vary as they reflect the fluctuating market values, but once you add an item to your cart, the price remains fixed for 15 minutes during checkout.</p>
             </div>
     `;
-
     let contentPopup = /*html */ `
         <div class="content_popup"></div>
     `;
-
     let stabilityBox = /*html */ `
         <div class="stability_box">
             <h3 class="stability_title">Invest in the stability of platinum and gold</h3>
@@ -523,7 +674,63 @@ let startPdp = setInterval(() => {
             </ul>
         </div>
     `;
-
+    let newDetailsWrapMob = /*html */ `
+        <div class="new_details_bgr">
+            <ul class="new_details_wrap">
+                <li class="product_details_box">
+                <div class="accardion_link_details">
+                    <h4 class="details_title">Product details</h4>
+                    <span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.24914 15.451C5.58114 15.7829 6.11924 15.7829 6.45124 15.451L11.8501 10.0521L17.2492 15.451C17.5811 15.7829 18.1193 15.7829 18.4512 15.451C18.7832 15.119 18.7832 14.5809 18.4512 14.2489L12.4512 8.24896C12.1192 7.91696 11.5811 7.91696 11.2491 8.24896L5.24914 14.2489C4.91724 14.5809 4.91724 15.119 5.24914 15.451Z" fill="black"/>
+                        </svg>
+                    </span>
+                </div>
+                <div class="accardion_lists_details">
+                    <div class="product_details_html">
+                    <ul class="trustmessaging_list">
+                        <li>Hypoallergenic & Anti-microbial</li>
+                        <li>Sustainable & ethically produced</li>
+                        <li>Hallmarked by Assay</li>
+                        <li>Hand finished</li>
+                    </ul>
+                    </div>
+                </div>
+                </li>
+                <li class="specification_box">
+                <div class="accardion_link_details">
+                    <h4 class="details_title">PRODUCT SPECIFICATION</h4>
+                    <span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.24914 15.451C5.58114 15.7829 6.11924 15.7829 6.45124 15.451L11.8501 10.0521L17.2492 15.451C17.5811 15.7829 18.1193 15.7829 18.4512 15.451C18.7832 15.119 18.7832 14.5809 18.4512 14.2489L12.4512 8.24896C12.1192 7.91696 11.5811 7.91696 11.2491 8.24896L5.24914 14.2489C4.91724 14.5809 4.91724 15.119 5.24914 15.451Z" fill="black"/>
+                        </svg>
+                    </span>
+                </div>
+                <div class="accardion_lists_details">
+                    <div class="specification_html">
+                    <span></span>
+                    </div>
+                </div>
+                </li>
+                <li class="care_inform_box">
+                <div class="accardion_link_details">
+                    <h4 class="details_title">CARE INFORMATION</h4>
+                    <span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.24914 15.451C5.58114 15.7829 6.11924 15.7829 6.45124 15.451L11.8501 10.0521L17.2492 15.451C17.5811 15.7829 18.1193 15.7829 18.4512 15.451C18.7832 15.119 18.7832 14.5809 18.4512 14.2489L12.4512 8.24896C12.1192 7.91696 11.5811 7.91696 11.2491 8.24896L5.24914 14.2489C4.91724 14.5809 4.91724 15.119 5.24914 15.451Z" fill="black"/>
+                        </svg>
+                    </span>
+                </div>
+                <div class="accardion_lists_details">
+                    <div>
+                    <p>We believe the unique signature of marks your gold and platinum jewellery may pick up as you wear it adds character and tells a story.</p>
+                    <p><b>Don't worry, this superficial damage won’t affect the value of your investment.</b></p>
+                    </div>
+                </div>
+                </li>
+            </ul>
+        </div>
+    `;
     let advantagesBox = /*html */ `
         <div class="advantages_box_bgr">
             <div id="advantagesBox">
@@ -544,7 +751,6 @@ let startPdp = setInterval(() => {
             </div>
         </div>
     `;
-
     let comparisonTableBox = /*html */ `
         <div class="comparison_table_bgr">
             <div id="comparisonTable">
@@ -561,6 +767,10 @@ let startPdp = setInterval(() => {
                         </th>
                     </thead>
                     <tbody>
+                        <tr class="colspan">
+                            <td><p>&nbsp;</p></td>
+                            <td colspan="2"><p>Price/Affordability</p></td>
+                        </tr>
                         <tr>
                             <td>
                                 <p>Price/Affordability</p>
@@ -571,6 +781,10 @@ let startPdp = setInterval(() => {
                             <td>
                                 <p class="street_price">£2,400.00</p>
                             </td>
+                        </tr>
+                        <tr class="colspan">
+                            <td><p>&nbsp;</p></td>
+                            <td colspan="2"><p>Metal Purity</p></td>
                         </tr>
                         <tr>
                             <td>
@@ -583,6 +797,10 @@ let startPdp = setInterval(() => {
                                 <p><strong>850</strong> or <strong>600</strong> PLATINUM <br/> <strong>18K</strong> or <strong>14K</strong> gold</p>
                             </td>
                         </tr>
+                        <tr class="colspan">
+                            <td><p>&nbsp;</p></td>
+                            <td colspan="2"><p>Hallmarked by Assay</p></td>
+                        </tr>
                         <tr>
                             <td>
                                 <p>Hallmarked by Assay</p>
@@ -593,6 +811,10 @@ let startPdp = setInterval(() => {
                             <td>
                                 <p class="yes_var">Yes</p>
                             </td>
+                        </tr>
+                        <tr class="colspan">
+                            <td><p>&nbsp;</p></td>
+                            <td colspan="2"><p>-7879 Buy Back Guarantee</p></td>
                         </tr>
                         <tr>
                             <td>
@@ -605,6 +827,10 @@ let startPdp = setInterval(() => {
                                 <p class="no_var">No</p>
                             </td>
                         </tr>
+                        <tr class="colspan">
+                            <td><p>&nbsp;</p></td>
+                            <td colspan="2"><p>Lifetime Warranty</p></td>
+                        </tr>
                         <tr>
                             <td>
                                 <p>Lifetime Warranty</p>
@@ -616,6 +842,10 @@ let startPdp = setInterval(() => {
                                 <p class="no_var">No</p>
                             </td>
                         </tr>
+                        <tr class="colspan">
+                            <td><p>&nbsp;</p></td>
+                            <td colspan="2"><p>Hypoallergenic & Anti-microbial</p></td>
+                        </tr>
                         <tr>
                             <td>
                                 <p>Hypoallergenic & Anti-microbial</p>
@@ -626,6 +856,10 @@ let startPdp = setInterval(() => {
                             <td>
                                 <p class="no_var">No</p>
                             </td>
+                        </tr>
+                        <tr class="colspan">
+                            <td><p>&nbsp;</p></td>
+                            <td colspan="2"><p>Sustainably & Ethically Produced</p></td>
                         </tr>
                         <tr>
                             <td>
@@ -734,18 +968,68 @@ let startPdp = setInterval(() => {
         document.querySelector("#comparisonTable table td p.our_price").textContent = document.querySelector("#left-view h4.text-h4:nth-child(2)").textContent.split("*")[0];
         document.querySelector("#comparisonTable table td p.street_price").textContent = document.querySelector("#right-view h4.text-h4:nth-child(2)").textContent.split("*")[0];
       }
-      if (!document.querySelector(".new_details_wrap")) {
-        document.querySelector(".mx-auto.max-w-screen-xl").insertAdjacentHTML("afterbegin", newDetailsWrap);
-      }
-      if (document.querySelector(".new_details_wrap")) {
-        if (document.querySelector(".mx-auto.max-w-screen-xl .whitespace-pre-wrap")) {
-          document.querySelector(".product_details_box >.details_title").after(document.querySelector(".mx-auto.max-w-screen-xl .whitespace-pre-wrap"));
+      if (window.innerWidth > 768) {
+        if (!document.querySelector(".new_details_wrap")) {
+          document.querySelector(".mx-auto.max-w-screen-xl").insertAdjacentHTML("afterbegin", newDetailsWrap);
         }
-        if (document.querySelector(".mx-auto.max-w-screen-xl .my-3.mb-12")) {
-          document.querySelector(".specification_box > .details_title").after(document.querySelector(".mx-auto.max-w-screen-xl .my-3.mb-12"));
+        if (document.querySelector(".new_details_wrap")) {
+          if (document.querySelector(".mx-auto.max-w-screen-xl .whitespace-pre-wrap")) {
+            document.querySelector(".product_details_box >.details_title").after(document.querySelector(".mx-auto.max-w-screen-xl .whitespace-pre-wrap"));
+          }
+          if (document.querySelector(".mx-auto.max-w-screen-xl .my-3.mb-12")) {
+            document.querySelector(".specification_box > .details_title").after(document.querySelector(".mx-auto.max-w-screen-xl .my-3.mb-12"));
+          }
+        }
+      } else {
+        if (!document.querySelector(".new_details_wrap")) {
+          document.querySelector(".mx-auto.max-w-screen-xl").insertAdjacentHTML("afterbegin", newDetailsWrapMob);
+        }
+        if (document.querySelector(".new_details_wrap")) {
+          if (document.querySelector(".mx-auto.max-w-screen-xl .whitespace-pre-wrap")) {
+            document.querySelector(".product_details_box .trustmessaging_list").before(document.querySelector(".mx-auto.max-w-screen-xl .whitespace-pre-wrap"));
+          }
+          if (document.querySelector(".mx-auto.max-w-screen-xl .my-3.mb-12")) {
+            document.querySelector(".specification_box .specification_html > span").after(document.querySelector(".mx-auto.max-w-screen-xl .my-3.mb-12"));
+          }
+
+          document.querySelectorAll(".accardion_link_details").forEach((el) => {
+            el.addEventListener("click", (e) => {
+              if (!e.currentTarget.getAttribute("data-test")) {
+                console.log(e.currentTarget);
+                e.currentTarget.classList.toggle("close_block");
+                e.currentTarget.nextElementSibling.classList.toggle("close_block");
+              }
+              e.currentTarget.setAttribute("data-test", "1");
+            });
+            setTimeout(() => {
+              document.querySelectorAll(".accardion_link_details").forEach((i) => {
+                if (i.getAttribute("data-test")) {
+                  i.removeAttribute("data-test");
+                }
+              });
+            }, 10);
+          });
         }
       }
     }
+
+    // document.querySelectorAll(".accardion_link_details").forEach((el) => {
+    //   el.addEventListener("click", (e) => {
+    //     if (!e.currentTarget.getAttribute("data-test")) {
+    //       console.log(e.currentTarget);
+    //       e.currentTarget.classList.toggle("close_block");
+    //       e.currentTarget.nextElementSibling.classList.toggle("close_block");
+    //     }
+    //     e.currentTarget.setAttribute("data-test", "1");
+    //   });
+    //   setTimeout(() => {
+    //     document.querySelectorAll(".accardion_link_details").forEach((i) => {
+    //       if (i.getAttribute("data-test")) {
+    //         i.removeAttribute("data-test");
+    //       }
+    //     });
+    //   }, 10);
+    // });
 
     // Observe
     let observer = new MutationObserver(() => {
