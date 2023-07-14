@@ -518,13 +518,10 @@ let startPdp = setInterval(() => {
             .accardion_lists_details{
                 border-top: 1px solid #EAEAEB;
                 background: #FFF;
-                padding: 16px;
-                 transition: all 0.3s ease;
             }
-            .accardion_lists_details.close_block{
-                opacity: 0;
-                height: 0;
-                padding: 0;
+            .accardion_lists_details > div{
+                padding: 16px;
+
             }
             .new_details_wrap .details_title{
                 margin: 0;
@@ -952,6 +949,9 @@ let startPdp = setInterval(() => {
     }, 10);
 
     function renderHtml() {
+      if (!document.querySelector(".new_btn_add_to_basket")) {
+        document.querySelector(".flex.flex-col.items-end").insertAdjacentHTML("afterend", `<div class="new_btn_add_to_basket"><button>Add to basket</button></div>`);
+      }
       if (!document.querySelector(".stability_box")) {
         document.querySelector(".col-span-full .mx-auto.px-5").insertAdjacentHTML("afterend", stabilityBox);
       }
@@ -991,45 +991,57 @@ let startPdp = setInterval(() => {
           if (document.querySelector(".mx-auto.max-w-screen-xl .my-3.mb-12")) {
             document.querySelector(".specification_box .specification_html > span").after(document.querySelector(".mx-auto.max-w-screen-xl .my-3.mb-12"));
           }
-
-          document.querySelectorAll(".accardion_link_details").forEach((el) => {
-            el.addEventListener("click", (e) => {
-              if (!e.currentTarget.getAttribute("data-test")) {
-                console.log(e.currentTarget);
-                e.currentTarget.classList.toggle("close_block");
-                e.currentTarget.nextElementSibling.classList.toggle("close_block");
-              }
-              e.currentTarget.setAttribute("data-test", "1");
-            });
-            setTimeout(() => {
-              document.querySelectorAll(".accardion_link_details").forEach((i) => {
-                if (i.getAttribute("data-test")) {
-                  i.removeAttribute("data-test");
-                }
-              });
-            }, 10);
-          });
         }
       }
     }
 
-    // document.querySelectorAll(".accardion_link_details").forEach((el) => {
-    //   el.addEventListener("click", (e) => {
-    //     if (!e.currentTarget.getAttribute("data-test")) {
-    //       console.log(e.currentTarget);
-    //       e.currentTarget.classList.toggle("close_block");
-    //       e.currentTarget.nextElementSibling.classList.toggle("close_block");
-    //     }
-    //     e.currentTarget.setAttribute("data-test", "1");
-    //   });
-    //   setTimeout(() => {
-    //     document.querySelectorAll(".accardion_link_details").forEach((i) => {
-    //       if (i.getAttribute("data-test")) {
-    //         i.removeAttribute("data-test");
-    //       }
-    //     });
-    //   }, 10);
-    // });
+    //   onClickAccardion
+    let acc = setInterval(() => {
+      if (document.querySelector(".new_details_wrap")) {
+        clearInterval(acc);
+        onClickAccardion();
+      }
+    }, 10);
+
+    function onClickAccardion() {
+      let s = setInterval(() => {
+        if (typeof $ === "function") {
+          clearInterval(s);
+          $(".accardion_link_details").click(function (e) {
+            console.log(e.currentTarget, `>>>>>>>>>>>>>>`);
+            if (!e.currentTarget.getAttribute("data-test")) {
+              $(this).toggleClass("close_block");
+              $(this).closest("li").toggleClass("close_block");
+              $(this).next(".accardion_lists_details").slideToggle();
+            }
+            e.currentTarget.setAttribute("data-test", "1");
+            setTimeout(() => {
+              if (e.currentTarget.getAttribute("data-test")) {
+                e.currentTarget.removeAttribute("data-test");
+              }
+            }, 100);
+          });
+        }
+      }, 10);
+    }
+
+    window.addEventListener("scroll", () => {
+      if ($(".new_btn_add_to_basket").is(":visible")) {
+        console.log(`<<<<<<<<<<<<<<<<<<<<,>>>>>>>>>>>>>>>>>>>>`);
+        if (document.querySelector(".new_btn_add_to_basket").getBoundingClientRect().top < 0) {
+          console.log(document.querySelector(".new_btn_add_to_basket").getBoundingClientRect().top);
+          if (!document.querySelector("#add-cart-button-fixed").classList.contains("fixed")) {
+            document.querySelector("#add-cart-button-fixed").classList.add("fixed");
+            document.querySelector("#add-cart-button-fixed").style.display = "block";
+          }
+        } else {
+          if (document.querySelector("#add-cart-button-fixed").classList.contains("fixed")) {
+            document.querySelector("#add-cart-button-fixed").classList.remove("fixed");
+            document.querySelector("#add-cart-button-fixed").style.display = "none";
+          }
+        }
+      }
+    });
 
     // Observe
     let observer = new MutationObserver(() => {
@@ -1037,8 +1049,7 @@ let startPdp = setInterval(() => {
         observer.disconnect();
         console.log(`observer`);
 
-        renderHtml();
-
+        // renderHtml();
         observer.observe(document, {
           childList: true,
           subtree: true,
