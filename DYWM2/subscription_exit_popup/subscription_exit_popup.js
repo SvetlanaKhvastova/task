@@ -365,6 +365,9 @@ let startFunk = setInterval(() => {
         margin: 0 auto 40px;
       }
       /* Hypothesis #6 - Add exit-intent popup with limited-time offer*/
+      body.open_var{
+            overflow: hidden !important;
+        }
       .overlay_popup {
         position: fixed;
         top: 0;
@@ -584,6 +587,22 @@ border: 1px solid #E0E0E0;
     }
     .flip-clock-wrapper ul li{
       line-height: 22px;
+      top: 0;
+    }
+    .flip-clock-wrapper ul li a div.up div.inn{
+      top: 8px;
+    }
+    .flip-clock-wrapper ul li a div div.inn, .flip-clock-wrapper ul li a div{
+      height: 75%;
+    }
+    .flip-clock-wrapper ul li a div div.inn,
+    .flip-clock-wrapper ul li a div{
+      height: 90%;
+    }
+    .flip-clock-wrapper ul.play li.flip-clock-before,
+    .flip-clock-wrapper ul li a div.down,
+    .flip-clock-wrapper ul.play li.flip-clock-active .up .shadow{
+      display: none;
     }
       @media (max-width: 800px) {
         .list_txt {
@@ -799,6 +818,41 @@ border: 1px solid #E0E0E0;
         .path-become-a-subscriber .btn_wrapper {
           margin-bottom: 20px;
         }
+        .overlay_popup .container_popup{
+          max-width: 339px;
+        }
+        .content_popup > div{
+          width: 100%;
+        }
+        .content_popup > div.img_wrap{
+          display: none;
+        }
+        .info_block{
+          padding: 24px 13px;
+        }
+        .discount_expires_wrap{
+          margin-bottom: 16px;
+        }
+        .info_block > h2{
+          font-size: 22px;
+line-height: 30px;
+margin: 0 0 12px;
+        }
+        .info_block > p br{
+          display: none;
+        }
+        .info_block > ul li +li{
+          margin-top: 16px;
+        }
+        .voucher_block{
+          padding: 12px;
+        }
+        #subscribeSaveLink{
+          height: 48px;
+        }
+        .overlay_popup .container_popup > .btn_close svg path{
+          stroke: #272727;
+        }
       }
       @media (max-width: 320px) {
         .sfc-nodePlayable__lockContainerInner {
@@ -819,6 +873,33 @@ border: 1px solid #E0E0E0;
           font-size: 15px;
           line-height: 29px;
           height: 35px;
+        }
+        .overlay_popup .container_popup{
+          max-width: 304px;
+        }
+        .info_block{
+          padding: 20px 10px;
+        }
+        .info_block > ul li p{
+          font-size: 12px;
+        }
+        .info_block > ul li +li{
+          margin-top: 4px;
+        }
+        .info_block > p{
+          font-size: 12px;
+          margin: 0 0 10px;
+        }
+        #subscribeSaveLink{
+          margin-top: 10px;
+          height: 46px;
+        }
+        .voucher_block{
+          padding: 12px 10px;
+          font-size: 12px;
+        }
+        .discount_expires_wrap > p{
+          font-size: 11px;
         }
       }
         </style>
@@ -989,7 +1070,7 @@ border: 1px solid #E0E0E0;
                 <div  class="voucher_block">
                   Use code <span data-clipboard-text="BOOK10">YOGA45</span> at checkout to claim your discount. But hurry, this offer won't last long!
                 </div>
-                <a id="subscribeSaveLink" href="https://www.doyogawithme.com/checkout/24662/order_information">Subscribe and Save 45% Now!</a>
+                <a id="subscribeSaveLink" href="https://www.doyogawithme.com//become-a-subscriber">Subscribe and Save 45% Now!</a>
 
             </div>
             <div class="img_wrap">
@@ -1007,12 +1088,42 @@ border: 1px solid #E0E0E0;
 
     exitIntentPopup();
 
+    // trigger for click on video
+    let findVideo = setInterval(() => {
+      if (document.querySelector("video.fp-engine")) {
+        clearInterval(findVideo);
+        document.querySelector(".sfc-nodePlayable__primaryContentContainer").addEventListener("click", (e) => {
+          console.log(`object`, e.currentTarget);
+          sessionStorage.setItem("click_on_video", "true");
+        });
+      }
+    }, 100);
+
+    function pausedVideo() {
+      if (document.querySelector("video.fp-engine")) {
+        document.querySelector("video.fp-engine").pause();
+      }
+    }
+    function startVideo() {
+      if (document.querySelector("video.fp-engine")) {
+        document.querySelector("video.fp-engine").play();
+      }
+    }
+
     function exitIntentPopup() {
       //   EXIT INTENT popup
       if (document.querySelector(".overlay_popup")) {
         let overlay = document.querySelector(".overlay_popup"),
           containerPopup = overlay.querySelector(".container_popup"),
           btnClose = overlay.querySelector(".btn_close");
+
+        setTimeout(() => {
+          if (sessionStorage.getItem("click_on_video") == null && sessionStorage.getItem("exit_popup_loaded") == null) {
+            sessionStorage.setItem("exit_popup_loaded", "true"); //refresh status popup
+            onOpenPopup(); //show popup
+          }
+        }, 60000);
+
         addEvent(document, "mouseout", function (e) {
           //show EXIT INTENT popup desktop
           if (e.toElement == null && e.relatedTarget == null && sessionStorage.getItem("exit_popup_loaded") == null) {
@@ -1048,6 +1159,7 @@ border: 1px solid #E0E0E0;
           document.addEventListener("scroll", scrollSpeed);
         }
         function onOpenPopup() {
+          pausedVideo();
           overlay.classList.remove("is_hidden");
           document.querySelector("body").classList.add("open_var");
           if (!document.querySelector(".overlay_popup .content_popup")) {
@@ -1055,6 +1167,9 @@ border: 1px solid #E0E0E0;
           }
 
           if (document.querySelector(".overlay_popup .content_popup")) {
+            if (window.innerWidth <= 768) {
+              document.querySelector(".info_block > h2").after(document.querySelector(".discount_expires_wrap"));
+            }
             let clock = setInterval(() => {
               if (typeof FlipClock === "function" && typeof jQuery === "function" && document.querySelector("#countdown")) {
                 clearInterval(clock);
@@ -1105,10 +1220,12 @@ border: 1px solid #E0E0E0;
                       onClosePopup();
                     }
                   });
-                  document.querySelector(".info_block > button")?.addEventListener("click", () => {
+                  document.querySelector("#subscribeSaveLink")?.addEventListener("click", () => {
                     countdown.stop();
+                    sessionStorage.setItem("becomeSubscriber", "true");
 
                     timerEventDesk(document.querySelector(".info_block"), "stop");
+
                     onClosePopup();
                   });
                   return countdown;
@@ -1133,12 +1250,13 @@ border: 1px solid #E0E0E0;
                   return countdown.start();
                 };
                 init_countdown();
-                set_countdown(1, new Date());
+                set_countdown(30, new Date());
               }
             }, 500);
           }
         }
         function onClosePopup() {
+          startVideo();
           overlay.classList.add("is_hidden");
           if (document.querySelector("body").classList.contains("open_var")) {
             document.querySelector("body").classList.remove("open_var");
@@ -1163,42 +1281,69 @@ border: 1px solid #E0E0E0;
         }, 1000);
       }
     }
+    //to redirect from https://www.doyogawithme.com/become-a-subscriber to https://www.doyogawithme.com/checkout/________?__/order_information after exit intent popup
+    let becomeSubscriber = setInterval(() => {
+      if (sessionStorage.getItem("becomeSubscriber") && window.location.pathname === "/become-a-subscriber") {
+        clearInterval(becomeSubscriber);
+        sessionStorage.removeItem("becomeSubscriber");
+        sessionStorage.setItem("checkoutPremium", "true");
+        document.querySelector(".lav-jumb__plans-all .lav-desk .lav-plan__btn.lav-plan__btn-year.lav-btn.sfc-button")?.click();
+      }
+    }, 100);
+    //to apply the discount code automatically on the checkout after exit intent popup
+    let checkoutPremium = setInterval(() => {
+      if (window.location.pathname.includes("checkout") && sessionStorage.getItem("checkoutPremium")) {
+        clearInterval(checkoutPremium);
+        sessionStorage.removeItem("checkoutPremium");
+        if (document.querySelector("#edit-sidebar-coupon-redemption-form-code").value === "") {
+          document.querySelector("#edit-sidebar-coupon-redemption-form-code").value = "YOGA45";
+        }
+
+        if (document.querySelector("#edit-sidebar-coupon-redemption-form-code").value === "YOGA45") {
+          const element = document.querySelector("#edit-sidebar-coupon-redemption-form-apply");
+          const events = ["mousedown", "focusin"];
+          events.forEach((eventType) => element.dispatchEvent(new MouseEvent(eventType, { bubbles: true })));
+        }
+      }
+    }, 100);
 
     // Hypothesis #4 - Promote Subscription on content pages
-    switch (window.location.pathname) {
-      case "/":
-        document.querySelector(".o-page__banner")?.insertAdjacentHTML("afterend", newBoxFeatures);
-        break;
-      case "/yoga-classes":
-        document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
-        break;
-      case "/yoga-meditation":
-        document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
-        break;
-      case "/yoga-challenges":
-        document.querySelector(".o-page__banner")?.insertAdjacentHTML("afterend", newBoxFeatures);
-        break;
-      case "/yoga-programs":
-        document.querySelector(".o-page__banner")?.insertAdjacentHTML("afterend", newBoxFeatures);
-        break;
-      case "/become-a-subscriber":
-        // Hypothesis #5 - Promote Subscription on Premium content pages
-        document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
-        if (window.innerWidth <= 768) {
-          if (document.querySelector("#promoteSubscriptionWrap") && !document.querySelector(".new_title_subscriber")) {
-            document.querySelector("#promoteSubscriptionWrap").insertAdjacentHTML("afterbegin", `<h2 class="new_title_subscriber">Unlock Premium Classes for a Transformative Yoga Journey</h2>`);
-            document.querySelector(".btn_wrapper h2").innerHTML = `What’s included in <span class="accent_color">Premium</span>`;
+    if (!window.location.pathname.includes("checkout")) {
+      switch (window.location.pathname) {
+        case "/":
+          document.querySelector(".o-page__banner")?.insertAdjacentHTML("afterend", newBoxFeatures);
+          break;
+        case "/yoga-classes":
+          document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
+          break;
+        case "/yoga-meditation":
+          document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
+          break;
+        case "/yoga-challenges":
+          document.querySelector(".o-page__banner")?.insertAdjacentHTML("afterend", newBoxFeatures);
+          break;
+        case "/yoga-programs":
+          document.querySelector(".o-page__banner")?.insertAdjacentHTML("afterend", newBoxFeatures);
+          break;
+        case "/become-a-subscriber":
+          // Hypothesis #5 - Promote Subscription on Premium content pages
+          document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
+          if (window.innerWidth <= 768) {
+            if (document.querySelector("#promoteSubscriptionWrap") && !document.querySelector(".new_title_subscriber")) {
+              document.querySelector("#promoteSubscriptionWrap").insertAdjacentHTML("afterbegin", `<h2 class="new_title_subscriber">Unlock Premium Classes for a Transformative Yoga Journey</h2>`);
+              document.querySelector(".btn_wrapper h2").innerHTML = `What’s included in <span class="accent_color">Premium</span>`;
+            }
+          } else {
+            if (document.querySelector("#promoteSubscriptionWrap") && !document.querySelector(".new_box_subscriber")) {
+              document.querySelector("#promoteSubscriptionWrap").insertAdjacentHTML("beforebegin", `<div class="new_box_subscriber"><h2 class="new_title_subscriber">Unlock Premium Classes for a Transformative Yoga Journey</h2></div>`);
+            }
           }
-        } else {
-          if (document.querySelector("#promoteSubscriptionWrap") && !document.querySelector(".new_box_subscriber")) {
-            document.querySelector("#promoteSubscriptionWrap").insertAdjacentHTML("beforebegin", `<div class="new_box_subscriber"><h2 class="new_title_subscriber">Unlock Premium Classes for a Transformative Yoga Journey</h2></div>`);
-          }
-        }
-        break;
+          break;
 
-      default:
-        document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
-        break;
+        default:
+          document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
+          break;
+      }
     }
 
     jQuery(".toggle_btn_features").click(function () {
