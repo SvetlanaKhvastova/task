@@ -1,16 +1,21 @@
 let startFunk = setInterval(() => {
-  if (document) {
+  // user.isSubscriber === false
+  if (JSON.parse(document.querySelector('[data-drupal-selector="drupal-settings-json"]')?.textContent).dywm.gtm.customer_info.user.isSubscriber === false) {
     clearInterval(startFunk);
 
+    JSON.parse(document.querySelector('[data-drupal-selector="drupal-settings-json"]').textContent);
+
+    //cdn jquery
     let script = document.createElement("script");
     script.src = "https://code.jquery.com/jquery-3.4.1.min.js";
     script.async = false;
     document.head.appendChild(script);
+    //cdn clipboard
     let scriptCustomSlider = document.createElement("script");
     scriptCustomSlider.src = "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js";
     scriptCustomSlider.async = false;
     document.head.appendChild(scriptCustomSlider);
-    //
+    //cdn flipclock
     let scriptCustomTimer = document.createElement("script");
     scriptCustomTimer.src = "https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.0/flipclock.min.js";
     scriptCustomTimer.async = false;
@@ -19,6 +24,36 @@ let startFunk = setInterval(() => {
     scriptCustomTimerStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.0/flipclock.css";
     scriptCustomTimerStyle.rel = "stylesheet";
     document.head.appendChild(scriptCustomTimerStyle);
+
+    let eventVar = "desktop";
+
+    if (window.innerWidth <= 768) {
+      eventVar = "mobile";
+    }
+
+    function pushDataLayer(nameDataLayer, deskDataLayer, typeDataLayer, actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || [];
+      if (labelDataLayer) {
+        console.log(nameDataLayer + " " + deskDataLayer + typeDataLayer + actionDataLayer + " : " + labelDataLayer);
+        dataLayer.push({
+          event: "event-to-ga4",
+          event_name: `${nameDataLayer} ${eventVar}`,
+          event_desc: `${deskDataLayer}`,
+          event_type: `${typeDataLayer}`,
+          event_loc: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        });
+      } else {
+        console.log(nameDataLayer + " " + deskDataLayer + " " + typeDataLayer + " " + actionDataLayer);
+        dataLayer.push({
+          event: "event-to-ga4",
+          event_name: `${nameDataLayer} ${eventVar}`,
+          event_desc: `${deskDataLayer}`,
+          event_type: `${typeDataLayer}`,
+          event_loc: `${actionDataLayer}`,
+        });
+      }
+    }
 
     let newStyle = /*html */ `
         <style>
@@ -1027,7 +1062,6 @@ margin: 0 0 12px;
       </div>
     </section>
     `;
-
     let popUp = /*html */ `
         <div class="overlay_popup is_hidden">
           <div class="container_popup">
@@ -1038,7 +1072,7 @@ margin: 0 0 12px;
             </div>
           </div>
         </div>
-`;
+    `;
     let contentPopup = /*html */ `
         <div class="content_popup">
             <div class="info_block">
@@ -1083,202 +1117,205 @@ margin: 0 0 12px;
     document.head.insertAdjacentHTML("beforeend", newStyle);
 
     //Hypothesis #6 - Add exit-intent popup with limited-time offer
-    document.body.insertAdjacentHTML("afterbegin", popUp);
-    document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup);
+    // Show exit intent popups for users who are logged in but have not bought a paid plan (free users) on pages:
+    if (!document.querySelector('.menu--account [data-drupal-link-system-path="yogi/login"]') && (window.location.pathname === "/" || window.location.pathname === "/yoga-classes" || window.location.pathname === "/yoga-meditation" || window.location.pathname === "/yoga-challenges" || window.location.pathname === "/yoga-programs" || window.location.pathname.match("/content/"))) {
+      document.body.insertAdjacentHTML("afterbegin", popUp);
+      document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup);
 
-    exitIntentPopup();
-
-    // trigger for click on video
-    let findVideo = setInterval(() => {
-      if (document.querySelector("video.fp-engine")) {
-        clearInterval(findVideo);
-        document.querySelector(".sfc-nodePlayable__primaryContentContainer").addEventListener("click", (e) => {
-          console.log(`object`, e.currentTarget);
-          sessionStorage.setItem("click_on_video", "true");
-        });
-      }
-    }, 100);
-
-    function pausedVideo() {
-      if (document.querySelector("video.fp-engine")) {
-        document.querySelector("video.fp-engine").pause();
-      }
-    }
-    function startVideo() {
-      if (document.querySelector("video.fp-engine")) {
-        document.querySelector("video.fp-engine").play();
-      }
-    }
-
-    function exitIntentPopup() {
-      //   EXIT INTENT popup
-      if (document.querySelector(".overlay_popup")) {
-        let overlay = document.querySelector(".overlay_popup"),
-          containerPopup = overlay.querySelector(".container_popup"),
-          btnClose = overlay.querySelector(".btn_close");
-
-        setTimeout(() => {
-          if (sessionStorage.getItem("click_on_video") == null && sessionStorage.getItem("exit_popup_loaded") == null) {
-            sessionStorage.setItem("exit_popup_loaded", "true"); //refresh status popup
-            onOpenPopup(); //show popup
-          }
-        }, 60000);
-
-        addEvent(document, "mouseout", function (e) {
-          //show EXIT INTENT popup desktop
-          if (e.toElement == null && e.relatedTarget == null && sessionStorage.getItem("exit_popup_loaded") == null) {
-            sessionStorage.setItem("exit_popup_loaded", "true"); //refresh status popup
-            onOpenPopup(); //show popup
-          }
-        });
-        function addEvent(obj, evt, fn) {
-          //exit intent
-          if (obj.addEventListener) {
-            obj.addEventListener(evt, fn, false);
-          } else if (obj.attachEvent) {
-            obj.attachEvent("on" + evt, fn);
-          }
+      exitIntentPopup();
+      // trigger for click on video
+      let findVideo = setInterval(() => {
+        if (document.querySelector("video.fp-engine")) {
+          clearInterval(findVideo);
+          document.querySelector(".sfc-nodePlayable__primaryContentContainer").addEventListener("click", (e) => {
+            console.log(`object`, e.currentTarget);
+            sessionStorage.setItem("click_on_video", "true");
+          });
         }
-        if (window.innerWidth <= 768) {
-          //show EXIT INTENT popup mobile
-          let lastPosition = 0,
-            newPosition = 0,
-            currentSpeed = 0;
-          let scrollSpeed = () => {
-            lastPosition = window.scrollY;
-            setTimeout(() => {
-              newPosition = window.scrollY;
-            }, 70);
-            currentSpeed = newPosition - lastPosition;
-            if (currentSpeed > 70 && sessionStorage.getItem("exit_popup_loaded") == null) {
+      }, 100);
+
+      function pausedVideo() {
+        if (document.querySelector("video.fp-engine")) {
+          document.querySelector("video.fp-engine").pause();
+        }
+      }
+      function startVideo() {
+        if (document.querySelector("video.fp-engine")) {
+          document.querySelector("video.fp-engine").play();
+        }
+      }
+
+      function exitIntentPopup() {
+        //   EXIT INTENT popup
+        if (document.querySelector(".overlay_popup")) {
+          let overlay = document.querySelector(".overlay_popup"),
+            containerPopup = overlay.querySelector(".container_popup"),
+            btnClose = overlay.querySelector(".btn_close");
+
+          setTimeout(() => {
+            if (sessionStorage.getItem("click_on_video") == null && sessionStorage.getItem("exit_popup_loaded") == null && document.querySelector("video.fp-engine")) {
+              sessionStorage.setItem("exit_popup_loaded", "true"); //refresh status popup
+              console.log(`60000 exit_popup_loaded`);
+              onOpenPopup(); //show popup
+            }
+          }, 60000);
+
+          addEvent(document, "mouseout", function (e) {
+            //show EXIT INTENT popup desktop
+            if (e.toElement == null && e.relatedTarget == null && sessionStorage.getItem("exit_popup_loaded") == null) {
               sessionStorage.setItem("exit_popup_loaded", "true"); //refresh status popup
               onOpenPopup(); //show popup
-              document.removeEventListener("scroll", scrollSpeed);
             }
-          };
-          document.addEventListener("scroll", scrollSpeed);
-        }
-        function onOpenPopup() {
-          pausedVideo();
-          overlay.classList.remove("is_hidden");
-          document.querySelector("body").classList.add("open_var");
-          if (!document.querySelector(".overlay_popup .content_popup")) {
-            containerPopup?.insertAdjacentHTML("beforeend", contentPopup);
+          });
+          function addEvent(obj, evt, fn) {
+            //exit intent
+            if (obj.addEventListener) {
+              obj.addEventListener(evt, fn, false);
+            } else if (obj.attachEvent) {
+              obj.attachEvent("on" + evt, fn);
+            }
           }
-
-          if (document.querySelector(".overlay_popup .content_popup")) {
-            if (window.innerWidth <= 768) {
-              document.querySelector(".info_block > h2").after(document.querySelector(".discount_expires_wrap"));
+          if (window.innerWidth <= 768) {
+            //show EXIT INTENT popup mobile
+            let lastPosition = 0,
+              newPosition = 0,
+              currentSpeed = 0;
+            let scrollSpeed = () => {
+              lastPosition = window.scrollY;
+              setTimeout(() => {
+                newPosition = window.scrollY;
+              }, 70);
+              currentSpeed = newPosition - lastPosition;
+              if (currentSpeed > 70 && sessionStorage.getItem("exit_popup_loaded") == null) {
+                sessionStorage.setItem("exit_popup_loaded", "true"); //refresh status popup
+                onOpenPopup(); //show popup
+                document.removeEventListener("scroll", scrollSpeed);
+              }
+            };
+            document.addEventListener("scroll", scrollSpeed);
+          }
+          function onOpenPopup() {
+            // pausedVideo();
+            overlay.classList.remove("is_hidden");
+            document.querySelector("body").classList.add("open_var");
+            if (!document.querySelector(".overlay_popup .content_popup")) {
+              containerPopup?.insertAdjacentHTML("beforeend", contentPopup);
             }
-            let clock = setInterval(() => {
-              if (typeof FlipClock === "function" && typeof jQuery === "function" && document.querySelector("#countdown")) {
-                clearInterval(clock);
-                let countdown, init_countdown, set_countdown;
-                countdown = init_countdown = function () {
-                  countdown = new FlipClock($(".countdown"), {
-                    clockFace: "MinuteCounter",
-                    language: "en",
-                    autoStart: false,
-                    countdown: true,
-                    showSeconds: true,
-                    callbacks: {
-                      start: function () {
-                        timerEventDesk(document.querySelector(".info_block"), "start");
+
+            if (document.querySelector(".overlay_popup .content_popup")) {
+              if (window.innerWidth <= 768) {
+                document.querySelector(".info_block > h2").after(document.querySelector(".discount_expires_wrap"));
+              }
+              let clock = setInterval(() => {
+                if (typeof FlipClock === "function" && typeof jQuery === "function" && document.querySelector("#countdown")) {
+                  clearInterval(clock);
+                  let countdown, init_countdown, set_countdown;
+                  countdown = init_countdown = function () {
+                    countdown = new FlipClock($(".countdown"), {
+                      clockFace: "MinuteCounter",
+                      language: "en",
+                      autoStart: false,
+                      countdown: true,
+                      showSeconds: true,
+                      callbacks: {
+                        start: function () {
+                          timerEventDesk(document.querySelector(".info_block"), "start");
+                        },
+                        stop: function () {
+                          if (this.factory.getTime().time === 0) {
+                            document.querySelector(".discount_expires_wrap")?.remove();
+                          }
+                        },
                       },
-                      stop: function () {
-                        if (this.factory.getTime().time === 0) {
-                          document.querySelector(".discount_expires_wrap")?.remove();
+                    });
+                    function timerEventDesk(el, trigger) {
+                      let time = 0;
+                      let currentTime = 0;
+                      let s = setInterval(() => {
+                        if (trigger === "start") {
+                          currentTime = ++time;
+                          el.setAttribute("data-time", currentTime);
                         }
-                      },
-                    },
-                  });
-                  function timerEventDesk(el, trigger) {
-                    let time = 0;
-                    let currentTime = 0;
-                    let s = setInterval(() => {
-                      if (trigger === "start") {
-                        currentTime = ++time;
-                        el.setAttribute("data-time", currentTime);
-                      }
-                      if (trigger === "stop") {
-                        clearInterval(s);
-                        currentTime = el.getAttribute("data-time");
-                      }
-                    }, 1000);
-                  }
-                  btnClose.addEventListener("click", (e) => {
-                    // click on btn close popup
-                    countdown.stop();
-                    timerEventDesk(document.querySelector(".info_block"), "stop");
-                    onClosePopup();
-                  });
-                  overlay.addEventListener("click", (e) => {
-                    // click on overlay popup
-                    if (e.target.matches(".overlay_popup")) {
+                        if (trigger === "stop") {
+                          clearInterval(s);
+                          currentTime = el.getAttribute("data-time");
+                        }
+                      }, 1000);
+                    }
+                    btnClose.addEventListener("click", (e) => {
+                      // click on btn close popup
                       countdown.stop();
                       timerEventDesk(document.querySelector(".info_block"), "stop");
                       onClosePopup();
+                    });
+                    overlay.addEventListener("click", (e) => {
+                      // click on overlay popup
+                      if (e.target.matches(".overlay_popup")) {
+                        countdown.stop();
+                        timerEventDesk(document.querySelector(".info_block"), "stop");
+                        onClosePopup();
+                      }
+                    });
+                    document.querySelector("#subscribeSaveLink")?.addEventListener("click", () => {
+                      countdown.stop();
+                      sessionStorage.setItem("becomeSubscriber", "true");
+
+                      timerEventDesk(document.querySelector(".info_block"), "stop");
+
+                      onClosePopup();
+                    });
+                    return countdown;
+                  };
+                  set_countdown = function (minutes, start) {
+                    let elapsed, end, left_secs, now, seconds;
+                    if (countdown.running) {
+                      return;
                     }
-                  });
-                  document.querySelector("#subscribeSaveLink")?.addEventListener("click", () => {
-                    countdown.stop();
-                    sessionStorage.setItem("becomeSubscriber", "true");
-
-                    timerEventDesk(document.querySelector(".info_block"), "stop");
-
-                    onClosePopup();
-                  });
-                  return countdown;
-                };
-                set_countdown = function (minutes, start) {
-                  let elapsed, end, left_secs, now, seconds;
-                  if (countdown.running) {
-                    return;
-                  }
-                  seconds = minutes * 60;
-                  now = new Date();
-                  start = new Date(start);
-                  end = start.getTime() + seconds * 1000;
-                  left_secs = Math.round((end - now.getTime()) / 1000);
-                  elapsed = false;
-                  if (left_secs < 0) {
-                    console.log(`left_secs`, left_secs);
-                    left_secs *= -1;
-                    elapsed = true;
-                  }
-                  countdown.setTime(left_secs);
-                  return countdown.start();
-                };
-                init_countdown();
-                set_countdown(30, new Date());
-              }
-            }, 500);
+                    seconds = minutes * 60;
+                    now = new Date();
+                    start = new Date(start);
+                    end = start.getTime() + seconds * 1000;
+                    left_secs = Math.round((end - now.getTime()) / 1000);
+                    elapsed = false;
+                    if (left_secs < 0) {
+                      console.log(`left_secs`, left_secs);
+                      left_secs *= -1;
+                      elapsed = true;
+                    }
+                    countdown.setTime(left_secs);
+                    return countdown.start();
+                  };
+                  init_countdown();
+                  set_countdown(30, new Date());
+                }
+              }, 500);
+            }
           }
-        }
-        function onClosePopup() {
-          startVideo();
-          overlay.classList.add("is_hidden");
-          if (document.querySelector("body").classList.contains("open_var")) {
-            document.querySelector("body").classList.remove("open_var");
+          function onClosePopup() {
+            // startVideo();
+            overlay.classList.add("is_hidden");
+            if (document.querySelector("body").classList.contains("open_var")) {
+              document.querySelector("body").classList.remove("open_var");
+            }
+            setTimeout(() => {
+              document.querySelector(".content_popup")?.remove();
+            }, 400);
           }
-          setTimeout(() => {
-            document.querySelector(".content_popup")?.remove();
-          }, 400);
-        }
-        let a = setInterval(() => {
-          if (typeof ClipboardJS === "function") {
-            clearInterval(a);
-            let clipboard = new ClipboardJS(".voucher_block span");
-            clipboard.on("success", function (e) {
-              document.querySelector(".copied")?.remove();
-              document.querySelector(".voucher_block").insertAdjacentHTML("beforeend", `<span class="copied">copied!</span>`);
-              e.clearSelection();
-              setTimeout(() => {
+          let a = setInterval(() => {
+            if (typeof ClipboardJS === "function") {
+              clearInterval(a);
+              let clipboard = new ClipboardJS(".voucher_block span");
+              clipboard.on("success", function (e) {
                 document.querySelector(".copied")?.remove();
-              }, 3000);
-            });
-          }
-        }, 1000);
+                document.querySelector(".voucher_block").insertAdjacentHTML("beforeend", `<span class="copied">copied!</span>`);
+                e.clearSelection();
+                setTimeout(() => {
+                  document.querySelector(".copied")?.remove();
+                }, 3000);
+              });
+            }
+          }, 1000);
+        }
       }
     }
     //to redirect from https://www.doyogawithme.com/become-a-subscriber to https://www.doyogawithme.com/checkout/________?__/order_information after exit intent popup
@@ -1287,14 +1324,16 @@ margin: 0 0 12px;
         clearInterval(becomeSubscriber);
         sessionStorage.removeItem("becomeSubscriber");
         sessionStorage.setItem("checkoutPremium", "true");
-        document.querySelector(".lav-jumb__plans-all .lav-desk .lav-plan__btn.lav-plan__btn-year.lav-btn.sfc-button")?.click();
+        document.querySelectorAll(".lav-jumb__plans-all .lav-plan__btn.lav-plan__btn-year.lav-btn.sfc-button").forEach((el) => {
+          el.click();
+        });
       }
     }, 100);
     //to apply the discount code automatically on the checkout after exit intent popup
     let checkoutPremium = setInterval(() => {
-      if (window.location.pathname.includes("checkout") && sessionStorage.getItem("checkoutPremium")) {
+      if (window.location.pathname.includes("checkout") && sessionStorage.getItem("checkoutPremium") && document.querySelector("#edit-sidebar-order-summary-summary .views-field.views-field-title").textContent.includes("Yearly")) {
         clearInterval(checkoutPremium);
-        sessionStorage.removeItem("checkoutPremium");
+        // sessionStorage.removeItem("checkoutPremium");
         if (document.querySelector("#edit-sidebar-coupon-redemption-form-code").value === "") {
           document.querySelector("#edit-sidebar-coupon-redemption-form-code").value = "YOGA45";
         }
@@ -1308,25 +1347,23 @@ margin: 0 0 12px;
     }, 100);
 
     // Hypothesis #4 - Promote Subscription on content pages
-    if (!window.location.pathname.includes("checkout")) {
-      switch (window.location.pathname) {
-        case "/":
-          document.querySelector(".o-page__banner")?.insertAdjacentHTML("afterend", newBoxFeatures);
-          break;
-        case "/yoga-classes":
-          document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
-          break;
-        case "/yoga-meditation":
-          document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
-          break;
-        case "/yoga-challenges":
-          document.querySelector(".o-page__banner")?.insertAdjacentHTML("afterend", newBoxFeatures);
-          break;
-        case "/yoga-programs":
-          document.querySelector(".o-page__banner")?.insertAdjacentHTML("afterend", newBoxFeatures);
-          break;
-        case "/become-a-subscriber":
-          // Hypothesis #5 - Promote Subscription on Premium content pages
+    switch (window.location.pathname) {
+      case "/yoga-classes":
+        document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
+        break;
+      case "/yoga-meditation":
+        document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
+        break;
+      case "/yoga-challenges":
+        document.querySelector(".o-page__banner")?.insertAdjacentHTML("afterend", newBoxFeatures);
+        break;
+      case "/yoga-programs":
+        document.querySelector(".o-page__banner")?.insertAdjacentHTML("afterend", newBoxFeatures);
+        break;
+      case "/become-a-subscriber":
+        // Hypothesis #5 - Promote Subscription on Premium content pages
+        // logged-in user - to a page with two plans, on which a block with premium benefits appears at the top + in comparison with the old page - a different header
+        if (!document.querySelector('.menu--account [data-drupal-link-system-path="yogi/login"]')) {
           document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
           if (window.innerWidth <= 768) {
             if (document.querySelector("#promoteSubscriptionWrap") && !document.querySelector(".new_title_subscriber")) {
@@ -1338,11 +1375,18 @@ margin: 0 0 12px;
               document.querySelector("#promoteSubscriptionWrap").insertAdjacentHTML("beforebegin", `<div class="new_box_subscriber"><h2 class="new_title_subscriber">Unlock Premium Classes for a Transformative Yoga Journey</h2></div>`);
             }
           }
-          break;
+        }
+        break;
 
-        default:
-          document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
-          break;
+      default:
+        break;
+    }
+    if (!document.querySelector('.menu--account [data-drupal-link-system-path="yogi/login"]') && window.location.pathname === "/") {
+      document.querySelector(".o-page__banner")?.insertAdjacentHTML("afterend", newBoxFeatures);
+    }
+    if (window.location.pathname.match("/content/")) {
+      if (sessionStorage.getItem("survi::7e5b485118252bfdd1f1e031d8a5f743::visitReferrerUrl") !== '"https://www.doyogawithme.com/yoga-challenges"' && sessionStorage.getItem("survi::7e5b485118252bfdd1f1e031d8a5f743::visitReferrerUrl") !== '"https://www.doyogawithme.com/yoga-programs"') {
+        document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
       }
     }
 
@@ -1380,37 +1424,42 @@ margin: 0 0 12px;
     });
 
     // Hypothesis #5 - Promote Subscription on Premium content pages
-    let findBtn = setInterval(() => {
-      if (document.querySelector(".sfc-nodePlayable__lockCta")) {
-        clearInterval(findBtn);
-        if (document.querySelector(".sfc-nodePlayable__lockCta").textContent !== "Get Full Access Now") {
-          document.querySelector(".sfc-nodePlayable__lockCta").textContent = "Get Full Access Now";
-        }
-      }
-    }, 100);
-
-    let renderTxt = setInterval(() => {
-      if (document.querySelector(".sfc-nodePlayable__lockContainerInner .sfc-copy__header .sfc-item__headline")) {
-        clearInterval(renderTxt);
-        if (!document.querySelector(".sfc-nodePlayable__lockContainerInner .sfc-copy__header .txt_headline")) {
-          document.querySelector(".sfc-nodePlayable__lockContainerInner .sfc-copy__header .sfc-item__headline").insertAdjacentHTML("afterend", `<p class="txt_headline">Get access to this and 1000+ other premium classes</p>`);
-        }
-      }
-    }, 100);
-
-    let renderIcon = setInterval(() => {
-      if (document.querySelector(".sfc-nodePlayable__lockContainerInner .sfc-item__prefix")) {
-        clearInterval(renderIcon);
-        if (!document.querySelector(".new_icon_prefix")) {
-          if (window.innerWidth > 768) {
-            document
-              .querySelector(".sfc-nodePlayable__lockContainerInner .sfc-item__prefix")
-              .insertAdjacentHTML(
-                "afterbegin",
-                `<svg class="new_icon_prefix" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M27.3198 17.2981H12.418V12.4297C12.418 10.3806 13.2537 8.51648 14.6056 7.16844C15.9576 5.81648 17.8179 4.97687 19.8669 4.97687C21.916 4.97687 23.7801 5.81656 25.1282 7.16844C26.4801 8.51648 27.3198 10.3807 27.3198 12.4297V17.2981ZM33.671 18.3227C33.2781 17.9337 32.7967 17.6332 32.2575 17.4637V12.4297C32.2575 9.02102 30.8632 5.92047 28.6177 3.675C26.3723 1.42953 23.2755 0.0390625 19.8669 0.0390625C16.4583 0.0390625 13.3616 1.42953 11.1161 3.675C8.87061 5.92047 7.47632 9.02102 7.47632 12.4297V17.4484C6.92171 17.6178 6.42483 17.922 6.02429 18.3227C5.39265 18.9582 4.99976 19.8287 4.99976 20.7915V36.4675C4.99976 37.4304 5.39265 38.3009 6.02429 38.9363C6.65976 39.568 7.5303 39.9609 8.49312 39.9609H31.2022C32.1651 39.9609 33.0355 39.568 33.671 38.9363C34.3026 38.3009 34.6955 37.4304 34.6955 36.4675V20.7915C34.6956 19.8286 34.3027 18.9582 33.671 18.3227ZM17.4288 24.8357C18.0489 24.2195 18.904 23.8343 19.8476 23.8343C20.7913 23.8343 21.6463 24.2195 22.2665 24.8357C22.8866 25.4559 23.2679 26.3109 23.2679 27.2545C23.2679 27.9902 23.0368 28.668 22.6439 29.2266C22.3165 29.6888 21.8774 30.0662 21.3651 30.3205V31.9073C21.3651 32.3233 21.1957 32.7046 20.9183 32.978C20.6448 33.2515 20.2674 33.4248 19.8476 33.4248C19.4316 33.4248 19.0503 33.2515 18.7768 32.978C18.5034 32.7046 18.33 32.3233 18.33 31.9073V30.3205C17.8216 30.0662 17.3825 29.6888 17.0551 29.2266C16.6584 28.6681 16.4273 27.9902 16.4273 27.2545C16.4274 26.3109 16.8126 25.4558 17.4288 24.8357Z" fill="#027DB8"/></svg>`
-              );
+    let findTriggerHypothesis = setInterval(() => {
+      if (document.querySelector(".sfc-nodePlayable__lockContainerInner")) {
+        clearInterval(findTriggerHypothesis);
+        let findBtn = setInterval(() => {
+          if (document.querySelector(".sfc-nodePlayable__lockCta")) {
+            clearInterval(findBtn);
+            if (document.querySelector(".sfc-nodePlayable__lockCta").textContent !== "Get Full Access Now") {
+              document.querySelector(".sfc-nodePlayable__lockCta").textContent = "Get Full Access Now";
+            }
           }
-        }
+        }, 100);
+
+        let renderTxt = setInterval(() => {
+          if (document.querySelector(".sfc-nodePlayable__lockContainerInner .sfc-copy__header .sfc-item__headline")) {
+            clearInterval(renderTxt);
+            if (!document.querySelector(".sfc-nodePlayable__lockContainerInner .sfc-copy__header .txt_headline")) {
+              document.querySelector(".sfc-nodePlayable__lockContainerInner .sfc-copy__header .sfc-item__headline").insertAdjacentHTML("afterend", `<p class="txt_headline">Get access to this and 1000+ other premium classes</p>`);
+            }
+          }
+        }, 100);
+
+        let renderIcon = setInterval(() => {
+          if (document.querySelector(".sfc-nodePlayable__lockContainerInner .sfc-item__prefix")) {
+            clearInterval(renderIcon);
+            if (!document.querySelector(".new_icon_prefix")) {
+              if (window.innerWidth > 768) {
+                document
+                  .querySelector(".sfc-nodePlayable__lockContainerInner .sfc-item__prefix")
+                  .insertAdjacentHTML(
+                    "afterbegin",
+                    `<svg class="new_icon_prefix" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M27.3198 17.2981H12.418V12.4297C12.418 10.3806 13.2537 8.51648 14.6056 7.16844C15.9576 5.81648 17.8179 4.97687 19.8669 4.97687C21.916 4.97687 23.7801 5.81656 25.1282 7.16844C26.4801 8.51648 27.3198 10.3807 27.3198 12.4297V17.2981ZM33.671 18.3227C33.2781 17.9337 32.7967 17.6332 32.2575 17.4637V12.4297C32.2575 9.02102 30.8632 5.92047 28.6177 3.675C26.3723 1.42953 23.2755 0.0390625 19.8669 0.0390625C16.4583 0.0390625 13.3616 1.42953 11.1161 3.675C8.87061 5.92047 7.47632 9.02102 7.47632 12.4297V17.4484C6.92171 17.6178 6.42483 17.922 6.02429 18.3227C5.39265 18.9582 4.99976 19.8287 4.99976 20.7915V36.4675C4.99976 37.4304 5.39265 38.3009 6.02429 38.9363C6.65976 39.568 7.5303 39.9609 8.49312 39.9609H31.2022C32.1651 39.9609 33.0355 39.568 33.671 38.9363C34.3026 38.3009 34.6955 37.4304 34.6955 36.4675V20.7915C34.6956 19.8286 34.3027 18.9582 33.671 18.3227ZM17.4288 24.8357C18.0489 24.2195 18.904 23.8343 19.8476 23.8343C20.7913 23.8343 21.6463 24.2195 22.2665 24.8357C22.8866 25.4559 23.2679 26.3109 23.2679 27.2545C23.2679 27.9902 23.0368 28.668 22.6439 29.2266C22.3165 29.6888 21.8774 30.0662 21.3651 30.3205V31.9073C21.3651 32.3233 21.1957 32.7046 20.9183 32.978C20.6448 33.2515 20.2674 33.4248 19.8476 33.4248C19.4316 33.4248 19.0503 33.2515 18.7768 32.978C18.5034 32.7046 18.33 32.3233 18.33 31.9073V30.3205C17.8216 30.0662 17.3825 29.6888 17.0551 29.2266C16.6584 28.6681 16.4273 27.9902 16.4273 27.2545C16.4274 26.3109 16.8126 25.4558 17.4288 24.8357Z" fill="#027DB8"/></svg>`
+                  );
+              }
+            }
+          }
+        }, 100);
       }
     }, 100);
   }
