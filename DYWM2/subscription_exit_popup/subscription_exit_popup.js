@@ -1114,6 +1114,8 @@ margin: 0 0 12px;
     document.head.insertAdjacentHTML("beforeend", `<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet">`);
     document.head.insertAdjacentHTML("beforeend", newStyle);
 
+    console.log(`Promote subscription + Exit intent pop-up`);
+
     //Hypothesis #6 - Add exit-intent popup with limited-time offer
     // Show exit intent popups for users who are logged in but have not bought a paid plan (free users) on pages:
     if (!document.querySelector('.menu--account [data-drupal-link-system-path="yogi/login"]') && (window.location.pathname === "/" || window.location.pathname === "/yoga-classes" || window.location.pathname === "/yoga-meditation" || window.location.pathname === "/yoga-challenges" || window.location.pathname === "/yoga-programs" || window.location.pathname.match("/content/"))) {
@@ -1322,21 +1324,21 @@ margin: 0 0 12px;
         clearInterval(becomeSubscriber);
         sessionStorage.removeItem("becomeSubscriber");
         sessionStorage.setItem("checkoutPremium", "true");
-        document.querySelectorAll(".lav-jumb__plans-all .lav-plan__btn.lav-plan__btn-year.lav-btn.sfc-button").forEach((el) => {
+        document.querySelectorAll(".lav-jumb__plan .lav-plan__btn.lav-plan__btn-year").forEach((el) => {
           el.click();
         });
       }
     }, 100);
     //to apply the discount code automatically on the checkout after exit intent popup
     let checkoutPremium = setInterval(() => {
-      if (window.location.pathname.includes("checkout") && sessionStorage.getItem("checkoutPremium") && document.querySelector("#edit-sidebar-order-summary-summary .views-field.views-field-title").textContent.includes("Yearly")) {
+      if (window.location.pathname.includes("checkout") && sessionStorage.getItem("checkoutPremium") && document.querySelector("#edit-sidebar-order-summary-summary .views-field.views-field-title").textContent.includes("1-Year")) {
         clearInterval(checkoutPremium);
         // sessionStorage.removeItem("checkoutPremium");
-        if (document.querySelector("#edit-sidebar-coupon-redemption-form-code").value === "") {
+        if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value === "") {
           document.querySelector("#edit-sidebar-coupon-redemption-form-code").value = "YOGA45";
         }
 
-        if (document.querySelector("#edit-sidebar-coupon-redemption-form-code").value === "YOGA45") {
+        if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value === "YOGA45") {
           const element = document.querySelector("#edit-sidebar-coupon-redemption-form-apply");
           const events = ["mousedown", "focusin"];
           events.forEach((eventType) => element.dispatchEvent(new MouseEvent(eventType, { bubbles: true })));
