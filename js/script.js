@@ -140,3 +140,14 @@ function getNewUser(name) {
     }
   }
 }
+//
+document.head.insertAdjacentHTML("beforeend", `<style class="exp">body {opacity: 0 !important;}</style>`);
+
+let script = document.createElement("script");
+script.src = "https://conversionratestore.github.io/projects/doyogawithme/subscription_exit_popup.js";
+script.async = false;
+document.head.appendChild(script);
+
+setTimeout(function () {
+  document.querySelector(".exp")?.remove();
+}, 2000);

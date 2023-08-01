@@ -3,8 +3,6 @@ let startFunk = setInterval(() => {
   if (JSON.parse(document.querySelector('[data-drupal-selector="drupal-settings-json"]')?.textContent).dywm.gtm.customer_info.user.isSubscriber === false) {
     clearInterval(startFunk);
 
-    JSON.parse(document.querySelector('[data-drupal-selector="drupal-settings-json"]').textContent);
-
     //cdn jquery
     let script = document.createElement("script");
     script.src = "https://code.jquery.com/jquery-3.4.1.min.js";
@@ -1301,20 +1299,20 @@ margin: 0 0 12px;
               document.querySelector(".content_popup")?.remove();
             }, 400);
           }
-          let a = setInterval(() => {
-            if (typeof ClipboardJS === "function") {
-              clearInterval(a);
-              let clipboard = new ClipboardJS(".voucher_block span");
-              clipboard.on("success", function (e) {
-                document.querySelector(".copied")?.remove();
-                document.querySelector(".voucher_block").insertAdjacentHTML("beforeend", `<span class="copied">copied!</span>`);
-                e.clearSelection();
-                setTimeout(() => {
-                  document.querySelector(".copied")?.remove();
-                }, 3000);
-              });
-            }
-          }, 1000);
+          // let a = setInterval(() => {
+          //   if (typeof ClipboardJS === "function") {
+          //     clearInterval(a);
+          //     let clipboard = new ClipboardJS(".voucher_block span");
+          //     clipboard.on("success", function (e) {
+          //       document.querySelector(".copied")?.remove();
+          //       document.querySelector(".voucher_block").insertAdjacentHTML("beforeend", `<span class="copied">copied!</span>`);
+          //       e.clearSelection();
+          //       setTimeout(() => {
+          //         document.querySelector(".copied")?.remove();
+          //       }, 3000);
+          //     });
+          //   }
+          // }, 1000);
         }
       }
     }
@@ -1462,5 +1460,7 @@ margin: 0 0 12px;
         }, 100);
       }
     }, 100);
+
+    document.querySelector(".exp")?.remove();
   }
 }, 100);
