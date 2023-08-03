@@ -312,6 +312,8 @@ let toolBox = setInterval(() => {
           pushDataLayer("Scroll to 50%", "Navigation block On This Page");
         }
         if (+(e.target.scrollHeight - e.target.scrollTop).toFixed(0) === e.target.clientHeight) {
+          console.log(+(e.target.scrollHeight - e.target.scrollTop).toFixed(0), `+(e.target.scrollHeight - e.target.scrollTop).toFixed(0)`);
+          console.log(e.target.clientHeight, `e.target.clientHeight`);
           pushDataLayer("Scroll to 100%", "Navigation block On Thisac Page");
         }
       });
