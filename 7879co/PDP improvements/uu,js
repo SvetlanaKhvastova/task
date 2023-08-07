@@ -1,0 +1,211 @@
+let arrproduct = {
+  "/shop/gold/necklace-chains/diamond-cut-curb-chain-necklace": {
+    Necklaces: {
+      "Diamond Cut Cable Chain Necklace": ["/shop/gold/necklace-chains/diamond-cut-cable-chain-necklace", "Gold", "3.28g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_aedc83b461.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F16_7879_models_1744_8d4ed14e23.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Double Curb Chain Necklace": ["/shop/gold/necklace-chains/diamond-cut-double-curb-chain-necklace", "Gold", "45.10g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_c85ddc1159.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_073_bc365b84d5.jpg&amp;w=3840&amp;q=75"],
+      "Cable Chain Necklace": ["/shop/gold/necklace-chains/cable-chain-necklace", "Gold", "1.75g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_8295e325cf.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F3_7879_models_1262_aae6384d2c.jpg&amp;w=3840&amp;q=75"],
+    },
+    bracelets: {
+      "Diamond Cut Cable Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-cable-chain-bracelet", "Gold", "1.46g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_0dfb9714a8.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_723fcdb9ad.jpg&w=3840&q=75"],
+      "Diamond Cut Curb Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-curb-chain-bracelet", "Gold", "3.42g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7b91b05ff1.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_7879_models_2192_8fb201be94.jpg&w=3840&q=75"],
+      "Diamond Cut Double Curb Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-double-curb-chain-bracelet", "Gold", "15.10g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_b4cc02b99a.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_259_b5062a2c83.jpg&w=3840&q=75"],
+      "Cable Chain Bracelet": ["/shop/gold/bracelet-chains/cable-chain-bracelet", "Cable Chain Bracelet", "0.98g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_93302ca1da.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_b504522a14.jpg&w=3840&q=75"],
+    },
+  },
+  "/shop/gold/bracelet-chains/diamond-cut-cable-chain-bracelet": {
+    Necklaces: {
+      "Diamond Cut Cable Chain Necklace": ["/shop/gold/necklace-chains/diamond-cut-cable-chain-necklace", "Gold", "3.28g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_aedc83b461.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F16_7879_models_1744_8d4ed14e23.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Double Curb Chain Necklace": ["/shop/gold/necklace-chains/diamond-cut-double-curb-chain-necklace", "Gold", "45.10g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_c85ddc1159.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_073_bc365b84d5.jpg&amp;w=3840&amp;q=75"],
+      "Cable Chain Necklace": ["/shop/gold/necklace-chains/cable-chain-necklace", "Gold", "1.75g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_8295e325cf.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F3_7879_models_1262_aae6384d2c.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Curb Chain Necklace": ["/shop/gold/necklace-chains/diamond-cut-curb-chain-necklace", "Gold", "11.10g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_03bf26f074.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F34_7879_models_1668_fb6b562c5f.jpg&amp;w=3840&amp;q=75"],
+    },
+    bracelets: {
+      "Diamond Cut Curb Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-curb-chain-bracelet", "Gold", "3.42g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7b91b05ff1.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_7879_models_2192_8fb201be94.jpg&w=3840&q=75"],
+      "Diamond Cut Double Curb Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-double-curb-chain-bracelet", "Gold", "15.10g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_b4cc02b99a.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_259_b5062a2c83.jpg&w=3840&q=75"],
+      "Cable Chain Bracelet": ["/shop/gold/bracelet-chains/cable-chain-bracelet", "Cable Chain Bracelet", "0.98g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_93302ca1da.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_b504522a14.jpg&w=3840&q=75"],
+    },
+  },
+  "/shop/gold/bracelet-chains/diamond-cut-curb-chain-bracelet": {
+    Necklaces: {
+      "Diamond Cut Cable Chain Necklace": ["/shop/gold/necklace-chains/diamond-cut-cable-chain-necklace", "Gold", "3.28g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_aedc83b461.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F16_7879_models_1744_8d4ed14e23.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Double Curb Chain Necklace": ["/shop/gold/necklace-chains/diamond-cut-double-curb-chain-necklace", "Gold", "45.10g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_c85ddc1159.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_073_bc365b84d5.jpg&amp;w=3840&amp;q=75"],
+      "Cable Chain Necklace": ["/shop/gold/necklace-chains/cable-chain-necklace", "Gold", "1.75g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_8295e325cf.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F3_7879_models_1262_aae6384d2c.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Curb Chain Necklace": ["/shop/gold/necklace-chains/diamond-cut-curb-chain-necklace", "Gold", "11.10g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_03bf26f074.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F34_7879_models_1668_fb6b562c5f.jpg&amp;w=3840&amp;q=75"],
+    },
+    bracelets: {
+      "Diamond Cut Cable Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-cable-chain-bracelet", "Gold", "1.46g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_0dfb9714a8.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_723fcdb9ad.jpg&w=3840&q=75"],
+      "Diamond Cut Double Curb Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-double-curb-chain-bracelet", "Gold", "15.10g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_b4cc02b99a.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_259_b5062a2c83.jpg&w=3840&q=75"],
+      "Cable Chain Bracelet": ["/shop/gold/bracelet-chains/cable-chain-bracelet", "Cable Chain Bracelet", "0.98g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_93302ca1da.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_b504522a14.jpg&w=3840&q=75"],
+    },
+  },
+  "/shop/gold/bracelet-chains/diamond-cut-double-curb-chain-bracelet": {
+    Necklaces: {
+      "Diamond Cut Cable Chain Necklace": ["/shop/gold/necklace-chains/diamond-cut-cable-chain-necklace", "Gold", "3.28g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_aedc83b461.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F16_7879_models_1744_8d4ed14e23.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Double Curb Chain Necklace": ["/shop/gold/necklace-chains/diamond-cut-double-curb-chain-necklace", "Gold", "45.10g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_c85ddc1159.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_073_bc365b84d5.jpg&amp;w=3840&amp;q=75"],
+      "Cable Chain Necklace": ["/shop/gold/necklace-chains/cable-chain-necklace", "Gold", "1.75g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_8295e325cf.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F3_7879_models_1262_aae6384d2c.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Curb Chain Necklace": ["/shop/gold/necklace-chains/diamond-cut-curb-chain-necklace", "Gold", "11.10g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_03bf26f074.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F34_7879_models_1668_fb6b562c5f.jpg&amp;w=3840&amp;q=75"],
+    },
+    bracelets: {
+      "Diamond Cut Cable Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-cable-chain-bracelet", "Gold", "1.46g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_0dfb9714a8.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_723fcdb9ad.jpg&w=3840&q=75"],
+      "Diamond Cut Curb Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-curb-chain-bracelet", "Gold", "3.42g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7b91b05ff1.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_7879_models_2192_8fb201be94.jpg&w=3840&q=75"],
+      "Cable Chain Bracelet": ["/shop/gold/bracelet-chains/cable-chain-bracelet", "Cable Chain Bracelet", "0.98g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_93302ca1da.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_b504522a14.jpg&w=3840&q=75"],
+    },
+  },
+  "/shop/gold/bracelet-chains/cable-chain-bracelet": {
+    Necklaces: {
+      "Diamond Cut Cable Chain Necklace": ["/shop/gold/necklace-chains/diamond-cut-cable-chain-necklace", "Gold", "3.28g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_aedc83b461.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F16_7879_models_1744_8d4ed14e23.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Double Curb Chain Necklace": ["/shop/gold/necklace-chains/diamond-cut-double-curb-chain-necklace", "Gold", "45.10g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_c85ddc1159.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_073_bc365b84d5.jpg&amp;w=3840&amp;q=75"],
+      "Cable Chain Necklace": ["/shop/gold/necklace-chains/cable-chain-necklace", "Gold", "1.75g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_8295e325cf.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F3_7879_models_1262_aae6384d2c.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Curb Chain Necklace": ["/shop/gold/necklace-chains/diamond-cut-curb-chain-necklace", "Gold", "11.10g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_03bf26f074.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F34_7879_models_1668_fb6b562c5f.jpg&amp;w=3840&amp;q=75"],
+    },
+    bracelets: {
+      "Diamond Cut Cable Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-cable-chain-bracelet", "Gold", "1.46g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_0dfb9714a8.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_723fcdb9ad.jpg&w=3840&q=75"],
+      "Diamond Cut Curb Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-curb-chain-bracelet", "Gold", "3.42g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7b91b05ff1.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_7879_models_2192_8fb201be94.jpg&w=3840&q=75"],
+      "Diamond Cut Double Curb Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-double-curb-chain-bracelet", "Gold", "15.10g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_b4cc02b99a.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_259_b5062a2c83.jpg&w=3840&q=75"],
+    },
+  },
+  "/shop/gold/necklace-chains/diamond-cut-cable-chain-necklace": {
+    Necklaces: {
+      "Diamond Cut Double Curb Chain Necklace": ["/shop/gold/necklace-chains/diamond-cut-double-curb-chain-necklace", "Gold", "45.10g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_c85ddc1159.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_073_bc365b84d5.jpg&amp;w=3840&amp;q=75"],
+      "Cable Chain Necklace": ["/shop/gold/necklace-chains/cable-chain-necklace", "Gold", "1.75g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_8295e325cf.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F3_7879_models_1262_aae6384d2c.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Curb Chain Necklace": ["/shop/gold/necklace-chains/diamond-cut-curb-chain-necklace", "Gold", "11.10g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_03bf26f074.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F34_7879_models_1668_fb6b562c5f.jpg&amp;w=3840&amp;q=75"],
+    },
+    bracelets: {
+      "Diamond Cut Cable Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-cable-chain-bracelet", "Gold", "1.46g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_0dfb9714a8.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_723fcdb9ad.jpg&w=3840&q=75"],
+      "Diamond Cut Curb Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-curb-chain-bracelet", "Gold", "3.42g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7b91b05ff1.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_7879_models_2192_8fb201be94.jpg&w=3840&q=75"],
+      "Diamond Cut Double Curb Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-double-curb-chain-bracelet", "Gold", "15.10g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_b4cc02b99a.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_259_b5062a2c83.jpg&w=3840&q=75"],
+      "Cable Chain Bracelet": ["/shop/gold/bracelet-chains/cable-chain-bracelet", "Cable Chain Bracelet", "0.98g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_93302ca1da.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_b504522a14.jpg&w=3840&q=75"],
+    },
+  },
+  "/shop/gold/necklace-chains/diamond-cut-double-curb-chain-necklace": {
+    Necklaces: {
+      "Diamond Cut Cable Chain Necklace": ["/shop/gold/necklace-chains/diamond-cut-cable-chain-necklace", "Gold", "3.28g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_aedc83b461.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F16_7879_models_1744_8d4ed14e23.jpg&amp;w=3840&amp;q=75"],
+      "Cable Chain Necklace": ["/shop/gold/necklace-chains/cable-chain-necklace", "Gold", "1.75g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_8295e325cf.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F3_7879_models_1262_aae6384d2c.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Curb Chain Necklace": ["/shop/gold/necklace-chains/diamond-cut-curb-chain-necklace", "Gold", "11.10g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_03bf26f074.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F34_7879_models_1668_fb6b562c5f.jpg&amp;w=3840&amp;q=75"],
+    },
+    bracelets: {
+      "Diamond Cut Cable Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-cable-chain-bracelet", "Gold", "1.46g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_0dfb9714a8.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_723fcdb9ad.jpg&w=3840&q=75"],
+      "Diamond Cut Curb Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-curb-chain-bracelet", "Gold", "3.42g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7b91b05ff1.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_7879_models_2192_8fb201be94.jpg&w=3840&q=75"],
+      "Diamond Cut Double Curb Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-double-curb-chain-bracelet", "Gold", "15.10g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_b4cc02b99a.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_259_b5062a2c83.jpg&w=3840&q=75"],
+      "Cable Chain Bracelet": ["/shop/gold/bracelet-chains/cable-chain-bracelet", "Cable Chain Bracelet", "0.98g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_93302ca1da.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_b504522a14.jpg&w=3840&q=75"],
+    },
+  },
+  "/shop/gold/necklace-chains/cable-chain-necklace": {
+    Necklaces: {
+      "Diamond Cut Cable Chain Necklace": ["/shop/gold/necklace-chains/diamond-cut-cable-chain-necklace", "Gold", "3.28g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_aedc83b461.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F16_7879_models_1744_8d4ed14e23.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Double Curb Chain Necklace": ["/shop/gold/necklace-chains/diamond-cut-double-curb-chain-necklace", "Gold", "45.10g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_c85ddc1159.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_073_bc365b84d5.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Curb Chain Necklace": ["/shop/gold/necklace-chains/diamond-cut-curb-chain-necklace", "Gold", "11.10g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_03bf26f074.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F34_7879_models_1668_fb6b562c5f.jpg&amp;w=3840&amp;q=75"],
+    },
+    bracelets: {
+      "Diamond Cut Cable Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-cable-chain-bracelet", "Gold", "1.46g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_0dfb9714a8.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_723fcdb9ad.jpg&w=3840&q=75"],
+      "Diamond Cut Curb Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-curb-chain-bracelet", "Gold", "3.42g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7b91b05ff1.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_7879_models_2192_8fb201be94.jpg&w=3840&q=75"],
+      "Diamond Cut Double Curb Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-double-curb-chain-bracelet", "Gold", "15.10g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_b4cc02b99a.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_259_b5062a2c83.jpg&w=3840&q=75"],
+      "Cable Chain Bracelet": ["/shop/gold/bracelet-chains/cable-chain-bracelet", "Cable Chain Bracelet", "0.98g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_93302ca1da.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_b504522a14.jpg&w=3840&q=75"],
+    },
+  },
+  //////////////////////////////////////////////////////////////////////
+  "/shop/platinum/bracelet-chains/diamond-cut-double-curb-chain-bracelet": {
+    Necklaces: {
+      "Diamond Cut Cable Chain Necklace": ["/shop/platinum/necklace-chains/diamond-cut-cable-chain-necklace", "Platinum", "6.14g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_32387faa94.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F3_7879_models_2644_c_p_4ebeb64d99.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Curb Chain Necklace": ["/shop/platinum/necklace-chains/diamond-cut-curb-chain-necklace", "Platinum", "9.46g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_93638551c5.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F56_7879_models_1693_p_840170d277.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Double Curb Chain Necklace": ["/shop/platinum/necklace-chains/diamond-cut-double-curb-chain-necklace", "Platinum", "41.00g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_71b5a17f31.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F3_7879_585_15fd1d4ddb.jpg&amp;w=3840&amp;q=75"],
+      "Cable Chain Necklace": ["/shop/platinum/necklace-chains/cable-chain-necklace", "Platinum", "1.75g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_54cd7afe2c.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_models_2353_p_464851a1b0.jpg&amp;w=3840&amp;q=75"],
+    },
+    bracelets: {
+      "Diamond Cut Cable Chain Bracelet": ["/shop/platinum/bracelet-chains/diamond-cut-cable-chain-bracelet", "Platinum", "1.92g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_e30cb6afd6.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_86477_pga_7879_20th_21st_Sept_20210974_V3_p_3b68aa5f84.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Curb Chain Bracelet": ["/shop/platinum/bracelet-chains/diamond-cut-curb-chain-bracelet", "Platinum", "3.53g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_04859026a5.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_models_2148_p_e8f0cd24ae.jpg&amp;w=3840&amp;q=75"],
+      "Cable Chain Bracelet": ["/shop/platinum/bracelet-chains/cable-chain-bracelet", "Platinum", "1.07g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_5aa56794bd.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_86477_pga_7879_20th_21st_Sept_20210974_V3_p_42df6ffd82.jpg&amp;w=3840&amp;q=75"],
+    },
+  },
+  "/shop/platinum/bracelet-chains/diamond-cut-cable-chain-bracelet": {
+    Necklaces: {
+      "Diamond Cut Cable Chain Necklace": ["/shop/platinum/necklace-chains/diamond-cut-cable-chain-necklace", "Platinum", "6.14g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_32387faa94.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F3_7879_models_2644_c_p_4ebeb64d99.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Curb Chain Necklace": ["/shop/platinum/necklace-chains/diamond-cut-curb-chain-necklace", "Platinum", "9.46g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_93638551c5.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F56_7879_models_1693_p_840170d277.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Double Curb Chain Necklace": ["/shop/platinum/necklace-chains/diamond-cut-double-curb-chain-necklace", "Platinum", "41.00g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_71b5a17f31.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F3_7879_585_15fd1d4ddb.jpg&amp;w=3840&amp;q=75"],
+      "Cable Chain Necklace": ["/shop/platinum/necklace-chains/cable-chain-necklace", "Platinum", "1.75g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_54cd7afe2c.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_models_2353_p_464851a1b0.jpg&amp;w=3840&amp;q=75"],
+    },
+    bracelets: {
+      "Diamond Cut Double Curb Chain Bracelet": ["/shop/platinum/bracelet-chains/diamond-cut-double-curb-chain-bracelet", "Platinum", "19.00g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_279bd558dd.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_7879_497_p_274b8ebb65.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Curb Chain Bracelet": ["/shop/platinum/bracelet-chains/diamond-cut-curb-chain-bracelet", "Platinum", "3.53g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_04859026a5.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_models_2148_p_e8f0cd24ae.jpg&amp;w=3840&amp;q=75"],
+      "Cable Chain Bracelet": ["/shop/platinum/bracelet-chains/cable-chain-bracelet", "Platinum", "1.07g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_5aa56794bd.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_86477_pga_7879_20th_21st_Sept_20210974_V3_p_42df6ffd82.jpg&amp;w=3840&amp;q=75"],
+    },
+  },
+  "/shop/platinum/bracelet-chains/diamond-cut-curb-chain-bracelet": {
+    Necklaces: {
+      "Diamond Cut Cable Chain Necklace": ["/shop/platinum/necklace-chains/diamond-cut-cable-chain-necklace", "Platinum", "6.14g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_32387faa94.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F3_7879_models_2644_c_p_4ebeb64d99.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Curb Chain Necklace": ["/shop/platinum/necklace-chains/diamond-cut-curb-chain-necklace", "Platinum", "9.46g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_93638551c5.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F56_7879_models_1693_p_840170d277.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Double Curb Chain Necklace": ["/shop/platinum/necklace-chains/diamond-cut-double-curb-chain-necklace", "Platinum", "41.00g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_71b5a17f31.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F3_7879_585_15fd1d4ddb.jpg&amp;w=3840&amp;q=75"],
+      "Cable Chain Necklace": ["/shop/platinum/necklace-chains/cable-chain-necklace", "Platinum", "1.75g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_54cd7afe2c.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_models_2353_p_464851a1b0.jpg&amp;w=3840&amp;q=75"],
+    },
+    bracelets: {
+      "Diamond Cut Double Curb Chain Bracelet": ["/shop/platinum/bracelet-chains/diamond-cut-double-curb-chain-bracelet", "Platinum", "19.00g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_279bd558dd.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_7879_497_p_274b8ebb65.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Cable Chain Bracelet": ["/shop/platinum/bracelet-chains/diamond-cut-cable-chain-bracelet", "Platinum", "1.92g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_e30cb6afd6.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_86477_pga_7879_20th_21st_Sept_20210974_V3_p_3b68aa5f84.jpg&amp;w=3840&amp;q=75"],
+      "Cable Chain Bracelet": ["/shop/platinum/bracelet-chains/cable-chain-bracelet", "Platinum", "1.07g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_5aa56794bd.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_86477_pga_7879_20th_21st_Sept_20210974_V3_p_42df6ffd82.jpg&amp;w=3840&amp;q=75"],
+    },
+  },
+  "/shop/platinum/bracelet-chains/cable-chain-bracelet": {
+    Necklaces: {
+      "Diamond Cut Cable Chain Necklace": ["/shop/platinum/necklace-chains/diamond-cut-cable-chain-necklace", "Platinum", "6.14g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_32387faa94.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F3_7879_models_2644_c_p_4ebeb64d99.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Curb Chain Necklace": ["/shop/platinum/necklace-chains/diamond-cut-curb-chain-necklace", "Platinum", "9.46g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_93638551c5.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F56_7879_models_1693_p_840170d277.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Double Curb Chain Necklace": ["/shop/platinum/necklace-chains/diamond-cut-double-curb-chain-necklace", "Platinum", "41.00g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_71b5a17f31.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F3_7879_585_15fd1d4ddb.jpg&amp;w=3840&amp;q=75"],
+      "Cable Chain Necklace": ["/shop/platinum/necklace-chains/cable-chain-necklace", "Platinum", "1.75g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_54cd7afe2c.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_models_2353_p_464851a1b0.jpg&amp;w=3840&amp;q=75"],
+    },
+    bracelets: {
+      "Diamond Cut Double Curb Chain Bracelet": ["/shop/platinum/bracelet-chains/diamond-cut-double-curb-chain-bracelet", "Platinum", "19.00g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_279bd558dd.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_7879_497_p_274b8ebb65.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Cable Chain Bracelet": ["/shop/platinum/bracelet-chains/diamond-cut-cable-chain-bracelet", "Platinum", "1.92g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_e30cb6afd6.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_86477_pga_7879_20th_21st_Sept_20210974_V3_p_3b68aa5f84.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Curb Chain Bracelet": ["/shop/platinum/bracelet-chains/diamond-cut-curb-chain-bracelet", "Platinum", "3.53g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_04859026a5.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_models_2148_p_e8f0cd24ae.jpg&amp;w=3840&amp;q=75"],
+    },
+  },
+  "/shop/platinum/necklace-chains/diamond-cut-cable-chain-necklace": {
+    Necklaces: {
+      "Diamond Cut Curb Chain Necklace": ["/shop/platinum/necklace-chains/diamond-cut-curb-chain-necklace", "Platinum", "9.46g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_93638551c5.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F56_7879_models_1693_p_840170d277.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Double Curb Chain Necklace": ["/shop/platinum/necklace-chains/diamond-cut-double-curb-chain-necklace", "Platinum", "41.00g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_71b5a17f31.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F3_7879_585_15fd1d4ddb.jpg&amp;w=3840&amp;q=75"],
+      "Cable Chain Necklace": ["/shop/platinum/necklace-chains/cable-chain-necklace", "Platinum", "1.75g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_54cd7afe2c.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_models_2353_p_464851a1b0.jpg&amp;w=3840&amp;q=75"],
+    },
+    bracelets: {
+      "Diamond Cut Double Curb Chain Bracelet": ["/shop/platinum/bracelet-chains/diamond-cut-double-curb-chain-bracelet", "Platinum", "19.00g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_279bd558dd.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_7879_497_p_274b8ebb65.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Cable Chain Bracelet": ["/shop/platinum/bracelet-chains/diamond-cut-cable-chain-bracelet", "Platinum", "1.92g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_e30cb6afd6.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_86477_pga_7879_20th_21st_Sept_20210974_V3_p_3b68aa5f84.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Curb Chain Bracelet": ["/shop/platinum/bracelet-chains/diamond-cut-curb-chain-bracelet", "Platinum", "3.53g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_04859026a5.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_models_2148_p_e8f0cd24ae.jpg&amp;w=3840&amp;q=75"],
+      "Cable Chain Bracelet": ["/shop/platinum/bracelet-chains/cable-chain-bracelet", "Platinum", "1.07g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_5aa56794bd.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_86477_pga_7879_20th_21st_Sept_20210974_V3_p_42df6ffd82.jpg&amp;w=3840&amp;q=75"],
+    },
+  },
+  "/shop/platinum/necklace-chains/diamond-cut-curb-chain-necklace": {
+    Necklaces: {
+      "Diamond Cut Cable Chain Necklace": ["/shop/platinum/necklace-chains/diamond-cut-cable-chain-necklace", "Platinum", "6.14g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_32387faa94.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F3_7879_models_2644_c_p_4ebeb64d99.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Double Curb Chain Necklace": ["/shop/platinum/necklace-chains/diamond-cut-double-curb-chain-necklace", "Platinum", "41.00g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_71b5a17f31.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F3_7879_585_15fd1d4ddb.jpg&amp;w=3840&amp;q=75"],
+      "Cable Chain Necklace": ["/shop/platinum/necklace-chains/cable-chain-necklace", "Platinum", "1.75g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_54cd7afe2c.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_models_2353_p_464851a1b0.jpg&amp;w=3840&amp;q=75"],
+    },
+    bracelets: {
+      "Diamond Cut Double Curb Chain Bracelet": ["/shop/platinum/bracelet-chains/diamond-cut-double-curb-chain-bracelet", "Platinum", "19.00g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_279bd558dd.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_7879_497_p_274b8ebb65.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Cable Chain Bracelet": ["/shop/platinum/bracelet-chains/diamond-cut-cable-chain-bracelet", "Platinum", "1.92g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_e30cb6afd6.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_86477_pga_7879_20th_21st_Sept_20210974_V3_p_3b68aa5f84.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Curb Chain Bracelet": ["/shop/platinum/bracelet-chains/diamond-cut-curb-chain-bracelet", "Platinum", "3.53g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_04859026a5.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_models_2148_p_e8f0cd24ae.jpg&amp;w=3840&amp;q=75"],
+      "Cable Chain Bracelet": ["/shop/platinum/bracelet-chains/cable-chain-bracelet", "Platinum", "1.07g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_5aa56794bd.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_86477_pga_7879_20th_21st_Sept_20210974_V3_p_42df6ffd82.jpg&amp;w=3840&amp;q=75"],
+    },
+  },
+  "/shop/platinum/necklace-chains/diamond-cut-double-curb-chain-necklace": {
+    Necklaces: {
+      "Diamond Cut Cable Chain Necklace": ["/shop/platinum/necklace-chains/diamond-cut-cable-chain-necklace", "Platinum", "6.14g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_32387faa94.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F3_7879_models_2644_c_p_4ebeb64d99.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Curb Chain Necklace": ["/shop/platinum/necklace-chains/diamond-cut-curb-chain-necklace", "Platinum", "9.46g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_93638551c5.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F56_7879_models_1693_p_840170d277.jpg&amp;w=3840&amp;q=75"],
+      "Cable Chain Necklace": ["/shop/platinum/necklace-chains/cable-chain-necklace", "Platinum", "1.75g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_54cd7afe2c.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_models_2353_p_464851a1b0.jpg&amp;w=3840&amp;q=75"],
+    },
+    bracelets: {
+      "Diamond Cut Double Curb Chain Bracelet": ["/shop/platinum/bracelet-chains/diamond-cut-double-curb-chain-bracelet", "Platinum", "19.00g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_279bd558dd.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_7879_497_p_274b8ebb65.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Cable Chain Bracelet": ["/shop/platinum/bracelet-chains/diamond-cut-cable-chain-bracelet", "Platinum", "1.92g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_e30cb6afd6.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_86477_pga_7879_20th_21st_Sept_20210974_V3_p_3b68aa5f84.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Curb Chain Bracelet": ["/shop/platinum/bracelet-chains/diamond-cut-curb-chain-bracelet", "Platinum", "3.53g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_04859026a5.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_models_2148_p_e8f0cd24ae.jpg&amp;w=3840&amp;q=75"],
+      "Cable Chain Bracelet": ["/shop/platinum/bracelet-chains/cable-chain-bracelet", "Platinum", "1.07g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_5aa56794bd.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_86477_pga_7879_20th_21st_Sept_20210974_V3_p_42df6ffd82.jpg&amp;w=3840&amp;q=75"],
+    },
+  },
+  "/shop/platinum/necklace-chains/cable-chain-necklace": {
+    Necklaces: {
+      "Diamond Cut Cable Chain Necklace": ["/shop/platinum/necklace-chains/diamond-cut-cable-chain-necklace", "Platinum", "6.14g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_32387faa94.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F3_7879_models_2644_c_p_4ebeb64d99.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Curb Chain Necklace": ["/shop/platinum/necklace-chains/diamond-cut-curb-chain-necklace", "Platinum", "9.46g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_93638551c5.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F56_7879_models_1693_p_840170d277.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Double Curb Chain Necklace": ["/shop/platinum/necklace-chains/diamond-cut-double-curb-chain-necklace", "Platinum", "41.00g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_71b5a17f31.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F3_7879_585_15fd1d4ddb.jpg&amp;w=3840&amp;q=75"],
+    },
+    bracelets: {
+      "Diamond Cut Double Curb Chain Bracelet": ["/shop/platinum/bracelet-chains/diamond-cut-double-curb-chain-bracelet", "Platinum", "19.00g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_279bd558dd.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_7879_497_p_274b8ebb65.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Cable Chain Bracelet": ["/shop/platinum/bracelet-chains/diamond-cut-cable-chain-bracelet", "Platinum", "1.92g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_e30cb6afd6.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_86477_pga_7879_20th_21st_Sept_20210974_V3_p_3b68aa5f84.jpg&amp;w=3840&amp;q=75"],
+      "Diamond Cut Curb Chain Bracelet": ["/shop/platinum/bracelet-chains/diamond-cut-curb-chain-bracelet", "Platinum", "3.53g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_04859026a5.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_models_2148_p_e8f0cd24ae.jpg&amp;w=3840&amp;q=75"],
+      "Cable Chain Bracelet": ["/shop/platinum/bracelet-chains/cable-chain-bracelet", "Platinum", "1.07g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_5aa56794bd.png&amp;w=3840&amp;q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_86477_pga_7879_20th_21st_Sept_20210974_V3_p_42df6ffd82.jpg&amp;w=3840&amp;q=75"],
+    },
+  },
+};
