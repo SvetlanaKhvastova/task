@@ -12,6 +12,17 @@ let startPdp = setInterval(() => {
     script.async = false;
     document.head.appendChild(script);
 
+    // cdn slider
+    let scriptCustomSlider = document.createElement("script");
+    scriptCustomSlider.src = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js";
+    scriptCustomSlider.async = false;
+    document.head.appendChild(scriptCustomSlider);
+
+    let scriptCustomSliderStyle = document.createElement("link");
+    scriptCustomSliderStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css";
+    scriptCustomSliderStyle.rel = "stylesheet";
+    document.head.appendChild(scriptCustomSliderStyle);
+
     let arrProduct = {
       "/shop/gold/necklace-chains/diamond-cut-curb-chain-necklace": {
         Necklaces: {
@@ -23,7 +34,7 @@ let startPdp = setInterval(() => {
           "Diamond Cut Cable Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-cable-chain-bracelet", "Gold", "1.46g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_0dfb9714a8.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_723fcdb9ad.jpg&w=3840&q=75"],
           "Diamond Cut Curb Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-curb-chain-bracelet", "Gold", "3.42g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7b91b05ff1.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_7879_models_2192_8fb201be94.jpg&w=3840&q=75"],
           "Diamond Cut Double Curb Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-double-curb-chain-bracelet", "Gold", "15.10g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_b4cc02b99a.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_259_b5062a2c83.jpg&w=3840&q=75"],
-          "Cable Chain Bracelet": ["/shop/gold/bracelet-chains/cable-chain-bracelet", "Cable Chain Bracelet", "0.98g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_93302ca1da.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_b504522a14.jpg&w=3840&q=75"],
+          "Cable Chain Bracelet": ["/shop/gold/bracelet-chains/cable-chain-bracelet", "Gold", "0.98g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_93302ca1da.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_b504522a14.jpg&w=3840&q=75"],
         },
       },
       "/shop/gold/bracelet-chains/diamond-cut-cable-chain-bracelet": {
@@ -36,7 +47,7 @@ let startPdp = setInterval(() => {
         Bracelets: {
           "Diamond Cut Curb Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-curb-chain-bracelet", "Gold", "3.42g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7b91b05ff1.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_7879_models_2192_8fb201be94.jpg&w=3840&q=75"],
           "Diamond Cut Double Curb Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-double-curb-chain-bracelet", "Gold", "15.10g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_b4cc02b99a.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_259_b5062a2c83.jpg&w=3840&q=75"],
-          "Cable Chain Bracelet": ["/shop/gold/bracelet-chains/cable-chain-bracelet", "Cable Chain Bracelet", "0.98g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_93302ca1da.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_b504522a14.jpg&w=3840&q=75"],
+          "Cable Chain Bracelet": ["/shop/gold/bracelet-chains/cable-chain-bracelet", "Gold", "0.98g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_93302ca1da.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_b504522a14.jpg&w=3840&q=75"],
         },
       },
       "/shop/gold/bracelet-chains/diamond-cut-curb-chain-bracelet": {
@@ -49,7 +60,7 @@ let startPdp = setInterval(() => {
         Bracelets: {
           "Diamond Cut Cable Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-cable-chain-bracelet", "Gold", "1.46g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_0dfb9714a8.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_723fcdb9ad.jpg&w=3840&q=75"],
           "Diamond Cut Double Curb Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-double-curb-chain-bracelet", "Gold", "15.10g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_b4cc02b99a.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_259_b5062a2c83.jpg&w=3840&q=75"],
-          "Cable Chain Bracelet": ["/shop/gold/bracelet-chains/cable-chain-bracelet", "Cable Chain Bracelet", "0.98g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_93302ca1da.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_b504522a14.jpg&w=3840&q=75"],
+          "Cable Chain Bracelet": ["/shop/gold/bracelet-chains/cable-chain-bracelet", "Gold", "0.98g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_93302ca1da.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_b504522a14.jpg&w=3840&q=75"],
         },
       },
       "/shop/gold/bracelet-chains/diamond-cut-double-curb-chain-bracelet": {
@@ -62,7 +73,7 @@ let startPdp = setInterval(() => {
         Bracelets: {
           "Diamond Cut Cable Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-cable-chain-bracelet", "Gold", "1.46g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_0dfb9714a8.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_723fcdb9ad.jpg&w=3840&q=75"],
           "Diamond Cut Curb Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-curb-chain-bracelet", "Gold", "3.42g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7b91b05ff1.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_7879_models_2192_8fb201be94.jpg&w=3840&q=75"],
-          "Cable Chain Bracelet": ["/shop/gold/bracelet-chains/cable-chain-bracelet", "Cable Chain Bracelet", "0.98g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_93302ca1da.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_b504522a14.jpg&w=3840&q=75"],
+          "Cable Chain Bracelet": ["/shop/gold/bracelet-chains/cable-chain-bracelet", "Gold", "0.98g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_93302ca1da.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_b504522a14.jpg&w=3840&q=75"],
         },
       },
       "/shop/gold/bracelet-chains/cable-chain-bracelet": {
@@ -88,7 +99,7 @@ let startPdp = setInterval(() => {
           "Diamond Cut Cable Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-cable-chain-bracelet", "Gold", "1.46g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_0dfb9714a8.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_723fcdb9ad.jpg&w=3840&q=75"],
           "Diamond Cut Curb Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-curb-chain-bracelet", "Gold", "3.42g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7b91b05ff1.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_7879_models_2192_8fb201be94.jpg&w=3840&q=75"],
           "Diamond Cut Double Curb Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-double-curb-chain-bracelet", "Gold", "15.10g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_b4cc02b99a.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_259_b5062a2c83.jpg&w=3840&q=75"],
-          "Cable Chain Bracelet": ["/shop/gold/bracelet-chains/cable-chain-bracelet", "Cable Chain Bracelet", "0.98g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_93302ca1da.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_b504522a14.jpg&w=3840&q=75"],
+          "Cable Chain Bracelet": ["/shop/gold/bracelet-chains/cable-chain-bracelet", "Gold", "0.98g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_93302ca1da.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_b504522a14.jpg&w=3840&q=75"],
         },
       },
       "/shop/gold/necklace-chains/diamond-cut-double-curb-chain-necklace": {
@@ -101,7 +112,7 @@ let startPdp = setInterval(() => {
           "Diamond Cut Cable Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-cable-chain-bracelet", "Gold", "1.46g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_0dfb9714a8.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_723fcdb9ad.jpg&w=3840&q=75"],
           "Diamond Cut Curb Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-curb-chain-bracelet", "Gold", "3.42g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7b91b05ff1.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_7879_models_2192_8fb201be94.jpg&w=3840&q=75"],
           "Diamond Cut Double Curb Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-double-curb-chain-bracelet", "Gold", "15.10g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_b4cc02b99a.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_259_b5062a2c83.jpg&w=3840&q=75"],
-          "Cable Chain Bracelet": ["/shop/gold/bracelet-chains/cable-chain-bracelet", "Cable Chain Bracelet", "0.98g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_93302ca1da.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_b504522a14.jpg&w=3840&q=75"],
+          "Cable Chain Bracelet": ["/shop/gold/bracelet-chains/cable-chain-bracelet", "Gold", "0.98g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_93302ca1da.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_b504522a14.jpg&w=3840&q=75"],
         },
       },
       "/shop/gold/necklace-chains/cable-chain-necklace": {
@@ -114,7 +125,7 @@ let startPdp = setInterval(() => {
           "Diamond Cut Cable Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-cable-chain-bracelet", "Gold", "1.46g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_0dfb9714a8.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_723fcdb9ad.jpg&w=3840&q=75"],
           "Diamond Cut Curb Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-curb-chain-bracelet", "Gold", "3.42g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7b91b05ff1.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_7879_models_2192_8fb201be94.jpg&w=3840&q=75"],
           "Diamond Cut Double Curb Chain Bracelet": ["/shop/gold/bracelet-chains/diamond-cut-double-curb-chain-bracelet", "Gold", "15.10g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_b4cc02b99a.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_7879_259_b5062a2c83.jpg&w=3840&q=75"],
-          "Cable Chain Bracelet": ["/shop/gold/bracelet-chains/cable-chain-bracelet", "Cable Chain Bracelet", "0.98g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_93302ca1da.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_b504522a14.jpg&w=3840&q=75"],
+          "Cable Chain Bracelet": ["/shop/gold/bracelet-chains/cable-chain-bracelet", "Gold", "0.98g", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F1_93302ca1da.png&w=3840&q=75", "/_next/image?url=https%3A%2F%2Fmedia.7879.co%2Fcontent%2F2_86477_pga_7879_20th_21st_Sept_20211966_V2_g_b504522a14.jpg&w=3840&q=75"],
         },
       },
       //////////////////////////////////////////////////////////////////////
@@ -1002,7 +1013,7 @@ let startPdp = setInterval(() => {
             color: transparent;
             transition-timing-function: cubic-bezier(.4,0,.2,1);
             transition-duration: .2s;
-            transition-property: color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;
+            transition-property: all;
             object-fit: cover;
         }
         img.img_hover{
@@ -1011,13 +1022,70 @@ let startPdp = setInterval(() => {
         .pair_it_with_item:hover img.img_hover{
             opacity: 1;
             --tw-scale-x: 1.05;
-    --tw-scale-y: 1.05;
-    transform: translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+            --tw-scale-y: 1.05;
+            transform: translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
         }
         .pair_it_with_item:hover .img_full{
             opacity: 0;
         }
+        .pair_it_with_item:hover .pair_it_with_link_title,
+        .pair_it_with_item:hover .pair_it_with_link_txt{
+          text-decoration:underline;
+        }
         @media (max-width: 768px) {
+          .pair_it_with_block{
+            padding: 0 0 40px;
+            margin-right: -11px;
+          }
+          .pair_it_with_title{
+            font-size: 24px;
+            line-height: 32px;
+            margin-bottom: 12px;
+          }
+          .pair_it_with_subtitle{
+            margin-bottom: 10px;
+          }
+          .pair_it_with_link_title{
+            font-size: 11px;
+          }
+          .pair_it_with_link_txt span{
+            font-size: 12px;
+          }
+          .pair_it_with_list{
+            display: block;
+          }
+          .pair_it_with_block .slick-initialized .slick-slide > div{
+                margin: 0 16px 0 0;
+            }
+            .pair_it_with_block .slick-dots{
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin-top: 20px;
+            }
+            .pair_it_with_block .slick-dots li{
+   
+            }
+               .pair_it_with_block .slick-dots li button {
+              font-size: 0;
+              line-height: 0;
+              display: block;
+              width: 8px;
+              height: 8px;
+              cursor: pointer;
+              color: transparent;
+              border: 0;
+              outline: none;
+              background: #D9D9D9;
+              border-radius: 50%;
+              border: none;
+              margin: 0 4px;
+            }
+            .pair_it_with_block .slick-dots li.slick-active button {
+              background: #000;;
+               width: 10px;
+              height: 10px;
+            }
             .bg-platinum-1 .layout-container{
                 padding: 0;
             }
@@ -1139,6 +1207,10 @@ let startPdp = setInterval(() => {
             }
             .new_btn_add_to_basket{
                 margin: 16px 0 12px;
+                width: 100%;
+            }
+            .new_return_wrapper .new_btn_add_to_basket{
+              margin-top: 0;
             }
             .new_btn_add_to_basket button{
                 color: #FFF;
@@ -1151,6 +1223,10 @@ let startPdp = setInterval(() => {
                 width: 100%;
                 height: 44px;
                 background: #000;
+            }
+             .new_btn_add_to_basket button > div,
+            .new_btn_add_to_basket button > div > div{
+              height: 100%;
             }
             .new_btn_add_to_basket button > div >.absolute{
                 background: #000;
@@ -1326,6 +1402,12 @@ let startPdp = setInterval(() => {
             transform: translateY(100%);
             transition: all 0.8s ease 0s;
            }
+           .bg-rose-24.my-2{
+            margin-top: 16px;
+           }
+           .popup_txt_wrap p br{
+            display: none;
+           }
         }
     </style>
     `;
@@ -1364,86 +1446,6 @@ let startPdp = setInterval(() => {
         <div class="stability_box">
             <h3 class="stability_title">Invest in the stability of platinum and gold</h3>
             <p class="stability_txt">Our jewellery uses investment grade 24k gold and pure platinum. This gives it a value that appreciates over time, and can easily be tracked or exchanged for cash. Additionally, pure gold has a distinct warm glow that just makes it look more appealing.</p>
-        </div>
-    `;
-    let newDetailsWrap = /*html */ `
-        <div class="new_details_bgr">
-            <ul class="new_details_wrap">
-                <li class="product_details_box">
-                    <h4 class="details_title">Product details</h4>
-                    <ul class="trustmessaging_list">
-                        <li>Hypoallergenic & anti-microbial</li>
-                        <li>Sustainable & ethically produced</li>
-                        <li>Hallmarked by assay</li>
-                        <li>Hand finished</li>
-                    </ul>
-                    <div class="care_inform_box">
-                    <h4 class="details_title">CARE INFORMATION</h4>
-                    <p>We believe the unique signature of marks your gold and platinum jewellery may pick up as you wear it adds character and tells a story.</p>
-                    <p><b>Don't worry, this superficial damage won’t affect the value of your investment.</b></p>
-                    </div>
-                </li>
-                <li class="specification_box">
-                    <h4 class="details_title">SPECIFICATION</h4>
-                </li>
-            </ul>
-        </div>
-    `;
-    let newDetailsWrapMob = /*html */ `
-        <div class="new_details_bgr">
-            <ul class="new_details_wrap">
-                <li class="product_details_box">
-                <div class="accardion_link_details">
-                    <h4 class="details_title">Product details</h4>
-                    <span>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.24914 15.451C5.58114 15.7829 6.11924 15.7829 6.45124 15.451L11.8501 10.0521L17.2492 15.451C17.5811 15.7829 18.1193 15.7829 18.4512 15.451C18.7832 15.119 18.7832 14.5809 18.4512 14.2489L12.4512 8.24896C12.1192 7.91696 11.5811 7.91696 11.2491 8.24896L5.24914 14.2489C4.91724 14.5809 4.91724 15.119 5.24914 15.451Z" fill="black"/>
-                        </svg>
-                    </span>
-                </div>
-                <div class="accardion_lists_details">
-                    <div class="product_details_html">
-                    <ul class="trustmessaging_list">
-                        <li>Hypoallergenic & Anti-microbial</li>
-                        <li>Sustainable & ethically produced</li>
-                        <li>Hallmarked by Assay</li>
-                        <li>Hand finished</li>
-                    </ul>
-                    </div>
-                </div>
-                </li>
-                <li class="specification_box">
-                <div class="accardion_link_details">
-                    <h4 class="details_title">PRODUCT SPECIFICATION</h4>
-                    <span>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.24914 15.451C5.58114 15.7829 6.11924 15.7829 6.45124 15.451L11.8501 10.0521L17.2492 15.451C17.5811 15.7829 18.1193 15.7829 18.4512 15.451C18.7832 15.119 18.7832 14.5809 18.4512 14.2489L12.4512 8.24896C12.1192 7.91696 11.5811 7.91696 11.2491 8.24896L5.24914 14.2489C4.91724 14.5809 4.91724 15.119 5.24914 15.451Z" fill="black"/>
-                        </svg>
-                    </span>
-                </div>
-                <div class="accardion_lists_details">
-                    <div class="specification_html">
-                    <span></span>
-                    </div>
-                </div>
-                </li>
-                <li class="care_inform_box">
-                <div class="accardion_link_details">
-                    <h4 class="details_title">CARE INFORMATION</h4>
-                    <span>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.24914 15.451C5.58114 15.7829 6.11924 15.7829 6.45124 15.451L11.8501 10.0521L17.2492 15.451C17.5811 15.7829 18.1193 15.7829 18.4512 15.451C18.7832 15.119 18.7832 14.5809 18.4512 14.2489L12.4512 8.24896C12.1192 7.91696 11.5811 7.91696 11.2491 8.24896L5.24914 14.2489C4.91724 14.5809 4.91724 15.119 5.24914 15.451Z" fill="black"/>
-                        </svg>
-                    </span>
-                </div>
-                <div class="accardion_lists_details">
-                    <div>
-                    <p>We believe the unique signature of marks your gold and platinum jewellery may pick up as you wear it adds character and tells a story.</p>
-                    <p><b>Don't worry, this superficial damage won’t affect the value of your investment.</b></p>
-                    </div>
-                </div>
-                </li>
-            </ul>
         </div>
     `;
     let advantagesBox = /*html */ `
@@ -1598,6 +1600,8 @@ let startPdp = setInterval(() => {
 
     renderHtml();
     changePopup();
+    changeMiniCard();
+    renderRecommendBlock();
 
     if (window.innerWidth > 768) {
       changePlaceExcellent();
@@ -1776,30 +1780,72 @@ let startPdp = setInterval(() => {
       }
 
       if (window.innerWidth < 768) {
-        if (!document.querySelector(".new_btn_add_to_basket")) {
-          document.querySelector(".flex.flex-col.items-end").insertAdjacentHTML("afterend", `<div class="new_btn_add_to_basket"></div>`);
+        if (!document.querySelector(".layout-container.p-none.py-10 .new_btn_add_to_basket")) {
+          document.querySelectorAll(".layout-container.p-none.py-10 .mb-1.flex.items-center.justify-center").forEach((el) => {
+            console.log(el, `GGGGGGGGGGGGGGGGG`);
+            el.insertAdjacentHTML("beforebegin", `<div class="new_btn_add_to_basket"></div>`);
+          });
         }
 
-        if (document.querySelector(".new_btn_add_to_basket")) {
-          if (!document.querySelector(".new_btn_add_to_basket button")) {
+        if (!document.querySelector(".layout-container.bg-platinum-1 .new_btn_add_to_basket")) {
+          document.querySelectorAll(".layout-container.bg-platinum-1 .mb-1.flex.items-center.justify-center").forEach((el) => {
+            console.log(el, `PPPPPPPPPPPP`);
+            el.insertAdjacentHTML("beforebegin", `<div class="new_btn_add_to_basket"></div>`);
+          });
+        }
+
+        if (document.querySelector(".layout-container.bg-platinum-1 .new_btn_add_to_basket")) {
+          if (!document.querySelector(".layout-container.bg-platinum-1 .new_btn_add_to_basket button")) {
             let newBtn = document.querySelector("#add-cart-button-fixed button").cloneNode(true);
-            document.querySelector(".new_btn_add_to_basket").appendChild(newBtn);
-            document.querySelector(".new_btn_add_to_basket button").addEventListener("click", () => {
-              if (!document.querySelector(".new_btn_add_to_basket button > div >.absolute")) {
-                document.querySelector(".new_btn_add_to_basket button > div").insertAdjacentHTML(
-                  "afterbegin",
-                  `<div class="absolute inset-0 flex items-center justify-center">
+            document.querySelectorAll(".layout-container.bg-platinum-1 .new_btn_add_to_basket").forEach((el) => {
+              el.appendChild(newBtn);
+            });
+            document.querySelectorAll(".layout-container.bg-platinum-1 .new_btn_add_to_basket button").forEach((i) => {
+              i.addEventListener("click", () => {
+                if (!document.querySelector(".layout-container.bg-platinum-1 .new_btn_add_to_basket button > div >.absolute")) {
+                  document.querySelector(".layout-container.bg-platinum-1 .new_btn_add_to_basket button > div").insertAdjacentHTML(
+                    "afterbegin",
+                    `<div class="absolute inset-0 flex items-center justify-center">
                   <svg viewBox="0 0 66 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-15 animate-spin stroke-current text-white">
                     <circle opacity="0.24" cx="33" cy="24" r="12" stroke-width="3"></circle>
                     <path d="M21 24C21 30.6274 26.3726 36 33 36C39.6274 36 45 30.6274 45 24C45 17.3726 39.6274 12 33 12" stroke-width="3"></path>
                   </svg>
                 </div>`
-                );
-              }
-              document.querySelector("#add-cart-button-fixed button")?.click();
-              setTimeout(() => {
-                document.querySelector(".new_btn_add_to_basket button > div >.absolute")?.remove();
-              }, 500);
+                  );
+                }
+                document.querySelector("#add-cart-button-fixed button")?.click();
+                setTimeout(() => {
+                  document.querySelector(".layout-container.bg-platinum-1 .new_btn_add_to_basket button > div >.absolute")?.remove();
+                }, 500);
+              });
+            });
+          }
+        }
+
+        if (document.querySelector(".layout-container.p-none.py-10 .new_btn_add_to_basket")) {
+          if (!document.querySelector(".layout-container.p-none.py-10 .new_btn_add_to_basket button")) {
+            let newBtn = document.querySelector("#add-cart-button-fixed button").cloneNode(true);
+            document.querySelectorAll(".layout-container.p-none.py-10 .new_btn_add_to_basket").forEach((el) => {
+              el.appendChild(newBtn);
+            });
+            document.querySelectorAll(".layout-container.p-none.py-10 .new_btn_add_to_basket button").forEach((i) => {
+              i.addEventListener("click", () => {
+                if (!document.querySelector(".layout-container.p-none.py-10 .new_btn_add_to_basket button > div >.absolute")) {
+                  document.querySelector(".layout-container.p-none.py-10 .new_btn_add_to_basket button > div").insertAdjacentHTML(
+                    "afterbegin",
+                    `<div class="absolute inset-0 flex items-center justify-center">
+                  <svg viewBox="0 0 66 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-15 animate-spin stroke-current text-white">
+                    <circle opacity="0.24" cx="33" cy="24" r="12" stroke-width="3"></circle>
+                    <path d="M21 24C21 30.6274 26.3726 36 33 36C39.6274 36 45 30.6274 45 24C45 17.3726 39.6274 12 33 12" stroke-width="3"></path>
+                  </svg>
+                </div>`
+                  );
+                }
+                document.querySelector("#add-cart-button-fixed button")?.click();
+                setTimeout(() => {
+                  document.querySelector(".layout-container.p-none.py-10 .new_btn_add_to_basket button > div >.absolute")?.remove();
+                }, 500);
+              });
             });
           }
         }
@@ -1822,8 +1868,6 @@ let startPdp = setInterval(() => {
       }
     }
 
-    changeMiniCard();
-    renderRecommendBlock();
     function changeMiniCard() {
       let findMiniCard = setInterval(() => {
         if (document.querySelector(".layout-container.p-none.py-10")) {
@@ -1945,20 +1989,37 @@ let startPdp = setInterval(() => {
       if (!document.querySelector(".pair_it_with_block")) {
         for (let key in arrProduct) {
           if (window.location.pathname === key) {
-            document.querySelector(".max-w-screen-xl").insertAdjacentHTML(
-              "afterbegin",
-              `<div class="pair_it_with_block">
-                          <h2 class="pair_it_with_title">Pair it with</h2>
-                          <div class="necklaces_box">
-                              <h3 class="pair_it_with_subtitle">Necklaces</h3>
-                              <ul class="pair_it_with_list"></ul>
-                          </div>
-                          <div class="bracelets_box">
-                              <h3 class="pair_it_with_subtitle">Bracelets</h3>
-                              <ul class="pair_it_with_list"></ul>
-                          </div>
-                      </div>`
-            );
+            if (window.innerWidth > 768) {
+              document.querySelector(".max-w-screen-xl")?.insertAdjacentHTML(
+                "afterbegin",
+                `<div class="pair_it_with_block">
+                            <h2 class="pair_it_with_title">Pair it with</h2>
+                            <div class="necklaces_box">
+                                <h3 class="pair_it_with_subtitle">Necklaces</h3>
+                                <ul class="pair_it_with_list"></ul>
+                            </div>
+                            <div class="bracelets_box">
+                                <h3 class="pair_it_with_subtitle">Bracelets</h3>
+                                <ul class="pair_it_with_list"></ul>
+                            </div>
+                        </div>`
+              );
+            } else {
+              document.querySelector(".mb-12.px-4")?.insertAdjacentHTML(
+                "afterbegin",
+                `<div class="pair_it_with_block">
+                            <h2 class="pair_it_with_title">Pair it with</h2>
+                            <div class="necklaces_box">
+                                <h3 class="pair_it_with_subtitle">Necklaces</h3>
+                                <ul class="pair_it_with_list"></ul>
+                            </div>
+                            <div class="bracelets_box">
+                                <h3 class="pair_it_with_subtitle">Bracelets</h3>
+                                <ul class="pair_it_with_list"></ul>
+                            </div>
+                        </div>`
+              );
+            }
           }
         }
         let findBlockRecommend = setInterval(() => {
@@ -1981,6 +2042,23 @@ let startPdp = setInterval(() => {
                 }
               }
             }
+
+            let slickInterval = setInterval(() => {
+              if (typeof jQuery(".pair_it_with_list").slick === "function" && document.querySelector(".pair_it_with_list")) {
+                clearInterval(slickInterval);
+
+                //  slider
+                let slider = jQuery(".pair_it_with_list").slick({
+                  slidesToShow: 2,
+                  slidesToScroll: 1,
+                  arrows: false,
+                  dots: true,
+                  adaptiveHeight: true,
+                  infinite: true,
+                });
+                slider.on("swipe", function () {});
+              }
+            }, 300);
           }
         }, 100);
 
@@ -2003,37 +2081,45 @@ let startPdp = setInterval(() => {
 
     if (window.innerWidth <= 768) {
       window.addEventListener("scroll", () => {
-        if (typeof $ === "function" && document.querySelector(".new_btn_add_to_basket")) {
-          clearInterval(visabInt);
+        if ((typeof $ === "function" && document.querySelector(".layout-container.bg-platinum-1 .new_btn_add_to_basket")) || document.querySelector(".layout-container.p-none.py-10 .new_btn_add_to_basket")) {
           visabBtnSticky();
         }
       });
 
       let visabInt = setInterval(() => {
-        if (typeof $ === "function" && document.querySelector(".new_btn_add_to_basket")) {
+        if ((typeof $ === "function" && document.querySelector(".layout-container.bg-platinum-1 .new_btn_add_to_basket")) || document.querySelector(".layout-container.p-none.py-10 .new_btn_add_to_basket")) {
           clearInterval(visabInt);
           visabBtnSticky();
         }
       }, 100);
 
       function visabBtnSticky() {
-        let top = $(".new_btn_add_to_basket")?.offset().top,
-          sctop = $(this).scrollTop(),
-          winh = $(this).height(),
-          y = top - sctop - winh;
-        if (y > 0 || -y > winh) {
-          console.log(` Не Видим`);
-          if (!document.querySelector("#add-cart-button-fixed").classList.contains("fixed")) {
-            document.querySelector("#add-cart-button-fixed").classList.add("fixed");
-            document.querySelector("#add-cart-button-fixed").style.display = "block";
+        let visabF = setInterval(() => {
+          if (typeof $ === "function") {
+            clearInterval(visabF);
+
+            document.querySelectorAll(".new_btn_add_to_basket").forEach((b) => {
+              let top = b.offsetTop,
+                sctop = $(this).scrollTop(),
+                winh = $(this).height(),
+                y = top - sctop - winh;
+
+              if (y > 0 || -y > winh) {
+                // console.log(` Не Видим`);
+                if (!document.querySelector("#add-cart-button-fixed").classList.contains("fixed")) {
+                  document.querySelector("#add-cart-button-fixed").classList.add("fixed");
+                  document.querySelector("#add-cart-button-fixed").style.display = "block";
+                }
+              } else {
+                // console.log("Видим");
+                if (document.querySelector("#add-cart-button-fixed").classList.contains("fixed")) {
+                  document.querySelector("#add-cart-button-fixed").classList.remove("fixed");
+                  document.querySelector("#add-cart-button-fixed").style.display = "none";
+                }
+              }
+            });
           }
-        } else {
-          console.log("Видим");
-          if (document.querySelector("#add-cart-button-fixed").classList.contains("fixed")) {
-            document.querySelector("#add-cart-button-fixed").classList.remove("fixed");
-            document.querySelector("#add-cart-button-fixed").style.display = "none";
-          }
-        }
+        }, 100);
       }
     }
 
