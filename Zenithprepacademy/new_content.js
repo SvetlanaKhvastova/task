@@ -1,6 +1,31 @@
 let newContent = setInterval(() => {
   if (document.querySelector(".timeline")) {
     clearInterval(newContent);
+
+    function pushDataLayer(nameDataLayer, deskDataLayer, typeDataLayer, actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || [];
+      if (labelDataLayer) {
+        console.log(nameDataLayer + " " + deskDataLayer + typeDataLayer + actionDataLayer + " : " + labelDataLayer);
+        dataLayer.push({
+          event: "event-to-ga4",
+          event_name: `${nameDataLayer}`,
+          event_desc: `${deskDataLayer}`,
+          event_type: `${typeDataLayer}`,
+          event_loc: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        });
+      } else {
+        console.log(nameDataLayer + " " + deskDataLayer + " " + typeDataLayer + " " + actionDataLayer);
+        dataLayer.push({
+          event: "event-to-ga4",
+          event_name: `${nameDataLayer}`,
+          event_desc: `${deskDataLayer}`,
+          event_type: `${typeDataLayer}`,
+          event_loc: `${actionDataLayer}`,
+        });
+      }
+    }
+
     let styleVar = /*html */ `
     <style>
         .sub_title_var{
@@ -203,7 +228,7 @@ let newContent = setInterval(() => {
         `<p>Children may be unaware of their passions and interests, or even lack the ability to recognize them. Identifying a child's interests and helping them nurture those interests helps build self-esteem, expands their knowledge base, and develops an area of natural aptitude or talent in which they can excel.</p>
         <p>The Zenith Prep Academy counseling program is specifically designed to help 6th-12th graders figure out their purpose, find their hidden strengths, and make use of their interests and passions in ways that will make them highly desirable to top universities.</p>
         <p>This is especially useful if you're inexperienced with the U.S. college system. Elsewhere in the world, it's the students with the highest test scores that gain admission to the best universities. In the U.S., however, there are multiple academic and non-academic factors that need to be carefully cultivated for success.</p>
-        <p><b>To learn more about our counseling program, please click the button below to request a free 45-minute consultation with one of our experienced counselors in our Admissions Counseling Department that collectively have spent over 67+ years of their careers in education.</b></p>
+        <p data-assistance="1"><b>To learn more about our counseling program, please click the button below to request a free 45-minute consultation with one of our experienced counselors in our Admissions Counseling Department that collectively have spent over 67+ years of their careers in education.</b></p>
         `,
       ],
       2: [
@@ -211,7 +236,7 @@ let newContent = setInterval(() => {
         `<p>Every parent wants the best for their child. However, even if you have a student attending a hyper-competitive high school, there's no guarantee that they'll have an edge over all the other students competing for top university spots.</p>
         <p>Ultimately, strong test scores aren’t enough to secure a good college admission. Students who are serious about attending the best university possible need a mix between strong academics and strong extracurricular activities.</p>
         <p>Zenith systems are designed to help accelerate the pace at which your child achieves extracurricular milestones, so that they can build the kind of comprehensive profile that is most likely to gain them admissions to top universities.</p>
-        <p><b>To learn more about our counseling program, please click the button below to request a free 45-minute consultation with one of our experienced counselors in our Admissions Counseling Department that collectively have spent over 67+ years of their careers in education.</b></p>
+        <p data-assistance="2"><b>To learn more about our counseling program, please click the button below to request a free 45-minute consultation with one of our experienced counselors in our Admissions Counseling Department that collectively have spent over 67+ years of their careers in education.</b></p>
         `,
       ],
       3: [
@@ -219,7 +244,7 @@ let newContent = setInterval(() => {
         `<p>Some children may excel academically, but lack a clear sense of direction, so they need help navigating high school to pick the right extracurricular activities that universities actually care about and look for when deciding which students to accept.</p>
         <p>Tell us your college goals and we'll reverse-engineer the exact extracurricular roadmap your child will need to follow to make themselves the most attractive to their top choice universities.</p>
         <p>This will include identifying the necessary extracurricular milestones, as well as supporting their progress through our unique systems so that they can reach these milestones at an accelerated pace.</p>
-        <p><b>To learn more about our counseling program, please click the button below to request a free 45-minute consultation with one of our experienced counselors in our Admissions Counseling Department that collectively have spent over 67+ years of their careers in education.</b></p>
+        <p data-assistance="3"><b>To learn more about our counseling program, please click the button below to request a free 45-minute consultation with one of our experienced counselors in our Admissions Counseling Department that collectively have spent over 67+ years of their careers in education.</b></p>
         `,
       ],
       4: [
@@ -227,21 +252,21 @@ let newContent = setInterval(() => {
         `<p>Although it is important to do well in school, it is equally important to get involved in worthwhile activities beyond academics, such as strong extracurricular activities that will help a child stand out to the universities they're looking to attend.</p>
         <p>Our experience of over 15+ years allows us to take any family's college goal or situation, any student's strengths and weaknesses, and create a realistic, achievable, and enjoyable extracurricular plan that will help the child get into the best college possible.</p>
         <p>It doesn't matter if your child struggles with sports, prefers to work independently, or is highly selective about their fields of interests – we’ll find extracurriculars that your child can enjoy and stay motivated about, so that they can gain an edge over their peers and maximize their chances for admissions into top colleges.</p>
-        <p><b>To learn more about our counseling program, please click the button below to request a free 45-minute consultation with one of our experienced counselors in our Admissions Counseling Department that collectively have spent over 67+ years of their careers in education.</b></p>
+        <p data-assistance="4"><b>To learn more about our counseling program, please click the button below to request a free 45-minute consultation with one of our experienced counselors in our Admissions Counseling Department that collectively have spent over 67+ years of their careers in education.</b></p>
         `,
       ],
       5: [
         "Need someone to guide my child through the process, end-to-end",
         `<p>Having someone to guide you and your child through the college admission process in the US is important for several reasons. First, college admissions in the US can be highly competitive and complicated. An expert can help you understand the requirements and techniques associated with a successful application. They can also provide valuable insight on how to pick and excel in the extracurricular activities that matter most in high school and improve your child's chances of being admitted into their desired universities and much more.</p>
         <p>Since 2007, our college counseling team comprised of Ivy League graduates, ex-admissions officers, and college admissions experts have collectively spent over 100,000+ hours specializing in working with 6th-12th graders and helping them get into top universities over the past 15+ years. What that means is that we're in a very unique position to offer your child and family end-to-end support in their college admissions journey. Whether that involves supporting them from an academic standpoint, guiding them to achieve extracurricular milestones, or helping them secure prestigious internships/programs, our unique process is designed to guide students from beginning to end. With us by your side, your child can just focus on taking the steps, while we provide the plan.</p>
-        <p><b>To learn more about our counseling program, please click the button below to request a free 45-minute consultation with one of our experienced counselors in our Admissions Counseling Department that collectively have spent over 67+ years of their careers in education.</b></p>
+        <p data-assistance="5"><b>To learn more about our counseling program, please click the button below to request a free 45-minute consultation with one of our experienced counselors in our Admissions Counseling Department that collectively have spent over 67+ years of their careers in education.</b></p>
         `,
       ],
       6: [
         "Unfamiliar with the U.S college admission process and need help",
         `<p>When you're aiming for a top college, the most valuable resource you have is time. With time on your side, your child can get the right grades, the right extracurriculars, and the right internships to maximize their chances. However, figuring out the process that U.S. college admissions follow can be confusing, and making even a single mistake could waste years.</p>
         <p>That's why, if you're unfamiliar with the way the U.S. college admission process works, Zenith Prep Academy is specifically designed for you and your family so that you can have the confidence knowing you gave your child more opportunities than you've had. Without any more guesswork, stress, or misinformation.</p>
-        <p><b>To learn more about our counseling program, please click the button below to request a free 45-minute consultation with one of our experienced counselors in our Admissions Counseling Department that collectively have spent over 67+ years of their careers in education.</b></p>
+        <p data-assistance="6"><b>To learn more about our counseling program, please click the button below to request a free 45-minute consultation with one of our experienced counselors in our Admissions Counseling Department that collectively have spent over 67+ years of their careers in education.</b></p>
         `,
       ],
       7: [
@@ -252,14 +277,14 @@ let newContent = setInterval(() => {
         <p>Not wanting to repeat past mistakes with his younger son, who had just entered 9th grade, Manoj looked for an approach that would be fully optimized with a proven track record of success.</p>
         <p>He didn't want to waste his time. He simply wanted to learn what his child would need to do in order to gain admission to a top university.</p>
         <p>That's where we came in. We guided Manoj and his son throughout high school to develop the right profile with the extracurricular activities and internships/programs that matted most to his top choice universities so that when college decisions came out, they had multiple top universities to choose from to attend.</p>
-        <p><b>To learn more about our counseling program, please click the button below to request a free 45-minute consultation with one of our experienced counselors in our Admissions Counseling Department that collectively have spent over 67+ years of their careers in education.</b></p>
+        <p data-assistance="7"><b>To learn more about our counseling program, please click the button below to request a free 45-minute consultation with one of our experienced counselors in our Admissions Counseling Department that collectively have spent over 67+ years of their careers in education.</b></p>
         `,
       ],
     };
 
     function setList(title, text, count) {
       return `
-            <li class="accardion_block_assistance" data-assistance=${count}>
+            <li class="accardion_block_assistance" data-visib=${count}>
                 <div class="accardion_link_assistance">
                     <h3>${title}</h3>
                     <span><svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -269,7 +294,7 @@ let newContent = setInterval(() => {
                 <div class="accardion_lists_assistance">
                     <div>
                         ${text}
-                        <a target="_blank" class="schedule_new_btn" data-count="" rel="noopener noreferrer" href="https://webinar.zenithprepacademy.com/booking-page1666161342817">Schedule a Free call</a>
+                        <a data-number=${count} target="_blank" class="schedule_new_btn" data-count="" rel="noopener noreferrer" href="https://webinar.zenithprepacademy.com/booking-page1666161342817">Schedule a Free call</a>
                     </div>
                 </div>
             </li>
@@ -301,7 +326,7 @@ let newContent = setInterval(() => {
               <p>Schedule your free college planning session by choosing a day & time that works best for you based on the availabilities of our admissions counselors.</p>
             </div>
           </li>
-          <li>
+          <li class="path_to_success_visib">
             <span class="count_step">3</span>
             <div class="descr_step">
               <span>Step three: 3.02 - 8.02</span>
@@ -335,7 +360,13 @@ let newContent = setInterval(() => {
           $(".accardion_link_assistance").not(this).removeClass("active_block");
           $(".accardion_link_assistance").not(this).closest("li").removeClass("active_block");
         }
-        console.log(this.closest("li"));
+        // console.log(this.closest("li"));
+        let w = e.currentTarget.querySelector("h3").textContent.split(" ");
+        if (e.currentTarget.classList.contains("active_block")) {
+          pushDataLayer("exp_new_content_what_type_open", `Open - ${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Text area", "What type of college admissions assistance does your child require?");
+        } else {
+          pushDataLayer("exp_new_content_what_type_close", `Close - ${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Text area", "What type of college admissions assistance does your child require?");
+        }
 
         const headerOffset = 10;
         const elementPosition = this.getBoundingClientRect().top;
@@ -346,5 +377,233 @@ let newContent = setInterval(() => {
         });
       });
     }
+
+    document.querySelector("#tmp_button-21100-126-148 > a")?.addEventListener("click", () => {
+      let maxScrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      let currentScrollHeight = window.pageYOffset.toFixed(0);
+
+      if (window.innerWidth <= 768) {
+        pushDataLayer("exp_new_content_schedule_sticky", `Schedule A Free College Planning Session Now  - ${((currentScrollHeight / maxScrollHeight) * 100).toFixed(0)}%`, "Button", "Sticky");
+      } else {
+        pushDataLayer("exp_new_content_schedule_u", "Schedule A Free College Planning Session Now", "Button", "Under video");
+      }
+    });
+
+    document.querySelectorAll(".schedule_new_btn").forEach((el) => {
+      el.addEventListener("click", (e) => {
+        if (e.currentTarget.getAttribute("data-number")) {
+          pushDataLayer("exp_new_content_schedule _ia", `Schedule a Free call - ${e.currentTarget.getAttribute("data-number")}`, "Button", "Incide accardion");
+        } else {
+          pushDataLayer("exp_new_content_schedule _cpsn", "Schedule a Free College Planning Session Now", "Button", "The process outlined");
+        }
+      });
+    });
+
+    visibElem();
+    //visibility elem
+    function visibElem() {
+      let obsV = new IntersectionObserver(visibilityV, {
+        threshold: 1,
+      });
+
+      let obsV2 = new IntersectionObserver(visibilityV2, {
+        threshold: 1,
+      });
+
+      let timeV = 5000;
+
+      let intV2 = setInterval(() => {
+        if (document.querySelector(".path_to_success_visib")) {
+          clearInterval(intV2);
+          obsV.observe(document.querySelector(".path_to_success_visib"));
+        }
+      }, 100);
+      let intV3 = setInterval(() => {
+        if (document.querySelector(".accardion_assistance li[data-visib='1']")) {
+          clearInterval(intV3);
+          timeV = 2000;
+          obsV.observe(document.querySelector(".accardion_assistance li[data-visib='1']"));
+        }
+      }, 100);
+      let intV4 = setInterval(() => {
+        if (document.querySelector(".accardion_assistance li[data-visib='2']")) {
+          clearInterval(intV4);
+          timeV = 2000;
+          obsV.observe(document.querySelector(".accardion_assistance li[data-visib='2']"));
+        }
+      }, 100);
+      let intV5 = setInterval(() => {
+        if (document.querySelector(".accardion_assistance li[data-visib='3']")) {
+          clearInterval(intV5);
+          timeV = 2000;
+          obsV.observe(document.querySelector(".accardion_assistance li[data-visib='3']"));
+        }
+      }, 100);
+      let intV6 = setInterval(() => {
+        if (document.querySelector(".accardion_assistance li[data-visib='4']")) {
+          clearInterval(intV6);
+          timeV = 2000;
+          obsV.observe(document.querySelector(".accardion_assistance li[data-visib='4']"));
+        }
+      }, 100);
+      let intV7 = setInterval(() => {
+        if (document.querySelector(".accardion_assistance li[data-visib='5']")) {
+          clearInterval(intV7);
+          timeV = 2000;
+          obsV.observe(document.querySelector(".accardion_assistance li[data-visib='5']"));
+        }
+      }, 100);
+      let intV8 = setInterval(() => {
+        if (document.querySelector(".accardion_assistance li[data-visib='6']")) {
+          clearInterval(intV8);
+          timeV = 2000;
+          obsV.observe(document.querySelector(".accardion_assistance li[data-visib='6']"));
+        }
+      }, 100);
+      let intV9 = setInterval(() => {
+        if (document.querySelector(".accardion_assistance li[data-visib='7']")) {
+          clearInterval(intV9);
+          timeV = 2000;
+          obsV.observe(document.querySelector(".accardion_assistance li[data-visib='7']"));
+        }
+      }, 100);
+
+      let intV10 = setInterval(() => {
+        if (document.querySelector(".accardion_assistance [data-assistance='1']")) {
+          clearInterval(intV10);
+          timeV = 5000;
+          obsV.observe(document.querySelector(".accardion_assistance [data-assistance='1']"));
+        }
+      }, 100);
+      let intV11 = setInterval(() => {
+        if (document.querySelector(".accardion_assistance [data-assistance='2']")) {
+          clearInterval(intV11);
+          timeV = 5000;
+          obsV.observe(document.querySelector(".accardion_assistance [data-assistance='2']"));
+        }
+      }, 100);
+      let intV12 = setInterval(() => {
+        if (document.querySelector(".accardion_assistance [data-assistance='3']")) {
+          clearInterval(intV12);
+          timeV = 5000;
+          obsV.observe(document.querySelector(".accardion_assistance [data-assistance='3']"));
+        }
+      }, 100);
+      let intV13 = setInterval(() => {
+        if (document.querySelector(".accardion_assistance [data-assistance='4']")) {
+          clearInterval(intV13);
+          timeV = 5000;
+          obsV.observe(document.querySelector(".accardion_assistance [data-assistance='4']"));
+        }
+      }, 100);
+      let intV14 = setInterval(() => {
+        if (document.querySelector(".accardion_assistance [data-assistance='5']")) {
+          clearInterval(intV14);
+          timeV = 5000;
+          obsV.observe(document.querySelector(".accardion_assistance [data-assistance='5']"));
+        }
+      }, 100);
+      let intV15 = setInterval(() => {
+        if (document.querySelector(".accardion_assistance [data-assistance='6']")) {
+          clearInterval(intV15);
+          timeV = 5000;
+          obsV.observe(document.querySelector(".accardion_assistance [data-assistance='6']"));
+        }
+      }, 100);
+      let intV16 = setInterval(() => {
+        if (document.querySelector(".accardion_assistance [data-assistance='7']")) {
+          clearInterval(intV16);
+          timeV = 5000;
+          obsV.observe(document.querySelector(".accardion_assistance [data-assistance='7']"));
+        }
+      }, 100);
+
+      function visibilityV(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            setTimeout(function () {
+              obsV2.observe(i.target);
+            }, timeV);
+          }
+        });
+      }
+      function visibilityV2(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            if (i.target.getAttribute("data-visib") === "1") {
+              let w = i.target.querySelector("h3").textContent.split(" ");
+              pushDataLayer("exp_new_content_what_type_vis", `${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Visibility", "What type of college admissions assistance does your child require?");
+            }
+            if (i.target.getAttribute("data-visib") === "2") {
+              let w = i.target.querySelector("h3").textContent.split(" ");
+              pushDataLayer("exp_new_content_what_type_vis", `${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Visibility", "What type of college admissions assistance does your child require?");
+            }
+            if (i.target.getAttribute("data-visib") === "3") {
+              let w = i.target.querySelector("h3").textContent.split(" ");
+              pushDataLayer("exp_new_content_what_type_vis", `${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Visibility", "What type of college admissions assistance does your child require?");
+            }
+            if (i.target.getAttribute("data-visib") === "4") {
+              let w = i.target.querySelector("h3").textContent.split(" ");
+              pushDataLayer("exp_new_content_what_type_vis", `${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Visibility", "What type of college admissions assistance does your child require?");
+            }
+            if (i.target.getAttribute("data-visib") === "5") {
+              let w = i.target.querySelector("h3").textContent.split(" ");
+              pushDataLayer("exp_new_content_what_type_vis", `${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Visibility", "What type of college admissions assistance does your child require?");
+            }
+            if (i.target.getAttribute("data-visib") === "6") {
+              let w = i.target.querySelector("h3").textContent.split(" ");
+              pushDataLayer("exp_new_content_what_type_vis", `${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Visibility", "What type of college admissions assistance does your child require?");
+            }
+            if (i.target.getAttribute("data-visib") === "7") {
+              let w = i.target.querySelector("h3").textContent.split(" ");
+              pushDataLayer("exp_new_content_what_type_vis", `${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Visibility", "What type of college admissions assistance does your child require?");
+            }
+
+            if (i.target.getAttribute("data-assistance") === "1") {
+              let w = i.target.closest(".accardion_block_assistance").querySelector("h3").textContent.split(" ");
+              pushDataLayer("exp_new_content_open_format", `${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Visibility", "What type of college admissions assistance does your child require?");
+            }
+            if (i.target.getAttribute("data-assistance") === "2") {
+              let w = i.target.closest(".accardion_block_assistance").querySelector("h3").textContent.split(" ");
+              pushDataLayer("exp_new_content_open_format", `${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Visibility", "What type of college admissions assistance does your child require?");
+            }
+            if (i.target.getAttribute("data-assistance") === "3") {
+              let w = i.target.closest(".accardion_block_assistance").querySelector("h3").textContent.split(" ");
+              pushDataLayer("exp_new_content_open_format", `${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Visibility", "What type of college admissions assistance does your child require?");
+            }
+            if (i.target.getAttribute("data-assistance") === "4") {
+              let w = i.target.closest(".accardion_block_assistance").querySelector("h3").textContent.split(" ");
+              pushDataLayer("exp_new_content_open_format", `${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Visibility", "What type of college admissions assistance does your child require?");
+            }
+            if (i.target.getAttribute("data-assistance") === "5") {
+              let w = i.target.closest(".accardion_block_assistance").querySelector("h3").textContent.split(" ");
+              pushDataLayer("exp_new_content_open_format", `${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Visibility", "What type of college admissions assistance does your child require?");
+            }
+            if (i.target.getAttribute("data-assistance") === "6") {
+              let w = i.target.closest(".accardion_block_assistance").querySelector("h3").textContent.split(" ");
+              pushDataLayer("exp_new_content_open_format", `${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Visibility", "What type of college admissions assistance does your child require?");
+            }
+            if (i.target.getAttribute("data-assistance") === "7") {
+              let w = i.target.closest(".accardion_block_assistance").querySelector("h3").textContent.split(" ");
+              pushDataLayer("exp_new_content_open_format", `${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Visibility", "What type of college admissions assistance does your child require?");
+            }
+
+            if (i.target.classList.contains("path_to_success_visib")) {
+              pushDataLayer("exp_new_content_your_student_vis", "Steps", "Visibility", "Your Student's Path to Success (The process outlined)");
+            }
+
+            obsV.unobserve(i.target);
+          }
+          obsV2.unobserve(i.target);
+        });
+      }
+    }
+
+    const record = setInterval(() => {
+      if (typeof clarity === "function") {
+        clearInterval(record);
+        clarity("set", "new_content", "variant_1");
+      }
+    }, 200);
   }
 }, 400);

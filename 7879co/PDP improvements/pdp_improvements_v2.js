@@ -272,7 +272,7 @@ let startPdp = setInterval(() => {
       opacity: 1;
       background: rgba(0, 0, 0, 0.3);
       transition: all 0.5s ease 0s;
-      z-index: 9005;
+      z-index: 2200000000;
       display: block;
       max-height: 100%;
     }
@@ -1065,19 +1065,6 @@ let startPdp = setInterval(() => {
     img.img_hover {
       opacity: 0;
     }
-    .pair_it_with_item:hover img.img_hover {
-      opacity: 1;
-      --tw-scale-x: 1.05;
-      --tw-scale-y: 1.05;
-      transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-    }
-    .pair_it_with_item:hover .img_full {
-      opacity: 0;
-    }
-    .pair_it_with_item:hover .pair_it_with_link_title,
-    .pair_it_with_item:hover .pair_it_with_link_txt {
-      text-decoration: underline;
-    }
     .layout-container.p-none.py-10 .mt-2.mb-4.flex.items-end.justify-between.gap-4::before {
       content: "Excellent";
       position: absolute;
@@ -1090,8 +1077,23 @@ let startPdp = setInterval(() => {
       text-transform: capitalize;
       z-index: 1;
     }
-            .h-6.items-center.gap-4{
+      .h-6.items-center.gap-4{
         gap: 1rem;
+      }
+      @media (min-width: 768px) {
+        .pair_it_with_item:hover img.img_hover {
+          opacity: 1;
+          --tw-scale-x: 1.05;
+          --tw-scale-y: 1.05;
+          transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+        }
+        .pair_it_with_item:hover .img_full {
+          opacity: 0;
+        }
+        .pair_it_with_item:hover .pair_it_with_link_title,
+        .pair_it_with_item:hover .pair_it_with_link_txt {
+          text-decoration: underline;
+        }
       }
     @media (max-width: 768px) {
       .pair_it_with_block {
@@ -1203,6 +1205,7 @@ let startPdp = setInterval(() => {
       .stability_box .stability_title {
         font-size: 14px;
         line-height: 20px;
+        max-width: 304px;
       }
       #add-cart-button-fixed button {
         height: 44px;
@@ -1462,7 +1465,8 @@ let startPdp = setInterval(() => {
       .title_review {
         font-size: 24px;
         line-height: 32px;
-        margin: 0;
+        margin: 0 auto;
+        max-width: 320px;
       }
       #TrustpilotReviewSection {
         padding: 24px 1rem;
@@ -1542,6 +1546,12 @@ let startPdp = setInterval(() => {
         font-size: 11px !important;
       }
     }
+    @media (min-width: 1441px) {
+      .layout-container .col-span-full:nth-child(2){
+        max-width: unset;
+        margin-left: 1rem;
+      }
+    }
   </style>
   `;
 
@@ -1578,7 +1588,7 @@ let startPdp = setInterval(() => {
     let stabilityBox = /*html */ `
       <div class="stability_box">
           <h3 class="stability_title">Invest in the stability of platinum and gold</h3>
-          <p class="stability_txt">Our jewellery uses investment grade 24k gold and pure platinum. This gives it a value that appreciates over time, and can easily be tracked or exchanged for cash. Additionally, pure gold has a distinct warm glow that just makes it look more appealing.</p>
+          <p class="stability_txt">Our jewellery uses investment grade 24k gold and pure platinum only. This gives it a value that appreciates over time, and can easily be tracked or exchanged for cash using your 7879 portfolio.I have removed the final sentence.</p>
       </div>
   `;
     let advantagesBox = /*html */ `
@@ -1816,7 +1826,7 @@ let startPdp = setInterval(() => {
             document.querySelector(".overlay_popup .content_popup")?.insertAdjacentHTML("beforeend", txt);
           }
           if (document.querySelector(".txt_made_from")) {
-            document.querySelector(".txt_made_from").textContent = document.querySelector(".layout-container .p-2 .tracking-widest").textContent;
+            document.querySelector(".txt_made_from").textContent = document.querySelector(".layout-container .p-2 .tracking-widest")?.textContent;
           }
         }
         function calcScroll() {
@@ -1850,7 +1860,7 @@ let startPdp = setInterval(() => {
       if (document.querySelector(".layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button > div > div") && document.querySelector(".layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button > div > div")?.textContent !== "ADD TO BASKET") {
         document.querySelector(".layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button > div > div").textContent = "ADD TO BASKET";
       }
-      if (document.querySelector(".layout-container.p-none.py-10 button[data-testid='add-to-bag'] > div > div") && document.querySelector(".layout-container.p-none.py-10 button[data-testid='add-to-bag'] > div > div").textContent !== "ADD TO BASKET") {
+      if (document.querySelector(".layout-container.p-none.py-10 button[data-testid='add-to-bag'] > div > div") && document.querySelector(".layout-container.p-none.py-10 button[data-testid='add-to-bag'] > div > div")?.textContent !== "ADD TO BASKET") {
         document.querySelector(".layout-container.p-none.py-10 button[data-testid='add-to-bag'] > div > div").textContent = "ADD TO BASKET";
       }
       if (!document.querySelector(".made_pure_wrap")) {
@@ -1919,8 +1929,8 @@ let startPdp = setInterval(() => {
         document.querySelector(".title_review")?.insertAdjacentHTML("beforebegin", comparisonTableBox);
       }
       if (document.querySelector(".comparison_table_bgr")) {
-        document.querySelector("#comparisonTable table td p.our_price").textContent = document.querySelector(".my-7.flex.items-center.justify-between h3.text-h3.font-semibold").textContent.split("*")[0];
-        document.querySelector("#comparisonTable table td p.street_price").textContent = document.querySelector("#right-view h4.text-h4:nth-child(2)").textContent.split("*")[0];
+        document.querySelector("#comparisonTable table td p.our_price").textContent = document.querySelector(".my-7.flex.items-center.justify-between h3.text-h3.font-semibold")?.textContent.split("*")[0];
+        document.querySelector("#comparisonTable table td p.street_price").textContent = document.querySelector("#right-view h4.text-h4:nth-child(2)")?.textContent.split("*")[0];
       }
       if (document.querySelector("#LP-General-General_Cta_Section") && document.querySelector("#LP-General-testimonial-grid") && !document.querySelector("#LP-General-testimonial-grid + #LP-General-General_Cta_Section")) {
         document.querySelector("#LP-General-testimonial-grid").closest(".relative").after(document.querySelector("#LP-General-General_Cta_Section"));
@@ -2030,7 +2040,7 @@ let startPdp = setInterval(() => {
         }
 
         if (document.querySelector(".sticky_wrap")) {
-          document.querySelector(".sticky_wrap .metal_txt").textContent = document.querySelectorAll('.my-3[role="radiogroup"] .gap-6 span.bg-black')[0].closest(".border-black").nextElementSibling?.textContent;
+          document.querySelector(".sticky_wrap .metal_txt").textContent = document.querySelectorAll('.my-3[role="radiogroup"] .gap-6 span.bg-black')[0]?.closest(".border-black").nextElementSibling?.textContent;
           document.querySelector(".sticky_wrap .size_txt").textContent = document.querySelectorAll(".mb-3.w-full button .text-p.truncate")[0]?.textContent.length == null ? document.querySelectorAll(".mb-3.w-full button .text-p.truncate")[0]?.textContent : `| ${document.querySelectorAll(".mb-3.w-full button .text-p.truncate")[0]?.textContent}`;
           document.querySelector(".sticky_wrap .our_price").textContent = document.querySelector(".my-7.flex.items-center.justify-between h3.text-h3.font-semibold")?.textContent.split("*")[0];
         }
@@ -2147,7 +2157,7 @@ let startPdp = setInterval(() => {
             }
 
             if (document.querySelector(".new_return_wrapper .px-4 p:nth-child(2)")?.textContent !== document.querySelector(".mb-1.flex.items-center.justify-center + .px-4 p:nth-child(2)")?.textContent) {
-              document.querySelector(".new_return_wrapper .px-4 p:nth-child(2)").textContent = document.querySelector(".mb-1.flex.items-center.justify-center + .px-4 p:nth-child(2)").textContent;
+              document.querySelector(".new_return_wrapper .px-4 p:nth-child(2)").textContent = document.querySelector(".mb-1.flex.items-center.justify-center + .px-4 p:nth-child(2)")?.textContent;
             }
           }
         }
@@ -2375,9 +2385,7 @@ let startPdp = setInterval(() => {
       document.querySelectorAll("button.ml-1.inline.flex-shrink-0.underline").forEach((el) => {
         el.addEventListener("click", (e) => {
           if (!e.target.getAttribute("data-test")) {
-            if (e.target.closest("bg-platinum-1 ")) {
-              pushDataLayer("exp_pdp_2_lifetame_warranty_learn_more2", "Lifetime warranty Learn more 2", "Link", "Product Information 2");
-            } else {
+            if (e.target.closest(".bg-platinum-1")) {
               pushDataLayer("exp_pdp_2_lifetame_warranty_learn_more2", "Lifetime warranty Learn more 2", "Link", "Product Information 2");
             }
           }
@@ -2457,6 +2465,12 @@ let startPdp = setInterval(() => {
           obsV.observe(document.querySelector(".popup_title.our_fees_are"));
         }
       }, 100);
+      let intV10 = setInterval(() => {
+        if (document.querySelector(".necklaces_box")) {
+          clearInterval(intV10);
+          obsV.observe(document.querySelector(".necklaces_box"));
+        }
+      }, 100);
 
       function visibilityV(entries) {
         entries.forEach((i) => {
@@ -2477,7 +2491,10 @@ let startPdp = setInterval(() => {
               pushDataLayer("exp_pdp_2_investment_in_the_stability", "Visibility section", "Element visibility", "Investment in the stability");
             }
             if (i.target.classList.contains("bracelets_box")) {
-              pushDataLayer("exp_pdp_2_pair_it_with_visibility", "Visibility section", "Element visibility", "Pair it with");
+              pushDataLayer("exp_pdp_2_pair_it_with_bracelets_visibility", "Visibility section", "Element visibility", "Pair it with");
+            }
+            if (i.target.classList.contains("necklaces_box")) {
+              pushDataLayer("exp_pdp_2_pair_it_with_necklaces_visibility", "Visibility section", "Element visibility", "Pair it with");
             }
             if (i.target.classList.contains("advantages_box_bgr")) {
               pushDataLayer("exp_pdp_2_transparent_portfol_sell_vis", "Visibility section", "Element visibility", "Transparent, portfolio, sell");
@@ -2489,7 +2506,7 @@ let startPdp = setInterval(() => {
               pushDataLayer("exp_pdp_2_headline_review_visibility", "Headline review", "Element visibility", "Review section");
             }
             if (i.target.getAttribute("id") === "caption-text-12") {
-              pushDataLayer("exp_pdp_2_", "Visibility section", "Element visibility", "See what Forbes thinks about 7879");
+              pushDataLayer("exp_pdp_2_forbs_visibility", "Visibility section", "Element visibility", "See what Forbes thinks about 7879");
             }
             if (i.target.classList.contains("txt_made_from")) {
               pushDataLayer("exp_pdp_2_made_pure_platinum_visibility", "Sidebar visibility", "Element visibility", "Made from pure platinum sidebar");
@@ -2515,3 +2532,11 @@ let startPdp = setInterval(() => {
     document.querySelector(".exp")?.remove();
   }
 }, 700);
+
+if (!window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$")) {
+  sessionStorage.setItem("loadPage", "ok");
+  if (window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$") && sessionStorage.getItem("loadPage")) {
+    sessionStorage.removeItem("loadPage");
+    window.location.reload();
+  }
+}
