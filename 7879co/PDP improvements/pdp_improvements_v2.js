@@ -618,6 +618,7 @@ let startPdp = setInterval(() => {
       height: 56px;
     }
     #add-cart-button-fixed button .text-p {
+      font-family: "Roobert TRIAL", sans-serif;
       color: #fff;
       font-size: 16px;
       font-weight: 500;
@@ -1068,7 +1069,7 @@ let startPdp = setInterval(() => {
     .layout-container.p-none.py-10 .mt-2.mb-4.flex.items-end.justify-between.gap-4::before {
       content: "Excellent";
       position: absolute;
-      top: -4px;
+      top: -3.5px;
       left: 0;
       color: #000;
       font-size: 20px;
@@ -1205,18 +1206,24 @@ let startPdp = setInterval(() => {
       .stability_box .stability_title {
         font-size: 14px;
         line-height: 20px;
-        max-width: 304px;
       }
       #add-cart-button-fixed button {
         height: 44px;
       }
-      #add-cart-button-fixed button + .my-5{
+      #add-cart-button-fixed button + div + .my-5{
         margin: 8px 0 0;
       }
       .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button + .my-5{
         margin: 16px 0 0;
       }
+      /*
+      #add-cart-button-fixed.absolute{
+        margin: 0;
+        box-shadow: 0px -2px 16px 0px rgba(0, 0, 0, 0.1);
+      }
+      */
       #add-cart-button-fixed {
+        position: fixed;
         display: block;
         opacity: 1;
         pointer-events: inherit;
@@ -1550,6 +1557,12 @@ let startPdp = setInterval(() => {
       .layout-container .col-span-full:nth-child(2){
         max-width: unset;
         margin-left: 1rem;
+      }
+      .stability_box .stability_txt{
+        max-width: unset;
+      }
+      .stability_box .stability_title{
+        max-width: unset;
       }
     }
   </style>
@@ -2160,6 +2173,15 @@ let startPdp = setInterval(() => {
               document.querySelector(".new_return_wrapper .px-4 p:nth-child(2)").textContent = document.querySelector(".mb-1.flex.items-center.justify-center + .px-4 p:nth-child(2)")?.textContent;
             }
           }
+
+          let findBtnCheckout = setInterval(() => {
+            if (document.querySelector(".layout-container.p-none.py-10 .my-5")) {
+              clearInterval(findBtnCheckout);
+              if (!document.querySelector(".layout-container.p-none.py-10 button.tracking-widest + .my-5") && document.querySelector(".layout-container.p-none.py-10 button.tracking-widest")) {
+                document.querySelector(".layout-container.p-none.py-10 button.tracking-widest").after(document.querySelector(".layout-container.p-none.py-10 .my-5"));
+              }
+            }
+          }, 100);
         }
       }, 100);
     }
@@ -2320,16 +2342,19 @@ let startPdp = setInterval(() => {
           entries.forEach((i) => {
             if (i.isIntersecting) {
               if (i.target.classList.contains("new_btn_add_to_basket")) {
+                console.log(`new_btn_add_to_basket NONE`);
                 document.querySelector("#add-cart-button-fixed").style.display = "none";
                 document.querySelector("#add-cart-button-fixed").style.opacity = "0";
                 document.querySelector("#add-cart-button-fixed").style.pointerEvents = "none";
               }
-              if (i.target.classList.contains("mx-auto")) {
+              if (i.target.classList.contains("mx-auto") && i.target.getAttribute("data-testid") === "add-to-bag") {
+                console.log(`mx-auto NONE`);
                 document.querySelector("#add-cart-button-fixed").style.display = "none";
                 document.querySelector("#add-cart-button-fixed").style.opacity = "0";
                 document.querySelector("#add-cart-button-fixed").style.pointerEvents = "none";
               }
             } else {
+              console.log(`all BLOCK`);
               document.querySelector("#add-cart-button-fixed").style.display = "block";
               document.querySelector("#add-cart-button-fixed").style.opacity = "1";
               document.querySelector("#add-cart-button-fixed").style.pointerEvents = "initial";
