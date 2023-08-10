@@ -23,29 +23,25 @@ let startFunk = setInterval(() => {
     scriptCustomTimerStyle.rel = "stylesheet";
     document.head.appendChild(scriptCustomTimerStyle);
 
-    let eventVar = "desktop";
-
-    if (window.innerWidth <= 768) {
-      eventVar = "mobile";
-    }
-
     function pushDataLayer(nameDataLayer, deskDataLayer, typeDataLayer, actionDataLayer, labelDataLayer) {
       window.dataLayer = window.dataLayer || [];
       if (labelDataLayer) {
+        alert(nameDataLayer + " " + deskDataLayer + typeDataLayer + actionDataLayer + " : " + labelDataLayer);
         console.log(nameDataLayer + " " + deskDataLayer + typeDataLayer + actionDataLayer + " : " + labelDataLayer);
         dataLayer.push({
           event: "event-to-ga4",
-          event_name: `${nameDataLayer} ${eventVar}`,
+          event_name: `${nameDataLayer}`,
           event_desc: `${deskDataLayer}`,
           event_type: `${typeDataLayer}`,
           event_loc: `${actionDataLayer}`,
           eventLabel: `${labelDataLayer}`,
         });
       } else {
+        alert(nameDataLayer + " " + deskDataLayer + " " + typeDataLayer + " " + actionDataLayer);
         console.log(nameDataLayer + " " + deskDataLayer + " " + typeDataLayer + " " + actionDataLayer);
         dataLayer.push({
           event: "event-to-ga4",
-          event_name: `${nameDataLayer} ${eventVar}`,
+          event_name: `${nameDataLayer}`,
           event_desc: `${deskDataLayer}`,
           event_type: `${typeDataLayer}`,
           event_loc: `${actionDataLayer}`,
@@ -1023,8 +1019,8 @@ margin: 0 0 12px;
               <div class="your_store_wrap">
                 <h3 class="list_main_title">Use our App</h3>
                 <div class="store_icon">
-                    <img src="https://conversionratestore.github.io/projects/doyogawithme/img/apple_store_icon.svg" alt="apple store icon">
-                    <img src="https://conversionratestore.github.io/projects/doyogawithme/img/google_play_icon.svg" alt="google play icon">
+                    <img class="apple_store_icon" src="https://conversionratestore.github.io/projects/doyogawithme/img/apple_store_icon.svg" alt="apple store icon">
+                    <img class="google_play_icon" src="https://conversionratestore.github.io/projects/doyogawithme/img/google_play_icon.svg" alt="google play icon">
                 </div>
               </div>
             </li>
@@ -1044,8 +1040,8 @@ margin: 0 0 12px;
         <div class="your_store_wrap">
           <h3 class="list_main_title">Use our App</h3>
           <div class="store_icon">
-            <img src="https://conversionratestore.github.io/projects/doyogawithme/img/apple_store_icon.svg" alt="apple store icon" />
-            <img src="https://conversionratestore.github.io/projects/doyogawithme/img/google_play_icon.svg" alt="google play icon" />
+            <img class="apple_store_icon" src="https://conversionratestore.github.io/projects/doyogawithme/img/apple_store_icon.svg" alt="apple store icon" />
+            <img class="google_play_icon" src="https://conversionratestore.github.io/projects/doyogawithme/img/google_play_icon.svg" alt="google play icon" />
           </div>
         </div>
       </li>
@@ -1196,6 +1192,27 @@ margin: 0 0 12px;
           }
           function onOpenPopup() {
             // pausedVideo();
+            setTimeout(() => {
+              if (!sessionStorage.getItem("exit_popup_loaded")) {
+                console.log(`pushDataLayer("exp_sub_premium_v_enjoy", "Visibility Enjoy - 3s", "Banner - Enjoy DoYogaWithMe", "Enjoy DoYogaWithMe");`);
+                pushDataLayer("exp_sub_premium_v_enjoy", "Visibility Enjoy - 3s", "Banner - Enjoy DoYogaWithMe", "Enjoy DoYogaWithMe");
+              }
+            }, 3000);
+            setTimeout(() => {
+              if (!sessionStorage.getItem("exit_popup_loaded")) {
+                pushDataLayer("exp_sub_premium_v_enjoy", "Visibility Enjoy - 5s", "Banner - Enjoy DoYogaWithMe", "Enjoy DoYogaWithMe");
+              }
+            }, 5000);
+            setTimeout(() => {
+              if (!sessionStorage.getItem("exit_popup_loaded")) {
+                pushDataLayer("exp_sub_premium_v_enjoy", "Visibility Enjoy - 7s", "Banner - Enjoy DoYogaWithMe", "Enjoy DoYogaWithMe");
+              }
+            }, 7000);
+            setTimeout(() => {
+              if (!sessionStorage.getItem("exit_popup_loaded")) {
+                pushDataLayer("exp_sub_premium_v_enjoy", "Visibility Enjoy - 10s", "Banner - Enjoy DoYogaWithMe", "Enjoy DoYogaWithMe");
+              }
+            }, 10000);
             overlay.classList.remove("is_hidden");
             document.querySelector("body").classList.add("open_var");
             if (!document.querySelector(".overlay_popup .content_popup")) {
@@ -1244,6 +1261,15 @@ margin: 0 0 12px;
                     }
                     btnClose.addEventListener("click", (e) => {
                       // click on btn close popup
+                      pushDataLayer("exp_sub_premium_enjoy_close", "Close", "Banner - Enjoy DoYogaWithMe", "Enjoy DoYogaWithMe");
+                      // if (!e.currentTarget.getAttribute("data-test")) {
+                      // }
+                      // e.currentTarget.setAttribute("data-test", "1");
+                      // setTimeout(() => {
+                      //   if (e.target.getAttribute("data-test")) {
+                      //     e.target.removeAttribute("data-test");
+                      //   }
+                      // }, 1000);
                       countdown.stop();
                       timerEventDesk(document.querySelector(".info_block"), "stop");
                       onClosePopup();
@@ -1251,12 +1277,14 @@ margin: 0 0 12px;
                     overlay.addEventListener("click", (e) => {
                       // click on overlay popup
                       if (e.target.matches(".overlay_popup")) {
+                        pushDataLayer("exp_sub_premium_enjoy_close", "Close", "Banner - Enjoy DoYogaWithMe", "Enjoy DoYogaWithMe");
                         countdown.stop();
                         timerEventDesk(document.querySelector(".info_block"), "stop");
                         onClosePopup();
                       }
                     });
                     document.querySelector("#subscribeSaveLink")?.addEventListener("click", () => {
+                      pushDataLayer("exp_sub_premium_enjoy_sub", "Subscribe and Save 45% Now!", "Banner - Enjoy DoYogaWithMe", "Enjoy DoYogaWithMe");
                       countdown.stop();
                       sessionStorage.setItem("becomeSubscriber", "true");
 
@@ -1457,6 +1485,7 @@ margin: 0 0 12px;
             }
           }, 400);
           if (!jQuery(this).hasClass("open_var")) {
+            pushDataLayer("exp_sub_premium_c_sapf_ci", "See all Premium features", "Banner - Compressed information", "Sub premium offer");
             jQuery(this).addClass("open_var");
             document.querySelector(".toggle_btn_features span").textContent = "Less all Premium features";
             if (window.innerWidth <= 768) {
@@ -1465,6 +1494,7 @@ margin: 0 0 12px;
               });
             }
           } else {
+            pushDataLayer("exp_sub_premium_c_sapf_ei", "See all Premium features", "Banner - Expanded information", "Sub premium offer");
             jQuery(this).removeClass("open_var");
             document.querySelector(".toggle_btn_features span").textContent = "See all Premium features";
             if (window.innerWidth <= 768) {
@@ -1473,6 +1503,28 @@ margin: 0 0 12px;
               });
             }
           }
+        });
+
+        // document.querySelectorAll("#UnlockPremiumContentLink").forEach((el) => {
+        //   el.addEventListener("click", () => {
+        //     pushDataLayer("exp_sub_premium_c_gfan_bga", "Get Full Access Now", "Banner - Get access", "Foto");
+        //   });
+        // });
+      }
+    }, 100);
+
+    let findImgOnClick = setInterval(() => {
+      if (document.querySelectorAll(".store_icon")) {
+        clearInterval(findImgOnClick);
+        document.querySelectorAll(".store_icon img.google_play_icon").forEach((el) => {
+          el.addEventListener("click", (e) => {
+            pushDataLayer("exp_sub_premium_c_gp_ei", "Google pay", "Banner - Expanded information", "Sub premium offer");
+          });
+        });
+        document.querySelectorAll(".store_icon img.apple_store_icon").forEach((el) => {
+          el.addEventListener("click", (e) => {
+            pushDataLayer("exp_sub_premium_c_as_ei", "Apple store", "Banner - Expanded information", "Sub premium offer");
+          });
         });
       }
     }, 100);
@@ -1514,6 +1566,12 @@ margin: 0 0 12px;
             }
           }
         }, 100);
+
+        document.querySelectorAll(".sfc-nodePlayable__lockContainerInner a").forEach((el) => {
+          el.addEventListener("click", () => {
+            pushDataLayer("exp_sub_premium_c_gfan_bga", "Get Full Access Now", "Banner - Get access", "Foto");
+          });
+        });
       }
     }, 100);
 

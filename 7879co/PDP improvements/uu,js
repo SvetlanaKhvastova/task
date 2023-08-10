@@ -286,54 +286,6 @@ function visibElem() {
       obsV.observe(document.querySelector(".our_fees_wrap"));
     }
   }, 100);
-  let intV2 = setInterval(() => {
-    if (document.querySelector(".stability_box")) {
-      clearInterval(intV2);
-      obsV.observe(document.querySelector(".stability_box"));
-    }
-  }, 100);
-  let intV3 = setInterval(() => {
-    if (document.querySelector(".bracelets_box")) {
-      clearInterval(intV3);
-      obsV.observe(document.querySelector(".bracelets_box"));
-    }
-  }, 100);
-  let intV4 = setInterval(() => {
-    if (document.querySelector(".advantages_box_bgr")) {
-      clearInterval(intV4);
-      obsV.observe(document.querySelector(".advantages_box_bgr"));
-    }
-  }, 100);
-  let intV5 = setInterval(() => {
-    if (document.querySelector(".comparison_table__visib")) {
-      clearInterval(intV5);
-      obsV.observe(document.querySelector(".comparison_table__visib"));
-    }
-  }, 100);
-  let intV6 = setInterval(() => {
-    if (document.querySelector(".title_review")) {
-      clearInterval(intV6);
-      obsV.observe(document.querySelector(".title_review"));
-    }
-  }, 100);
-  let intV7 = setInterval(() => {
-    if (document.querySelector("#caption-text-12")) {
-      clearInterval(intV7);
-      obsV.observe(document.querySelector("#caption-text-12"));
-    }
-  }, 100);
-  let intV8 = setInterval(() => {
-    if (document.querySelector(".popup_title.txt_made_from")) {
-      clearInterval(intV8);
-      obsV.observe(document.querySelector(".popup_title.txt_made_from"));
-    }
-  }, 100);
-  let intV9 = setInterval(() => {
-    if (document.querySelector(".popup_title.our_fees_are")) {
-      clearInterval(intV9);
-      obsV.observe(document.querySelector(".popup_title.our_fees_are"));
-    }
-  }, 100);
 
   function visibilityV(entries) {
     entries.forEach((i) => {
