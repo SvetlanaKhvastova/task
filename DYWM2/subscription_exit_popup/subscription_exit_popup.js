@@ -4,10 +4,10 @@ let startFunk = setInterval(() => {
     clearInterval(startFunk);
 
     //cdn jquery
-    let script = document.createElement("script");
-    script.src = "https://code.jquery.com/jquery-3.4.1.min.js";
-    script.async = false;
-    document.head.appendChild(script);
+    // let script = document.createElement("script");
+    // script.src = "https://code.jquery.com/jquery-3.4.1.min.js";
+    // script.async = false;
+    // document.head.appendChild(script);
     //cdn clipboard
     let scriptCustomSlider = document.createElement("script");
     scriptCustomSlider.src = "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js";
@@ -26,7 +26,7 @@ let startFunk = setInterval(() => {
     function pushDataLayer(nameDataLayer, deskDataLayer, typeDataLayer, actionDataLayer, labelDataLayer) {
       window.dataLayer = window.dataLayer || [];
       if (labelDataLayer) {
-        alert(nameDataLayer + " " + deskDataLayer + typeDataLayer + actionDataLayer + " : " + labelDataLayer);
+        // alert(nameDataLayer + " " + deskDataLayer + typeDataLayer + actionDataLayer + " : " + labelDataLayer);
         console.log(nameDataLayer + " " + deskDataLayer + typeDataLayer + actionDataLayer + " : " + labelDataLayer);
         dataLayer.push({
           event: "event-to-ga4",
@@ -37,7 +37,7 @@ let startFunk = setInterval(() => {
           eventLabel: `${labelDataLayer}`,
         });
       } else {
-        alert(nameDataLayer + " " + deskDataLayer + " " + typeDataLayer + " " + actionDataLayer);
+        // alert(nameDataLayer + " " + deskDataLayer + " " + typeDataLayer + " " + actionDataLayer);
         console.log(nameDataLayer + " " + deskDataLayer + " " + typeDataLayer + " " + actionDataLayer);
         dataLayer.push({
           event: "event-to-ga4",
@@ -1192,27 +1192,7 @@ margin: 0 0 12px;
           }
           function onOpenPopup() {
             // pausedVideo();
-            setTimeout(() => {
-              if (!sessionStorage.getItem("exit_popup_loaded")) {
-                console.log(`pushDataLayer("exp_sub_premium_v_enjoy", "Visibility Enjoy - 3s", "Banner - Enjoy DoYogaWithMe", "Enjoy DoYogaWithMe");`);
-                pushDataLayer("exp_sub_premium_v_enjoy", "Visibility Enjoy - 3s", "Banner - Enjoy DoYogaWithMe", "Enjoy DoYogaWithMe");
-              }
-            }, 3000);
-            setTimeout(() => {
-              if (!sessionStorage.getItem("exit_popup_loaded")) {
-                pushDataLayer("exp_sub_premium_v_enjoy", "Visibility Enjoy - 5s", "Banner - Enjoy DoYogaWithMe", "Enjoy DoYogaWithMe");
-              }
-            }, 5000);
-            setTimeout(() => {
-              if (!sessionStorage.getItem("exit_popup_loaded")) {
-                pushDataLayer("exp_sub_premium_v_enjoy", "Visibility Enjoy - 7s", "Banner - Enjoy DoYogaWithMe", "Enjoy DoYogaWithMe");
-              }
-            }, 7000);
-            setTimeout(() => {
-              if (!sessionStorage.getItem("exit_popup_loaded")) {
-                pushDataLayer("exp_sub_premium_v_enjoy", "Visibility Enjoy - 10s", "Banner - Enjoy DoYogaWithMe", "Enjoy DoYogaWithMe");
-              }
-            }, 10000);
+            sessionStorage.setItem("openPopupVisib", "yes");
             overlay.classList.remove("is_hidden");
             document.querySelector("body").classList.add("open_var");
             if (!document.querySelector(".overlay_popup .content_popup")) {
@@ -1224,11 +1204,11 @@ margin: 0 0 12px;
                 document.querySelector(".info_block > h2").after(document.querySelector(".discount_expires_wrap"));
               }
               let clock = setInterval(() => {
-                if (typeof FlipClock === "function" && typeof jQuery === "function" && document.querySelector("#countdown")) {
+                if (typeof FlipClock === "function" && document.querySelector("#countdown")) {
                   clearInterval(clock);
                   let countdown, init_countdown, set_countdown;
                   countdown = init_countdown = function () {
-                    countdown = new FlipClock($(".countdown"), {
+                    countdown = new FlipClock(document.querySelector(".countdown"), {
                       clockFace: "MinuteCounter",
                       language: "en",
                       autoStart: false,
@@ -1262,14 +1242,7 @@ margin: 0 0 12px;
                     btnClose.addEventListener("click", (e) => {
                       // click on btn close popup
                       pushDataLayer("exp_sub_premium_enjoy_close", "Close", "Banner - Enjoy DoYogaWithMe", "Enjoy DoYogaWithMe");
-                      // if (!e.currentTarget.getAttribute("data-test")) {
-                      // }
-                      // e.currentTarget.setAttribute("data-test", "1");
-                      // setTimeout(() => {
-                      //   if (e.target.getAttribute("data-test")) {
-                      //     e.target.removeAttribute("data-test");
-                      //   }
-                      // }, 1000);
+
                       countdown.stop();
                       timerEventDesk(document.querySelector(".info_block"), "stop");
                       onClosePopup();
@@ -1380,6 +1353,7 @@ margin: 0 0 12px;
         let yogaClassesFind = setInterval(() => {
           if (document.querySelector(".o-page__header")) {
             clearInterval(yogaClassesFind);
+            localStorage.setItem("newBannerVisib", "withBtn");
             document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
           }
         }, 100);
@@ -1388,6 +1362,7 @@ margin: 0 0 12px;
         let yogaMeditationFind = setInterval(() => {
           if (document.querySelector(".o-page__header")) {
             clearInterval(yogaMeditationFind);
+            localStorage.setItem("newBannerVisib", "withBtn");
             document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
           }
         }, 100);
@@ -1396,6 +1371,7 @@ margin: 0 0 12px;
         let yogaChallengesFind = setInterval(() => {
           if (document.querySelector(".o-page__banner")) {
             clearInterval(yogaChallengesFind);
+            localStorage.setItem("newBannerVisib", "withBtn");
             document.querySelector(".o-page__banner")?.insertAdjacentHTML("afterend", newBoxFeatures);
           }
         }, 100);
@@ -1404,6 +1380,7 @@ margin: 0 0 12px;
         let yogaProgramsFind = setInterval(() => {
           if (document.querySelector(".o-page__banner")) {
             clearInterval(yogaProgramsFind);
+            localStorage.setItem("newBannerVisib", "withBtn");
             document.querySelector(".o-page__banner")?.insertAdjacentHTML("afterend", newBoxFeatures);
           }
         }, 100);
@@ -1416,8 +1393,9 @@ margin: 0 0 12px;
           let becomeSubscriberFind = setInterval(() => {
             if (document.querySelector(".o-page__header")) {
               clearInterval(becomeSubscriberFind);
-
+              localStorage.setItem("newBannerVisib", "withoutBtn");
               document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
+
               if (window.innerWidth <= 768) {
                 if (document.querySelector("#promoteSubscriptionWrap") && !document.querySelector(".new_title_subscriber")) {
                   document.querySelector("#promoteSubscriptionWrap").insertAdjacentHTML("afterbegin", `<h2 class="new_title_subscriber">Unlock Premium Classes for a Transformative Yoga Journey</h2>`);
@@ -1440,6 +1418,7 @@ margin: 0 0 12px;
       let mainPagesFind = setInterval(() => {
         if (document.querySelector(".o-page__banner")) {
           clearInterval(mainPagesFind);
+          localStorage.setItem("newBannerVisib", "withBtn");
           document.querySelector(".o-page__banner")?.insertAdjacentHTML("afterend", newBoxFeatures);
         }
       }, 100);
@@ -1449,6 +1428,7 @@ margin: 0 0 12px;
         let contentFind = setInterval(() => {
           if (document.querySelector(".o-page__header")) {
             clearInterval(contentFind);
+            localStorage.setItem("newBannerVisib", "withBtn");
             document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
           }
         }, 100);
@@ -1485,6 +1465,7 @@ margin: 0 0 12px;
             }
           }, 400);
           if (!jQuery(this).hasClass("open_var")) {
+            localStorage.setItem("newBanner", "expanded_info");
             pushDataLayer("exp_sub_premium_c_sapf_ci", "See all Premium features", "Banner - Compressed information", "Sub premium offer");
             jQuery(this).addClass("open_var");
             document.querySelector(".toggle_btn_features span").textContent = "Less all Premium features";
@@ -1494,7 +1475,8 @@ margin: 0 0 12px;
               });
             }
           } else {
-            pushDataLayer("exp_sub_premium_c_sapf_ei", "See all Premium features", "Banner - Expanded information", "Sub premium offer");
+            localStorage.setItem("newBanner", "compressed_info");
+            pushDataLayer("exp_sub_premium_less_unlock", "Less all Premium features", "Banner - Expanded information", "Sub premium offer");
             jQuery(this).removeClass("open_var");
             document.querySelector(".toggle_btn_features span").textContent = "See all Premium features";
             if (window.innerWidth <= 768) {
@@ -1504,12 +1486,24 @@ margin: 0 0 12px;
             }
           }
         });
+      }
+    }, 100);
 
-        // document.querySelectorAll("#UnlockPremiumContentLink").forEach((el) => {
-        //   el.addEventListener("click", () => {
-        //     pushDataLayer("exp_sub_premium_c_gfan_bga", "Get Full Access Now", "Banner - Get access", "Foto");
-        //   });
-        // });
+    let findBtnUnlock = setInterval(() => {
+      if (document.querySelector("#UnlockPremiumContentLink")) {
+        clearInterval(findBtnUnlock);
+        localStorage.setItem("newBanner", "compressed_info");
+
+        document.querySelectorAll("#UnlockPremiumContentLink").forEach((el) => {
+          el.addEventListener("click", () => {
+            if (localStorage.getItem("newBanner") && localStorage.getItem("newBanner") === "compressed_info") {
+              pushDataLayer("exp_sub_premium_c_upc_ei", "Unlock Premium Content", "Banner - Compressed information", "Sub premium offer");
+            }
+            if (localStorage.getItem("newBanner") && localStorage.getItem("newBanner") === "expanded_info") {
+              pushDataLayer("exp_sub_premium_c_upc_ei", "Unlock Premium Content", "Banner - Expanded information", "Sub premium offer");
+            }
+          });
+        });
       }
     }, 100);
 
@@ -1574,6 +1568,366 @@ margin: 0 0 12px;
         });
       }
     }, 100);
+
+    visibElem3();
+    visibElem5();
+    visibElem7();
+    visibElem10();
+    //visibility elem
+    function visibElem3() {
+      let obsV = new IntersectionObserver(visibilityV, {
+        threshold: 1,
+      });
+
+      let obsV2 = new IntersectionObserver(visibilityV2, {
+        threshold: 1,
+      });
+
+      let timeV = 3000;
+
+      let intV1 = setInterval(() => {
+        if (document.querySelector(".sfc-nodePlayable__lockContainerInner")) {
+          clearInterval(intV1);
+          obsV.observe(document.querySelector(".sfc-nodePlayable__lockContainerInner"));
+        }
+      }, 100);
+
+      let intV2 = setInterval(() => {
+        if (document.querySelector(".info_block") && sessionStorage.getItem("exit_popup_loaded") && sessionStorage.getItem("openPopupVisib3") == null) {
+          clearInterval(intV2);
+          obsV.observe(document.querySelector(".info_block"));
+        }
+      }, 100);
+      let intV3 = setInterval(() => {
+        if (document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features") && localStorage.getItem("newBanner") === "compressed_info" && localStorage.getItem("newBannerVisib") === "withBtn") {
+          clearInterval(intV3);
+          obsV.observe(document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features"));
+        }
+      }, 100);
+      let intV4 = setInterval(() => {
+        if (document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features") && localStorage.getItem("newBanner") === "expanded_info" && localStorage.getItem("newBannerVisib") === "withBtn") {
+          clearInterval(intV4);
+          obsV.observe(document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features"));
+        }
+      }, 100);
+      let intV5 = setInterval(() => {
+        if (document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features") && localStorage.getItem("newBanner") === "compressed_info" && localStorage.getItem("newBannerVisib") === "withoutBtn") {
+          clearInterval(intV5);
+          obsV.observe(document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features"));
+        }
+      }, 100);
+      let intV6 = setInterval(() => {
+        if (document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features") && localStorage.getItem("newBanner") === "expanded_info" && localStorage.getItem("newBannerVisib") === "withoutBtn") {
+          clearInterval(intV6);
+          obsV.observe(document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features"));
+        }
+      }, 100);
+
+      function visibilityV(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            setTimeout(function () {
+              obsV2.observe(i.target);
+            }, timeV);
+          }
+        });
+      }
+      function visibilityV2(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            if (i.target.classList.contains("sfc-nodePlayable__lockContainerInner")) {
+              pushDataLayer("exp_sub_premium_v_unlock", "Visibility Unlock - 3s", "Banner - Get access", "Foto");
+            }
+            if (i.target.classList.contains("info_block")) {
+              sessionStorage.setItem("openPopupVisib3", "3");
+              pushDataLayer("exp_sub_premium_v_enjoy", "Visibility Enjoy - 3s", "Banner - Enjoy DoYogaWithMe", "Enjoy DoYogaWithMe");
+            }
+            if (i.target.classList.contains("toggle_btn_features") && localStorage.getItem("newBanner") === "compressed_info" && localStorage.getItem("newBannerVisib") === "withBtn") {
+              pushDataLayer("exp_sub_premium_v_spoun_ci", "Visibility Unlock - 3s", "Banner - Compressed information", "Sub premium offer");
+            }
+            if (i.target.classList.contains("toggle_btn_features") && localStorage.getItem("newBanner") === "expanded_info" && localStorage.getItem("newBannerVisib") === "withBtn") {
+              pushDataLayer("exp_sub_premium_v_spoun_ei", "Visibility Unlock - 3s", "Banner - Expanded information", "Sub premium offer");
+            }
+            if (i.target.classList.contains("toggle_btn_features") && localStorage.getItem("newBanner") === "compressed_info" && localStorage.getItem("newBannerVisib") === "withoutBtn") {
+              pushDataLayer("exp_sub_premium_v_spoup_ci", "Visibility Upgrade - 3s", "Banner - Compressed information", "Sub premium offer");
+            }
+            if (i.target.classList.contains("toggle_btn_features") && localStorage.getItem("newBanner") === "expanded_info" && localStorage.getItem("newBannerVisib") === "withoutBtn") {
+              pushDataLayer("exp_sub_premium_e_spoup_ei", "Visibility Upgrade - 3s", "Banner - Expanded information", "Sub premium offer");
+            }
+
+            obsV.unobserve(i.target);
+          }
+          obsV2.unobserve(i.target);
+        });
+      }
+    }
+
+    function visibElem5() {
+      let obsV = new IntersectionObserver(visibilityV, {
+        threshold: 1,
+      });
+
+      let obsV2 = new IntersectionObserver(visibilityV2, {
+        threshold: 1,
+      });
+
+      let timeV = 5000;
+
+      let intV1 = setInterval(() => {
+        if (document.querySelector(".sfc-nodePlayable__lockContainerInner")) {
+          clearInterval(intV1);
+          obsV.observe(document.querySelector(".sfc-nodePlayable__lockContainerInner"));
+        }
+      }, 100);
+      let intV2 = setInterval(() => {
+        if (document.querySelector(".info_block") && sessionStorage.getItem("exit_popup_loaded") && sessionStorage.getItem("openPopupVisib5") == null) {
+          clearInterval(intV2);
+          obsV.observe(document.querySelector(".info_block"));
+        }
+      }, 100);
+      let intV3 = setInterval(() => {
+        if (document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features") && localStorage.getItem("newBanner") === "compressed_info" && localStorage.getItem("newBannerVisib") === "withBtn") {
+          clearInterval(intV3);
+          obsV.observe(document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features"));
+        }
+      }, 100);
+      let intV4 = setInterval(() => {
+        if (document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features") && localStorage.getItem("newBanner") === "expanded_info" && localStorage.getItem("newBannerVisib") === "withBtn") {
+          clearInterval(intV4);
+          obsV.observe(document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features"));
+        }
+      }, 100);
+      let intV5 = setInterval(() => {
+        if (document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features") && localStorage.getItem("newBanner") === "compressed_info" && localStorage.getItem("newBannerVisib") === "withoutBtn") {
+          clearInterval(intV5);
+          obsV.observe(document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features"));
+        }
+      }, 100);
+      let intV6 = setInterval(() => {
+        if (document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features") && localStorage.getItem("newBanner") === "expanded_info" && localStorage.getItem("newBannerVisib") === "withoutBtn") {
+          clearInterval(intV6);
+          obsV.observe(document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features"));
+        }
+      }, 100);
+
+      function visibilityV(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            setTimeout(function () {
+              obsV2.observe(i.target);
+            }, timeV);
+          }
+        });
+      }
+      function visibilityV2(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            if (i.target.classList.contains("sfc-nodePlayable__lockContainerInner")) {
+              pushDataLayer("exp_sub_premium_v_unlock", "Visibility Unlock - 5s", "Banner - Get access", "Foto");
+            }
+            if (i.target.classList.contains("info_block")) {
+              sessionStorage.setItem("openPopupVisib5", "5");
+              pushDataLayer("exp_sub_premium_v_enjoy", "Visibility Enjoy - 5s", "Banner - Enjoy DoYogaWithMe", "Enjoy DoYogaWithMe");
+            }
+            if (i.target.classList.contains("toggle_btn_features") && localStorage.getItem("newBanner") === "compressed_info" && localStorage.getItem("newBannerVisib") === "withBtn") {
+              pushDataLayer("exp_sub_premium_v_spoun_ci", "Visibility Unlock - 5s", "Banner - Compressed information", "Sub premium offer");
+            }
+            if (i.target.classList.contains("toggle_btn_features") && localStorage.getItem("newBanner") === "expanded_info" && localStorage.getItem("newBannerVisib") === "withBtn") {
+              pushDataLayer("exp_sub_premium_v_spoun_ei", "Visibility Unlock - 5s", "Banner - Expanded information", "Sub premium offer");
+            }
+            if (i.target.classList.contains("toggle_btn_features") && localStorage.getItem("newBanner") === "compressed_info" && localStorage.getItem("newBannerVisib") === "withoutBtn") {
+              pushDataLayer("exp_sub_premium_v_spoup_ci", "Visibility Upgrade - 5s", "Banner - Compressed information", "Sub premium offer");
+            }
+            if (i.target.classList.contains("toggle_btn_features") && localStorage.getItem("newBanner") === "expanded_info" && localStorage.getItem("newBannerVisib") === "withoutBtn") {
+              pushDataLayer("exp_sub_premium_e_spoup_ei", "Visibility Upgrade - 5s", "Banner - Expanded information", "Sub premium offer");
+            }
+
+            obsV.unobserve(i.target);
+          }
+          obsV2.unobserve(i.target);
+        });
+      }
+    }
+
+    function visibElem7() {
+      let obsV = new IntersectionObserver(visibilityV, {
+        threshold: 1,
+      });
+
+      let obsV2 = new IntersectionObserver(visibilityV2, {
+        threshold: 1,
+      });
+
+      let timeV = 7000;
+
+      let intV1 = setInterval(() => {
+        if (document.querySelector(".sfc-nodePlayable__lockContainerInner")) {
+          clearInterval(intV1);
+          obsV.observe(document.querySelector(".sfc-nodePlayable__lockContainerInner"));
+        }
+      }, 100);
+      let intV2 = setInterval(() => {
+        if (document.querySelector(".info_block") && sessionStorage.getItem("exit_popup_loaded") && sessionStorage.getItem("openPopupVisib7") == null) {
+          clearInterval(intV2);
+          obsV.observe(document.querySelector(".info_block"));
+        }
+      }, 100);
+      let intV3 = setInterval(() => {
+        if (document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features") && localStorage.getItem("newBanner") === "compressed_info" && localStorage.getItem("newBannerVisib") === "withBtn") {
+          clearInterval(intV3);
+          obsV.observe(document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features"));
+        }
+      }, 100);
+      let intV4 = setInterval(() => {
+        if (document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features") && localStorage.getItem("newBanner") === "expanded_info" && localStorage.getItem("newBannerVisib") === "withBtn") {
+          clearInterval(intV4);
+          obsV.observe(document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features"));
+        }
+      }, 100);
+      let intV5 = setInterval(() => {
+        if (document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features") && localStorage.getItem("newBanner") === "compressed_info" && localStorage.getItem("newBannerVisib") === "withoutBtn") {
+          clearInterval(intV5);
+          obsV.observe(document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features"));
+        }
+      }, 100);
+      let intV6 = setInterval(() => {
+        if (document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features") && localStorage.getItem("newBanner") === "expanded_info" && localStorage.getItem("newBannerVisib") === "withoutBtn") {
+          clearInterval(intV6);
+          obsV.observe(document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features"));
+        }
+      }, 100);
+
+      function visibilityV(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            setTimeout(function () {
+              obsV2.observe(i.target);
+            }, timeV);
+          }
+        });
+      }
+      function visibilityV2(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            if (i.target.classList.contains("sfc-nodePlayable__lockContainerInner")) {
+              pushDataLayer("exp_sub_premium_v_unlock", "Visibility Unlock - 7s", "Banner - Get access", "Foto");
+            }
+            if (i.target.classList.contains("info_block")) {
+              sessionStorage.setItem("openPopupVisib7", "7");
+              pushDataLayer("exp_sub_premium_v_enjoy", "Visibility Enjoy - 7s", "Banner - Enjoy DoYogaWithMe", "Enjoy DoYogaWithMe");
+            }
+            if (i.target.classList.contains("toggle_btn_features") && localStorage.getItem("newBanner") === "compressed_info" && localStorage.getItem("newBannerVisib") === "withBtn") {
+              pushDataLayer("exp_sub_premium_v_spoun_ci", "Visibility Unlock - 7s", "Banner - Compressed information", "Sub premium offer");
+            }
+            if (i.target.classList.contains("toggle_btn_features") && localStorage.getItem("newBanner") === "expanded_info" && localStorage.getItem("newBannerVisib") === "withBtn") {
+              pushDataLayer("exp_sub_premium_v_spoun_ei", "Visibility Unlock - 7s", "Banner - Expanded information", "Sub premium offer");
+            }
+            if (i.target.classList.contains("toggle_btn_features") && localStorage.getItem("newBanner") === "compressed_info" && localStorage.getItem("newBannerVisib") === "withoutBtn") {
+              pushDataLayer("exp_sub_premium_v_spoup_ci", "Visibility Upgrade - 7s", "Banner - Compressed information", "Sub premium offer");
+            }
+            if (i.target.classList.contains("toggle_btn_features") && localStorage.getItem("newBanner") === "expanded_info" && localStorage.getItem("newBannerVisib") === "withoutBtn") {
+              pushDataLayer("exp_sub_premium_e_spoup_ei", "Visibility Upgrade - 7s", "Banner - Expanded information", "Sub premium offer");
+            }
+            obsV.unobserve(i.target);
+          }
+          obsV2.unobserve(i.target);
+        });
+      }
+    }
+
+    function visibElem10() {
+      let obsV = new IntersectionObserver(visibilityV, {
+        threshold: 1,
+      });
+
+      let obsV2 = new IntersectionObserver(visibilityV2, {
+        threshold: 1,
+      });
+
+      let timeV = 10000;
+
+      let intV1 = setInterval(() => {
+        if (document.querySelector(".sfc-nodePlayable__lockContainerInner")) {
+          clearInterval(intV1);
+          obsV.observe(document.querySelector(".sfc-nodePlayable__lockContainerInner"));
+        }
+      }, 100);
+      let intV2 = setInterval(() => {
+        if (document.querySelector(".info_block") && sessionStorage.getItem("exit_popup_loaded") && sessionStorage.getItem("openPopupVisib10") == null) {
+          clearInterval(intV2);
+          obsV.observe(document.querySelector(".info_block"));
+        }
+      }, 100);
+      let intV3 = setInterval(() => {
+        if (document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features") && localStorage.getItem("newBanner") === "compressed_info" && localStorage.getItem("newBannerVisib") === "withBtn") {
+          clearInterval(intV3);
+          obsV.observe(document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features"));
+        }
+      }, 100);
+      let intV4 = setInterval(() => {
+        if (document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features") && localStorage.getItem("newBanner") === "expanded_info" && localStorage.getItem("newBannerVisib") === "withBtn") {
+          clearInterval(intV4);
+          obsV.observe(document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features"));
+        }
+      }, 100);
+      let intV5 = setInterval(() => {
+        if (document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features") && localStorage.getItem("newBanner") === "compressed_info" && localStorage.getItem("newBannerVisib") === "withoutBtn") {
+          clearInterval(intV5);
+          obsV.observe(document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features"));
+        }
+      }, 100);
+      let intV6 = setInterval(() => {
+        if (document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features") && localStorage.getItem("newBanner") === "expanded_info" && localStorage.getItem("newBannerVisib") === "withoutBtn") {
+          clearInterval(intV6);
+          obsV.observe(document.querySelector("#promoteSubscriptionWrap .new_container .toggle_btn_features"));
+        }
+      }, 100);
+
+      function visibilityV(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            setTimeout(function () {
+              obsV2.observe(i.target);
+            }, timeV);
+          }
+        });
+      }
+      function visibilityV2(entries) {
+        entries.forEach((i) => {
+          if (i.isIntersecting) {
+            if (i.target.classList.contains("sfc-nodePlayable__lockContainerInner")) {
+              pushDataLayer("exp_sub_premium_v_unlock", "Visibility Unlock - 10s", "Banner - Get access", "Foto");
+            }
+            if (i.target.classList.contains("info_block")) {
+              sessionStorage.setItem("openPopupVisib10", "10");
+              pushDataLayer("exp_sub_premium_v_enjoy", "Visibility Enjoy - 10s", "Banner - Enjoy DoYogaWithMe", "Enjoy DoYogaWithMe");
+            }
+            if (i.target.classList.contains("toggle_btn_features") && localStorage.getItem("newBanner") === "compressed_info" && localStorage.getItem("newBannerVisib") === "withBtn") {
+              pushDataLayer("exp_sub_premium_v_spoun_ci", "Visibility Unlock - 10s", "Banner - Compressed information", "Sub premium offer");
+            }
+            if (i.target.classList.contains("toggle_btn_features") && localStorage.getItem("newBanner") === "expanded_info" && localStorage.getItem("newBannerVisib") === "withBtn") {
+              pushDataLayer("exp_sub_premium_v_spoun_ei", "Visibility Unlock - 10s", "Banner - Expanded information", "Sub premium offer");
+            }
+            if (i.target.classList.contains("toggle_btn_features") && localStorage.getItem("newBanner") === "compressed_info" && localStorage.getItem("newBannerVisib") === "withoutBtn") {
+              pushDataLayer("exp_sub_premium_v_spoup_ci", "Visibility Upgrade - 10s", "Banner - Compressed information", "Sub premium offer");
+            }
+            if (i.target.classList.contains("toggle_btn_features") && localStorage.getItem("newBanner") === "expanded_info" && localStorage.getItem("newBannerVisib") === "withoutBtn") {
+              pushDataLayer("exp_sub_premium_e_spoup_ei", "Visibility Upgrade - 10s", "Banner - Expanded information", "Sub premium offer");
+            }
+
+            obsV.unobserve(i.target);
+          }
+          obsV2.unobserve(i.target);
+        });
+      }
+    }
+
+    const record = setInterval(() => {
+      if (typeof clarity === "function") {
+        clearInterval(record);
+        clarity("set", "sub_premiumt", "variant_1");
+      }
+    }, 200);
 
     document.querySelector(".exp")?.remove();
   }

@@ -151,3 +151,52 @@ document.head.appendChild(script);
 setTimeout(function () {
   document.querySelector(".exp")?.remove();
 }, 2000);
+
+//////////////////////////////////////////////////////////
+if (!e.target.getAttribute("data-test")) {
+}
+e.target.setAttribute("data-test", "1");
+setTimeout(() => {
+  if (e.target.getAttribute("data-test")) {
+    e.target.removeAttribute("data-test");
+  }
+}, 1000);
+///////////////////////////////////////////////////////////
+//visibility elem
+function visibElem() {
+  let obsV = new IntersectionObserver(visibilityV, {
+    threshold: 1,
+  });
+
+  let obsV2 = new IntersectionObserver(visibilityV2, {
+    threshold: 1,
+  });
+
+  let intV1 = setInterval(() => {
+    if (document.querySelector(".")) {
+      clearInterval(intV1);
+      obsV.observe(document.querySelector("."));
+    }
+  }, 100);
+
+  function visibilityV(entries) {
+    entries.forEach((i) => {
+      if (i.isIntersecting) {
+        setTimeout(function () {
+          obsV2.observe(i.target);
+        }, 3000);
+      }
+    });
+  }
+  function visibilityV2(entries) {
+    entries.forEach((i) => {
+      if (i.isIntersecting) {
+        if (i.target.classList.contains("")) {
+        }
+
+        obsV.unobserve(i.target);
+      }
+      obsV2.unobserve(i.target);
+    });
+  }
+}
