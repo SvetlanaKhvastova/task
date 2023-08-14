@@ -2,8 +2,6 @@ let startPdp = setInterval(() => {
   if (document.querySelector("#add-cart-button-fixed") && window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$")) {
     clearInterval(startPdp);
 
-    document.querySelector("html").classList.add("active_pdp");
-
     /********* Settings **********/
     const settings = {
       observe: false,
@@ -263,7 +261,7 @@ let startPdp = setInterval(() => {
 
     let stylePdp = /*html */ `
   <style>
-    .active_pdp .bgr_load{
+    .bgr_load{
       position: fixed;
       width: 100%;
       height: 100vh;
@@ -272,7 +270,7 @@ let startPdp = setInterval(() => {
       top: 0;
       left: 0;
     }
-    .active_pdp .overlay_popup {
+    .overlay_popup {
       position: fixed !important;
       overflow: hidden;
       top: 0;
@@ -286,15 +284,15 @@ let startPdp = setInterval(() => {
       display: block;
       max-height: 100%;
     }
-    .active_pdp .overlay_popup.is_hidden {
+    .overlay_popup.is_hidden {
       opacity: 0;
       pointer-events: none;
     }
-    .active_pdp .overlay_popup.is_hidden .container_popup {
+    .overlay_popup.is_hidden .container_popup {
       transform: translateX(100%);
       transition: all 0.8s ease 0s;
     }
-    .active_pdp .overlay_popup .container_popup {
+    .overlay_popup .container_popup {
       display: block;
       position: absolute;
       bottom: 0;
@@ -308,14 +306,14 @@ let startPdp = setInterval(() => {
       overflow: auto;
       max-height: 100vh;
     }
-    .active_pdp .overlay_popup .container_popup > svg {
+    .overlay_popup .container_popup > svg {
       position: absolute;
       top: 24px;
       right: 24px;
       outline: none;
       cursor: pointer;
     }
-    .active_pdp .popup_title {
+    .popup_title {
       color: #000;
       font-size: 28px;
       font-weight: 500;
@@ -323,15 +321,15 @@ let startPdp = setInterval(() => {
       margin-bottom: 16px;
       text-transform: lowercase;
     }
-    .active_pdp .popup_title::first-letter {
+    .popup_title::first-letter {
       text-transform: uppercase;
     }
-    .active_pdp .popup_txt_wrap {
+    .popup_txt_wrap {
       padding: 24px 0;
       border-top: 1px solid #eaeaeb;
       border-bottom: 1px solid #eaeaeb;
     }
-    .active_pdp .popup_txt_wrap p {
+    .popup_txt_wrap p {
       color: #484850;
       font-family: "Roobert TRIAL", sans-serif;
       font-size: 14px;
@@ -339,37 +337,37 @@ let startPdp = setInterval(() => {
       line-height: 20px;
       max-width: 434px;
     }
-    .active_pdp .popup_txt_wrap p + p {
+    .popup_txt_wrap p + p {
       margin-top: 12px;
     }
-    .active_pdp a #trust-score.tp-widget-trustscore {
+    a #trust-score.tp-widget-trustscore {
       color: #191919 !important;
     }
-    .active_pdp .layout-container .col-span-full .fixed.bottom-0 {
+    .layout-container .col-span-full .fixed.bottom-0 {
       margin: 0;
     }
-    .active_pdp .layout-container .col-span-full .fixed.bottom-0 .mx-auto.w-full,
-    .active_pdp .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button,
-    .active_pdp .layout-container.p-none.py-10 button.tracking-widest{
+    .layout-container .col-span-full .fixed.bottom-0 .mx-auto.w-full,
+    .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button,
+    .layout-container.p-none.py-10 button.tracking-widest{
       height: 56px;
     }
-    .active_pdp .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button > div,
-    .active_pdp .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button > div > div,
-    .active_pdp .layout-container.p-none.py-10 button.tracking-widest > div{
+    .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button > div,
+    .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button > div > div,
+    .layout-container.p-none.py-10 button.tracking-widest > div{
       height: 100%;
     }
-    .active_pdp .layout-container.p-none.py-10 button.tracking-widest > div > div{
+    .layout-container.p-none.py-10 button.tracking-widest > div > div{
       height: 56px;
     }
-    .active_pdp .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button + .my-5,
-    .active_pdp .layout-container.p-none.py-10 button.tracking-widest + .my-5{
+    .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button + .my-5,
+    .layout-container.p-none.py-10 button.tracking-widest + .my-5{
       margin: 16px 0 0;
     }
-    .active_pdp .bottom-0.z-20.w-full.bg-white.px-4.py-6:not(#add-cart-button-fixed){
+    .bottom-0.z-20.w-full.bg-white.px-4.py-6:not(#add-cart-button-fixed){
       margin: 16px 0 0;
     }
-    .active_pdp .layout-container .col-span-full .fixed.bottom-0 .mx-auto.w-full > div,
-    .active_pdp .layout-container .col-span-full .fixed.bottom-0 .mx-auto.w-full > div > div {
+    .layout-container .col-span-full .fixed.bottom-0 .mx-auto.w-full > div,
+    .layout-container .col-span-full .fixed.bottom-0 .mx-auto.w-full > div > div {
       height: 100%;
       color: #fff;
       font-family: "Roobert TRIAL", sans-serif;
@@ -379,26 +377,26 @@ let startPdp = setInterval(() => {
       letter-spacing: 1.6px;
       text-transform: uppercase;
     }
-    .active_pdp .layout-container .col-span-full:nth-child(2) {
+    .layout-container .col-span-full:nth-child(2) {
       padding: 48px 48px 24px;
       max-width: 566px;
       margin: 0 0 0 auto;
     }
-    .active_pdp .layout-container.p-none.py-10 > .grid > .bg-platinum-1 {
+    .layout-container.p-none.py-10 > .grid > .bg-platinum-1 {
       max-height: 595px;
     }
-    .active_pdp .layout-container.p-none.py-10 .col-span-full:nth-child(2) {
+    .layout-container.p-none.py-10 .col-span-full:nth-child(2) {
       margin: 0;
     }
-    .active_pdp .layout-container .col-span-full .gap-4 {
+    .layout-container .col-span-full .gap-4 {
       gap: 0;
       margin: 0;
     }
-    .active_pdp .layout-container .mt-2.mb-4.flex.items-end.justify-between.gap-4 {
+    .layout-container .mt-2.mb-4.flex.items-end.justify-between.gap-4 {
       margin: 0 0 12px;
       position: relative;
     }
-    .active_pdp .layout-container .col-span-full:nth-child(2) h1 {
+    .layout-container .col-span-full:nth-child(2) h1 {
       color: #000;
       font-family: "Roobert TRIAL", sans-serif;
       font-size: 28px !important;
@@ -407,16 +405,16 @@ let startPdp = setInterval(() => {
       margin-bottom: 8px;
       max-width: 460px;
     }
-    .active_pdp .bg-platinum-1 .layout-container {
+    .bg-platinum-1 .layout-container {
       padding: 0 40px 40px;
     }
-    .active_pdp .stability_box {
+    .stability_box {
       background: #fff;
       border: 1px solid rgba(234, 234, 235, 1);
       padding: 16px;
       margin-top: 30px;
     }
-    .active_pdp .stability_box .stability_title {
+    .stability_box .stability_title {
       position: relative;
       color: #000;
       font-family: "Roobert TRIAL", sans-serif;
@@ -428,7 +426,7 @@ let startPdp = setInterval(() => {
       padding-left: 58px;
       max-width: 360px;
     }
-    .active_pdp .stability_box .stability_title::before {
+    .stability_box .stability_title::before {
       position: absolute;
       content: "";
       width: 42px;
@@ -439,7 +437,7 @@ let startPdp = setInterval(() => {
       left: 0;
       transform: translateY(-50%);
     }
-    .active_pdp .stability_box .stability_txt {
+    .stability_box .stability_txt {
       color: #484850;
       font-family: "Roobert TRIAL", sans-serif;
       font-size: 14px;
@@ -448,22 +446,22 @@ let startPdp = setInterval(() => {
       margin: 8px 0 0;
       max-width: 438px;
     }
-    .active_pdp #LP-Transparent_product_comparison_table,
-    .active_pdp #LP-Transparent-text-column-section,
-    .active_pdp #HowWeCompare,
-    .active_pdp .gap-x-2 > .col-span-full > .grid,
-    .active_pdp .flex.max-w-full.justify-end,
-    .active_pdp .my-7.flex.items-center.justify-between > button,
-    .active_pdp .my-7.flex.items-center.justify-between + .flex.flex-col .gap-1 > svg:not(.new_svg_payments),
-    .active_pdp .layout-container.p-none.py-10 .flex.items-center.gap-1 > svg:not(.new_svg_payments_mini) {
+    #LP-Transparent_product_comparison_table,
+    #LP-Transparent-text-column-section,
+    #HowWeCompare,
+    .gap-x-2 > .col-span-full > .grid,
+    .flex.max-w-full.justify-end,
+    .my-7.flex.items-center.justify-between > button,
+    .my-7.flex.items-center.justify-between + .flex.flex-col .gap-1 > svg:not(.new_svg_payments),
+    .layout-container.p-none.py-10 .flex.items-center.gap-1 > svg:not(.new_svg_payments_mini) {
       display: none;
     }
-    .active_pdp .my-7.flex.items-center.justify-between,
-    .active_pdp .layout-container.p-none.py-10 .made_pure_box_mini + .mb-8.flex.gap-10 {
+    .my-7.flex.items-center.justify-between,
+    .layout-container.p-none.py-10 .made_pure_box_mini + .mb-8.flex.gap-10 {
       margin: 12px 0;
     }
-    .active_pdp .my-7.flex.items-center.justify-between h3.text-h3.font-semibold,
-    .active_pdp .layout-container.p-none.py-10 .made_pure_box_mini + .mb-8.flex.gap-10 h3.text-h3.font-semibold {
+    .my-7.flex.items-center.justify-between h3.text-h3.font-semibold,
+    .layout-container.p-none.py-10 .made_pure_box_mini + .mb-8.flex.gap-10 h3.text-h3.font-semibold {
       color: #000;
       font-family: "Roobert TRIAL", sans-serif;
       font-size: 28px;
@@ -471,16 +469,16 @@ let startPdp = setInterval(() => {
       line-height: 36px;
       text-transform: capitalize;
     }
-    .active_pdp .layout-container .col-span-full:nth-child(2) .relative.flex.w-full,
-    .active_pdp .made_pure_box_mini {
+    .layout-container .col-span-full:nth-child(2) .relative.flex.w-full,
+    .made_pure_box_mini {
       padding: 6px 16px;
       display: block;
       background: #f4f4f5;
     }
-    .active_pdp .layout-container .col-span-full:nth-child(2) .relative.flex.w-full > p.text-p,
-    .active_pdp .made_pure_wrap .made_pure_txt,
-    .active_pdp .made_pure_box_mini .made_pure_txt,
-    .active_pdp .made_pure_box_mini > p.text-xsc {
+    .layout-container .col-span-full:nth-child(2) .relative.flex.w-full > p.text-p,
+    .made_pure_wrap .made_pure_txt,
+    .made_pure_box_mini .made_pure_txt,
+    .made_pure_box_mini > p.text-xsc {
       color: #000;
       font-family: "Roobert TRIAL", sans-serif;
       font-size: 13px !important;
@@ -489,22 +487,22 @@ let startPdp = setInterval(() => {
       text-transform: uppercase;
       letter-spacing: inherit;
     }
-    .active_pdp .layout-container .col-span-full:nth-child(2) .relative.flex.w-full > p.text-p,
-    .active_pdp .made_pure_box_mini > p.text-xsc {
+    .layout-container .col-span-full:nth-child(2) .relative.flex.w-full > p.text-p,
+    .made_pure_box_mini > p.text-xsc {
       font-weight: 600;
       display: inline;
     }
-    .active_pdp .made_pure_wrap .made_pure_txt,
-    .active_pdp .made_pure_wrap_mini .made_pure_txt {
+    .made_pure_wrap .made_pure_txt,
+    .made_pure_wrap_mini .made_pure_txt {
       margin-right: 6px;
     }
-    .active_pdp .made_pure_wrap,
-    .active_pdp .made_pure_wrap_mini {
+    .made_pure_wrap,
+    .made_pure_wrap_mini {
       margin-left: 4px;
       display: inline;
     }
-    .active_pdp .made_pure_wrap [data-learnmore],
-    .active_pdp .made_pure_wrap_mini [data-learnmore] {
+    .made_pure_wrap [data-learnmore],
+    .made_pure_wrap_mini [data-learnmore] {
       color: #000;
       font-size: 12px;
       font-weight: 500;
@@ -513,40 +511,40 @@ let startPdp = setInterval(() => {
       text-transform: capitalize;
       cursor: pointer;
     }
-    .active_pdp .my-7.flex.items-center.justify-between + .flex.flex-col .mb-4.flex.items-center.gap-1,
-    .active_pdp .layout-container.p-none.py-10 .made_pure_box_mini + .mb-8.flex.gap-10 + .flex.flex-col:not(.mb-8) .mb-4.gap-1 {
+    .my-7.flex.items-center.justify-between + .flex.flex-col .mb-4.flex.items-center.gap-1,
+    .layout-container.p-none.py-10 .made_pure_box_mini + .mb-8.flex.gap-10 + .flex.flex-col:not(.mb-8) .mb-4.gap-1 {
       margin: 0 0 6px;
     }
-    .active_pdp .bg-rose-24 {
+    .bg-rose-24 {
       margin: 16px 0 0;
     }
-    .active_pdp .my-7.flex.items-center.justify-between + .flex.flex-col .gap-1 .leading-5,
-    .active_pdp .layout-container.p-none.py-10 .made_pure_box_mini + .mb-8.flex.gap-10 + .flex.flex-col:not(.mb-8) .leading-5 {
+    .my-7.flex.items-center.justify-between + .flex.flex-col .gap-1 .leading-5,
+    .layout-container.p-none.py-10 .made_pure_box_mini + .mb-8.flex.gap-10 + .flex.flex-col:not(.mb-8) .leading-5 {
       color: #484850;
       font-family: "Roobert TRIAL", sans-serif;
       font-size: 16px;
       font-weight: 400;
       line-height: 24px;
     }
-    .active_pdp .my-7.flex.items-center.justify-between + .flex.flex-col .gap-1 .leading-5 span,
-    .active_pdp .layout-container.p-none.py-10 .made_pure_box_mini + .mb-8.flex.gap-10 + .flex.flex-col:not(.mb-8) .leading-5 span {
+    .my-7.flex.items-center.justify-between + .flex.flex-col .gap-1 .leading-5 span,
+    .layout-container.p-none.py-10 .made_pure_box_mini + .mb-8.flex.gap-10 + .flex.flex-col:not(.mb-8) .leading-5 span {
       color: #000;
     }
-    .active_pdp .bg-special.mt-7.mb-4.flex.w-full.items-center.justify-center.rounded.p-2 {
+    .bg-special.mt-7.mb-4.flex.w-full.items-center.justify-center.rounded.p-2 {
       margin: 12px 0 24px;
       padding: 6px 8px;
     }
-    .active_pdp .bg-special.mt-7.mb-4.flex.w-full.items-center.justify-center.rounded.p-2 > p {
+    .bg-special.mt-7.mb-4.flex.w-full.items-center.justify-center.rounded.p-2 > p {
       color: #fff;
       font-family: "Roobert TRIAL", sans-serif;
       font-size: 14px;
       font-weight: 600;
       line-height: 20px;
     }
-    .active_pdp .layout-container.p-none.py-10 .bg-special.mt-7.mb-4.flex.w-full.items-center.justify-center.rounded.p-2 {
+    .layout-container.p-none.py-10 .bg-special.mt-7.mb-4.flex.w-full.items-center.justify-center.rounded.p-2 {
       margin-bottom: 0;
     }
-    .active_pdp .investment_txt {
+    .investment_txt {
       background: #e2d098;
       padding: 6px;
       text-align: center;
@@ -557,20 +555,20 @@ let startPdp = setInterval(() => {
       text-transform: uppercase;
       margin-bottom: 1px;
     }
-    .active_pdp .our_fees_wrap {
+    .our_fees_wrap {
       background: #f4f4f5;
       margin-top: 1px;
       padding: 6px;
       text-align: center;
     }
-    .active_pdp .our_fees_wrap .our_fees_txt {
+    .our_fees_wrap .our_fees_txt {
       color: #000;
       font-size: 14px;
       font-weight: 500;
       line-height: 20px;
       margin-right: 6px;
     }
-    .active_pdp .our_fees_wrap [data-learnmore] {
+    .our_fees_wrap [data-learnmore] {
       color: #000;
       font-size: 12px;
       font-weight: 500;
@@ -578,12 +576,12 @@ let startPdp = setInterval(() => {
       text-decoration-line: underline;
       cursor: pointer;
     }
-    .active_pdp .bg-platinum-1.py-3 {
+    .bg-platinum-1.py-3 {
       margin: 0;
       padding: 12px;
       height: inherit;
     }
-    .active_pdp .bg-platinum-1.py-3 p.text-xsc {
+    .bg-platinum-1.py-3 p.text-xsc {
       color: #484850;
       font-family: "Roobert TRIAL", sans-serif;
       font-size: 12px !important;
@@ -593,20 +591,20 @@ let startPdp = setInterval(() => {
       text-transform: uppercase;
       margin: 0 0 2px;
     }
-    .active_pdp .bg-platinum-1.py-3 p.text-sm {
+    .bg-platinum-1.py-3 p.text-sm {
       color: #000;
       font-family: "Roobert TRIAL", sans-serif;
       font-size: 14px;
       font-weight: 500;
       line-height: 20px;
     }
-    .active_pdp .my-3[role="radiogroup"]{
+    .my-3[role="radiogroup"]{
       margin: 30px 0 14px;
     }
-    .active_pdp .my-3[role="radiogroup"] + .flex.flex-col.items-end {
+    .my-3[role="radiogroup"] + .flex.flex-col.items-end {
       margin: 16px 0 0;
     }
-    .active_pdp .my-3[role="radiogroup"] + .items-end .text-p.h-10 {
+    .my-3[role="radiogroup"] + .items-end .text-p.h-10 {
       height: unset;
       color: #000;
       font-size: 14px;
@@ -615,10 +613,10 @@ let startPdp = setInterval(() => {
       text-decoration-line: underline;
       margin: 0 0 12px;
     }
-    .active_pdp .my-3[role="radiogroup"] + .items-end .text-p.h-10:focus-visible {
+    .my-3[role="radiogroup"] + .items-end .text-p.h-10:focus-visible {
       border: none;
     }
-    .active_pdp .mb-3.w-full {
+    .mb-3.w-full {
       margin: 0;
     }
     #add-cart-button-fixed {
@@ -638,21 +636,21 @@ let startPdp = setInterval(() => {
       height: 100%;
     }
     /*new_details_wrap */
-    .active_pdp .new_details_bgr {
+    .new_details_bgr {
       background: #fff;
       padding: 60px 140px;
     }
-    .active_pdp .new_details_wrap {
+    .new_details_wrap {
       display: flex;
       justify-content: space-between;
       gap: 120px;
       max-width: 1080px;
       margin: auto;
     }
-    .active_pdp .new_details_wrap > li {
+    .new_details_wrap > li {
       width: 50%;
     }
-    .active_pdp .new_details_wrap .details_title {
+    .new_details_wrap .details_title {
       color: #000;
       font-family: "Roobert TRIAL", sans-serif;
       font-size: 16px;
@@ -664,12 +662,12 @@ let startPdp = setInterval(() => {
       margin-bottom: 12px;
       padding-bottom: 12px;
     }
-    .active_pdp .new_details_wrap .specification_box > .mb-12 {
+    .new_details_wrap .specification_box > .mb-12 {
       margin: 0;
     }
-    .active_pdp .new_details_wrap .whitespace-pre-wrap,
-    .active_pdp .new_details_wrap .mb-4,
-    .active_pdp .new_details_wrap .care_inform_box p {
+    .new_details_wrap .whitespace-pre-wrap,
+    .new_details_wrap .mb-4,
+    .new_details_wrap .care_inform_box p {
       color: #484850;
       font-family: "Roobert TRIAL", sans-serif;
       font-size: 14px;
@@ -677,14 +675,14 @@ let startPdp = setInterval(() => {
       line-height: 20px;
       margin: 0;
     }
-    .active_pdp .new_details_wrap .mb-4 + p,
-    .active_pdp .new_details_wrap .care_inform_box p + p {
+    .new_details_wrap .mb-4 + p,
+    .new_details_wrap .care_inform_box p + p {
       margin-top: 12px;
     }
-    .active_pdp .new_details_wrap .trustmessaging_list {
+    .new_details_wrap .trustmessaging_list {
       margin: 12px 0 40px;
     }
-    .active_pdp .new_details_wrap .trustmessaging_list li {
+    .new_details_wrap .trustmessaging_list li {
       position: relative;
       display: flex;
       align-items: center;
@@ -697,7 +695,7 @@ let startPdp = setInterval(() => {
       padding-left: 40px;
       min-height: 32px;
     }
-    .active_pdp .new_details_wrap .trustmessaging_list li::before {
+    .new_details_wrap .trustmessaging_list li::before {
       position: absolute;
       content: "";
       width: 32px;
@@ -708,23 +706,23 @@ let startPdp = setInterval(() => {
       left: 0;
       transform: translateY(-50%);
     }
-    .active_pdp .new_details_wrap .trustmessaging_list li:nth-child(2):before {
+    .new_details_wrap .trustmessaging_list li:nth-child(2):before {
       background: url(https://conversionratestore.github.io/projects/7879co/img/sustainable.svg) no-repeat;
       background-size: contain;
     }
-    .active_pdp .new_details_wrap .trustmessaging_list li:nth-child(3):before {
+    .new_details_wrap .trustmessaging_list li:nth-child(3):before {
       background: url(https://conversionratestore.github.io/projects/7879co/img/hallmarked.svg) no-repeat;
       background-size: contain;
     }
-    .active_pdp .new_details_wrap .trustmessaging_list li:nth-child(4):before {
+    .new_details_wrap .trustmessaging_list li:nth-child(4):before {
       background: url(https://conversionratestore.github.io/projects/7879co/img/hand.svg) no-repeat;
       background-size: contain;
     }
-    .active_pdp .new_details_wrap .trustmessaging_list li + li {
+    .new_details_wrap .trustmessaging_list li + li {
       margin-top: 8px;
     }
     /*advantagesBox */
-    .active_pdp .advantages_box_bgr {
+    .advantages_box_bgr {
       background: #fff;
       max-width: 1920px;
       padding-top: 40px;
@@ -732,32 +730,32 @@ let startPdp = setInterval(() => {
       padding-left: 2.5rem;
       padding-right: 2.5rem;
     }
-    .active_pdp #advantagesBox {
+    #advantagesBox {
       border: 1px solid #eaeaeb;
       background: #fff;
       padding: 40px 74px;
     }
-    .active_pdp #advantagesBox .advantages_list {
+    #advantagesBox .advantages_list {
       display: flex;
       align-items: stretch;
       justify-content: space-between;
     }
-    .active_pdp #advantagesBox .advantages_list li {
+    #advantagesBox .advantages_list li {
       width: 30%;
     }
-    .active_pdp #advantagesBox .advantages_list li:nth-child(1) {
+    #advantagesBox .advantages_list li:nth-child(1) {
       padding-right: 60px;
     }
-    .active_pdp #advantagesBox .advantages_list li:nth-child(2) {
+    #advantagesBox .advantages_list li:nth-child(2) {
       border-left: 1px solid #eaeaeb;
       border-right: 1px solid #eaeaeb;
       padding: 0 61px;
       width: 35%;
     }
-    .active_pdp #advantagesBox .advantages_list li:nth-child(3) {
+    #advantagesBox .advantages_list li:nth-child(3) {
       padding-left: 60px;
     }
-    .active_pdp #advantagesBox .advantages_title {
+    #advantagesBox .advantages_title {
       position: relative;
       display: flex;
       align-items: center;
@@ -772,14 +770,14 @@ let startPdp = setInterval(() => {
       padding-left: 36px;
       min-height: 24px;
     }
-    .active_pdp #advantagesBox .advantages_txt {
+    #advantagesBox .advantages_txt {
       color: #484850;
       font-family: "Roobert TRIAL", sans-serif;
       font-size: 14px;
       font-weight: 400;
       line-height: 20px;
     }
-    .active_pdp #advantagesBox .advantages_title::before {
+    #advantagesBox .advantages_title::before {
       position: absolute;
       content: "";
       width: 24px;
@@ -790,57 +788,57 @@ let startPdp = setInterval(() => {
       left: 0;
       transform: translateY(-50%);
     }
-    .active_pdp #advantagesBox li:nth-child(2) .advantages_title:before {
+    #advantagesBox li:nth-child(2) .advantages_title:before {
       background: url(https://conversionratestore.github.io/projects/7879co/img/invest.svg) no-repeat;
       background-size: contain;
     }
-    .active_pdp #advantagesBox li:nth-child(3) .advantages_title:before {
+    #advantagesBox li:nth-child(3) .advantages_title:before {
       background: url(https://conversionratestore.github.io/projects/7879co/img/money.svg) no-repeat;
       background-size: contain;
     }
     /*comparison_table_bgr */
-    .active_pdp .comparison_table_bgr {
+    .comparison_table_bgr {
       background: #fff;
       max-width: 1920px;
       margin: 0 auto;
       padding: 0 2.5rem 80px;
     }
-    .active_pdp #comparisonTable {
+    #comparisonTable {
       border: 1px solid #eaeaeb;
       background: #fff;
       padding: 60px 0;
     }
-    .active_pdp #comparisonTable table {
+    #comparisonTable table {
       max-width: 870px;
       margin: 0 auto;
       border-spacing: 0 4px;
       border-collapse: separate;
     }
-    .active_pdp #comparisonTable table td p {
+    #comparisonTable table td p {
       color: #000;
       font-family: "Roobert TRIAL", sans-serif;
       font-weight: 500;
       font-size: 14px;
       line-height: 20px;
     }
-    .active_pdp #comparisonTable table tbody tr.colspan {
+    #comparisonTable table tbody tr.colspan {
       display: none;
     }
-    .active_pdp #comparisonTable table tbody tr td[colspan="2"] {
+    #comparisonTable table tbody tr td[colspan="2"] {
       border-right: 1px solid #eaeaeb;
       border-left: 1px solid #eaeaeb;
       background: #fff;
     }
-    .active_pdp #comparisonTable table td:nth-child(1) {
+    #comparisonTable table td:nth-child(1) {
       background: #f4f4f5;
       padding: 10px 16px;
       width: 270px;
     }
-    .active_pdp #comparisonTable table td:nth-child(1) p {
+    #comparisonTable table td:nth-child(1) p {
       font-weight: 600;
     }
-    .active_pdp #comparisonTable table td:nth-child(2),
-    .active_pdp #comparisonTable table th:nth-child(2) {
+    #comparisonTable table td:nth-child(2),
+    #comparisonTable table th:nth-child(2) {
       background: rgba(242, 232, 211, 1);
       padding: 10px 16px;
       border-top: 1px solid #eaeaeb;
@@ -850,10 +848,10 @@ let startPdp = setInterval(() => {
       text-align: center;
       width: 300px;
     }
-    .active_pdp #comparisonTable table th:nth-child(2) {
+    #comparisonTable table th:nth-child(2) {
       position: relative;
     }
-    .active_pdp #comparisonTable table th:nth-child(2)::after {
+    #comparisonTable table th:nth-child(2)::after {
       position: absolute;
       content: "vs";
       display: flex;
@@ -876,42 +874,42 @@ let startPdp = setInterval(() => {
       letter-spacing: 0.14px;
       text-transform: uppercase;
     }
-    .active_pdp #comparisonTable table td:nth-child(3),
-    .active_pdp #comparisonTable table th:nth-child(3) {
+    #comparisonTable table td:nth-child(3),
+    #comparisonTable table th:nth-child(3) {
       border: 1px solid #eaeaeb;
       background: #fff;
       text-align: center;
       width: 300px;
     }
-    .active_pdp #comparisonTable table td:nth-child(3) p {
+    #comparisonTable table td:nth-child(3) p {
       color: #484850;
     }
-    .active_pdp #comparisonTable table td:nth-child(2) p,
-    .active_pdp #comparisonTable table td:nth-child(3) p {
+    #comparisonTable table td:nth-child(2) p,
+    #comparisonTable table td:nth-child(3) p {
       width: max-content;
       text-align: center;
       margin: auto;
     }
-    .active_pdp #comparisonTable table td p.yes_var,
-    .active_pdp #comparisonTable table td p.no_var {
+    #comparisonTable table td p.yes_var,
+    #comparisonTable table td p.no_var {
       padding-left: 32px;
     }
-    .active_pdp #comparisonTable table td p.our_price {
+    #comparisonTable table td p.our_price {
       font-size: 16px;
       font-weight: 600;
     }
-    .active_pdp #comparisonTable table td p.street_price {
+    #comparisonTable table td p.street_price {
       color: #484850;
       font-size: 16px;
       font-weight: 600;
     }
-    .active_pdp #comparisonTable table th:nth-child(2) img {
+    #comparisonTable table th:nth-child(2) img {
       text-align: center;
       display: block;
       margin: 0 auto;
       max-width: 74px;
     }
-    .active_pdp #comparisonTable table th:nth-child(3) p {
+    #comparisonTable table th:nth-child(3) p {
       color: #000;
       text-align: center;
       font-family: "Roobert TRIAL", sans-serif;
@@ -920,12 +918,12 @@ let startPdp = setInterval(() => {
       line-height: 16px;
       text-transform: uppercase;
     }
-    .active_pdp #comparisonTable table .yes_var,
-    .active_pdp #comparisonTable table .no_var {
+    #comparisonTable table .yes_var,
+    #comparisonTable table .no_var {
       position: relative;
     }
-    .active_pdp #comparisonTable table .yes_var::before,
-    .active_pdp #comparisonTable table .no_var::before {
+    #comparisonTable table .yes_var::before,
+    #comparisonTable table .no_var::before {
       position: absolute;
       content: "";
       width: 24px;
@@ -936,11 +934,11 @@ let startPdp = setInterval(() => {
       left: 0;
       transform: translateY(-50%);
     }
-    .active_pdp #comparisonTable table .no_var::before {
+    #comparisonTable table .no_var::before {
       background: url(https://conversionratestore.github.io/projects/7879co/img/no.svg) no-repeat;
       background-size: contain;
     }
-    .active_pdp .title_review {
+    .title_review {
       font-family: "Roobert TRIAL", sans-serif;
       font-size: 36px;
       font-weight: 600;
@@ -950,13 +948,13 @@ let startPdp = setInterval(() => {
       margin: 0 auto;
       max-width: 905px;
     }
-    .active_pdp #LP-General-testimonial-grid {
+    #LP-General-testimonial-grid {
       padding-bottom: 40px;
     }
-    .active_pdp #LP-Transparent-Video_Section {
+    #LP-Transparent-Video_Section {
       margin-top: 40px;
     }
-    .active_pdp .back_to_top_btn {
+    .back_to_top_btn {
       background: #f4f4f5;
       display: flex;
       flex-direction: column;
@@ -967,28 +965,28 @@ let startPdp = setInterval(() => {
       color: rgb(0, 0, 0);
       transition: all 0.8s ease 0s;
     }
-    .active_pdp .back_to_top_btn:hover {
+    .back_to_top_btn:hover {
       color: rgb(50 105 133);
     }
-    .active_pdp .back_to_top_btn span {
+    .back_to_top_btn span {
       font-size: 14px;
       line-height: 18px;
     }
-    .active_pdp .layout-container.p-none.py-10 .mb-8.flex:not(.items-end) {
+    .layout-container.p-none.py-10 .mb-8.flex:not(.items-end) {
       margin-bottom: 16px;
     }
-    .active_pdp .new_return_wrapper {
+    .new_return_wrapper {
       display: flex;
       flex-direction: column;
       align-items: center;
       margin-top: 12px;
     }
     /*pair_it_with_block */
-    .active_pdp .pair_it_with_block {
+    .pair_it_with_block {
       padding: 80px 0 0;
       max-width: 1920px;
     }
-    .active_pdp .pair_it_with_title {
+    .pair_it_with_title {
       color: #000;
       font-family: "Roobert TRIAL", sans-serif;
       font-size: 36px;
@@ -996,7 +994,7 @@ let startPdp = setInterval(() => {
       line-height: 44px;
       margin: 0 0 34px;
     }
-    .active_pdp .pair_it_with_subtitle {
+    .pair_it_with_subtitle {
       color: #000;
       font-family: "Roobert TRIAL", sans-serif;
       font-size: 14px;
@@ -1006,21 +1004,21 @@ let startPdp = setInterval(() => {
       text-transform: uppercase;
       margin: 0 0 20px;
     }
-    .active_pdp .pair_it_with_list {
+    .pair_it_with_list {
       display: grid;
       gap: 1.5rem;
       grid-template-columns: repeat(12, minmax(0, 1fr));
       grid-auto-flow: row;
       width: 100%;
     }
-    .active_pdp .pair_it_with_item {
+    .pair_it_with_item {
       grid-column: span 3 / span 3;
       background-color: rgb(244 244 245/1);
     }
-    .active_pdp .pair_it_with_item .inform_wrapper {
+    .pair_it_with_item .inform_wrapper {
       padding: 0.5rem;
     }
-    .active_pdp .pair_it_with_link_title {
+    .pair_it_with_link_title {
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -1029,7 +1027,7 @@ let startPdp = setInterval(() => {
       margin: 0 0 0.5rem;
       min-height: 28px;
     }
-    .active_pdp .pair_it_with_link_txt {
+    .pair_it_with_link_txt {
       border-width: thin;
       border-color: rgb(213 213 216/1);
       height: 1.5rem;
@@ -1038,7 +1036,7 @@ let startPdp = setInterval(() => {
       justify-content: flex-start;
       width: max-content;
     }
-    .active_pdp .pair_it_with_link_txt span {
+    .pair_it_with_link_txt span {
       padding-left: 0.5rem;
       padding-right: 0.5rem;
       font-size: 13px;
@@ -1048,23 +1046,23 @@ let startPdp = setInterval(() => {
       display: flex;
       align-items: center;
     }
-    .active_pdp .pair_it_with_link_txt span:nth-child(1) {
+    .pair_it_with_link_txt span:nth-child(1) {
       background-color: rgb(213 213 216/1);
     }
-    .active_pdp .pair_it_with_link_txt span:nth-child(2) {
+    .pair_it_with_link_txt span:nth-child(2) {
       background-color: rgb(255 255 255/1);
     }
-    .active_pdp .bracelets_box {
+    .bracelets_box {
       margin-top: 34px;
     }
-    .active_pdp .pair_it_with_item .img_wrapper {
+    .pair_it_with_item .img_wrapper {
       position: relative;
       padding-bottom: calc(var(--tw-aspect-h) / var(--tw-aspect-w) * 100%);
       --tw-aspect-w: 1;
       --tw-aspect-h: 1;
       overflow: hidden;
     }
-    .active_pdp .pair_it_with_item .img_wrapper img {
+    .pair_it_with_item .img_wrapper img {
       position: absolute;
       height: 100%;
       width: 100%;
@@ -1075,10 +1073,10 @@ let startPdp = setInterval(() => {
       transition-property: all;
       object-fit: cover;
     }
-    .active_pdp img.img_hover {
+    img.img_hover {
       opacity: 0;
     }
-    .active_pdp .layout-container.p-none.py-10 .mt-2.mb-4.flex.items-end.justify-between.gap-4::before {
+    .layout-container.p-none.py-10 .mt-2.mb-4.flex.items-end.justify-between.gap-4::before {
       content: "Excellent";
       position: absolute;
       top: -3.5px;
@@ -1090,58 +1088,58 @@ let startPdp = setInterval(() => {
       text-transform: capitalize;
       z-index: 1;
     }
-      .active_pdp .h-6.items-center.gap-4{
+      .h-6.items-center.gap-4{
         gap: 1rem;
       }
       @media (min-width: 768px) {
-        .active_pdp .pair_it_with_item:hover img.img_hover {
+        .pair_it_with_item:hover img.img_hover {
           opacity: 1;
           --tw-scale-x: 1.05;
           --tw-scale-y: 1.05;
           transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
         }
-        .active_pdp .pair_it_with_item:hover .img_full {
+        .pair_it_with_item:hover .img_full {
           opacity: 0;
         }
-        .active_pdp .pair_it_with_item:hover .pair_it_with_link_title,
-        .active_pdp .pair_it_with_item:hover .pair_it_with_link_txt {
+        .pair_it_with_item:hover .pair_it_with_link_title,
+        .pair_it_with_item:hover .pair_it_with_link_txt {
           text-decoration: underline;
         }
       }
     @media (max-width: 768px) {
-      .active_pdp .pair_it_with_block {
+      .pair_it_with_block {
         padding: 0 0 40px;
         margin-right: -11px;
       }
-      .active_pdp .pair_it_with_title {
+      .pair_it_with_title {
         font-size: 24px;
         line-height: 32px;
         margin-bottom: 12px;
       }
-      .active_pdp .pair_it_with_subtitle {
+      .pair_it_with_subtitle {
         margin-bottom: 10px;
       }
-      .active_pdp .pair_it_with_link_title {
+      .pair_it_with_link_title {
         font-size: 11px;
       }
-      .active_pdp .pair_it_with_link_txt span {
+      .pair_it_with_link_txt span {
         font-size: 12px;
       }
-      .active_pdp .pair_it_with_list {
+      .pair_it_with_list {
         display: block;
       }
-      .active_pdp .pair_it_with_block .slick-initialized .slick-slide > div {
+      .pair_it_with_block .slick-initialized .slick-slide > div {
         margin: 0 16px 0 0;
       }
-      .active_pdp .pair_it_with_block .slick-dots {
+      .pair_it_with_block .slick-dots {
         display: flex;
         align-items: center;
         justify-content: center;
         margin-top: 20px;
       }
-      .active_pdp .pair_it_with_block .slick-dots li {
+      .pair_it_with_block .slick-dots li {
       }
-      .active_pdp .pair_it_with_block .slick-dots li button {
+      .pair_it_with_block .slick-dots li button {
         font-size: 0;
         line-height: 0;
         display: block;
@@ -1156,66 +1154,66 @@ let startPdp = setInterval(() => {
         border: none;
         margin: 0 4px;
       }
-      .active_pdp .pair_it_with_block .slick-dots li.slick-active button {
+      .pair_it_with_block .slick-dots li.slick-active button {
         background: #000;
         width: 10px;
         height: 10px;
       }
-      .active_pdp .bg-platinum-1 .layout-container {
+      .bg-platinum-1 .layout-container {
         padding: 0;
       }
-      .active_pdp #LP-General-General_Cta_Section {
+      #LP-General-General_Cta_Section {
         padding: 0;
         margin-bottom: 40px;
       }
-      .active_pdp #LP-General-General_Cta_Section > div {
+      #LP-General-General_Cta_Section > div {
         margin-top: 40px;
       }
-      .active_pdp #LP-Transparent-Video_Section {
+      #LP-Transparent-Video_Section {
         margin-top: 0;
       }
-      .active_pdp .layout-container.p-none.py-10 .col-span-full:nth-child(2) {
+      .layout-container.p-none.py-10 .col-span-full:nth-child(2) {
         margin: 0;
         padding: 6px 1rem 20px;
       }
-      .active_pdp .layout-container .col-span-full:nth-child(2) .relative.flex.w-full,
-      .active_pdp .made_pure_box_mini {
+      .layout-container .col-span-full:nth-child(2) .relative.flex.w-full,
+      .made_pure_box_mini {
         padding: 6px 8px;
       }
-      .active_pdp .layout-container .col-span-full:nth-child(2) .relative.flex.w-full > p.text-p,
-      .active_pdp .made_pure_wrap .made_pure_txt,
-      .active_pdp .made_pure_box_mini .made_pure_txt,
-      .active_pdp .made_pure_box_mini > p.text-xsc {
+      .layout-container .col-span-full:nth-child(2) .relative.flex.w-full > p.text-p,
+      .made_pure_wrap .made_pure_txt,
+      .made_pure_box_mini .made_pure_txt,
+      .made_pure_box_mini > p.text-xsc {
         font-size: 11px !important;
         line-height: 18px !important;
       }
-      .active_pdp .my-7.flex.items-center.justify-between,
-      .active_pdp .layout-container.p-none.py-10 .made_pure_box_mini + .mb-8.flex.gap-10 {
+      .my-7.flex.items-center.justify-between,
+      .layout-container.p-none.py-10 .made_pure_box_mini + .mb-8.flex.gap-10 {
         margin: 12px 0 8px;
       }
-      .active_pdp .my-7.flex.items-center.justify-between h3.text-h3.font-semibold,
-      .active_pdp .layout-container.p-none.py-10 .made_pure_box_mini + .mb-8.flex.gap-10 h3.text-h3.font-semibold {
+      .my-7.flex.items-center.justify-between h3.text-h3.font-semibold,
+      .layout-container.p-none.py-10 .made_pure_box_mini + .mb-8.flex.gap-10 h3.text-h3.font-semibold {
         font-size: 24px;
         line-height: 32px;
       }
-      .active_pdp .my-7.flex.items-center.justify-between + .flex.flex-col .gap-1 .leading-5,
-      .active_pdp .layout-container.p-none.py-10 .made_pure_box_mini + .mb-8.flex.gap-10 + .flex.flex-col:not(.mb-8) .leading-5 {
+      .my-7.flex.items-center.justify-between + .flex.flex-col .gap-1 .leading-5,
+      .layout-container.p-none.py-10 .made_pure_box_mini + .mb-8.flex.gap-10 + .flex.flex-col:not(.mb-8) .leading-5 {
         font-size: 14px;
         line-height: 20px;
       }
-      .active_pdp .bg-special.mt-7.mb-4.flex.w-full.items-center.justify-center.rounded.p-2 > p {
+      .bg-special.mt-7.mb-4.flex.w-full.items-center.justify-center.rounded.p-2 > p {
         text-align: center;
         width: 100%;
         max-width: unset;
         font-size: 13px;
       }
-      .active_pdp .layout-container.py-10 {
+      .layout-container.py-10 {
         padding-top: 0;
       }
-      .active_pdp .stability_box {
+      .stability_box {
         margin-top: 11px;
       }
-      .active_pdp .stability_box .stability_title {
+      .stability_box .stability_title {
         font-size: 14px;
         line-height: 20px;
       }
@@ -1225,7 +1223,7 @@ let startPdp = setInterval(() => {
       #add-cart-button-fixed button + div + .my-5{
         margin: 8px 0 0;
       }
-      .active_pdp .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button + .my-5{
+      .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button + .my-5{
         margin: 16px 0 0;
       }
       /*
@@ -1246,29 +1244,29 @@ let startPdp = setInterval(() => {
         box-shadow: 0px -2px 16px 0px rgba(0, 0, 0, 0.1);
         padding: 8px 1rem 16px;
       }
-      .active_pdp .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) {
+      .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) {
         z-index: 1;
         padding: 16px 0 12px;
         margin: 0;
       }
-      .active_pdp .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button,
-      .active_pdp .layout-container.p-none.py-10 button.tracking-widest,
-      .active_pdp .layout-container.p-none.py-10 button.tracking-widest > div > div {
+      .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button,
+      .layout-container.p-none.py-10 button.tracking-widest,
+      .layout-container.p-none.py-10 button.tracking-widest > div > div {
         height: 44px;
       }
-      .active_pdp .layout-container.p-none.py-10 button.tracking-widest{
+      .layout-container.p-none.py-10 button.tracking-widest{
         display: block;
       }
-      .active_pdp .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button div {
+      .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button div {
         height: 100%;
       }
-      .active_pdp .sticky_wrap {
+      .sticky_wrap {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 8px;
       }
-      .active_pdp .sticky_wrap > .sticky_information {
+      .sticky_wrap > .sticky_information {
         color: #000;
         font-size: 14px;
         font-weight: 400;
@@ -1282,7 +1280,7 @@ let startPdp = setInterval(() => {
         margin-left: 5px;
       }
       */
-      .active_pdp .sticky_wrap .our_price {
+      .sticky_wrap .our_price {
         color: #000;
         font-size: 14px;
         font-weight: 600;
@@ -1290,14 +1288,14 @@ let startPdp = setInterval(() => {
         text-transform: uppercase;
         margin-left: 12px;
       }
-      .active_pdp .layout-container .col-span-full:nth-child(2) {
+      .layout-container .col-span-full:nth-child(2) {
         padding: 12px 1rem 32px;
       }
-      .active_pdp .layout-container .mt-2.mb-4.flex.items-end.justify-between.gap-4 {
+      .layout-container .mt-2.mb-4.flex.items-end.justify-between.gap-4 {
         margin: 0 0 8px;
         position: relative;
       }
-      .active_pdp .layout-container.p-none.py-10 .mt-2.mb-4.flex.items-end.justify-between.gap-4::before {
+      .layout-container.p-none.py-10 .mt-2.mb-4.flex.items-end.justify-between.gap-4::before {
         content: "Excellent";
         position: absolute;
         top: 0;
@@ -1309,45 +1307,45 @@ let startPdp = setInterval(() => {
         text-transform: capitalize;
         z-index: 1;
       }
-      .active_pdp .layout-container .col-span-full:nth-child(2) h1 {
+      .layout-container .col-span-full:nth-child(2) h1 {
         font-size: 22px !important;
         line-height: 30px !important;
       }
-      .active_pdp .layout-container .col-span-full:nth-child(2) .relative.flex.w-full {
+      .layout-container .col-span-full:nth-child(2) .relative.flex.w-full {
         padding: 6px 8px;
       }
-      .active_pdp .layout-container .col-span-full:nth-child(2) .relative.flex.w-full > p.text-p,
-      .active_pdp .made_pure_wrap .made_pure_txt {
+      .layout-container .col-span-full:nth-child(2) .relative.flex.w-full > p.text-p,
+      .made_pure_wrap .made_pure_txt {
         line-height: 18px !important;
         font-size: 11px !important;
         font-family: inherit;
       }
-      .active_pdp .my-7.flex.items-center.justify-between {
+      .my-7.flex.items-center.justify-between {
         margin: 12px 0 8px;
       }
-      .active_pdp .my-7.flex.items-center.justify-between h3.text-h3.font-semibold {
+      .my-7.flex.items-center.justify-between h3.text-h3.font-semibold {
         font-size: 24px;
         line-height: 32px;
       }
-      .active_pdp .my-7.flex.items-center.justify-between + .flex.flex-col .gap-1 .leading-5 {
+      .my-7.flex.items-center.justify-between + .flex.flex-col .gap-1 .leading-5 {
         font-size: 14px;
         line-height: 20px;
       }
-      .active_pdp .investment_txt {
+      .investment_txt {
         font-size: 13px;
         line-height: 18px;
       }
-      .active_pdp .my-3[role="radiogroup"] + .items-end .text-p.h-10 {
+      .my-3[role="radiogroup"] + .items-end .text-p.h-10 {
         margin: 0 0 8px;
       }
-      .active_pdp .new_btn_add_to_basket {
+      .new_btn_add_to_basket {
         margin: 16px 0 12px;
         width: 100%;
       }
-      .active_pdp .new_return_wrapper .new_btn_add_to_basket {
+      .new_return_wrapper .new_btn_add_to_basket {
         margin-top: 0;
       }
-      .active_pdp .new_btn_add_to_basket button {
+      .new_btn_add_to_basket button {
         color: #fff;
         font-family: "Roobert TRIAL", sans-serif;
         font-size: 16px;
@@ -1359,53 +1357,53 @@ let startPdp = setInterval(() => {
         height: 44px;
         background: #000;
       }
-      .active_pdp .new_btn_add_to_basket button > div,
-      .active_pdp .new_btn_add_to_basket button > div > div {
+      .new_btn_add_to_basket button > div,
+      .new_btn_add_to_basket button > div > div {
         height: 100%;
       }
-      .active_pdp .new_btn_add_to_basket button > div > .absolute {
+      .new_btn_add_to_basket button > div > .absolute {
         background: #000;
       }
-      .active_pdp .bg-platinum-1.py-3 {
+      .bg-platinum-1.py-3 {
         padding: 14px;
       }
-      .active_pdp .bg-platinum-1.py-3 p.text-xsc {
+      .bg-platinum-1.py-3 p.text-xsc {
         font-size: 10px !important;
         line-height: 14px !important;
       }
-      .active_pdp .my-3[role="radiogroup"]{
+      .my-3[role="radiogroup"]{
         margin: 32px 0 16px;
       }
-      .active_pdp .my-3[role="radiogroup"] + .flex.flex-col.items-end {
+      .my-3[role="radiogroup"] + .flex.flex-col.items-end {
         margin: 12px 0 0;
       }
-      .active_pdp .layout-container.py-10 .my-3[role="radiogroup"] {
+      .layout-container.py-10 .my-3[role="radiogroup"] {
         margin: 20px 0 8px;
       }
-      .active_pdp .back_to_top_btn span {
+      .back_to_top_btn span {
         font-size: 16px;
       }
-      .active_pdp .new_details_bgr {
+      .new_details_bgr {
         padding: 0;
       }
-      .active_pdp .bg-rose-24.px-6 {
+      .bg-rose-24.px-6 {
         margin-top: 0;
       }
-      .active_pdp .new_details_wrap {
+      .new_details_wrap {
         flex-direction: column;
         gap: 12px;
         background: #f4f4f5;
       }
-      .active_pdp .new_details_wrap > li {
+      .new_details_wrap > li {
         width: 100%;
         border-bottom: 1px solid #eaeaeb;
         background: #fff;
       }
-      .active_pdp .accardion_link_details {
+      .accardion_link_details {
         padding: 12px 16px;
         position: relative;
       }
-      .active_pdp .accardion_link_details > span {
+      .accardion_link_details > span {
         display: flex;
         width: 24px;
         height: 24px;
@@ -1416,55 +1414,55 @@ let startPdp = setInterval(() => {
         align-items: center;
         justify-content: center;
       }
-      .active_pdp .accardion_link_details > span svg {
+      .accardion_link_details > span svg {
         transition: all 0.3s ease;
       }
-      .active_pdp .accardion_link_details.close_block > span svg {
+      .accardion_link_details.close_block > span svg {
         transform: rotate(180deg);
         transition: all 0.3s ease;
       }
-      .active_pdp .accardion_lists_details {
+      .accardion_lists_details {
         border-top: 1px solid #eaeaeb;
         background: #fff;
       }
-      .active_pdp .accardion_lists_details > div {
+      .accardion_lists_details > div {
         padding: 16px;
       }
-      .active_pdp .new_details_wrap .details_title {
+      .new_details_wrap .details_title {
         margin: 0;
         padding: 0;
         font-size: 14px;
         line-height: 20px;
         border-bottom: none;
       }
-      .active_pdp .new_details_wrap .trustmessaging_list {
+      .new_details_wrap .trustmessaging_list {
         margin: 20px 0 0;
       }
-      .active_pdp .new_details_wrap .trustmessaging_list li + li {
+      .new_details_wrap .trustmessaging_list li + li {
         margin-top: 4px;
       }
-      .active_pdp .specification_html .my-3.mb-12 {
+      .specification_html .my-3.mb-12 {
         margin: 0;
       }
-      .active_pdp #advantagesBox .advantages_list {
+      #advantagesBox .advantages_list {
         flex-direction: column;
       }
-      .active_pdp .advantages_box_bgr {
+      .advantages_box_bgr {
         padding-top: 24px;
         margin: 0 1rem 24px;
         padding-left: 0;
         padding-right: 0;
       }
-      .active_pdp #advantagesBox {
+      #advantagesBox {
         padding: 20px;
       }
-      .active_pdp #advantagesBox .advantages_list li {
+      #advantagesBox .advantages_list li {
         width: 100% !important;
       }
-      .active_pdp #advantagesBox .advantages_list li:nth-child(1) {
+      #advantagesBox .advantages_list li:nth-child(1) {
         padding: 0;
       }
-      .active_pdp #advantagesBox .advantages_list li:nth-child(2) {
+      #advantagesBox .advantages_list li:nth-child(2) {
         border-top: 1px solid #eaeaeb;
         border-bottom: 1px solid #eaeaeb;
         border-left: unset;
@@ -1472,110 +1470,110 @@ let startPdp = setInterval(() => {
         padding: 20px 0;
         margin: 20px 0;
       }
-      .active_pdp #advantagesBox .advantages_list li:nth-child(3) {
+      #advantagesBox .advantages_list li:nth-child(3) {
         padding: 0;
       }
-      .active_pdp #advantagesBox .advantages_title {
+      #advantagesBox .advantages_title {
         margin-bottom: 8px;
         font-size: 14px;
         line-height: 20px;
       }
-      .active_pdp #advantagesBox .advantages_txt {
+      #advantagesBox .advantages_txt {
         max-width: 300px;
       }
-      .active_pdp .title_review {
+      .title_review {
         font-size: 24px;
         line-height: 32px;
         margin: 0 auto;
         max-width: 320px;
       }
-      .active_pdp #TrustpilotReviewSection {
+      #TrustpilotReviewSection {
         padding: 24px 1rem;
       }
-      .active_pdp #TrustpilotReviewSection .scrollbar-track-platinum-18 {
+      #TrustpilotReviewSection .scrollbar-track-platinum-18 {
         padding: 0;
       }
-      .active_pdp .comparison_table_bgr {
+      .comparison_table_bgr {
         margin: 0 1rem;
         padding: 0 0 32px;
       }
-      .active_pdp #comparisonTable {
+      #comparisonTable {
         padding: 0;
       }
-      .active_pdp #comparisonTable table {
+      #comparisonTable table {
         border-spacing: 0;
       }
-      .active_pdp #comparisonTable table th:nth-child(1),
-      .active_pdp #comparisonTable table td:nth-child(1) {
+      #comparisonTable table th:nth-child(1),
+      #comparisonTable table td:nth-child(1) {
         display: none;
       }
-      .active_pdp #comparisonTable table tbody tr.colspan {
+      #comparisonTable table tbody tr.colspan {
         display: contents;
       }
-      .active_pdp #comparisonTable table tbody tr td[colspan="2"] p {
+      #comparisonTable table tbody tr td[colspan="2"] p {
         font-size: 14px;
         font-weight: 600;
       }
-      .active_pdp #comparisonTable table td:nth-child(2),
-      .active_pdp #comparisonTable table th:nth-child(2) {
+      #comparisonTable table td:nth-child(2),
+      #comparisonTable table th:nth-child(2) {
         width: 50%;
       }
-      .active_pdp .overlay_popup .container_popup {
+      .overlay_popup .container_popup {
         padding: 24px;
         max-height: fit-content;
         height: fit-content;
       }
-      .active_pdp .popup_title {
+      .popup_title {
         font-size: 20px;
         line-height: 28px;
         margin-bottom: 12px;
       }
-      .active_pdp .popup_txt_wrap {
+      .popup_txt_wrap {
         padding: 0;
         border-top: unset;
         border-bottom: unset;
       }
-      .active_pdp .overlay_popup .container_popup > svg {
+      .overlay_popup .container_popup > svg {
         top: 16px;
         right: 16px;
       }
-      .active_pdp .overlay_popup.is_hidden .container_popup {
+      .overlay_popup.is_hidden .container_popup {
         transform: translateY(100%);
         transition: all 0.8s ease 0s;
       }
-      .active_pdp .bg-rose-24.my-2 {
+      .bg-rose-24.my-2 {
         margin-top: 16px;
       }
-      .active_pdp .popup_txt_wrap p br {
+      .popup_txt_wrap p br {
         display: none;
       }
-      .active_pdp .h-6.items-center.gap-4{
+      .h-6.items-center.gap-4{
         gap: 1rem;
       }
     }
     @media (max-width: 376px) {
-      .active_pdp .bg-special.mt-7.mb-4.flex.w-full.items-center.justify-center.rounded.p-2 > p {
+      .bg-special.mt-7.mb-4.flex.w-full.items-center.justify-center.rounded.p-2 > p {
         font-size: 12px;
       }
-      .active_pdp .pair_it_with_link_title {
+      .pair_it_with_link_title {
         font-size: 10px;
       }
-      .active_pdp .layout-container .col-span-full:nth-child(2) .relative.flex.w-full > p.text-p,
-      .active_pdp .made_pure_wrap .made_pure_txt,
-      .active_pdp .made_pure_box_mini .made_pure_txt,
-      .active_pdp .made_pure_box_mini > p.text-xsc {
+      .layout-container .col-span-full:nth-child(2) .relative.flex.w-full > p.text-p,
+      .made_pure_wrap .made_pure_txt,
+      .made_pure_box_mini .made_pure_txt,
+      .made_pure_box_mini > p.text-xsc {
         font-size: 11px !important;
       }
     }
     @media (min-width: 1441px) {
-      .active_pdp .layout-container .col-span-full:nth-child(2){
+      .layout-container .col-span-full:nth-child(2){
         max-width: unset;
         margin-left: 1rem;
       }
-      .active_pdp .stability_box .stability_txt{
+      .stability_box .stability_txt{
         max-width: unset;
       }
-      .active_pdp .stability_box .stability_title{
+      .stability_box .stability_title{
         max-width: unset;
       }
     }
@@ -1765,7 +1763,8 @@ let startPdp = setInterval(() => {
       </div>
   `;
 
-    document.querySelector(".active_pdp head").insertAdjacentHTML("beforeend", stylePdp);
+    document.head.insertAdjacentHTML("beforeend", stylePdp);
+    document.body.insertAdjacentHTML("afterbegin", popUp);
 
     let isClick = false;
     renderHtml();
@@ -1779,11 +1778,8 @@ let startPdp = setInterval(() => {
     }
 
     function changePopup() {
-      if (!document.querySelector(".active_pdp .overlay_popup")) {
-        document.querySelector(".active_pdp body").insertAdjacentHTML("afterbegin", popUp);
-      }
-      if (document.querySelector(".active_pdp .overlay_popup")) {
-        let overlay = document.querySelector(".active_pdp .overlay_popup"),
+      if (document.querySelector(".overlay_popup")) {
+        let overlay = document.querySelector(".overlay_popup"),
           containerPopup = overlay.querySelector(".container_popup"),
           btnClose = overlay.querySelector("svg"),
           scroll = calcScroll();
@@ -1812,7 +1808,7 @@ let startPdp = setInterval(() => {
           }
         });
 
-        document.querySelectorAll(".active_pdp [data-learnMore]").forEach((el) => {
+        document.querySelectorAll("[data-learnMore]").forEach((el) => {
           el.addEventListener("click", (e) => {
             if (!e.target.getAttribute("data-test")) {
               if (e.currentTarget.getAttribute("data-learnMore") === "1") {
@@ -1835,6 +1831,7 @@ let startPdp = setInterval(() => {
 
         function onClosePopup() {
           overlay.classList.add("is_hidden");
+          document.body.style.overflow = "unset";
           document.body.style.marginRight = `0px`;
           document.body.style.overflow = "auto";
           document.body.style.display = "initial";
@@ -1848,14 +1845,14 @@ let startPdp = setInterval(() => {
           document.body.style.marginRight = `${scroll}px`;
           document.body.style.display = "block";
           document.body.style.height = "100%";
-          if (!document.querySelector(".active_pdp .overlay_popup .content_popup")) {
+          if (!document.querySelector(".overlay_popup .content_popup")) {
             containerPopup?.insertAdjacentHTML("beforeend", contentPopup);
           }
-          if (document.querySelector(".active_pdp .overlay_popup .content_popup") && document.querySelector(".overlay_popup .content_popup").children.length === 0) {
-            document.querySelector(".active_pdp .overlay_popup .content_popup")?.insertAdjacentHTML("beforeend", txt);
+          if (document.querySelector(".overlay_popup .content_popup") && document.querySelector(".overlay_popup .content_popup").children.length === 0) {
+            document.querySelector(".overlay_popup .content_popup")?.insertAdjacentHTML("beforeend", txt);
           }
-          if (document.querySelector(".active_pdp .txt_made_from")) {
-            document.querySelector(".active_pdp .txt_made_from").textContent = document.querySelector(".layout-container .p-2 .tracking-widest")?.textContent;
+          if (document.querySelector(".txt_made_from")) {
+            document.querySelector(".txt_made_from").textContent = document.querySelector(".layout-container .p-2 .tracking-widest")?.textContent;
           }
         }
         function calcScroll() {
@@ -1875,9 +1872,9 @@ let startPdp = setInterval(() => {
 
     function changePlaceExcellent() {
       let t = setInterval(() => {
-        if (document.querySelector(".active_pdp .layout-container.bg-platinum-1 .mt-2.mb-4.flex.items-end.justify-between.gap-4")) {
+        if (document.querySelector(".layout-container.bg-platinum-1 .mt-2.mb-4.flex.items-end.justify-between.gap-4")) {
           clearInterval(t);
-          document.querySelector(".active_pdp .layout-container.bg-platinum-1 .col-span-full:nth-child(2) h1")?.before(document.querySelector(".layout-container.bg-platinum-1 .mt-2.mb-4.flex.items-end.justify-between.gap-4"));
+          document.querySelector(".layout-container.bg-platinum-1 .col-span-full:nth-child(2) h1")?.before(document.querySelector(".layout-container.bg-platinum-1 .mt-2.mb-4.flex.items-end.justify-between.gap-4"));
         }
       }, 10);
     }
@@ -1889,14 +1886,14 @@ let startPdp = setInterval(() => {
       if (document.querySelector(".layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button > div > div") && document.querySelector(".layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button > div > div")?.textContent !== "ADD TO BASKET") {
         document.querySelector(".layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button > div > div").textContent = "ADD TO BASKET";
       }
-      if (document.querySelector(".active_pdp .layout-container.p-none.py-10 button[data-testid='add-to-bag'] > div > div") && document.querySelector(".layout-container.p-none.py-10 button[data-testid='add-to-bag'] > div > div")?.textContent !== "ADD TO BASKET") {
-        document.querySelector(".active_pdp .layout-container.p-none.py-10 button[data-testid='add-to-bag'] > div > div").textContent = "ADD TO BASKET";
+      if (document.querySelector(".layout-container.p-none.py-10 button[data-testid='add-to-bag'] > div > div") && document.querySelector(".layout-container.p-none.py-10 button[data-testid='add-to-bag'] > div > div")?.textContent !== "ADD TO BASKET") {
+        document.querySelector(".layout-container.p-none.py-10 button[data-testid='add-to-bag'] > div > div").textContent = "ADD TO BASKET";
       }
-      if (!document.querySelector(".active_pdp .made_pure_wrap")) {
-        document.querySelector(".active_pdp .layout-container .col-span-full:nth-child(2) .relative.flex.w-full p.text-p")?.insertAdjacentHTML("afterend", `<div class="made_pure_wrap"><span class="made_pure_txt">(99.9% purity)</span> <span data-learnMore="1">learn more</span></div>`);
+      if (!document.querySelector(".made_pure_wrap")) {
+        document.querySelector(".layout-container .col-span-full:nth-child(2) .relative.flex.w-full p.text-p")?.insertAdjacentHTML("afterend", `<div class="made_pure_wrap"><span class="made_pure_txt">(99.9% purity)</span> <span data-learnMore="1">learn more</span></div>`);
       }
-      if (!document.querySelector(".active_pdp .new_svg_payments.red_var")) {
-        document.querySelectorAll(".active_pdp .my-7.flex.items-center.justify-between + .flex.flex-col .gap-1")[0]?.insertAdjacentHTML(
+      if (!document.querySelector(".new_svg_payments.red_var")) {
+        document.querySelectorAll(".my-7.flex.items-center.justify-between + .flex.flex-col .gap-1")[0]?.insertAdjacentHTML(
           "beforeend",
           `<svg class="new_svg_payments red_var" width="44" height="16" viewBox="0 0 44 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g id="Layer 1">
@@ -1917,8 +1914,8 @@ let startPdp = setInterval(() => {
         );
       }
 
-      if (!document.querySelector(".active_pdp .new_svg_payments.green_var")) {
-        document.querySelectorAll(".active_pdp .my-7.flex.items-center.justify-between + .flex.flex-col .gap-1")[1]?.insertAdjacentHTML(
+      if (!document.querySelector(".new_svg_payments.green_var")) {
+        document.querySelectorAll(".my-7.flex.items-center.justify-between + .flex.flex-col .gap-1")[1]?.insertAdjacentHTML(
           "beforeend",
           `<svg class="new_svg_payments green_var" width="54" height="16" viewBox="0 0 54 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g id="Group 34151">
@@ -1939,35 +1936,35 @@ let startPdp = setInterval(() => {
           `
         );
       }
-      if (!document.querySelector(".active_pdp .investment_txt")) {
-        document.querySelector(".active_pdp .bg-platinum-1.py-3")?.insertAdjacentHTML("beforebegin", `<p class="investment_txt">7879 jewellery is a long-term investment</p>`);
+      if (!document.querySelector(".investment_txt")) {
+        document.querySelector(".bg-platinum-1.py-3")?.insertAdjacentHTML("beforebegin", `<p class="investment_txt">7879 jewellery is a long-term investment</p>`);
       }
-      if (!document.querySelector(".active_pdp .our_fees_wrap")) {
-        document.querySelector(".active_pdp .bg-platinum-1.py-3")?.insertAdjacentHTML("afterend", `<div class="our_fees_wrap"><span class="our_fees_txt">Our fees are fair & transparent</span> <span data-learnMore="2">Learn more</span></div>`);
+      if (!document.querySelector(".our_fees_wrap")) {
+        document.querySelector(".bg-platinum-1.py-3")?.insertAdjacentHTML("afterend", `<div class="our_fees_wrap"><span class="our_fees_txt">Our fees are fair & transparent</span> <span data-learnMore="2">Learn more</span></div>`);
       }
-      if (!document.querySelector(".active_pdp .stability_box")) {
-        document.querySelector(".active_pdp .col-span-full .mx-auto.px-5")?.insertAdjacentHTML("afterend", stabilityBox);
+      if (!document.querySelector(".stability_box")) {
+        document.querySelector(".col-span-full .mx-auto.px-5")?.insertAdjacentHTML("afterend", stabilityBox);
       }
-      if (!document.querySelector(".active_pdp .title_review")) {
-        document.querySelector(".active_pdp #TrustpilotReviewSection")?.insertAdjacentHTML("beforebegin", `<h2 class="title_review">More than 6,895 customers already trust us</h2>`);
+      if (!document.querySelector(".title_review")) {
+        document.querySelector("#TrustpilotReviewSection")?.insertAdjacentHTML("beforebegin", `<h2 class="title_review">More than 6,895 customers already trust us</h2>`);
       }
-      if (document.querySelector(".active_pdp .comparison_table_bgr") && !document.querySelector(".advantages_box_bgr")) {
-        document.querySelector(".active_pdp .comparison_table_bgr")?.insertAdjacentHTML("beforebegin", advantagesBox);
+      if (document.querySelector(".comparison_table_bgr") && !document.querySelector(".advantages_box_bgr")) {
+        document.querySelector(".comparison_table_bgr")?.insertAdjacentHTML("beforebegin", advantagesBox);
       }
-      if (document.querySelector(".active_pdp .title_review") && !document.querySelector(".comparison_table_bgr")) {
-        document.querySelector(".active_pdp .title_review")?.insertAdjacentHTML("beforebegin", comparisonTableBox);
+      if (document.querySelector(".title_review") && !document.querySelector(".comparison_table_bgr")) {
+        document.querySelector(".title_review")?.insertAdjacentHTML("beforebegin", comparisonTableBox);
       }
-      if (document.querySelector(".active_pdp .comparison_table_bgr")) {
-        document.querySelector(".active_pdp #comparisonTable table td p.our_price").textContent = document.querySelector(".my-7.flex.items-center.justify-between h3.text-h3.font-semibold")?.textContent.split("*")[0];
-        document.querySelector(".active_pdp #comparisonTable table td p.street_price").textContent = document.querySelector("#right-view h4.text-h4:nth-child(2)")?.textContent.split("*")[0];
+      if (document.querySelector(".comparison_table_bgr")) {
+        document.querySelector("#comparisonTable table td p.our_price").textContent = document.querySelector(".my-7.flex.items-center.justify-between h3.text-h3.font-semibold")?.textContent.split("*")[0];
+        document.querySelector("#comparisonTable table td p.street_price").textContent = document.querySelector("#right-view h4.text-h4:nth-child(2)")?.textContent.split("*")[0];
       }
-      if (document.querySelector(".active_pdp #LP-General-General_Cta_Section") && document.querySelector("#LP-General-testimonial-grid") && !document.querySelector("#LP-General-testimonial-grid + #LP-General-General_Cta_Section")) {
-        document.querySelector(".active_pdp #LP-General-testimonial-grid").closest(".relative").after(document.querySelector("#LP-General-General_Cta_Section"));
+      if (document.querySelector("#LP-General-General_Cta_Section") && document.querySelector("#LP-General-testimonial-grid") && !document.querySelector("#LP-General-testimonial-grid + #LP-General-General_Cta_Section")) {
+        document.querySelector("#LP-General-testimonial-grid").closest(".relative").after(document.querySelector("#LP-General-General_Cta_Section"));
       }
-      if (!document.querySelector(".active_pdp .back_to_top_btn +.bg-black.relative.px-6")) {
-        document.querySelector(".active_pdp .back_to_top_btn")?.remove();
-        if (document.querySelector(".active_pdp .bg-black.relative.px-6") && !document.querySelector(".active_pdp .back_to_top_btn")) {
-          document.querySelector(".active_pdp .bg-black.relative.px-6")?.insertAdjacentHTML(
+      if (!document.querySelector(".back_to_top_btn +.bg-black.relative.px-6")) {
+        document.querySelector(".back_to_top_btn")?.remove();
+        if (document.querySelector(".bg-black.relative.px-6") && !document.querySelector(".back_to_top_btn")) {
+          document.querySelector(".bg-black.relative.px-6")?.insertAdjacentHTML(
             "beforebegin",
             `<div class="back_to_top_btn">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="rotate-180 stroke-current"><path d="M16.75 10.75L12 15.25L7.25 10.75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
@@ -1988,8 +1985,8 @@ let startPdp = setInterval(() => {
       }
 
       if (window.innerWidth < 768) {
-        if (!document.querySelector(".active_pdp .layout-container.p-none.py-10 .new_btn_add_to_basket")) {
-          document.querySelectorAll(".active_pdp .layout-container.p-none.py-10 .mb-1.flex.items-center.justify-center").forEach((el) => {
+        if (!document.querySelector(".layout-container.p-none.py-10 .new_btn_add_to_basket")) {
+          document.querySelectorAll(".layout-container.p-none.py-10 .mb-1.flex.items-center.justify-center").forEach((el) => {
             el.insertAdjacentHTML("beforebegin", `<div class="new_btn_add_to_basket"></div>`);
           });
         }
@@ -2029,16 +2026,16 @@ let startPdp = setInterval(() => {
         //   }
         // }
 
-        if (document.querySelector(".active_pdp .layout-container.p-none.py-10 .new_btn_add_to_basket")) {
-          if (!document.querySelector(".active_pdp .layout-container.p-none.py-10 .new_btn_add_to_basket button")) {
+        if (document.querySelector(".layout-container.p-none.py-10 .new_btn_add_to_basket")) {
+          if (!document.querySelector(".layout-container.p-none.py-10 .new_btn_add_to_basket button")) {
             let newBtn = document.querySelector("#add-cart-button-fixed button").cloneNode(true);
-            document.querySelectorAll(".active_pdp .layout-container.p-none.py-10 .new_btn_add_to_basket").forEach((el) => {
+            document.querySelectorAll(".layout-container.p-none.py-10 .new_btn_add_to_basket").forEach((el) => {
               el.appendChild(newBtn);
             });
-            document.querySelectorAll(".active_pdp .layout-container.p-none.py-10 .new_btn_add_to_basket button").forEach((i) => {
+            document.querySelectorAll(".layout-container.p-none.py-10 .new_btn_add_to_basket button").forEach((i) => {
               i.addEventListener("click", () => {
-                if (!document.querySelector(".active_pdp .layout-container.p-none.py-10 .new_btn_add_to_basket button > div >.absolute")) {
-                  document.querySelector(".active_pdp .layout-container.p-none.py-10 .new_btn_add_to_basket button > div")?.insertAdjacentHTML(
+                if (!document.querySelector(".layout-container.p-none.py-10 .new_btn_add_to_basket button > div >.absolute")) {
+                  document.querySelector(".layout-container.p-none.py-10 .new_btn_add_to_basket button > div")?.insertAdjacentHTML(
                     "afterbegin",
                     `<div class="absolute inset-0 flex items-center justify-center">
                 <svg viewBox="0 0 66 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-15 animate-spin stroke-current text-white">
@@ -2050,7 +2047,7 @@ let startPdp = setInterval(() => {
                 }
                 document.querySelector("#add-cart-button-fixed button")?.click();
                 setTimeout(() => {
-                  document.querySelector(".active_pdp .layout-container.p-none.py-10 .new_btn_add_to_basket button > div >.absolute")?.remove();
+                  document.querySelector(".layout-container.p-none.py-10 .new_btn_add_to_basket button > div >.absolute")?.remove();
                 }, 500);
               });
             });
@@ -2067,13 +2064,13 @@ let startPdp = setInterval(() => {
           );
         }
 
-        if (document.querySelector(".active_pdp .sticky_wrap")) {
-          document.querySelector(".active_pdp .sticky_wrap .metal_txt").textContent = document.querySelectorAll('.my-3[role="radiogroup"] .gap-6 span.bg-black')[0]?.closest(".border-black").nextElementSibling?.textContent;
-          document.querySelector(".active_pdp .sticky_wrap .size_txt").textContent = document.querySelectorAll(".mb-3.w-full button .text-p.truncate")[0]?.textContent.length == null ? document.querySelectorAll(".mb-3.w-full button .text-p.truncate")[0]?.textContent : `| ${document.querySelectorAll(".mb-3.w-full button .text-p.truncate")[0]?.textContent}`;
-          document.querySelector(".active_pdp .sticky_wrap .our_price").textContent = document.querySelector(".my-7.flex.items-center.justify-between h3.text-h3.font-semibold")?.textContent.split("*")[0];
+        if (document.querySelector(".sticky_wrap")) {
+          document.querySelector(".sticky_wrap .metal_txt").textContent = document.querySelectorAll('.my-3[role="radiogroup"] .gap-6 span.bg-black')[0]?.closest(".border-black").nextElementSibling?.textContent;
+          document.querySelector(".sticky_wrap .size_txt").textContent = document.querySelectorAll(".mb-3.w-full button .text-p.truncate")[0]?.textContent.length == null ? document.querySelectorAll(".mb-3.w-full button .text-p.truncate")[0]?.textContent : `| ${document.querySelectorAll(".mb-3.w-full button .text-p.truncate")[0]?.textContent}`;
+          document.querySelector(".sticky_wrap .our_price").textContent = document.querySelector(".my-7.flex.items-center.justify-between h3.text-h3.font-semibold")?.textContent.split("*")[0];
 
-          document.querySelector(".active_pdp .sticky_information")?.addEventListener("click", () => {
-            document.querySelector('.active_pdp .my-3[role="radiogroup"]')?.scrollIntoView({ block: "start", behavior: "smooth" });
+          document.querySelector(".sticky_information")?.addEventListener("click", () => {
+            document.querySelector('.my-3[role="radiogroup"]')?.scrollIntoView({ block: "start", behavior: "smooth" });
           });
         }
       }
@@ -2081,44 +2078,44 @@ let startPdp = setInterval(() => {
 
     function changeMiniCard() {
       let findMiniCard = setInterval(() => {
-        if (document.querySelector(".active_pdp .layout-container.p-none.py-10")) {
+        if (document.querySelector(".layout-container.p-none.py-10")) {
           clearInterval(findMiniCard);
           //   console.log(`changeMiniCard`);
 
-          if (!document.querySelector(".active_pdp .layout-container.p-none.py-10 h1 + .made_pure_box_mini")) {
-            document.querySelector(".active_pdp .layout-container.p-none.py-10 h1")?.insertAdjacentHTML("afterend", `<div class="made_pure_box_mini"><span class="inner_span"></span></div>`);
+          if (!document.querySelector(".layout-container.p-none.py-10 h1 + .made_pure_box_mini")) {
+            document.querySelector(".layout-container.p-none.py-10 h1")?.insertAdjacentHTML("afterend", `<div class="made_pure_box_mini"><span class="inner_span"></span></div>`);
           }
 
-          if (document.querySelector(".active_pdp .layout-container.p-none.py-10 .made_pure_box_mini") && !document.querySelector(".layout-container.p-none.py-10 .made_pure_box_mini .text-xsc")) {
-            document.querySelector(".active_pdp .layout-container.p-none.py-10 .made_pure_box_mini .inner_span").after(document.querySelectorAll(".layout-container.p-none.py-10 .text-xsc")[0]);
+          if (document.querySelector(".layout-container.p-none.py-10 .made_pure_box_mini") && !document.querySelector(".layout-container.p-none.py-10 .made_pure_box_mini .text-xsc")) {
+            document.querySelector(".layout-container.p-none.py-10 .made_pure_box_mini .inner_span").after(document.querySelectorAll(".layout-container.p-none.py-10 .text-xsc")[0]);
           }
 
-          if (!document.querySelector(".active_pdp .layout-container.p-none.py-10 .made_pure_box_mini + .mb-8.flex.gap-10") && document.querySelector(".layout-container.p-none.py-10 .made_pure_box_mini")) {
-            document.querySelector(".active_pdp .layout-container.p-none.py-10 .made_pure_box_mini").after(document.querySelector(".layout-container.p-none.py-10 .mb-8.flex.gap-10"));
+          if (!document.querySelector(".layout-container.p-none.py-10 .made_pure_box_mini + .mb-8.flex.gap-10") && document.querySelector(".layout-container.p-none.py-10 .made_pure_box_mini")) {
+            document.querySelector(".layout-container.p-none.py-10 .made_pure_box_mini").after(document.querySelector(".layout-container.p-none.py-10 .mb-8.flex.gap-10"));
           }
 
-          if (!document.querySelector(".active_pdp .made_pure_wrap_mini")) {
-            document.querySelectorAll(".active_pdp .layout-container.p-none.py-10 .text-xsc")[0]?.insertAdjacentHTML("afterend", `<div class="made_pure_wrap_mini"><span class="made_pure_txt">(99.9% purity)</span> <span data-learnMore="1">learn more</span></div>`);
+          if (!document.querySelector(".made_pure_wrap_mini")) {
+            document.querySelectorAll(".layout-container.p-none.py-10 .text-xsc")[0]?.insertAdjacentHTML("afterend", `<div class="made_pure_wrap_mini"><span class="made_pure_txt">(99.9% purity)</span> <span data-learnMore="1">learn more</span></div>`);
           }
 
-          if (document.querySelector(".active_pdp .layout-container.p-none.py-10 .made_pure_box_mini + .mb-8.flex.gap-10") && !document.querySelector(".layout-container.p-none.py-10 .made_pure_box_mini + .mb-8.flex.gap-10 +.flex.flex-col:not(.mb-8)")) {
-            document.querySelector(".active_pdp .layout-container.p-none.py-10 .made_pure_box_mini + .mb-8.flex.gap-10").after(document.querySelector(".layout-container.p-none.py-10 .col-span-full:nth-child(2) > .flex.flex-col:not(.mb-8)"));
+          if (document.querySelector(".layout-container.p-none.py-10 .made_pure_box_mini + .mb-8.flex.gap-10") && !document.querySelector(".layout-container.p-none.py-10 .made_pure_box_mini + .mb-8.flex.gap-10 +.flex.flex-col:not(.mb-8)")) {
+            document.querySelector(".layout-container.p-none.py-10 .made_pure_box_mini + .mb-8.flex.gap-10").after(document.querySelector(".layout-container.p-none.py-10 .col-span-full:nth-child(2) > .flex.flex-col:not(.mb-8)"));
           }
 
           if (window.innerWidth > 768) {
-            if (!document.querySelector(".active_pdp .layout-container.p-none.py-10 .bg-special + .mb-8.flex:not(.items-end)")) {
-              let newBtn = document.querySelector(".active_pdp .bg-special.mt-7.mb-4.flex.w-full.items-center.justify-center.rounded.p-2").cloneNode(true);
-              document.querySelector(".active_pdp .layout-container.p-none.py-10 .mb-8.flex:not(.items-end)")?.insertAdjacentElement("beforebegin", newBtn);
+            if (!document.querySelector(".layout-container.p-none.py-10 .bg-special + .mb-8.flex:not(.items-end)")) {
+              let newBtn = document.querySelector(".bg-special.mt-7.mb-4.flex.w-full.items-center.justify-center.rounded.p-2").cloneNode(true);
+              document.querySelector(".layout-container.p-none.py-10 .mb-8.flex:not(.items-end)")?.insertAdjacentElement("beforebegin", newBtn);
             }
           } else {
-            if (!document.querySelector(".active_pdp .layout-container.p-none.py-10 .bg-special + .mt-6.flex.flex-col.gap-4")) {
-              let newBtn = document.querySelector(".active_pdp .bg-special.mt-7.mb-4.flex.w-full.items-center.justify-center.rounded.p-2").cloneNode(true);
-              document.querySelector(".active_pdp .layout-container.p-none.py-10 .mt-6.flex.flex-col.gap-4")?.insertAdjacentElement("beforebegin", newBtn);
+            if (!document.querySelector(".layout-container.p-none.py-10 .bg-special + .mt-6.flex.flex-col.gap-4")) {
+              let newBtn = document.querySelector(".bg-special.mt-7.mb-4.flex.w-full.items-center.justify-center.rounded.p-2").cloneNode(true);
+              document.querySelector(".layout-container.p-none.py-10 .mt-6.flex.flex-col.gap-4")?.insertAdjacentElement("beforebegin", newBtn);
             }
           }
 
-          if (!document.querySelector(".active_pdp .new_svg_payments_mini.red_var")) {
-            document.querySelectorAll(".active_pdp .layout-container.p-none.py-10 .flex.items-center.gap-1")[0]?.insertAdjacentHTML(
+          if (!document.querySelector(".new_svg_payments_mini.red_var")) {
+            document.querySelectorAll(".layout-container.p-none.py-10 .flex.items-center.gap-1")[0]?.insertAdjacentHTML(
               "beforeend",
               `<svg class="new_svg_payments_mini red_var" width="44" height="16" viewBox="0 0 44 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g id="Layer 1">
@@ -2139,8 +2136,8 @@ let startPdp = setInterval(() => {
             );
           }
 
-          if (!document.querySelector(".active_pdp .new_svg_payments_mini.green_var")) {
-            document.querySelectorAll(".active_pdp .layout-container.p-none.py-10 .flex.items-center.gap-1")[1]?.insertAdjacentHTML(
+          if (!document.querySelector(".new_svg_payments_mini.green_var")) {
+            document.querySelectorAll(".layout-container.p-none.py-10 .flex.items-center.gap-1")[1]?.insertAdjacentHTML(
               "beforeend",
               `<svg class="new_svg_payments_mini green_var" width="54" height="16" viewBox="0 0 54 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g id="Group 34151">
@@ -2161,43 +2158,43 @@ let startPdp = setInterval(() => {
           `
             );
           }
-          if (!document.querySelector(".active_pdp .new_return_wrapper")) {
-            document.querySelector(".active_pdp .layout-container.p-none.py-10 .col-span-full:nth-child(2)")?.insertAdjacentHTML("beforeend", `<div class="new_return_wrapper"></div>`);
+          if (!document.querySelector(".new_return_wrapper")) {
+            document.querySelector(".layout-container.p-none.py-10 .col-span-full:nth-child(2)")?.insertAdjacentHTML("beforeend", `<div class="new_return_wrapper"></div>`);
           }
-          if (document.querySelector(".active_pdp .new_return_wrapper")) {
-            let newBlock = document.querySelector(".active_pdp .mb-1.flex.items-center.justify-center")?.cloneNode(true),
-              newBlockSecond = document.querySelector(".active_pdp .mx-auto.px-5")?.cloneNode(true),
-              newTimeBlock = document.querySelector(".active_pdp .mb-1.flex.items-center.justify-center + .px-4")?.cloneNode(true);
-            if (!document.querySelector(".active_pdp .new_return_wrapper .mb-1.flex.items-center.justify-center")) {
-              document.querySelector(".active_pdp .new_return_wrapper").appendChild(newBlock);
+          if (document.querySelector(".new_return_wrapper")) {
+            let newBlock = document.querySelector(".mb-1.flex.items-center.justify-center")?.cloneNode(true),
+              newBlockSecond = document.querySelector(".mx-auto.px-5")?.cloneNode(true),
+              newTimeBlock = document.querySelector(".mb-1.flex.items-center.justify-center + .px-4")?.cloneNode(true);
+            if (!document.querySelector(".new_return_wrapper .mb-1.flex.items-center.justify-center")) {
+              document.querySelector(".new_return_wrapper").appendChild(newBlock);
             }
             let findBtnLearnMore = setInterval(() => {
-              if (document.querySelector(".active_pdp .new_return_wrapper .mb-1.flex.items-center.justify-center")) {
+              if (document.querySelector(".new_return_wrapper .mb-1.flex.items-center.justify-center")) {
                 clearInterval(findBtnLearnMore);
-                document.querySelector(".active_pdp .new_return_wrapper .mb-1.flex.items-center.justify-center button").addEventListener("click", (e) => {
+                document.querySelector(".new_return_wrapper .mb-1.flex.items-center.justify-center button").addEventListener("click", (e) => {
                   e.preventDefault();
                   e.stopPropagation();
-                  document.querySelector(".active_pdp .mb-1.flex.items-center.justify-center button")?.click();
+                  document.querySelector(".mb-1.flex.items-center.justify-center button")?.click();
                 });
               }
             }, 100);
-            if (!document.querySelector(".active_pdp .new_return_wrapper .mx-auto.px-5")) {
-              document.querySelector(".active_pdp .new_return_wrapper").appendChild(newBlockSecond);
+            if (!document.querySelector(".new_return_wrapper .mx-auto.px-5")) {
+              document.querySelector(".new_return_wrapper").appendChild(newBlockSecond);
             }
-            if (!document.querySelector(".active_pdp .new_return_wrapper .px-4") && document.querySelector(".new_return_wrapper .mb-1.flex.items-center.justify-center") && document.querySelector(".mb-1.flex.items-center.justify-center + .px-4")) {
-              document.querySelector(".active_pdp .new_return_wrapper .mb-1.flex.items-center.justify-center")?.insertAdjacentElement("afterend", newTimeBlock);
+            if (!document.querySelector(".new_return_wrapper .px-4") && document.querySelector(".new_return_wrapper .mb-1.flex.items-center.justify-center") && document.querySelector(".mb-1.flex.items-center.justify-center + .px-4")) {
+              document.querySelector(".new_return_wrapper .mb-1.flex.items-center.justify-center")?.insertAdjacentElement("afterend", newTimeBlock);
             }
 
-            if (document.querySelector(".active_pdp .new_return_wrapper .px-4 p:nth-child(2)")?.textContent !== document.querySelector(".mb-1.flex.items-center.justify-center + .px-4 p:nth-child(2)")?.textContent) {
-              document.querySelector(".active_pdp .new_return_wrapper .px-4 p:nth-child(2)").textContent = document.querySelector(".mb-1.flex.items-center.justify-center + .px-4 p:nth-child(2)")?.textContent;
+            if (document.querySelector(".new_return_wrapper .px-4 p:nth-child(2)")?.textContent !== document.querySelector(".mb-1.flex.items-center.justify-center + .px-4 p:nth-child(2)")?.textContent) {
+              document.querySelector(".new_return_wrapper .px-4 p:nth-child(2)").textContent = document.querySelector(".mb-1.flex.items-center.justify-center + .px-4 p:nth-child(2)")?.textContent;
             }
           }
 
           let findBtnCheckout = setInterval(() => {
-            if (document.querySelector(".active_pdp .layout-container.p-none.py-10 .my-5")) {
+            if (document.querySelector(".layout-container.p-none.py-10 .my-5")) {
               clearInterval(findBtnCheckout);
-              if (!document.querySelector(".active_pdp .layout-container.p-none.py-10 button.tracking-widest + .my-5") && document.querySelector(".layout-container.p-none.py-10 button.tracking-widest")) {
-                document.querySelector(".active_pdp .layout-container.p-none.py-10 button.tracking-widest").after(document.querySelector(".layout-container.p-none.py-10 .my-5"));
+              if (!document.querySelector(".layout-container.p-none.py-10 button.tracking-widest + .my-5") && document.querySelector(".layout-container.p-none.py-10 button.tracking-widest")) {
+                document.querySelector(".layout-container.p-none.py-10 button.tracking-widest").after(document.querySelector(".layout-container.p-none.py-10 .my-5"));
               }
             }
           }, 100);
@@ -2206,11 +2203,11 @@ let startPdp = setInterval(() => {
     }
 
     function renderRecommendBlock() {
-      if (!document.querySelector(".active_pdp .pair_it_with_block")) {
+      if (!document.querySelector(".pair_it_with_block")) {
         for (let key in arrProduct) {
           if (window.location.pathname === key) {
             if (window.innerWidth > 768) {
-              document.querySelector(".active_pdp .max-w-screen-xl")?.insertAdjacentHTML(
+              document.querySelector(".max-w-screen-xl")?.insertAdjacentHTML(
                 "afterbegin",
                 `<div class="pair_it_with_block">
                           <h2 class="pair_it_with_title">Pair it with</h2>
@@ -2225,7 +2222,7 @@ let startPdp = setInterval(() => {
                       </div>`
               );
             } else {
-              document.querySelector(".active_pdp .mb-12.px-4")?.insertAdjacentHTML(
+              document.querySelector(".mb-12.px-4")?.insertAdjacentHTML(
                 "afterbegin",
                 `<div class="pair_it_with_block">
                 <h2 class="pair_it_with_title">Pair it with</h2>
@@ -2243,7 +2240,7 @@ let startPdp = setInterval(() => {
           }
         }
         let findBlockRecommend = setInterval(() => {
-          if (document.querySelector(".active_pdp .pair_it_with_block")) {
+          if (document.querySelector(".pair_it_with_block")) {
             clearInterval(findBlockRecommend);
             for (let key in arrProduct) {
               if (window.location.pathname === key) {
@@ -2264,9 +2261,9 @@ let startPdp = setInterval(() => {
             }
 
             let findLinkCardReccomend = setInterval(() => {
-              if (document.querySelector(".active_pdp .pair_it_with_item")) {
+              if (document.querySelector(".pair_it_with_item")) {
                 clearInterval(findLinkCardReccomend);
-                document.querySelectorAll(".active_pdp .pair_it_with_item a").forEach((el) => {
+                document.querySelectorAll(".pair_it_with_item a").forEach((el) => {
                   el.addEventListener("click", (e) => {
                     pushDataLayer("exp_pdp_2_product_card", `Product card — ${e.currentTarget.href}`, "Card", "Pair it with");
                   });
@@ -2314,7 +2311,7 @@ let startPdp = setInterval(() => {
 
     if (window.innerWidth <= 768) {
       window.addEventListener("scroll", () => {
-        if (typeof $ === "function" && document.querySelector(".active_pdp .layout-container.p-none.py-10 .new_btn_add_to_basket")) {
+        if (typeof $ === "function" && document.querySelector(".layout-container.p-none.py-10 .new_btn_add_to_basket")) {
           visabBtnStickymainBtn();
         }
       });
@@ -2336,9 +2333,9 @@ let startPdp = setInterval(() => {
         });
 
         let int = setInterval(() => {
-          if (document.querySelector(".active_pdp .new_btn_add_to_basket")) {
+          if (document.querySelector(".new_btn_add_to_basket")) {
             clearInterval(int);
-            obs.observe(document.querySelector(".active_pdp .new_btn_add_to_basket"));
+            obs.observe(document.querySelector(".new_btn_add_to_basket"));
           }
         }, 100);
 
@@ -2390,54 +2387,32 @@ let startPdp = setInterval(() => {
         // console.log(`observer`);
 
         if (window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$")) {
-          if (!document.querySelector("html").classList.contains("active_pdp")) {
-            document.querySelector("html").classList.add("active_pdp");
-          }
           renderHtml();
           changePopup();
           changeMiniCard();
           renderRecommendBlock();
 
           if (window.innerWidth > 768) {
-            if (!document.querySelector(".active_pdp .layout-container.bg-platinum-1 .mt-2.mb-4.flex.items-end.justify-between.gap-4 + h1")) {
+            if (!document.querySelector(".layout-container.bg-platinum-1 .mt-2.mb-4.flex.items-end.justify-between.gap-4 + h1")) {
               changePlaceExcellent();
             }
           }
 
-          if (!document.querySelector(".active_pdp #advantagesBox")) {
+          if (!document.querySelector("#advantagesBox")) {
             visibElem();
           }
 
           if (!isClick) {
             onClickBtnLifetime();
           }
-          if (!window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$")) {
-            // if (!document.querySelector(".bgr_load")) {
-            //   window.location.reload();
-            //   document.body.style.overflow = "hidden";
-            //   document.body.insertAdjacentHTML("afterbegin", `<div class="bgr_load"></div>`);
-            // }
+          // if (!window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$")) {
+          //   // if (!document.querySelector(".bgr_load")) {
+          //   //   window.location.reload();
+          //   //   document.body.style.overflow = "hidden";
+          //   //   document.body.insertAdjacentHTML("afterbegin", `<div class="bgr_load"></div>`);
+          //   // }
 
-            if (document.querySelector("html").classList.contains("active_pdp")) {
-              document.querySelector("html").classList.remove("active_pdp");
-            }
-
-            document.querySelector(".back_to_top_btn")?.remove();
-            document.querySelector(".overlay_popup")?.remove();
-          }
-        }
-        if (!window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$")) {
-          // if (!document.querySelector(".bgr_load")) {
-          //   window.location.reload();
-          //   document.body.style.overflow = "hidden";
-          //   document.body.insertAdjacentHTML("afterbegin", `<div class="bgr_load"></div>`);
           // }
-
-          document.querySelector(".back_to_top_btn")?.remove();
-          document.querySelector(".overlay_popup")?.remove();
-          if (document.querySelector("html").classList.contains("active_pdp")) {
-            document.querySelector("html").classList.remove("active_pdp");
-          }
         }
 
         observer.observe(document, {
@@ -2453,7 +2428,7 @@ let startPdp = setInterval(() => {
     });
 
     function onClickBtnLifetime() {
-      document.querySelectorAll(".active_pdp button.ml-1.inline.flex-shrink-0.underline").forEach((el) => {
+      document.querySelectorAll("button.ml-1.inline.flex-shrink-0.underline").forEach((el) => {
         el.addEventListener("click", (e) => {
           if (!e.target.getAttribute("data-test")) {
             if (e.target.closest(".bg-platinum-1")) {
@@ -2482,63 +2457,63 @@ let startPdp = setInterval(() => {
       });
 
       let intV1 = setInterval(() => {
-        if (document.querySelector(".active_pdp .our_fees_wrap")) {
+        if (document.querySelector(".our_fees_wrap")) {
           clearInterval(intV1);
-          obsV.observe(document.querySelector(".active_pdp .our_fees_wrap"));
+          obsV.observe(document.querySelector(".our_fees_wrap"));
         }
       }, 100);
       let intV2 = setInterval(() => {
-        if (document.querySelector(".active_pdp .stability_box")) {
+        if (document.querySelector(".stability_box")) {
           clearInterval(intV2);
-          obsV.observe(document.querySelector(".active_pdp .stability_box"));
+          obsV.observe(document.querySelector(".stability_box"));
         }
       }, 100);
       let intV3 = setInterval(() => {
-        if (document.querySelector(".active_pdp .bracelets_box")) {
+        if (document.querySelector(".bracelets_box")) {
           clearInterval(intV3);
-          obsV.observe(document.querySelector(".active_pdp .bracelets_box"));
+          obsV.observe(document.querySelector(".bracelets_box"));
         }
       }, 100);
       let intV4 = setInterval(() => {
-        if (document.querySelector(".active_pdp .advantages_box_bgr")) {
+        if (document.querySelector(".advantages_box_bgr")) {
           clearInterval(intV4);
-          obsV.observe(document.querySelector(".active_pdp .advantages_box_bgr"));
+          obsV.observe(document.querySelector(".advantages_box_bgr"));
         }
       }, 100);
       let intV5 = setInterval(() => {
-        if (document.querySelector(".active_pdp .comparison_table_visib")) {
+        if (document.querySelector(".comparison_table_visib")) {
           clearInterval(intV5);
-          obsV.observe(document.querySelector(".active_pdp .comparison_table_visib"));
+          obsV.observe(document.querySelector(".comparison_table_visib"));
         }
       }, 100);
       let intV6 = setInterval(() => {
-        if (document.querySelector(".active_pdp .title_review")) {
+        if (document.querySelector(".title_review")) {
           clearInterval(intV6);
-          obsV.observe(document.querySelector(".active_pdp .title_review"));
+          obsV.observe(document.querySelector(".title_review"));
         }
       }, 100);
       let intV7 = setInterval(() => {
-        if (document.querySelector(".active_pdp #caption-text-12")) {
+        if (document.querySelector("#caption-text-12")) {
           clearInterval(intV7);
-          obsV.observe(document.querySelector(".active_pdp #caption-text-12"));
+          obsV.observe(document.querySelector("#caption-text-12"));
         }
       }, 100);
       let intV8 = setInterval(() => {
-        if (document.querySelector(".active_pdp .popup_title.txt_made_from")) {
+        if (document.querySelector(".popup_title.txt_made_from")) {
           clearInterval(intV8);
-          obsV.observe(document.querySelector(".active_pdp .popup_title.txt_made_from"));
+          obsV.observe(document.querySelector(".popup_title.txt_made_from"));
         }
       }, 100);
       let intV9 = setInterval(() => {
-        if (document.querySelector(".active_pdp .popup_title.our_fees_are")) {
+        if (document.querySelector(".popup_title.our_fees_are")) {
           clearInterval(intV9);
-          obsV.observe(document.querySelector(".active_pdp .popup_title.our_fees_are"));
+          obsV.observe(document.querySelector(".popup_title.our_fees_are"));
         }
       }, 100);
       let intV10 = setInterval(() => {
-        if (document.querySelector(".active_pdp .necklaces_box")) {
+        if (document.querySelector(".necklaces_box")) {
           clearInterval(intV10);
-          obsV.observe(document.querySelector(".active_pdp .necklaces_box"));
+          obsV.observe(document.querySelector(".necklaces_box"));
         }
       }, 100);
 
