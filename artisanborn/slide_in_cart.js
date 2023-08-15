@@ -4,7 +4,7 @@ let startFunk = setInterval(() => {
 
     let style = /*html */ `
         <style>
-            .mws-addtocart.btn.btn1.pr_btn:not(.new_btn_add){
+            button.mws-addtocart.btn.btn1.pr_btn:not(.new_btn_add){
                 display: none;
             }
             /* popap_box */
@@ -46,8 +46,16 @@ let startFunk = setInterval(() => {
             transition: all 0.5s ease 0s;
             overflow: auto;
             }
-            .popup_slide_in .container_popup .cart_popup_close {
+            .popup_slide_in .container_popup .cart_popup_close,
+            .btn_remove_item {
             cursor: pointer;
+            transition: all 0.5s ease 0s;
+            }
+            .popup_slide_in .container_popup .cart_popup_close:hover{
+                transform: scale(0.8);
+            }
+            .btn_remove_item:hover{
+                transform: scale(0.9);
             }
             .cart_popup_header{
                 display: flex;
@@ -164,6 +172,7 @@ let startFunk = setInterval(() => {
             .btn_checkout:hover{
                 background: #000000;
                 color: #FFFFFF;
+                box-shadow: 0 0 5px 1px gray;
             }
             .cart_popup_scroll{
                 position: relative;
@@ -173,6 +182,12 @@ let startFunk = setInterval(() => {
                 overflow-y: auto;
                 transition: all 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
             }
+            .cart_popup_scroll::-webkit-scrollbar {
+                width: 4px;
+            }
+            .cart_popup_scroll::-webkit-scrollbar-thumb {
+                background: #788188;
+            }
             .cart_popup_scroll.my_height{
             }
             .product_wrap{
@@ -180,36 +195,68 @@ let startFunk = setInterval(() => {
                 justify-content: flex-start;
                 gap: 16px;
             }
+            .product_wrap + .product_wrap{
+                margin-top: 32px;
+            }
             .img_wrap{
-                flex: 1 1 30%;
-                max-width: 145px;
-                max-height: 145px;
+                flex: 1 1 46%;
+                max-width: 120px;
+                max-height: 80px;
                 width: 100%;
                 height: 100%;
                 border: 1px solid #EAEBEA;
+                overflow: hidden;
             }
+            .img_wrap img{
+                width: 100%;
+                height: 100%;
+             }
             .inform_wrap{
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
-                flex: 1 1 70%;
+                flex: 1 1 54%;
             }
             .inform_wrap h2{
-                font-weight: 400;
-                font-size: 16px;
-                line-height: 24px;
-                color: #000000;
+                color: #212121;
+                font-family: "Roboto", sans-serif !important;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 22px;
                 margin: 0;
                 text-align: left;
             }
             .inform_wrap h2 a{
-                color: #000000;
+                color: #212121;
             }
-            .price_wrap,
+            .price_wrap{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                margin: 6px 0 0;
+            }
+            .my_old_price{
+                color: #939393;
+                font-family: "Roboto", sans-serif !important;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 20px;
+                margin: 0 4px 0 0;
+                text-decoration: line-through;
+            } 
+            .my_price{
+                color: #000;
+                font-family: "Roboto", sans-serif !important;
+                font-size: 14px;
+                font-weight: 700;
+                line-height: 20px;
+                margin: 0;
+            }
             .qty_wrap{
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                margin-top: 14px;
             }
             .btn_remove_item,
             .decrement, 
@@ -222,30 +269,42 @@ let startFunk = setInterval(() => {
                 justify-content: center;
             }
             .count_var{
-                font-weight: 500;
-                font-size: 14px;
-                line-height: 20px;
-                text-transform: uppercase;
-                color: #000000;
-                margin: 0 7px;
-            }
-            .decrement, 
-            .increment{
-                height: 20px;
-                width: 20px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                color: #212121;
+                font-size: 16px;
+                font-weight: 700;
+                line-height: 16px;
+                height: 36px;
+                width: 36px;
+                border-top: 1px solid #E2E2E2;
+                border-bottom: 1px solid #E2E2E2;
+            }
+            .decrement, 
+            .increment{
+                height: 36px;
+                width: 36px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid #E2E2E2;
+            }
+            .decrement{
+                border-radius: 4px 0 0 4px;
+            }
+            .decrement[disabled]{
+                cursor: unset;
+            }
+            .decrement[disabled] svg{
+                stroke: #E2E2E2;
+            }
+            .increment{
+                border-radius: 0 4px 4px 0;
             }
             .decrement svg{
                 display: block;
-            }
-            .my_price{
-                font-weight: 500;
-                font-size: 16px;
-                line-height: 15px;
-                color: #000000;
-                margin-right: 16px;
+                stroke: #212121;
             }
             .empty_cart_info{
                 font-size: 30px;
@@ -264,6 +323,7 @@ let startFunk = setInterval(() => {
                 transform: translate(-50%, -50%);
                 width: 1.8rem;
                 display: inline-block;
+                pointer-events: none;
             }
             .loading svg{
                 animation: rotator 1.4s linear infinite;
@@ -276,6 +336,7 @@ let startFunk = setInterval(() => {
                 align-items: center;
                 justify-content: flex-start;
                 gap: 8px;
+                margin: 24px 0 17px;
             }
             .shop_confidently_box > svg{
                 max-width: 28px;
@@ -288,14 +349,55 @@ let startFunk = setInterval(() => {
                 line-height: 18px;
                 text-transform: uppercase;
             }
+            .first_price_wrapper > p{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .regular_price_wrap{
+                color: #212121;
+                font-family: "Roboto", sans-serif !important;
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 22px;
+                margin: 0 0 10px;
+            }
+            .regular_price_wrap .sub_total_last_price,
+            .just_saved_wrap .saved_total{
+                font-weight: 700;
+            }
+            .regular_price_wrap .sub_total_last_price{
+                color: #212121;
+                text-decoration: unset;
+            }
+            .just_saved_wrap{
+                color: #BB080E;
+                font-family: "Roboto", sans-serif !important;
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 22px;
+                padding-bottom: 8px;
+                margin-bottom: 8px;
+                border-bottom: 1px dashed #D0D2D3;
+            }
             .quick_ship_box{
                 text-align: center;
+                margin: 24px 0 0;
+            }
+            .img_wrap_ship{
+                max-width: 180px;
+                max-height: 80px;
+                margin: 0 auto;
+            }
+            .img_wrap_ship img{
+                width: 100%;
+                height: 100%;
             }
             .quick_ship_box > p{
                 color: #000;
                 font-family: "Roboto", sans-serif !important;
                 font-size: 20px;
-                font-weight: 500;
+                font-weight: 600;
                 line-height: 26px; 
                 margin: 24px 0 8px;
             }
@@ -313,84 +415,10 @@ let startFunk = setInterval(() => {
                 font-weight: 600;
                 line-height: 18px;
             }
-            .cart_popup_scroll {
-                -ms-overflow-style: none;
-                scrollbar-width: none;
-            }
 
-            .cart_popup_scroll::-webkit-scrollbar {
-                width: 0;
-                height: 0;
-            }
 
             @media (max-width: 768px) {
-                .popup_slide_in .container_popup{
-                    max-width: 335px;
-                }
-                .cart_popup_header{
-                    padding: 16px;
-                }
-                .cart_continue_shopping span{
-                    line-height: 15px;
-                }
-                .cart_popup_scroll{
-                    padding: 16px;
-                    height: 216px;
-                }
-                .product_wrap{
-                    gap: 12px;
-                }
-                .inform_wrap h2{
-                    font-size: 14px;
-                    line-height: 19px;
-                }
-                .img_wrap{
-                    flex: 1 0 120px;
-                    max-width: 120px;
-                    max-height: 120px;
-                }
-                .price_wrap,
-                .qty_wrap{
-                    gap: 5px;
-                }
-                .my_price{
-                    font-size: 14px;
-                    line-height: 20px;
-                    margin-right: 12px;
-                }
-                .cart_popup_footer{
-                    padding: 16px 0 0;
-                    margin: 0 16px 16px;
-                }
-                .sub_total_wrap span:nth-child(1){
-                    font-size: 12px;
-                    line-height: 15px;
-                }
-                .sub_total_original_price{
-                    font-size: 16px;
-                    line-height: 19px;
-                }
-                .sub_total_wrap{
-                    margin-bottom: 30px;
-                }
-                .cart_popup_footer form label textarea{
-                    min-width: 303px;
-                    max-width: 303px;
-                }
-                .btn_checkout{
-                    height: 48px;
-                    font-weight: 500;
-                    font-size: 12px;
-                    background: #000000;
-                    color: #FFFFFF;
-                }
-                .empty_cart_info{
-                    font-size: 24px;
-                    margin: 0 auto auto;
-                }
-                .cart_popup_scroll.my_height{
-                    height: 670px;
-                }
+
             }
         </style>
         `;
@@ -416,8 +444,8 @@ let startFunk = setInterval(() => {
                             <span>Shop confidently<br><b>30-day money back guarantee</b></span>
                         </div>
                         <div class="first_price_wrapper">
-                            <p><span>Regular price</span> <span>$554.82</span></p>
-                            <p><span>You just saved (15% off)</span> <span>-$83.22</span></p>
+                            <p class="regular_price_wrap"><span class="regular_price_title">Regular price</span> <span class="sub_total_last_price">$554.82</span></p>
+                            <p class="just_saved_wrap"><span class="just_saved_title">You just saved (15% off)</span> <span class="saved_total">-$83.22</span></p>
                             <div class="sub_total_wrap">
                                 <span>Subtotal</span>
                                 <p>
@@ -430,7 +458,7 @@ let startFunk = setInterval(() => {
                             <div class="img_wrap_ship">
                                 <img src="https://conversionratestore.github.io/projects/artisanborn/img/img_ship.svg" alt="Shop confidently 30-day money back guarantee" />
                             </div>
-                            <p>More than XX,XXX US customers already trusted us</p>
+                            <p>More than 7,500 US customers already trusted us</p>
                             <div class="reviews_wraps">
                                 <div class="stars_wrap">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 18 17" fill="none">
@@ -472,6 +500,7 @@ let startFunk = setInterval(() => {
 
     let slideInCartContent = /*html */ ``;
 
+    document.head.insertAdjacentHTML("beforeend", `<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">`);
     document.head.insertAdjacentHTML("beforeend", style);
     document.body.insertAdjacentHTML("afterbegin", popUp);
 
@@ -539,17 +568,17 @@ let startFunk = setInterval(() => {
         document.querySelectorAll(".cart_popup_scroll .cart_popup_list .product_wrap")?.forEach((el) => {
           el.classList.add("blur_var");
         });
-        addToCartCheckout(e.target.closest("form").querySelector('[name="id"]').value);
+        addToCartCheckout(e.target.closest("form").querySelector('[name="id"]').value, e.target.closest("form").querySelector(".product-quantity-box .quantity").value);
       });
     }
 
     //add to cart on checkout
-    async function addToCartCheckout(idValue) {
+    async function addToCartCheckout(idValue, qt) {
       let formData = {
         items: [
           {
             id: idValue,
-            quantity: 1,
+            quantity: qt,
           },
         ],
       };
@@ -587,24 +616,37 @@ let startFunk = setInterval(() => {
             });
           }
           document.querySelectorAll(".sub_total_last_price").forEach((el) => {
-            el.textContent = `$${(data.original_total_price / 100).toFixed(2)}`;
+            el.textContent = `$${(data.original_total_price / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}`;
           });
           document.querySelectorAll(".sub_total_original_price").forEach((el) => {
-            el.textContent = `$${(data.total_price / 100).toFixed(2)}`;
+            el.textContent = `$${(data.total_price / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}`;
           });
-          document.querySelector(".saved_total").textContent = `$${(data.total_discount / 100).toFixed(2)}`;
+          document.querySelectorAll(".saved_total").forEach((el) => {
+            if (el.closest(".just_saved_wrap")) {
+              el.textContent = `-$${(data.total_discount / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}`;
+            } else {
+              el.textContent = `$${(data.total_discount / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}`;
+            }
+          });
           if (document.querySelector("#CartCount")) {
             document.querySelector("#CartCount").textContent = `${data.item_count}`;
+            document.querySelector(".cart_length span").textContent = `${data.item_count}`;
           }
           data.items.forEach((el) => {
             let prop = [];
+
+            let title;
+            let txt;
             if (el.options_with_values) {
               if (Object.keys(el.options_with_values).length != 0) {
                 for (let key in el.options_with_values) {
                   if (el.options_with_values.hasOwnProperty(key)) {
                     // console.log(`<span>${el.options_with_values[key].name}</span> <span>${el.options_with_values[key].value}</span>`);
-                    let s = `<span>${el.options_with_values[key].name}</span> <span>${el.options_with_values[key].value}</span>`;
-                    prop.push(s);
+                    title = `${el.options_with_values[key].name}`;
+                    txt = `${el.options_with_values[key].value}`;
+                    prop.push({
+                      title: title + "=" + txt,
+                    });
                   }
                 }
               }
@@ -614,22 +656,20 @@ let startFunk = setInterval(() => {
               "beforeend",
               `                         
                     <div class="product_wrap" id=${el.key}>
-                        <div class="img_wrap">
-                            <a href="${el.url}"><img src="${el.image}" alt="" /></a>
-                        </div>
+                        <a class="img_wrap" href="${el.url}"><img src="${el.image}" alt="" /></a>
                         <div class="inform_wrap">
                             <div>
                                 <h2><a href="${el.url}">${el.product_title}</a></h2>
-                                <div>${prop}</div>
+                                <div><span>${title}</span><span>${txt}</span></div>
                                 <div class="price_wrap">
-                                    <span class="my_old_price">$${(el.original_price / 100).toFixed(2)}</span>
+                                    <span class="my_old_price">$${(el.original_line_price / 100).toFixed(2)}</span>
                                     <span class="my_price">$${(el.final_line_price / 100).toFixed(2)}</span>
                                 </div>
                             </div>
                         <div class="qty_wrap">
                             <div class="cart_popup_qty">
                                 <span class="decrement">
-                                    <svg width="10" height="2" viewBox="0 0 10 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <svg width="10" height="2" viewBox="0 0 10 2" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_606_235)">
                                         <path fill-rule="evenodd" clip-rule="evenodd"
                                         d="M0.5 1C0.5 0.7 0.7 0.5 1 0.5H9C9.13261 0.5 9.25979 0.552678 9.35355 0.646447C9.44732 0.740215 9.5 0.867392 9.5 1C9.5 1.13261 9.44732 1.25979 9.35355 1.35355C9.25979 1.44732 9.13261 1.5 9 1.5H1C0.867392 1.5 0.740215 1.44732 0.646447 1.35355C0.552678 1.25979 0.5 1.13261 0.5 1Z"
@@ -644,27 +684,16 @@ let startFunk = setInterval(() => {
                                 </span>
                                 <span class="count_var">${el.quantity}</span>
                                 <span class="increment">
-                                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <g clip-path="url(#clip0_606_238)">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M1 4.5099C0.867392 4.5099 0.740215 4.56258 0.646447 4.65634C0.552678 4.75011 0.5 4.87729 0.5 5.0099C0.5 5.14251 0.552678 5.26968 0.646447 5.36345C0.740215 5.45722 0.867392 5.5099 1 5.5099H4.5L4.51 9.0099C4.51066 9.07556 4.52424 9.14045 4.54997 9.20086C4.57571 9.26127 4.61309 9.31602 4.65998 9.36199C4.70688 9.40795 4.76236 9.44423 4.82328 9.46875C4.88419 9.49327 4.94934 9.50556 5.015 9.5049C5.08066 9.50424 5.14555 9.49066 5.20596 9.46492C5.26637 9.43919 5.32112 9.40181 5.36709 9.35492C5.41305 9.30802 5.44933 9.25253 5.47385 9.19162C5.49837 9.13071 5.51066 9.06556 5.51 8.9999V5.4999L9.01 5.4899C9.07566 5.48924 9.14055 5.47566 9.20096 5.44992C9.26137 5.42419 9.31612 5.38681 9.36209 5.33992C9.40805 5.29302 9.44433 5.23753 9.46885 5.17662C9.49337 5.11571 9.50566 5.05056 9.505 4.9849C9.50434 4.91924 9.49076 4.85435 9.46503 4.79394C9.43929 4.73353 9.40191 4.67877 9.35502 4.63281C9.30812 4.58684 9.25264 4.55057 9.19172 4.52604C9.13081 4.50152 9.06566 4.48924 9 4.4899H5.5L5.49 0.989898C5.48867 0.85729 5.43472 0.73064 5.34002 0.637809C5.24531 0.544979 5.11761 0.493572 4.985 0.494898C4.85239 0.496224 4.72574 0.550174 4.63291 0.64488C4.54008 0.739586 4.48867 0.86729 4.49 0.999898V4.4999L0.99 4.5099H1Z"
-                                        fill="black" />
-                                    </g>
-                                    <defs>
-                                        <clipPath id="clip0_606_238">
-                                        <rect width="10" height="10" fill="white" />
-                                        </clipPath>
-                                    </defs>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7 5V0H5V5H0V7H5V12H7V7H12V5H7Z" fill="black"/>
                                     </svg>
                                 </span>
                             </div>
                            
-                            <div class="cart_popup_price">
-                                <svg class="btn_remove_item" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
-                                    <rect x="0.5" y="0.5" width="35" height="35" rx="3.5" stroke="#E2E2E2"/>
-                                    <path d="M12.8571 23.6875C12.8571 24.4258 13.4196 25 14.1429 25H21.8571C22.5536 25 23.1429 24.4258 23.1429 23.6875V14.5H12.8571V23.6875ZM20.1429 16.6875C20.1429 16.4688 20.3304 16.25 20.5714 16.25C20.7857 16.25 21 16.4688 21 16.6875V22.8125C21 23.0586 20.7857 23.25 20.5714 23.25C20.3304 23.25 20.1429 23.0586 20.1429 22.8125V16.6875ZM17.5714 16.6875C17.5714 16.4688 17.7589 16.25 18 16.25C18.2143 16.25 18.4286 16.4688 18.4286 16.6875V22.8125C18.4286 23.0586 18.2143 23.25 18 23.25C17.7589 23.25 17.5714 23.0586 17.5714 22.8125V16.6875ZM15 16.6875C15 16.4688 15.1875 16.25 15.4286 16.25C15.6429 16.25 15.8571 16.4688 15.8571 16.6875V22.8125C15.8571 23.0586 15.6429 23.25 15.4286 23.25C15.1875 23.25 15 23.0586 15 22.8125V16.6875ZM23.5714 11.875H20.3571L20.0893 11.3828C19.9821 11.1641 19.7679 11 19.5268 11H16.4464C16.2054 11 15.9911 11.1641 15.8839 11.3828L15.6429 11.875H12.4286C12.1875 11.875 12 12.0938 12 12.3125V13.1875C12 13.4336 12.1875 13.625 12.4286 13.625H23.5714C23.7857 13.625 24 13.4336 24 13.1875V12.3125C24 12.0938 23.7857 11.875 23.5714 11.875Z" fill="#BBBBBB"/>
-                                </svg>
-                            </div>
+                            <svg class="btn_remove_item" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+                                <rect x="0.5" y="0.5" width="35" height="35" rx="3.5" stroke="#E2E2E2"/>
+                                <path d="M12.8571 23.6875C12.8571 24.4258 13.4196 25 14.1429 25H21.8571C22.5536 25 23.1429 24.4258 23.1429 23.6875V14.5H12.8571V23.6875ZM20.1429 16.6875C20.1429 16.4688 20.3304 16.25 20.5714 16.25C20.7857 16.25 21 16.4688 21 16.6875V22.8125C21 23.0586 20.7857 23.25 20.5714 23.25C20.3304 23.25 20.1429 23.0586 20.1429 22.8125V16.6875ZM17.5714 16.6875C17.5714 16.4688 17.7589 16.25 18 16.25C18.2143 16.25 18.4286 16.4688 18.4286 16.6875V22.8125C18.4286 23.0586 18.2143 23.25 18 23.25C17.7589 23.25 17.5714 23.0586 17.5714 22.8125V16.6875ZM15 16.6875C15 16.4688 15.1875 16.25 15.4286 16.25C15.6429 16.25 15.8571 16.4688 15.8571 16.6875V22.8125C15.8571 23.0586 15.6429 23.25 15.4286 23.25C15.1875 23.25 15 23.0586 15 22.8125V16.6875ZM23.5714 11.875H20.3571L20.0893 11.3828C19.9821 11.1641 19.7679 11 19.5268 11H16.4464C16.2054 11 15.9911 11.1641 15.8839 11.3828L15.6429 11.875H12.4286C12.1875 11.875 12 12.0938 12 12.3125V13.1875C12 13.4336 12.1875 13.625 12.4286 13.625H23.5714C23.7857 13.625 24 13.4336 24 13.1875V12.3125C24 12.0938 23.7857 11.875 23.5714 11.875Z" fill="#BBBBBB"/>
+                            </svg>
                         </div>
                         </div>
                     </div>`
@@ -704,20 +733,29 @@ let startFunk = setInterval(() => {
 
           if (document.querySelector(".decrement")) {
             document.querySelectorAll(".decrement").forEach((item) => {
-              item.addEventListener("click", (e) => {
-                let qvt = +e.target.closest("div.cart_popup_qty").querySelector(".count_var").textContent;
-
-                if (+e.target.closest("div.cart_popup_qty").querySelector(".count_var").textContent >= 0) {
-                  e.target.closest("div.cart_popup_qty").querySelector(".count_var").textContent = qvt - 1;
-                  changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), e.target.closest("div.cart_popup_qty").querySelector(".count_var").textContent);
+              if (item.closest(".cart_popup_qty").querySelector(".count_var").textContent !== "1") {
+                console.log(item);
+                if (item.getAttribute("disabled")) {
+                  item.removeAttribute("disabled");
                 }
 
-                if (+e.target.closest("div.cart_popup_qty").querySelector(".count_var").textContent === 0) {
-                  console.log(`textContent = 0`);
-                  e.target.closest(".product_wrap").remove();
-                  changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), e.target.closest("div.cart_popup_qty").querySelector(".count_var").textContent);
-                }
-              });
+                item.addEventListener("click", (e) => {
+                  let qvt = +e.target.closest("div.cart_popup_qty").querySelector(".count_var").textContent;
+
+                  if (+e.target.closest("div.cart_popup_qty").querySelector(".count_var").textContent >= 0) {
+                    e.target.closest("div.cart_popup_qty").querySelector(".count_var").textContent = qvt - 1;
+                    changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), e.target.closest("div.cart_popup_qty").querySelector(".count_var").textContent);
+                  }
+
+                  if (+e.target.closest("div.cart_popup_qty").querySelector(".count_var").textContent === 0) {
+                    console.log(`textContent = 0`);
+                    e.target.closest(".product_wrap").remove();
+                    changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), e.target.closest("div.cart_popup_qty").querySelector(".count_var").textContent);
+                  }
+                });
+              } else {
+                item.setAttribute("disabled", "disabled");
+              }
             });
           }
         })
@@ -757,3 +795,5 @@ let startFunk = setInterval(() => {
     }
   }
 }, 600);
+
+//

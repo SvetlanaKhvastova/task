@@ -1,4 +1,5 @@
 let startPdp = setInterval(() => {
+  // .*\/shop\/[^\/]+\/[^\/]+\/[^\/]+$
   if (document.querySelector("#add-cart-button-fixed") && window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$")) {
     clearInterval(startPdp);
 
@@ -2072,8 +2073,17 @@ let startPdp = setInterval(() => {
           document.querySelector(".active_pdp .sticky_wrap .size_txt").textContent = document.querySelectorAll(".mb-3.w-full button .text-p.truncate")[0]?.textContent.length == null ? document.querySelectorAll(".mb-3.w-full button .text-p.truncate")[0]?.textContent : `| ${document.querySelectorAll(".mb-3.w-full button .text-p.truncate")[0]?.textContent}`;
           document.querySelector(".active_pdp .sticky_wrap .our_price").textContent = document.querySelector(".my-7.flex.items-center.justify-between h3.text-h3.font-semibold")?.textContent.split("*")[0];
 
-          document.querySelector(".active_pdp .sticky_information")?.addEventListener("click", () => {
-            document.querySelector('.active_pdp .my-3[role="radiogroup"]')?.scrollIntoView({ block: "start", behavior: "smooth" });
+          document.querySelector(".active_pdp .sticky_information")?.addEventListener("click", (e) => {
+            if (!e.target.getAttribute("data-test")) {
+              pushDataLayer("exp_pdp_2_link_sticky_button", "Sticky button link", "Link", "Sticky section");
+              document.querySelector('.active_pdp .my-3[role="radiogroup"]')?.scrollIntoView({ block: "start", behavior: "smooth" });
+            }
+            e.target.setAttribute("data-test", "1");
+            setTimeout(() => {
+              if (e.target.getAttribute("data-test")) {
+                e.target.removeAttribute("data-test");
+              }
+            }, 1000);
           });
         }
       }
@@ -2411,7 +2421,8 @@ let startPdp = setInterval(() => {
           if (!isClick) {
             onClickBtnLifetime();
           }
-          if (!window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$")) {
+          if (!window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$") || window.location.pathname.match("/shop/platinum/men/") || window.location.pathname.match("/shop/platinum/women/") || window.location.pathname.match("/shop/gold/men/") || window.location.pathname.match("/shop/gold/women/")) {
+            console.log(`match`);
             // if (!document.querySelector(".bgr_load")) {
             //   window.location.reload();
             //   document.body.style.overflow = "hidden";
@@ -2426,12 +2437,8 @@ let startPdp = setInterval(() => {
             document.querySelector(".overlay_popup")?.remove();
           }
         }
-        if (!window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$")) {
-          // if (!document.querySelector(".bgr_load")) {
-          //   window.location.reload();
-          //   document.body.style.overflow = "hidden";
-          //   document.body.insertAdjacentHTML("afterbegin", `<div class="bgr_load"></div>`);
-          // }
+        if (!window.location.pathname.match(".*/shop/[^/]+/[^/]+/[^/]+$") || window.location.pathname.match("/shop/platinum/men/") || window.location.pathname.match("/shop/platinum/women/") || window.location.pathname.match("/shop/gold/men/") || window.location.pathname.match("/shop/gold/women/")) {
+          console.log(`match2`);
 
           document.querySelector(".back_to_top_btn")?.remove();
           document.querySelector(".overlay_popup")?.remove();
@@ -2592,12 +2599,12 @@ let startPdp = setInterval(() => {
       }
     }
 
-    const record = setInterval(() => {
-      if (typeof clarity === "function") {
-        clearInterval(record);
-        clarity("set", "exp_pdp_2", "variant_1");
-      }
-    }, 200);
+    // const record = setInterval(() => {
+    //   if (typeof clarity === "function") {
+    //     clearInterval(record);
+    //     clarity("set", "exp_pdp_2", "variant_1");
+    //   }
+    // }, 200);
 
     document.querySelector(".exp")?.remove();
   }
