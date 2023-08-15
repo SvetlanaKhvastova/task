@@ -36,7 +36,7 @@ let startFunk = setInterval(() => {
             position: fixed;
             bottom: 0;
             right: 0;
-            max-width: 351px;
+            max-width: 400px;
             width: 100%;
             height: 100%;
             max-height: 100vh;
@@ -168,6 +168,29 @@ let startFunk = setInterval(() => {
                 cursor: pointer;
                 transition: all 0.5s ease 0s;
                 border-radius: 5px;
+            }
+            .btn_checkout > span {
+                animation: arrow-down 2s infinite;
+            }
+            .btn_checkout > span:nth-child(2) {
+                animation-delay: -0.2s;
+            }
+            .btn_checkout > span:nth-child(1) {
+                animation-delay: -0.6s;
+                margin-left: 5px;
+            }
+            @keyframes arrow-down {
+                0% {
+                    opacity: 0;
+                    transform: translateX(-0px);
+                }
+                50% {
+                    opacity: 1;
+                }
+                100% {
+                    opacity: 0;
+                    transform: translateX(0px);
+                }
             }
             .btn_checkout:hover{
                 background: #000000;
@@ -399,7 +422,8 @@ let startFunk = setInterval(() => {
                 font-size: 20px;
                 font-weight: 600;
                 line-height: 26px; 
-                margin: 24px 0 8px;
+                margin: 24px auto 8px;
+                max-width: 287px;
             }
             .reviews_wraps .stars_wrap{
                 display: flex;
@@ -415,10 +439,18 @@ let startFunk = setInterval(() => {
                 font-weight: 600;
                 line-height: 18px;
             }
-
+            .all_props_item span{
+                color: #676767;
+                font-family: "Roboto", sans-serif !important;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 22px;
+            }
 
             @media (max-width: 768px) {
-
+                .popup_slide_in .container_popup{
+                    max-width: 351px;
+                }
             }
         </style>
         `;
@@ -491,7 +523,7 @@ let startFunk = setInterval(() => {
                         </div>
                         <p class="just_saved_box">You just saved <span class="saved_total">$83.22</span></p>
                         <form action="/cart" method="post">
-                            <a class="btn_checkout" href="/checkout">Proceed to Checkout >></a>
+                            <a class="btn_checkout" href="/checkout">Proceed to Checkout <span>></span><span>></span></a>
                         </form>
                     </div>
                 </div>
@@ -633,25 +665,6 @@ let startFunk = setInterval(() => {
             document.querySelector(".cart_length span").textContent = `${data.item_count}`;
           }
           data.items.forEach((el) => {
-            let prop = [];
-
-            let title;
-            let txt;
-            if (el.options_with_values) {
-              if (Object.keys(el.options_with_values).length != 0) {
-                for (let key in el.options_with_values) {
-                  if (el.options_with_values.hasOwnProperty(key)) {
-                    // console.log(`<span>${el.options_with_values[key].name}</span> <span>${el.options_with_values[key].value}</span>`);
-                    title = `${el.options_with_values[key].name}`;
-                    txt = `${el.options_with_values[key].value}`;
-                    prop.push({
-                      title: title + "=" + txt,
-                    });
-                  }
-                }
-              }
-            }
-
             document.querySelector(".cart_popup_scroll .cart_popup_list").insertAdjacentHTML(
               "beforeend",
               `                         
@@ -660,7 +673,7 @@ let startFunk = setInterval(() => {
                         <div class="inform_wrap">
                             <div>
                                 <h2><a href="${el.url}">${el.product_title}</a></h2>
-                                <div><span>${title}</span><span>${txt}</span></div>
+                                <div data-id=${el.id} class="all_props"></div>
                                 <div class="price_wrap">
                                     <span class="my_old_price">$${(el.original_line_price / 100).toFixed(2)}</span>
                                     <span class="my_price">$${(el.final_line_price / 100).toFixed(2)}</span>
@@ -698,6 +711,51 @@ let startFunk = setInterval(() => {
                         </div>
                     </div>`
             );
+
+            if (document.querySelector(".all_props")) {
+              if (el.options_with_values) {
+                if (Object.keys(el.options_with_values).length != 0) {
+                  el.options_with_values.forEach((i) => {
+                    let name;
+
+                    if (i.name.toLowerCase().includes("wood")) {
+                      name = "Wood";
+                    } else if (i.name.toLowerCase().includes("depth") && !i.name.toLowerCase().includes("depth (in)")) {
+                      name = "Depth";
+                    } else if (i.name.toLowerCase().includes("depth (in)")) {
+                      name = "Depth (in)";
+                    } else if (i.name.toLowerCase().includes("length") && !i.name.toLowerCase().includes("length (in)")) {
+                      name = "Length";
+                    } else if (i.name.toLowerCase().includes("length (in)")) {
+                      name = "Length (in)";
+                    } else if (i.name.toLowerCase().includes("dimension") && !i.name.toLowerCase().includes("dimensions: (inches)")) {
+                      name = "Dimensions";
+                    } else if (i.name.toLowerCase().includes("dimensions: (inches)")) {
+                      name = "Dimensions (Inches)";
+                    } else if (i.name.toLowerCase().includes("inches")) {
+                      name = "Size (Inches)";
+                    } else if (i.name.toLowerCase().includes("leg type")) {
+                      name = "Leg Type";
+                    } else if (i.name.toLowerCase().includes("legs")) {
+                      name = "Legs";
+                    } else if (i.name.toLowerCase().includes("size")) {
+                      name = "Size";
+                    } else if (i.name.toLowerCase().includes("options")) {
+                      name = "Options";
+                    } else if (i.name.toLowerCase().includes("leg style")) {
+                      name = "Leg style";
+                    } else {
+                      name = i.name;
+                    }
+                    document.querySelectorAll(".all_props").forEach((q) => {
+                      if (+q.getAttribute("data-id") === el.id && el.options_with_values.length !== q.children.length) {
+                        q.insertAdjacentHTML("beforeend", `<div class="all_props_item"><span>${name}</span>: <span>${i.value}</span></div>`);
+                      }
+                    });
+                  });
+                }
+              }
+            }
           });
 
           if (document.querySelector(".cart_popup_scroll .cart_popup_list").children.length < 1) {
