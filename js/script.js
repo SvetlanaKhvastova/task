@@ -152,6 +152,11 @@ setTimeout(function () {
   document.querySelector(".exp")?.remove();
 }, 2000);
 
+//
+// {% if additional_checkout_buttons %}
+//  <div class="lav-paypal" style='display: none;'>{{ content_for_additional_checkout_buttons }}</div>
+// {% endif %}
+
 //////////////////////////////////////////////////////////
 if (!e.target.getAttribute("data-test")) {
 }

@@ -2,6 +2,30 @@ let startFunk = setInterval(() => {
   if (document.querySelector("#header")) {
     clearInterval(startFunk);
 
+    function pushDataLayer(nameDataLayer, deskDataLayer, typeDataLayer, actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || [];
+      if (labelDataLayer) {
+        console.log(nameDataLayer + " " + deskDataLayer + typeDataLayer + actionDataLayer + " : " + labelDataLayer);
+        dataLayer.push({
+          event: "event-to-ga4",
+          event_name: `${nameDataLayer}`,
+          event_desc: `${deskDataLayer}`,
+          event_type: `${typeDataLayer}`,
+          event_loc: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        });
+      } else {
+        console.log(nameDataLayer + " " + deskDataLayer + " " + typeDataLayer + " " + actionDataLayer);
+        dataLayer.push({
+          event: "event-to-ga4",
+          event_name: `${nameDataLayer}`,
+          event_desc: `${deskDataLayer}`,
+          event_type: `${typeDataLayer}`,
+          event_loc: `${actionDataLayer}`,
+        });
+      }
+    }
+
     let style = /*html */ `
         <style>
             button.mws-addtocart.btn.btn1.pr_btn:not(.new_btn_add){
@@ -54,6 +78,24 @@ let startFunk = setInterval(() => {
             .popup_slide_in .container_popup .cart_popup_close:hover{
                 transform: scale(0.8);
             }
+            .popup_slide_in .lav-paypal{
+                display: block !important;
+                margin-top: 12px;
+            }
+            .popup_slide_in .lav-paypal .Jk692hbroeK5lg6b_t4v > ul{
+                display: flex !important;
+                justify-content: space-around;
+                margin: 0 !important;
+                gap: 12px;
+                flex-direction: row !important;
+            }
+            .popup_slide_in .lav-paypal #dynamic-checkout-cart .shopify-cleanslate li{
+                flex-basis: calc(100% / 3 - 12px) !important;
+                margin: 0 !important;
+            }
+            .popup_slide_in .lav-paypal .shopify-cleanslate .IcgSIE7pEVZrlnAeRS6j, .popup_slide_in .lav-paypal .shopify-cleanslate .DefhEHZZf4y32pvV7mZj,
+            .popup_slide_in .lav-paypal .shopify-cleanslate .KHqjJyKjVNT1lCGf2bnQ, .shopify-cleanslate .wOEViUrCyNb9maEe3QrQ{
+            }
             .btn_remove_item:hover{
                 transform: scale(0.9);
             }
@@ -79,7 +121,7 @@ let startFunk = setInterval(() => {
                 background: #FFF;
                 box-shadow: 0px -4px 16px 0px rgba(0, 0, 0, 0.16);
                 height: 100%;
-                max-height: 188px;
+                max-height: 198px;
                 position: relative;
             }
             .sub_total_wrap{
@@ -303,6 +345,15 @@ let startFunk = setInterval(() => {
                 width: 36px;
                 border-top: 1px solid #E2E2E2;
                 border-bottom: 1px solid #E2E2E2;
+                margin: 0;
+                border-radius: unset;
+                padding: 0;
+                text-align: center;
+                border-left: unset;
+                border-right: unset;
+            }
+            .count_var:focus{
+                border-color: #E2E2E2;
             }
             .decrement, 
             .increment{
@@ -451,6 +502,19 @@ let startFunk = setInterval(() => {
                 .popup_slide_in .container_popup{
                     max-width: 351px;
                 }
+                .cart_popup_footer{
+                    max-height: 284px;
+                }
+                .popup_slide_in .lav-paypal #dynamic-checkout-cart .shopify-cleanslate li{
+                    flex-basis: calc(100% / 2 - 10px) !important;
+                }
+                .popup_slide_in .lav-paypal #dynamic-checkout-cart .shopify-cleanslate li:nth-child(1){
+                    flex-basis: 100% !important;
+                }
+                .popup_slide_in .lav-paypal .Jk692hbroeK5lg6b_t4v > ul{
+                    flex-wrap: wrap !important;
+                }
+               
             }
         </style>
         `;
@@ -524,6 +588,7 @@ let startFunk = setInterval(() => {
                         <p class="just_saved_box">You just saved <span class="saved_total">$83.22</span></p>
                         <form action="/cart" method="post">
                             <a class="btn_checkout" href="/checkout">Proceed to Checkout <span>></span><span>></span></a>
+                            <div id="expressCheckoutWalletsWrapper"></div>
                         </form>
                     </div>
                 </div>
@@ -574,13 +639,69 @@ let startFunk = setInterval(() => {
       body.style.display = "block";
 
       document.querySelector(".container_popup").insertAdjacentHTML("beforeend", block);
+
+      pushDataLayer("exp_slide_in_cart_v_sic", "Slide in cart", "Visibility", "Slide in cart");
+      if (document.querySelector(".btn_checkout") && document.querySelector(".lav-paypal")) {
+        document.querySelector(".btn_checkout").after(document.querySelector(".lav-paypal"));
+      }
       document.querySelector(".cart_popup_scroll .cart_popup_list")?.insertAdjacentHTML("afterbegin", `<span class="loading"><svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle></svg></span>`);
       document.querySelectorAll(".cart_popup_scroll .cart_popup_list .product_wrap")?.forEach((el) => {
         el.classList.remove("blur_var");
       });
+
+      visibElem();
+      //visibility elem
+      function visibElem() {
+        let obsV = new IntersectionObserver(visibilityV, {
+          threshold: 1,
+        });
+
+        let obsV2 = new IntersectionObserver(visibilityV2, {
+          threshold: 1,
+        });
+
+        let intV1 = setInterval(() => {
+          if (document.querySelector(".img_wrap_ship")) {
+            clearInterval(intV1);
+            obsV.observe(document.querySelector(".img_wrap_ship"));
+          }
+        }, 100);
+        let intV2 = setInterval(() => {
+          if (document.querySelector(".reviews_wraps")) {
+            clearInterval(intV2);
+            obsV.observe(document.querySelector(".reviews_wraps"));
+          }
+        }, 100);
+
+        function visibilityV(entries) {
+          entries.forEach((i) => {
+            if (i.isIntersecting) {
+              setTimeout(function () {
+                obsV2.observe(i.target);
+              }, 100);
+            }
+          });
+        }
+        function visibilityV2(entries) {
+          entries.forEach((i) => {
+            if (i.isIntersecting) {
+              if (i.target.classList.contains("img_wrap_ship")) {
+                pushDataLayer("exp_slide_in_cart_v_badges", "Badges", "Visibility", "Slide in cart");
+              }
+              if (i.target.classList.contains("reviews_wraps")) {
+                pushDataLayer("exp_slide_in_cart_v_reviews", "Reviews", "Visibility", "Slide in cart");
+              }
+
+              obsV.unobserve(i.target);
+            }
+            obsV2.unobserve(i.target);
+          });
+        }
+      }
     }
 
     function onClosePopup() {
+      pushDataLayer("exp_slide_in_cart_b_close", "Close", "Button", "Slide in cart");
       overlay.classList.add("is_hidden");
       body.style.overflow = "auto";
       html.style.overflow = "auto";
@@ -594,13 +715,18 @@ let startFunk = setInterval(() => {
         e.preventDefault();
         e.stopPropagation();
 
-        console.log(`>>>>>>>>>>>>>>>>>>>>>>id btn`, e.target.closest("form").querySelector('[name="id"]').value);
         onOpenPopup(slideInCartContent);
         document.querySelector(".cart_popup_scroll .cart_popup_list")?.insertAdjacentHTML("afterbegin", `<span class="loading"><svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle></svg></span>`);
         document.querySelectorAll(".cart_popup_scroll .cart_popup_list .product_wrap")?.forEach((el) => {
           el.classList.add("blur_var");
         });
         addToCartCheckout(e.target.closest("form").querySelector('[name="id"]').value, e.target.closest("form").querySelector(".product-quantity-box .quantity").value);
+      });
+    }
+
+    if (document.querySelector(".btn_checkout")) {
+      document.querySelector(".btn_checkout").addEventListener("click", () => {
+        pushDataLayer("exp_slide_in_cart_b_ptc", "Proceed to checkout", "Button", "Slide in cart");
       });
     }
 
@@ -675,8 +801,8 @@ let startFunk = setInterval(() => {
                                 <h2><a href="${el.url}">${el.product_title}</a></h2>
                                 <div data-id=${el.id} class="all_props"></div>
                                 <div class="price_wrap">
-                                    <span class="my_old_price">$${(el.original_line_price / 100).toFixed(2)}</span>
-                                    <span class="my_price">$${(el.final_line_price / 100).toFixed(2)}</span>
+                                    <span class="my_old_price">$${(el.original_line_price / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}</span>
+                                    <span class="my_price">$${(el.final_line_price / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}</span>
                                 </div>
                             </div>
                         <div class="qty_wrap">
@@ -695,7 +821,7 @@ let startFunk = setInterval(() => {
                                     </defs>
                                     </svg>
                                 </span>
-                                <span class="count_var">${el.quantity}</span>
+                                <input class="count_var" type="number" pattern="[0-9]*" min="1" value=${el.quantity} />
                                 <span class="increment">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M7 5V0H5V5H0V7H5V12H7V7H12V5H7Z" fill="black"/>
@@ -772,7 +898,7 @@ let startFunk = setInterval(() => {
           if (document.querySelector(".btn_remove_item")) {
             document.querySelectorAll(".btn_remove_item").forEach((el) => {
               el.addEventListener("click", (e) => {
-                console.log(`>>>>>CLICK`);
+                pushDataLayer("exp_slide_in_cart_b_remove", "Remove", "Button", "Slide in cart");
                 changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), 0);
               });
             });
@@ -781,34 +907,36 @@ let startFunk = setInterval(() => {
           if (document.querySelector(".increment")) {
             document.querySelectorAll(".increment").forEach((item) => {
               item.addEventListener("click", (e) => {
-                let qvt = +e.target.closest("div.cart_popup_qty").querySelector(".count_var").textContent;
-                e.target.closest("div.cart_popup_qty").querySelector(".count_var").textContent = qvt + 1;
+                pushDataLayer("exp_slide_in_cart_b_plus", "Quantity change - Plus", "Button", "Slide in cart");
+                let qvt = +e.target.closest("div.cart_popup_qty").querySelector(".count_var").value;
+                e.target.closest("div.cart_popup_qty").querySelector(".count_var").value = qvt + 1;
 
-                changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), e.target.closest("div.cart_popup_qty").querySelector(".count_var").textContent);
+                changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), e.target.closest("div.cart_popup_qty").querySelector(".count_var").value);
               });
             });
           }
 
           if (document.querySelector(".decrement")) {
             document.querySelectorAll(".decrement").forEach((item) => {
-              if (item.closest(".cart_popup_qty").querySelector(".count_var").textContent !== "1") {
+              if (item.closest(".cart_popup_qty").querySelector(".count_var").value !== "1") {
                 console.log(item);
                 if (item.getAttribute("disabled")) {
                   item.removeAttribute("disabled");
                 }
 
                 item.addEventListener("click", (e) => {
-                  let qvt = +e.target.closest("div.cart_popup_qty").querySelector(".count_var").textContent;
+                  let qvt = +e.target.closest("div.cart_popup_qty").querySelector(".count_var").value;
 
-                  if (+e.target.closest("div.cart_popup_qty").querySelector(".count_var").textContent >= 0) {
-                    e.target.closest("div.cart_popup_qty").querySelector(".count_var").textContent = qvt - 1;
-                    changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), e.target.closest("div.cart_popup_qty").querySelector(".count_var").textContent);
+                  if (+e.target.closest("div.cart_popup_qty").querySelector(".count_var").value >= 0) {
+                    pushDataLayer("exp_slide_in_cart_b_minus", "Quantity change - Minus", "Button", "Slide in cart");
+                    e.target.closest("div.cart_popup_qty").querySelector(".count_var").value = qvt - 1;
+                    changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), e.target.closest("div.cart_popup_qty").querySelector(".count_var").value);
                   }
 
-                  if (+e.target.closest("div.cart_popup_qty").querySelector(".count_var").textContent === 0) {
-                    console.log(`textContent = 0`);
+                  if (+e.target.closest("div.cart_popup_qty").querySelector(".count_var").value === 0) {
+                    console.log(`value = 0`);
                     e.target.closest(".product_wrap").remove();
-                    changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), e.target.closest("div.cart_popup_qty").querySelector(".count_var").textContent);
+                    changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), e.target.closest("div.cart_popup_qty").querySelector(".count_var").value);
                   }
                 });
               } else {
@@ -816,6 +944,17 @@ let startFunk = setInterval(() => {
               }
             });
           }
+
+          document.querySelectorAll(".count_var")?.forEach((el) => {
+            el.addEventListener("change", (e) => {
+              pushDataLayer("exp_slide_in_cart_input", "Quantity change - Input", "Input", "Slide in cart");
+              localStorage.setItem("count", e.currentTarget.value);
+
+              if (localStorage.getItem("count")) {
+                changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), localStorage.getItem("count"));
+              }
+            });
+          });
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -851,7 +990,12 @@ let startFunk = setInterval(() => {
           console.error("Error:", error);
         });
     }
+
+    const record = setInterval(() => {
+      if (typeof clarity === "function") {
+        clearInterval(record);
+        clarity("set", "slide_in_cart", "variant_1");
+      }
+    }, 200);
   }
 }, 600);
-
-//
