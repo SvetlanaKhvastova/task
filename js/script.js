@@ -205,3 +205,28 @@ function visibElem() {
     });
   }
 }
+//
+
+if (location.href.includes("/become-a-subscriber") || location.href.includes("/yogi/login") || location.href.includes("/yogi/register") || location.href.includes("/checkout")) {
+  let script = document.createElement("script");
+  script.src = location.href.includes("/become-a-subscriber") ? "https://flopsi69.github.io/crs/doYogaWithMe/subscribe/index2.js" : "https://conversionratestore.github.io/projects/doyogawithme/signup-checkout_test.js";
+  script.async = false;
+  document.head.appendChild(script);
+}
+
+let customScript = document.createElement("script");
+customScript.src = "https://conversionratestore.github.io/projects/doyogawithme/subscription_exit_popup.js";
+customScript.async = false;
+
+if (location.href.includes("/become-a-subscriber")) {
+  const initInterval = setInterval(() => {
+    if (document.querySelector('.menu--account [href="/yogi/login?destination=/become-a-subscriber"]') || document.querySelector(".menu--account img.c-avatar")) {
+      clearInterval(initInterval);
+      setTimeout(() => {
+        document.head.appendChild(customScript);
+      }, 100);
+    }
+  }, 100);
+} else {
+  document.head.appendChild(customScript);
+}
