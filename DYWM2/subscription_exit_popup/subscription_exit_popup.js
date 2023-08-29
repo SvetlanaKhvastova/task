@@ -380,7 +380,7 @@ let startFunk = setInterval(() => {
       }
       .path-become-a-subscriber .new_container {
         margin-bottom: -73px;
-        z-index: 4;
+        z-index: 2;
         margin-top: -119px;
       }
       .path-become-a-subscriber .new_title_subscriber {
@@ -1321,18 +1321,19 @@ margin: 0 0 12px;
     }
     //to redirect from https://www.doyogawithme.com/become-a-subscriber to https://www.doyogawithme.com/checkout/________?__/order_information after exit intent popup
     let becomeSubscriber = setInterval(() => {
-      if (sessionStorage.getItem("becomeSubscriber") && window.location.pathname === "/become-a-subscriber") {
+      if (sessionStorage.getItem("becomeSubscriber") && window.location.pathname === "/become-a-subscriber" && !sessionStorage.getItem("checkoutPremium")) {
         clearInterval(becomeSubscriber);
         sessionStorage.removeItem("becomeSubscriber");
         sessionStorage.setItem("checkoutPremium", "true");
         document.querySelectorAll(".lav-jumb__plan .lav-plan__btn.lav-plan__btn-year").forEach((el) => {
+          console.log(`CLICK plan__btn-year`);
           el.click();
         });
       }
     }, 100);
     //to apply the discount code automatically on the checkout after exit intent popup
     let checkoutPremium = setInterval(() => {
-      if ((window.location.pathname.includes("checkout") && sessionStorage.getItem("checkoutPremium") && document.querySelector("#edit-sidebar-order-summary-summary .views-field.views-field-title")?.textContent.includes("1-Year")) || document.querySelector("#edit-sidebar-order-summary-summary .views-field.views-field-title")?.textContent.includes("Yearly")) {
+      if (window.location.pathname.includes("checkout") && sessionStorage.getItem("checkoutPremium") && document.querySelector("#edit-sidebar-order-summary-summary .views-field.views-field-title")?.textContent.includes("1-Year")) {
         clearInterval(checkoutPremium);
         // sessionStorage.removeItem("checkoutPremium");
         if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value === "") {
@@ -1343,6 +1344,9 @@ margin: 0 0 12px;
           const element = document.querySelector("#edit-sidebar-coupon-redemption-form-apply");
           const events = ["mousedown", "focusin"];
           events.forEach((eventType) => element.dispatchEvent(new MouseEvent(eventType, { bubbles: true })));
+          setTimeout(() => {
+            window.location.reload();
+          }, 100);
         }
       }
     }, 100);
