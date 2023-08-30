@@ -51,6 +51,16 @@ let startFunk = setInterval(() => {
 
     let newStyle = /*html */ `
         <style>
+      #edit-sidebar-order-summary-summary .order-total-line__adjustment--promotion{
+        display: flex;
+        justify-content: space-between;
+        padding: 0;
+        margin-top: 16px;
+        color: #555;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 24px;
+      }
       #promoteSubscriptionWrap {
         position: relative;
         background: #fff;
@@ -1934,5 +1944,48 @@ margin: 0 0 12px;
     }, 200);
 
     document.querySelector(".exp")?.remove();
+  }
+}, 100);
+
+let startFree = setInterval(() => {
+  if (window.location.href === "https://www.doyogawithme.com/yogi/register") {
+    clearInterval(startFree);
+
+    let styleHidden = /*html */ `
+    <style>
+      .is_hidden{
+        display: none !important;
+      }
+    </style>
+    `;
+
+    document.head.insertAdjacentHTML("beforeend", styleHidden);
+
+    isHiddenInit();
+    function isHiddenInit() {
+      if (document.querySelector(".progressbar") && !document.querySelector(".progressbar").classList.contains("is_hidden")) {
+        document.querySelector(".progressbar").classList.add("is_hidden");
+        document.querySelector(".progressbar").style.display = "none";
+      }
+    }
+
+    // observer
+    let observer = new MutationObserver(() => {
+      if (document) {
+        observer.disconnect();
+
+        isHiddenInit();
+
+        observer.observe(document, {
+          childList: true,
+          subtree: true,
+        });
+      }
+    });
+
+    observer.observe(document, {
+      childList: true,
+      subtree: true,
+    });
   }
 }, 100);
