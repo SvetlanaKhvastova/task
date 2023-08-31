@@ -1053,11 +1053,20 @@ let startPdp = setInterval(() => {
     scriptCustomSlider.src = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js";
     scriptCustomSlider.async = false;
     document.head.appendChild(scriptCustomSlider);
-
     let scriptCustomSliderStyle = document.createElement("link");
     scriptCustomSliderStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css";
     scriptCustomSliderStyle.rel = "stylesheet";
     document.head.appendChild(scriptCustomSliderStyle);
+    //tooltip
+    let scriptPopper = document.createElement("script");
+    scriptPopper.src = "https://unpkg.com/popper.js@1";
+    scriptPopper.async = false;
+    document.body.appendChild(scriptPopper);
+
+    let scriptTippy = document.createElement("script");
+    scriptTippy.src = "https://unpkg.com/tippy.js@5";
+    scriptTippy.async = false;
+    document.body.appendChild(scriptTippy);
 
     let stylePdp = /*html */ `
     <style>
@@ -1141,6 +1150,63 @@ let startPdp = setInterval(() => {
         left: 50%;
         transform: translateX(-50%);
       }
+      /*choice_and_icon_box */
+      .choice_and_icon_box{
+        display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #E7E6DE;
+    padding: 59px 0 20px;
+    margin-bottom: 40px;
+      }
+      .img_wrap_icon{
+            display: flex;
+    align-items: center;
+    gap: 40px;
+    position: relative;
+      }
+      .img_wrap_icon > p.icon_share,
+      .img_wrap_icon > p.icon_how_to_find_us{
+            display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 !important;
+    color: #4B4F58;
+    font-family: 'Raleway';
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    cursor: pointer;
+    padding-bottom: 2px;
+  }
+  .img_wrap_icon > p.icon_share > span,
+  .img_wrap_icon > p.icon_how_to_find_us > span{
+        border-bottom: 1px solid #4B4F58;
+      }
+      .img_wrap_choice{
+        max-width: 173px;
+      }
+            .share {
+        display: flex;
+    align-items: center;
+    gap: 8px;
+        position: absolute;
+        right: -90px;
+        top: 29px;
+        border-radius: 100px;
+        border: 1px solid #f1f0e8;
+        background: #fff;
+        box-shadow: 0px 6px 4px 0px rgba(52, 50, 41, 0.04);
+        margin: 0 !important;
+        padding: 4px 12px 4px 6px;
+      }
+      .share > span {
+        color: #333;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 22px;
+        text-transform: initial;
+      }
       /*with_code_block */
       #withCodeBlock{
     border-top: 1px solid #E7E6DE;
@@ -1168,7 +1234,7 @@ let startPdp = setInterval(() => {
     color: #e60023;
     text-transform: uppercase;
 }
-.code_wrapp p:nth-child(1) {
+.code_wrapp > p:nth-child(1) {
     position: relative;
     color: #28364b;
     font-size: 16px;
@@ -1176,12 +1242,12 @@ let startPdp = setInterval(() => {
     line-height: 24px;
     margin: 0;
 }
-.code_wrapp p:nth-child(2) {
+.code_wrapp > p:nth-child(2) {
     color: #28364b;
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
-    margin: 8px 0 0;
+    margin: 8px 0 0 !important;
 }
 .voucher_block {
     display: inline-flex;
@@ -1195,6 +1261,9 @@ let startPdp = setInterval(() => {
     cursor: pointer;
 }
       .copied {
+        display: flex;
+    align-items: center;
+    gap: 8px;
         position: absolute;
         right: -45px;
         top: 29px;
@@ -1236,6 +1305,30 @@ text-transform: uppercase;
 .free_cancellationup_block svg{
   min-width: 24px;
     min-height: 24px;
+}
+.free_cancellationup_block svg:focus{
+  outline: unset;
+}
+.free_cancellationup_block .tippy-tooltip {
+color: #28364B;
+font-family: 'Raleway';
+font-size: 13px;
+font-weight: 400;
+line-height: 18px;
+border: 1px solid  #E7E6DE;
+background: #FFF;
+max-width: 190px !important;
+filter: drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.2));
+}
+.free_cancellationup_block .tippy-content {
+  padding: 12px;
+  text-align: left !important;
+}
+.free_cancellationup_block .tippy-tooltip[data-placement^="bottom"] > .tippy-arrow {
+  border-bottom-color: #ffffff;
+}
+.free_cancellationup_block .tippy-tooltip[data-placement^="top"] > .tippy-arrow {
+  border-top-color: #ffffff;
 }
       /*mayAlsoLikeBlock */
       #mayAlsoLikeBlock{
@@ -1624,8 +1717,29 @@ left: -60px;
       }
     </style>
     `;
-
-    let logos = `
+    let choiceAndIconBox = /*html */ `
+    <div class="choice_and_icon_box">
+      <div class="img_wrap_choice">
+        <img src="https://flopsi69.github.io/crs/llvws/new_pdp/img/choice.png" />
+      </div>
+      <div class="img_wrap_icon">
+        <p class="icon_how_to_find_us">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" viewBox="0 0 16 20" fill="none">
+            <path d="M7.64773 0C3.43074 0 0 3.43074 0 7.64773C0 9.39039 1.22453 11.9768 3.63957 15.3349C5.40203 17.7856 7.19008 19.7838 7.20793 19.8037C7.32 19.9287 7.47992 20 7.64773 20C7.81555 20 7.97547 19.9287 8.08754 19.8038C8.10539 19.7839 9.89344 17.7857 11.6559 15.335C14.071 11.9768 15.2955 9.39043 15.2955 7.64777C15.2955 3.43074 11.8647 0 7.64773 0ZM7.64773 18.5141C5.50113 16.0289 1.18184 10.4494 1.18184 7.64773C1.18184 4.08242 4.08242 1.18184 7.64773 1.18184C11.213 1.18184 14.1136 4.08242 14.1136 7.64773C14.1136 10.4494 9.79434 16.0289 7.64773 18.5141Z" fill="#CFBE88" />
+            <path d="M7.64773 3.96167C5.54698 3.96167 3.83792 5.67073 3.83792 7.77147C3.83792 9.87222 5.54698 11.5813 7.64773 11.5813C9.74847 11.5813 11.4575 9.87222 11.4575 7.77147C11.4575 5.67073 9.74847 3.96167 7.64773 3.96167ZM7.64773 10.3994C6.19866 10.3994 5.01976 9.22046 5.01976 7.7714C5.01976 6.32233 6.19866 5.14343 7.64773 5.14343C9.09679 5.14343 10.2757 6.32233 10.2757 7.7714C10.2757 9.22046 9.09679 10.3994 7.64773 10.3994Z" fill="#CFBE88" /></svg>
+          <span>How to find us</span>
+        </p>
+        <p class="icon_share">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+            <path d="M19.3582 9.39624C18.9883 9.39624 18.7417 9.64285 18.7417 10.0127V14.8215C18.7417 17.1642 16.8306 19.0137 14.5495 19.0137H5.42524C3.08252 19.0137 1.23301 17.1642 1.23301 14.8215V5.69721C1.23301 3.3545 3.14417 1.50498 5.42524 1.50498H10.049C10.4189 1.50498 10.6655 1.25838 10.6655 0.888477C10.6655 0.518575 10.4189 0.271973 10.049 0.271973H5.42524C2.40437 0.271973 0 2.73799 0 5.69721V14.8215C0 17.8424 2.46602 20.2467 5.42524 20.2467H14.5495C17.5704 20.2467 19.9748 17.8424 19.9748 14.8215V10.0127C19.9748 9.7045 19.7282 9.39624 19.3582 9.39624Z" fill="#CFBE88" />
+            <path d="M7.58301 11.1223C7.45971 11.4306 7.64466 11.8005 7.95291 11.9238H8.13786C8.38447 11.9238 8.63107 11.7388 8.75437 11.4922C10.2956 7.48496 13.8714 4.52573 18.1252 3.84758L16.6456 6.4369C16.4607 6.74515 16.584 7.11505 16.8922 7.3C16.9539 7.36166 17.0772 7.36166 17.2005 7.36166C17.4471 7.36166 17.632 7.23835 17.7553 7.0534L19.9131 3.16942C20.0981 2.86117 19.9748 2.49127 19.6665 2.30632L15.6592 0.0868988C15.351 -0.0980526 14.9811 0.0252484 14.7961 0.333501C14.6112 0.641753 14.7345 1.01166 15.0427 1.19661L17.6937 2.67622C13.0699 3.47767 9.24757 6.6835 7.58301 11.1223Z" fill="#CFBE88" />
+          </svg>
+          <span>Share</span>
+        </p>
+      </div>
+    </div>
+    `;
+    let logos = /*html */ `
     <div class="logos lav_desk">
           <img src="https://flopsi69.github.io/crs/llvws/new_pdp/img/logos.png">
     </div>
@@ -1654,7 +1768,7 @@ left: -60px;
           <path d="M19.2461 9.24609C19.0462 9.2462 18.8546 9.32567 18.7133 9.46705C18.572 9.60842 18.4926 9.80012 18.4926 10C18.4926 14.6828 14.6828 18.4926 10 18.4926C5.31719 18.4926 1.50742 14.6828 1.50742 10C1.50742 5.31719 5.31719 1.50742 10 1.50742C10.1999 1.50742 10.3916 1.42805 10.533 1.28675C10.6743 1.14545 10.7538 0.953787 10.7539 0.753906C10.7539 0.553958 10.6745 0.362199 10.5331 0.220814C10.3917 0.0794292 10.1999 0 10 0C4.48594 0 0 4.48594 0 10C0 15.5141 4.48594 20 10 20C15.5141 20 20 15.5137 20 10C20 9.80005 19.9206 9.60829 19.7792 9.46691C19.6378 9.32552 19.446 9.24609 19.2461 9.24609Z" fill="#CFBE88"/>
         </svg>
         <p><span>Free cancellationup</span> to 24H before the event</p>
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <svg data-title="For cancellations, please send us an email or submit your request via chat or SMS" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
           <mask id="mask0_1539_1138" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="20">
             <path d="M20 0H0V20H20V0Z" fill="white"/>
           </mask>
@@ -1795,9 +1909,14 @@ left: -60px;
 
     renderHtml();
     function renderHtml() {
+      if (document.querySelector(".fl-module-rich-text") && !document.querySelector(".choice_and_icon_box")) {
+        document.querySelector(".fl-module-rich-text").insertAdjacentHTML("beforebegin", choiceAndIconBox);
+      }
+      // withCodeBlock
       if (document.querySelector(".fl-col-small .fl-module-content.fl-node-content") && !document.querySelector(".with_code_block")) {
         document.querySelector(".fl-col-small .fl-module-content.fl-node-content > div").insertAdjacentHTML("afterend", withCodeBlock);
       }
+      // newBlocks
       if (document.querySelector(".fl-row-content-wrap") && !document.querySelector(".may_also_like_block") && !document.querySelector(".reviews_block") && !document.querySelector(".how_to_find_us_block")) {
         document.querySelector(".fl-row-content-wrap").insertAdjacentHTML("afterend", newBlocks);
       }
@@ -1831,6 +1950,10 @@ left: -60px;
 
     initSlickSlider();
     initClipboard();
+    tooltipInit();
+    onClickShare();
+    onClickIconHowToFindUs();
+
     function initSlickSlider() {
       let slickInterval = setInterval(() => {
         if (typeof jQuery(".reviews_slider").slick === "function" && document.querySelector(".reviews_block")) {
@@ -1949,11 +2072,58 @@ left: -60px;
         }
       }, 1000);
     }
-
     function onClickShare() {
-      document.querySelector(".fl-rich-text > h3").addEventListener("click", () => {
-        navigator.clipboard.writeText(window.location);
-      });
+      let iconShare = setInterval(() => {
+        if (document.querySelector(".icon_share")) {
+          clearInterval(iconShare);
+          document.querySelector(".icon_share").addEventListener("click", () => {
+            navigator.clipboard.writeText(window.location);
+
+            document.querySelector(".share")?.remove();
+            document.querySelector(".img_wrap_icon").insertAdjacentHTML(
+              "beforeend",
+              `<p class="share">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M13.2854 2.15632C13.1911 2.06216 13.0633 2.00928 12.9301 2.00928C12.7968 2.00928 12.669 2.06216 12.5747 2.15632L6.54635 8.16778L4.37135 5.80554C4.28105 5.70753 4.15552 5.64938 4.02237 5.64386C3.88921 5.63835 3.75931 5.68591 3.6612 5.77611C3.61266 5.82081 3.57341 5.87462 3.54568 5.93449C3.51795 5.99436 3.50228 6.0591 3.49957 6.12502C3.49686 6.19094 3.50716 6.25675 3.52989 6.31869C3.55262 6.38063 3.58733 6.43749 3.63203 6.48601L6.1612 9.23289C6.20695 9.28289 6.26236 9.32311 6.32408 9.35113C6.3858 9.37915 6.45255 9.39438 6.52031 9.39591H6.53099C6.66395 9.39585 6.79148 9.34313 6.88568 9.24929L13.2844 2.867C13.3787 2.77289 13.4319 2.64515 13.4321 2.51188C13.4322 2.37861 13.3795 2.25071 13.2854 2.15632Z" fill="#CFBE88"/>
+                    <path d="M13.1641 6.49756C13.0308 6.49763 12.903 6.55061 12.8088 6.64486C12.7146 6.73911 12.6617 6.86691 12.6617 7.00016C12.6617 10.122 10.1219 12.6619 7 12.6619C3.87812 12.6619 1.33828 10.122 1.33828 7.00016C1.33828 3.87829 3.87812 1.33844 7 1.33844C7.13325 1.33844 7.26105 1.28553 7.3553 1.19133C7.44955 1.09713 7.50253 0.969354 7.5026 0.8361C7.5026 0.702801 7.44965 0.574962 7.35539 0.480705C7.26113 0.386449 7.13329 0.333496 7 0.333496C3.32395 0.333496 0.333328 3.32412 0.333328 7.00016C0.333328 10.6762 3.32395 13.6668 7 13.6668C10.676 13.6668 13.6667 10.6759 13.6667 7.00016C13.6667 6.86686 13.6137 6.73903 13.5195 6.64477C13.4252 6.55051 13.2974 6.49756 13.1641 6.49756Z" fill="#CFBE88"/>
+                  </svg>
+                  <span>Link copied</span>
+                </p>`
+            );
+            setTimeout(() => {
+              document.querySelector(".share")?.remove();
+            }, 3000);
+          });
+        }
+      }, 100);
+    }
+    function tooltipInit() {
+      let tippyRun = setInterval(() => {
+        if (typeof tippy === "function" && document.querySelector(".free_cancellationup_block")) {
+          clearInterval(tippyRun);
+          document.querySelectorAll("[data-title]").forEach((el) => {
+            tippy(el, {
+              content: el.getAttribute("data-title"),
+              // trigger: "click",
+              placement: "bottom-end",
+              appendTo: function () {
+                return document.querySelector(".free_cancellationup_block");
+              },
+              onTrigger() {},
+            });
+          });
+        }
+      }, 700);
+    }
+    function onClickIconHowToFindUs() {
+      let srch = setInterval(() => {
+        if (document.querySelector(".icon_how_to_find_us") && document.querySelector(".how_to_find_us_block")) {
+          clearInterval(srch);
+          document.querySelector(".icon_how_to_find_us").addEventListener("click", () => {
+            document.querySelector(".how_to_find_us_block")?.scrollIntoView({ block: "center", behavior: "smooth" });
+          });
+        }
+      }, 100);
     }
   }
 }, 100);
