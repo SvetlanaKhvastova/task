@@ -52,14 +52,7 @@ let startFunk = setInterval(() => {
     let newStyle = /*html */ `
         <style>
       #edit-sidebar-order-summary-summary .order-total-line__adjustment--promotion{
-        display: flex;
-        justify-content: space-between;
-        padding: 0;
-        margin-top: 16px;
-        color: #555;
-        font-size: 16px;
-        font-weight: 500;
-        line-height: 24px;
+        display: none !important;
       }
       #promoteSubscriptionWrap {
         position: relative;
@@ -820,6 +813,9 @@ border: 1px solid #E0E0E0;
           font-size: 22px;
           line-height: 21px;
         }
+        .path-become-a-subscriber .lav-jumb__caption.login{
+          color: #FFF;
+        }
         .path-become-a-subscriber .lav-jumb__plans {
           margin-top: 24px;
         }
@@ -1106,7 +1102,7 @@ margin: 0 0 12px;
                   </li>
                 </ul>
                 <div  class="voucher_block">
-                  Use code <span data-clipboard-text="BOOK10">YOGA45</span> at checkout to claim your discount. But hurry, this offer won't last long!
+                  Use code <span data-clipboard-text="YOGA_45">YOGA_45</span> at checkout to claim your discount. But hurry, this offer won't last long!
                 </div>
                 <a id="subscribeSaveLink" href="https://www.doyogawithme.com//become-a-subscriber">Subscribe and Save 45% Now!</a>
 
@@ -1347,10 +1343,10 @@ margin: 0 0 12px;
         clearInterval(checkoutPremium);
         // sessionStorage.removeItem("checkoutPremium");
         if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value === "") {
-          document.querySelector("#edit-sidebar-coupon-redemption-form-code").value = "YOGA45";
+          document.querySelector("#edit-sidebar-coupon-redemption-form-code").value = "YOGA_45";
         }
 
-        if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value === "YOGA45") {
+        if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value === "YOGA_45") {
           const element = document.querySelector("#edit-sidebar-coupon-redemption-form-apply");
           const events = ["mousedown", "focusin"];
           events.forEach((eventType) => element.dispatchEvent(new MouseEvent(eventType, { bubbles: true })));
@@ -1403,6 +1399,13 @@ margin: 0 0 12px;
       case "/become-a-subscriber":
         // Hypothesis #5 - Promote Subscription on Premium content pages
         // logged-in user - to a page with two plans, on which a block with premium benefits appears at the top + in comparison with the old page - a different header
+        if (document.querySelector('.menu--account [data-drupal-link-system-path="yogi/login"]')) {
+          if (document.querySelector(".path-become-a-subscriber .lav-jumb__caption")) {
+            document.querySelectorAll(".path-become-a-subscriber .lav-jumb__caption").forEach((el) => {
+              el.classList.add("login");
+            });
+          }
+        }
         if (!document.querySelector('.menu--account [data-drupal-link-system-path="yogi/login"]')) {
           let becomeSubscriberFind = setInterval(() => {
             if (document.querySelector(".o-page__header")) {
