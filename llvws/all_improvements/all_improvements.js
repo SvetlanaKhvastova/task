@@ -1700,6 +1700,75 @@ left: -60px;
         max-width: 170px;
         width: 100%;
       }
+      /* */
+            .how_to_find_accardion {
+        list-style: none;
+        max-width: 960px;
+        margin: 56px auto 0;
+      }
+      .how_to_find_accardion_block {
+        border: 1px solid #e7e6de;
+      }
+      .how_to_find_accardion_block:nth-child(2) {
+        border-top: unset;
+      }
+      .how_to_find_accardion_block:nth-child(3) {
+        border-top: unset;
+        border-bottom: unset;
+      }
+      .how_to_find_accardion_link {
+        display: flex;
+        padding: 16px;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .how_to_find_accardion_link h3 {
+        color: #28364b;
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 32px;
+        text-transform: capitalize;
+        margin: 0;
+      }
+      .how_to_find_accardion_lists {
+        display: none;
+      }
+      .how_to_find_accardion_lists > div {
+        padding: 0 16px 24px;
+      }
+      .how_to_find_accardion_lists p {
+        position: relative;
+        max-width: 815px;
+        color: #4b4f58;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        margin: 0 0 0 5px;
+        padding-left: 24px;
+      }
+      .how_to_find_accardion_lists p::before {
+        position: absolute;
+        content: "";
+        background: #28364b;
+        width: 6.5px;
+        height: 6.5px;
+        border-radius: 50%;
+        left: 0;
+        top: 5px;
+      }
+      .how_to_find_accardion_lists p + p {
+        margin-top: 6px;
+      }
+      .how_to_find_accardion_link > span svg {
+        transition: all 0.3s ease;
+      }
+      .how_to_find_accardion_link.active_block > span svg {
+        transform: rotate(90deg);
+        transition: all 0.3s ease;
+      }
+      .how_to_find_accardion.mob_var{
+        display: none;
+      }
       @media (max-width: 1295px) {
         .reviews_slider{
           max-width: 1000px;
@@ -1714,6 +1783,22 @@ left: -60px;
         .reviews_slider{
           max-width: 800px;
         }
+      }
+      @media (max-width: 768px) {
+        .fl-node-content .fl-col-group{
+          flex-direction: column;
+        }
+        /*how_to_find_accardion */
+                .how_to_find_accardion {
+          margin: 40px auto 0;
+        }
+        .how_to_find_accardion_link h3 {
+          font-size: 18px;
+          line-height: 24px;
+        }
+              .how_to_find_accardion.mob_var{
+        display: block;
+      }
       }
     </style>
     `;
@@ -1822,6 +1907,7 @@ left: -60px;
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3223.604617837276!2d-114.931480984194!3d36.10312508009815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c8d79321801de5%3A0xd989c2619f8db520!2s20%20Costa%20Di%20Lago%20%23130%2C%20Henderson%2C%20NV%2089011%2C%20USA!5e0!3m2!1sen!2sph!4v1607349582906!5m2!1sen!2sph" width="100%" height="405" frameborder="0" style="border: 0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
           </div>
         </div>
+        <ul class="how_to_find_accardion mob_var"></ul>
       </div>
     </section>
         <section id="lakeLasvegasWaterSportsBlock">
@@ -1876,6 +1962,23 @@ left: -60px;
             </li>
           `;
     }
+    function setListAccardion(title, text, count) {
+      return `
+            <li class="how_to_find_accardion_block" data-visib=${count}>
+                <div class="how_to_find_accardion_link">
+                    <h3>${title}</h3>
+                    <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M11.432 7.57172L6.03567 2.17714C5.79888 1.94095 5.41524 1.94095 5.17785 2.17714C4.94107 2.41334 4.94107 2.79697 5.17785 3.03316L10.1462 7.9997L5.17845 12.9662C4.94166 13.2024 4.94166 13.5861 5.17845 13.8229C5.41524 14.059 5.79948 14.059 6.03627 13.8229L11.4326 8.42833C11.6658 8.19458 11.6658 7.80492 11.432 7.57172Z" fill="#CFBE88"/>
+                    </svg></span>
+                </div>
+                <div class="how_to_find_accardion_lists">
+                    <div>
+                        ${text}
+                    </div>
+                </div>
+            </li>
+          `;
+    }
 
     let arrReviews = {
       1: ["Charles L.", `First time kayaking and it's extremely fun but it's exhausting. If you're a guest at the Westin lake Resort it's so easy It's literally a 2-minute walk from your room to the private lagoon. Everything is super easy I scan the QR...`],
@@ -1884,6 +1987,34 @@ left: -60px;
       4: ["Charles L.", `First time kayaking and it's extremely fun but it's exhausting. If you're a guest at the Westin lake Resort it's so easy It's literally a 2-minute walk from your room to the private lagoon. Everything is super easy I scan the QR...`],
       5: [`Charles L.`, `We had a BLAST. Booked a holiday party with The Yacht at Lake Las Vegas and the staff and Sarah were so gracious and helpful. We did have outside catering come in and cater the event but the bar package with renting the yacht was the biggest hit. No one had to worry about paying. The bartender knew what she was doing and was extremely friendly. There was plenty of room abroad the yacht for everyone to eat, dance, and thoroughly enjoy themselves. Our cruise was during sunset.`],
       6: [`Charles L.`, `First time kayaking and it's extremely fun but it's exhausting. If you're a guest at the Westin lake Resort it's so easy It's literally a 2-minute walk from your room to the private lagoon.`],
+    };
+    let arrAccardion = {
+      1: [
+        `AFTER YOU BOOK & ARRIVAL`,
+        `<p>Once you complete your booking online, you will receive a confirmation email with a map showing where to park when you arrive, and digital links to both the liability waiver, and the required boaters' contract. Anyone participating in activities must have a liability release completed prior to arrival.</p>
+          <p>Upon arriving at Lake Las Vegas, you will be excited that there are no parking fees! Parking can be found in the Monte Lago parking garage located at 8 Strada Di Villagio, Henderson NV, 89011.</p>
+          <p>After parking, you can walk through the Village and stop at any restaurants on-site. When you are finished strolling, head toward the marina, and you will find our office located behind seasons grocery.</p>`,
+      ],
+      2: [
+        `CHECKING IN`,
+        `<p>We suggest arriving 10-15 minutes prior to your scheduled boat reservation time.</p>
+          <p>Please be sure everyone has a waiver completed prior to check-in, and also have your confirmation email ready to show the office receptionist.</p>
+          <p>Once checked in, each guest will receive a wristband.</p>
+          <p>Self-service lockers are available at our facility on the dock. (CARD PAYMENT ONLY)</p>
+          <p>There will be a security deposit hold for the amount paid, but it will not be charged if the rules outlined in the Driver Consent Form are violated.</p>
+          <p>A credit card authorization hold will be needed at the time of check-in on the day of your rental. Please make sure you have the Credit Card / debit card you booked with present at time of check-in. The credit card hold will be for 7 days.</p>
+          `,
+      ],
+      3: [
+        `REQUIREMENTS & REGULATIONS`,
+        `<p>You must be at least 21 years of age to operate an electric boat rental and hold a valid ID and credit card.</p>
+          <p>Children over the age of 3, are to be counted as a guest.</p>
+          <p>No swimming from the boat at any time.</p>
+          <p>You may not dock or beach the boat.</p>
+          <p>Coolers and ice checks are prohibited at Lake Las Vegas, however food and drink can be brought on the electric boats.</p>
+          <p>All rules and regulations can be found in our boaters contract, here: https://form.jotform.com/230950539241050</p>`,
+      ],
+      4: [`CANCELLATION & REFUNDS`, `<p>Our cancellation policy allows for free cancellations up to 24 hours before the event. For cancellations, please send us an email or submit your request via chat or SMS. Refunds will be processed according to our terms and conditions.</p>`],
     };
     let arrpMayAlsoLikeListFirst = {
       1: [`Yacht After Dark Neon Party`, `$19.99`, `https://conversionratestore.github.io/projects/llvws/improvingPDP/images/special_birthday.jpg`],
@@ -1946,6 +2077,13 @@ left: -60px;
       if (document.querySelector(".fl-node-content .fl-col-group > div:nth-child(1)") && !document.querySelector(".logos")) {
         document.querySelector(".fl-node-content .fl-col-group > div:nth-child(1) > div").insertAdjacentHTML("afterend", logos);
       }
+
+      //accardion
+      if (document.querySelector(".how_to_find_us_block") && document.querySelector(".how_to_find_accardion").children.length !== arrAccardion.length) {
+        for (let key in arrAccardion) {
+          document.querySelector(".how_to_find_accardion").insertAdjacentHTML("beforeend", setListAccardion(arrAccardion[key][0], arrAccardion[key][1], key));
+        }
+      }
     }
 
     initSlickSlider();
@@ -1953,64 +2091,69 @@ left: -60px;
     tooltipInit();
     onClickShare();
     onClickIconHowToFindUs();
+    if (window.innerWidth < 768) {
+      initAccardionToggle();
+    }
 
     function initSlickSlider() {
-      let slickInterval = setInterval(() => {
-        if (typeof jQuery(".reviews_slider").slick === "function" && document.querySelector(".reviews_block")) {
-          clearInterval(slickInterval);
-          //  slider
-          let slider = jQuery(".reviews_slider").slick({
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            arrows: true,
-            dots: true,
-            infinite: true,
-            autoplaySpeed: 7000,
-            speed: 500,
-            cssEase: "linear",
-            prevArrow: `
-       					<div class="prev_btn" >
-                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-  <path d="M3.17539 6.57184L8.57175 1.17726C8.80854 0.941074 9.19218 0.941074 9.42957 1.17726C9.66635 1.41346 9.66635 1.79709 9.42957 2.03328L4.46123 6.99982L9.42897 11.9664C9.66576 12.2026 9.66576 12.5862 9.42897 12.823C9.19218 13.0592 8.80795 13.0592 8.57116 12.823L3.17479 7.42845C2.94164 7.19471 2.94164 6.80504 3.17539 6.57184Z" fill="#CFBE88"/>
-</svg>
-       					</div>
-       				`,
-            nextArrow: `
-                  <div class="next_btn" >
-                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-  <path d="M10.8246 6.57184L5.42825 1.17726C5.19146 0.941074 4.80782 0.941074 4.57043 1.17726C4.33365 1.41346 4.33365 1.79709 4.57043 2.03328L9.53877 6.99982L4.57103 11.9664C4.33424 12.2026 4.33424 12.5862 4.57103 12.823C4.80782 13.0592 5.19205 13.0592 5.42884 12.823L10.8252 7.42845C11.0584 7.19471 11.0584 6.80504 10.8246 6.57184Z" fill="#CFBE88"/>
-</svg>
-               	</div>
-               `,
-            responsive: [
-              {
-                breakpoint: 778,
-                settings: {
-                  slidesToShow: 1,
-                  centerMode: true,
-                  focusOnSelect: true,
+      if (window.innerWidth > 768) {
+        let slickInterval = setInterval(() => {
+          if (typeof jQuery(".reviews_slider").slick === "function" && document.querySelector(".reviews_block")) {
+            clearInterval(slickInterval);
+            //  slider
+            let slider = jQuery(".reviews_slider").slick({
+              slidesToShow: 3,
+              slidesToScroll: 1,
+              arrows: true,
+              dots: true,
+              infinite: true,
+              autoplaySpeed: 7000,
+              speed: 500,
+              cssEase: "linear",
+              prevArrow: `
+                   <div class="prev_btn" >
+                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+    <path d="M3.17539 6.57184L8.57175 1.17726C8.80854 0.941074 9.19218 0.941074 9.42957 1.17726C9.66635 1.41346 9.66635 1.79709 9.42957 2.03328L4.46123 6.99982L9.42897 11.9664C9.66576 12.2026 9.66576 12.5862 9.42897 12.823C9.19218 13.0592 8.80795 13.0592 8.57116 12.823L3.17479 7.42845C2.94164 7.19471 2.94164 6.80504 3.17539 6.57184Z" fill="#CFBE88"/>
+  </svg>
+                   </div>
+                 `,
+              nextArrow: `
+                    <div class="next_btn" >
+                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+    <path d="M10.8246 6.57184L5.42825 1.17726C5.19146 0.941074 4.80782 0.941074 4.57043 1.17726C4.33365 1.41346 4.33365 1.79709 4.57043 2.03328L9.53877 6.99982L4.57103 11.9664C4.33424 12.2026 4.33424 12.5862 4.57103 12.823C4.80782 13.0592 5.19205 13.0592 5.42884 12.823L10.8252 7.42845C11.0584 7.19471 11.0584 6.80504 10.8246 6.57184Z" fill="#CFBE88"/>
+  </svg>
+                   </div>
+                 `,
+              responsive: [
+                {
+                  breakpoint: 778,
+                  settings: {
+                    slidesToShow: 1,
+                    centerMode: true,
+                    focusOnSelect: true,
+                  },
                 },
-              },
-            ],
-          });
-          slider.on("swipe", function () {});
-
-          for (let item of document.querySelectorAll(".reviews_read_more_block .preview_text")) {
-            if (item.scrollHeight <= 150) {
-              item.nextElementSibling.innerHTML = "&nbsp";
-              item.nextElementSibling.classList.add("disable");
-            }
-          }
-
-          document.querySelectorAll(".reviews_read_more_btn").forEach((el) => {
-            el.addEventListener("click", (e) => {
-              e.preventDefault();
-              e.currentTarget.style.display = "none";
-              e.currentTarget.previousElementSibling.style.height = "auto";
+              ],
             });
-          });
-        }
-      }, 100);
+            slider.on("swipe", function () {});
+
+            for (let item of document.querySelectorAll(".reviews_read_more_block .preview_text")) {
+              if (item.scrollHeight <= 150) {
+                item.nextElementSibling.innerHTML = "&nbsp";
+                item.nextElementSibling.classList.add("disable");
+              }
+            }
+
+            document.querySelectorAll(".reviews_read_more_btn").forEach((el) => {
+              el.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.currentTarget.style.display = "none";
+                e.currentTarget.previousElementSibling.style.height = "auto";
+              });
+            });
+          }
+        }, 100);
+      }
 
       let slickIntervalMayAlsoLike = setInterval(() => {
         if (typeof jQuery(".may_also_like_slider").slick === "function" && document.querySelector(".may_also_like_slider")) {
@@ -2124,6 +2267,37 @@ left: -60px;
           });
         }
       }, 100);
+    }
+    function initAccardionToggle() {
+      // accardionToggle
+      if ($(".how_to_find_accardion_link")) {
+        document.querySelectorAll(".how_to_find_accardion_link")[1].classList.add("active_block");
+        document.querySelectorAll(".how_to_find_accardion_lists")[1].style.display = "block";
+        $(".how_to_find_accardion_link").click(function (e) {
+          $(this).toggleClass("active_block");
+          $(this).closest("li").toggleClass("active_block");
+          $(this).next(".how_to_find_accardion_lists").slideToggle();
+          if ($(".how_to_find_accardion_link").not(this)) {
+            $(".how_to_find_accardion_link").not(this).next(".how_to_find_accardion_lists").css("display", "none");
+            $(".how_to_find_accardion_link").not(this).removeClass("active_block");
+            $(".how_to_find_accardion_link").not(this).closest("li").removeClass("active_block");
+          }
+          let w = e.currentTarget.querySelector("h3").textContent.split(" ");
+          // if (e.currentTarget.classList.contains("active_block")) {
+          //   pushDataLayer("exp_new_content_what_type_open", `Open - ${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Text area", "What type of college admissions assistance does your child require?");
+          // } else {
+          //   pushDataLayer("exp_new_content_what_type_close", `Close - ${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Text area", "What type of college admissions assistance does your child require?");
+          // }
+
+          const headerOffset = 10;
+          const elementPosition = this.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
+        });
+      }
     }
   }
 }, 100);
