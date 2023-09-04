@@ -289,7 +289,7 @@ h2.new_title::after {
 /*mayAlsoLikeBlock */
 #mayAlsoLikeBlock {
   background: #fff;
-  padding: 94px 0;
+  padding: 90px 0 94px;
 }
 .may_also_like_block {
   max-width: 1440px;
@@ -421,12 +421,16 @@ h2.new_title::after {
   position: relative;
   background: #fff;
   padding: 24px 24px 40px;
-  min-height: 360px;
+  min-height: 308px;
 }
 .reviews_service {
   position: absolute;
   right: 16px;
   top: 16px;
+}
+.reviews_service img {
+    max-width: 95px;
+    max-height: 20px;
 }
 .reviews_name {
   color: #28364b;
@@ -457,7 +461,7 @@ h2.new_title::after {
   line-height: 24px;
   margin-bottom: 10px !important;
   overflow: hidden;
-  height: 150px;
+  height: 120px;
 }
 .reviews_read_more_btn {
   color: #28364b;
@@ -482,7 +486,7 @@ h2.new_title::after {
   display: flex;
   align-items: center;
   justify-content: center;
-  top: 35%;
+  top: 135px;
   opacity: 0.8;
   background: #fff;
   width: 40px;
@@ -585,7 +589,9 @@ h2.new_title::after {
 }
 .how_to_find_accardion_block:nth-child(3) {
   border-top: unset;
-  border-bottom: unset;
+}
+.how_to_find_accardion_block:nth-child(4) {
+  border-top: unset;
 }
 .how_to_find_accardion_link {
   display: flex;
@@ -621,11 +627,11 @@ h2.new_title::after {
   position: absolute;
   content: "";
   background: #28364b;
-  width: 6.5px;
-  height: 6.5px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   left: 0;
-  top: 5px;
+  top: 6px;
 }
 .how_to_find_accardion_lists p + p {
   margin-top: 6px;
@@ -660,6 +666,63 @@ h2.new_title::after {
 .load_more_reviews.mob_var {
   display: none;
 }
+/*looking */
+.looking{
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin: 26px 0 42px;
+}
+.looking > div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.looking > div p{
+  color: #28364B;
+  font-family: 'Raleway';
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0 0 0 4px !important;
+}
+/*accardion_all_inform_block */
+.accardion_all_inform_block{
+  list-style: none;
+  margin: 20px 0 32px;
+}
+.fl-rich-text h3{
+color: #28364B;
+font-family: 'Playfair Display';
+font-size: 24px;
+font-weight: 400;
+line-height: 32px;
+text-transform: uppercase;
+margin-bottom: 20px !important;
+}
+ .fl-rich-text p,
+ .fl-rich-text > ul > li,
+ .how_to_find_accardion_lists > div> ul > li{
+  color: #4B4F58;
+font-family: 'Raleway';
+font-size: 14px;
+font-weight: 400;
+line-height: 24px;
+ }
+  .fl-rich-text > ul{
+    margin: 0 0 20px 22px;
+  }
+  .how_to_find_accardion_lists > div> ul{
+    margin: 0 0 0 20px;
+  }
+  .how_to_find_accardion_lists > div> ul > li{
+    padding-left: 10px;
+  }
+  .how_to_find_accardion_lists > div> ul + p{
+        position: unset;
+    padding: 0;
+    margin: 10px 0 0;
+  }
 @media (max-width: 1295px) {
   .reviews_slider {
     max-width: 1000px;
@@ -916,9 +979,51 @@ h2.new_title::after {
   .how_to_find_accardion.mob_var {
     display: block;
   }
+  /*.looking */
+  .looking{
+    align-items: flex-start;
+    gap: 8px;
+    margin: 0 0 14px;
+    flex-direction: column;
+    padding-top: 14px;
+    border-top: 1px solid #e7e6de;
+  }
+  .fl-rich-text h3{
+    font-size: 20px;
+    line-height: 28px;
+    margin-bottom: 12px !important;
+  }
+  .accardion_all_inform_block{
+    margin: 0;
+  }
+  .dress_code .how_to_find_accardion_lists p{
+    position: unset;
+    padding: 0;
+    margin: 0;
+  }
+  .preview_text{
+        height: 90px;
+  }
 }
 
     </style>
+    `;
+    let lookingHtml = `
+    <div class="looking">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M9.87143 11.982C9.87143 12.5271 10.088 13.0498 10.4734 13.4352C10.8588 13.8206 11.3815 14.0372 11.9266 14.0372C12.4717 14.0372 12.9944 13.8206 13.3798 13.4352C13.7652 13.0498 13.9818 12.5271 13.9818 11.982C13.9818 11.4369 13.7652 10.9142 13.3798 10.5288C12.9944 10.1434 12.4717 9.92683 11.9266 9.92683C11.3815 9.92683 10.8588 10.1434 10.4734 10.5288C10.088 10.9142 9.87143 11.4369 9.87143 11.982ZM19.894 11.5086C18.1545 7.84414 15.525 6 12 6C8.47319 6 5.84551 7.84414 4.10596 11.5104C4.03619 11.6582 4 11.8195 4 11.9829C4 12.1463 4.03619 12.3077 4.10596 12.4554C5.84551 16.1199 8.47502 17.964 12 17.964C15.5268 17.964 18.1545 16.1199 19.894 12.4536C20.0353 12.1563 20.0353 11.8113 19.894 11.5086ZM11.9266 15.2115C10.143 15.2115 8.69705 13.7656 8.69705 11.982C8.69705 10.1984 10.143 8.75245 11.9266 8.75245C13.7102 8.75245 15.1561 10.1984 15.1561 11.982C15.1561 13.7656 13.7102 15.2115 11.9266 15.2115Z" fill="#CFBE88"/>
+            </svg>
+            <p><span class="people_txt">4</span> people are looking at this at the moment</p>
+          </div>
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M17 6H15.5V5.5C15.5 5.36739 15.4473 5.24021 15.3536 5.14645C15.2598 5.05268 15.1326 5 15 5C14.8674 5 14.7402 5.05268 14.6464 5.14645C14.5527 5.24021 14.5 5.36739 14.5 5.5V6H9.5V5.5C9.5 5.36739 9.44732 5.24021 9.35355 5.14645C9.25979 5.05268 9.13261 5 9 5C8.86739 5 8.74021 5.05268 8.64645 5.14645C8.55268 5.24021 8.5 5.36739 8.5 5.5V6H7C6.73478 6 6.48043 6.10536 6.29289 6.29289C6.10536 6.48043 6 6.73478 6 7V17C6 17.2652 6.10536 17.5196 6.29289 17.7071C6.48043 17.8946 6.73478 18 7 18H17C17.2652 18 17.5196 17.8946 17.7071 17.7071C17.8946 17.5196 18 17.2652 18 17V7C18 6.73478 17.8946 6.48043 17.7071 6.29289C17.5196 6.10536 17.2652 6 17 6ZM7 9V7H8.5V7.5C8.5 7.63261 8.55268 7.75979 8.64645 7.85355C8.74021 7.94732 8.86739 8 9 8C9.13261 8 9.25979 7.94732 9.35355 7.85355C9.44732 7.75979 9.5 7.63261 9.5 7.5V7H14.5V7.5C14.5 7.63261 14.5527 7.75979 14.6464 7.85355C14.7402 7.94732 14.8674 8 15 8C15.1326 8 15.2598 7.94732 15.3536 7.85355C15.4473 7.75979 15.5 7.63261 15.5 7.5V7H17V9H7Z" fill="#CFBE88"/>
+              <path d="M11.7485 15L10 13.104L10.4371 12.6299L11.7485 14.052L14.5629 11L15 11.474L11.7485 15Z" fill="white"/>
+            </svg>
+            <p>Booked <span class="times_txt">3</span> times today</p>
+          </div>
+        </div>
     `;
     let advisorAndIconBox = /*html */ `
     <div class="advisor_and_icon_box">
@@ -1027,7 +1132,6 @@ h2.new_title::after {
         <div class="may_also_like_slider">
           <ul class="may_also_like_list_first desk_var"></ul>
           <ul class="may_also_like_list_second desk_var"></ul>
-          <ul class="may_also_like_list_third desk_var"></ul>
         </div>
       </div>
     </section>
@@ -1086,11 +1190,11 @@ h2.new_title::after {
     </section>
       `;
 
-    function setListReviewsSlider(name, text) {
+    function setListReviewsSlider(name, text, img) {
       return `
       <div class="reviews_link">
         <div class="reviews_service">
-          <img src="https://flopsi69.github.io/crs/llvws/new_pdp/img/tripadvisor.svg" />
+          ${img}
         </div>
         <p class="reviews_name">${name}</p>
         <p class="reviews_verified">
@@ -1107,7 +1211,7 @@ h2.new_title::after {
       </div>
           `;
     }
-    function setListAlsoLikeSlider(title, price, img, count) {
+    function setListAlsoLikeSlider(title, price, img, link, count) {
       return `
             <li class="may_also_like_link" data-visib=${count}>
               <div class="img_wrapp">
@@ -1116,28 +1220,30 @@ h2.new_title::after {
               <div class="learn_more_wrapp">
                 <p class="may_also_like_title">${title}</p>
                 <p class="may_also_like_price"><span>${price}</span> / person</p>
-                <button class="learn_more_btn">Learn More</button>
+                <a href="${link}" target="_blank" class="learn_more_btn">Learn More</a>
               </div>
             </li>
           `;
     }
-    function setListAlsoLikeSliderMob(title, price, img, count) {
+    function setListAlsoLikeSliderMob(title, price, img, link, count) {
       return `
-            <div class="may_also_like_link" data-visib=${count}>
-              <div class="img_wrapp">
-                <img src="${img}" alt="${title}" />
-              </div>
-              <div class="learn_more_wrapp">
-                <p class="may_also_like_title">${title}</p>
-                <p class="may_also_like_price"><span>${price}</span> / person</p>
-                <button class="learn_more_btn">Learn More</button>
-              </div>
-            </div>
+      <a href="${link}" target="_blank">
+      <div class="may_also_like_link" data-visib=${count}>
+        <div class="img_wrapp">
+          <img src="${img}" alt="${title}" />
+        </div>
+        <div class="learn_more_wrapp">
+          <p class="may_also_like_title">${title}</p>
+          <p class="may_also_like_price"><span>${price}</span> / person</p>
+          <button class="learn_more_btn">Learn More</button>
+        </div>
+      </div>
+      </a>
           `;
     }
-    function setListAccardion(title, text, count) {
+    function setListAccardion(title, text, className, count) {
       return `
-            <li class="how_to_find_accardion_block" data-visib=${count}>
+            <li class="how_to_find_accardion_block ${className}" data-visib=${count}>
                 <div class="how_to_find_accardion_link">
                     <h3>${title}</h3>
                     <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -1154,66 +1260,116 @@ h2.new_title::after {
     }
 
     let arrReviews = {
-      1: ["Charles L.", `First time kayaking and it's extremely fun but it's exhausting. If you're a guest at the Westin lake Resort it's so easy It's literally a 2-minute walk from your room to the private lagoon. Everything is super easy I scan the QR...`],
-      2: [`Charles L.`, `We had a BLAST. Booked a holiday party with The Yacht at Lake Las Vegas and the staff and Sarah were so gracious and helpful. We did have outside catering come in and cater the event but the bar package with renting the yacht was the biggest hit. No one had to worry about paying. The bartender knew what she was doing and was extremely friendly. There was plenty of room abroad the yacht for everyone to eat, dance, and thoroughly enjoy themselves. Our cruise was during sunset.`],
-      3: [`Charles L.`, `First time kayaking and it's extremely fun but it's exhausting. If you're a guest at the Westin lake Resort it's so easy It's literally a 2-minute walk from your room to the private lagoon.`],
-      4: ["Charles L.", `First time kayaking and it's extremely fun but it's exhausting. If you're a guest at the Westin lake Resort it's so easy It's literally a 2-minute walk from your room to the private lagoon. Everything is super easy I scan the QR...`],
-      5: [`Charles L.`, `We had a BLAST. Booked a holiday party with The Yacht at Lake Las Vegas and the staff and Sarah were so gracious and helpful. We did have outside catering come in and cater the event but the bar package with renting the yacht was the biggest hit. No one had to worry about paying. The bartender knew what she was doing and was extremely friendly. There was plenty of room abroad the yacht for everyone to eat, dance, and thoroughly enjoy themselves. Our cruise was during sunset.`],
-      6: [`Charles L.`, `First time kayaking and it's extremely fun but it's exhausting. If you're a guest at the Westin lake Resort it's so easy It's literally a 2-minute walk from your room to the private lagoon.`],
-    };
-    let arrAccardion = {
-      1: [
-        `AFTER YOU BOOK & ARRIVAL`,
-        `<p>Once you complete your booking online, you will receive a confirmation email with a map showing where to park when you arrive, and digital links to both the liability waiver, and the required boaters' contract. Anyone participating in activities must have a liability release completed prior to arrival.</p>
-          <p>Upon arriving at Lake Las Vegas, you will be excited that there are no parking fees! Parking can be found in the Monte Lago parking garage located at 8 Strada Di Villagio, Henderson NV, 89011.</p>
-          <p>After parking, you can walk through the Village and stop at any restaurants on-site. When you are finished strolling, head toward the marina, and you will find our office located behind seasons grocery.</p>`,
+      1: ["Carrie G.", `We love it here! From the booking to the day we arrived, everything went smooth. Everyones friendly and welcoming! They have so much to offer from kayaking, paddle boarding, even brunch at their yacht. Such a fun & great getaway for all ages. We can't wait to go back!`, `<img src="https://flopsi69.github.io/crs/llvws/new_pdp/img/yelp.svg">`],
+      2: [`Shawanna S.`, `The warm greetings from the staff, the perfect views, great food, good music and one cool captain. This Yacht  Brunch was worth every penny. Most Definitely 5 stars!!`, `<img src="https://flopsi69.github.io/crs/llvws/new_pdp/img/yelp.svg">`],
+      3: [
+        `Debbie G.`,
+        `I saw a Facebook ad for the 4th of July yacht cruise and thought it looked fun, so I booked it! The online purchase process was super easy and there was a waiver I had to sign as well. I parked in the garage near the Lake Las Vegas shops and then walked over to the dock and was guided to the yacht where the check-in process was very simple and quick. They offered a glass of champagne and once inside, the appetizers were flowing very steadily out of the kitchen. I had multiple helpings because it was so yummy!!  Mostly, I stayed downstairs and enjoyed the cruise around the lake while taking in the view out of the many glass windows, in addition to being comfortable in the well air-conditioned cabin. Once it was time for fireworks, I proceeded upstairs to watch the show! It was great! Music was playing throughout the entire cruise and made it a blast!! Service was impeccable and the staff was so nice and friendly. They were also very attentive and were always cleaning and making sure the guests were well taken care of. I would highly recommend this yacht tour and am hoping they have others which are similar, coming up!!`,
+        `<img src="https://flopsi69.github.io/crs/llvws/new_pdp/img/yelp.svg">`,
       ],
+      4: ["D. W.", `Had so much fun on the Haunted Cruise on the yacht!  Good mixed crowd and a wide variety of music played by the DJ. Drinks were good and adding on the VIP table and bottle service was so worth it! Something different and fun to do.`, `<img src="https://flopsi69.github.io/crs/llvws/new_pdp/img/yelp.svg">`],
+      5: [
+        `Janet S.`,
+        `REVIEW ON THE YACHT RIDE (includes pros, cons, other notes & if I would do it again) - 
+I would give this biz 4 stars - reservation process was easy, no issues, positive interactions with staff.
+I would give the experience 3 stars based on if I thought it was worth it & if I would do it again (see bottom).
+--
+I wanted to do something fun with my family while my sister was visiting for out of state. We decided to do the Sip & Sail on the yacht since some of us in the party wanted to drink.
+Pros:
+We got there early and the person who checked us in was friendly. No negative interactions with staff. 
+Our reservation included a champagne toast - it was decent in taste. Other drinks included beer & margaritas (probably the favorite since it wasn't too sweet & you could taste tequila). 
+Music was good (although not really diverse). 
+Bathrooms were clean. 
+We got to go around the lake and see the awesome mansions in the area. 
+Cons:
+I'd been to the area before so I knew where to go to check in. I feel like if it were my first time it would have been more confusing since the map they provide in the confirmation email isn't very clear in their directions. 
+Floor on the boat looked... a little worn. It looked as if it was lifting. Also, while leaning on the rail on the top deck, it came off. It easily went back on but it was surprising. 
+Other notes:
+There weren't too many people so folks were able to keep some distance. There was no signage or announcement about masks (not judging, just an observation).
+Overall:
+It was something to do outside of the house on a Sunday. It was cool to see the mansions in the area. Probably won't do it again since I don't think it's really worth the price for a 2nd time. 
+If I could do it again, I would reserve the smaller boat rental (almost $100 cheaper). I would have preferred it to just be my party.`,
+        `<img src="https://flopsi69.github.io/crs/llvws/new_pdp/img/yelp.svg">`,
+      ],
+      6: [
+        `britney w.`,
+        `Such a fun girls day! 
+My overall experience with Lake Las Vegas Water Sports was awesome! I booked three tickets for me and my girl friends about 2 weeks in advance and I accidentally booked them for the wrong day. The company was so helpful and got the tickets switched for me!!
+We arrived early in case we had a hard time locating the office. We parked in the free parking and followed the signs which was super easy to find. It was about a 5 minute walk from the parking garage to the office that is located right on the lake. 
+We got a free mimosa as soon as we boarded the boat and we ordered serval more following. We of course took so many pictures and enjoy the cruise from inside the boat and on the decks. The bartenders, dj, and staff were all awesome! 
+I definitely recommend checking this out!`,
+        `<img src="https://flopsi69.github.io/crs/llvws/new_pdp/img/yelp.svg">`,
+      ],
+      7: ["Kelly Wilson", `Got the pleasure of going on The Yatch cruise out if lake Las Vegas! Be prepared for some epic DJ's this way definitely a fun cruise to go on. Great vibes good people beautiful scenery it was so nice to be out on the water.`, `<img src="https://flopsi69.github.io/crs/llvws/new_pdp/img/google.svg">`],
+      8: ["Kenethia L", `Wine Wednesday Cruise was really fun! Great music, wine 🍷 and other drinks. Relaxing & met nice people. We'll go again!`, `<img src="https://flopsi69.github.io/crs/llvws/new_pdp/img/google.svg">`],
+    };
+    let arrAccardionAllInform = {
+      1: [`Dress code`, `<span></span>`, `dress_code`],
       2: [
-        `CHECKING IN`,
+        `Checking in`,
         `<p>We suggest arriving 10-15 minutes prior to your scheduled boat reservation time.</p>
           <p>Please be sure everyone has a waiver completed prior to check-in, and also have your confirmation email ready to show the office receptionist.</p>
           <p>Once checked in, each guest will receive a wristband.</p>
           <p>Self-service lockers are available at our facility on the dock. (CARD PAYMENT ONLY)</p>
-          <p>There will be a security deposit hold for the amount paid, but it will not be charged if the rules outlined in the Driver Consent Form are violated.</p>
+          <p>An authorization hold will be required for the security deposit, which will only be charged in case the rules outlined in the Driver Consent Form are violated.</p>
           <p>A credit card authorization hold will be needed at the time of check-in on the day of your rental. Please make sure you have the Credit Card / debit card you booked with present at time of check-in. The credit card hold will be for 7 days.</p>
           `,
+        `checking_in`,
       ],
+      3: [`Cancelation & refunds`, `<p>Our cancelation policy allows for free cancelation up to 24 hours before the event. For cancelations, please send us an email or submit your request via chat or SMS. Refunds will be processed according to our terms and conditions.</p>`, `cancelation_refunds`],
+      4: [`Additional details`, `<span></span>`, `additional_details`],
+    };
+    let arrAccardion = {
+      1: [
+        `Post-booking & ARRIVAL`,
+        `<p>Once you complete your booking online, you will receive a confirmation email with a map showing where to park when you arrive, and digital links to both the liability waiver, and the required boaters' contract. Anyone participating in activities must have a liability release completed prior to arrival.</p>
+          <p>Upon arriving at Lake Las Vegas, you will be relieved that there are no parking fees! Parking can be found in the Monte Lago parking garage located at 8 Strada Di Villagio, Henderson NV, 89011.</p>
+          <p>After parking, you can walk through the Village and stop at any restaurants on-site. When you are finished strolling, head toward the marina, and you will find our office located behind Seasons Grocery.</p>`,
+        `post_booking_arrival`,
+      ],
+      // 2: [
+      //   `Checking in`,
+      //   `<p>We suggest arriving 10-15 minutes prior to your scheduled boat reservation time.</p>
+      //     <p>Please be sure everyone has a waiver completed prior to check-in, and also have your confirmation email ready to show the office receptionist.</p>
+      //     <p>Once checked in, each guest will receive a wristband.</p>
+      //     <p>Self-service lockers are available at our facility on the dock. (CARD PAYMENT ONLY)</p>
+      //     <p>An authorization hold will be required for the security deposit, which will only be charged in case the rules outlined in the Driver Consent Form are violated.</p>
+      //     <p>A credit card authorization hold will be needed at the time of check-in on the day of your rental. Please make sure you have the Credit Card / debit card you booked with present at time of check-in. The credit card hold will be for 7 days.</p>
+      //     `,
+      // ],
       3: [
-        `REQUIREMENTS & REGULATIONS`,
+        `Requirements & regulations`,
         `<p>You must be at least 21 years of age to operate an electric boat rental and hold a valid ID and credit card.</p>
-          <p>Children over the age of 3, are to be counted as a guest.</p>
+          <p>Children over the age of 3 are to be counted as a guest.</p>
           <p>No swimming from the boat at any time.</p>
           <p>You may not dock or beach the boat.</p>
-          <p>Coolers and ice checks are prohibited at Lake Las Vegas, however food and drink can be brought on the electric boats.</p>
+          <p>Coolers and ice checks are prohibited at Lake Las Vegas, however food and drink can be brought onto the electric boats.</p>
           <p>All rules and regulations can be found in our boaters contract, here: https://form.jotform.com/230950539241050</p>`,
+        `requirements_regulations`,
       ],
-      4: [`CANCELLATION & REFUNDS`, `<p>Our cancellation policy allows for free cancellations up to 24 hours before the event. For cancellations, please send us an email or submit your request via chat or SMS. Refunds will be processed according to our terms and conditions.</p>`],
+      // 4: [`Cancelation & refunds`, `<p>Our cancelation policy allows for free cancelation up to 24 hours before the event. For cancelations, please send us an email or submit your request via chat or SMS. Refunds will be processed according to our terms and conditions.</p>`],
     };
     let arrpMayAlsoLikeListFirst = {
-      1: [`Yacht After Dark Neon Party`, `$19.99`, `https://conversionratestore.github.io/projects/llvws/improvingPDP/images/special_birthday.jpg`],
-      2: [`Emo Night`, `$19.99`, `https://conversionratestore.github.io/projects/llvws/improvingPDP/images/dream_wedding.jpg`],
-      3: [`Latin Night Cruise at Lake Las Vegas`, `$19.99`, `https://conversionratestore.github.io/projects/llvws/improvingPDP/images/unforgettable_bachelor.jpg`],
-      4: [`Country Cruise at Lake Las Vegas`, `$19.99`, `https://conversionratestore.github.io/projects/llvws/improvingPDP/images/memorable team_building.jpg`],
+      1: [`Yacht After Dark Neon Party`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-08-09_03-45-31-1024x1024.jpg`, `https://vegasyacht.com/yacht-after-dark-neon-party/`],
+      2: [`Emo Night`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/emo-night.jpg`, `https://vegasyacht.com/emo-night/`],
+      3: [`Latin Night Cruise at Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-10_02-02-53.jpg`, `https://vegasyacht.com/latin-night-cruise-at-lake-las-vegas/"`],
+      4: [`Country Cruise at Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-06_03-52-16-300x300.jpg`, `https://vegasyacht.com/country-cruise-at-lake-las-vegas/`],
     };
     let arrpMayAlsoLikeListSecond = {
-      1: [`Special Birthday Celebrations On a Yacht`, `$19.99`, `https://conversionratestore.github.io/projects/llvws/improvingPDP/images/special_birthday.jpg`],
-      2: [`Dream Wedding Celebrations On a Yacht`, `$19.99`, `https://conversionratestore.github.io/projects/llvws/improvingPDP/images/dream_wedding.jpg`],
-      3: [`Unforgettable Bachelor Parties On a Yacht`, `$19.99`, `https://conversionratestore.github.io/projects/llvws/improvingPDP/images/unforgettable_bachelor.jpg`],
-      4: [`Memorable Team Building Onboard a Yacht`, `$19.99`, `https://conversionratestore.github.io/projects/llvws/improvingPDP/images/memorable team_building.jpg`],
-    };
-    let arrpMayAlsoLikeListThird = {
-      1: [`Special Birthday Celebrations On a Yacht`, `$19.99`, `https://conversionratestore.github.io/projects/llvws/improvingPDP/images/special_birthday.jpg`],
-      2: [`Dream Wedding Celebrations On a Yacht`, `$19.99`, `https://conversionratestore.github.io/projects/llvws/improvingPDP/images/dream_wedding.jpg`],
-      3: [`Unforgettable Bachelor Parties On a Yacht`, `$19.99`, `https://conversionratestore.github.io/projects/llvws/improvingPDP/images/unforgettable_bachelor.jpg`],
-      4: [`Memorable Team Building Onboard a Yacht`, `$19.99`, `https://conversionratestore.github.io/projects/llvws/improvingPDP/images/memorable team_building.jpg`],
+      1: [`Mimosa Cruise Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-06_04-10-16.jpg`, `https://vegasyacht.com/mimosa-cruise-lake-las-vegas/`],
+      2: [`Sangria Sunday`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-06_03-53-29-300x300.jpg`, `https://vegasyacht.com/sangria-sunday/`],
+      3: [`Throwback Cruise at Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-07_04-01-25.jpg`, `https://vegasyacht.com/throwback-cruise-at-lake-las-vegas/`],
+      4: [`Sunset Sessions`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2022/06/sunset.jpg`, `https://vegasyacht.com/sunset-sessions-cruise/`],
     };
     let arrpMayAlsoLikeListMob = {
-      1: [`Yacht After Dark Neon Party`, `$19.99`, `https://conversionratestore.github.io/projects/llvws/improvingPDP/images/special_birthday.jpg`],
-      2: [`Emo Night`, `$19.99`, `https://conversionratestore.github.io/projects/llvws/improvingPDP/images/dream_wedding.jpg`],
-      3: [`Latin Night Cruise at Lake Las Vegas`, `$19.99`, `https://conversionratestore.github.io/projects/llvws/improvingPDP/images/unforgettable_bachelor.jpg`],
-      4: [`Country Cruise at Lake Las Vegas`, `$19.99`, `https://conversionratestore.github.io/projects/llvws/improvingPDP/images/memorable team_building.jpg`],
-      5: [`Special Birthday Celebrations On a Yacht`, `$19.99`, `https://conversionratestore.github.io/projects/llvws/improvingPDP/images/special_birthday.jpg`],
-      6: [`Dream Wedding Celebrations On a Yacht`, `$19.99`, `https://conversionratestore.github.io/projects/llvws/improvingPDP/images/dream_wedding.jpg`],
+      1: [`Yacht After Dark Neon Party`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-08-09_03-45-31-1024x1024.jpg`, `https://vegasyacht.com/yacht-after-dark-neon-party/`],
+      2: [`Emo Night`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/emo-night.jpg`, `https://vegasyacht.com/emo-night/`],
+      3: [`Latin Night Cruise at Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-10_02-02-53.jpg`, `https://vegasyacht.com/latin-night-cruise-at-lake-las-vegas/"`],
+      4: [`Country Cruise at Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-06_03-52-16-300x300.jpg`, `https://vegasyacht.com/country-cruise-at-lake-las-vegas/`],
+      5: [`Mimosa Cruise Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-06_04-10-16.jpg`, `https://vegasyacht.com/mimosa-cruise-lake-las-vegas/`],
+      6: [`Sangria Sunday`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-06_03-53-29-300x300.jpg`, `https://vegasyacht.com/sangria-sunday/`],
+      7: [`Throwback Cruise at Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-07_04-01-25.jpg`, `https://vegasyacht.com/throwback-cruise-at-lake-las-vegas/`],
+      8: [`Sunset Sessions`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2022/06/sunset.jpg`, `https://vegasyacht.com/sunset-sessions-cruise/`],
     };
 
     document.head.insertAdjacentHTML("beforeend", `<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">`);
@@ -1231,8 +1387,8 @@ h2.new_title::after {
           document.querySelector(".fl-module-rich-text").before(document.querySelector(".fl-col-small:not(.fl-col-small-full-width)"));
         }
       }
-      // choiceAndIconBox
       if (window.innerWidth > 768) {
+        // choiceAndIconBox
         if (document.querySelectorAll(".fl-rich-text h3")[1] && !document.querySelector(".choice_and_icon_box")) {
           document.querySelectorAll(".fl-rich-text h3")[1].insertAdjacentHTML("beforebegin", choiceAndIconBox);
         }
@@ -1263,19 +1419,20 @@ h2.new_title::after {
       if (window.innerWidth > 768) {
         if (document.querySelector(".may_also_like_block") && document.querySelector(".may_also_like_list_first").children.length !== arrpMayAlsoLikeListFirst.length) {
           for (let key in arrpMayAlsoLikeListFirst) {
-            document.querySelector(".may_also_like_list_first").insertAdjacentHTML("beforeend", setListAlsoLikeSlider(arrpMayAlsoLikeListFirst[key][0], arrpMayAlsoLikeListFirst[key][1], arrpMayAlsoLikeListFirst[key][2], key));
+            document.querySelector(".may_also_like_list_first").insertAdjacentHTML("beforeend", setListAlsoLikeSlider(arrpMayAlsoLikeListFirst[key][0], arrpMayAlsoLikeListFirst[key][1], arrpMayAlsoLikeListFirst[key][2], arrpMayAlsoLikeListFirst[key][3], key));
           }
         }
         if (document.querySelector(".may_also_like_block") && document.querySelector(".may_also_like_list_second").children.length !== arrpMayAlsoLikeListSecond.length) {
           for (let key in arrpMayAlsoLikeListSecond) {
-            document.querySelector(".may_also_like_list_second").insertAdjacentHTML("beforeend", setListAlsoLikeSlider(arrpMayAlsoLikeListSecond[key][0], arrpMayAlsoLikeListSecond[key][1], arrpMayAlsoLikeListSecond[key][2], key));
+            document.querySelector(".may_also_like_list_second").insertAdjacentHTML("beforeend", setListAlsoLikeSlider(arrpMayAlsoLikeListSecond[key][0], arrpMayAlsoLikeListSecond[key][1], arrpMayAlsoLikeListSecond[key][2], arrpMayAlsoLikeListSecond[key][3], key));
           }
         }
-        if (document.querySelector(".may_also_like_block") && document.querySelector(".may_also_like_list_third").children.length !== arrpMayAlsoLikeListThird.length) {
-          for (let key in arrpMayAlsoLikeListThird) {
-            document.querySelector(".may_also_like_list_third").insertAdjacentHTML("beforeend", setListAlsoLikeSlider(arrpMayAlsoLikeListThird[key][0], arrpMayAlsoLikeListThird[key][1], arrpMayAlsoLikeListThird[key][2], key));
+
+        document.querySelectorAll(".learn_more_wrapp .learn_more_btn").forEach((el) => {
+          if (el.href === window.location.href) {
+            el.closest(".may_also_like_link")?.remove();
           }
-        }
+        });
       } else {
         document.querySelector(".may_also_like_list_first")?.remove();
         document.querySelector(".may_also_like_list_second")?.remove();
@@ -1283,14 +1440,37 @@ h2.new_title::after {
 
         if (document.querySelector(".may_also_like_block") && document.querySelector(".may_also_like_slider").children.length !== arrpMayAlsoLikeListMob.length) {
           for (let key in arrpMayAlsoLikeListMob) {
-            document.querySelector(".may_also_like_slider").insertAdjacentHTML("beforeend", setListAlsoLikeSliderMob(arrpMayAlsoLikeListMob[key][0], arrpMayAlsoLikeListMob[key][1], arrpMayAlsoLikeListMob[key][2], key));
+            document.querySelector(".may_also_like_slider").insertAdjacentHTML("beforeend", setListAlsoLikeSliderMob(arrpMayAlsoLikeListMob[key][0], arrpMayAlsoLikeListMob[key][1], arrpMayAlsoLikeListMob[key][2], arrpMayAlsoLikeListMob[key][3], key));
           }
+        }
+        document.querySelectorAll(".may_also_like_slider a").forEach((el) => {
+          if (el.href === window.location.href) {
+            el?.remove();
+          }
+        });
+      }
+      // lookingHtml
+      if (window.innerWidth > 768) {
+        if (document.querySelector(".fl-rich-text") && !document.querySelector(".looking")) {
+          document.querySelector(".fl-rich-text")?.insertAdjacentHTML("beforebegin", lookingHtml);
+        }
+        if (document.querySelector(".looking")) {
+          document.querySelector(".looking .people_txt").textContent = randomInteger(1, 10);
+          document.querySelector(".looking .times_txt").textContent = randomInteger(1, 10);
+        }
+      } else {
+        if (document.querySelector(".free_cancellationup_block") && !document.querySelector(".looking")) {
+          document.querySelector(".free_cancellationup_block")?.insertAdjacentHTML("beforebegin", lookingHtml);
+        }
+        if (document.querySelector(".looking")) {
+          document.querySelector(".looking .people_txt").textContent = randomInteger(1, 10);
+          document.querySelector(".looking .times_txt").textContent = randomInteger(1, 10);
         }
       }
       // ReviewsSlider
       if (document.querySelector(".reviews_block") && document.querySelector(".reviews_slider").children.length !== arrReviews.length) {
         for (let key in arrReviews) {
-          document.querySelector(".reviews_slider").insertAdjacentHTML("beforeend", setListReviewsSlider(arrReviews[key][0], arrReviews[key][1]));
+          document.querySelector(".reviews_slider").insertAdjacentHTML("beforeend", setListReviewsSlider(arrReviews[key][0], arrReviews[key][1], arrReviews[key][2]));
         }
       }
       // logos
@@ -1301,6 +1481,15 @@ h2.new_title::after {
       } else {
         if (document.querySelector("#howToFindUsBlock") && !document.querySelector(".logos")) {
           document.querySelector("#howToFindUsBlock").insertAdjacentHTML("beforebegin", logosMob);
+        }
+      }
+      // accardion all inform
+      if (!document.querySelector(".accardion_all_inform_block")) {
+        document.querySelector(".fl-node-content .fl-col-group > div:nth-child(1) > div")?.insertAdjacentHTML("afterend", `<ul class="accardion_all_inform_block"></ul>`);
+      }
+      if (document.querySelector(".accardion_all_inform_block") && document.querySelector(".accardion_all_inform_block").children.length !== arrAccardionAllInform.length) {
+        for (let key in arrAccardionAllInform) {
+          document.querySelector(".accardion_all_inform_block").insertAdjacentHTML("beforeend", setListAccardion(arrAccardionAllInform[key][0], arrAccardionAllInform[key][1], arrAccardionAllInform[key][2], key));
         }
       }
       //accardion
@@ -1317,10 +1506,11 @@ h2.new_title::after {
     onClickShare();
     onClickIconHowToFindUs();
     onClickReadMoreBtn();
+    initAccardionToggle();
     if (window.innerWidth < 768) {
-      initAccardionToggle();
       onClickLoadMoreReviews();
     }
+    moveTxtToAccardion();
 
     function initSlickSlider() {
       if (window.innerWidth > 768) {
@@ -1331,12 +1521,12 @@ h2.new_title::after {
             let slider = jQuery(".reviews_slider").slick({
               slidesToShow: 3,
               slidesToScroll: 1,
-              arrows: true,
               dots: true,
               infinite: true,
-              autoplaySpeed: 7000,
+              adaptiveHeight: true,
               speed: 500,
               cssEase: "linear",
+              autoHeight: true,
               prevArrow: `
                    <div class="prev_btn" >
                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -1475,17 +1665,46 @@ h2.new_title::after {
     }
     function initAccardionToggle() {
       // accardionToggle
-      if ($(".how_to_find_accardion_link")) {
-        document.querySelectorAll(".how_to_find_accardion_link")[1].classList.add("active_block");
-        document.querySelectorAll(".how_to_find_accardion_lists")[1].style.display = "block";
-        $(".how_to_find_accardion_link").click(function (e) {
+      if ($(".how_to_find_us_block .how_to_find_accardion_link")) {
+        document.querySelectorAll(".how_to_find_us_block .how_to_find_accardion_link")[1].classList.add("active_block");
+        document.querySelectorAll(".how_to_find_us_block .how_to_find_accardion_lists")[1].style.display = "block";
+        $(".how_to_find_us_block .how_to_find_accardion_link").click(function (e) {
           $(this).toggleClass("active_block");
           $(this).closest("li").toggleClass("active_block");
           $(this).next(".how_to_find_accardion_lists").slideToggle();
-          if ($(".how_to_find_accardion_link").not(this)) {
-            $(".how_to_find_accardion_link").not(this).next(".how_to_find_accardion_lists").css("display", "none");
-            $(".how_to_find_accardion_link").not(this).removeClass("active_block");
-            $(".how_to_find_accardion_link").not(this).closest("li").removeClass("active_block");
+          if ($(".how_to_find_us_block .how_to_find_accardion_link").not(this)) {
+            $(".how_to_find_us_block .how_to_find_accardion_link").not(this).next(".how_to_find_accardion_lists").css("display", "none");
+            $(".how_to_find_us_block .how_to_find_accardion_link").not(this).removeClass("active_block");
+            $(".how_to_find_us_block .how_to_find_accardion_link").not(this).closest("li").removeClass("active_block");
+          }
+          let w = e.currentTarget.querySelector("h3").textContent.split(" ");
+          // if (e.currentTarget.classList.contains("active_block")) {
+          //   pushDataLayer("exp_new_content_what_type_open", `Open - ${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Text area", "What type of college admissions assistance does your child require?");
+          // } else {
+          //   pushDataLayer("exp_new_content_what_type_close", `Close - ${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Text area", "What type of college admissions assistance does your child require?");
+          // }
+
+          const headerOffset = 10;
+          const elementPosition = this.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
+        });
+      }
+
+      if ($(".accardion_all_inform_block .how_to_find_accardion_link")) {
+        document.querySelectorAll(".accardion_all_inform_block .how_to_find_accardion_link")[1].classList.add("active_block");
+        document.querySelectorAll(".accardion_all_inform_block .how_to_find_accardion_lists")[1].style.display = "block";
+        $(".accardion_all_inform_block .how_to_find_accardion_link").click(function (e) {
+          $(this).toggleClass("active_block");
+          $(this).closest("li").toggleClass("active_block");
+          $(this).next(".how_to_find_accardion_lists").slideToggle();
+          if ($(".accardion_all_inform_block .how_to_find_accardion_link").not(this)) {
+            $(".accardion_all_inform_block .how_to_find_accardion_link").not(this).next(".how_to_find_accardion_lists").css("display", "none");
+            $(".accardion_all_inform_block .how_to_find_accardion_link").not(this).removeClass("active_block");
+            $(".accardion_all_inform_block .how_to_find_accardion_link").not(this).closest("li").removeClass("active_block");
           }
           let w = e.currentTarget.querySelector("h3").textContent.split(" ");
           // if (e.currentTarget.classList.contains("active_block")) {
@@ -1509,7 +1728,8 @@ h2.new_title::after {
         if (document.querySelectorAll(".reviews_read_more_btn")) {
           clearInterval(b);
           for (let item of document.querySelectorAll(".reviews_read_more_block .preview_text")) {
-            if (item.scrollHeight <= 150) {
+            console.log(item.scrollHeight);
+            if (item.scrollHeight <= 120) {
               item.nextElementSibling.innerHTML = "&nbsp";
               item.nextElementSibling.classList.add("disable");
             }
@@ -1523,7 +1743,7 @@ h2.new_title::after {
             });
           });
         }
-      }, 100);
+      }, 1000);
     }
     function onClickLoadMoreReviews() {
       let btnSearch = setInterval(() => {
@@ -1538,6 +1758,40 @@ h2.new_title::after {
           });
         }
       }, 100);
+    }
+    function randomInteger(min, max) {
+      let rand = min + Math.random() * (max + 1 - min);
+      return Math.floor(rand);
+    }
+    function moveTxtToAccardion() {
+      document.querySelectorAll(".fl-rich-text h3").forEach((el) => {
+        if (el.textContent.toLocaleLowerCase().includes("dress code")) {
+          document.querySelectorAll(".accardion_all_inform_block li").forEach((i) => {
+            if (i.classList.contains("dress_code")) {
+              el.style.display = "none";
+              i.querySelector(".how_to_find_accardion_lists > div span").after(el.nextElementSibling);
+            }
+          });
+        }
+        if (el.textContent.toLocaleLowerCase().includes("additional details")) {
+          document.querySelectorAll(".accardion_all_inform_block li").forEach((i) => {
+            if (i.classList.contains("additional_details")) {
+              el.style.display = "none";
+              i.querySelector(".how_to_find_accardion_lists > div span").after(el.nextElementSibling);
+              if (i.querySelector(".how_to_find_accardion_lists > div span + ul") && el.nextElementSibling?.tagName === "P") {
+                i.querySelector(".how_to_find_accardion_lists > div span + ul").after(el.nextElementSibling);
+              }
+            }
+          });
+        }
+      });
+      document.querySelectorAll(".accardion_all_inform_block li").forEach((i) => {
+        if (i.classList.contains("additional_details") || i.classList.contains("dress_code")) {
+          if (i.querySelector(".how_to_find_accardion_lists > div").children.length <= 1) {
+            i.style.display = "none";
+          }
+        }
+      });
     }
   }
 }, 100);

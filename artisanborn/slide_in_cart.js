@@ -31,6 +31,9 @@ let startFunk = setInterval(() => {
             button.mws-addtocart.btn.btn1.pr_btn:not(.new_btn_add){
                 display: none;
             }
+            #ShopifyChat, #dummy-chat-button-iframe {
+              z-index: 999!important;
+            }
             /* popap_box */
             .popup_slide_in {
             position: fixed;
@@ -43,16 +46,21 @@ let startFunk = setInterval(() => {
             opacity: 1;
             background: rgba(0, 0, 0, 0.65);
             transition: all 0.5s ease 0s;
-            z-index: 1111111111119005;
+            z-index: 9999;  /* 1111111111119005;*/
             display: block;
-            }
-            .popup_slide_in.is_hidden {
             opacity: 0;
             pointer-events: none;
             }
-            .popup_slide_in.is_hidden .container_popup {
-            transform: translateX(100%);
-            transition: all 0.8s ease 0s;
+            .popup_slide_in.is_visible {
+            opacity: 1;
+            pointer-events: auto;
+            }
+            .popup_slide_in .container_popup {
+              transform: translateX(100%);
+              transition: all 0.8s ease 0s;
+            }
+            .popup_slide_in.is_visible .container_popup {
+              transform: translateX(0);
             }
             .popup_slide_in .container_popup {
             display: flex;
@@ -120,7 +128,7 @@ let startFunk = setInterval(() => {
                 margin: auto 0 0;
                 background: #FFF;
                 box-shadow: 0px -4px 16px 0px rgba(0, 0, 0, 0.16);
-                height: 100%;
+                /* height: 100%; */
                 max-height: 198px;
                 position: relative;
             }
@@ -474,7 +482,7 @@ let startFunk = setInterval(() => {
                 font-weight: 600;
                 line-height: 26px; 
                 margin: 24px auto 8px;
-                max-width: 287px;
+                max-width: 290px;
             }
             .reviews_wraps .stars_wrap{
                 display: flex;
@@ -520,7 +528,7 @@ let startFunk = setInterval(() => {
         `;
 
     let popUp = /*html */ `
-            <div class="popup_slide_in is_hidden" data-modal>
+            <div class="popup_slide_in" data-modal>
                 <div class="container_popup">
                     <div class="cart_popup_header">
                         <div class="cart_length">                        
@@ -554,7 +562,7 @@ let startFunk = setInterval(() => {
                             <div class="img_wrap_ship">
                                 <img src="https://conversionratestore.github.io/projects/artisanborn/img/img_ship.svg" alt="Shop confidently 30-day money back guarantee" />
                             </div>
-                            <p>More than 7,500 US customers already trusted us</p>
+                            <p> More than 7,500 US customers have already trusted us</p>
                             <div class="reviews_wraps">
                                 <div class="stars_wrap">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 18 17" fill="none">
@@ -633,7 +641,8 @@ let startFunk = setInterval(() => {
     });
 
     function onOpenPopup(block) {
-      overlay.classList.remove("is_hidden");
+      console.log("onOpenPopup");
+      overlay.classList.add("is_visible");
       body.style.overflow = "hidden";
       html.style.overflow = "hidden";
       body.style.display = "block";
@@ -641,8 +650,33 @@ let startFunk = setInterval(() => {
       document.querySelector(".container_popup").insertAdjacentHTML("beforeend", block);
 
       pushDataLayer("exp_slide_in_cart_v_sic", "Slide in cart", "Visibility", "Slide in cart");
-      if (document.querySelector(".btn_checkout") && document.querySelector(".lav-paypal")) {
+      if (document.querySelector(".btn_checkout") && document.querySelector(".lav-paypal") && !document.querySelector(".btn_checkout+.lav-paypal")) {
         document.querySelector(".btn_checkout").after(document.querySelector(".lav-paypal"));
+
+        // get user agent
+        let userAgent = navigator.userAgent;
+
+        // is Safari
+        if (userAgent.indexOf("Safari") !== -1 && userAgent.indexOf("Chrome") === -1) {
+          console.log("This is Safari");
+          let findGooglePay = setInterval(() => {
+            if (document.querySelector('[data-testid="GooglePay-button"]')) {
+              clearInterval(findGooglePay);
+              document.querySelector('[data-testid="GooglePay-button"]').parentElement.style = "display: none!important;";
+            }
+          });
+        }
+
+        // is Chrome
+        if (userAgent.indexOf("Chrome") !== -1) {
+          console.log("This is Chrome");
+          let findApplePay = setInterval(() => {
+            if (document.querySelector('[data-testid="ApplePay-button"]')) {
+              clearInterval(findApplePay);
+              document.querySelector('[data-testid="ApplePay-button"]').parentElement.style = "display: none!important;";
+            }
+          });
+        }
       }
       document.querySelector(".cart_popup_scroll .cart_popup_list")?.insertAdjacentHTML("afterbegin", `<span class="loading"><svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle></svg></span>`);
       document.querySelectorAll(".cart_popup_scroll .cart_popup_list .product_wrap")?.forEach((el) => {
@@ -702,7 +736,7 @@ let startFunk = setInterval(() => {
 
     function onClosePopup() {
       pushDataLayer("exp_slide_in_cart_b_close", "Close", "Button", "Slide in cart");
-      overlay.classList.add("is_hidden");
+      overlay.classList.remove("is_visible");
       body.style.overflow = "auto";
       html.style.overflow = "auto";
     }
@@ -715,6 +749,7 @@ let startFunk = setInterval(() => {
         e.preventDefault();
         e.stopPropagation();
 
+        console.log(`>>>MyCart 1`);
         onOpenPopup(slideInCartContent);
         document.querySelector(".cart_popup_scroll .cart_popup_list")?.insertAdjacentHTML("afterbegin", `<span class="loading"><svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle></svg></span>`);
         document.querySelectorAll(".cart_popup_scroll .cart_popup_list .product_wrap")?.forEach((el) => {
