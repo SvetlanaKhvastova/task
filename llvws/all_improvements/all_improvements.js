@@ -22,677 +22,721 @@ if (window.location.pathname === "/") {
 
       let vegasYachtStyle = /*html */ `
         <style>
-      /*charter_services_request_block */
-      .charter_services_request_block {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        background: #fff;
-        max-width: 816px;
-        margin: 0 auto 82px;
-        padding: 40px;
-        gap: 32px;
-      }
-      .charter_services_request_block::after {
-        content: "";
-        background-image: url(https://vegasyacht.com/wp-content/uploads/2020/12/separator.png);
-        position: absolute;
-        width: 72px;
-        height: 6px;
-        bottom: -55px;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-      .check_availability_wrapp > h2 {
-        color: #cfbe88;
-        font-family: "Pinyon Script", cursive;
-        font-size: 30px;
-        font-weight: 400;
-        line-height: 36px;
-        margin: 0 0 4px !important;
-      }
-      .check_availability_wrapp > p {
-        color: #28364b;
-        font-family: "Playfair Display";
-        font-size: 32px;
-        font-weight: 400;
-        line-height: 40px;
-        text-transform: capitalize;
-        margin-bottom: 32px !important;
-      }
-      .check_availability_btn {
-        display: flex;
-        padding: 0;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 56px;
-        background: #cfbe88;
-        color: #28364b;
-        font-size: 14px;
-        font-weight: 600;
-        line-height: 24px;
-        transition: all 200ms linear;
-      }
-      /*private_event_block */
-      .private_event_block {
-        padding: 94px 80px 24px;
-      }
-      .private_event_block > h4 {
-        color: #cfbe88;
-        text-align: center;
-        font-family: "Pinyon Script", cursive;
-        font-size: 30px;
-        font-weight: 400;
-        line-height: 36px;
-        margin-bottom: 8px;
-      }
-      .private_event_block > h2 {
-        position: relative;
-        color: #28364b;
-        text-align: center;
-        font-family: "Playfair Display";
-        font-size: 48px;
-        font-weight: 400;
-        line-height: 56px;
-        text-transform: capitalize;
-        margin: 0 auto 82px;
-        max-width: 711px;
-      }
-      .private_event_block > h2::after {
-        content: "";
-        background-image: url(https://vegasyacht.com/wp-content/uploads/2020/12/separator.png);
-        position: absolute;
-        width: 72px;
-        height: 6px;
-        bottom: -30px;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-      .private_event_list {
-        list-style: none;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 60px;
-        row-gap: 40px;
-        margin: 0;
-      }
-      .private_event_link {
-        width: 45%;
-        display: flex;
-        gap: 20px;
-        align-items: center;
-        justify-content: flex-start;
-      }
-      .get_a_quot_wrapp > p {
-        color: #4b4f58;
-        font-family: "Playfair Display";
-        font-size: 27px;
-        font-weight: 400;
-        line-height: 36px;
-        margin-bottom: 24px !important;
-      }
-      .get_a_quot_wrapp .get_a_quot_btn {
-        display: flex;
-        padding: 0;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        max-width: 154px;
-        height: 48px;
-        gap: 8px;
-        background: #cfbe88;
-        color: #28364b;
-        font-size: 14px;
-        font-weight: 600;
-        line-height: 24px;
-        transition: all 200ms linear;
-      }
-      .get_a_quot_wrapp .get_a_quot_btn:hover,
-      .check_availability_btn:hover {
-        background: #3a3a3a;
-        color: #ffffff;
-        transition: all 200ms linear;
-        opacity: 1;
-      }
-      .private_event_link .img_wrapp {
-        border: 15px solid #f1f0e8;
-      }
-      /*with_code_block */
-      .with_code_block {
-        border: 2px dashed #e7e6de;
-        background: #fff;
-        max-width: 532px;
-        margin: 30px auto 60px;
-        padding: 12px 40px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 32px;
-      }
-      .with_code_block .accent_color {
-        color: #e60023;
-        text-transform: uppercase;
-      }
-      .book_now_wrapp p {
-        color: #28364b;
-        font-family: "Playfair Display";
-        font-size: 24px;
-        font-weight: 400;
-        line-height: 32px;
-        text-transform: capitalize;
-        margin: 0;
-      }
-      .code_wrapp {
-        padding-left: 32px;
-        border-left: 2px dashed #e7e6de;
-      }
-      .code_wrapp p:nth-child(1) {
-        position: relative;
-        color: #28364b;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 24px;
-        margin: 0;
-      }
-      .code_wrapp p:nth-child(2) {
-        color: #28364b;
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 20px;
-        margin: 8px 0 0;
-      }
-      .voucher_block {
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        color: #e60023;
-        font-size: 16px;
-        font-weight: 600;
-        line-height: 24px;
-        text-transform: uppercase;
-        cursor: pointer;
-      }
-      .copied {
-        position: absolute;
-        right: -45px;
-        top: 29px;
-        border-radius: 100px;
-        border: 1px solid #f1f0e8;
-        background: #fff;
-        box-shadow: 0px 6px 4px 0px rgba(52, 50, 41, 0.04);
-        margin: 0 !important;
-        padding: 4px 12px 4px 6px;
-      }
-      .copied > span {
-        color: #333;
-        font-size: 14px;
-        font-weight: 600;
-        line-height: 22px;
-        text-transform: initial;
-      }
-      /*how_to_find_us_block*/
-      .how_to_find_us_block {
-        padding: 94px 40px;
-      }
-      .how_to_find_us_block h4.how_to_find_us_subtitle {
-        color: #cfbe88;
-        text-align: center;
-        font-family: "Pinyon Script", cursive;
-        font-size: 30px;
-        font-weight: 400;
-        line-height: 36px;
-        margin: 0 0 8px;
-      }
-      .how_to_find_us_block h2.how_to_find_us_title {
-        color: #28364b;
-        text-align: center;
-        font-family: "Playfair Display";
-        font-size: 48px;
-        font-weight: 400;
-        line-height: 56px;
-        margin: 0 0 74px;
-        position: relative;
-      }
-      .how_to_find_us_block h2.how_to_find_us_title::after {
-        content: "";
-        background-image: url(https://vegasyacht.com/wp-content/uploads/2020/12/separator.png);
-        position: absolute;
-        width: 72px;
-        height: 6px;
-        bottom: -30px;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-      .how_to_find_us_contacts {
-        width: 100%;
-        max-width: 960px;
-        margin: 0 auto;
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        gap: 71px;
-      }
-      .how_to_find_us_contacts .how_to_find_us_maps {
-        width: 50%;
-      }
-      .how_to_find_us_contacts .how_to_find_us_info {
-        width: 47%;
-        margin-top: 20px;
-      }
-      .how_to_find_us_descr {
-        color: #4b4f58;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 24px;
-        margin: 0 0 32px;
-      }
-      .how_to_find_us_contacts #footer-social li a {
-        color: inherit;
-      }
-      .how_to_find_us_contacts #footer-social li a:hover {
-        color: #cebd88;
-      }
-      .how_to_find_accardion {
-        list-style: none;
-        max-width: 960px;
-        margin: 56px auto 0;
-      }
-      .how_to_find_accardion_block {
-        border: 1px solid #e7e6de;
-      }
-      .how_to_find_accardion_block:nth-child(2) {
-        border-top: unset;
-      }
-      .how_to_find_accardion_block:nth-child(3) {
-        border-top: unset;
-        border-bottom: unset;
-      }
-      .how_to_find_accardion_link {
-        display: flex;
-        padding: 16px;
-        align-items: center;
-        justify-content: space-between;
-      }
-      .how_to_find_accardion_link h3 {
-        color: #28364b;
-        font-size: 24px;
-        font-weight: 400;
-        line-height: 32px;
-        text-transform: capitalize;
-        margin: 0;
-      }
-      .how_to_find_accardion_lists {
-        display: none;
-      }
-      .how_to_find_accardion_lists > div {
-        padding: 0 16px 24px;
-      }
-      .how_to_find_accardion_lists p {
-        position: relative;
-        max-width: 815px;
-        color: #4b4f58;
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 20px;
-        margin: 0 0 0 5px;
-        padding-left: 24px;
-      }
-      .how_to_find_accardion_lists p::before {
-        position: absolute;
-        content: "";
-        background: #28364b;
-        width: 6.5px;
-        height: 6.5px;
-        border-radius: 50%;
-        left: 0;
-        top: 5px;
-      }
-      .how_to_find_accardion_lists p + p {
-        margin-top: 6px;
-      }
-      .how_to_find_accardion_link > span svg {
-        transition: all 0.3s ease;
-      }
-      .how_to_find_accardion_link.active_block > span svg {
-        transform: rotate(90deg);
-        transition: all 0.3s ease;
-      }
-      /*What our clients say */
-      .custom-testimonials {
-        display: none;
-      }
-      .our_clients_say_slider {
-        background: #fff;
-        padding: 46px 34px 37px 34px;
-        margin-top: 16px;
-      }
-      .our_clients_say_list {
-        margin: 0;
-      }
-      .our_clients_say_link {
-        display: flex !important;
-        gap: 24px;
-        justify-content: space-between;
-      }
-      .our_clients_say_link .img_wrapp {
-        flex: 1 0 200px;
-      }
-      .our_clients_say_info > p {
-        color: #28364b;
-        font-family: "Playfair Display";
-        font-size: 16px;
-        font-style: italic;
-        font-weight: 400;
-        line-height: 26px;
-        margin-bottom: 16px !important;
-      }
-      .our_clients_say_info > span {
-        color: #28364b;
-        font-family: "Playfair Display";
-        font-size: 16px;
-        font-weight: 700;
-        line-height: 24px;
-      }
-      .our_clients_say_slider .slick-dots {
-        display: flex;
-        justify-content: center;
-        margin: 32px 0 0;
-        list-style: none;
-      }
-      .our_clients_say_slider .slick-dots li + li {
-        margin-left: 12px;
-      }
-      .our_clients_say_slider .slick-dots li button {
-        position: relative;
-        display: flex;
-        width: 10px;
-        height: 10px;
-        font-size: 0;
-        line-height: 0;
-        cursor: pointer;
-        color: transparent;
-        border: 0;
-        outline: none;
-        background-color: transparent !important;
-        border-color: transparent !important;
-        padding: 5px;
-      }
-      .our_clients_say_slider .slick-dots li button:before {
-        position: absolute;
-        content: "•";
-        top: 50%;
-        transform: translateY(-50%);
-        left: 0;
-        width: 10px;
-        height: 10px;
-        text-align: center;
-        border-radius: 50%;
-        background-color: #e5e2d6;
-      }
-      .our_clients_say_slider .slick-dots li.slick-active button:before {
-        background-color: #cfbe88;
-      }
-      .fl-node-5fc11f1bca086 > .fl-row-content-wrap {
-        padding-right: 80px !important;
-      }
-      .our_clients_say_slider .slick-slide {
-        margin: 0 6px;
-      }
-      @media (max-width: 1280px) {
-        .private_event_list {
-          gap: 50px;
-        }
-        .private_event_link {
-          width: 47%;
-        }
-        .get_a_quot_wrapp > p {
-          font-size: 21px;
-        }
-      }
-      @media (max-width: 1050px) {
-        .fl-node-5fc11f1bcaa37 {
-          width: 65%;
-          float: right;
-        }
-      }
-      @media (max-width: 1015px) {
-        .private_event_link {
-          width: 45%;
-          flex-direction: column;
-        }
-      }
-      @media (max-width: 768px) {
-        /*charter_services_request_block */
-        .charter_services_request_block {
-          margin: 0 20px 78px;
-          padding: 24px 32px 32px;
-          gap: 20px;
-          flex-direction: column;
-        }
-        .fl-node-5fbfc9ae93923 {
-          display: none;
-        }
-        .fl-node-5fbfc7e848675.fl-row > .fl-row-content-wrap {
-          padding-bottom: 0;
-        }
-        .charter_services_request_block::after {
-          bottom: -51px;
-        }
-        .check_availability_wrapp > h2 {
-          display: none;
-        }
-        .check_availability_wrapp > p {
-          font-size: 30px;
-          font-weight: 400;
-          line-height: 36px;
-          margin-bottom: 20px !important;
-          text-align: center;
-        }
-        .fl-node-5fbe9552c11aa .fl-row-content-wrap {
-          padding-bottom: 22px;
-        }
-        .private_event_block {
-          padding: 72px 20px 24px;
-        }
-        .private_event_block > h4 {
-          font-size: 36px;
-          line-height: 40px;
-          margin-bottom: 8px;
-        }
-        .private_event_block > h2 {
-          font-size: 30px !important;
-          line-height: 36px !important;
-          margin: 0 auto 54px;
-          max-width: 300px;
-        }
-        .private_event_block > h2::after {
-          bottom: -17px;
-        }
-        .private_event_list {
-          gap: 24px 16px;
-        }
-        .private_event_link {
-          width: 47%;
-          gap: 12px;
-        }
-        .private_event_link .img_wrapp {
-          border: 10px solid #f1f0e8;
-        }
-        .get_a_quot_wrapp > p {
-          font-size: 18px;
-          line-height: 26px;
-          margin-bottom: 16px !important;
-          text-align: center;
-          max-width: 160px;
-        }
-        .get_a_quot_wrapp .get_a_quot_btn {
-          max-width: unset;
-          height: 44px;
-        }
-        .fl-node-5fc11f1bca086.fl-row > .fl-row-content-wrap {
-          padding: 40px 0 44px !important;
-        }
-        .fl-node-5fc11f1bca086.fl-row > .fl-row-content-wrap .fl-node-5fc11f1bca8fe .fl-module-content.fl-node-content {
-          margin: 0 0 44px;
-        }
-        .fl-node-5fc11f1bca086.fl-row > .fl-row-content-wrap .fl-module-content.fl-node-content .uabb-infobox-title-prefix {
-          font-size: 36px;
-          line-height: 40px;
-        }
-        .fl-builder-content .fl-node-5fc11f1bca8fe .uabb-infobox-title {
-          margin: 0;
-          font-size: 30px;
-          line-height: 36px;
-        }
-        .fl-node-5fc11f1bca086.fl-row .fl-node-5fd2066c22db6 .fl-module-content {
-          margin: 32px 0 0;
-        }
-        .our_clients_say_slider {
-          background: unset;
-          padding: 0;
-          margin-top: 0;
-        }
-        .our_clients_say_link {
-          flex-direction: column;
-          background: #fff;
-          padding: 32px 24px;
-          align-items: center;
-        }
-        .our_clients_say_slider .slick-slide {
-          margin: 0 6px;
-        }
-        .our_clients_say_info > p {
-          margin-bottom: 20px !important;
-        }
-        .our_clients_say_info > span {
-          display: block;
-          text-align: center;
-        }
-        /*with_code_block  */
-        .with_code_block {
-          gap: 8px;
-          flex-direction: column;
-          margin: 46px 27px 40px;
-          padding: 22px;
-        }
-        .book_now_wrapp p {
-          font-size: 22px;
-          line-height: 30px;
-        }
-        .book_now_wrapp p br {
-          display: none;
-        }
-        .code_wrapp {
-          padding-left: unset;
-          border-left: unset;
-        }
-        .code_wrapp p:nth-child(1) {
-          text-align: center;
-        }
-        .fl-node-sx2fb7m13zdj > .fl-module-content {
-          margin: 0;
-        }
-        .fl-node-sx2fb7m13zdj > .fl-module-content .uabb-infobox-title-prefix {
-          font-size: 36px;
-          font-weight: 400;
-        }
-        .fl-node-sx2fb7m13zdj > .fl-module-content .uabb-infobox-title {
-          font-size: 30px !important;
-          line-height: 36px !important;
-          margin: 0;
-        }
-        /*how_to_find_us_block */
-        .how_to_find_us_block {
-          padding: 72px 16px 40px;
-        }
-        .how_to_find_us_block h4.how_to_find_us_subtitle {
-          font-size: 36px;
-          line-height: 40px;
-        }
-        .how_to_find_us_block h2.how_to_find_us_title {
-          margin: 0 0 54px;
-          font-size: 30px !important;
-          line-height: 36px !important;
-        }
-        .how_to_find_us_block h2.how_to_find_us_title::after {
-          bottom: -18px;
-        }
-        .how_to_find_us_contacts {
-          gap: 32px;
-          flex-direction: column;
-        }
-        .how_to_find_us_contacts .how_to_find_us_info {
-          width: 100%;
-          margin-top: unset;
-        }
-        .how_to_find_us_contacts .how_to_find_us_maps {
-          width: 100%;
-        }
-        .how_to_find_accardion {
-          margin: 40px auto 0;
-        }
-        .how_to_find_accardion_link h3 {
-          font-size: 18px;
-          line-height: 24px;
-        }
-        .fl-node-tp16blf7q3sz .fl-col-group:nth-of-type(4) > div:last-child,
-        .fl-node-tp16blf7q3sz .fl-col-group:nth-of-type(5),
-        .fl-node-tp16blf7q3sz .fl-col-group:nth-of-type(6),
-        .fl-node-tp16blf7q3sz .fl-col-group:nth-of-type(7),
-        .fl-node-tp16blf7q3sz .fl-col-group:nth-of-type(8) {
-          display: none;
-        }
-        .fl-node-tp16blf7q3sz .fl-col-group:nth-of-type(4) > div:first-child .uabb-infobox-content > .uabb-infobox-text-wrap {
-          overflow: hidden;
-          height: 120px;
-        }
-        .fl-node-tp16blf7q3sz > .fl-col-content {
-          position: relative;
-        }
-        .load_more_events_wrapp {
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-direction: column;
-        }
-        .load_more_events_bgr {
-          filter: blur(11px);
-          height: 42px;
-          width: 100%;
-          background: rgb(255 255 255 / 89%);
-        }
-        .load_more_events_wrapp > div:nth-child(2) {
-          background: #fff;
-          padding-top: 40px;
-          width: 100%;
-        }
-        .load_more_events {
-          max-width: 250px;
-          margin: 0 auto;
-          background: #28364b;
-          height: 56px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 8px;
-          color: #fff;
-          font-size: 14px;
-          font-weight: 600;
-          line-height: 24px;
-        }
-      }
-      @media (max-width: 360px) {
-        .with_code_block {
-          padding: 15px;
-        }
-      }
+/*charter_services_request_block */
+.charter_services_request_block {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  max-width: 816px;
+  margin: 0 auto 82px;
+  padding: 40px;
+  gap: 32px;
+}
+.charter_services_request_block::after {
+  content: "";
+  background-image: url(https://vegasyacht.com/wp-content/uploads/2020/12/separator.png);
+  position: absolute;
+  width: 72px;
+  height: 6px;
+  bottom: -55px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.check_availability_wrapp > h2 {
+  color: #cfbe88;
+  font-family: "Pinyon Script", cursive;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 36px;
+  margin: 0 0 4px !important;
+}
+.check_availability_wrapp > p {
+  color: #28364b;
+  font-family: "Playfair Display";
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 40px;
+  text-transform: capitalize;
+  margin-bottom: 32px !important;
+}
+.check_availability_btn {
+  display: flex;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 56px;
+  background: #cfbe88;
+  color: #28364b;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  transition: all 200ms linear;
+}
+/*private_event_block */
+.private_event_block {
+  padding: 94px 80px 24px;
+}
+.private_event_block > h4 {
+  color: #cfbe88;
+  text-align: center;
+  font-family: "Pinyon Script", cursive;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 36px;
+  margin-bottom: 8px;
+}
+.private_event_block > h2 {
+  position: relative;
+  color: #28364b;
+  text-align: center;
+  font-family: "Playfair Display";
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 56px;
+  text-transform: capitalize;
+  margin: 0 auto 82px;
+  max-width: 711px;
+}
+.private_event_block > h2::after {
+  content: "";
+  background-image: url(https://vegasyacht.com/wp-content/uploads/2020/12/separator.png);
+  position: absolute;
+  width: 72px;
+  height: 6px;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.private_event_list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 60px;
+  row-gap: 40px;
+  margin: 0;
+}
+.private_event_link {
+  width: 45%;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: flex-start;
+}
+.get_a_quot_wrapp > p {
+  color: #4b4f58;
+  font-family: "Playfair Display";
+  font-size: 27px;
+  font-weight: 400;
+  line-height: 36px;
+  margin-bottom: 24px !important;
+}
+.get_a_quot_wrapp .get_a_quot_btn {
+  display: flex;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 154px;
+  height: 48px;
+  gap: 8px;
+  background: #cfbe88;
+  color: #28364b;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  transition: all 200ms linear;
+}
+.get_a_quot_wrapp .get_a_quot_btn:hover,
+.check_availability_btn:hover {
+  background: #3a3a3a;
+  color: #ffffff;
+  transition: all 200ms linear;
+  opacity: 1;
+}
+.private_event_link .img_wrapp {
+  border: 15px solid #f1f0e8;
+}
+/*with_code_block */
+.with_code_block {
+  border: 2px dashed #e7e6de;
+  background: #fff;
+  max-width: 532px;
+  margin: 30px auto 60px;
+  padding: 12px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+}
+.with_code_block .accent_color {
+  color: #e60023;
+  text-transform: uppercase;
+}
+.book_now_wrapp p {
+  color: #28364b;
+  font-family: "Playfair Display";
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  text-transform: capitalize;
+  margin: 0;
+}
+.code_wrapp {
+  padding-left: 32px;
+  border-left: 2px dashed #e7e6de;
+}
+.code_wrapp p:nth-child(1) {
+  position: relative;
+  color: #28364b;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0;
+}
+.code_wrapp p:nth-child(2) {
+  color: #28364b;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 8px 0 0;
+}
+.voucher_block {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #e60023;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.copied {
+  position: absolute;
+  right: -45px;
+  top: 29px;
+  border-radius: 100px;
+  border: 1px solid #f1f0e8;
+  background: #fff;
+  box-shadow: 0px 6px 4px 0px rgba(52, 50, 41, 0.04);
+  margin: 0 !important;
+  padding: 4px 12px 4px 6px;
+}
+.copied > span {
+  color: #333;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 22px;
+  text-transform: initial;
+}
+/*how_to_find_us_block*/
+.how_to_find_us_block {
+  padding: 94px 40px;
+}
+.how_to_find_us_block h4.how_to_find_us_subtitle {
+  color: #cfbe88;
+  text-align: center;
+  font-family: "Pinyon Script", cursive;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 36px;
+  margin: 0 0 8px;
+}
+.how_to_find_us_block h2.how_to_find_us_title {
+  color: #28364b;
+  text-align: center;
+  font-family: "Playfair Display";
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 56px;
+  margin: 0 0 74px;
+  position: relative;
+}
+.how_to_find_us_block h2.how_to_find_us_title::after {
+  content: "";
+  background-image: url(https://vegasyacht.com/wp-content/uploads/2020/12/separator.png);
+  position: absolute;
+  width: 72px;
+  height: 6px;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.how_to_find_us_contacts {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 71px;
+}
+.how_to_find_us_contacts .how_to_find_us_maps {
+  width: 50%;
+}
+.how_to_find_us_contacts .how_to_find_us_info {
+  width: 47%;
+  margin-top: 20px;
+}
+.how_to_find_us_descr {
+  color: #4b4f58;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0 0 32px;
+}
+.how_to_find_us_contacts #footer-social li a {
+  color: inherit;
+}
+.how_to_find_us_contacts #footer-social li a:hover {
+  color: #cebd88;
+}
+.how_to_find_accardion {
+  list-style: none;
+  max-width: 960px;
+  margin: 56px auto 0;
+}
+.how_to_find_accardion_block {
+  border: 1px solid #e7e6de;
+}
+.how_to_find_accardion_block:nth-child(2) {
+  border-top: unset;
+}
+.how_to_find_accardion_block:nth-child(3) {
+  border-top: unset;
+  border-bottom: unset;
+}
+.how_to_find_accardion_link {
+  display: flex;
+  padding: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+.how_to_find_accardion_link h3 {
+  color: #28364b;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  text-transform: capitalize;
+  margin: 0;
+}
+.how_to_find_accardion_lists {
+  display: none;
+}
+.how_to_find_accardion_lists > div {
+  padding: 0 16px 24px;
+}
+.how_to_find_accardion_lists p {
+  position: relative;
+  max-width: 815px;
+  color: #4b4f58;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0 0 0 5px;
+  padding-left: 24px;
+}
+.how_to_find_accardion_lists p::before {
+  position: absolute;
+  content: "";
+  background: #28364b;
+  width: 6.5px;
+  height: 6.5px;
+  border-radius: 50%;
+  left: 0;
+  top: 5px;
+}
+.how_to_find_accardion_lists p + p {
+  margin-top: 6px;
+}
+.how_to_find_accardion_link > span svg {
+  transition: all 0.3s ease;
+}
+.how_to_find_accardion_link.active_block > span svg {
+  transform: rotate(90deg);
+  transition: all 0.3s ease;
+}
+/*What our clients say */
+.custom-testimonials {
+  display: none;
+}
+.our_clients_say_slider {
+  background: #fff;
+  padding: 46px 34px 37px 34px;
+  margin-top: 16px;
+}
+.our_clients_say_list {
+  margin: 0;
+}
+.our_clients_say_link {
+  display: flex !important;
+  gap: 24px;
+  justify-content: space-between;
+}
+.our_clients_say_link .img_wrapp {
+  flex: 1 0 200px;
+  height: 230px;
+}
+.slick-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.our_clients_say_info > p {
+  color: #28364b;
+  font-family: "Playfair Display";
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 26px;
+  margin-bottom: 16px !important;
+}
+.our_clients_say_info > span {
+  color: #28364b;
+  font-family: "Playfair Display";
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+}
+.our_clients_say_slider .slick-dots {
+  display: flex;
+  justify-content: center;
+  margin: 32px 0 0;
+  list-style: none;
+}
+.our_clients_say_slider .slick-dots li + li {
+  margin-left: 12px;
+}
+.our_clients_say_slider .slick-dots li button {
+  position: relative;
+  display: flex;
+  width: 10px;
+  height: 10px;
+  font-size: 0;
+  line-height: 0;
+  cursor: pointer;
+  color: transparent;
+  border: 0;
+  outline: none;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  padding: 5px;
+}
+.our_clients_say_slider .slick-dots li button:before {
+  position: absolute;
+  content: "•";
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  width: 10px;
+  height: 10px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #e5e2d6;
+}
+.our_clients_say_slider .slick-dots li.slick-active button:before {
+  background-color: #cfbe88;
+}
+.fl-node-5fc11f1bca086 > .fl-row-content-wrap {
+  padding-right: 80px !important;
+}
+.our_clients_say_slider .slick-slide {
+  margin: 0 1px;
+}
+@media (max-width: 1280px) {
+  .private_event_list {
+    gap: 50px;
+  }
+  .private_event_link {
+    width: 47%;
+  }
+  .get_a_quot_wrapp > p {
+    font-size: 21px;
+  }
+}
+@media (max-width: 1050px) {
+  .fl-node-5fc11f1bcaa37 {
+    width: 65%;
+    float: right;
+  }
+}
+@media (max-width: 1015px) {
+  .private_event_link {
+    width: 45%;
+    flex-direction: column;
+  }
+}
+@media (max-width: 768px) {
+  .fl-node-5fc11f1bcaa37{
+    float: unset;
+    margin: 0;
+    max-width: unset !important;
+  }
+  /*charter_services_request_block */
+  .charter_services_request_block {
+    margin: 0 20px 78px;
+    padding: 24px 32px 32px;
+    gap: 20px;
+    flex-direction: column;
+  }
+  .fl-node-5fbfc9ae93923 {
+    display: none;
+  }
+  .fl-node-5fbfc7e848675.fl-row > .fl-row-content-wrap {
+    padding-bottom: 0;
+  }
+  .charter_services_request_block::after {
+    bottom: -51px;
+  }
+  .check_availability_wrapp > h2 {
+    display: none;
+  }
+  .check_availability_wrapp > p {
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 36px;
+    margin-bottom: 20px !important;
+    text-align: center;
+  }
+  .fl-node-5fbe9552c11aa .fl-row-content-wrap {
+    padding-bottom: 22px;
+  }
+  .private_event_block {
+    padding: 72px 20px 24px;
+  }
+  .private_event_block > h4 {
+    font-size: 36px;
+    line-height: 40px;
+    margin-bottom: 8px;
+  }
+  .private_event_block > h2 {
+    font-size: 30px !important;
+    line-height: 36px !important;
+    margin: 0 auto 54px;
+    max-width: 300px;
+  }
+  .private_event_block > h2::after {
+    bottom: -17px;
+  }
+  .private_event_list {
+    gap: 24px 16px;
+  }
+  .private_event_link {
+    width: 47%;
+    gap: 12px;
+  }
+  .private_event_link .img_wrapp {
+    border: 10px solid #f1f0e8;
+  }
+  .get_a_quot_wrapp > p {
+    font-size: 18px;
+    line-height: 26px;
+    margin-bottom: 16px !important;
+    text-align: center;
+    max-width: 160px;
+  }
+  .get_a_quot_wrapp .get_a_quot_btn {
+    max-width: unset;
+    height: 44px;
+  }
+  .fl-node-5fc11f1bca086.fl-row > .fl-row-content-wrap {
+    padding: 40px 0 44px !important;
+  }
+  .fl-node-5fc11f1bca086.fl-row > .fl-row-content-wrap .fl-node-5fc11f1bca8fe .fl-module-content.fl-node-content {
+    margin: 0 0 44px;
+  }
+  .fl-node-5fc11f1bca086.fl-row > .fl-row-content-wrap .fl-module-content.fl-node-content .uabb-infobox-title-prefix {
+    font-size: 36px;
+    line-height: 40px;
+  }
+  .fl-builder-content .fl-node-5fc11f1bca8fe .uabb-infobox-title {
+    margin: 0;
+    font-size: 30px;
+    line-height: 36px;
+  }
+  .fl-node-5fc11f1bca086.fl-row .fl-node-5fd2066c22db6 .fl-module-content {
+    margin: 32px 0 0;
+  }
+  .our_clients_say_slider {
+    background: unset;
+    padding: 0;
+    margin-top: 0;
+  }
+  .our_clients_say_link {
+    flex-direction: column;
+    background: #fff;
+    padding: 32px 24px;
+    align-items: center;
+    min-height: 778px;
+    justify-content: flex-start;
+  }
+  .our_clients_say_link .img_wrapp {
+    max-height: 230px;
+  }
+  .our_clients_say_slider .slick-slide {
+    margin: 0 6px;
+  }
+  .our_clients_say_info > p {
+    margin-bottom: 20px !important;
+  }
+  .our_clients_say_info > span {
+    display: block;
+    text-align: center;
+  }
+  /*with_code_block  */
+  .with_code_block {
+    gap: 8px;
+    flex-direction: column;
+    margin: 46px 27px 40px;
+    padding: 22px;
+  }
+  .book_now_wrapp p {
+    font-size: 22px;
+    line-height: 30px;
+  }
+  .book_now_wrapp p br {
+    display: none;
+  }
+  .code_wrapp {
+    padding-left: unset;
+    border-left: unset;
+  }
+  .code_wrapp p:nth-child(1) {
+    text-align: center;
+  }
+  .fl-node-sx2fb7m13zdj > .fl-module-content {
+    margin: 0;
+  }
+  .fl-node-sx2fb7m13zdj > .fl-module-content .uabb-infobox-title-prefix {
+    font-size: 36px;
+    font-weight: 400;
+  }
+  .fl-node-sx2fb7m13zdj > .fl-module-content .uabb-infobox-title {
+    font-size: 30px !important;
+    line-height: 36px !important;
+    margin: 0;
+  }
+  /*how_to_find_us_block */
+  .how_to_find_us_block {
+    padding: 72px 16px 40px;
+  }
+  .how_to_find_us_block h4.how_to_find_us_subtitle {
+    font-size: 36px;
+    line-height: 40px;
+  }
+  .how_to_find_us_block h2.how_to_find_us_title {
+    margin: 0 0 54px;
+    font-size: 30px !important;
+    line-height: 36px !important;
+  }
+  .how_to_find_us_block h2.how_to_find_us_title::after {
+    bottom: -18px;
+  }
+  .how_to_find_us_contacts {
+    gap: 32px;
+    flex-direction: column;
+  }
+  .how_to_find_us_contacts .how_to_find_us_info {
+    width: 100%;
+    margin-top: unset;
+  }
+  .how_to_find_us_contacts .how_to_find_us_maps {
+    width: 100%;
+  }
+  .how_to_find_accardion {
+    margin: 40px auto 0;
+  }
+  .how_to_find_accardion_link h3 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .fl-node-tp16blf7q3sz .fl-col-group:nth-of-type(4) > div:last-child,
+  .fl-node-tp16blf7q3sz .fl-col-group:nth-of-type(5),
+  .fl-node-tp16blf7q3sz .fl-col-group:nth-of-type(6),
+  .fl-node-tp16blf7q3sz .fl-col-group:nth-of-type(7),
+  .fl-node-tp16blf7q3sz .fl-col-group:nth-of-type(8) {
+    display: none;
+  }
+  .fl-node-tp16blf7q3sz .fl-col-group:nth-of-type(4) > div:first-child .uabb-infobox-content > .uabb-infobox-text-wrap {
+    overflow: hidden;
+    height: 120px;
+  }
+  .fl-node-tp16blf7q3sz > .fl-col-content {
+    position: relative;
+  }
+  .load_more_events_wrapp {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .load_more_events_bgr {
+    filter: blur(11px);
+    height: 42px;
+    width: 100%;
+    background: rgb(255 255 255 / 89%);
+  }
+  .load_more_events_wrapp > div:nth-child(2) {
+    background: #fff;
+    padding-top: 40px;
+    width: 100%;
+  }
+  .load_more_events {
+    max-width: 250px;
+    margin: 0 auto;
+    background: #28364b;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 24px;
+  }
+  #rev_slider_1_1_wrapper {
+    height: 665px !important;
+  }
+  .tp-parallax-wrap {
+    top: 170px !important;
+  }
+  .fl-row[data-node] .fl-row-content-wrap {
+    padding-top: 40px !important;
+  }
+  .ast-header-break-point .ast-mobile-header-inline .main-header-container,
+  .ast-header-break-point .ast-mobile-header-stack .main-header-container {
+    position: relative;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+  .ast-header-break-point .site-header .main-header-bar-wrap .site-branding {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    padding: 0;
+  }
+  .ast-header-break-point .site-header .main-header-bar-wrap .site-branding > div {
+    padding: 0;
+  }
+}
+@media (max-width: 360px) {
+  .with_code_block {
+    padding: 15px;
+  }
+}
+
         </style>
         `;
 
@@ -759,7 +803,7 @@ if (window.location.pathname === "/") {
             <ul class="our_clients_say_list">
               <li class="our_clients_say_link">
                 <div class="img_wrapp">
-                  <img src="https://conversionratestore.github.io/projects/llvws/improvingPDP/images/sliser_charles_l.png" alt="photo Jennifer K." />
+                  <img src="https://drive.google.com/uc?export=view&id=1VmXXkY7aQQMkF6EfSmBENo4T_tq6iUkG" alt="photo Jennifer K." />
                 </div>
                 <div class="our_clients_say_info">
                   <p>If you’re looking for one of the most unique experiences in Las Vegas THIS IS IT! I was looking for something fun to do for my husbands birthday and found The Yacht at Lake Las Vegas. The booking process as quick and easy, and the crew couldn’t have been more amazing! I planned everything from food, beverage and entertainment through Sarah and it was such an easy process. My husband and all our guests felt like celebrities for a night and it was a memory that we’ll cherish. Thank you Yacht Team!!</p>
@@ -777,7 +821,7 @@ if (window.location.pathname === "/") {
               </li>
               <li class="our_clients_say_link">
                 <div class="img_wrapp">
-                  <img src="https://conversionratestore.github.io/projects/llvws/improvingPDP/images/sliser_charles_l.png" alt="photo Charles L." />
+                  <img src="https://drive.google.com/uc?export=view&id=1zo15RcVPo3UaoKNP6X6_bBb1sN_FNvVK" alt="photo Charles L." />
                 </div>
                 <div class="our_clients_say_info">
                   <p>I loved every minute of my yacht experience! This was a bucket list moment for me, so I decided to go for it! All my interactions with the staff were great, they were king, helpful and made sure I had the night of my life! Can’t recommend this enough!</p>
@@ -804,9 +848,9 @@ if (window.location.pathname === "/") {
     `;
 
       let arrpPrivateEvent = {
-        1: [`Special Birthday Celebrations On a Yacht`, `https://conversionratestore.github.io/projects/llvws/improvingPDP/images/special_birthday.jpg`],
-        2: [`Dream Wedding Celebrations On a Yacht`, `https://conversionratestore.github.io/projects/llvws/improvingPDP/images/dream_wedding.jpg`],
-        3: [`Unforgettable Bachelor Parties On a Yacht`, `https://conversionratestore.github.io/projects/llvws/improvingPDP/images/unforgettable_bachelor.jpg`],
+        1: [`Special Birthday Celebrations on a Yacht`, `https://conversionratestore.github.io/projects/llvws/improvingPDP/images/special_birthday.jpg`],
+        2: [`Dream Wedding Celebrations on a Yacht`, `https://conversionratestore.github.io/projects/llvws/improvingPDP/images/dream_wedding.jpg`],
+        3: [`Unforgettable Bachelor Parties on a Yacht`, `https://conversionratestore.github.io/projects/llvws/improvingPDP/images/unforgettable_bachelor.jpg`],
         4: [`Memorable Team Building Onboard a Yacht`, `https://conversionratestore.github.io/projects/llvws/improvingPDP/images/memorable team_building.jpg`],
       };
 
@@ -1032,7 +1076,7 @@ if (window.location.pathname === "/") {
               dots: true,
               infinite: true,
               adaptiveHeight: true,
-              autoplay: true,
+              // autoplay: true,
               autoplaySpeed: 7000,
               speed: 500,
               cssEase: "linear",

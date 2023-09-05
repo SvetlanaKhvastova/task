@@ -316,6 +316,7 @@ h2.new_title::after {
 .may_also_like_link .img_wrapp {
   border: 16px solid #f1f0e8;
   max-width: 230px;
+  min-width: 230px;
   width: 100%;
 }
 .may_also_like_title {
@@ -491,6 +492,9 @@ h2.new_title::after {
   background: #fff;
   width: 40px;
   height: 40px;
+}
+#reviewsBlock .slick-arrow.slick-disabled{
+      opacity: 0.3;
 }
 #reviewsBlock .next_btn {
   right: -60px;
@@ -723,6 +727,63 @@ line-height: 24px;
     padding: 0;
     margin: 10px 0 0;
   }
+  /* */
+  .fl-col-content .fl-module-photo,
+  .fl-module-slideshow{
+    display: none !important;
+  }
+    .swiper_arrow {
+    width: 40px !important;
+    height: 40px !important;
+    background: rgba(31, 27, 27, 0.50);
+  }
+  .swiper .swiper-button-next::after,
+  .swiper .swiper-button-prev::after {
+    content: "";
+  }
+  /* MAIN SLIDER */
+  .main_slider {
+    margin-bottom: 8px;
+    display: block;
+  }
+  .main_slider .swiper-slide img {
+    min-height: 100%;
+    min-width: 100%;
+    object-fit: contain;
+    max-height: 440px;
+  }
+  .swiper-slide img {
+    object-fit: contain;
+  }
+  .main_slider .swiper-slide {
+    text-align: center;
+    height: auto;
+  }
+  .main_slider .swiper-pagination {
+    display: none;
+  }
+  .main_slider_sync .swiper-slide{
+    max-width: 120px;
+    opacity: 0.8;
+  }
+  .main_slider_sync .swiper-slide.swiper-slide-thumb-active{
+    opacity: 1;
+  }
+  .main_slider_sync .swiper-slide img {
+    height: 120px;
+    min-width: 100%;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: 0.35s;
+    object-fit: cover;
+  }
+
+  @media(hover: hover) {
+    .main_slider_sync .swiper-slide:not(.swiper-slide-thumb-active) img:hover {
+      opacity: 0.6;
+    }
+  }
+  
 @media (max-width: 1295px) {
   .reviews_slider {
     max-width: 1000px;
@@ -940,9 +1001,9 @@ line-height: 24px;
   }
   .reviews_link {
     padding: 16px 20px 32px;
-    min-height: 266px;
+    min-height: 240px;
   }
-  .reviews_link:nth-child(n + 3) {
+  .reviews_link:nth-child(n + 3).load_var {
     display: none;
   }
   /**logos */
@@ -1002,8 +1063,47 @@ line-height: 24px;
     margin: 0;
   }
   .preview_text{
-        height: 90px;
+        height: 93px;
   }
+  /*main_slider_sync  */
+  .main_slider_sync {
+    display: none !important;
+  }
+  .main_slider .swiper-pagination{
+    display: flex;
+    position: initial;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+  .main_slider{
+    margin-bottom: 0;
+  }
+  .main_slider .swiper-slide img{
+    max-height: 370px;
+    object-fit: cover;
+        min-height: 370px;
+  }
+  .swiper-pagination-bullet-active.swiper-pagination-bullet-active{
+    background: #CFBE88;
+        opacity: 1;
+  }
+  .swiper-pagination-bullet{
+    background: #E5E2D6;
+        opacity: 1;
+  }
+  .swiper_arrow{
+        background: rgba(40, 54, 75, 0.50);
+    border-radius: 50%;
+    transform: translateY(-50%);
+  }
+  .swiper-pagination-clickable .swiper-pagination-bullet{
+    margin: 0 8px !important;
+  }
+  .fl-module-video{
+        margin-top: 24px;
+  }
+
 }
 
     </style>
@@ -1024,6 +1124,18 @@ line-height: 24px;
             <p>Booked <span class="times_txt">3</span> times today</p>
           </div>
         </div>
+    `;
+    let swiperImg = /*html */ `
+    <div class="swiper main_slider">
+          <div class="swiper-wrapper"></div>
+          <div class="swiper-button-prev swiper_arrow"><img src="https://flopsi69.github.io/crs/llvws/new_pdp/img/slider_arr_l.svg"></div>
+          <div class="swiper-button-next swiper_arrow"><img src="https://flopsi69.github.io/crs/llvws/new_pdp/img/slider_arr_r.svg"></div>
+          <div class="swiper-pagination"></div>
+    </div>
+
+    <div class="swiper main_slider_sync">
+      <div class="swiper-wrapper"></div>
+    </div>
     `;
     let advisorAndIconBox = /*html */ `
     <div class="advisor_and_icon_box">
@@ -1190,6 +1302,11 @@ line-height: 24px;
     </section>
       `;
 
+    function setListImgSwiper(img) {
+      return `<div class="swiper-slide">
+                <img src="${img}">
+              </div>`;
+    }
     function setListReviewsSlider(name, text, img) {
       return `
       <div class="reviews_link">
@@ -1271,33 +1388,33 @@ line-height: 24px;
       5: [
         `Janet S.`,
         `REVIEW ON THE YACHT RIDE (includes pros, cons, other notes & if I would do it again) - 
-I would give this biz 4 stars - reservation process was easy, no issues, positive interactions with staff.
-I would give the experience 3 stars based on if I thought it was worth it & if I would do it again (see bottom).
---
-I wanted to do something fun with my family while my sister was visiting for out of state. We decided to do the Sip & Sail on the yacht since some of us in the party wanted to drink.
-Pros:
-We got there early and the person who checked us in was friendly. No negative interactions with staff. 
-Our reservation included a champagne toast - it was decent in taste. Other drinks included beer & margaritas (probably the favorite since it wasn't too sweet & you could taste tequila). 
-Music was good (although not really diverse). 
-Bathrooms were clean. 
-We got to go around the lake and see the awesome mansions in the area. 
-Cons:
-I'd been to the area before so I knew where to go to check in. I feel like if it were my first time it would have been more confusing since the map they provide in the confirmation email isn't very clear in their directions. 
-Floor on the boat looked... a little worn. It looked as if it was lifting. Also, while leaning on the rail on the top deck, it came off. It easily went back on but it was surprising. 
-Other notes:
-There weren't too many people so folks were able to keep some distance. There was no signage or announcement about masks (not judging, just an observation).
-Overall:
-It was something to do outside of the house on a Sunday. It was cool to see the mansions in the area. Probably won't do it again since I don't think it's really worth the price for a 2nd time. 
-If I could do it again, I would reserve the smaller boat rental (almost $100 cheaper). I would have preferred it to just be my party.`,
+        I would give this biz 4 stars - reservation process was easy, no issues, positive interactions with staff.
+        I would give the experience 3 stars based on if I thought it was worth it & if I would do it again (see bottom).
+        --
+        I wanted to do something fun with my family while my sister was visiting for out of state. We decided to do the Sip & Sail on the yacht since some of us in the party wanted to drink.
+        Pros:
+        We got there early and the person who checked us in was friendly. No negative interactions with staff. 
+        Our reservation included a champagne toast - it was decent in taste. Other drinks included beer & margaritas (probably the favorite since it wasn't too sweet & you could taste tequila). 
+        Music was good (although not really diverse). 
+        Bathrooms were clean. 
+        We got to go around the lake and see the awesome mansions in the area. 
+        Cons:
+        I'd been to the area before so I knew where to go to check in. I feel like if it were my first time it would have been more confusing since the map they provide in the confirmation email isn't very clear in their directions. 
+        Floor on the boat looked... a little worn. It looked as if it was lifting. Also, while leaning on the rail on the top deck, it came off. It easily went back on but it was surprising. 
+        Other notes:
+        There weren't too many people so folks were able to keep some distance. There was no signage or announcement about masks (not judging, just an observation).
+        Overall:
+        It was something to do outside of the house on a Sunday. It was cool to see the mansions in the area. Probably won't do it again since I don't think it's really worth the price for a 2nd time. 
+        If I could do it again, I would reserve the smaller boat rental (almost $100 cheaper). I would have preferred it to just be my party.`,
         `<img src="https://flopsi69.github.io/crs/llvws/new_pdp/img/yelp.svg">`,
       ],
       6: [
         `britney w.`,
         `Such a fun girls day! 
-My overall experience with Lake Las Vegas Water Sports was awesome! I booked three tickets for me and my girl friends about 2 weeks in advance and I accidentally booked them for the wrong day. The company was so helpful and got the tickets switched for me!!
-We arrived early in case we had a hard time locating the office. We parked in the free parking and followed the signs which was super easy to find. It was about a 5 minute walk from the parking garage to the office that is located right on the lake. 
-We got a free mimosa as soon as we boarded the boat and we ordered serval more following. We of course took so many pictures and enjoy the cruise from inside the boat and on the decks. The bartenders, dj, and staff were all awesome! 
-I definitely recommend checking this out!`,
+        My overall experience with Lake Las Vegas Water Sports was awesome! I booked three tickets for me and my girl friends about 2 weeks in advance and I accidentally booked them for the wrong day. The company was so helpful and got the tickets switched for me!!
+        We arrived early in case we had a hard time locating the office. We parked in the free parking and followed the signs which was super easy to find. It was about a 5 minute walk from the parking garage to the office that is located right on the lake. 
+        We got a free mimosa as soon as we boarded the boat and we ordered serval more following. We of course took so many pictures and enjoy the cruise from inside the boat and on the decks. The bartenders, dj, and staff were all awesome! 
+        I definitely recommend checking this out!`,
         `<img src="https://flopsi69.github.io/crs/llvws/new_pdp/img/yelp.svg">`,
       ],
       7: ["Kelly Wilson", `Got the pleasure of going on The Yatch cruise out if lake Las Vegas! Be prepared for some epic DJ's this way definitely a fun cruise to go on. Great vibes good people beautiful scenery it was so nice to be out on the water.`, `<img src="https://flopsi69.github.io/crs/llvws/new_pdp/img/google.svg">`],
@@ -1371,12 +1488,128 @@ I definitely recommend checking this out!`,
       7: [`Throwback Cruise at Lake Las Vegas`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-07_04-01-25.jpg`, `https://vegasyacht.com/throwback-cruise-at-lake-las-vegas/`],
       8: [`Sunset Sessions`, `$19.99`, `https://vegasyacht.com/wp-content/uploads/2022/06/sunset.jpg`, `https://vegasyacht.com/sunset-sessions-cruise/`],
     };
+    let arrImgSwiperNeonParty = {
+      1: ["https://vegasyacht.com/wp-content/uploads/2023/08/party_after_dark.png"],
+      2: ["https://drive.google.com/uc?export=view&id=1pTk80rK7jRtDnZ-loCS-rxCSaYYGFZ6Y"],
+      3: ["https://drive.google.com/uc?export=view&id=1rX5Ju9IGpTvewfZp_Y-6oUlE4CxcWAJG"],
+      4: ["https://drive.google.com/uc?export=view&id=1zo15RcVPo3UaoKNP6X6_bBb1sN_FNvVK"],
+      5: ["https://drive.google.com/uc?export=view&id=1lYa3AMHEjGgX64gYQNkgjNjdnoTRC6Tf"],
+    };
+    let arrImgSwiperMimosaCruise = {
+      1: ["https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-06_04-17-48-1024x536.jpg"],
+      2: ["https://vegasyacht.com/wp-content/uploads/2020/12/Brandon-Cox-1.jpg"],
+      3: ["https://vegasyacht.com/wp-content/uploads/2020/12/Screenshot_257_lg-1024x684-1.jpg"],
+      4: ["https://vegasyacht.com/wp-content/uploads/2020/12/Screenshot_254_lg-757x1024-1.jpg"],
+      5: ["https://drive.google.com/uc?export=view&id=1tvVqyxrOcyI_5CgjY5s3Xpa3vY0P9iQg"],
+    };
+    let arrImgSwiperSunsetSessions = {
+      1: ["https://vegasyacht.com/wp-content/uploads/2021/03/Sunset_Sessions.jpg"],
+      2: ["https://vegasyacht.com/wp-content/uploads/2020/12/photo_2020_07_25_18_21_50_lg.jpg"],
+      3: ["https://drive.google.com/uc?export=view&id=1QMR-ovgFvvU1y_FgRr62Cyq0fWgBr7rp"],
+      4: ["https://drive.google.com/uc?export=view&id=1AXA-Q3dQRnk0KCQxJGAfbf1eWhX1hUf2"],
+      5: ["https://drive.google.com/uc?export=view&id=12KieCMeooo_fAHC6xx7t9BBUGC-7RmcW"],
+    };
+    let arrImgSwiperCountryCruise = {
+      1: ["https://vegasyacht.com/wp-content/uploads/2023/07/Brown_Vintage_Cowboy_Boot_and_Hat_Photo_Album_Cover__1_-1024x536.png"],
+      2: ["https://drive.google.com/uc?export=view&id=1QMR-ovgFvvU1y_FgRr62Cyq0fWgBr7rp"],
+      3: ["https://vegasyacht.com/wp-content/uploads/2023/07/IMAGE_2023_06_02_10_06_32_lg-832x1024.jpg"],
+      4: ["https://vegasyacht.com/wp-content/uploads/2023/07/IMAGE_2023_06_02_10_06_37_lg-1024x729.jpg"],
+      5: ["https://vegasyacht.com/wp-content/uploads/2023/07/f4a13cab4b854b55b75869c8834460d7IMAGE_2023_06_02_10_06_44_lg-1024x938.jpg"],
+    };
+    let arrImgSwiperSangriaSunday = {
+      1: ["https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-06_04-08-32.jpg"],
+      2: ["https://drive.google.com/uc?export=view&id=1VmXXkY7aQQMkF6EfSmBENo4T_tq6iUkG"],
+      3: ["https://drive.google.com/uc?export=view&id=1zo15RcVPo3UaoKNP6X6_bBb1sN_FNvVK"],
+      4: ["https://drive.google.com/uc?export=view&id=1qGxEjgbMGUTND9iCyqXe5w2i14wpRUme"],
+      5: ["https://drive.google.com/uc?export=view&id=12KieCMeooo_fAHC6xx7t9BBUGC-7RmcW"],
+    };
+    let arrImgSwiperThrowbackCruise = {
+      1: ["https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-07_03-53-50.jpg"],
+      2: ["https://drive.google.com/uc?export=view&id=155YdEr8w33S-rCqj0mH6pquCvHfV8DWP"],
+      3: ["https://drive.google.com/uc?export=view&id=1zo15RcVPo3UaoKNP6X6_bBb1sN_FNvVK"],
+      4: ["https://drive.google.com/uc?export=view&id=1zrJc35KC5uii2Grui4CIommt_1EGHD0V"],
+      5: ["https://drive.google.com/uc?export=view&id=1lYa3AMHEjGgX64gYQNkgjNjdnoTRC6Tf"],
+    };
+    let arrImgSwiperLatinNightCruise = {
+      1: ["https://vegasyacht.com/wp-content/uploads/2023/07/photo_2023-07-10_01-29-13.jpg"],
+      2: ["https://drive.google.com/uc?export=view&id=1QMR-ovgFvvU1y_FgRr62Cyq0fWgBr7rp"],
+      3: ["https://drive.google.com/uc?export=view&id=1pTk80rK7jRtDnZ-loCS-rxCSaYYGFZ6Y"],
+      4: ["https://drive.google.com/uc?export=view&id=1cR_ZGK4HHSI4bwaqs4P76ahNqCz4o7ul"],
+      5: ["https://drive.google.com/uc?export=view&id=1YF31xaF7rbSH4f65fjxNqHsTuBKvdlsJ"],
+    };
+    let arrImgSwiperEmoNight = {
+      1: ["https://vegasyacht.com/wp-content/uploads/2023/08/emo_night-1024x512.png"],
+      2: ["https://drive.google.com/uc?export=view&id=1WvZr4ZXFkpxnp-qFvcFs9t7hXzhGrFgS"],
+      3: ["https://drive.google.com/uc?export=view&id=1rX5Ju9IGpTvewfZp_Y-6oUlE4CxcWAJG"],
+      4: ["https://drive.google.com/uc?export=view&id=1zo15RcVPo3UaoKNP6X6_bBb1sN_FNvVK"],
+      5: ["https://drive.google.com/uc?export=view&id=12KieCMeooo_fAHC6xx7t9BBUGC-7RmcW"],
+    };
 
+    addSwiper();
     document.head.insertAdjacentHTML("beforeend", `<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">`);
     document.head.insertAdjacentHTML("beforeend", stylePdp);
-
     renderHtml();
     function renderHtml() {
+      // swiper
+      if (!document.querySelector(".main_slider")) {
+        if (document.querySelector(".fl-col-content .fl-module-photo")) {
+          document.querySelector(".fl-col-content .fl-module-photo").insertAdjacentHTML("beforebegin", swiperImg);
+        }
+        if (document.querySelector(".fl-module-slideshow")) {
+          document.querySelector(".fl-module-slideshow").insertAdjacentHTML("beforebegin", swiperImg);
+        }
+      }
+
+      if (document.querySelector(".main_slider")) {
+        if (window.location.pathname === "/yacht-after-dark-neon-party/") {
+          for (let key in arrImgSwiperNeonParty) {
+            document.querySelector(".main_slider .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperNeonParty[key][0]));
+            document.querySelector(".main_slider_sync .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperNeonParty[key][0]));
+          }
+        }
+        if (window.location.pathname === "/mimosa-cruise-lake-las-vegas/") {
+          for (let key in arrImgSwiperMimosaCruise) {
+            document.querySelector(".main_slider .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperMimosaCruise[key][0]));
+            document.querySelector(".main_slider_sync .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperMimosaCruise[key][0]));
+          }
+        }
+        if (window.location.pathname === "/sunset-sessions-cruise/") {
+          for (let key in arrImgSwiperSunsetSessions) {
+            document.querySelector(".main_slider .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperSunsetSessions[key][0]));
+            document.querySelector(".main_slider_sync .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperSunsetSessions[key][0]));
+          }
+        }
+        if (window.location.pathname === "/country-cruise-at-lake-las-vegas/") {
+          for (let key in arrImgSwiperCountryCruise) {
+            document.querySelector(".main_slider .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperCountryCruise[key][0]));
+            document.querySelector(".main_slider_sync .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperCountryCruise[key][0]));
+          }
+        }
+        if (window.location.pathname === "/sangria-sunday/") {
+          for (let key in arrImgSwiperSangriaSunday) {
+            document.querySelector(".main_slider .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperSangriaSunday[key][0]));
+            document.querySelector(".main_slider_sync .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperSangriaSunday[key][0]));
+          }
+        }
+        if (window.location.pathname === "/throwback-cruise-at-lake-las-vegas/") {
+          for (let key in arrImgSwiperThrowbackCruise) {
+            document.querySelector(".main_slider .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperThrowbackCruise[key][0]));
+            document.querySelector(".main_slider_sync .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperThrowbackCruise[key][0]));
+          }
+        }
+        if (window.location.pathname === "/latin-night-cruise-at-lake-las-vegas/") {
+          for (let key in arrImgSwiperLatinNightCruise) {
+            document.querySelector(".main_slider .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperLatinNightCruise[key][0]));
+            document.querySelector(".main_slider_sync .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperLatinNightCruise[key][0]));
+          }
+        }
+        if (window.location.pathname === "/emo-night/") {
+          for (let key in arrImgSwiperEmoNight) {
+            document.querySelector(".main_slider .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperEmoNight[key][0]));
+            document.querySelector(".main_slider_sync .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperEmoNight[key][0]));
+          }
+        }
+      }
       if (window.innerWidth <= 768) {
         //change place breadcrumbs
         if (document.querySelector("#custom-subheader + .rope-separator") && !document.querySelector(".rope-separator + .breadcrumbs")) {
@@ -1417,14 +1650,27 @@ I definitely recommend checking this out!`,
       }
       // MayAlsoLikeList
       if (window.innerWidth > 768) {
-        if (document.querySelector(".may_also_like_block") && document.querySelector(".may_also_like_list_first").children.length !== arrpMayAlsoLikeListFirst.length) {
-          for (let key in arrpMayAlsoLikeListFirst) {
-            document.querySelector(".may_also_like_list_first").insertAdjacentHTML("beforeend", setListAlsoLikeSlider(arrpMayAlsoLikeListFirst[key][0], arrpMayAlsoLikeListFirst[key][1], arrpMayAlsoLikeListFirst[key][2], arrpMayAlsoLikeListFirst[key][3], key));
+        if (window.location.pathname === "/emo-night/" || window.location.pathname === "/latin-night-cruise-at-lake-las-vegas/" || window.location.pathname === "/country-cruise-at-lake-las-vegas/" || window.location.pathname === "/yacht-after-dark-neon-party/") {
+          if (document.querySelector(".may_also_like_block") && document.querySelector(".may_also_like_list_first").children.length !== arrpMayAlsoLikeListSecond.length) {
+            for (let key in arrpMayAlsoLikeListSecond) {
+              document.querySelector(".may_also_like_list_first").insertAdjacentHTML("beforeend", setListAlsoLikeSlider(arrpMayAlsoLikeListSecond[key][0], arrpMayAlsoLikeListSecond[key][1], arrpMayAlsoLikeListSecond[key][2], arrpMayAlsoLikeListSecond[key][3], key));
+            }
           }
-        }
-        if (document.querySelector(".may_also_like_block") && document.querySelector(".may_also_like_list_second").children.length !== arrpMayAlsoLikeListSecond.length) {
-          for (let key in arrpMayAlsoLikeListSecond) {
-            document.querySelector(".may_also_like_list_second").insertAdjacentHTML("beforeend", setListAlsoLikeSlider(arrpMayAlsoLikeListSecond[key][0], arrpMayAlsoLikeListSecond[key][1], arrpMayAlsoLikeListSecond[key][2], arrpMayAlsoLikeListSecond[key][3], key));
+          if (document.querySelector(".may_also_like_block") && document.querySelector(".may_also_like_list_second").children.length !== arrpMayAlsoLikeListFirst.length) {
+            for (let key in arrpMayAlsoLikeListFirst) {
+              document.querySelector(".may_also_like_list_second").insertAdjacentHTML("beforeend", setListAlsoLikeSlider(arrpMayAlsoLikeListFirst[key][0], arrpMayAlsoLikeListFirst[key][1], arrpMayAlsoLikeListFirst[key][2], arrpMayAlsoLikeListFirst[key][3], key));
+            }
+          }
+        } else {
+          if (document.querySelector(".may_also_like_block") && document.querySelector(".may_also_like_list_first").children.length !== arrpMayAlsoLikeListFirst.length) {
+            for (let key in arrpMayAlsoLikeListFirst) {
+              document.querySelector(".may_also_like_list_first").insertAdjacentHTML("beforeend", setListAlsoLikeSlider(arrpMayAlsoLikeListFirst[key][0], arrpMayAlsoLikeListFirst[key][1], arrpMayAlsoLikeListFirst[key][2], arrpMayAlsoLikeListFirst[key][3], key));
+            }
+          }
+          if (document.querySelector(".may_also_like_block") && document.querySelector(".may_also_like_list_second").children.length !== arrpMayAlsoLikeListSecond.length) {
+            for (let key in arrpMayAlsoLikeListSecond) {
+              document.querySelector(".may_also_like_list_second").insertAdjacentHTML("beforeend", setListAlsoLikeSlider(arrpMayAlsoLikeListSecond[key][0], arrpMayAlsoLikeListSecond[key][1], arrpMayAlsoLikeListSecond[key][2], arrpMayAlsoLikeListSecond[key][3], key));
+            }
           }
         }
 
@@ -1436,7 +1682,6 @@ I definitely recommend checking this out!`,
       } else {
         document.querySelector(".may_also_like_list_first")?.remove();
         document.querySelector(".may_also_like_list_second")?.remove();
-        document.querySelector(".may_also_like_list_third")?.remove();
 
         if (document.querySelector(".may_also_like_block") && document.querySelector(".may_also_like_slider").children.length !== arrpMayAlsoLikeListMob.length) {
           for (let key in arrpMayAlsoLikeListMob) {
@@ -1507,10 +1752,10 @@ I definitely recommend checking this out!`,
     onClickIconHowToFindUs();
     onClickReadMoreBtn();
     initAccardionToggle();
+    moveTxtToAccardion();
     if (window.innerWidth < 768) {
       onClickLoadMoreReviews();
     }
-    moveTxtToAccardion();
 
     function initSlickSlider() {
       if (window.innerWidth > 768) {
@@ -1522,11 +1767,9 @@ I definitely recommend checking this out!`,
               slidesToShow: 3,
               slidesToScroll: 1,
               dots: true,
-              infinite: true,
+              infinite: false,
               adaptiveHeight: true,
-              speed: 500,
-              cssEase: "linear",
-              autoHeight: true,
+              speed: 300,
               prevArrow: `
                    <div class="prev_btn" >
                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -1553,8 +1796,33 @@ I definitely recommend checking this out!`,
               ],
             });
             slider.on("swipe", function () {});
+
+            slider.on("afterChange", animateHeightMultiElemental);
+            slider.on("init", animateHeightMultiElemental);
           }
         }, 100);
+
+        let animateHeightMultiElemental = function (event, slick, currentSlide, nextSlide) {
+          let _ = slick;
+          let targetHeight = 0;
+          let $activeSlides;
+          if (_.options.adaptiveHeight === true && _.options.vertical === false) {
+            $activeSlides = _.$slideTrack.find(".slick-active");
+            // Находим наибольшую высоту у показываемых слайдов
+            $activeSlides.each(function () {
+              var height = $(this).outerHeight(true);
+              if (targetHeight < height) {
+                targetHeight = height;
+              }
+            });
+            _.$list.animate(
+              {
+                height: targetHeight,
+              },
+              _.options.speed
+            );
+          }
+        };
       }
 
       let slickIntervalMayAlsoLike = setInterval(() => {
@@ -1727,17 +1995,29 @@ I definitely recommend checking this out!`,
       let b = setInterval(() => {
         if (document.querySelectorAll(".reviews_read_more_btn")) {
           clearInterval(b);
+          let h = 120;
+          if (window.innerWidth <= 768) {
+            h = 96;
+          }
+
           for (let item of document.querySelectorAll(".reviews_read_more_block .preview_text")) {
-            console.log(item.scrollHeight);
-            if (item.scrollHeight <= 120) {
+            console.log(item, item.scrollHeight);
+            if (item.scrollHeight <= h) {
               item.nextElementSibling.innerHTML = "&nbsp";
               item.nextElementSibling.classList.add("disable");
             }
           }
 
+          if (window.innerWidth <= 768) {
+            document.querySelectorAll(".reviews_link").forEach((el) => {
+              el.classList.add("load_var");
+            });
+          }
+
           document.querySelectorAll(".reviews_read_more_btn").forEach((el) => {
             el.addEventListener("click", (e) => {
               e.preventDefault();
+              e.stopPropagation();
               e.currentTarget.style.display = "none";
               e.currentTarget.previousElementSibling.style.height = "auto";
             });
@@ -1792,6 +2072,68 @@ I definitely recommend checking this out!`,
           }
         }
       });
+    }
+    function addSwiper() {
+      const script = document.createElement("script");
+      script.src = "https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js";
+      script.async = false;
+      document.head.appendChild(script);
+
+      const style = document.createElement("link");
+      style.href = "https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css";
+      style.rel = "stylesheet";
+      document.head.appendChild(style);
+    }
+    initSwiper();
+    function initSwiper() {
+      // #1 Main slider
+      let s = setInterval(() => {
+        if (typeof Swiper === "function" && document.querySelector(".main_slider")) {
+          clearInterval(s);
+          const swiperMainSync = new Swiper(".main_slider_sync", {
+            slidesPerView: 6,
+            slideToClickedSlide: true,
+            spaceBetween: 8,
+            on: {
+              init: () => {
+                document.querySelectorAll(".main_slider_sync .swiper-slide").forEach((slide) => {
+                  slide.addEventListener("click", () => {});
+                });
+              },
+            },
+          });
+
+          let diff = 0;
+
+          const swiperMain = new Swiper(".main_slider", {
+            slidesPerView: 1,
+            touchEventsTarget: "wrapper",
+            pagination: {
+              el: ".swiper-pagination",
+              clickable: true,
+            },
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+            thumbs: {
+              swiper: swiperMainSync,
+            },
+            spaceBetween: 10,
+            breakpoints: {
+              768: {},
+            },
+            on: {
+              init: () => {},
+              slideChange: (swiper) => {
+                if (diff === swiper.touches.diff) return false;
+                diff = swiper.touches.diff;
+              },
+            },
+          });
+        }
+      }, 100);
+      // #2
     }
   }
 }, 100);
