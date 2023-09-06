@@ -13,16 +13,6 @@ let startPdp = setInterval(() => {
     scriptCustomSliderStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css";
     scriptCustomSliderStyle.rel = "stylesheet";
     document.head.appendChild(scriptCustomSliderStyle);
-    //tooltip
-    let scriptPopper = document.createElement("script");
-    scriptPopper.src = "https://unpkg.com/popper.js@1";
-    scriptPopper.async = false;
-    document.body.appendChild(scriptPopper);
-
-    let scriptTippy = document.createElement("script");
-    scriptTippy.src = "https://unpkg.com/tippy.js@5";
-    scriptTippy.async = false;
-    document.body.appendChild(scriptTippy);
 
     function pushDataLayer(name, desc, type, loc) {
       console.log(name + " / " + desc + " / " + type + " / " + loc);
@@ -39,6 +29,9 @@ let startPdp = setInterval(() => {
 
     let stylePdp = /*html */ `
     <style>
+        .fl-module-rich-text{
+            margin-top: 40px;
+        }
 .fl-row-content-wrap {
   padding: 36px 10px 0 !important;
 }
@@ -84,6 +77,7 @@ let startPdp = setInterval(() => {
 }
 .fl-col-small .fl-module-content.fl-node-content {
   border: 1px solid #e7e6de;
+  padding: 10px 10px 0;
 }
 .fl-node-content iframe.rezdy {
   width: 100%;
@@ -178,8 +172,7 @@ h2.new_title::after {
 }
 /*with_code_block */
 #withCodeBlock {
-  border-top: 1px solid #e7e6de;
-  padding: 20px 0 40px;
+  padding: 0 0 25px;
   margin: 0 16px;
 }
 .with_code_block {
@@ -251,54 +244,60 @@ h2.new_title::after {
   text-transform: initial;
 }
 .free_cancellationup_block {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  max-width: 295px;
-  margin: 0 auto;
-  text-align: center;
+    margin: 0 -26px;
+    background: #F1F0E8;
+    padding: 15px;
+    text-align: center;
 }
-.free_cancellationup_block p {
-  color: #28364b;
-  font-family: "Raleway";
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 18px;
-  margin: 0 8px !important;
+.free_cancellationup_block > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
-.free_cancellationup_block p span {
-  font-family: "Playfair Display";
-  font-size: 20px;
-  text-transform: uppercase;
+.free_cancellationup_block span {
+color: #28364B;
+font-family: 'Playfair Display';
+font-size: 20px;
+font-weight: 400;
+line-height: 28px;
+text-transform: uppercase;
+}
+.free_cancellationup_block > p:nth-of-type(1) {
+    position: relative;
+    color: #28364B;
+font-family: 'Raleway';
+font-size: 13px;
+font-weight: 400;
+line-height: 20px;
+text-transform: uppercase;
+margin: 5px 0 15px !important;
+}
+.free_cancellationup_block > p:nth-of-type(1)::after{
+        content: "";
+    background-image: url(https://vegasyacht.com/wp-content/uploads/2020/12/separator.png);
+    position: absolute;
+    width: 72px;
+    height: 6px;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+.free_cancellationup_block > p:nth-of-type(2) {
+    color: #28364B;
+font-family: 'Raleway';
+font-size: 12px;
+font-weight: 400;
+line-height: 18px;
+margin: 0 auto !important;
+    max-width: 238px;
 }
 .free_cancellationup_block svg {
   min-width: 24px;
   min-height: 24px;
 }
-.free_cancellationup_block svg:focus {
-  outline: unset;
-}
-.free_cancellationup_block .tippy-tooltip {
-  color: #28364b;
-  font-family: "Raleway";
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 18px;
-  border: 1px solid #e7e6de;
-  background: #fff;
-  max-width: 190px !important;
-  filter: drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.2));
-}
-.free_cancellationup_block .tippy-content {
-  padding: 12px;
-  text-align: left !important;
-}
-.free_cancellationup_block .tippy-tooltip[data-placement^="bottom"] > .tippy-arrow {
-  border-bottom-color: #ffffff;
-}
-.free_cancellationup_block .tippy-tooltip[data-placement^="top"] > .tippy-arrow {
-  border-top-color: #ffffff;
-}
+
 /*mayAlsoLikeBlock */
 #mayAlsoLikeBlock {
   background: #fff;
@@ -685,10 +684,11 @@ h2.new_title::after {
 }
 /*looking */
 .looking{
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  margin: 26px 0 42px;
+ display: flex;
+ align-items: flex-start;
+ gap: 6px;
+ margin: 27px 0 0;
+ flex-direction: column;
 }
 .looking > div{
   display: flex;
@@ -762,7 +762,7 @@ line-height: 24px;
   .main_slider .swiper-slide img {
     min-height: 100%;
     min-width: 100%;
-    object-fit: contain;
+    object-fit: cover;
     max-height: 440px;
   }
   .swiper-slide img {
@@ -807,6 +807,20 @@ line-height: 24px;
     max-width: 900px;
   }
 }
+@media (max-width: 1168px) {
+.book_now_wrapp p{
+    font-size: 17px;
+}
+  .with_code_block {
+    padding: 20px 16px;
+  }
+  .code_wrapp > p:nth-child(2){
+        font-size: 13px;
+  }
+  .looking > div p{
+        font-size: 12px;
+  }
+}
 @media (max-width: 1050px) {
   .reviews_slider {
     max-width: 800px;
@@ -845,7 +859,7 @@ line-height: 24px;
     font-weight: 400;
     line-height: 20px;
     margin: 20px auto;
-    width: 90%;
+    width: 95%;
   }
   .ast-header-break-point .ast-mobile-header-inline .main-header-container, .ast-header-break-point .ast-mobile-header-stack .main-header-container{
     position: relative;
@@ -900,12 +914,12 @@ line-height: 24px;
   }
   /*advisor_and_icon_box */
   .advisor_and_icon_box{
-    margin: 24px 0 4px;
-    border: 1px solid #E7E6DE;
+    margin: 20px 0 4px;
+    border-bottom: 1px solid #E7E6DE;
   }
   .lav_advisor{
-    padding: 16px 20px;
-    border-bottom: 1px solid #E7E6DE;
+    padding: 0 20px 20px;
+    text-align: center;
   }
   .lav_advisor > img{
     max-width: 183px;
@@ -926,8 +940,11 @@ line-height: 24px;
     color: #28364B;
   }
   .img_wrap_icon{
-    padding: 17px 20px;
+padding: 11px 20px;
     gap: 32px;
+    border-bottom: 1px solid #FFF;
+    background: #F1F0E8;
+    justify-content: center;
   }
   .share{
     right: 42px;
@@ -935,25 +952,48 @@ line-height: 24px;
   }
   /*withCodeBlock */
   #withCodeBlock {
-    border-top: none;
-    margin: 10px 0 40px;
+    margin: 0;
     padding: 0;
   }
-  .with_code_block {
-    padding: 24px;
-    margin: 0 auto 24px;
+  .fl-col-small .fl-module-content.fl-node-content{
+    padding: 0;
+    border: none;
   }
-  .free_cancellationup_block {
-    border-top: 1px solid #e7e6de;
-    padding-top: 24px;
+  .with_code_block {
+    padding: 15px 24px;
+    margin: 0 auto 20px;
     max-width: unset;
   }
-  .free_cancellationup_block p {
-    max-width: 236px;
+  .book_now_wrapp p{
+    font-size: 22px;
+  }
+  .code_wrapp > p:nth-child(2) {
+    font-size: 14px;
+}
+  .free_cancellationup_block {
+    padding: 20px 20px 20px 40px;
+    margin: 0 -18px;
+    text-align: left;
+  }
+  .free_cancellationup_block > p:nth-of-type(1){
+        max-width: 238px;
+    margin: 3px 0 20px 40px !important;
+        font-weight: 600;
+  }
+  .free_cancellationup_block > div{
+    margin: 0 auto;
+    gap: 15px;
+    justify-content: flex-start;
+  }
+  .free_cancellationup_block > p:nth-of-type(1)::after{
+    right: unset;
+  }
+  .free_cancellationup_block > p:nth-of-type(2){
+        margin: 0 0 0 40px !important;
   }
   /*awards_block */
   .awards_block {
-    padding: 8px 0 20px;
+    padding: 52px 0 20px;
     margin: 0 0 20px;
     border-bottom: 1px solid #e7e6de;
   }
@@ -1055,12 +1095,7 @@ line-height: 24px;
   }
   /*.looking */
   .looking{
-    align-items: flex-start;
-    gap: 8px;
-    margin: 0 0 14px;
-    flex-direction: column;
-    padding-top: 14px;
-    border-top: 1px solid #e7e6de;
+    margin: 24px 0 0 35px;
   }
   .fl-rich-text h3{
     font-size: 20px;
@@ -1156,6 +1191,9 @@ line-height: 24px;
         <img src="https://flopsi69.github.io/crs/llvws/new_pdp/img/tripadvisor_points.png" />
         <p>based on <span class="lav_advisor_count">954 reviews</span> <span style="margin-inline: 8px">·</span> <a href="https://www.tripadvisor.ru/Attraction_Review-g45963-d7161682-Reviews-Lake_Las_Vegas_Water_Sports-Las_Vegas_Nevada.html" target="_blank">See all Reviews</a></p>
       </div>
+    </div>
+    `;
+    let imgWrapIconBox = /*html */ `
       <div class="img_wrap_icon">
         <p class="icon_how_to_find_us">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" viewBox="0 0 16 20" fill="none">
@@ -1172,7 +1210,6 @@ line-height: 24px;
           <span>Share</span>
         </p>
       </div>
-    </div>
     `;
     let awardsBlock = /*html */ `
     <div class="awards_block">
@@ -1231,21 +1268,15 @@ line-height: 24px;
         </div>
       </div>
       <div class="free_cancellationup_block">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-          <path d="M19.4281 2.73424C19.2867 2.593 19.095 2.51367 18.8951 2.51367C18.6952 2.51367 18.5035 2.593 18.3621 2.73424L9.31953 11.7514L6.05703 8.20807C5.92157 8.06106 5.73328 7.97383 5.53355 7.96555C5.33381 7.95728 5.13896 8.02863 4.9918 8.16393C4.919 8.23097 4.86011 8.31169 4.81852 8.40149C4.77692 8.49129 4.75341 8.5884 4.74935 8.68729C4.74529 8.78617 4.76074 8.88488 4.79484 8.97779C4.82893 9.0707 4.88099 9.15598 4.94805 9.22877L8.7418 13.3491C8.81043 13.4241 8.89354 13.4844 8.98612 13.5265C9.07869 13.5685 9.17882 13.5913 9.28047 13.5936H9.29648C9.49593 13.5935 9.68722 13.5145 9.82851 13.3737L19.4266 3.80026C19.5681 3.65908 19.6478 3.46748 19.6481 3.26757C19.6484 3.06766 19.5692 2.87582 19.4281 2.73424Z" fill="#CFBE88"/>
-          <path d="M19.2461 9.24609C19.0462 9.2462 18.8546 9.32567 18.7133 9.46705C18.572 9.60842 18.4926 9.80012 18.4926 10C18.4926 14.6828 14.6828 18.4926 10 18.4926C5.31719 18.4926 1.50742 14.6828 1.50742 10C1.50742 5.31719 5.31719 1.50742 10 1.50742C10.1999 1.50742 10.3916 1.42805 10.533 1.28675C10.6743 1.14545 10.7538 0.953787 10.7539 0.753906C10.7539 0.553958 10.6745 0.362199 10.5331 0.220814C10.3917 0.0794292 10.1999 0 10 0C4.48594 0 0 4.48594 0 10C0 15.5141 4.48594 20 10 20C15.5141 20 20 15.5137 20 10C20 9.80005 19.9206 9.60829 19.7792 9.46691C19.6378 9.32552 19.446 9.24609 19.2461 9.24609Z" fill="#CFBE88"/>
-        </svg>
-        <p><span>Free cancellationup</span> to 24H before the event</p>
-        <svg data-title="For cancellations, please send us an email or submit your request via chat or SMS" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-          <mask id="mask0_1539_1138" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="20">
-            <path d="M20 0H0V20H20V0Z" fill="white"/>
-          </mask>
-          <g mask="url(#mask0_1539_1138)">
-            <path d="M9.99998 6.25C9.5027 6.25 9.02579 6.44754 8.67416 6.79917C8.32253 7.15081 8.12498 7.62772 8.12498 8.125V8.325C8.12498 8.40708 8.10882 8.48835 8.07741 8.56418C8.046 8.64001 7.99996 8.70891 7.94193 8.76694C7.88389 8.82498 7.81499 8.87102 7.73916 8.90242C7.66333 8.93383 7.58206 8.95 7.49998 8.95C7.33422 8.95 7.17525 8.88415 7.05804 8.76694C6.94083 8.64973 6.87498 8.49076 6.87498 8.325V8.125C6.87498 7.2962 7.20422 6.50134 7.79028 5.91529C8.37633 5.32924 9.17118 5 9.99998 5C10.8288 5 11.6236 5.32924 12.2097 5.91529C12.7957 6.50134 13.125 7.2962 13.125 8.125V8.29648C13.125 9.15095 12.8036 9.97417 12.2247 10.6026C11.6457 11.2311 10.8516 11.6187 9.99998 11.6887V13.125C9.99998 13.2908 9.93414 13.4497 9.81693 13.5669C9.69972 13.6842 9.54075 13.75 9.37498 13.75C9.20922 13.75 9.05025 13.6842 8.93304 13.5669C8.81583 13.4497 8.74998 13.2908 8.74998 13.125V11.298C8.74998 11.0731 8.83933 10.8574 8.99837 10.6984C9.15741 10.5393 9.37312 10.45 9.59803 10.45H9.72147C10.2926 10.45 10.8404 10.2231 11.2442 9.81925C11.6481 9.41539 11.875 8.86763 11.875 8.29648V8.125C11.875 7.62772 11.6774 7.15081 11.3258 6.79917C10.9742 6.44754 10.4973 6.25 9.99998 6.25Z" fill="#CFBE88"/>
-            <path d="M9.37498 15.625C9.54075 15.625 9.69972 15.5592 9.81693 15.4419C9.93414 15.3247 9.99998 15.1658 9.99998 15C9.99998 14.8342 9.93414 14.6753 9.81693 14.5581C9.69972 14.4408 9.54075 14.375 9.37498 14.375C9.20922 14.375 9.05025 14.4408 8.93304 14.5581C8.81583 14.6753 8.74998 14.8342 8.74998 15C8.74998 15.1658 8.81583 15.3247 8.93304 15.4419C9.05025 15.5592 9.20922 15.625 9.37498 15.625Z" fill="#CFBE88"/>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.135155 18.9867L0.139452 18.9809L0.158202 18.9574C0.174608 18.9363 0.199217 18.9047 0.230467 18.8637C0.292967 18.7824 0.38242 18.6641 0.487889 18.5203C0.700389 18.2312 0.975389 17.8418 1.23281 17.4344C1.49336 17.0211 1.71953 16.6141 1.84883 16.284C1.89668 16.1724 1.93028 16.0552 1.94883 15.9352C0.679611 14.2169 -0.00360993 12.1362 -1.03496e-06 10C-1.03496e-06 4.47734 4.47734 0 10 0C15.5227 0 20 4.47734 20 10C20 15.5227 15.523 20 10 20C8.51915 20.0019 7.05648 19.6738 5.71836 19.0395C5.68828 19.0375 5.64023 19.0367 5.57422 19.0395C5.42187 19.0453 5.21445 19.0668 4.96133 19.1027C4.45781 19.1738 3.82851 19.2941 3.20351 19.4254C2.57851 19.5566 1.97422 19.6953 1.52383 19.802C1.29805 19.8551 1.11133 19.9004 0.98164 19.932L0.831249 19.9688L0.792186 19.9785L0.779296 19.9816C0.652705 20.0132 0.519398 20.0044 0.398067 19.9564C0.276736 19.9085 0.173465 19.8237 0.102734 19.7141L0.135155 18.9867ZM10 1.25C5.16758 1.25 1.25 5.16758 1.25 10C1.24671 11.8938 1.86095 13.7371 2.99961 15.2504C3.20117 15.5184 3.21641 15.8293 3.19492 16.052C3.16615 16.2881 3.1053 16.5193 3.01406 16.7391C2.8418 17.1789 2.56601 17.6648 2.29141 18.1C2.23086 18.1961 2.16953 18.291 2.1082 18.3836C2.375 18.3238 2.65859 18.2617 2.9457 18.2016C3.57969 18.0688 4.24219 17.9414 4.78672 17.8645C5.05781 17.8254 5.31289 17.7984 5.52656 17.7902C5.63216 17.7852 5.73797 17.7869 5.84336 17.7953C5.96977 17.8044 6.09357 17.8359 6.20898 17.8883C7.39165 18.4573 8.68756 18.7519 10 18.75C14.8324 18.75 18.75 14.8324 18.75 10C18.75 5.16758 14.8324 1.25 10 1.25Z" fill="#CFBE88"/>
-          </g>
-        </svg>
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M19.4281 2.73424C19.2867 2.593 19.095 2.51367 18.8951 2.51367C18.6952 2.51367 18.5035 2.593 18.3621 2.73424L9.31953 11.7514L6.05703 8.20807C5.92157 8.06106 5.73328 7.97383 5.53355 7.96555C5.33381 7.95728 5.13896 8.02863 4.9918 8.16393C4.919 8.23097 4.86011 8.31169 4.81852 8.40149C4.77692 8.49129 4.75341 8.5884 4.74935 8.68729C4.74529 8.78617 4.76074 8.88488 4.79484 8.97779C4.82893 9.0707 4.88099 9.15598 4.94805 9.22877L8.7418 13.3491C8.81043 13.4241 8.89354 13.4844 8.98612 13.5265C9.07869 13.5685 9.17882 13.5913 9.28047 13.5936H9.29648C9.49593 13.5935 9.68722 13.5145 9.82851 13.3737L19.4266 3.80026C19.5681 3.65908 19.6478 3.46748 19.6481 3.26757C19.6484 3.06766 19.5692 2.87582 19.4281 2.73424Z" fill="#CFBE88"/>
+              <path d="M19.2461 9.24609C19.0462 9.2462 18.8546 9.32567 18.7133 9.46705C18.572 9.60842 18.4926 9.80012 18.4926 10C18.4926 14.6828 14.6828 18.4926 10 18.4926C5.31719 18.4926 1.50742 14.6828 1.50742 10C1.50742 5.31719 5.31719 1.50742 10 1.50742C10.1999 1.50742 10.3916 1.42805 10.533 1.28675C10.6743 1.14545 10.7538 0.953787 10.7539 0.753906C10.7539 0.553958 10.6745 0.362199 10.5331 0.220814C10.3917 0.0794292 10.1999 0 10 0C4.48594 0 0 4.48594 0 10C0 15.5141 4.48594 20 10 20C15.5141 20 20 15.5137 20 10C20 9.80005 19.9206 9.60829 19.7792 9.46691C19.6378 9.32552 19.446 9.24609 19.2461 9.24609Z" fill="#CFBE88"/>
+            </svg>
+            <span>Free cancellationup</span>
+        </div>
+        <p>up to 24 hours before the event</p>
+        <p>For cancelations, please send us an email or submit your request via chat or SMS</p>
       </div>
     </div>
       `;
@@ -1630,6 +1661,10 @@ line-height: 24px;
         if (document.querySelector("#custom-subheader + .rope-separator") && !document.querySelector(".rope-separator + .breadcrumbs")) {
           document.querySelector("#custom-subheader + .rope-separator").after(document.querySelector(".breadcrumbs"));
         }
+        //render imgWrapIconBox
+        if (document.querySelector(".main_slider") && !document.querySelector(".img_wrap_icon")) {
+          document.querySelector(".main_slider").insertAdjacentHTML("beforebegin", imgWrapIconBox);
+        }
         //change place rezdy
         if (document.querySelector(".fl-module-rich-text") && document.querySelector(".fl-col-small:not(.fl-col-small-full-width)")) {
           document.querySelector(".fl-module-rich-text").before(document.querySelector(".fl-col-small:not(.fl-col-small-full-width)"));
@@ -1710,22 +1745,12 @@ line-height: 24px;
         });
       }
       // lookingHtml
-      if (window.innerWidth > 768) {
-        if (document.querySelector(".fl-rich-text") && !document.querySelector(".looking")) {
-          document.querySelector(".fl-rich-text")?.insertAdjacentHTML("beforebegin", lookingHtml);
-        }
-        if (document.querySelector(".looking")) {
-          document.querySelector(".looking .people_txt").textContent = randomInteger(1, 10);
-          document.querySelector(".looking .times_txt").textContent = randomInteger(1, 10);
-        }
-      } else {
-        if (document.querySelector(".free_cancellationup_block") && !document.querySelector(".looking")) {
-          document.querySelector(".free_cancellationup_block")?.insertAdjacentHTML("beforebegin", lookingHtml);
-        }
-        if (document.querySelector(".looking")) {
-          document.querySelector(".looking .people_txt").textContent = randomInteger(1, 10);
-          document.querySelector(".looking .times_txt").textContent = randomInteger(1, 10);
-        }
+      if (document.querySelector(".free_cancellationup_block") && !document.querySelector(".looking")) {
+        document.querySelector(".free_cancellationup_block")?.insertAdjacentHTML("afterend", lookingHtml);
+      }
+      if (document.querySelector(".looking")) {
+        document.querySelector(".looking .people_txt").textContent = randomInteger(1, 10);
+        document.querySelector(".looking .times_txt").textContent = randomInteger(1, 10);
       }
       // ReviewsSlider
       if (document.querySelector(".reviews_block") && document.querySelector(".reviews_slider").children.length !== arrReviews.length) {
@@ -1762,7 +1787,6 @@ line-height: 24px;
 
     initSlickSlider();
     onClickCode();
-    tooltipInit();
     onClickShare();
     onClickIconHowToFindUs();
     onClickReadMoreBtn();
@@ -1922,24 +1946,6 @@ line-height: 24px;
         }
       }, 100);
     }
-    function tooltipInit() {
-      let tippyRun = setInterval(() => {
-        if (typeof tippy === "function" && document.querySelector(".free_cancellationup_block")) {
-          clearInterval(tippyRun);
-          document.querySelectorAll("[data-title]").forEach((el) => {
-            tippy(el, {
-              content: el.getAttribute("data-title"),
-              // trigger: "click",
-              placement: "bottom-end",
-              appendTo: function () {
-                return document.querySelector(".free_cancellationup_block");
-              },
-              onTrigger() {},
-            });
-          });
-        }
-      }, 700);
-    }
     function onClickIconHowToFindUs() {
       let srch = setInterval(() => {
         if (document.querySelector(".icon_how_to_find_us") && document.querySelector(".how_to_find_us_block")) {
@@ -2022,7 +2028,6 @@ line-height: 24px;
           }
 
           for (let item of document.querySelectorAll(".reviews_read_more_block .preview_text")) {
-            console.log(item, item.scrollHeight);
             if (item.scrollHeight <= h) {
               item.nextElementSibling.innerHTML = "&nbsp";
               item.nextElementSibling.classList.add("disable");

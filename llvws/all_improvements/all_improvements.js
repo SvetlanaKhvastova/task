@@ -1135,3 +1135,86 @@ if (window.location.pathname === "/") {
     }
   }, 100);
 }
+
+//
+function visibElem() {
+  let obsV = new IntersectionObserver(visibilityV, {
+    threshold: 1,
+  });
+
+  let obsV2 = new IntersectionObserver(visibilityV2, {
+    threshold: 1,
+  });
+
+  let time;
+
+  let intV1 = setInterval(() => {
+    if (document.querySelector(".how_to_find_us_maps")) {
+      clearInterval(intV1);
+      time = 3000;
+      obsV.observe(document.querySelector(".how_to_find_us_maps"));
+    }
+  }, 100);
+  let intV2 = setInterval(() => {
+    if (document.querySelector(".voucher_block")) {
+      clearInterval(intV2);
+      time = 2000;
+      obsV.observe(document.querySelector(".voucher_block"));
+    }
+  }, 100);
+  let intV3 = setInterval(() => {
+    if (document.querySelector(".free_cancellationup_block")) {
+      clearInterval(intV3);
+      time = 2000;
+      obsV.observe(document.querySelector(".free_cancellationup_block"));
+    }
+  }, 100);
+  let intV4 = setInterval(() => {
+    if (document.querySelector(".may_also_like_block")) {
+      clearInterval(intV4);
+      time = 3000;
+      obsV.observe(document.querySelector(".may_also_like_block"));
+    }
+  }, 100);
+  let intV5 = setInterval(() => {
+    if (document.querySelector(".is_visib_reviews")) {
+      clearInterval(intV5);
+      time = 3000;
+      obsV.observe(document.querySelector(".is_visib_reviews"));
+    }
+  }, 100);
+
+  function visibilityV(entries) {
+    entries.forEach((i) => {
+      if (i.isIntersecting) {
+        setTimeout(function () {
+          obsV2.observe(i.target);
+        }, time);
+      }
+    });
+  }
+  function visibilityV2(entries) {
+    entries.forEach((i) => {
+      if (i.isIntersecting) {
+        if (i.target.classList.contains("how_to_find_us_maps")) {
+          pushDataLayer("exp_new_ui_v_olpdp", "Our location", "Visibility", "Our location PDP");
+        }
+        if (i.target.classList.contains("voucher_block")) {
+          pushDataLayer("exp_new_ui_v_bne_cc", "Copy code", "Visibility", "Book now enjoy");
+        }
+        if (i.target.classList.contains("free_cancellationup_block")) {
+          pushDataLayer("exp_new_ui_v_bne_fc", "Free cancelation", "Visibility", "Book now enjoy");
+        }
+        if (i.target.classList.contains("may_also_like_block")) {
+          pushDataLayer("exp_new_ui_v_t_ymal", "You may also like", "Visibility", "Tours");
+        }
+        if (i.target.classList.contains("is_visib_reviews")) {
+          pushDataLayer("exp_new_ui_v_r_r", "Reviews", "Visibility", "Reviews");
+        }
+
+        obsV.unobserve(i.target);
+      }
+      obsV2.unobserve(i.target);
+    });
+  }
+}
