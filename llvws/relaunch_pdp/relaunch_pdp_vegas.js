@@ -29,1131 +29,1135 @@ let startPdp = setInterval(() => {
 
     let stylePdp = /*html */ `
     <style>
-        .fl-module-rich-text{
-            margin-top: 40px;
-        }
-.fl-row-content-wrap {
-  padding: 36px 10px 0 !important;
-}
-.fl-node-content .fl-col-group {
-  display: flex;
-  justify-content: space-between;
-  gap: 48px;
-}
-.fl-node-content .fl-col-group > div {
-  float: unset;
-}
-.fl-node-content .fl-col-group > div:nth-child(1) {
-  max-width: 55%;
-  width: 100%;
-}
-.fl-node-content .fl-col-group > div:nth-child(2) {
-  max-width: 412px;
-  width: 100%;
-  /*
-  flex: 1 0 412px;
-  */
-}
-.fl-row-content.fl-row-fixed-width.fl-node-content {
-  max-width: 1440px;
-  margin: 0;
-}
-.fl-module-content.fl-node-content {
-  margin: 0;
-}
-#custom-subheader {
-  padding: 330px 0px 49px;
-}
-#custom-subheader h1 {
-  color: #fff;
-  font-family: "Playfair Display";
-  font-size: 56px;
-  font-weight: 400;
-  line-height: 64px;
-  margin-bottom: 20px !important;
-}
-.breadcrumbs {
-  line-height: 24px;
-}
-.fl-col-small .fl-module-content.fl-node-content {
-  border: 1px solid #e7e6de;
-  padding: 10px 10px 0;
-}
-.fl-node-content iframe.rezdy {
-  width: 100%;
-}
-/* */
-h4.new_subtitle {
-  color: #cfbe88;
-  text-align: center;
-  font-family: "Pinyon Script", cursive;
-  font-size: 30px;
-  font-weight: 400;
-  line-height: 36px;
-  margin: 0 0 8px;
-}
-h2.new_title {
-  color: #28364b;
-  text-align: center;
-  font-family: "Playfair Display";
-  font-size: 48px;
-  font-weight: 400;
-  line-height: 56px;
-  margin: 0 auto 74px;
-  position: relative;
-  max-width: 576px;
-}
-h2.new_title::after {
-  content: "";
-  background-image: url(https://vegasyacht.com/wp-content/uploads/2020/12/separator.png);
-  position: absolute;
-  width: 72px;
-  height: 6px;
-  bottom: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-/*choice_and_icon_box */
-.choice_and_icon_box {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #e7e6de;
-  padding: 59px 0 20px;
-  margin-bottom: 40px;
-}
-.img_wrap_icon {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  position: relative;
-}
-.img_wrap_icon > p.icon_share,
-.img_wrap_icon > p.icon_how_to_find_us {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin: 0 !important;
-  color: #4b4f58;
-  font-family: "Raleway";
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 22px;
-  cursor: pointer;
-  padding-bottom: 2px;
-}
-.img_wrap_icon > p.icon_share > span,
-.img_wrap_icon > p.icon_how_to_find_us > span {
-  border-bottom: 1px solid #4b4f58;
-}
-.img_wrap_choice {
-  max-width: 173px;
-}
-.share {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  position: absolute;
-  right: -90px;
-  top: 29px;
-  border-radius: 100px;
-  border: 1px solid #f1f0e8;
-  background: #fff;
-  box-shadow: 0px 6px 4px 0px rgba(52, 50, 41, 0.04);
-  margin: 0 !important;
-  padding: 4px 12px 4px 6px;
-}
-.share > span {
-  color: #333;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 22px;
-  text-transform: initial;
-}
-/*with_code_block */
-#withCodeBlock {
-  padding: 0 0 25px;
-  margin: 0 16px;
-}
-.with_code_block {
-  max-width: 321px;
-  border: 2px dashed #e7e6de;
-  text-align: center;
-  padding: 20px 24px;
-  width: 100%;
-  margin: 0 auto 26px;
-}
-.book_now_wrapp p {
-  color: #28364b;
-  font-family: "Playfair Display";
-  font-size: 21px;
-  font-weight: 400;
-  line-height: 30px;
-  text-transform: capitalize;
-  margin: 0 0 8px !important;
-}
-.with_code_block .accent_color {
-  color: #e60023;
-  text-transform: uppercase;
-}
-.code_wrapp > p:nth-child(1) {
-  position: relative;
-  color: #28364b;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  margin: 0;
-}
-.code_wrapp > p:nth-child(2) {
-  color: #28364b;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  margin: 8px 0 0 !important;
-}
-.voucher_block {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  color: #e60023;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 24px;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-.copied {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  position: absolute;
-  right: -45px;
-  top: 29px;
-  border-radius: 100px;
-  border: 1px solid #f1f0e8;
-  background: #fff;
-  box-shadow: 0px 6px 4px 0px rgba(52, 50, 41, 0.04);
-  margin: 0 !important;
-  padding: 4px 12px 4px 6px;
-}
-.copied > span {
-  color: #333;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 22px;
-  text-transform: initial;
-}
-.free_cancellationup_block {
-    margin: 0 -26px;
-    background: #F1F0E8;
-    padding: 15px;
-    text-align: center;
-}
-.free_cancellationup_block > div{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-.free_cancellationup_block span {
-color: #28364B;
-font-family: 'Playfair Display';
-font-size: 20px;
-font-weight: 400;
-line-height: 28px;
-text-transform: uppercase;
-}
-.free_cancellationup_block > p:nth-of-type(1) {
-    position: relative;
-    color: #28364B;
-font-family: 'Raleway';
-font-size: 13px;
-font-weight: 400;
-line-height: 20px;
-text-transform: uppercase;
-margin: 5px 0 15px !important;
-}
-.free_cancellationup_block > p:nth-of-type(1)::after{
-        content: "";
-    background-image: url(https://vegasyacht.com/wp-content/uploads/2020/12/separator.png);
-    position: absolute;
-    width: 72px;
-    height: 6px;
-    bottom: -10px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-}
-.free_cancellationup_block > p:nth-of-type(2) {
-    color: #28364B;
-font-family: 'Raleway';
-font-size: 12px;
-font-weight: 400;
-line-height: 18px;
-margin: 0 auto !important;
-    max-width: 238px;
-}
-.free_cancellationup_block svg {
-  min-width: 24px;
-  min-height: 24px;
-}
-
-/*mayAlsoLikeBlock */
-#mayAlsoLikeBlock {
-  background: #fff;
-  padding: 90px 0 94px;
-}
-.may_also_like_block {
-  max-width: 1440px;
-  width: 90%;
-  margin: 0 auto;
-}
-.may_also_like_list_first,
-.may_also_like_list_second,
-.may_also_like_list_third {
-  list-style: none;
-  display: flex !important;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin: 0;
-  gap: 40px;
-}
-.may_also_like_link {
-  width: 47%;
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  justify-content: flex-start;
-}
-.may_also_like_link .img_wrapp {
-  border: 16px solid #f1f0e8;
-  max-width: 230px;
-  min-width: 230px;
-  width: 100%;
-}
-.may_also_like_title {
-  font-family: "Playfair Display";
-  color: #4b4f58;
-  font-size: 28px;
-  font-weight: 400;
-  line-height: 36px;
-  margin: 0 0 12px !important;
-}
-.may_also_like_price {
-  color: #28364b;
-  font-family: "Playfair Display";
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 22px;
-  margin: 0 0 24px !important;
-}
-.may_also_like_price span {
-  color: #cab87e;
-  font-family: "Playfair Display";
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 28px;
-}
-.learn_more_wrapp .learn_more_btn {
-  display: flex;
-  padding: 0;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 154px;
-  height: 48px;
-  gap: 8px;
-  background: #cfbe88;
-  color: #28364b;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 24px;
-  transition: all 200ms linear;
-}
-.learn_more_wrapp .learn_more_btn:hover {
-  background: #3a3a3a;
-  color: #ffffff;
-  transition: all 200ms linear;
-  opacity: 1;
-}
-#mayAlsoLikeBlock .slick-dots {
-  display: flex;
-  justify-content: center;
-  margin: 48px 0 0;
-  list-style: none;
-}
-#mayAlsoLikeBlock .slick-dots li button {
-  position: relative;
-  display: flex;
-  width: 10px;
-  height: 10px;
-  font-size: 0;
-  line-height: 0;
-  cursor: pointer;
-  color: transparent;
-  border: 0;
-  outline: none;
-  background-color: transparent !important;
-  border-color: transparent !important;
-  padding: 5px;
-}
-#mayAlsoLikeBlock .slick-dots li button:before {
-  position: absolute;
-  content: "•";
-  top: 50%;
-  transform: translateY(-50%);
-  left: 0;
-  width: 10px;
-  height: 10px;
-  text-align: center;
-  border-radius: 50%;
-  background-color: #e5e2d6;
-}
-#mayAlsoLikeBlock .slick-dots li + li {
-  margin-left: 12px;
-}
-#mayAlsoLikeBlock .slick-dots li.slick-active button:before {
-  background-color: #cfbe88;
-}
-/*reviewsBlock */
-#reviewsBlock {
-  background: #f1f0e8;
-  padding: 72px 0px;
-}
-.reviews_block {
-  max-width: 1440px;
-  width: 90%;
-  margin: 0 auto;
-}
-.reviews_slider {
-  max-width: 1243px;
-  margin: 0 auto;
-  position: relative;
-}
-.reviews_link {
-  position: relative;
-  background: #fff;
-  padding: 24px 24px 40px;
-  min-height: 308px;
-}
-.reviews_service {
-  position: absolute;
-  right: 16px;
-  top: 16px;
-}
-.reviews_service img {
-    max-width: 95px;
-    max-height: 20px;
-}
-.reviews_name {
-  color: #28364b;
-  font-family: "Playfair Display";
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 24px;
-  margin-bottom: 4px !important;
-}
-.reviews_verified {
-  color: #07a64f;
-  font-feature-settings: "clig" off, "liga" off;
-  font-family: "Raleway";
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 18px;
-  margin-bottom: 20px !important;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-.preview_text {
-  white-space: pre-line;
-  color: #28364b;
-  font-family: "Raleway";
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 24px;
-  margin-bottom: 10px !important;
-  overflow: hidden;
-  height: 120px;
-}
-.reviews_read_more_btn {
-  color: #28364b;
-  font-family: "Raleway";
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 24px;
-  border-bottom: 1px solid #28364b;
-  cursor: pointer;
-}
-.reviews_read_more_btn.disable {
-  opacity: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-#reviewsBlock .slick-slide {
-  margin: 0 8px;
-}
-#reviewsBlock .slick-arrow {
-  cursor: pointer;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: 135px;
-  opacity: 0.8;
-  background: #fff;
-  width: 40px;
-  height: 40px;
-}
-#reviewsBlock .slick-arrow.slick-disabled{
-      opacity: 0.3;
-}
-#reviewsBlock .next_btn {
-  right: -60px;
-}
-#reviewsBlock .prev_btn {
-  left: -60px;
-}
-#reviewsBlock .slick-dots {
-  display: flex;
-  justify-content: center;
-  margin: 48px 0 0;
-  list-style: none;
-}
-#reviewsBlock .slick-dots li button {
-  position: relative;
-  display: flex;
-  width: 10px;
-  height: 10px;
-  font-size: 0;
-  line-height: 0;
-  cursor: pointer;
-  color: transparent;
-  border: 0;
-  outline: none;
-  background-color: transparent !important;
-  border-color: transparent !important;
-  padding: 5px;
-}
-#reviewsBlock .slick-dots li button:before {
-  position: absolute;
-  content: "•";
-  top: 50%;
-  transform: translateY(-50%);
-  left: 0;
-  width: 10px;
-  height: 10px;
-  text-align: center;
-  border-radius: 50%;
-  background-color: white;
-}
-#reviewsBlock .slick-dots li + li {
-  margin-left: 12px;
-}
-#reviewsBlock .slick-dots li.slick-active button:before {
-  background-color: #cfbe88;
-}
-/*howToFindUsBlock*/
-#howToFindUsBlock {
-  background: #fff;
-  padding: 94px 0;
-}
-.how_to_find_us_block {
-  max-width: 1440px;
-  width: 90%;
-  margin: 0 auto;
-}
-.how_to_find_us_contacts {
-  width: 100%;
-  max-width: 960px;
-  margin: 0 auto;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 71px;
-}
-.how_to_find_us_contacts .how_to_find_us_maps {
-  width: 50%;
-}
-.how_to_find_us_contacts .how_to_find_us_info {
-  width: 47%;
-  margin-top: 20px;
-}
-.how_to_find_us_descr {
-  color: #4b4f58;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  margin: 0 0 32px;
-}
-.how_to_find_us_contacts #footer-social li a {
-  color: inherit;
-}
-.how_to_find_us_contacts #footer-social li a:hover {
-  color: #cebd88;
-}
-.how_to_find_accardion {
-  list-style: none;
-  max-width: 960px;
-  margin: 56px auto 0;
-}
-.how_to_find_accardion_block {
-  border: 1px solid #e7e6de;
-}
-.how_to_find_accardion_block:nth-child(2) {
-  border-top: unset;
-}
-.how_to_find_accardion_block:nth-child(3) {
-  border-top: unset;
-}
-.how_to_find_accardion_block:nth-child(4) {
-  border-top: unset;
-}
-.how_to_find_accardion_link {
-  display: flex;
-  padding: 16px;
-  align-items: center;
-  justify-content: space-between;
-}
-.how_to_find_accardion_link h3 {
-  color: #28364b;
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 32px;
-  text-transform: capitalize;
-  margin: 0;
-}
-.how_to_find_accardion_lists {
-  display: none;
-}
-.how_to_find_accardion_lists > div {
-  padding: 0 16px 24px;
-}
-.how_to_find_accardion_lists p {
-  position: relative;
-  max-width: 815px;
-  color: #4b4f58;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  margin: 0 0 0 5px;
-  padding-left: 24px;
-}
-.how_to_find_accardion_lists p::before {
-  position: absolute;
-  content: "";
-  background: #28364b;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  left: 0;
-  top: 6px;
-}
-.how_to_find_accardion_lists p + p {
-  margin-top: 6px;
-}
-.how_to_find_accardion_link > span svg {
-  transition: all 0.3s ease;
-}
-.how_to_find_accardion_link.active_block > span svg {
-  transform: rotate(90deg);
-  transition: all 0.3s ease;
-}
-/*lakeLasvegasWaterSportsBlock */
-#lakeLasvegasWaterSportsBlock {
-  padding-top: 50px;
-  padding-bottom: 50px;
-  background-color: #28364b;
-}
-.lake_lasvegas_water_sports_list {
-  display: flex;
-  list-style: none;
-  align-items: flex-start;
-  justify-content: center;
-  max-width: 1500px;
-  margin: 0 auto;
-  gap: 50px;
-}
-.lake_lasvegas_water_sports_list li {
-  max-width: 170px;
-  width: 100%;
-}
-.how_to_find_accardion.mob_var,
-.load_more_reviews.mob_var {
-  display: none;
-}
-/*looking */
-.looking{
- display: flex;
- align-items: flex-start;
- gap: 6px;
- margin: 27px 0 0;
- flex-direction: column;
-}
-.looking > div{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.looking > div p{
-  color: #28364B;
-  font-family: 'Raleway';
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  margin: 0 0 0 4px !important;
-}
-/*accardion_all_inform_block */
-.accardion_all_inform_block{
-  list-style: none;
-  margin: 20px 0 32px;
-}
-.fl-rich-text h3{
-color: #28364B;
-font-family: 'Playfair Display';
-font-size: 24px;
-font-weight: 400;
-line-height: 32px;
-text-transform: uppercase;
-margin-bottom: 20px !important;
-}
- .fl-rich-text p,
- .fl-rich-text > ul > li,
- .how_to_find_accardion_lists > div> ul > li{
-  color: #4B4F58;
-font-family: 'Raleway';
-font-size: 14px;
-font-weight: 400;
-line-height: 24px;
- }
-  .fl-rich-text > ul{
-    margin: 0 0 20px 22px;
-  }
-  .how_to_find_accardion_lists > div> ul{
-    margin: 0 0 0 20px;
-  }
-  .how_to_find_accardion_lists > div> ul > li{
-    padding-left: 10px;
-  }
-  .how_to_find_accardion_lists > div> ul + p{
-        position: unset;
-    padding: 0;
-    margin: 10px 0 0;
-  }
-  /* */
-  .fl-col-content .fl-module-photo,
-  .fl-module-slideshow{
-    display: none !important;
-  }
-    .swiper_arrow {
-    width: 40px !important;
-    height: 40px !important;
-    background: rgba(31, 27, 27, 0.50);
-  }
-  .swiper .swiper-button-next::after,
-  .swiper .swiper-button-prev::after {
-    content: "";
-  }
-  /* MAIN SLIDER */
-  .main_slider {
-    margin-bottom: 8px;
-    display: block;
-  }
-  .main_slider .swiper-slide img {
-    min-height: 100%;
-    min-width: 100%;
-    object-fit: cover;
-    max-height: 440px;
-  }
-  .swiper-slide img {
-    object-fit: contain;
-  }
-  .main_slider .swiper-slide {
-    text-align: center;
-    height: auto;
-  }
-  .main_slider .swiper-pagination {
-    display: none;
-  }
-  .main_slider_sync .swiper-slide{
-    max-width: 120px;
-    opacity: 0.8;
-  }
-  .main_slider_sync .swiper-slide.swiper-slide-thumb-active{
-    opacity: 1;
-  }
-  .main_slider_sync .swiper-slide img {
-    height: 120px;
-    min-width: 100%;
-    cursor: pointer;
-    box-sizing: border-box;
-    transition: 0.35s;
-    object-fit: cover;
-  }
-
-  @media(hover: hover) {
-    .main_slider_sync .swiper-slide:not(.swiper-slide-thumb-active) img:hover {
-      opacity: 0.6;
+    .fl-module-rich-text {
+      margin-top: 40px;
     }
-  }
-  
-@media (max-width: 1295px) {
-  .reviews_slider {
-    max-width: 1000px;
-  }
-}
-@media (max-width: 1200px) {
-  .reviews_slider {
-    max-width: 900px;
-  }
-}
-@media (max-width: 1168px) {
-.book_now_wrapp p{
-    font-size: 17px;
-}
-  .with_code_block {
-    padding: 20px 16px;
-  }
-  .code_wrapp > p:nth-child(2){
+    .fl-row-content-wrap {
+      padding: 36px 10px 0 !important;
+    }
+    .fl-node-content .fl-col-group:not(.fl-node-5fbfca8d8a736) {
+      display: flex;
+      justify-content: space-between;
+      gap: 48px;
+    }
+    .fl-node-content .fl-col-group:not(.fl-node-5fbfca8d8a736) > div {
+      float: unset;
+    }
+    .fl-node-content .fl-col-group:not(.fl-node-5fbfca8d8a736) > div:nth-child(1):not(.fl-node-5fbfca8d8a778) {
+      max-width: 60%;
+      width: 100%;
+    }
+    .fl-node-content .fl-col-group:not(.fl-node-5fbfca8d8a736) > div:nth-child(2) {
+      max-width: 412px;
+      width: 100%;
+    }
+    .fl-row-content.fl-row-fixed-width.fl-node-content {
+      max-width: 1440px;
+      margin: 0;
+    }
+    .fl-module-content.fl-node-content {
+      margin: 0;
+    }
+    #custom-subheader {
+      padding: 330px 0px 49px;
+    }
+    #custom-subheader h1 {
+      color: #fff;
+      font-family: "Playfair Display";
+      font-size: 56px;
+      font-weight: 400;
+      line-height: 64px;
+      margin-bottom: 20px !important;
+    }
+    .breadcrumbs {
+      line-height: 24px;
+    }
+    .fl-col-small .fl-module-content.fl-node-content {
+      border: 1px solid #e7e6de;
+      padding: 10px 10px 0;
+    }
+    .fl-node-content iframe.rezdy {
+      width: 100%;
+    }
+    /* */
+    h4.new_subtitle {
+      color: #cfbe88;
+      text-align: center;
+      font-family: "Pinyon Script", cursive;
+      font-size: 30px;
+      font-weight: 400;
+      line-height: 36px;
+      margin: 0 0 8px;
+    }
+    h2.new_title {
+      color: #28364b;
+      text-align: center;
+      font-family: "Playfair Display";
+      font-size: 48px;
+      font-weight: 400;
+      line-height: 56px;
+      margin: 0 auto 74px;
+      position: relative;
+      max-width: 576px;
+    }
+    h2.new_title::after {
+      content: "";
+      background-image: url(https://vegasyacht.com/wp-content/uploads/2020/12/separator.png);
+      position: absolute;
+      width: 72px;
+      height: 6px;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    /*choice_and_icon_box */
+    .choice_and_icon_box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e7e6de;
+      padding: 59px 0 20px;
+      margin-bottom: 40px;
+    }
+    .img_wrap_icon {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      position: relative;
+    }
+    .img_wrap_icon > p.icon_share,
+    .img_wrap_icon > p.icon_how_to_find_us {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0 !important;
+      color: #4b4f58;
+      font-family: "Raleway";
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 22px;
+      cursor: pointer;
+      padding-bottom: 2px;
+    }
+    .img_wrap_icon > p.icon_share > span,
+    .img_wrap_icon > p.icon_how_to_find_us > span {
+      border-bottom: 1px solid #4b4f58;
+    }
+    .img_wrap_choice {
+      max-width: 173px;
+    }
+    .share {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      position: absolute;
+      right: -90px;
+      top: 29px;
+      border-radius: 100px;
+      border: 1px solid #f1f0e8;
+      background: #fff;
+      box-shadow: 0px 6px 4px 0px rgba(52, 50, 41, 0.04);
+      margin: 0 !important;
+      padding: 4px 12px 4px 6px;
+      z-index: 11111111111;
+    }
+    .share > span {
+      color: #333;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 22px;
+      text-transform: initial;
+    }
+    /*with_code_block */
+    #withCodeBlock {
+      padding: 0 0 25px;
+      margin: 0 16px;
+    }
+    .with_code_block {
+      max-width: 321px;
+      border: 2px dashed #e7e6de;
+      text-align: center;
+      padding: 20px 24px;
+      width: 100%;
+      margin: 0 auto 26px;
+    }
+    .book_now_wrapp p {
+      color: #28364b;
+      font-family: "Playfair Display";
+      font-size: 21px;
+      font-weight: 400;
+      line-height: 30px;
+      text-transform: capitalize;
+      margin: 0 0 8px !important;
+    }
+    .with_code_block .accent_color {
+      color: #e60023;
+      text-transform: uppercase;
+    }
+    .code_wrapp > p:nth-child(1) {
+      position: relative;
+      color: #28364b;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      margin: 0;
+    }
+    .code_wrapp > p:nth-child(2) {
+      color: #28364b;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      margin: 8px 0 0 !important;
+    }
+    .voucher_block {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: #e60023;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 24px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .copied {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      position: absolute;
+      right: -45px;
+      top: 29px;
+      border-radius: 100px;
+      border: 1px solid #f1f0e8;
+      background: #fff;
+      box-shadow: 0px 6px 4px 0px rgba(52, 50, 41, 0.04);
+      margin: 0 !important;
+      padding: 4px 12px 4px 6px;
+    }
+    .copied > span {
+      color: #333;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 22px;
+      text-transform: initial;
+    }
+    .free_cancellationup_block {
+      margin: 0 -26px;
+      background: #f1f0e8;
+      padding: 15px;
+      text-align: center;
+    }
+    .free_cancellationup_block > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .free_cancellationup_block span {
+      color: #28364b;
+      font-family: "Playfair Display";
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 28px;
+      text-transform: uppercase;
+    }
+    .free_cancellationup_block > p:nth-of-type(1) {
+      position: relative;
+      color: #28364b;
+      font-family: "Raleway";
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 20px;
+      text-transform: uppercase;
+      margin: 5px 0 15px !important;
+    }
+    .free_cancellationup_block > p:nth-of-type(1)::after {
+      content: "";
+      background-image: url(https://vegasyacht.com/wp-content/uploads/2020/12/separator.png);
+      position: absolute;
+      width: 72px;
+      height: 6px;
+      bottom: -10px;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+    }
+    .free_cancellationup_block > p:nth-of-type(2) {
+      color: #28364b;
+      font-family: "Raleway";
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 18px;
+      margin: 0 auto !important;
+      max-width: 238px;
+    }
+    .free_cancellationup_block svg {
+      min-width: 24px;
+      min-height: 24px;
+    }
+
+    /*mayAlsoLikeBlock */
+    #mayAlsoLikeBlock {
+      background: #fff;
+      padding: 90px 0 94px;
+    }
+    .may_also_like_block {
+      max-width: 1440px;
+      width: 90%;
+      margin: 0 auto;
+    }
+    .may_also_like_list_first,
+    .may_also_like_list_second,
+    .may_also_like_list_third {
+      list-style: none;
+      display: flex !important;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 0;
+      gap: 40px;
+    }
+    .may_also_like_link {
+      width: 47%;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .may_also_like_link .img_wrapp {
+      border: 16px solid #f1f0e8;
+      max-width: 230px;
+      min-width: 230px;
+      width: 100%;
+    }
+    .may_also_like_title {
+      font-family: "Playfair Display";
+      color: #4b4f58;
+      font-size: 28px;
+      font-weight: 400;
+      line-height: 36px;
+      margin: 0 0 12px !important;
+    }
+    .may_also_like_price {
+      color: #28364b;
+      font-family: "Playfair Display";
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 22px;
+      margin: 0 0 24px !important;
+    }
+    .may_also_like_price span {
+      color: #cab87e;
+      font-family: "Playfair Display";
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 28px;
+    }
+    .learn_more_wrapp .learn_more_btn {
+      display: flex;
+      padding: 0;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 154px;
+      height: 48px;
+      gap: 8px;
+      background: #cfbe88;
+      color: #28364b;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 24px;
+      transition: all 200ms linear;
+    }
+    .learn_more_wrapp .learn_more_btn:hover {
+      background: #3a3a3a;
+      color: #ffffff;
+      transition: all 200ms linear;
+      opacity: 1;
+    }
+    #mayAlsoLikeBlock .slick-dots {
+      display: flex;
+      justify-content: center;
+      margin: 48px 0 0;
+      list-style: none;
+    }
+    #mayAlsoLikeBlock .slick-dots li button {
+      position: relative;
+      display: flex;
+      width: 10px;
+      height: 10px;
+      font-size: 0;
+      line-height: 0;
+      cursor: pointer;
+      color: transparent;
+      border: 0;
+      outline: none;
+      background-color: transparent !important;
+      border-color: transparent !important;
+      padding: 5px;
+    }
+    #mayAlsoLikeBlock .slick-dots li button:before {
+      position: absolute;
+      content: "•";
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
+      width: 10px;
+      height: 10px;
+      text-align: center;
+      border-radius: 50%;
+      background-color: #e5e2d6;
+    }
+    #mayAlsoLikeBlock .slick-dots li + li {
+      margin-left: 12px;
+    }
+    #mayAlsoLikeBlock .slick-dots li.slick-active button:before {
+      background-color: #cfbe88;
+    }
+    /*reviewsBlock */
+    #reviewsBlock {
+      background: #f1f0e8;
+      padding: 72px 0px;
+    }
+    .reviews_block {
+      max-width: 1440px;
+      width: 90%;
+      margin: 0 auto;
+    }
+    .reviews_slider {
+      max-width: 1243px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .reviews_link {
+      position: relative;
+      background: #fff;
+      padding: 24px 24px 40px;
+      min-height: 308px;
+    }
+    .reviews_service {
+      position: absolute;
+      right: 16px;
+      top: 16px;
+    }
+    .reviews_service img {
+      max-width: 95px;
+      max-height: 20px;
+    }
+    .reviews_name {
+      color: #28364b;
+      font-family: "Playfair Display";
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 24px;
+      margin-bottom: 4px !important;
+    }
+    .reviews_verified {
+      color: #07a64f;
+      font-feature-settings: "clig" off, "liga" off;
+      font-family: "Raleway";
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 18px;
+      margin-bottom: 20px !important;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .preview_text {
+      white-space: pre-line;
+      color: #28364b;
+      font-family: "Raleway";
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 24px;
+      margin-bottom: 10px !important;
+      overflow: hidden;
+      height: 120px;
+    }
+    .reviews_read_more_btn {
+      color: #28364b;
+      font-family: "Raleway";
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 24px;
+      border-bottom: 1px solid #28364b;
+      cursor: pointer;
+    }
+    .reviews_read_more_btn.disable {
+      opacity: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    #reviewsBlock .slick-slide {
+      margin: 0 8px;
+    }
+    #reviewsBlock .slick-arrow {
+      cursor: pointer;
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: 135px;
+      opacity: 0.8;
+      background: #fff;
+      width: 40px;
+      height: 40px;
+    }
+    #reviewsBlock .slick-arrow.slick-disabled {
+      opacity: 0.3;
+    }
+    #reviewsBlock .next_btn {
+      right: -60px;
+    }
+    #reviewsBlock .prev_btn {
+      left: -60px;
+    }
+    #reviewsBlock .slick-dots {
+      display: flex;
+      justify-content: center;
+      margin: 48px 0 0;
+      list-style: none;
+    }
+    #reviewsBlock .slick-dots li button {
+      position: relative;
+      display: flex;
+      width: 10px;
+      height: 10px;
+      font-size: 0;
+      line-height: 0;
+      cursor: pointer;
+      color: transparent;
+      border: 0;
+      outline: none;
+      background-color: transparent !important;
+      border-color: transparent !important;
+      padding: 5px;
+    }
+    #reviewsBlock .slick-dots li button:before {
+      position: absolute;
+      content: "•";
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
+      width: 10px;
+      height: 10px;
+      text-align: center;
+      border-radius: 50%;
+      background-color: white;
+    }
+    #reviewsBlock .slick-dots li + li {
+      margin-left: 12px;
+    }
+    #reviewsBlock .slick-dots li.slick-active button:before {
+      background-color: #cfbe88;
+    }
+    /*howToFindUsBlock*/
+    #howToFindUsBlock {
+      background: #fff;
+      padding: 94px 0;
+    }
+    .how_to_find_us_block {
+      max-width: 1440px;
+      width: 90%;
+      margin: 0 auto;
+    }
+    .how_to_find_us_contacts {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 71px;
+    }
+    .how_to_find_us_contacts .how_to_find_us_maps {
+      width: 50%;
+    }
+    .how_to_find_us_contacts .how_to_find_us_info {
+      width: 47%;
+      margin-top: 20px;
+    }
+    .how_to_find_us_descr {
+      color: #4b4f58;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      margin: 0 0 32px;
+    }
+    .how_to_find_us_contacts #footer-social li a {
+      color: inherit;
+    }
+    .how_to_find_us_contacts #footer-social li a:hover {
+      color: #cebd88;
+    }
+    .how_to_find_accardion {
+      list-style: none;
+      max-width: 960px;
+      margin: 56px auto 0;
+    }
+    .how_to_find_accardion_block {
+      border: 1px solid #e7e6de;
+    }
+    .how_to_find_accardion_block:nth-child(2) {
+      border-top: unset;
+    }
+    .how_to_find_accardion_block:nth-child(3) {
+      border-top: unset;
+    }
+    .how_to_find_accardion_block:nth-child(4) {
+      border-top: unset;
+    }
+    .how_to_find_accardion_link {
+      display: flex;
+      padding: 16px;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+    .how_to_find_accardion_link h3 {
+      color: #28364b;
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 32px;
+      text-transform: capitalize;
+      margin: 0;
+    }
+    .how_to_find_accardion_lists {
+      display: none;
+    }
+    .how_to_find_accardion_lists > div {
+      padding: 0 16px 24px;
+    }
+    .how_to_find_accardion_lists p {
+      position: relative;
+      max-width: 815px;
+      color: #4b4f58;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      margin: 0 0 0 5px;
+      padding-left: 24px;
+    }
+    .how_to_find_accardion_lists p::before {
+      position: absolute;
+      content: "";
+      background: #28364b;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      left: 0;
+      top: 6px;
+    }
+    .how_to_find_accardion_lists p + p {
+      margin-top: 6px;
+    }
+    .how_to_find_accardion_link > span svg {
+      transition: all 0.3s ease;
+    }
+    .how_to_find_accardion_link.active_block > span svg {
+      transform: rotate(90deg);
+      transition: all 0.3s ease;
+    }
+    /*lakeLasvegasWaterSportsBlock */
+    #lakeLasvegasWaterSportsBlock {
+      padding-top: 50px;
+      padding-bottom: 50px;
+      background-color: #28364b;
+    }
+    .lake_lasvegas_water_sports_list {
+      display: flex;
+      list-style: none;
+      align-items: flex-start;
+      justify-content: center;
+      max-width: 1500px;
+      margin: 0 auto;
+      gap: 50px;
+    }
+    .lake_lasvegas_water_sports_list li {
+      max-width: 170px;
+      width: 100%;
+    }
+    .how_to_find_accardion.mob_var,
+    .load_more_reviews.mob_var {
+      display: none;
+    }
+    /*looking */
+    .looking {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      margin: 27px 0 0;
+      flex-direction: column;
+    }
+    .looking > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .looking > div p {
+      color: #28364b;
+      font-family: "Raleway";
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      margin: 0 0 0 4px !important;
+    }
+    /*accardion_all_inform_block */
+    .accardion_all_inform_block {
+      list-style: none;
+      margin: 20px 0 32px;
+    }
+    .fl-rich-text h3 {
+      color: #28364b;
+      font-family: "Playfair Display";
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 32px;
+      text-transform: uppercase;
+      margin-bottom: 20px !important;
+    }
+    .fl-rich-text p,
+    .fl-rich-text > ul > li,
+    .how_to_find_accardion_lists > div > ul > li {
+      color: #4b4f58;
+      font-family: "Raleway";
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 24px;
+    }
+    .fl-rich-text > ul {
+      margin: 0 0 20px 22px;
+    }
+    .how_to_find_accardion_lists > div > ul {
+      margin: 0 0 0 20px;
+    }
+    .how_to_find_accardion_lists > div > ul > li {
+      padding-left: 10px;
+    }
+    .how_to_find_accardion_lists > div > ul + p {
+      position: unset;
+      padding: 0;
+      margin: 10px 0 0;
+    }
+    /* */
+    .fl-col-content .fl-module-photo,
+    .fl-module-slideshow {
+      display: none !important;
+    }
+    .swiper_arrow {
+      width: 40px !important;
+      height: 40px !important;
+      background: rgba(31, 27, 27, 0.5);
+    }
+    .swiper .swiper-button-next::after,
+    .swiper .swiper-button-prev::after {
+      content: "";
+    }
+    /* MAIN SLIDER */
+    .main_slider {
+      margin-bottom: 8px;
+      display: block;
+    }
+    .main_slider .swiper-slide img {
+      min-height: 100%;
+      min-width: 100%;
+      object-fit: cover;
+      max-height: 440px;
+    }
+    .swiper-slide img {
+      object-fit: contain;
+    }
+    .main_slider .swiper-slide {
+      text-align: center;
+      height: auto;
+    }
+    .main_slider .swiper-pagination {
+      display: none;
+    }
+    .main_slider_sync .swiper-slide {
+      max-width: 120px;
+      opacity: 0.8;
+    }
+    .main_slider_sync .swiper-slide.swiper-slide-thumb-active {
+      opacity: 1;
+    }
+    .main_slider_sync .swiper-slide img {
+      height: 120px;
+      min-width: 100%;
+      cursor: pointer;
+      box-sizing: border-box;
+      transition: 0.35s;
+      object-fit: cover;
+    }
+
+    @media (hover: hover) {
+      .main_slider_sync .swiper-slide:not(.swiper-slide-thumb-active) img:hover {
+        opacity: 0.6;
+      }
+    }
+    .fl-module-video {
+      margin-top: 40px;
+    }
+
+    @media (max-width: 1295px) {
+      .reviews_slider {
+        max-width: 1000px;
+      }
+      .fl-node-content .fl-col-group:not(.fl-node-5fbfca8d8a736) > div:nth-child(1):not(.fl-node-5fbfca8d8a778) {
+        max-width: 55%;
+      }
+    }
+    @media (max-width: 1200px) {
+      .reviews_slider {
+        max-width: 900px;
+      }
+    }
+    @media (max-width: 1168px) {
+      .book_now_wrapp p {
+        font-size: 17px;
+      }
+      .with_code_block {
+        padding: 20px 16px;
+      }
+      .code_wrapp > p:nth-child(2) {
         font-size: 13px;
-  }
-  .looking > div p{
+      }
+      .looking > div p {
         font-size: 12px;
-  }
-}
-@media (max-width: 1050px) {
-  .reviews_slider {
-    max-width: 800px;
-  }
-}
-@media (max-width: 768px) {
-  #lakeLasvegasWaterSportsBlock.desk_var,
-  .may_also_like_list_first.desk_var,
-  .may_also_like_list_second.desk_var,
-  .may_also_like_list_third.desk_var {
-    display: none;
-  }
-  .fl-node-content .fl-col-group {
-    display: block;
-  }
-  .load_more_reviews.mob_var {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #28364b;
-    height: 48px;
-    max-width: 250px;
-    width: 100%;
-    gap: 8px;
-    color: #fff;
-    font-family: "Raleway";
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 18px;
-    margin: 32px auto 0;
-  }
-  .breadcrumbs{
-    color: #28364B;
-    font-family: 'Raleway';
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 20px;
-    margin: 20px auto;
-    width: 95%;
-  }
-  .ast-header-break-point .ast-mobile-header-inline .main-header-container, .ast-header-break-point .ast-mobile-header-stack .main-header-container{
-    position: relative;
-    align-items: center;
-    justify-content: flex-end;
-    margin-top: 10px;
-  }
-  .ast-header-break-point .site-header .main-header-bar-wrap .site-branding{
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 0;
-    padding: 0;
-  }
-  .ast-header-break-point .site-header .main-header-bar-wrap .site-branding > div{
-    padding: 0;
-  }
-  #custom-subheader {
-    padding: 163px 0px 40px;
-  }
-  #custom-subheader h1{
-    font-size: 36px;
-    line-height: 44px;
-    margin: 0 !important;
-  }
-  .fl-node-content .fl-col-group > div:nth-child(1),
-  .fl-node-content .fl-col-group > div:nth-child(2) {
-    max-width: 100%;
-  }
-  .fl-row[data-node] .fl-row-content-wrap {
-    padding: 0 !important;
-    width: 90%;
-    margin: 0 auto;
-  }
-  h4.new_subtitle {
-    line-height: 40px;
-  }
-  h2.new_title {
-    font-size: 30px !important;
-    line-height: 36px !important;
-    margin: 0 auto 54px;
-  }
-  h2.new_title::after {
-    bottom: -15px;
-  }
-  .fl-col-small:not(.fl-col-small-full-width) {
-    max-width: unset !important;
-    margin: 0 -19px !important;
-  }
-  .fl-col-small .fl-module-content.fl-node-content {
-    border: none;
-  }
-  /*advisor_and_icon_box */
-  .advisor_and_icon_box{
-    margin: 20px 0 4px;
-    border-bottom: 1px solid #E7E6DE;
-  }
-  .lav_advisor{
-    padding: 0 20px 20px;
-    text-align: center;
-  }
-  .lav_advisor > img{
-    max-width: 183px;
-  }
-  .lav_advisor > p{
-    color: #28364B;
-    font-family: 'Raleway';
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 18px;
-    margin: 4px 0 0 !important;
-  }
-  .lav_advisor_count{
-    font-weight: 600;
-  }
-  .lav_advisor > p > a{
-    border-bottom: 1px solid #0F0900;
-    color: #28364B;
-  }
-  .img_wrap_icon{
-padding: 11px 20px;
-    gap: 32px;
-    border-bottom: 1px solid #FFF;
-    background: #F1F0E8;
-    justify-content: center;
-  }
-  .share{
-    right: 42px;
-    top: 51px;
-  }
-  /*withCodeBlock */
-  #withCodeBlock {
-    margin: 0;
-    padding: 0;
-  }
-  .fl-col-small .fl-module-content.fl-node-content{
-    padding: 0;
-    border: none;
-  }
-  .with_code_block {
-    padding: 15px 24px;
-    margin: 0 auto 20px;
-    max-width: unset;
-  }
-  .book_now_wrapp p{
-    font-size: 22px;
-  }
-  .code_wrapp > p:nth-child(2) {
-    font-size: 14px;
-}
-  .free_cancellationup_block {
-    padding: 20px 20px 20px 40px;
-    margin: 0 -18px;
-    text-align: left;
-  }
-  .free_cancellationup_block > p:nth-of-type(1){
-        max-width: 238px;
-    margin: 3px 0 20px 40px !important;
+      }
+    }
+    @media (max-width: 1050px) {
+      .reviews_slider {
+        max-width: 800px;
+      }
+    }
+    @media (max-width: 768px) {
+      #lakeLasvegasWaterSportsBlock.desk_var,
+      .may_also_like_list_first.desk_var,
+      .may_also_like_list_second.desk_var,
+      .may_also_like_list_third.desk_var {
+        display: none;
+      }
+      .fl-node-content .fl-col-group:not(.fl-node-5fbfca8d8a736) {
+        display: block;
+      }
+      .load_more_reviews.mob_var {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #28364b;
+        height: 48px;
+        max-width: 250px;
+        width: 100%;
+        gap: 8px;
+        color: #fff;
+        font-family: "Raleway";
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 18px;
+        margin: 32px auto 0;
+      }
+      .breadcrumbs {
+        color: #28364b;
+        font-family: "Raleway";
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        margin: 20px auto;
+        width: 95%;
+      }
+      .ast-header-break-point .ast-mobile-header-inline .main-header-container,
+      .ast-header-break-point .ast-mobile-header-stack .main-header-container {
+        position: relative;
+        align-items: center;
+        justify-content: flex-end;
+        margin-top: 10px;
+      }
+      .ast-header-break-point .site-header .main-header-bar-wrap .site-branding {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 0;
+        padding: 0;
+      }
+      .ast-header-break-point .site-header .main-header-bar-wrap .site-branding > div {
+        padding: 0;
+      }
+      #custom-subheader {
+        padding: 163px 0px 40px;
+      }
+      #custom-subheader h1 {
+        font-size: 36px;
+        line-height: 44px;
+        margin: 0 !important;
+      }
+      .fl-node-content .fl-col-group:not(.fl-node-5fbfca8d8a736) > div:nth-child(1):not(.fl-node-5fbfca8d8a778),
+      .fl-node-content .fl-col-group:not(.fl-node-5fbfca8d8a736) > div:nth-child(2) {
+        max-width: 100%;
+      }
+      .fl-row[data-node] .fl-row-content-wrap {
+        padding: 0 !important;
+        width: 90%;
+        margin: 0 auto;
+      }
+      h4.new_subtitle {
+        line-height: 40px;
+      }
+      h2.new_title {
+        font-size: 30px !important;
+        line-height: 36px !important;
+        margin: 0 auto 54px;
+      }
+      h2.new_title::after {
+        bottom: -15px;
+      }
+      .fl-col-small:not(.fl-col-small-full-width) {
+        max-width: unset !important;
+        margin: 0 -19px !important;
+      }
+      .fl-col-small .fl-module-content.fl-node-content {
+        border: none;
+      }
+      /*advisor_and_icon_box */
+      .advisor_and_icon_box {
+        margin: 20px 0 4px;
+        border-bottom: 1px solid #e7e6de;
+      }
+      .lav_advisor {
+        padding: 0 20px 20px;
+        text-align: center;
+      }
+      .lav_advisor > img {
+        max-width: 183px;
+      }
+      .lav_advisor > p {
+        color: #28364b;
+        font-family: "Raleway";
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 18px;
+        margin: 4px 0 0 !important;
+      }
+      .lav_advisor_count {
         font-weight: 600;
-  }
-  .free_cancellationup_block > div{
-    margin: 0 auto;
-    gap: 15px;
-    justify-content: flex-start;
-  }
-  .free_cancellationup_block > p:nth-of-type(1)::after{
-    right: unset;
-  }
-  .free_cancellationup_block > p:nth-of-type(2){
+      }
+      .lav_advisor > p > a {
+        border-bottom: 1px solid #0f0900;
+        color: #28364b;
+      }
+      .img_wrap_icon {
+        padding: 11px 20px;
+        gap: 32px;
+        border-bottom: 1px solid #fff;
+        background: #f1f0e8;
+        justify-content: center;
+      }
+      .share {
+        right: 42px;
+        top: 51px;
+      }
+      /*withCodeBlock */
+      #withCodeBlock {
+        margin: 0;
+        padding: 0;
+      }
+      .fl-col-small .fl-module-content.fl-node-content {
+        padding: 0;
+        border: none;
+      }
+      .with_code_block {
+        padding: 15px 24px;
+        margin: 0 auto 20px;
+        max-width: unset;
+      }
+      .book_now_wrapp p {
+        font-size: 22px;
+      }
+      .code_wrapp > p:nth-child(2) {
+        font-size: 14px;
+      }
+      .free_cancellationup_block {
+        padding: 20px 20px 20px 40px;
+        margin: 0 -18px;
+        text-align: left;
+      }
+      .free_cancellationup_block > p:nth-of-type(1) {
+        max-width: 238px;
+        margin: 3px 0 20px 40px !important;
+        font-weight: 600;
+      }
+      .free_cancellationup_block > div {
+        margin: 0 auto;
+        gap: 15px;
+        justify-content: flex-start;
+      }
+      .free_cancellationup_block > p:nth-of-type(1)::after {
+        right: unset;
+      }
+      .free_cancellationup_block > p:nth-of-type(2) {
         margin: 0 0 0 40px !important;
-  }
-  /*awards_block */
-  .awards_block {
-    padding: 52px 0 20px;
-    margin: 0 0 20px;
-    border-bottom: 1px solid #e7e6de;
-  }
-  .choice_caption {
-    color: #28364b;
-    font-family: "Playfair Display";
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 28px;
-    text-transform: uppercase;
-    margin: 0 0 12px;
-  }
-  .awards_block > img {
-    max-width: 173px;
-  }
-  /**#mayAlsoLikeBlock */
-  #mayAlsoLikeBlock {
-    padding: 72px 0;
-  }
-  .may_also_like_block {
-    width: 100%;
-  }
-  .may_also_like_link .img_wrapp {
-    border: 10px solid #f1f0e8;
-    max-width: 180px;
-  }
-  #mayAlsoLikeBlock .slick-slide {
-    margin: 0 12px;
-  }
-  #mayAlsoLikeBlock .slick-dots {
-    margin-top: 70px;
-  }
-  .may_also_like_title {
-    font-size: 22px;
-    line-height: 30px;
-    margin: 0 0 16px !important;
-  }
-  .may_also_like_price {
-    margin: 0 !important;
-  }
-  .may_also_like_link {
-    width: 100% !important;
-    display: flex !important;
-    flex-direction: column;
-  }
-  .learn_more_wrapp {
-    text-align: center;
-  }
-  .learn_more_wrapp .learn_more_btn {
-    display: none;
-  }
-  /*#reviewsBlock */
-  #reviewsBlock {
-    padding: 40px 0;
-  }
-  .reviews_link + .reviews_link {
-    margin-top: 8px;
-  }
-  .reviews_link {
-    padding: 16px 20px 32px;
-    min-height: 240px;
-  }
-  .reviews_link:nth-child(n + 3).load_var {
-    display: none;
-  }
-  /**logos */
-  .logos.lav_mob {
-    padding: 72px 0 0;
-    width: 90%;
-    margin: 0 auto;
-  }
-  /*#howToFindUsBlock */
-  #howToFindUsBlock {
-    padding: 72px 0;
-  }
-  .how_to_find_us_contacts {
-    flex-direction: column;
-    gap: 32px;
-  }
-  .how_to_find_us_contacts .how_to_find_us_info {
-    width: 100%;
-    margin-top: 0;
-  }
-  .how_to_find_us_contacts .how_to_find_us_maps {
-    width: 100%;
-  }
-  .how_to_find_us_descr {
-    margin: 0 0 24px !important;
-  }
-  .how_to_find_accardion {
-    margin: 40px auto 0;
-  }
-  .how_to_find_accardion_link h3 {
-    font-size: 18px;
-    line-height: 24px;
-  }
-  .how_to_find_accardion.mob_var {
-    display: block;
-  }
-  /*.looking */
-  .looking{
-    margin: 24px 0 0 35px;
-  }
-  .fl-rich-text h3{
-    font-size: 20px;
-    line-height: 28px;
-    margin-bottom: 12px !important;
-  }
-  .accardion_all_inform_block{
-    margin: 0;
-  }
-  .dress_code .how_to_find_accardion_lists p{
-    position: unset;
-    padding: 0;
-    margin: 0;
-  }
-  .preview_text{
+      }
+      /*awards_block */
+      .awards_block {
+        padding: 52px 0 20px;
+        margin: 0 0 20px;
+        border-bottom: 1px solid #e7e6de;
+      }
+      .choice_caption {
+        color: #28364b;
+        font-family: "Playfair Display";
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 28px;
+        text-transform: uppercase;
+        margin: 0 0 12px;
+      }
+      .awards_block > img {
+        max-width: 173px;
+      }
+      /**#mayAlsoLikeBlock */
+      #mayAlsoLikeBlock {
+        padding: 72px 0;
+      }
+      .may_also_like_block {
+        width: 100%;
+      }
+      .may_also_like_link .img_wrapp {
+        border: 10px solid #f1f0e8;
+        max-width: 180px;
+      }
+      #mayAlsoLikeBlock .slick-slide {
+        margin: 0 12px;
+      }
+      #mayAlsoLikeBlock .slick-dots {
+        margin-top: 70px;
+      }
+      .may_also_like_title {
+        font-size: 22px;
+        line-height: 30px;
+        margin: 0 0 16px !important;
+      }
+      .may_also_like_price {
+        margin: 0 !important;
+      }
+      .may_also_like_link {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column;
+      }
+      .learn_more_wrapp {
+        text-align: center;
+      }
+      .learn_more_wrapp .learn_more_btn {
+        display: none;
+      }
+      /*#reviewsBlock */
+      #reviewsBlock {
+        padding: 40px 0;
+      }
+      .reviews_link + .reviews_link {
+        margin-top: 8px;
+      }
+      .reviews_link {
+        padding: 16px 20px 32px;
+        min-height: 240px;
+      }
+      .reviews_link:nth-child(n + 3).load_var {
+        display: none;
+      }
+      /**logos */
+      .logos.lav_mob {
+        padding: 72px 0 0;
+        width: 90%;
+        margin: 0 auto;
+      }
+      /*#howToFindUsBlock */
+      #howToFindUsBlock {
+        padding: 72px 0;
+      }
+      .how_to_find_us_contacts {
+        flex-direction: column;
+        gap: 32px;
+      }
+      .how_to_find_us_contacts .how_to_find_us_info {
+        width: 100%;
+        margin-top: 0;
+      }
+      .how_to_find_us_contacts .how_to_find_us_maps {
+        width: 100%;
+      }
+      .how_to_find_us_descr {
+        margin: 0 0 24px !important;
+      }
+      .how_to_find_accardion {
+        margin: 40px auto 0;
+      }
+      .how_to_find_accardion_link h3 {
+        font-size: 18px;
+        line-height: 24px;
+      }
+      .how_to_find_accardion.mob_var {
+        display: block;
+      }
+      /*.looking */
+      .looking {
+        margin: 24px 0 0 35px;
+      }
+      .fl-rich-text h3 {
+        font-size: 20px;
+        line-height: 28px;
+        margin-bottom: 12px !important;
+      }
+      .accardion_all_inform_block {
+        margin: 0;
+      }
+      .dress_code .how_to_find_accardion_lists p {
+        position: unset;
+        padding: 0;
+        margin: 0;
+      }
+      .preview_text {
         height: 93px;
-  }
-  /*main_slider_sync  */
-  .main_slider_sync {
-    display: none !important;
-  }
-  .main_slider .swiper-pagination{
-    display: flex;
-    position: initial;
-    margin-top: 20px;
-    align-items: center;
-    justify-content: center;
-  }
-  .main_slider{
-    margin-bottom: 0;
-  }
-  .main_slider .swiper-slide img{
-    max-height: 370px;
-    object-fit: cover;
+      }
+      /*main_slider_sync  */
+      .main_slider_sync {
+        display: none !important;
+      }
+      .main_slider .swiper-pagination {
+        display: flex;
+        position: initial;
+        margin-top: 20px;
+        align-items: center;
+        justify-content: center;
+      }
+      .main_slider {
+        margin-bottom: 0;
+      }
+      .main_slider .swiper-slide img {
+        max-height: 370px;
+        object-fit: cover;
         min-height: 370px;
-  }
-  .swiper-pagination-bullet-active.swiper-pagination-bullet-active{
-    background: #CFBE88;
+      }
+      .swiper-pagination-bullet-active.swiper-pagination-bullet-active {
+        background: #cfbe88;
         opacity: 1;
-  }
-  .swiper-pagination-bullet{
-    background: #E5E2D6;
+      }
+      .swiper-pagination-bullet {
+        background: #e5e2d6;
         opacity: 1;
-  }
-  .swiper_arrow{
-        background: rgba(40, 54, 75, 0.50);
-    border-radius: 50%;
-    transform: translateY(-50%);
-  }
-  .swiper-pagination-clickable .swiper-pagination-bullet{
-    margin: 0 8px !important;
-  }
-  .fl-module-video{
+      }
+      .swiper_arrow {
+        background: rgba(40, 54, 75, 0.5);
+        border-radius: 50%;
+        transform: translateY(-50%);
+      }
+      .swiper-pagination-clickable .swiper-pagination-bullet {
+        margin: 0 8px !important;
+      }
+      .fl-module-video {
         margin-top: 24px;
-  }
-
-}
-
+      }
+    }
     </style>
     `;
     let lookingHtml = `
@@ -1760,8 +1764,8 @@ padding: 11px 20px;
       }
       // logos
       if (window.innerWidth > 768) {
-        if (document.querySelector(".fl-node-content .fl-col-group > div:nth-child(1)") && !document.querySelector(".logos")) {
-          document.querySelector(".fl-node-content .fl-col-group > div:nth-child(1) > div").insertAdjacentHTML("afterend", logos);
+        if (document.querySelector(".fl-node-content .fl-col-group:not(.fl-node-5fbfca8d8a736) > div:nth-child(1):not(.fl-node-5fbfca8d8a778)") && !document.querySelector(".logos")) {
+          document.querySelector(".fl-node-content .fl-col-group:not(.fl-node-5fbfca8d8a736) > div:nth-child(1):not(.fl-node-5fbfca8d8a778) > div").insertAdjacentHTML("afterend", logos);
         }
       } else {
         if (document.querySelector("#howToFindUsBlock") && !document.querySelector(".logos")) {
@@ -1770,7 +1774,7 @@ padding: 11px 20px;
       }
       // accardion all inform
       if (!document.querySelector(".accardion_all_inform_block")) {
-        document.querySelector(".fl-node-content .fl-col-group > div:nth-child(1) > div")?.insertAdjacentHTML("afterend", `<ul class="accardion_all_inform_block"></ul>`);
+        document.querySelector(".fl-node-content .fl-col-group:not(.fl-node-5fbfca8d8a736) > div:nth-child(1):not(.fl-node-5fbfca8d8a778) > div")?.insertAdjacentHTML("afterend", `<ul class="accardion_all_inform_block"></ul>`);
       }
       if (document.querySelector(".accardion_all_inform_block") && document.querySelector(".accardion_all_inform_block").children.length !== arrAccardionAllInform.length) {
         for (let key in arrAccardionAllInform) {
@@ -1834,7 +1838,9 @@ padding: 11px 20px;
                 },
               ],
             });
-            slider.on("swipe", function () {});
+            slider.on("swipe", function () {
+              pushDataLayer("exp_im_pdp_s_r_vs", "Vertical", "Scroll", "Reviews");
+            });
 
             slider.on("afterChange", animateHeightMultiElemental);
             slider.on("init", animateHeightMultiElemental);
@@ -1889,7 +1895,7 @@ padding: 11px 20px;
             ],
           });
           slider.on("swipe", function () {
-            pushDataLayer("exp_new_ui_v_t_vs", "Vertical", "Scroll", "Tours");
+            pushDataLayer("exp_im_pdp_v_t_vs", "Vertical", "Scroll", "Tours");
           });
         }
       }, 100);
@@ -1899,7 +1905,7 @@ padding: 11px 20px;
         if (document.querySelector(".with_code_block")) {
           clearInterval(iconCode);
           document.querySelector(".voucher_block").addEventListener("click", () => {
-            pushDataLayer("exp_new_ui_b_bne_cc", "Copy code", "Button", "Book now enjoy");
+            pushDataLayer("exp_im_pdp_b_bnepdp_cc", "Copy code", "Button", "Book now enjoy PDP");
             navigator.clipboard.writeText("BOOK10");
 
             document.querySelector(".copied")?.remove();
@@ -1925,7 +1931,7 @@ padding: 11px 20px;
         if (document.querySelector(".icon_share")) {
           clearInterval(iconShare);
           document.querySelector(".icon_share").addEventListener("click", () => {
-            pushDataLayer("exp_new_ui_l_fsp_share", "Share", "Link", "First screen PDP");
+            pushDataLayer("exp_im_pdp_l_fsp_share", "Share", "Link", "First screen PDP");
             navigator.clipboard.writeText(window.location);
 
             document.querySelector(".share")?.remove();
@@ -1951,7 +1957,7 @@ padding: 11px 20px;
         if (document.querySelector(".icon_how_to_find_us") && document.querySelector(".how_to_find_us_block")) {
           clearInterval(srch);
           document.querySelector(".icon_how_to_find_us").addEventListener("click", () => {
-            pushDataLayer("exp_new_ui_l_fsp_hwu", "How to find us", "Link", "First screen PDP");
+            pushDataLayer("exp_im_pdp_l_fsp_hwu", "How to find us", "Link", "First screen PDP");
             document.querySelector(".how_to_find_us_block")?.scrollIntoView({ block: "start", behavior: "smooth" });
           });
         }
@@ -1971,12 +1977,8 @@ padding: 11px 20px;
             $(".how_to_find_us_block .how_to_find_accardion_link").not(this).removeClass("active_block");
             $(".how_to_find_us_block .how_to_find_accardion_link").not(this).closest("li").removeClass("active_block");
           }
-          pushDataLayer("exp_new_ui_li_ol_inpdp", `${e.currentTarget.querySelector("h3").textContent}`, "List item", "Our location PDP");
-          // if (e.currentTarget.classList.contains("active_block")) {
-          //   pushDataLayer("exp_new_content_what_type_open", `Open - ${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Text area", "What type of college admissions assistance does your child require?");
-          // } else {
-          //   pushDataLayer("exp_new_content_what_type_close", `Close - ${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Text area", "What type of college admissions assistance does your child require?");
-          // }
+
+          pushDataLayer("exp_im_pdp_li_ol_inpdp", `${e.currentTarget.querySelector("h3").textContent}`, "List item", "Our location PDP");
 
           const headerOffset = 10;
           const elementPosition = this.getBoundingClientRect().top;
@@ -2000,13 +2002,7 @@ padding: 11px 20px;
             $(".accardion_all_inform_block .how_to_find_accardion_link").not(this).removeClass("active_block");
             $(".accardion_all_inform_block .how_to_find_accardion_link").not(this).closest("li").removeClass("active_block");
           }
-
-          let w = e.currentTarget.querySelector("h3").textContent.split(" ");
-          // if (e.currentTarget.classList.contains("active_block")) {
-          //   pushDataLayer("exp_new_content_what_type_open", `Open - ${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Text area", "What type of college admissions assistance does your child require?");
-          // } else {
-          //   pushDataLayer("exp_new_content_what_type_close", `Close - ${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Text area", "What type of college admissions assistance does your child require?");
-          // }
+          pushDataLayer("exp_im_pdp_d_ast_faq", `faq ${e.currentTarget.querySelector("h3").textContent}`, "Dropdown", "Above section Tours");
 
           const headerOffset = 10;
           const elementPosition = this.getBoundingClientRect().top;
@@ -2044,7 +2040,7 @@ padding: 11px 20px;
             el.addEventListener("click", (e) => {
               e.preventDefault();
               e.stopPropagation();
-              pushDataLayer("exp_new_ui_l_r_rm", `Read more ${el.closest(".reviews_link").querySelector(".reviews_name").textContent}`, "Link", "Reviews");
+              pushDataLayer("exp_im_pdp_l_r_rm", `Read more ${el.closest(".reviews_link").querySelector(".reviews_name").textContent}`, "Link", "Reviews");
               e.currentTarget.style.display = "none";
               e.currentTarget.previousElementSibling.style.height = "auto";
             });
@@ -2057,7 +2053,7 @@ padding: 11px 20px;
         if (document.querySelector(".load_more_reviews")) {
           clearInterval(btnSearch);
           document.querySelector(".load_more_reviews").addEventListener("click", (e) => {
-            pushDataLayer("exp_new_ui_b_r_lm", "Load more", "Button", "Reviews");
+            pushDataLayer("exp_im_pdp_b_r_lm", "Load more", "Button", "Reviews");
             e.currentTarget.remove();
             document.querySelectorAll(".reviews_link").forEach((el) => {
               el.style.display = "block";
@@ -2179,7 +2175,7 @@ padding: 11px 20px;
         if (document.querySelector(".lav_advisor > p > a")) {
           clearInterval(link);
           document.querySelector(".lav_advisor > p > a").addEventListener("click", () => {
-            pushDataLayer("exp_new_ui_l_fsp_sr", "See all reviews", "Link", "First screen PDP");
+            pushDataLayer("exp_im_pdp_l_fsp_sar", "See all reviews", "Link", "First screen PDP");
           });
         }
       }, 100);
@@ -2230,6 +2226,20 @@ padding: 11px 20px;
           obsV.observe(document.querySelector(".is_visib_reviews"));
         }
       }, 100);
+      let intV6 = setInterval(() => {
+        if (document.querySelector(".logos")) {
+          clearInterval(intV6);
+          time = 3000;
+          obsV.observe(document.querySelector(".logos"));
+        }
+      }, 100);
+      let intV7 = setInterval(() => {
+        if (document.querySelector(".looking")) {
+          clearInterval(intV7);
+          time = 3000;
+          obsV.observe(document.querySelector(".looking"));
+        }
+      }, 100);
 
       function visibilityV(entries) {
         entries.forEach((i) => {
@@ -2244,19 +2254,25 @@ padding: 11px 20px;
         entries.forEach((i) => {
           if (i.isIntersecting) {
             if (i.target.classList.contains("how_to_find_us_maps")) {
-              pushDataLayer("exp_new_ui_v_olpdp", "Our location", "Visibility", "Our location PDP");
+              pushDataLayer("exp_im_pdp_v_olpdp", "Our location", "Visibility", "Our location PDP");
             }
             if (i.target.classList.contains("voucher_block")) {
-              pushDataLayer("exp_new_ui_v_bne_cc", "Copy code", "Visibility", "Book now enjoy");
+              pushDataLayer("exp_im_pdp_v_bnepdp_cc", "Copy code", "Visibility", "Book now enjoy PDP");
             }
             if (i.target.classList.contains("free_cancellationup_block")) {
-              pushDataLayer("exp_new_ui_v_bne_fc", "Free cancelation", "Visibility", "Book now enjoy");
+              pushDataLayer("exp_im_pdp_v_bnepdp_fc", "Free cancelation", "Visibility", "Book now enjoy PDP");
             }
             if (i.target.classList.contains("is_visib_may_also_like")) {
-              pushDataLayer("exp_new_ui_v_t_ymal", "You may also like", "Visibility", "Tours");
+              pushDataLayer("exp_im_pdp_v_t_ymal", "You may also like", "Visibility", "Tours");
             }
             if (i.target.classList.contains("is_visib_reviews")) {
-              pushDataLayer("exp_new_ui_v_r_r", "Reviews", "Visibility", "Reviews");
+              pushDataLayer("exp_im_pdp_v_r_r", "Reviews", "Visibility", "Reviews");
+            }
+            if (i.target.classList.contains("logos")) {
+              pushDataLayer("exp_im_pdp_v_ast_sr", "Service reviews", "Visibility", "Above section Tours");
+            }
+            if (i.target.classList.contains("looking")) {
+              pushDataLayer("exp_im_pdp_v_bnepdp_t", "Tips", "Visibility", "Book now enjoy PDP");
             }
 
             obsV.unobserve(i.target);
@@ -2264,6 +2280,14 @@ padding: 11px 20px;
           obsV2.unobserve(i.target);
         });
       }
+      const record = setInterval(() => {
+        if (typeof clarity === "function") {
+          clearInterval(record);
+          clarity("set", "booking_page_exp", "variant_1");
+        }
+      }, 200);
+
+      document.querySelector(".exp")?.remove();
     }
   }
 }, 100);
