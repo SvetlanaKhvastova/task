@@ -956,12 +956,6 @@ p.book_now_txt,
   text-transform: uppercase;
   margin: 0;
 }
-.main_slider .lav-product__head-icons {
-  display: flex;
-  position: absolute;
-  top: 13px;
-  right: 16px;
-}
 .lav-product__head-icons .copied {
   right: 39px;
   top: 26px;
@@ -982,6 +976,12 @@ p.book_now_txt,
   }
 }
 @media (max-width: 768px) {
+  .main_slider .lav-product__head-icons {
+  display: flex;
+  position: absolute;
+  top: 13px;
+  right: 16px;
+}
   .popup-trigger {
     padding: 15px;
     width: 100%;
@@ -1769,8 +1769,18 @@ function handleProductInfo() {
   });
 
   // Looking & Booked
-  $(".looking>div:first-child span").innerText = $(".persons .grid").innerText;
-  $(".looking>div:last-child span").innerText = $(".booked .grid").innerText;
+  let personF = setInterval(() => {
+    if (document.querySelector(".persons .grid") && document.querySelector(".looking>div:first-child span")) {
+      clearInterval(personF);
+      $(".looking>div:first-child span").innerText = $(".persons .grid").innerText;
+    }
+  }, 100);
+  let bookedF = setInterval(() => {
+    if (document.querySelector(".persons .grid") && document.querySelector(".looking>div:last-child span")) {
+      clearInterval(bookedF);
+      $(".looking>div:last-child span").innerText = $(".booked .grid").innerText;
+    }
+  }, 100);
 
   // Boats type
   if (!$(".lav-product__head h2").innerText.trim().includes("Hour Electric Boat Rental")) {

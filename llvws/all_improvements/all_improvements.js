@@ -20,8 +20,67 @@ if (window.location.pathname === "/") {
       scriptCustomSliderStyle.rel = "stylesheet";
       document.head.appendChild(scriptCustomSliderStyle);
 
+      function pushDataLayer(name, desc, type, loc) {
+        console.log(name + " / " + desc + " / " + type + " / " + loc);
+
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+          event: "event-to-ga4",
+          event_name: name,
+          event_desc: desc,
+          event_type: type,
+          event_loc: loc,
+        });
+      }
+
       let vegasYachtStyle = /*html */ `
         <style>
+                .overlay_popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(31, 27, 27, 0.50);
+        display: flex;
+        overflow-y: auto;
+        z-index: 1000000000;
+        transition: all 0.5s ease;
+    }
+    .overlay_popup.is_hidden{
+        opacity: 0;
+        pointer-events: none;
+    }
+    .overlay_popup .container_popup {
+        display: block;
+        position: relative;
+        max-width: 500px;
+        width: 100%;
+        margin: auto;
+        transition: all 0.5s ease 0s;
+    }
+    .overlay_popup .container_popup > .btn_close {
+        position: absolute;
+        background: #F1F0E8;
+        top: -10px;
+        right: -7px;
+        width: 48px;
+        height: 48px;
+        outline: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+        border-radius: 50%;
+    }
+    .content_popup{
+        background: #FFF;
+        padding: 56px 70px;
+    }
+        body.open_var{
+            overflow: hidden !important;
+        }
 /*charter_services_request_block */
 .charter_services_request_block {
   position: relative;
@@ -314,6 +373,7 @@ if (window.location.pathname === "/") {
   padding: 16px;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 }
 .how_to_find_accardion_link h3 {
   color: #28364b;
@@ -835,8 +895,8 @@ if (window.location.pathname === "/") {
         <div class="overlay_popup is_hidden">
           <div class="container_popup">
             <div class="btn_close">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M20 20L4 4M20 4L4 20" stroke="white" stroke-width="2" stroke-linecap="round"/>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M1.1454 14.8546C1.19184 14.9011 1.24699 14.938 1.30769 14.9631C1.36839 14.9883 1.43346 15.0012 1.49917 15.0012C1.56488 15.0012 1.62994 14.9883 1.69064 14.9631C1.75135 14.938 1.80649 14.9011 1.85293 14.8546L7.99818 8.70935L14.1459 14.8546C14.2398 14.9484 14.367 15.0011 14.4997 15.0011C14.6324 15.0011 14.7596 14.9484 14.8535 14.8546C14.9473 14.7608 15 14.6335 15 14.5008C15 14.3681 14.9473 14.2409 14.8535 14.1471L8.70571 8.00182L14.851 1.85406C14.9448 1.76024 14.9975 1.63299 14.9975 1.5003C14.9975 1.36761 14.9448 1.24036 14.851 1.14653C14.7571 1.05271 14.6299 1 14.4972 1C14.3645 1 14.2373 1.05271 14.1434 1.14653L7.99818 7.29429L1.85043 1.14903C1.75478 1.06712 1.63173 1.02431 1.50589 1.02917C1.38005 1.03403 1.26067 1.0862 1.17162 1.17525C1.08257 1.2643 1.0304 1.38368 1.02554 1.50952C1.02068 1.63537 1.06349 1.75841 1.1454 1.85406L7.29066 8.00182L1.1454 14.1496C1.05227 14.2433 1 14.37 1 14.5021C1 14.6342 1.05227 14.7609 1.1454 14.8546Z" fill="#28364B"/>
               </svg>
             </div>
           </div>
@@ -844,6 +904,47 @@ if (window.location.pathname === "/") {
     `;
       let contentPopup = /*html */ `
         <div class="content_popup">
+              <div class="popup_header">
+      <h2>Charter Services request</h2>
+      <p>By filling out the charter inquiry form below, you are one step closer to your dream event</p>
+    </div>
+    <div class="popup_body">
+      <form action="">
+        <div>
+          <label for="">
+            <span>Name</span>
+            <input type="text" name="name" id="" maxlength="64" required placeholder="Name" />
+            <div class="input_validation">Please enter a name</div>
+          </label>
+          <label for="">
+            <span>Your email*</span>
+            <input type="email" name="email" id="" maxlength="64" required placeholder="Enter email" />
+            <div class="input_validation">Please enter your email address</div>
+          </label>
+          <label for="">
+            <span>Date of the celebration*</span>
+            <input type="date" name="date" id="" placeholder="Date" />
+          </label>
+          <button>CONTINUE</button>
+        </div>
+        <div>
+          <label for="">
+            <span>Duration of rental (in hours)</span>
+            <input type="number" name="hours" id="" maxlength="64" required placeholder="Hours" />
+            <div class="input_validation">Please enter /////////</div>
+          </label>
+          <label for="">
+            <span>Additional services needed (catering, DJ)?</span>
+            <textarea name="services" id="" cols="30" rows="10" placeholder="Specify here"></textarea>
+          </label>
+          <label for="">
+            <span>Any comments or special requests we should know about</span>
+            <textarea name="comments" id="" cols="30" rows="10" placeholder="Type here"></textarea>
+          </label>
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
         </div>
     `;
 
@@ -916,8 +1017,8 @@ if (window.location.pathname === "/") {
       }
 
       document.head.insertAdjacentHTML("beforeend", vegasYachtStyle);
-      // document.body.insertAdjacentHTML("afterbegin", popUp);
-      // document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup);
+      document.body.insertAdjacentHTML("afterbegin", popUp);
+      document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup);
 
       moveHtml();
       function moveHtml() {
@@ -982,6 +1083,8 @@ if (window.location.pathname === "/") {
       if (window.innerWidth < 768) {
         onClickLoadMore();
       }
+      onClickDifBtn();
+      visibElem();
 
       function initAccardionToggle() {
         // accardionToggle
@@ -997,6 +1100,7 @@ if (window.location.pathname === "/") {
               $(".how_to_find_accardion_link").not(this).removeClass("active_block");
               $(".how_to_find_accardion_link").not(this).closest("li").removeClass("active_block");
             }
+            pushDataLayer("exp_new_ui_li_ol_inhp", `${e.currentTarget.querySelector("h3").textContent}`, "List item", "Our location HP");
             let w = e.currentTarget.querySelector("h3").textContent.split(" ");
             // if (e.currentTarget.classList.contains("active_block")) {
             //   pushDataLayer("exp_new_content_what_type_open", `Open - ${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Text area", "What type of college admissions assistance does your child require?");
@@ -1051,6 +1155,7 @@ if (window.location.pathname === "/") {
           if (document.querySelector(".load_more_events")) {
             clearInterval(btnSearch);
             document.querySelector(".load_more_events").addEventListener("click", () => {
+              pushDataLayer("exp_new_ui_b_twu_lm", "Load more", "Button", "Travel with us HP");
               document.querySelectorAll(".fl-node-tp16blf7q3sz .fl-col-group").forEach((el) => {
                 el.style.display = "block";
               });
@@ -1095,126 +1200,134 @@ if (window.location.pathname === "/") {
           }
         }, 100);
       }
+      function onClickDifBtn() {
+        if (document.querySelector(".overlay_popup")) {
+          let overlay = document.querySelector(".overlay_popup"),
+            containerPopup = overlay.querySelector(".container_popup"),
+            btnClose = overlay.querySelector(".btn_close");
 
-      if (document.querySelector(".overlay_popup")) {
-        let overlay = document.querySelector(".overlay_popup"),
-          containerPopup = overlay.querySelector(".container_popup"),
-          btnClose = overlay.querySelector(".btn_close");
+          function onOpenPopup() {
+            overlay.classList.remove("is_hidden");
+            document.querySelector("body").classList.add("open_var");
+            if (!document.querySelector(".overlay_popup .content_popup")) {
+              containerPopup?.insertAdjacentHTML("beforeend", contentPopup);
+            }
 
-        function onOpenPopup() {
-          overlay.classList.remove("is_hidden");
-          document.querySelector("body").classList.add("open_var");
-          if (!document.querySelector(".overlay_popup .content_popup")) {
-            containerPopup?.insertAdjacentHTML("beforeend", contentPopup);
-          }
-
-          if (document.querySelector(".overlay_popup .content_popup")) {
-            btnClose.addEventListener("click", (e) => {
-              // click on btn close popup
-              onClosePopup();
-            });
-            overlay.addEventListener("click", (e) => {
-              // click on overlay popup
-              if (e.target.matches(".overlay_popup")) {
+            if (document.querySelector(".overlay_popup .content_popup")) {
+              btnClose.addEventListener("click", (e) => {
+                // click on btn close popup
                 onClosePopup();
+              });
+              overlay.addEventListener("click", (e) => {
+                // click on overlay popup
+                if (e.target.matches(".overlay_popup")) {
+                  onClosePopup();
+                }
+              });
+            }
+          }
+          function onClosePopup() {
+            // startVideo();
+            overlay.classList.add("is_hidden");
+            if (document.querySelector("body").classList.contains("open_var")) {
+              document.querySelector("body").classList.remove("open_var");
+            }
+            // setTimeout(() => {
+            //   document.querySelector(".content_popup")?.remove();
+            // }, 400);
+          }
+          let f = setInterval(() => {
+            if (document.querySelector(".check_availability_btn")) {
+              clearInterval(f);
+              document.querySelector(".check_availability_btn").addEventListener("click", () => {
+                pushDataLayer("exp_new_ui_b_wwd_ca", "Check Availability For Your Date", "Button", "What we do HP");
+                onOpenPopup();
+              });
+            }
+          }, 100);
+          let q = setInterval(() => {
+            if (document.querySelector(".get_a_quot_btn")) {
+              clearInterval(q);
+              document.querySelectorAll(".get_a_quot_btn").forEach((el) => {
+                el.addEventListener("click", (e) => {
+                  pushDataLayer("exp_new_ui_b_pe_gq", `Get a quote ${el.previousElementSibling.textContent}`, "Button", "Private event HP");
+                  onOpenPopup();
+                });
+              });
+            }
+          }, 100);
+        }
+      }
+
+      function visibElem() {
+        let obsV = new IntersectionObserver(visibilityV, {
+          threshold: 1,
+        });
+
+        let obsV2 = new IntersectionObserver(visibilityV2, {
+          threshold: 1,
+        });
+
+        let time;
+
+        let intV1 = setInterval(() => {
+          if (document.querySelector(".how_to_find_accardion")) {
+            clearInterval(intV1);
+            time = 3000;
+            obsV.observe(document.querySelector(".how_to_find_accardion"));
+          }
+        }, 100);
+        let intV2 = setInterval(() => {
+          if (document.querySelector(".private_event_list")) {
+            clearInterval(intV2);
+            time = 2000;
+            obsV.observe(document.querySelector(".private_event_list"));
+          }
+        }, 100);
+
+        function visibilityV(entries) {
+          entries.forEach((i) => {
+            if (i.isIntersecting) {
+              setTimeout(function () {
+                obsV2.observe(i.target);
+              }, time);
+            }
+          });
+        }
+        function visibilityV2(entries) {
+          entries.forEach((i) => {
+            if (i.isIntersecting) {
+              if (i.target.classList.contains("how_to_find_accardion")) {
+                pushDataLayer("exp_new_ui_v_olhp", "Our location", "Visibility", "Our location HP");
               }
-            });
-          }
-        }
-        function onClosePopup() {
-          // startVideo();
-          overlay.classList.add("is_hidden");
-          if (document.querySelector("body").classList.contains("open_var")) {
-            document.querySelector("body").classList.remove("open_var");
-          }
-          // setTimeout(() => {
-          //   document.querySelector(".content_popup")?.remove();
-          // }, 400);
+              if (i.target.classList.contains("private_event_list")) {
+                pushDataLayer("exp_new_ui_v_pe", "Private event", "Visibility", "Private event HP");
+              }
+              // if (i.target.classList.contains("")) {
+              // }
+              // if (i.target.classList.contains("")) {
+              // }
+              // if (i.target.classList.contains("")) {
+              // }
+              // if (i.target.classList.contains("")) {
+              // }
+              // if (i.target.classList.contains("")) {
+              // }
+
+              obsV.unobserve(i.target);
+            }
+            obsV2.unobserve(i.target);
+          });
         }
       }
-    }
-  }, 100);
-}
-
-//
-function visibElem() {
-  let obsV = new IntersectionObserver(visibilityV, {
-    threshold: 1,
-  });
-
-  let obsV2 = new IntersectionObserver(visibilityV2, {
-    threshold: 1,
-  });
-
-  let time;
-
-  let intV1 = setInterval(() => {
-    if (document.querySelector(".how_to_find_us_maps")) {
-      clearInterval(intV1);
-      time = 3000;
-      obsV.observe(document.querySelector(".how_to_find_us_maps"));
-    }
-  }, 100);
-  let intV2 = setInterval(() => {
-    if (document.querySelector(".voucher_block")) {
-      clearInterval(intV2);
-      time = 2000;
-      obsV.observe(document.querySelector(".voucher_block"));
-    }
-  }, 100);
-  let intV3 = setInterval(() => {
-    if (document.querySelector(".free_cancellationup_block")) {
-      clearInterval(intV3);
-      time = 2000;
-      obsV.observe(document.querySelector(".free_cancellationup_block"));
-    }
-  }, 100);
-  let intV4 = setInterval(() => {
-    if (document.querySelector(".may_also_like_block")) {
-      clearInterval(intV4);
-      time = 3000;
-      obsV.observe(document.querySelector(".may_also_like_block"));
-    }
-  }, 100);
-  let intV5 = setInterval(() => {
-    if (document.querySelector(".is_visib_reviews")) {
-      clearInterval(intV5);
-      time = 3000;
-      obsV.observe(document.querySelector(".is_visib_reviews"));
-    }
-  }, 100);
-
-  function visibilityV(entries) {
-    entries.forEach((i) => {
-      if (i.isIntersecting) {
-        setTimeout(function () {
-          obsV2.observe(i.target);
-        }, time);
-      }
-    });
-  }
-  function visibilityV2(entries) {
-    entries.forEach((i) => {
-      if (i.isIntersecting) {
-        if (i.target.classList.contains("how_to_find_us_maps")) {
-          pushDataLayer("exp_new_ui_v_olpdp", "Our location", "Visibility", "Our location PDP");
+      const record = setInterval(() => {
+        if (typeof clarity === "function") {
+          clearInterval(record);
+          clarity("set", "booking_page_exp", "variant_1");
         }
-        if (i.target.classList.contains("voucher_block")) {
-          pushDataLayer("exp_new_ui_v_bne_cc", "Copy code", "Visibility", "Book now enjoy");
-        }
-        if (i.target.classList.contains("free_cancellationup_block")) {
-          pushDataLayer("exp_new_ui_v_bne_fc", "Free cancelation", "Visibility", "Book now enjoy");
-        }
-        if (i.target.classList.contains("may_also_like_block")) {
-          pushDataLayer("exp_new_ui_v_t_ymal", "You may also like", "Visibility", "Tours");
-        }
-        if (i.target.classList.contains("is_visib_reviews")) {
-          pushDataLayer("exp_new_ui_v_r_r", "Reviews", "Visibility", "Reviews");
-        }
+      }, 200);
 
-        obsV.unobserve(i.target);
-      }
-      obsV2.unobserve(i.target);
-    });
-  }
+      document.querySelector(".exp")?.remove();
+    }
+  }, 100);
 }

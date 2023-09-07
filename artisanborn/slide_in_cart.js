@@ -608,6 +608,48 @@ let startFunk = setInterval(() => {
     document.head.insertAdjacentHTML("beforeend", `<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">`);
     document.head.insertAdjacentHTML("beforeend", style);
     document.body.insertAdjacentHTML("afterbegin", popUp);
+    2;
+
+    function checkExp() {
+      var cookies = document.cookie.split("; ");
+      for (var i = 0; i < cookies.length; i++) {
+        var cookieParts = cookies[i].split("=");
+        var cookieName = cookieParts[0];
+        var cookieValue = cookieParts[1];
+
+        if (cookieName === "_gaexp" && /.*1$/.test(cookieValue)) {
+          clearInterval(intervalCookie);
+          // Perform your actions here, e.g., showing a slide-in cart
+          console.log("Cookie found:", cookieValue);
+        }
+      }
+    }
+
+    var intervalCookie = setInterval(checkExp, 100);
+
+    function pushDataLayer(nameDataLayer, deskDataLayer, typeDataLayer, actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || [];
+      if (labelDataLayer) {
+        console.log(nameDataLayer + " " + deskDataLayer + typeDataLayer + actionDataLayer + " : " + labelDataLayer);
+        dataLayer.push({
+          event: "event-to-ga4",
+          event_name: `${nameDataLayer}`,
+          event_desc: `${deskDataLayer}`,
+          event_type: `${typeDataLayer}`,
+          event_loc: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        });
+      } else {
+        console.log(nameDataLayer + " " + deskDataLayer + " " + typeDataLayer + " " + actionDataLayer);
+        dataLayer.push({
+          event: "event-to-ga4",
+          event_name: `${nameDataLayer}`,
+          event_desc: `${deskDataLayer}`,
+          event_type: `${typeDataLayer}`,
+          event_loc: `${actionDataLayer}`,
+        });
+      }
+    }
 
     let body = document.body,
       html = document.querySelector("html"),
@@ -618,7 +660,7 @@ let startFunk = setInterval(() => {
       document.querySelector(".hdicon[title='CART']").addEventListener("click", (e) => {
         e.preventDefault();
         console.log(`>>>MyCart`);
-        onOpenPopup(slideInCartContent);
+        onOpenPopup();
         document.querySelector(".cart_popup_scroll")?.insertAdjacentHTML("afterbegin", `<span class="loading"><svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle></svg></span>`);
         document.querySelectorAll(".cart_popup_scroll .cart_popup_list .product_wrap")?.forEach((el) => {
           el.classList.add("blur_var");
@@ -640,49 +682,74 @@ let startFunk = setInterval(() => {
       }
     });
 
-    function onOpenPopup(block) {
+    function onOpenPopup() {
       console.log("onOpenPopup");
       overlay.classList.add("is_visible");
       body.style.overflow = "hidden";
       html.style.overflow = "hidden";
       body.style.display = "block";
 
-      document.querySelector(".container_popup").insertAdjacentHTML("beforeend", block);
-
       pushDataLayer("exp_slide_in_cart_v_sic", "Slide in cart", "Visibility", "Slide in cart");
-      if (document.querySelector(".btn_checkout") && document.querySelector(".lav-paypal") && !document.querySelector(".btn_checkout+.lav-paypal")) {
-        document.querySelector(".btn_checkout").after(document.querySelector(".lav-paypal"));
 
-        // get user agent
-        let userAgent = navigator.userAgent;
-
-        // is Safari
-        if (userAgent.indexOf("Safari") !== -1 && userAgent.indexOf("Chrome") === -1) {
-          console.log("This is Safari");
-          let findGooglePay = setInterval(() => {
-            if (document.querySelector('[data-testid="GooglePay-button"]')) {
-              clearInterval(findGooglePay);
-              document.querySelector('[data-testid="GooglePay-button"]').parentElement.style = "display: none!important;";
-            }
-          });
-        }
-
-        // is Chrome
-        if (userAgent.indexOf("Chrome") !== -1) {
-          console.log("This is Chrome");
-          let findApplePay = setInterval(() => {
-            if (document.querySelector('[data-testid="ApplePay-button"]')) {
-              clearInterval(findApplePay);
-              document.querySelector('[data-testid="ApplePay-button"]').parentElement.style = "display: none!important;";
-            }
-          });
-        }
-      }
       document.querySelector(".cart_popup_scroll .cart_popup_list")?.insertAdjacentHTML("afterbegin", `<span class="loading"><svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle></svg></span>`);
       document.querySelectorAll(".cart_popup_scroll .cart_popup_list .product_wrap")?.forEach((el) => {
         el.classList.remove("blur_var");
       });
 
+      // get user agent
+      let userAgent = navigator.userAgent;
+
+      // is Safari
+      let findGooglePay = setInterval(() => {
+        if (document.querySelector('[data-testid="GooglePay-button"]')) {
+          clearInterval(findGooglePay);
+          pushDataLayer("exp_slide_in_cart__b_v_gp", "Google Pay", "Visibility", "Slide in cart");
+
+          document.querySelector('[data-testid="GooglePay-button"]').addEventListener("click", () => {
+            pushDataLayer("exp_slide_in_cart__b_gp", "Google Pay", "Button", "Slide in cart");
+          });
+          if (userAgent.indexOf("Safari") !== -1 && userAgent.indexOf("Chrome") === -1) {
+            console.log("This is Safari");
+            document.querySelector('[data-testid="GooglePay-button"]').parentElement.style = "display: none!important;";
+          }
+        }
+      });
+
+      // is Chrome
+      let findApplePay = setInterval(() => {
+        if (document.querySelector('[data-testid="ApplePay-button"]')) {
+          clearInterval(findApplePay);
+          pushDataLayer("exp_slide_in_cart__b_v_ap", "Apple Pay", "Visibility", "Slide in cart");
+          document.querySelector('[data-testid="ApplePay-button"]').addEventListener("click", () => {
+            pushDataLayer("exp_slide_in_cart__b_ap", "Apple Pay", "Button", "Slide in cart");
+          });
+
+          if (userAgent.indexOf("Chrome") !== -1) {
+            console.log("This is Chrome");
+            document.querySelector('[data-testid="ApplePay-button"]').parentElement.style = "display: none!important;";
+          }
+        }
+      });
+
+      let paypalLight = setInterval(() => {
+        if (document.querySelector(".paypalLight")) {
+          clearInterval(paypalLight);
+          pushDataLayer("exp_slide_in_cart_b_v_pp", "Pay Pal", "Visibility", "Slide in cart");
+          document.querySelector(".paypalLight").addEventListener("click", () => {
+            pushDataLayer("exp_slide_in_cart_b_pp", "Pay Pal", "Button", "Slide in cart");
+          });
+        }
+      });
+
+      let shopifyPay = setInterval(() => {
+        if (document.querySelector('[data-testid="ShopifyPay-button"]')) {
+          clearInterval(shopifyPay);
+          pushDataLayer("exp_slide_in_cart__b_v_sp", "Shoppay", "Visibility", "Slide in cart");
+          document.querySelector('[data-testid="ShopifyPay-button"]').addEventListener("click", () => {
+            pushDataLayer("exp_slide_in_cart__b_sp", "Shoppay", "Button", "Slide in cart");
+          });
+        }
+      });
       visibElem();
       //visibility elem
       function visibElem() {
@@ -750,7 +817,7 @@ let startFunk = setInterval(() => {
         e.stopPropagation();
 
         console.log(`>>>MyCart 1`);
-        onOpenPopup(slideInCartContent);
+        onOpenPopup();
         document.querySelector(".cart_popup_scroll .cart_popup_list")?.insertAdjacentHTML("afterbegin", `<span class="loading"><svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle></svg></span>`);
         document.querySelectorAll(".cart_popup_scroll .cart_popup_list .product_wrap")?.forEach((el) => {
           el.classList.add("blur_var");
@@ -759,11 +826,9 @@ let startFunk = setInterval(() => {
       });
     }
 
-    if (document.querySelector(".btn_checkout")) {
-      document.querySelector(".btn_checkout").addEventListener("click", () => {
-        pushDataLayer("exp_slide_in_cart_b_ptc", "Proceed to checkout", "Button", "Slide in cart");
-      });
-    }
+    document.querySelector(".btn_checkout").addEventListener("click", () => {
+      pushDataLayer("exp_slide_in_cart_b_ptc", "Proceed to checkout", "Button", "Slide in cart");
+    });
 
     //add to cart on checkout
     async function addToCartCheckout(idValue, qt) {
@@ -802,6 +867,26 @@ let startFunk = setInterval(() => {
         })
         .then((data) => {
           console.log(data);
+
+          let additionalButtonsContainer = document.getElementById("additionalCheckoutButtonsContainer");
+          // let renderPayments = setInterval(() => {
+
+          //     if (additionalButtonsContainer && typeof Shopify !== 'undefined' && Shopify.Checkout && Shopify.Checkout.PaymentButton) {
+          //            clearInterval(renderPayments)
+          //             additionalButtonsContainer.innerHTML = '{{ content_for_additional_checkout_buttons }}';
+          //         console.log('content_for_additional_checkout_buttons updated')
+          //     }
+
+          // }, 100)
+          console.log(data["item_count"]);
+          if (data["item_count"] == 0) {
+            document.querySelector(".first_price_wrapper").hidden = true;
+            document.querySelector(".cart_popup_footer").hidden = true;
+          } else {
+            document.querySelector(".first_price_wrapper").hidden = false;
+            document.querySelector(".cart_popup_footer").hidden = false;
+          }
+
           document.querySelector(".cart_popup_list").innerHTML = "";
           if (document.querySelector(".cart_popup_scroll .cart_popup_list .product_wrap")?.classList.contains("blur_var")) {
             document.querySelectorAll(".cart_popup_scroll .cart_popup_list .product_wrap")?.forEach((el) => {
@@ -920,7 +1005,7 @@ let startFunk = setInterval(() => {
           });
 
           if (document.querySelector(".cart_popup_scroll .cart_popup_list").children.length < 1) {
-            document.querySelector(".cart_popup_scroll .cart_popup_list").insertAdjacentHTML("afterbegin", `<h3 class="empty_cart_info">Your cart is empty</h3>`);
+            document.querySelector(".cart_popup_scroll .cart_popup_list").insertAdjacentHTML("afterbegin", `<h3 class="empty_cart_info">Your cart is empty</h3> <a href="/" class="btn_continue">Continue shopping</a>`);
           }
           if (document.querySelector(".cart_popup_scroll .cart_popup_list").children.length >= 2) {
             document.querySelector(".cart_popup_scroll .cart_popup_list").classList.add("my_height");
@@ -1025,6 +1110,14 @@ let startFunk = setInterval(() => {
           console.error("Error:", error);
         });
     }
+
+    let appHeight = () => {
+      document.querySelector(".popup_slide_in .container_popup").style.height = window.innerHeight + "px";
+      document.querySelector(".popup_slide_in").style.height = window.innerHeight + "px";
+    };
+    appHeight();
+
+    window.addEventListener("resize", appHeight);
 
     const record = setInterval(() => {
       if (typeof clarity === "function") {

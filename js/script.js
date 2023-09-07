@@ -231,4 +231,20 @@ if (location.href.includes("/become-a-subscriber")) {
   document.head.appendChild(customScript);
 }
 
-//
+//lakelasvegaswatersports
+document.head.insertAdjacentHTML("beforeend", `<style class="exp">body {opacity: 0 !important;}</style>`);
+if (window.location.host === "lakelasvegaswatersports.com") {
+  let script = document.createElement("script");
+  script.src = "https://conversionratestore.github.io/projects/llvws/improvingPDP/relaunch_pdp_lakelasvegas.js";
+  script.async = false;
+  document.head.appendChild(script);
+}
+if (window.location.host === "vegasyacht.com") {
+  let script = document.createElement("script");
+  script.src = "https://conversionratestore.github.io/projects/llvws/improvingPDP/relaunch_pdp_vegas.js";
+  script.async = false;
+  document.head.appendChild(script);
+}
+setTimeout(function () {
+  document.querySelector(".exp")?.remove();
+}, 4000);

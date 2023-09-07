@@ -470,9 +470,16 @@ let startPdp = setInterval(() => {
       font-size: 14px;
       font-weight: 400;
       line-height: 24px;
-      margin-bottom: 10px !important;
+      margin-bottom: 0px !important;
       overflow: hidden;
       height: 120px;
+    }
+    .preview_text::-webkit-scrollbar {
+      width: 4px;
+    }
+    .preview_text::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background: #788188;
     }
     .reviews_read_more_btn {
       color: #28364b;
@@ -1793,10 +1800,10 @@ let startPdp = setInterval(() => {
     onClickCode();
     onClickShare();
     onClickIconHowToFindUs();
-    onClickReadMoreBtn();
     initAccardionToggle();
     moveTxtToAccardion();
     if (window.innerWidth < 768) {
+      onClickReadMoreBtn();
       onClickLoadMoreReviews();
     }
 
@@ -1844,6 +1851,40 @@ let startPdp = setInterval(() => {
 
             slider.on("afterChange", animateHeightMultiElemental);
             slider.on("init", animateHeightMultiElemental);
+            let b = setInterval(() => {
+              if (document.querySelectorAll(".reviews_read_more_btn")) {
+                clearInterval(b);
+                let h = 120;
+                if (window.innerWidth <= 768) {
+                  h = 96;
+                }
+
+                for (let item of document.querySelectorAll(".reviews_read_more_block .preview_text")) {
+                  if (item.scrollHeight <= h) {
+                    item.nextElementSibling.innerHTML = "&nbsp";
+                    item.nextElementSibling.classList.add("disable");
+                  }
+                }
+
+                if (window.innerWidth <= 768) {
+                  document.querySelectorAll(".reviews_link").forEach((el) => {
+                    el.classList.add("load_var");
+                  });
+                }
+
+                document.querySelectorAll(".reviews_read_more_btn").forEach((el) => {
+                  el.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    pushDataLayer("exp_im_pdp_l_r_rm", `Read more ${el.closest(".reviews_link").querySelector(".reviews_name").textContent}`, "Link", "Reviews");
+                    e.currentTarget.style.display = "none";
+                    e.currentTarget.previousElementSibling.style.overflowY = "scroll";
+                    e.currentTarget.previousElementSibling.style.height = "168px";
+                    slider.slick("refresh");
+                  });
+                });
+              }
+            }, 1000);
           }
         }, 100);
 

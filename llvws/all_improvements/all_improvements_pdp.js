@@ -39,22 +39,25 @@ let startPdp = setInterval(() => {
 
     let stylePdp = /*html */ `
     <style>
+      .fl-module-video {
+    margin-top: 40px;
+}
 .fl-row-content-wrap {
   padding: 36px 10px 0 !important;
 }
-.fl-node-content .fl-col-group {
+.fl-node-content .fl-col-group:not(.fl-node-5fbfca8d8a736) {
   display: flex;
   justify-content: space-between;
   gap: 48px;
 }
-.fl-node-content .fl-col-group > div {
+.fl-node-content .fl-col-group:not(.fl-node-5fbfca8d8a736) > div {
   float: unset;
 }
-.fl-node-content .fl-col-group > div:nth-child(1) {
-  max-width: 55%;
+.fl-node-content .fl-col-group:not(.fl-node-5fbfca8d8a736) > div:nth-child(1):not(.fl-node-5fbfca8d8a778) {
+  max-width: 60%;
   width: 100%;
 }
-.fl-node-content .fl-col-group > div:nth-child(2) {
+.fl-node-content .fl-col-group:not(.fl-node-5fbfca8d8a736) > div:nth-child(2) {
   max-width: 412px;
   width: 100%;
   /*
@@ -615,6 +618,7 @@ h2.new_title::after {
   padding: 16px;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 }
 .how_to_find_accardion_link h3 {
   color: #28364b;
@@ -801,6 +805,9 @@ line-height: 24px;
   .reviews_slider {
     max-width: 1000px;
   }
+        .fl-node-content .fl-col-group:not(.fl-node-5fbfca8d8a736) > div:nth-child(1):not(.fl-node-5fbfca8d8a778) {
+        max-width: 55%;
+      }
 }
 @media (max-width: 1200px) {
   .reviews_slider {
@@ -819,7 +826,7 @@ line-height: 24px;
   .may_also_like_list_third.desk_var {
     display: none;
   }
-  .fl-node-content .fl-col-group {
+  .fl-node-content .fl-col-group:not(.fl-node-5fbfca8d8a736) {
     display: block;
   }
   .load_more_reviews.mob_var {
@@ -871,8 +878,8 @@ line-height: 24px;
     line-height: 44px;
     margin: 0 !important;
   }
-  .fl-node-content .fl-col-group > div:nth-child(1),
-  .fl-node-content .fl-col-group > div:nth-child(2) {
+  .fl-node-content .fl-col-group:not(.fl-node-5fbfca8d8a736) > div:nth-child(1):not(.fl-node-5fbfca8d8a778),
+  .fl-node-content .fl-col-group:not(.fl-node-5fbfca8d8a736) > div:nth-child(2) {
     max-width: 100%;
   }
   .fl-row[data-node] .fl-row-content-wrap {
@@ -1735,8 +1742,8 @@ line-height: 24px;
       }
       // logos
       if (window.innerWidth > 768) {
-        if (document.querySelector(".fl-node-content .fl-col-group > div:nth-child(1)") && !document.querySelector(".logos")) {
-          document.querySelector(".fl-node-content .fl-col-group > div:nth-child(1) > div").insertAdjacentHTML("afterend", logos);
+        if (document.querySelector(".fl-node-content .fl-col-group:not(.fl-node-5fbfca8d8a736) > div:nth-child(1):not(.fl-node-5fbfca8d8a778)") && !document.querySelector(".logos")) {
+          document.querySelector(".fl-node-content .fl-col-group:not(.fl-node-5fbfca8d8a736) > div:nth-child(1):not(.fl-node-5fbfca8d8a778) > div").insertAdjacentHTML("afterend", logos);
         }
       } else {
         if (document.querySelector("#howToFindUsBlock") && !document.querySelector(".logos")) {
@@ -1745,7 +1752,7 @@ line-height: 24px;
       }
       // accardion all inform
       if (!document.querySelector(".accardion_all_inform_block")) {
-        document.querySelector(".fl-node-content .fl-col-group > div:nth-child(1) > div")?.insertAdjacentHTML("afterend", `<ul class="accardion_all_inform_block"></ul>`);
+        document.querySelector(".fl-node-content .fl-col-group:not(.fl-node-5fbfca8d8a736) > div:nth-child(1):not(.fl-node-5fbfca8d8a778) > div")?.insertAdjacentHTML("afterend", `<ul class="accardion_all_inform_block"></ul>`);
       }
       if (document.querySelector(".accardion_all_inform_block") && document.querySelector(".accardion_all_inform_block").children.length !== arrAccardionAllInform.length) {
         for (let key in arrAccardionAllInform) {
@@ -1765,10 +1772,10 @@ line-height: 24px;
     tooltipInit();
     onClickShare();
     onClickIconHowToFindUs();
-    onClickReadMoreBtn();
     initAccardionToggle();
     moveTxtToAccardion();
     if (window.innerWidth < 768) {
+      onClickReadMoreBtn();
       onClickLoadMoreReviews();
     }
 
@@ -1810,10 +1817,46 @@ line-height: 24px;
                 },
               ],
             });
-            slider.on("swipe", function () {});
+            slider.on("swipe", function () {
+              pushDataLayer("exp_new_ui_s_r_vs", "Vertical", "Scroll", "Reviews");
+            });
 
             slider.on("afterChange", animateHeightMultiElemental);
             slider.on("init", animateHeightMultiElemental);
+
+            let b = setInterval(() => {
+              if (document.querySelectorAll(".reviews_read_more_btn")) {
+                clearInterval(b);
+                let h = 120;
+                if (window.innerWidth <= 768) {
+                  h = 96;
+                }
+
+                for (let item of document.querySelectorAll(".reviews_read_more_block .preview_text")) {
+                  if (item.scrollHeight <= h) {
+                    item.nextElementSibling.innerHTML = "&nbsp";
+                    item.nextElementSibling.classList.add("disable");
+                  }
+                }
+
+                if (window.innerWidth <= 768) {
+                  document.querySelectorAll(".reviews_link").forEach((el) => {
+                    el.classList.add("load_var");
+                  });
+                }
+
+                document.querySelectorAll(".reviews_read_more_btn").forEach((el) => {
+                  el.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    pushDataLayer("exp_new_ui_l_r_rm", `Read more ${el.closest(".reviews_link").querySelector(".reviews_name").textContent}`, "Link", "Reviews");
+                    e.currentTarget.style.display = "none";
+                    e.currentTarget.previousElementSibling.style.height = "auto";
+                    slider.slick("refresh");
+                  });
+                });
+              }
+            }, 1000);
           }
         }, 100);
 
@@ -1966,11 +2009,6 @@ line-height: 24px;
             $(".how_to_find_us_block .how_to_find_accardion_link").not(this).closest("li").removeClass("active_block");
           }
           pushDataLayer("exp_new_ui_li_ol_inpdp", `${e.currentTarget.querySelector("h3").textContent}`, "List item", "Our location PDP");
-          // if (e.currentTarget.classList.contains("active_block")) {
-          //   pushDataLayer("exp_new_content_what_type_open", `Open - ${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Text area", "What type of college admissions assistance does your child require?");
-          // } else {
-          //   pushDataLayer("exp_new_content_what_type_close", `Close - ${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Text area", "What type of college admissions assistance does your child require?");
-          // }
 
           const headerOffset = 10;
           const elementPosition = this.getBoundingClientRect().top;
@@ -1994,13 +2032,7 @@ line-height: 24px;
             $(".accardion_all_inform_block .how_to_find_accardion_link").not(this).removeClass("active_block");
             $(".accardion_all_inform_block .how_to_find_accardion_link").not(this).closest("li").removeClass("active_block");
           }
-
-          let w = e.currentTarget.querySelector("h3").textContent.split(" ");
-          // if (e.currentTarget.classList.contains("active_block")) {
-          //   pushDataLayer("exp_new_content_what_type_open", `Open - ${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Text area", "What type of college admissions assistance does your child require?");
-          // } else {
-          //   pushDataLayer("exp_new_content_what_type_close", `Close - ${w[0]} ${w[1]} ${w[2]} ${w[3]} ${w[4]}`, "Text area", "What type of college admissions assistance does your child require?");
-          // }
+          pushDataLayer("exp_new_ui_d_ast_faq", "faq", `Dropdown ${e.currentTarget.querySelector("h3").textContent}`, "Above section Tours");
 
           const headerOffset = 10;
           const elementPosition = this.getBoundingClientRect().top;
@@ -2225,6 +2257,20 @@ line-height: 24px;
           obsV.observe(document.querySelector(".is_visib_reviews"));
         }
       }, 100);
+      let intV6 = setInterval(() => {
+        if (document.querySelector(".logos")) {
+          clearInterval(intV6);
+          time = 3000;
+          obsV.observe(document.querySelector(".logos"));
+        }
+      }, 100);
+      let intV7 = setInterval(() => {
+        if (document.querySelector(".looking")) {
+          clearInterval(intV7);
+          time = 3000;
+          obsV.observe(document.querySelector(".looking"));
+        }
+      }, 100);
 
       function visibilityV(entries) {
         entries.forEach((i) => {
@@ -2253,12 +2299,26 @@ line-height: 24px;
             if (i.target.classList.contains("is_visib_reviews")) {
               pushDataLayer("exp_new_ui_v_r_r", "Reviews", "Visibility", "Reviews");
             }
+            if (i.target.classList.contains("logos")) {
+              pushDataLayer("exp_new_ui_v_ast_sr", "Service reviews", "Visibility", "Above section Tours");
+            }
+            if (i.target.classList.contains("looking")) {
+              pushDataLayer("exp_new_ui_v_mp_t", "Tips", "Visibility", "Main image");
+            }
 
             obsV.unobserve(i.target);
           }
           obsV2.unobserve(i.target);
         });
       }
+      const record = setInterval(() => {
+        if (typeof clarity === "function") {
+          clearInterval(record);
+          clarity("set", "booking_page_exp", "variant_1");
+        }
+      }, 200);
+
+      document.querySelector(".exp")?.remove();
     }
   }
 }, 100);
