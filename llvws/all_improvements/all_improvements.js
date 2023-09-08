@@ -35,52 +35,140 @@ if (window.location.pathname === "/") {
 
       let vegasYachtStyle = /*html */ `
         <style>
-                .overlay_popup {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(31, 27, 27, 0.50);
-        display: flex;
-        overflow-y: auto;
-        z-index: 1000000000;
-        transition: all 0.5s ease;
-    }
-    .overlay_popup.is_hidden{
-        opacity: 0;
-        pointer-events: none;
-    }
-    .overlay_popup .container_popup {
-        display: block;
-        position: relative;
-        max-width: 500px;
-        width: 100%;
-        margin: auto;
-        transition: all 0.5s ease 0s;
-    }
-    .overlay_popup .container_popup > .btn_close {
-        position: absolute;
-        background: #F1F0E8;
-        top: -10px;
-        right: -7px;
-        width: 48px;
-        height: 48px;
-        outline: none;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1;
-        border-radius: 50%;
-    }
-    .content_popup{
-        background: #FFF;
-        padding: 56px 70px;
-    }
-        body.open_var{
-            overflow: hidden !important;
-        }
+.overlay_popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(31, 27, 27, 0.5);
+  display: flex;
+  overflow-y: auto;
+  z-index: 1000000000;
+  transition: all 0.5s ease;
+}
+.overlay_popup.is_hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.overlay_popup .container_popup {
+  display: block;
+  position: relative;
+  max-width: 500px;
+  width: 100%;
+  margin: auto;
+  transition: all 0.5s ease 0s;
+}
+.overlay_popup .container_popup > .btn_close {
+  position: absolute;
+  background: #f1f0e8;
+  top: -10px;
+  right: -7px;
+  width: 48px;
+  height: 48px;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  border-radius: 50%;
+}
+.content_popup {
+  background: #fff;
+  padding: 56px 60px;
+}
+body.open_var {
+  overflow: hidden !important;
+}
+.popup_header {
+  margin: 0 0 20px;
+}
+.popup_header > h2,
+.second_step h2 {
+  color: #28364b;
+  text-align: center;
+  font-family: "Playfair Display";
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 44px;
+  margin: 0;
+}
+.second_step h2 {
+  margin-bottom: 20px;
+}
+.my_date {
+  font-weight: 600;
+}
+.private_event_request_form .continue_btn,
+.private_event_request_form .submit_btn {
+  display: flex;
+  background: #cfbe88;
+  color: #28364b;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  height: 56px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-top: 24px;
+}
+.private_event_request_form .first_step p,
+.second_step p {
+  color: #4b4f58;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.14px;
+  margin: 0 auto 32px !important;
+  text-align: center;
+  max-width: 300px;
+}
+.private_event_request_form label {
+  display: block;
+}
+.private_event_request_form label + label {
+  margin-top: 16px;
+}
+.private_event_request_form label > span {
+  display: block;
+  color: #28364b;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  margin-bottom: 12px;
+}
+.private_event_request_form label input::placeholder,
+.private_event_request_form label textarea::placeholder {
+  color: #838895;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+}
+.private_event_request_form label input,
+.private_event_request_form label textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #e2e5eb !important;
+  background: none;
+  outline: inherit;
+  resize: none;
+}
+.private_event_request_form label textarea {
+  max-height: 51px;
+}
+.input_validation {
+  display: none;
+}
+.second_step.is_hidden {
+  display: none;
+}
 /*charter_services_request_block */
 .charter_services_request_block {
   position: relative;
@@ -531,7 +619,47 @@ if (window.location.pathname === "/") {
   }
 }
 @media (max-width: 768px) {
-  .fl-node-5fc11f1bcaa37{
+  .overlay_popup .container_popup {
+    max-width: 335px;
+  }
+  .content_popup {
+    padding: 40px 20px;
+  }
+  .overlay_popup .container_popup > .btn_close {
+    width: 40px;
+    height: 40px;
+  }
+  .popup_header {
+    margin: 0 0 16px;
+  }
+  .popup_header > h2,
+  .second_step h2 {
+    font-size: 30px !important;
+    line-height: 36px !important;
+  }
+  .private_event_request_form .first_step p,
+  .second_step p {
+    margin: 0 auto 24px !important;
+    max-width: 270px;
+  }
+  .private_event_request_form label + label {
+    margin-top: 12px;
+  }
+  .private_event_request_form label > span {
+    margin-bottom: 8px;
+  }
+  .private_event_request_form label input,
+  .private_event_request_form label textarea {
+    padding: 8px 16px;
+  }
+  .private_event_request_form .continue_btn,
+  .private_event_request_form .submit_btn {
+    margin-top: 20px;
+  }
+  .private_event_request_form label textarea {
+    max-height: 42px;
+  }
+  .fl-node-5fc11f1bcaa37 {
     float: unset;
     margin: 0;
     max-width: unset !important;
@@ -891,8 +1019,19 @@ if (window.location.pathname === "/") {
             </ul>
           </div>
       `;
-      let popUp = /*html */ `
-        <div class="overlay_popup is_hidden">
+      let popUpPrivateEventReq = /*html */ `
+        <div class="overlay_popup is_hidden private_event_req">
+          <div class="container_popup">
+            <div class="btn_close">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M1.1454 14.8546C1.19184 14.9011 1.24699 14.938 1.30769 14.9631C1.36839 14.9883 1.43346 15.0012 1.49917 15.0012C1.56488 15.0012 1.62994 14.9883 1.69064 14.9631C1.75135 14.938 1.80649 14.9011 1.85293 14.8546L7.99818 8.70935L14.1459 14.8546C14.2398 14.9484 14.367 15.0011 14.4997 15.0011C14.6324 15.0011 14.7596 14.9484 14.8535 14.8546C14.9473 14.7608 15 14.6335 15 14.5008C15 14.3681 14.9473 14.2409 14.8535 14.1471L8.70571 8.00182L14.851 1.85406C14.9448 1.76024 14.9975 1.63299 14.9975 1.5003C14.9975 1.36761 14.9448 1.24036 14.851 1.14653C14.7571 1.05271 14.6299 1 14.4972 1C14.3645 1 14.2373 1.05271 14.1434 1.14653L7.99818 7.29429L1.85043 1.14903C1.75478 1.06712 1.63173 1.02431 1.50589 1.02917C1.38005 1.03403 1.26067 1.0862 1.17162 1.17525C1.08257 1.2643 1.0304 1.38368 1.02554 1.50952C1.02068 1.63537 1.06349 1.75841 1.1454 1.85406L7.29066 8.00182L1.1454 14.1496C1.05227 14.2433 1 14.37 1 14.5021C1 14.6342 1.05227 14.7609 1.1454 14.8546Z" fill="#28364B"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+    `;
+      let popUpCharterServicesReq = /*html */ `
+        <div class="overlay_popup is_hidden charter_services_req">
           <div class="container_popup">
             <div class="btn_close">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -903,14 +1042,14 @@ if (window.location.pathname === "/") {
         </div>
     `;
       let contentPopup = /*html */ `
-        <div class="content_popup">
+        <div class="content_popup private_event_req">
               <div class="popup_header">
       <h2>Charter Services request</h2>
-      <p>By filling out the charter inquiry form below, you are one step closer to your dream event</p>
     </div>
     <div class="popup_body">
-      <form action="">
-        <div>
+      <form action="" class="private_event_request_form">
+        <div class="first_step">
+          <p>By filling out the charter inquiry form below, you are one step closer to your dream event</p>
           <label for="">
             <span>Name</span>
             <input type="text" name="name" id="" maxlength="64" required placeholder="Name" />
@@ -923,25 +1062,54 @@ if (window.location.pathname === "/") {
           </label>
           <label for="">
             <span>Date of the celebration*</span>
-            <input type="date" name="date" id="" placeholder="Date" />
+            <input type="date" name="date" required id="" placeholder="Date" />
           </label>
-          <button>CONTINUE</button>
+          <button class="continue_btn">Continue</button>
         </div>
-        <div>
+        <div class="second_step is_hidden">
           <label for="">
             <span>Duration of rental (in hours)</span>
             <input type="number" name="hours" id="" maxlength="64" required placeholder="Hours" />
-            <div class="input_validation">Please enter /////////</div>
+            <div class="input_validation">Please enter</div>
           </label>
           <label for="">
             <span>Additional services needed (catering, DJ)?</span>
-            <textarea name="services" id="" cols="30" rows="10" placeholder="Specify here"></textarea>
+            <textarea name="services" id="" placeholder="Specify here"></textarea>
           </label>
           <label for="">
             <span>Any comments or special requests we should know about</span>
-            <textarea name="comments" id="" cols="30" rows="10" placeholder="Type here"></textarea>
+            <textarea name="comments" id="" placeholder="Type here"></textarea>
           </label>
-          <button type="submit">Submit</button>
+          <button type="submit" class="submit_btn">Submit</button>
+        </div>
+      </form>
+    </div>
+        </div>
+    `;
+      let contentPopupServicesRequest = /*html */ `
+        <div class="content_popup charter_services_req">
+              <div class="popup_header">
+      <h2>Charter Services request</h2>
+    </div>
+    <div class="popup_body">
+      <form action="" class="private_event_request_form">
+        <div class="first_step">
+          <p>By filling out the charter inquiry form below, you are one step closer to your dream event</p>
+          <label for="">
+            <span>Desired rental date*</span>
+            <input type="date" name="date" required id="" placeholder="Date" />
+          </label>
+          <label for="">
+            <span>Your email*</span>
+            <input type="email" name="email" id="" maxlength="64" required placeholder="Enter email" />
+            <div class="input_validation">Please enter your email address</div>
+          </label>
+          <button class="continue_btn">Continue</button>
+        </div>
+        <div class="second_step is_hidden">
+          <h2>Thank You!</h2>
+          <p>Our booking team will process your request and we'll send you available slots for <span class="my_date">Thursday 15 June</span> and possible times for the following days.</p>
+          <button type="submit" class="submit_btn">Ok</button>
         </div>
       </form>
     </div>
@@ -1016,9 +1184,10 @@ if (window.location.pathname === "/") {
           `;
       }
 
+      document.head.insertAdjacentHTML("beforeend", `<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">`);
       document.head.insertAdjacentHTML("beforeend", vegasYachtStyle);
-      document.body.insertAdjacentHTML("afterbegin", popUp);
-      document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup);
+      document.body.insertAdjacentHTML("afterbegin", popUpPrivateEventReq);
+      document.body.insertAdjacentHTML("afterbegin", popUpCharterServicesReq);
 
       moveHtml();
       function moveHtml() {
@@ -1202,33 +1371,42 @@ if (window.location.pathname === "/") {
       }
       function onClickDifBtn() {
         if (document.querySelector(".overlay_popup")) {
-          let overlay = document.querySelector(".overlay_popup"),
-            containerPopup = overlay.querySelector(".container_popup"),
-            btnClose = overlay.querySelector(".btn_close");
-
-          function onOpenPopup() {
-            overlay.classList.remove("is_hidden");
+          function onOpenPopup(contentPopupHtml, form) {
             document.querySelector("body").classList.add("open_var");
-            if (!document.querySelector(".overlay_popup .content_popup")) {
-              containerPopup?.insertAdjacentHTML("beforeend", contentPopup);
+            if (form === "charter_services_req") {
+              document.querySelector(".overlay_popup.charter_services_req").classList.remove("is_hidden");
+              if (!document.querySelector(".overlay_popup.charter_services_req .content_popup.charter_services_req")) {
+                document.querySelector(".overlay_popup.charter_services_req .container_popup")?.insertAdjacentHTML("beforeend", contentPopupHtml);
+              }
+            }
+            if (form === "private_event_req") {
+              document.querySelector(".overlay_popup.private_event_req").classList.remove("is_hidden");
+              if (!document.querySelector(".overlay_popup.private_event_req .content_popup.private_event_req")) {
+                document.querySelector(".overlay_popup.private_event_req .container_popup")?.insertAdjacentHTML("beforeend", contentPopupHtml);
+              }
             }
 
-            if (document.querySelector(".overlay_popup .content_popup")) {
-              btnClose.addEventListener("click", (e) => {
+            document.querySelectorAll(".overlay_popup .btn_close").forEach((i) => {
+              i.addEventListener("click", (e) => {
                 // click on btn close popup
                 onClosePopup();
               });
-              overlay.addEventListener("click", (e) => {
+            });
+            document.querySelectorAll(".overlay_popup").forEach((i) => {
+              i.addEventListener("click", (e) => {
                 // click on overlay popup
                 if (e.target.matches(".overlay_popup")) {
                   onClosePopup();
                 }
               });
-            }
+            });
           }
           function onClosePopup() {
             // startVideo();
-            overlay.classList.add("is_hidden");
+            document.querySelectorAll(".overlay_popup").forEach((el) => {
+              el.classList.add("is_hidden");
+            });
+
             if (document.querySelector("body").classList.contains("open_var")) {
               document.querySelector("body").classList.remove("open_var");
             }
@@ -1241,7 +1419,7 @@ if (window.location.pathname === "/") {
               clearInterval(f);
               document.querySelector(".check_availability_btn").addEventListener("click", () => {
                 pushDataLayer("exp_new_ui_b_wwd_ca", "Check Availability For Your Date", "Button", "What we do HP");
-                onOpenPopup();
+                onOpenPopup(contentPopupServicesRequest, "charter_services_req");
               });
             }
           }, 100);
@@ -1251,7 +1429,7 @@ if (window.location.pathname === "/") {
               document.querySelectorAll(".get_a_quot_btn").forEach((el) => {
                 el.addEventListener("click", (e) => {
                   pushDataLayer("exp_new_ui_b_pe_gq", `Get a quote ${el.previousElementSibling.textContent}`, "Button", "Private event HP");
-                  onOpenPopup();
+                  onOpenPopup(contentPopup, "private_event_req");
                 });
               });
             }

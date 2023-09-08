@@ -518,7 +518,6 @@ iframe.rezdy {
   display: none;
   padding-bottom: 16px;
 }
-
 .accordion_content a {
   text-decoration: underline;
   transition: 0.35s;
@@ -715,6 +714,10 @@ p.verified {
 .book_now_wrapp {
   display: flex;
   justify-content: space-between;
+  gap: 30px;
+}
+.book_now_wrapp > div{
+      width: 50%;
 }
 .code_wrapp {
   position: relative;
@@ -1003,7 +1006,7 @@ p.book_now_txt,
     display: inline-block;
   }
   .popup__copy-icon {
-    color: #000;
+    color: #18aae2;
     display: inline-flex;
     align-items: center;
   }
@@ -1764,19 +1767,26 @@ function handleProductInfo() {
     }
   );
 
-  $(".lav-gallery__actions .lav-advisor a").addEventListener("click", () => {
+  $(".lav-gallery__actions .lav-advisor a").addEventListener("click", (e) => {
+    e.preventDefault();
     pushDataLayer("exp_improving_pdp_see_fs", "See all Reviews", "Link", "First screen");
+    document.querySelector(".stories")?.scrollIntoView({ block: "start", behavior: "smooth" });
+  });
+  $(".choice p a").addEventListener("click", (e) => {
+    e.preventDefault();
+    pushDataLayer("exp_improving_pdp_see_fs", "See all Reviews", "Link", "First screen");
+    document.querySelector(".stories")?.scrollIntoView({ block: "start", behavior: "smooth" });
   });
 
   // Looking & Booked
   let personF = setInterval(() => {
-    if (document.querySelector(".persons .grid") && document.querySelector(".looking>div:first-child span")) {
+    if (document.querySelector(".persons .grid").textContent !== "" && document.querySelector(".looking>div:first-child span")) {
       clearInterval(personF);
       $(".looking>div:first-child span").innerText = $(".persons .grid").innerText;
     }
   }, 100);
   let bookedF = setInterval(() => {
-    if (document.querySelector(".persons .grid") && document.querySelector(".looking>div:last-child span")) {
+    if (document.querySelector(".persons .grid").textContent !== "" && document.querySelector(".looking>div:last-child span")) {
       clearInterval(bookedF);
       $(".looking>div:last-child span").innerText = $(".booked .grid").innerText;
     }
@@ -1868,7 +1878,7 @@ function handleProductInfo() {
   $(".accordion").insertAdjacentHTML(
     "beforeend",
     `
-      <div class="accordion_item">
+      <div class="accordion_item cancellation_refunds">
         <div class="accordion_header">
           <h6>Cancellation & Refunds</h6>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -2144,6 +2154,12 @@ function changeFooter() {
   );
 }
 
+let sss = setInterval(() => {
+  if (document.querySelector(".accordion_item.cancellation_refunds")) {
+    clearInterval(sss);
+    document.querySelector(".accordion_item.cancellation_refunds .accordion_header").classList.add("active");
+  }
+}, 100);
 function initAccordion() {
   const accordionItems = $$(".accordion_item");
   accordionItems.forEach((item) => {
