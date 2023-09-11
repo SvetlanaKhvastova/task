@@ -1090,9 +1090,13 @@ let startPdp = setInterval(() => {
       line-height: 1;
       text-transform: capitalize;
       z-index: 1;
+      display: none;
     }
       .active_pdp .h-6.items-center.gap-4{
         gap: 1rem;
+      }
+      .StripeElement{
+        margin-top: 12px;
       }
       @media (min-width: 768px) {
         .active_pdp .pair_it_with_item:hover img.img_hover {
@@ -1249,7 +1253,7 @@ let startPdp = setInterval(() => {
       }
       .active_pdp .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) {
         z-index: 1;
-        padding: 16px 0 12px;
+        padding: 16px 0 0;
         margin: 0;
       }
       .active_pdp .layout-container.bg-platinum-1 .bg-white.bottom-0.z-20.px-4.py-6:not(#add-cart-button-fixed) > button,
@@ -1309,6 +1313,7 @@ let startPdp = setInterval(() => {
         line-height: 1;
         text-transform: capitalize;
         z-index: 1;
+        display: none;
       }
       .active_pdp .layout-container .col-span-full:nth-child(2) h1 {
         font-size: 22px !important;
