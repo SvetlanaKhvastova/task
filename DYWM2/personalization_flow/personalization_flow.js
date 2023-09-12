@@ -10,6 +10,9 @@ let startF = setInterval(() => {
         width: 100%;
         padding: 42px 0 40px;
       }
+      .pdp_var #promoteSubscriptionWrap{
+        background: #F5F5F5;
+      }
       .bgr_gray {
         position: absolute;
         left: 0;
@@ -289,6 +292,133 @@ let startF = setInterval(() => {
                  width: 100rem;
              }
          }
+         /*based_on_your_interests */
+         .based_on_your_interests{
+            margin: 30px 0 45px;
+         }
+         .based_on_your_interests .title_wrapp{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+         }
+         .based_on_your_interests .title_wrapp > h3{
+            color: #000;
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 26px;
+            margin: 0;
+         }
+         .based_on_your_interests .title_wrapp .change_preferences_btn{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 251px;
+            width: 100%;
+            height: 50px;
+            border-radius: 30px;
+            border: 1px solid #E0E0E0;
+            color: #555;
+            font-family: 'Manrope', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 26px;
+            cursor: pointer;
+            gap: 10px;
+         }
+         .based_on_your_interests .all_suggested_classes_btn{
+            color: #027DB8;
+            font-family: 'Manrope', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 26px;
+         }
+         .based_on_your_interests .all_suggested_classes_btn img{
+            margin-left: 10px;
+            display: inline-block;
+         }
+         .based_on_your_interests .video_wrapp{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin: 34px 0 20px;
+            padding: 0;
+            list-style: none;
+         }
+        .video_wrapp > li {
+            display: flex;
+            flex-direction: column;
+            border: solid 1px #d6d6d6;
+            border-radius: calc(3px * 2);
+            width: 18em;
+            max-width: 100%;
+            overflow: hidden;
+            height: 100%;
+            box-shadow: 2px 2px 4px 1px rgba(0,0,0,0.05);
+            height: 300px;
+            cursor: pointer;
+         }
+         .listing_var .based_on_your_interests{
+            margin: 0 auto;
+            background: #FFF;
+            padding-bottom: 24px;
+         }
+         .listing_var .based_on_your_interests_container{
+            max-width: 100%;
+            width: var(--page-container-width);
+            margin: 0 auto;
+         }
+         .listing_var .based_on_your_interests .title_wrapp{
+            padding: 0 1em;
+         }
+         .listing_var .based_on_your_interests .title_wrapp > h3{
+            font-size: 36px;
+            line-height: 30px;
+         }
+         .listing_var .based_on_your_interests .title_wrapp .change_preferences_btn{
+            max-width: 232px;
+            background: #F6F6F6;
+            font-size: 16px;
+            line-height: 24px;
+         }
+         .listing_var .based_on_your_interests .video_wrapp{
+            margin: 30px -100%;
+            padding: 36px 101.5%;
+            background: whitesmoke;
+            display: grid;
+            gap: 1.33rem;
+         }
+         .listing_var .all_suggested_classes_btn{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 30px;
+            border: 1px solid #E0E0E0;
+            text-align: center;
+            max-width: 326px;
+            height: 50px;
+            margin: 0 auto;
+         }
+         .listing_var .video_wrapp > li{
+            width: 100%;
+            border-radius: unset;
+         }
+         @media (min-width: calc(44.4em + 1.33rem + 10em)){
+            .listing_var .based_on_your_interests .video_wrapp{
+                grid-template-columns: 1fr 1fr;
+            }
+         }
+        @media (min-width: calc(66.6em + 2.66rem + 10em)){
+            .listing_var .based_on_your_interests .video_wrapp{
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+         }
+        @media (max-width: calc(44.4em + 1.33rem + 10em)){
+            .listing_var .based_on_your_interests .video_wrapp{
+                grid-template-columns: 1fr;
+            }
+         }
+         
     </style>
     `;
 
@@ -431,9 +561,32 @@ let startF = setInterval(() => {
       </div>
     </section>
     `;
+    let basedOnYourInterests = /*html */ `
+    <div class="based_on_your_interests">
+      <div class="based_on_your_interests_container">
+        <div class="title_wrapp">
+          <h3>Based On Your Interests</h3>
+          <div class="change_preferences_btn">
+            <img src="https://conversionratestore.github.io/projects/doyogawithme/img/change_preferences.svg" alt="icon" />
+            <span>Change preferences</span>
+          </div>
+        </div>
+        <ul class="video_wrapp">
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <a href="" class="all_suggested_classes_btn"
+          >Explore all suggested classes
+          <img src="https://conversionratestore.github.io/projects/doyogawithme/img/blue_arrow.svg" alt="blue arrow icon" />
+        </a>
+      </div>
+    </div>
+    `;
 
     document.head.insertAdjacentHTML("beforeend", styleNew);
-
+    // if user is free
+    isNotSubscriber();
     //unless we have already created personalized list banner
     if (!localStorage.getItem("createdPersonalizedList")) {
       nonCreatedPersonalizedList();
@@ -462,7 +615,7 @@ let startF = setInterval(() => {
             document.querySelector(".view-filters").insertAdjacentHTML("afterend", bannerTakePersonalizationQuiz);
           }
         }
-        if (window.location.pathname.match("/content/") && sessionStorage.getItem("survi::7e5b485118252bfdd1f1e031d8a5f743::visitInitialUrl") === '"www.doyogawithme.com/yoga-classes"') {
+        if (window.location.pathname.match("/content/") && sessionStorage.getItem("survi::7e5b485118252bfdd1f1e031d8a5f743::visitReferrerUrl") === '"https://www.doyogawithme.com/yoga-classes"') {
           if (document.querySelector(".sfc-nodePlayable__borderSection") && !document.querySelector(".banner_take_personalization_quiz")) {
             document.querySelector(".sfc-nodePlayable__borderSection").insertAdjacentHTML("afterend", bannerTakePersonalizationQuiz);
           }
@@ -472,17 +625,33 @@ let startF = setInterval(() => {
         }
       }
     }
+    //   TEST !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    if (!localStorage.getItem("createdPersonalizedList")) {
+      localStorage.setItem("createdPersonalizedList", true);
+    }
+    //   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     function createdPersonalizedList() {
       renderNewBlocks();
 
-      function renderNewBlocks() {}
+      function renderNewBlocks() {
+        console.log(`renderNewBlocks`);
+        if (window.location.pathname === "/" && !document.querySelector('.menu--account [data-drupal-link-system-path="yogi/login"]') && document.querySelector("#id_first") && !document.querySelector(".based_on_your_interests")) {
+          document.querySelector("#id_first").insertAdjacentHTML("beforebegin", basedOnYourInterests);
+        }
+        if (window.location.pathname === "/yoga-classes" && document.querySelector("#main-content") && !document.querySelector(".based_on_your_interests")) {
+          document.querySelector("#main-content").insertAdjacentHTML("beforebegin", basedOnYourInterests);
+          document.querySelector(".o-page").classList.add("listing_var");
+        }
+      }
     }
 
-    isNotSubscriber();
     function isNotSubscriber() {
-      if (window.location.pathname === "/yoga-classes" || window.location.pathname === "/yoga-meditation" || (window.location.pathname.match("/content/") && sessionStorage.getItem("survi::7e5b485118252bfdd1f1e031d8a5f743::visitInitialUrl") === '"www.doyogawithme.com/yoga-classes"')) {
+      if (window.location.pathname === "/yoga-classes" || window.location.pathname === "/yoga-meditation" || (window.location.pathname.match("/content/") && sessionStorage.getItem("survi::7e5b485118252bfdd1f1e031d8a5f743::visitReferrerUrl") === '"https://www.doyogawithme.com/yoga-classes"')) {
         if (!document.querySelector(".promote_subscription_wrap") && document.querySelector(".o-page__header")) {
           document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
+          if (window.location.pathname.match("/content/")) {
+            document.querySelector(".o-page").classList.add("pdp_var");
+          }
         }
       }
       let findToggleBtn = setInterval(() => {
