@@ -1,32 +1,32 @@
 let autoGeoLocation = setInterval(() => {
   if (document.querySelector("#___gatsby")) {
-    clearInterval(autoGeoLocation)
+    clearInterval(autoGeoLocation);
 
-    console.log(">>>>>>>>>>>>>>>Variant B")
+    console.log(">>>>>>>>>>>>>>>Variant B");
 
-    let eventVar = "desktop"
+    let eventVar = "desktop";
 
     if (window.innerWidth <= 768) {
-      eventVar = "mobile"
+      eventVar = "mobile";
     }
 
     function pushDataLayer(actionDataLayer, labelDataLayer) {
-      window.dataLayer = window.dataLayer || []
+      window.dataLayer = window.dataLayer || [];
       if (labelDataLayer) {
-        console.log(actionDataLayer + " : " + labelDataLayer)
+        console.log(actionDataLayer + " : " + labelDataLayer);
         dataLayer.push({
           event: "event-to-ga",
           eventCategory: `Exp: Autofill ZIP Variant B ${eventVar}`,
           eventAction: `${actionDataLayer}`,
           eventLabel: `${labelDataLayer}`,
-        })
+        });
       } else {
-        console.log(actionDataLayer)
+        console.log(actionDataLayer);
         dataLayer.push({
           event: "event-to-ga",
           eventCategory: `Exp: Autofill ZIP Variant B ${eventVar}`,
           eventAction: `${actionDataLayer}`,
-        })
+        });
       }
     }
 
@@ -137,7 +137,7 @@ form.css-8atqhb .chakra-form__error-message {
 }
 
     </style>
-    `
+    `;
 
     let autoLocationBlock = /*html */ `
     <div class="auto_location_block">
@@ -160,30 +160,30 @@ form.css-8atqhb .chakra-form__error-message {
         <span class="zip_error">Write your zip code</span>
         <button>Compare quotes</button>
     </div>
-    `
+    `;
 
-    document.body.insertAdjacentHTML("afterbegin", style)
-    document.querySelector("form.css-8atqhb").insertAdjacentHTML("afterbegin", autoLocationBlock)
+    document.body.insertAdjacentHTML("afterbegin", style);
+    document.querySelector("form.css-8atqhb").insertAdjacentHTML("afterbegin", autoLocationBlock);
 
     if (document.querySelector(".auto_region")) {
       if (document.querySelector(".auto_region") !== "") {
         const options = {
           root: null,
           threshold: 1,
-        }
+        };
 
         let observerNewHeader = new IntersectionObserver((entries) => {
-          if (!entries[0].isIntersecting) return
-          pushDataLayer(`State resolved from IP and shown`)
-          observerNewHeader.disconnect()
-        })
+          if (!entries[0].isIntersecting) return;
+          pushDataLayer(`State resolved from IP and shown`);
+          observerNewHeader.disconnect();
+        });
 
-        observerNewHeader.observe(document.querySelector(".auto_region"), options)
+        observerNewHeader.observe(document.querySelector(".auto_region"), options);
       }
     }
 
-    onClickControlVer()
-    fetchLocation()
+    onClickControlVer();
+    fetchLocation();
 
     function onClickControlVer() {
       if (document.querySelector(".auto_location_block")) {
@@ -191,132 +191,132 @@ form.css-8atqhb .chakra-form__error-message {
           label = stickyBox.querySelector("label"),
           input = stickyBox.querySelector("input"),
           btnSend = stickyBox.querySelector("button"),
-          error = stickyBox.querySelector(".zip_error")
+          error = stickyBox.querySelector(".zip_error");
 
         if (btnSend) {
           btnSend.addEventListener("click", (e) => {
-            e.preventDefault()
+            e.preventDefault();
             if (!e.target.getAttribute("data-test")) {
-              pushDataLayer("Compare Quoutes clicked")
+              pushDataLayer("Compare Quoutes clicked");
 
-              document.querySelector("form.css-8atqhb button.chakra-button").click()
+              document.querySelector("form.css-8atqhb button.chakra-button").click();
 
               if (document.querySelector("form.css-8atqhb .chakra-form__error-message") !== null) {
-                document.querySelector(".auto_region").innerHTML = ""
-                error.classList.add("is_error")
-                label.classList.add("is_error")
-                pushDataLayer("ZIP filed error shown")
+                document.querySelector(".auto_region").innerHTML = "";
+                error.classList.add("is_error");
+                label.classList.add("is_error");
+                pushDataLayer("ZIP filed error shown");
               } else {
-                error.classList.remove("is_error")
-                label.classList.remove("is_error")
+                error.classList.remove("is_error");
+                label.classList.remove("is_error");
                 if (document.querySelector(".auto_region svg")) {
-                  document.querySelector(".auto_region").innerHTML = ""
+                  document.querySelector(".auto_region").innerHTML = "";
                 }
               }
             }
-            e.target.setAttribute("data-test", "1")
+            e.target.setAttribute("data-test", "1");
 
             setTimeout(() => {
               if (e.target.getAttribute("data-test")) {
-                e.target.removeAttribute("data-test")
+                e.target.removeAttribute("data-test");
               }
-            }, 500)
-          })
+            }, 500);
+          });
         }
 
         if (input) {
           input.addEventListener("focus", (e) => {
             if (!e.target.getAttribute("data-test")) {
-              pushDataLayer("ZIP field selected (focus)")
+              pushDataLayer("ZIP field selected (focus)");
             }
-            e.target.setAttribute("data-test", "1")
+            e.target.setAttribute("data-test", "1");
 
             setTimeout(() => {
               if (e.target.getAttribute("data-test")) {
-                e.target.removeAttribute("data-test")
+                e.target.removeAttribute("data-test");
               }
-            }, 300)
-          })
+            }, 300);
+          });
 
           input.addEventListener("input", (e) => {
-            var nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set
+            var nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set;
 
-            nativeInputValueSetter.call(document.querySelector('[name="zip"]'), e.target.value)
+            nativeInputValueSetter.call(document.querySelector('[name="zip"]'), e.target.value);
 
             if (document.querySelector("form.css-8atqhb .chakra-form__error-message")) {
-              error.classList.remove("is_error")
-              label.classList.remove("is_error")
+              error.classList.remove("is_error");
+              label.classList.remove("is_error");
             }
-            var ev2 = new Event("input", { bubbles: true })
-            document.querySelector('[name="zip"]').dispatchEvent(ev2)
+            var ev2 = new Event("input", { bubbles: true });
+            document.querySelector('[name="zip"]').dispatchEvent(ev2);
 
             document.querySelector(".auto_region").innerHTML = `<svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M9.5 1.59766C9.5 0.785156 8.8125 0.0976562 8 0.0976562C7.15625 0.0976562 6.5 0.785156 6.5 1.59766C6.5 2.44141 7.15625 3.09766 8 3.09766C8.8125 3.09766 9.5 2.44141 9.5 1.59766ZM8 13.0977C7.15625 13.0977 6.5 13.7852 6.5 14.5977C6.5 15.4414 7.15625 16.0977 8 16.0977C8.8125 16.0977 9.5 15.4414 9.5 14.5977C9.5 13.7852 8.8125 13.0977 8 13.0977ZM14.5 6.59766C13.6562 6.59766 13 7.28516 13 8.09766C13 8.94141 13.6562 9.59766 14.5 9.59766C15.3125 9.59766 16 8.94141 16 8.09766C16 7.28516 15.3125 6.59766 14.5 6.59766ZM3 8.09766C3 7.28516 2.3125 6.59766 1.5 6.59766C0.65625 6.59766 0 7.28516 0 8.09766C0 8.94141 0.65625 9.59766 1.5 9.59766C2.3125 9.59766 3 8.94141 3 8.09766ZM3.375 11.2227C2.5625 11.2227 1.875 11.8789 1.875 12.7227C1.875 13.5352 2.5625 14.2227 3.375 14.2227C4.21875 14.2227 4.875 13.5352 4.875 12.7227C4.875 11.8789 4.21875 11.2227 3.375 11.2227ZM12.5938 11.2227C11.75 11.2227 11.0938 11.8789 11.0938 12.7227C11.0938 13.5352 11.75 14.2227 12.5938 14.2227C13.4062 14.2227 14.0938 13.5352 14.0938 12.7227C14.0938 11.8789 13.4062 11.2227 12.5938 11.2227ZM3.375 2.00391C2.5625 2.00391 1.875 2.69141 1.875 3.50391C1.875 4.34766 2.5625 5.00391 3.375 5.00391C4.21875 5.00391 4.875 4.34766 4.875 3.50391C4.875 2.69141 4.21875 2.00391 3.375 2.00391Z" fill="#555555"/>
-</svg>`
+</svg>`;
 
             setTimeout(() => {
               if (document.querySelector(".auto_region svg")) {
-                document.querySelector(".auto_region").innerHTML = ""
+                document.querySelector(".auto_region").innerHTML = "";
               }
-            }, 700)
+            }, 700);
 
             if (localStorage.getItem("auto_region")) {
-              temp = JSON.parse(localStorage.getItem("auto_region"))
+              temp = JSON.parse(localStorage.getItem("auto_region"));
               temp.forEach((el) => {
                 if (e.target.value === el.code) {
-                  document.querySelector(".auto_region").innerHTML = el.name
+                  document.querySelector(".auto_region").innerHTML = el.name;
                 }
-              })
+              });
             }
-          })
+          });
         }
 
         if (document.querySelector('[name="zip"]')) {
           document.querySelector('[name="zip"]').addEventListener("input", (e) => {
-            input.value = e.target.value
+            input.value = e.target.value;
 
             if (document.querySelector("form.css-8atqhb .chakra-form__error-message")) {
-              error.classList.remove("is_error")
-              label.classList.remove("is_error")
+              error.classList.remove("is_error");
+              label.classList.remove("is_error");
             }
-          })
+          });
         }
       }
     }
 
     function fetchLocation() {
-      let arr = []
+      let arr = [];
       fetch("https://ipinfo.io/json?token=625d68b69a156c")
         .then((response) => response.json())
         .then((jsonResponse) => {
-          console.log(jsonResponse)
+          console.log(jsonResponse);
 
-          var nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set
+          var nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set;
 
-          nativeInputValueSetter.call(document.querySelector('[name="zip"]'), jsonResponse.postal)
+          nativeInputValueSetter.call(document.querySelector('[name="zip"]'), jsonResponse.postal);
           if (document.querySelector(".auto_region")) {
-            document.querySelector(".auto_region").textContent = jsonResponse.region
+            document.querySelector(".auto_region").textContent = jsonResponse.region;
             arr.push({
               code: jsonResponse.postal,
               name: jsonResponse.region,
-            })
-            localStorage.setItem("auto_region", JSON.stringify(arr))
+            });
+            localStorage.setItem("auto_region", JSON.stringify(arr));
           }
 
-          var ev2 = new Event("input", { bubbles: true })
-          document.querySelector('[name="zip"]').dispatchEvent(ev2)
-        })
+          var ev2 = new Event("input", { bubbles: true });
+          document.querySelector('[name="zip"]').dispatchEvent(ev2);
+        });
 
       // region
     }
 
-    pushDataLayer("loaded")
+    pushDataLayer("loaded");
     const record = setInterval(() => {
       if (typeof clarity === "function") {
-        clearInterval(record)
+        clearInterval(record);
 
-        clarity("set", "autofill_zip_variant_b", "variant_1")
+        clarity("set", "autofill_zip_variant_b", "variant_1");
       }
-    }, 200)
+    }, 200);
   }
-}, 100)
+}, 100);

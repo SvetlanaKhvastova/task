@@ -10,11 +10,13 @@ img {
   display: block;
   height: auto;
 }
+.accent_green {
+  color: #017922;
+}
 #quizForYou {
   display: flex;
   border-radius: 0px 0px 8px 8px;
   background: #fff;
-  height: 100vh;
   justify-content: space-between;
 }
 .img_wrapp {
@@ -104,7 +106,7 @@ img {
   text-transform: capitalize;
   cursor: pointer;
 }
-.btn_next[disabled="true"] {
+.btn_next[disabled="1"] {
   background: #a5a5a5;
   cursor: unset;
 }
@@ -205,7 +207,7 @@ img {
   height: 0;
   margin: 0;
   padding: 0;
-  position: absolute;
+  display: none;
 }
 .choose_option_wrapp label:not(:last-child) {
   margin-bottom: 16px;
@@ -384,4 +386,187 @@ img {
   transform: translateY(-50%);
   z-index: 1;
   max-height: 640px;
+}
+#quizForYou[count="finish"] .quiz_wrapp {
+  padding: 66px 60px;
+  width: 49%;
+}
+.finish_page > p {
+  color: #555;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 22px;
+  text-transform: capitalize;
+  margin: 0;
+}
+.finish_page .title_page {
+  margin-bottom: 12px;
+}
+.btn_explore_your_yoga_journey {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 480px;
+  width: 100%;
+  height: 50px;
+  border-radius: 30px;
+  background: #027db8;
+  color: #fff;
+  font-family: "Manrope", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: capitalize;
+  margin: 24px 0 0;
+  padding: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+.personalized_box {
+  margin: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.personalized_list {
+  width: 40%;
+}
+.personalized_list[data-name="areasOfFocus"],
+.personalized_list[data-name="yogaType"] {
+  width: 100%;
+}
+.personalized_list_title {
+  position: relative;
+  color: #272727;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  margin: 0 0 6px;
+  padding-left: 28px;
+}
+.personalized_list_title::before {
+  position: absolute;
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/lotus_icon.svg) no-repeat;
+  background-size: contain;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+.personalized_list_tag {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  background: #f6f6f6;
+  padding: 5px 12px 5px 42px;
+  max-width: max-content;
+  min-height: 34px;
+}
+.personalized_list_tag::before {
+  position: absolute;
+  content: "";
+  width: 24px;
+  height: 24px;
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/beginner_icon.svg) no-repeat;
+  background-size: contain;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+}
+.personalized_list_tag[data-tag="Beginner"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/beginner_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Intermediate"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/intermediate_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Advanced"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/advanced_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Vinyasa Flow"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/vinyasa_flow_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Hatha"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/hatha_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Power Yoga"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/power_yoga_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Restorative/Yin"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/restorative_yin_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Kundalini Yoga"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/kundalini_yoga_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Yoga for Meditation and Mindfulness"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/yoga_meditation_mindfulness_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Core strength and stability"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/core_strength_stability_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Back strength and pain relief"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/back_strength_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Upper body strength and toning"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/upper_body_strength_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Flexibility and joint mobility"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/flexibility_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Relaxation and sleep improvement"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/relaxation_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Mindfulness and meditation techniques"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/yoga_meditation_mindfulness_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Women’s health, Prenatal and Postnatal practices"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/health_prenatal_postnatal_practices_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Techniques to increase energy"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/techniques_increase_energy_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="10-20 minutes"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/twenty_minutes_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="30-45 minutes"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/forty_five_minutes_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="60 minutes or more"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/sixty_minutes_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Different styles"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/kundalini_yoga_icon.svg) no-repeat;
+  background-size: contain;
+}
+
+.personalized_list[data-name="yogaType"] .personalized_txt_wrapp,
+.personalized_list[data-name="areasOfFocus"] .personalized_txt_wrapp {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
