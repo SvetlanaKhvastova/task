@@ -418,6 +418,79 @@ let startF = setInterval(() => {
                 grid-template-columns: 1fr;
             }
          }
+         /*popup */
+         .overlay_popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #FFF;
+            display: flex;
+            overflow-y: auto;
+            z-index: 1000000000;
+            transition: all 0.5s ease;
+            }
+            .overlay_popup.is_hidden {
+            opacity: 0;
+            pointer-events: none;
+            }
+            .overlay_popup .container_popup {
+            display: block;
+            position: relative;
+            width: 100%;
+            margin: auto;
+            transition: all 0.5s ease 0s;
+            }
+            .overlay_popup .container_popup > .btn_close {
+            position: absolute;
+            top: 33px;
+            right: 60px;
+            width: 24px;
+            height: 24px;
+            outline: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            }
+            .content_popup {
+            background: #fff;
+        }
+            #editYourInterests{
+                display: flex;
+                border-radius: 0px 0px 8px 8px;
+                justify-content: space-between;
+            }
+            #editYourInterests .edit_block_wrapp {
+                padding: 45px 60px;
+                width: 49%;
+            }
+            #editYourInterests .img_wrapp {
+                position: relative;
+                max-width: 690px;
+                width: 100%;
+            }
+            #editYourInterests .img_wrapp::after {
+                position: absolute;
+                content: "";
+                background: #027db8;
+                max-width: 620px;
+                width: 100%;
+                height: 100%;
+                right: 0;
+            }
+            #editYourInterests .img_wrapp > img {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 1;
+                max-height: 640px;
+            }
+            html.open_var {
+            overflow: hidden !important;
+            }
          
     </style>
     `;
@@ -584,7 +657,180 @@ let startF = setInterval(() => {
     </div>
     `;
 
+    let popUp = /*html */ `
+        <div class="overlay_popup is_hidden">
+          <div class="container_popup">
+            <div class="btn_close">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M1.1454 14.8546C1.19184 14.9011 1.24699 14.938 1.30769 14.9631C1.36839 14.9883 1.43346 15.0012 1.49917 15.0012C1.56488 15.0012 1.62994 14.9883 1.69064 14.9631C1.75135 14.938 1.80649 14.9011 1.85293 14.8546L7.99818 8.70935L14.1459 14.8546C14.2398 14.9484 14.367 15.0011 14.4997 15.0011C14.6324 15.0011 14.7596 14.9484 14.8535 14.8546C14.9473 14.7608 15 14.6335 15 14.5008C15 14.3681 14.9473 14.2409 14.8535 14.1471L8.70571 8.00182L14.851 1.85406C14.9448 1.76024 14.9975 1.63299 14.9975 1.5003C14.9975 1.36761 14.9448 1.24036 14.851 1.14653C14.7571 1.05271 14.6299 1 14.4972 1C14.3645 1 14.2373 1.05271 14.1434 1.14653L7.99818 7.29429L1.85043 1.14903C1.75478 1.06712 1.63173 1.02431 1.50589 1.02917C1.38005 1.03403 1.26067 1.0862 1.17162 1.17525C1.08257 1.2643 1.0304 1.38368 1.02554 1.50952C1.02068 1.63537 1.06349 1.75841 1.1454 1.85406L7.29066 8.00182L1.1454 14.1496C1.05227 14.2433 1 14.37 1 14.5021C1 14.6342 1.05227 14.7609 1.1454 14.8546Z" fill="#28364B"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+    `;
+    let contentPopupHtml = /*html */ `
+            <section id="editYourInterests">
+                <div class="edit_block_wrapp">
+                    <div class="header_edit_block">
+                    <h2 class="title_page">Edit Your <span class="accent_green">Interests</span></h2>
+                    </div>
+                    <div class="body_edit_block">
+                    <div class="first_page">
+                        <h2 class="title_page">Which best describes your current yoga experience level?</h2>
+                        <p class="option_txt">(Choose one option)</p>
+                        <div class="choose_option_wrapp">
+                        <input class="custom_checkbox" id="beginner" type="radio" name="level" value="beginner" />
+                        <label for="beginner" tabindex="0" data-name="Beginner"
+                            ><span class="choose_option_txt"
+                            ><b>Beginner</b><br />
+                            (New to yoga or have limited experience)</span
+                            >
+                            <span class="checked_box"></span
+                        ></label>
+
+                        <input class="custom_checkbox" id="intermediate" type="radio" name="level" value="intermediate" />
+                        <label for="intermediate" tabindex="0" data-name="Intermediate"
+                            ><span class="choose_option_txt"
+                            ><b>Intermediate</b><br />
+                            (Have some experience and comfortable with basic poses)</span
+                            >
+                            <span class="checked_box"></span
+                        ></label>
+
+                        <input class="custom_checkbox" id="advanced" type="radio" name="level" value="advanced" />
+                        <label for="advanced" tabindex="0" data-name="Advanced">
+                            <span class="choose_option_txt"
+                            ><b>Advanced</b><br />
+                            (Experienced yogi looking for challenging practices)</span
+                            >
+                            <span class="checked_box"></span
+                        ></label>
+                        </div>
+                    </div>
+                    <div class="second_page">
+                        <h2 class="title_page">What type of yoga classes are you most interested in?</h2>
+                        <div class="choose_option_wrapp">
+                        <input class="custom_checkbox" id="vinyasaFlow" type="checkbox" name="vinyasaFlow" value="vinyasaFlow" />
+                        <label for="vinyasaFlow" tabindex="0" data-name="Vinyasa Flow"
+                            ><span class="choose_option_txt"
+                            ><b>Vinyasa Flow</b><br />
+                            (Dynamic and fluid sequences)</span
+                            ><span class="checked_box"></span
+                        ></label>
+
+                        <input class="custom_checkbox" id="hatha" type="checkbox" name="hatha" value="hatha" />
+                        <label for="hatha" tabindex="0" data-name="Hatha"
+                            ><span class="choose_option_txt"><b>Hatha</b> <br />(Gentle and foundational poses)</span><span class="checked_box"></span
+                        ></label>
+
+                        <input class="custom_checkbox" id="powerYoga" type="checkbox" name="powerYoga" value="powerYoga" />
+                        <label for="powerYoga" tabindex="0" data-name="Power Yoga"
+                            ><span class="choose_option_txt"
+                            ><b>Power Yoga</b><br />
+                            (Energetic and strength-focused)</span
+                            ><span class="checked_box"></span
+                        ></label>
+
+                        <input class="custom_checkbox" id="restorativeYin" type="checkbox" name="restorativeYin" value="restorativeYin" />
+                        <label for="restorativeYin" tabindex="0" data-name="Restorative/Yin"
+                            ><span class="choose_option_txt"
+                            ><b>Restorative/Yin</b><br />
+                            (Relaxing and deep stretching)</span
+                            ><span class="checked_box"></span
+                        ></label>
+
+                        <input class="custom_checkbox" id="kundaliniYoga" type="checkbox" name="kundaliniYoga" value="kundaliniYoga" />
+                        <label for="kundaliniYoga" tabindex="0" data-name="Kundalini Yoga"
+                            ><span class="choose_option_txt"
+                            ><b>Kundalini Yoga</b><br />
+                            (Spiritual energy-focused yoga)</span
+                            ><span class="checked_box"></span
+                        ></label>
+
+                        <input class="custom_checkbox" id="yogaMeditationMindfulness" type="checkbox" name="yogaMeditationMindfulness" value="yogaMeditationMindfulness" />
+                        <label for="yogaMeditationMindfulness" tabindex="0" data-name="Yoga for Meditation and Mindfulness"
+                            ><span class="choose_option_txt"><b>Yoga for Meditation and Mindfulness</b></span
+                            ><span class="checked_box"></span
+                        ></label>
+
+                        <input class="custom_checkbox" id="noneStylesYoga" type="checkbox" name="noneStylesYoga" value="noneStylesYoga" />
+                        <label for="noneStylesYoga" tabindex="0" data-name="Different styles"><span class="choose_option_txt">I don’t have preferences and want to practice different styles</span><span class="checked_box"></span></label>
+                        </div>
+                    </div>
+                    <div class="third_page">
+                        <h2 class="title_page">Are there any specific areas you'd like to focus on?</h2>
+                        <div class="choose_option_wrapp">
+                        <input class="custom_checkbox" id="coreStrengthStability" type="checkbox" name="coreStrengthStability" value="coreStrengthStability" />
+                        <label for="coreStrengthStability" tabindex="0" data-name="Core strength and stability"><span class="choose_option_txt">Core strength and stability</span><span class="checked_box"></span></label>
+
+                        <input class="custom_checkbox" id="backStrengthPainRelief" type="checkbox" name="backStrengthPainRelief" value="backStrengthPainRelief" />
+                        <label for="backStrengthPainRelief" tabindex="0" data-name="Back strength and pain relief"><span class="choose_option_txt">Back strength and pain relief</span><span class="checked_box"></span></label>
+
+                        <input class="custom_checkbox" id="upperBodyStrengthToning" type="checkbox" name="upperBodyStrengthToning" value="upperBodyStrengthToning" />
+                        <label for="upperBodyStrengthToning" tabindex="0" data-name="Upper body strength and toning"><span class="choose_option_txt">Upper body strength and toning</span><span class="checked_box"></span></label>
+
+                        <input class="custom_checkbox" id="flexibilityJointMobility" type="checkbox" name="flexibilityJointMobility" value="flexibilityJointMobility" />
+                        <label for="flexibilityJointMobility" tabindex="0" data-name="Flexibility and joint mobility"><span class="choose_option_txt">Flexibility and joint mobility</span><span class="checked_box"></span></label>
+
+                        <input class="custom_checkbox" id="relaxationSleepImprovement" type="checkbox" name="relaxationSleepImprovement" value="relaxationSleepImprovement" />
+                        <label for="relaxationSleepImprovement" tabindex="0" data-name="Relaxation and sleep improvement"><span class="choose_option_txt">Relaxation and sleep improvement</span><span class="checked_box"></span></label>
+
+                        <input class="custom_checkbox" id="mindfulnessMeditationTechniques" type="checkbox" name="mindfulnessMeditationTechniques" value="mindfulnessMeditationTechniques" />
+                        <label for="mindfulnessMeditationTechniques" tabindex="0" data-name="Mindfulness and meditation techniques"><span class="choose_option_txt">Mindfulness and meditation techniques</span><span class="checked_box"></span></label>
+
+                        <input class="custom_checkbox" id="womensHealthPrenatalPostnatalPractices" type="checkbox" name="womensHealthPrenatalPostnatalPractices" value="womensHealthPrenatalPostnatalPractices" />
+                        <label for="womensHealthPrenatalPostnatalPractices" tabindex="0" data-name="Women’s health, Prenatal and Postnatal practices"><span class="choose_option_txt">Women’s health, Prenatal and Postnatal practices</span><span class="checked_box"></span></label>
+
+                        <input class="custom_checkbox" id="morningTravelVigorousEnergy" type="checkbox" name="morningTravelVigorousEnergy" value="morningTravelVigorousEnergy" />
+                        <label for="morningTravelVigorousEnergy" tabindex="0" data-name="Techniques to increase energy"><span class="choose_option_txt">Techniques to increase energy</span><span class="checked_box"></span></label>
+                        </div>
+                    </div>
+                    <div class="fourth_page">
+                        <h2 class="title_page">How much time can you allocate for your yoga practice?</h2>
+                        <div class="choose_option_wrapp">
+                        <input class="custom_checkbox" id="twenty" type="radio" name="time" value="20" />
+                        <label for="twenty" tabindex="0" data-name="10-20 minutes"
+                            ><span class="choose_option_txt"
+                            ><b>10-20 minutes</b><br />
+                            (Quick sessions to fit into a busy schedule)</span
+                            >
+                            <span class="checked_box"></span
+                        ></label>
+
+                        <input class="custom_checkbox" id="fortyFive" type="radio" name="time" value="45" />
+                        <label for="fortyFive" tabindex="0" data-name="30-45 minutes"
+                            ><span class="choose_option_txt"
+                            ><b>30-45 minutes</b><br />
+                            (Moderate sessions for a comprehensive practice)</span
+                            >
+                            <span class="checked_box"></span
+                        ></label>
+
+                        <input class="custom_checkbox" id="sixty" type="radio" name="time" value="60" />
+                        <label for="sixty" tabindex="0" data-name="60 minutes or more">
+                            <span class="choose_option_txt"
+                            ><b>60 minutes or more</b><br />
+                            (Extended sessions for a deep dive into yoga)</span
+                            >
+                            <span class="checked_box"></span
+                        ></label>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="footer_edit_block">
+                    <div class="btn_save_your_interests">Save your interests</div>
+                    <div class="btn_cancel">Cancel</div>
+                    </div>
+                </div>
+                <div class="img_wrapp">
+                    <img src="https://conversionratestore.github.io/projects/doyogawithme/img/quiz_img_finish.png" alt="yoga" class="" />
+                </div>
+            </section>
+    `;
+
     document.head.insertAdjacentHTML("beforeend", styleNew);
+    document.body.insertAdjacentHTML("afterbegin", popUp);
+
     // if user is free
     isNotSubscriber();
     //unless we have already created personalized list banner
@@ -625,13 +871,11 @@ let startF = setInterval(() => {
         }
       }
     }
-    //   TEST !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    if (!localStorage.getItem("createdPersonalizedList")) {
-      localStorage.setItem("createdPersonalizedList", true);
-    }
+
     //   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     function createdPersonalizedList() {
       renderNewBlocks();
+      addLinkForYou();
 
       function renderNewBlocks() {
         console.log(`renderNewBlocks`);
@@ -641,6 +885,17 @@ let startF = setInterval(() => {
         if (window.location.pathname === "/yoga-classes" && document.querySelector("#main-content") && !document.querySelector(".based_on_your_interests")) {
           document.querySelector("#main-content").insertAdjacentHTML("beforebegin", basedOnYourInterests);
           document.querySelector(".o-page").classList.add("listing_var");
+        }
+      }
+
+      function addLinkForYou() {
+        if (document.querySelector("#c-dropdownMenu__submenuWrapper--main--0-0-1 .c-dropdownMenu__list") && !document.querySelector(".new_link")) {
+          document.querySelector("#c-dropdownMenu__submenuWrapper--main--0-0-1 .c-dropdownMenu__list").insertAdjacentHTML(
+            "afterbegin",
+            `<li class="c-dropdownMenu__item c-dropdownMenu__item--level1 new_link">
+                <a href="/for-you" class="c-dropdownMenu__link" data-anon-only="false" title="" data-drupal-link-system-path="for-you">For You</a>
+            </li>`
+          );
         }
       }
     }
@@ -692,6 +947,55 @@ let startF = setInterval(() => {
           });
         }
       }, 100);
+    }
+
+    onClickDifBtn();
+    function onClickDifBtn() {
+      if (document.querySelector(".overlay_popup")) {
+        console.log(`POPUP`);
+        function onOpenPopup() {
+          document.querySelector("html").classList.add("open_var");
+          document.querySelector(".overlay_popup").classList.remove("is_hidden");
+          if (!document.querySelector(".overlay_popup .content_popup")) {
+            document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopupHtml);
+          }
+
+          document.querySelectorAll(".overlay_popup .btn_close").forEach((i) => {
+            i.addEventListener("click", (e) => {
+              // click on btn close popup
+              onClosePopup();
+            });
+          });
+          document.querySelectorAll(".overlay_popup").forEach((i) => {
+            i.addEventListener("click", (e) => {
+              // click on overlay popup
+              if (e.target.matches(".overlay_popup")) {
+                onClosePopup();
+              }
+            });
+          });
+        }
+        function onClosePopup() {
+          document.querySelectorAll(".overlay_popup").forEach((el) => {
+            el.classList.add("is_hidden");
+          });
+
+          if (document.querySelector("html").classList.contains("open_var")) {
+            document.querySelector("html").classList.remove("open_var");
+          }
+          // setTimeout(() => {
+          //   document.querySelector(".content_popup")?.remove();
+          // }, 400);
+        }
+        let f = setInterval(() => {
+          if (document.querySelector(".change_preferences_btn")) {
+            clearInterval(f);
+            document.querySelector(".change_preferences_btn").addEventListener("click", () => {
+              onOpenPopup();
+            });
+          }
+        }, 100);
+      }
     }
   }
 }, 100);

@@ -249,6 +249,10 @@ function onClickBtnOfQuiz() {
                   localStorage.setItem("perfectYogaJourney", JSON.stringify(arr));
                 }
 
+                if (!localStorage.getItem("createdPersonalizedList")) {
+                  localStorage.setItem("createdPersonalizedList", "yes");
+                }
+
                 setPersonalizedBox();
               }, 200);
             }

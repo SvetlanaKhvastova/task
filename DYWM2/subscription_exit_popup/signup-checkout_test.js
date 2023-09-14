@@ -1554,17 +1554,21 @@ function init() {
 
       if (document.querySelector(".views-field.views-field-total-price__number").innerHTML.includes("$108.99")) {
         let price = document.querySelector(".views-field.views-field-total-price__number");
-        price.innerHTML = `
-                    <p><span>$167.88</span> ${price.innerHTML}</p>
-                    <p class="c-green">Just $9.08/month!</p>`;
+        if (!document.querySelector(".c-green")) {
+          price.innerHTML = `
+                      <p><span>$167.88</span> ${price.innerHTML}</p>
+                      <p class="c-green">Just $9.08/month!</p>`;
+        }
 
         document.querySelector(".views-field.views-field-title").innerHTML = `1-Year DYWM Subscription`;
+        if (!document.querySelector(".saved_block")) {
+          document.querySelector(".order-total-line__total").insertAdjacentHTML("afterend", ` <div class="saved_block">You just saved <span class="saved_var">$58,89</span> (<span class="percent_var">35%</span> off)</div>`);
+        }
 
-        document.querySelector(".order-total-line__total").insertAdjacentHTML("afterend", ` <div class="saved_block">You just saved <span class="saved_var">$58,89</span> (<span class="percent_var">35%</span> off)</div>`);
         if (document.querySelector("#edit-sidebar-order-summary-summary .order-total-line__adjustment--promotion") && document.querySelector(".order-total-line.order-total-line__total .order-total-line-value")?.textContent === "$92.64") {
           document.querySelector(".saved_var").textContent = "$75.24";
           document.querySelector(".percent_var").textContent = "45%";
-          if (document.querySelector(".views-field.views-field-total-price__number")) {
+          if (document.querySelector(".views-field.views-field-total-price__number") && !document.querySelector(".c-green")) {
             document.querySelector(".views-field.views-field-total-price__number").innerHTML = '<p><span>$167.88</span> $92.64</p> <p class="c-green">Just $7,83/month!</p>';
           }
         }
@@ -1766,6 +1770,14 @@ let optionMut = {
 };
 
 let mut = new MutationObserver(function (muts) {
+  if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value !== "" && !document.querySelector(".saved_block") && window.location.pathname.includes("checkout/")) {
+    mut.disconnect();
+    console.log(`object >>>>>>>>>>>>>>>>>>>>`);
+    init();
+  }
+  mut.observe(document, optionMut);
+
+  //
   if (document.querySelector('[data-drupal-selector="edit-payment-information-add-payment-method-billing-information-address-0-address-country-code"]') != null) {
     mut.disconnect();
 
@@ -1801,6 +1813,12 @@ let mut = new MutationObserver(function (muts) {
     });
   }
   mut.observe(document, optionMut);
+
+  // if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")) {
+  //   mut.disconnect();
+  //   console.log(`object`);
+  // }
+  // mut.observe(document, optionMut);
 });
 mut.observe(document, optionMut);
 

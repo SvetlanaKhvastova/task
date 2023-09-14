@@ -18,6 +18,7 @@ img {
   border-radius: 0px 0px 8px 8px;
   background: #fff;
   justify-content: space-between;
+  height: 100vh;
 }
 .img_wrapp {
   max-width: 620px;
@@ -366,6 +367,9 @@ img {
 }
 #quizForYou[count="finish"] {
   flex-direction: row-reverse;
+}
+#quizForYou[count="finish"] .body_quiz {
+  margin-top: 12px;
 }
 #quizForYou[count="finish"] .img_wrapp {
   position: relative;
