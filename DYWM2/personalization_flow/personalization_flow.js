@@ -488,6 +488,188 @@ let startF = setInterval(() => {
                 z-index: 1;
                 max-height: 640px;
             }
+            .header_edit_block{
+                margin-bottom: 30px;
+            }
+            .header_edit_block .title_page{
+                color: #272727;
+                font-family: "Manrope", sans-serif;
+                font-size: 42px;
+                font-weight: 700;
+                line-height: 54px;
+                margin: 0;
+            }
+            .body_edit_block .title_page{
+                color: #272727;
+                font-family: "Manrope", sans-serif;
+                font-size: 18px;
+                font-weight: 700;
+                line-height: 26px;
+                margin: 0;
+            }
+            .accent_green{
+                color: #017922;
+            }
+            .body_edit_block .option_txt{
+                color: #272727;
+                font-family: "Manrope", sans-serif;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 26px;
+                margin: 0;
+            }
+            .choose_option_wrapp input.custom_checkbox {
+  z-index: -1;
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+.choose_option_wrapp label {
+  position: relative;
+  width: 100%;
+  border: 2px solid #e0e0e0;
+  padding: 10px 12px 10px 65px;
+  margin: 0;
+  color: #555;
+  font-family: "Manrope", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  text-align: left;
+}
+.choose_option_wrapp label::before {
+  position: absolute;
+  content: "";
+  width: 40px;
+  height: 40px;
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/beginner_icon.svg) no-repeat;
+  background-size: contain;
+  top: 50%;
+  left: 13px;
+  transform: translateY(-50%);
+}
+.choose_option_wrapp label[for="intermediate"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/intermediate_icon.svg) no-repeat;
+}
+.choose_option_wrapp label[for="advanced"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/advanced_icon.svg) no-repeat;
+}
+.choose_option_wrapp label[for="vinyasaFlow"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/vinyasa_flow_icon.svg) no-repeat;
+}
+.choose_option_wrapp label[for="hatha"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/hatha_icon.svg) no-repeat;
+}
+.choose_option_wrapp label[for="powerYoga"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/power_yoga_icon.svg) no-repeat;
+}
+.choose_option_wrapp label[for="restorativeYin"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/restorative_yin_icon.svg) no-repeat;
+}
+.choose_option_wrapp label[for="kundaliniYoga"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/kundalini_yoga_icon.svg) no-repeat;
+}
+.choose_option_wrapp label[for="yogaMeditationMindfulness"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/yoga_meditation_mindfulness_icon.svg) no-repeat;
+}
+.choose_option_wrapp label[for="noneStylesYoga"]::before {
+  content: unset;
+}
+.choose_option_wrapp label[for="noneStylesYoga"] {
+  padding-left: 16px;
+}
+.choose_option_wrapp label[for="coreStrengthStability"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/core_strength_stability_icon.svg) no-repeat;
+}
+.choose_option_wrapp label[for="backStrengthPainRelief"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/back_strength_icon.svg) no-repeat;
+}
+.choose_option_wrapp label[for="upperBodyStrengthToning"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/upper_body_strength_icon.svg) no-repeat;
+}
+.choose_option_wrapp label[for="flexibilityJointMobility"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/flexibility_icon.svg) no-repeat;
+}
+.choose_option_wrapp label[for="relaxationSleepImprovement"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/relaxation_icon.svg) no-repeat;
+}
+.choose_option_wrapp label[for="mindfulnessMeditationTechniques"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/yoga_meditation_mindfulness_icon.svg) no-repeat;
+}
+.choose_option_wrapp label[for="womensHealthPrenatalPostnatalPractices"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/health_prenatal_postnatal_practices_icon.svg) no-repeat;
+}
+.choose_option_wrapp label[for="morningTravelVigorousEnergy"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/techniques_increase_energy_icon.svg) no-repeat;
+}
+.choose_option_wrapp label[for="twenty"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/twenty_minutes_icon.svg) no-repeat;
+}
+.choose_option_wrapp label[for="fortyFive"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/forty_five_minutes_icon.svg) no-repeat;
+}
+.choose_option_wrapp label[for="sixty"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/sixty_minutes_icon.svg) no-repeat;
+}
+.choose_option_wrapp label .choose_option_txt {
+  max-width: 328px;
+}
+.choose_option_wrapp label .choose_option_txt b {
+  font-size: 16px;
+}
+.choose_option_wrapp .checked_box {
+  position: absolute;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  flex-grow: 0;
+  border-radius: 100px;
+  border: 2px solid #e0e0e0;
+  right: 12px;
+}
+
+.choose_option_wrapp .custom_checkbox:checked + label .checked_box {
+  border: 2px solid #027db8;
+}
+.choose_option_wrapp .custom_checkbox:checked + label .checked_box::after {
+  content: "";
+  position: absolute;
+  width: 12.5px;
+  height: 12.5px;
+  border-radius: 100px;
+  background: #027db8;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.choose_option_wrapp .custom_checkbox[type="checkbox"] + label .checked_box,
+.choose_option_wrapp .custom_checkbox[type="checkbox"]:checked + label .checked_box {
+  border-radius: 4px;
+}
+.choose_option_wrapp .custom_checkbox[type="checkbox"]:checked + label .checked_box::after {
+  border-radius: unset;
+}
+.second_page .choose_option_wrapp,
+.third_page .choose_option_wrapp {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.second_page .choose_option_wrapp label:last-child .choose_option_txt {
+  max-width: unset;
+}
+.third_page .choose_option_wrapp label .choose_option_txt {
+  max-width: 192px;
+  font-size: 16px;
+}
             html.open_var {
             overflow: hidden !important;
             }
