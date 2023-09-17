@@ -4,521 +4,522 @@ let startF = setInterval(() => {
 
     let styleNew = /*html */ `
     <style>
-        #promoteSubscriptionWrap {
-        position: relative;
-        background: #fff;
-        width: 100%;
-        padding: 42px 0 40px;
-      }
-      .pdp_var #promoteSubscriptionWrap{
-        background: #F5F5F5;
-      }
-      .bgr_gray {
-        position: absolute;
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        background: #f6f6f6;
-        min-height: 95px;
-        max-height: 95px;
-        height: 100%;
-        width: 100%;
-      }
-      .new_container {
-        max-width: 1040px;
-        margin: 0 auto;
-        width: 90%;
-        padding: 30px;
-        border-radius: 12px;
-        background: #fff;
-        box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.15);
-      }
-      .btn_wrapper {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-bottom: 16px;
-        margin-bottom: 16px;
-        border-bottom: 2px solid #f6f6f6;
-      }
-      .btn_wrapper h2 {
-        font-family: "Manrope", sans-serif;
-        color: #272727;
-        font-size: 24px;
-        font-weight: 700;
-        line-height: 30px;
-        margin: 0;
-      }
-      .accent_color {
-        color: #017922;
-      }
-      #UnlockPremiumContentLink,
-      #subscribeSaveLink {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        max-width: 302px;
-        width: 100%;
-        height: 48px;
-        border-radius: 30px;
-        background: #017922;
-        transition: all 0.3s ease;
-      }
-      #UnlockPremiumContentLink:hover,
-      #subscribeSaveLink:hover {
-        color: #ffffff;
-        background: #00601b;
-        border-color: #007922;
-        text-decoration: unset;
-      }
-      #UnlockPremiumContentLink span {
-        font-family: "Manrope", sans-serif;
-        color: #fff;
-        font-size: 16px;
-        font-weight: 700;
-        line-height: 32px;
-        text-transform: capitalize;
-      }
-      .toggle_btn_features {
-        display: flex;
-        gap: 8px;
-        cursor: pointer;
-        margin: 18px auto 0;
-        align-items: center;
-        justify-content: center;
-        width: max-content;
-      }
-      .toggle_btn_features span {
-        font-family: "Manrope", sans-serif;
-        color: #027db8;
-        font-size: 14px;
-        font-weight: 700;
-        line-height: 21px;
-        text-decoration-line: underline;
-        text-transform: capitalize;
-      }
-      .toggle_btn_features > svg {
-        transition: all 0.3s ease;
-      }
-      .toggle_btn_features.open_var > svg {
-        transform: rotateX(180deg);
-      }
-      .new_features_list,
-      .hidden_new_features_list {
-        display: flex;
-        justify-content: space-between;
-        gap: 24px;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-      .new_features_list > li,
-      .hidden_new_features_list > li {
-        width: 30%;
-      }
-      .mini_block {
-        margin-top: 24px;
-      }
-      .mini_block > li {
-        width: 100%;
-      }
-      .mini_block > li .list_main_title {
-        margin-bottom: 12px;
-      }
-      .hidden_inform_box {
-        display: none;
-        margin-top: 12px;
-      }
-      .list_main_title {
-        position: relative;
-        color: #272727;
-        font-family: "Manrope", sans-serif;
-        font-size: 14px;
-        font-weight: 600;
-        line-height: 20px;
-        margin: 0;
-        padding-left: 52px;
-      }
-      .list_main_title[data-title]::before {
-        position: absolute;
-        content: "";
-        width: 40px;
-        height: 40px;
-        background: url(https://conversionratestore.github.io/projects/doyogawithme/img/premium.svg) no-repeat center center;
-        top: 0;
-        left: 0;
-        background-size: contain;
-      }
-      .list_main_title[data-title="yoga_person"]::before {
-        background: url(https://conversionratestore.github.io/projects/doyogawithme/img/yoga_person.svg) no-repeat center center;
-        background-size: contain;
-      }
-      .list_main_title[data-title="yoga"]::before {
-        background: url(https://conversionratestore.github.io/projects/doyogawithme/img/yoga.svg) no-repeat center center;
-        background-size: contain;
-      }
-      .list_main_title[data-title="devices"]::before {
-        background: url(https://conversionratestore.github.io/projects/doyogawithme/img/devices.svg) no-repeat center center;
-        background-size: contain;
-      }
-      .list_txt {
-        color: #555;
-        font-family: "Manrope", sans-serif;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 24px;
-        margin: 0;
-        max-width: 300px;
-      }
-      .your_store_wrap {
-        margin-top: 48px;
-      }
-      .your_store_wrap .list_main_title {
-        padding: 0;
-        margin-bottom: 12px;
-      }
-      .professional_classes_list {
-        list-style: disc;
-        color: #555;
-        font-size: 12px;
-        margin-top: 12px;
-        padding: 0 0 0 23px;
-      }
-      .professional_classes_list > li + li {
-        margin-top: 10px;
-      }
-      .store_icon {
-        display: flex;
-        justify-content: flex-start;
-        gap: 24px;
-        flex-wrap: wrap;
-      }
-      .store_icon img {
-        max-width: 140px;
-        width: 100%;
-      }
-      [data-mob],
-      [data-openmobvar] {
-        display: none;
-      }
-        #splide02-slide01 .paragraph--type--hero .sfc-hero__heading.sfc-heading{
-            font-size: 68px;
-            font-weight: 500;
-            line-height: 74px;
-        }
-        #splide02-slide01 .paragraph--type--hero .sfc-hero__body.sfc-hero__body--limit{
-            color: #FFF;
-            font-size: 18px;
-            font-weight: 400;
-            line-height: 26px;
-            margin: 24px 0 50px;
-        }
-        #splide02-slide01 .paragraph--type--hero .sfc-hero__button,
-        #splide02-slide01 .personalize_yoga_journey_btn{
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 30px;
-            border: 2px solid #FFF;
-            background: #FFF;
-            backdrop-filter: blur(2px);
-            height: 60px;
-            max-width: 240px;
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            color: #017922;
-            font-size: 18px;
-            font-weight: 700;
-            line-height: 32px;
-            text-transform: capitalize;
-        }
-        #splide02-slide01 .personalize_yoga_journey_btn{
-            background: rgba(255, 255, 255, 0.15);
-            max-width: 320px;
-            margin-left: 24px;
-            color: #FFF;
-        }
-        #splide02-slide01 .paragraph--type--hero .sfc-hero__button::before{
-            content: unset;
-        }
-        /*banner_take_personalization_quiz */
-        .banner_take_personalization_quiz{
-            padding: 11px 100%;
-            background: #003A67;
-            box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.15);
-            margin: 0 -100%;
-        }
-        .banner_container{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            max-width: 100%;
-            width: var(--page-container-width);
-            margin: 0 auto;
-            gap: 100px;
-        }
-        .banner_container p{
-            width: 100%;
-            max-width: max-content;
-            color: #FFF;
-            font-size: 16px;
-            font-weight: 500;
-            line-height: 30px;
-            margin: 0;
-        }
-        .banner_container .personalization_quiz_btn{
-            display: flex;
-            align-items: center;
-            color: #FFF;
-            font-size: 16px;
-            font-weight: 700;
-            line-height: 32px;
-            text-transform: capitalize;
-            gap: 8px;
-            text-decoration: unset;
-        }
-        .banner_container .personalization_quiz_btn span{
-            border-bottom: 1px solid #FFF;
-        }
-        @media (min-width: 1120px) {
-             .banner_take_personalization_quiz.content{
-                 margin: 0px -104%;
-                 padding: 11px 92%;
-             }
-             .banner_take_personalization_quiz.content .banner_container{
-                 width: 100rem;
-             }
-         }
-         /*based_on_your_interests */
-         .based_on_your_interests{
-            margin: 30px 0 45px;
-         }
-         .based_on_your_interests .title_wrapp{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-         }
-         .based_on_your_interests .title_wrapp > h3{
-            color: #000;
-            font-size: 24px;
-            font-weight: 700;
-            line-height: 26px;
-            margin: 0;
-         }
-         .based_on_your_interests .title_wrapp .change_preferences_btn{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            max-width: 251px;
-            width: 100%;
-            height: 50px;
-            border-radius: 30px;
-            border: 1px solid #E0E0E0;
-            color: #555;
-            font-family: 'Manrope', sans-serif;
-            font-size: 18px;
-            font-weight: 600;
-            line-height: 26px;
-            cursor: pointer;
-            gap: 10px;
-         }
-         .based_on_your_interests .all_suggested_classes_btn{
-            color: #027DB8;
-            font-family: 'Manrope', sans-serif;
-            font-size: 18px;
-            font-weight: 600;
-            line-height: 26px;
-         }
-         .based_on_your_interests .all_suggested_classes_btn img{
-            margin-left: 10px;
-            display: inline-block;
-         }
-         .based_on_your_interests .video_wrapp{
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin: 34px 0 20px;
-            padding: 0;
-            list-style: none;
-         }
-        .video_wrapp > li {
-            display: flex;
-            flex-direction: column;
-            border: solid 1px #d6d6d6;
-            border-radius: calc(3px * 2);
-            width: 18em;
-            max-width: 100%;
-            overflow: hidden;
-            height: 100%;
-            box-shadow: 2px 2px 4px 1px rgba(0,0,0,0.05);
-            height: 300px;
-            cursor: pointer;
-         }
-         .listing_var .based_on_your_interests{
-            margin: 0 auto;
-            background: #FFF;
-            padding-bottom: 24px;
-         }
-         .listing_var .based_on_your_interests_container{
-            max-width: 100%;
-            width: var(--page-container-width);
-            margin: 0 auto;
-         }
-         .listing_var .based_on_your_interests .title_wrapp{
-            padding: 0 1em;
-         }
-         .listing_var .based_on_your_interests .title_wrapp > h3{
-            font-size: 36px;
-            line-height: 30px;
-         }
-         .listing_var .based_on_your_interests .title_wrapp .change_preferences_btn{
-            max-width: 232px;
-            background: #F6F6F6;
-            font-size: 16px;
-            line-height: 24px;
-         }
-         .listing_var .based_on_your_interests .video_wrapp{
-            margin: 30px -100%;
-            padding: 36px 101.5%;
-            background: whitesmoke;
-            display: grid;
-            gap: 1.33rem;
-         }
-         .listing_var .all_suggested_classes_btn{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 30px;
-            border: 1px solid #E0E0E0;
-            text-align: center;
-            max-width: 326px;
-            height: 50px;
-            margin: 0 auto;
-         }
-         .listing_var .video_wrapp > li{
-            width: 100%;
-            border-radius: unset;
-         }
-         @media (min-width: calc(44.4em + 1.33rem + 10em)){
-            .listing_var .based_on_your_interests .video_wrapp{
-                grid-template-columns: 1fr 1fr;
-            }
-         }
-        @media (min-width: calc(66.6em + 2.66rem + 10em)){
-            .listing_var .based_on_your_interests .video_wrapp{
-                grid-template-columns: 1fr 1fr 1fr;
-            }
-         }
-        @media (max-width: calc(44.4em + 1.33rem + 10em)){
-            .listing_var .based_on_your_interests .video_wrapp{
-                grid-template-columns: 1fr;
-            }
-         }
-         /*popup */
-         .overlay_popup {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #FFF;
-            display: flex;
-            overflow-y: auto;
-            z-index: 1000000000;
-            transition: all 0.5s ease;
-            }
-            .overlay_popup.is_hidden {
-            opacity: 0;
-            pointer-events: none;
-            }
-            .overlay_popup .container_popup {
-            display: block;
-            position: relative;
-            width: 100%;
-            margin: auto;
-            transition: all 0.5s ease 0s;
-            }
-            .overlay_popup .container_popup > .btn_close {
-            position: absolute;
-            top: 33px;
-            right: 60px;
-            width: 24px;
-            height: 24px;
-            outline: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1;
-            }
-            .content_popup {
-            background: #fff;
-        }
-            #editYourInterests{
-                display: flex;
-                border-radius: 0px 0px 8px 8px;
-                justify-content: space-between;
-            }
-            #editYourInterests .edit_block_wrapp {
-                padding: 45px 60px;
-                width: 49%;
-            }
-            #editYourInterests .img_wrapp {
-                position: relative;
-                max-width: 690px;
-                width: 100%;
-            }
-            #editYourInterests .img_wrapp::after {
-                position: absolute;
-                content: "";
-                background: #027db8;
-                max-width: 620px;
-                width: 100%;
-                height: 100%;
-                right: 0;
-            }
-            #editYourInterests .img_wrapp > img {
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                z-index: 1;
-                max-height: 640px;
-            }
-            .header_edit_block{
-                margin-bottom: 30px;
-            }
-            .header_edit_block .title_page{
-                color: #272727;
-                font-family: "Manrope", sans-serif;
-                font-size: 42px;
-                font-weight: 700;
-                line-height: 54px;
-                margin: 0;
-            }
-            .body_edit_block .title_page{
-                color: #272727;
-                font-family: "Manrope", sans-serif;
-                font-size: 18px;
-                font-weight: 700;
-                line-height: 26px;
-                margin: 0;
-            }
-            .accent_green{
-                color: #017922;
-            }
-            .body_edit_block .option_txt{
-                color: #272727;
-                font-family: "Manrope", sans-serif;
-                font-size: 14px;
-                font-weight: 400;
-                line-height: 26px;
-                margin: 0;
-            }
-            .choose_option_wrapp input.custom_checkbox {
+#promoteSubscriptionWrap {
+  position: relative;
+  background: #fff;
+  width: 100%;
+  padding: 42px 0 40px;
+}
+.pdp_var #promoteSubscriptionWrap {
+  background: #f5f5f5;
+}
+.bgr_gray {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #f6f6f6;
+  min-height: 95px;
+  max-height: 95px;
+  height: 100%;
+  width: 100%;
+}
+.new_container {
+  max-width: 1040px;
+  margin: 0 auto;
+  width: 90%;
+  padding: 30px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.15);
+}
+.btn_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #f6f6f6;
+}
+.btn_wrapper h2 {
+  font-family: "Manrope", sans-serif;
+  color: #272727;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30px;
+  margin: 0;
+}
+.accent_color {
+  color: #017922;
+}
+#UnlockPremiumContentLink,
+#subscribeSaveLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  max-width: 302px;
+  width: 100%;
+  height: 48px;
+  border-radius: 30px;
+  background: #017922;
+  transition: all 0.3s ease;
+}
+#UnlockPremiumContentLink:hover,
+#subscribeSaveLink:hover {
+  color: #ffffff;
+  background: #00601b;
+  border-color: #007922;
+  text-decoration: unset;
+}
+#UnlockPremiumContentLink span {
+  font-family: "Manrope", sans-serif;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 32px;
+  text-transform: capitalize;
+}
+.toggle_btn_features {
+  display: flex;
+  gap: 8px;
+  cursor: pointer;
+  margin: 18px auto 0;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+}
+.toggle_btn_features span {
+  font-family: "Manrope", sans-serif;
+  color: #027db8;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 21px;
+  text-decoration-line: underline;
+  text-transform: capitalize;
+}
+.toggle_btn_features > svg {
+  transition: all 0.3s ease;
+}
+.toggle_btn_features.open_var > svg {
+  transform: rotateX(180deg);
+}
+.new_features_list,
+.hidden_new_features_list {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.new_features_list > li,
+.hidden_new_features_list > li {
+  width: 30%;
+}
+.mini_block {
+  margin-top: 24px;
+}
+.mini_block > li {
+  width: 100%;
+}
+.mini_block > li .list_main_title {
+  margin-bottom: 12px;
+}
+.hidden_inform_box {
+  display: none;
+  margin-top: 12px;
+}
+.list_main_title {
+  position: relative;
+  color: #272727;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  margin: 0;
+  padding-left: 52px;
+}
+.list_main_title[data-title]::before {
+  position: absolute;
+  content: "";
+  width: 40px;
+  height: 40px;
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/premium.svg) no-repeat center center;
+  top: 0;
+  left: 0;
+  background-size: contain;
+}
+.list_main_title[data-title="yoga_person"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/yoga_person.svg) no-repeat center center;
+  background-size: contain;
+}
+.list_main_title[data-title="yoga"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/yoga.svg) no-repeat center center;
+  background-size: contain;
+}
+.list_main_title[data-title="devices"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/devices.svg) no-repeat center center;
+  background-size: contain;
+}
+.list_txt {
+  color: #555;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  margin: 0;
+  max-width: 300px;
+}
+.your_store_wrap {
+  margin-top: 48px;
+}
+.your_store_wrap .list_main_title {
+  padding: 0;
+  margin-bottom: 12px;
+}
+.professional_classes_list {
+  list-style: disc;
+  color: #555;
+  font-size: 12px;
+  margin-top: 12px;
+  padding: 0 0 0 23px;
+}
+.professional_classes_list > li + li {
+  margin-top: 10px;
+}
+.store_icon {
+  display: flex;
+  justify-content: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.store_icon img {
+  max-width: 140px;
+  width: 100%;
+}
+[data-mob],
+[data-openmobvar] {
+  display: none;
+}
+#splide02-slide01 .paragraph--type--hero .sfc-hero__heading.sfc-heading {
+  font-size: 68px;
+  font-weight: 500;
+  line-height: 74px;
+}
+#splide02-slide01 .paragraph--type--hero .sfc-hero__body.sfc-hero__body--limit {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26px;
+  margin: 24px 0 50px;
+}
+#splide02-slide01 .paragraph--type--hero .sfc-hero__button,
+#splide02-slide01 .personalize_yoga_journey_btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  border: 2px solid #fff;
+  background: #fff;
+  backdrop-filter: blur(2px);
+  height: 60px;
+  max-width: 240px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  color: #017922;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 32px;
+  text-transform: capitalize;
+}
+#splide02-slide01 .personalize_yoga_journey_btn {
+  background: rgba(255, 255, 255, 0.15);
+  max-width: 320px;
+  margin-left: 24px;
+  color: #fff;
+}
+#splide02-slide01 .paragraph--type--hero .sfc-hero__button::before {
+  content: unset;
+}
+/*banner_take_personalization_quiz */
+.banner_take_personalization_quiz {
+  padding: 11px 100%;
+  background: #003a67;
+  box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.15);
+  margin: 0 -100%;
+}
+.banner_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 100%;
+  width: var(--page-container-width);
+  margin: 0 auto;
+  gap: 100px;
+}
+.banner_container p {
+  width: 100%;
+  max-width: max-content;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 30px;
+  margin: 0;
+}
+.banner_container .personalization_quiz_btn {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 32px;
+  text-transform: capitalize;
+  gap: 8px;
+  text-decoration: unset;
+}
+.banner_container .personalization_quiz_btn span {
+  border-bottom: 1px solid #fff;
+}
+@media (min-width: 1120px) {
+  .banner_take_personalization_quiz.content {
+    margin: 0px -104%;
+    padding: 11px 92%;
+  }
+  .banner_take_personalization_quiz.content .banner_container {
+    width: 100rem;
+  }
+}
+/*based_on_your_interests */
+.based_on_your_interests {
+  margin: 30px 0 45px;
+}
+.based_on_your_interests .title_wrapp {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.based_on_your_interests .title_wrapp > h3 {
+  color: #000;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 26px;
+  margin: 0;
+}
+.based_on_your_interests .title_wrapp .change_preferences_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 251px;
+  width: 100%;
+  height: 50px;
+  border-radius: 30px;
+  border: 1px solid #e0e0e0;
+  color: #555;
+  font-family: "Manrope", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 26px;
+  cursor: pointer;
+  gap: 10px;
+}
+.based_on_your_interests .all_suggested_classes_btn {
+  color: #027db8;
+  font-family: "Manrope", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 26px;
+}
+.based_on_your_interests .all_suggested_classes_btn img {
+  margin-left: 10px;
+  display: inline-block;
+}
+.based_on_your_interests .video_wrapp {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 34px 0 20px;
+  padding: 0;
+  list-style: none;
+}
+.video_wrapp > li {
+  display: flex;
+  flex-direction: column;
+  border: solid 1px #d6d6d6;
+  border-radius: calc(3px * 2);
+  width: 18em;
+  max-width: 100%;
+  overflow: hidden;
+  height: 100%;
+  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.05);
+  height: 300px;
+  cursor: pointer;
+}
+.listing_var .based_on_your_interests {
+  margin: 0 auto;
+  background: #fff;
+  padding-bottom: 24px;
+}
+.listing_var .based_on_your_interests_container {
+  max-width: 100%;
+  width: var(--page-container-width);
+  margin: 0 auto;
+}
+.listing_var .based_on_your_interests .title_wrapp {
+  padding: 0 1em;
+}
+.listing_var .based_on_your_interests .title_wrapp > h3 {
+  font-size: 36px;
+  line-height: 30px;
+}
+.listing_var .based_on_your_interests .title_wrapp .change_preferences_btn {
+  max-width: 232px;
+  background: #f6f6f6;
+  font-size: 16px;
+  line-height: 24px;
+}
+.listing_var .based_on_your_interests .video_wrapp {
+  margin: 30px -100%;
+  padding: 36px 101.5%;
+  background: whitesmoke;
+  display: grid;
+  gap: 1.33rem;
+}
+.listing_var .all_suggested_classes_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  border: 1px solid #e0e0e0;
+  text-align: center;
+  max-width: 326px;
+  height: 50px;
+  margin: 0 auto;
+}
+.listing_var .video_wrapp > li {
+  width: 100%;
+  border-radius: unset;
+}
+@media (min-width: calc(44.4em + 1.33rem + 10em)) {
+  .listing_var .based_on_your_interests .video_wrapp {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: calc(66.6em + 2.66rem + 10em)) {
+  .listing_var .based_on_your_interests .video_wrapp {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (max-width: calc(44.4em + 1.33rem + 10em)) {
+  .listing_var .based_on_your_interests .video_wrapp {
+    grid-template-columns: 1fr;
+  }
+}
+/*popup */
+.overlay_popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  display: flex;
+  overflow-y: auto;
+  z-index: 1000000000;
+  transition: all 0.5s ease;
+}
+.overlay_popup.is_hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.overlay_popup .container_popup {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin: auto;
+  transition: all 0.5s ease 0s;
+}
+.overlay_popup .container_popup > .btn_close {
+  position: absolute;
+  top: 33px;
+  right: 60px;
+  width: 24px;
+  height: 24px;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+.content_popup {
+  background: #fff;
+}
+#editYourInterests {
+  display: flex;
+  border-radius: 0px 0px 8px 8px;
+  justify-content: space-between;
+}
+#editYourInterests .edit_block_wrapp {
+  padding: 47px 60px 81px;
+  width: 49%;
+}
+#editYourInterests .img_wrapp {
+  position: relative;
+  max-width: 690px;
+  width: 100%;
+}
+#editYourInterests .img_wrapp::after {
+  position: absolute;
+  content: "";
+  background: #027db8;
+  max-width: 620px;
+  width: 100%;
+  height: 100%;
+  right: 0;
+}
+#editYourInterests .img_wrapp > img {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  max-height: 640px;
+}
+.header_edit_block {
+  margin-bottom: 30px;
+}
+.header_edit_block .title_page {
+  color: #272727;
+  font-family: "Manrope", sans-serif;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 54px;
+  margin: 0;
+}
+.body_edit_block .title_page {
+  color: #272727;
+  font-family: "Manrope", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+  margin: 0;
+}
+.accent_green {
+  color: #017922;
+}
+.body_edit_block .option_txt {
+  color: #272727;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 26px;
+  margin: 0;
+  max-width: unset;
+}
+.choose_option_wrapp input.custom_checkbox {
   z-index: -1;
   opacity: 0;
   height: 0;
@@ -528,9 +529,7 @@ let startF = setInterval(() => {
 }
 .choose_option_wrapp label {
   position: relative;
-  width: 100%;
-  border: 2px solid #e0e0e0;
-  padding: 10px 12px 10px 65px;
+  padding: 10px 35px 10px 65px;
   margin: 0;
   color: #555;
   font-family: "Manrope", sans-serif;
@@ -543,6 +542,21 @@ let startF = setInterval(() => {
   align-items: center;
   cursor: pointer;
   text-align: left;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  min-height: 39px;
+}
+.choose_option_wrapp label:first-of-type {
+  border-top: none;
+  border-radius: 8px 8px 0 0;
+}
+.choose_option_wrapp label:last-of-type {
+  border-radius: 0 0 8px 8px;
+  border-bottom: none;
+}
+.choose_option_wrapp label:focus {
+  outline: none;
+  outline-offset: unset;
 }
 .choose_option_wrapp label::before {
   position: absolute;
@@ -584,6 +598,7 @@ let startF = setInterval(() => {
 }
 .choose_option_wrapp label[for="noneStylesYoga"] {
   padding-left: 16px;
+  min-height: 23px;
 }
 .choose_option_wrapp label[for="coreStrengthStability"]::before {
   background: url(https://conversionratestore.github.io/projects/doyogawithme/img/core_strength_stability_icon.svg) no-repeat;
@@ -623,6 +638,8 @@ let startF = setInterval(() => {
 }
 .choose_option_wrapp label .choose_option_txt b {
   font-size: 16px;
+  margin-bottom: 5px;
+  display: inline-block;
 }
 .choose_option_wrapp .checked_box {
   position: absolute;
@@ -635,7 +652,9 @@ let startF = setInterval(() => {
   border: 2px solid #e0e0e0;
   right: 12px;
 }
-
+.choose_option_wrapp .custom_checkbox:checked + label {
+  background: #f2fbff;
+}
 .choose_option_wrapp .custom_checkbox:checked + label .checked_box {
   border: 2px solid #027db8;
 }
@@ -657,23 +676,218 @@ let startF = setInterval(() => {
 .choose_option_wrapp .custom_checkbox[type="checkbox"]:checked + label .checked_box::after {
   border-radius: unset;
 }
-.second_page .choose_option_wrapp,
-.third_page .choose_option_wrapp {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+.first_page {
+  position: relative;
+}
+.second_page,
+.third_page,
+.fourth_page {
+  position: relative;
+  margin-top: 24px;
+}
+.second_page .choose_option_wrapp label .choose_option_txt b {
+  margin: 0;
+}
+.second_page .choose_option_wrapp label .choose_option_txt br {
+  display: none;
 }
 .second_page .choose_option_wrapp label:last-child .choose_option_txt {
   max-width: unset;
 }
 .third_page .choose_option_wrapp label .choose_option_txt {
-  max-width: 192px;
   font-size: 16px;
+  max-width: max-content;
 }
-            html.open_var {
-            overflow: hidden !important;
-            }
-         
+.choose_option_wrapp {
+  z-index: 1;
+  position: absolute;
+  background: #fff;
+  width: 100%;
+  filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.15));
+  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+  margin-top: 2px;
+  left: 0;
+  display: none;
+}
+.choose_option_wrapp.is_open{
+    display: block;
+}
+.personalized_txt_wrapp {
+  position: relative;
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+  background: #fff;
+  padding: 10px 20px 10px 12px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 8px;
+  margin-top: 12px;
+  cursor: pointer;
+}
+.personalized_txt_wrapp::after {
+  position: absolute;
+  content: "";
+  width: 13px;
+  height: 6px;
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/arrow_acc.svg) no-repeat;
+  background-size: contain;
+  top: 26px;
+  right: 20px;
+}
+.personalized_list_tag {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  background: #f6f6f6;
+  padding: 5px 12px 5px 42px;
+  max-width: max-content;
+  min-height: 24px;
+  margin: 0;
+  color: #555;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 22px;
+  max-height: 34px;
+  height: 100%;
+}
+.personalized_list_tag::before {
+  position: absolute;
+  content: "";
+  width: 24px;
+  height: 24px;
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/beginner_icon.svg) no-repeat;
+  background-size: contain;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+}
+.personalized_list_tag[data-tag="Beginner"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/beginner_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Intermediate"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/intermediate_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Advanced"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/advanced_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Vinyasa Flow"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/vinyasa_flow_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Hatha"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/hatha_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Power Yoga"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/power_yoga_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Restorative/Yin"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/restorative_yin_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Kundalini Yoga"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/kundalini_yoga_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Yoga for Meditation and Mindfulness"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/yoga_meditation_mindfulness_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Core strength and stability"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/core_strength_stability_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Back strength and pain relief"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/back_strength_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Upper body strength and toning"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/upper_body_strength_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Flexibility and joint mobility"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/flexibility_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Relaxation and sleep improvement"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/relaxation_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Mindfulness and meditation techniques"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/yoga_meditation_mindfulness_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Women’s health, Prenatal and Postnatal practices"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/health_prenatal_postnatal_practices_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Techniques to increase energy"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/techniques_increase_energy_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="10-20 minutes"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/twenty_minutes_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="30-45 minutes"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/forty_five_minutes_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="60 minutes or more"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/sixty_minutes_icon.svg) no-repeat;
+  background-size: contain;
+}
+.personalized_list_tag[data-tag="Different styles"]::before {
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/kundalini_yoga_icon.svg) no-repeat;
+  background-size: contain;
+}
+.footer_edit_block {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.btn_save_your_interests {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 313px;
+  width: 100%;
+  height: 50px;
+  color: #fff;
+  font-family: "Manrope", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: capitalize;
+  margin: 0;
+  cursor: pointer;
+  border-radius: 30px;
+  background: #027db8;
+}
+.btn_cancel {
+  color: #a5a5a5;
+  font-family: "Manrope", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 32px;
+  text-decoration-line: underline;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+html.open_var {
+  overflow: hidden !important;
+} 
     </style>
     `;
 
@@ -843,9 +1057,9 @@ let startF = setInterval(() => {
         <div class="overlay_popup is_hidden">
           <div class="container_popup">
             <div class="btn_close">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M1.1454 14.8546C1.19184 14.9011 1.24699 14.938 1.30769 14.9631C1.36839 14.9883 1.43346 15.0012 1.49917 15.0012C1.56488 15.0012 1.62994 14.9883 1.69064 14.9631C1.75135 14.938 1.80649 14.9011 1.85293 14.8546L7.99818 8.70935L14.1459 14.8546C14.2398 14.9484 14.367 15.0011 14.4997 15.0011C14.6324 15.0011 14.7596 14.9484 14.8535 14.8546C14.9473 14.7608 15 14.6335 15 14.5008C15 14.3681 14.9473 14.2409 14.8535 14.1471L8.70571 8.00182L14.851 1.85406C14.9448 1.76024 14.9975 1.63299 14.9975 1.5003C14.9975 1.36761 14.9448 1.24036 14.851 1.14653C14.7571 1.05271 14.6299 1 14.4972 1C14.3645 1 14.2373 1.05271 14.1434 1.14653L7.99818 7.29429L1.85043 1.14903C1.75478 1.06712 1.63173 1.02431 1.50589 1.02917C1.38005 1.03403 1.26067 1.0862 1.17162 1.17525C1.08257 1.2643 1.0304 1.38368 1.02554 1.50952C1.02068 1.63537 1.06349 1.75841 1.1454 1.85406L7.29066 8.00182L1.1454 14.1496C1.05227 14.2433 1 14.37 1 14.5021C1 14.6342 1.05227 14.7609 1.1454 14.8546Z" fill="#28364B"/>
-              </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                 <path d="M20 20L4 4M20 4L4 20" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                </svg>
             </div>
           </div>
         </div>
@@ -860,6 +1074,7 @@ let startF = setInterval(() => {
                     <div class="first_page">
                         <h2 class="title_page">Which best describes your current yoga experience level?</h2>
                         <p class="option_txt">(Choose one option)</p>
+                        <div class="personalized_txt_wrapp" data-name="experienceLevel"></div>
                         <div class="choose_option_wrapp">
                         <input class="custom_checkbox" id="beginner" type="radio" name="level" value="beginner" />
                         <label for="beginner" tabindex="0" data-name="Beginner"
@@ -891,6 +1106,7 @@ let startF = setInterval(() => {
                     </div>
                     <div class="second_page">
                         <h2 class="title_page">What type of yoga classes are you most interested in?</h2>
+                        <div class="personalized_txt_wrapp" data-name="yogaType"></div>
                         <div class="choose_option_wrapp">
                         <input class="custom_checkbox" id="vinyasaFlow" type="checkbox" name="vinyasaFlow" value="vinyasaFlow" />
                         <label for="vinyasaFlow" tabindex="0" data-name="Vinyasa Flow"
@@ -941,6 +1157,7 @@ let startF = setInterval(() => {
                     </div>
                     <div class="third_page">
                         <h2 class="title_page">Are there any specific areas you'd like to focus on?</h2>
+                        <div class="personalized_txt_wrapp" data-name="areasOfFocus"></div>
                         <div class="choose_option_wrapp">
                         <input class="custom_checkbox" id="coreStrengthStability" type="checkbox" name="coreStrengthStability" value="coreStrengthStability" />
                         <label for="coreStrengthStability" tabindex="0" data-name="Core strength and stability"><span class="choose_option_txt">Core strength and stability</span><span class="checked_box"></span></label>
@@ -969,6 +1186,7 @@ let startF = setInterval(() => {
                     </div>
                     <div class="fourth_page">
                         <h2 class="title_page">How much time can you allocate for your yoga practice?</h2>
+                        <div class="personalized_txt_wrapp" data-name="preferredDuration"></div>
                         <div class="choose_option_wrapp">
                         <input class="custom_checkbox" id="twenty" type="radio" name="time" value="20" />
                         <label for="twenty" tabindex="0" data-name="10-20 minutes"
@@ -1054,10 +1272,10 @@ let startF = setInterval(() => {
       }
     }
 
-    //   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     function createdPersonalizedList() {
       renderNewBlocks();
       addLinkForYou();
+      onClickDifBtn();
 
       function renderNewBlocks() {
         console.log(`renderNewBlocks`);
@@ -1080,8 +1298,195 @@ let startF = setInterval(() => {
           );
         }
       }
+
+      // open POPUP
+      function onClickDifBtn() {
+        if (document.querySelector(".overlay_popup")) {
+          console.log(`POPUP`);
+          function onOpenPopup() {
+            document.querySelector("html").classList.add("open_var");
+            document.querySelector(".overlay_popup").classList.remove("is_hidden");
+            if (!document.querySelector(".overlay_popup #editYourInterests")) {
+              document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopupHtml);
+            }
+            if (document.querySelector(".overlay_popup #editYourInterests")) {
+              setPersonalizedBox();
+              changeInputValue();
+            }
+
+            document.querySelectorAll(".overlay_popup .btn_close").forEach((i) => {
+              i.addEventListener("click", (e) => {
+                // click on btn close popup
+                onClosePopup();
+              });
+            });
+            document.querySelectorAll(".overlay_popup").forEach((i) => {
+              i.addEventListener("click", (e) => {
+                // click on overlay popup
+                if (e.target.matches(".overlay_popup")) {
+                  onClosePopup();
+                }
+              });
+            });
+            document.querySelector(".btn_cancel").addEventListener("click", () => {
+              onClosePopup();
+            });
+            document.querySelector(".btn_save_your_interests").addEventListener("click", () => {
+              setLocalStorInputValue();
+              onClosePopup();
+              jQuery('input[type="checkbox"]').off();
+            });
+          }
+
+          function onClosePopup() {
+            document.querySelectorAll(".overlay_popup").forEach((el) => {
+              el.classList.add("is_hidden");
+            });
+            setTimeout(() => {
+              document.querySelectorAll(".personalized_txt_wrapp").forEach((el) => {
+                el.textContent = "";
+              });
+            }, 600);
+
+            if (document.querySelector("html").classList.contains("open_var")) {
+              document.querySelector("html").classList.remove("open_var");
+            }
+
+            // setTimeout(() => {
+            //   document.querySelector(".content_popup")?.remove();
+            // }, 400);
+          }
+          let f = setInterval(() => {
+            if (document.querySelector(".change_preferences_btn")) {
+              clearInterval(f);
+              document.querySelector(".change_preferences_btn").addEventListener("click", () => {
+                onOpenPopup();
+              });
+            }
+          }, 100);
+        }
+      }
+
+      //set personalized_box
+      function setPersonalizedBox() {
+        if (localStorage.getItem("perfectYogaJourney")) {
+          temp = JSON.parse(localStorage.getItem("perfectYogaJourney"));
+          temp.forEach((list) => {
+            for (var key in list) {
+              document.querySelectorAll(".personalized_txt_wrapp").forEach((i) => {
+                if (i.getAttribute("data-name") === key) {
+                  let arrList = list[key];
+                  arrList.forEach((link) => {
+                    i.insertAdjacentHTML("beforeend", `<p class="personalized_list_tag" data-tag='${link}'>${link}</p>`);
+                    console.log(link);
+                  });
+                  // console.log(list[key]);
+                }
+              });
+              document.querySelectorAll(".choose_option_wrapp label").forEach((i) => {
+                let arrList = list[key];
+                arrList.forEach((link) => {
+                  if (i.getAttribute("data-name") === link) {
+                    i.previousElementSibling.checked = true;
+                    // console.log(list[key]);
+                  }
+                });
+              });
+            }
+          });
+
+          // document.querySelectorAll(".personalized_txt_wrapp").forEach((el) => {
+          //   if (el.children.length === 0) {
+          //     el.style.display = "none";
+          //   }
+          // });
+        }
+      }
+
+      function changeInputValue() {
+        if (document.querySelector(".personalized_list_tag")) {
+          document.querySelectorAll(".personalized_txt_wrapp").forEach((el) => {
+            el.addEventListener("click", (e) => {
+              if (!e.target.getAttribute("data-test")) {
+                console.log(el, `UUUUUUUUUUUUUU`);
+                el.nextElementSibling.classList.toggle("is_open");
+              }
+
+              e.target.setAttribute("data-test", "1");
+              setTimeout(() => {
+                if (e.target.getAttribute("data-test")) {
+                  e.target.removeAttribute("data-test");
+                }
+              }, 300);
+            });
+          });
+        }
+
+        jQuery('input[type="checkbox"]').on("change", function (e) {
+          if (jQuery(this).prop("checked")) {
+            e.target.parentElement.previousElementSibling.insertAdjacentHTML("beforeend", `<p class="personalized_list_tag" data-tag='${e.target.nextElementSibling.getAttribute("data-name")}'>${e.target.nextElementSibling.getAttribute("data-name")}</p>`);
+          } else {
+            e.target.parentElement.previousElementSibling.querySelectorAll(".personalized_list_tag").forEach((el) => {
+              if (el.getAttribute("data-tag") === e.target.nextElementSibling.getAttribute("data-name")) {
+                el.remove();
+              }
+            });
+          }
+        });
+
+        jQuery(document).ready(function () {
+          jQuery('input[type="radio"]').on("change", function (e) {
+            if (jQuery(this).prop("checked")) {
+              e.target.parentElement.previousElementSibling.textContent = "";
+              e.target.parentElement.previousElementSibling.insertAdjacentHTML("beforeend", `<p class="personalized_list_tag" data-tag='${e.target.nextElementSibling.getAttribute("data-name")}'>${e.target.nextElementSibling.getAttribute("data-name")}</p>`);
+            }
+          });
+        });
+      }
+
+      function setLocalStorInputValue() {
+        let text;
+        let arr = [],
+          experienceLevel = [],
+          preferredDuration = [],
+          yogaType = [],
+          areasOfFocus = [];
+        document.querySelectorAll(".custom_checkbox:checked + label").forEach((el) => {
+          if (el.closest(".first_page")) {
+            text = el.getAttribute("data-name");
+            experienceLevel.push(text);
+          }
+          if (el.closest(".second_page")) {
+            text = el.getAttribute("data-name");
+            yogaType.push(text);
+          }
+          if (el.closest(".third_page")) {
+            text = el.getAttribute("data-name");
+            areasOfFocus.push(text);
+          }
+          if (el.closest(".fourth_page")) {
+            text = el.getAttribute("data-name");
+            preferredDuration.push(text);
+          }
+        });
+
+        arr.push({
+          experienceLevel: experienceLevel,
+          preferredDuration: preferredDuration,
+          yogaType: yogaType,
+          areasOfFocus: areasOfFocus,
+        });
+
+        if (localStorage.getItem("perfectYogaJourney")) {
+          localStorage.removeItem("perfectYogaJourney");
+          localStorage.setItem("perfectYogaJourney", JSON.stringify(arr));
+        } else {
+          localStorage.setItem("perfectYogaJourney", JSON.stringify(arr));
+        }
+      }
     }
 
+    //   isNotSubscriber
     function isNotSubscriber() {
       if (window.location.pathname === "/yoga-classes" || window.location.pathname === "/yoga-meditation" || (window.location.pathname.match("/content/") && sessionStorage.getItem("survi::7e5b485118252bfdd1f1e031d8a5f743::visitReferrerUrl") === '"https://www.doyogawithme.com/yoga-classes"')) {
         if (!document.querySelector(".promote_subscription_wrap") && document.querySelector(".o-page__header")) {
@@ -1129,55 +1534,6 @@ let startF = setInterval(() => {
           });
         }
       }, 100);
-    }
-
-    onClickDifBtn();
-    function onClickDifBtn() {
-      if (document.querySelector(".overlay_popup")) {
-        console.log(`POPUP`);
-        function onOpenPopup() {
-          document.querySelector("html").classList.add("open_var");
-          document.querySelector(".overlay_popup").classList.remove("is_hidden");
-          if (!document.querySelector(".overlay_popup .content_popup")) {
-            document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopupHtml);
-          }
-
-          document.querySelectorAll(".overlay_popup .btn_close").forEach((i) => {
-            i.addEventListener("click", (e) => {
-              // click on btn close popup
-              onClosePopup();
-            });
-          });
-          document.querySelectorAll(".overlay_popup").forEach((i) => {
-            i.addEventListener("click", (e) => {
-              // click on overlay popup
-              if (e.target.matches(".overlay_popup")) {
-                onClosePopup();
-              }
-            });
-          });
-        }
-        function onClosePopup() {
-          document.querySelectorAll(".overlay_popup").forEach((el) => {
-            el.classList.add("is_hidden");
-          });
-
-          if (document.querySelector("html").classList.contains("open_var")) {
-            document.querySelector("html").classList.remove("open_var");
-          }
-          // setTimeout(() => {
-          //   document.querySelector(".content_popup")?.remove();
-          // }, 400);
-        }
-        let f = setInterval(() => {
-          if (document.querySelector(".change_preferences_btn")) {
-            clearInterval(f);
-            document.querySelector(".change_preferences_btn").addEventListener("click", () => {
-              onOpenPopup();
-            });
-          }
-        }, 100);
-      }
     }
   }
 }, 100);
