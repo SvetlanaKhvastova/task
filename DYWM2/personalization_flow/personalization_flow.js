@@ -726,15 +726,16 @@ let startF = setInterval(() => {
   gap: 8px;
   margin-top: 12px;
   cursor: pointer;
+      min-height: 34px;
 }
 .personalized_txt_wrapp::after {
   position: absolute;
   content: "";
-  width: 13px;
-  height: 6px;
+  width: 14px;
+  height: 14px;
   background: url(https://conversionratestore.github.io/projects/doyogawithme/img/arrow_acc.svg) no-repeat;
   background-size: contain;
-  top: 26px;
+  top: 22px;
   right: 20px;
 }
 .personalized_list_tag {
@@ -888,6 +889,201 @@ let startF = setInterval(() => {
 html.open_var {
   overflow: hidden !important;
 } 
+@media (max-width: 768px) {
+    .overlay_popup .container_popup{
+        margin: unset;
+    }
+    #editYourInterests .img_wrapp{
+        display: none;
+    }
+    #editYourInterests .edit_block_wrapp {
+        padding: 20px;
+        width: 100%;
+    }
+    .overlay_popup .container_popup > .btn_close path{
+        stroke: #272727;
+    }
+    .overlay_popup .container_popup > .btn_close{
+        top: 20px;
+        right: 20px;
+    }
+    #editYourInterests{
+        border-radius: 0;
+    }
+    .header_edit_block {
+        margin-bottom: 20px;
+    }
+    .header_edit_block .title_page{
+        font-size: 24px;
+        line-height: 30px;
+    }
+    .footer_edit_block{
+        border-top: 1px solid var(--Gray, #E0E0E0);
+        background: #FFF;
+        padding: 12px 20px 0;
+        margin: 24px -20px 0;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .btn_save_your_interests{
+        max-width: unset;
+    }
+    .btn_cancel{
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .second_page, .third_page, .fourth_page {
+        margin-top: 20px;
+    }
+    .body_edit_block .title_page,
+    .body_edit_block .option_txt{
+        font-size: 16px;
+        display: inline;
+    }
+    .personalized_txt_wrapp {
+        margin-top: 8px;
+        padding: 10px 18px 10px 10px;
+    }
+    .choose_option_wrapp label{
+        font-size: 12px;
+    }
+    .third_page .choose_option_wrapp label .choose_option_txt,
+    .choose_option_wrapp label .choose_option_txt b{
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 0;
+    }
+    .choose_option_wrapp label .choose_option_txt br{
+        display: none;
+    }
+    .second_page .choose_option_wrapp label .choose_option_txt br{
+        display: block;
+    }
+    .choose_option_wrapp label .choose_option_txt {
+        max-width: 232px;
+    }
+    .third_page .choose_option_wrapp label .choose_option_txt{
+        max-width: 188px;
+    }
+    /* promoteSubscriptionWrap*/
+        #promoteSubscriptionWrap {
+          padding: 16px 0 30px;
+        }
+        [data-mob] {
+          display: flex;
+        }
+        .open_var[data-openmobvar] {
+          display: block;
+        }
+        .bgr_gray,
+        [data-desk] {
+          display: none;
+        }
+        .new_features_list,
+        .hidden_new_features_list {
+          flex-direction: column;
+          gap: 16px;
+          margin: 0;
+        }
+        .new_features_list > li,
+        .hidden_new_features_list > li {
+          width: 100%;
+        }
+        .new_container {
+          padding: 16px;
+          max-width: 335px;
+          width: 81%;
+        }
+        .btn_wrapper {
+          flex-direction: column;
+          align-items: flex-start;
+          border-bottom: none;
+          padding: 0;
+          margin-bottom: 12px;
+        }
+        .btn_wrapper h2 {
+          font-size: 20px;
+          font-weight: 700;
+          line-height: 28px;
+          margin: 0 0 12px;
+          max-width: 300px;
+        }
+        #UnlockPremiumContentLink {
+          max-width: unset;
+          width: 100%;
+          height: 42px;
+        }
+        #UnlockPremiumContentLink span {
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 32px;
+        }
+        .toggle_btn_features {
+          margin: 10px auto 0;
+        }
+        .list_main_title {
+          font-size: 12px;
+          padding-left: 38px;
+          max-width: 249px;
+        }
+        .list_main_title[data-title="devices"] {
+          max-width: 227px;
+        }
+        .your_store_wrap {
+          margin-top: 12px;
+        }
+        .your_store_wrap .list_main_title {
+          margin-bottom: 6px;
+        }
+        .store_icon {
+          gap: 16px;
+        }
+        .store_icon img {
+          max-width: 120px;
+        }
+        .mini_block > li .list_main_title {
+          margin: 0;
+        }
+        .list_txt {
+          margin-top: 2px;
+          line-height: 20px;
+          font-size: 12px;
+        }
+        .list_main_title[data-title]::before {
+          width: 26px;
+          height: 26px;
+        }
+        .hidden_inform_box {
+          margin-top: 16px;
+        }
+        .professional_classes_list > li + li,
+        .professional_classes_list {
+          margin-top: 5px;
+        }
+        .professional_classes_list .list_txt {
+          font-weight: 600;
+        }
+        .new_features_list .list_main_title[data-title="yoga_person"] + p {
+          font-weight: 500;
+        }
+        /* */
+        .based_on_your_interests .title_wrapp {
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .based_on_your_interests .title_wrapp > h3 {
+            font-size: 24px;
+            line-height: 32px;
+            font-family: "Manrope", sans-serif;
+        }
+        .based_on_your_interests .title_wrapp .change_preferences_btn{
+            max-width: 242px;
+            font-size: 14px;
+            line-height: 22px;
+        }
+}
     </style>
     `;
 
@@ -1289,13 +1485,29 @@ html.open_var {
       }
 
       function addLinkForYou() {
-        if (document.querySelector("#c-dropdownMenu__submenuWrapper--main--0-0-1 .c-dropdownMenu__list") && !document.querySelector(".new_link")) {
-          document.querySelector("#c-dropdownMenu__submenuWrapper--main--0-0-1 .c-dropdownMenu__list").insertAdjacentHTML(
-            "afterbegin",
-            `<li class="c-dropdownMenu__item c-dropdownMenu__item--level1 new_link">
-                <a href="/for-you" class="c-dropdownMenu__link" data-anon-only="false" title="" data-drupal-link-system-path="for-you">For You</a>
-            </li>`
-          );
+        if (window.innerWidth <= 768) {
+          if (document.querySelector(".nav-wrapper.nav-wrapper-1 .nav-content > ul") && !document.querySelector(".new_link")) {
+            document.querySelector(".nav-wrapper.nav-wrapper-1 .nav-content > ul").insertAdjacentHTML(
+              "afterbegin",
+              `<li class="nav-item new_link">
+                    <div class="nav-item-wrapper">
+                        <a href="/for-you" class="nav-link nav-link--for-you nav-item-link" data-anon-only="false" title="" data-drupal-link-system-path="for-you" tabindex="0" role="menuitem" style="border-top: 1px solid rgb(255, 255, 255); border-bottom: 1px solid rgb(255, 255, 255); color: rgb(0, 0, 0);">For You</a>
+                    </div>
+                </li>`,
+              `<li class="c-dropdownMenu__item c-dropdownMenu__item--level1 new_link">
+                        <a href="/for-you" class="c-dropdownMenu__link" data-anon-only="false" title="" data-drupal-link-system-path="for-you">For You</a>
+                    </li>`
+            );
+          }
+        } else {
+          if (document.querySelector("#c-dropdownMenu__submenuWrapper--main--0-0-1 .c-dropdownMenu__list") && !document.querySelector(".new_link")) {
+            document.querySelector("#c-dropdownMenu__submenuWrapper--main--0-0-1 .c-dropdownMenu__list").insertAdjacentHTML(
+              "afterbegin",
+              `<li class="c-dropdownMenu__item c-dropdownMenu__item--level1 new_link">
+                        <a href="/for-you" class="c-dropdownMenu__link" data-anon-only="false" title="" data-drupal-link-system-path="for-you">For You</a>
+                    </li>`
+            );
+          }
         }
       }
 
