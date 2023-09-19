@@ -8,162 +8,26 @@
   </head>
 
   <body>
-    <section id="editYourInterests">
-      <div class="edit_block_wrapp">
-        <div class="header_edit_block">
-          <h2 class="title_page">Edit Your <span class="accent_green">Interests</span></h2>
-        </div>
-        <div class="body_edit_block">
-          <div class="first_page">
-            <h2 class="title_page">Which best describes your current yoga experience level?</h2>
-            <p class="option_txt">(Choose one option)</p>
-            <div class="choose_option_wrapp">
-              <input class="custom_checkbox" id="beginner" type="radio" name="level" value="beginner" />
-              <label for="beginner" tabindex="0" data-name="Beginner"
-                ><span class="choose_option_txt"
-                  ><b>Beginner</b><br />
-                  (New to yoga or have limited experience)</span
-                >
-                <span class="checked_box"></span
-              ></label>
-
-              <input class="custom_checkbox" id="intermediate" type="radio" name="level" value="intermediate" />
-              <label for="intermediate" tabindex="0" data-name="Intermediate"
-                ><span class="choose_option_txt"
-                  ><b>Intermediate</b><br />
-                  (Have some experience and comfortable with basic poses)</span
-                >
-                <span class="checked_box"></span
-              ></label>
-
-              <input class="custom_checkbox" id="advanced" type="radio" name="level" value="advanced" />
-              <label for="advanced" tabindex="0" data-name="Advanced">
-                <span class="choose_option_txt"
-                  ><b>Advanced</b><br />
-                  (Experienced yogi looking for challenging practices)</span
-                >
-                <span class="checked_box"></span
-              ></label>
-            </div>
-          </div>
-          <div class="second_page">
-            <h2 class="title_page">What type of yoga classes are you most interested in?</h2>
-            <div class="choose_option_wrapp">
-              <input class="custom_checkbox" id="vinyasaFlow" type="checkbox" name="vinyasaFlow" value="vinyasaFlow" />
-              <label for="vinyasaFlow" tabindex="0" data-name="Vinyasa Flow"
-                ><span class="choose_option_txt"
-                  ><b>Vinyasa Flow</b><br />
-                  (Dynamic and fluid sequences)</span
-                ><span class="checked_box"></span
-              ></label>
-
-              <input class="custom_checkbox" id="hatha" type="checkbox" name="hatha" value="hatha" />
-              <label for="hatha" tabindex="0" data-name="Hatha"
-                ><span class="choose_option_txt"><b>Hatha</b> <br />(Gentle and foundational poses)</span><span class="checked_box"></span
-              ></label>
-
-              <input class="custom_checkbox" id="powerYoga" type="checkbox" name="powerYoga" value="powerYoga" />
-              <label for="powerYoga" tabindex="0" data-name="Power Yoga"
-                ><span class="choose_option_txt"
-                  ><b>Power Yoga</b><br />
-                  (Energetic and strength-focused)</span
-                ><span class="checked_box"></span
-              ></label>
-
-              <input class="custom_checkbox" id="restorativeYin" type="checkbox" name="restorativeYin" value="restorativeYin" />
-              <label for="restorativeYin" tabindex="0" data-name="Restorative/Yin"
-                ><span class="choose_option_txt"
-                  ><b>Restorative/Yin</b><br />
-                  (Relaxing and deep stretching)</span
-                ><span class="checked_box"></span
-              ></label>
-
-              <input class="custom_checkbox" id="kundaliniYoga" type="checkbox" name="kundaliniYoga" value="kundaliniYoga" />
-              <label for="kundaliniYoga" tabindex="0" data-name="Kundalini Yoga"
-                ><span class="choose_option_txt"
-                  ><b>Kundalini Yoga</b><br />
-                  (Spiritual energy-focused yoga)</span
-                ><span class="checked_box"></span
-              ></label>
-
-              <input class="custom_checkbox" id="yogaMeditationMindfulness" type="checkbox" name="yogaMeditationMindfulness" value="yogaMeditationMindfulness" />
-              <label for="yogaMeditationMindfulness" tabindex="0" data-name="Yoga for Meditation and Mindfulness"
-                ><span class="choose_option_txt"><b>Yoga for Meditation and Mindfulness</b></span
-                ><span class="checked_box"></span
-              ></label>
-
-              <input class="custom_checkbox" id="noneStylesYoga" type="checkbox" name="noneStylesYoga" value="noneStylesYoga" />
-              <label for="noneStylesYoga" tabindex="0" data-name="Different styles"><span class="choose_option_txt">I don’t have preferences and want to practice different styles</span><span class="checked_box"></span></label>
-            </div>
-          </div>
-          <div class="third_page">
-            <h2 class="title_page">Are there any specific areas you'd like to focus on?</h2>
-            <div class="choose_option_wrapp">
-              <input class="custom_checkbox" id="coreStrengthStability" type="checkbox" name="coreStrengthStability" value="coreStrengthStability" />
-              <label for="coreStrengthStability" tabindex="0" data-name="Core strength and stability"><span class="choose_option_txt">Core strength and stability</span><span class="checked_box"></span></label>
-
-              <input class="custom_checkbox" id="backStrengthPainRelief" type="checkbox" name="backStrengthPainRelief" value="backStrengthPainRelief" />
-              <label for="backStrengthPainRelief" tabindex="0" data-name="Back strength and pain relief"><span class="choose_option_txt">Back strength and pain relief</span><span class="checked_box"></span></label>
-
-              <input class="custom_checkbox" id="upperBodyStrengthToning" type="checkbox" name="upperBodyStrengthToning" value="upperBodyStrengthToning" />
-              <label for="upperBodyStrengthToning" tabindex="0" data-name="Upper body strength and toning"><span class="choose_option_txt">Upper body strength and toning</span><span class="checked_box"></span></label>
-
-              <input class="custom_checkbox" id="flexibilityJointMobility" type="checkbox" name="flexibilityJointMobility" value="flexibilityJointMobility" />
-              <label for="flexibilityJointMobility" tabindex="0" data-name="Flexibility and joint mobility"><span class="choose_option_txt">Flexibility and joint mobility</span><span class="checked_box"></span></label>
-
-              <input class="custom_checkbox" id="relaxationSleepImprovement" type="checkbox" name="relaxationSleepImprovement" value="relaxationSleepImprovement" />
-              <label for="relaxationSleepImprovement" tabindex="0" data-name="Relaxation and sleep improvement"><span class="choose_option_txt">Relaxation and sleep improvement</span><span class="checked_box"></span></label>
-
-              <input class="custom_checkbox" id="mindfulnessMeditationTechniques" type="checkbox" name="mindfulnessMeditationTechniques" value="mindfulnessMeditationTechniques" />
-              <label for="mindfulnessMeditationTechniques" tabindex="0" data-name="Mindfulness and meditation techniques"><span class="choose_option_txt">Mindfulness and meditation techniques</span><span class="checked_box"></span></label>
-
-              <input class="custom_checkbox" id="womensHealthPrenatalPostnatalPractices" type="checkbox" name="womensHealthPrenatalPostnatalPractices" value="womensHealthPrenatalPostnatalPractices" />
-              <label for="womensHealthPrenatalPostnatalPractices" tabindex="0" data-name="Women’s health, Prenatal and Postnatal practices"><span class="choose_option_txt">Women’s health, Prenatal and Postnatal practices</span><span class="checked_box"></span></label>
-
-              <input class="custom_checkbox" id="morningTravelVigorousEnergy" type="checkbox" name="morningTravelVigorousEnergy" value="morningTravelVigorousEnergy" />
-              <label for="morningTravelVigorousEnergy" tabindex="0" data-name="Techniques to increase energy"><span class="choose_option_txt">Techniques to increase energy</span><span class="checked_box"></span></label>
-            </div>
-          </div>
-          <div class="fourth_page">
-            <h2 class="title_page">How much time can you allocate for your yoga practice?</h2>
-            <div class="choose_option_wrapp">
-              <input class="custom_checkbox" id="twenty" type="radio" name="time" value="20" />
-              <label for="twenty" tabindex="0" data-name="10-20 minutes"
-                ><span class="choose_option_txt"
-                  ><b>10-20 minutes</b><br />
-                  (Quick sessions to fit into a busy schedule)</span
-                >
-                <span class="checked_box"></span
-              ></label>
-
-              <input class="custom_checkbox" id="fortyFive" type="radio" name="time" value="45" />
-              <label for="fortyFive" tabindex="0" data-name="30-45 minutes"
-                ><span class="choose_option_txt"
-                  ><b>30-45 minutes</b><br />
-                  (Moderate sessions for a comprehensive practice)</span
-                >
-                <span class="checked_box"></span
-              ></label>
-
-              <input class="custom_checkbox" id="sixty" type="radio" name="time" value="60" />
-              <label for="sixty" tabindex="0" data-name="60 minutes or more">
-                <span class="choose_option_txt"
-                  ><b>60 minutes or more</b><br />
-                  (Extended sessions for a deep dive into yoga)</span
-                >
-                <span class="checked_box"></span
-              ></label>
-            </div>
-          </div>
-        </div>
-        <div class="footer_edit_block">
-          <div class="btn_save_your_interests">Save your interests</div>
-          <div class="btn_cancel">Cancel</div>
-        </div>
+    <div class="subtotal_block">
+      <div class="get_discount_inform_wrapp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <circle cx="14" cy="14" r="14" fill="#E8F8FE" />
+          <path d="M8.53864 7.75H13.3148C13.8598 7.75 14.3726 7.97387 14.7573 8.35765L20.399 13.9864C21.2003 14.786 21.2003 16.0972 20.399 16.8968L16.1357 21.1503C15.3343 21.9499 14.02 21.9499 13.2187 21.1503L7.57699 15.5216C7.19233 15.1378 7 14.6261 7 14.0824V9.28512C7 8.4536 7.67315 7.75 8.53864 7.75ZM10.5902 12.3554C11.1351 12.3554 11.6159 11.9076 11.6159 11.332C11.6159 10.7883 11.1351 10.3085 10.5902 10.3085C10.0132 10.3085 9.5644 10.7883 9.5644 11.332C9.5644 11.9076 10.0132 12.3554 10.5902 12.3554Z" fill="#023F88" />
+        </svg>
+        <p>Spend <b>$125</b> and get a <b>20% discount</b></p>
       </div>
-      <div class="img_wrapp">
-        <img src="https://conversionratestore.github.io/projects/doyogawithme/img/quiz_img_finish.png" alt="yoga" class="" />
+      <div class="product_title_wrapp">
+        <ul class="product_title_list">
+          <li>
+            <p class="product_title_txt">Geeni Hawk 3 1080p Camera</p>
+            <p class="product_title_price">$59.99</p>
+          </li>
+        </ul>
       </div>
-    </section>
+      <div class="subtotal_txt_wrapp">
+        <p>Subtotal</p>
+        <p class="subtotal_price">$49.99</p>
+      </div>
+    </div>
   </body>
 </html>

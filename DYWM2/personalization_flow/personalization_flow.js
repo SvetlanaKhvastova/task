@@ -132,8 +132,8 @@ let startF = setInterval(() => {
 }
 .list_main_title {
   position: relative;
-  color: #272727;
-  font-family: "Manrope", sans-serif;
+  lor: #272727;
+  font-familyco: "Manrope", sans-serif;
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
