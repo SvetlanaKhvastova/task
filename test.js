@@ -15,7 +15,7 @@ function getNewUser(name) {
   const parts = value.split(`; ${name}=`);
   let valueCookie;
   let timeNewUser;
-  if (parts.length === 2 && !localStorage.getItem("newUser")) {
+  if (parts.length === 2) {
     valueCookie = parts.pop().split(";").shift();
     timeNewUser = +(valueCookie.split(".").pop() + "000");
     if (+new Date() - +new Date(timeNewUser) <= 5 * 60 * 1000) {
