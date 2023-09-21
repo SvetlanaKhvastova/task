@@ -1,1 +1,0 @@
-typeof FlipClock === "function" && typeof jQuery === "function" && document.querySelector("#countdown");

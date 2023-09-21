@@ -2,6 +2,30 @@ let startFunk = setInterval(() => {
   if (document.querySelector(".grid--product-images--partial")) {
     clearInterval(startFunk);
 
+    // cdn slider
+    let scriptCustomSlider = document.createElement("script");
+    scriptCustomSlider.src = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js";
+    scriptCustomSlider.async = false;
+    document.head.appendChild(scriptCustomSlider);
+
+    let scriptCustomSliderStyle = document.createElement("link");
+    scriptCustomSliderStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css";
+    scriptCustomSliderStyle.rel = "stylesheet";
+    document.head.appendChild(scriptCustomSliderStyle);
+
+    let arrProductBestSellers = {
+      "Emerald Inlay Band, Emerald Inlay Ring, Inlay Wedding Band, Gemstone Inlay Ring For Her": ["/products/emerald-inlay-band-emerald-inlay-ring-78757?_pos=1&amp;_sid=9abcb8477&amp;_ss=r&amp;variant=40681228664875", "from $610.00 USD", `//capucinne.com/cdn/shop/products/Emerald-Inlay-Band-Emerald-Inlay-Ring-Inlay-Wedding-Band-Gemstone-Inlay-Ring-For-Her_e46d75f1-b0bf-463b-8437-7b05350c39f5_720x.jpg?v=1687190101 720w" sizes="291px" srcset="//capucinne.com/cdn/shop/products/Emerald-Inlay-Band-Emerald-Inlay-Ring-Inlay-Wedding-Band-Gemstone-Inlay-Ring-For-Her_e46d75f1-b0bf-463b-8437-7b05350c39f5_720x.jpg?v=1687190101 720w`],
+      "Taylor Moss Agate Baguette And Diamond Ring": ["/products/moss-agate-diamond-engagement-ring-14k-42404?_pos=1&amp;_sid=3a3d9264d&amp;_ss=r", "from $320.00 USD", `//capucinne.com/cdn/shop/products/Taylor-Moss-Agate-Baguette-and-Diamond-Ring_720x.jpg?v=1687191273 720w`],
+      "Isla Pear Moss Agate Engagement Ring": ["/products/pear-moss-agate-engagement-ring-pear-76468?_pos=1&amp;_sid=0ba9405e9&amp;_ss=r", "from $1,610.00 USD", `//capucinne.com/cdn/shop/products/Isla-Pear-Moss-Agate-Engagement-Ring_720x.jpg?v=1687191217 720w`],
+      "Dawn Moss Agate Ring With Accent Diamonds": [`/products/mossy-agate-ring-moss-agate-engagement-11714?_pos=1&amp;_sid=bdebb5c3c&amp;_ss=r`, "from $1,250.00 USD", "//capucinne.com/cdn/shop/products/Dawn-Moss-Agate-Ring-with-Accent-Diamonds_720x.jpg?v=1687188664 720w"],
+      "Eleanor Pear Moss Agate and Diamond Ring": ["/products/pear-moss-agate-engagement-ring-cluster-62106?_pos=1&amp;_sid=afec84196&amp;_ss=r&amp;variant=40374146990123", "from $2,340.00 USD", `//capucinne.com/cdn/shop/products/Eleanor-Pear-Moss-Agate-and-Diamond-Ring_720x.jpg?v=1687190666 720w`],
+      "Thin Chevron V-Shaped Nesting Band": ["/products/thin-gold-chevron-ring-v-shaped-wedding-82518?_pos=1&amp;_sid=c1dfdf108&amp;_ss=r", "from $490.00 USD", "//capucinne.com/cdn/shop/products/Thin-Chevron-V-Shaped-Nesting-Band_720x.jpg?v=1687191119 720w"],
+      "Aiden Baguette Moss Agate Wedding Band": ["/products/baguette-moss-mens-band-moss-agate-band-36493?_pos=1&amp;_sid=c210ba82c&amp;_ss=r&amp;variant=40432226893867", "from $1,060.00 USD", "//capucinne.com/cdn/shop/products/Aiden-Baguette-Moss-Agate-Wedding-Band_720x.jpg?v=1687192092 720w"],
+      "Taylor Moss Agate Baguette And Diamond Ring": ["/products/moss-agate-diamond-engagement-ring-14k-42404?_pos=1&amp;_sid=3a3d9264d&amp;_ss=r", "from $320.00 USD", `//capucinne.com/cdn/shop/products/Taylor-Moss-Agate-Baguette-and-Diamond-Ring_720x.jpg?v=1687191273 720w`],
+      "Beatrice Moss Agate And Diamond Cluster Ring": ["/products/moss-agate-cluster-ring-cluster-moss-38374?_pos=1&amp;_sid=1def4e6cf&amp;_ss=r", "from $1,660.00 USD", `//capucinne.com/cdn/shop/products/Beatrice-Moss-Agate-and-Diamond-Cluster-Ring_720x.jpg?v=1687191794 720w`],
+      "Lennox Kite-Cut Oregon Sunstone Engagement Ring": ["/products/kite-sunstone-ring-oregon-sunstone-ring-08461?_pos=1&amp;_sid=9d87f66f1&amp;_ss=r", "from $2,230.00 USD", `//capucinne.com/cdn/shop/products/Lennox-Kite-Cut-Oregon-Sunstone-Engagement-Ring_720x.jpg?v=1687188414 720w`],
+    };
+
     let newStyle = /*html */ `
         <style>
             .product-single__meta,
@@ -417,7 +441,7 @@ let startFunk = setInterval(() => {
             .delivery_timeline_item{
                 position: relative;
             }
-            .:first-child {
+            .delivery_timeline_item:first-child {
                 text-align: left;
             }
             .delivery_timeline_item:nth-child(2) {
@@ -467,6 +491,250 @@ let startFunk = setInterval(() => {
                 padding: 2px 12px;
                 z-index: 2;
                 top: 2px;
+            }
+            #syte-similar-items-container .syte-slider-title{
+                margin-bottom: 32px !important;
+            }
+            #syte-similar-items-container .syte-slider-arrow.syte-slider-arrow-left{
+                right: 60px;
+            }
+            .syte-slider-layout-container .syte-offers-item-desc{
+              color: #000;
+              font-size: 16px !important;
+              font-weight: 400;
+              line-height: 24px !important;
+              letter-spacing: -0.308px;
+              text-transform: initial;
+              margin: 12px auto 0;
+              max-width: 236px !important;
+            }
+            .syte-slider-layout-container .syte-ad-promo-text.syte-offer-price{
+              color: #1C1D1D;
+              font-size: 14px;
+              font-weight: 500;
+              line-height: 20px;
+            }
+            #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-title{
+              font-family: 'Poppins';
+              color: #000;
+              font-size: 20px !important;
+              font-weight: 400 !important;
+              line-height: 28px !important;
+              letter-spacing: 1px;
+              text-transform: uppercase;
+              margin: 0 0 20px;
+            }
+            #shopify-section-template--20824047354197__82449f7c-6c71-4b98-89f3-074fa0fedafc{
+              margin: 64px 0 120px;
+            }
+            #shopify-section-template--20824047354197__82449f7c-6c71-4b98-89f3-074fa0fedafc .custom__item.one-whole.align--center{
+              margin: 0;
+            }
+            #shopify-section-template--20824047354197__82449f7c-6c71-4b98-89f3-074fa0fedafc .btn{
+              max-width: 324px;
+              width: 100%;
+              color: #FFF;
+              font-size: 14px;
+              font-weight: 600;
+              line-height: 20px;
+              text-transform: uppercase;
+              height: 52px;
+            }
+            .stamped-carousel-subtitle-count{
+              color: #565656;
+              font-size: 14px;
+              font-weight: 600;
+              line-height: 20px;
+            }
+            #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-subtitle{
+              display: flex;
+              gap: 16px;
+            }
+            #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-subtitle span.stamped-carousel-subtitle-count:after{
+              color: #565656;
+              font-size: 14px;
+              font-weight: 400;
+              line-height: 20px;
+            }
+            #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll:before{
+              margin-top: 10px !important;
+              margin-bottom: 44px !important;
+            }
+            #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll .stamped-reviews-rating{
+              font-size: unset !important;
+            }
+            #stamped-reviews-widget[data-widget-type=carousel] .stamped-reviews-date{
+              color: #565656 !important;
+              font-size: 12px !important;
+              font-weight: 400;
+              line-height: 18px;
+              letter-spacing: -0.308px;
+              padding: 0 !important;
+            }
+            #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll .stamped-reviews-title{
+              color: #000;
+              font-size: 16px !important;
+              font-weight: 600 !important;
+              line-height: 24px !important;
+              margin: 5px 0 11px !important;
+            }
+            #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll .stamped-reviews-message-block{
+              color: #565656 !important;
+              font-size: 13px !important;
+              font-style: italic !important;
+              font-weight: 400 !important;
+              line-height: 18px !important;
+            }
+            #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll .stamped-reviews-author{
+              color: #1C1D1D;
+              font-family: 'Open Sans';
+              font-size: 13px !important;
+              font-weight: 700 !important;
+              line-height: 18px !important;
+              margin-top: 12px !important;
+
+            }
+            #shopify-section-template--20824047354197__recently-viewed .hr--large,
+            #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll .stamped-reviews-product-title{
+              display: none;
+            }
+            #shopify-section-template--20824047354197__1669882201fc5f25f2{
+              padding: 0 40px;
+            }
+            #stamped-reviews-widget[data-widget-type=carousel]{
+                  max-width: unset !important;
+                  width: 100%;
+            }
+            /**beautifully_packaged_box */
+            .beautifully_packaged_box{
+              padding: 0 40px;
+              display: flex;
+              align-items: stretch;
+              justify-content: space-between;
+              margin-bottom: 80px;
+            }
+            .beautifully_packaged_box > div{
+              width: 50%;
+            }
+            .beautifully_packaged_img img{
+              width: 100%;
+              height: 100%;
+            }
+            .beautifully_packaged_descr{
+              background: #D4A298;
+              padding: 20px;
+            }
+            .beautifully_packaged_container{
+              border: 1px solid #FFF;
+              padding: 66px 5px;
+              text-align: center;
+              height: 100%;
+            }
+            .beautifully_packaged_container h2{
+              color: #FFF;
+              font-size: 24px;
+              font-weight: 400;
+              line-height: 32px;
+              letter-spacing: 2px;
+              text-transform: uppercase;
+              margin: 2px 0 24px;
+            }
+            .beautifully_packaged_container h3{
+              color: #FFF;
+              font-size: 14px;
+              font-weight: 400;
+              line-height: 20px;
+              letter-spacing: 2px;
+              text-transform: uppercase;
+              margin: 0;
+            }
+            .beautifully_packaged_container p{
+              color: #FFF;
+              font-size: 14px;
+              font-weight: 500;
+              line-height: 24px;
+              margin: 0 auto;
+              max-width: 417px;
+            }
+            .beautifully_packaged_container p + p{
+              margin-top: 20px;
+            }
+            /*readyToShip */
+            #readyToShip,
+            #bestSellers{
+              padding: 0 40px;
+              margin-bottom: 80px;
+            }
+            #readyToShip .ready_to_ship_container > h2,
+            #bestSellers .best_sellers_container > h2{
+              color: #000;
+              font-size: 18px;
+              font-weight: 400;
+              line-height: 26px;
+              letter-spacing: 1px;
+              text-transform: uppercase;
+              margin: 0 0 32px;
+            }
+            #bestSellers .slick-slide{
+              margin: 0 4px;
+            }
+            .slick-arrow{
+              position: absolute;
+              top: -61px;
+              right: 0;
+              z-index: 111;
+              width: 30px;
+              height: 30px;
+              cursor: pointer;
+            }
+            .slick-arrow svg{
+              width: 100%;
+              height: 100%;
+            }
+            .prev_btn.slick-arrow{
+              right: 60px;
+            }
+            .product_content a{
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 12px;
+            }
+            .product_image{
+              width: 100%;
+            }
+            .product_image img{
+                object-fit: cover;
+                height: auto;
+                aspect-ratio: 1/1.5;
+                max-height: 402px;
+            }
+            .product_title{
+              color: #000;
+              text-align: center;
+              font-size: 16px;
+              font-weight: 400;
+              line-height: 24px;
+              letter-spacing: -0.308px;
+              margin: 0 auto 8px;
+              max-width: 246px;
+              text-transform: initial !important;
+            }
+            .product_price{
+              color: #1C1D1D;
+              text-align: center;
+              font-size: 14px;
+              font-weight: 500;
+              line-height: 20px;
+              margin: 0;
+            }
+            .ready_to_ship_list{
+              display: none;
+            }
+            @media (max-width: 1180px) {
+              .beautifully_packaged_container{
+                    padding: 20px 5px;
+              }
             }
         </style>
     `;
@@ -584,6 +852,43 @@ let startFunk = setInterval(() => {
   </div>
   `;
 
+    let beautifullyPackaged = /*html */ `
+    <div class="beautifully_packaged_box">
+      <div class="beautifully_packaged_img">
+        <img src="https://conversionratestore.github.io/projects/capucinne/img/is_packaged_beautifully.png" alt="is packaged beautifully" />
+      </div>
+      <div class="beautifully_packaged_descr">
+        <div class="beautifully_packaged_container">
+          <h3>YOUR CAPUCINNE JEWELRY</h3>
+          <h2>BEAUTIFULLY PACKAGED</h2>
+          <p>Every Capucinne piece is packaged beautifully. Your ring, or fine jewelry, will arrive in a luxurious white and gold box, embossed with our signature logo.</p>
+          <p>Resting inside the outer box is a smaller box that fits perfectly in to your pocket, for the most important moments of your life.</p>
+        </div>
+      </div>
+    </div>
+    `;
+
+    let readyToShip = /*html */ `
+    <section id="readyToShip">
+      <div class="ready_to_ship_container">
+        <h2>READY <b>TO SHIP</b></h2>
+        <div class='pages'></div>
+        <div class="ready_to_ship_list"></div>
+      </div>
+    </section>
+    `;
+
+    let bestSellers = /*html */ `
+    <section id="bestSellers">
+      <div class="best_sellers_container">
+        <h2>Best <b>Sellers</b></h2>
+        <div>
+          <div class="best_sellers_list"></div>
+        </div>
+      </div>
+    </section>
+    `;
+
     document.head.insertAdjacentHTML("beforeend", newStyle);
 
     renderNewBlocks();
@@ -666,6 +971,43 @@ let startFunk = setInterval(() => {
       //          </svg>
       //        </span>`;
       //   }
+      // Similar Items
+      let similarItems = setInterval(() => {
+        if (!document.querySelector("#syte-similar-items-container .syte-slider-title b") && document.querySelector("#syte-similar-items-container .syte-slider-title")) {
+          clearInterval(similarItems);
+          document.querySelector("#syte-similar-items-container .syte-slider-title").innerHTML = "";
+          document.querySelector("#syte-similar-items-container .syte-slider-title").innerHTML = `Similar <b>Items</b>`;
+        }
+      }, 100);
+      // Real Reviews from Real Customers
+      if (!document.querySelector("#stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-title b") && document.querySelector("#stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-title")) {
+        document.querySelector("#stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-title").innerHTML = `Real Reviews from Real <b>Customers</b>`;
+      }
+      if (document.querySelector("#shopify-section-template--20824047354197__82449f7c-6c71-4b98-89f3-074fa0fedafc") && document.querySelector("#shopify-section-template--20824047354197__1669882201fc5f25f2") && !document.querySelector("#shopify-section-template--20824047354197__1669882201fc5f25f2 + #shopify-section-template--20824047354197__82449f7c-6c71-4b98-89f3-074fa0fedafc")) {
+        document.querySelector("#shopify-section-template--20824047354197__1669882201fc5f25f2").after(document.querySelector("#shopify-section-template--20824047354197__82449f7c-6c71-4b98-89f3-074fa0fedafc"));
+      }
+      //Recently viewed
+      if (!document.querySelector("#shopify-section-template--20824047354197__recently-viewed .section-header__title b") && document.querySelector("#shopify-section-template--20824047354197__recently-viewed .section-header__title")) {
+        document.querySelector("#shopify-section-template--20824047354197__recently-viewed .section-header__title").innerHTML = `Recently <b>viewed</b>`;
+      }
+      //BEAUTIFULLY PACKAGED
+      if (!document.querySelector(".beautifully_packaged_box") && document.querySelector("#shopify-section-template--20824047354197__1669896642c8c32264")) {
+        document.querySelector("#shopify-section-template--20824047354197__1669896642c8c32264").insertAdjacentHTML("afterend", beautifullyPackaged);
+      }
+      // READY TO SHIP
+      if (document.querySelector(".beautifully_packaged_box") && !document.querySelector("#readyToShip")) {
+        document.querySelector(".beautifully_packaged_box").insertAdjacentHTML("afterend", readyToShip);
+      }
+
+      //Best Sellers
+      if (document.querySelector("#readyToShip") && !document.querySelector("#bestSellers")) {
+        document.querySelector("#readyToShip").insertAdjacentHTML("afterend", bestSellers);
+      }
+      if (document.querySelector("#bestSellers")) {
+        renderBestSellers();
+      }
+
+      slickSliderVar();
     }
 
     function handleExtend() {
@@ -805,6 +1147,132 @@ let startFunk = setInterval(() => {
       }, 100);
     }
 
+    function renderBestSellers() {
+      let findBlockRecommend = setInterval(() => {
+        if (document.querySelector("#bestSellers .best_sellers_list") && !document.querySelector("#bestSellers .best_sellers_list .product_content")) {
+          clearInterval(findBlockRecommend);
+          if (document.querySelector("#bestSellers .best_sellers_list").children.length !== arrProductBestSellers.length) {
+            for (let key in arrProductBestSellers) {
+              document.querySelector("#bestSellers .best_sellers_list")?.insertAdjacentHTML("beforeend", setProduct(key, arrProductBestSellers[key][0], arrProductBestSellers[key][1], arrProductBestSellers[key][2]));
+            }
+          }
+        }
+      }, 100);
+
+      function setProduct(title, link, price, img) {
+        return `<div class="product_content">
+                  <a href="${link}" class="product_link" target="_blank">
+                    <div class="product_image">
+                      <img class="lazyautosizes lazyloaded" data-widths="[720]" data-aspectratio="1.066" data-sizes="auto" alt="${title}" loading="lazy" width="284" height="425" data-srcset="${img}" sizes="291px" srcset="${img}" />
+                    </div>
+                    <div class="product_meta">
+                      <h3 class="product_title">${title}</h3>
+                      <p class="product_price">from <span class="money">${price}</span></p>
+                    </div>
+                  </a>
+              </div>`;
+      }
+    }
+
+    function slickSliderVar() {
+      let slickInterval = setInterval(() => {
+        if (typeof jQuery("#bestSellers .best_sellers_list").slick === "function" && document.querySelector("#bestSellers .best_sellers_list").children.length !== arrProductBestSellers.length) {
+          clearInterval(slickInterval);
+
+          //  slider
+          let slider = jQuery("#bestSellers .best_sellers_list")
+            .not("#bestSellers .slick-initialized")
+            .slick({
+              slidesToShow: 5,
+              slidesToScroll: 3,
+              arrows: true,
+              dots: false,
+              infinite: true,
+              prevArrow: `
+             <div class="prev_btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+  <path d="M9.99994 12L5.99994 7.49999L9.99994 3" stroke="#1C1D1D" stroke-linecap="square" stroke-linejoin="round"/>
+</svg></div>`,
+              nextArrow: `
+              <div class="next_btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+  <path d="M5.99994 12L9.99994 7.49999L5.99994 3" stroke="#1C1D1D" stroke-linecap="square" stroke-linejoin="round"/>
+</svg></div>`,
+            });
+          slider.on("swipe", function () {});
+        }
+      }, 100);
+
+      let slickReadyToShip = setInterval(() => {
+        if (typeof jQuery("#readyToShip .ready_to_ship_list").slick === "function" && document.querySelector(".ready_to_ship_list").children.length >= 179) {
+          clearInterval(slickReadyToShip);
+
+          //  slider
+          let slider = jQuery("#readyToShip .ready_to_ship_list")
+            .not("#readyToShip .slick-initialized")
+            .slick({
+              slidesToShow: 5,
+              slidesToScroll: 3,
+              arrows: true,
+              dots: false,
+              infinite: true,
+              prevArrow: `
+                   <div class="prev_btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M9.99994 12L5.99994 7.49999L9.99994 3" stroke="#1C1D1D" stroke-linecap="square" stroke-linejoin="round"/>
+      </svg></div>`,
+              nextArrow: `
+                    <div class="next_btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M5.99994 12L9.99994 7.49999L5.99994 3" stroke="#1C1D1D" stroke-linecap="square" stroke-linejoin="round"/>
+      </svg></div>`,
+              responsive: [
+                {
+                  breakpoint: 768,
+                  settings: {
+                    slidesToShow: 2.7,
+                    infinite: false,
+                    arrows: false,
+                  },
+                },
+              ],
+            });
+          slider.on("swipe", function () {});
+          document.querySelector(".ready_to_ship_list").style.display = "block";
+        }
+      }, 100);
+    }
+
+    if (document.querySelector("#readyToShip")) {
+      getArrReadyToShip();
+    }
+
+    function getArrReadyToShip() {
+      fetchArr("https://capucinne.com/collections/ready-to-ship?_pos=1&_psq=ready-ti&_ss=e&_v=1.0");
+      fetchArr("https://capucinne.com/collections/ready-to-ship?page=2");
+      fetchArr("https://capucinne.com/collections/ready-to-ship?page=3");
+      fetchArr("https://capucinne.com/collections/ready-to-ship?page=4");
+      fetchArr("https://capucinne.com/collections/ready-to-ship?page=5");
+      fetchArr("https://capucinne.com/collections/ready-to-ship?page=6");
+      fetchArr("https://capucinne.com/collections/ready-to-ship?page=7");
+      fetchArr("https://capucinne.com/collections/ready-to-ship?page=8");
+      fetchArr("https://capucinne.com/collections/ready-to-ship?page=9");
+
+      async function fetchArr(url) {
+        let res = await fetch(url);
+        res = await res.text();
+
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(res, "text/html");
+        document.querySelector("#readyToShip .ready_to_ship_container .pages").insertAdjacentElement("beforeend", doc.querySelector(".grid.grid--uniform"));
+      }
+      let w = setInterval(() => {
+        if (document.querySelector(".ready_to_ship_container") && document.querySelector("#readyToShip .ready_to_ship_container .pages").children.length === 9) {
+          clearInterval(w);
+          document.querySelectorAll("#readyToShip .ready_to_ship_container .pages .grid.grid--uniform .grid__item").forEach((el) => {
+            document.querySelector(".ready_to_ship_container .ready_to_ship_list").insertAdjacentElement("beforeend", el);
+          });
+        }
+      }, 100);
+
+      // console.log(doc.querySelector(".grid.grid--uniform").outerHTML);
+    }
     // Observe
     let observer = new MutationObserver(() => {
       if (document) {
