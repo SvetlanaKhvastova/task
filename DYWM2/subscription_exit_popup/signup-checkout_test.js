@@ -1516,12 +1516,11 @@ function init() {
       document.querySelector(".checkout-pane .fieldset-legend").innerHTML = "Enter your card information";
 
       if (document.querySelector(".btn_start_membership") == null) {
-        document.querySelector(".layout-region.layout-region-checkout-main").insertAdjacentHTML(
-          "beforeend",
-          `
-                <button type="button" class="btn_start_membership">Start membership</button>`
-        );
+        const isDonation = document.querySelector('[data-drupal-selector="edit-sidebar-order-summary-summary"] .views-field-title')?.textContent.toLowerCase().trim() === "donation";
+        document.querySelector(".layout-region.layout-region-checkout-main").insertAdjacentHTML("beforeend", `<button type="button" class="btn_start_membership">${isDonation ? "Continue to review" : "Start membership"}</button>`);
       }
+
+      // Continue to review
 
       let waitEmail = setInterval(() => {
         if (document.querySelector(".recurly-hosted-field") != null && document.querySelector(".form-radios") == null) {

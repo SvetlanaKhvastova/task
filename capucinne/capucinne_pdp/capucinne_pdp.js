@@ -48,8 +48,12 @@ let startFunk = setInterval(() => {
             .wishlist_txt,
             .product-block.product-block--sales-point,
             .product-block--sales-point + .shopify-block.shopify-app-block + .product-block,
-            .extend-offer{
-                display: none;
+            .extend-offer,
+            .full-bleed--mobile.small--hide,
+            .grid2__item2.medium-up--two-fifths .product-block hr,
+            #syte-discovery-banner,
+            #shopify-section-template--20834585772373__82449f7c-6c71-4b98-89f3-074fa0fedafc{
+                display: none !important;
             }
             #shopify-block-cadd6db7-a422-4c1f-90e3-91f50c296730 + .product-block{
                 margin-bottom: 17px !important;
@@ -524,13 +528,7 @@ let startFunk = setInterval(() => {
               text-transform: uppercase;
               margin: 0 0 20px;
             }
-            #shopify-section-template--20824047354197__82449f7c-6c71-4b98-89f3-074fa0fedafc{
-              margin: 64px 0 120px;
-            }
-            #shopify-section-template--20824047354197__82449f7c-6c71-4b98-89f3-074fa0fedafc .custom__item.one-whole.align--center{
-              margin: 0;
-            }
-            #shopify-section-template--20824047354197__82449f7c-6c71-4b98-89f3-074fa0fedafc .btn{
+            #reviews .btn{
               max-width: 324px;
               width: 100%;
               color: #FFF;
@@ -594,16 +592,18 @@ let startFunk = setInterval(() => {
               margin-top: 12px !important;
 
             }
-            #shopify-section-template--20824047354197__recently-viewed .hr--large,
+            [data-section-type="recently-viewed"] .hr--large,
             #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll .stamped-reviews-product-title{
               display: none;
             }
-            #shopify-section-template--20824047354197__1669882201fc5f25f2{
-              padding: 0 40px;
-            }
             #stamped-reviews-widget[data-widget-type=carousel]{
-                  max-width: unset !important;
-                  width: 100%;
+              max-width: unset !important;
+              width: 94%;
+              margin: 64px auto 64px !important;
+            }
+            #reviews{
+              width: 94%;
+              margin: 0 auto 120px !important;
             }
             /**beautifully_packaged_box */
             .beautifully_packaged_box{
@@ -731,6 +731,191 @@ let startFunk = setInterval(() => {
             .ready_to_ship_list{
               display: none;
             }
+            button.syte-discovery.syte-integration-injected{
+              background: #FFF;
+              border-radius: unset;
+              border: none;
+              left: 12px;
+              top: 12px;
+              padding: 4px 8px;
+              height: 100%;
+              max-height: 32px;
+            }
+            button.syte-discovery.syte-integration-injected .button-text{
+              color: #565656;
+              font-family: 'Poppins';
+              font-size: 12px;
+              font-weight: 400;
+              line-height: 18px;
+              letter-spacing: -0.308px;
+            }
+            .tangiblee-cta-wrapper{
+              position: absolute;
+              left: 145px;
+              top: 12px;
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              z-index: 11;
+            }
+            .tangiblee-cta-wrapper .tangiblee-cta{
+              height: 32px;
+              margin-top: 0;
+              color: #565656 !important;
+              font-family: 'Poppins';
+              font-size: 12px !important;
+              font-weight: 400 !important;
+              line-height: 18px;
+              letter-spacing: -0.308px;
+              gap: 8px;
+              padding: 4px 8px !important;
+            }
+            .tangiblee-cta__icon,
+            .syte-discovery.syte-integration-injected .discovery-icon{
+              display: none;
+            }
+            .icon_hand, .icon_magnifying_glass{
+              width: 25px !important;
+              height: 25px !important;
+              display: block !important;
+              opacity: 1 !important;
+            }
+            nav.breadcrumb.custom_breadcrumbs span:not([aria-hidden="true"]){
+              color: #000;
+            }
+            nav.breadcrumb.custom_breadcrumbs span[aria-hidden="true"]{
+              margin: 0 4px;
+            }
+            nav.breadcrumb.custom_breadcrumbs a{
+              color: #565656;
+            }
+            .product-single__sticky{
+              padding: 0 !important;
+            }
+            nav.breadcrumb.custom_breadcrumbs {
+                padding-bottom: 24px !important;
+                margin-top: 12px !important;
+            }
+            .product__main-photos .flickity-page-dots{
+              display: block !important;
+            }
+            .flickity-page-dots .dot.is-selected{
+              width: 5px;
+              height: 5px;
+            }
+            /** sticky__price*/
+             .lav-sticky {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      background-color: #fff;
+      border-top: 1px solid #E8E8E1;
+      padding: 0 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .lav-sticky__info {
+      display: flex;
+      align-items: center;
+    }
+    .lav-sticky__img {
+      margin-right: 12px;
+      line-height: 0;
+      margin-top: -1px;
+    }
+    .lav-sticky__img img {
+      max-width: 100px;
+      max-height: 100px;
+    }
+    .lav-sticky__title {
+      color: #1C1D1D;
+      font-size: 14px;
+      max-width: 300px;
+      font-weight: 600;
+      line-height: 1;
+    }
+    .lav-sticky__price {
+      position: relative;
+      display: flex;
+      padding-left: 20px;
+      margin-left: 20px;
+    }
+    .lav-sticky__price:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 60px;
+      background-color: #E8E8E1;
+      event-pointer: none;
+    }
+    .lav-sticky__price-old {
+      display: none;
+      color: #565656;
+      font-size: 22px;
+      letter-spacing: -0.308px;
+      text-decoration: line-through;
+    }
+    .lav-sticky__price-new {
+      color: #1C1D1D;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.308px;
+      margin: 0 8px;
+    }
+    .lav-sticky__price-discount {
+      display: flex;
+      align-items: center;
+      color: #C1856F;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1;
+    }
+    .lav-sticky__price-discount img {
+      margin-right: 4px;
+      flex-shrink: 0;0
+    }
+    .lav-sticky__btn {
+      max-width: 330px;
+      width: 100%;
+    }
+        .lav-select_size {
+      width: 100%;
+      background: #1C1D1D;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 12px;
+      letter-spacing: 0.8px;
+      padding: 16px;
+      cursor: pointer;
+    }
+    .lav-error {
+      border: 1px solid #C60200;
+      color: #C60200;
+    }
+    /**tab */
+    .product-block--tab.rush_orders_tab + .product-block--tab,
+    .is_hidden{
+      display: none !important;
+    }
+    .product-block--tab+.product-block--tab{
+      margin: 0 !important;
+    }
+    .description_body.no_visib{
+      max-height: 103px;
+      overflow: hidden;
+    }
             @media (max-width: 1180px) {
               .beautifully_packaged_container{
                     padding: 20px 5px;
@@ -893,6 +1078,14 @@ let startFunk = setInterval(() => {
 
     renderNewBlocks();
     onDiffClick();
+    waitFor(
+      () => document.querySelector(".product-single__title") && item && item.ImageURL && document.querySelector("[data-add-to-cart]") && document.querySelector(".extend-offer"),
+      () => {
+        addSticky();
+      }
+    );
+
+    handeGetYourMoneyOff();
 
     function renderNewBlocks() {
       // replace reviews
@@ -908,10 +1101,6 @@ let startFunk = setInterval(() => {
       }
       if (document.querySelector('[href="#reviews"]') && !document.querySelector(".product-single__meta + .product-block")) {
         document.querySelector('[href="#reviews"]').closest(".product-block").before(document.querySelector("#shopify-block-cadd6db7-a422-4c1f-90e3-91f50c296730"));
-      }
-      //  add get Discount
-      if (document.querySelector("[data-product-price]") && !document.querySelector(".get_discount_block")) {
-        document.querySelector("[data-product-price]").insertAdjacentHTML("beforeend", getDiscount);
       }
 
       // add size Guide
@@ -971,6 +1160,15 @@ let startFunk = setInterval(() => {
       //          </svg>
       //        </span>`;
       //   }
+      //add new block Description
+      if (!document.querySelector(".description_new_block") && document.querySelector(".new_rush_order")) {
+        document.querySelector(".new_rush_order").insertAdjacentHTML("afterend", `<div class="description_new_block"><h2>Description</h2><div class="description_body"></div></div>`);
+      }
+      if (document.querySelector(".description_new_block") && document.querySelector(".description_body").children.length === 0) {
+        let children = document.querySelectorAll(".product-block.product-block--tab .collapsible-content__inner")[0]?.innerHTML;
+        document.querySelector(".description_body").innerHTML = children;
+        document.querySelectorAll(".product-block.product-block--tab")[0].classList.add("is_hidden");
+      }
       // Similar Items
       let similarItems = setInterval(() => {
         if (!document.querySelector("#syte-similar-items-container .syte-slider-title b") && document.querySelector("#syte-similar-items-container .syte-slider-title")) {
@@ -983,16 +1181,16 @@ let startFunk = setInterval(() => {
       if (!document.querySelector("#stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-title b") && document.querySelector("#stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-title")) {
         document.querySelector("#stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-title").innerHTML = `Real Reviews from Real <b>Customers</b>`;
       }
-      if (document.querySelector("#shopify-section-template--20824047354197__82449f7c-6c71-4b98-89f3-074fa0fedafc") && document.querySelector("#shopify-section-template--20824047354197__1669882201fc5f25f2") && !document.querySelector("#shopify-section-template--20824047354197__1669882201fc5f25f2 + #shopify-section-template--20824047354197__82449f7c-6c71-4b98-89f3-074fa0fedafc")) {
-        document.querySelector("#shopify-section-template--20824047354197__1669882201fc5f25f2").after(document.querySelector("#shopify-section-template--20824047354197__82449f7c-6c71-4b98-89f3-074fa0fedafc"));
+      if (document.querySelector("#reviews") && document.querySelector("#stamped-reviews-widget")) {
+        document.querySelector("#stamped-reviews-widget")?.insertAdjacentElement("afterend", document.querySelector("#reviews"));
       }
       //Recently viewed
-      if (!document.querySelector("#shopify-section-template--20824047354197__recently-viewed .section-header__title b") && document.querySelector("#shopify-section-template--20824047354197__recently-viewed .section-header__title")) {
-        document.querySelector("#shopify-section-template--20824047354197__recently-viewed .section-header__title").innerHTML = `Recently <b>viewed</b>`;
+      if (!document.querySelector("[data-section-type='recently-viewed'] .section-header__title b") && document.querySelector("[data-section-type='recently-viewed'] .section-header__title")) {
+        document.querySelector("[data-section-type='recently-viewed'] .section-header__title").innerHTML = `Recently <b>viewed</b>`;
       }
       //BEAUTIFULLY PACKAGED
-      if (!document.querySelector(".beautifully_packaged_box") && document.querySelector("#shopify-section-template--20824047354197__1669896642c8c32264")) {
-        document.querySelector("#shopify-section-template--20824047354197__1669896642c8c32264").insertAdjacentHTML("afterend", beautifullyPackaged);
+      if (!document.querySelector(".beautifully_packaged_box") && document.querySelector("#syte-similar-items-container")?.closest("section")) {
+        document.querySelector("#syte-similar-items-container")?.closest("section").insertAdjacentHTML("afterend", beautifullyPackaged);
       }
       // READY TO SHIP
       if (document.querySelector(".beautifully_packaged_box") && !document.querySelector("#readyToShip")) {
@@ -1006,8 +1204,89 @@ let startFunk = setInterval(() => {
       if (document.querySelector("#bestSellers")) {
         renderBestSellers();
       }
-
+      // slick Slider -> READY TO SHIP + Best Sellers
       slickSliderVar();
+      // change img -> Shop similars + Try It on Your Hand
+      if (document.querySelector(".product-single__meta .tangiblee-cta-wrapper")) {
+        document.querySelector(".product__main-photos")?.insertAdjacentElement("afterbegin", document.querySelector(".product-single__meta .tangiblee-cta-wrapper"));
+      }
+      if (!document.querySelector(".icon_hand") && document.querySelector(".tangiblee-cta")) {
+        document.querySelector(".tangiblee-cta").insertAdjacentHTML("afterbegin", `<img class="icon_hand" src="https://conversionratestore.github.io/projects/capucinne/img/try_it_on_your_hand.svg" alt="hand icon" />`);
+      }
+      if (document.querySelector("button.syte-discovery.syte-integration-injected")) {
+        document.querySelectorAll("button.syte-discovery.syte-integration-injected").forEach((el) => {
+          el.insertAdjacentHTML("afterbegin", `<img class="icon_magnifying_glass" src="https://conversionratestore.github.io/projects/capucinne/img/shop_similars.svg" alt="magnifying glass icon" />`);
+        });
+      }
+      // add new tab
+      document.querySelectorAll(".product-block--tab .collapsible-trigger-btn--borders").forEach((el) => {
+        if (el.textContent.includes("size")) {
+          el.closest(".product-block--tab").insertAdjacentHTML(
+            "afterend",
+            `<div class="product-block product-block--tab">
+  <div class="collapsibles-wrapper collapsibles-wrapper--border-bottom">
+    <button type="button" class="label collapsible-trigger collapsible-trigger-btn collapsible-trigger-btn--borders collapsible--auto-height" aria-controls="productionTime" aria-expanded="false">
+      Production time
+      <span class="collapsible-trigger__icon" role="presentation">
+        <svg class="icon icon--wide icon-chevron-down" width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.0518 0.974121L9.05176 8.97412L1.05176 0.974121" stroke="black" stroke-linecap="square" stroke-linejoin="round"></path>
+        </svg>
+      </span>
+    </button>
+    <div id="productionTime" class="collapsible-content collapsible-content--all" style="height: 0px">
+      <div class="collapsible-content__inner rte collapsible--auto-height">
+        <div style="text-align: left">
+          <meta charset="utf-8" />
+          <p>All of our pieces are made by hand and require a varying production time of 6-8 weeks before the items are shipped to you. In order to create a custom piece that will fit you perfectly and made according to your wishes, please keep in mind it may take a bit longer, but nevertheless we will be constantly informing you of the process along the way. If you want to rush your order, please contact us prior your purchase, as well as for any additional questions. • We will put your piece into production once the payment is received. • The production usually takes approx. 6-8 weeks. Some items may acquire more days to be finished, depending on the availability of stones and complexity of the design. • If sending as a gift, please provide us with the address of the recipient and with your personal message to the recipient. We will send it directly to them with a gift card and wrapping.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="product-block product-block--tab">
+  <div class="collapsibles-wrapper collapsibles-wrapper--border-bottom">
+    <button type="button" class="label collapsible-trigger collapsible-trigger-btn collapsible-trigger-btn--borders collapsible--auto-height" aria-controls="shippingReturnsEndExchanges" aria-expanded="false">
+      Shipping, returns and exchanges
+      <span class="collapsible-trigger__icon collapsible-trigger__icon--open" role="presentation">
+        <svg class="icon icon--wide icon-chevron-down" width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.0518 0.974121L9.05176 8.97412L1.05176 0.974121" stroke="black" stroke-linecap="square" stroke-linejoin="round"></path>
+        </svg>
+      </span>
+    </button>
+    <div id="shippingReturnsEndExchanges" class="collapsible-content collapsible-content--all">
+      <div class="collapsible-content__inner rte collapsible--auto-height">
+        <div style="text-align: left">
+          <meta charset="utf-8" />
+          <p>We are located in Slovenia, Europe. We send products internationally throughout the world. Items are fully insured and sent worldwide with express shipping and require a signature upon delivery. If a package gets lost, is stolen or in any other way ends up not being delivered to the customer, all our packages are 100% insured which means we will (in instances stated above) remake the product once more and deliver it in to the customer in a timely manner. The package will be sent without any extra expense to the customer. EU 1-3 business days NON EU 2-10 business daysFree to return within 14 days</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="product-block product-block--tab rush_orders_tab">
+  <div class="collapsibles-wrapper collapsibles-wrapper--border-bottom">
+    <button type="button" class="label collapsible-trigger collapsible-trigger-btn collapsible-trigger-btn--borders collapsible--auto-height" aria-controls="rushOrders" aria-expanded="false">
+      Rush orders
+      <span class="collapsible-trigger__icon collapsible-trigger__icon--open" role="presentation">
+        <svg class="icon icon--wide icon-chevron-down" width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.0518 0.974121L9.05176 8.97412L1.05176 0.974121" stroke="black" stroke-linecap="square" stroke-linejoin="round"></path>
+        </svg>
+      </span>
+    </button>
+    <div id="rushOrders" class="collapsible-content collapsible-content--all">
+      <div class="collapsible-content__inner rte collapsible--auto-height">
+        <div style="text-align: left">
+          <meta charset="utf-8" />
+          <p>If you find a piece you like that isn’t in our Ready to Ship Collection, you can pay a premium to make it a rush order. Most of our jewelry pages have a “Rush Order” button. Click on that and it will move your order to the top of our work schedule.Mostly</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`
+          );
+          el.click();
+        }
+      });
     }
 
     function handleExtend() {
@@ -1174,9 +1453,126 @@ let startFunk = setInterval(() => {
       }
     }
 
+    function addSticky() {
+      const el = `
+      <div class='lav-sticky'>
+        <div class='lav-sticky__info'>
+          <div class='lav-sticky__img'>
+            <img src='${item.ImageURL}' />
+          </div>
+          <div class='lav-sticky__title'>
+            ${document.querySelector(".product-single__title").innerText}
+          </div>
+          <div class='lav-sticky__price'>
+            <div class='lav-sticky__price-old'>$2,110.00</div>
+            <div class='lav-sticky__price-new lav-product-price'></div>
+          </div>
+        </div>
+
+        <button class='lav-sticky__btn lav-btn'>
+          <img src='https://flopsi69.github.io/crs/capucinne/pdp_slidein/img/bag.svg' />
+          <span class='lav-product-price lav-btn-price lav-mob'></span>
+          <span class='lav-btn-caption'>Add to cart</span>
+        </button>
+      </div>
+    `;
+
+      document.querySelector("body").insertAdjacentHTML("beforeend", el);
+      document.querySelector(".lav-sticky__btn .lav-product-price").style.display = "none";
+      document.querySelector(".lav-sticky__btn img").style.display = "none";
+
+      let activated = false;
+
+      if (document.querySelector('[name="properties[Ring size]"]')) {
+        document.querySelector('[name="properties[Ring size]"]').insertAdjacentHTML("afterbegin", '<option value="Select size" selected>Select size</option>');
+        document.querySelector(".extend-offer").insertAdjacentHTML("afterend", '<div class="lav-select_size">Add to cart</div>');
+        document.querySelector("[data-add-to-cart]").style.display = "none";
+
+        document.querySelector('[name="properties[Ring size]"]').addEventListener("change", function (e) {
+          if (e.target.value !== "Select size") {
+            activated = true;
+            document.querySelector(".lav-sticky__btn .lav-product-price").style.display = "block";
+            document.querySelector(".lav-sticky__btn img").style.display = "block";
+            document.querySelector("[data-add-to-cart]").style.display = "block";
+            document.querySelector(".lav-select_size").style.display = "none";
+            document.querySelector('[name="properties[Ring size]"]').classList.remove("lav-error");
+          } else {
+            activated = false;
+            document.querySelector(".lav-sticky__btn .lav-product-price").style.display = "none";
+            document.querySelector(".lav-sticky__btn img").style.display = "none";
+            document.querySelector("[data-add-to-cart]").style.display = "none";
+            document.querySelector(".lav-select_size").style.display = "flex";
+          }
+        });
+      } else {
+        activated = true;
+        document.querySelector(".lav-sticky__btn .lav-product-price").style.display = "block";
+        document.querySelector(".lav-sticky__btn img").style.display = "block";
+        document.querySelector(".lav-sticky__btn .lav-btn-caption").innerText = "Add to cart";
+      }
+
+      if (document.querySelector(".lav-select_size")) {
+        document.querySelector(".lav-select_size").addEventListener("click", () => {
+          // pushDataLayer("new_payments_select_size", "Select size", "Button", "Add product section");
+          const el = document.querySelector(".variant-wrapper");
+          const offset = el.getBoundingClientRect().top + window.scrollY - 120;
+          document.querySelector('[name="properties[Ring size]"]').classList.add("lav-error");
+          window.scrollTo({
+            top: offset,
+            behavior: "smooth",
+          });
+        });
+      }
+
+      document.querySelector(".lav-sticky__btn").addEventListener("click", () => {
+        if (activated) {
+          // pushDataLayer("new_payments_sticky_add_to_cart", "Sticky add to cart", "Button", "Sticky section");
+          isAddCart = true;
+          document.querySelector("button.add-to-cart").click();
+          setTimeout(() => {
+            isAddCart = false;
+          }, 200);
+        } else {
+          // pushDataLayer("new_payments_sticky_select_size", "Sticky select size", "Button", "Sticky section");
+          const el = document.querySelector(".variant-wrapper");
+          const offset = el.getBoundingClientRect().top + window.scrollY - 120;
+          document.querySelector('[name="properties[Ring size]"]').classList.add("lav-error");
+          window.scrollTo({
+            top: offset,
+            behavior: "smooth",
+          });
+        }
+      });
+
+      waitFor(
+        () => document.querySelector(".product__price .money")?.innerText,
+        () => {
+          for (let spot of document.querySelectorAll(".lav-product-price")) {
+            spot.innerText = document.querySelector(".product__price .money").innerText.trim();
+          }
+        }
+      );
+
+      const obs = new MutationObserver((muts) => {
+        for (let mut of muts) {
+          console.log(mut);
+          if (mut.target.classList.contains("money")) {
+            document.querySelector(".lav-sticky__btn .lav-product-price").innerText = mut.target.innerText.trim();
+            document.querySelector(".lav-sticky__price-new").innerText = mut.target.innerText.trim();
+            handeGetYourMoneyOff();
+          }
+        }
+      });
+      obs.observe(document.querySelector(".product__price:not(.product__price--compare)"), {
+        childList: true,
+        subtree: true,
+        characterData: true,
+      });
+    }
+
     function slickSliderVar() {
       let slickInterval = setInterval(() => {
-        if (typeof jQuery("#bestSellers .best_sellers_list").slick === "function" && document.querySelector("#bestSellers .best_sellers_list").children.length !== arrProductBestSellers.length) {
+        if (typeof jQuery("#bestSellers .best_sellers_list").slick === "function" && document.querySelector("#bestSellers .best_sellers_list")?.children.length !== arrProductBestSellers.length) {
           clearInterval(slickInterval);
 
           //  slider
@@ -1196,13 +1592,23 @@ let startFunk = setInterval(() => {
               <div class="next_btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
   <path d="M5.99994 12L9.99994 7.49999L5.99994 3" stroke="#1C1D1D" stroke-linecap="square" stroke-linejoin="round"/>
 </svg></div>`,
+              responsive: [
+                {
+                  breakpoint: 768,
+                  settings: {
+                    slidesToShow: 2.7,
+                    infinite: false,
+                    arrows: false,
+                  },
+                },
+              ],
             });
           slider.on("swipe", function () {});
         }
       }, 100);
 
       let slickReadyToShip = setInterval(() => {
-        if (typeof jQuery("#readyToShip .ready_to_ship_list").slick === "function" && document.querySelector(".ready_to_ship_list").children.length >= 179) {
+        if (typeof jQuery("#readyToShip .ready_to_ship_list").slick === "function" && document.querySelector(".ready_to_ship_list")?.children.length >= 179) {
           clearInterval(slickReadyToShip);
 
           //  slider
@@ -1239,6 +1645,7 @@ let startFunk = setInterval(() => {
       }, 100);
     }
 
+    // getArrReadyToShip
     if (document.querySelector("#readyToShip")) {
       getArrReadyToShip();
     }
@@ -1273,12 +1680,47 @@ let startFunk = setInterval(() => {
 
       // console.log(doc.querySelector(".grid.grid--uniform").outerHTML);
     }
+
+    // handeGetYourMoneyOff();
+    function handeGetYourMoneyOff() {
+      //  add get Discount
+      if (document.querySelector("[data-product-price]") && !document.querySelector(".get_discount_block")) {
+        document.querySelector("[data-product-price]").insertAdjacentHTML("beforeend", getDiscount);
+      }
+      let doublyCurrency = "";
+      let price = +document.querySelector("[data-product-price] .money")?.textContent.replace(/\D/g, "") / 100;
+      let curr = document.querySelector("[data-product-price] .money")?.textContent.slice(0, 1);
+      if (document.querySelector("[data-product-price] .money")?.getAttribute("doubly-currency")) {
+        doublyCurrency = document.querySelector("[data-product-price] .money")?.getAttribute("doubly-currency");
+      }
+      let moneyOff = (price * 0.05).toFixed(0);
+      if (document.querySelector(".get_discount_block")) {
+        document.querySelector(".get_discount_block span").textContent = `${curr}${moneyOff} ${doublyCurrency}`;
+      }
+      console.log(moneyOff, `moneyOff>>>>>>>>>>>>>>>>>>`);
+    }
+
+    // *** Utils *** //
+    // Waiting for loading by condition
+    function waitFor(condition, cb, ms = 1000) {
+      if (condition()) {
+        if (typeof cb == "function") cb();
+        return;
+      }
+
+      let interval = setInterval(function () {
+        if (condition()) {
+          clearInterval(interval);
+          if (typeof cb == "function") cb();
+        }
+      }, ms);
+    }
     // Observe
     let observer = new MutationObserver(() => {
       if (document) {
         observer.disconnect();
         // console.log(`observer`);
-        renderNewBlocks();
+        // renderNewBlocks();
 
         observer.observe(document, {
           childList: true,
