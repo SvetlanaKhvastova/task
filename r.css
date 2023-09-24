@@ -1,881 +1,939 @@
-#promoteSubscriptionWrap {
+.product-single__meta,
+.product-block {
   position: relative;
-  background: #fff;
-  width: 100%;
-  padding: 42px 0 40px;
 }
-.pdp_var #promoteSubscriptionWrap {
-  background: #f5f5f5;
+.product-block {
+  margin-bottom: 16px;
 }
-.bgr_gray {
+#shopify-block-cadd6db7-a422-4c1f-90e3-91f50c296730 {
   position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #f6f6f6;
-  min-height: 95px;
-  max-height: 95px;
+  right: 0;
+  top: 0;
+  z-index: 5;
+}
+.the4-toolkit-wishlist-action,
+.the4-toolkit-wishlist {
+  margin: 0 !important;
+}
+.wishlist_txt,
+.product-block.product-block--sales-point,
+.product-block--sales-point + .shopify-block.shopify-app-block + .product-block,
+.extend-offer,
+.full-bleed--mobile.small--hide,
+.grid2__item2.medium-up--two-fifths .product-block hr,
+#syte-discovery-banner,
+#shopify-section-template--20834585772373__82449f7c-6c71-4b98-89f3-074fa0fedafc {
+  display: none !important;
+}
+#shopify-block-cadd6db7-a422-4c1f-90e3-91f50c296730 + .product-block {
+  margin-bottom: 17px !important;
+}
+#shopify-block-cadd6db7-a422-4c1f-90e3-91f50c296730 + .product-block > div {
+  padding: 0 !important;
+  display: flex;
+  justify-content: flex-start;
+}
+#shopify-block-cadd6db7-a422-4c1f-90e3-91f50c296730 + .product-block > div a {
+  max-height: 16px;
   height: 100%;
+}
+#shopify-block-cadd6db7-a422-4c1f-90e3-91f50c296730 + .product-block > div a > svg {
+  width: 16px;
+  height: 16px;
+}
+#shopify-block-cadd6db7-a422-4c1f-90e3-91f50c296730 + .product-block > div span {
+  color: #565656;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: -0.308px;
+}
+.product-block.product-block--header {
+  margin: 0 0 20px !important;
+}
+h1.h2.product-single__title {
+  color: #1c1d1d;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 32px;
+  margin: 0;
+  text-transform: initial;
+}
+[data-product-blocks] > .product-block.product-block--price {
   width: 100%;
+  margin: 0 0 12px !important;
 }
-.new_container {
-  max-width: 1040px;
-  margin: 0 auto;
-  width: 90%;
-  padding: 30px;
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.15);
-}
-.btn_wrapper {
+[data-product-price] {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 16px;
-  margin-bottom: 16px;
-  border-bottom: 2px solid #f6f6f6;
-}
-.btn_wrapper h2 {
-  font-family: "Manrope", sans-serif;
-  color: #272727;
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 30px;
   margin: 0;
 }
-.accent_color {
-  color: #017922;
+[data-product-price] .money {
+  color: #000;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  line-height: 30px;
 }
-#UnlockPremiumContentLink,
-#subscribeSaveLink {
+.get_discount_block {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  max-width: 302px;
+  gap: 4px;
+  cursor: pointer;
+}
+.get_discount_caption {
+  color: #c1856f;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-decoration-line: underline;
+}
+.get_discount_icon {
+  width: 24px;
+  height: 24px;
+}
+.get_discount_arrow {
+  width: 16px;
+  height: 16px;
+}
+.get_discount_icon img,
+.get_discount_arrow img {
+  display: block;
   width: 100%;
-  height: 48px;
-  border-radius: 30px;
-  background: #017922;
-  transition: all 0.3s ease;
+  height: 100%;
 }
-#UnlockPremiumContentLink:hover,
-#subscribeSaveLink:hover {
-  color: #ffffff;
-  background: #00601b;
-  border-color: #007922;
-  text-decoration: unset;
+.size_guide {
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  cursor: pointer;
 }
-#UnlockPremiumContentLink span {
-  font-family: "Manrope", sans-serif;
+.size_guide p {
+  color: #000;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  margin: 0;
+}
+.one-whole .js .one-half,
+.new_rush_order .one-half,
+.new_rush_order .one-whole,
+.one-whole .js .one-whole {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 12px;
+  align-items: center;
+}
+.one-whole .js .one-half .variant__label,
+.one-whole .js .one-whole .variant__label,
+.new_rush_order .one-half .variant__label,
+.new_rush_order .one-whole .variant__label {
+  margin: 0;
+  color: #565656;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.8px;
+}
+.one-whole .js .one-half .switch-button .switch-button__label,
+.one-whole .js .one-whole .switch-button .switch-button__label,
+.new_rush_order .one-half .switch-button .switch-button__label,
+.new_rush_order .one-whole .switch-button .switch-button__label {
+  margin: 0 !important;
+}
+.one-whole .js .one-half .switch-button,
+.one-whole .js .one-whole .switch-button,
+.new_rush_order .one-half .switch-button,
+.new_rush_order .one-whole .switch-button {
+  max-height: 24px;
+  height: 100%;
+}
+.one-whole .js .one-half .switch-button .switch-button__label,
+.one-whole .js .one-whole .switch-button .switch-button__label,
+.new_rush_order .one-half .switch-button .switch-button__label,
+.new_rush_order .one-whole .switch-button .switch-button__label {
+  background-color: #e4e3e0;
+}
+form.product-single__form {
+  padding: 24px 0 0px;
+  border-top: 1px solid #e8e8e1;
+}
+button[name="add"] {
+  background: #000;
+  height: 56px;
+}
+button[name="add"]:hover {
+  background: hwb(0deg 0% 100% / 70%) !important;
+}
+button[name="add"] span {
   color: #fff;
   font-size: 16px;
-  font-weight: 700;
-  line-height: 32px;
-  text-transform: capitalize;
+  font-weight: 600;
+  line-height: 24px;
 }
-.toggle_btn_features {
+.expert_advice {
   display: flex;
-  gap: 8px;
-  cursor: pointer;
-  margin: 18px auto 0;
   align-items: center;
   justify-content: center;
-  width: max-content;
+  border: 1px solid #d4a298;
+  height: 48px;
+  cursor: pointer;
+  gap: 8px;
 }
-.toggle_btn_features span {
-  font-family: "Manrope", sans-serif;
-  color: #027db8;
+.expert_advice p {
+  color: #000;
   font-size: 14px;
-  font-weight: 700;
-  line-height: 21px;
-  text-decoration-line: underline;
-  text-transform: capitalize;
-}
-.toggle_btn_features > svg {
-  transition: all 0.3s ease;
-}
-.toggle_btn_features.open_var > svg {
-  transform: rotateX(180deg);
-}
-.new_features_list,
-.hidden_new_features_list {
-  display: flex;
-  justify-content: space-between;
-  gap: 24px;
-  list-style: none;
-  padding: 0;
+  font-weight: 600;
+  line-height: 24px;
+  text-transform: uppercase;
   margin: 0;
 }
-.new_features_list > li,
-.hidden_new_features_list > li {
-  width: 30%;
+.new_extend {
+  margin-bottom: 24px;
 }
-.mini_block {
-  margin-top: 24px;
+.new_extend_head {
+  width: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  margin-bottom: 16px;
 }
-.mini_block > li {
+.new_extend_caption {
+  color: #1c1d1d;
+  font-family: "Poppins";
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+}
+.new_extend_covered {
+  height: 16px;
+  width: 16px;
+  margin-top: -3px;
+  cursor: pointer;
+}
+.new_extend_body {
+  margin-top: 1px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+.new_extend_item {
+  border: 1px solid #e8e8e1;
+  background: #fff;
+  padding: 9px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.35s;
+}
+.new_extend_item_caption {
+  color: #565656;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+}
+.new_extend_item_price {
+  color: #000;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+.new_extend_item.active {
+  border: 1px solid #000;
+}
+/**earn_gift_wrapp */
+.earn_gift {
+  margin-bottom: 16px;
+}
+.earn_gift_wrapp {
+  display: flex;
+  position: relative;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+  background: #f6f5f5;
+  padding: 8px 16px;
+}
+.earn_gift_img {
+  position: relative;
+  max-width: 60px;
   width: 100%;
 }
-.mini_block > li .list_main_title {
-  margin-bottom: 12px;
+.earn_gift_title {
+  color: #000;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  margin: 0 0 4px;
 }
-.hidden_inform_box {
-  display: none;
-  margin-top: 12px;
+.earn_gift.earn_gift_start .earn_gift_img svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
 }
-.list_main_title {
+.earn_gift_price {
+  color: #000;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 18px;
+  text-transform: uppercase;
+  margin: 0;
+}
+.earn_gift_icon {
+  position: absolute;
+  right: 16px;
+  top: -20px;
+  background: #fff;
+  border-radius: 50%;
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #f6f5f5;
+}
+.earn_gift > h2 {
+  color: #000;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin-bottom: 8px;
+  text-transform: initial;
+}
+.earn_gift > h2 b {
+  font-weight: 600;
+}
+.earn_gift.earn_gift_start > h2 {
+  font-weight: 500;
+}
+.earn_gift.earn_gift_start > h2 b {
+  font-weight: 500;
+  color: #c1856f;
+}
+.earn_gift.earn_gift_moon > h2 {
+  font-weight: 500;
+}
+/**new_rush_order */
+.new_rush_order_title {
+  color: #000;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  margin-bottom: 16px;
+  text-transform: initial !important;
+}
+.new_benefits {
+  display: flex;
+  justify-content: center;
+  background-color: #f6f5f5;
+  padding: 16px;
+  line-height: 1;
+  text-transform: capitalize;
+  color: #1c1d1d;
+  margin-top: 16px;
+}
+.new_benefits_item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.new_benefits_item img {
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+.new_benefits_item + .new_benefits_item {
+  border-left: 1px solid #fff;
+  margin-left: 16px;
+  padding-left: 16px;
+}
+/*production_delivery */
+.production_delivery {
+  margin: 24px 0;
+}
+.production_delivery > h3 {
+  color: #000;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  margin-bottom: 16px;
+  text-transform: initial;
+}
+.production_time_available {
+  display: flex;
+  padding: 12px;
+  background: #f6f5f5;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.production_time_available img {
+  max-width: 24px;
+  width: 100%;
+  margin-top: -2px;
+}
+.production_time_available p {
+  color: #1c1d1d;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 18px;
+  margin: 0;
+}
+.production_delivery > p {
+  color: #1c1d1d;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  margin: 16px 0 16px;
+}
+.production_delivery .learn_more_btn {
+  display: block;
+  color: #000;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  text-decoration-line: underline;
+  cursor: pointer;
+  margin: 12px 0 0;
+  max-width: max-content;
+}
+.delivery_timeline {
   position: relative;
-  color: #272727;
-  font-family: "Manrope", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.delivery_timeline:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  top: 14px;
+  left: 0;
+  right: 0;
+  background-color: #e8e8e1;
+  height: 1px;
+}
+.delivery_timeline_item {
+  position: relative;
+}
+.delivery_timeline_item:first-child {
+  text-align: left;
+}
+.delivery_timeline_item:nth-child(2) {
+  text-align: center;
+}
+.delivery_timeline_item:last-child {
+  text-align: right;
+}
+.delivery_timeline_item_icon {
+  line-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  background-color: #eedad6;
+  width: 28px;
+  height: 28px;
+}
+.delivery_timeline_item:nth-child(3) .delivery_timeline_item_icon {
+  margin-left: auto;
+  margin-right: auto;
+}
+.delivery_timeline_item:last-child .delivery_timeline_item_icon {
+  margin-left: auto;
+}
+.delivery_timeline_item_date {
+  color: #1c1d1d;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  margin-top: 8px;
+}
+.delivery_timeline_item_caption {
+  color: #565656;
+  font-size: 11px;
+  line-height: 18px;
+}
+.delivery_timeline_item_info {
+  position: relative;
+  color: #000;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 18px;
+  border-radius: 100px;
+  border: 1px solid #f6f5f5;
+  background: #f6f5f5;
+  padding: 2px 12px;
+  z-index: 2;
+  top: 2px;
+}
+#syte-similar-items-container .syte-slider-title {
+  margin-bottom: 32px !important;
+}
+#syte-similar-items-container .syte-slider-arrow.syte-slider-arrow-left {
+  right: 60px;
+}
+.syte-slider-layout-container .syte-offers-item-desc {
+  color: #000;
+  font-size: 16px !important;
+  font-weight: 400;
+  line-height: 24px !important;
+  letter-spacing: -0.308px;
+  text-transform: initial;
+  margin: 12px auto 0;
+  max-width: 236px !important;
+}
+.syte-slider-layout-container .syte-ad-promo-text.syte-offer-price {
+  color: #1c1d1d;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+#stamped-reviews-widget[data-widget-type="carousel"] .stamped-carousel-title {
+  font-family: "Poppins";
+  color: #000;
+  font-size: 20px !important;
+  font-weight: 400 !important;
+  line-height: 28px !important;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0 0 20px;
+}
+#reviews .btn {
+  max-width: 324px;
+  width: 100%;
+  color: #fff;
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
-  margin: 0;
-  padding-left: 52px;
+  text-transform: uppercase;
+  height: 52px;
 }
-.list_main_title[data-title]::before {
-  position: absolute;
-  content: "";
-  width: 40px;
-  height: 40px;
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/premium.svg) no-repeat center center;
-  top: 0;
-  left: 0;
-  background-size: contain;
-}
-.list_main_title[data-title="yoga_person"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/yoga_person.svg) no-repeat center center;
-  background-size: contain;
-}
-.list_main_title[data-title="yoga"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/yoga.svg) no-repeat center center;
-  background-size: contain;
-}
-.list_main_title[data-title="devices"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/devices.svg) no-repeat center center;
-  background-size: contain;
-}
-.list_txt {
-  color: #555;
-  font-family: "Manrope", sans-serif;
+.stamped-carousel-subtitle-count {
+  color: #565656;
   font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 24px;
-  margin: 0;
-  max-width: 300px;
+  font-weight: 600;
+  line-height: 20px;
 }
-.your_store_wrap {
-  margin-top: 48px;
-}
-.your_store_wrap .list_main_title {
-  padding: 0;
-  margin-bottom: 12px;
-}
-.professional_classes_list {
-  list-style: disc;
-  color: #555;
-  font-size: 12px;
-  margin-top: 12px;
-  padding: 0 0 0 23px;
-}
-.professional_classes_list > li + li {
-  margin-top: 10px;
-}
-.store_icon {
+#stamped-reviews-widget[data-widget-type="carousel"] .stamped-carousel-subtitle {
   display: flex;
-  justify-content: flex-start;
-  gap: 24px;
-  flex-wrap: wrap;
+  gap: 16px;
 }
-.store_icon img {
-  max-width: 140px;
-  width: 100%;
+#stamped-reviews-widget[data-widget-type="carousel"] .stamped-carousel-subtitle span.stamped-carousel-subtitle-count:after {
+  color: #565656;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
 }
-[data-mob],
-[data-openmobvar] {
+#stamped-reviews-widget[data-widget-type="carousel"] .stamped-carousel-scroll:before {
+  margin-top: 10px !important;
+  margin-bottom: 44px !important;
+}
+#stamped-reviews-widget[data-widget-type="carousel"] .stamped-carousel-scroll .stamped-reviews-rating {
+  font-size: unset !important;
+}
+#stamped-reviews-widget[data-widget-type="carousel"] .stamped-reviews-date {
+  color: #565656 !important;
+  font-size: 12px !important;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: -0.308px;
+  padding: 0 !important;
+}
+#stamped-reviews-widget[data-widget-type="carousel"] .stamped-carousel-scroll .stamped-reviews-title {
+  color: #000;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  line-height: 24px !important;
+  margin: 5px 0 11px !important;
+}
+#stamped-reviews-widget[data-widget-type="carousel"] .stamped-carousel-scroll .stamped-reviews-message-block {
+  color: #565656 !important;
+  font-size: 13px !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
+  line-height: 18px !important;
+}
+#stamped-reviews-widget[data-widget-type="carousel"] .stamped-carousel-scroll .stamped-reviews-author {
+  color: #1c1d1d;
+  font-family: "Open Sans";
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: 18px !important;
+  margin-top: 12px !important;
+}
+[data-section-type="recently-viewed"] .hr--large,
+#stamped-reviews-widget[data-widget-type="carousel"] .stamped-carousel-scroll .stamped-reviews-product-title {
   display: none;
 }
-#splide02-slide01 .paragraph--type--hero .sfc-hero__heading.sfc-heading {
-  font-size: 68px;
-  font-weight: 500;
-  line-height: 74px;
+#stamped-reviews-widget[data-widget-type="carousel"] {
+  max-width: unset !important;
+  width: 94%;
+  margin: 64px auto 64px !important;
 }
-#splide02-slide01 .paragraph--type--hero .sfc-hero__body.sfc-hero__body--limit {
+#reviews {
+  width: 94%;
+  margin: 0 auto 120px !important;
+}
+/**beautifully_packaged_box */
+.beautifully_packaged_box {
+  padding: 0 40px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  margin-bottom: 80px;
+}
+.beautifully_packaged_box > div {
+  width: 50%;
+}
+.beautifully_packaged_img img {
+  width: 100%;
+  height: 100%;
+}
+.beautifully_packaged_descr {
+  background: #d4a298;
+  padding: 20px;
+}
+.beautifully_packaged_container {
+  border: 1px solid #fff;
+  padding: 66px 5px;
+  text-align: center;
+  height: 100%;
+}
+.beautifully_packaged_container h2 {
   color: #fff;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 2px 0 24px;
+}
+.beautifully_packaged_container h3 {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0;
+}
+.beautifully_packaged_container p {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  margin: 0 auto;
+  max-width: 417px;
+}
+.beautifully_packaged_container p + p {
+  margin-top: 20px;
+}
+/*readyToShip */
+#readyToShip,
+#bestSellers {
+  padding: 0 40px;
+  margin-bottom: 80px;
+}
+#readyToShip .ready_to_ship_container > h2,
+#bestSellers .best_sellers_container > h2 {
+  color: #000;
   font-size: 18px;
   font-weight: 400;
   line-height: 26px;
-  margin: 24px 0 50px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0 0 32px;
 }
-#splide02-slide01 .paragraph--type--hero .sfc-hero__button,
-#splide02-slide01 .personalize_yoga_journey_btn {
+#bestSellers .slick-slide {
+  margin: 0 4px;
+}
+.slick-arrow {
+  position: absolute;
+  top: -61px;
+  right: 0;
+  z-index: 111;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+.slick-arrow svg {
+  width: 100%;
+  height: 100%;
+}
+.prev_btn.slick-arrow {
+  right: 60px;
+}
+.product_content a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.product_image {
+  width: 100%;
+}
+.product_image img {
+  object-fit: cover;
+  height: auto;
+  aspect-ratio: 1/1.5;
+  max-height: 402px;
+}
+.product_title {
+  color: #000;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.308px;
+  margin: 0 auto 8px;
+  max-width: 246px;
+  text-transform: initial !important;
+}
+.product_price {
+  color: #1c1d1d;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  margin: 0;
+}
+.ready_to_ship_list {
+  display: none;
+}
+button.syte-discovery.syte-integration-injected {
+  background: #fff;
+  border-radius: unset;
+  border: none;
+  left: 12px;
+  top: 12px;
+  padding: 4px 8px;
+  height: 100%;
+  max-height: 32px;
+}
+button.syte-discovery.syte-integration-injected .button-text {
+  color: #565656;
+  font-family: "Poppins";
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: -0.308px;
+}
+.tangiblee-cta-wrapper {
+  position: absolute;
+  left: 145px;
+  top: 12px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 30px;
-  border: 2px solid #fff;
-  background: #fff;
-  backdrop-filter: blur(2px);
-  height: 60px;
-  max-width: 240px;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  color: #017922;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 32px;
-  text-transform: capitalize;
+  z-index: 11;
 }
-#splide02-slide01 .personalize_yoga_journey_btn {
-  background: rgba(255, 255, 255, 0.15);
-  max-width: 320px;
-  margin-left: 24px;
-  color: #fff;
-}
-#splide02-slide01 .paragraph--type--hero .sfc-hero__button::before {
-  content: unset;
-}
-/*banner_take_personalization_quiz */
-.banner_take_personalization_quiz {
-  padding: 11px 100%;
-  background: #003a67;
-  box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.15);
-  margin: 0 -100%;
-}
-.banner_container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 100%;
-  width: var(--page-container-width);
-  margin: 0 auto;
-  gap: 100px;
-}
-.banner_container p {
-  width: 100%;
-  max-width: max-content;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 30px;
-  margin: 0;
-}
-.banner_container .personalization_quiz_btn {
-  display: flex;
-  align-items: center;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 32px;
-  text-transform: capitalize;
+.tangiblee-cta-wrapper .tangiblee-cta {
+  height: 32px;
+  margin-top: 0;
+  color: #565656 !important;
+  font-family: "Poppins";
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  line-height: 18px;
+  letter-spacing: -0.308px;
   gap: 8px;
-  text-decoration: unset;
+  padding: 4px 8px !important;
 }
-.banner_container .personalization_quiz_btn span {
-  border-bottom: 1px solid #fff;
+.tangiblee-cta__icon,
+.syte-discovery.syte-integration-injected .discovery-icon {
+  display: none;
 }
-@media (min-width: 1120px) {
-  .banner_take_personalization_quiz.content {
-    margin: 0px -104%;
-    padding: 11px 92%;
-  }
-  .banner_take_personalization_quiz.content .banner_container {
-    width: 100rem;
-  }
+.icon_hand,
+.icon_magnifying_glass {
+  width: 25px !important;
+  height: 25px !important;
+  display: block !important;
+  opacity: 1 !important;
 }
-/*based_on_your_interests */
-.based_on_your_interests {
-  margin: 30px 0 45px;
-}
-.based_on_your_interests .title_wrapp {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.based_on_your_interests .title_wrapp > h3 {
+nav.breadcrumb.custom_breadcrumbs span:not([aria-hidden="true"]) {
   color: #000;
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 26px;
-  margin: 0;
 }
-.based_on_your_interests .title_wrapp .change_preferences_btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 251px;
-  width: 100%;
-  height: 50px;
-  border-radius: 30px;
-  border: 1px solid #e0e0e0;
-  color: #555;
-  font-family: "Manrope", sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 26px;
-  cursor: pointer;
-  gap: 10px;
+nav.breadcrumb.custom_breadcrumbs span[aria-hidden="true"] {
+  margin: 0 4px;
 }
-.based_on_your_interests .all_suggested_classes_btn {
-  color: #027db8;
-  font-family: "Manrope", sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 26px;
+nav.breadcrumb.custom_breadcrumbs a {
+  color: #565656;
 }
-.based_on_your_interests .all_suggested_classes_btn img {
-  margin-left: 10px;
-  display: inline-block;
+.product-single__sticky {
+  padding: 0 !important;
 }
-.based_on_your_interests .video_wrapp {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin: 34px 0 20px;
-  padding: 0;
-  list-style: none;
+nav.breadcrumb.custom_breadcrumbs {
+  padding-bottom: 24px !important;
+  margin-top: 12px !important;
 }
-.video_wrapp > li {
-  display: flex;
-  flex-direction: column;
-  border: solid 1px #d6d6d6;
-  border-radius: calc(3px * 2);
-  width: 18em;
-  max-width: 100%;
-  overflow: hidden;
-  height: 100%;
-  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.05);
-  height: 300px;
-  cursor: pointer;
+.product__main-photos .flickity-page-dots {
+  display: block !important;
 }
-.listing_var .based_on_your_interests {
-  margin: 0 auto;
-  background: #fff;
-  padding-bottom: 24px;
+.flickity-page-dots .dot.is-selected {
+  width: 5px;
+  height: 5px;
 }
-.listing_var .based_on_your_interests_container {
-  max-width: 100%;
-  width: var(--page-container-width);
-  margin: 0 auto;
-}
-.listing_var .based_on_your_interests .title_wrapp {
-  padding: 0 1em;
-}
-.listing_var .based_on_your_interests .title_wrapp > h3 {
-  font-size: 36px;
-  line-height: 30px;
-}
-.listing_var .based_on_your_interests .title_wrapp .change_preferences_btn {
-  max-width: 232px;
-  background: #f6f6f6;
-  font-size: 16px;
-  line-height: 24px;
-}
-.listing_var .based_on_your_interests .video_wrapp {
-  margin: 30px -100%;
-  padding: 36px 101.5%;
-  background: whitesmoke;
-  display: grid;
-  gap: 1.33rem;
-}
-.listing_var .all_suggested_classes_btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 30px;
-  border: 1px solid #e0e0e0;
-  text-align: center;
-  max-width: 326px;
-  height: 50px;
-  margin: 0 auto;
-}
-.listing_var .video_wrapp > li {
-  width: 100%;
-  border-radius: unset;
-}
-@media (min-width: calc(44.4em + 1.33rem + 10em)) {
-  .listing_var .based_on_your_interests .video_wrapp {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-@media (min-width: calc(66.6em + 2.66rem + 10em)) {
-  .listing_var .based_on_your_interests .video_wrapp {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
-@media (max-width: calc(44.4em + 1.33rem + 10em)) {
-  .listing_var .based_on_your_interests .video_wrapp {
-    grid-template-columns: 1fr;
-  }
-}
-/*popup */
-.overlay_popup {
+/** sticky__price*/
+.lav-sticky {
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: #fff;
-  display: flex;
-  overflow-y: auto;
-  z-index: 1000000000;
-  transition: all 0.5s ease;
-}
-.overlay_popup.is_hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-.overlay_popup .container_popup {
-  display: block;
-  position: relative;
-  width: 100%;
-  margin: auto;
-  transition: all 0.5s ease 0s;
-}
-.overlay_popup .container_popup > .btn_close {
-  position: absolute;
-  top: 33px;
-  right: 60px;
-  width: 24px;
-  height: 24px;
-  outline: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 3;
-}
-.content_popup {
-  background: #fff;
-}
-#editYourInterests {
-  display: flex;
-  border-radius: 0px 0px 8px 8px;
-  justify-content: space-between;
-}
-#editYourInterests .edit_block_wrapp {
-  padding: 47px 60px 81px;
-  width: 49%;
-}
-#editYourInterests .img_wrapp {
-  position: relative;
-  max-width: 690px;
-  width: 100%;
-}
-#editYourInterests .img_wrapp::after {
-  position: absolute;
-  content: "";
-  background: #027db8;
-  max-width: 620px;
-  width: 100%;
-  height: 100%;
   right: 0;
-}
-#editYourInterests .img_wrapp > img {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1;
-  max-height: 640px;
-}
-.header_edit_block {
-  margin-bottom: 30px;
-}
-.header_edit_block .title_page {
-  color: #272727;
-  font-family: "Manrope", sans-serif;
-  font-size: 42px;
-  font-weight: 700;
-  line-height: 54px;
-  margin: 0;
-}
-.body_edit_block .title_page {
-  color: #272727;
-  font-family: "Manrope", sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 26px;
-  margin: 0;
-}
-.accent_green {
-  color: #017922;
-}
-.body_edit_block .option_txt {
-  color: #272727;
-  font-family: "Manrope", sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 26px;
-  margin: 0;
-  max-width: unset;
-}
-.choose_option_wrapp input.custom_checkbox {
-  z-index: -1;
-  opacity: 0;
-  height: 0;
-  margin: 0;
-  padding: 0;
-  display: none;
-}
-.choose_option_wrapp label {
-  position: relative;
-  padding: 10px 35px 10px 65px;
-  margin: 0;
-  color: #555;
-  font-family: "Manrope", sans-serif;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 24px;
+  z-index: 20;
+  border-top: 1px solid #f6f5f5;
+  background: #fff;
+  padding: 5px 48px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  cursor: pointer;
-  text-align: left;
-  border-top: 1px solid #e0e0e0;
-  border-bottom: 1px solid #e0e0e0;
-  min-height: 39px;
 }
-.choose_option_wrapp label:first-of-type {
-  border-top: none;
-  border-radius: 8px 8px 0 0;
-}
-.choose_option_wrapp label:last-of-type {
-  border-radius: 0 0 8px 8px;
-  border-bottom: none;
-}
-.choose_option_wrapp label:focus {
-  outline: none;
-  outline-offset: unset;
-}
-.choose_option_wrapp label::before {
-  position: absolute;
-  content: "";
-  width: 40px;
-  height: 40px;
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/beginner_icon.svg) no-repeat;
-  background-size: contain;
-  top: 50%;
-  left: 13px;
-  transform: translateY(-50%);
-}
-.choose_option_wrapp label[for="intermediate"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/intermediate_icon.svg) no-repeat;
-}
-.choose_option_wrapp label[for="advanced"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/advanced_icon.svg) no-repeat;
-}
-.choose_option_wrapp label[for="vinyasaFlow"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/vinyasa_flow_icon.svg) no-repeat;
-}
-.choose_option_wrapp label[for="hatha"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/hatha_icon.svg) no-repeat;
-}
-.choose_option_wrapp label[for="powerYoga"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/power_yoga_icon.svg) no-repeat;
-}
-.choose_option_wrapp label[for="restorativeYin"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/restorative_yin_icon.svg) no-repeat;
-}
-.choose_option_wrapp label[for="kundaliniYoga"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/kundalini_yoga_icon.svg) no-repeat;
-}
-.choose_option_wrapp label[for="yogaMeditationMindfulness"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/yoga_meditation_mindfulness_icon.svg) no-repeat;
-}
-.choose_option_wrapp label[for="noneStylesYoga"]::before {
-  content: unset;
-}
-.choose_option_wrapp label[for="noneStylesYoga"] {
-  padding-left: 16px;
-  min-height: 23px;
-}
-.choose_option_wrapp label[for="coreStrengthStability"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/core_strength_stability_icon.svg) no-repeat;
-}
-.choose_option_wrapp label[for="backStrengthPainRelief"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/back_strength_icon.svg) no-repeat;
-}
-.choose_option_wrapp label[for="upperBodyStrengthToning"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/upper_body_strength_icon.svg) no-repeat;
-}
-.choose_option_wrapp label[for="flexibilityJointMobility"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/flexibility_icon.svg) no-repeat;
-}
-.choose_option_wrapp label[for="relaxationSleepImprovement"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/relaxation_icon.svg) no-repeat;
-}
-.choose_option_wrapp label[for="mindfulnessMeditationTechniques"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/yoga_meditation_mindfulness_icon.svg) no-repeat;
-}
-.choose_option_wrapp label[for="womensHealthPrenatalPostnatalPractices"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/health_prenatal_postnatal_practices_icon.svg) no-repeat;
-}
-.choose_option_wrapp label[for="morningTravelVigorousEnergy"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/techniques_increase_energy_icon.svg) no-repeat;
-}
-.choose_option_wrapp label[for="twenty"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/twenty_minutes_icon.svg) no-repeat;
-}
-.choose_option_wrapp label[for="fortyFive"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/forty_five_minutes_icon.svg) no-repeat;
-}
-.choose_option_wrapp label[for="sixty"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/sixty_minutes_icon.svg) no-repeat;
-}
-.choose_option_wrapp label .choose_option_txt {
-  max-width: 328px;
-}
-.choose_option_wrapp label .choose_option_txt b {
-  font-size: 16px;
-  margin-bottom: 5px;
-  display: inline-block;
-}
-.choose_option_wrapp .checked_box {
-  position: absolute;
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  flex-grow: 0;
-  border-radius: 100px;
-  border: 2px solid #e0e0e0;
-  right: 12px;
-}
-.choose_option_wrapp .custom_checkbox:checked + label {
-  background: #f2fbff;
-}
-.choose_option_wrapp .custom_checkbox:checked + label .checked_box {
-  border: 2px solid #027db8;
-}
-.choose_option_wrapp .custom_checkbox:checked + label .checked_box::after {
-  content: "";
-  position: absolute;
-  width: 12.5px;
-  height: 12.5px;
-  border-radius: 100px;
-  background: #027db8;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-.choose_option_wrapp .custom_checkbox[type="checkbox"] + label .checked_box,
-.choose_option_wrapp .custom_checkbox[type="checkbox"]:checked + label .checked_box {
-  border-radius: 4px;
-}
-.choose_option_wrapp .custom_checkbox[type="checkbox"]:checked + label .checked_box::after {
-  border-radius: unset;
-}
-.first_page {
-  position: relative;
-}
-.second_page,
-.third_page,
-.fourth_page {
-  position: relative;
-  margin-top: 24px;
-}
-.second_page .choose_option_wrapp label .choose_option_txt b {
-  margin: 0;
-}
-.second_page .choose_option_wrapp label .choose_option_txt br {
-  display: none;
-}
-.second_page .choose_option_wrapp label:last-child .choose_option_txt {
-  max-width: unset;
-}
-.third_page .choose_option_wrapp label .choose_option_txt {
-  font-size: 16px;
-  max-width: max-content;
-}
-.choose_option_wrapp {
-  z-index: 1;
-  position: absolute;
-  background: #fff;
-  width: 100%;
-  filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.15));
-  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.15);
-  border-radius: 8px;
-  border: 2px solid #e0e0e0;
-  margin-top: 2px;
-  left: 0;
-  display: none;
-}
-.personalized_txt_wrapp {
-  position: relative;
-  border-radius: 8px;
-  border: 2px solid #e0e0e0;
-  background: #fff;
-  padding: 10px 20px 10px 12px;
+.lav-sticky__info {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 8px;
-  margin-top: 12px;
-  cursor: pointer;
-}
-.personalized_txt_wrapp::after {
-  position: absolute;
-  content: "";
-  width: 13px;
-  height: 6px;
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/arrow_acc.svg) no-repeat;
-  background-size: contain;
-  top: 26px;
-  right: 20px;
-}
-.personalized_list_tag {
-  position: relative;
-  display: flex;
-  justify-content: center;
   align-items: center;
-  border-radius: 30px;
-  background: #f6f6f6;
-  padding: 5px 12px 5px 42px;
-  max-width: max-content;
-  min-height: 24px;
-  margin: 0;
-  color: #555;
-  font-family: "Manrope", sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 22px;
-  max-height: 34px;
+  gap: 24px;
+}
+.lav-sticky__img {
+  max-width: 90px;
+  max-height: 90px;
+}
+.lav-sticky__img img {
+  width: 100%;
   height: 100%;
 }
-.personalized_list_tag::before {
-  position: absolute;
+.lav-sticky__title {
+  color: #1c1d1d;
+  font-family: "Poppins";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+.lav-sticky__price {
+  position: relative;
+  display: flex;
+  padding-left: 20px;
+  margin-left: 20px;
+  display: none;
+}
+.lav-sticky__price:before {
   content: "";
-  width: 24px;
-  height: 24px;
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/beginner_icon.svg) no-repeat;
-  background-size: contain;
+  position: absolute;
+  left: 0;
   top: 50%;
-  left: 12px;
   transform: translateY(-50%);
+  width: 1px;
+  height: 60px;
+  background-color: #e8e8e1;
+  event-pointer: none;
 }
-.personalized_list_tag[data-tag="Beginner"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/beginner_icon.svg) no-repeat;
-  background-size: contain;
+.lav-sticky__price-old {
+  display: none;
+  color: #565656;
+  font-size: 22px;
+  letter-spacing: -0.308px;
+  text-decoration: line-through;
 }
-.personalized_list_tag[data-tag="Intermediate"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/intermediate_icon.svg) no-repeat;
-  background-size: contain;
+.lav-sticky__price-new {
+  color: #1c1d1d;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.308px;
+  margin: 0 8px;
 }
-.personalized_list_tag[data-tag="Advanced"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/advanced_icon.svg) no-repeat;
-  background-size: contain;
-}
-.personalized_list_tag[data-tag="Vinyasa Flow"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/vinyasa_flow_icon.svg) no-repeat;
-  background-size: contain;
-}
-.personalized_list_tag[data-tag="Hatha"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/hatha_icon.svg) no-repeat;
-  background-size: contain;
-}
-.personalized_list_tag[data-tag="Power Yoga"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/power_yoga_icon.svg) no-repeat;
-  background-size: contain;
-}
-.personalized_list_tag[data-tag="Restorative/Yin"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/restorative_yin_icon.svg) no-repeat;
-  background-size: contain;
-}
-.personalized_list_tag[data-tag="Kundalini Yoga"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/kundalini_yoga_icon.svg) no-repeat;
-  background-size: contain;
-}
-.personalized_list_tag[data-tag="Yoga for Meditation and Mindfulness"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/yoga_meditation_mindfulness_icon.svg) no-repeat;
-  background-size: contain;
-}
-.personalized_list_tag[data-tag="Core strength and stability"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/core_strength_stability_icon.svg) no-repeat;
-  background-size: contain;
-}
-.personalized_list_tag[data-tag="Back strength and pain relief"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/back_strength_icon.svg) no-repeat;
-  background-size: contain;
-}
-.personalized_list_tag[data-tag="Upper body strength and toning"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/upper_body_strength_icon.svg) no-repeat;
-  background-size: contain;
-}
-.personalized_list_tag[data-tag="Flexibility and joint mobility"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/flexibility_icon.svg) no-repeat;
-  background-size: contain;
-}
-.personalized_list_tag[data-tag="Relaxation and sleep improvement"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/relaxation_icon.svg) no-repeat;
-  background-size: contain;
-}
-.personalized_list_tag[data-tag="Mindfulness and meditation techniques"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/yoga_meditation_mindfulness_icon.svg) no-repeat;
-  background-size: contain;
-}
-.personalized_list_tag[data-tag="Women’s health, Prenatal and Postnatal practices"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/health_prenatal_postnatal_practices_icon.svg) no-repeat;
-  background-size: contain;
-}
-.personalized_list_tag[data-tag="Techniques to increase energy"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/techniques_increase_energy_icon.svg) no-repeat;
-  background-size: contain;
-}
-.personalized_list_tag[data-tag="10-20 minutes"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/twenty_minutes_icon.svg) no-repeat;
-  background-size: contain;
-}
-.personalized_list_tag[data-tag="30-45 minutes"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/forty_five_minutes_icon.svg) no-repeat;
-  background-size: contain;
-}
-.personalized_list_tag[data-tag="60 minutes or more"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/sixty_minutes_icon.svg) no-repeat;
-  background-size: contain;
-}
-.personalized_list_tag[data-tag="Different styles"]::before {
-  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/kundalini_yoga_icon.svg) no-repeat;
-  background-size: contain;
-}
-.footer_edit_block {
-  margin-top: 30px;
+.lav-sticky__price-discount {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  color: #c1856f;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
 }
-.btn_save_your_interests {
+.lav-sticky__price-discount img {
+  margin-right: 4px;
+  flex-shrink: 0;
+}
+.lav-sticky__btn_price {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-left: 1px solid #e8e8e1;
+  padding-left: 40px;
+}
+.lav-sticky__btn_price .lav-product-price {
+  color: #000;
+  font-family: "Poppins";
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 30px;
+  margin-right: 16px;
+}
+.lav-sticky__btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 313px;
+  max-width: 250px;
+  min-width: 250px;
+  background: #000;
   width: 100%;
-  height: 50px;
+  height: 56px;
   color: #fff;
-  font-family: "Manrope", sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: normal;
-  text-transform: capitalize;
-  margin: 0;
-  cursor: pointer;
-  border-radius: 30px;
-  background: #027db8;
+  font-family: "Poppins";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  padding: 1px;
+  gap: 11px;
+  text-transform: uppercase;
+  margin: 0 0 0 65px;
 }
-.btn_cancel {
-  color: #a5a5a5;
-  font-family: "Manrope", sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 32px;
-  text-decoration-line: underline;
-  text-transform: capitalize;
+.lav-sticky__btn svg {
+  width: 24px;
+  height: 24px;
+}
+.lav-select_size {
+  width: 100%;
+  height: 56px;
+  background: #000;
+  color: #fff;
+  display: flex;
+  font-family: "Poppins";
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  height: 56px;
+  padding: 1px;
   cursor: pointer;
 }
-html.open_var {
-  overflow: hidden !important;
+.lav-error {
+  border: 1px solid #c60200;
+  color: #c60200;
+}
+/**tab */
+.product-block--tab.rush_orders_tab + .product-block--tab,
+.is_hidden {
+  display: none !important;
+}
+.product-block--tab + .product-block--tab {
+  margin: 0 !important;
+}
+.description_body.no_visib {
+  max-height: 103px;
+  overflow: hidden;
+}
+#shopify-section-footer {
+  padding-bottom: 100px;
+}
+@media (max-width: 1180px) {
+  .beautifully_packaged_container {
+    padding: 20px 5px;
+  }
 }
