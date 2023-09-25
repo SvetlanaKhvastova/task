@@ -2,6 +2,14 @@ let startFunk = setInterval(() => {
   if (document.querySelector(".grid--product-images--partial")) {
     clearInterval(startFunk);
 
+    // window.onunload = unloadPage;
+    // function unloadPage() {
+    //   console.log("unload event detected!");
+    //   if (localStorage.getItem("shorterProduction")) {
+    //     localStorage.removeItem("shorterProduction");
+    //   }
+    // }
+
     // cdn slider
     let scriptCustomSlider = document.createElement("script");
     scriptCustomSlider.src = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js";
@@ -26,8 +34,186 @@ let startFunk = setInterval(() => {
       "Lennox Kite-Cut Oregon Sunstone Engagement Ring": ["/products/kite-sunstone-ring-oregon-sunstone-ring-08461?_pos=1&amp;_sid=9d87f66f1&amp;_ss=r", "from $2,230.00 USD", `//capucinne.com/cdn/shop/products/Lennox-Kite-Cut-Oregon-Sunstone-Engagement-Ring_720x.jpg?v=1687188414 720w`],
     };
 
+    let arrSize = {
+      "13.32 MM": ["2", "D", "-", "2"],
+      "13.51 MM": ["2 1/4", "D 1/2", "-", "-"],
+      "13.67 MM": ["2 1/2", "E", "-", "3"],
+      "13.83 MM": ["2 3/4", "E 1/2", "-", "-"],
+      "14.05 MM": ["3", "F", "44", "4"],
+      "14.25 MM": ["3 1/4", "F 3/4", "-", "5"],
+      "14.45 MM": ["3 1/2", "G 1/4", "-", "-"],
+      "14.65 MM": ["3 3/4", "H", "46", "6"],
+      "14.86 MM": ["4", "H 1/2", "-", "-"],
+      "15.04 MM": ["4 1/4", "I", "47 3/4", "7"],
+      "15.27 MM": ["4 1/2", "I 1/2", "-", "8"],
+      "15.53 MM": ["4 3/4", "J 1/4", "-", "-"],
+      "15.70 MM": ["5", "J 1/2", "-", "9"],
+      "15.90 MM": ["5 1/4", "K 1/4", "-", "-"],
+      "16.10 MM": ["5 1/2", "L", "51 3/4", "-"],
+      "16.30 MM": ["5 3/4", "L 1/4", "-", "11"],
+      "16.51 MM": ["6", "M", "52 3/4", "-"],
+      "16.71 MM": ["6 1/4", "M 1/2", "-", "12"],
+      "16.92 MM": ["6 1/2", "N", "54", "13"],
+      "17.13 MM": ["6 3/4", "N 1/2", "-", "-"],
+      "17.35 MM": ["7", "O", "55 1/4", "14"],
+      "14.45 MM": ["7 1/4", "O 1/2", "-", "-"],
+      "17.75 MM": ["7 1/2", "P", "56 1/2", "15"],
+      "17.97 MM": ["7 3/4", "P 1/2", "-", "-"],
+      "18.19 MM": ["8", "Q", "57 3/4", "16"],
+      "18.35 MM": ["8 1/4", "Q 1/2", "58", "-"],
+      "18.53 MM": ["8 1/2", "Q 3/4", "-", "17"],
+      "18.69 MM": ["8 3/4", "R 1/4", "-", "18"],
+      "18.89 MM": ["9", "R 3/4", "59", "-"],
+      "19.22 MM": ["9 1/4", "S 1/4", "60", "-"],
+      "19.41 MM": ["9 1/2", "S 3/4", "-", "20"],
+      "19.62 MM": ["9 3/4", "T 1/4", "61", "21"],
+      "19.84 MM": ["10", "T 1/2", "-", "-"],
+      "20.02 MM": ["10 1/4", "U", "62", "22"],
+      "20.20 MM": ["10 1/2", "U 1/2", "-", "-"],
+      "20.44 MM": ["10 3/4", "V 1/4", "63 1/4", "-"],
+      "20.68 MM": ["11", "V 1/2", "64 1/4", "24"],
+      "20.85 MM": ["11 1/4", "W 1/4", "65", "-"],
+      "21.08 MM": ["11 1/2", "X", "-", "25"],
+      "21.27 MM": ["11 3/4", "X 1/2", "66 1/4", "-"],
+      "21.39 MM": ["12", "Y", "-", "26"],
+      "21.58 MM": ["12 1/4", "Y 1/2", "67", "-"],
+      "21.72 MM": ["12 1/2", "Z", "-", "27"],
+      "21.95 MM": ["12 3/4", "Z 1/2", "68 1/2", "28"],
+      "22.11 MM": ["13", "Z+1", "69", "-"],
+    };
+
     let newStyle = /*html */ `
         <style>
+       .overlay_popup {
+      position: fixed !important;
+      overflow: hidden;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100%;
+      opacity: 1;
+      background: rgba(0, 0, 0, 0.60);
+      transition: all 0.5s ease 0s;
+      z-index: 2200000000;
+      display: block;
+      max-height: 100%;
+    }
+     .overlay_popup.is_hidden_var {
+      opacity: 0;
+      pointer-events: none;
+    }
+     .overlay_popup.is_hidden_var .container_popup {
+      transform: translateX(100%);
+      transition: all 0.8s ease 0s;
+    }
+     .overlay_popup .container_popup {
+      display: block;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      max-width: 450px;
+      height: 100%;
+      padding: 32px 24px;
+      margin: 0;
+      background: #fff;
+      transition: all 0.5s ease 0s;
+      overflow: auto;
+      max-height: 100vh;
+box-shadow: 0px 20px 30px 0px rgba(0, 0, 0, 0.10);
+    }
+     .overlay_popup .container_popup > svg {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      outline: none;
+      cursor: pointer;
+    }
+    .size_guide_title{
+      color: #000;
+      font-family: 'Poppins';
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 28px;
+      text-transform: uppercase;
+      padding-bottom: 16px;
+      margin: 0 0 24px;
+      border-bottom: 1px solid #E8E8E1;
+    }
+    .size_guide_txt{
+      color: #565656;
+font-family: 'Poppins';
+font-size: 16px;
+font-weight: 500;
+line-height: 24px;
+margin: 0 0 24px;
+    }
+    .size_guide_txt span:nth-child(1){
+    margin-right: 5px;
+    display: inline-block;
+    }
+        .size_guide_txt span:nth-child(2){
+          color: #000;
+      text-decoration-line: underline;
+      margin-right: 5px;
+    display: inline-block;
+    }
+        .size_guide_txt span:nth-child(3){
+      color: #959595;
+      margin-left: 5px;
+    display: inline-block;
+    }
+    .size_guide_table{
+      /*
+overflow-y: scroll;
+    height: 520px;
+    */
+    display: block;
+    border-spacing: 0;
+        padding-right: 4px;
+    background: #FFF;
+    }
+        .container_popup::-webkit-scrollbar {
+      width: 7px;
+      height: 8px;
+    }
+    .container_popup::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.60);
+      border-radius: 100px;
+    }
+    .size_guide_table th{
+      border-bottom: 1px solid var(--grey-black-0, #000);
+      padding: 0 0 8px;
+      vertical-align: bottom;
+    }
+    .size_guide_table th:nth-child(1){
+      max-width: 124px;
+    width: 100%;
+    display: block;
+    }
+    .size_guide_table th:nth-child(1) span{
+ font-weight: 500;
+    }
+    .size_guide_table th span{
+      color: #000;
+      font-family: 'Poppins';
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 20px;
+    }
+    .size_guide_table tr td{
+      border-bottom: 1px solid var(--grey-border, #E8E8E1);
+          padding: 14px 30px 14px 0;
+    }
+     .size_guide_table tr td span{
+      color: #000;
+font-family: 'Poppins';
+font-size: 14px;
+font-weight: 400;
+line-height: 20px;
+     }
+     [aria-label="Open Form"]{
+          z-index: 10 !important;
+     }
           .the4-wishlist-icon.new_icon_wishlist{
     width: 24px !important;
     height: 24px !important;
@@ -908,7 +1094,7 @@ nav.breadcrumb.custom_breadcrumbs {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 20;
+      z-index: 12;
   border-top: 1px solid #f6f5f5;
   background: #fff;
   padding: 5px 48px;
@@ -1130,6 +1316,32 @@ text-decoration-line: underline;
   }
 }
 @media (max-width: 768px) {
+  .overlay_popup .container_popup{
+        padding: 16px;
+        max-width: 100%;
+    width: 100%;
+  }
+  .overlay_popup .container_popup > svg{
+    top: 16px;
+    right: 16px;
+  }
+  .size_guide_title{
+        font-size: 18px;
+            letter-spacing: 0.18px;
+    line-height: 26px;
+        padding-bottom: 12px;
+    margin: 0 0 20px;
+  }
+  .size_guide_table th span{
+    font-size: 13px;
+line-height: 18px;
+  }
+  .size_guide_table th:nth-child(1){
+    max-width: 115px;
+  }
+  .size_guide_table tr td{
+    padding: 14px 23px 14px 0;
+  }
   .header-layout[data-logo-align=center] .header-item--navigation{
     flex: 1 1 39px;
   }
@@ -1418,7 +1630,7 @@ section.shopify-section .index-section > .page-width{
       <div class='get_discount_icon'>
         <img src='' />
       </div>
-      <div class='get_discount_caption'>You save 10%</div>
+      <div class='get_discount_caption'>You save 5%</div>
     </div>
   `;
 
@@ -1567,6 +1779,37 @@ section.shopify-section .index-section > .page-width{
     </div>
     `;
 
+    // popup
+    let popUp = /*html */ `
+      <div class="overlay_popup is_hidden_var">
+        <div class="container_popup">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M1 1L15 15" stroke="black"/>
+            <path d="M15 1L0.999999 15" stroke="black"/>
+          </svg>
+        </div>
+      </div>
+  `;
+    let contentPopup = /*html */ `
+      <div class="content_popup">
+        <h2 class="size_guide_title">SIZE GUIDE</h2>
+        <div class="size_guide_body">
+          <p class="size_guide_txt"><span>MEASURE:</span> <span>MM</span>|<span>INCHES</span></p>
+          <table class="size_guide_table">
+            <thead>
+              <th><span>Finger Circumference</span></th>
+              <th><span>US</span></th>
+              <th><span>UK</span></th>
+              <th><span>EU</span></th>
+              <th><span>JAPAN</span></th>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        </div>
+      </div>
+  `;
+
     document.head.insertAdjacentHTML("beforeend", newStyle);
 
     renderNewBlocks();
@@ -1578,7 +1821,24 @@ section.shopify-section .index-section > .page-width{
       }
     );
 
+    setInterval(() => {
+      waitFor(
+        () => () => document.querySelector("[doubly-currency-usd]"),
+        () => {
+          // add You’ll receive a gift with your order
+          if (document.querySelector(".new_extend") && document.querySelector(".product__price:not(.product__price--compare) .money").getAttribute("doubly-currency-usd")) {
+            handleEarn();
+          }
+        }
+      );
+    }, 100);
+
     handeGetYourMoneyOff();
+
+    // getArrReadyToShip
+    if (document.querySelector("#readyToShip")) {
+      getArrReadyToShip();
+    }
 
     function renderNewBlocks() {
       // change icon header
@@ -1637,12 +1897,15 @@ section.shopify-section .index-section > .page-width{
           }
         }
       });
+      if (document.querySelector(".size_guide")) {
+        addPopupSize();
+      }
       // add new Extend
       handleExtend();
       // add You’ll receive a gift with your order
-      if (document.querySelector(".new_extend")) {
-        handleEarn();
-      }
+      // if (document.querySelector(".new_extend") && document.querySelector(".product__price:not(.product__price--compare) .money")) {
+      //   handleEarn();
+      // }
       // add expert Advice
       if (document.querySelector("form.product-single__form") && !document.querySelector(".expert_advice")) {
         document.querySelector("form.product-single__form").closest(".product-block").insertAdjacentHTML("afterend", expertAdvice);
@@ -1653,6 +1916,7 @@ section.shopify-section .index-section > .page-width{
       }
       if (document.querySelector(".production_delivery")) {
         handleShipping();
+        getPdpShorterProduction();
       }
       // Add "Rush Order" to your purchase
       if (document.querySelector(".production_delivery") && !document.querySelector(".new_rush_order")) {
@@ -1670,22 +1934,22 @@ section.shopify-section .index-section > .page-width{
           }
         }
       });
-      //   if (document.querySelector(".new_rush_order .one-whole")) {
-      //     document.querySelector(".new_rush_order .one-whole label").innerHTML = `Add <b>"Rush Order"</b> to your purchase <span class="tooltip-toggle-rush" aria-label="Shorter production time" tabindex="0">
+      // if (document.querySelector(".new_rush_order .one-whole")) {
+      //   document.querySelector(".new_rush_order .one-whole label").innerHTML = `Add <b>"Rush Order"</b> to your purchase <span class="tooltip-toggle-rush" aria-label="Shorter production time" tabindex="0">
       //          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
       //          <circle cx="7.87793" cy="7.70068" r="6.5" fill="white" stroke="#D4A298"></circle>
       //          <path d="M7.88724 5.70868C7.72191 5.70868 7.58324 5.65268 7.47124 5.54068C7.35924 5.42868 7.30324 5.29002 7.30324 5.12468C7.30324 4.95935 7.35924 4.82068 7.47124 4.70868C7.58324 4.59668 7.72191 4.54068 7.88724 4.54068C8.04724 4.54068 8.18324 4.59668 8.29524 4.70868C8.40724 4.82068 8.46324 4.95935 8.46324 5.12468C8.46324 5.29002 8.40724 5.42868 8.29524 5.54068C8.18324 5.65268 8.04724 5.70868 7.88724 5.70868ZM8.33524 6.29268V10.7007H7.42324V6.29268H8.33524Z" fill="#D4A298"></path>
       //          </svg>
       //        </span>`;
-      //   }
-      //   if (document.querySelector(".new_rush_order .one-half")) {
-      //     document.querySelector(".new_rush_order .one-half label").innerHTML = `Add <b>"Rush Order"</b> to your purchase <span class="tooltip-toggle-rush" aria-label="Shorter production time" tabindex="0">
+      // }
+      // if (document.querySelector(".new_rush_order .one-half")) {
+      //   document.querySelector(".new_rush_order .one-half label").innerHTML = `Add <b>"Rush Order"</b> to your purchase <span class="tooltip-toggle-rush" aria-label="Shorter production time" tabindex="0">
       //          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
       //          <circle cx="7.87793" cy="7.70068" r="6.5" fill="white" stroke="#D4A298"></circle>
       //          <path d="M7.88724 5.70868C7.72191 5.70868 7.58324 5.65268 7.47124 5.54068C7.35924 5.42868 7.30324 5.29002 7.30324 5.12468C7.30324 4.95935 7.35924 4.82068 7.47124 4.70868C7.58324 4.59668 7.72191 4.54068 7.88724 4.54068C8.04724 4.54068 8.18324 4.59668 8.29524 4.70868C8.40724 4.82068 8.46324 4.95935 8.46324 5.12468C8.46324 5.29002 8.40724 5.42868 8.29524 5.54068C8.18324 5.65268 8.04724 5.70868 7.88724 5.70868ZM8.33524 6.29268V10.7007H7.42324V6.29268H8.33524Z" fill="#D4A298"></path>
       //          </svg>
       //        </span>`;
-      //   }
+      // }
       //add new block Description
       if (!document.querySelector(".description_new_block") && document.querySelector(".new_rush_order")) {
         document.querySelector(".new_rush_order").insertAdjacentHTML("afterend", `<div class="description_new_block"><h2>Description</h2><div class="description_body no_visib"></div><span class="read_more_btn">Read more ></span></div>`);
@@ -1923,9 +2187,9 @@ section.shopify-section .index-section > .page-width{
 
     function handleEarn() {
       if (!window.location.pathname.includes("/products/")) return false;
-      if (!document.querySelector(".earn_gift")) {
-        document.querySelector(".new_extend").insertAdjacentHTML("afterend", earnStart);
-      }
+      // if (!document.querySelector(".earn_gift")) {
+      //   document.querySelector(".new_extend").insertAdjacentHTML("afterend", earnStart);
+      // }
       const price = +document.querySelector(".product__price:not(.product__price--compare) .money").getAttribute("doubly-currency-usd") / 100;
       let subtotal = price;
       if (subtotal >= 5000 && !document.querySelector(".earn_gift_moon")) {
@@ -1944,15 +2208,20 @@ section.shopify-section .index-section > .page-width{
       const options = { day: "2-digit", month: "short" };
       const date = new Date();
       const currentDate = date.toLocaleString("en-US", options);
-      const dateAfter8Weeks = new Date(date.getTime() + 8 * 7 * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
-      const dateAfter9Weeks = new Date(date.getTime() + 9 * 7 * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
+      let dateAfter8Weeks = new Date(date.getTime() + 8 * 7 * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
+      let dateAfter9Weeks = new Date(date.getTime() + 9 * 7 * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
+      if (localStorage.getItem("shorterProduction")) {
+        dateAfter8Weeks = new Date(date.getTime() + 4 * 7 * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
+        dateAfter9Weeks = new Date(date.getTime() + 3.5 * 7 * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
+      }
+      console.log(dateAfter8Weeks);
 
       const deliveryFrom = new Date(date.getTime() + (8 * 7 + 5) * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
       const deliferyAfter = new Date(date.getTime() + (9 * 7 + 5) * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
 
       document.querySelector(".production_delivery").innerHTML = `
         <h3>Production & Delivery </h3>
-        <div class="production_time_available">
+        <div class="production_time_available is_hidden">
             <img src='https://conversionratestore.github.io/projects/capucinne/img/time.svg' />
             <p>Shorter production time available </p>
         </div>
@@ -2267,11 +2536,6 @@ section.shopify-section .index-section > .page-width{
       }, 100);
     }
 
-    // getArrReadyToShip
-    if (document.querySelector("#readyToShip")) {
-      getArrReadyToShip();
-    }
-
     function getArrReadyToShip() {
       fetchArr("https://capucinne.com/collections/ready-to-ship?_pos=1&_psq=ready-ti&_ss=e&_v=1.0");
       fetchArr("https://capucinne.com/collections/ready-to-ship?page=2");
@@ -2303,7 +2567,6 @@ section.shopify-section .index-section > .page-width{
       // console.log(doc.querySelector(".grid.grid--uniform").outerHTML);
     }
 
-    // handeGetYourMoneyOff();
     function handeGetYourMoneyOff() {
       //  add get Discount
       if (document.querySelector("[data-product-price]") && !document.querySelector("[data-product-price] .get_discount_block")) {
@@ -2324,6 +2587,144 @@ section.shopify-section .index-section > .page-width{
           el.textContent = `${curr}${moneyOff} ${doublyCurrency}`;
         });
       }
+    }
+    function addPopupSize() {
+      if (!document.querySelector(".overlay_popup")) {
+        document.querySelector(" body").insertAdjacentHTML("afterbegin", popUp);
+      }
+
+      if (document.querySelector(" .overlay_popup")) {
+        let overlay = document.querySelector(" .overlay_popup"),
+          containerPopup = overlay.querySelector(".container_popup"),
+          btnClose = overlay.querySelector("svg"),
+          scroll = calcScroll();
+
+        if (!document.querySelector(" .overlay_popup .content_popup")) {
+          containerPopup?.insertAdjacentHTML("beforeend", contentPopup);
+        }
+
+        if (document.querySelector(" .overlay_popup .content_popup")) {
+          if (document.querySelector(".overlay_popup .content_popup table tbody").children.length !== arrSize.length) {
+            for (let key in arrSize) {
+              document.querySelector(".overlay_popup .content_popup table tbody")?.insertAdjacentHTML("beforeend", setSize(key, arrSize[key][0], arrSize[key][1], arrSize[key][2], arrSize[key][3]));
+            }
+          }
+
+          function setSize(t1, t2, t3, t4, t5) {
+            return `
+            <tr>
+              <td><span>${t1}</span></td>
+              <td><span>${t2}</span></td>
+              <td><span>${t3}</span></td>
+              <td><span>${t4}</span></td>
+              <td><span>${t5}</span></td>
+            </tr>
+            `;
+          }
+        }
+
+        btnClose.addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+          }
+          e.target.setAttribute("data-test", "1");
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
+            }
+          }, 1000);
+
+          onClosePopup();
+        });
+
+        overlay.addEventListener("click", (e) => {
+          if (e.target.matches(".overlay_popup")) {
+            onClosePopup();
+          }
+        });
+        document.querySelector(".size_guide").addEventListener("click", () => {
+          onOpenPopup();
+        });
+
+        function onClosePopup() {
+          overlay.classList.add("is_hidden_var");
+          document.body.style.marginRight = `0px`;
+          document.body.style.overflow = "auto";
+          document.body.style.display = "initial";
+          // setTimeout(() => {
+          //   document.querySelector(".content_popup")?.remove();
+          // }, 400);
+        }
+        function onOpenPopup() {
+          overlay.classList.remove("is_hidden_var");
+          document.body.style.overflow = "hidden";
+          document.body.style.marginRight = `${scroll}px`;
+          document.body.style.display = "block";
+          document.body.style.height = "100%";
+        }
+        function calcScroll() {
+          let div = document.createElement("div");
+          div.style.width = "50px";
+          div.style.height = "50px";
+          div.style.overflowY = "scroll";
+          div.style.visibility = "hidden";
+
+          document.body.appendChild(div);
+          let scrollWidth = div.offsetWidth - div.clientWidth;
+          div.remove();
+          return scrollWidth;
+        }
+      }
+    }
+
+    updateGiftCart();
+    function updateGiftCart() {
+      let s = setInterval(() => {
+        if (document.querySelector(".cart__items")) {
+          clearInterval(s);
+          document.querySelectorAll(".cart__item--variants > div").forEach((el) => {
+            if (el.closest(".cart__item").querySelector(".cart__image a").href === "https://capucinne.com/products/gift?variant=46796290425173") {
+              if (el.textContent === "Product: Chain Bracelet") {
+                el.textContent = "Half Moon Capucinne bracelet";
+                el.closest(".cart__item").querySelector(".cart__price").innerHTML = `<b>$0.00</b>`;
+              }
+              setTimeout(() => {
+                if (el.closest(".cart__item").querySelector(".cart__image img").srcset !== "https://conversionratestore.github.io/projects/capucinne/chain.jpg") {
+                  el.closest(".cart__item").querySelector(".cart__image img").srcset = "https://conversionratestore.github.io/projects/capucinne/chain.jpg";
+                }
+              }, 700);
+            }
+
+            if (el.closest(".cart__item").querySelector(".cart__image a").href === "https://capucinne.com/products/gift?variant=46796290392405") {
+              if (el.textContent === "Product: Stud Earrings") {
+                el.textContent = "Half moon Capucinne earrings";
+                el.closest(".cart__item").querySelector(".cart__price").innerHTML = `<b>$0.00</b>`;
+              }
+              setTimeout(() => {
+                if (el.closest(".cart__item").querySelector(".cart__image img").srcset !== "https://conversionratestore.github.io/projects/capucinne/earn.jpg") {
+                  el.closest(".cart__item").querySelector(".cart__image img").srcset = "https://conversionratestore.github.io/projects/capucinne/earn.jpg";
+                }
+              }, 700);
+            }
+          });
+        }
+      }, 100);
+    }
+
+    function getPdpShorterProduction() {
+      let product;
+      fetch(`https://conversionratestore.github.io/projects/capucinne/settings_pdp.json`)
+        .then((response) => response.json())
+        .then((json) => {
+          product = json.pdp;
+          product.forEach((el) => {
+            if (window.location.pathname.includes(el)) {
+              localStorage.setItem("shorterProduction", "yes");
+              if (document.querySelector(".production_time_available")?.classList.contains("is_hidden")) {
+                document.querySelector(".production_time_available").classList.remove("is_hidden");
+              }
+            }
+          });
+        });
     }
 
     // *** Utils *** //
@@ -2347,6 +2748,7 @@ section.shopify-section .index-section > .page-width{
         observer.disconnect();
         // console.log(`observer`);
         // renderNewBlocks();
+        updateGiftCart();
 
         observer.observe(document, {
           childList: true,
