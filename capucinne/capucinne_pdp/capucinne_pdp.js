@@ -50,51 +50,51 @@ let startFunk = setInterval(() => {
     };
 
     let arrSize = {
-      "13.32 MM": ["2", "D", "-", "2"],
-      "13.51 MM": ["2 1/4", "D 1/2", "-", "-"],
-      "13.67 MM": ["2 1/2", "E", "-", "3"],
-      "13.83 MM": ["2 3/4", "E 1/2", "-", "-"],
-      "14.05 MM": ["3", "F", "44", "4"],
-      "14.25 MM": ["3 1/4", "F 3/4", "-", "5"],
-      "14.45 MM": ["3 1/2", "G 1/4", "-", "-"],
-      "14.65 MM": ["3 3/4", "H", "46", "6"],
-      "14.86 MM": ["4", "H 1/2", "-", "-"],
-      "15.04 MM": ["4 1/4", "I", "47 3/4", "7"],
-      "15.27 MM": ["4 1/2", "I 1/2", "-", "8"],
-      "15.53 MM": ["4 3/4", "J 1/4", "-", "-"],
-      "15.70 MM": ["5", "J 1/2", "-", "9"],
-      "15.90 MM": ["5 1/4", "K 1/4", "-", "-"],
-      "16.10 MM": ["5 1/2", "L", "51 3/4", "-"],
-      "16.30 MM": ["5 3/4", "L 1/4", "-", "11"],
-      "16.51 MM": ["6", "M", "52 3/4", "-"],
-      "16.71 MM": ["6 1/4", "M 1/2", "-", "12"],
-      "16.92 MM": ["6 1/2", "N", "54", "13"],
-      "17.13 MM": ["6 3/4", "N 1/2", "-", "-"],
-      "17.35 MM": ["7", "O", "55 1/4", "14"],
-      "14.45 MM": ["7 1/4", "O 1/2", "-", "-"],
-      "17.75 MM": ["7 1/2", "P", "56 1/2", "15"],
-      "17.97 MM": ["7 3/4", "P 1/2", "-", "-"],
-      "18.19 MM": ["8", "Q", "57 3/4", "16"],
-      "18.35 MM": ["8 1/4", "Q 1/2", "58", "-"],
-      "18.53 MM": ["8 1/2", "Q 3/4", "-", "17"],
-      "18.69 MM": ["8 3/4", "R 1/4", "-", "18"],
-      "18.89 MM": ["9", "R 3/4", "59", "-"],
-      "19.22 MM": ["9 1/4", "S 1/4", "60", "-"],
-      "19.41 MM": ["9 1/2", "S 3/4", "-", "20"],
-      "19.62 MM": ["9 3/4", "T 1/4", "61", "21"],
-      "19.84 MM": ["10", "T 1/2", "-", "-"],
-      "20.02 MM": ["10 1/4", "U", "62", "22"],
-      "20.20 MM": ["10 1/2", "U 1/2", "-", "-"],
-      "20.44 MM": ["10 3/4", "V 1/4", "63 1/4", "-"],
-      "20.68 MM": ["11", "V 1/2", "64 1/4", "24"],
-      "20.85 MM": ["11 1/4", "W 1/4", "65", "-"],
-      "21.08 MM": ["11 1/2", "X", "-", "25"],
-      "21.27 MM": ["11 3/4", "X 1/2", "66 1/4", "-"],
-      "21.39 MM": ["12", "Y", "-", "26"],
-      "21.58 MM": ["12 1/4", "Y 1/2", "67", "-"],
-      "21.72 MM": ["12 1/2", "Z", "-", "27"],
-      "21.95 MM": ["12 3/4", "Z 1/2", "68 1/2", "28"],
-      "22.11 MM": ["13", "Z+1", "69", "-"],
+      "13.32 MM": ["2", "D", "-", "2", "0.524"],
+      "13.51 MM": ["2 1/4", "D 1/2", "-", "-", "0.532"],
+      "13.67 MM": ["2 1/2", "E", "-", "3", "0.538"],
+      "13.83 MM": ["2 3/4", "E 1/2", "-", "-", "0.544"],
+      "14.05 MM": ["3", "F", "44", "4", "0.553"],
+      "14.25 MM": ["3 1/4", "F 3/4", "-", "5", "0.561"],
+      "14.45 MM": ["3 1/2", "G 1/4", "-", "-", "0.569"],
+      "14.65 MM": ["3 3/4", "H", "46", "6", "0.577"],
+      "14.86 MM": ["4", "H 1/2", "-", "-", "0.585"],
+      "15.04 MM": ["4 1/4", "I", "47 3/4", "7", "0.592"],
+      "15.27 MM": ["4 1/2", "I 1/2", "-", "8", "0.601"],
+      "15.53 MM": ["4 3/4", "J 1/4", "-", "-", "0.611"],
+      "15.70 MM": ["5", "J 1/2", "-", "9", "0.618"],
+      "15.90 MM": ["5 1/4", "K 1/4", "-", "-", "0.626"],
+      "16.10 MM": ["5 1/2", "L", "51 3/4", "-", "0.634"],
+      "16.30 MM": ["5 3/4", "L 1/4", "-", "11", "0.642"],
+      "16.51 MM": ["6", "M", "52 3/4", "-", "0.650"],
+      "16.71 MM": ["6 1/4", "M 1/2", "-", "12", "0.658"],
+      "16.92 MM": ["6 1/2", "N", "54", "13", "0.666"],
+      "17.13 MM": ["6 3/4", "N 1/2", "-", "-", "0.674"],
+      "17.35 MM": ["7", "O", "55 1/4", "14", "0.683"],
+      "14.45 MM": ["7 1/4", "O 1/2", "-", "-", "0.687"],
+      "17.75 MM": ["7 1/2", "P", "56 1/2", "15", "0.699"],
+      "17.97 MM": ["7 3/4", "P 1/2", "-", "-", "0.707"],
+      "18.19 MM": ["8", "Q", "57 3/4", "16", "0.716"],
+      "18.35 MM": ["8 1/4", "Q 1/2", "58", "-", "0.722"],
+      "18.53 MM": ["8 1/2", "Q 3/4", "-", "17", "0.729"],
+      "18.69 MM": ["8 3/4", "R 1/4", "-", "18", "0.736"],
+      "18.89 MM": ["9", "R 3/4", "59", "-", "0.748"],
+      "19.22 MM": ["9 1/4", "S 1/4", "60", "-", "0.757"],
+      "19.41 MM": ["9 1/2", "S 3/4", "-", "20", "0.764"],
+      "19.62 MM": ["9 3/4", "T 1/4", "61", "21", "0.772"],
+      "19.84 MM": ["10", "T 1/2", "-", "-", "0.781"],
+      "20.02 MM": ["10 1/4", "U", "62", "22", "0.788"],
+      "20.20 MM": ["10 1/2", "U 1/2", "-", "-", "0.797"],
+      "20.44 MM": ["10 3/4", "V 1/4", "63 1/4", "-", "0.805"],
+      "20.68 MM": ["11", "V 1/2", "64 1/4", "24", "0.814"],
+      "20.85 MM": ["11 1/4", "W 1/4", "65", "-", "0.821"],
+      "21.08 MM": ["11 1/2", "X", "-", "25", "0.830"],
+      "21.27 MM": ["11 3/4", "X 1/2", "66 1/4", "-", "0.837"],
+      "21.39 MM": ["12", "Y", "-", "26", "0.842"],
+      "21.58 MM": ["12 1/4", "Y 1/2", "67", "-", "0.850"],
+      "21.72 MM": ["12 1/2", "Z", "-", "27", "0.855"],
+      "21.95 MM": ["12 3/4", "Z 1/2", "68 1/2", "28", "0.864"],
+      "22.11 MM": ["13", "Z+1", "69", "-", "0.870"],
     };
 
     let newStyle = /*html */ `
@@ -167,15 +167,20 @@ margin: 0 0 24px;
     display: inline-block;
     }
         .size_guide_txt span:nth-child(2){
+          margin-right: 5px;
+          display: inline-block;
+          cursor: pointer;
+        }
+        .size_guide_txt span:nth-child(3){
+          color: #959595;
+          margin-left: 5px;
+          display: inline-block;
+          cursor: pointer;
+        }
+        .size_guide_txt span.active_var{
           color: #000;
       text-decoration-line: underline;
-      margin-right: 5px;
-    display: inline-block;
-    }
-        .size_guide_txt span:nth-child(3){
-      color: #959595;
-      margin-left: 5px;
-    display: inline-block;
+
     }
     .size_guide_table{
       /*
@@ -1858,7 +1863,7 @@ section.shopify-section .index-section > .page-width{
       <div class="content_popup">
         <h2 class="size_guide_title">SIZE GUIDE</h2>
         <div class="size_guide_body">
-          <p class="size_guide_txt"><span>MEASURE:</span> <span>MM</span>|<span>INCHES</span></p>
+          <p class="size_guide_txt"><span>MEASURE:</span> <span class="active_var">MM</span>|<span>INCHES</span></p>
           <table class="size_guide_table">
             <thead>
               <th><span>Finger Circumference</span></th>
@@ -2842,20 +2847,48 @@ section.shopify-section .index-section > .page-width{
         if (document.querySelector(" .overlay_popup .content_popup")) {
           if (document.querySelector(".overlay_popup .content_popup table tbody").children.length !== arrSize.length) {
             for (let key in arrSize) {
-              document.querySelector(".overlay_popup .content_popup table tbody")?.insertAdjacentHTML("beforeend", setSize(key, arrSize[key][0], arrSize[key][1], arrSize[key][2], arrSize[key][3]));
+              document.querySelector(".overlay_popup .content_popup table tbody")?.insertAdjacentHTML("beforeend", setSize(key, arrSize[key][0], arrSize[key][1], arrSize[key][2], arrSize[key][3], arrSize[key][4]));
             }
           }
-          document.querySelector(".size_guide_txt span:nth-child(2)").addEventListener("click", () => {
+          document.querySelector(".size_guide_txt span:nth-child(2)").addEventListener("click", (el) => {
             pushDataLayer("exp_barriers_b_sgpp_mm", "MM", "Button", "Size guide pop up");
+            el.currentTarget.classList.add("active_var");
+            if (el.currentTarget.nextElementSibling.classList.contains("active_var")) {
+              el.currentTarget.nextElementSibling.classList.remove("active_var");
+            }
+            document.querySelectorAll(".inches_var").forEach((el) => {
+              if (!el.classList.contains("is_hidden")) {
+                el.classList.add("is_hidden");
+              }
+            });
+            document.querySelectorAll(".mm_var").forEach((el) => {
+              if (el.classList.contains("is_hidden")) {
+                el.classList.remove("is_hidden");
+              }
+            });
           });
-          document.querySelector(".size_guide_txt span:nth-child(3)").addEventListener("click", () => {
+          document.querySelector(".size_guide_txt span:nth-child(3)").addEventListener("click", (el) => {
             pushDataLayer("exp_barriers_b_sgpp_i", "Inches", "Button", "Size guide pop up");
+            el.currentTarget.classList.add("active_var");
+            if (el.currentTarget.previousElementSibling.classList.contains("active_var")) {
+              el.currentTarget.previousElementSibling.classList.remove("active_var");
+            }
+            document.querySelectorAll(".inches_var").forEach((el) => {
+              if (el.classList.contains("is_hidden")) {
+                el.classList.remove("is_hidden");
+              }
+            });
+            document.querySelectorAll(".mm_var").forEach((el) => {
+              if (!el.classList.contains("is_hidden")) {
+                el.classList.add("is_hidden");
+              }
+            });
           });
 
-          function setSize(t1, t2, t3, t4, t5) {
+          function setSize(t1, t2, t3, t4, t5, t6) {
             return `
             <tr>
-              <td><span>${t1}</span></td>
+              <td><span class="mm_var">${t1}</span><span class="inches_var is_hidden">${t6}</span></td>
               <td><span>${t2}</span></td>
               <td><span>${t3}</span></td>
               <td><span>${t4}</span></td>
