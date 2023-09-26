@@ -1333,7 +1333,7 @@ line-height: 24px;
 margin: 8px 0;
 text-transform: inherit !important;
 }
-.create_custom_btn{
+.create_custom_link{
   cursor: pointer;
   color: #1C1D1D;
 font-family: 'Poppins';
@@ -1841,7 +1841,9 @@ section.shopify-section .index-section > .page-width{
       <div class="create_custom_info">
         <img src="https://conversionratestore.github.io/projects/capucinne/img/create_custom_jewelry.svg" alt="rings svg" />
         <h3 class="create_custom_title">Need Something Unique?</h3>
-        <span class="create_custom_btn">Create Custom ></span>
+        <a href="https://capucinne.com/pages/custom-design" target="_blank" class="create_custom_link">
+          Create Custom >
+        </a>
       </div>
       <div class="create_custom_container">
       </div>
@@ -2465,9 +2467,9 @@ section.shopify-section .index-section > .page-width{
         }
       }, 100);
       let createCustomBtn = setInterval(() => {
-        if (document.querySelector(".create_custom_btn")) {
+        if (document.querySelector(".create_custom_link")) {
           clearInterval(createCustomBtn);
-          document.querySelector(".create_custom_btn").addEventListener("click", () => {
+          document.querySelector(".create_custom_link").addEventListener("click", (e) => {
             pushDataLayer("exp_barriers_l_nsu_cc", "Create custom", "Link", "Need something unique");
           });
         }
