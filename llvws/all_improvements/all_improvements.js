@@ -85,7 +85,8 @@ body.open_var {
   margin: 0 0 20px;
 }
 .popup_header > h2,
-.second_step h2 {
+.second_step h2,
+.third_step h2 {
   color: #28364b;
   text-align: center;
   font-family: "Playfair Display";
@@ -94,7 +95,8 @@ body.open_var {
   line-height: 44px;
   margin: 0;
 }
-.second_step h2 {
+.second_step h2,
+.third_step h2 {
   margin-bottom: 20px;
 }
 .my_date {
@@ -117,7 +119,8 @@ body.open_var {
   margin-top: 24px;
 }
 .private_event_request_form .first_step p,
-.second_step p {
+.second_step p,
+.third_step p {
   color: #4b4f58;
   font-family: "Raleway", sans-serif;
   font-size: 14px;
@@ -165,8 +168,13 @@ body.open_var {
 }
 .input_validation {
   display: none;
+  color: #ef4836;
+  text-align: left;
+  font-size: 12px;
 }
-.second_step.is_hidden {
+.first_step.is_hidden,
+.second_step.is_hidden,
+.third_step.is_hidden {
   display: none;
 }
 /*charter_services_request_block */
@@ -1019,8 +1027,41 @@ body.open_var {
             </ul>
           </div>
       `;
-      let popUpPrivateEventReq = /*html */ `
-        <div class="overlay_popup is_hidden private_event_req">
+      let popUpPrivateEventReq1 = /*html */ `
+        <div class="overlay_popup is_hidden private_event_req firts_get_a_quote" data-count='firts_get_a_quote'>
+          <div class="container_popup">
+            <div class="btn_close">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M1.1454 14.8546C1.19184 14.9011 1.24699 14.938 1.30769 14.9631C1.36839 14.9883 1.43346 15.0012 1.49917 15.0012C1.56488 15.0012 1.62994 14.9883 1.69064 14.9631C1.75135 14.938 1.80649 14.9011 1.85293 14.8546L7.99818 8.70935L14.1459 14.8546C14.2398 14.9484 14.367 15.0011 14.4997 15.0011C14.6324 15.0011 14.7596 14.9484 14.8535 14.8546C14.9473 14.7608 15 14.6335 15 14.5008C15 14.3681 14.9473 14.2409 14.8535 14.1471L8.70571 8.00182L14.851 1.85406C14.9448 1.76024 14.9975 1.63299 14.9975 1.5003C14.9975 1.36761 14.9448 1.24036 14.851 1.14653C14.7571 1.05271 14.6299 1 14.4972 1C14.3645 1 14.2373 1.05271 14.1434 1.14653L7.99818 7.29429L1.85043 1.14903C1.75478 1.06712 1.63173 1.02431 1.50589 1.02917C1.38005 1.03403 1.26067 1.0862 1.17162 1.17525C1.08257 1.2643 1.0304 1.38368 1.02554 1.50952C1.02068 1.63537 1.06349 1.75841 1.1454 1.85406L7.29066 8.00182L1.1454 14.1496C1.05227 14.2433 1 14.37 1 14.5021C1 14.6342 1.05227 14.7609 1.1454 14.8546Z" fill="#28364B"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+    `;
+      let popUpPrivateEventReq2 = /*html */ `
+        <div class="overlay_popup is_hidden private_event_req second_get_a_quote" data-count='second_get_a_quote'>
+          <div class="container_popup">
+            <div class="btn_close">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M1.1454 14.8546C1.19184 14.9011 1.24699 14.938 1.30769 14.9631C1.36839 14.9883 1.43346 15.0012 1.49917 15.0012C1.56488 15.0012 1.62994 14.9883 1.69064 14.9631C1.75135 14.938 1.80649 14.9011 1.85293 14.8546L7.99818 8.70935L14.1459 14.8546C14.2398 14.9484 14.367 15.0011 14.4997 15.0011C14.6324 15.0011 14.7596 14.9484 14.8535 14.8546C14.9473 14.7608 15 14.6335 15 14.5008C15 14.3681 14.9473 14.2409 14.8535 14.1471L8.70571 8.00182L14.851 1.85406C14.9448 1.76024 14.9975 1.63299 14.9975 1.5003C14.9975 1.36761 14.9448 1.24036 14.851 1.14653C14.7571 1.05271 14.6299 1 14.4972 1C14.3645 1 14.2373 1.05271 14.1434 1.14653L7.99818 7.29429L1.85043 1.14903C1.75478 1.06712 1.63173 1.02431 1.50589 1.02917C1.38005 1.03403 1.26067 1.0862 1.17162 1.17525C1.08257 1.2643 1.0304 1.38368 1.02554 1.50952C1.02068 1.63537 1.06349 1.75841 1.1454 1.85406L7.29066 8.00182L1.1454 14.1496C1.05227 14.2433 1 14.37 1 14.5021C1 14.6342 1.05227 14.7609 1.1454 14.8546Z" fill="#28364B"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+    `;
+      let popUpPrivateEventReq3 = /*html */ `
+        <div class="overlay_popup is_hidden private_event_req third_get_a_quote" data-count='third_get_a_quote'>
+          <div class="container_popup">
+            <div class="btn_close">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M1.1454 14.8546C1.19184 14.9011 1.24699 14.938 1.30769 14.9631C1.36839 14.9883 1.43346 15.0012 1.49917 15.0012C1.56488 15.0012 1.62994 14.9883 1.69064 14.9631C1.75135 14.938 1.80649 14.9011 1.85293 14.8546L7.99818 8.70935L14.1459 14.8546C14.2398 14.9484 14.367 15.0011 14.4997 15.0011C14.6324 15.0011 14.7596 14.9484 14.8535 14.8546C14.9473 14.7608 15 14.6335 15 14.5008C15 14.3681 14.9473 14.2409 14.8535 14.1471L8.70571 8.00182L14.851 1.85406C14.9448 1.76024 14.9975 1.63299 14.9975 1.5003C14.9975 1.36761 14.9448 1.24036 14.851 1.14653C14.7571 1.05271 14.6299 1 14.4972 1C14.3645 1 14.2373 1.05271 14.1434 1.14653L7.99818 7.29429L1.85043 1.14903C1.75478 1.06712 1.63173 1.02431 1.50589 1.02917C1.38005 1.03403 1.26067 1.0862 1.17162 1.17525C1.08257 1.2643 1.0304 1.38368 1.02554 1.50952C1.02068 1.63537 1.06349 1.75841 1.1454 1.85406L7.29066 8.00182L1.1454 14.1496C1.05227 14.2433 1 14.37 1 14.5021C1 14.6342 1.05227 14.7609 1.1454 14.8546Z" fill="#28364B"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+    `;
+      let popUpPrivateEventReq4 = /*html */ `
+        <div class="overlay_popup is_hidden private_event_req fourth_get_a_quote"  data-count='fourth_get_a_quote'>
           <div class="container_popup">
             <div class="btn_close">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -1031,7 +1072,7 @@ body.open_var {
         </div>
     `;
       let popUpCharterServicesReq = /*html */ `
-        <div class="overlay_popup is_hidden charter_services_req">
+        <div class="overlay_popup is_hidden charter_services_req" data-count="charter_services_req">
           <div class="container_popup">
             <div class="btn_close">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -1041,6 +1082,9 @@ body.open_var {
           </div>
         </div>
     `;
+
+      let today = `${new Date().getFullYear()}-0${new Date().getMonth() + 1}-${new Date().getDate()}`;
+
       let contentPopup = /*html */ `
         <div class="content_popup private_event_req">
               <div class="popup_header">
@@ -1053,7 +1097,7 @@ body.open_var {
           <label for="">
             <span>Name</span>
             <input type="text" name="name" id="" maxlength="64" required placeholder="Name" />
-            <div class="input_validation">Please enter a name</div>
+            <div class="input_validation">Please enter your name</div>
           </label>
           <label for="">
             <span>Your email*</span>
@@ -1062,15 +1106,16 @@ body.open_var {
           </label>
           <label for="">
             <span>Date of the celebration*</span>
-            <input type="date" name="date" required id="" placeholder="Date" />
+            <input type="date" name="date" required id="" placeholder="Date" value='${today}' min='${today}'/>
+            <div class="input_validation">Please choose your desired rental date</div>
           </label>
           <button class="continue_btn">Continue</button>
         </div>
         <div class="second_step is_hidden">
           <label for="">
             <span>Duration of rental (in hours)</span>
-            <input type="number" name="hours" id="" maxlength="64" required placeholder="Hours" />
-            <div class="input_validation">Please enter</div>
+            <input type="number" name="hours" id="" min="1" max="24" required placeholder="Hours" />
+            <div class="input_validation">Please enter duration of rental (in hours)</div>
           </label>
           <label for="">
             <span>Additional services needed (catering, DJ)?</span>
@@ -1080,7 +1125,12 @@ body.open_var {
             <span>Any comments or special requests we should know about</span>
             <textarea name="comments" id="" placeholder="Type here"></textarea>
           </label>
-          <button type="submit" class="submit_btn">Submit</button>
+          <button type="submit" class="submit_btn private_event_req_btn">Submit</button>
+        </div>
+        <div class="third_step is_hidden">
+          <h2>Thank You!</h2>
+          <p>Our booking team will process your request and we'll send you available slots for <span class="my_date">Thursday 15 June</span> and possible times for the following days.</p>
+          <button class="submit_btn ok_btn">Ok</button>
         </div>
       </form>
     </div>
@@ -1097,19 +1147,20 @@ body.open_var {
           <p>By filling out the charter inquiry form below, you are one step closer to your dream event</p>
           <label for="">
             <span>Desired rental date*</span>
-            <input type="date" name="date" required id="" placeholder="Date" />
+            <input type="date" name="date" required id="" placeholder="Date" value='${today}' min='${today}'/>
+            <div class="input_validation">Please choose your desired rental date</div>
           </label>
           <label for="">
             <span>Your email*</span>
             <input type="email" name="email" id="" maxlength="64" required placeholder="Enter email" />
             <div class="input_validation">Please enter your email address</div>
           </label>
-          <button class="continue_btn">Continue</button>
+          <button class="continue_btn charter_services_req_btn">Continue</button>
         </div>
         <div class="second_step is_hidden">
           <h2>Thank You!</h2>
           <p>Our booking team will process your request and we'll send you available slots for <span class="my_date">Thursday 15 June</span> and possible times for the following days.</p>
-          <button type="submit" class="submit_btn">Ok</button>
+          <button class="submit_btn ok_btn">Ok</button>
         </div>
       </form>
     </div>
@@ -1186,7 +1237,11 @@ body.open_var {
 
       document.head.insertAdjacentHTML("beforeend", `<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">`);
       document.head.insertAdjacentHTML("beforeend", vegasYachtStyle);
-      document.body.insertAdjacentHTML("afterbegin", popUpPrivateEventReq);
+      document.body.insertAdjacentHTML("afterbegin", popUpPrivateEventReq1);
+      document.body.insertAdjacentHTML("afterbegin", popUpPrivateEventReq2);
+      document.body.insertAdjacentHTML("afterbegin", popUpPrivateEventReq3);
+      document.body.insertAdjacentHTML("afterbegin", popUpPrivateEventReq4);
+
       document.body.insertAdjacentHTML("afterbegin", popUpCharterServicesReq);
 
       moveHtml();
@@ -1371,7 +1426,7 @@ body.open_var {
       }
       function onClickDifBtn() {
         if (document.querySelector(".overlay_popup")) {
-          function onOpenPopup(contentPopupHtml, form) {
+          function onOpenPopup(contentPopupHtml, form, className) {
             document.querySelector("body").classList.add("open_var");
             if (form === "charter_services_req") {
               document.querySelector(".overlay_popup.charter_services_req").classList.remove("is_hidden");
@@ -1380,10 +1435,63 @@ body.open_var {
               }
             }
             if (form === "private_event_req") {
-              document.querySelector(".overlay_popup.private_event_req").classList.remove("is_hidden");
-              if (!document.querySelector(".overlay_popup.private_event_req .content_popup.private_event_req")) {
-                document.querySelector(".overlay_popup.private_event_req .container_popup")?.insertAdjacentHTML("beforeend", contentPopupHtml);
+              if (className === "firts_get_a_quote") {
+                document.querySelector(".overlay_popup.private_event_req.firts_get_a_quote").classList.remove("is_hidden");
+                if (!document.querySelector(".overlay_popup.private_event_req.firts_get_a_quote .content_popup.private_event_req")) {
+                  document.querySelector(".overlay_popup.private_event_req.firts_get_a_quote .container_popup")?.insertAdjacentHTML("beforeend", contentPopupHtml);
+                }
               }
+              if (className === "second_get_a_quote") {
+                document.querySelector(".overlay_popup.private_event_req.second_get_a_quote").classList.remove("is_hidden");
+                if (!document.querySelector(".overlay_popup.private_event_req.second_get_a_quote .content_popup.private_event_req")) {
+                  document.querySelector(".overlay_popup.private_event_req.second_get_a_quote .container_popup")?.insertAdjacentHTML("beforeend", contentPopupHtml);
+                }
+              }
+              if (className === "third_get_a_quote") {
+                document.querySelector(".overlay_popup.private_event_req.third_get_a_quote").classList.remove("is_hidden");
+                if (!document.querySelector(".overlay_popup.private_event_req.third_get_a_quote .content_popup.private_event_req")) {
+                  document.querySelector(".overlay_popup.private_event_req.third_get_a_quote .container_popup")?.insertAdjacentHTML("beforeend", contentPopupHtml);
+                }
+              }
+              if (className === "fourth_get_a_quote") {
+                document.querySelector(".overlay_popup.private_event_req.fourth_get_a_quote").classList.remove("is_hidden");
+                if (!document.querySelector(".overlay_popup.private_event_req.fourth_get_a_quote .content_popup.private_event_req")) {
+                  document.querySelector(".overlay_popup.private_event_req.fourth_get_a_quote .container_popup")?.insertAdjacentHTML("beforeend", contentPopupHtml);
+                }
+              }
+
+              document.querySelectorAll(".private_event_req .continue_btn").forEach((el) => {
+                el.addEventListener("click", (e) => {
+                  if (!e.target.getAttribute("data-test")) {
+                    e.preventDefault();
+                    console.log(`continue_btn`, e.currentTarget.closest(".overlay_popup"));
+                    validateForm(e.currentTarget.closest(".overlay_popup").getAttribute("data-count"), "");
+                    if (!e.target.getAttribute("data-test")) {
+                    }
+                  }
+                  e.target.setAttribute("data-test", "1");
+                  setTimeout(() => {
+                    if (e.target.getAttribute("data-test")) {
+                      e.target.removeAttribute("data-test");
+                    }
+                  }, 1000);
+                });
+              });
+
+              document.querySelectorAll(".private_event_req_btn").forEach((el) => {
+                el.addEventListener("click", (e) => {
+                  if (!e.target.getAttribute("data-test")) {
+                    e.preventDefault();
+                    validateForm(e.currentTarget.closest(".overlay_popup").getAttribute("data-count"), "private_event_req_btn");
+                  }
+                  e.target.setAttribute("data-test", "1");
+                  setTimeout(() => {
+                    if (e.target.getAttribute("data-test")) {
+                      e.target.removeAttribute("data-test");
+                    }
+                  }, 1000);
+                });
+              });
             }
 
             document.querySelectorAll(".overlay_popup .btn_close").forEach((i) => {
@@ -1400,6 +1508,17 @@ body.open_var {
                 }
               });
             });
+
+            let okBtn = setInterval(() => {
+              if (document.querySelector(".ok_btn")) {
+                clearInterval(okBtn);
+                document.querySelector(".ok_btn").addEventListener("click", (e) => {
+                  e.preventDefault();
+                  console.log(`ok_btn`);
+                  onClosePopup();
+                });
+              }
+            }, 100);
           }
           function onClosePopup() {
             // startVideo();
@@ -1429,12 +1548,165 @@ body.open_var {
               document.querySelectorAll(".get_a_quot_btn").forEach((el) => {
                 el.addEventListener("click", (e) => {
                   pushDataLayer("exp_new_ui_b_pe_gq", `Get a quote ${el.previousElementSibling.textContent}`, "Button", "Private event HP");
-                  onOpenPopup(contentPopup, "private_event_req");
+                  console.log(el.closest(".private_event_link").getAttribute("data-visib"));
+                  switch (el.closest(".private_event_link").getAttribute("data-visib")) {
+                    case "1":
+                      onOpenPopup(contentPopup, "private_event_req", "firts_get_a_quote");
+                      break;
+                    case "2":
+                      onOpenPopup(contentPopup, "private_event_req", "second_get_a_quote");
+                      break;
+                    case "3":
+                      onOpenPopup(contentPopup, "private_event_req", "third_get_a_quote");
+                      break;
+                    case "4":
+                      onOpenPopup(contentPopup, "private_event_req", "fourth_get_a_quote");
+                      break;
+
+                    default:
+                      break;
+                  }
                 });
               });
             }
           }, 100);
+
+          let charterServicesReqBtn = setInterval(() => {
+            if (document.querySelector(".charter_services_req_btn")) {
+              clearInterval(charterServicesReqBtn);
+              document.querySelector(".charter_services_req_btn")?.addEventListener("click", (e) => {
+                e.preventDefault();
+                validateForm("charter_services_req", "");
+              });
+            }
+          }, 100);
         }
+      }
+      function validateForm(parent, target) {
+        let inputValueEmail = document.querySelector(`[data-count='${parent}'] input[name='email']`).value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
+        let inputValueDate = document.querySelector(`[data-count='${parent}'] [name="date"]`);
+        let inputValueName = document.querySelector(`[data-count='${parent}'] input[name='name']`)?.value;
+        let inputValueDuration = document.querySelector(`[data-count='${parent}'] input[name='hours']`)?.value.match(/^\d+$/);
+        let inputValueServices = document.querySelector(`[data-count='${parent}'] textarea[name='services']`)?.value;
+        let inputValueComments = document.querySelector(`[data-count='${parent}'] textarea[name='comments']`)?.value;
+        let dateChecked;
+
+        const months = {
+          Jan: "January",
+          Feb: "February",
+          Mar: "March",
+          Apr: "April",
+          May: "May",
+          Jun: "June",
+          Jul: "July",
+          Aug: "August",
+          Sep: "September",
+          Oct: "October",
+          Nov: "November",
+          Dec: "December",
+        };
+        const daysWeek = {
+          Mon: "Monday",
+          Tue: "Tuesday",
+          Wed: "Wednesday",
+          Thu: "Thursday",
+          Fri: "Friday",
+          Sat: "Saturday",
+          Sun: "Sunday",
+        };
+
+        if (document.querySelector(`[data-count='${parent}'] input[name='name']`)) {
+          if (inputValueName === "" || inputValueName === " ") {
+            document.querySelector(`[data-count='${parent}'] input[name='name']`).classList.add("input_error");
+            document.querySelector(`[data-count='${parent}'] input[name='name']`).nextElementSibling.style.display = "block";
+          } else {
+            document.querySelector(`[data-count='${parent}'] input[name='name']`).classList.remove("input_error");
+            document.querySelector(`[data-count='${parent}'] input[name='name']`).nextElementSibling.style.display = "none";
+          }
+        }
+
+        if (document.querySelector(`[data-count='${parent}'] input[name='hours']`) && target === "private_event_req_btn") {
+          if (inputValueDuration === null) {
+            document.querySelector(`[data-count='${parent}'] input[name='hours']`).classList.add("input_error");
+            document.querySelector(`[data-count='${parent}'] input[name='hours']`).nextElementSibling.style.display = "block";
+          } else {
+            document.querySelector(`[data-count='${parent}'] input[name='hours']`).classList.remove("input_error");
+            document.querySelector(`[data-count='${parent}'] input[name='hours']`).nextElementSibling.style.display = "none";
+          }
+        }
+
+        if (inputValueEmail === null) {
+          document.querySelector(`[data-count='${parent}'] input[name='email']`).classList.add("input_error");
+          document.querySelector(`[data-count='${parent}'] input[name='email']`).nextElementSibling.style.display = "block";
+        } else {
+          document.querySelector(`[data-count='${parent}'] input[name='email']`).classList.remove("input_error");
+          document.querySelector(`[data-count='${parent}'] input[name='email']`).nextElementSibling.style.display = "none";
+        }
+
+        if (inputValueDate.value === "") {
+          inputValueDate.classList.add("input_error");
+          inputValueDate.nextElementSibling.style.display = "block";
+        } else {
+          inputValueDate.classList.remove("input_error");
+          inputValueDate.nextElementSibling.style.display = "none";
+        }
+
+        if (document.querySelector(`[data-count='${parent}'] .input_error`) == null) {
+          console.log("charter_services_req", `Отправляй!`);
+          dateChecked = new Date(new Date(document.querySelector(`[data-count='${parent}'] [name="date"]`).value)).toDateString().split(" ");
+
+          if ((parent === "firts_get_a_quote" || parent === "second_get_a_quote" || parent === "third_get_a_quote" || parent === "fourth_get_a_quote") && target === "") {
+            document.querySelector(`[data-count='${parent}'] .private_event_req .second_step.is_hidden`)?.classList.remove("is_hidden");
+            document.querySelector(`[data-count='${parent}'] .private_event_req .first_step`)?.classList.add("is_hidden");
+          }
+
+          if (parent === "charter_services_req") {
+            document.querySelector(".charter_services_req .my_date").textContent = `${daysWeek[dateChecked[0]]} ${dateChecked[2]} ${months[dateChecked[1]]}`;
+            ajaxEvents("Check Availability For Your Date", document.querySelector(`[data-count='${parent}'] input[name='email']`).value, document.querySelector('[name="date"]').value, "", "", "charter_services_req");
+          }
+          if ((parent === "firts_get_a_quote" || parent === "second_get_a_quote" || parent === "third_get_a_quote" || parent === "fourth_get_a_quote") && target === "private_event_req_btn") {
+            document.querySelectorAll(".private_event_req .my_date").forEach((el) => {
+              el.textContent = `${daysWeek[dateChecked[0]]} ${dateChecked[2]} ${months[dateChecked[1]]}`;
+            });
+            ajaxEvents(document.querySelector(`[data-count='${parent}'] input[name='name']`).value, document.querySelector(`[data-count='${parent}'] input[name='email']`).value, document.querySelector('[name="date"]').value, inputValueServices, `${inputValueComments}, Duration of rental (in hours):${document.querySelector(`[data-count='${parent}'] input[name='hours']`)?.value}`, "private_event_req");
+          }
+        }
+      }
+
+      function ajaxEvents(name, email, date, eventDescription, additionalInformation, parent) {
+        let data = {
+          lead: {
+            first_name: name,
+            last_name: "last_name",
+            phone_number: "000-000-000",
+            email_address: email,
+            event_date: date,
+            event_description: eventDescription,
+            additional_information: additionalInformation,
+          },
+          lead_form_id: 32291,
+        };
+        $.ajax("https://api.tripleseat.com/v1/leads/create.js?lead_form_id=32291&public_key=a5b17036ec64ca3a1ee518df175e0dede392b261", {
+          data: data,
+          dataType: "JSONP",
+          crossDomain: true,
+          success: function (data) {
+            console.log(data);
+            if (data.errors != undefined) {
+              // handle errors
+            } else {
+              // show data.success_message
+              if (parent === "charter_services_req") {
+                document.querySelector(".charter_services_req .second_step.is_hidden")?.classList.remove("is_hidden");
+                document.querySelector(".charter_services_req .first_step")?.classList.add("is_hidden");
+              }
+              if (parent === "private_event_req") {
+                document.querySelector(".private_event_req .third_step.is_hidden")?.classList.remove("is_hidden");
+                document.querySelector(".private_event_req .second_step")?.classList.add("is_hidden");
+              }
+            }
+          },
+        });
       }
 
       function visibElem() {
