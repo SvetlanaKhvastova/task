@@ -1,18 +1,17 @@
-
 let newFunk = setInterval(() => {
   if (document.querySelector(".payment_inform_box")) {
-    clearInterval(newFunk)
+    clearInterval(newFunk);
 
     // script tooltip
-    let scriptPopper = document.createElement("script")
-    scriptPopper.src = "https://unpkg.com/popper.js@1"
-    scriptPopper.async = false
-    document.body.appendChild(scriptPopper)
+    let scriptPopper = document.createElement("script");
+    scriptPopper.src = "https://unpkg.com/popper.js@1";
+    scriptPopper.async = false;
+    document.body.appendChild(scriptPopper);
 
-    let scriptTippy = document.createElement("script")
-    scriptTippy.src = "https://unpkg.com/tippy.js@5"
-    scriptTippy.async = false
-    document.body.appendChild(scriptTippy)
+    let scriptTippy = document.createElement("script");
+    scriptTippy.src = "https://unpkg.com/tippy.js@5";
+    scriptTippy.async = false;
+    document.body.appendChild(scriptTippy);
 
     //event
     // let eventVar = "desktop"
@@ -719,7 +718,7 @@ let newFunk = setInterval(() => {
           }
         }
       </style>
-`
+`;
 
     let steps = /*html */ `
             <div class="steps">
@@ -747,7 +746,7 @@ let newFunk = setInterval(() => {
                     </li>
                 </ul>
             </div>
-        `
+        `;
 
     let checkStep = /*html */ `
             <div class="check_step">
@@ -771,107 +770,106 @@ let newFunk = setInterval(() => {
                     </li>
                 </ul>
             </div>
-        `
+        `;
 
     let newBtnContinue = /*html */ `
             <div class="btn_continue_wrap">
                 <button class="btn_continue" data-count="1">Continue</button>
             </div>
-        `
+        `;
 
-
-    let imgPay = /*html */`
+    let imgPay = /*html */ `
 <ul class="img_pay">
   <li>
     <img class="desk_var" src="https://conversionratestore.github.io/projects/knineti/img/Icons-D.png" alt="secured">
     <img class="mob_var" src="https://conversionratestore.github.io/projects/knineti/img/Icons-M.png" alt="secured">
   </li>
 </ul>
-    `
+    `;
 
-    document.head.insertAdjacentHTML("beforeend", newStyle)
+    document.head.insertAdjacentHTML("beforeend", newStyle);
     if (window.innerWidth <= 768) {
-      document.querySelector('.paymen_method')?.insertAdjacentHTML('afterbegin', imgPay)
+      document.querySelector(".paymen_method")?.insertAdjacentHTML("afterbegin", imgPay);
     } else {
-      document.querySelector('.paypament-details')?.insertAdjacentHTML('beforebegin', imgPay)
+      document.querySelector(".paypament-details")?.insertAdjacentHTML("beforebegin", imgPay);
     }
 
     if (window.innerWidth <= 768) {
-      document.querySelector("form#address-form")?.insertAdjacentHTML("beforebegin", steps)
-      document.querySelector("form#address-form")?.insertAdjacentHTML("afterbegin", checkStep)
-      document.querySelector("form#address-form")?.insertAdjacentHTML("afterend", newBtnContinue)
+      document.querySelector("form#address-form")?.insertAdjacentHTML("beforebegin", steps);
+      document.querySelector("form#address-form")?.insertAdjacentHTML("afterbegin", checkStep);
+      document.querySelector("form#address-form")?.insertAdjacentHTML("afterend", newBtnContinue);
 
       if (document.querySelector(".payment_plan_wrapp #payment_plan_id")) {
-        document.querySelector(".payment_plan_wrapp #payment_plan_id").textContent = "Choose Payment plan"
+        document.querySelector(".payment_plan_wrapp #payment_plan_id").textContent = "Choose Payment plan";
       }
       if (document.querySelector("#selected-state-us option:last-child")) {
-        document.querySelector("#selected-state-us option:last-child").textContent = "Select State"
+        document.querySelector("#selected-state-us option:last-child").textContent = "Select State";
       }
 
       // click btn_continue
       if (document.querySelector(".btn_continue")) {
         document.querySelector(".btn_continue").addEventListener("click", (e) => {
-          e.preventDefault()
+          e.preventDefault();
           document.querySelectorAll(".steps ul li").forEach((el) => {
             document.querySelectorAll(".check_step ul li").forEach((item) => {
               if (e.target.getAttribute("data-count") === `1`) {
                 if (!e.currentTarget.getAttribute("data-test")) {
                   // pushDataLayer('Click on btn Continue step "Order summary')
                 }
-                e.currentTarget.setAttribute("data-test", "1")
+                e.currentTarget.setAttribute("data-test", "1");
                 if (el.getAttribute("data-step") === "1") {
-                  el.classList.add("visited_step")
-                  el.classList.remove("active_step")
-                  el.querySelector("p:nth-of-type(2)").classList.add("active_step")
+                  el.classList.add("visited_step");
+                  el.classList.remove("active_step");
+                  el.querySelector("p:nth-of-type(2)").classList.add("active_step");
                 }
                 if (el.getAttribute("data-step") === "2") {
-                  el.classList.add("active_step")
-                  el.querySelector("p:nth-of-type(1)").classList.add("active_step")
+                  el.classList.add("active_step");
+                  el.querySelector("p:nth-of-type(1)").classList.add("active_step");
                 }
 
                 if (item.getAttribute("data-checkStep") === `1`) {
-                  item.classList.remove("active_step")
+                  item.classList.remove("active_step");
                 }
                 if (item.getAttribute("data-checkStep") === `2`) {
-                  item.classList.add("active_step")
+                  item.classList.add("active_step");
                 }
 
-                document.querySelector(".payment_order").classList.add("is_hidden")
-                document.querySelector(".payment_plan_wrapp.payment_plan").classList.add("is_hidden")
-                document.querySelector(".payment_inform_wrapp").style.display = "block"
+                document.querySelector(".payment_order").classList.add("is_hidden");
+                document.querySelector(".payment_plan_wrapp.payment_plan").classList.add("is_hidden");
+                document.querySelector(".payment_inform_wrapp").style.display = "block";
 
-                onScrollTop()
+                onScrollTop();
 
                 setTimeout(() => {
-                  e.target.setAttribute("data-count", `2`)
+                  e.target.setAttribute("data-count", `2`);
                   if (!document.querySelector(".testik")) {
-                    e.target.insertAdjacentHTML("afterend", `<span class="testik"></span>`)
+                    e.target.insertAdjacentHTML("afterend", `<span class="testik"></span>`);
                   }
-                }, 600)
+                }, 600);
               }
               if (e.target.getAttribute("data-count") === `2`) {
                 if (!e.currentTarget.getAttribute("data-test")) {
                   // pushDataLayer('Click on btn Continue step "Contact information')
                   if (document.querySelector("#phone").value === "") {
-                    document.querySelector("#phone").value = "00000000000"
-                    console.log(`>>>>>>>>>>>>>TEL еще раз`, document.querySelector("#phone").value)
+                    document.querySelector("#phone").value = "00000000000";
+                    console.log(`>>>>>>>>>>>>>TEL еще раз`, document.querySelector("#phone").value);
                   }
                 }
-                e.currentTarget.setAttribute("data-test", "1")
-                validateBtnStepSecond(el, item, e.target)
+                e.currentTarget.setAttribute("data-test", "1");
+                validateBtnStepSecond(el, item, e.target);
               }
-            })
-          })
+            });
+          });
 
           setTimeout(() => {
             if (e.target.getAttribute("data-test")) {
-              e.target.removeAttribute("data-test")
+              e.target.removeAttribute("data-test");
             }
-          }, 500)
-        })
+          }, 500);
+        });
       }
 
-      //  change steptitle 
+      //  change steptitle
       if (document.querySelector(".check_step")) {
         document.querySelectorAll(".check_step ul li").forEach((e) => {
           e.addEventListener("click", (el) => {
@@ -880,29 +878,29 @@ let newFunk = setInterval(() => {
                 if (!el.currentTarget.getAttribute("data-test")) {
                   // pushDataLayer('Click on btn Back step "Contact information')
                 }
-                el.currentTarget.setAttribute("data-test", "1")
+                el.currentTarget.setAttribute("data-test", "1");
                 if (i.getAttribute("data-step") === "1") {
-                  i.classList.remove("visited_step")
-                  i.classList.add("active_step")
-                  i.querySelector("p:nth-of-type(2)").classList.remove("active_step")
+                  i.classList.remove("visited_step");
+                  i.classList.add("active_step");
+                  i.querySelector("p:nth-of-type(2)").classList.remove("active_step");
                 }
                 if (i.getAttribute("data-step") === "2") {
-                  i.classList.remove("active_step")
-                  i.querySelector("p:nth-of-type(1)").classList.remove("active_step")
+                  i.classList.remove("active_step");
+                  i.querySelector("p:nth-of-type(1)").classList.remove("active_step");
                 }
-                el.currentTarget.classList.remove("active_step")
-                el.currentTarget.previousElementSibling.classList.add("active_step")
+                el.currentTarget.classList.remove("active_step");
+                el.currentTarget.previousElementSibling.classList.add("active_step");
 
-                document.querySelector(".payment_order").classList.remove("is_hidden")
-                document.querySelector(".payment_plan_wrapp.payment_plan").classList.remove("is_hidden")
-                document.querySelector(".payment_inform_wrapp").style.display = "none"
+                document.querySelector(".payment_order").classList.remove("is_hidden");
+                document.querySelector(".payment_plan_wrapp.payment_plan").classList.remove("is_hidden");
+                document.querySelector(".payment_inform_wrapp").style.display = "none";
 
                 if (document.querySelector(".btn_continue").getAttribute("data-count") === `2`) {
-                  document.querySelector(".btn_continue").setAttribute("data-count", `1`)
+                  document.querySelector(".btn_continue").setAttribute("data-count", `1`);
                 }
 
-                onScrollTop()
-              })
+                onScrollTop();
+              });
             }
 
             if (el.currentTarget.getAttribute("data-checkStep") === `3` && el.currentTarget.classList.contains("active_step")) {
@@ -910,142 +908,142 @@ let newFunk = setInterval(() => {
                 if (!el.currentTarget.getAttribute("data-test")) {
                   // pushDataLayer('Click on btn Back step "Payment method"')
                 }
-                el.currentTarget.setAttribute("data-test", "1")
+                el.currentTarget.setAttribute("data-test", "1");
                 if (i.getAttribute("data-step") === "2" && i.classList.contains("visited_step")) {
-                  i.classList.remove("visited_step")
-                  i.classList.add("active_step")
-                  i.querySelector("p:nth-of-type(2)").classList.remove("active_step")
+                  i.classList.remove("visited_step");
+                  i.classList.add("active_step");
+                  i.querySelector("p:nth-of-type(2)").classList.remove("active_step");
                 }
                 if (i.getAttribute("data-step") === "3" && i.classList.contains("active_step")) {
-                  i.classList.remove("active_step")
+                  i.classList.remove("active_step");
                 }
 
-                el.currentTarget.classList.remove("active_step")
-                el.currentTarget.previousElementSibling.classList.add("active_step")
+                el.currentTarget.classList.remove("active_step");
+                el.currentTarget.previousElementSibling.classList.add("active_step");
 
-                document.querySelector(".payment_inform_wrapp").classList.remove("is_hidden")
-                document.querySelector(".paymen_method").style.display = "none"
-                document.querySelector("#address-form > .row").style.display = "none"
+                document.querySelector(".payment_inform_wrapp").classList.remove("is_hidden");
+                document.querySelector(".paymen_method").style.display = "none";
+                document.querySelector("#address-form > .row").style.display = "none";
 
                 if (document.querySelector(".btn_continue").getAttribute("data-count") === `3`) {
-                  document.querySelector(".btn_continue").setAttribute("data-count", `2`)
-                  document.querySelector(".btn_continue_wrap").classList.remove("is_hidden")
+                  document.querySelector(".btn_continue").setAttribute("data-count", `2`);
+                  document.querySelector(".btn_continue_wrap").classList.remove("is_hidden");
                 }
 
-                onScrollTop()
-              })
+                onScrollTop();
+              });
             }
 
             setTimeout(() => {
               if (e.getAttribute("data-test")) {
-                e.removeAttribute("data-test")
+                e.removeAttribute("data-test");
               }
-            }, 500)
-          })
-        })
+            }, 500);
+          });
+        });
       }
 
       // remove alert btn submit
       if (document.querySelector("#submit")) {
         document.querySelector("#submit").addEventListener("click", (e) => {
-          window.alert = function () { }
+          window.alert = function () {};
           if (!e.target.classList.contains("on_click")) {
             // pushDataLayer("Click on btn Enroll now")
           }
-        })
+        });
       }
 
       document.querySelectorAll("form select").forEach((el) => {
         el.addEventListener("click", (e) => {
           if (e.target.closest(".col-md-12")) {
-            console.log(`first`)
-            e.target.closest(".col-md-12").classList.toggle("is_open")
+            console.log(`first`);
+            e.target.closest(".col-md-12").classList.toggle("is_open");
           }
           if (e.target.closest(".col-md-6")) {
-            console.log(`first`)
-            e.target.closest(".col-md-6").classList.toggle("is_open")
+            console.log(`first`);
+            e.target.closest(".col-md-6").classList.toggle("is_open");
           }
-        })
-      })
+        });
+      });
 
       document.addEventListener("click", (e) => {
         if (!e.target.matches("form select")) {
           document.querySelectorAll("form .col-md-12").forEach((el) => {
             if (el.classList.contains("is_open")) {
-              el.classList.remove("is_open")
+              el.classList.remove("is_open");
             }
-          })
+          });
           document.querySelectorAll("form .col-md-6").forEach((el) => {
             if (el.classList.contains("is_open")) {
-              el.classList.remove("is_open")
+              el.classList.remove("is_open");
             }
-          })
+          });
         }
-      })
+      });
 
       function onScrollTop() {
-        document.querySelector(".scroll_test")?.scrollIntoView({ block: "start", behavior: "smooth" })
+        document.querySelector(".scroll_test")?.scrollIntoView({ block: "start", behavior: "smooth" });
       }
 
       // validate Btn StepSecond
       function validateBtnStepSecond(el, item, e) {
-        document.querySelector("#submit").classList.add("on_click")
-        document.querySelector("#submit").click()
+        document.querySelector("#submit").classList.add("on_click");
+        document.querySelector("#submit").click();
 
         setTimeout(() => {
           if (document.querySelector("#submit").classList.contains("on_click")) {
-            document.querySelector("#submit").classList.remove("on_click")
+            document.querySelector("#submit").classList.remove("on_click");
           }
-        }, 7000)
+        }, 7000);
 
-        let fName = $("#first-name").next().is(":visible")
-        let lName = $("#last-name").next().is(":visible")
-        let email = $("#email").next().is(":visible")
-        let address = $("#address1").next().is(":visible")
-        let city = $("#city").next().is(":visible")
-        let zipCode = $("#zip").next().is(":visible")
-        let selectCountry = $("#selected-country").next().is(":visible")
-        let selectState = $("#selected-state-us").next().is(":visible")
-        let number = $("#phone").next().is(":visible")
-        let cardNumber = $("#cardno").next()[0]
-        let nameCard = $("#cardname").next()[0]
-        let month = $("#month").next()[0]
-        let year = $("#year1").next()[0]
-        let cvv = $("#cvv").next().next()[0]
+        let fName = $("#first-name").next().is(":visible");
+        let lName = $("#last-name").next().is(":visible");
+        let email = $("#email").next().is(":visible");
+        let address = $("#address1").next().is(":visible");
+        let city = $("#city").next().is(":visible");
+        let zipCode = $("#zip").next().is(":visible");
+        let selectCountry = $("#selected-country").next().is(":visible");
+        let selectState = $("#selected-state-us").next().is(":visible");
+        let number = $("#phone").next().is(":visible");
+        let cardNumber = $("#cardno").next()[0];
+        let nameCard = $("#cardname").next()[0];
+        let month = $("#month").next()[0];
+        let year = $("#year1").next()[0];
+        let cvv = $("#cvv").next().next()[0];
 
         if (!fName && !lName && !email && !address && !city && !zipCode && !selectCountry && !selectState && !number) {
           if (el.getAttribute("data-step") === "2") {
-            el.classList.add("visited_step")
-            el.classList.remove("active_step")
-            el.querySelector("p:nth-of-type(2)").classList.add("active_step")
+            el.classList.add("visited_step");
+            el.classList.remove("active_step");
+            el.querySelector("p:nth-of-type(2)").classList.add("active_step");
           }
           if (el.getAttribute("data-step") === "3") {
-            el.classList.add("active_step")
+            el.classList.add("active_step");
           }
           if (item.getAttribute("data-checkStep") === `2`) {
-            item.classList.remove("active_step")
+            item.classList.remove("active_step");
           }
           if (item.getAttribute("data-checkStep") === `3`) {
-            item.classList.add("active_step")
+            item.classList.add("active_step");
           }
 
-          document.querySelector(".payment_inform_wrapp").classList.add("is_hidden")
-          document.querySelector(".paymen_method").style.display = "block"
+          document.querySelector(".payment_inform_wrapp").classList.add("is_hidden");
+          document.querySelector(".paymen_method").style.display = "block";
 
-          cardNumber.style.display = "none"
-          nameCard.style.display = "none"
-          month.style.display = "none"
-          year.style.display = "none"
-          cvv.style.display = "none"
+          cardNumber.style.display = "none";
+          nameCard.style.display = "none";
+          month.style.display = "none";
+          year.style.display = "none";
+          cvv.style.display = "none";
 
-          document.querySelector("#address-form > .row").style.display = "block"
-          e.closest(".btn_continue_wrap").classList.add("is_hidden")
+          document.querySelector("#address-form > .row").style.display = "block";
+          e.closest(".btn_continue_wrap").classList.add("is_hidden");
 
-          onScrollTop()
+          onScrollTop();
 
           setTimeout(() => {
-            e.setAttribute("data-count", `3`)
-          }, 600)
+            e.setAttribute("data-count", `3`);
+          }, 600);
         }
       }
 
@@ -1053,19 +1051,19 @@ let newFunk = setInterval(() => {
       if (document.querySelector(".steps")) {
         let obs = new IntersectionObserver(visibility, {
           threshold: 1,
-        })
+        });
 
-        obs.observe(document.querySelector(".payment_plan_wrapp.payment_plan"))
-        obs.observe(document.querySelector('.btn_continue[data-count="1"]'))
+        obs.observe(document.querySelector(".payment_plan_wrapp.payment_plan"));
+        obs.observe(document.querySelector('.btn_continue[data-count="1"]'));
 
         let int = setInterval(() => {
           if (document.querySelector(".testik")) {
-            clearInterval(int)
-            obs.observe(document.querySelector(".testik"))
+            clearInterval(int);
+            obs.observe(document.querySelector(".testik"));
           }
-        }, 100)
+        }, 100);
 
-        obs.observe(document.querySelector(".submit_btn input#submit"))
+        obs.observe(document.querySelector(".submit_btn input#submit"));
 
         function visibility(entries) {
           entries.forEach((i) => {
@@ -1083,18 +1081,18 @@ let newFunk = setInterval(() => {
                 // pushDataLayer("Visibility btn Enroll now")
               }
 
-              obs.unobserve(i.target)
+              obs.unobserve(i.target);
             }
-          })
+          });
         }
       }
 
       if (document.querySelector(".scroll_bar_box")) {
         let obs2 = new IntersectionObserver(visibility, {
           threshold: 1,
-        })
+        });
 
-        obs2.observe(document.querySelector('.scroll_bar_box li:last-child'))
+        obs2.observe(document.querySelector(".scroll_bar_box li:last-child"));
 
         function visibility(entries) {
           entries.forEach((i) => {
@@ -1107,7 +1105,7 @@ let newFunk = setInterval(() => {
                 // pushDataLayer("Scroll on scroll bar step 3")
               }
             }
-          })
+          });
         }
       }
     }
@@ -1115,11 +1113,11 @@ let newFunk = setInterval(() => {
     //set phone value
     let intNumber = setInterval(() => {
       if (document.querySelector("#phone")) {
-        clearInterval(intNumber)
-        document.querySelector("#phone").value = "00000000000"
-        console.log(`>>>>>>>>>>>>>TEL`, document.querySelector("#phone").value)
+        clearInterval(intNumber);
+        document.querySelector("#phone").value = "00000000000";
+        console.log(`>>>>>>>>>>>>>TEL`, document.querySelector("#phone").value);
       }
-    }, 100)
+    }, 100);
 
     document.querySelector(".payment_inform_box .payment_plan_wrapp .input_wrapper > div.monthly_sec label span:nth-child(2)")?.insertAdjacentHTML(
       "beforeend",
@@ -1131,8 +1129,7 @@ let newFunk = setInterval(() => {
                     fill="#16377B" />
                 </svg>
             </span>`
-    )
-
+    );
 
     document.querySelector(".text_mobile")?.insertAdjacentHTML(
       "afterend",
@@ -1166,36 +1163,36 @@ let newFunk = setInterval(() => {
                             fill="#16377B" />
                         </svg>
                       </div>`
-    )
+    );
 
     // tooltip
     let tippyRunMob = setInterval(() => {
       if (typeof tippy === "function" && document.querySelector("[data-titlemob]")) {
-        clearInterval(tippyRunMob)
+        clearInterval(tippyRunMob);
         document.querySelectorAll("[data-titlemob]").forEach((el) => {
           tippy(el, {
             content: el.getAttribute("data-titlemob"),
             // trigger: "click",
             placement: "bottom-end",
             appendTo: function () {
-              return el
+              return el;
             },
             onTrigger(inst, e) {
-              e.stopPropagation()
-              e.preventDefault()
+              e.stopPropagation();
+              e.preventDefault();
               // pushDataLayer(`Clicks on hints '90 days unconditional money-back guarantee'`)
             },
             onShown(e) {
               // pushDataLayer(`Shown 'If you are not satisfied with the masterclass, please contact us within 90 days of your enrollment to get a full refund'`)
             },
-          })
-        })
+          });
+        });
       }
-    }, 500)
+    }, 500);
 
     let tippyRun = setInterval(() => {
       if (typeof tippy === "function" && document.querySelector("[data-tolltip]")) {
-        clearInterval(tippyRun)
+        clearInterval(tippyRun);
         document.querySelectorAll("[data-title]").forEach((el) => {
           if (innerWidth <= 768) {
             tippy(el, {
@@ -1203,24 +1200,24 @@ let newFunk = setInterval(() => {
               trigger: "click",
               placement: "top",
               appendTo: function () {
-                return el.parentElement
+                return el.parentElement;
               },
               onTrigger(inst, e) {
-                e.stopPropagation()
-                e.preventDefault()
+                e.stopPropagation();
+                e.preventDefault();
                 // pushDataLayer(`Clicks on hints '3 monthly payments'`)
               },
               onShown(e) {
                 // pushDataLayer(`Shown '3 monthly payments'`)
               },
-            })
+            });
           } else {
             tippy(el, {
               content: el.getAttribute("data-title"),
               placement: "top-end",
               // trigger: "click",
               appendTo: function () {
-                return document.querySelector(".payment_inform_tooltip")
+                return document.querySelector(".payment_inform_tooltip");
               },
               onTrigger(e) {
                 // pushDataLayer(`Hover on hints '3 monthly payments'`)
@@ -1228,11 +1225,11 @@ let newFunk = setInterval(() => {
               onShown(e) {
                 // pushDataLayer(`Shown '3 monthly payments'`)
               },
-            })
+            });
           }
-        })
+        });
       }
-    }, 500)
+    }, 500);
 
     // pushDataLayer("loaded")
 
@@ -1246,4 +1243,4 @@ let newFunk = setInterval(() => {
     // }, 200)
     // document.querySelector(".exp")?.remove()
   }
-}, 10)
+}, 10);

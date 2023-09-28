@@ -35,6 +35,31 @@ if (window.location.pathname === "/") {
 
       let vegasYachtStyle = /*html */ `
         <style>
+          #rev_slider_1_1 .tp-revslider-mainul a.sg-popup-id-502,
+          [data-popup-id="502"].fl-module.fl-module-button{
+            display: none !important;
+          }
+          div.new_btn_inquire_now{
+            font-family: 'Raleway',sans-serif;
+    font-weight: bold !important;
+    font-size: 16px !important;
+    line-height: 20px !important;
+    background: #cfbe88;
+    padding: 5px !important;
+    display: flex;
+    color: #28364b !important;
+    height: 56px;
+    max-width: 182px;
+    width: 100%;
+    margin: 0 auto !important;
+cursor: pointer;
+align-items: center;
+    justify-content: center;
+          }
+#sgpb-popup-dialog-main-div,
+.sgpb-theme-1-overlay.sgpb-popup-overlay-502.sgpb-popup-overlay {
+  display: none !important;
+}
 .overlay_popup {
   position: fixed;
   top: 0;
@@ -76,7 +101,7 @@ if (window.location.pathname === "/") {
 }
 .content_popup {
   background: #fff;
-  padding: 56px 60px;
+  padding: 50px 60px;
 }
 body.open_var {
   overflow: hidden !important;
@@ -127,7 +152,7 @@ body.open_var {
   font-weight: 400;
   line-height: 24px;
   letter-spacing: 0.14px;
-  margin: 0 auto 32px !important;
+  margin: 0 auto 25px !important;
   text-align: center;
   max-width: 300px;
 }
@@ -157,7 +182,7 @@ body.open_var {
 .private_event_request_form label input,
 .private_event_request_form label textarea {
   width: 100%;
-  padding: 12px 16px;
+  padding: 10px 16px;
   border: 1px solid #e2e5eb !important;
   background: none;
   outline: inherit;
@@ -170,7 +195,8 @@ body.open_var {
   display: none;
   color: #ef4836;
   text-align: left;
-  font-size: 12px;
+  font-size: 11px;
+  line-height: 20px;
 }
 .first_step.is_hidden,
 .second_step.is_hidden,
@@ -932,9 +958,8 @@ body.open_var {
     padding: 15px;
   }
 }
-
         </style>
-        `;
+      `;
 
       let privateEventBlock = /*html */ `
           <div class="private_event_block">
@@ -1028,7 +1053,7 @@ body.open_var {
           </div>
       `;
       let popUpPrivateEventReq1 = /*html */ `
-        <div class="overlay_popup is_hidden private_event_req firts_get_a_quote" data-count='firts_get_a_quote'>
+        <div class="overlay_popup is_hidden private_event_req firts_get_a_quote" data-count='firts_get_a_quote' data-visibprivate='1'>
           <div class="container_popup">
             <div class="btn_close">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -1039,7 +1064,7 @@ body.open_var {
         </div>
     `;
       let popUpPrivateEventReq2 = /*html */ `
-        <div class="overlay_popup is_hidden private_event_req second_get_a_quote" data-count='second_get_a_quote'>
+        <div class="overlay_popup is_hidden private_event_req second_get_a_quote" data-count='second_get_a_quote' data-visibprivate='2'>
           <div class="container_popup">
             <div class="btn_close">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -1050,7 +1075,7 @@ body.open_var {
         </div>
     `;
       let popUpPrivateEventReq3 = /*html */ `
-        <div class="overlay_popup is_hidden private_event_req third_get_a_quote" data-count='third_get_a_quote'>
+        <div class="overlay_popup is_hidden private_event_req third_get_a_quote" data-count='third_get_a_quote' data-visibprivate='3'>
           <div class="container_popup">
             <div class="btn_close">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -1061,7 +1086,18 @@ body.open_var {
         </div>
     `;
       let popUpPrivateEventReq4 = /*html */ `
-        <div class="overlay_popup is_hidden private_event_req fourth_get_a_quote"  data-count='fourth_get_a_quote'>
+        <div class="overlay_popup is_hidden private_event_req fourth_get_a_quote"  data-count='fourth_get_a_quote' data-visibprivate='4'>
+          <div class="container_popup">
+            <div class="btn_close">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M1.1454 14.8546C1.19184 14.9011 1.24699 14.938 1.30769 14.9631C1.36839 14.9883 1.43346 15.0012 1.49917 15.0012C1.56488 15.0012 1.62994 14.9883 1.69064 14.9631C1.75135 14.938 1.80649 14.9011 1.85293 14.8546L7.99818 8.70935L14.1459 14.8546C14.2398 14.9484 14.367 15.0011 14.4997 15.0011C14.6324 15.0011 14.7596 14.9484 14.8535 14.8546C14.9473 14.7608 15 14.6335 15 14.5008C15 14.3681 14.9473 14.2409 14.8535 14.1471L8.70571 8.00182L14.851 1.85406C14.9448 1.76024 14.9975 1.63299 14.9975 1.5003C14.9975 1.36761 14.9448 1.24036 14.851 1.14653C14.7571 1.05271 14.6299 1 14.4972 1C14.3645 1 14.2373 1.05271 14.1434 1.14653L7.99818 7.29429L1.85043 1.14903C1.75478 1.06712 1.63173 1.02431 1.50589 1.02917C1.38005 1.03403 1.26067 1.0862 1.17162 1.17525C1.08257 1.2643 1.0304 1.38368 1.02554 1.50952C1.02068 1.63537 1.06349 1.75841 1.1454 1.85406L7.29066 8.00182L1.1454 14.1496C1.05227 14.2433 1 14.37 1 14.5021C1 14.6342 1.05227 14.7609 1.1454 14.8546Z" fill="#28364B"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+    `;
+      let popUpInquireNow = /*html */ `
+        <div class="overlay_popup is_hidden private_event_req inquire_now"  data-count='inquire_now'>
           <div class="container_popup">
             <div class="btn_close">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -1241,11 +1277,22 @@ body.open_var {
       document.body.insertAdjacentHTML("afterbegin", popUpPrivateEventReq2);
       document.body.insertAdjacentHTML("afterbegin", popUpPrivateEventReq3);
       document.body.insertAdjacentHTML("afterbegin", popUpPrivateEventReq4);
+      document.body.insertAdjacentHTML("afterbegin", popUpInquireNow);
 
       document.body.insertAdjacentHTML("afterbegin", popUpCharterServicesReq);
 
-      moveHtml();
-      function moveHtml() {
+      renderHtml();
+      function renderHtml() {
+        document.querySelectorAll(".sg-popup-id-502")?.forEach((el) => {
+          el.insertAdjacentHTML("afterend", `<div class="new_btn_inquire_now">Inquire Now</div>`);
+        });
+
+        // document.querySelectorAll(".fl-button-wrap .fl-button").forEach((el) => {
+        //   if (el.textContent.includes("Inquire Now") && !document.querySelector(".fl-button-wrap .fl-button + .new_btn_inquire_now")) {
+        //     el.insertAdjacentHTML("afterend", `<div class="new_btn_inquire_now">Inquire Now</div>`);
+        //   }
+        // });
+
         if (document.querySelector(".fl-node-5fbe97b3793da") && !document.querySelector(".charter_services_request_block")) {
           document.querySelector(".fl-node-5fbe97b3793da").insertAdjacentHTML("beforebegin", charterServicesRequestBlock);
         }
@@ -1426,7 +1473,9 @@ body.open_var {
       }
       function onClickDifBtn() {
         if (document.querySelector(".overlay_popup")) {
+          let scroll = calcScroll();
           function onOpenPopup(contentPopupHtml, form, className) {
+            document.querySelector("body").style.marginRight = `${scroll}px`;
             document.querySelector("body").classList.add("open_var");
             if (form === "charter_services_req") {
               document.querySelector(".overlay_popup.charter_services_req").classList.remove("is_hidden");
@@ -1459,45 +1508,161 @@ body.open_var {
                   document.querySelector(".overlay_popup.private_event_req.fourth_get_a_quote .container_popup")?.insertAdjacentHTML("beforeend", contentPopupHtml);
                 }
               }
-
-              document.querySelectorAll(".private_event_req .continue_btn").forEach((el) => {
-                el.addEventListener("click", (e) => {
-                  if (!e.target.getAttribute("data-test")) {
-                    e.preventDefault();
-                    console.log(`continue_btn`, e.currentTarget.closest(".overlay_popup"));
-                    validateForm(e.currentTarget.closest(".overlay_popup").getAttribute("data-count"), "");
-                    if (!e.target.getAttribute("data-test")) {
-                    }
-                  }
-                  e.target.setAttribute("data-test", "1");
-                  setTimeout(() => {
-                    if (e.target.getAttribute("data-test")) {
-                      e.target.removeAttribute("data-test");
-                    }
-                  }, 1000);
-                });
-              });
-
-              document.querySelectorAll(".private_event_req_btn").forEach((el) => {
-                el.addEventListener("click", (e) => {
-                  if (!e.target.getAttribute("data-test")) {
-                    e.preventDefault();
-                    validateForm(e.currentTarget.closest(".overlay_popup").getAttribute("data-count"), "private_event_req_btn");
-                  }
-                  e.target.setAttribute("data-test", "1");
-                  setTimeout(() => {
-                    if (e.target.getAttribute("data-test")) {
-                      e.target.removeAttribute("data-test");
-                    }
-                  }, 1000);
-                });
-              });
+              if (className === "inquire_now") {
+                document.querySelector(".overlay_popup.private_event_req.inquire_now").classList.remove("is_hidden");
+                if (!document.querySelector(".overlay_popup.private_event_req.inquire_now .content_popup.private_event_req")) {
+                  document.querySelector(".overlay_popup.private_event_req.inquire_now .container_popup")?.insertAdjacentHTML("beforeend", contentPopupHtml);
+                }
+              }
             }
+
+            document.querySelectorAll(".private_event_req .continue_btn").forEach((el) => {
+              el.addEventListener("click", (e) => {
+                if (!e.target.getAttribute("data-test")) {
+                  e.preventDefault();
+                  if (e.currentTarget.closest(".overlay_popup").classList.contains("inquire_now")) {
+                    pushDataLayer("exp_new_ui_b_qcsrp_con_s1", "Continue", "Button", "Quiz Step 1 Chapter services request Pop up");
+                  } else {
+                    pushDataLayer("exp_new_ui_b_pecsrp_con_s1", `Continue ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Button", "Step 1 Private event  request Pop up");
+                  }
+                  validateForm(e.currentTarget.closest(".overlay_popup").getAttribute("data-count"), "");
+                }
+                e.target.setAttribute("data-test", "1");
+                setTimeout(() => {
+                  if (e.target.getAttribute("data-test")) {
+                    e.target.removeAttribute("data-test");
+                  }
+                }, 1000);
+              });
+            });
+
+            document.querySelectorAll(".private_event_req_btn").forEach((el) => {
+              el.addEventListener("click", (e) => {
+                if (!e.target.getAttribute("data-test")) {
+                  e.preventDefault();
+                  if (e.currentTarget.closest(".overlay_popup.inquire_now")) {
+                    pushDataLayer("exp_new_ui_b_qcsrp_sub_s2", "Submit", "Button", "Quiz Step 2 Chapter services request Pop up");
+                  } else {
+                    pushDataLayer("exp_new_ui_b_pecsrp_sub_s2", `Submit ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Button", "Step 2 Private event  request Pop up");
+                  }
+                  validateForm(e.currentTarget.closest(".overlay_popup").getAttribute("data-count"), "private_event_req_btn");
+                }
+                e.target.setAttribute("data-test", "1");
+                setTimeout(() => {
+                  if (e.target.getAttribute("data-test")) {
+                    e.target.removeAttribute("data-test");
+                  }
+                }, 1000);
+              });
+            });
+
+            document.querySelectorAll(".overlay_popup .popup_body input")?.forEach((el) => {
+              el.addEventListener("click", (e) => {
+                if (!e.target.getAttribute("data-test")) {
+                  if (e.currentTarget.closest(".overlay_popup.private_event_req")) {
+                    if (e.currentTarget.closest(".overlay_popup.inquire_now.private_event_req")) {
+                      if (!e.currentTarget.closest(".overlay_popup.private_event_req")?.querySelector(".first_step").classList.contains("is_hidden")) {
+                        pushDataLayer("exp_new_ui_in_qcsrp_i_s1", `${e.currentTarget.previousElementSibling.textContent}`, "Input", "Quiz Step 1 Chapter services request Pop up");
+                      }
+                      if (!e.currentTarget.closest(".overlay_popup.private_event_req")?.querySelector(".second_step").classList.contains("is_hidden")) {
+                        pushDataLayer("exp_new_ui_in_qcsrp_i_s2", `${e.currentTarget.previousElementSibling.textContent}`, "Input", "Quiz Step 2 Chapter services request Pop up");
+                      }
+                    } else {
+                      if (!e.currentTarget.closest(".overlay_popup.private_event_req")?.querySelector(".first_step").classList.contains("is_hidden")) {
+                        pushDataLayer("exp_new_ui_in_pecsrp_i_s1", `${e.currentTarget.previousElementSibling.textContent} ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Input", "Step 1 Private event  request Pop up");
+                      }
+                      if (!e.currentTarget.closest(".overlay_popup.private_event_req")?.querySelector(".second_step").classList.contains("is_hidden")) {
+                        pushDataLayer("exp_new_ui_in_pecsrp_i_s2", `${e.currentTarget.previousElementSibling.textContent} ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Input", "Step 2 Private event  request Pop up");
+                      }
+                    }
+                  }
+
+                  if (e.currentTarget.closest(".overlay_popup.charter_services_req")) {
+                    if (!e.currentTarget.closest(".overlay_popup.charter_services_req")?.querySelector(".first_step").classList.contains("is_hidden")) {
+                      pushDataLayer("exp_new_ui_in_csrp_i_s1", `${e.currentTarget.previousElementSibling.textContent}`, "Input", "Step 1 Chapter services request Pop up");
+                    }
+                  }
+                }
+                e.target.setAttribute("data-test", "1");
+                setTimeout(() => {
+                  if (e.target.getAttribute("data-test")) {
+                    e.target.removeAttribute("data-test");
+                  }
+                }, 1000);
+              });
+            });
+
+            document.querySelectorAll(".popup_body textarea").forEach((el) => {
+              el.addEventListener("click", (e) => {
+                if (!e.target.getAttribute("data-test")) {
+                  if (e.currentTarget.closest(".overlay_popup.private_event_req")) {
+                    if (e.currentTarget.closest(".overlay_popup.inquire_now")) {
+                      if (!e.currentTarget.closest(".overlay_popup.private_event_req")?.querySelector(".first_step").classList.contains("is_hidden")) {
+                        pushDataLayer("exp_new_ui_in_qcsrp_i_s1", `${e.currentTarget.previousElementSibling.textContent}`, "Input", "Quiz Step 1 Chapter services request Pop up");
+                      }
+                      if (!e.currentTarget.closest(".overlay_popup.private_event_req")?.querySelector(".second_step").classList.contains("is_hidden")) {
+                        pushDataLayer("exp_new_ui_in_qcsrp_i_s2", `${e.currentTarget.previousElementSibling.textContent}`, "Input", "Quiz Step 2 Chapter services request Pop up");
+                      }
+                    } else {
+                      if (!e.currentTarget.closest(".overlay_popup.private_event_req")?.querySelector(".first_step").classList.contains("is_hidden")) {
+                        pushDataLayer("exp_new_ui_in_pecsrp_i_s1", `${e.currentTarget.previousElementSibling.textContent} ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Input", "Step 1 Private event  request Pop up");
+                      }
+                      if (!e.currentTarget.closest(".overlay_popup.private_event_req")?.querySelector(".second_step").classList.contains("is_hidden")) {
+                        pushDataLayer("exp_new_ui_in_pecsrp_i_s2", `${e.currentTarget.previousElementSibling.textContent} ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Input", "Step 2 Private event  request Pop up");
+                      }
+                    }
+                  }
+                }
+                e.target.setAttribute("data-test", "1");
+                setTimeout(() => {
+                  if (e.target.getAttribute("data-test")) {
+                    e.target.removeAttribute("data-test");
+                  }
+                }, 1000);
+              });
+            });
 
             document.querySelectorAll(".overlay_popup .btn_close").forEach((i) => {
               i.addEventListener("click", (e) => {
                 // click on btn close popup
-                onClosePopup();
+
+                if (!e.target.getAttribute("data-test")) {
+                  if (e.currentTarget.closest(".overlay_popup.private_event_req.inquire_now")) {
+                    if ($(".first_step").is(":visible") && e.currentTarget.closest(".overlay_popup.private_event_req") && !e.currentTarget.closest(".overlay_popup.private_event_req")?.querySelector(".first_step").classList.contains("is_hidden")) {
+                      pushDataLayer("exp_new_ui_b_qcsrp_cl_s1", "Close", "Button", "Quiz Step 1 Chapter services request Pop up");
+                    }
+                    if ($(".second_step").is(":visible") && e.currentTarget.closest(".overlay_popup.private_event_req") && !e.currentTarget.closest(".overlay_popup.private_event_req")?.querySelector(".second_step").classList.contains("is_hidden")) {
+                      pushDataLayer("exp_new_ui_b_qcsrp_cl_s2", "Close", "Button", "Quiz Step 2 Chapter services request Pop up");
+                    }
+                    if ($(".third_step").is(":visible") && e.currentTarget.closest(".overlay_popup.private_event_req") && !e.currentTarget.closest(".overlay_popup.private_event_req")?.querySelector(".third_step").classList.contains("is_hidden")) {
+                      pushDataLayer("exp_new_ui_b_qcsrp_cl_s3", "Close", "Button", "Quiz Step 3 Chapter services request Pop up");
+                    }
+                  } else {
+                    if ($(".first_step").is(":visible") && e.currentTarget.closest(".overlay_popup.private_event_req") && !e.currentTarget.closest(".overlay_popup.private_event_req")?.querySelector(".first_step").classList.contains("is_hidden")) {
+                      pushDataLayer("exp_new_ui_b_pecsrp_cl_s1", `Close ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Button", "Step 1 Private event  request Pop up");
+                    }
+                    if ($(".second_step").is(":visible") && e.currentTarget.closest(".overlay_popup.private_event_req") && !e.currentTarget.closest(".overlay_popup.private_event_req")?.querySelector(".second_step").classList.contains("is_hidden")) {
+                      pushDataLayer("exp_new_ui_b_pecsrp_cl_s2", `Close ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Button", "Step 2 Private event  request Pop up");
+                    }
+                    if ($(".third_step").is(":visible") && e.currentTarget.closest(".overlay_popup.private_event_req") && !e.currentTarget.closest(".overlay_popup.private_event_req")?.querySelector(".third_step").classList.contains("is_hidden")) {
+                      pushDataLayer("exp_new_ui_b_pecsrp_cl_s3", `Close ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Button", "Step 3 Private event  request Pop up");
+                    }
+                  }
+
+                  if ($(".first_step").is(":visible") && e.currentTarget.closest(".overlay_popup.charter_services_req") && !e.currentTarget.closest(".overlay_popup.charter_services_req")?.querySelector(".first_step").classList.contains("is_hidden")) {
+                    pushDataLayer("exp_new_ui_b_csrp_cl_s1", `Close ${e.currentTarget.closest(".overlay_popup ").getAttribute("data-visibprivate")}`, "Button", "Step 1 Chapter services request Pop up");
+                  }
+                  if ($(".second_step").is(":visible") && e.currentTarget.closest(".overlay_popup.charter_services_req") && !e.currentTarget.closest(".overlay_popup.charter_services_req")?.querySelector(".second_step").classList.contains("is_hidden")) {
+                    pushDataLayer("exp_new_ui_b_csrp_cl_s2", `Close ${e.currentTarget.closest(".overlay_popup").getAttribute("data-visibprivate")}`, "Button", "Step 2 Chapter services request Pop up");
+                  }
+                  onClosePopup();
+                }
+                e.target.setAttribute("data-test", "1");
+                setTimeout(() => {
+                  if (e.target.getAttribute("data-test")) {
+                    e.target.removeAttribute("data-test");
+                  }
+                }, 1000);
               });
             });
             document.querySelectorAll(".overlay_popup").forEach((i) => {
@@ -1520,8 +1685,10 @@ body.open_var {
               }
             }, 100);
           }
+
           function onClosePopup() {
             // startVideo();
+            document.querySelector("body").style.marginRight = `0px`;
             document.querySelectorAll(".overlay_popup").forEach((el) => {
               el.classList.add("is_hidden");
             });
@@ -1529,6 +1696,7 @@ body.open_var {
             if (document.querySelector("body").classList.contains("open_var")) {
               document.querySelector("body").classList.remove("open_var");
             }
+
             // setTimeout(() => {
             //   document.querySelector(".content_popup")?.remove();
             // }, 400);
@@ -1571,15 +1739,46 @@ body.open_var {
             }
           }, 100);
 
+          document.querySelectorAll(".new_btn_inquire_now").forEach((el) => {
+            // el.getAttribute("data-visib", "5");
+            el.addEventListener("click", (e) => {
+              if (!e.target.getAttribute("data-test")) {
+                e.preventDefault();
+                e.stopPropagation();
+                onOpenPopup(contentPopup, "private_event_req", "inquire_now");
+              }
+              e.target.setAttribute("data-test", "1");
+              setTimeout(() => {
+                if (e.target.getAttribute("data-test")) {
+                  e.target.removeAttribute("data-test");
+                }
+              }, 1000);
+            });
+          });
+
           let charterServicesReqBtn = setInterval(() => {
             if (document.querySelector(".charter_services_req_btn")) {
               clearInterval(charterServicesReqBtn);
               document.querySelector(".charter_services_req_btn")?.addEventListener("click", (e) => {
                 e.preventDefault();
+                pushDataLayer("exp_new_ui_b_csrp_con_s1", "Continue", "Button", "Step 1 Chapter services request Pop up");
                 validateForm("charter_services_req", "");
               });
             }
           }, 100);
+
+          function calcScroll() {
+            let div = document.createElement("div");
+            div.style.width = "50px";
+            div.style.height = "50px";
+            div.style.overflowY = "scroll";
+            div.style.visibility = "hidden";
+
+            document.body.appendChild(div);
+            let scrollWidth = div.offsetWidth - div.clientWidth;
+            div.remove();
+            return scrollWidth;
+          }
         }
       }
       function validateForm(parent, target) {
@@ -1590,6 +1789,22 @@ body.open_var {
         let inputValueServices = document.querySelector(`[data-count='${parent}'] textarea[name='services']`)?.value;
         let inputValueComments = document.querySelector(`[data-count='${parent}'] textarea[name='comments']`)?.value;
         let dateChecked;
+        let evt;
+        if (parent === "firts_get_a_quote") {
+          evt = "Special Birthday Celebrations on a Yacht";
+        }
+        if (parent === "second_get_a_quote") {
+          evt = "Dream Wedding Celebrations on a Yacht";
+        }
+        if (parent === "third_get_a_quote") {
+          evt = "Unforgettable Bachelor Parties on a Yacht";
+        }
+        if (parent === "fourth_get_a_quote") {
+          evt = "Memorable Team Building Onboard a Yacht";
+        }
+        if (parent === "inquire_now") {
+          evt = "Inquire Now";
+        }
 
         const months = {
           Jan: "January",
@@ -1655,20 +1870,21 @@ body.open_var {
           console.log("charter_services_req", `Отправляй!`);
           dateChecked = new Date(new Date(document.querySelector(`[data-count='${parent}'] [name="date"]`).value)).toDateString().split(" ");
 
-          if ((parent === "firts_get_a_quote" || parent === "second_get_a_quote" || parent === "third_get_a_quote" || parent === "fourth_get_a_quote") && target === "") {
+          if ((parent === "firts_get_a_quote" || parent === "second_get_a_quote" || parent === "third_get_a_quote" || parent === "fourth_get_a_quote" || parent === "inquire_now") && target === "") {
             document.querySelector(`[data-count='${parent}'] .private_event_req .second_step.is_hidden`)?.classList.remove("is_hidden");
             document.querySelector(`[data-count='${parent}'] .private_event_req .first_step`)?.classList.add("is_hidden");
           }
 
           if (parent === "charter_services_req") {
+            evt = "Want To Charter A Luxurious Yacht?";
             document.querySelector(".charter_services_req .my_date").textContent = `${daysWeek[dateChecked[0]]} ${dateChecked[2]} ${months[dateChecked[1]]}`;
-            ajaxEvents("Check Availability For Your Date", document.querySelector(`[data-count='${parent}'] input[name='email']`).value, document.querySelector('[name="date"]').value, "", "", "charter_services_req");
+            ajaxEvents("Check Availability For Your Date", document.querySelector(`[data-count='${parent}'] input[name='email']`).value, document.querySelector('[name="date"]').value, "", `btn: ${evt}`, "charter_services_req");
           }
-          if ((parent === "firts_get_a_quote" || parent === "second_get_a_quote" || parent === "third_get_a_quote" || parent === "fourth_get_a_quote") && target === "private_event_req_btn") {
-            document.querySelectorAll(".private_event_req .my_date").forEach((el) => {
+          if ((parent === "firts_get_a_quote" || parent === "second_get_a_quote" || parent === "third_get_a_quote" || parent === "fourth_get_a_quote" || parent === "inquire_now") && target === "private_event_req_btn") {
+            document.querySelectorAll(`[data-count='${parent}'] .private_event_req .my_date`).forEach((el) => {
               el.textContent = `${daysWeek[dateChecked[0]]} ${dateChecked[2]} ${months[dateChecked[1]]}`;
             });
-            ajaxEvents(document.querySelector(`[data-count='${parent}'] input[name='name']`).value, document.querySelector(`[data-count='${parent}'] input[name='email']`).value, document.querySelector('[name="date"]').value, inputValueServices, `${inputValueComments}, Duration of rental (in hours):${document.querySelector(`[data-count='${parent}'] input[name='hours']`)?.value}`, "private_event_req");
+            ajaxEvents(document.querySelector(`[data-count='${parent}'] input[name='name']`).value, document.querySelector(`[data-count='${parent}'] input[name='email']`).value, document.querySelector('[name="date"]').value, inputValueServices, `${inputValueComments}, Duration of rental (in hours):${document.querySelector(`[data-count='${parent}'] input[name='hours']`)?.value}, btn: ${evt}`, parent);
           }
         }
       }
@@ -1699,10 +1915,16 @@ body.open_var {
               if (parent === "charter_services_req") {
                 document.querySelector(".charter_services_req .second_step.is_hidden")?.classList.remove("is_hidden");
                 document.querySelector(".charter_services_req .first_step")?.classList.add("is_hidden");
+                pushDataLayer("exp_new_ui_chapter_sub_s2", `Chapter services request`, "Submit", "Step 1 Chapter services request Pop up");
               }
-              if (parent === "private_event_req") {
-                document.querySelector(".private_event_req .third_step.is_hidden")?.classList.remove("is_hidden");
-                document.querySelector(".private_event_req .second_step")?.classList.add("is_hidden");
+              if (parent === "firts_get_a_quote" || parent === "second_get_a_quote" || parent === "third_get_a_quote" || parent === "fourth_get_a_quote" || parent === "inquire_now") {
+                document.querySelector(`[data-count='${parent}'] .private_event_req .third_step.is_hidden`)?.classList.remove("is_hidden");
+                document.querySelector(`[data-count='${parent}'] .private_event_req .second_step`)?.classList.add("is_hidden");
+                if (parent === "inquire_now") {
+                  pushDataLayer("exp_new_ui_sub_qcsrp_s2", "Quiz Chapter services request", "Submit", "Quiz Step 2 Chapter services request Pop up");
+                } else {
+                  pushDataLayer("exp_new_ui_pecsrp_sub_s2", `Private event  request Pop up ${document.querySelector(`[data-count='${parent}']`).getAttribute("data-visibprivate")}`, "Submit", "Step 2 Private event request Pop up");
+                }
               }
             }
           },
@@ -1734,6 +1956,125 @@ body.open_var {
             obsV.observe(document.querySelector(".private_event_list"));
           }
         }, 100);
+        let intV3 = setInterval(() => {
+          if (document.querySelector(".firts_get_a_quote .first_step")) {
+            clearInterval(intV3);
+            time = 0;
+            obsV.observe(document.querySelector(".firts_get_a_quote .first_step"));
+          }
+        }, 100);
+        let intV4 = setInterval(() => {
+          if (document.querySelector(".second_get_a_quote .first_step")) {
+            clearInterval(intV4);
+            time = 0;
+            obsV.observe(document.querySelector(".second_get_a_quote .first_step"));
+          }
+        }, 100);
+        let intV5 = setInterval(() => {
+          if (document.querySelector(".third_get_a_quote .first_step")) {
+            clearInterval(intV5);
+            time = 0;
+            obsV.observe(document.querySelector(".third_get_a_quote .first_step"));
+          }
+        }, 100);
+        let intV6 = setInterval(() => {
+          if (document.querySelector(".fourth_get_a_quote .first_step")) {
+            clearInterval(intV6);
+            time = 0;
+            obsV.observe(document.querySelector(".fourth_get_a_quote .first_step"));
+          }
+        }, 100);
+        let intV7 = setInterval(() => {
+          if (document.querySelector(".firts_get_a_quote .second_step")) {
+            clearInterval(intV7);
+            time = 0;
+            obsV.observe(document.querySelector(".firts_get_a_quote .second_step"));
+          }
+        }, 100);
+        let intV8 = setInterval(() => {
+          if (document.querySelector(".second_get_a_quote .second_step")) {
+            clearInterval(intV8);
+            time = 0;
+            obsV.observe(document.querySelector(".second_get_a_quote .second_step"));
+          }
+        }, 100);
+        let intV9 = setInterval(() => {
+          if (document.querySelector(".third_get_a_quote .second_step")) {
+            clearInterval(intV9);
+            time = 0;
+            obsV.observe(document.querySelector(".third_get_a_quote .second_step"));
+          }
+        }, 100);
+        let intV10 = setInterval(() => {
+          if (document.querySelector(".fourth_get_a_quote .second_step")) {
+            clearInterval(intV10);
+            time = 0;
+            obsV.observe(document.querySelector(".fourth_get_a_quote .second_step"));
+          }
+        }, 100);
+        let intV11 = setInterval(() => {
+          if (document.querySelector(".firts_get_a_quote .third_step")) {
+            clearInterval(intV11);
+            time = 0;
+            obsV.observe(document.querySelector(".firts_get_a_quote .third_step"));
+          }
+        }, 100);
+        let intV12 = setInterval(() => {
+          if (document.querySelector(".second_get_a_quote .third_step")) {
+            clearInterval(intV12);
+            time = 0;
+            obsV.observe(document.querySelector(".second_get_a_quote .third_step"));
+          }
+        }, 100);
+        let intV13 = setInterval(() => {
+          if (document.querySelector(".third_get_a_quote .third_step")) {
+            clearInterval(intV13);
+            time = 0;
+            obsV.observe(document.querySelector(".third_get_a_quote .third_step"));
+          }
+        }, 100);
+        let intV14 = setInterval(() => {
+          if (document.querySelector(".fourth_get_a_quote .third_step")) {
+            clearInterval(intV14);
+            time = 0;
+            obsV.observe(document.querySelector(".fourth_get_a_quote .third_step"));
+          }
+        }, 100);
+        let intV15 = setInterval(() => {
+          if (document.querySelector(".charter_services_req .first_step")) {
+            clearInterval(intV15);
+            time = 0;
+            obsV.observe(document.querySelector(".charter_services_req .first_step"));
+          }
+        }, 100);
+        let intV16 = setInterval(() => {
+          if (document.querySelector(".charter_services_req .second_step")) {
+            clearInterval(intV16);
+            time = 0;
+            obsV.observe(document.querySelector(".charter_services_req .second_step"));
+          }
+        }, 100);
+        let intV17 = setInterval(() => {
+          if (document.querySelector(".inquire_now .first_step")) {
+            clearInterval(intV17);
+            time = 0;
+            obsV.observe(document.querySelector(".inquire_now .first_step"));
+          }
+        }, 100);
+        let intV18 = setInterval(() => {
+          if (document.querySelector(".inquire_now .second_step")) {
+            clearInterval(intV18);
+            time = 0;
+            obsV.observe(document.querySelector(".inquire_now .second_step"));
+          }
+        }, 100);
+        let intV19 = setInterval(() => {
+          if (document.querySelector(".inquire_now .third_step")) {
+            clearInterval(intV19);
+            time = 0;
+            obsV.observe(document.querySelector(".inquire_now .third_step"));
+          }
+        }, 100);
 
         function visibilityV(entries) {
           entries.forEach((i) => {
@@ -1753,16 +2094,59 @@ body.open_var {
               if (i.target.classList.contains("private_event_list")) {
                 pushDataLayer("exp_new_ui_v_pe", "Private event", "Visibility", "Private event HP");
               }
-              // if (i.target.classList.contains("")) {
-              // }
-              // if (i.target.classList.contains("")) {
-              // }
-              // if (i.target.classList.contains("")) {
-              // }
-              // if (i.target.classList.contains("")) {
-              // }
-              // if (i.target.classList.contains("")) {
-              // }
+              if (i.target.closest(".firts_get_a_quote") && i.target.classList.contains("first_step")) {
+                pushDataLayer("exp_new_ui_v_pecsrp_s1", "Private event Chapter services request 1", "Visibility", "Step 1 Private event request Pop up");
+              }
+              if (i.target.closest(".second_get_a_quote") && i.target.classList.contains("first_step")) {
+                pushDataLayer("exp_new_ui_v_pecsrp_s1", "Private event Chapter services request 2", "Visibility", "Step 1 Private event request Pop up");
+              }
+              if (i.target.closest(".third_get_a_quote") && i.target.classList.contains("first_step")) {
+                pushDataLayer("exp_new_ui_v_pecsrp_s1", "Private event Chapter services request 3", "Visibility", "Step 1 Private event request Pop up");
+              }
+              if (i.target.closest(".fourth_get_a_quote") && i.target.classList.contains("first_step")) {
+                pushDataLayer("exp_new_ui_v_pecsrp_s1", "Private event Chapter services request 4", "Visibility", "Step 1 Private event request Pop up");
+              }
+              if (i.target.closest(".firts_get_a_quote") && i.target.classList.contains("second_step")) {
+                pushDataLayer("exp_new_ui_v_pecsrp_s2", "Private event Chapter services request 1", "Visibility", "Step 2 Private event request Pop up");
+              }
+              if (i.target.closest(".second_get_a_quote") && i.target.classList.contains("second_step")) {
+                pushDataLayer("exp_new_ui_v_pecsrp_s2", "Private event Chapter services request 2", "Visibility", "Step 2 Private event request Pop up");
+              }
+              if (i.target.closest(".third_get_a_quote") && i.target.classList.contains("second_step")) {
+                pushDataLayer("exp_new_ui_v_pecsrp_s2", "Private event Chapter services request 3", "Visibility", "Step 2 Private event request Pop up");
+              }
+              if (i.target.closest(".fourth_get_a_quote") && i.target.classList.contains("second_step")) {
+                pushDataLayer("exp_new_ui_v_pecsrp_s2", "Private event Chapter services request 4", "Visibility", "Step 2 Private event request Pop up");
+              }
+              if (i.target.closest(".firts_get_a_quote") && i.target.classList.contains("third_step")) {
+                pushDataLayer("exp_new_ui_v_pecsrp_s3", "Thank you 1", "Visibility", "Step 3 Private event request Pop up");
+              }
+              if (i.target.closest(".second_get_a_quote") && i.target.classList.contains("third_step")) {
+                pushDataLayer("exp_new_ui_v_pecsrp_s3", "Thank you 2", "Visibility", "Step 3 Private event request Pop up");
+              }
+              if (i.target.closest(".third_get_a_quote") && i.target.classList.contains("third_step")) {
+                pushDataLayer("exp_new_ui_v_pecsrp_s3", "Thank you 3", "Visibility", "Step 3 Private event request Pop up");
+              }
+              if (i.target.closest(".fourth_get_a_quote") && i.target.classList.contains("third_step")) {
+                pushDataLayer("exp_new_ui_v_pecsrp_s3", "Thank you 4", "Visibility", "Step 3 Private event request Pop up");
+              }
+
+              if (i.target.closest(".charter_services_req") && i.target.classList.contains("first_step")) {
+                pushDataLayer("exp_new_ui_v_csrp_s1", "Chapter services request", "Visibility", "Step 1 Chapter services request Pop up");
+              }
+              if (i.target.closest(".charter_services_req") && i.target.classList.contains("second_step")) {
+                pushDataLayer("exp_new_ui_v_csrp_ty_s2", "Thank you", "Visibility", "Step 2 Chapter services request TY Pop up");
+              }
+
+              if (i.target.closest(".inquire_now") && i.target.classList.contains("first_step")) {
+                pushDataLayer("exp_new_ui_v_qcsrp_s1", "Quiz Chapter services request", "Visibility", "Quiz Step 1 Chapter services request Pop up");
+              }
+              if (i.target.closest(".inquire_now") && i.target.classList.contains("second_step")) {
+                pushDataLayer("exp_new_ui_v_qcsrp_s2", "Quiz Chapter services request", "Visibility", "Quiz Step 2 Chapter services request Pop up");
+              }
+              if (i.target.closest(".inquire_now") && i.target.classList.contains("third_step")) {
+                pushDataLayer("exp_new_ui_v_qcsrp_s3", "Thank you Quiz Chapter services request", "Visibility", "Quiz Step 3 Chapter services request Pop up");
+              }
 
               obsV.unobserve(i.target);
             }

@@ -39,8 +39,8 @@ let startPdp = setInterval(() => {
 
     let stylePdp = /*html */ `
     <style>
-      .fl-module-video {
-    margin-top: 40px;
+.fl-module-video {
+  margin-top: 40px;
 }
 .fl-row-content-wrap {
   padding: 36px 10px 0 !important;
@@ -87,6 +87,7 @@ let startPdp = setInterval(() => {
 }
 .fl-col-small .fl-module-content.fl-node-content {
   border: 1px solid #e7e6de;
+  padding: 10px 10px 0;
 }
 .fl-node-content iframe.rezdy {
   width: 100%;
@@ -446,8 +447,8 @@ h2.new_title::after {
   top: 16px;
 }
 .reviews_service img {
-    max-width: 95px;
-    max-height: 20px;
+  max-width: 95px;
+  max-height: 20px;
 }
 .reviews_name {
   color: #28364b;
@@ -480,6 +481,13 @@ h2.new_title::after {
   overflow: hidden;
   height: 120px;
 }
+.preview_text::-webkit-scrollbar {
+  width: 4px;
+}
+.preview_text::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #788188;
+}
 .reviews_read_more_btn {
   color: #28364b;
   font-family: "Raleway";
@@ -509,8 +517,8 @@ h2.new_title::after {
   width: 40px;
   height: 40px;
 }
-#reviewsBlock .slick-arrow.slick-disabled{
-      opacity: 0.3;
+#reviewsBlock .slick-arrow.slick-disabled {
+  opacity: 0.3;
 }
 #reviewsBlock .next_btn {
   right: -60px;
@@ -688,130 +696,141 @@ h2.new_title::after {
   display: none;
 }
 /*looking */
-.looking{
+.looking {
   display: flex;
   align-items: center;
   gap: 24px;
   margin: 26px 0 42px;
 }
-.looking > div{
+.looking > div {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.looking > div p{
-  color: #28364B;
-  font-family: 'Raleway';
+.looking > div p {
+  color: #28364b;
+  font-family: "Raleway";
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
   margin: 0 0 0 4px !important;
 }
 /*accardion_all_inform_block */
-.accardion_all_inform_block{
+.accardion_all_inform_block {
   list-style: none;
   margin: 20px 0 32px;
 }
-.fl-rich-text h3{
-color: #28364B;
-font-family: 'Playfair Display';
-font-size: 24px;
-font-weight: 400;
-line-height: 32px;
-text-transform: uppercase;
-margin-bottom: 20px !important;
+.fl-rich-text h3 {
+  color: #28364b;
+  font-family: "Playfair Display";
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  text-transform: uppercase;
+  margin-bottom: 20px !important;
 }
- .fl-rich-text p,
- .fl-rich-text > ul > li,
- .how_to_find_accardion_lists > div> ul > li{
-  color: #4B4F58;
-font-family: 'Raleway';
-font-size: 14px;
-font-weight: 400;
-line-height: 24px;
- }
-  .fl-rich-text > ul{
-    margin: 0 0 20px 22px;
-  }
-  .how_to_find_accardion_lists > div> ul{
-    margin: 0 0 0 20px;
-  }
-  .how_to_find_accardion_lists > div> ul > li{
-    padding-left: 10px;
-  }
-  .how_to_find_accardion_lists > div> ul + p{
-        position: unset;
-    padding: 0;
-    margin: 10px 0 0;
-  }
-  /* */
-  .fl-col-content .fl-module-photo,
-  .fl-module-slideshow{
-    display: none !important;
-  }
-    .swiper_arrow {
-    width: 40px !important;
-    height: 40px !important;
-    background: rgba(31, 27, 27, 0.50);
-  }
-  .swiper .swiper-button-next::after,
-  .swiper .swiper-button-prev::after {
-    content: "";
-  }
-  /* MAIN SLIDER */
-  .main_slider {
-    margin-bottom: 8px;
-    display: block;
-  }
-  .main_slider .swiper-slide img {
-    min-height: 100%;
-    min-width: 100%;
-    object-fit: contain;
-    max-height: 440px;
-  }
-  .swiper-slide img {
-    object-fit: contain;
-  }
-  .main_slider .swiper-slide {
-    text-align: center;
-    height: auto;
-  }
-  .main_slider .swiper-pagination {
-    display: none;
-  }
-  .main_slider_sync .swiper-slide{
-    max-width: 120px;
-    opacity: 0.8;
-  }
-  .main_slider_sync .swiper-slide.swiper-slide-thumb-active{
-    opacity: 1;
-  }
-  .main_slider_sync .swiper-slide img {
-    height: 120px;
-    min-width: 100%;
-    cursor: pointer;
-    box-sizing: border-box;
-    transition: 0.35s;
-    object-fit: cover;
-  }
+.fl-rich-text p,
+.fl-rich-text > ul > li,
+.how_to_find_accardion_lists > div > ul > li {
+  color: #4b4f58;
+  font-family: "Raleway";
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+}
+.fl-rich-text > ul {
+  margin: 0 0 20px 22px;
+}
+.how_to_find_accardion_lists > div > ul {
+  margin: 0 0 0 20px;
+}
+.how_to_find_accardion_lists > div > ul > li {
+  padding-left: 10px;
+}
+.how_to_find_accardion_lists > div > ul + p {
+  position: unset;
+  padding: 0;
+  margin: 10px 0 0;
+}
+/* */
+.fl-col-content .fl-module-photo,
+.fl-module-slideshow {
+  display: none !important;
+}
+.swiper_arrow {
+  width: 40px !important;
+  height: 40px !important;
+  background: rgba(31, 27, 27, 0.5);
+}
+.swiper .swiper-button-next::after,
+.swiper .swiper-button-prev::after {
+  content: "";
+}
+/* MAIN SLIDER */
+.main_slider {
+  margin-bottom: 8px;
+  display: block;
+}
+.main_slider .swiper-slide img {
+  min-height: 100%;
+  min-width: 100%;
+  object-fit: cover;
+  max-height: 440px;
+}
+.swiper-slide img {
+  object-fit: contain;
+}
+.main_slider .swiper-slide {
+  text-align: center;
+  height: auto;
+}
+.main_slider .swiper-pagination {
+  display: none;
+}
+.main_slider_sync .swiper-slide {
+  max-width: 120px;
+  opacity: 0.8;
+}
+.main_slider_sync .swiper-slide.swiper-slide-thumb-active {
+  opacity: 1;
+}
+.main_slider_sync .swiper-slide img {
+  height: 120px;
+  min-width: 100%;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: 0.35s;
+  object-fit: cover;
+}
 
-  @media(hover: hover) {
-    .main_slider_sync .swiper-slide:not(.swiper-slide-thumb-active) img:hover {
-      opacity: 0.6;
-    }
+@media (hover: hover) {
+  .main_slider_sync .swiper-slide:not(.swiper-slide-thumb-active) img:hover {
+    opacity: 0.6;
   }
-  
+}
+
 @media (max-width: 1295px) {
   .reviews_slider {
     max-width: 1000px;
   }
-        .fl-node-content .fl-col-group:not(.fl-node-5fbfca8d8a736) > div:nth-child(1):not(.fl-node-5fbfca8d8a778) {
-        max-width: 55%;
-      }
+  .fl-node-content .fl-col-group:not(.fl-node-5fbfca8d8a736) > div:nth-child(1):not(.fl-node-5fbfca8d8a778) {
+    max-width: 55%;
+  }
 }
 @media (max-width: 1200px) {
   .reviews_slider {
     max-width: 900px;
+  }
+}
+@media (max-width: 1168px) {
+  .book_now_wrapp p {
+    font-size: 17px;
+  }
+  .with_code_block {
+    padding: 20px 16px;
+  }
+  .free_cancellationup_block p span {
+    font-size: 18px;
   }
 }
 @media (max-width: 1050px) {
@@ -845,35 +864,36 @@ line-height: 24px;
     line-height: 18px;
     margin: 32px auto 0;
   }
-  .breadcrumbs{
-    color: #28364B;
-    font-family: 'Raleway';
+  .breadcrumbs {
+    color: #28364b;
+    font-family: "Raleway";
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
     margin: 20px auto;
     width: 90%;
   }
-  .ast-header-break-point .ast-mobile-header-inline .main-header-container, .ast-header-break-point .ast-mobile-header-stack .main-header-container{
+  .ast-header-break-point .ast-mobile-header-inline .main-header-container,
+  .ast-header-break-point .ast-mobile-header-stack .main-header-container {
     position: relative;
     align-items: center;
     justify-content: flex-end;
     margin-top: 10px;
   }
-  .ast-header-break-point .site-header .main-header-bar-wrap .site-branding{
+  .ast-header-break-point .site-header .main-header-bar-wrap .site-branding {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     top: 0;
     padding: 0;
   }
-  .ast-header-break-point .site-header .main-header-bar-wrap .site-branding > div{
+  .ast-header-break-point .site-header .main-header-bar-wrap .site-branding > div {
     padding: 0;
   }
   #custom-subheader {
     padding: 163px 0px 40px;
   }
-  #custom-subheader h1{
+  #custom-subheader h1 {
     font-size: 36px;
     line-height: 44px;
     margin: 0 !important;
@@ -906,37 +926,37 @@ line-height: 24px;
     border: none;
   }
   /*advisor_and_icon_box */
-  .advisor_and_icon_box{
+  .advisor_and_icon_box {
     margin: 24px 0 4px;
-    border: 1px solid #E7E6DE;
+    border: 1px solid #e7e6de;
   }
-  .lav_advisor{
+  .lav_advisor {
     padding: 16px 20px;
-    border-bottom: 1px solid #E7E6DE;
+    border-bottom: 1px solid #e7e6de;
   }
-  .lav_advisor > img{
+  .lav_advisor > img {
     max-width: 183px;
   }
-  .lav_advisor > p{
-    color: #28364B;
-    font-family: 'Raleway';
+  .lav_advisor > p {
+    color: #28364b;
+    font-family: "Raleway";
     font-size: 13px;
     font-weight: 400;
     line-height: 18px;
     margin: 4px 0 0 !important;
   }
-  .lav_advisor_count{
+  .lav_advisor_count {
     font-weight: 600;
   }
-  .lav_advisor > p > a{
-    border-bottom: 1px solid #0F0900;
-    color: #28364B;
+  .lav_advisor > p > a {
+    border-bottom: 1px solid #0f0900;
+    color: #28364b;
   }
-  .img_wrap_icon{
+  .img_wrap_icon {
     padding: 17px 20px;
     gap: 32px;
   }
-  .share{
+  .share {
     right: 42px;
     top: 51px;
   }
@@ -949,6 +969,12 @@ line-height: 24px;
   .with_code_block {
     padding: 24px;
     margin: 0 auto 24px;
+  }
+  .book_now_wrapp p {
+    font-size: 21px;
+  }
+  .free_cancellationup_block p span {
+    font-size: 20px;
   }
   .free_cancellationup_block {
     border-top: 1px solid #e7e6de;
@@ -1061,7 +1087,7 @@ line-height: 24px;
     display: block;
   }
   /*.looking */
-  .looking{
+  .looking {
     align-items: flex-start;
     gap: 8px;
     margin: 0 0 14px;
@@ -1069,63 +1095,61 @@ line-height: 24px;
     padding-top: 14px;
     border-top: 1px solid #e7e6de;
   }
-  .fl-rich-text h3{
+  .fl-rich-text h3 {
     font-size: 20px;
     line-height: 28px;
     margin-bottom: 12px !important;
   }
-  .accardion_all_inform_block{
+  .accardion_all_inform_block {
     margin: 0;
   }
-  .dress_code .how_to_find_accardion_lists p{
+  .dress_code .how_to_find_accardion_lists p {
     position: unset;
     padding: 0;
     margin: 0;
   }
-  .preview_text{
-        height: 93px;
+  .preview_text {
+    height: 93px;
   }
   /*main_slider_sync  */
   .main_slider_sync {
     display: none !important;
   }
-  .main_slider .swiper-pagination{
+  .main_slider .swiper-pagination {
     display: flex;
     position: initial;
     margin-top: 20px;
     align-items: center;
     justify-content: center;
   }
-  .main_slider{
+  .main_slider {
     margin-bottom: 0;
   }
-  .main_slider .swiper-slide img{
+  .main_slider .swiper-slide img {
     max-height: 370px;
     object-fit: cover;
-        min-height: 370px;
+    min-height: 370px;
   }
-  .swiper-pagination-bullet-active.swiper-pagination-bullet-active{
-    background: #CFBE88;
-        opacity: 1;
+  .swiper-pagination-bullet-active.swiper-pagination-bullet-active {
+    background: #cfbe88;
+    opacity: 1;
   }
-  .swiper-pagination-bullet{
-    background: #E5E2D6;
-        opacity: 1;
+  .swiper-pagination-bullet {
+    background: #e5e2d6;
+    opacity: 1;
   }
-  .swiper_arrow{
-        background: rgba(40, 54, 75, 0.50);
+  .swiper_arrow {
+    background: rgba(40, 54, 75, 0.5);
     border-radius: 50%;
     transform: translateY(-50%);
   }
-  .swiper-pagination-clickable .swiper-pagination-bullet{
+  .swiper-pagination-clickable .swiper-pagination-bullet {
     margin: 0 8px !important;
   }
-  .fl-module-video{
-        margin-top: 24px;
+  .fl-module-video {
+    margin-top: 24px;
   }
-
 }
-
     </style>
     `;
     let lookingHtml = `
@@ -1566,6 +1590,13 @@ line-height: 24px;
       4: ["https://drive.google.com/uc?export=view&id=1zo15RcVPo3UaoKNP6X6_bBb1sN_FNvVK"],
       5: ["https://drive.google.com/uc?export=view&id=12KieCMeooo_fAHC6xx7t9BBUGC-7RmcW"],
     };
+    let arrImgSwiperHauntedCruise = {
+      1: ["https://vegasyacht.com/wp-content/uploads/2023/09/Haunted-Cruise-at-Lake-Las-Vegas.jpg"],
+      2: ["https://drive.google.com/uc?export=view&id=1WvZr4ZXFkpxnp-qFvcFs9t7hXzhGrFgS"],
+      3: ["https://drive.google.com/uc?export=view&id=1rX5Ju9IGpTvewfZp_Y-6oUlE4CxcWAJG"],
+      4: ["https://drive.google.com/uc?export=view&id=1zo15RcVPo3UaoKNP6X6_bBb1sN_FNvVK"],
+      5: ["https://drive.google.com/uc?export=view&id=12KieCMeooo_fAHC6xx7t9BBUGC-7RmcW"],
+    };
 
     addSwiper();
     document.head.insertAdjacentHTML("beforeend", `<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">`);
@@ -1629,6 +1660,12 @@ line-height: 24px;
           for (let key in arrImgSwiperEmoNight) {
             document.querySelector(".main_slider .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperEmoNight[key][0]));
             document.querySelector(".main_slider_sync .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperEmoNight[key][0]));
+          }
+        }
+        if (window.location.pathname === "/haunted-cruise-at-lake-las-vegas/") {
+          for (let key in arrImgSwiperHauntedCruise) {
+            document.querySelector(".main_slider .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperHauntedCruise[key][0]));
+            document.querySelector(".main_slider_sync .swiper-wrapper").insertAdjacentHTML("beforeend", setListImgSwiper(arrImgSwiperHauntedCruise[key][0]));
           }
         }
       }
@@ -1849,9 +1886,10 @@ line-height: 24px;
                   el.addEventListener("click", (e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    pushDataLayer("exp_new_ui_l_r_rm", `Read more ${el.closest(".reviews_link").querySelector(".reviews_name").textContent}`, "Link", "Reviews");
+                    pushDataLayer("exp_im_pdp_l_r_rm", `Read more ${el.closest(".reviews_link").querySelector(".reviews_name").textContent}`, "Link", "Reviews");
                     e.currentTarget.style.display = "none";
-                    e.currentTarget.previousElementSibling.style.height = "auto";
+                    e.currentTarget.previousElementSibling.style.overflowY = "scroll";
+                    e.currentTarget.previousElementSibling.style.height = "168px";
                     slider.slick("refresh");
                   });
                 });
@@ -2021,8 +2059,8 @@ line-height: 24px;
       }
 
       if ($(".accardion_all_inform_block .how_to_find_accardion_link")) {
-        document.querySelectorAll(".accardion_all_inform_block .how_to_find_accardion_link")[1].classList.add("active_block");
-        document.querySelectorAll(".accardion_all_inform_block .how_to_find_accardion_lists")[1].style.display = "block";
+        document.querySelectorAll(".accardion_all_inform_block .how_to_find_accardion_link")[2].classList.add("active_block");
+        document.querySelectorAll(".accardion_all_inform_block .how_to_find_accardion_lists")[2].style.display = "block";
         $(".accardion_all_inform_block .how_to_find_accardion_link").click(function (e) {
           $(this).toggleClass("active_block");
           $(this).closest("li").toggleClass("active_block");
@@ -2205,8 +2243,10 @@ line-height: 24px;
       let link = setInterval(() => {
         if (document.querySelector(".lav_advisor > p > a")) {
           clearInterval(link);
-          document.querySelector(".lav_advisor > p > a").addEventListener("click", () => {
+          document.querySelector(".lav_advisor > p > a").addEventListener("click", (e) => {
+            e.preventDefault();
             pushDataLayer("exp_new_ui_l_fsp_sr", "See all reviews", "Link", "First screen PDP");
+            document.querySelector("#reviewsBlock")?.scrollIntoView({ block: "start", behavior: "smooth" });
           });
         }
       }, 100);
