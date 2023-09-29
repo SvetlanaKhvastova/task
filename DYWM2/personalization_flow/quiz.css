@@ -574,3 +574,18 @@ img {
   flex-wrap: wrap;
   gap: 8px;
 }
+/* new_list_yoga_classes */
+.new_list_yoga_classes {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.33rem;
+}
+
+.new_list_yoga_classes li {
+}
+.field_media_img {
+  display: block;
+  transition: 0.1s ease-in-out;
+  width: 100%;
+  height: auto;
+}
