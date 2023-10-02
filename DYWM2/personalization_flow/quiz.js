@@ -296,12 +296,12 @@ function onClickBtnOfQuiz() {
 }
 
 let script = document.createElement("script");
-script.src = "https://code.jquery.com/jquery-3.4.1.min.js";
+script.src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js";
 script.async = false;
 document.head.appendChild(script);
 // cdn pagination
 let scriptCustomPagination = document.createElement("script");
-scriptCustomPagination.src = "https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.6.0/pagination.min.js";
+scriptCustomPagination.src = "https://pagination.js.org/dist/2.5.0/pagination.min.js";
 scriptCustomPagination.async = false;
 document.head.appendChild(scriptCustomPagination);
 
@@ -336,17 +336,33 @@ function setPersonalizedBox() {
   }
 }
 
-function getPagination() {
-  $("#demo").pagination({
-    dataSource: [1, 2, 3, 4, 5, 6, 7, 35],
-    pageSize: 5,
-    pageNumber: 3,
-    callback: function (data, pagination) {
-      // template method of yourself
-      var html = template(data);
-      dataContainer.html(html);
-    },
-  });
+function getPagination(style) {
+  let s = setInterval(() => {
+    if (typeof $ === "function" && typeof $("#pagination-container").pagination === "function") {
+      clearInterval(s);
+      const items = document.querySelectorAll(`.${style}`);
+
+      $("#pagination-container").pagination({
+        dataSource: [...items],
+        autoHidePrevious: true,
+        autoHideNext: true,
+        pageSize: 9,
+        callback: function (data, pagination) {
+          var html = simpleTemplating(data);
+          $(".new_list_yoga_classes").html(html);
+        },
+      });
+
+      function simpleTemplating(data) {
+        const html = new DocumentFragment();
+        $.each(data, function (index, item) {
+          item.removeAttribute("hidden");
+          html.append(item);
+        });
+        return html;
+      }
+    }
+  }, 100);
 }
 
 getPdpShorterProduction();
@@ -384,6 +400,7 @@ function getPdpShorterProduction() {
 
       for (const key of Object.keys(product)) {
         // console.log(product[key].tags);
+
         document.querySelector(".new_list_yoga_classes").insertAdjacentHTML("beforeend", setListYogaClasses(product[key].view_node, product[key].title, product[key].field_difficulty, product[key].thumbnail__target_id, product[key].field_instructor, product[key].field_media_duration, product[key].rating, product[key].tags));
 
         if (localStorage.getItem("perfectYogaJourney") && document.querySelector(".new_list_yoga_classes").children.length === product.length) {
@@ -649,12 +666,12 @@ function getPdpShorterProduction() {
 
       if (document.querySelectorAll(".is_visible_duration").length <= 0) {
         document.querySelector(".list_yoga_classes_count").textContent = document.querySelectorAll(".is_visible").length;
+        getPagination("is_visible");
       } else {
         document.querySelector(".list_yoga_classes_count").textContent = document.querySelectorAll(".is_visible_duration").length;
+        getPagination("is_visible_duration");
       }
     });
-
-  getPagination();
 }
 
 function setListYogaClasses(link, title, difficulty, img, instructorName, duration, rating, tags, count) {
@@ -704,7 +721,7 @@ function setListYogaClasses(link, title, difficulty, img, instructorName, durati
   }
 
   return `
-  <li data-difficulty='${difficulty}' data-duration='${duration}' data-tags='${tags}'>
+  <li data-difficulty='${difficulty}' data-duration='${duration}' data-tags='${tags}' class="item" hidden>
     <a href="https://www.doyogawithme.com${link}">
       <div>
         <img src="https://www.doyogawithme.com${img}" alt="${title}" class="field_media_img" />

@@ -590,3 +590,98 @@ img {
   width: 100%;
   height: auto;
 }
+/*  */
+/* .paginationjs {
+  display: flex;
+  line-height: 1.6;
+  font-family: Marmelad, "Lucida Grande", Arial, "Hiragino Sans GB", Georgia, sans-serif;
+  font-size: 14px;
+  box-sizing: initial;
+}
+.paginationjs:after {
+  display: table;
+  content: " ";
+  clear: both;
+}
+.paginationjs .paginationjs-pages {
+  float: left;
+  margin-left: 10px;
+}
+.paginationjs .paginationjs-pages ul {
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+.paginationjs .paginationjs-pages li {
+  float: left;
+  border: 1px solid #aaa;
+  border-right: none;
+  list-style: none;
+}
+.paginationjs .paginationjs-pages li > a {
+  min-width: 30px;
+  height: 28px;
+  line-height: 28px;
+  display: block;
+  background: #fff;
+  font-size: 14px;
+  color: #333;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+}
+.paginationjs .paginationjs-pages li > a:hover {
+  background: #eee;
+}
+.paginationjs .paginationjs-pages li.active {
+  border: none;
+}
+.paginationjs .paginationjs-pages li.active > a {
+  height: 30px;
+  line-height: 30px;
+  background: #aaa;
+  color: #fff;
+  cursor: default;
+}
+.paginationjs .paginationjs-pages li.disabled > a {
+  opacity: 0.3;
+  cursor: default;
+}
+.paginationjs .paginationjs-pages li.disabled > a:hover {
+  background: 0 0;
+}
+.paginationjs .paginationjs-pages li:first-child,
+.paginationjs .paginationjs-pages li:first-child > a {
+  border-radius: 3px 0 0 3px;
+}
+.paginationjs .paginationjs-pages li:last-child {
+  border-right: 1px solid #aaa;
+  border-radius: 0 3px 3px 0;
+}
+.paginationjs .paginationjs-pages li:last-child > a {
+  border-radius: 0 3px 3px 0;
+}
+.paginationjs .paginationjs-nav {
+  float: left;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+}
+.paginationjs > :first-child {
+  margin-left: 0;
+}
+
+.paginationjs .paginationjs-pages li.paginationjs-next {
+  border-right: 1px solid #aaa;
+}
+
+#data-container {
+  overflow: auto;
+  margin: 15px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.33rem;
+}
+#data-container div {
+}
+} */
