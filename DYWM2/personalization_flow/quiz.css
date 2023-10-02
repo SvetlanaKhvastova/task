@@ -582,6 +582,7 @@ img {
 }
 
 .new_list_yoga_classes li {
+  display: none;
 }
 .field_media_img {
   display: block;

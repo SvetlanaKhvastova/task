@@ -295,6 +295,20 @@ function onClickBtnOfQuiz() {
   }, 100);
 }
 
+let script = document.createElement("script");
+script.src = "https://code.jquery.com/jquery-3.4.1.min.js";
+script.async = false;
+document.head.appendChild(script);
+// cdn pagination
+let scriptCustomPagination = document.createElement("script");
+scriptCustomPagination.src = "https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.6.0/pagination.min.js";
+scriptCustomPagination.async = false;
+document.head.appendChild(scriptCustomPagination);
+
+let scriptCustomPaginationStyle = document.createElement("link");
+scriptCustomPaginationStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.6.0/pagination.css";
+scriptCustomPaginationStyle.rel = "stylesheet";
+document.head.appendChild(scriptCustomPaginationStyle);
 //set personalized_box
 function setPersonalizedBox() {
   if (localStorage.getItem("perfectYogaJourney")) {
@@ -322,23 +336,328 @@ function setPersonalizedBox() {
   }
 }
 
+function getPagination() {
+  $("#demo").pagination({
+    dataSource: [1, 2, 3, 4, 5, 6, 7, 35],
+    pageSize: 5,
+    pageNumber: 3,
+    callback: function (data, pagination) {
+      // template method of yourself
+      var html = template(data);
+      dataContainer.html(html);
+    },
+  });
+}
+
 getPdpShorterProduction();
 function getPdpShorterProduction() {
   let product;
+  let levelBeginner = "Beginner";
+  let levelIntermediate = "Intermediate";
+  let levelAdvanced = "Advanced";
+
+  let typeOfYoga1 = "Vinyasa Flow";
+  let typeOfYoga2 = "Hatha";
+  let typeOfYoga3 = "Power Yoga";
+  let typeOfYoga4 = "Restorative/Yin";
+  let typeOfYoga5 = "Kundalini Yoga";
+  let typeOfYoga6 = "Yoga for Meditation and Mindfulness";
+
+  let focusOn1 = "Core strength and stability";
+  let focusOn2 = "Back strength and pain relief";
+  let focusOn3 = "Upper body strength and toning";
+  let focusOn4 = "Flexibility and joint mobility";
+  let focusOn5 = "Relaxation and and sleep improvement";
+  let focusOn6 = "Mindfulness and meditation techniques";
+  let focusOn7 = "Women’s health, Prenatal and Postnatal practices";
+  let focusOn8 = "Techniques to increase energy";
+
+  let durationTwentyTxt = "10-20 minutes";
+  let durationFortyFiveTxt = "30-45 minutes";
+  let durationSixtyTxt = "60 minutes or more";
+
   fetch(`videos-metadata-crs.json`)
     .then((response) => response.json())
     .then((json) => {
       product = json;
       console.log(product.length);
-      for (const key of Object.keys(product)) {
-        // console.log(product[key].rating);
 
-        document.querySelector(".new_list_yoga_classes").insertAdjacentHTML("beforeend", setListYogaClasses(product[key].view_node, product[key].title, product[key].field_difficulty, product[key].thumbnail__target_id, product[key].field_instructor, product[key].field_media_duration, product[key].rating));
+      for (const key of Object.keys(product)) {
+        // console.log(product[key].tags);
+        document.querySelector(".new_list_yoga_classes").insertAdjacentHTML("beforeend", setListYogaClasses(product[key].view_node, product[key].title, product[key].field_difficulty, product[key].thumbnail__target_id, product[key].field_instructor, product[key].field_media_duration, product[key].rating, product[key].tags));
+
+        if (localStorage.getItem("perfectYogaJourney") && document.querySelector(".new_list_yoga_classes").children.length === product.length) {
+          temp = JSON.parse(localStorage.getItem("perfectYogaJourney"));
+          console.log(document.querySelector(".new_list_yoga_classes").children.length);
+          // console.log(temp);
+          temp.forEach((list) => {
+            for (let link in list) {
+              document.querySelectorAll(".new_list_yoga_classes li").forEach((i) => {
+                let arrList = list[link];
+                arrList.forEach((link) => {
+                  // difficulty
+                  if (link === levelBeginner) {
+                    if (i.getAttribute("data-difficulty") === "Beginner" || i.getAttribute("data-difficulty") === "Beginner I" || i.getAttribute("data-difficulty") === "Beginner II") {
+                      if (!i.classList.contains("is_visible")) {
+                        i.classList.add("is_visible");
+                        i.style.display = "block";
+                      }
+                    }
+                  }
+                  if (link === levelIntermediate) {
+                    if (i.getAttribute("data-difficulty") === "Intermediate" || i.getAttribute("data-difficulty") === "Intermediate I" || i.getAttribute("data-difficulty") === "Intermediate II" || i.getAttribute("data-difficulty") === "Intermediate III") {
+                      if (!i.classList.contains("is_visible")) {
+                        i.classList.add("is_visible");
+                        i.style.display = "block";
+                      }
+                    }
+                  }
+                  if (link === levelAdvanced) {
+                    if (i.getAttribute("data-difficulty") === "Advanced") {
+                      if (!i.classList.contains("is_visible")) {
+                        i.classList.add("is_visible");
+                        i.style.display = "block";
+                      }
+                    }
+                  }
+                  // tags
+                  let tagsArr = i.getAttribute("data-tags").split(",");
+                  tagsArr.forEach((tag) => {
+                    // typeOf
+                    if (link === typeOfYoga1) {
+                      if (tag === "Vinyasa/Power Yoga" || tag === "Pilates" || tag === "Jivamukti") {
+                        if (!i.classList.contains("is_visible")) {
+                          i.classList.add("is_visible");
+                          i.style.display = "block";
+                        }
+                      }
+                    }
+                    if (link === typeOfYoga2) {
+                      if (tag === "Hatha Yoga" || tag === "Prenatal/Postnatal Yoga" || tag === "Pranayama Yoga" || tag === "Slow Flow" || tag === "PNF" || tag === "Gentle Yoga" || tag === "Yoga at Work") {
+                        if (!i.classList.contains("is_visible")) {
+                          i.classList.add("is_visible");
+                          i.style.display = "block";
+                        }
+                      }
+                    }
+                    if (link === typeOfYoga3) {
+                      if (tag === "Ashtanga Yoga" || tag === "Vinyasa/Power Yoga" || tag === "Yoga for Athletes" || tag === "Yoga for Runners") {
+                        if (!i.classList.contains("is_visible")) {
+                          i.classList.add("is_visible");
+                          i.style.display = "block";
+                        }
+                      }
+                    }
+                    if (link === typeOfYoga4) {
+                      if (tag === "Restorative Yoga" || tag === "Yin and Yin/Yang Yoga" || tag === "Prenatal/Postnatal Yoga" || tag === "Mom and Baby Yoga" || tag === "Chair Yoga" || tag === "Yoga for Seniors" || tag === "Yoga Therapy" || tag === "Yoga for Back Care" || tag === "Yoga at Work") {
+                        if (!i.classList.contains("is_visible")) {
+                          i.classList.add("is_visible");
+                          i.style.display = "block";
+                        }
+                      }
+                    }
+                    if (link === typeOfYoga5) {
+                      if (tag === "Kundalini Yoga" || tag === "Pranayama Yoga") {
+                        if (!i.classList.contains("is_visible")) {
+                          i.classList.add("is_visible");
+                          i.style.display = "block";
+                        }
+                      }
+                    }
+                    if (link === typeOfYoga6) {
+                      if (tag === "Guided Meditation" || tag === "Kundalini Yoga" || tag === "Pranayama Yoga" || tag === "Values-based Education") {
+                        if (!i.classList.contains("is_visible")) {
+                          2;
+
+                          i.classList.add("is_visible");
+                          i.style.display = "block";
+                        }
+                      }
+                    }
+                    //focusOn
+                    if (link === focusOn1) {
+                      if (tag === "Core Strength" || tag === "Balance" || tag === "Legs and Feet" || tag === "Spine" || tag === "Strength" || tag === "Whole Body" || tag === "Inversions") {
+                        if (!i.classList.contains("is_visible")) {
+                          console.log(tag);
+                          i.classList.add("is_visible");
+                          i.style.display = "block";
+                        }
+                      }
+                    }
+                    if (link === focusOn2) {
+                      if (tag === "Backbends" || tag === "Lower Back" || tag === "Neck/Shoulders" || tag === "Spine") {
+                        if (!i.classList.contains("is_visible")) {
+                          console.log(tag);
+                          i.classList.add("is_visible");
+                          i.style.display = "block";
+                        }
+                      }
+                    }
+                    if (link === focusOn3) {
+                      if (tag === "Core Strength" || tag === "Arms/Hands") {
+                        if (!i.classList.contains("is_visible")) {
+                          console.log(tag);
+                          i.classList.add("is_visible");
+                          i.style.display = "block";
+                        }
+                      }
+                    }
+                    if (link === focusOn4) {
+                      if (tag === "Flexibility" || tag === "Hips" || tag === "Legs and Feet" || tag === "Twists" || tag === "Whole Body") {
+                        if (!i.classList.contains("is_visible")) {
+                          console.log(tag);
+                          i.classList.add("is_visible");
+                          i.style.display = "block";
+                        }
+                      }
+                    }
+                    if (link === focusOn5) {
+                      if (tag === "Sleep/Relaxation" || tag === "Stress/Anxiety") {
+                        if (!i.classList.contains("is_visible")) {
+                          console.log(tag);
+                          i.classList.add("is_visible");
+                          i.style.display = "block";
+                        }
+                      }
+                    }
+                    if (link === focusOn6) {
+                      if (tag === "Meditation") {
+                        if (!i.classList.contains("is_visible")) {
+                          console.log(tag);
+                          i.classList.add("is_visible");
+                          i.style.display = "block";
+                        }
+                      }
+                    }
+                    if (link === focusOn7) {
+                      if (tag === "Prenatal/Postnatal Yoga" || tag === "Gentle Yoga" || tag === "Mom and Baby Yoga" || tag === "Yoga for Kids") {
+                        if (!i.classList.contains("is_visible")) {
+                          console.log(tag);
+                          i.classList.add("is_visible");
+                          i.style.display = "block";
+                        }
+                      }
+                    }
+                    if (link === focusOn8) {
+                      if (tag === "Morning" || tag === "Travel" || tag === "Vigorous/Energy") {
+                        if (!i.classList.contains("is_visible")) {
+                          console.log(tag);
+                          i.classList.add("is_visible");
+                          i.style.display = "block";
+                        }
+                      }
+                    }
+                  });
+                  // duration
+                  if (document.querySelectorAll(".is_visible").length > 0) {
+                    document.querySelectorAll(".is_visible").forEach((visib) => {
+                      if (link === durationTwentyTxt) {
+                        if (i.getAttribute("data-duration") <= 1200) {
+                          if (!i.classList.contains("is_visible_duration") && i.classList.contains("is_visible")) {
+                            console.log(i.getAttribute("data-duration"), `durationTwentyTxt`);
+                            i.classList.add("is_visible_duration");
+                            i.style.display = "block";
+                          }
+                        } else {
+                          if (!i.classList.contains("is_visible_duration")) {
+                            // i.classList.remove("is_visible");
+                            i.style.display = "none";
+                          }
+                        }
+                      }
+                      if (link === durationFortyFiveTxt) {
+                        if (i.getAttribute("data-duration") >= 1800 && i.getAttribute("data-duration") <= 2700) {
+                          if (!i.classList.contains("is_visible_duration") && i.classList.contains("is_visible")) {
+                            console.log(i.getAttribute("data-duration"), `durationFortyFiveTxt`);
+                            i.classList.add("is_visible_duration");
+                            i.style.display = "block";
+                          }
+                        } else {
+                          if (!i.classList.contains("is_visible_duration")) {
+                            // i.classList.remove("is_visible");
+                            i.style.display = "none";
+                          }
+                        }
+                      }
+                      if (link === durationSixtyTxt) {
+                        if (i.getAttribute("data-duration") >= 3600) {
+                          if (!i.classList.contains("is_visible_duration") && i.classList.contains("is_visible")) {
+                            console.log(i.getAttribute("data-duration"), "durationSixtyTxt");
+                            i.classList.add("is_visible_duration");
+                            i.style.display = "block";
+                          }
+                        } else {
+                          if (!i.classList.contains("is_visible_duration")) {
+                            // i.classList.remove("is_visible");
+                            i.style.display = "none";
+                          }
+                        }
+                      }
+                    });
+                  } else {
+                    // console.log(link);
+                    if (link === durationTwentyTxt) {
+                      if (i.getAttribute("data-duration") <= 1200) {
+                        if (!i.classList.contains("is_visible_duration")) {
+                          // console.log(i.getAttribute("data-duration"), `durationTwentyTxt NONE >>>>>>>>>>>>>>>>>>>>>`);
+                          // console.log("NONE is_visible");
+                          i.classList.add("is_visible_duration");
+                          i.style.display = "block";
+                        }
+                      } else {
+                        if (!i.classList.contains("is_visible_duration")) {
+                          // i.classList.remove("is_visible");
+                          i.style.display = "none";
+                        }
+                      }
+                    }
+                    if (link === durationFortyFiveTxt) {
+                      if (i.getAttribute("data-duration") >= 1800 && i.getAttribute("data-duration") <= 2700) {
+                        if (!i.classList.contains("is_visible_duration")) {
+                          // console.log(i.getAttribute("data-duration"), `durationFortyFiveTxt NONE !!!!!!!!!!!!!!!!!!!!!!!!!!`);
+                          i.classList.add("is_visible_duration");
+                          i.style.display = "block";
+                        }
+                      } else {
+                        if (!i.classList.contains("is_visible_duration")) {
+                          // i.classList.remove("is_visible");
+                          i.style.display = "none";
+                        }
+                      }
+                    }
+                    if (link === durationSixtyTxt) {
+                      if (i.getAttribute("data-duration") >= 3600) {
+                        if (!i.classList.contains("is_visible_duration")) {
+                          console.log(i.getAttribute("data-duration"), "durationSixtyTxt NONE +++++++++++++++++++");
+                          i.classList.add("is_visible_duration");
+                          i.style.display = "block";
+                        }
+                      } else {
+                        if (!i.classList.contains("is_visible_duration")) {
+                          // i.classList.remove("is_visible");
+                          i.style.display = "none";
+                        }
+                      }
+                    }
+                  }
+                });
+              });
+            }
+          });
+        }
+      }
+
+      if (document.querySelectorAll(".is_visible_duration").length <= 0) {
+        document.querySelector(".list_yoga_classes_count").textContent = document.querySelectorAll(".is_visible").length;
+      } else {
+        document.querySelector(".list_yoga_classes_count").textContent = document.querySelectorAll(".is_visible_duration").length;
       }
     });
+
+  getPagination();
 }
 
-function setListYogaClasses(link, title, difficulty, img, instructorName, duration, rating, count) {
+function setListYogaClasses(link, title, difficulty, img, instructorName, duration, rating, tags, count) {
   // duration
   let sec = +duration;
   let h = (sec / 3600) ^ 0;
@@ -351,6 +670,7 @@ function setListYogaClasses(link, title, difficulty, img, instructorName, durati
   } else {
     result = `${h < 10 ? "" + h : h}:${m < 10 ? "0" + m : m}:${s < 10 ? "0" + s : s}`;
   }
+
   // rating
   let ratingSvg = "";
   if (rating === 5) {
@@ -384,7 +704,7 @@ function setListYogaClasses(link, title, difficulty, img, instructorName, durati
   }
 
   return `
-  <li>
+  <li data-difficulty='${difficulty}' data-duration='${duration}' data-tags='${tags}'>
     <a href="https://www.doyogawithme.com${link}">
       <div>
         <img src="https://www.doyogawithme.com${img}" alt="${title}" class="field_media_img" />
