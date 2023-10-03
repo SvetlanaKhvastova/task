@@ -4,6 +4,10 @@ let startF = setInterval(() => {
 
     let styleNew = /*html */ `
     <style>
+      body{
+        margin: 0;
+        padding: 0;
+      }
 #promoteSubscriptionWrap {
   position: relative;
   background: #fff;
@@ -132,8 +136,8 @@ let startF = setInterval(() => {
 }
 .list_main_title {
   position: relative;
-  lor: #272727;
-  font-familyco: "Manrope", sans-serif;
+  color: #272727;
+  font-family: "Manrope", sans-serif;
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
@@ -1384,7 +1388,7 @@ html.open_var {
                         <h2 class="title_page">How much time can you allocate for your yoga practice?</h2>
                         <div class="personalized_txt_wrapp" data-name="preferredDuration"></div>
                         <div class="choose_option_wrapp">
-                        <input class="custom_checkbox" id="twenty" type="radio" name="time" value="20" />
+                        <input class="custom_checkbox" id="twenty" type="checkbox" name="twenty" value="20" />
                         <label for="twenty" tabindex="0" data-name="10-20 minutes"
                             ><span class="choose_option_txt"
                             ><b>10-20 minutes</b><br />
@@ -1393,7 +1397,7 @@ html.open_var {
                             <span class="checked_box"></span
                         ></label>
 
-                        <input class="custom_checkbox" id="fortyFive" type="radio" name="time" value="45" />
+                        <input class="custom_checkbox" id="fortyFive" type="checkbox" name="fortyFive" value="45" />
                         <label for="fortyFive" tabindex="0" data-name="30-45 minutes"
                             ><span class="choose_option_txt"
                             ><b>30-45 minutes</b><br />
@@ -1402,7 +1406,7 @@ html.open_var {
                             <span class="checked_box"></span
                         ></label>
 
-                        <input class="custom_checkbox" id="sixty" type="radio" name="time" value="60" />
+                        <input class="custom_checkbox" id="sixty" type="checkbox" name="sixty" value="60" />
                         <label for="sixty" tabindex="0" data-name="60 minutes or more">
                             <span class="choose_option_txt"
                             ><b>60 minutes or more</b><br />
@@ -1428,7 +1432,9 @@ html.open_var {
     document.body.insertAdjacentHTML("afterbegin", popUp);
 
     // if user is free
-    isNotSubscriber();
+    if (JSON.parse(document.querySelector('[data-drupal-selector="drupal-settings-json"]')?.textContent).dywm.gtm.customer_info.user.isSubscriber === false) {
+      isNotSubscriber();
+    }
     //unless we have already created personalized list banner
     if (!localStorage.getItem("createdPersonalizedList")) {
       nonCreatedPersonalizedList();
