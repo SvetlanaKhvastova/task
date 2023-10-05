@@ -71,7 +71,7 @@ let startFunk = setInterval(() => {
       "16.92 MM": ["6 1/2", "N", "54", "13", "0.666"],
       "17.13 MM": ["6 3/4", "N 1/2", "-", "-", "0.674"],
       "17.35 MM": ["7", "O", "55 1/4", "14", "0.683"],
-      "14.45 MM": ["7 1/4", "O 1/2", "-", "-", "0.687"],
+      "17.45 MM": ["7 1/4", "O 1/2", "-", "-", "0.687"],
       "17.75 MM": ["7 1/2", "P", "56 1/2", "15", "0.699"],
       "17.97 MM": ["7 3/4", "P 1/2", "-", "-", "0.707"],
       "18.19 MM": ["8", "Q", "57 3/4", "16", "0.716"],
@@ -329,7 +329,7 @@ h1.h2.product-single__title {
   display: flex;
   align-items: center;
   gap: 4px;
-  cursor: pointer;
+  display: none !important;
 }
 .get_discount_caption {
   color: #c1856f;
@@ -1069,7 +1069,7 @@ button.syte-discovery.syte-integration-injected .button-text {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  z-index: 11;
+  z-index: 10;
 }
 .tangiblee-cta-wrapper .tangiblee-cta {
   height: 32px;
@@ -1123,7 +1123,7 @@ nav.breadcrumb.custom_breadcrumbs {
   bottom: 0;
   left: 0;
   right: 0;
-      z-index: 12;
+      z-index: 10;
   border-top: 1px solid #f6f5f5;
   background: #fff;
   padding: 5px 48px;
@@ -3042,8 +3042,8 @@ section.shopify-section .index-section > .page-width{
               if (localStorage.getItem("shorterProduction")) {
                 const options = { day: "2-digit", month: "short" };
                 const date = new Date();
-                let dateAfter8Weeks = new Date(date.getTime() + 3.5 * 7 * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
-                let dateAfter9Weeks = new Date(date.getTime() + 4 * 7 * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
+                let dateAfter8Weeks = new Date(date.getTime() + 4 * 7 * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
+                let dateAfter9Weeks = new Date(date.getTime() + 4.5 * 7 * 24 * 60 * 60 * 1000).toLocaleString("en-US", options);
                 document.querySelector(".shorter_time").textContent = `${dateAfter8Weeks}-${dateAfter9Weeks}`;
               }
               if (document.querySelector(".production_time_available")?.classList.contains("is_hidden")) {

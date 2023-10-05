@@ -1,0 +1,2604 @@
+console.log("initExp");
+
+/********* Settings **********/
+const settings = {
+  dir: "https://flopsi69.github.io/crs/doYogaWithMe/subscribe",
+  clarity: true,
+  observe: false,
+};
+
+//Clarity
+if (settings.clarity) {
+  const clarityInterval = setInterval(function () {
+    if (typeof clarity == "function") {
+      clearInterval(clarityInterval);
+      clarity("set", "change_plans_page_signup_сheckout", "variant_1");
+    }
+  }, 1000);
+}
+
+// Alalytic 4
+function gaEvent(name = "", desc = "", type = "", loc = "") {
+  try {
+    var objData = {
+      event: "event-to-ga4",
+      event_name: name,
+      event_desc: desc,
+      event_type: type,
+      event_loc: loc,
+    };
+    console.log("eventFire", objData);
+    dataLayer.push(objData);
+  } catch (e) {
+    console.log("Event Error:", e);
+  }
+}
+
+// Observe
+if (settings.observe) {
+  let observer = new MutationObserver((mutations) => {
+    for (let mutation of mutations) {
+      for (let node of mutation.addedNodes) {
+        if (!(node instanceof HTMLElement)) continue;
+
+        // Code Here
+      }
+    }
+  });
+
+  let demoElem = document.body;
+
+  observer.observe(demoElem, { childList: true, subtree: true });
+}
+
+// Styles
+const styles = `
+/**promoteSubscriptionWrap */
+        .o-page__banner + #promoteSubscriptionWrap{
+           padding: 25px 0 40px;
+        }
+        #promoteSubscriptionWrap {
+        position: relative;
+        background: #fff;
+        width: 100%;
+        padding: 42px 0 40px;
+      }
+      .bgr_gray {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #f6f6f6;
+        min-height: 95px;
+        max-height: 95px;
+        height: 100%;
+        width: 100%;
+      }
+      .new_container {
+        max-width: 1040px;
+        margin: 0 auto;
+        width: 90%;
+        padding: 30px;
+        border-radius: 12px;
+        background: #fff;
+        box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.15);
+      }
+      .btn_wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 16px;
+        margin-bottom: 16px;
+        border-bottom: 2px solid #f6f6f6;
+      }
+      .btn_wrapper h2 {
+        font-family: "Manrope", sans-serif;
+        color: #272727;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 30px;
+        margin: 0;
+      }
+      .accent_color {
+        color: #017922;
+      }
+      #UnlockPremiumContentLink,
+      #subscribeSaveLink {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        max-width: 302px;
+        width: 100%;
+        height: 48px;
+        border-radius: 30px;
+        background: #017922;
+        transition: all 0.3s ease;
+      }
+      #UnlockPremiumContentLink:hover,
+      #subscribeSaveLink:hover {
+        color: #ffffff;
+        background: #00601b;
+        border-color: #007922;
+        text-decoration: unset;
+      }
+      #UnlockPremiumContentLink span {
+        font-family: "Manrope", sans-serif;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 32px;
+        text-transform: capitalize;
+      }
+      .toggle_btn_features {
+        display: flex;
+        gap: 8px;
+        cursor: pointer;
+        margin: 18px auto 0;
+        align-items: center;
+        justify-content: center;
+        width: max-content;
+      }
+      .toggle_btn_features span {
+        font-family: "Manrope", sans-serif;
+        color: #027db8;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 21px;
+        text-decoration-line: underline;
+        text-transform: capitalize;
+      }
+      .toggle_btn_features > svg {
+        transition: all 0.3s ease;
+      }
+      .toggle_btn_features.open_var > svg {
+        transform: rotateX(180deg);
+      }
+      .new_features_list,
+      .hidden_new_features_list {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .new_features_list > li,
+      .hidden_new_features_list > li {
+        width: 30%;
+      }
+      .mini_block {
+        margin-top: 24px;
+      }
+      .mini_block > li {
+        width: 100%;
+      }
+      .mini_block > li .list_main_title {
+        margin-bottom: 12px;
+      }
+      .hidden_inform_box {
+        display: none;
+        margin-top: 12px;
+      }
+      .list_main_title {
+        position: relative;
+        color: #272727;
+        font-family: "Manrope", sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 20px;
+        margin: 0;
+        padding-left: 52px;
+      }
+      .list_main_title[data-title]::before {
+        position: absolute;
+        content: "";
+        width: 40px;
+        height: 40px;
+        background: url(https://conversionratestore.github.io/projects/doyogawithme/img/premium.svg) no-repeat center center;
+        top: 0;
+        left: 0;
+        background-size: contain;
+      }
+      .list_main_title[data-title="yoga_person"]::before {
+        background: url(https://conversionratestore.github.io/projects/doyogawithme/img/yoga_person.svg) no-repeat center center;
+        background-size: contain;
+      }
+      .list_main_title[data-title="yoga"]::before {
+        background: url(https://conversionratestore.github.io/projects/doyogawithme/img/yoga.svg) no-repeat center center;
+        background-size: contain;
+      }
+      .list_main_title[data-title="devices"]::before {
+        background: url(https://conversionratestore.github.io/projects/doyogawithme/img/devices.svg) no-repeat center center;
+        background-size: contain;
+      }
+      .list_txt {
+        color: #555;
+        font-family: "Manrope", sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 24px;
+        margin: 0;
+        max-width: 300px;
+      }
+      .your_store_wrap {
+        margin-top: 48px;
+      }
+      .your_store_wrap .list_main_title {
+        padding: 0;
+        margin-bottom: 12px;
+      }
+      .professional_classes_list {
+        list-style: disc;
+        color: #555;
+        font-size: 12px;
+        margin-top: 12px;
+        padding: 0 0 0 23px;
+      }
+      .professional_classes_list > li + li {
+        margin-top: 10px;
+      }
+      .store_icon {
+        display: flex;
+        justify-content: flex-start;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+      .store_icon img {
+        max-width: 140px;
+        width: 100%;
+      }
+      [data-mob],
+      [data-openmobvar] {
+        display: none;
+      }
+      /*https://www.doyogawithme.com/become-a-subscriber ->>>>> promoteSubscriptionWrap */
+      .path-become-a-subscriber .new_box_subscriber {
+        background: linear-gradient(45deg, #003a67 0%, #007db8 100%);
+        padding: 40px 10px 142px;
+      }
+      .path-become-a-subscriber #promoteSubscriptionWrap {
+        background: #faf8f6;
+        padding: 15px 0;
+      }
+      .path-become-a-subscriber .bgr_gray,
+      .path-become-a-subscriber #UnlockPremiumContentLink {
+        display: none;
+      }
+      .path-become-a-subscriber .btn_wrapper {
+        justify-content: center;
+        margin-bottom: 10px;
+      }
+      .path-become-a-subscriber .new_container {
+        margin-bottom: -73px;
+        z-index: 34;
+        margin-top: -119px;
+      }
+      .path-become-a-subscriber .new_title_subscriber {
+        color: #fff;
+        text-align: center;
+        font-family: "Manrope", sans-serif !important;
+        font-size: 44px;
+        font-weight: 700;
+        line-height: 52px;
+        max-width: 636px;
+        margin: 0 auto 40px;
+      }
+  .lav-hide {
+    display: none!important;
+  }
+  .sfc-becomeASubscriber__section, .sfc-becomeASubscriber__section + section {
+    display: none!important;
+  }
+  #main-content > section {
+    position: relative;
+    width: 100%;
+  }
+  .lav-btn {
+    background-color: #017922;
+    border-color: #017922;
+  }
+  .lav-btn:hover {
+    background-color: #06571c;
+    border-color: #06571c;
+  }
+  .lav-container {
+    z-index: 2;
+    margin: 0 auto;
+    width: 68em;
+    max-width: 100%;
+    padding: 0 1em;
+  }
+  .lav-jumb_auth .lav-container{
+    max-width: 935px;
+    padding: 69px 0 28px;
+    border: 2px dashed hwb(0deg 96% 4% / 50%);
+    border-radius: 12px;
+  }
+  .lav-container * {
+    box-sizing: border-box;
+  }
+
+  .lav-jumb {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    min-height: calc(100vh - 46.5px);
+    padding-top: 50px;
+    padding-bottom: 135px;
+    text-align: center;
+    color: #fff;
+  }
+  .lav-jumb_auth {
+border-radius: 12px;
+    background: linear-gradient(45deg, #003a67 0%, #007db8 100%);
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 13px;
+    min-height: unset;
+  }
+  .lav-jumb_no-auth {
+    position: relative;
+    min-height: auto;
+    padding-bottom: 115px;
+  }
+  .o-page__main {
+    position: relative;
+  }
+  body:not(.user-logged-in) .o-page__main:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: calc(100vh - 46.5px);
+    background: url('${settings.dir}/img/jumb-bg2.jpeg') center no-repeat;
+    background-size: cover;
+  }
+  .lav-jumb__title {
+    font-weight: 700;
+    font-size: 46px;
+    line-height: 63px;
+  }
+  .lav-jumb__caption {
+    margin-top: 24px;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1;
+  }
+  .path-become-a-subscriber .lav-jumb__caption {
+    margin: 0;
+    font-weight: 700;
+    line-height: 30px;
+}
+  .lav-jumb__plans {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 45px;
+  }
+  .lav-jumb__plans-all {
+    display: flex;
+    margin-top: 25px;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  .lav-plan {
+    position: relative;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(3px);
+    border-radius: 12px;
+    color: #272727;
+    padding: 40px;
+    min-width: 320px;
+  }
+  .lav-jumb__plans-all .lav-plan {
+    background-color: #fff;
+  }
+  .lav-plan:first-child {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+  }
+  @media(min-width: 993px) {
+    .lav-plan:nth-child(2) {
+      border: 2px solid #027DB8;
+      overflow: hidden;
+    }
+    .lav-jumb__plans-all .lav-plan {
+      border-radius: 0;
+      padding-bottom: 24px;
+      min-height: 335px;
+    }
+    .lav-jumb__plans-all .lav-plan__caption {
+      color: #017922;
+    }
+    .lav-jumb__plans-all .lav-plan:nth-child(1) {
+      border-top-left-radius: 12px;
+    }
+    .lav-jumb__plans-all .lav-plan:nth-child(1) .lav-plan__price {
+      min-height: 95px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lav-jumb__plans-all .lav-plan:nth-child(3) {
+      border-top-right-radius: 12px;
+    }
+    .lav-jumb__plans-all .lav-plan:nth-child(2) {
+      position: relative;
+      z-index: 1;
+      border-width: 0;
+      border-radius: 0;
+      border-top-right-radius: 12px;
+      border-top-left-radius: 12px;
+      padding-bottom: 24px
+    }
+  }
+
+  .lav-plan:nth-child(2):before {
+    content: 'Save 35%';
+    position: absolute;
+    z-index: 99;
+    top: 54px;
+    right: -3px;
+    transform: rotate(45deg);
+    transform-origin: bottom right;
+    padding: 5px 30px;
+    background: #F3A83C;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    color: #272727;
+  }
+  .lav-plan__title {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 20px;
+  }
+  .lav-plan__caption {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    margin-top: 8px;
+  }
+  .lav-plan__price {
+    margin-top: 12px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .lav-plan__price span {
+    color: #027DB8;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 44px;
+  }
+  .lav-plan__year {
+    margin-top: 4px;
+  }
+  .lav-plan__year {
+  }
+  .lav-plan__year-old {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 28px;
+    text-decoration-line: line-through;
+    color: #A5A5A5;
+  }
+  .lav-plan__year-new {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 28px;
+  }
+  .lav-plan__year-caption {
+    font-size: 14px;
+    line-height: 28px;
+  }
+  .lav-plan__btn {
+    margin-top: 15px;
+    width: 100%;
+    justify-content: center;
+    min-height: 52px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 32px;
+    text-transform: capitalize;
+  }
+  .lav-plan__options {
+    margin-top: 16px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: #555555;
+  }
+  .lav-plan__option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .lav-plan__option + .lav-plan__option {
+    margin-top: 12px;
+  }
+  .lav-plan__option img {
+    margin-right: 8px;
+    width: 24px;
+  }
+  .lav-plan__currency {
+    color: #A5A5A5;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    margin-top: 4px;
+  }
+  .lav-btn_trans {
+    background-color: transparent;
+    color: #017922;
+  }
+  .lav-btn_trans:hover {
+    background-color: #017922;
+    color: #fff;
+  }
+  .lav-jumb__try {
+    margin-top: 24px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+    text-transform: capitalize;
+    color: #fff;
+    transition: 0.35s;
+  }
+  .lav-jumb__try-inner {
+    display: inline-block;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.24);
+    border: 1px solid #FFFFFF;
+    backdrop-filter: blur(4px);
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.35s;
+  }
+  .lav-jumb__try-inner:hover {
+    color: #272727;
+    background-color: #fff;
+  }
+
+  .lav-feat {
+    margin-top: -115px;
+    position: relative;
+    z-index: 1;
+  }
+  .lav-feat__row {
+    display: flex;
+    justify-content: center;
+    background: #F6F6F6;
+    border: 1px dashed #D6D6D6;
+    border-top: none;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+  }
+  .lav-feat__container {
+    display: flex;
+    justify-content: center;
+  }
+  .lav-feat__list {
+    position: relative;
+    max-width: 319.5px;
+    width: 100%;
+    padding: 24px 24px 24px 20px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 22px;
+    color: #555555;
+  }
+  body.samsara, body.samsara .o-page {
+    background: #F6F6F6;
+  }
+  .lav-feat__list + .lav-feat__list:before {
+    content: '';
+    position: absolute;
+    top: 24px;
+    bottom: 24px;
+    left: -0.5px;
+    width: 1px;
+    background-color: #E0E0E0;
+  }
+  .lav-feat__item {
+    position: relative;
+    padding-left: 22px;
+  }
+  .lav-feat__item:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 14px;
+    height: 14px;
+    background: url(${settings.dir}/img/check-blue.svg) center no-repeat;
+    background-size: contain;
+  }
+  .lav-feat__item + .lav-feat__item {
+    margin-top: 16px;
+  }
+  .lav-feat {}
+  .lav-feat {}
+  .lav-feat {}
+  
+  .lav-features {
+    margin-top: -100px;
+  }
+  .lav-features__plate {
+    position: relative;
+    z-index: 2;
+    padding: 50px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    color: #272727;
+    max-width: 930px;
+    margin: auto;
+  }
+  .lav-features__title {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1;
+    text-align: center;
+  }
+  .lav-features__row {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 55px;
+  }
+  .lav-feature {
+    background-position: top left;
+    background-repeat: no-repeat;
+    padding-left: 40px;
+    background-size: 28px;
+  }
+  .lav-feature + .lav-feature {
+    margin-top: 24px;
+  }
+  .lav-feature__title {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .lav-feature__caption {
+    margin-top: 4px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: #595959;
+  }
+  .lav-features__col:first-child .lav-feature__caption {
+    margin-top: 8px;
+  }
+  .lav-feature__list {
+    margin-top: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: #595959;
+    padding-left: 25px;
+    margin-bottom: 0;
+  }
+  .lav-feature__list li + li {
+    margin-top: 5px;
+  }
+  .lav-try {
+    margin-top: 90px;
+    color: #272727;
+  }
+  .lav-try__plate {
+    background: #FFFFFF;
+    box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+  }
+  .lav-try__image {
+    max-width: 512px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .lav-try__info {
+    padding: 48px;
+  }
+  .lav-try__caption {
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 1;
+  }
+  .lav-try__title {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1;
+    margin-top: 16px;
+  }
+  .lav-try__list {
+    margin-top: 28px;
+    margin-bottom: 0;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 22px;
+    list-style: none;
+    padding: 0;
+  }
+  .lav-try__list li {
+    position: relative;
+    padding-left: 32px;
+  }
+  .lav-try__list li:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('${settings.dir}/img/check.svg');
+  }
+  .lav-try__list li:nth-child(n +3) {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #666666;
+  }
+  .lav-try__list li:nth-child(n +3):before {
+    background-image: url('${settings.dir}/img/uncheck.svg');
+  }
+  .lav-try__list li + li {
+    margin-top: 12px;
+  }
+  .lav-try__btn {
+    margin-top: 28px;
+    min-height: 52px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 32px;
+    max-width: 240px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .lav-classes {
+    padding-top: 80px;
+    padding-bottom: 72px;
+    color: #272727;
+  }
+  .lav-classes__title {
+    font-weight: 700;
+    font-size: 44px;
+    line-height: 1;
+    text-align: center;
+  }
+  .lav-classes__list {
+    margin: 50px -4px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+  }
+  .lav-classes__list li {
+    margin: 4px 8px;
+    background: #F9F9F9;
+    border: 1px dashed #D6D6D6;
+    border-radius: 12px;
+    padding: 7.5px 32px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 31px;
+    color: #555555;
+    transition: 0.35s;
+    cursor: pointer;
+  }
+
+  .lav-classes__list li:hover {
+    background-color: #027DB8;
+    color: #fff;
+    border-style: solid;
+  }
+
+  .lav-pers {
+    padding: 108px 0;
+    color: #fff;
+    background: #003A67;
+    text-align: center;
+  }
+  .lav-pers__title {
+    font-size: 44px;
+    font-weight: 500;
+    line-height: 1;
+  }
+  .lav-pers__list {
+    margin: 50px 0 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2em;
+    list-style: none;
+    padding: 0;
+  }
+  .lav-pers__item-title {
+    margin-top: 12px;
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 1;
+  }
+  .lav-pers__item-caption {
+    margin-top: 14px;
+    font-size: 18px;
+    line-height: 30px;
+  }
+  .lav-pers__item-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    font-weight: 500;
+    padding: 18px;
+    border-radius: 100px;
+    border: solid 1px #027DB8;
+    min-height: 1.5em;
+    min-width: 1.5em;
+  }
+
+  .lav-instructors {
+    color: #272727;
+    padding-top: 110px;
+    padding-bottom: 110px;
+  }
+  .lav-instructors__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 44px;
+  }
+  .lav-instructors__title {
+    font-size: 44px;
+    line-height: 1;
+    font-weight: 500;
+  }
+  .lav-instructors .splide__track {
+    overflow: visible;
+  }
+  .lav-instructors .splide__arrow {
+    position: static;
+    transform: none;
+    background: white;
+    box-shadow: 2px 2px 4px 1px rgb(0 0 0 / 5%);
+  }
+  .lav-instructors .splide__arrow--prev:before {
+    color: #003A67;
+    content: "➔";
+    font-size: 1.2em;
+    transform: scale(-1,1);
+  }
+  .lav-instructors .splide__arrow--next:before {
+    color: #003A67;
+    content: "➔";
+    font-size: 1.2em;
+  }
+  .lav-instructors .splide__arrow svg {
+    display: none;
+  }
+  .lav-instructors .splide__arrow + .splide__arrow {
+    margin-left: 10px;
+  }
+  .lav-instructors .splide__arrows {
+    display: flex;
+    align-items: center;
+  }
+
+  .lav-instr {
+    border-radius: 8px;
+    max-width: 280px;
+    transition: 0.35s;
+    width: 21.7em;
+    background: #fefefe;
+    overflow: hidden;
+    box-shadow: 2px 2px 4px 1px rgb(0 0 0 / 5%);
+    display: flex;
+    flex-direction: column;
+  }
+  .lav-instr:hover {
+    text-decoration: none;
+  }
+  .lav-instr:hover .lav-instr__img {
+    filter: brightness(65%);
+  }
+  .lav-instr:hover .lav-instr__name {
+    text-decoration: underline;
+  }
+  .lav-instr__img {
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 282px;
+    transition: 0.35s;
+  }
+  .lav-instr__info {
+    padding: 28px;
+    color: #000;
+  }
+  .lav-instr__name {
+    font-size: 19px;
+  }
+  .lav-instr__caption {
+    margin-top: 12px;
+    border-top: 1px solid #000;
+    padding-top: 12px;
+    font-size: 16px;
+    line-height: 28px;
+  }
+  .splide__progress {
+    display: none;
+    background: #d6d6d6;
+    border-radius: 100em;
+    margin-top: 1.33rem;
+    overflow: hidden;
+  }
+  .splide__progressBar {
+    background: #027DB8;
+    height: 0.25em;
+    transition: width 400ms ease;
+    width: 0;
+  }
+  .lav-mob {
+    display: none;
+  }
+  @media(max-width: 1350px) {
+    .lav-container {
+      box-sizing: border-box;
+    }
+  }
+  @media(max-width: 992px) {
+    .lav-container {
+      max-width: 100%;
+      width: 100%;
+    }
+    .lav-pers__item-caption {
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .lav-jumb__plans-all .lav-plan {
+      width: 100%;
+      padding: 0;
+      background: #fff;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+      border-radius: 12px;
+      border: 0;
+    }
+
+    .lav-jumb__plans-all .lav-plan__sup {
+      padding: 20px 20px 16px 20px;
+    }
+    .lav-jumb__plans-all .lav-plan__inner {
+      display: flex;
+      justify-content: space-between;
+    }
+    .lav-jumb__plans-all .lav-plan__btn {
+      margin-right: 20px;
+      min-height: 42px;
+      padding-top: 0;
+      padding-bottom: 0;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .lav-jumb__plans-all .lav-plan:nth-child(2) {
+      // order: 2;
+    }
+    .lav-jumb__plans-all .lav-plan__options {
+      display: flex;
+      justify-content: space-around;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 16px;
+    }
+    .lav-jumb__plans-all .lav-plan__name {
+      margin-top: 4px;
+      font-size: 18px;
+    }
+    .lav-jumb__plans-all .lav-feat__list {
+      padding: 20px;
+      background: #F6F6F6;
+      max-width: 100%;
+      font-weight: 500;
+      border-bottom-right-radius: 12px;
+      border-bottom-left-radius: 12px;
+      border-top: 1px solid #E0E0E0;
+    }
+    .lav-jumb__plans-all .lav-plan__year {
+      text-align: right;
+      line-height: 1.1;
+    }
+    .lav-plan__usd {
+      margin-top: 4px;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 16px;
+      color: #A5A5A5;
+      text-align: right;
+    }
+    .lav-feat__item + .lav-feat__item {
+      margin-right: 12px;
+    }
+    .lav-jumb__plans-all {
+      flex-flow: column;
+    }
+    .lav-feat {
+      display: none;
+    }
+    body:not(.lav-auth) .lav-plan__btn {
+      display: none;
+    }
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+    .lav-plan__currency {
+      color: #FFFFFF;
+      text-align: center;
+      margin-top: 10px;
+    }
+    .sfc-slider--stacked .splide__arrow::before {
+      margin-top: 0;
+    }
+    .lav-journey .splide__slide {
+      max-width: 90%;
+    }
+    .lav-plan:nth-child(2):before {
+      transform: translateY(-50%);
+      background: #F3A83C;
+      border-radius: 12px;
+      top: 0;
+      left: 18px;
+      font-weight: 700;
+      right: initial;
+      font-size: 12px;
+      line-height: 20px;
+      text-transform: uppercase;
+      padding: 2px 8px;
+    }
+    .lav-plan:first-child {
+      border-bottom-right-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+    .lav-plan {
+      position: relative;
+      min-width: auto;
+      border: 2px solid #A5A5A5;
+      padding: 16px 18px 16px 44px;
+      text-align: left;
+      transition: 0.35s;
+      box-shadow: none;
+      background: rgba(249, 249, 249, 0.9);
+    }
+    .lav-plan__options.lav-mob {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 16px;
+      color: #FFFFFF;
+    }
+    .lav-plan__option + .lav-plan__option {
+      margin-top: 0;
+      margin-left: 8px;
+    }
+    .lav-plan__option img {
+      width: 20px;
+      margin-right: 4px;
+    }
+    body:not(.lav-auth) .lav-plan.active {
+      border-color: #017922;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(3px);
+    }
+    body:not(.lav-auth) .lav-plan:after {
+      content: '';
+      background: #fff;
+      border: 2px solid #A5A5A5;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      box-sizing: border-box;
+      transition: 0.35s;
+    }
+    body:not(.lav-auth) .lav-plan .lav-mob:before {
+      content: '';
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #027DB8;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      transition: 0.35s;
+      z-index: 1;
+      opacity: 0;
+    }
+    body:not(.lav-auth) .lav-plan.active .lav-mob:before {
+      opacity: 1;
+    }
+    body:not(.lav-auth) .lav-plan.active:after {
+      border-color: #027DB8;
+    }
+    .lav-plan__price span {
+      line-height: 1;
+    }
+    .lav-plan__price {
+      margin-top: 0;
+    }
+    .lav-plan__year {
+      margin-top: 0;
+    }
+    .lav-plan__year-old, .lav-plan__year-new, .lav-plan__year-caption   {
+      font-size: 12px;
+      line-height: 1;
+    }
+    .lav-jumb__try-inner {
+      padding-left: 24px;
+      padding-right: 24px;
+      color: #027DB8;
+      background: rgba(255, 255, 255, 0.5);
+    }
+    .lav-jumb {
+      padding-bottom: 32px;
+    }
+    .lav-jumb_auth {
+      background: url(${settings.dir}/img/jumb-bg-mob.jpeg) center bottom no-repeat;
+      background-size: cover;
+      min-height: auto;
+    }
+    .lav-jumb_no-auth {
+      background: url(${settings.dir}/img/jumb-bg2-mob.jpeg) center bottom no-repeat;
+      background-size: cover;
+      padding: 30px 0;
+    }
+    .lav-auth .lav-plan__options.lav-mob, .lav-auth .lav-plan__started, .lav-auth .lav-plan__currency {
+      display: none!important;
+    }
+    .o-page__main:before {
+      display: none;
+    }
+    .lav-features {
+      margin-top: 42px;
+    }
+    .lav-jumb__try-inner span {
+      text-decoration: underline;
+      border-width: 0;
+    }
+    body:not(.lav-auth) .lav-plan .lav-mob {
+      position: static;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+    .lav-plan__month {
+      color: #017922;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 20px;
+    }
+    .lav-plan__name {
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 20px;
+      margin-top: 8px;
+    }
+    .lav-desk {
+      display: none;
+    }
+    .lav-mob {
+      display: block;
+    }
+    .lav-plan + .lav-plan {
+      margin-top: 26px;
+    }
+    .lav-jumb {
+      padding-top: 25px;
+    }
+    .lav-jumb__title {
+      font-size: 34px;
+      line-height: 34px;
+    }
+    .lav-jumb__caption {
+      margin-top: 12px;
+      font-size: 18px;
+      line-height: 31px;
+    }
+    .lav-jumb__plans {
+      margin-top: 16px;
+      display: block;
+    }
+
+    .lav-features__plate {
+      padding: 0;
+      box-shadow: none;
+      border-radius: 0;
+      background: transparent;
+    }
+    .lav-feature {
+      background-color: #FFFFFF;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+      border-radius: 12px;
+      padding: 20px 20px 20px 60px;
+      background-position: 20px 20px;
+    }
+    .lav-features__title {
+      font-size: 22px;
+    }
+    .lav-features__row {
+      margin-top: 20px;
+      display: block;
+    }
+    .lav-feature__title {
+      font-size: 16px;
+    }
+    .lav-features__col + .lav-features__col, .lav-feature + .lav-feature {
+      margin-top: 12px;
+    }
+
+    .lav-try {
+      margin-top: 42px;
+    }
+    .lav-try__plate {
+      display: block;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    .lav-try__image {
+      height: 180px;
+      max-width: 100%;
+      background-position: bottom center;
+    }
+    .lav-try__info {
+      padding: 20px;
+    }
+    .lav-jumb__try {
+      font-weight: 600;
+      margin-top: 32px;
+    }
+    .lav-plan__started {
+      margin-top: 10px;
+      width: 100%;
+      min-height: 52px;
+      font-size: 18px;
+      line-height: 32px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+    .lav-try__caption {
+      text-align: center;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 21px;
+    }
+    .lav-try__title {
+      margin-top: 8px;
+      font-size: 22px;
+      text-align: center;
+    }
+    .lav-try__list {
+      margin-top: 16px;
+      line-height: 20px;
+    }
+    .lav-try__btn {
+      margin-top: 16px;
+      font-size: 18px;
+      max-width: 100%;
+      font-weight: 600;
+    }
+
+    .lav-classes {
+      padding-top: 42px;
+      padding-bottom: 42px;
+    }
+    .lav-classes__title {
+      font-size: 22px;
+    }
+    .lav-classes__list {
+      margin: 24px -4px 0;
+    }
+    .lav-classes__list.lav-mob {
+      display: flex;
+    }
+    .lav-classes__list li {
+      margin: 4px;
+      font-size: 16px;
+      padding: 4px 24px;
+    }
+    .lav-classes__toggle {
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 32px;
+      margin: 16px auto 0;
+      min-height: 52px;
+    }
+    .lav-classes__list li:nth-child(1n + 11) {
+      display: none;
+    }
+    .lav-classes__list.active li:nth-child(1n + 11) {
+      display: block;
+    }
+
+    .lav-pers {
+      padding: 54px 0;
+    }
+    .lav-pers__title {
+      font-size: 22px;
+    }
+
+    .lav-pers__list {
+      display: block;
+      margin-top: 28px;
+    }
+    .lav-pers__item + .lav-pers__item {
+      margin-top: 36px;
+    }
+    .lav-pers__item-caption {
+      font-size: 18px;
+      line-height: 30px;
+    }
+
+    .lav-instructors {
+      padding-top: 42px;
+      padding-bottom: 60px;
+    }
+    .lav-instructors__title {
+      font-size: 22px;
+    }
+    .lav-instructors__head {
+      margin-bottom: 22px;
+    }
+
+  }
+  @media (max-width: 768px){
+        /**promoteSubscriptionWrap */
+        .o-page__banner + #promoteSubscriptionWrap{
+            padding: 5px 0;
+        }
+        #promoteSubscriptionWrap {
+          padding: 24px 0;
+        }
+        [data-mob] {
+          display: flex;
+        }
+        .open_var[data-openmobvar] {
+          display: block;
+        }
+        .bgr_gray,
+        [data-desk] {
+          display: none;
+        }
+        .new_features_list,
+        .hidden_new_features_list {
+          flex-direction: column;
+          gap: 12px;
+          margin: 0;
+        }
+        .new_features_list > li,
+        .hidden_new_features_list > li {
+          width: 100%;
+        }
+        .new_container {
+          padding: 16px;
+          max-width: 335px;
+          width: 81%;
+        }
+        .btn_wrapper {
+          flex-direction: column;
+          align-items: flex-start;
+          border-bottom: none;
+          padding: 0;
+          margin-bottom: 12px;
+        }
+        .btn_wrapper h2 {
+          font-size: 20px;
+          font-weight: 700;
+          margin: 0 0 12px;
+          max-width: 278px;
+        }
+        #UnlockPremiumContentLink {
+          max-width: unset;
+          width: 100%;
+          height: 42px;
+        }
+        #UnlockPremiumContentLink span {
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 32px;
+        }
+        .toggle_btn_features {
+          margin: 10px auto 0;
+        }
+        .list_main_title {
+          font-size: 12px;
+          padding-left: 38px;
+          max-width: 253px;
+        }
+        .list_main_title[data-title="devices"] {
+          max-width: 227px;
+        }
+        .your_store_wrap {
+          margin-top: 12px;
+        }
+        .your_store_wrap .list_main_title {
+          margin-bottom: 6px;
+        }
+        .store_icon {
+          gap: 16px;
+        }
+        .store_icon img {
+          max-width: 120px;
+        }
+        .mini_block > li .list_main_title {
+          margin: 0;
+        }
+        .list_txt {
+          margin-top: 2px;
+          line-height: 20px;
+        }
+        .list_main_title[data-title]::before {
+          width: 26px;
+          height: 26px;
+        }
+        .hidden_inform_box {
+          margin-top: 16px;
+        }
+        .professional_classes_list > li + li,
+        .professional_classes_list {
+          margin-top: 5px;
+        }
+        .professional_classes_list .list_txt {
+          font-weight: 600;
+        }
+        .new_features_list .list_main_title[data-title="yoga_person"] + p {
+          font-weight: 500;
+        }
+  }
+  @media(max-width: 400px) {
+    .lav-jumb__plans-all .lav-plan__options {
+      font-size: 10px;
+    }
+    .lav-jumb__plans-all .lav-plan__name {
+      font-size: 16px;
+    }
+    .lav-jumb__plans-all .lav-plan__price span {
+      font-size: 22px;
+    }
+  }
+  @media(max-width: 385px) {
+    .lav-plan__name {
+      font-size: 14px;
+    }
+    .lav-instructors {
+      padding-bottom: 90px;
+    }
+    .lav-journey .splide__arrows {
+      margin-top: -5.2em!important;
+    }
+  }
+`;
+
+const stylesEl = document.createElement("style");
+stylesEl.innerHTML = styles;
+const styleInterval = setInterval(() => {
+  if (document.body) {
+    clearInterval(styleInterval);
+    document.body.appendChild(stylesEl);
+  }
+}, 100);
+/*** STYLES / end ***/
+
+/********* Custom Code **********/
+const newLayout = `
+<section class='lav-jumb lav-jumb_auth'>
+  <div class='lav-container'>
+    <div class='lav-jumb__caption'>Choose your plan</div>
+    <div class='lav-jumb__plans'>
+      <div class='lav-jumb__plan lav-plan'>
+        <div class='lav-desk'>
+          <div class='lav-plan__title'>Unlimited access</div>
+          <div class='lav-plan__caption'>1 month</div>
+          <div class='lav-plan__price'>
+            <span>$13.99</span> / month
+          </div>
+          <div class='lav-plan__currency'>*All prices in USD</div>
+          <button class='lav-plan__btn lav-plan__btn-month lav-btn lav-btn_trans sfc-button'>Get started now</button>
+          <div class='lav-plan__options'>
+            <div class='lav-plan__option'>
+              <img src='${settings.dir}/img/calendar.svg' />
+              Cancel anytime
+            </div>
+            <div class='lav-plan__option'>
+              <img src='${settings.dir}/img/guarantee.svg' />
+              30-Day Money-Back Guarantee
+            </div>
+          </div>
+        </div>
+        <div class='lav-mob'>
+          <div class='lav-plan__left'>
+            <div class='lav-plan__month'>1 month</div>
+            <div class='lav-plan__name'>Unlimited access</div>
+          </div>
+          <div class='lav-plan__right'>
+            <div class='lav-plan__price'>
+              <span>$13.99</span> / month
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class='lav-jumb__plan lav-plan active'>
+        <div class='lav-desk'>
+          <div class='lav-plan__title'>Unlimited access</div>
+          <div class='lav-plan__caption'>12 months</div>
+          <div class='lav-plan__price'>
+            <span>$9.08</span> / month
+          </div>
+          <div class='lav-plan__year'>
+            <span class='lav-plan__year-old'>$167.88</span>
+            <span class='lav-plan__year-new'>$108.99</span>
+            <span class='lav-plan__year-caption'>/&nbsp;year</span>
+          </div>
+          <div class='lav-plan__currency'>*All prices in USD</div>
+          <button class='lav-plan__btn lav-plan__btn-year lav-btn sfc-button'>Get started now</button>
+          <div class='lav-plan__options'>
+            <div class='lav-plan__option'>
+              <img src='${settings.dir}/img/calendar.svg' />
+              Cancel anytime
+            </div>
+            <div class='lav-plan__option'>
+              <img src='${settings.dir}/img/guarantee.svg' />
+              30-Day Money-Back Guarantee
+            </div>
+          </div>
+        </div>
+        <div class='lav-mob'>
+          <div class='lav-plan__left'>
+            <div class='lav-plan__month'>12 months</div>
+            <div class='lav-plan__name'>Unlimited access</div>
+          </div>
+          <div class='lav-plan__right'>
+            <div class='lav-plan__price'>
+              <span>$9.08</span> / month
+            </div>
+
+            <div class='lav-plan__year'>
+              <span class='lav-plan__year-old'>$167.88</span>
+              <span class='lav-plan__year-new'>$108.99</span>
+              <span class='lav-plan__year-caption'>/&nbsp;year</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class='lav-plan__currency lav-mob'>*All prices in USD</div>
+
+    <button class='lav-plan__started lav-btn sfc-button lav-mob'>
+      Get Started Now
+    </button>
+
+    <div class='lav-plan__options lav-mob'>
+      <div class='lav-plan__option'>
+        <img src='${settings.dir}/img/calendar-mob.svg' />
+        Cancel anytime
+      </div>
+      <div class='lav-plan__option'>
+        <img src='${settings.dir}/img/guarantee-mob.svg' />
+        30-Day Money-Back Guarantee
+      </div>
+    </div>
+    
+    <div class='lav-jumb__try'>
+      <span class='lav-jumb__try-inner'>Not sure yet? Try Basic plan for free</span>
+    </div>
+  </div>
+</section>
+
+<section class='lav-jumb lav-jumb_no-auth'>
+  <div class='lav-container'>
+    <div class='lav-jumb__caption'>Choose your plan</div>
+    <div class='lav-jumb__plans-all'>
+      <div class='lav-jumb__plan lav-plan'>
+        <div class='lav-desk'>
+          <div class='lav-plan__title'>Basic access</div>
+          <div class='lav-plan__price'>
+            <span>Free</span>
+          </div>
+          <button class='lav-plan__btn lav-plan__btn-try lav-btn lav-btn_trans sfc-button'>Create Free Account</button>
+        </div>
+        <div class='lav-mob'>
+          <div class='lav-plan__sup'>
+            <div class='lav-plan__inner'>
+              <div class='lav-plan__left'>
+                <div class='lav-plan__name'>Basic access</div>
+              </div>
+              <div class='lav-plan__right'>
+                <div class='lav-plan__price'>
+                  <span>Free</span>
+                </div>
+              </div>
+            </div>
+
+            <button class='lav-plan__btn lav-plan__btn-try lav-btn sfc-button'>Create Free Account</button>
+          </div>
+        </div>
+      </div>
+
+      <div class='lav-jumb__plan lav-plan'>
+        <div class='lav-desk'>
+          <div class='lav-plan__title'>Yearly</div>
+          <div class='lav-plan__caption'>Unlimited access</div>
+          <div class='lav-plan__price'>Then
+            <span>$9.08</span> / month
+          </div>
+          <div class='lav-plan__year'>
+            <span class='lav-plan__year-old'>$167.88</span>
+            <span class='lav-plan__year-new'>$108.99</span>
+            <span class='lav-plan__year-caption'>/&nbsp;year</span>
+          </div>
+          <div class='lav-plan__currency'>*All prices in USD</div>
+          <button class='lav-plan__btn lav-plan__btn-year lav-btn sfc-button'>Start Trial now</button>
+          <div class='lav-plan__options'>
+            <div class='lav-plan__option'>
+              <img src='${settings.dir}/img/calendar.svg' />
+              Cancel anytime
+            </div>
+            <div class='lav-plan__option'>
+              <img src='${settings.dir}/img/guarantee.svg' />
+              30-Day Money-Back Guarantee
+            </div>
+          </div>
+        </div>
+        <div class='lav-mob'>
+          <div class='lav-plan__sup'>
+            <div class='lav-plan__inner'>
+              <div class='lav-plan__left'>
+                <div class='lav-plan__month'>Yearly</div>
+                <div class='lav-plan__name'>Unlimited access</div>
+              </div>
+              <div class='lav-plan__right'>
+                <div class='lav-plan__price'>Then
+                  <span>$9.08</span> / month
+                </div>
+
+                <div class='lav-plan__year'>
+                  <span class='lav-plan__year-old'>$167.88</span>
+                  <span class='lav-plan__year-new'>$108.99</span><span class='lav-plan__year-caption'>/year</span>
+                </div>
+
+                <div class='lav-plan__usd'>*All prices in USD</div>
+              </div>
+            </div>
+
+            <button class='lav-plan__btn lav-plan__btn-year lav-btn sfc-button'>Start Trial now</button>
+            <div class='lav-plan__options'>
+              <div class='lav-plan__option'>
+                <img src='${settings.dir}/img/calendar.svg' />
+                Cancel anytime
+              </div>
+              <div class='lav-plan__option'>
+                <img src='${settings.dir}/img/guarantee.svg' />
+                30-Day Money-Back Guarantee
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class='lav-jumb__plan lav-plan'>
+        <div class='lav-desk'>
+          <div class='lav-plan__title'>Monthly</div>
+          <div class='lav-plan__caption'>Unlimited access</div>
+          <div class='lav-plan__price'>
+            <span>$13.99</span> / month
+          </div>
+          <div class='lav-plan__currency'>*All prices in USD</div>
+          <button class='lav-plan__btn lav-plan__btn-month lav-btn lav-btn_trans sfc-button'>Start Trial now</button>
+          <div class='lav-plan__options'>
+            <div class='lav-plan__option'>
+              <img src='${settings.dir}/img/calendar.svg' />
+              Cancel anytime
+            </div>
+            <div class='lav-plan__option'>
+              <img src='${settings.dir}/img/guarantee.svg' />
+              30-Day Money-Back Guarantee
+            </div>
+          </div>
+        </div>
+        <div class='lav-mob'>
+          <div class='lav-plan__sup'>
+            <div class='lav-plan__inner'>
+              <div class='lav-plan__left'>
+                <div class='lav-plan__month'>Monthly</div>
+                <div class='lav-plan__name'>Unlimited access</div>
+              </div>
+              <div class='lav-plan__right'>
+                <div class='lav-plan__price'>
+                  <span>$13.99</span> / month
+                </div>
+                <div class='lav-plan__usd'>*All prices in USD</div>
+              </div>
+            </div>
+
+            <button class='lav-plan__btn lav-plan__btn-month lav-btn sfc-button'>Start Trial now</button>
+            <div class='lav-plan__options'>
+              <div class='lav-plan__option'>
+                <img src='${settings.dir}/img/calendar.svg' />
+                Cancel anytime
+              </div>
+              <div class='lav-plan__option'>
+                <img src='${settings.dir}/img/guarantee.svg' />
+                30-Day Money-Back Guarantee
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class='lav-try lav-watch'>
+  <div class='lav-container'>
+    <div class='lav-try__plate'>
+      <div class='lav-try__image'></div>
+
+      <div class='lav-try__info'>
+        <div class='lav-try__caption'>
+          Not sure yet? 
+        </div>
+        <div class='lav-try__title'>Try Basic plan for free</div>
+        <ul class='lav-try__list'>
+          <li>Free forever</li>
+          <li>Access to all basic yoga, meditation and movement classes from our extensive library</li>
+          <li>Full access to the library of 1000+ Ad-Free yoga, meditation and movement classes</li>
+          <li>Exclusive access to all new releases and premium content</li>
+        </ul>
+        <a href="#" class='lav-try__btn lav-btn sfc-button'>Start Basic Plan</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class='lav-classes lav-watch'>
+  <div class='lav-container'>
+    <div class='lav-classes__title'>Explore 1000+ Yoga classes</div>
+
+    <ul class='lav-classes__list lav-desk'>
+      <li data-id='30'>Ashtanga Yoga</li>
+      <li data-id='213'>Chair Yoga</li>
+      <li data-id='31'>Gentle Yoga</li>
+      <li data-id='32'>Guided Meditation</li>
+      <li data-id='33'>Hatha Yoga</li>
+      <li data-id='34'>Jivamukti</li>
+      <li data-id='35'>Kundalini Yoga</li>
+      <li data-id='36'>Mom and Baby Yoga</li>
+      <li data-id='37'>Pilates</li>
+      <li data-id='38'>Plus Size Yoga</li>
+      <li data-id='39'>PNF</li>
+      <li data-id='42'>Pranayama Yoga</li>
+      <li data-id='126'>Prenatal/Postnatal Yoga</li>
+      <li data-id='44'>Restorative Yoga</li>
+      <li data-id='125'>Slow Flow</li>
+      <li data-id='127'>Values-based Education</li>
+      <li data-id='45'>Vinyasa/Power Yoga</li>
+      <li data-id='46'>Yin and Yin/Yang Yoga</li>
+      <li data-id='47'>Yoga at Work</li>
+      <li data-id='49'>Yoga for Athletes</li>
+      <li data-id='50'>Yoga for Runners</li>
+      <li data-id='51'>Yoga for Seniors</li>
+      <li data-id='53'>Yoga Therapy</li>
+      <li data-id='54'>Yoga for Back Care</li>
+      <li data-id='55'>Yoga for Kids</li>
+    </ul>
+
+    <ul class='lav-classes__list lav-mob'>
+      <li data-id='30'>Ashtanga Yoga</li>
+      <li data-id='213'>Chair Yoga</li>
+      <li data-id='31'>Gentle Yoga</li>
+      <li data-id='32'>Guided Meditation</li>
+      <li data-id='36'>Mom and Baby Yoga</li>
+      <li data-id='34'>Jivamukti</li>
+      <li data-id='33'>Hatha Yoga</li>
+      <li data-id='35'>Kundalini Yoga</li>
+      <li data-id='37'>Pilates</li>
+      <li data-id='38'>Plus Size Yoga</li>
+      <li data-id='126'>Prenatal/Postnatal Yoga</li>
+      <li data-id='39'>PNF</li>
+      <li data-id='42'>Pranayama Yoga</li>
+      <li data-id='44'>Restorative Yoga</li>
+      <li data-id='125'>Slow Flow</li>
+      <li data-id='127'>Values-based Education</li>
+      <li data-id='46'>Yin and Yin/Yang Yoga</li>
+      <li data-id='47'>Yoga at Work</li>
+      <li data-id='45'>Vinyasa/Power Yoga</li>
+      <li data-id='53'>Yoga Therapy</li>
+      <li data-id='49'>Yoga for Athletes</li>
+      <li data-id='50'>Yoga for Runners</li>
+      <li data-id='51'>Yoga for Seniors</li>
+      <li data-id='54'>Yoga for Back Care</li>
+      <li data-id='55'>Yoga for Kids</li>
+    </ul>
+
+    <button class='lav-classes__toggle lav-btn lav-btn_trans sfc-button lav-mob'>
+      Show More
+    </button>
+  </div>
+</section>
+
+<section class='lav-pers lav-watch'>
+  <div class='lav-container'>
+    <div class='lav-pers__title'>Count the ways you can <br/> personalize your practice</div>
+
+    <ul class='lav-pers__list'>
+      <li class='lav-pers__item'>
+        <div class='lav-pers__item-num'>25+</div>
+        <div class='lav-pers__item-title'>Styles</div>
+        <div class='lav-pers__item-caption'>Keep your mind and body guessing or deepen your practice.</div>
+      </li>
+
+      <li class='lav-pers__item'>
+        <div class='lav-pers__item-num'>20+</div>
+        <div class='lav-pers__item-title'>Programs</div>
+        <div class='lav-pers__item-caption'>Created for beginner, intermediate, and advanced practices.</div>
+      </li>
+
+      <li class='lav-pers__item'>
+        <div class='lav-pers__item-num'>35+</div>
+        <div class='lav-pers__item-title'>Challenges</div>
+        <div class='lav-pers__item-caption'>Carefully designed series of classes that help you get healthier, stronger, and more flexible.</div>
+      </li>
+
+      <li class='lav-pers__item'>
+        <div class='lav-pers__item-num'>90+</div>
+        <div class='lav-pers__item-title'>Guided Meditations</div>
+        <div class='lav-pers__item-caption'>Sleep better, build mindfulness, enhance performance or let go of anxiety.</div>
+      </li>
+
+      <li class='lav-pers__item'>
+        <div class='lav-pers__item-num'>2-90</div>
+        <div class='lav-pers__item-title'>Minute Classes</div>
+        <div class='lav-pers__item-caption'>To get you on your mat with whatever time you have.</div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class='lav-instructors lav-watch splide'>
+  <div class='lav-container'>
+    <div class='lav-instructors__head'>
+      <div class='lav-instructors__title'>Our Instructors</div>
+
+      <div class="splide__arrows">
+        <button class="splide__arrow splide__arrow--prev">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40" focusable="false"><path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z"></path></svg>
+        </button>
+        <button class="splide__arrow splide__arrow--next">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40" focusable="false"><path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z"></path></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="splide__track">
+      <div class='lav-instructors__list splide__list'></div>
+    </div>
+
+    <div class="splide__progress">
+      <div class="splide__progressBar" />
+    </div>
+  </div>
+</section>
+
+`;
+let newBoxFeatures = /*html */ `
+    <section id="promoteSubscriptionWrap" class="promote_subscription_wrap">
+      <div class="bgr_gray"></div>
+      <div class="new_container">
+        <div class="btn_wrapper">
+          <h2>Start Free Trial for <span class="accent_color">Unlimited Access</span></h2>
+          <a href="https://www.doyogawithme.com/become-a-subscriber" id="UnlockPremiumContentLink"><span>Start Free Trial</span></a>
+        </div>
+        <ul class="new_features_list">
+          <li>
+            <h3 class="list_main_title" data-title="yoga_person">Unlimited access to 1000+ yoga, meditation and movement classes</h3>
+        <p class="list_txt" data-openmobvar>You can enjoy one of the biggest collection of professional classes, including:</p>
+        <ul class="professional_classes_list" data-openmobvar>
+          <li>
+            <p class="list_txt">400+ Vinyasa yoga classes</p>
+          </li>
+          <li>
+            <p class="list_txt">350+ Hatha yoga classes</p>
+          </li>
+          <li>
+            <p class="list_txt">250+ Gentle yoga classes</p>
+          </li>
+          <li>
+            <p class="list_txt">170+ Yoga after workout classes</p>
+          </li>
+          <li>
+            <p class="list_txt">100+ Yoga for back classes</p>
+          </li>
+          <li>
+            <p class="list_txt">And much more!</p>
+          </li>
+        </ul>
+          </li>
+          <li>
+            <h3 class="list_main_title" data-title="yoga">Complete collection of 30 curated programs & 50 challenges</h3>
+            <p class="list_txt" data-openmobvar>Enhance your practice with our comprehensive collection of courses and special challenges.</p>
+          </li>
+          <li data-desk>
+            <h3 class="list_main_title" data-title="premium">Exclusive access to all new releases and livestream events</h3>
+          </li>
+        </ul>
+        <div class="hidden_inform_box">
+          <ul data-desk class="hidden_new_features_list">
+            <li>
+              <p class="list_txt">You can enjoy one of the biggest collection of professional classes, including:</p>
+              <ul class="professional_classes_list">
+                <li>
+                  <p class="list_txt">400+ Vinyasa yoga classes</p>
+                </li>
+                <li>
+                  <p class="list_txt">350+ Hatha yoga classes</p>
+                </li>
+                <li>
+                  <p class="list_txt">250+ Gentle yoga classes</p>
+                </li>
+                <li>
+                  <p class="list_txt">170+ Yoga after workout classes</p>
+                </li>
+                <li>
+                  <p class="list_txt">100+ Yoga for back classes</p>
+                </li>
+                <li>
+                  <p class="list_txt">And much more!</p>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <p class="list_txt">Enhance your practice with our comprehensive collection of courses and special challenges.</p>
+              <ul class="new_features_list mini_block">
+                <li>
+                  <h3 class="list_main_title" data-title="devices">Watch classes from your laptop, TV, phone or tablet</h3>
+                  <p class="list_txt">Take your yoga practice anywhere, anytime using our website or mobile app.</p>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <p class="list_txt">Enjoy new classes and get 25% discount on livestream events.</p>
+              <div class="your_store_wrap">
+                <h3 class="list_main_title">Use our App</h3>
+                <div class="store_icon">
+                    <img class="apple_store_icon" src="https://conversionratestore.github.io/projects/doyogawithme/img/apple_store_icon.svg" alt="apple store icon">
+                    <img class="google_play_icon" src="https://conversionratestore.github.io/projects/doyogawithme/img/google_play_icon.svg" alt="google play icon">
+                </div>
+              </div>
+            </li>
+          </ul>
+              <ul data-mob class="hidden_new_features_list">
+      <li>
+        <h3 class="list_main_title" data-title="premium">Exclusive access to all new releases and livestream events</h3>
+        <p class="list_txt">Enjoy new classes and get 25% discount on livestream events.</p>
+      </li>
+      <li>
+        <ul class="new_features_list mini_block">
+          <li>
+            <h3 class="list_main_title" data-title="devices">Watch classes from your laptop, TV, phone or tablet</h3>
+            <p class="list_txt">Take your yoga practice anywhere, anytime using our website or mobile app.</p>
+          </li>
+        </ul>
+        <div class="your_store_wrap">
+          <h3 class="list_main_title">Use our App</h3>
+          <div class="store_icon">
+            <img class="apple_store_icon" src="https://conversionratestore.github.io/projects/doyogawithme/img/apple_store_icon.svg" alt="apple store icon" />
+            <img class="google_play_icon" src="https://conversionratestore.github.io/projects/doyogawithme/img/google_play_icon.svg" alt="google play icon" />
+          </div>
+        </div>
+      </li>
+    </ul>
+        </div>
+        <p class="toggle_btn_features">
+          <span>See all Premium features</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="9" viewBox="0 0 15 9" fill="none">
+            <path d="M1.5 1L7.5 7L13.5 1" stroke="#027DB8" stroke-width="2" />
+          </svg>
+        </p>
+      </div>
+    </section>
+    `;
+
+const instructorsArr = [
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2023/02/DSC06112.jpg",
+    name: "Fiji McAlpine",
+    link: "/yoga-classes?field_instructor_target_id=8",
+    caption: "Vinyasa, Power, Meditation, YTT",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2018/06/satiya-channer.jpg",
+    name: "Satiya Channer",
+    link: "/yoga-classes?field_instructor_target_id=123147",
+    caption: "Yin, Restorative, Hatha, Meditation",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2023/02/David%20headshot%20cropped%20Jan-23.jpg",
+    name: "David Procyshyn",
+    link: "/yoga-classes?field_instructor_target_id=4",
+    caption: "Hatha, Pain Care, Meditation, YTT",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2023/02/tracy.jpg",
+    name: "Tracey Noseworthy",
+    link: "/yoga-classes?field_instructor_target_id=7041",
+    caption: "Vinyasa, Power, Meditation, YTT",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2022/10/DSC04949%20copy.jpg",
+    name: "Josh Chen",
+    link: "/yoga-classes?field_instructor_target_id=313027",
+    caption: "Hatha, Yin, Meditation",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2018/02/PROFILE_MELISSA%20web%20size.jpg",
+    name: "Melissa Krieger",
+    link: "/yoga-classes?field_instructor_target_id=467",
+    caption: "Hatha, Slow Flow, Restorative",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2023/02/DSC01881.jpg",
+    name: "Helen Camisa",
+    link: "/yoga-classes?field_instructor_target_id=244583",
+    caption: "Hatha, Yin, Meditation",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2023/02/DSC06138%20%282%29.jpg",
+    name: "Andrea Ting-Luz",
+    link: "/yoga-classes?field_instructor_target_id=196672",
+    caption: "Vinyasa, Hatha, Yin",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2020/04/Screenshot%202020-04-07%2013.11.01.jpg",
+    name: "Rachel Scott",
+    link: "/yoga-classes?field_instructor_target_id=16854",
+    caption: "Vinyasa, Power, Hatha, YTT",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2016/05/yoga%20profile%20picture.jpg",
+    name: "Crista Shillington",
+    link: "/yoga-classes?field_instructor_target_id=133906",
+    caption: "Vinyasa, Power",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2021/04/Doyoga.jpeg",
+    name: "Sarada Jagannath",
+    link: "/yoga-classes?field_instructor_target_id=326548",
+    caption: "Hatha, Pranayama",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2022/08/DSC01661-2_0.jpg",
+    name: "Araba Adjaye",
+    link: "/yoga-classes?field_instructor_target_id=357388",
+    caption: "Hatha",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2022/08/Tara%20Heal%20HEADSHOT%202021%20Photo-68.jpg",
+    name: "Tara Heal",
+    link: "/yoga-classes?field_instructor_target_id=350658",
+    caption: "Vinyasa, Power, Meditation",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2019/03/Photo%204.jpg",
+    name: "Guy Friswell",
+    link: "/yoga-classes?field_instructor_target_id=266604",
+    caption: "Slow Flow, Hatha, Meditation",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2023/02/unnamed%20%282%29.jpg",
+    name: "Jonni-Lyn Friel",
+    link: "/yoga-classes?field_instructor_target_id=269801",
+    caption: "Jivamukti, Vinyasa, Meditation",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2022/11/julia-web.jpg",
+    name: "Julia Crouch",
+    link: "/yoga-classes?field_instructor_target_id=317249",
+    caption: "Pilates, Pre/Post Natal, Hatha",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2018/06/sarah-jane-profile.jpg",
+    name: "Sarah Jane Steele",
+    link: "/yoga-classes?field_instructor_target_id=90321",
+    caption: "Prenatal/Postnatal, Hatha, Yin, Restorative",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2021/09/kathi.png",
+    name: "Kathi Ells",
+    link: "/yoga-classes?field_instructor_target_id=218644",
+    caption: "Pilates",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2018/08/nicky_jones.jpg",
+    name: "Nicky Jones",
+    link: "/yoga-classes?field_instructor_target_id=4134",
+    caption: "Restorative, Therapy, Hatha",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2017/04/sarah-holmes.jpg",
+    name: "Sarah Holmes de Castro",
+    link: "/yoga-classes?field_instructor_target_id=189907",
+    caption: "Hatha, Restorative, Gentle",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2014/03/ron_stewart_yoga_0_0.jpg",
+    name: "Ron Stewart",
+    link: "/yoga-classes?field_instructor_target_id=15517",
+    caption: "Vinyasa, Power, Hatha",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2021/09/kim_wilson.jpg",
+    name: "Kim Wilson",
+    link: "/yoga-classes?field_instructor_target_id=877",
+    caption: "Pilates",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2018/06/anastasia-thumb2.jpg",
+    name: "Anastasia Hangemanole",
+    link: "/yoga-classes?field_instructor_target_id=134",
+    caption: "Yin, Hatha",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2017/11/IMG_5004.jpg",
+    name: "Dawn Rabey",
+    link: "/yoga-classes?field_instructor_target_id=15521",
+    caption: "Kundalini, Pranayama, Meditation",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2015/04/Screen%20shot%202015-04-15%20at%2011.00.26%20AM.png",
+    name: "Tianne Allan",
+    link: "/yoga-classes?field_instructor_target_id=834",
+    caption: "Restorative, Pain Care",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2017/10/alyssa_jean.jpg",
+    name: "Alyssa Jean Klazek",
+    link: "/yoga-classes?field_instructor_target_id=215411",
+    caption: "Yoga for Kids",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2019/03/IMG_2223_RETOUCH_V2.jpg",
+    name: "Nyk Danu",
+    link: "/yoga-classes?field_instructor_target_id=266789",
+    caption: "Yin, Meditation",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2017/12/Jeff%20with%20son.jpg",
+    name: "Jeff Lichty",
+    link: "/yoga-classes?field_instructor_target_id=224862",
+    caption: "Ashtanga",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2021/09/michelle_rubin.jpg",
+    name: "Michelle Rubin",
+    link: "/yoga-classes?field_instructor_target_id=50832",
+    caption: "Hatha, Gentle, Seniors",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2019/04/jennylisa%20%282%29.jpg",
+    name: "Jennifer Piercy",
+    link: "/yoga-meditation?field_instructor_target_id=253426",
+    caption: "Meditation",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2018/09/Screen%20Shot%202018-09-12%20at%203.32.21%20PM.png",
+    name: "Peter Renner",
+    link: "/yoga-meditation?field_instructor_target_id=189052",
+    caption: "Meditation",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2021/09/erica_fitch.jpg",
+    name: "Erica Fritch",
+    link: "/yoga-classes?field_instructor_target_id=8733",
+    caption: "Hatha, Therapy, Gentle",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2014/03/Shivani_1.jpg",
+    name: "Shivani Wells",
+    link: "/yoga-classes?field_instructor_target_id=1047",
+    caption: "Vinyasa/Power, Hatha",
+  },
+  {
+    img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2014/03/jenni-ashtanga-yoga_1.jpg",
+    name: "Jenni Pritchard",
+    link: "/yoga-classes?field_instructor_target_id=28537",
+    caption: "Ashtanga",
+  },
+];
+
+if (document.querySelector('.menu--account [href="/yogi/login?destination=/become-a-subscriber"]') || document.querySelector(".menu--account img.c-avatar")) {
+  init();
+} else {
+  let initInterval = setInterval(() => {
+    if (document.querySelector('.menu--account [href="/yogi/login?destination=/become-a-subscriber"]') || document.querySelector(".menu--account img.c-avatar")) {
+      clearInterval(initInterval);
+      init();
+    }
+  }, 100);
+}
+
+function init() {
+  // gaEvent('loaded');
+  console.log("init");
+
+  let becomeSubscriberFind = setInterval(() => {
+    if (document.querySelector(".o-page__header")) {
+      clearInterval(becomeSubscriberFind);
+      localStorage.setItem("newBannerVisib", "withoutBtn");
+      document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
+
+      if (window.innerWidth <= 768) {
+        if (document.querySelector("#promoteSubscriptionWrap") && !document.querySelector(".new_title_subscriber")) {
+          document.querySelector("#promoteSubscriptionWrap").insertAdjacentHTML("afterbegin", `<h2 class="new_title_subscriber">Begin Your Transformation with a Free Trial of our Premium Yoga Classes</h2>`);
+        }
+      } else {
+        if (document.querySelector("#promoteSubscriptionWrap") && !document.querySelector(".new_box_subscriber")) {
+          document.querySelector("#promoteSubscriptionWrap").insertAdjacentHTML("beforebegin", `<div class="new_box_subscriber"><h2 class="new_title_subscriber">Begin Your Transformation with a Free Trial of our Premium Yoga Classes</h2></div>`);
+        }
+      }
+    }
+  }, 100);
+
+  document.querySelector("#main-content").insertAdjacentHTML("afterbegin", newLayout);
+
+  if (!document.querySelector('.menu--account [href="/yogi/login?destination=/become-a-subscriber"]')) {
+    for (let item of [".lav-jumb__try", ".lav-try", ".lav-jumb_no-auth", ".lav-feat"]) {
+      if (document.querySelector(item)) {
+        document.querySelector(item).classList.add("lav-hide");
+      }
+    }
+  } else {
+    for (let item of [".lav-jumb_auth", ".lav-features", ".lav-try"]) {
+      document.body.classList.add("lav-auth");
+      if (document.querySelector(item)) {
+        document.querySelector(item).classList.add("lav-hide");
+      }
+    }
+  }
+
+  document.querySelector(".lav-try__image").style.backgroundImage = `url(
+    ${document.querySelector(".sfc-becomeASubscriber__bannerImg").src}
+  )`;
+
+  document.querySelector(".sfc-becomeASubscriber__section + section + section + section").classList.add("lav-watch", "lav-journey");
+
+  document.querySelector('[data-sfc-ids="apps_promo"]').classList.add("lav-watch", "lav-app");
+
+  // document
+  //   .querySelector('.lav-try__btn')
+  //   .addEventListener('click', function (e) {
+  //     e.preventDefault();
+  //     gaEvent('Click on Start Basic plan button');
+  //     document.querySelector('[href="/yogi/register"]').click();
+  //   });
+
+  initJumb();
+  initClasses();
+  initInstructions();
+  observerView();
+
+  const waitingSplide = setInterval(() => {
+    if (typeof Splide === "function") {
+      clearInterval(waitingSplide);
+      document.querySelector(".lav-instructors .splide__arrow--next").addEventListener("click", function () {
+        gaEvent("exp_ch_pl_page_navb_inst", "navigation button - Right", "Button", "Our instructors");
+      });
+
+      document.querySelector(".lav-instructors .splide__arrow--prev").addEventListener("click", function () {
+        gaEvent("exp_ch_pl_page_navb_inst", "navigation button - Left", "Button", "Our instructors");
+      });
+
+      setTimeout(() => {
+        document.querySelector(".lav-journey .splide__arrow--next").addEventListener("click", function () {
+          gaEvent("exp_ch_pl_page_navb_health", "navigation button - Right", "Button", "Your journey to health and wellness start here");
+        });
+
+        document.querySelector(".lav-journey .splide__arrow--prev").addEventListener("click", function () {
+          gaEvent("exp_ch_pl_page_navb_health", "navigation button - Left", "Button", "Your journey to health and wellness start here");
+        });
+      }, 1000);
+    }
+  }, 50);
+
+  document.querySelector(".sfc-appsPromo__appIcons a:first-child").addEventListener("click", function () {
+    gaEvent("exp_ch_pl_page_apps", "Click on Apps - App Store", "Icon", "For every space, at any pace");
+  });
+
+  document.querySelector(".sfc-appsPromo__appIcons a:nth-child(2)").addEventListener("click", function () {
+    gaEvent("exp_ch_pl_page_apps", "Click on Apps - Google Play", "Icon", "For every space, at any pace");
+  });
+
+  document.querySelector(".sfc-appsPromo__appIcons a:nth-child(3)").addEventListener("click", function () {
+    gaEvent("exp_ch_pl_page_apps", "Click on Apps - Amazon Fire", "Icon", "For every space, at any pace");
+  });
+
+  document.querySelector(".sfc-appsPromo__appIcons a:nth-child(4)").addEventListener("click", function () {
+    gaEvent("exp_ch_pl_page_apps", "Click on Apps - Roku", "Icon", "For every space, at any pace");
+  });
+
+  for (let item of document.querySelectorAll(".lav-plan .lav-plan__option")) {
+    item.addEventListener("click", function () {
+      const plan = item.closest(".lav-plan").querySelector(".lav-plan__btn-month") ? "1 month" : item.closest(".lav-plan").querySelector(".lav-plan__btn-try") ? "Free" : "12 months";
+
+      if (!item.innerText.toLowerCase().includes("cancel")) {
+        gaEvent("exp_ch_pl_page_30day", "30-Day Money-Back Guarantee element", plan + " plan", "Your ultimate Yoga journey starts here");
+      } else {
+        gaEvent("exp_ch_pl_page_can_v", "Cancel anytime element", plan + " plan", "Your ultimate Yoga journey starts here");
+      }
+    });
+  }
+
+  for (let item of document.querySelectorAll(".lav-plan__options.lav-mob .lav-plan__option")) {
+    item.addEventListener("click", function () {
+      if (!item.innerText.toLowerCase().includes("cancel")) {
+        gaEvent("exp_ch_pl_page_30day", "30-Day Money-Back Guarantee element", "Button", "Your ultimate Yoga journey starts here");
+      } else {
+        gaEvent("exp_ch_pl_page_can_v", "Cancel anytime element", "Button", "Your ultimate Yoga journey starts here");
+      }
+    });
+  }
+}
+
+if (document.querySelector('[data-drupal-selector="drupal-settings-json"]') && JSON.parse(document.querySelector('[data-drupal-selector="drupal-settings-json"]')?.textContent).dywm.gtm.customer_info.user.isSubscriber === false) {
+  isNotSubscriber();
+}
+
+//   isNotSubscriber
+function isNotSubscriber() {
+  let findToggleBtn = setInterval(() => {
+    if (typeof jQuery === "function" && document.querySelector(".toggle_btn_features")) {
+      clearInterval(findToggleBtn);
+      jQuery(".toggle_btn_features")?.click(function () {
+        jQuery(".hidden_inform_box").slideToggle();
+        setTimeout(() => {
+          document.querySelector("#promoteSubscriptionWrap").scrollIntoView({ block: "start", behavior: "smooth" });
+        }, 400);
+        if (!jQuery(this).hasClass("open_var")) {
+          jQuery(this).addClass("open_var");
+          document.querySelector(".toggle_btn_features span").textContent = "Less all Premium features";
+          if (window.innerWidth <= 768) {
+            document.querySelectorAll("[data-openmobvar]").forEach((el) => {
+              el.classList.add("open_var");
+            });
+          }
+        } else {
+          jQuery(this).removeClass("open_var");
+          document.querySelector(".toggle_btn_features span").textContent = "See all Premium features";
+          if (window.innerWidth <= 768) {
+            document.querySelectorAll("[data-openmobvar]").forEach((el) => {
+              el.classList.remove("open_var");
+            });
+          }
+        }
+      });
+    }
+  }, 100);
+
+  let findBtnUnlock = setInterval(() => {
+    if (document.querySelector("#UnlockPremiumContentLink")) {
+      clearInterval(findBtnUnlock);
+
+      document.querySelectorAll("#UnlockPremiumContentLink").forEach((el) => {
+        el.addEventListener("click", () => {});
+      });
+    }
+  }, 100);
+}
+
+function initJumb() {
+  for (let el of document.querySelectorAll(".lav-plan__btn-try")) {
+    el.addEventListener("click", function (e) {
+      e.preventDefault();
+      gaEvent("exp_ch_pl_page_get_b", "Get started now button in Basic access Free", "Button", "Choose your plan");
+      document.querySelector('[href="/yogi/register"]').click();
+    });
+  }
+
+  for (let el of document.querySelectorAll(".lav-plan__btn-year")) {
+    el.addEventListener("click", function (e) {
+      e.preventDefault();
+      gaEvent("exp_ch_pl_page_get_12", "Get started now button in Annual access 12 months", "Button", "Choose your plan");
+      document.querySelector('[href="/express-checkout/55"]').click();
+    });
+  }
+
+  for (let el of document.querySelectorAll(".lav-plan__btn-month")) {
+    el.addEventListener("click", function (e) {
+      e.preventDefault();
+      gaEvent("exp_ch_pl_page_get_1", "Get started now button in Montly access 1 months", "Button", "Choose your plan");
+      document.querySelector('[href="/express-checkout/54"]').click();
+    });
+  }
+
+  document.querySelector(".lav-jumb__try-inner").addEventListener("click", function (e) {
+    e.preventDefault();
+    gaEvent("exp_ch_pl_page_not", "Not sure yet?", "Button", "Choose your plan");
+    document.querySelector('[href="/yogi/register"]').click();
+  });
+
+  document.querySelector(".lav-plan__started").addEventListener("click", function (e) {
+    e.preventDefault();
+    if (document.querySelector(".lav-plan.active .lav-plan__btn-year")) {
+      gaEvent("exp_ch_pl_page_get_yoga", "Get Started now button - 12 months", "Button", "Your ultimate Yoga journey starts here");
+      document.querySelector('[href="/express-checkout/55"]').click();
+    } else {
+      gaEvent("exp_ch_pl_page_get_yoga", "Get Started now button - 1 month", "Button", "Your ultimate Yoga journey starts here");
+      document.querySelector('[href="/express-checkout/54"]').click();
+    }
+  });
+
+  for (let el of document.querySelectorAll("body:not(.lav-auth) .lav-jumb__plan")) {
+    el.addEventListener("click", function (e) {
+      e.preventDefault();
+      if (window.innerWidth > 768) return false;
+
+      if (document.querySelector(".lav-jumb__plan.active")) {
+        document.querySelector(".lav-jumb__plan.active").classList.remove("active");
+      }
+
+      gaEvent("exp_ch_pl_page_ch_plan", `Choose your plan - ${el.querySelector(".lav-plan__btn-year") ? "12 months" : "1 month"}`, "Section", "Your ultimate Yoga journey starts here");
+
+      el.classList.add("active");
+    });
+  }
+}
+
+function initClasses() {
+  for (let el of document.querySelectorAll(".lav-classes__list li")) {
+    el.addEventListener("click", function (e) {
+      e.preventDefault();
+      const id = el.dataset.id;
+      gaEvent("exp_ch_pl_page_yoga", `yoga class button - ${el.innerText.trim()}`, "Button", "Explore 1000+ Yoga classes section");
+
+      location.href = `https://www.doyogawithme.com/yoga-classes?field_instructor_target_id=&style[${id}]=${id}&field_subscribers_only_value=All&sort_by=created`;
+    });
+  }
+
+  document.querySelector(".lav-classes__toggle").addEventListener("click", function (e) {
+    e.preventDefault();
+    gaEvent("exp_ch_pl_page_show", "Show now button", "Button", "Explore 1000+ Yoga classes section");
+    this.remove();
+    document.querySelector(".lav-classes__list.lav-mob").classList.add("active");
+  });
+}
+
+function initInstructions() {
+  let parentEl = document.querySelector(".lav-instructors__list");
+
+  for (let person of instructorsArr) {
+    const slide = `
+      <a href='${person.link}' class='lav-instr splide__slide'>
+        <div class='lav-instr__img' style='background-image: url("${person.img}")'></div>
+        <div class='lav-instr__info'>
+          <div class='lav-instr__name'>${person.name}</div>
+          <div class='lav-instr__caption'>${person.caption}</div>
+        </div>
+      </a>
+    `;
+
+    parentEl.insertAdjacentHTML("beforeend", slide);
+  }
+
+  const waitingSplide = setInterval(() => {
+    if (typeof Splide === "function") {
+      clearInterval(waitingSplide);
+
+      const splide = new Splide(".splide", {
+        autoWidth: true,
+        pagination: false,
+        gap: "1em",
+      });
+
+      splide.on("mounted", function () {
+        splide.root.querySelector(".splide__progress").style.display = "block";
+        var progressBar = splide.root.querySelector(".splide__progressBar");
+
+        console.log(progressBar);
+
+        if (progressBar) {
+          var fillProgressBar = function fillProgressBar() {
+            var end = splide.Components.Controller.getEnd() + 1;
+            var rate = Math.min((splide.index + 1) / end, 1);
+            progressBar.style.width = String(100 * rate) + "%";
+          };
+
+          fillProgressBar();
+          splide.on("mounted move", fillProgressBar);
+        }
+        // $sfc.find('.sfc-slider__progress').show();
+      });
+
+      splide.mount();
+    }
+  });
+}
+
+function observerView() {
+  const observerOptions = {
+    root: null,
+    threshold: 0,
+    rootMargin: "-40%",
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        if (entry.target.classList.contains("lav-features")) {
+          isElementInViewport(entry.target, ["exp_ch_pl_page_sub_v", "Subscription features", "Visibility", "Subscription features"]);
+        }
+
+        // if (entry.target.classList.contains('lav-try')) {
+        // isElementInViewport(
+        //   entry.target,
+        //   'Visibility Try Basic plan for free section'
+        // );
+        // }
+
+        if (entry.target.classList.contains("lav-classes")) {
+          isElementInViewport(entry.target, ["exp_ch_pl_page_explore_V", "Explore 1000+ Yoga classes section", "Visibility", "Explore 1000+ Yoga classes section"]);
+        }
+
+        if (entry.target.classList.contains("lav-pers")) {
+          isElementInViewport(entry.target, ["exp_ch_pl_page_count_v", "Count the ways you can personalize your practice", "Visibility", "Count the ways you can personalize your practice"]);
+        }
+
+        if (entry.target.classList.contains("lav-instructors")) {
+          isElementInViewport(entry.target, ["exp_ch_pl_page_ourin_v", "Our instructors", "Visibility", "Our instructors"]);
+        }
+
+        if (entry.target.classList.contains("lav-journey")) {
+          isElementInViewport(entry.target, ["exp_ch_pl_page_health_v", "Your journey to health and wellness start here", "Visibility", "Your journey to health and wellness start here"]);
+        }
+
+        if (entry.target.classList.contains("lav-app")) {
+          isElementInViewport(entry.target, ["exp_ch_pl_page_space_v", "For every space, at any pace", "Visibility", "For every space, at any pace"]);
+        }
+      }
+    });
+  }, observerOptions);
+
+  for (let el of Array.from(document.querySelectorAll(".lav-watch"))) {
+    observer.observe(el);
+  }
+
+  function isElementInViewport(el, events, timeout = 2) {
+    setTimeout(() => {
+      const rect = el.getBoundingClientRect();
+      const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+
+      if (rect.top + rect.height * 0.3 < windowHeight && rect.bottom > rect.height * 0.3) {
+        observer.unobserve(el);
+        if (!el.classList.contains("in-view")) {
+          gaEvent(...events);
+          el.classList.add("in-view");
+        }
+      }
+    }, timeout * 1000);
+  }
+}

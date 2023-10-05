@@ -892,26 +892,36 @@ let cancelTrial = setInterval(() => {
   if (window.location.pathname.match("subscription/")) {
     clearInterval(cancelTrial);
 
+    //swipe
+    let script = document.createElement("script");
+    script.src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js";
+    script.async = false;
+    document.head.appendChild(script);
+    let scriptCustom = document.createElement("script");
+    scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js";
+    scriptCustom.async = false;
+    document.head.appendChild(scriptCustom);
+
     let cancelTrialStyle = /*html */ `
       <style>
-        /*cancel_trial_btn */
-        .cancel_trial_btn{
-          font-family: "Manrope", sans-serif !important;
-          color: #027DB8;
-font-size: 14px;
-font-weight: 700;
-line-height: normal;
-text-decoration-line: underline;
-cursor: pointer;
-        }
- /*popup */
+/*cancel_trial_btn */
+.cancel_trial_btn {
+  font-family: "Manrope", sans-serif !important;
+  color: #027db8;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: normal;
+  text-decoration-line: underline;
+  cursor: pointer;
+}
+/*popup */
 .overlay_popup {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.60);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   overflow-y: auto;
   z-index: 1000000000;
@@ -929,7 +939,7 @@ cursor: pointer;
   margin: auto;
   transition: all 0.5s ease 0s;
   border-radius: 12px;
-    background: #FFF;
+  background: #fff;
 }
 .overlay_popup .container_popup > .btn_close {
   position: absolute;
@@ -949,152 +959,154 @@ cursor: pointer;
   border-radius: 12px;
   padding: 30px;
 }
-.content_popup .popup_title{
+.content_popup .popup_title {
   color: #272727;
   font-family: "Manrope", sans-serif !important;
-font-size: 24px;
-font-weight: 700;
-line-height: 32px;
-margin: 0 0 12px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  margin: 0 0 12px;
 }
-.content_popup .popup_subtitle{
+.content_popup .popup_subtitle {
   color: #272727;
-font-family: "Manrope", sans-serif !important;
-font-size: 16px;
-font-weight: 600;
-line-height: 24px;
-margin: 0 0 12px;
-    max-width: 330px;
+  font-family: "Manrope", sans-serif !important;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  margin: 0 0 12px;
+  max-width: 330px;
 }
-.content_popup .popup_descr{
+.content_popup .popup_descr {
   color: #555;
-font-family: "Manrope", sans-serif !important;
-font-size: 14px;
-font-weight: 400;
-line-height: 20px;
-margin: 0 0 12px;
-max-width: 355px;
+  font-family: "Manrope", sans-serif !important;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0 0 12px;
+  max-width: 355px;
 }
-.content_popup .popup_descr a{
-      color: inherit;
-      text-decoration: underline;
+.content_popup .popup_descr a {
+  color: inherit;
+  text-decoration: underline;
 }
-.popup_list_txt{
+.popup_list_txt {
   margin: 0;
-    padding: 0;
-    list-style: none;
+  padding: 0;
+  list-style: none;
 }
-.popup_list_txt li + li{
-margin-top: 12px;
+.popup_list_txt li + li {
+  margin-top: 12px;
 }
-.popup_list_txt li{
+.popup_list_txt li {
   position: relative;
   padding-left: 28px;
 }
-.popup_list_txt li::before{
-        position: absolute;
-        content: "";
-        width: 20px;
-        height: 20px;
-        background: url(https://conversionratestore.github.io/projects/doyogawithme/img/lotus.svg) no-repeat center center;
-        top: 50%;
-        left: 0;
-        transform: translateY(-50%);
-        background-size: contain;
+.popup_list_txt li::before {
+  position: absolute;
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: url(https://conversionratestore.github.io/projects/doyogawithme/img/lotus.svg) no-repeat center center;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  background-size: contain;
 }
-.popup_list_txt li p{
+.popup_list_txt li p {
   color: #272727;
-font-family: "Manrope", sans-serif !important;
-font-size: 14px;
-font-weight: 600;
-line-height: 24px;
+  font-family: "Manrope", sans-serif !important;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
 }
-.content_popup .btn_wrapp{
+.content_popup .btn_wrapp {
   display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 24px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
 }
 .content_popup .popup_cancel_trial_btn,
-.skip_btn{
-color: #555;
-font-family: "Manrope", sans-serif !important;
-font-size: 16px;
-font-weight: 700;
-line-height: 32px;
-text-transform: capitalize;
-border-radius: 30px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 116px;
-    width: 100%;
-    margin: 0;
-    cursor: pointer;
+.skip_btn {
+  color: #555;
+  font-family: "Manrope", sans-serif !important;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 32px;
+  text-transform: capitalize;
+  border-radius: 30px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 116px;
+  width: 100%;
+  margin: 0;
+  cursor: pointer;
 }
 .content_popup .keep_my_trial_btn,
 .close_btn,
-#helpUsBecomeBetter .submit_btn{
+#helpUsBecomeBetter .submit_btn {
   display: flex;
   align-items: center;
-    justify-content: center;
-border-radius: 30px;
-background: #017922;
-max-width: 240px;
-width: 100%;
-height: 50px;
-color: #FFF;
-font-family: "Manrope", sans-serif !important;
-font-size: 16px;
-font-weight: 700;
-line-height: 32px;
-text-transform: capitalize;
-margin: 0;
-cursor: pointer;
+  justify-content: center;
+  border-radius: 30px;
+  background: #017922;
+  max-width: 240px;
+  width: 100%;
+  height: 50px;
+  color: #fff;
+  font-family: "Manrope", sans-serif !important;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 32px;
+  text-transform: capitalize;
+  margin: 0;
+  cursor: pointer;
+  outline: unset;
+  border: none;
 }
-#yourTrialWasCancelled .popup_subtitle{
-    max-width: unset;
-    margin-bottom: 24px;
+#yourTrialWasCancelled .popup_subtitle {
+  max-width: unset;
+  margin-bottom: 24px;
 }
-#yourTrialWasCancelled .close_btn{
+#yourTrialWasCancelled .close_btn {
   max-width: unset;
 }
-#helpUsBecomeBetter .popup_subtitle{
-max-width: unset;
-margin: 0 0 16px;
+#helpUsBecomeBetter .popup_subtitle {
+  max-width: unset;
+  margin: 0 0 16px;
 }
-#helpUsBecomeBetter ol{
+#helpUsBecomeBetter ol {
   list-style: none;
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
-#helpUsBecomeBetter ol > li + li{
+#helpUsBecomeBetter ol > li + li {
   margin-top: 16px;
 }
-#helpUsBecomeBetter .form_title{
-color: #272727;
-font-family: "Manrope", sans-serif !important;
-font-size: 14px;
-font-weight: 700;
-line-height: 20px;
-margin: 0 0 5px 4px;
-display: block;
+#helpUsBecomeBetter .form_title {
+  color: #272727;
+  font-family: "Manrope", sans-serif !important;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  margin: 0 0 5px 4px;
+  display: block;
 }
-#helpUsBecomeBetter .form_descr{
-color: #555;
-font-family: "Manrope", sans-serif !important;
-font-size: 14px;
-font-weight: 400;
-line-height: 20px;
-margin: 0;
+#helpUsBecomeBetter .form_descr {
+  color: #555;
+  font-family: "Manrope", sans-serif !important;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0;
 }
-#helpUsBecomeBetter .grade_list{
+#helpUsBecomeBetter .grade_list {
   display: flex;
   gap: 4px;
   margin-top: 12px;
 }
-#helpUsBecomeBetter label{
+#helpUsBecomeBetter label {
   margin: 0;
 }
 #helpUsBecomeBetter input.custom_radio_btn {
@@ -1105,69 +1117,101 @@ margin: 0;
   padding: 0;
   display: none;
 }
-#helpUsBecomeBetter .choose_option_txt{
-      display: flex;
-    align-items: center;
-    justify-content: center;
-width: 28px;
-height: 28px;
-border-radius: 4px;
-border: 2px solid #E0E0E0;
-background: #FFF;
-color: #555;
-font-family: "Manrope", sans-serif !important;
-font-size: 14px;
-font-weight: 600;
-line-height: 20px;
-cursor: pointer;
+#helpUsBecomeBetter .choose_option_txt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  border: 2px solid #e0e0e0;
+  background: #fff;
+  color: #555;
+  font-family: "Manrope", sans-serif !important;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  cursor: pointer;
 }
-#helpUsBecomeBetter input.custom_radio_btn:checked + .choose_option_txt{
-background: #017922;
-color: #FFF;
-border: 2px solid #017922;
+#helpUsBecomeBetter input.custom_radio_btn:checked + .choose_option_txt {
+  background: #017922;
+  color: #fff;
+  border: 2px solid #017922;
 }
-#helpUsBecomeBetter .submit_btn:disabled{
-border-radius: 30px;
-    background: #A5A5A5;
-    border: none;
-    color: #FFF;
-    cursor: initial;
+#helpUsBecomeBetter .submit_btn:disabled {
+  border-radius: 30px;
+  background: #a5a5a5;
+  border: none;
+  color: #fff;
+  cursor: initial;
 }
-.questions_label{
+.questions_list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 12px;
+}
+.questions_label {
+  cursor: pointer;
   border-radius: 8px;
-    border: 2px solid #E0E0E0;
-    background: #FFF;
-    padding: 12px;
+  border: 2px solid #e0e0e0;
+  background: #fff;
+  padding: 12px;
 }
-.choose_option_box{
-    position: absolute;
+.choose_option_box {
+  position: absolute;
   display: inline-block;
   flex-shrink: 0;
   flex-grow: 0;
   width: 20px;
-   left: 12px;
-height: 20px;
-border-radius: 4px;
-border: 2px solid #E0E0E0;
+  left: 12px;
+  height: 20px;
+  border-radius: 4px;
+  border: 2px solid #e0e0e0;
 }
-.choose_option_txt_quest{
+.choose_option_txt_quest {
   color: #555;
-font-family: "Manrope", sans-serif !important;
-font-size: 14px;
-font-weight: 500;
-line-height: 20px;
-margin-left: 32px;
+  font-family: "Manrope", sans-serif !important;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  margin-left: 32px;
 }
-#helpUsBecomeBetter input.text_input{
+#helpUsBecomeBetter .descr_text_input {
+  display: none;
+  color: #555;
+  font-family: "Manrope", sans-serif !important;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 12px 0 8px;
+}
+#helpUsBecomeBetter textarea.text_textarea {
   width: 100%;
   max-height: 94px;
+  min-height: 94px;
   height: 100%;
   display: none;
+  resize: none;
+  color: #555;
+  font-family: "Manrope", sans-serif !important;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  padding: 12px;
+  border-width: inherit;
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
 }
-#helpUsBecomeBetter input.custom_radio_btn:checked + .questions_label{
-  background: #F2FBFF;
+#helpUsBecomeBetter textarea.text_textarea:focus {
+  outline: none;
+  outline-offset: unset;
+  border: 2px solid #027db8;
 }
-#helpUsBecomeBetter input.custom_radio_btn:checked + .questions_label .choose_option_box{
+#helpUsBecomeBetter input.custom_radio_btn:checked + .questions_label {
+  background: #f2fbff;
+}
+#helpUsBecomeBetter input.custom_radio_btn:checked + .questions_label .choose_option_box {
   border: 2px solid #027db8;
 }
 #helpUsBecomeBetter input.custom_radio_btn:checked + .questions_label .choose_option_box::after {
@@ -1175,30 +1219,121 @@ margin-left: 32px;
   position: absolute;
   width: 14px;
   height: 14px;
-  order-radius: 2px;
-    background: #027db8;
+  border-radius: 2px;
+  background: #027db8;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
-#helpUsBecomeBetter input.custom_radio_btn:checked + .questions_label .choose_option_txt_quest{
-color: #272727;
+#helpUsBecomeBetter input.custom_radio_btn:checked + .questions_label .choose_option_txt_quest {
+  color: #272727;
 }
-#helpUsBecomeBetter input.custom_radio_btn:checked  + .questions_label input.text_input{
+#helpUsBecomeBetter input.custom_radio_btn:checked + .questions_label textarea.text_textarea {
+  display: block;
+}
+#helpUsBecomeBetter input.custom_radio_btn:checked + .questions_label .descr_text_input {
   display: block;
 }
 html.open_var {
   overflow: hidden !important;
 }
-.is_hidden{
+.content_popup .is_hidden,
+.border_bottom_span,
+.content_popup .btn_wrapp.mob_fixed {
   display: none;
-} 
+}
+@media (max-width: 768px) {
+  .overlay_popup .container_popup {
+    max-width: 350px;
+    margin: auto auto 0;
+    border-radius: 12px 12px 0 0;
+  }
+  .content_popup{
+    padding: 32px 16px 16px;
+        border-radius: 12px 12px 0 0;
+        position: relative;
+  }
+  .overlay_popup .container_popup.mob_var {
+    margin: auto auto 89px;
+  }
+  .overlay_popup.is_hidden .container_popup {
+    transform: translateY(100%);
+    transition: all 0.8s ease 0s;
+  }
+  .border_bottom_span {
+    border-radius: 10px;
+    background: var(--Green-main, #017922);
+    position: absolute;
+    left: 50%;
+    width: 80px;
+    height: 4px;
+    top: 12px;
+    z-index: 3;
+    transform: translateX(-50%);
+    display: block;
+  }
+  .overlay_popup .container_popup > .btn_close {
+    display: none;
+  }
+  .content_popup .popup_title{
+    font-size: 22px;
+    line-height: 30px;
+  }
+  .content_popup .popup_descr{
+    margin: 0 0 16px;
+  }
+  .popup_list_txt li + li {
+    margin-top: 16px;
+}
+.content_popup .keep_my_trial_btn, .close_btn, #helpUsBecomeBetter .submit_btn{
+      max-width: 179px;
+}
+#helpUsBecomeBetter .choose_option_txt{
+  width: 23px;
+    height: 23px;
+}
+#helpUsBecomeBetter ol > li + li {
+    margin-top: 12px;
+}
+.questions_label{
+  padding: 10px 12px;
+}
+#helpUsBecomeBetter form{
+  position: inherit;
+}
+.help_us_become_better_form .btn_wrapp{
+display: none;
+}
+.content_popup .btn_wrapp.mob_fixed{
+  display: flex;
+  background: #FFF;
+box-shadow: 0px -2px 8px 0px rgba(0, 0, 0, 0.10);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    margin: 0 -16px -16px;
+    padding: 12px 16px;
+}
+.help_us_become_better_wrapp{
+    overflow-y: scroll;
+    max-height: 611px;
+    padding-bottom: 70px;
+}
+}
+@media (max-width: 376px) {
+  .help_us_become_better_wrapp{
+    max-height: 526px;
+  }
+}
+
       </style>
     `;
 
     let popUp = /*html */ `
         <div class="overlay_popup is_hidden">
           <div class="container_popup">
+            <span class="border_bottom_span"></span>
             <div class="btn_close">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <path d="M20 20L4 4M20 4L4 20" stroke="#272727" stroke-width="2" stroke-linecap="round"/>
@@ -1209,8 +1344,8 @@ html.open_var {
     `;
 
     let contentPopupHtml = /*html */ `
-     <div class="content_popup">
-    <div id="confirmTrialCancellation" class="is_hidden">
+     <div class="content_popup" id="test">
+    <div id="confirmTrialCancellation" class="parent_wrapp">
       <h2 class="popup_title">Confirm Trial Cancellation</h2>
       <h3 class="popup_subtitle">Are you sure you want to cancel your trial access to DoYogaWithMe?</h3>
       <p class="popup_descr">We'd love to know if there's anything we can improve or assist you with. If you're facing any issues or have feedback, please reach out to our support team at <a href="mailto:info@doyogawithme.com">info@doyogawithme.com.</a></p>
@@ -1226,83 +1361,124 @@ html.open_var {
         <p class="keep_my_trial_btn">Keep My Trial</p>
       </div>
     </div>
-    <div id="helpUsBecomeBetter">
-      <h2 class="popup_title">Help Us Become Better</h2>
-      <h3 class="popup_subtitle">Please answer a couple of questions to help us understand how we should improve our product</h3>
-      <form action="#" class="help_us_become_better_form">
-        <ol>
-          <li>
-            <span class="form_title">1. Overall Satisfaction:</span>
-            <p class="form_descr">On a scale of 1 to 10, how satisfied were you with DoYogaWithMe during the trial?</p>
-            <div class="grade_list">
-              <label class="grade_label">
-                <input class="custom_radio_btn" type="radio" name="grade" value="1" />
-                <span class="choose_option_txt">1</span>
-              </label>
-              <label class="grade_label">
-                <input class="custom_radio_btn" type="radio" name="grade" value="2" />
-                <span class="choose_option_txt">2</span>
-              </label>
-              <label class="grade_label">
-                <input class="custom_radio_btn" type="radio" name="grade" value="3" />
-                <span class="choose_option_txt">3</span>
-              </label>
-              <label class="grade_label">
-                <input class="custom_radio_btn" type="radio" name="grade" value="4" />
-                <span class="choose_option_txt">4</span>
-              </label>
-              <label class="grade_label">
-                <input class="custom_radio_btn" type="radio" name="grade" value="5" />
-                <span class="choose_option_txt">5</span>
-              </label>
-              <label class="grade_label">
-                <input class="custom_radio_btn" type="radio" name="grade" value="6" />
-                <span class="choose_option_txt">6</span>
-              </label>
-              <label class="grade_label">
-                <input class="custom_radio_btn" type="radio" name="grade" value="7" />
-                <span class="choose_option_txt">7</span>
-              </label>
-              <label class="grade_label">
-                <input class="custom_radio_btn" type="radio" name="grade" value="8" />
-                <span class="choose_option_txt">8</span>
-              </label>
-              <label class="grade_label">
-                <input class="custom_radio_btn" type="radio" name="grade" value="9" />
-                <span class="choose_option_txt">9</span>
-              </label>
-              <label class="grade_label">
-                <input class="custom_radio_btn" type="radio" name="grade" value="10" />
-                <span class="choose_option_txt">10</span>
-              </label>
-            </div>
-          </li>
-          <li>
-            <span class="form_title">2. Reason for Cancellation:</span>
-            <p class="form_descr">Please select the primary reason for cancelling your trial:</p>
-            <div class="questions_list">
-              <input id="questions1" class="custom_radio_btn" type="radio" name="questions" value="contentQuality" />
-              <label for="questions1" class="questions_label">
-                <span class="choose_option_box"></span>
-                <span class="choose_option_txt_quest">Content Quality</span>
-                <input type="text" name="" id="" class="text_input">
-              </label>
-
-              <input  id="questions2" class="custom_radio_btn" type="radio" name="questions" value="pricing" />
-              <label  for="questions2" class="questions_label">
-                <span class="choose_option_box"></span>
-                <span class="choose_option_txt_quest">Pricing</span>
-              </label>
-            </div>
-          </li>
-        </ol>
-        <div class="btn_wrapp">
-          <p class="skip_btn">Skip</p>
-          <button disabled class="submit_btn">Submit</button>
-        </div>
-      </form>
+    <div id="helpUsBecomeBetter" class="is_hidden parent_wrapp">
+      <div class="help_us_become_better_wrapp">
+        <h2 class="popup_title">Help Us Become Better</h2>
+        <h3 class="popup_subtitle">Please answer a couple of questions to help us understand how we should improve our product</h3>
+        <form action="#" class="help_us_become_better_form">
+          <ol>
+            <li>
+              <span class="form_title">1. Overall Satisfaction:</span>
+              <p class="form_descr">On a scale of 1 to 10, how satisfied were you with DoYogaWithMe during the trial?</p>
+              <div class="grade_list">
+                <label class="grade_label">
+                  <input class="custom_radio_btn" type="radio" name="grade" value="1" />
+                  <span class="choose_option_txt">1</span>
+                </label>
+                <label class="grade_label">
+                  <input class="custom_radio_btn" type="radio" name="grade" value="2" />
+                  <span class="choose_option_txt">2</span>
+                </label>
+                <label class="grade_label">
+                  <input class="custom_radio_btn" type="radio" name="grade" value="3" />
+                  <span class="choose_option_txt">3</span>
+                </label>
+                <label class="grade_label">
+                  <input class="custom_radio_btn" type="radio" name="grade" value="4" />
+                  <span class="choose_option_txt">4</span>
+                </label>
+                <label class="grade_label">
+                  <input class="custom_radio_btn" type="radio" name="grade" value="5" />
+                  <span class="choose_option_txt">5</span>
+                </label>
+                <label class="grade_label">
+                  <input class="custom_radio_btn" type="radio" name="grade" value="6" />
+                  <span class="choose_option_txt">6</span>
+                </label>
+                <label class="grade_label">
+                  <input class="custom_radio_btn" type="radio" name="grade" value="7" />
+                  <span class="choose_option_txt">7</span>
+                </label>
+                <label class="grade_label">
+                  <input class="custom_radio_btn" type="radio" name="grade" value="8" />
+                  <span class="choose_option_txt">8</span>
+                </label>
+                <label class="grade_label">
+                  <input class="custom_radio_btn" type="radio" name="grade" value="9" />
+                  <span class="choose_option_txt">9</span>
+                </label>
+                <label class="grade_label">
+                  <input class="custom_radio_btn" type="radio" name="grade" value="10" />
+                  <span class="choose_option_txt">10</span>
+                </label>
+              </div>
+            </li>
+            <li>
+              <span class="form_title">2. Reason for Cancellation:</span>
+              <p class="form_descr">Please select the primary reason for cancelling your trial:</p>
+              <div class="questions_list">
+                <input id="questions1" class="custom_radio_btn" type="radio" name="questions" value="contentQuality" />
+                <label for="questions1" class="questions_label">
+                  <span class="choose_option_box"></span>
+                  <span class="choose_option_txt_quest">Content Quality</span>
+                  <p class="descr_text_input">Please provide more details about what aspects of the content you found lacking or unsatisfactory.</p>
+                   <textarea name="" id="questions1" class="text_textarea"></textarea>
+                </label>
+  
+                <input  id="questions2" class="custom_radio_btn" type="radio" name="questions" value="pricing" />
+                <label  for="questions2" class="questions_label">
+                  <span class="choose_option_box"></span>
+                  <span class="choose_option_txt_quest">Pricing</span>
+                  <p class="descr_text_input">What pricing model or plan would have been more suitable for you?</p>
+                   <textarea name="" id="questions2" class="text_textarea"></textarea>
+                </label>
+  
+                <input  id="questions3" class="custom_radio_btn" type="radio" name="questions" value="personalReasons" />
+                <label  for="questions3" class="questions_label">
+                  <span class="choose_option_box"></span>
+                  <span class="choose_option_txt_quest">Lack of Time / Personal reasons</span>
+                  <p class="descr_text_input">Is there anything we could have done to make it more convenient for you to continue using our product?</p>
+                  <textarea name="" id="questions3" class="text_textarea"></textarea>
+                </label>
+  
+                <input  id="questions4" class="custom_radio_btn" type="radio" name="questions" value="technicalIssues" />
+                <label  for="questions4" class="questions_label">
+                  <span class="choose_option_box"></span>
+                  <span class="choose_option_txt_quest">Technical Issues</span>
+                  <p class="descr_text_input">If you experienced technical issues, please describe the problems you encountered and any suggestions for improvement.</p>
+                   <textarea name="" id="questions4" class="text_textarea"></textarea>
+                </label>
+  
+                <input  id="questions5" class="custom_radio_btn" type="radio" name="questions" value="foundABetterAlternative" />
+                <label  for="questions5" class="questions_label">
+                  <span class="choose_option_box"></span>
+                  <span class="choose_option_txt_quest">Found a Better Alternative</span>
+                  <p class="descr_text_input">If you found a better alternative, could you share the name or details of the alternative, and what features or benefits it offered that attracted you?</p>
+                  <textarea name="" id="questions5" class="text_textarea"></textarea>
+                </label>
+  
+                <input  id="questions6" class="custom_radio_btn" type="radio" name="questions" value="other" />
+                <label  for="questions6" class="questions_label">
+                  <span class="choose_option_box"></span>
+                  <span class="choose_option_txt_quest">Other (please specify)</span>
+                  <p class="descr_text_input">Please provide any comments or suggestions you have for us to enhance our product and service.</p>
+                  <textarea name="" id="questions6" class="text_textarea"></textarea>
+                </label>
+              </div>
+            </li>
+          </ol>
+          <div class="btn_wrapp">
+            <p class="skip_btn">Skip</p>
+            <button disabled class="submit_btn">Submit</button>
+          </div>
+        </form>
+      </div>
+      <div class="btn_wrapp mob_fixed">
+            <p class="skip_btn">Skip</p>
+            <button disabled class="submit_btn">Submit</button>
+      </div>
     </div>
-    <div id="yourTrialWasCancelled" class="is_hidden">
+    <div id="yourTrialWasCancelled" class="is_hidden parent_wrapp">
       <h2 class="popup_title">Your Trial Was Cancelled</h2>
       <h3 class="popup_subtitle">Your Trial was successfully cancelled. You will still have full access till October 5th, 2023.</h3>
       <p class="close_btn">Close</p>
@@ -1325,8 +1501,17 @@ html.open_var {
       if (document.querySelector(".overlay_popup")) {
         console.log(`POPUP`);
         if (document.querySelector(".cancel_trial_btn")) {
-          document.querySelector(".cancel_trial_btn").addEventListener("click", () => {
-            onOpenPopup();
+          document.querySelector(".cancel_trial_btn").addEventListener("click", (e) => {
+            if (!e.target.getAttribute("data-test")) {
+              console.log(`cancel_trial_btn openPopup`);
+              onOpenPopup();
+            }
+            e.target.setAttribute("data-test", "1");
+            setTimeout(() => {
+              if (e.target.getAttribute("data-test")) {
+                e.target.removeAttribute("data-test");
+              }
+            }, 1000);
           });
         }
 
@@ -1351,6 +1536,151 @@ html.open_var {
               }
             });
           });
+
+          if (document.querySelector(".overlay_popup .content_popup")) {
+            document.querySelectorAll("#helpUsBecomeBetter .grade_list input.custom_radio_btn").forEach((el) => {
+              el.addEventListener("click", (e) => {
+                if (!e.target.getAttribute("data-test")) {
+                  console.log(el.getAttribute("value"), `grade_list`);
+                }
+                e.target.setAttribute("data-test", "1");
+                setTimeout(() => {
+                  if (e.target.getAttribute("data-test")) {
+                    e.target.removeAttribute("data-test");
+                  }
+                }, 1000);
+              });
+            });
+            document.querySelectorAll("#helpUsBecomeBetter .questions_list input.custom_radio_btn").forEach((el) => {
+              el.addEventListener("click", (e) => {
+                if (!e.target.getAttribute("data-test")) {
+                  console.log(el.getAttribute("value"), `questions_list`);
+                  el.nextElementSibling.querySelector("textarea").focus();
+                }
+                e.target.setAttribute("data-test", "1");
+                setTimeout(() => {
+                  if (e.target.getAttribute("data-test")) {
+                    e.target.removeAttribute("data-test");
+                  }
+                }, 1000);
+              });
+            });
+            //Cancel Trial ->>>>> Confirm Trial Cancellation
+            document.querySelectorAll(".content_popup .popup_cancel_trial_btn").forEach((i) => {
+              i.addEventListener("click", (e) => {
+                if (!e.target.getAttribute("data-test")) {
+                  i.closest("div.parent_wrapp").classList.add("is_hidden");
+                  if (document.querySelector("#helpUsBecomeBetter").classList.contains("is_hidden")) {
+                    document.querySelector("#helpUsBecomeBetter").classList.remove("is_hidden");
+                  }
+                  // ОТМЕНИТЬ ПОДПИСКУ
+                }
+                e.target.setAttribute("data-test", "1");
+                setTimeout(() => {
+                  if (e.target.getAttribute("data-test")) {
+                    e.target.removeAttribute("data-test");
+                  }
+                }, 1000);
+              });
+            });
+            // Keep My Trial ->>>>> Confirm Trial Cancellation
+            document.querySelector(".content_popup .keep_my_trial_btn").addEventListener("click", (e) => {
+              if (!e.target.getAttribute("data-test")) {
+                onClosePopup();
+              }
+              e.target.setAttribute("data-test", "1");
+              setTimeout(() => {
+                if (e.target.getAttribute("data-test")) {
+                  e.target.removeAttribute("data-test");
+                }
+              }, 1000);
+            });
+            //submit_btn ->>>>>>>> Help Us Become Better
+            document.querySelectorAll("#helpUsBecomeBetter .submit_btn").forEach((el) => {
+              el.addEventListener("click", (e) => {
+                if (!e.target.getAttribute("data-test")) {
+                  e.preventDefault();
+                  let value1 = document.querySelector("#helpUsBecomeBetter .grade_list input.custom_radio_btn:checked").value;
+                  let value2 = document.querySelector("#helpUsBecomeBetter .questions_list input.custom_radio_btn:checked").value;
+                  let value3 = document.querySelector("#helpUsBecomeBetter .questions_list input.custom_radio_btn:checked").nextElementSibling.querySelector("textarea").value;
+
+                  console.log(`checked - ${value1} ${value2} ${value3}`);
+                  if (window.innerWidth <= 768) {
+                    document.querySelector(".overlay_popup .container_popup").classList.add("mob_var");
+                  }
+                  document.querySelector("#helpUsBecomeBetter").classList.add("is_hidden");
+                  if (document.querySelector("#yourTrialWasCancelled").classList.contains("is_hidden")) {
+                    document.querySelector("#yourTrialWasCancelled").classList.remove("is_hidden");
+                  }
+                  // ОТМЕНИТЬ ПОДПИСКУ
+                }
+                e.target.setAttribute("data-test", "1");
+                setTimeout(() => {
+                  if (e.target.getAttribute("data-test")) {
+                    e.target.removeAttribute("data-test");
+                  }
+                }, 1000);
+              });
+            });
+            // skip_btn ->>>>> Help Us Become Better
+            document.querySelectorAll(".content_popup .skip_btn").forEach((i) => {
+              i.addEventListener("click", (e) => {
+                if (!e.target.getAttribute("data-test")) {
+                  if (window.innerWidth <= 768) {
+                    document.querySelector(".overlay_popup .container_popup").classList.add("mob_var");
+                  }
+                  i.closest("div.parent_wrapp").classList.add("is_hidden");
+                  if (document.querySelector("#yourTrialWasCancelled").classList.contains("is_hidden")) {
+                    document.querySelector("#yourTrialWasCancelled").classList.remove("is_hidden");
+                  }
+                  // ОТМЕНИТЬ ПОДПИСКУ
+                }
+                e.target.setAttribute("data-test", "1");
+                setTimeout(() => {
+                  if (e.target.getAttribute("data-test")) {
+                    e.target.removeAttribute("data-test");
+                  }
+                }, 1000);
+              });
+            });
+            // close_btn ->>>>> Your Trial Was Cancelled
+            document.querySelector("#yourTrialWasCancelled .close_btn").addEventListener("click", (e) => {
+              if (!e.target.getAttribute("data-test")) {
+                console.log(`close_btn ->>>>> Your Trial Was Cancelled`);
+                onClosePopup();
+              }
+              e.target.setAttribute("data-test", "1");
+              setTimeout(() => {
+                if (e.target.getAttribute("data-test")) {
+                  e.target.removeAttribute("data-test");
+                }
+              }, 1000);
+            });
+            // remove disabled ->>>> submit_btn
+            let disabledBtn = setInterval(() => {
+              if (document.querySelector("#helpUsBecomeBetter .questions_list input.custom_radio_btn:checked") && document.querySelector("#helpUsBecomeBetter .grade_list input.custom_radio_btn:checked")) {
+                clearInterval(disabledBtn);
+                document.querySelectorAll("#helpUsBecomeBetter .submit_btn").forEach((el) => {
+                  el.disabled = false;
+                });
+              }
+            }, 100);
+
+            if (window.innerWidth <= 768) {
+              let f = setInterval(() => {
+                if (typeof $ === "function" && typeof $("#test").swipe === "function") {
+                  clearInterval(f);
+                  $("#test").swipe({
+                    swipe: function (event, direction, distance, duration, fingerCount, fingerData) {
+                      if (direction === "down") {
+                        onClosePopup();
+                      }
+                    },
+                  });
+                }
+              }, 100);
+            }
+          }
         }
 
         function onClosePopup() {
