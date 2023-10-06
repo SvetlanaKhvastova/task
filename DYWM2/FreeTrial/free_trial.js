@@ -252,38 +252,6 @@ let freeTrial = setInterval(() => {
       [data-openmobvar] {
         display: none;
       }
-      /*https://www.doyogawithme.com/become-a-subscriber ->>>>> promoteSubscriptionWrap */
-      .path-become-a-subscriber .new_box_subscriber {
-        background: linear-gradient(45deg, #003a67 0%, #007db8 100%);
-        padding: 40px 10px 142px;
-      }
-      .path-become-a-subscriber #promoteSubscriptionWrap {
-        background: #faf8f6;
-        padding: 15px 0;
-      }
-      .path-become-a-subscriber .bgr_gray,
-      .path-become-a-subscriber #UnlockPremiumContentLink {
-        display: none;
-      }
-      .path-become-a-subscriber .btn_wrapper {
-        justify-content: center;
-        margin-bottom: 10px;
-      }
-      .path-become-a-subscriber .new_container {
-        margin-bottom: -73px;
-        z-index: 2;
-        margin-top: -119px;
-      }
-      .path-become-a-subscriber .new_title_subscriber {
-        color: #fff;
-        text-align: center;
-        font-family: "Manrope", sans-serif !important;
-        font-size: 44px;
-        font-weight: 700;
-        line-height: 52px;
-        max-width: 636px;
-        margin: 0 auto 40px;
-      }
         /*banner video blockers */
       .sfc-nodePlayable__lockContainerInner {
         position: relative;
@@ -624,7 +592,7 @@ let freeTrial = setInterval(() => {
     // btn Sign Up ->>> textContent
     changeTextBtn();
     // if user is free
-    if (document.querySelector('[data-drupal-selector="drupal-settings-json"]') && JSON.parse(document.querySelector('[data-drupal-selector="drupal-settings-json"]')?.textContent).dywm.gtm.customer_info.user.isSubscriber === false) {
+    if (document.querySelector('[data-drupal-selector="drupal-settings-json"]') && JSON.parse(document.querySelector('[data-drupal-selector="drupal-settings-json"]')?.textContent).dywm.gtm.customer_info.user.isSubscriber === false && window.location.pathname !== "/become-a-subscriber") {
       isNotSubscriber();
     }
 
@@ -668,28 +636,6 @@ let freeTrial = setInterval(() => {
           }, 100);
 
           break;
-        case "/become-a-subscriber":
-          if (!document.querySelector('.menu--account [data-drupal-link-system-path="yogi/login"]')) {
-            let becomeSubscriberFind = setInterval(() => {
-              if (document.querySelector(".o-page__header")) {
-                clearInterval(becomeSubscriberFind);
-                localStorage.setItem("newBannerVisib", "withoutBtn");
-                document.querySelector(".o-page__header")?.insertAdjacentHTML("afterend", newBoxFeatures);
-
-                if (window.innerWidth <= 768) {
-                  if (document.querySelector("#promoteSubscriptionWrap") && !document.querySelector(".new_title_subscriber")) {
-                    document.querySelector("#promoteSubscriptionWrap").insertAdjacentHTML("afterbegin", `<h2 class="new_title_subscriber">Unlock Premium Classes for a Transformative Yoga Journey</h2>`);
-                    document.querySelector(".btn_wrapper h2").innerHTML = `What’s included in <span class="accent_color">Premium</span>`;
-                  }
-                } else {
-                  if (document.querySelector("#promoteSubscriptionWrap") && !document.querySelector(".new_box_subscriber")) {
-                    document.querySelector("#promoteSubscriptionWrap").insertAdjacentHTML("beforebegin", `<div class="new_box_subscriber"><h2 class="new_title_subscriber">Unlock Premium Classes for a Transformative Yoga Journey</h2></div>`);
-                  }
-                }
-              }
-            }, 100);
-          }
-          break;
 
         default:
           break;
@@ -716,7 +662,7 @@ let freeTrial = setInterval(() => {
       }
 
       let findToggleBtn = setInterval(() => {
-        if (typeof jQuery === "function" && document.querySelector(".toggle_btn_features")) {
+        if (typeof jQuery === "function" && document.querySelector(".toggle_btn_features") && window.location.pathname !== "/become-a-subscriber") {
           clearInterval(findToggleBtn);
           jQuery(".toggle_btn_features")?.click(function () {
             jQuery(".hidden_inform_box").slideToggle();
@@ -745,7 +691,7 @@ let freeTrial = setInterval(() => {
       }, 100);
 
       let findBtnUnlock = setInterval(() => {
-        if (document.querySelector("#UnlockPremiumContentLink")) {
+        if (document.querySelector("#UnlockPremiumContentLink") && window.location.pathname !== "/become-a-subscriber") {
           clearInterval(findBtnUnlock);
 
           document.querySelectorAll("#UnlockPremiumContentLink").forEach((el) => {
