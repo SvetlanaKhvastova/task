@@ -1512,28 +1512,6 @@ function init() {
                     left: 0;
                     width: 100%;
                 }
-                .recommend_us_block{
-                  background: #F6F6F6;
-                  padding: 10px 30px;
-                  margin-top: 16px;
-                  border-radius: 12px;
-                  display: flex;
-                  align-items: center;
-                      justify-content: center;
-                  gap: 8px;
-                }
-                .recommend_us_block > p{
-                  margin: 0;
-                  color: #555;
-                  font-family: 'Manrope';
-                  font-size: 14px;
-                  font-style: normal;
-                  font-weight: 700;
-                  display: inline-block;
-                }
-                .recommend_us_block > p span{
-                  color: #027DB8;
-                }
                 .views-element-container.js-form-wrapper.form-wrapper footer{
                   display: none;
                 }
@@ -1574,9 +1552,6 @@ function init() {
                     .layout-region-checkout-main {
                         width: calc(100% - 500px - 20px);
                     }
-                    .recommend_us_block > p{
-                      font-size: 13px;
-                    }
                 }
                 @media only screen and (max-width: 767px) {
                     .layout-region-checkout-main, .layout-region-checkout-secondary {
@@ -1591,9 +1566,6 @@ function init() {
                     }
                     .free_trial_box{
                           padding-bottom: 13px;
-                    }
-                    .recommend_us_block{
-                          display: none;
                     }
                     .subscr_txt_mob{
                       color: #A5A5A5;
@@ -1866,14 +1838,6 @@ function init() {
             </div>`
       );
 
-      if (document.querySelector(".infos_dashed") && !document.querySelector(".recommend_us_block")) {
-        document.querySelector(".infos_dashed").insertAdjacentHTML(
-          "beforebegin",
-          `<div class="recommend_us_block"><p><span>95%*</span> of our subscribers would recommend us to a friend</p> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-  <path d="M7 0C10.8555 0 14 3.14453 14 7C14 10.8828 10.8555 14 7 14C3.11719 14 0 10.8828 0 7C0 3.14453 3.11719 0 7 0ZM7 3.5C6.50781 3.5 6.125 3.91016 6.125 4.375C6.125 4.86719 6.50781 5.25 7 5.25C7.46484 5.25 7.875 4.86719 7.875 4.375C7.875 3.91016 7.46484 3.5 7 3.5ZM8.09375 10.5C8.44922 10.5 8.75 10.2266 8.75 9.84375C8.75 9.48828 8.44922 9.1875 8.09375 9.1875H7.65625V6.78125C7.65625 6.42578 7.35547 6.125 7 6.125H6.125C5.74219 6.125 5.46875 6.42578 5.46875 6.78125C5.46875 7.16406 5.74219 7.4375 6.125 7.4375H6.34375V9.1875H5.90625C5.52344 9.1875 5.25 9.48828 5.25 9.84375C5.25 10.2266 5.52344 10.5 5.90625 10.5H8.09375Z" fill="#027DB8"/>
-</svg></div>`
-        );
-      }
       document.querySelectorAll('form #edit-payment-information input:not([type="hidden"],[type="checkbox"],[type="radio"])').forEach((item) => {
         item.addEventListener("input", () => {
           disabledBtnFun();

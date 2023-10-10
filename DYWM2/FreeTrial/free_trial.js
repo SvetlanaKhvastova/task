@@ -2,6 +2,16 @@ let freeTrial = setInterval(() => {
   if (document) {
     clearInterval(freeTrial);
 
+    // script tooltip
+    let scriptPopper = document.createElement("script");
+    scriptPopper.src = "https://unpkg.com/popper.js@1";
+    scriptPopper.async = false;
+    document.body.appendChild(scriptPopper);
+    let scriptTippy = document.createElement("script");
+    scriptTippy.src = "https://unpkg.com/tippy.js@5";
+    scriptTippy.async = false;
+    document.body.appendChild(scriptTippy);
+
     //cdn flipclock
     let scriptCustomTimer = document.createElement("script");
     scriptCustomTimer.src = "https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.0/flipclock.min.js";
@@ -14,59 +24,60 @@ let freeTrial = setInterval(() => {
 
     let freeTrialStyle = /*html */ `
       <style>
-        /* Unauthorized user hero main*/
-        [aria-label="Promotions"] .sfc-hero__heading.sfc-heading{
-            color: #FFF;
-            font-size: 68px;
-            font-weight: 500;
-            line-height: 74px;
-        }
-        [aria-label="Promotions"] .sfc-hero__body.sfc-hero__body--limit > p {
-            color: #FFF;
-            font-size: 18px;
-            font-weight: 400;
-            line-height: 26px;
-        }
-        [aria-label="Promotions"] .sfc-hero__body.sfc-hero__body--limit{
-            margin: 24px 0 48px;
-        }
-        [aria-label="Promotions"] .sfc-hero__button{
-            border-radius: 30px;
-            border: 2px solid #E0E0E0;
-            opacity: 0.9;
-            background: #FFF;
-            backdrop-filter: blur(2px);
-            padding: 16px 40px;
-        }
-        [aria-label="Promotions"] .sfc-hero__button .sfc-button__text{
-            color: #017922;
-            font-size: 18px;
-            font-weight: 700;
-            line-height: 26px;
-        }
-        /*change Text btn Sign Up*/
-        .o-region--header {
-            padding: 7px 0.5em 5px 0;
-        }
-        .c-dropdownMenu__link:not(.c-button), .c-dropdownMenu__button:not(.c-button){
-            font-size: 16.5px;
-        }
-        .block-system-menu-block--header.block.block-menu.navigation.menu--account{
-            width: unset !important;
-        }
-        .c-dropdownMenu__item a[data-drupal-link-system-path="become-a-subscriber"]{
-            color: #FFF;
-            font-size: 18px;
-            font-weight: 700;
-            line-height: 24px;
-            text-transform: capitalize;
-            padding: 7px 16px;
-        }
-        /**promoteSubscriptionWrap */
-        .o-page__banner + #promoteSubscriptionWrap{
-           padding: 25px 0 40px;
-        }
-        #promoteSubscriptionWrap {
+      /* Unauthorized user hero main*/
+      [aria-label="Promotions"] .sfc-hero__heading.sfc-heading {
+        color: #fff;
+        font-size: 68px;
+        font-weight: 500;
+        line-height: 74px;
+      }
+      [aria-label="Promotions"] .sfc-hero__body.sfc-hero__body--limit > p {
+        color: #fff;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 26px;
+      }
+      [aria-label="Promotions"] .sfc-hero__body.sfc-hero__body--limit {
+        margin: 24px 0 48px;
+      }
+      [aria-label="Promotions"] .sfc-hero__button {
+        border-radius: 30px;
+        border: 2px solid #e0e0e0;
+        opacity: 0.9;
+        background: #fff;
+        backdrop-filter: blur(2px);
+        padding: 16px 40px;
+      }
+      [aria-label="Promotions"] .sfc-hero__button .sfc-button__text {
+        color: #017922;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 26px;
+      }
+      /*change Text btn Sign Up*/
+      .o-region--header {
+        padding: 7px 0.5em 5px 0;
+      }
+      .c-dropdownMenu__link:not(.c-button),
+      .c-dropdownMenu__button:not(.c-button) {
+        font-size: 16.5px;
+      }
+      .block-system-menu-block--header.block.block-menu.navigation.menu--account {
+        width: unset !important;
+      }
+      .c-dropdownMenu__item a[data-drupal-link-system-path="become-a-subscriber"] {
+        color: #fff;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 24px;
+        text-transform: capitalize;
+        padding: 7px 16px;
+      }
+      /**promoteSubscriptionWrap */
+      .o-page__banner + #promoteSubscriptionWrap {
+        padding: 25px 0 40px;
+      }
+      #promoteSubscriptionWrap {
         position: relative;
         background: #fff;
         width: 100%;
@@ -262,7 +273,7 @@ let freeTrial = setInterval(() => {
       [data-openmobvar] {
         display: none;
       }
-        /*banner video blockers */
+      /*banner video blockers */
       .sfc-nodePlayable__lockContainerInner {
         position: relative;
         display: flex;
@@ -331,26 +342,26 @@ let freeTrial = setInterval(() => {
         display: none;
       }
       /* Hypothesis #6 - Add exit-intent popup with limited-time offer*/
-      body.open_var{
-            overflow: hidden !important;
-        }
+      body.open_var {
+        overflow: hidden !important;
+      }
       .overlay_popup {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.60);
+        background: rgba(0, 0, 0, 0.6);
         display: flex;
         overflow-y: auto;
         z-index: 1000000000;
         transition: all 0.5s ease;
-    }
-    .overlay_popup.is_hidden{
+      }
+      .overlay_popup.is_hidden {
         opacity: 0;
         pointer-events: none;
-    }
-    .overlay_popup .container_popup {
+      }
+      .overlay_popup .container_popup {
         display: block;
         position: relative;
         max-width: 840px;
@@ -358,8 +369,8 @@ let freeTrial = setInterval(() => {
         margin: auto;
         transition: all 0.5s ease 0s;
         border-radius: 12px;
-    }
-    .overlay_popup .container_popup > .btn_close {
+      }
+      .overlay_popup .container_popup > .btn_close {
         position: absolute;
         top: 20px;
         right: 20px;
@@ -371,50 +382,50 @@ let freeTrial = setInterval(() => {
         align-items: center;
         justify-content: center;
         z-index: 1;
-    }
-    .content_popup{
+      }
+      .content_popup {
         display: flex;
-        background: #FFF;
+        background: #fff;
         border-radius: 12px;
-    }
-    .content_popup > div{
+      }
+      .content_popup > div {
         width: 50%;
-    }
-    .content_popup > div img{
-          height: 100%;
-    }
-    .info_block{
+      }
+      .content_popup > div img {
+        height: 100%;
+      }
+      .info_block {
         padding: 30px;
-    }
-    .info_block > h2{
-      color: #272727;
-font-family: "Manrope", sans-serif !important;
-font-size: 24px;
-font-weight: 700;
-line-height: 32px;
-margin: 0 0 10px;
-max-width: 287px;
-    }
-    .info_block > p{
-      color: #555;
-font-family: "Manrope", sans-serif !important;
-font-size: 14px;
-font-weight: 600;
-line-height: 22px;
-text-transform: capitalize;
-margin: 0 0 16px;
-    }
-    .info_block > ul{
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      text-align: left;
-    }
-    .info_block > ul li{
-      position: relative;
-      padding-left: 28px;
-    }
-    .info_block > ul li::before{
+      }
+      .info_block > h2 {
+        color: #272727;
+        font-family: "Manrope", sans-serif !important;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 32px;
+        margin: 0 0 10px;
+        max-width: 287px;
+      }
+      .info_block > p {
+        color: #555;
+        font-family: "Manrope", sans-serif !important;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 22px;
+        text-transform: capitalize;
+        margin: 0 0 16px;
+      }
+      .info_block > ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        text-align: left;
+      }
+      .info_block > ul li {
+        position: relative;
+        padding-left: 28px;
+      }
+      .info_block > ul li::before {
         position: absolute;
         content: "";
         width: 20px;
@@ -424,69 +435,69 @@ margin: 0 0 16px;
         left: 0;
         transform: translateY(-50%);
         background-size: contain;
-    }
-    .info_block > ul li +li{
-      margin-top: 12px;
-    }
-    .info_block > ul li p{
-      color: #272727;
-font-family: "Manrope", sans-serif !important;
-font-size: 14px;
-font-weight: 600;
-line-height: 24px;
-    }
-    .voucher_block{
-border-radius: 12px;
-border: 1px dashed #A5A5A5;
-background: #F6F6F6;
-color: #555;
- font-family: "Manrope", sans-serif !important;
-font-size: 14px;
-font-style: normal;
-font-weight: 400;
-line-height: 22px;
-padding: 12px 30px;
-margin-top: 16px;
-text-align:center;
-    }
-    .voucher_block span{
-      font-weight: 700;
-      color: #017922;
-      text-decoration-line: underline;
-    }
-    #subscribeSaveLink{
-max-width: unset;
-height: 50px;
-margin-top: 24px;
-color: #FFF;
-font-family: "Manrope", sans-serif !important;
-font-size: 16px;
-font-weight: 700;
-line-height: 32px;
-text-transform: capitalize;
-    }
-.discount_expires_wrap {
-    display: flex;
-    border-radius: 4px;
-    border: 1px solid #E0E0E0;
-    background: #F6F6F6;
-    padding: 4px 4px 4px 12px;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    }
-    .discount_expires_wrap > p{
-      margin: 0;
-      color: #272727;
-font-family: "Manrope", sans-serif !important;
-font-size: 14px;
-font-weight: 600;
-line-height: 20px;
-padding-left: 32px;
-position: relative;
-    }
-    .discount_expires_wrap > p::before{
-              position: absolute;
+      }
+      .info_block > ul li + li {
+        margin-top: 12px;
+      }
+      .info_block > ul li p {
+        color: #272727;
+        font-family: "Manrope", sans-serif !important;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 24px;
+      }
+      .voucher_block {
+        border-radius: 12px;
+        border: 1px dashed #a5a5a5;
+        background: #f6f6f6;
+        color: #555;
+        font-family: "Manrope", sans-serif !important;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 22px;
+        padding: 12px 30px;
+        margin-top: 16px;
+        text-align: center;
+      }
+      .voucher_block span {
+        font-weight: 700;
+        color: #017922;
+        text-decoration-line: underline;
+      }
+      #subscribeSaveLink {
+        max-width: unset;
+        height: 50px;
+        margin-top: 24px;
+        color: #fff;
+        font-family: "Manrope", sans-serif !important;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 32px;
+        text-transform: capitalize;
+      }
+      .discount_expires_wrap {
+        display: flex;
+        border-radius: 4px;
+        border: 1px solid #e0e0e0;
+        background: #f6f6f6;
+        padding: 4px 4px 4px 12px;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+      .discount_expires_wrap > p {
+        margin: 0;
+        color: #272727;
+        font-family: "Manrope", sans-serif !important;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 20px;
+        padding-left: 32px;
+        position: relative;
+      }
+      .discount_expires_wrap > p::before {
+        position: absolute;
         content: "";
         width: 20px;
         height: 20px;
@@ -494,102 +505,152 @@ position: relative;
         top: 0;
         left: 0;
         background-size: contain;
-    }
-    .flip-clock-wrapper{
-      margin: 0;
-      display: flex;
-      align-items: center;
-    }
-    .flip-clock-divider .flip-clock-label,
-    .flip-clock-divider:first-child{
-      display: none;
-    }
-    .flip-clock-dot{
-      background: #121620;
-      width: 3px;
-      height: 3px;
-      box-shadow: none;
-      left: 0;
-    }
-    .flip-clock-dot.bottom{
-      bottom: 0;
-    }
-    .flip-clock-dot.top{
-      top: 0;
-    }
-    .flip-clock-divider{
-      height: 13px;
-       width: 3px;
-       margin: 0 2px;
-    }
-    .flip-clock-wrapper ul{
-      color: #272727;
-font-size: 16px;
-font-weight: 700;
-line-height: 22px;
-min-width: unset;
-padding: 0;
-margin: 0 2px;
-width: 24px;
-height: 36px;
-background:#FFF;
-box-shadow: unset;
-border: 1px solid #E0E0E0;
-    }
-    .flip-clock-wrapper .flip{
-      box-shadow: unset;
-    }
-    .flip-clock-wrapper ul li a div div.inn{
-      font-size: 16px;
-      background-color:#FFF;
-      color: #272727;
-      text-shadow: unset;
-    }
-    .flip-clock-wrapper ul li a div{
-      font-size: 16px;
-    }
-    .flip-clock-wrapper a{
-      color: #272727;
-    }
-    .flip-clock-wrapper ul li{
-      line-height: 22px;
-      top: 0;
-    }
-    .flip-clock-wrapper ul li a div.up div.inn{
-      top: 8px;
-    }
-    .flip-clock-wrapper ul li a div div.inn, .flip-clock-wrapper ul li a div{
-      height: 75%;
-    }
-    .flip-clock-wrapper ul li a div div.inn,
-    .flip-clock-wrapper ul li a div{
-      height: 90%;
-    }
-    .flip-clock-wrapper ul.play li.flip-clock-before,
-    .flip-clock-wrapper ul li a div.down,
-    .flip-clock-wrapper ul.play li.flip-clock-active .up .shadow{
-      display: none;
-    }
-
-@media (max-width: 768px) {
-    /* Unauthorized user hero main*/
-    [aria-label="Promotions"] .sfc-hero__heading.sfc-heading{
-        font-size: 36px;
-    }
-    [aria-label="Promotions"] .sfc-hero__button{
-        margin-bottom: 31px;
-    }
-    /*change Text btn Sign Up*/
-    .o-region--header {
-        padding: 6px 0.5em 6px 0;
-    }
-    .c-dropdownMenu__item a[data-drupal-link-system-path="become-a-subscriber"]{
+      }
+      .flip-clock-wrapper {
+        margin: 0;
+        display: flex;
+        align-items: center;
+      }
+      .flip-clock-divider .flip-clock-label,
+      .flip-clock-divider:first-child {
+        display: none;
+      }
+      .flip-clock-dot {
+        background: #121620;
+        width: 3px;
+        height: 3px;
+        box-shadow: none;
+        left: 0;
+      }
+      .flip-clock-dot.bottom {
+        bottom: 0;
+      }
+      .flip-clock-dot.top {
+        top: 0;
+      }
+      .flip-clock-divider {
+        height: 13px;
+        width: 3px;
+        margin: 0 2px;
+      }
+      .flip-clock-wrapper ul {
+        color: #272727;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 22px;
+        min-width: unset;
+        padding: 0;
+        margin: 0 2px;
+        width: 24px;
+        height: 36px;
+        background: #fff;
+        box-shadow: unset;
+        border: 1px solid #e0e0e0;
+      }
+      .flip-clock-wrapper .flip {
+        box-shadow: unset;
+      }
+      .flip-clock-wrapper ul li a div div.inn {
+        font-size: 16px;
+        background-color: #fff;
+        color: #272727;
+        text-shadow: unset;
+      }
+      .flip-clock-wrapper ul li a div {
+        font-size: 16px;
+      }
+      .flip-clock-wrapper a {
+        color: #272727;
+      }
+      .flip-clock-wrapper ul li {
+        line-height: 22px;
+        top: 0;
+      }
+      .flip-clock-wrapper ul li a div.up div.inn {
+        top: 8px;
+      }
+      .flip-clock-wrapper ul li a div div.inn,
+      .flip-clock-wrapper ul li a div {
+        height: 75%;
+      }
+      .flip-clock-wrapper ul li a div div.inn,
+      .flip-clock-wrapper ul li a div {
+        height: 90%;
+      }
+      .flip-clock-wrapper ul.play li.flip-clock-before,
+      .flip-clock-wrapper ul li a div.down,
+      .flip-clock-wrapper ul.play li.flip-clock-active .up .shadow {
+        display: none;
+      }
+      /**recommend_us_block */
+      .recommend_us_block {
+        background: #f6f6f6;
+        padding: 10px 30px;
+        margin-top: 16px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+      .recommend_us_block > p {
+        margin: 0;
+        color: #555;
+        font-family: "Manrope";
         font-size: 14px;
-        padding: 5px 10px;
-    }
-    /**promoteSubscriptionWrap */
-        .o-page__banner + #promoteSubscriptionWrap{
-            padding: 5px 0;
+        font-style: normal;
+        font-weight: 700;
+        display: inline-block;
+      }
+      .recommend_us_block > p span {
+        color: #027db8;
+      }
+      .recommend_us_block .tippy-tooltip {
+        color: #555;
+        border-radius: 12px;
+        font-size: 12px;
+        line-height: 20px;
+        font-weight: 600;
+        background-color: #fff;
+        max-width: 414px !important;
+        box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.15);
+        top: -4px !important;
+      }
+      .recommend_us_block .tippy-tooltip[data-placement^="bottom"] > .tippy-arrow {
+        border-bottom-color: #fff;
+        left: unset !important;
+        right: 29px !important;
+      }
+      .recommend_us_block .tippy-content {
+        padding: 8px;
+      }
+      @media only screen and (max-width: 1200px) {
+        .recommend_us_block > p {
+          font-size: 13px;
+        }
+        .recommend_us_block .tippy-tooltip[data-placement^="bottom"] > .tippy-arrow {
+          right: 39px !important;
+        }
+      }
+      @media (max-width: 768px) {
+        /* Unauthorized user hero main*/
+        [aria-label="Promotions"] .sfc-hero__heading.sfc-heading {
+          font-size: 36px;
+        }
+        [aria-label="Promotions"] .sfc-hero__button {
+          margin-bottom: 31px;
+        }
+        /*change Text btn Sign Up*/
+        .o-region--header {
+          padding: 6px 0.5em 6px 0;
+        }
+        .c-dropdownMenu__item a[data-drupal-link-system-path="become-a-subscriber"] {
+          font-size: 14px;
+          padding: 5px 10px;
+        }
+        /**promoteSubscriptionWrap */
+        .o-page__banner + #promoteSubscriptionWrap {
+          padding: 5px 0;
         }
         #promoteSubscriptionWrap {
           padding: 24px 0;
@@ -690,7 +751,7 @@ border: 1px solid #E0E0E0;
           font-weight: 500;
         }
         /*banner video blockers */
-        .sfc-nodePlayable__lockContainerInner .sfc-copy__header .sfc-item__headline{
+        .sfc-nodePlayable__lockContainerInner .sfc-copy__header .sfc-item__headline {
           font-size: 18px;
           line-height: 26px;
           margin-bottom: 6px;
@@ -698,24 +759,94 @@ border: 1px solid #E0E0E0;
           gap: 8px;
           justify-content: center;
         }
-        .sfc-nodePlayable__lockContainerInner .sfc-copy__header .sfc-item__headline svg{
+        .sfc-nodePlayable__lockContainerInner .sfc-copy__header .sfc-item__headline svg {
           width: 16px;
           height: 26px;
         }
-        .sfc-nodePlayable__lockContainerInner .sfc-copy__header .txt_headline{
+        .sfc-nodePlayable__lockContainerInner .sfc-copy__header .txt_headline {
           font-size: 14px;
           line-height: 22px;
-    max-width: 275px;
+          max-width: 275px;
         }
         .sfc-nodePlayable__lockContainerInner .sfc-copy__header {
-      margin-bottom: 12px;
-  }
-  .sfc-nodePlayable__lockContainerInner{
-        max-width: 316px;
-    min-height: unset;
-    padding: 20px 0;
-  }
-}
+          margin-bottom: 12px;
+        }
+        .sfc-nodePlayable__lockContainerInner {
+          max-width: 316px;
+          min-height: unset;
+          padding: 20px 0;
+        }
+        /** overlay_popup*/
+        .overlay_popup .container_popup {
+          max-width: 339px;
+        }
+        .content_popup > div {
+          width: 100%;
+        }
+        .content_popup > div.img_wrap {
+          display: none;
+        }
+        .info_block {
+          padding: 24px 13px;
+        }
+        .discount_expires_wrap {
+          margin-bottom: 16px;
+        }
+        .info_block > h2 {
+          font-size: 22px;
+          line-height: 30px;
+          margin: 0 0 12px;
+        }
+        .info_block > p br {
+          display: none;
+        }
+        .info_block > ul li + li {
+          margin-top: 16px;
+        }
+        .voucher_block {
+          padding: 12px;
+          font-size: 13px;
+        }
+        #subscribeSaveLink {
+          height: 48px;
+        }
+        .overlay_popup .container_popup > .btn_close svg path {
+          stroke: #272727;
+        }
+        /**recommend_us_block */
+        .recommend_us_block {
+          display: none;
+        }
+      }
+      @media (max-width: 320px) {
+        .overlay_popup .container_popup {
+          max-width: 304px;
+        }
+        .info_block {
+          padding: 20px 10px;
+        }
+        .info_block > ul li p {
+          font-size: 12px;
+        }
+        .info_block > ul li + li {
+          margin-top: 4px;
+        }
+        .info_block > p {
+          font-size: 12px;
+          margin: 0 0 10px;
+        }
+        #subscribeSaveLink {
+          margin-top: 10px;
+          height: 46px;
+        }
+        .voucher_block {
+          padding: 12px 10px;
+          font-size: 12px;
+        }
+        .discount_expires_wrap > p {
+          font-size: 11px;
+        }
+      }
       </style>
       `;
 
@@ -1116,9 +1247,15 @@ border: 1px solid #E0E0E0;
 
     // btn Sign Up ->>> textContent
     changeTextBtn();
+    // unlockClassBanner
+    unlockClassBanner();
     // if user is free
     if (document.querySelector('[data-drupal-selector="drupal-settings-json"]') && JSON.parse(document.querySelector('[data-drupal-selector="drupal-settings-json"]')?.textContent).dywm.gtm.customer_info.user.isSubscriber === false && window.location.pathname !== "/become-a-subscriber") {
       isNotSubscriber();
+    }
+    //
+    if (window.innerWidth > 768) {
+      tooltipOnCheckout();
     }
 
     //   isNotSubscriber
@@ -1262,7 +1399,6 @@ border: 1px solid #E0E0E0;
       }
     }
 
-    unlockClassBanner();
     function unlockClassBanner() {
       let findTriggerHypothesis = setInterval(() => {
         if (document.querySelector(".sfc-nodePlayable__lockContainerInner")) {
@@ -1352,6 +1488,42 @@ border: 1px solid #E0E0E0;
           document.querySelectorAll(".sfc-nodePlayable__lockContainerInner a").forEach((el) => {
             el.addEventListener("click", () => {});
           });
+        }
+      }, 100);
+    }
+
+    function tooltipOnCheckout() {
+      let f = setInterval(() => {
+        if (document.querySelector(".infos_dashed") && !document.querySelector(".recommend_us_block") && window.location.pathname.includes("checkout")) {
+          clearInterval(f);
+
+          document.querySelector(".infos_dashed").insertAdjacentHTML(
+            "beforebegin",
+            `<div data-tolltipMob data-titlemob='*According to subscribers NPS survey, conducted March 17-20, N=807' class="recommend_us_block"><p><span>95%*</span> of our subscribers would recommend us to a friend</p> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+    <path d="M7 0C10.8555 0 14 3.14453 14 7C14 10.8828 10.8555 14 7 14C3.11719 14 0 10.8828 0 7C0 3.14453 3.11719 0 7 0ZM7 3.5C6.50781 3.5 6.125 3.91016 6.125 4.375C6.125 4.86719 6.50781 5.25 7 5.25C7.46484 5.25 7.875 4.86719 7.875 4.375C7.875 3.91016 7.46484 3.5 7 3.5ZM8.09375 10.5C8.44922 10.5 8.75 10.2266 8.75 9.84375C8.75 9.48828 8.44922 9.1875 8.09375 9.1875H7.65625V6.78125C7.65625 6.42578 7.35547 6.125 7 6.125H6.125C5.74219 6.125 5.46875 6.42578 5.46875 6.78125C5.46875 7.16406 5.74219 7.4375 6.125 7.4375H6.34375V9.1875H5.90625C5.52344 9.1875 5.25 9.48828 5.25 9.84375C5.25 10.2266 5.52344 10.5 5.90625 10.5H8.09375Z" fill="#027DB8"/>
+  </svg></div>`
+          );
+
+          let tippyTxt = setInterval(() => {
+            if (typeof tippy === "function" && document.querySelector("[data-titlemob]")) {
+              clearInterval(tippyTxt);
+              document.querySelectorAll("[data-titlemob]").forEach((el) => {
+                tippy(el, {
+                  content: el.getAttribute("data-titlemob"),
+                  // trigger: "click",
+                  placement: "bottom-end",
+                  appendTo: function () {
+                    return el.closest(".recommend_us_block");
+                  },
+                  onTrigger(inst, e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                  },
+                  onShown(e) {},
+                });
+              });
+            }
+          }, 500);
         }
       }, 100);
     }
