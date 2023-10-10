@@ -102,6 +102,57 @@ let startFunk = setInterval(() => {
 
     let newStyle = /*html */ `
         <style>
+          .product-block.before_lable_wrapp + .product-block{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+          }
+          .product-block.before_lable_wrapp + .product-block .variant-wrapper{
+                margin-bottom: 25px;
+          }
+          .ring_size_var{
+             order: 1;
+             width: 100%;
+             margin-right: 0;
+          }
+          .ring_size_var .variant-input-wrap select,
+          .material_var .variant-input-wrap select,
+          .stone_var .variant-input-wrap select,
+          .bracelet_length_var .variant-input-wrap select,
+          .necklace_length_var .variant-input-wrap select{
+                width: 100%;
+          }
+          .material_var{
+                order: 2;
+                width: 48%;
+    margin-right: 0;
+          }
+          .stone_var,
+          .necklace_length_var{
+                order: 3;
+                width: 48%;
+    margin-right: 0;
+          }
+          .one-whole{
+            order: 4;
+          }
+          .one-whole[data-type="dropdown"]{
+width: 48%;
+    margin: 0;
+          }
+          .one-whole[data-type="dropdown"] select{
+                height: 42px !important;
+                    width: 100%;
+          }
+          .one-whole[data-type="dropdown"] #fin_img{
+           width: 42px !important;
+    height: 42px !important;
+          }
+          .bracelet_length_var{
+            order: 5;
+    margin-right: 0;
+    width: 48%;
+          }
               .widget-visible {
       z-index: 22!important;
     }
@@ -643,7 +694,7 @@ text-transform: initial;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    max-height: 87px;
+    max-height: 90px;
 }
 .description_body.no_visib::before{
 display: flex;
@@ -652,7 +703,7 @@ display: flex;
     width: 100%;
     height: 16px;
     bottom: 0;
-    left: 93px;
+    left: 0;
     background: white;
     align-items: center;
 }
@@ -1284,7 +1335,7 @@ nav.breadcrumb.custom_breadcrumbs {
 .lav-error-txt{
 position: absolute;
     left: 0;
-    top: 39px;
+    top: 41px;
     width: max-content;
     color: #C20000;
     font-family: 'Poppins';
@@ -1377,12 +1428,36 @@ text-decoration-line: underline;
 #shopify-section-footer {
   padding-bottom: 100px;
 }
+.new_txt_klarna{
+color:  #1C1D1D;
+font-family: 'Poppins';
+font-size: 12px;
+font-weight: 600;
+line-height: 16px;
+display: block;
+margin: 1px 0 24px 0;
+background: #FCF4F6;
+padding: 4px 8px;
+}
+.new_txt_klarna b{
+  font-weight: 600;
+}
 @media (max-width: 1180px) {
   .beautifully_packaged_container {
     padding: 20px 5px;
   }
 }
 @media (max-width: 768px) {
+  .description_body.no_visib{
+    max-height: 95px;
+  }
+  .new_txt_klarna{
+    margin: 1px 0 44px 0;
+    font-weight: 400;
+  }
+  .one-whole[data-type="dropdown"] select{
+    height: 47px !important;
+  }
   .overlay_popup .container_popup{
         padding: 16px;
         max-width: 100%;
@@ -1701,7 +1776,7 @@ section.shopify-section .index-section > .page-width{
   margin-bottom: 24px !important;
 }
 .lav-error-txt{
-  top: 49px;
+  top: 45px;
 }
 }
 @media (max-width: 376px) {
@@ -1985,6 +2060,44 @@ button.syte-discovery.syte-integration-injected .button-text{
     }
 
     function renderNewBlocks() {
+      // add txt Klarna
+      if (document.querySelector("#shopify-block-21092e15-379e-41eb-9f3d-c7a6c3342b9b") && !document.querySelector(".new_txt_klarna")) {
+        document.querySelector("#shopify-block-21092e15-379e-41eb-9f3d-c7a6c3342b9b").insertAdjacentHTML("beforeend", `<span class="new_txt_klarna"><b>Pay nothing today.</b> The annual percentage rate is <b>0%</b></span>`);
+      }
+      //replace select
+      if (!document.querySelector(".product-block--sales-point + .shopify-block.shopify-app-block + .product-block").classList.contains("before_lable_wrapp")) {
+        document.querySelector(".product-block--sales-point + .shopify-block.shopify-app-block + .product-block").classList.add("before_lable_wrapp");
+      }
+      if (document.querySelector(".product-block--sales-point + .shopify-block.shopify-app-block + .product-block").classList.contains("before_lable_wrapp")) {
+        document.querySelectorAll(".variant-wrapper.variant-wrapper--dropdown .variant__label").forEach((el) => {
+          if (el.textContent.includes("Ring size") && !document.querySelector(".ring_size_var")) {
+            el.closest(".variant-wrapper--dropdown").classList.add("ring_size_var");
+            // document.querySelector(".size_guide").after(el.closest(".variant-wrapper--dropdown.ring_size_var"));
+          }
+          if (el.textContent.includes("Material") && !document.querySelector(".material_var")) {
+            el.closest(".variant-wrapper--dropdown").classList.add("material_var");
+            // document.querySelector(".size_guide").after(el.closest(".variant-wrapper--dropdown.ring_size_var"));
+          }
+          if (el.textContent.includes("Stone") && !document.querySelector(".stone_var")) {
+            el.closest(".variant-wrapper--dropdown").classList.add("stone_var");
+            // document.querySelector(".size_guide").after(el.closest(".variant-wrapper--dropdown.ring_size_var"));
+          }
+          if (el.textContent.includes("Bracelet length") && !document.querySelector(".bracelet_length_var")) {
+            el.closest(".variant-wrapper--dropdown").classList.add("bracelet_length_var");
+            // document.querySelector(".size_guide").after(el.closest(".variant-wrapper--dropdown.ring_size_var"));
+          }
+          if (el.textContent.includes("Necklace Length") && !document.querySelector(".necklace_length_var")) {
+            el.closest(".variant-wrapper--dropdown").classList.add("necklace_length_var");
+            // document.querySelector(".size_guide").after(el.closest(".variant-wrapper--dropdown.ring_size_var"));
+          }
+        });
+      }
+      // change href size
+      if (document.querySelector('[title="Ring sizing guide"]')) {
+        if (document.querySelector('[title="Ring sizing guide"]').href !== "https://www.docdroid.net/2eqEQph/ring-size-capucinne-with-scale-pdf" && document.querySelector('[title="Ring sizing guide"]')) {
+          document.querySelector('[title="Ring sizing guide"]').href = "https://www.docdroid.net/2eqEQph/ring-size-capucinne-with-scale-pdf";
+        }
+      }
       // change icon header
       if (!document.querySelector(".new_icon_camera") && document.querySelector(".--syte-start-camera-upload.syte-integration-injected svg:not(.new_icon_camera)")) {
         document.querySelector(".--syte-start-camera-upload.syte-integration-injected svg:not(.new_icon_camera)").outerHTML = `<svg class="new_icon_camera" xmlns="http://www.w3.org/2000/svg" width="22" height="19" viewBox="0 0 22 19" fill="none">
@@ -2316,10 +2429,17 @@ button.syte-discovery.syte-integration-injected .button-text{
       for (let item of innerEl.querySelectorAll(".btn-offer")) {
         const el = document.createElement("div");
         el.classList.add("new_extend_item");
-
+        let w = "";
+        if (item.querySelector(".plan-price").textContent.split("$")[0] === "") {
+          w = item.querySelector(".plan-price").textContent.split("$")[1];
+        }
+        if (item.querySelector(".plan-price").textContent.split("$")[1] === "") {
+          w = item.querySelector(".plan-price").textContent.split("$")[0];
+        }
+        console.log(item.querySelector(".plan-price").textContent.split("$"));
         el.innerHTML = `
         <div class='new_extend_item_caption'>${item.querySelector(".term-length").textContent}</div>
-        <div class='new_extend_item_price'>${item.querySelector(".plan-price").textContent}</div>
+        <div class='new_extend_item_price'>$${w}</div>
       `;
 
         document.querySelector(".new_extend_body").insertAdjacentElement("beforeend", el);
@@ -2614,8 +2734,8 @@ button.syte-discovery.syte-integration-injected .button-text{
       let activated = false;
 
       if (document.querySelector('[name="properties[Ring size]"]')) {
-        if (document.querySelector('.variant-wrapper .variant__label[for="SingleOptionSelector-template--20834585772373__main-4515502063659-option-1"]')) {
-          document.querySelector('.variant-wrapper .variant__label[for="SingleOptionSelector-template--20834585772373__main-4515502063659-option-1"]').textContent = "Ring size, US";
+        if (document.querySelector(".variant-wrapper.ring_size_var .variant__label")) {
+          document.querySelector(".variant-wrapper.ring_size_var .variant__label").textContent = "Ring size, US";
         }
         document.querySelector('[name="properties[Ring size]"]').insertAdjacentHTML("afterbegin", '<option value="Select size" selected>Select size</option>');
         document
@@ -2681,8 +2801,8 @@ button.syte-discovery.syte-integration-injected .button-text{
       if (document.querySelector(".lav-select_size")) {
         document.querySelector(".lav-select_size").addEventListener("click", (e) => {
           pushDataLayer(["exp_barriers_b_atc", "Add to cart", "Button", "Add to cart"]);
-          const el = document.querySelector(".variant-wrapper");
-          const offset = el.getBoundingClientRect().top + window.scrollY - 120;
+          const el = document.querySelector(".ring_size_var");
+          const offset = el.getBoundingClientRect().top + window.scrollY - 180;
           document.querySelector('[name="properties[Ring size]"]').classList.add("lav-error");
           if (!document.querySelector(".lav-error-txt")) {
             document.querySelector('[name="properties[Ring size]"]').insertAdjacentHTML("afterend", `<span class="lav-error-txt">Please select your size</span>`);
@@ -2708,8 +2828,8 @@ button.syte-discovery.syte-integration-injected .button-text{
           }, 200);
         } else {
           // pushDataLayer("new_payments_sticky_select_size", "Sticky select size", "Button", "Sticky section");
-          const el = document.querySelector(".variant-wrapper");
-          const offset = el.getBoundingClientRect().top + window.scrollY - 120;
+          const el = document.querySelector(".ring_size_var");
+          const offset = el.getBoundingClientRect().top + window.scrollY - 180;
           document.querySelector('[name="properties[Ring size]"]').classList.add("lav-error");
           if (!document.querySelector(".lav-error-txt")) {
             document.querySelector('[name="properties[Ring size]"]').insertAdjacentHTML("afterend", `<span class="lav-error-txt">Please select your size</span>`);
@@ -2892,7 +3012,11 @@ button.syte-discovery.syte-integration-injected .button-text{
                 el.addEventListener("click", (e) => {
                   //
                   if (!e.target.getAttribute("data-test")) {
-                    pushDataLayer(["exp_barriers_l_fs_gyo", "Get your off", "Link", "First screen"]);
+                    if (e.target.closest(".lav-sticky__btn_price")) {
+                      pushDataLayer(["exp_barriers_l_s_gyo", "Get your off", "Link", "Sticky section"]);
+                    } else {
+                      pushDataLayer(["exp_barriers_l_fs_gyo", "Get your off", "Link", "First screen"]);
+                    }
                     document.querySelector('.needsclick[aria-label="Open Form"]')?.click();
                   }
                   e.target.setAttribute("data-test", "1");
@@ -3115,11 +3239,11 @@ button.syte-discovery.syte-integration-injected .button-text{
 
       if (window.innerWidth <= 768) {
         if (original) {
-          original.querySelector(".container").style = "border: 0;background: rgba(225, 149, 169, 0.10);padding: 8px 12px;margin-bottom: 44px";
+          original.querySelector(".container").style = "border: 0;background: rgba(225, 149, 169, 0.10);padding: 8px 12px;margin-bottom: 0";
         }
       } else {
         if (original) {
-          original.querySelector(".container").style = "border: 0;background: rgba(225, 149, 169, 0.10);padding: 8px 12px;margin-bottom: 16px";
+          original.querySelector(".container").style = "border: 0;background: rgba(225, 149, 169, 0.10);padding: 8px 12px;margin-bottom: 0";
         }
       }
       if (original) {

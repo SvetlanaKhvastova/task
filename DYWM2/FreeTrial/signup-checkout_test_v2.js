@@ -1135,6 +1135,8 @@ function init() {
                 #edit-coupon-redemption.active {
                     display: block!important;
                     margin-top: 24px;
+                    border-bottom: 1px solid #E0E0E0;
+                    padding-bottom: 16px;
                 }
                 #edit-sidebar-coupon-redemption-form {
                     display: flex;
@@ -1161,6 +1163,10 @@ function init() {
                  }
                  .coupon-redemption-form__coupons.coupon-redemption-form__coupons--multiple.active_var tr{
                       border: none;
+                      display: flex;
+                      align-items: center;
+                      gap: 6px;
+                      z-index: 11;
                  }
                  .coupon-redemption-form__coupons.coupon-redemption-form__coupons--multiple.active_var td{
                   color: #027DB8;
@@ -1272,7 +1278,8 @@ function init() {
                 .checkout-pane-payment-information .fieldset-wrapper {
                         padding-top: 2.5em;
                 }
-                #edit-payment-information-payment-method--wrapper span.fieldset-legend{
+                #edit-payment-information-payment-method--wrapper span.fieldset-legend,
+                [data-drupal-selector="edit-payment-information-payment-method"] span.fieldset-legend{
                     color: #4A4A4A;
                     font-family: 'Manrope';
                     font-size: 14px;
@@ -1475,6 +1482,8 @@ function init() {
                     color: #027DB8;
                     margin-top: 16px;
                     outline: none;
+                    border-bottom: 1px solid #E0E0E0;
+                    padding-bottom: 16px;
                 }
                 input[readonly] {
                     background: #F6F6F6;
@@ -1579,8 +1588,29 @@ function init() {
                     }
                     .fieldset-legend, .layout-region.layout-region-checkout-secondary h3 {
                         font-size: 22px;
-                        line-height: 30px;
                     }
+                    .free_trial_box{
+                          padding-bottom: 13px;
+                    }
+                    .recommend_us_block{
+                          display: none;
+                    }
+                    .subscr_txt_mob{
+                      color: #A5A5A5;
+                      font-family: 'Manrope';
+                      font-size: 12px;
+                      font-weight: 600;
+                      line-height: 20px;
+                      border-bottom: 1px solid #E0E0E0;
+                      padding-bottom: 12px;
+                      margin: 0;
+                    }
+                    .checkout-pane .tablesaw-stack tr {
+    border-bottom: none;
+}
+.coupon-redemption-form__coupons.coupon-redemption-form__coupons--multiple.active_var h3{
+  min-width: max-content;
+}
                     .info_dashed {
                         font-size: 14px;
                     }
@@ -1597,30 +1627,49 @@ function init() {
                         border-bottom-style: dashed;
                     }
                     .views-field.views-field-title {
-                        font-size: 14px;
-                        line-height: 24px;
+                     font-size: 14px;
+                  line-height: 20px;
+                  font-weight: 600;
                     }
                     .views-field.views-field-total-price__number {
-                        width: fit-content;
+                        width: inherit;;
                         font-size: 12px;
                         line-height: 24px;          
                     }
                     .btn_got_coupon {
                         font-size: 14px;
-                        line-height: 19px;
-                        margin-bottom: 16px;
+                        line-height: normal;
+                        border-bottom: none;
+                        padding-bottom: 0;
+                        margin: 20px 0 0;
                     }
-                    .layout-region-checkout-secondary {
-                        padding-bottom: 4px;
+                    .views-field.views-field-title span:last-child{
+                      margin-top: 0;
+                          font-size: 14px;
+                          color: #272727;
+                              display: none;
+                    }
+                    .layout-region > #edit-payment-information > legend span.fieldset-legend, .layout-region.layout-region-checkout-secondary h3{
+                          font-size: 21px;
+                    }
+                    #edit-payment-information-payment-method--wrapper span.fieldset-legend, [data-drupal-selector="edit-payment-information-payment-method"] span.fieldset-legend{
+                      font-size: 11px;
+                      font-weight: 600;
+                      line-height: 20px;
+                    }
+                    .checkout-pane-payment-information .fieldset-wrapper {
+                      padding-top: 3.5em;
+                    }
+                    .saved_block{
+                          display: none !important;
                     }
                     #edit-coupon-redemption.active {
-                        margin-top: 8px;
+                        margin-top: 12px;
+                            border-bottom: none;
+    padding-bottom: 0;
                     }
                     .samsara .form-type-checkbox .check {
                         top: 12px;
-                    }
-                    .commerce-checkout-flow--order-information .form-submit {
-                        margin-bottom: 20px;
                     }
                 }
                 @media only screen and (max-width: 360px) {
@@ -1708,7 +1757,12 @@ function init() {
                       <p class="c-green">Just $${(value / 12).toFixed(2)}/month!</p>`;
         }
 
-        document.querySelector(".views-field.views-field-title").innerHTML = `<span>12-month DYWM Subscription</span><span>After the 7-day trial period, the annual fee will be $108.99. We’ll email you a reminder before your trial ends.</span>`;
+        document.querySelector(".views-field.views-field-title").innerHTML = `<span>12-month DYWM Subscription</span><span>After the 7-day trial period, the annual fee will be $${value}. We’ll email you a reminder before your trial ends.</span>`;
+        if (window.innerWidth <= 768) {
+          if (!document.querySelector(".subscr_txt_mob")) {
+            document.querySelector(".checkout-pane.checkout-pane-order-summary.js-form-wrapper.form-wrapper").insertAdjacentHTML("afterend", `<p class="subscr_txt_mob">After the 7-day trial period, the annual fee will be $${value}. We’ll email you a reminder before your trial ends.</p>`);
+          }
+        }
         if (!document.querySelector(".saved_block") && document.querySelector(".c-green")) {
           document.querySelector(".c-green").insertAdjacentHTML("afterend", ` <div class="saved_block">You saved <span class="saved_var">$${diffValue}</span> (<span class="percent_var">${percentVar.toFixed(0)}%</span> off)</div>`);
         }
@@ -1722,6 +1776,11 @@ function init() {
         }
       } else if (document.querySelector(".views-field.views-field-total-price__number").innerHTML.includes("$13.99 ")) {
         document.querySelector(".views-field.views-field-title").innerHTML = `<span>1-Month DYWM Subscription</span><span>After the 7-day trial period, the annual fee will be $13.99. We’ll email you a reminder before your trial ends.</span>`;
+        if (window.innerWidth <= 768) {
+          if (!document.querySelector(".subscr_txt_mob")) {
+            document.querySelector(".checkout-pane.checkout-pane-order-summary.js-form-wrapper.form-wrapper").insertAdjacentHTML("afterend", `<p class="subscr_txt_mob">After the 7-day trial period, the annual fee will be $13.99. We’ll email you a reminder before your trial ends.</p>`);
+          }
+        }
       }
 
       let findInputNull = setInterval(() => {

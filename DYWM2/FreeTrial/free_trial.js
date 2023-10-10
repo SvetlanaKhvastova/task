@@ -2,6 +2,16 @@ let freeTrial = setInterval(() => {
   if (document) {
     clearInterval(freeTrial);
 
+    //cdn flipclock
+    let scriptCustomTimer = document.createElement("script");
+    scriptCustomTimer.src = "https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.0/flipclock.min.js";
+    scriptCustomTimer.async = false;
+    document.head.appendChild(scriptCustomTimer);
+    let scriptCustomTimerStyle = document.createElement("link");
+    scriptCustomTimerStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.0/flipclock.css";
+    scriptCustomTimerStyle.rel = "stylesheet";
+    document.head.appendChild(scriptCustomTimerStyle);
+
     let freeTrialStyle = /*html */ `
       <style>
         /* Unauthorized user hero main*/
@@ -320,6 +330,246 @@ let freeTrial = setInterval(() => {
       .sfc-nodePlayable__lockContainerInner .sfc-item__prefix .sfc-iconRestricted {
         display: none;
       }
+      /* Hypothesis #6 - Add exit-intent popup with limited-time offer*/
+      body.open_var{
+            overflow: hidden !important;
+        }
+      .overlay_popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.60);
+        display: flex;
+        overflow-y: auto;
+        z-index: 1000000000;
+        transition: all 0.5s ease;
+    }
+    .overlay_popup.is_hidden{
+        opacity: 0;
+        pointer-events: none;
+    }
+    .overlay_popup .container_popup {
+        display: block;
+        position: relative;
+        max-width: 840px;
+        width: 100%;
+        margin: auto;
+        transition: all 0.5s ease 0s;
+        border-radius: 12px;
+    }
+    .overlay_popup .container_popup > .btn_close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 24px;
+        height: 24px;
+        outline: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+    }
+    .content_popup{
+        display: flex;
+        background: #FFF;
+        border-radius: 12px;
+    }
+    .content_popup > div{
+        width: 50%;
+    }
+    .content_popup > div img{
+          height: 100%;
+    }
+    .info_block{
+        padding: 30px;
+    }
+    .info_block > h2{
+      color: #272727;
+font-family: "Manrope", sans-serif !important;
+font-size: 24px;
+font-weight: 700;
+line-height: 32px;
+margin: 0 0 10px;
+max-width: 287px;
+    }
+    .info_block > p{
+      color: #555;
+font-family: "Manrope", sans-serif !important;
+font-size: 14px;
+font-weight: 600;
+line-height: 22px;
+text-transform: capitalize;
+margin: 0 0 16px;
+    }
+    .info_block > ul{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      text-align: left;
+    }
+    .info_block > ul li{
+      position: relative;
+      padding-left: 28px;
+    }
+    .info_block > ul li::before{
+        position: absolute;
+        content: "";
+        width: 20px;
+        height: 20px;
+        background: url(https://conversionratestore.github.io/projects/doyogawithme/img/lotus.svg) no-repeat center center;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        background-size: contain;
+    }
+    .info_block > ul li +li{
+      margin-top: 12px;
+    }
+    .info_block > ul li p{
+      color: #272727;
+font-family: "Manrope", sans-serif !important;
+font-size: 14px;
+font-weight: 600;
+line-height: 24px;
+    }
+    .voucher_block{
+border-radius: 12px;
+border: 1px dashed #A5A5A5;
+background: #F6F6F6;
+color: #555;
+ font-family: "Manrope", sans-serif !important;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 22px;
+padding: 12px 30px;
+margin-top: 16px;
+text-align:center;
+    }
+    .voucher_block span{
+      font-weight: 700;
+      color: #017922;
+      text-decoration-line: underline;
+    }
+    #subscribeSaveLink{
+max-width: unset;
+height: 50px;
+margin-top: 24px;
+color: #FFF;
+font-family: "Manrope", sans-serif !important;
+font-size: 16px;
+font-weight: 700;
+line-height: 32px;
+text-transform: capitalize;
+    }
+.discount_expires_wrap {
+    display: flex;
+    border-radius: 4px;
+    border: 1px solid #E0E0E0;
+    background: #F6F6F6;
+    padding: 4px 4px 4px 12px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    }
+    .discount_expires_wrap > p{
+      margin: 0;
+      color: #272727;
+font-family: "Manrope", sans-serif !important;
+font-size: 14px;
+font-weight: 600;
+line-height: 20px;
+padding-left: 32px;
+position: relative;
+    }
+    .discount_expires_wrap > p::before{
+              position: absolute;
+        content: "";
+        width: 20px;
+        height: 20px;
+        background: url(https://conversionratestore.github.io/projects/doyogawithme/img/tag.svg) no-repeat center center;
+        top: 0;
+        left: 0;
+        background-size: contain;
+    }
+    .flip-clock-wrapper{
+      margin: 0;
+      display: flex;
+      align-items: center;
+    }
+    .flip-clock-divider .flip-clock-label,
+    .flip-clock-divider:first-child{
+      display: none;
+    }
+    .flip-clock-dot{
+      background: #121620;
+      width: 3px;
+      height: 3px;
+      box-shadow: none;
+      left: 0;
+    }
+    .flip-clock-dot.bottom{
+      bottom: 0;
+    }
+    .flip-clock-dot.top{
+      top: 0;
+    }
+    .flip-clock-divider{
+      height: 13px;
+       width: 3px;
+       margin: 0 2px;
+    }
+    .flip-clock-wrapper ul{
+      color: #272727;
+font-size: 16px;
+font-weight: 700;
+line-height: 22px;
+min-width: unset;
+padding: 0;
+margin: 0 2px;
+width: 24px;
+height: 36px;
+background:#FFF;
+box-shadow: unset;
+border: 1px solid #E0E0E0;
+    }
+    .flip-clock-wrapper .flip{
+      box-shadow: unset;
+    }
+    .flip-clock-wrapper ul li a div div.inn{
+      font-size: 16px;
+      background-color:#FFF;
+      color: #272727;
+      text-shadow: unset;
+    }
+    .flip-clock-wrapper ul li a div{
+      font-size: 16px;
+    }
+    .flip-clock-wrapper a{
+      color: #272727;
+    }
+    .flip-clock-wrapper ul li{
+      line-height: 22px;
+      top: 0;
+    }
+    .flip-clock-wrapper ul li a div.up div.inn{
+      top: 8px;
+    }
+    .flip-clock-wrapper ul li a div div.inn, .flip-clock-wrapper ul li a div{
+      height: 75%;
+    }
+    .flip-clock-wrapper ul li a div div.inn,
+    .flip-clock-wrapper ul li a div{
+      height: 90%;
+    }
+    .flip-clock-wrapper ul.play li.flip-clock-before,
+    .flip-clock-wrapper ul li a div.down,
+    .flip-clock-wrapper ul.play li.flip-clock-active .up .shadow{
+      display: none;
+    }
 
 @media (max-width: 768px) {
     /* Unauthorized user hero main*/
@@ -586,8 +836,283 @@ let freeTrial = setInterval(() => {
       </div>
     </section>
     `;
+    let popUp = /*html */ `
+        <div class="overlay_popup is_hidden">
+          <div class="container_popup">
+            <div class="btn_close">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M20 20L4 4M20 4L4 20" stroke="white" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+    `;
+    let contentPopup = /*html */ `
+        <div class="content_popup">
+            <div class="info_block">
+              <div class="discount_expires_wrap">
+                <p>Discount expires in:</p>
+                <div class="countdown-wrapper">
+                    <div id="countdown" class="countdown"></div>
+                </div>
+              </div>
+                <h2>Enjoy DoYogaWithMe? Claim your <span class="accent_color">45%</span> discount</h2>
+                <p>Don't miss out on this exclusive offer to unlock <br> a world of premium yoga content and take your practice to new heights.</p>
+                <ul>
+                  <li>
+                    <p>Access 500+ Premium Classes</p>
+                  </li>
+                  <li>
+                    <p>Personalized Programs for All Levels</p>
+                  </li>
+                  <li>
+                    <p>Expert Instructors and Guided Sessions</p>
+                  </li>
+                  <li>
+                    <p>Ad-Free Experience</p>
+                  </li>
+                  <li>
+                    <p>Community Support and Exclusive Content</p>
+                  </li>
+                </ul>
+                <div  class="voucher_block">
+                  Use code <span data-clipboard-text="YOGA_45">YOGA_45</span> at checkout to claim your discount. But hurry, this offer won't last long!
+                </div>
+                <a id="subscribeSaveLink" href="https://www.doyogawithme.com//become-a-subscriber">Subscribe and Save 45% Now!</a>
+
+            </div>
+            <div class="img_wrap">
+                <img class="desk_var" src="https://conversionratestore.github.io/projects/doyogawithme/img/popup_img.png" alt="woman">
+            </div>
+        </div>
+    `;
 
     document.head.insertAdjacentHTML("beforeend", freeTrialStyle);
+
+    //Hypothesis #6 - Add exit-intent popup with limited-time offer
+    // Show exit intent popups for users who are logged in but have not bought a paid plan (free users) on pages:
+    if (!document.querySelector('.menu--account [data-drupal-link-system-path="yogi/login"]') && (window.location.pathname === "/" || window.location.pathname === "/yoga-classes" || window.location.pathname === "/yoga-meditation" || window.location.pathname === "/yoga-challenges" || window.location.pathname === "/yoga-programs" || window.location.pathname.match("/content/"))) {
+      document.body.insertAdjacentHTML("afterbegin", popUp);
+      document.querySelector(".overlay_popup .container_popup")?.insertAdjacentHTML("beforeend", contentPopup);
+
+      exitIntentPopup();
+      // trigger for click on video
+      let findVideo = setInterval(() => {
+        if (document.querySelector("video.fp-engine")) {
+          clearInterval(findVideo);
+          document.querySelector(".sfc-nodePlayable__primaryContentContainer").addEventListener("click", (e) => {
+            console.log(`object`, e.currentTarget);
+            sessionStorage.setItem("click_on_video", "true");
+          });
+        }
+      }, 100);
+
+      function pausedVideo() {
+        if (document.querySelector("video.fp-engine")) {
+          document.querySelector("video.fp-engine").pause();
+        }
+      }
+      function startVideo() {
+        if (document.querySelector("video.fp-engine")) {
+          document.querySelector("video.fp-engine").play();
+        }
+      }
+
+      function exitIntentPopup() {
+        //   EXIT INTENT popup
+        if (document.querySelector(".overlay_popup")) {
+          let overlay = document.querySelector(".overlay_popup"),
+            containerPopup = overlay.querySelector(".container_popup"),
+            btnClose = overlay.querySelector(".btn_close");
+
+          setTimeout(() => {
+            if (sessionStorage.getItem("click_on_video") == null && sessionStorage.getItem("exit_popup_loaded") == null && document.querySelector("video.fp-engine")) {
+              sessionStorage.setItem("exit_popup_loaded", "true"); //refresh status popup
+              console.log(`60000 exit_popup_loaded`);
+              onOpenPopup(); //show popup
+            }
+          }, 60000);
+
+          addEvent(document, "mouseout", function (e) {
+            //show EXIT INTENT popup desktop
+            if (e.toElement == null && e.relatedTarget == null && sessionStorage.getItem("exit_popup_loaded") == null) {
+              sessionStorage.setItem("exit_popup_loaded", "true"); //refresh status popup
+              onOpenPopup(); //show popup
+            }
+          });
+          function addEvent(obj, evt, fn) {
+            //exit intent
+            if (obj.addEventListener) {
+              obj.addEventListener(evt, fn, false);
+            } else if (obj.attachEvent) {
+              obj.attachEvent("on" + evt, fn);
+            }
+          }
+          if (window.innerWidth <= 768) {
+            //show EXIT INTENT popup mobile
+            let lastPosition = 0,
+              newPosition = 0,
+              currentSpeed = 0;
+            let scrollSpeed = () => {
+              lastPosition = window.scrollY;
+              setTimeout(() => {
+                newPosition = window.scrollY;
+              }, 70);
+              currentSpeed = newPosition - lastPosition;
+              if (currentSpeed > 70 && sessionStorage.getItem("exit_popup_loaded") == null) {
+                sessionStorage.setItem("exit_popup_loaded", "true"); //refresh status popup
+                onOpenPopup(); //show popup
+                document.removeEventListener("scroll", scrollSpeed);
+              }
+            };
+            document.addEventListener("scroll", scrollSpeed);
+          }
+          function onOpenPopup() {
+            // pausedVideo();
+            sessionStorage.setItem("openPopupVisib", "yes");
+            overlay.classList.remove("is_hidden");
+            document.querySelector("body").classList.add("open_var");
+            if (!document.querySelector(".overlay_popup .content_popup")) {
+              containerPopup?.insertAdjacentHTML("beforeend", contentPopup);
+            }
+
+            if (document.querySelector(".overlay_popup .content_popup")) {
+              if (window.innerWidth <= 768) {
+                document.querySelector(".info_block > h2").after(document.querySelector(".discount_expires_wrap"));
+              }
+              let clock = setInterval(() => {
+                if (typeof FlipClock === "function" && document.querySelector("#countdown")) {
+                  clearInterval(clock);
+                  let countdown, init_countdown, set_countdown;
+                  countdown = init_countdown = function () {
+                    countdown = new FlipClock(document.querySelector(".countdown"), {
+                      clockFace: "MinuteCounter",
+                      language: "en",
+                      autoStart: false,
+                      countdown: true,
+                      showSeconds: true,
+                      callbacks: {
+                        start: function () {
+                          timerEventDesk(document.querySelector(".info_block"), "start");
+                        },
+                        stop: function () {
+                          if (this.factory.getTime().time === 0) {
+                            document.querySelector(".discount_expires_wrap")?.remove();
+                          }
+                        },
+                      },
+                    });
+                    function timerEventDesk(el, trigger) {
+                      let time = 0;
+                      let currentTime = 0;
+                      let s = setInterval(() => {
+                        if (trigger === "start") {
+                          currentTime = ++time;
+                          el.setAttribute("data-time", currentTime);
+                        }
+                        if (trigger === "stop") {
+                          clearInterval(s);
+                          currentTime = el.getAttribute("data-time");
+                        }
+                      }, 1000);
+                    }
+                    btnClose.addEventListener("click", (e) => {
+                      // click on btn close popup
+                      // pushDataLayer("exp_sub_premium_enjoy_close", "Close", "Banner - Enjoy DoYogaWithMe", "Enjoy DoYogaWithMe");
+
+                      countdown.stop();
+                      timerEventDesk(document.querySelector(".info_block"), "stop");
+                      onClosePopup();
+                    });
+                    overlay.addEventListener("click", (e) => {
+                      // click on overlay popup
+                      if (e.target.matches(".overlay_popup")) {
+                        // pushDataLayer("exp_sub_premium_enjoy_close", "Close", "Banner - Enjoy DoYogaWithMe", "Enjoy DoYogaWithMe");
+                        countdown.stop();
+                        timerEventDesk(document.querySelector(".info_block"), "stop");
+                        onClosePopup();
+                      }
+                    });
+                    document.querySelector("#subscribeSaveLink")?.addEventListener("click", () => {
+                      // pushDataLayer("exp_sub_premium_enjoy_sub", "Subscribe and Save 45% Now!", "Banner - Enjoy DoYogaWithMe", "Enjoy DoYogaWithMe");
+                      countdown.stop();
+                      sessionStorage.setItem("becomeSubscriber", "true");
+
+                      timerEventDesk(document.querySelector(".info_block"), "stop");
+
+                      onClosePopup();
+                    });
+                    return countdown;
+                  };
+                  set_countdown = function (minutes, start) {
+                    let elapsed, end, left_secs, now, seconds;
+                    if (countdown.running) {
+                      return;
+                    }
+                    seconds = minutes * 60;
+                    now = new Date();
+                    start = new Date(start);
+                    end = start.getTime() + seconds * 1000;
+                    left_secs = Math.round((end - now.getTime()) / 1000);
+                    elapsed = false;
+                    if (left_secs < 0) {
+                      console.log(`left_secs`, left_secs);
+                      left_secs *= -1;
+                      elapsed = true;
+                    }
+                    countdown.setTime(left_secs);
+                    return countdown.start();
+                  };
+                  init_countdown();
+                  set_countdown(30, new Date());
+                }
+              }, 500);
+            }
+          }
+          function onClosePopup() {
+            // startVideo();
+            overlay.classList.add("is_hidden");
+            if (document.querySelector("body").classList.contains("open_var")) {
+              document.querySelector("body").classList.remove("open_var");
+            }
+            setTimeout(() => {
+              document.querySelector(".content_popup")?.remove();
+            }, 400);
+          }
+        }
+      }
+    }
+    //to redirect from https://www.doyogawithme.com/become-a-subscriber to https://www.doyogawithme.com/checkout/________?__/order_information after exit intent popup
+    let becomeSubscriber = setInterval(() => {
+      if (sessionStorage.getItem("becomeSubscriber") && window.location.pathname === "/become-a-subscriber" && !sessionStorage.getItem("checkoutPremium")) {
+        clearInterval(becomeSubscriber);
+        sessionStorage.removeItem("becomeSubscriber");
+        sessionStorage.setItem("checkoutPremium", "true");
+        document.querySelectorAll('.sfc-pricingCard__cta[href="/express-checkout/55"]').forEach((el) => {
+          console.log(`CLICK plan__btn-year`);
+          el.click();
+        });
+      }
+    }, 100);
+    //to apply the discount code automatically on the checkout after exit intent popup
+    let checkoutPremium = setInterval(() => {
+      if (window.location.pathname.includes("checkout") && sessionStorage.getItem("checkoutPremium") && document.querySelector("#edit-sidebar-order-summary-summary .views-field.views-field-title")?.textContent.includes("12-month")) {
+        clearInterval(checkoutPremium);
+        // sessionStorage.removeItem("checkoutPremium");
+        if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value === "") {
+          document.querySelector("#edit-sidebar-coupon-redemption-form-code").value = "YOGA_45";
+        }
+
+        if (document.querySelector("#edit-sidebar-coupon-redemption-form-code")?.value === "YOGA_45") {
+          const element = document.querySelector("#edit-sidebar-coupon-redemption-form-apply");
+          const events = ["mousedown", "focusin"];
+          events.forEach((eventType) => element.dispatchEvent(new MouseEvent(eventType, { bubbles: true })));
+          setTimeout(() => {
+            window.location.reload();
+          }, 100);
+        }
+      }
+    }, 100);
 
     // btn Sign Up ->>> textContent
     changeTextBtn();
@@ -738,7 +1263,6 @@ let freeTrial = setInterval(() => {
     }
 
     unlockClassBanner();
-    //
     function unlockClassBanner() {
       let findTriggerHypothesis = setInterval(() => {
         if (document.querySelector(".sfc-nodePlayable__lockContainerInner")) {
