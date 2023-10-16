@@ -1712,8 +1712,26 @@ function init() {
         });
       }
       document.querySelector(".form-item-commerce-donation-pane-donation-toggler label").innerHTML = `I'd like to make a donation to support instructors and free content creation `;
+      const months = {
+        Jan: "January",
+        Feb: "February",
+        Mar: "March",
+        Apr: "April",
+        May: "May",
+        Jun: "June",
+        Jul: "July",
+        Aug: "August",
+        Sep: "September",
+        Oct: "October",
+        Nov: "November",
+        Dec: "December",
+      };
+      let newDateArr = new Date(new Date().setDate(new Date().getDate() + 7)).toDateString().split(" ");
+      let newMonthTxt = months[newDateArr[1]];
+      let newDateTxt = newDateArr[2];
+      console.log(newMonthTxt, newDateTxt);
       if (!document.querySelector(".free_trial_box")) {
-        document.querySelector(".layout-region.layout-region-checkout-secondary > h3").insertAdjacentHTML("afterend", `<div class="free_trial_box"><p>7-day free trial</p><p>$0.00</p></div><div class="due_on_block"><p>Due on <span class="due_on_txt">September, 21</span>:</p></div>`);
+        document.querySelector(".layout-region.layout-region-checkout-secondary > h3").insertAdjacentHTML("afterend", `<div class="free_trial_box"><p>7-day free trial</p><p>$0.00</p></div><div class="due_on_block"><p>Due on <span class="due_on_txt">${newMonthTxt}, ${newDateTxt}</span>:</p></div>`);
       }
 
       if (document.querySelector(".views-field.views-field-total-price__number").innerHTML.includes("$108.99")) {

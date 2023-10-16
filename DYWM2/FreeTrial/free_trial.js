@@ -1,5 +1,5 @@
 let freeTrial = setInterval(() => {
-  if (document) {
+  if (document && !window.location.pathname.match("subscription") && JSON.parse(document.querySelector('[data-drupal-selector="drupal-settings-json"]')?.textContent).dywm.gtm.customer_info.user.isSubscriber === false) {
     clearInterval(freeTrial);
 
     // script tooltip
@@ -1531,7 +1531,7 @@ let freeTrial = setInterval(() => {
 }, 100);
 
 let cancelTrial = setInterval(() => {
-  if (window.location.pathname.match("subscription/")) {
+  if (window.location.pathname.match("subscription") && !document.querySelector(".reactivate") && JSON.parse(document.querySelector('[data-drupal-selector="drupal-settings-json"]')?.textContent).dywm.gtm.customer_info.user.isSubscriber === true) {
     clearInterval(cancelTrial);
 
     //swipe
@@ -1546,8 +1546,49 @@ let cancelTrial = setInterval(() => {
 
     let cancelTrialStyle = /*html */ `
       <style>
+        #block-tabs + #block-lotus-content{
+          display: none;
+        }
+        .o-page--user .o-page__mainContent{
+          margin-left: auto;
+          margin-right:  auto;
+        }
+        /*your_trial_new_block */
+        .your_trial_new_block{
+          margin: 10px 0 165px;
+        }
+        .your_trial_new_title{
+          color: #000;
+          font-family: 'Source Serif Pro';
+          font-size: 36px;
+          font-weight: 700;
+          line-height: normal;
+          margin: 0 0 12px;
+        }
+        .your_trial_new_txt{
+          color: #272727;
+          font-family: 'Manrope';
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 24px;
+          margin: 0 0 18px;
+          max-width: 540px;
+        }
+        .your_trial_new_descr > p{
+          margin: 0;
+          color: #272727;
+          font-family: 'Manrope';
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 24px;
+          max-width: unset;
+        }
+        .your_trial_new_descr > p + p{
+          margin-top: 10px;
+        }
 /*cancel_trial_btn */
 .cancel_trial_btn {
+  display: block;
   font-family: "Manrope", sans-serif !important;
   color: #027db8;
   font-size: 14px;
@@ -1555,6 +1596,7 @@ let cancelTrial = setInterval(() => {
   line-height: normal;
   text-decoration-line: underline;
   cursor: pointer;
+  margin: 18px 0 0;
 }
 /*popup */
 .overlay_popup {
@@ -1563,7 +1605,7 @@ let cancelTrial = setInterval(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.9);
   display: flex;
   overflow-y: auto;
   z-index: 1000000000;
@@ -1582,6 +1624,7 @@ let cancelTrial = setInterval(() => {
   transition: all 0.5s ease 0s;
   border-radius: 12px;
   background: #fff;
+  height: max-content;
 }
 .overlay_popup .container_popup > .btn_close {
   position: absolute;
@@ -1713,6 +1756,10 @@ let cancelTrial = setInterval(() => {
 }
 #yourTrialWasCancelled .close_btn {
   max-width: unset;
+  display: none !important;
+}
+.overlay_popup.last_step .btn_close{
+  display: none !important;
 }
 #helpUsBecomeBetter .popup_subtitle {
   max-width: unset;
@@ -1885,6 +1932,10 @@ html.open_var {
   display: none;
 }
 @media (max-width: 768px) {
+  /*your_trial_new_block */
+  .your_trial_new_block {
+    margin: 10px 20px 165px;
+}
   .overlay_popup .container_popup {
     max-width: 350px;
     margin: auto auto 0;
@@ -1973,7 +2024,7 @@ box-shadow: 0px -2px 8px 0px rgba(0, 0, 0, 0.10);
     `;
 
     let popUp = /*html */ `
-        <div class="overlay_popup is_hidden">
+        <div class="overlay_popup is_hidden first_step">
           <div class="container_popup">
             <span class="border_bottom_span"></span>
             <div class="btn_close">
@@ -1993,7 +2044,7 @@ box-shadow: 0px -2px 8px 0px rgba(0, 0, 0, 0.10);
       <p class="popup_descr">We'd love to know if there's anything we can improve or assist you with. If you're facing any issues or have feedback, please reach out to our support team at <a href="mailto:info@doyogawithme.com">info@doyogawithme.com.</a></p>
       <ul class="popup_list_txt">
         <li>
-          <p>Your trial will end on <span class="date_off">October 5th, 2023</span>.</p>
+          <p>Your trial will end on <span class="after_trial_txt_popup">October 5th, 2023</span>.</p>
         </li>
         <li><p>Access to our premium content will be suspended.</p></li>
         <li><p>You won't be charged for the trial cancellation.</p></li>
@@ -2122,7 +2173,7 @@ box-shadow: 0px -2px 8px 0px rgba(0, 0, 0, 0.10);
     </div>
     <div id="yourTrialWasCancelled" class="is_hidden parent_wrapp">
       <h2 class="popup_title">Your Trial Was Cancelled</h2>
-      <h3 class="popup_subtitle">Your Trial was successfully cancelled. You will still have full access till October 5th, 2023.</h3>
+      <h3 class="popup_subtitle">Your Trial was successfully cancelled. You will still have full access till <span class="after_trial_txt_popup">October 5th, 2023</span>.</h3>
       <p class="close_btn">Close</p>
     </div>
      </div>
@@ -2131,31 +2182,69 @@ box-shadow: 0px -2px 8px 0px rgba(0, 0, 0, 0.10);
     document.head.insertAdjacentHTML("beforeend", cancelTrialStyle);
     document.body.insertAdjacentHTML("afterbegin", popUp);
 
-    if (!document.querySelector(".cancel_trial_btn")) {
-      document.querySelector("#block-lotus-content").insertAdjacentHTML("beforeend", `<span class="cancel_trial_btn">Cancel trial</span>`);
+    if (!document.querySelector(".your_trial_new_block") && document.querySelectorAll(".in_trial.active li")[0]?.textContent.match("Currently in trial")) {
+      document.querySelector("#block-lotus-content").insertAdjacentHTML(
+        "afterend",
+        `<div class="your_trial_new_block">
+          <h2 class="your_trial_new_title">Your Trial</h2>
+          <p class="your_trial_new_txt">Your Trial gives you free 7-day access to our catalog of over 1000 yoga classes and challenges.</p>
+          <div class="your_trial_new_descr">
+            <p><b>Trial end date:</b> <span class="end_date_txt">October 5th, 2023</span></p>
+            <p><b>Subscription after trial:</b> <span class="after_trial_txt">Yearly Subscription at $108.99 USD per year</span></p>
+          </div>
+          <span class="cancel_trial_btn">Cancel trial</span>
+        </div>`
+      );
     }
 
-    if (document.querySelector(".cancel_trial_btn")) {
-      createConfirmTrialCancellationPopup();
+    if (document.querySelector(".your_trial_new_block")) {
+      document.querySelector(".your_trial_new_block .end_date_txt").textContent = document.querySelectorAll(".in_trial.active li")[3].textContent.split("Invoice: ")[1];
+      if (JSON.parse(document.querySelector('[data-drupal-selector="drupal-settings-json"]')?.textContent).dywm.gtm.customer_info.currentSubscription.subscriptionTypeKey === "Monthly Subscription") {
+        document.querySelector(".your_trial_new_block .after_trial_txt").textContent = "Monthly Subscription at $13.99 USD per month";
+      } else {
+        document.querySelector(".your_trial_new_block .after_trial_txt").textContent = "Yearly Subscription at $108.99 USD per year";
+      }
+
+      if (document.querySelector(".cancel_trial_btn")) {
+        document.querySelector(".cancel_trial_btn").addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            console.log(`cancel_trial_btn openPopup`);
+            document.querySelector(".cancel a")?.click();
+          }
+          e.target.setAttribute("data-test", "1");
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
+            }
+          }, 1000);
+        });
+      }
     }
+
+    let subscriptionIdPage = setInterval(() => {
+      if (window.location.pathname.match("subscription/id/")) {
+        clearInterval(subscriptionIdPage);
+        createConfirmTrialCancellationPopup();
+      }
+    }, 100);
 
     function createConfirmTrialCancellationPopup() {
       if (document.querySelector(".overlay_popup")) {
         console.log(`POPUP`);
-        if (document.querySelector(".cancel_trial_btn")) {
-          document.querySelector(".cancel_trial_btn").addEventListener("click", (e) => {
-            if (!e.target.getAttribute("data-test")) {
-              console.log(`cancel_trial_btn openPopup`);
-              onOpenPopup();
-            }
-            e.target.setAttribute("data-test", "1");
-            setTimeout(() => {
-              if (e.target.getAttribute("data-test")) {
-                e.target.removeAttribute("data-test");
-              }
-            }, 1000);
-          });
-        }
+        onOpenPopup();
+        // if (document.querySelector(".cancel_trial_btn")) {
+        //   document.querySelector(".cancel_trial_btn").addEventListener("click", (e) => {
+        //     if (!e.target.getAttribute("data-test")) {
+        //       console.log(`cancel_trial_btn openPopup`);
+        //     }
+        //     e.target.setAttribute("data-test", "1");
+        //     setTimeout(() => {
+        //       if (e.target.getAttribute("data-test")) {
+        //         e.target.removeAttribute("data-test");
+        //       }
+        //     }, 1000);
+        //   });
+        // }
 
         function onOpenPopup() {
           document.querySelector("html").classList.add("open_var");
@@ -2166,20 +2255,34 @@ box-shadow: 0px -2px 8px 0px rgba(0, 0, 0, 0.10);
 
           document.querySelectorAll(".overlay_popup .btn_close").forEach((i) => {
             i.addEventListener("click", (e) => {
+              if (e.currentTarget.closest(".overlay_popup").classList.contains("first_step")) {
+                document.querySelector("#edit-cancel--3").click();
+              }
+              if (e.currentTarget.closest(".overlay_popup").classList.contains("last_step")) {
+                window.location = "/";
+              }
               // click on btn close popup
-              onClosePopup();
+              // onClosePopup();
             });
           });
           document.querySelectorAll(".overlay_popup").forEach((i) => {
             i.addEventListener("click", (e) => {
               // click on overlay popup
-              if (e.target.matches(".overlay_popup")) {
-                onClosePopup();
+              if (e.target.matches(".overlay_popup") && e.currentTarget.classList.contains("first_step")) {
+                document.querySelector("#edit-cancel--3").click();
+                // onClosePopup();
               }
+              // if (e.target.matches(".overlay_popup") && e.currentTarget.classList.contains("last_step")) {
+              //   window.location = "/";
+              //   // onClosePopup();
+              // }
             });
           });
 
           if (document.querySelector(".overlay_popup .content_popup")) {
+            document.querySelectorAll(".after_trial_txt_popup").forEach((el) => {
+              el.textContent = document.querySelector("#recurly-subscription-cancel-confirm-form > p > strong").textContent;
+            });
             document.querySelectorAll("#helpUsBecomeBetter .grade_list input.custom_radio_btn").forEach((el) => {
               el.addEventListener("click", (e) => {
                 if (!e.target.getAttribute("data-test")) {
@@ -2228,7 +2331,8 @@ box-shadow: 0px -2px 8px 0px rgba(0, 0, 0, 0.10);
             // Keep My Trial ->>>>> Confirm Trial Cancellation
             document.querySelector(".content_popup .keep_my_trial_btn").addEventListener("click", (e) => {
               if (!e.target.getAttribute("data-test")) {
-                onClosePopup();
+                // onClosePopup();
+                document.querySelector("#edit-cancel--3").click();
               }
               e.target.setAttribute("data-test", "1");
               setTimeout(() => {
@@ -2242,6 +2346,10 @@ box-shadow: 0px -2px 8px 0px rgba(0, 0, 0, 0.10);
               el.addEventListener("click", (e) => {
                 if (!e.target.getAttribute("data-test")) {
                   e.preventDefault();
+                  if (el.closest(".overlay_popup").classList.contains("first_step")) {
+                    el.closest(".overlay_popup").classList.remove("first_step");
+                    el.closest(".overlay_popup").classList.add("last_step");
+                  }
                   let value1 = document.querySelector("#helpUsBecomeBetter .grade_list input.custom_radio_btn:checked").value;
                   let value2 = document.querySelector("#helpUsBecomeBetter .questions_list input.custom_radio_btn:checked").value;
                   let value3 = document.querySelector("#helpUsBecomeBetter .questions_list input.custom_radio_btn:checked").nextElementSibling.querySelector("textarea").value;
@@ -2254,6 +2362,8 @@ box-shadow: 0px -2px 8px 0px rgba(0, 0, 0, 0.10);
                   if (document.querySelector("#yourTrialWasCancelled").classList.contains("is_hidden")) {
                     document.querySelector("#yourTrialWasCancelled").classList.remove("is_hidden");
                   }
+
+                  document.querySelector('input[value="Cancel at Renewal"]').click();
                   // ОТМЕНИТЬ ПОДПИСКУ
                 }
                 e.target.setAttribute("data-test", "1");
@@ -2272,9 +2382,14 @@ box-shadow: 0px -2px 8px 0px rgba(0, 0, 0, 0.10);
                     document.querySelector(".overlay_popup .container_popup").classList.add("mob_var");
                   }
                   i.closest("div.parent_wrapp").classList.add("is_hidden");
+                  if (i.closest(".overlay_popup").classList.contains("first_step")) {
+                    i.closest(".overlay_popup").classList.remove("first_step");
+                    i.closest(".overlay_popup").classList.add("last_step");
+                  }
                   if (document.querySelector("#yourTrialWasCancelled").classList.contains("is_hidden")) {
                     document.querySelector("#yourTrialWasCancelled").classList.remove("is_hidden");
                   }
+                  document.querySelector('input[value="Cancel at Renewal"]').click();
                   // ОТМЕНИТЬ ПОДПИСКУ
                 }
                 e.target.setAttribute("data-test", "1");
@@ -2289,7 +2404,10 @@ box-shadow: 0px -2px 8px 0px rgba(0, 0, 0, 0.10);
             document.querySelector("#yourTrialWasCancelled .close_btn").addEventListener("click", (e) => {
               if (!e.target.getAttribute("data-test")) {
                 console.log(`close_btn ->>>>> Your Trial Was Cancelled`);
-                onClosePopup();
+                // onClosePopup();
+                if (e.currentTarget.closest(".overlay_popup").classList.contains("last_step")) {
+                  window.location = "/";
+                }
               }
               e.target.setAttribute("data-test", "1");
               setTimeout(() => {

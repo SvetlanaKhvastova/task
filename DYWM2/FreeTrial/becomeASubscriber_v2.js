@@ -1,17 +1,6 @@
 let becomeASubscriber = setInterval(() => {
-  if (window.location.pathname === "/become-a-subscriber") {
+  if (window.location.pathname === "/become-a-subscriber" && JSON.parse(document.querySelector('[data-drupal-selector="drupal-settings-json"]')?.textContent).dywm.gtm.customer_info.user.isSubscriber === false) {
     clearInterval(becomeASubscriber);
-
-    // script tooltip
-    let scriptPopper = document.createElement("script");
-    scriptPopper.src = "https://unpkg.com/popper.js@1";
-    scriptPopper.async = false;
-    document.body.appendChild(scriptPopper);
-
-    let scriptTippy = document.createElement("script");
-    scriptTippy.src = "https://unpkg.com/tippy.js@5";
-    scriptTippy.async = false;
-    document.body.appendChild(scriptTippy);
 
     const instructorsArr = [
       {
@@ -1762,6 +1751,24 @@ line-height: 32px;
       }
 
       if (document.querySelector(".new_box_subscriber")) {
+        document.querySelectorAll(".your_plan_btn.btn_free").forEach((el) => {
+          el.addEventListener("click", (e) => {
+            e.preventDefault();
+            document.querySelector('[href="/yogi/register"]').click();
+          });
+        });
+        document.querySelectorAll(".your_plan_btn.btn_year").forEach((el) => {
+          el.addEventListener("click", (e) => {
+            e.preventDefault();
+            document.querySelector('[href="/express-checkout/55"]').click();
+          });
+        });
+        document.querySelectorAll(".your_plan_btn.btn_month").forEach((el) => {
+          el.addEventListener("click", (e) => {
+            e.preventDefault();
+            document.querySelector('[href="/express-checkout/54"]').click();
+          });
+        });
         let auth = setInterval(() => {
           if (!document.querySelector('.menu--account [data-drupal-link-system-path="yogi/login"]') && !document.querySelector(".container_choose_your_plan").classList.contains("not_free")) {
             clearInterval(auth);
