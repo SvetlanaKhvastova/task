@@ -102,6 +102,40 @@ let startFunk = setInterval(() => {
 
     let newStyle = /*html */ `
         <style>
+          .product-page.page-width{
+            position: relative;
+          }
+          .icon_share{
+            position: absolute;
+            right: 40px;
+            margin: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+          }
+          .icon_share span{
+            color: #000;
+            font-family: 'Poppins';
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 18px;
+          }
+          label.variant__label:not(.variant__button-label):not(.text-label){
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+            letter-spacing: normal;
+          }
+          .variant-input-wrap select{
+            color: #000;
+            font-family: 'Poppins';
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 24px;
+            padding: 12px 28px 12px 16px;
+          }
           .product-block.before_lable_wrapp + .product-block{
             display: flex;
             flex-wrap: wrap;
@@ -119,7 +153,8 @@ let startFunk = setInterval(() => {
           .material_var .variant-input-wrap select,
           .stone_var .variant-input-wrap select,
           .bracelet_length_var .variant-input-wrap select,
-          .necklace_length_var .variant-input-wrap select{
+          .necklace_length_var .variant-input-wrap select,
+          .style_var .variant-input-wrap select{
                 width: 100%;
           }
           .material_var{
@@ -128,7 +163,8 @@ let startFunk = setInterval(() => {
     margin-right: 0;
           }
           .stone_var,
-          .necklace_length_var{
+          .necklace_length_var,
+          .style_var{
                 order: 3;
                 width: 48%;
     margin-right: 0;
@@ -141,7 +177,7 @@ width: 48%;
     margin: 0;
           }
           .one-whole[data-type="dropdown"] select{
-                height: 42px !important;
+                height: 50px !important;
                     width: 100%;
           }
           .one-whole[data-type="dropdown"] #fin_img{
@@ -326,9 +362,9 @@ line-height: 20px;
 .extend-offer,
 .full-bleed--mobile.small--hide,
 .grid2__item2.medium-up--two-fifths .product-block hr,
-#syte-discovery-banner,
 #shopify-section-template--20834585772373__82449f7c-6c71-4b98-89f3-074fa0fedafc,
-.beautifully_packaged_mob{
+.beautifully_packaged_mob,
+.site-nav__link.site-nav__link--icon:nth-child(1){
   display: none !important;
 }
 #shopify-block-cadd6db7-a422-4c1f-90e3-91f50c296730 + .product-block {
@@ -423,9 +459,9 @@ h1.h2.product-single__title {
 }
 .size_guide p {
   color: #000;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
-  line-height: 24px;
+  line-height: 18px;
   margin: 0;
 }
 .one-whole .js .one-half,
@@ -443,11 +479,10 @@ h1.h2.product-single__title {
 .new_rush_order .one-half .variant__label,
 .new_rush_order .one-whole .variant__label {
   margin: 0;
-  color: #565656;
+  color: #000;
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
-  letter-spacing: 0.8px;
 }
 .one-whole .js .one-half .switch-button .switch-button__label,
 .one-whole .js .one-whole .switch-button .switch-button__label,
@@ -475,8 +510,7 @@ h1.h2.product-single__title {
 background-color: #d4a298;
 }
 form.product-single__form {
-  padding: 24px 0 0px;
-  border-top: 1px solid #e8e8e1;
+  padding: 8px 0 0px;
 }
 button[name="add"] {
   display: flex;
@@ -501,62 +535,73 @@ button[name="add"] span {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #d4a298;
-  height: 48px;
+  border: 1px solid var(--grey-border, #E8E8E1);
+  background: #FFF;
+  height: 40px;
   cursor: pointer;
-  gap: 8px;
+  gap: 16px;
 }
 .expert_advice p {
   color: #000;
   font-size: 14px;
   font-weight: 600;
-  line-height: 24px;
+  line-height: 20px;
   text-transform: uppercase;
   margin: 0;
 }
 .new_extend {
-  margin-bottom: 24px;
+  margin-bottom: 28px;
+  background: #F8F8F9;
+  padding: 20px;
 }
 .new_extend_head {
-  width: max-content;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 6px;
-  margin-bottom: 16px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
 }
 .new_extend_caption {
   color: #1c1d1d;
   font-family: "Poppins";
   font-size: 13px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 18px;
 }
+.insurance_txt{
+  color: #1C1D1D;
+font-family: 'Poppins';
+font-size: 13px;
+font-weight: 400;
+line-height: 18px;
+margin: 0 0 12px;
+}
 .new_extend_covered {
-  height: 16px;
-  width: 16px;
   margin-top: -3px;
   cursor: pointer;
 }
 .new_extend_body {
-  margin-top: 1px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 8px;
+  gap: 12px;
 }
 .new_extend_item {
-  border: 1px solid #e8e8e1;
-  background: #fff;
-  padding: 9px;
-  text-align: center;
-  cursor: pointer;
-  transition: 0.35s;
+    border: 1px solid #e8e8e1;
+    background: #fff;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.35s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 .new_extend_item_caption {
   color: #565656;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 400;
-  line-height: 16px;
+  line-height: 18px;
 }
 .new_extend_item_price {
   color: #000;
@@ -569,7 +614,7 @@ button[name="add"] span {
 }
 /**earn_gift_wrapp */
 .earn_gift {
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 }
 .earn_gift_wrapp {
   display: flex;
@@ -583,6 +628,7 @@ button[name="add"] span {
 .earn_gift_img {
   position: relative;
   max-width: 60px;
+  max-height: 60px;
   width: 100%;
 }
 .earn_gift_title {
@@ -621,26 +667,25 @@ button[name="add"] span {
   justify-content: center;
   border: 1px solid #f6f5f5;
 }
+.new_link_gift_{
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  cursor: pointer;
+  color: #000;
+  font-family: 'Poppins';
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 18px;
+  text-decoration-line: underline;
+}
 .earn_gift > h2 {
   color: #000;
   font-size: 13px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 20px;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   text-transform: initial;
-}
-.earn_gift > h2 b {
-  font-weight: 600;
-}
-.earn_gift.earn_gift_start > h2 {
-  font-weight: 500;
-}
-.earn_gift.earn_gift_start > h2 b {
-  font-weight: 500;
-  color: #c1856f;
-}
-.earn_gift.earn_gift_moon > h2 {
-  font-weight: 500;
 }
 /**new_rush_order */
 .new_rush_order_title {
@@ -653,31 +698,36 @@ button[name="add"] span {
 }
 .new_benefits {
   display: flex;
-  justify-content: center;
-  background-color: #f6f5f5;
-  padding: 16px;
-  line-height: 1;
+  justify-content: flex-start;
+  border-top: 1px solid #E4E3E0;
+  border-bottom: 1px solid #E4E3E0;
+  padding: 14px 16px;
+  line-height: 18px;
   text-transform: capitalize;
-  color: #1c1d1d;
+  color: #1C1D1D;
+font-family: 'Poppins';
+font-size: 13px;
+font-weight: 500;
   margin-top: 16px;
 }
 .new_benefits_item {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 16px;
+  max-width: 220px;
 }
-.new_benefits_item img {
-  margin-right: 8px;
+.new_benefits_item svg {
   flex-shrink: 0;
 }
 .new_benefits_item + .new_benefits_item {
-  border-left: 1px solid #fff;
-  margin-left: 16px;
-  padding-left: 16px;
+  border-left: 1px solid #E8E8E1;
+  margin-left: 32px;
+  padding-left: 32px;
 }
 /**description_new_block */
 .description_new_block{
-  padding: 24px 0 8px;
+  margin: 24px 0 8px;
 }
 .description_new_block > h2{
   color: #000;
@@ -725,7 +775,7 @@ margin: 0 0 5px;
   color: #000;
 font-family: 'Poppins';
 font-size: 13px;
-font-weight: 400;
+font-weight: 500;
 line-height: 18px;
 text-decoration-line: underline;
 margin-top: 5px;
@@ -733,9 +783,12 @@ margin-top: 5px;
 .new_tab +div{
   display: none;
 }
+.collapsible-trigger-btn--borders+.collapsible-content .collapsible-content__inner{
+  padding: 0 0 20px;
+}
 /*production_delivery */
 .production_delivery {
-  margin: 24px 0;
+  margin: 32px 0 24px;
 }
 .production_delivery > h3 {
   color: #000;
@@ -776,7 +829,7 @@ margin-top: 5px;
   display: block;
   color: #000;
   font-size: 13px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 18px;
   text-decoration-line: underline;
   cursor: pointer;
@@ -818,8 +871,8 @@ margin-top: 5px;
   justify-content: center;
   border-radius: 100px;
   background-color: #eedad6;
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
 }
 .delivery_timeline_item:nth-child(3) .delivery_timeline_item_icon {
   margin-left: auto;
@@ -833,7 +886,7 @@ margin-top: 5px;
   font-size: 12px;
   font-weight: 600;
   line-height: 18px;
-  margin-top: 8px;
+  margin-top: 17px;
 }
 .delivery_timeline_item_caption {
   color: #565656;
@@ -843,9 +896,9 @@ margin-top: 5px;
 .delivery_timeline_item_info {
   position: relative;
   color: #000;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
-  line-height: 18px;
+  line-height: 20px;
   border-radius: 100px;
   border: 1px solid #f6f5f5;
   background: #f6f5f5;
@@ -1335,7 +1388,7 @@ nav.breadcrumb.custom_breadcrumbs {
 .lav-error-txt{
 position: absolute;
     left: 0;
-    top: 41px;
+    top: 47px;
     width: max-content;
     color: #C20000;
     font-family: 'Poppins';
@@ -1376,6 +1429,7 @@ line-height: 20px;
     align-items: center;
     position: relative;
     gap: 36px;
+    margin-top: 24px;
 }
 .create_custom_img_wrap{
       max-width: 234px;
@@ -1407,7 +1461,7 @@ line-height: 20px;
 .create_custom_title{
   color: #1C1D1D;
 font-size: 16px;
-font-weight: 600;
+font-weight: 500;
 line-height: 24px;
 margin: 8px 0;
 text-transform: inherit !important;
@@ -1431,13 +1485,13 @@ text-decoration-line: underline;
 .new_txt_klarna{
 color:  #1C1D1D;
 font-family: 'Poppins';
-font-size: 12px;
-font-weight: 600;
-line-height: 16px;
+font-size: 13px;
+font-weight: 500;
+line-height: 18px;
 display: block;
-margin: 1px 0 24px 0;
-background: #FCF4F6;
-padding: 4px 8px;
+margin: -1px 0 24px;
+border: 1px solid #FCF4F6;
+padding: 6px 16px;
 }
 .new_txt_klarna b{
   font-weight: 600;
@@ -1445,6 +1499,7 @@ padding: 4px 8px;
 /*new_tab */
 .new_tab{
   margin-top: 16px;
+  margin-bottom: 24px;
 }
 @media (max-width: 1180px) {
   .beautifully_packaged_container {
@@ -1835,10 +1890,33 @@ button.syte-discovery.syte-integration-injected .button-text{
     `;
 
     let expertAdvice = /*html */ `
+    <div class="expert_advice_benefits_wrapp">
       <div class="expert_advice">
-         <img src='https://conversionratestore.github.io/projects/capucinne/img/eye.svg' />
-        <p>Get live expert advice</p>
+        <img src="https://conversionratestore.github.io/projects/capucinne/img/eye.svg" />
+        <p>SEE OUR PRODUCTS LIVE - SCHEDULE A MEETING</p>
       </div>
+      <div class="new_benefits">
+        <div class="new_benefits_item">
+         <svg xmlns="http://www.w3.org/2000/svg" width="73" height="16" viewBox="0 0 73 16" fill="none">
+  <g clip-path="url(#clip0_1896_13462)">
+    <path d="M23.3639 6.68619C23.0472 7.115 22.5174 7.86047 22.195 8.29587C22.0313 8.51729 21.7357 8.9193 22.7157 8.9193H27.8759C27.8759 8.9193 28.7075 7.7879 29.4048 6.84163C30.3531 5.55438 29.4868 2.87598 26.0963 2.87598H12.7439L10.4287 6.02154H23.0468C23.6839 6.02154 23.6752 6.26398 23.3639 6.68619ZM19.5731 9.69528C18.593 9.69528 18.8886 9.29244 19.0523 9.07103C19.3747 8.63562 19.9132 7.89799 20.2299 7.46918C20.5416 7.04697 20.5498 6.80453 19.912 6.80453H14.1412L9.49152 13.1237H20.8306C24.5757 13.1237 26.6608 10.5764 27.3036 9.69569L19.5731 9.69528ZM26.9494 13.1237H33.6013L36.123 9.69486L29.472 9.69569C29.4699 9.69528 26.9494 13.1237 26.9494 13.1237ZM44.1121 2.87598L41.5607 6.3415H38.592L41.1422 2.87598H34.4923L30.0434 8.9193H46.3134L50.7611 2.87598H44.1121ZM36.57 13.1237H43.2194L45.7424 9.69569H39.0929C39.0905 9.69528 36.57 13.1237 36.57 13.1237ZM0 11.0477V11.7758H9.26392L9.79911 11.0477H0ZM10.7949 9.69528H0V10.4226H10.2584L10.7949 9.69528ZM0 13.1237H8.27148L8.80419 12.3997H0V13.1237ZM62.7018 11.7754H72.4638V11.0473H63.2378L62.7018 11.7754ZM61.7102 13.1237H72.4638V12.3997H62.2424L61.7102 13.1237ZM64.2319 9.69528L63.6971 10.4234H72.4638V9.69528H64.2319ZM55.5221 8.9193L59.9706 2.87598H52.9278C52.9253 2.87598 48.476 8.9193 48.476 8.9193H55.5221ZM47.9058 9.69528C47.9058 9.69528 47.4197 10.3595 47.1834 10.6795C46.3485 11.8076 47.0869 13.1237 49.8123 13.1237H60.4918L63.0147 9.69569L47.9058 9.69528Z" fill="#D4A298"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_1896_13462">
+      <rect width="72.4638" height="16" fill="white"/>
+    </clipPath>
+  </defs>
+</svg>
+        Free & fully insured express delivery
+        </div>
+        <div class="new_benefits_item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M20.6078 4.71308L12.6243 2.02538C12.5238 1.99154 12.4149 1.99154 12.3143 2.02538L4.33081 4.71308C4.13312 4.77964 4 4.96494 4 5.17352V11.8466C4 16.7891 7.52316 21.0556 12.3773 21.9912C12.4077 21.9971 12.4385 22 12.4693 22C12.5 22 12.5308 21.9971 12.5612 21.9912C17.4153 21.0556 20.9385 16.7891 20.9385 11.8466V5.17352C20.9386 4.9649 20.8055 4.7796 20.6078 4.71308ZM11.5675 13.7637L16.6798 8.86895C16.8736 8.6834 17.1811 8.69008 17.3667 8.88389C17.5522 9.07769 17.5455 9.38522 17.3517 9.57081L11.9104 14.7806C11.8166 14.8705 11.6955 14.9155 11.5743 14.9155C11.4566 14.9155 11.3388 14.873 11.2457 14.7876L8.21105 12.0006C8.01344 11.8191 8.00036 11.5118 8.18182 11.3141C8.36332 11.1165 8.67069 11.1035 8.8683 11.2849L11.5675 13.7637Z" fill="#CC9286"/>
+</svg>
+          14 days Free Returns & Exchange 
+        </div>
+      </div>
+    </div>
     `;
 
     let productionDelivery = /*html */ `
@@ -1848,23 +1926,12 @@ button.syte-discovery.syte-integration-injected .button-text{
     let newRushOrder = /*html */ `
     <div class="new_rush_order">
         <h3 class="new_rush_order_title">Need it faster ?</h3>
-        <div class="new_benefits">
-        <div class="new_benefits_item">
-            <img src="https://flopsi69.github.io/crs/capucinne/pdp_slidein/img/delivery.svg">
-            Free insured shipping
-        </div>
-
-        <div class="new_benefits_item">
-            <img src="https://flopsi69.github.io/crs/capucinne/pdp_slidein/img/shield.svg">
-            14 days Free Returns &amp;&nbsp;Exchange 
-        </div>
-        </div>
     </div>
       `;
 
     let earnStart = /*html */ `
   <div class='earn_gift earn_gift_start'>
-    <h2>Spend <b>$1500</b> or more and get complimentary gift </h2>
+    <h2>Spend $1500 or more and get complimentary gift </h2>
     <div class="earn_gift_wrapp">
         <div class='earn_gift_img'>
             <img class='earn_gift_start' src='https://conversionratestore.github.io/projects/capucinne/earn.jpg'  />
@@ -1879,13 +1946,14 @@ button.syte-discovery.syte-integration-injected .button-text{
         <div class='earn_gift_icon'>
             <img class='earn_gift_icon_abs' src='https://conversionratestore.github.io/projects/capucinne/img/gift.svg'  />
         </div>
+        <a target="_blank" class="new_link_gift_" href="https://capucinne.com/pages/gifts?_pos=2&_sid=0ff8257bc&_ss=r">More gifts ></a>
     </div>
   </div>
   `;
 
     let earnGift1 = /*html */ `
   <div class='earn_gift earn_gift_chain'>
-    <h2><b>You’ll receive a gift</b> with your order</h2>
+    <h2>You’ll receive a gift with your order</h2>
     <div class="earn_gift_wrapp">
         <div class='earn_gift_img'>
             <img class='earn_gift_chain' src='https://conversionratestore.github.io/projects/capucinne/earn.jpg'  />
@@ -1897,6 +1965,7 @@ button.syte-discovery.syte-integration-injected .button-text{
         <div class='earn_gift_icon'>
             <img class='earn_gift_icon_abs' src='https://conversionratestore.github.io/projects/capucinne/img/gift.svg'  />
         </div>
+        <a target="_blank" class="new_link_gift_" href="https://capucinne.com/pages/gifts?_pos=2&_sid=0ff8257bc&_ss=r">More gifts ></a>
     </div>
   </div>
   `;
@@ -1915,6 +1984,7 @@ button.syte-discovery.syte-integration-injected .button-text{
         <div class='earn_gift_icon'>
             <img class='earn_gift_icon_abs' src='https://conversionratestore.github.io/projects/capucinne/img/gift.svg'  />
         </div>
+        <a target="_blank" class="new_link_gift_" href="https://capucinne.com/pages/gifts?_pos=2&_sid=0ff8257bc&_ss=r">More gifts ></a>
     </div>
   </div>
   `;
@@ -2064,6 +2134,40 @@ button.syte-discovery.syte-integration-injected .button-text{
     }
 
     function renderNewBlocks() {
+      //icon_share
+      if (!document.querySelector(".icon_share")) {
+        document.querySelector(".product-page.page-width").insertAdjacentHTML(
+          "afterbegin",
+          `<p class="icon_share"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M0.5 4.9573V15.7242C0.5 15.8764 0.623586 16 0.775861 16H13.4655C13.6177 16 13.7413 15.8764 13.7413 15.7242V12.4138C13.7413 12.2615 13.6177 12.138 13.4655 12.138C13.3132 12.138 13.1896 12.2615 13.1896 12.4138V15.4483H1.05172V4.9573C1.05172 4.80503 0.928136 4.68144 0.775861 4.68144C0.623586 4.68144 0.5 4.80503 0.5 4.9573ZM11.5344 3.27952C10.7438 3.31152 8.463 3.55841 6.53501 5.27813C4.96812 6.67564 3.62219 9.04942 3.53447 13.0974C3.53171 13.2309 3.62468 13.3473 3.75571 13.3738C3.88647 13.4003 4.0175 13.3291 4.06688 13.205C4.06688 13.205 6.26604 7.62157 11.5344 8.4326V11.0428C11.5344 11.1595 11.6078 11.2635 11.7173 11.3027C11.8271 11.3418 11.9496 11.3079 12.0235 11.2177L16.4373 5.83427C16.5209 5.73275 16.5209 5.58627 16.4373 5.48447L12.0235 0.101047C11.9496 0.0108408 11.8271 -0.0230898 11.7173 0.0160825C11.6078 0.0555306 11.5344 0.15953 11.5344 0.275944V3.27952ZM11.7995 3.82737C11.8746 3.83041 11.9474 3.80255 12.0015 3.75069C12.0555 3.69855 12.0862 3.62683 12.0862 3.55179V1.04753L15.8674 5.65937L12.0862 10.2712V8.1995C12.0862 8.06653 11.9913 7.9526 11.8608 7.92833C7.65969 7.14847 5.20977 10.1021 4.1615 11.8315C4.4633 8.75977 5.59046 6.85992 6.90218 5.68971C9.1041 3.72586 11.7995 3.82737 11.7995 3.82737Z" fill="#C1856F"/>
+  </svg>
+  <span>Share</span></p>`
+        );
+      }
+
+      onClickShare();
+
+      function onClickShare() {
+        let iconShare = setInterval(() => {
+          if (document.querySelector(".icon_share")) {
+            clearInterval(iconShare);
+            document.querySelector(".icon_share").addEventListener("click", () => {
+              navigator.clipboard.writeText(window.location);
+
+              document.querySelector(".share")?.remove();
+              document.querySelector(".icon_share").insertAdjacentHTML(
+                "beforeend",
+                `<p class="share">
+                  <span>Link copied</span>
+                </p>`
+              );
+              setTimeout(() => {
+                document.querySelector(".share")?.remove();
+              }, 3000);
+            });
+          }
+        }, 100);
+      }
       // add txt Klarna
       if (document.querySelector("#shopify-block-21092e15-379e-41eb-9f3d-c7a6c3342b9b") && !document.querySelector(".new_txt_klarna")) {
         document.querySelector("#shopify-block-21092e15-379e-41eb-9f3d-c7a6c3342b9b").insertAdjacentHTML("beforeend", `<span class="new_txt_klarna"><b>Pay nothing today.</b> The annual percentage rate is <b>0%</b></span>`);
@@ -2092,6 +2196,10 @@ button.syte-discovery.syte-integration-injected .button-text{
           }
           if (el.textContent.includes("Necklace Length") && !document.querySelector(".necklace_length_var")) {
             el.closest(".variant-wrapper--dropdown").classList.add("necklace_length_var");
+            // document.querySelector(".size_guide").after(el.closest(".variant-wrapper--dropdown.ring_size_var"));
+          }
+          if (el.textContent.includes("Style") && !document.querySelector(".style_var")) {
+            el.closest(".variant-wrapper--dropdown").classList.add("style_var");
             // document.querySelector(".size_guide").after(el.closest(".variant-wrapper--dropdown.ring_size_var"));
           }
         });
@@ -2178,12 +2286,12 @@ button.syte-discovery.syte-integration-injected .button-text{
       //   handleEarn();
       // }
       // add expert Advice
-      if (document.querySelector("form.product-single__form") && !document.querySelector(".expert_advice")) {
+      if (document.querySelector("form.product-single__form") && !document.querySelector(".expert_advice_benefits_wrapp")) {
         document.querySelector("form.product-single__form").closest(".product-block").insertAdjacentHTML("afterend", expertAdvice);
       }
       // add production & delivery
-      if (document.querySelector(".expert_advice") && !document.querySelector(".production_delivery")) {
-        document.querySelector(".expert_advice").insertAdjacentHTML("afterend", productionDelivery);
+      if (document.querySelector(".expert_advice_benefits_wrapp") && !document.querySelector(".production_delivery")) {
+        document.querySelector(".expert_advice_benefits_wrapp").insertAdjacentHTML("afterend", productionDelivery);
       }
       if (document.querySelector(".production_delivery")) {
         handleShipping();
@@ -2223,7 +2331,7 @@ button.syte-discovery.syte-integration-injected .button-text{
       // }
       //add new block Description
       if (!document.querySelector(".description_new_block") && document.querySelector(".new_rush_order")) {
-        document.querySelector(".new_rush_order").insertAdjacentHTML("afterend", `<div class="description_new_block"><h2>Description</h2><div class="description_body no_visib"></div><span class="read_more_btn">Read more ></span></div>`);
+        document.querySelector(".new_rush_order").insertAdjacentHTML("afterend", `<div class="description_new_block"><h2>Description</h2><div class="description_body no_visib"></div><span class="read_more_btn">Learn more ></span></div>`);
       }
       if (document.querySelector(".description_new_block") && document.querySelector(".description_body").children.length === 0) {
         let children = document.querySelectorAll(".product-block.product-block--tab .collapsible-content__inner")[0]?.innerHTML;
@@ -2419,15 +2527,16 @@ button.syte-discovery.syte-integration-injected .button-text{
         <div class='new_extend_head'>
           <div class='new_extend_caption'>
             Add accident protection offered by
+            </div>
+            <div class='new_extend_covered'>
             <img src='https://flopsi69.github.io/crs/capucinne/pdp_slidein/img/extend.svg' />
-          </div>
-          <div class='new_extend_covered'>
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="7.87793" cy="7.70068" r="6.5" fill="white" stroke="#D4A298"></circle>
           <path d="M7.88724 5.70868C7.72191 5.70868 7.58324 5.65268 7.47124 5.54068C7.35924 5.42868 7.30324 5.29002 7.30324 5.12468C7.30324 4.95935 7.35924 4.82068 7.47124 4.70868C7.58324 4.59668 7.72191 4.54068 7.88724 4.54068C8.04724 4.54068 8.18324 4.59668 8.29524 4.70868C8.40724 4.82068 8.46324 4.95935 8.46324 5.12468C8.46324 5.29002 8.40724 5.42868 8.29524 5.54068C8.18324 5.65268 8.04724 5.70868 7.88724 5.70868ZM8.33524 6.29268V10.7007H7.42324V6.29268H8.33524Z" fill="#D4A298"></path>
           </svg>
           </div>
         </div>
+        <div class="insurance_txt">USA based insurance company guarantee</div>
         <div class='new_extend_body'></div>
       </div>
     `;
@@ -2446,7 +2555,7 @@ button.syte-discovery.syte-integration-injected .button-text{
         }
         console.log(item.querySelector(".plan-price").textContent.split("$"));
         el.innerHTML = `
-        <div class='new_extend_item_caption'>${item.querySelector(".term-length").textContent}</div>
+        <div class='new_extend_item_caption'>${item.querySelector(".term-length").textContent}:</div>
         <div class='new_extend_item_price'>$${w}</div>
       `;
 
@@ -2561,9 +2670,9 @@ button.syte-discovery.syte-integration-injected .button-text{
             document.querySelector(".description_body").classList.toggle("no_visib");
             document.querySelector(".description_new_block").scrollIntoView({ block: "start", behavior: "smooth" });
             if (document.querySelector(".description_body").classList.contains("no_visib")) {
-              e.currentTarget.textContent = "Read more >";
+              e.currentTarget.textContent = "Learn more >";
             } else {
-              e.currentTarget.textContent = "Read Less <";
+              e.currentTarget.textContent = "Learn less <";
             }
           });
         }
@@ -2922,7 +3031,6 @@ button.syte-discovery.syte-integration-injected .button-text{
       }, 100);
 
       let slickReadyToShip = setInterval(() => {
-        // && document.querySelector(".ready_to_ship_list")?.children.length >= 179
         if (typeof jQuery("#readyToShip .ready_to_ship_list").slick === "function" && document.querySelector(".ready_to_ship_list")?.children.length >= 160) {
           clearInterval(slickReadyToShip);
 
@@ -3253,18 +3361,19 @@ button.syte-discovery.syte-integration-injected .button-text{
 
       if (window.innerWidth <= 768) {
         if (original) {
-          original.querySelector(".container").style = "border: 0;background: rgba(225, 149, 169, 0.10);padding: 8px 12px;margin-bottom: 0";
+          original.querySelector(".container").style = "border: 0;background: rgba(225, 149, 169, 0.10);padding: 8px 16px;margin-bottom: 0";
         }
       } else {
         if (original) {
-          original.querySelector(".container").style = "border: 0;background: rgba(225, 149, 169, 0.10);padding: 8px 12px;margin-bottom: 0";
+          original.querySelector(".container").style = "border: 0;background: rgba(225, 149, 169, 0.10);padding: 8px 16px;margin-bottom: 0";
         }
       }
       if (original) {
         original.querySelector(".text-wrapper").style = "margin-left: 16px;";
         original.querySelector('.text-wrapper .text[part="osm-message"]').style = "font-size: 13px;font-weight: 400;line-height: 18px;color: #1C1D1D;";
-        original.querySelector(".text button").style = "color: #565656;";
+        original.querySelector(".text button").style = "color: #000;font-weight: 500;line-height: 20px;font-size: 14px;font-family: Poppins;";
         original.querySelector(".text button").textContent = "View details >";
+        original.querySelector(".badge > svg").style = "width: 48px;height: 24px;";
 
         original.querySelector(".text button").addEventListener("click", (e) => {
           if (!e.target.getAttribute("data-test")) {

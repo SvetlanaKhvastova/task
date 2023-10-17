@@ -1766,7 +1766,7 @@ line-height: 32px;
         document.querySelectorAll(".your_plan_btn.btn_month").forEach((el) => {
           el.addEventListener("click", (e) => {
             e.preventDefault();
-            document.querySelector('[href="/express-checkout/54"]').click();
+            document.querySelector('[href="/express-checkout/138"]').click();
           });
         });
         let auth = setInterval(() => {

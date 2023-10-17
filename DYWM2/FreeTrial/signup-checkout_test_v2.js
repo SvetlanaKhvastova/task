@@ -1734,7 +1734,7 @@ function init() {
         document.querySelector(".layout-region.layout-region-checkout-secondary > h3").insertAdjacentHTML("afterend", `<div class="free_trial_box"><p>7-day free trial</p><p>$0.00</p></div><div class="due_on_block"><p>Due on <span class="due_on_txt">${newMonthTxt}, ${newDateTxt}</span>:</p></div>`);
       }
 
-      if (document.querySelector(".views-field.views-field-total-price__number").innerHTML.includes("$108.99")) {
+      if (document.querySelector(".views-field.views-field-title").innerHTML === "") {
         let price = document.querySelector(".views-field.views-field-total-price__number");
         let value = +document.querySelector(".order-total-line.order-total-line__total .order-total-line-value").textContent.split("$")[1];
         let diffValue = 167.88 - value;
@@ -1764,8 +1764,10 @@ function init() {
             document.querySelector(".views-field.views-field-total-price__number").innerHTML = '<p><span>$167.88</span> ${value}</p><p class="c-green">Just $${(value / 12).toFixed(2)}/month!</p>';
           }
         }
-      } else if (document.querySelector(".views-field.views-field-total-price__number").innerHTML.includes("$13.99 ")) {
+      } else if (document.querySelector(".views-field.views-field-title").innerHTML.match("Monthly Subscription w/ 7 Day Trial")) {
+        console.log(`object`);
         document.querySelector(".views-field.views-field-title").innerHTML = `<span>1-Month DYWM Subscription</span><span>After the 7-day trial period, the annual fee will be $13.99. We’ll email you a reminder before your trial ends.</span>`;
+        document.querySelector(".views-field.views-field-total-price__number").textContent = "$13.99";
         if (window.innerWidth <= 768) {
           if (!document.querySelector(".subscr_txt_mob")) {
             document.querySelector(".checkout-pane.checkout-pane-order-summary.js-form-wrapper.form-wrapper").insertAdjacentHTML("afterend", `<p class="subscr_txt_mob">After the 7-day trial period, the annual fee will be $13.99. We’ll email you a reminder before your trial ends.</p>`);
