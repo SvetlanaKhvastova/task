@@ -364,7 +364,7 @@ line-height: 20px;
 .grid2__item2.medium-up--two-fifths .product-block hr,
 #shopify-section-template--20834585772373__82449f7c-6c71-4b98-89f3-074fa0fedafc,
 .beautifully_packaged_mob,
-.site-nav__link.site-nav__link--icon:nth-child(1){
+a.site-nav__link.site-nav__link--icon:nth-child(1){
   display: none !important;
 }
 #shopify-block-cadd6db7-a422-4c1f-90e3-91f50c296730 + .product-block {
@@ -540,6 +540,7 @@ button[name="add"] span {
   height: 40px;
   cursor: pointer;
   gap: 16px;
+      padding: 8px;
 }
 .expert_advice p {
   color: #000;
@@ -1501,18 +1502,73 @@ padding: 6px 16px;
   margin-top: 16px;
   margin-bottom: 24px;
 }
+.select_size_sticky{
+  display: none;
+}
+@media (max-width: 1200px) {
+.new_benefits{
+  font-size: 11px;
+}
+.new_benefits_item + .new_benefits_item {
+    margin-left: 15px;
+    padding-left: 15px;
+}
+.create_custom_block{
+      gap: 0;
+          padding: 8px 8px;
+}
+.create_custom_title{
+      margin: 5px 0;
+}
+}
 @media (max-width: 1180px) {
   .beautifully_packaged_container {
     padding: 20px 5px;
   }
+  .expert_advice p{
+        font-size: 12px;
+  }
 }
 @media (max-width: 768px) {
+  .new_tab +div{
+    display: unset;
+  }
+  .icon_share{
+    right: 16px;
+  }
+  .new_extend{
+        padding: 12px 16px;
+        margin: 0 -16px 24px;
+  }
+  .new_extend_item{
+    flex-direction:column;
+    gap: 0;
+  }
+  .new_extend_item_caption{
+    font-size: 12px;
+line-height: 16px;
+  }
+  .new_link_gift_{
+    right: 8px;
+    bottom: 8px;
+  }
+  .earn_gift_wrapp{
+    gap: 12px;
+    padding: 8px 12px;
+  }
+  .expert_advice p{
+    line-height: 18px;
+  }
+  .lav-sticky__btn svg{
+    display: none !important;
+  }
   .description_body.no_visib{
     max-height: 95px;
   }
   .new_txt_klarna{
-    margin: 1px 0 44px 0;
-    font-weight: 400;
+font-size: 12px;
+    line-height: 16px;
+        padding: 6px 11px;
   }
   .one-whole[data-type="dropdown"] select{
     height: 47px !important;
@@ -1582,6 +1638,12 @@ line-height: 24px;
 position: relative;
 margin-right: 20px;
 }
+.lav-sticky.none_size .select_size_sticky{
+  display: none;
+}
+.lav-sticky.none_size .lav-sticky__btn_price{
+width: 100%;
+}
 .lav-btn-price.lav-mob:after {
     content: '';
     position: absolute;
@@ -1595,7 +1657,7 @@ margin-right: 20px;
     transition: 0.2s;
 }
 .lav-sticky{
-  padding: 4px 2px;
+  padding: 0;
 }
 .lav-sticky__info,
 .lav-sticky .get_discount_block,
@@ -1605,14 +1667,36 @@ margin-right: 20px;
 }
 .lav-sticky__btn_price{
 padding: 0;
-width: 100%;
+    width: 72%;
     border: none;
+}
+.select_size_sticky{
+  width: 31%;
+    max-width: max-content;
+    display: block;
+}
+.select_size_sticky select{
+  border: 1px solid #E8E8E1;
+  color: #000;
+font-family: 'Poppins';
+font-size: 14px;
+font-weight: 400;
+line-height: 30px;
+}
+.select_size_sticky select:focus{
+      border: none;
+    border-color: unset;
+    border-color: unset;
+}
+.select_size_sticky select.lav-error{
+    border: 1px solid #c60200;
 }
 .lav-sticky__btn{
   margin: 0;
   width: 100%;
     max-width: 100%;
         gap: 8px;
+            height: 49px;
 }
 .product-slideshow .is-selected .product__photo-zoom{
   margin: 0;
@@ -1656,7 +1740,6 @@ form.product-single__form{
   padding: 16px 0 0px;
 }
 .new_extend_head{
-      margin-bottom: 12px;
       gap: 8px;
 }
 .earn_gift > h2{
@@ -1664,10 +1747,14 @@ form.product-single__form{
     line-height: 18px;
 }
 .production_delivery {
-    margin: 32px 0 25px;
+    margin: 40px 0 24px;
 }
 .production_delivery > h3{
   margin-bottom: 12px;
+  font-weight: 600;
+}
+.production_time_available{
+  padding: 6px;
 }
 .production_delivery > p{
       margin: 12px 0 12px;
@@ -1675,8 +1762,12 @@ form.product-single__form{
 .production_delivery .learn_more_btn{
     margin: 30px 0 0;
 }
+.delivery_timeline_item_info{
+      padding: 2px 8px;
+}
 .delivery_timeline_item_date{
       width: max-content;
+      font-size: 10px;
 }
 .delivery_timeline_item_caption{
   position: absolute;
@@ -1693,32 +1784,66 @@ form.product-single__form{
 }
 .new_benefits{
   margin-top: 12px;
-}
-.new_benefits{
-  padding: 12px;
+  padding: 14px 12px;
+  flex-direction:column;
+  align-items:center;
+  justify-content: center;
+  gap: 14px;
 }
 .new_benefits_item{
-color: #565656;
+color: #1C1D1D;
 font-family: 'Poppins';
-font-size: 12px;
-font-weight: 400;
+font-size: 13px;
+font-weight: 500;
 line-height: 18px;
 text-transform: capitalize;
+gap: 8px;
+max-width: unset;
 }
 .new_benefits_item + .new_benefits_item{
-  margin-left: 12px;
-    padding-left: 12px;
+    margin-left: 0;
+    padding-left: 0;
+    border: unset;
 }
 .description_new_block {
-    padding: 25px 0 6px;
+    padding: 0 0 6px;
 }
 .description_new_block > h2{
   margin: 0 0 12px;
+  font-weight: 600;
+}
+#stamped-reviews-widget[data-widget-type=carousel]{
+  width: 95% !important;
+}
+#stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll:before{
+  display: none !important;
+}
+#stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll{
+    margin: 25px 0 0;
+  }
+      #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll .block{
+        height: unset !important;
+        padding: 0 5px !important;
+      }
+      #stamped-reviews-widget[data-widget-type=carousel] .stamped-ratings-wrapper{
+  border: 1px solid #EDECEB;
+  padding: 24px 16px !important;
+}
+#stamped-reviews-widget[data-widget-type=carousel] .stamped-reviews-date{
+  margin-top: 24px;
+}
+#stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll .stamped-reviews-image img{
+      width: 100% !important;
+    height: 100% !important;
+        margin: 0 !important;
+}
+#stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll .stamped-reviews-author{
+  margin-bottom: 20px;
 }
 .create_custom_block{
   gap: 20px;
   padding: 24px 12px 36px;
-  margin: 0 0 48px;
+  margin: 48px 0 48px;
   flex-direction: column;
 }
 .create_custom_container{
@@ -1754,7 +1879,8 @@ section.shopify-section .index-section > .page-width{
     max-height: 300px;
 }
 .beautifully_packaged_box{
-  margin-bottom: 48px;
+  display: flex !important;
+  margin: 48px 0;
     flex-direction: column;
         padding: 0 16px;
 }
@@ -1836,6 +1962,9 @@ section.shopify-section .index-section > .page-width{
 }
 .lav-error-txt{
   top: 45px;
+}
+.product-page.page-width{
+  padding-top: 16px;
 }
 }
 @media (max-width: 376px) {
@@ -2092,7 +2221,7 @@ button.syte-discovery.syte-integration-injected .button-text{
     renderNewBlocks();
     onDiffClick();
     waitFor(
-      () => document.querySelector(".product-single__title") && item && item.ImageURL && document.querySelector("[data-add-to-cart]") && document.querySelector(".extend-offer"),
+      () => document.querySelector(".product-single__title") && item && item.ImageURL && document.querySelector("[data-add-to-cart]"),
       () => {
         addSticky();
       }
@@ -2119,7 +2248,7 @@ button.syte-discovery.syte-integration-injected .button-text{
         () => () => document.querySelector("[doubly-currency-usd]"),
         () => {
           // add You’ll receive a gift with your order
-          if (document.querySelector(".new_extend") && document.querySelector(".product__price:not(.product__price--compare) .money").getAttribute("doubly-currency-usd")) {
+          if (document.querySelector(".product__price:not(.product__price--compare) .money").getAttribute("doubly-currency-usd")) {
             handleEarn();
           }
         }
@@ -2169,7 +2298,7 @@ button.syte-discovery.syte-integration-injected .button-text{
         }, 100);
       }
       // add txt Klarna
-      if (document.querySelector("#shopify-block-21092e15-379e-41eb-9f3d-c7a6c3342b9b") && !document.querySelector(".new_txt_klarna")) {
+      if (document.querySelector("#shopify-block-21092e15-379e-41eb-9f3d-c7a6c3342b9b") && !document.querySelector(".new_txt_klarna") && document.querySelector("klarna-placement div")) {
         document.querySelector("#shopify-block-21092e15-379e-41eb-9f3d-c7a6c3342b9b").insertAdjacentHTML("beforeend", `<span class="new_txt_klarna"><b>Pay nothing today.</b> The annual percentage rate is <b>0%</b></span>`);
       }
       //replace select
@@ -2217,8 +2346,8 @@ button.syte-discovery.syte-integration-injected .button-text{
         <path d="M11 5.7666C8.16496 5.7666 5.8667 8.06487 5.8667 10.8999C5.8667 13.735 8.16496 16.0333 11 16.0333C13.8351 16.0333 16.1334 13.735 16.1334 10.8999C16.1334 8.06487 13.8351 5.7666 11 5.7666ZM11 15.2999C8.56999 15.2999 6.60005 13.33 6.60005 10.8999C6.60005 8.46989 8.56999 6.49995 11 6.49995C13.4301 6.49995 15.4 8.46989 15.4 10.8999C15.4 13.33 13.4301 15.2999 11 15.2999Z" fill="black"/>
       </svg>`;
       }
-      if (!document.querySelector(".new_icon_login") && document.querySelector(".js-search-header svg:not(.new_icon_login)")) {
-        document.querySelector("[href='/account'] svg:not(.new_icon_login)").outerHTML = `<svg class="new_icon_login" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      if (!document.querySelector(".new_icon_login") && document.querySelector("a.site-nav__link.site-nav__link--icon.small--hide svg:not(.new_icon_login)")) {
+        document.querySelector("a.site-nav__link.site-nav__link--icon.small--hide svg:not(.new_icon_login)").outerHTML = `<svg class="new_icon_login" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M9.17837 11.5306C9.87796 12.1159 10.8061 12.5559 12.2988 13.178C13.458 13.6608 14.7318 13.9396 15.9482 14.3057C17.2771 14.7053 18.5384 15.2065 19.4608 16.2718C20.3384 17.2853 20.8976 18.8012 20.9543 21.1837H3.82408C3.96122 17.5927 5.90776 15.2624 8.44857 14.1522C8.65469 14.062 8.74939 13.8212 8.65878 13.6147C8.56857 13.4082 8.32776 13.3139 8.12163 13.4041C5.21673 14.6735 3 17.3788 3 21.5918C3 21.8171 3.18286 22 3.40816 22H21.3673C21.5927 22 21.7755 21.8171 21.7755 21.5918C21.7755 18.7029 21.1 16.9176 20.078 15.7371C19.0514 14.5522 17.662 13.969 16.1837 13.5241C14.9939 13.1657 13.7465 12.8967 12.6127 12.4241C10.6106 11.5902 9.4302 10.9955 8.68082 9.92857C8.66898 9.91184 7.89796 8.93878 7.89796 7.30612C7.89796 4.82 9.78735 2.80694 12.3878 2.81633C14.8657 2.82531 16.8776 4.82816 16.8776 7.30612C16.8776 8.9649 15.9759 10.4147 14.6367 11.1922C14.442 11.3053 14.3755 11.5551 14.4886 11.7498C14.602 11.9449 14.8518 12.011 15.0465 11.898C16.629 10.9792 17.6939 9.26612 17.6939 7.30612C17.6939 4.37755 15.3163 2 12.3878 2C9.45918 2 7.08163 4.37755 7.08163 7.30612C7.08163 9.02898 7.90449 10.5612 9.17837 11.5306Z" fill="black"/>
         </svg>
         `;
@@ -2298,7 +2427,7 @@ button.syte-discovery.syte-integration-injected .button-text{
         getPdpShorterProduction();
       }
       // Add "Rush Order" to your purchase
-      if (document.querySelector(".production_delivery") && !document.querySelector(".new_rush_order")) {
+      if (document.querySelector(".production_delivery") && !document.querySelector(".new_rush_order") && document.querySelector("#rush")) {
         document.querySelector(".production_delivery").insertAdjacentHTML("afterend", newRushOrder);
       }
       document.querySelectorAll(".one-whole .js > div > div").forEach((el) => {
@@ -2381,6 +2510,9 @@ button.syte-discovery.syte-integration-injected .button-text{
       if (window.innerWidth <= 768) {
         if (document.querySelector(".beautifully_packaged_box") && !document.querySelector(".new_tab")) {
           document.querySelector(".beautifully_packaged_box").insertAdjacentHTML("beforebegin", `<div class="new_tab"></div>`);
+        }
+        if (document.querySelector(".new_tab") && !document.querySelector(".new_tab + #syte-discovery-banner")) {
+          document.querySelector(".new_tab").after(document.querySelector("#syte-discovery-banner"));
         }
       } else {
         if (document.querySelector(".description_new_block") && !document.querySelector(".new_tab")) {
@@ -2588,13 +2720,25 @@ button.syte-discovery.syte-integration-injected .button-text{
       let subtotal = price;
       if (subtotal >= 5000 && !document.querySelector(".earn_gift_moon")) {
         document.querySelector(".earn_gift")?.remove();
-        document.querySelector(".new_extend")?.insertAdjacentHTML("afterend", earnGift2);
+        if (document.querySelector(".lav-select_size")) {
+          document.querySelector(".lav-select_size")?.insertAdjacentHTML("beforebegin", earnGift2);
+        } else {
+          document.querySelector(".btn.btn--full.add-to-cart")?.insertAdjacentHTML("beforebegin", earnGift2);
+        }
       } else if (subtotal < 5000 && subtotal >= 1500 && !document.querySelector(".earn_gift_chain")) {
         document.querySelector(".earn_gift")?.remove();
-        document.querySelector(".new_extend")?.insertAdjacentHTML("afterend", earnGift1);
+        if (document.querySelector(".lav-select_size")) {
+          document.querySelector(".lav-select_size")?.insertAdjacentHTML("beforebegin", earnGift1);
+        } else {
+          document.querySelector(".btn.btn--full.add-to-cart")?.insertAdjacentHTML("beforebegin", earnGift1);
+        }
       } else if (subtotal < 1500 && !document.querySelector(".earn_gift_start")) {
         document.querySelector(".earn_gift")?.remove();
-        document.querySelector(".new_extend")?.insertAdjacentHTML("afterend", earnStart);
+        if (document.querySelector(".lav-select_size")) {
+          document.querySelector(".lav-select_size")?.insertAdjacentHTML("beforebegin", earnStart);
+        } else {
+          document.querySelector(".btn.btn--full.add-to-cart")?.insertAdjacentHTML("beforebegin", earnStart);
+        }
       }
     }
 
@@ -2816,6 +2960,8 @@ button.syte-discovery.syte-integration-injected .button-text{
     function addSticky() {
       const el = `
       <div class='lav-sticky'>
+      <div class="select_size_sticky">
+      </div>
         <div class='lav-sticky__info'>
           <div class='lav-sticky__img'>
             <img src='${item.ImageURL}' />
@@ -2843,6 +2989,7 @@ button.syte-discovery.syte-integration-injected .button-text{
     `;
 
       document.querySelector("body").insertAdjacentHTML("beforeend", el);
+
       document.querySelectorAll(".lav-sticky__btn_price .lav-product-price").forEach((el) => {
         el.style.display = "none";
       });
@@ -2854,54 +3001,77 @@ button.syte-discovery.syte-integration-injected .button-text{
         if (document.querySelector(".variant-wrapper.ring_size_var .variant__label")) {
           document.querySelector(".variant-wrapper.ring_size_var .variant__label").textContent = "Ring size, US";
         }
-        document.querySelector('[name="properties[Ring size]"]').insertAdjacentHTML("afterbegin", '<option value="Select size" selected>Select size</option>');
+        document.querySelectorAll('[name="properties[Ring size]"]').forEach((el) => {
+          el.insertAdjacentHTML("afterbegin", '<option value="Select size" selected>Select size</option>');
+        });
         document
-          .querySelector(".extend-offer")
-          .insertAdjacentHTML(
-            "afterend",
+          .querySelector(".btn.btn--full.add-to-cart")
+          ?.insertAdjacentHTML(
+            "beforebegin",
             '<div class="lav-select_size"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="21" viewBox="0 0 19 21" fill="none"><path d="M9.12403 0C7.14645 0 5.51877 1.51542 5.36371 3.43807H4.16532C3.07605 3.43807 2.27602 4.28356 2.11027 5.43001L0.0169455 18.9087C-0.147716 20.0476 0.913536 21 2.07468 21H16.1573C17.3273 21 18.3774 20.0474 18.213 18.9087L16.1224 5.43001C15.9626 4.32383 15.1878 3.43807 14.0666 3.43807H12.8837C12.7286 1.51543 11.1016 0 9.12403 0ZM9.12403 0.687483C10.7334 0.687483 12.047 1.89213 12.1989 3.43807H6.05119C6.20277 1.89213 7.51468 0.68747 9.12403 0.687483ZM4.16532 4.12621H14.0666C14.889 4.12621 15.3418 4.83095 15.4423 5.52668L17.5329 19.0081C17.6368 19.7278 16.894 20.3119 16.1573 20.3119H2.07468C1.34013 20.3119 0.595268 19.7316 0.699726 19.0081L2.79036 5.52668C2.90057 4.76325 3.38957 4.12621 4.16532 4.12621ZM12.2143 6.87412C12.2143 8.56124 10.836 9.92683 9.12403 9.92683C7.41206 9.92683 6.03574 8.56125 6.03574 6.87412C6.03574 6.41687 5.34827 6.41441 5.34827 6.87412C5.34826 8.93691 7.04458 10.6143 9.12403 10.6143C11.2035 10.6143 12.8998 8.93689 12.8998 6.87412C12.8998 6.41687 12.2143 6.41687 12.2143 6.87412Z" fill="white"/></svg> Add to cart</div>'
           );
+        if (document.querySelector(".lav-sticky") && document.querySelector(".ring_size_var .variant-input-wrap select")) {
+          let cloneNode = document.querySelector(".ring_size_var .variant-input-wrap select").cloneNode(true);
+          document.querySelector(".select_size_sticky").insertAdjacentElement("afterbegin", cloneNode);
+        }
         document.querySelector("[data-add-to-cart]").style.display = "none";
 
-        document.querySelector('[name="properties[Ring size]"]').addEventListener("change", function (e) {
-          if (e.target.value !== "Select size") {
-            activated = true;
-            document.querySelectorAll(".lav-sticky__btn_price .lav-product-price").forEach((el) => {
-              if (window.innerWidth > 768) {
-                if (el.classList.contains("lav-desk")) {
-                  el.style.display = "block";
+        document.querySelectorAll('select[name="properties[Ring size]"]').forEach((el) => {
+          el.addEventListener("change", function (e) {
+            console.log(e.target, `change`);
+            if (e.target.value !== "Select size") {
+              activated = true;
+              document.querySelectorAll(".lav-sticky__btn_price .lav-product-price").forEach((el) => {
+                if (window.innerWidth > 768) {
+                  if (el.classList.contains("lav-desk")) {
+                    el.style.display = "block";
+                  }
+                } else {
+                  if (el.classList.contains("lav-mob")) {
+                    el.style.display = "block";
+                  }
                 }
-              } else {
-                if (el.classList.contains("lav-mob")) {
-                  el.style.display = "block";
-                }
+              });
+              document.querySelector(".lav-sticky__btn svg").style.display = "block";
+              document.querySelector("[data-add-to-cart]").style.display = "flex";
+              if (document.querySelector(".lav-select_size")) {
+                document.querySelector(".lav-select_size").style.display = "none";
               }
-            });
-            document.querySelector(".lav-sticky__btn svg").style.display = "block";
-            document.querySelector("[data-add-to-cart]").style.display = "flex";
-            document.querySelector(".lav-select_size").style.display = "none";
-            document.querySelector('[name="properties[Ring size]"]').classList.remove("lav-error");
-            document.querySelector(".lav-error-txt")?.remove();
-          } else {
-            activated = false;
-            document.querySelectorAll(".lav-sticky__btn_price .lav-product-price").forEach((el) => {
-              if (window.innerWidth > 768) {
-                if (el.classList.contains("lav-desk")) {
-                  el.style.display = "none";
+              document.querySelectorAll('[name="properties[Ring size]"]').forEach((el) => {
+                el.classList.remove("lav-error");
+              });
+              document.querySelector(".lav-error-txt")?.remove();
+            } else {
+              activated = false;
+              document.querySelectorAll(".lav-sticky__btn_price .lav-product-price").forEach((el) => {
+                if (window.innerWidth > 768) {
+                  if (el.classList.contains("lav-desk")) {
+                    el.style.display = "none";
+                  }
+                } else {
+                  if (el.classList.contains("lav-mob")) {
+                    el.style.display = "none";
+                  }
                 }
-              } else {
-                if (el.classList.contains("lav-mob")) {
-                  el.style.display = "none";
-                }
+              });
+              document.querySelector(".lav-sticky__btn svg").style.display = "none";
+              document.querySelector("[data-add-to-cart]").style.display = "none";
+              if (document.querySelector(".lav-select_size")) {
+                document.querySelector(".lav-select_size").style.display = "flex";
               }
-            });
-            document.querySelector(".lav-sticky__btn svg").style.display = "none";
-            document.querySelector("[data-add-to-cart]").style.display = "none";
-            document.querySelector(".lav-select_size").style.display = "flex";
-          }
+            }
+
+            if (e.currentTarget.closest(".select_size_sticky")) {
+              document.querySelector(".ring_size_var select").value = document.querySelector(".select_size_sticky select").value;
+            }
+            if (e.currentTarget.closest(".ring_size_var")) {
+              document.querySelector(".select_size_sticky select").value = document.querySelector(".ring_size_var select").value;
+            }
+          });
         });
       } else {
         activated = true;
+        document.querySelector(".lav-sticky").classList.add("none_size");
         document.querySelectorAll(".lav-sticky__btn_price .lav-product-price").forEach((el) => {
           if (window.innerWidth > 768) {
             if (el.classList.contains("lav-desk")) {
@@ -2920,7 +3090,9 @@ button.syte-discovery.syte-integration-injected .button-text{
           pushDataLayer(["exp_barriers_b_atc", "Add to cart", "Button", "Add to cart"]);
           const el = document.querySelector(".ring_size_var");
           const offset = el.getBoundingClientRect().top + window.scrollY - 180;
-          document.querySelector('[name="properties[Ring size]"]').classList.add("lav-error");
+          document.querySelectorAll('[name="properties[Ring size]"]').forEach((el) => {
+            el.classList.add("lav-error");
+          });
           if (!document.querySelector(".lav-error-txt")) {
             document.querySelector('[name="properties[Ring size]"]').insertAdjacentHTML("afterend", `<span class="lav-error-txt">Please select your size</span>`);
           }
@@ -2947,7 +3119,9 @@ button.syte-discovery.syte-integration-injected .button-text{
           // pushDataLayer("new_payments_sticky_select_size", "Sticky select size", "Button", "Sticky section");
           const el = document.querySelector(".ring_size_var");
           const offset = el.getBoundingClientRect().top + window.scrollY - 180;
-          document.querySelector('[name="properties[Ring size]"]').classList.add("lav-error");
+          document.querySelectorAll('[name="properties[Ring size]"]').forEach((el) => {
+            el.classList.add("lav-error");
+          });
           if (!document.querySelector(".lav-error-txt")) {
             document.querySelector('[name="properties[Ring size]"]').insertAdjacentHTML("afterend", `<span class="lav-error-txt">Please select your size</span>`);
           }
