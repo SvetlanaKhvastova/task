@@ -1734,9 +1734,9 @@ function init() {
         document.querySelector(".layout-region.layout-region-checkout-secondary > h3").insertAdjacentHTML("afterend", `<div class="free_trial_box"><p>7-day free trial</p><p>$0.00</p></div><div class="due_on_block"><p>Due on <span class="due_on_txt">${newMonthTxt}, ${newDateTxt}</span>:</p></div>`);
       }
 
-      if (document.querySelector(".views-field.views-field-title").innerHTML === "") {
+      if (document.querySelector(".views-field.views-field-title").innerHTML.match("Yearly Subscription w/ 7 Day Trial")) {
         let price = document.querySelector(".views-field.views-field-total-price__number");
-        let value = +document.querySelector(".order-total-line.order-total-line__total .order-total-line-value").textContent.split("$")[1];
+        let value = 108.99;
         let diffValue = 167.88 - value;
         let percentVar = (diffValue * 100) / 167.88;
         console.log(percentVar, `percentVar`);

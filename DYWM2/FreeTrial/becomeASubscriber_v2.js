@@ -1760,7 +1760,7 @@ line-height: 32px;
         document.querySelectorAll(".your_plan_btn.btn_year").forEach((el) => {
           el.addEventListener("click", (e) => {
             e.preventDefault();
-            document.querySelector('[href="/express-checkout/55"]').click();
+            document.querySelector('[href="/express-checkout/139"]').click();
           });
         });
         document.querySelectorAll(".your_plan_btn.btn_month").forEach((el) => {

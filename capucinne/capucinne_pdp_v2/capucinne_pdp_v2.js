@@ -102,6 +102,22 @@ let startFunk = setInterval(() => {
 
     let newStyle = /*html */ `
         <style>
+          /**title="Ring sizing guide" */
+          [title="Ring sizing guide"]{
+            color: #1C1D1D;
+font-family: 'Poppins';
+font-size: 13px;
+font-weight: 500;
+line-height: 18px;
+text-transform: uppercase;
+gap: 11px;
+    display: flex !important;
+    justify-content: space-between;
+    width: max-content;
+          }
+          [title="Ring sizing guide"] strong{
+            font-weight: 500;
+          }
           .product-page.page-width{
             position: relative;
           }
@@ -122,11 +138,59 @@ let startFunk = setInterval(() => {
             font-weight: 400;
             line-height: 18px;
           }
+          .share{
+            margin: 0;
+    color: #000;
+    font-family: 'Poppins';
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 20px;
+    border-radius: 1px;
+    border: 1px solid  #E8E8E1;
+    background: #FFF;
+padding: 4px 7px;
+    position: absolute;
+    top: 22px;
+    z-index: 11;
+    width: max-content;
+          }
+          .share::before{
+position: absolute;
+    content: '';
+    width: 10px;
+    height: 10px;
+    transform: rotate(133deg);
+    -webkit-transform: rotate(133deg);
+    -moz-transform: rotate(133deg);
+    -o-transform: rotate(133deg);
+    -ms-transform: rotate(133deg);
+    border-left: 1px solid #E8E8E1;
+    border-bottom: 1px solid #E8E8E1;
+    left: 50%;
+    top: -6px;
+    background: #FFF;
+          }
           label.variant__label:not(.variant__button-label):not(.text-label){
             font-size: 14px;
             font-weight: 500;
             line-height: 20px;
             letter-spacing: normal;
+          }
+          .one-whole[data-type="dropdown"] .variant-input-wrap{
+position: relative;
+          }
+          .one-whole[data-type="dropdown"] .variant-input-wrap select{
+    padding-left: 54px;
+        z-index: 1;
+          }
+          .one-whole[data-type="dropdown"] .variant-input-wrap #fin_img{
+position: absolute !important;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+    width: 24px !important;
+    height: 24px !important;
           }
           .variant-input-wrap select{
             color: #000;
@@ -144,12 +208,12 @@ let startFunk = setInterval(() => {
           .product-block.before_lable_wrapp + .product-block .variant-wrapper{
                 margin-bottom: 25px;
           }
-          .ring_size_var{
+          .variant-wrapper.ring_size_var{
              order: 1;
              width: 100%;
              margin-right: 0;
           }
-          .ring_size_var .variant-input-wrap select,
+          .variant-wrapper.ring_size_var .variant-input-wrap select,
           .material_var .variant-input-wrap select,
           .stone_var .variant-input-wrap select,
           .bracelet_length_var .variant-input-wrap select,
@@ -364,7 +428,8 @@ line-height: 20px;
 .grid2__item2.medium-up--two-fifths .product-block hr,
 #shopify-section-template--20834585772373__82449f7c-6c71-4b98-89f3-074fa0fedafc,
 .beautifully_packaged_mob,
-a.site-nav__link.site-nav__link--icon:nth-child(1){
+a.site-nav__link.site-nav__link--icon:nth-child(1),
+#AnnouncementSlide-e3dec2d7-f571-42ea-aa8f-d3b0efb567d1{
   display: none !important;
 }
 #shopify-block-cadd6db7-a422-4c1f-90e3-91f50c296730 + .product-block {
@@ -1505,6 +1570,84 @@ padding: 6px 16px;
 .select_size_sticky{
   display: none;
 }
+/*dVNpKj */
+#syte-discovery-banner .dVNpKj{
+border-radius: 0;
+    padding: 16px 20px;
+    background: #F3E7E2;
+}
+#syte-discovery-banner .iMSLnD{
+  padding: 0;
+  display: flex;
+      align-items: center;
+    justify-content: space-between;
+  gap: 26px;
+}
+.new_block_right{
+  width: 50%;
+}
+.new_block_left{
+  width: 50%;
+}
+.new_block_txt{
+  display: flex;
+  gap: 16px;
+      justify-content: center;
+    align-items: center;
+}
+.new_block_txt img{
+    width: 24px;
+    height: 24px;
+}
+#syte-discovery-banner .daKVjE{
+  display: none;
+}
+#syte-discovery-banner .JFxfs{
+  margin-top: 16px;
+}
+#syte-discovery-banner .ezjTIL {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: repeat(4, 1fr);
+}
+#syte-discovery-banner .fiichn{
+  border-radius: 0;
+    object-fit: cover;
+    align-self: stretch;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 50px;
+    min-height: 50px;
+    max-width: 50px;
+}
+h3.gqaIxH{
+  color: #000;
+    text-transform: initial;
+font-family: 'Poppins';
+font-size: 16px;
+font-weight: 600;
+line-height: 24px;
+}
+h3.fJBbjl{
+  background: var(--Primary, #D4A298);
+    border: none;
+    border-radius: 0;
+    color:  #FFF;
+font-family: 'Poppins';
+font-size: 14px;
+font-weight: 600;
+line-height: 20px;
+text-transform: uppercase;
+}
+select{
+    background-image: url(https://conversionratestore.github.io/projects/capucinne/img/arrow_ok.svg);
+    background-size: 16px;
+}
+select.lav-error{
+    border: 1px solid #c60200;
+    background-image: url(https://conversionratestore.github.io/projects/capucinne/img/arrow_error.svg);
+    background-size: 16px;
+}
 @media (max-width: 1200px) {
 .new_benefits{
   font-size: 11px;
@@ -1519,6 +1662,19 @@ padding: 6px 16px;
 }
 .create_custom_title{
       margin: 5px 0;
+}
+/*syte-discovery-banner */
+.new_block_txt{
+  gap: 7px;
+}
+h3.gqaIxH{
+  font-size: 13px;
+}
+#syte-discovery-banner .iMSLnD{
+  gap: 8px;
+}
+h3.fJBbjl{
+  padding: 10px;
 }
 }
 @media (max-width: 1180px) {
@@ -1535,6 +1691,7 @@ padding: 6px 16px;
   }
   .icon_share{
     right: 16px;
+    top: 39px;
   }
   .new_extend{
         padding: 12px 16px;
@@ -1608,6 +1765,7 @@ line-height: 18px;
   nav.breadcrumb.custom_breadcrumbs {
     padding-bottom: 16px !important;
     margin-top: 4px !important;
+        max-width: 256px;
 }
 .--syte-start-camera-upload>svg{
   margin: 0 !important;
@@ -1667,7 +1825,7 @@ width: 100%;
 }
 .lav-sticky__btn_price{
 padding: 0;
-    width: 72%;
+    width: 100%;
     border: none;
 }
 .select_size_sticky{
@@ -1679,7 +1837,7 @@ padding: 0;
   border: 1px solid #E8E8E1;
   color: #000;
 font-family: 'Poppins';
-font-size: 14px;
+font-size: 14px !important;
 font-weight: 400;
 line-height: 30px;
 }
@@ -1966,6 +2124,49 @@ section.shopify-section .index-section > .page-width{
 .product-page.page-width{
   padding-top: 16px;
 }
+#syte-discovery-banner{
+padding: 0 16px;
+    width: 100%;
+    display: block;
+}
+#syte-discovery-banner .dVNpKj{
+  padding: 32px;
+}
+#syte-discovery-banner .iMSLnD{
+  gap: 20px;
+flex-direction: column;
+}
+.new_block_right{
+  width: 100%;
+}
+.new_block_left {
+    width: 100%;
+}
+h3.fJBbjl {
+    padding: 12px;
+    margin-top: 20px;
+}
+h3.gqaIxH {
+    font-size: 18px;
+    line-height: 26px;
+}
+.new_block_txt {
+    gap: 16px;
+}
+#syte-discovery-banner .ezjTIJ{
+      display: flex;
+    gap: 8px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+#syte-discovery-banner .fiichn {
+    max-height: 58px;
+    min-height: 58px;
+    max-width: 64px;
+}
+.medium--hide{
+  display: none;
+}
 }
 @media (max-width: 376px) {
 .tangiblee-cta-wrapper .tangiblee-cta{
@@ -1973,6 +2174,9 @@ section.shopify-section .index-section > .page-width{
 }
 .earn_gift > h2{
   font-size: 11px;
+}
+#syte-discovery-banner .fiichn{
+  max-width: 63px;
 }
 }
 @media (max-width: 361px) {
@@ -2263,6 +2467,38 @@ button.syte-discovery.syte-integration-injected .button-text{
     }
 
     function renderNewBlocks() {
+      //
+      let findBlock = setInterval(() => {
+        if (document.querySelector(".iMSLnD") && !document.querySelector(".new_block_right")) {
+          clearInterval(findBlock);
+          document.querySelector(".iMSLnD").insertAdjacentHTML(
+            "afterbegin",
+            `<div class="new_block_right"><div class="new_block_txt"><img src="https://conversionratestore.github.io/projects/capucinne/img/hand_icon.svg" alt="hand icon" /></div></div>
+      <div class="new_block_left"></div>`
+          );
+        }
+
+        if (document.querySelector(".new_block_right")) {
+          if (document.querySelector(".daKVjE")) {
+            document.querySelector(".new_block_txt").insertAdjacentElement("beforeend", document.querySelector(".daKVjE"));
+          }
+          if (document.querySelector(".hiuISs")) {
+            document.querySelector(".new_block_txt").insertAdjacentElement("beforeend", document.querySelector(".hiuISs"));
+          }
+          if (window.innerWidth > 768) {
+            if (document.querySelector(".JFxfs")) {
+              document.querySelector(".new_block_right").insertAdjacentElement("beforeend", document.querySelector(".JFxfs"));
+            }
+            if (!document.querySelector(".JFxfs") && document.querySelector("h3.fJBbjl")) {
+              document.querySelector(".new_block_right").insertAdjacentElement("beforeend", document.querySelector("h3.fJBbjl"));
+            }
+          }
+        }
+
+        if (document.querySelector(".new_block_left") && document.querySelector(".TLcL")) {
+          document.querySelector(".new_block_left").insertAdjacentElement("beforeend", document.querySelector(".TLcL"));
+        }
+      }, 100);
       //icon_share
       if (!document.querySelector(".icon_share")) {
         document.querySelector(".product-page.page-width").insertAdjacentHTML(
@@ -2307,29 +2543,23 @@ button.syte-discovery.syte-integration-injected .button-text{
       }
       if (document.querySelector(".product-block--sales-point + .shopify-block.shopify-app-block + .product-block").classList.contains("before_lable_wrapp")) {
         document.querySelectorAll(".variant-wrapper.variant-wrapper--dropdown .variant__label").forEach((el) => {
-          if (el.textContent.includes("Ring size") && !document.querySelector(".ring_size_var")) {
+          if (el.textContent.toLocaleLowerCase().includes("size") && !document.querySelector(".variant-wrapper.ring_size_var")) {
             el.closest(".variant-wrapper--dropdown").classList.add("ring_size_var");
-            // document.querySelector(".size_guide").after(el.closest(".variant-wrapper--dropdown.ring_size_var"));
           }
           if (el.textContent.includes("Material") && !document.querySelector(".material_var")) {
             el.closest(".variant-wrapper--dropdown").classList.add("material_var");
-            // document.querySelector(".size_guide").after(el.closest(".variant-wrapper--dropdown.ring_size_var"));
           }
           if (el.textContent.includes("Stone") && !document.querySelector(".stone_var")) {
             el.closest(".variant-wrapper--dropdown").classList.add("stone_var");
-            // document.querySelector(".size_guide").after(el.closest(".variant-wrapper--dropdown.ring_size_var"));
           }
           if (el.textContent.includes("Bracelet length") && !document.querySelector(".bracelet_length_var")) {
             el.closest(".variant-wrapper--dropdown").classList.add("bracelet_length_var");
-            // document.querySelector(".size_guide").after(el.closest(".variant-wrapper--dropdown.ring_size_var"));
           }
           if (el.textContent.includes("Necklace Length") && !document.querySelector(".necklace_length_var")) {
             el.closest(".variant-wrapper--dropdown").classList.add("necklace_length_var");
-            // document.querySelector(".size_guide").after(el.closest(".variant-wrapper--dropdown.ring_size_var"));
           }
           if (el.textContent.includes("Style") && !document.querySelector(".style_var")) {
             el.closest(".variant-wrapper--dropdown").classList.add("style_var");
-            // document.querySelector(".size_guide").after(el.closest(".variant-wrapper--dropdown.ring_size_var"));
           }
         });
       }
@@ -2337,6 +2567,16 @@ button.syte-discovery.syte-integration-injected .button-text{
       if (document.querySelector('[title="Ring sizing guide"]')) {
         if (document.querySelector('[title="Ring sizing guide"]').href !== "https://www.docdroid.net/2eqEQph/ring-size-capucinne-with-scale-pdf" && document.querySelector('[title="Ring sizing guide"]')) {
           document.querySelector('[title="Ring sizing guide"]').href = "https://www.docdroid.net/2eqEQph/ring-size-capucinne-with-scale-pdf";
+        }
+        if (document.querySelector('[title="Ring sizing guide"]') && !document.querySelector('[title="Ring sizing guide"] svg')) {
+          document.querySelector('[title="Ring sizing guide"]').insertAdjacentHTML(
+            "beforeend",
+            `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" viewBox="0 0 18 20" fill="none">
+  <path d="M13.4846 8.56503V4.82066C13.4846 4.71348 13.435 4.61446 13.365 4.53611L9.16702 0.127857C9.08868 0.0454366 8.97728 0 8.86603 0H2.21024C0.981491 0 0 1.00202 0 2.23092V14.8166C0 16.0455 0.981491 17.031 2.21024 17.031H7.46398C8.4577 18.6805 10.264 19.7856 12.3216 19.7856C15.4474 19.7856 18 17.2454 18 14.1155C18.0042 11.3815 16.0412 9.09698 13.4846 8.56503ZM9.27843 1.44748L12.0949 4.41233H10.2681C9.72374 4.41233 9.27843 3.96295 9.27843 3.41861V1.44748ZM2.21024 16.2062C1.43918 16.2062 0.824803 15.5876 0.824803 14.8166V2.23092C0.824803 1.45563 1.43918 0.824803 2.21024 0.824803H8.45362V3.41861C8.45362 4.42064 9.26605 5.23714 10.2681 5.23714H12.6598V8.4577C12.5361 8.45363 12.4371 8.44125 12.3299 8.44125C10.8907 8.44125 9.56705 8.99388 8.5691 9.8599H3.33197C3.10509 9.8599 2.91957 10.0454 2.91957 10.2721C2.91957 10.499 3.10509 10.6845 3.33197 10.6845H7.80212C7.50927 11.0969 7.26593 11.5094 7.07634 11.963H3.33197C3.10509 11.963 2.91957 12.1485 2.91957 12.3754C2.91957 12.6021 3.10509 12.7878 3.33197 12.7878H6.80825C6.70515 13.2002 6.65156 13.6579 6.65156 14.1155C6.65156 14.8578 6.79587 15.5919 7.05566 16.2105H2.21024V16.2062ZM12.3259 18.965C9.6537 18.965 7.48044 16.7918 7.48044 14.1196C7.48044 11.4475 9.64947 9.2742 12.3259 9.2742C15.0021 9.2742 17.1711 11.4475 17.1711 14.1196C17.1711 16.7918 14.998 18.965 12.3259 18.965Z" fill="black"/>
+  <path d="M3.33184 8.61875H7.50914C7.73602 8.61875 7.92154 8.43308 7.92154 8.20635C7.92154 7.97947 7.73602 7.79395 7.50914 7.79395H3.33184C3.10495 7.79395 2.91943 7.97947 2.91943 8.20635C2.91943 8.43308 3.10495 8.61875 3.33184 8.61875Z" fill="black"/>
+  <path d="M14.4368 14.033L12.742 15.8598V11.3567C12.742 11.1299 12.5564 10.9443 12.3296 10.9443C12.1028 10.9443 11.9172 11.1299 11.9172 11.3567V15.8598L10.21 14.033C10.0533 13.8681 9.78942 13.8558 9.62443 14.0124C9.45944 14.1691 9.44706 14.4289 9.6039 14.5939L12.0163 17.1877C12.0946 17.2701 12.2018 17.3197 12.3173 17.3197C12.4327 17.3197 12.5399 17.2701 12.6183 17.1877L15.0349 14.5939C15.1915 14.4289 15.1832 14.1651 15.0183 14.0124C14.8492 13.8558 14.5936 13.8681 14.4368 14.033Z" fill="black"/>
+</svg>`
+          );
         }
       }
       // change icon header
@@ -2395,7 +2635,7 @@ button.syte-discovery.syte-integration-injected .button-text{
 
       // add size Guide
       document.querySelectorAll(".variant__label").forEach((el) => {
-        if (el.textContent.includes("Ring size")) {
+        if (el.textContent.toLocaleLowerCase().includes("size")) {
           if (document.querySelector(".variant-wrapper") && !document.querySelector(".size_guide")) {
             // if (window.innerWidth > 768) {
             //   document.querySelector("[data-product-price]").insertAdjacentHTML("beforeend", sizeGuide);
@@ -2960,7 +3200,7 @@ button.syte-discovery.syte-integration-injected .button-text{
     function addSticky() {
       const el = `
       <div class='lav-sticky'>
-      <div class="select_size_sticky">
+      <div class="select_size_sticky ring_size_var">
       </div>
         <div class='lav-sticky__info'>
           <div class='lav-sticky__img'>
@@ -2997,11 +3237,11 @@ button.syte-discovery.syte-integration-injected .button-text{
 
       let activated = false;
 
-      if (document.querySelector('[name="properties[Ring size]"]')) {
+      if (document.querySelector(".variant-wrapper.ring_size_var select")) {
         if (document.querySelector(".variant-wrapper.ring_size_var .variant__label")) {
           document.querySelector(".variant-wrapper.ring_size_var .variant__label").textContent = "Ring size, US";
         }
-        document.querySelectorAll('[name="properties[Ring size]"]').forEach((el) => {
+        document.querySelectorAll(".variant-wrapper.ring_size_var select").forEach((el) => {
           el.insertAdjacentHTML("afterbegin", '<option value="Select size" selected>Select size</option>');
         });
         document
@@ -3010,13 +3250,19 @@ button.syte-discovery.syte-integration-injected .button-text{
             "beforebegin",
             '<div class="lav-select_size"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="21" viewBox="0 0 19 21" fill="none"><path d="M9.12403 0C7.14645 0 5.51877 1.51542 5.36371 3.43807H4.16532C3.07605 3.43807 2.27602 4.28356 2.11027 5.43001L0.0169455 18.9087C-0.147716 20.0476 0.913536 21 2.07468 21H16.1573C17.3273 21 18.3774 20.0474 18.213 18.9087L16.1224 5.43001C15.9626 4.32383 15.1878 3.43807 14.0666 3.43807H12.8837C12.7286 1.51543 11.1016 0 9.12403 0ZM9.12403 0.687483C10.7334 0.687483 12.047 1.89213 12.1989 3.43807H6.05119C6.20277 1.89213 7.51468 0.68747 9.12403 0.687483ZM4.16532 4.12621H14.0666C14.889 4.12621 15.3418 4.83095 15.4423 5.52668L17.5329 19.0081C17.6368 19.7278 16.894 20.3119 16.1573 20.3119H2.07468C1.34013 20.3119 0.595268 19.7316 0.699726 19.0081L2.79036 5.52668C2.90057 4.76325 3.38957 4.12621 4.16532 4.12621ZM12.2143 6.87412C12.2143 8.56124 10.836 9.92683 9.12403 9.92683C7.41206 9.92683 6.03574 8.56125 6.03574 6.87412C6.03574 6.41687 5.34827 6.41441 5.34827 6.87412C5.34826 8.93691 7.04458 10.6143 9.12403 10.6143C11.2035 10.6143 12.8998 8.93689 12.8998 6.87412C12.8998 6.41687 12.2143 6.41687 12.2143 6.87412Z" fill="white"/></svg> Add to cart</div>'
           );
-        if (document.querySelector(".lav-sticky") && document.querySelector(".ring_size_var .variant-input-wrap select")) {
-          let cloneNode = document.querySelector(".ring_size_var .variant-input-wrap select").cloneNode(true);
+        if (document.querySelector(".lav-sticky") && !document.querySelector(".select_size_sticky.ring_size_var select") && document.querySelector('[value="Select size"]') && document.querySelector(".variant-wrapper.ring_size_var select")) {
+          let cloneNode = document.querySelector(".variant-wrapper.ring_size_var select").cloneNode(true);
           document.querySelector(".select_size_sticky").insertAdjacentElement("afterbegin", cloneNode);
+        }
+
+        if (document.querySelector(".select_size_sticky.ring_size_var select")) {
+          document.querySelectorAll('[value="Select size"]').forEach((el) => {
+            el.selected = true;
+          });
         }
         document.querySelector("[data-add-to-cart]").style.display = "none";
 
-        document.querySelectorAll('select[name="properties[Ring size]"]').forEach((el) => {
+        document.querySelectorAll(".ring_size_var select").forEach((el) => {
           el.addEventListener("change", function (e) {
             console.log(e.target, `change`);
             if (e.target.value !== "Select size") {
@@ -3037,7 +3283,7 @@ button.syte-discovery.syte-integration-injected .button-text{
               if (document.querySelector(".lav-select_size")) {
                 document.querySelector(".lav-select_size").style.display = "none";
               }
-              document.querySelectorAll('[name="properties[Ring size]"]').forEach((el) => {
+              document.querySelectorAll(".ring_size_var select").forEach((el) => {
                 el.classList.remove("lav-error");
               });
               document.querySelector(".lav-error-txt")?.remove();
@@ -3062,10 +3308,10 @@ button.syte-discovery.syte-integration-injected .button-text{
             }
 
             if (e.currentTarget.closest(".select_size_sticky")) {
-              document.querySelector(".ring_size_var select").value = document.querySelector(".select_size_sticky select").value;
+              document.querySelector(".variant-wrapper.ring_size_var select").value = document.querySelector(".select_size_sticky select").value;
             }
             if (e.currentTarget.closest(".ring_size_var")) {
-              document.querySelector(".select_size_sticky select").value = document.querySelector(".ring_size_var select").value;
+              document.querySelector(".select_size_sticky select").value = document.querySelector(".variant-wrapper.ring_size_var select").value;
             }
           });
         });
@@ -3088,13 +3334,13 @@ button.syte-discovery.syte-integration-injected .button-text{
       if (document.querySelector(".lav-select_size")) {
         document.querySelector(".lav-select_size").addEventListener("click", (e) => {
           pushDataLayer(["exp_barriers_b_atc", "Add to cart", "Button", "Add to cart"]);
-          const el = document.querySelector(".ring_size_var");
+          const el = document.querySelector(".variant-wrapper.ring_size_var");
           const offset = el.getBoundingClientRect().top + window.scrollY - 180;
-          document.querySelectorAll('[name="properties[Ring size]"]').forEach((el) => {
+          document.querySelectorAll(".ring_size_var select").forEach((el) => {
             el.classList.add("lav-error");
           });
           if (!document.querySelector(".lav-error-txt")) {
-            document.querySelector('[name="properties[Ring size]"]').insertAdjacentHTML("afterend", `<span class="lav-error-txt">Please select your size</span>`);
+            document.querySelector(".variant-wrapper.ring_size_var select").insertAdjacentHTML("afterend", `<span class="lav-error-txt">Please select your size</span>`);
           }
           if (document.querySelector(".lav-error-txt")) {
             pushDataLayer(["exp_barriers_v_s_psys", "Please select your size", "Visibility", "Size"]);
@@ -3117,13 +3363,13 @@ button.syte-discovery.syte-integration-injected .button-text{
           }, 200);
         } else {
           // pushDataLayer("new_payments_sticky_select_size", "Sticky select size", "Button", "Sticky section");
-          const el = document.querySelector(".ring_size_var");
+          const el = document.querySelector(".variant-wrapper.ring_size_var");
           const offset = el.getBoundingClientRect().top + window.scrollY - 180;
-          document.querySelectorAll('[name="properties[Ring size]"]').forEach((el) => {
+          document.querySelectorAll(".ring_size_var select").forEach((el) => {
             el.classList.add("lav-error");
           });
           if (!document.querySelector(".lav-error-txt")) {
-            document.querySelector('[name="properties[Ring size]"]').insertAdjacentHTML("afterend", `<span class="lav-error-txt">Please select your size</span>`);
+            document.querySelector(".variant-wrapper.ring_size_var select").insertAdjacentHTML("afterend", `<span class="lav-error-txt">Please select your size</span>`);
           }
           if (document.querySelector(".lav-error-txt")) {
             pushDataLayer(["exp_barriers_v_s_psys", "Please select your size", "Visibility", "Size"]);
