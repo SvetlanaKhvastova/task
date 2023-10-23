@@ -2448,6 +2448,7 @@ button.syte-discovery.syte-integration-injected .button-text{
     setInterval(() => {
       handleKlarna();
       handleWidgets();
+      onClickSyteDiscoveryBanner();
       waitFor(
         () => () => document.querySelector("[doubly-currency-usd]"),
         () => {
@@ -2517,6 +2518,7 @@ button.syte-discovery.syte-integration-injected .button-text{
           if (document.querySelector(".icon_share")) {
             clearInterval(iconShare);
             document.querySelector(".icon_share").addEventListener("click", () => {
+              pushDataLayer(["exp_main_barriersv2_produc_link_share", "Share text", "LInk", "Product page"]);
               navigator.clipboard.writeText(window.location);
 
               document.querySelector(".share")?.remove();
@@ -3259,12 +3261,15 @@ button.syte-discovery.syte-integration-injected .button-text{
           document.querySelectorAll('[value="Select size"]').forEach((el) => {
             el.selected = true;
           });
+          document.querySelector(".select_size_sticky.ring_size_var select").addEventListener("click", () => {
+            pushDataLayer(["exp_main_barriersv2_produc_drop_size", "Select size", "Dropdown", "Product page"]);
+          });
         }
         document.querySelector("[data-add-to-cart]").style.display = "none";
 
         document.querySelectorAll(".ring_size_var select").forEach((el) => {
           el.addEventListener("change", function (e) {
-            console.log(e.target, `change`);
+            // console.log(e.target, `change`);
             if (e.target.value !== "Select size") {
               activated = true;
               document.querySelectorAll(".lav-sticky__btn_price .lav-product-price").forEach((el) => {
@@ -3308,6 +3313,7 @@ button.syte-discovery.syte-integration-injected .button-text{
             }
 
             if (e.currentTarget.closest(".select_size_sticky")) {
+              pushDataLayer(["exp_main_barriersv2_drop_click_choose", `${document.querySelector(".select_size_sticky select").value}`, "Click", "Drop down list"]);
               document.querySelector(".variant-wrapper.ring_size_var select").value = document.querySelector(".select_size_sticky select").value;
             }
             if (e.currentTarget.closest(".ring_size_var")) {
@@ -3356,6 +3362,7 @@ button.syte-discovery.syte-integration-injected .button-text{
         if (activated) {
           isAddCart = true;
           pushDataLayer(["exp_barriers_b_s_add_cart", "Add to cart", "Button", "Sticky section"]);
+          pushDataLayer(["exp_main_barriersv2_produc_but_add", "add to cart", "Button", "Product page"]);
           localStorage.setItem("stickyBtn", "yes");
           document.querySelector("button.add-to-cart").click();
           setTimeout(() => {
@@ -3775,6 +3782,20 @@ button.syte-discovery.syte-integration-injected .button-text{
         });
     }
 
+    function onClickSyteDiscoveryBanner() {
+      document.querySelector('#syte-discovery-banner [role="button"]')?.addEventListener("click", (e) => {
+        if (!e.target.getAttribute("data-test")) {
+          pushDataLayer(["exp_main_barriersv2_produc_butt_shop", "Baner Shop similar style", "Button", "Product page"]);
+        }
+        e.target.setAttribute("data-test", "1");
+        setTimeout(() => {
+          if (e.target.getAttribute("data-test")) {
+            e.target.removeAttribute("data-test");
+          }
+        }, 1000);
+      });
+    }
+
     function handleKlarna() {
       if (document.querySelector("klarna-placement div")?.style.display === "none") return false;
       const original = document.querySelector("klarna-placement div")?.shadowRoot?.querySelector("div");
@@ -3880,6 +3901,9 @@ button.syte-discovery.syte-integration-injected .button-text{
       });
       waitForElement(".new_tab").then((el) => {
         handleVisibility(el, ["exp_barriers_l_v_details", "{{focusTime}}", "Visibility", "Details"]);
+      });
+      waitForElement(".icon_share").then((el) => {
+        handleVisibility(el, ["exp_main_barriersv2_produc_visib_focus", " {{focusTime}} ", "Visibility ", "Product page"]);
       });
     }
 
@@ -4044,7 +4068,7 @@ button.syte-discovery.syte-integration-injected .button-text{
     const record = setInterval(() => {
       if (typeof clarity === "function") {
         clearInterval(record);
-        clarity("set", "exp_paywall", "variant_1");
+        clarity("set", "exp_main_barriers_v2", "variant_1");
       }
     }, 200);
 
