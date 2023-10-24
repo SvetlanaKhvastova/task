@@ -2067,6 +2067,6 @@ mut.observe(document, optionMut);
 let isClarify = setInterval(() => {
   if (typeof clarity == "function") {
     clearInterval(isClarify);
-    clarity("set", "change_plans_page_signup_сheckout", "variant_1");
+    clarity("set", "exp_trial", "variant_1");
   }
 }, 100);

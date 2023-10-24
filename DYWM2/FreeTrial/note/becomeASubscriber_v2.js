@@ -2,6 +2,22 @@ let becomeASubscriber = setInterval(() => {
   if (window.location.pathname === "/become-a-subscriber" && JSON.parse(document.querySelector('[data-drupal-selector="drupal-settings-json"]')?.textContent).dywm.gtm.customer_info.user.isSubscriber === false) {
     clearInterval(becomeASubscriber);
 
+    function pushDataLayer([event_name, event_desc, event_type, event_loc]) {
+      console.log(event_name + " / " + event_desc + " / " + event_type + " / " + event_loc);
+
+      // Send a Google Analytics event
+      const eventData = {
+        event: "event-to-ga4",
+        event_name,
+        event_desc,
+        event_type,
+        event_loc,
+      };
+
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push(eventData);
+    }
+
     const instructorsArr = [
       {
         img: "https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2023/02/DSC06112.jpg",
@@ -1754,18 +1770,49 @@ line-height: 32px;
         document.querySelectorAll(".your_plan_btn.btn_free").forEach((el) => {
           el.addEventListener("click", (e) => {
             e.preventDefault();
+            if (window.innerWidth <= 768) {
+              pushDataLayer(["exp_trial_paymobil_but_getstar", "Get started now", "Button", "Payment page mobile"]);
+            } else {
+              pushDataLayer(["exp_trial_payment_but_create", "Create Free Account", "Button", "Payment page"]);
+            }
             document.querySelector('[href="/yogi/register"]').click();
           });
         });
         document.querySelectorAll(".your_plan_btn.btn_year").forEach((el) => {
           el.addEventListener("click", (e) => {
             e.preventDefault();
+            if (window.innerWidth <= 768) {
+              if (document.querySelector('.menu--account [data-drupal-link-system-path="yogi/login"]')) {
+                pushDataLayer(["exp_trial_paymobi_but_planpage", "Start Free 7-day Trial - Yearly - not registered", "Button", "Payment page mobile"]);
+              } else {
+                pushDataLayer(["exp_trial_paymobi_but_planpage", "Start Free 7-day Trial - Yearly - registered", "Button", "Payment page mobile"]);
+              }
+            } else {
+              if (document.querySelector('.menu--account [data-drupal-link-system-path="yogi/login"]')) {
+                pushDataLayer(["exp_trial_payment_but_planpage", "Start Trial now - Yearly - not registered", "Button", "Payment page"]);
+              } else {
+                pushDataLayer(["exp_trial_payment_but_planpage", "Start Trial now - Yearly - registered", "Button", "Payment page"]);
+              }
+            }
             document.querySelector('[href="/express-checkout/139"]').click();
           });
         });
         document.querySelectorAll(".your_plan_btn.btn_month").forEach((el) => {
           el.addEventListener("click", (e) => {
             e.preventDefault();
+            if (window.innerWidth <= 768) {
+              if (document.querySelector('.menu--account [data-drupal-link-system-path="yogi/login"]')) {
+                pushDataLayer(["exp_trial_paymobi_but_planpage", "Start Free 7-day Trial - Monthly - not registered", "Button", "Payment page mobile"]);
+              } else {
+                pushDataLayer(["exp_trial_paymobi_but_planpage", "Start Free 7-day Trial - Monthly - registered", "Button", "Payment page mobile"]);
+              }
+            } else {
+              if (document.querySelector('.menu--account [data-drupal-link-system-path="yogi/login"]')) {
+                pushDataLayer(["exp_trial_payment_but_planpage", "Start Trial now - Monthly - not registered", "Button", "Payment page"]);
+              } else {
+                pushDataLayer(["exp_trial_payment_but_planpage", "Start Trial now - Monthly - registered", "Button", "Payment page"]);
+              }
+            }
             document.querySelector('[href="/express-checkout/138"]').click();
           });
         });
@@ -1864,6 +1911,11 @@ line-height: 32px;
         if (typeof jQuery === "function" && document.querySelector(".toggle_btn_features")) {
           clearInterval(findToggleBtn);
           jQuery(".toggle_btn_features")?.click(function () {
+            if (document.querySelector('.menu--account [data-drupal-link-system-path="yogi/login"]')) {
+              pushDataLayer(["exp_trial_payment_link_seepage", "See all Premium features - not registered", "Link", "Payment page"]);
+            } else {
+              pushDataLayer(["exp_trial_payment_link_seepage", "See all Premium features - registered", "Link", "Payment page"]);
+            }
             jQuery(".hidden_inform_box").slideToggle();
             setTimeout(() => {
               document.querySelector(".new_box_subscriber").scrollIntoView({ block: "start", behavior: "smooth" });
@@ -1889,5 +1941,75 @@ line-height: 32px;
         }
       }, 100);
     }
+
+    visibElem();
+    function visibElem() {
+      waitForElement(".new_sect_choose_your_plan").then((el) => {
+        handleVisibility(el, ["exp_trial_payment_visib_focus", "{{focusTime}", "Visibility", "Payment page"]);
+      });
+    }
+
+    function handleVisibility(el, eventParams) {
+      let isVisible = false;
+      let entryTime;
+      const config = {
+        root: null,
+        threshold: 0, // Trigger when any part of the element is out of viewport
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (!isVisible) {
+              // The element has become visible
+              isVisible = true;
+              entryTime = new Date().getTime();
+            }
+          } else if (isVisible) {
+            // The element is out of the viewport, calculate visibility duration
+            isVisible = false;
+            const exitTime = new Date().getTime();
+            const visibilityDuration = exitTime - entryTime; // / 1000 Convert to seconds
+            const roundedDuration = Math.round(visibilityDuration);
+
+            if (roundedDuration) {
+              const eventData = eventParams;
+              eventData[1] = roundedDuration;
+              pushDataLayer(eventData);
+              observer.disconnect();
+            }
+          }
+        });
+      }, config);
+
+      observer.observe(el);
+    }
+
+    function waitForElement(selector) {
+      return new Promise((resolve) => {
+        if (document.querySelector(selector)) {
+          return resolve(document.querySelector(selector));
+        }
+
+        const observer = new MutationObserver(() => {
+          if (document.querySelector(selector)) {
+            resolve(document.querySelector(selector));
+            observer.disconnect();
+          }
+        });
+
+        observer.observe(document.documentElement, {
+          childList: true,
+          subtree: true,
+        });
+      });
+    }
+
+    const record = setInterval(() => {
+      if (typeof clarity === "function") {
+        clearInterval(record);
+        clarity("set", "exp_trial", "variant_1");
+      }
+    }, 200);
   }
 }, 100);

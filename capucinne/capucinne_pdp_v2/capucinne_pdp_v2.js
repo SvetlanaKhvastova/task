@@ -429,7 +429,9 @@ line-height: 20px;
 #shopify-section-template--20834585772373__82449f7c-6c71-4b98-89f3-074fa0fedafc,
 .beautifully_packaged_mob,
 a.site-nav__link.site-nav__link--icon:nth-child(1),
-#AnnouncementSlide-e3dec2d7-f571-42ea-aa8f-d3b0efb567d1{
+#AnnouncementSlide-e3dec2d7-f571-42ea-aa8f-d3b0efb567d1,
+.product-sticky,
+[data-index="option1"][value=""]{
   display: none !important;
 }
 #shopify-block-cadd6db7-a422-4c1f-90e3-91f50c296730 + .product-block {
@@ -583,6 +585,9 @@ button[name="add"] {
     justify-content: center;
   background: #000;
   height: 56px;
+}
+button[name="add"] [loading="eager"]{
+display: none !important;
 }
 button[name="add"] svg{
   margin-right: 11px;
@@ -1348,6 +1353,7 @@ nav.breadcrumb.custom_breadcrumbs {
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
+  max-width: 400px;
 }
 .lav-sticky__price {
   position: relative;
@@ -1403,7 +1409,7 @@ nav.breadcrumb.custom_breadcrumbs {
 .lav-sticky__btn_price .lav-product-price {
   color: #000;
   font-family: "Poppins";
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 30px;
   margin-right: 16px;
@@ -1648,6 +1654,9 @@ select.lav-error{
     background-image: url(https://conversionratestore.github.io/projects/capucinne/img/arrow_error.svg);
     background-size: 16px;
 }
+#shopify-section-footer {
+    padding-bottom: 10px !important;
+}
 @media (max-width: 1200px) {
 .new_benefits{
   font-size: 11px;
@@ -1686,6 +1695,12 @@ h3.fJBbjl{
   }
 }
 @media (max-width: 768px) {
+  #shopify-section-footer{
+    padding-bottom: 0 !important;
+  }
+  .template-product {
+    padding-bottom: 45px !important;
+}
   .new_tab +div{
     display: unset;
   }
@@ -3261,7 +3276,9 @@ button.syte-discovery.syte-integration-injected .button-text{
           document.querySelectorAll('[value="Select size"]').forEach((el) => {
             el.selected = true;
           });
-          document.querySelector(".select_size_sticky.ring_size_var select").addEventListener("click", () => {
+
+          document.querySelector(".select_size_sticky.ring_size_var select").addEventListener("click", (e) => {
+            console.log(e.target, `>>>>>>>>>>>>>>>>>>>.`);
             pushDataLayer(["exp_main_barriersv2_produc_drop_size", "Select size", "Dropdown", "Product page"]);
           });
         }
@@ -3362,7 +3379,6 @@ button.syte-discovery.syte-integration-injected .button-text{
         if (activated) {
           isAddCart = true;
           pushDataLayer(["exp_barriers_b_s_add_cart", "Add to cart", "Button", "Sticky section"]);
-          pushDataLayer(["exp_main_barriersv2_produc_but_add", "add to cart", "Button", "Product page"]);
           localStorage.setItem("stickyBtn", "yes");
           document.querySelector("button.add-to-cart").click();
           setTimeout(() => {
@@ -3902,7 +3918,7 @@ button.syte-discovery.syte-integration-injected .button-text{
       waitForElement(".new_tab").then((el) => {
         handleVisibility(el, ["exp_barriers_l_v_details", "{{focusTime}}", "Visibility", "Details"]);
       });
-      waitForElement(".icon_share").then((el) => {
+      waitForElement("#syte-discovery-banner").then((el) => {
         handleVisibility(el, ["exp_main_barriersv2_produc_visib_focus", " {{focusTime}} ", "Visibility ", "Product page"]);
       });
     }
