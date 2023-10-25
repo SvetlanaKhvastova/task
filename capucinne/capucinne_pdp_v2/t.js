@@ -15,3 +15,5 @@ if (document.querySelector(".new_block_right")) {
 if (document.querySelector(".new_block_left")) {
   document.querySelector(".new_block_right").insertAdjacentElement("beforeend", document.querySelector(".TLcL"));
 }
+
+//

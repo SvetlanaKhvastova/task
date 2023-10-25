@@ -248,3 +248,16 @@ if (window.location.host === "vegasyacht.com") {
 setTimeout(function () {
   document.querySelector(".exp")?.remove();
 }, 4000);
+
+//
+if (location.href.includes("/yogi/login") || location.href.includes("/yogi/register") || location.href.includes("/checkout")) {
+  let script = document.createElement("script");
+  script.src = "https://conversionratestore.github.io/projects/doyogawithme/signup-checkout_v2.js";
+  script.async = false;
+  document.head.appendChild(script);
+}
+
+let customScript = document.createElement("script");
+customScript.src = "https://conversionratestore.github.io/projects/doyogawithme/free_trial.js";
+customScript.async = false;
+document.head.appendChild(customScript);
