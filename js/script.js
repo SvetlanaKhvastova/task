@@ -250,6 +250,7 @@ setTimeout(function () {
 }, 4000);
 
 //
+document.head.insertAdjacentHTML("beforeend", `<style class="exp">body {opacity: 0 !important;}</style>`);
 if (location.href.includes("/yogi/login") || location.href.includes("/yogi/register") || location.href.includes("/checkout")) {
   let script = document.createElement("script");
   script.src = "https://conversionratestore.github.io/projects/doyogawithme/signup-checkout_v2.js";
@@ -261,3 +262,6 @@ let customScript = document.createElement("script");
 customScript.src = "https://conversionratestore.github.io/projects/doyogawithme/free_trial.js";
 customScript.async = false;
 document.head.appendChild(customScript);
+setTimeout(function () {
+  document.querySelector(".exp")?.remove();
+}, 3000);
