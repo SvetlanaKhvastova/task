@@ -100,27 +100,30 @@ letter-spacing: 0.9px;
   font-weight: 800;
  }
  /*body cart */
+ .slide_in_body{
+   max-height: 550px;
+                overflow-y: auto;
+
+ }
+ .slide_in_body::-webkit-scrollbar {
+     width: 4px;
+ }
+ .slide_in_body::-webkit-scrollbar-thumb {
+     background: #788188;
+ }
+ .slide_in_body.my_height{
+ }
  .slide_in_products{
                 position: relative;
-                padding: 20px 16px;
+                padding: 20px 16px 20px;
                 display: flex;
                 flex-direction: column;
-                overflow-y: auto;
                 transition: all 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
-                    max-height: 200px;
-            }
-            .slide_in_products::-webkit-scrollbar {
-                width: 4px;
-            }
-            .slide_in_products::-webkit-scrollbar-thumb {
-                background: #788188;
-            }
-            .slide_in_products.my_height{
             }
             .product_wrap{
                 display: flex;
                 justify-content: flex-start;
-                gap: 16px;
+                gap: 14px;
             }
             .product_wrap + .product_wrap{
                 margin-top: 32px;
@@ -128,10 +131,10 @@ letter-spacing: 0.9px;
             .img_wrap{
                 flex: 1 1 46%;
                 max-width: 120px;
-                max-height: 80px;
+                max-height: 120px;
                 width: 100%;
                 height: 100%;
-                border: 1px solid #EAEBEA;
+                border: 1px solid #E2E2E2;
                 overflow: hidden;
             }
             .img_wrap img{
@@ -145,11 +148,13 @@ letter-spacing: 0.9px;
                 flex: 1 1 54%;
             }
             .inform_wrap h2{
-                color: #212121;
-                font-family: "Roboto", sans-serif !important;
-                font-size: 14px;
-                font-weight: 500;
+color: #212121;
+font-family: 'Urbanist';
+                font-size: 16px;
+                font-weight: 700;
                 line-height: 22px;
+                letter-spacing: 0.8px;
+                text-transform: capitalize;
                 margin: 0;
                 text-align: left;
             }
@@ -163,27 +168,29 @@ letter-spacing: 0.9px;
                 margin: 6px 0 0;
             }
             .my_old_price{
-                color: #939393;
-                font-family: "Roboto", sans-serif !important;
-                font-size: 14px;
+                color: #6D6E75;
+               font-family: 'Urbanist';
+                font-size: 12px;
                 font-weight: 500;
-                line-height: 20px;
-                margin: 0 4px 0 0;
+                line-height: 18px;
+                letter-spacing: 0.6px;
+                margin: 0 8px 0 4px;
                 text-decoration: line-through;
             }
             .my_price{
-                color: #000;
-                font-family: "Roboto", sans-serif !important;
-                font-size: 14px;
-                font-weight: 700;
-                line-height: 20px;
-                margin: 0;
+color: #212121;
+font-family: 'Urbanist';
+font-size: 16px;
+font-weight: 700;
+line-height: 22px;
+letter-spacing: 0.8px;
+margin: 0;
             }
             .qty_wrap{
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                margin-top: 14px;
+                margin-top: 10px;
             }
             .btn_remove_item,
             .decrement,
@@ -200,9 +207,10 @@ letter-spacing: 0.9px;
                 align-items: center;
                 justify-content: center;
                 color: #212121;
-                font-size: 16px;
-                font-weight: 700;
-                line-height: 16px;
+                font-family: 'Urbanist';
+                font-size: 16px !important;
+                font-weight: 700 !important;
+                line-height: 22px;
                 height: 36px;
                 width: 36px;
                 border-top: 1px solid #E2E2E2;
@@ -213,6 +221,10 @@ letter-spacing: 0.9px;
                 text-align: center;
                 border-left: unset;
                 border-right: unset;
+                background: none;
+            }
+            .count_var:focus-visible{
+              outline: none;
             }
             .count_var:focus{
                 border-color: #E2E2E2;
@@ -238,9 +250,9 @@ letter-spacing: 0.9px;
             .increment{
                 border-radius: 0 4px 4px 0;
             }
-            .decrement svg{
+            .decrement svg       {
                 display: block;
-                stroke: #212121;
+                stroke: #773BD9;
             }
 /* footer cart */
 .slide_in_footer {
@@ -286,6 +298,7 @@ border-radius: 4px;
     border: 1px solid #E2E2E2;
     max-width: 120px;
     max-height: 120px;
+    border-radius: 4px;
 }
 .upsell_title{
   font-family: 'Urbanist';
@@ -327,7 +340,7 @@ margin-right: 0;
 .upsell_price_wrap span.accent_strikethrough{
 margin-right: 0;
 }
-.upsell_price_wrap .discount_txt{
+.discount_txt{
 display: inline-flex;
     border-radius: 100px;
     background: #FFD9D6;
@@ -483,16 +496,16 @@ span.accent_weight_bold{
     <div class="slide_in_cart">
   <div class="container">
       <div class="slide_in_header">
-        <p>Cart (<span>0</span>)</p>
+        <p class="cart_length">Cart (<span>0</span>)</p>
         <svg class="slide_in_cart_close" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M8.00022 6.54522L1.45508 0.00012207L0.000548353 1.45464L6.54569 7.99973L0 14.5454L1.45453 15.9999L8.00022 9.45425L14.5458 15.9998L16.0004 14.5453L9.45475 7.99973L15.9998 1.45471L14.5453 0.000194265L8.00022 6.54522Z" fill="#212121" />
         </svg>
       </div>
       <div class="slide_in_body">
         <ul class="slide_in_products"><p>slide_in_products</p></ul>
+        <div class="upsells_wrapp"></div>
       </div>
       <div class="slide_in_footer">
-        <div class="upsells_wrapp"></div>
         <div class="slide_in_total">
           <div class="slide_in_shipping">
             <p>SHIPPING</p>
@@ -528,7 +541,7 @@ span.accent_weight_bold{
     };
 
     function renderUpselCard(id, title, linkImg, newPrice, oldPrice, linkRating, rating, discount, descr, linkPdp, type) {
-      return `<div class="upsell_card">
+      return `<div class="upsell_card" data-id="${id}">
   <div class="upsell_header">
     <p><span class="discount_box">Get ${discount}% OFF</span><b>${descr}</b></p>
     <p>when adding to the above order.</p>
@@ -614,6 +627,33 @@ span.accent_weight_bold{
       }
     }
 
+    //add to cart on checkout
+    async function addToCartCheckout(idValue, qt) {
+      let formData = {
+        items: [
+          {
+            id: idValue,
+            quantity: qt,
+          },
+        ],
+      };
+
+      await fetch("/cart/add.js", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+        .then((response) => {
+          response.json();
+          getCartCheckout();
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
+
     //get cart on checkout
     async function getCartCheckout() {
       await fetch("/cart.js", {
@@ -644,20 +684,21 @@ span.accent_weight_bold{
           document.querySelectorAll(".sub_total_original_price").forEach((el) => {
             el.textContent = `$${(data.total_price / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}`;
           });
+          document.querySelector(".cart_length span").textContent = `${data.item_count}`;
           data.items.forEach((el) => {
             document.querySelector(".slide_in_products").insertAdjacentHTML(
               "beforeend",
               `                         
 
-<div class="product_wrap" id="${el.key}">
+<div class="product_wrap" id="${el.key}" data-id="${el.id}">
   <a class="img_wrap" href="${el.url}"><img src="${el.image}" alt="" /></a>
   <div class="inform_wrap">
     <div>
       <h2><a href="${el.url}">${el.product_title}</a></h2>
-      <div data-id="${el.id}" class="all_props"></div>
       <div class="price_wrap">
-      <span class="my_price">$${(el.price / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}</span>
-        <span class="my_old_price">$${(el.original_line_price / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}</span>
+      <span class="my_price">$${(el.final_line_price / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}</span>
+      <span class="my_old_price">$${(el.original_line_price / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}</span>
+      <span class="discount_txt">-${(((el.final_line_price / 100) * 100) / el.original_line_price / 100).toFixed(0)}%</span>
       </div>
     </div>
     <div class="qty_wrap">
@@ -676,9 +717,9 @@ span.accent_weight_bold{
         </span>
         <input class="count_var" type="number" pattern="[0-9]*" min="1" value="${el.quantity}" />
         <span class="increment">
-          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M7 5V0H5V5H0V7H5V12H7V7H12V5H7Z" fill="black" />
-          </svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M7 5V0H5V5H0V7H5V12H7V7H12V5H7Z" fill="#773BD9"/>
+</svg>
         </span>
       </div>
 
@@ -757,6 +798,13 @@ span.accent_weight_bold{
 
               if (localStorage.getItem("count")) {
                 changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), localStorage.getItem("count"));
+              }
+            });
+          });
+          document.querySelectorAll(".upsell_card")?.forEach((i) => {
+            Object.values(document.querySelectorAll(".product_wrap")).find((el) => {
+              if (el.getAttribute("data-id") === i.getAttribute("data-id")) {
+                i.style.display = "none";
               }
             });
           });
