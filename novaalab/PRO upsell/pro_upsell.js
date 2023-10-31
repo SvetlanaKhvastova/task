@@ -26,7 +26,7 @@ html.fixed_body, html.gemapp.video.fixed_body {
     height: 100vh;
     width: 100%;
     background: rgba(20, 20, 20, 0.60);
-    z-index: 9999999999;
+    z-index: 2147483001;
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s ease;
@@ -395,7 +395,8 @@ padding: 16px;
     background: #FFF;
     box-shadow: 0px 0px 16px 0px rgba(107, 28, 235, 0.16);
 }
-.slide_in_to_checkout {
+.slide_in_to_checkout,
+.product_upsell_add_btn {
 font-size: 18px;
     line-height: 24px;
     font-weight: 700;
@@ -482,15 +483,172 @@ span.accent_weight_bold{
     line-height: 50px;
     margin-top: 16px;
 }
-
+/* */
+.overlay_popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(20, 20, 20, 0.60);
+        display: flex;
+        overflow-y: auto;
+        z-index: 2147483003;
+        transition: all 0.3s ease;
+        opacity: 0;
+        pointer-events: none;
+    }
+    .overlay_popup.active{
+      opacity: 1;
+      pointer-events: initial;
+    }
+    .overlay_popup .container_popup {
+        display: block;
+        position: relative;
+        max-width: 900px;
+        width: 100%;
+        padding: 30px 30px 45px;
+        margin: auto;
+        background: #F5F5FD;
+        transition: all 0.5s ease 0s;
+        border-radius: 5px;
+    }
+    .overlay_popup .container_popup > svg {
+        position: absolute;
+        top: 24px;
+        right: 29px;
+        outline: none;
+        cursor: pointer;
+    }
+    .product_upsell_title{
+      color: #212121 !important;
+font-family: 'Urbanist';
+font-size: 24px;
+font-weight: 700;
+line-height: 32px;
+letter-spacing: 1.2px;
+margin: 0 0 10px;
+    }
+    .product_upsell_descr{
+      color:  #212121;
+font-family: 'Urbanist';
+font-size: 18px;
+font-weight: 500;
+line-height: 24px;
+letter-spacing: 0.9px;
+margin: 0 0 30px;
+    }
+    .product_upsell_descr_wrapp{
+      display: flex;
+      gap: 41px;
+    justify-content: space-between;
+    }
+    .product_upsell_add_btn{
+      padding: 12px 32px;
+    font-size: 16px;
+    }
+    .product_upsell_item{
+      position: relative;
+      color:  #212121;
+font-family: 'Urbanist';
+font-size: 16px;
+font-weight: 500;
+line-height: 22px;
+letter-spacing: 0.8px;
+padding-left: 56px;
+    }
+    .product_upsell_item span{
+      max-width: 326px;
+      display: block;
+    }
+    .product_upsell_item::before{
+        position: absolute;
+        content: "";
+        width: 40px;
+        height: 40px;
+        background: url(https://conversionratestore.github.io/projects/novaalab/img/sensitive_icon.svg) no-repeat center center;
+        top: 0;
+        left: 0;
+        background-size: contain;
+    }
+    .product_upsell_item:nth-child(2):before{
+        background: url(https://conversionratestore.github.io/projects/novaalab/img/vibrations_icon.svg) no-repeat center center;
+        background-size: contain;
+    }
+        .product_upsell_item:nth-child(3):before{
+        background: url(https://conversionratestore.github.io/projects/novaalab/img/pressure_sensor_icon.svg) no-repeat center center;
+        background-size: contain;
+    }
+        .product_upsell_item:nth-child(4):before{
+        background: url(https://conversionratestore.github.io/projects/novaalab/img/battery_icon.svg) no-repeat center center;
+        background-size: contain;
+    }
+    .product_upsell_item b{
+      font-weight: 800;
+    }
+    .product_upsell_item + .product_upsell_item{
+      margin-top: 24px;
+    }
+    .product_upsell_info_wrapp{
+    max-width: 400px;
+    width: 100%;
+    }
+    .product_upsell_info_wrapp .product_upsell_price_wrap{
+      position: relative;
+margin: 20px 0;
+padding-top: 20px;
+display: flex;
+    align-items: center;
+    }
+    .product_upsell_img_wrap{
+      max-width: 400px;
+    width: 100%;
+    border-radius: 11.582px;
+    display: block;
+    }
+    .product_upsell_img_wrap img{
+          border-radius: 11.582px;
+    display: block;
+    width: 100%;
+    height: 100%;
+    }
+    .product_upsell_info_wrapp .product_upsell_price_wrap::before{
+      position: absolute;
+      content: '';
+      width: 61px;
+height: 1px;
+background: #BBB;
+top: 0;
+left: 0;
+    }
+    .product_upsell_info_wrapp .product_upsell_price_wrap .discount_txt{
+font-size: 16px;
+font-weight: 800;
+line-height: 22px;
+letter-spacing: 0.8px;
+    }
+    .product_upsell_info_wrapp .product_upsell_price_wrap .new_price{
+      color: #212121;
+font-family: 'Urbanist';
+font-size: 18px;
+line-height: 24px;
+letter-spacing: 0.9px;
+    }
+    .product_upsell_info_wrapp .product_upsell_price_wrap span.accent_strikethrough{
+color: #6D6E75;
+font-size: 14px;
+line-height: 20px;
+letter-spacing: 0.7px;
+margin: 0 12px 0 6px;
+    }
     </style>
     `;
 
     let emptySlideInHTML = /*html */ `
-<li class="slide_in__empty">
+<div class="slide_in__empty">
     <p class="name">Your cart is empty</p>
-    <a href="/pages/red-light-therapy-home-catalog" class="btn-purple">Shop all products</a>
-</li>`;
+    <a href="/collections/best-red-light-therapy-catalog" class="btn-purple">Shop all products</a>
+</div>`;
 
     let slideInCartHTML = /*html */ `
     <div class="slide_in_cart">
@@ -535,9 +693,43 @@ span.accent_weight_bold{
 </div>
 `;
 
+    let popUpSonicToothbrush = /*html */ `
+<div class="overlay_popup">
+  <div class="container_popup">
+    <svg class="popup_close"  xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M8.00022 6.54509L1.45508 0L0.000548353 1.45452L6.54569 7.99961L0 14.5453L1.45453 15.9998L8.00022 9.45413L14.5458 15.9997L16.0004 14.5452L9.45475 7.99961L15.9998 1.45459L14.5453 7.21945e-05L8.00022 6.54509Z" fill="#212121"/>
+</svg>
+
+    <div class="content_popup">
+      <h2 class="product_upsell_title">Add the GumCare Sonic Toothbrush for healthy gums</h2>
+      <p class="product_upsell_descr">Clean your teeth while protecting your gum</p>
+      <div class="product_upsell_descr_wrapp">
+        <div class="product_upsell_img_wrap">
+          <img src="https://conversionratestore.github.io/projects/novaalab/img/sonic_toothbrush_popup.png" alt="sonic toothbrush photo" />
+        </div>
+        <div class="product_upsell_info_wrapp">
+          <ul class="product_upsell_list">
+            <li class="product_upsell_item"><span><b>Gentle on Sensitive Teeth and Gums</b> with soft, silky bristles</span></li>
+            <li class="product_upsell_item"><span><b>Up to 48,000 vibrations per minute,</b> effortlessly removing plaque and debris without causing discomfort</span></li>
+            <li class="product_upsell_item"><span><b>Pressure Sensor</b> that alerts you if you're applying too much force</span></li>
+            <li class="product_upsell_item"><span><b>Long-lasting Battery Life</b> that provides weeks of use on a single charge</span></li>
+          </ul>
+          <div class="product_upsell_price_wrap">
+            <span class="accent_weight_bold new_price">$99.90</span>
+            <span class="accent_strikethrough old_price">$199.90</span>
+            <span class="discount_txt">-50%</span>
+          </div>
+          <a href="" class="product_upsell_add_btn">Add to Cart</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
     let upselsObj = {
       40365298679862: ["Novaa oral Care Pro", "https://novaalab.com/cdn/shop/products/IMG_1001-600pxquaqre_medium.jpg?v=1662108128", "$99.90", "$199.90", "https://conversionratestore.github.io/projects/novaalab/img/rating_stars.svg", "4.8", "50", "gum & teeth treatment", "https://novaalab.com/products/novaa-oral-care-gums-periodontal-treatment", "link"],
-      // 46932997865817: ["Sonic toothbrush", "https://conversionratestore.github.io/projects/novaalab/img/sonic_toothbrush.png", "$49.90", "$129.90", "https://conversionratestore.github.io/projects/novaalab/img/rating_stars.svg", "4.8", "60", "a gentle Sonic Toothbrush ", "", "popup"],
+      46932997865817: ["Sonic toothbrush", "https://conversionratestore.github.io/projects/novaalab/img/sonic_toothbrush.png", "$49.90", "$129.90", "https://conversionratestore.github.io/projects/novaalab/img/rating_stars.svg", "4.8", "60", "a gentle Sonic Toothbrush ", "", "popup"],
     };
 
     function renderUpselCard(id, title, linkImg, newPrice, oldPrice, linkRating, rating, discount, descr, linkPdp, type) {
@@ -576,6 +768,7 @@ span.accent_weight_bold{
     if (document.querySelector(".slide_in_cart")) {
       slideInCart();
     }
+
     function slideInCart() {
       let body = document.body,
         html = document.querySelector("html"),
@@ -586,6 +779,14 @@ span.accent_weight_bold{
         for (let key in upselsObj) {
           document.querySelector(".upsells_wrapp").insertAdjacentHTML("beforeend", renderUpselCard(key, upselsObj[key][0], upselsObj[key][1], upselsObj[key][2], upselsObj[key][3], upselsObj[key][4], upselsObj[key][5], upselsObj[key][6], upselsObj[key][7], upselsObj[key][8], upselsObj[key][9]));
         }
+      }
+
+      if (document.querySelector('[data-id="46932997865817"]')) {
+        document.querySelector('[data-id="46932997865817"] .upsell_learn_more_btn').addEventListener("click", (e) => {
+          e.preventDefault();
+          console.log(`object`);
+          renderPopupSonicToothbrush();
+        });
       }
 
       document.querySelectorAll(".cart-link").forEach((item) => {
@@ -614,6 +815,7 @@ span.accent_weight_bold{
 
       function onOpenPopup() {
         console.log("onOpenPopup");
+
         overlay.classList.add("active");
         body.style.overflow = "hidden";
         html.style.overflow = "hidden";
@@ -626,6 +828,67 @@ span.accent_weight_bold{
         html.style.overflow = "auto";
       }
     }
+
+    function renderPopupSonicToothbrush() {
+      if (!document.querySelector(".product_upsell_descr_wrapp")) {
+        document.body.insertAdjacentHTML("afterbegin", popUpSonicToothbrush);
+      }
+
+      let body = document.body,
+        html = document.querySelector("html"),
+        overlay = body.querySelector(".overlay_popup"),
+        btnClose = body.querySelectorAll(".popup_close");
+
+      btnClose.forEach((el) => {
+        el.addEventListener("click", (e) => {
+          onClosePopup();
+        });
+      });
+
+      // click on overlay popup
+      overlay.addEventListener("click", (e) => {
+        if (e.target.matches(".overlay_popup")) {
+          onClosePopup();
+        }
+      });
+
+      if (document.querySelector(".product_upsell_descr_wrapp")) {
+        onOpenPopup();
+      }
+
+      function onOpenPopup() {
+        console.log("onOpenPopup");
+        overlay.classList.add("active");
+        body.style.overflow = "hidden";
+        html.style.overflow = "hidden";
+        body.style.display = "block";
+      }
+
+      function onClosePopup() {
+        overlay.classList.remove("active");
+        body.style.overflow = "auto";
+        html.style.overflow = "auto";
+      }
+    }
+
+    document.querySelectorAll(".nc-submit-btn").forEach((el) => {
+      el.addEventListener("click", (e) => {
+        e.preventDefault();
+        console.log(e.currentTarget.closest("form").querySelector('[name="id"]').value);
+        addToCartCheckout(e.currentTarget.closest("form").querySelector('[name="id"]').value, 1);
+      });
+    });
+
+    document.querySelectorAll("[data-product-id]").forEach((el) => {
+      console.log(el);
+      el.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        console.log(e.currentTarget.getAttribute("data-product-id"), `>>>>>>>>>>>>>>>>>>>>>>>>>>>>>`);
+        // addToCartCheckout(e.currentTarget.getAttribute("data-product-id"), 1);
+      });
+    });
 
     //add to cart on checkout
     async function addToCartCheckout(idValue, qt) {
@@ -737,13 +1000,9 @@ span.accent_weight_bold{
             );
           });
 
-          if (document.querySelector(".slide_in_products").children.length >= 2) {
-            document.querySelector(".slide_in_products").classList.add("my_height");
-          } else {
-            if (document.querySelector(".slide_in_products").classList.contains("my_height")) {
-              document.querySelector(".slide_in_products").classList.remove("my_height");
-            }
-          }
+          // if (document.querySelector(".slide_in_body .slide_in_products").children.length < 1) {
+          //   document.querySelector(".slide_in_body").innerHTML = emptySlideInHTML;
+          // }
 
           if (document.querySelector(".btn_remove_item")) {
             document.querySelectorAll(".btn_remove_item").forEach((el) => {
