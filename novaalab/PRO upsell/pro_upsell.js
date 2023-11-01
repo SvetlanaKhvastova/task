@@ -258,7 +258,9 @@ margin: 0;
 .slide_in_footer {
     background: #fff;
     margin: auto 0 0;
+    /*
     position: fixed;
+    */
     bottom: 0;
     left: 0;
     right: 0;
@@ -547,6 +549,11 @@ margin: 0 0 30px;
       padding: 12px 32px;
     font-size: 16px;
     }
+    .product_upsell_list{
+      list-style: none;
+          margin: 0;
+    padding: 0;
+    }
     .product_upsell_item{
       position: relative;
       color:  #212121;
@@ -641,6 +648,37 @@ line-height: 20px;
 letter-spacing: 0.7px;
 margin: 0 12px 0 6px;
     }
+    /*add_to_cart_new_btn */
+    .add_to_cart_new_btn{
+      border-radius: 5px;
+    background: radial-gradient(90.92% 2726% at 2.15% 56%,#691BEA 0%,#9E41EF 100%);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: .36px;
+    color: #fff !important;
+    width: 100%;
+    padding: 15.5px 20px;
+    }
+    .choose-kit .add-to-cart,
+    .bundle__form .add-to-cart-btn{
+      display: none !important;
+    }
+    /**add_bundle_new_btn */
+    .add_bundle_new_btn{
+      border-radius: 5px;
+    background: radial-gradient(90.92% 2726% at 2.15% 56%,#691BEA 0%,#9E41EF 100%);
+    font-family: Urbanist;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    color: #fff !important;
+    letter-spacing: .36px;
+    width: 100%;
+    padding: 12px 30px;
+    margin-top: 23px;
+    }
     </style>
     `;
 
@@ -727,13 +765,16 @@ margin: 0 12px 0 6px;
 </div>
 `;
 
-    let upselsObj = {
-      40365298679862: ["Novaa oral Care Pro", "https://novaalab.com/cdn/shop/products/IMG_1001-600pxquaqre_medium.jpg?v=1662108128", "$99.90", "$199.90", "https://conversionratestore.github.io/projects/novaalab/img/rating_stars.svg", "4.8", "50", "gum & teeth treatment", "https://novaalab.com/products/novaa-oral-care-gums-periodontal-treatment", "link"],
-      46932997865817: ["Sonic toothbrush", "https://conversionratestore.github.io/projects/novaalab/img/sonic_toothbrush.png", "$49.90", "$129.90", "https://conversionratestore.github.io/projects/novaalab/img/rating_stars.svg", "4.8", "60", "a gentle Sonic Toothbrush ", "", "popup"],
+    let upselsObjNovaa = {
+      47100514140505: ["Novaa oral Care Pro", "https://novaalab.com/cdn/shop/products/IMG_1001-600pxquaqre_medium.jpg?v=1662108128", "$99.90", "$199.90", "https://conversionratestore.github.io/projects/novaalab/img/rating_stars.svg", "4.8", "50", "gum & teeth treatment", "https://novaalab.com/products/novaa-oral-care-gums-periodontal-treatment", "link", "upsels_novaa"],
     };
 
-    function renderUpselCard(id, title, linkImg, newPrice, oldPrice, linkRating, rating, discount, descr, linkPdp, type) {
-      return `<div class="upsell_card" data-id="${id}">
+    let upselsObjSonic = {
+      46932997865817: ["Sonic toothbrush", "https://conversionratestore.github.io/projects/novaalab/img/sonic_toothbrush.png", "$49.90", "$129.90", "https://conversionratestore.github.io/projects/novaalab/img/rating_stars.svg", "4.8", "60", "a gentle Sonic Toothbrush ", "", "popup", "upsels_sonic"],
+    };
+
+    function renderUpselCard(id, title, linkImg, newPrice, oldPrice, linkRating, rating, discount, descr, linkPdp, type, style) {
+      return `<div class="upsell_card ${style}" data-id="${id}">
   <div class="upsell_header">
     <p><span class="discount_box">Get ${discount}% OFF</span><b>${descr}</b></p>
     <p>when adding to the above order.</p>
@@ -769,36 +810,226 @@ margin: 0 12px 0 6px;
       slideInCart();
     }
 
+    // onDiffClick();
+
     function slideInCart() {
       let body = document.body,
         html = document.querySelector("html"),
         overlay = body.querySelector(".slide_in_cart"),
         btnClose = body.querySelectorAll(".slide_in_cart_close");
 
-      if (document.querySelector(".upsells_wrapp") && document.querySelector(".upsells_wrapp").children.length !== upselsObj.length) {
-        for (let key in upselsObj) {
-          document.querySelector(".upsells_wrapp").insertAdjacentHTML("beforeend", renderUpselCard(key, upselsObj[key][0], upselsObj[key][1], upselsObj[key][2], upselsObj[key][3], upselsObj[key][4], upselsObj[key][5], upselsObj[key][6], upselsObj[key][7], upselsObj[key][8], upselsObj[key][9]));
-        }
-      }
-
-      if (document.querySelector('[data-id="46932997865817"]')) {
-        document.querySelector('[data-id="46932997865817"] .upsell_learn_more_btn').addEventListener("click", (e) => {
-          e.preventDefault();
-          console.log(`object`);
-          renderPopupSonicToothbrush();
-        });
-      }
-
-      document.querySelectorAll(".cart-link").forEach((item) => {
+      // click on icon CART (header)
+      document.querySelectorAll('[href="/cart"]').forEach((item) => {
         item.addEventListener("click", (e) => {
-          e.preventDefault();
-          e.stopImmediatePropagation();
-          console.log(`>>>MyCart`);
+          if (!e.target.getAttribute("data-test")) {
+            if (e.currentTarget.closest(".bubble-cart") || e.currentTarget.closest(".site-nav__item--compressed")) {
+              e.preventDefault();
+              e.stopImmediatePropagation();
+              console.log(`>>>MyCart`);
 
-          onOpenPopup();
-          getCartCheckout();
+              onOpenPopup();
+              getCartCheckout();
+            }
+          }
+          e.target.setAttribute("data-test", "1");
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
+            }
+          }, 1000);
         });
       });
+
+      // click on icon  add to cart LISTING
+      document.querySelectorAll(".nc-submit-btn")?.forEach((el) => {
+        el.addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            e.preventDefault();
+            addToCartCheckout(e.currentTarget.closest("form").querySelector('[name="id"]').value, 1);
+          }
+          e.target.setAttribute("data-test", "1");
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
+            }
+          }, 1000);
+        });
+      });
+      // click on icon  add to cart MAIN
+      document.querySelectorAll("[data-product-id]")?.forEach((el) => {
+        el.addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            addToCartCheckout(e.currentTarget.getAttribute("data-product-id"), 1);
+          }
+          e.target.setAttribute("data-test", "1");
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
+            }
+          }, 1000);
+        });
+      });
+
+      // add to cart PDP bundle ->>>>>>>>>>>>> render new btn
+      document.querySelectorAll(".bundle__wrap .add-to-cart-btn")?.forEach((el) => {
+        let valueId = "";
+        if (!document.querySelector(".add_bundle_new_btn")) {
+          if (document.querySelector(".bundle__wrap .bundle__text")?.textContent.includes("GumCare Sonic Toothbrush")) {
+            valueId = 46932997865817;
+          }
+          if (document.querySelector(".bundle__wrap .bundle__text")?.textContent.includes("portable Novaa Light Pro")) {
+            valueId = 47057278992729;
+          }
+          el.insertAdjacentHTML("beforebegin", `<button class="add_bundle_new_btn" data-id=${valueId}>Add to Cart</button>`);
+        }
+      });
+
+      // add to cart PDP Choose your kit ->>>>>>>>>>>>> render btn
+      document.querySelectorAll("button.add-to-cart")?.forEach((el) => {
+        if (!document.querySelector(".add_to_cart_new_btn")) {
+          el.insertAdjacentHTML("beforebegin", `<button class="add_to_cart_new_btn" data-count=${el.closest(".choose-kit__right").querySelector('input[name="quantity"]:checked').value} data-id=${el.nextElementSibling.querySelector('[name="id"]').value}>Add to Cart</button>`);
+        }
+      });
+
+      // click on radioBTN Choose your kit
+      if (document.querySelectorAll('.choose-kit__kits input[name="quantity"]')) {
+        document.querySelectorAll('.choose-kit__kits input[name="quantity"]').forEach((el) => {
+          el.addEventListener("click", () => {
+            document.querySelector(".add_to_cart_new_btn")?.setAttribute("data-count", el.value);
+          });
+        });
+      }
+
+      // add to cart PDP Pick your bundle
+      document.querySelectorAll(".item-content .gf_add-to-cart")?.forEach((el) => {
+        el.addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            e.preventDefault();
+            e.stopPropagation();
+            addToCartCheckout(e.currentTarget.closest(".AddToCartForm").querySelector('[name="id"]').getAttribute("data-value"), e.currentTarget.closest(".AddToCartForm").querySelector('[name="quantity"]') ? e.currentTarget.closest(".AddToCartForm").querySelector('[name="quantity"]')?.value : 1);
+            console.log(`object`);
+          }
+          e.target.setAttribute("data-test", "1");
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
+            }
+          }, 1000);
+        });
+      });
+
+      // NEW add to cart PDP
+      let lookForBtn = setInterval(() => {
+        if (document.querySelectorAll(".add_to_cart_new_btn")) {
+          clearInterval(lookForBtn);
+          document.querySelectorAll(".add_to_cart_new_btn")?.forEach((el) => {
+            el.addEventListener("click", (e) => {
+              if (!e.target.getAttribute("data-test")) {
+                e.preventDefault();
+                e.stopPropagation();
+                addToCartCheckout(e.currentTarget.getAttribute("data-id"), e.currentTarget.getAttribute("data-count"));
+              }
+              e.target.setAttribute("data-test", "1");
+              setTimeout(() => {
+                if (e.target.getAttribute("data-test")) {
+                  e.target.removeAttribute("data-test");
+                }
+              }, 1000);
+            });
+          });
+        }
+      }, 100);
+
+      // NEW add to cart PDP bundle
+      let lookForBtnBundle = setInterval(() => {
+        if (document.querySelectorAll(".add_bundle_new_btn")) {
+          clearInterval(lookForBtnBundle);
+          document.querySelectorAll(".add_bundle_new_btn")?.forEach((el) => {
+            el.addEventListener("click", (e) => {
+              if (!e.target.getAttribute("data-test")) {
+                e.preventDefault();
+                e.stopPropagation();
+                addToCartCheckout(e.currentTarget.getAttribute("data-id"), 1);
+              }
+              e.target.setAttribute("data-test", "1");
+              setTimeout(() => {
+                if (e.target.getAttribute("data-test")) {
+                  e.target.removeAttribute("data-test");
+                }
+              }, 1000);
+            });
+          });
+        }
+      }, 100);
+      // learn more upselsObjSonic
+      let lookForBtnUpselsObjSonic = setInterval(() => {
+        if (document.querySelector('[data-id="46932997865817"]')) {
+          clearInterval(lookForBtnUpselsObjSonic);
+          document.querySelector('[data-id="46932997865817"] .upsell_learn_more_btn').addEventListener("click", (e) => {
+            if (!e.target.getAttribute("data-test")) {
+              e.preventDefault();
+              console.log(`object`);
+              renderPopupSonicToothbrush();
+            }
+            e.target.setAttribute("data-test", "1");
+            setTimeout(() => {
+              if (e.target.getAttribute("data-test")) {
+                e.target.removeAttribute("data-test");
+              }
+            }, 1000);
+          });
+        }
+      }, 100);
+      //add to cart upselsObjSonic
+      document.querySelectorAll(".product_upsell_add_btn")?.forEach((el) => {
+        el.addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            e.preventDefault();
+            e.stopPropagation();
+            addToCartCheckout(46932997865817, 1);
+            document.querySelector(".overlay_popup").classList.remove("active");
+            body.style.overflow = "auto";
+            html.style.overflow = "auto";
+          }
+          e.target.setAttribute("data-test", "1");
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
+            }
+          }, 1000);
+        });
+      });
+
+      //add to cart to checkout
+      async function addToCartCheckout(idValue, qt) {
+        let formData = {
+          items: [
+            {
+              id: idValue,
+              quantity: qt,
+            },
+          ],
+        };
+
+        await fetch("/cart/add.js", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        })
+          .then((response) => {
+            response.json();
+            onOpenPopup();
+            getCartCheckout();
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
 
       btnClose.forEach((el) => {
         el.addEventListener("click", (e) => {
@@ -871,52 +1102,6 @@ margin: 0 12px 0 6px;
       }
     }
 
-    document.querySelectorAll(".nc-submit-btn").forEach((el) => {
-      el.addEventListener("click", (e) => {
-        e.preventDefault();
-        console.log(e.currentTarget.closest("form").querySelector('[name="id"]').value);
-        addToCartCheckout(e.currentTarget.closest("form").querySelector('[name="id"]').value, 1);
-      });
-    });
-
-    document.querySelectorAll("[data-product-id]").forEach((el) => {
-      console.log(el);
-      el.addEventListener("click", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        e.stopImmediatePropagation();
-        console.log(e.currentTarget.getAttribute("data-product-id"), `>>>>>>>>>>>>>>>>>>>>>>>>>>>>>`);
-        // addToCartCheckout(e.currentTarget.getAttribute("data-product-id"), 1);
-      });
-    });
-
-    //add to cart on checkout
-    async function addToCartCheckout(idValue, qt) {
-      let formData = {
-        items: [
-          {
-            id: idValue,
-            quantity: qt,
-          },
-        ],
-      };
-
-      await fetch("/cart/add.js", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      })
-        .then((response) => {
-          response.json();
-          getCartCheckout();
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-    }
-
     //get cart on checkout
     async function getCartCheckout() {
       await fetch("/cart.js", {
@@ -927,15 +1112,17 @@ margin: 0 12px 0 6px;
         })
         .then((data) => {
           console.log(data);
-          // if (data["item_count"] == 0) {
-          //   document.querySelector(".first_price_wrapper").hidden = true;
-          //   document.querySelector(".cart_popup_footer").hidden = true;
-          // } else {
-          //   document.querySelector(".first_price_wrapper").hidden = false;
-          //   document.querySelector(".cart_popup_footer").hidden = false;
-          // }
 
           document.querySelector(".slide_in_products").innerHTML = "";
+          document.querySelector(".upsells_wrapp").innerHTML = "";
+
+          if (localStorage.getItem("upselsObjNovaa")) {
+            localStorage.removeItem("upselsObjNovaa");
+          }
+          if (localStorage.getItem("upselsSonic")) {
+            localStorage.removeItem("upselsSonic");
+          }
+
           // if (document.querySelector(".cart_popup_scroll .cart_popup_list .product_wrap")?.classList.contains("blur_var")) {
           //   document.querySelectorAll(".cart_popup_scroll .cart_popup_list .product_wrap")?.forEach((el) => {
           //     el.classList.remove("blur_var");
@@ -952,7 +1139,6 @@ margin: 0 12px 0 6px;
             document.querySelector(".slide_in_products").insertAdjacentHTML(
               "beforeend",
               `                         
-
 <div class="product_wrap" id="${el.key}" data-id="${el.id}">
   <a class="img_wrap" href="${el.url}"><img src="${el.image}" alt="" /></a>
   <div class="inform_wrap">
@@ -1000,10 +1186,6 @@ margin: 0 12px 0 6px;
             );
           });
 
-          // if (document.querySelector(".slide_in_body .slide_in_products").children.length < 1) {
-          //   document.querySelector(".slide_in_body").innerHTML = emptySlideInHTML;
-          // }
-
           if (document.querySelector(".btn_remove_item")) {
             document.querySelectorAll(".btn_remove_item").forEach((el) => {
               el.addEventListener("click", (e) => {
@@ -1026,7 +1208,6 @@ margin: 0 12px 0 6px;
           if (document.querySelector(".decrement")) {
             document.querySelectorAll(".decrement").forEach((item) => {
               if (item.closest(".cart_popup_qty").querySelector(".count_var").value !== "1") {
-                console.log(item);
                 if (item.getAttribute("disabled")) {
                   item.removeAttribute("disabled");
                 }
@@ -1060,13 +1241,41 @@ margin: 0 12px 0 6px;
               }
             });
           });
-          document.querySelectorAll(".upsell_card")?.forEach((i) => {
-            Object.values(document.querySelectorAll(".product_wrap")).find((el) => {
-              if (el.getAttribute("data-id") === i.getAttribute("data-id")) {
-                i.style.display = "none";
-              }
-            });
-          });
+
+          if (!document.querySelector(".upsells_wrapp .upsels_novaa") && data.item_count !== 0) {
+            for (let key in upselsObjNovaa) {
+              Object.values(data.items).some((el) => {
+                if (el.id === +key) {
+                  localStorage.setItem("upselsObjNovaa", "yes");
+                }
+                setTimeout(() => {
+                  if (el.id !== +key) {
+                    if (!document.querySelector(".upsells_wrapp .upsels_novaa") && !localStorage.getItem("upselsObjNovaa")) {
+                      document.querySelector(".upsells_wrapp").insertAdjacentHTML("beforeend", renderUpselCard(key, upselsObjNovaa[key][0], upselsObjNovaa[key][1], upselsObjNovaa[key][2], upselsObjNovaa[key][3], upselsObjNovaa[key][4], upselsObjNovaa[key][5], upselsObjNovaa[key][6], upselsObjNovaa[key][7], upselsObjNovaa[key][8], upselsObjNovaa[key][9], upselsObjNovaa[key][10]));
+                    }
+                  }
+                }, 100);
+              });
+            }
+          }
+
+          if (!document.querySelector(".upsells_wrapp .upsels_sonic") && data.item_count !== 0) {
+            for (let key in upselsObjSonic) {
+              Object.values(data.items).some((el) => {
+                if (el.id === +key) {
+                  localStorage.setItem("upselsSonic", "yes");
+                }
+                setTimeout(() => {
+                  if (el.id !== +key && !localStorage.getItem("upselsSonic") && localStorage.getItem("upselsObjNovaa") && el.id === 47100514140505) {
+                    if (!document.querySelector(".upsells_wrapp .upsels_sonic")) {
+                      console.log(`PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP`, localStorage.getItem("upselsSonic"));
+                      document.querySelector(".upsells_wrapp").insertAdjacentHTML("beforeend", renderUpselCard(key, upselsObjSonic[key][0], upselsObjSonic[key][1], upselsObjSonic[key][2], upselsObjSonic[key][3], upselsObjSonic[key][4], upselsObjSonic[key][5], upselsObjSonic[key][6], upselsObjSonic[key][7], upselsObjSonic[key][8], upselsObjSonic[key][9], upselsObjSonic[key][10]));
+                    }
+                  }
+                }, 500);
+              });
+            }
+          }
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -1102,5 +1311,27 @@ margin: 0 12px 0 6px;
           console.error("Error:", error);
         });
     }
+
+    // Observe
+    let observer = new MutationObserver(() => {
+      if (document) {
+        observer.disconnect();
+        console.log(`observer`);
+
+        if (document.querySelector(".slide_in_cart")) {
+          slideInCart();
+        }
+
+        observer.observe(document, {
+          childList: true,
+          subtree: true,
+        });
+      }
+    });
+
+    observer.observe(document, {
+      childList: true,
+      subtree: true,
+    });
   }
 }, 600);
