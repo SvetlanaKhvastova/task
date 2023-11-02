@@ -103,13 +103,14 @@ letter-spacing: 0.9px;
  .slide_in_body{
    max-height: 550px;
                 overflow-y: auto;
-
  }
  .slide_in_body::-webkit-scrollbar {
      width: 4px;
  }
  .slide_in_body::-webkit-scrollbar-thumb {
-     background: #788188;
+     background: #E2E2E2;
+     border-radius: 20px;
+     
  }
  .slide_in_body.my_height{
  }
@@ -552,7 +553,7 @@ margin: 0 0 30px;
     .product_upsell_list{
       list-style: none;
           margin: 0;
-    padding: 0;
+padding: 0 0 111px;
     }
     .product_upsell_item{
       position: relative;
@@ -679,6 +680,205 @@ margin: 0 12px 0 6px;
     padding: 12px 30px;
     margin-top: 23px;
     }
+    /*window.location.pathname.match("/cart") */
+    .cartouter .offertext,
+    .cartouter .upsellbox{
+      display: none !important;
+    }
+    /*.cartleft .upsell_card*/
+    .cartleft .upsell_card{
+background: none;
+padding: 0;
+    }
+    .cartleft .upsell_header p {
+    font-size: 16px;
+    display: inline;
+    font-weight: 400;
+}
+.cartleft .upsell_header {
+    margin-bottom: 20px;
+}
+.cartleft .upsell_body{
+      padding: 25px;
+    background: #fff;
+    box-shadow: 0 4px 20px #0000000d;
+    border-radius: 5px;
+    align-items: center;
+}
+.cartleft .upsell_card .btn_wrap{
+    margin: 0 0 0 auto;
+    display: block;
+}
+.cartleft .upsell_add_btn{
+  font-family: 'Urbanist';
+padding: 17px 40px 19px 30px;
+    border-radius: 5px;
+    clip-path: polygon(0 0,100% 0%,96% 100%,0% 100%);
+    background: linear-gradient(to right,#0020f5 0%,#702990 50%,#ea3323 100%);
+    max-width: 200px;
+    width: 100%;
+    border: none;
+    height: initial;
+    color: #fff;
+    font-size: 18px;
+    min-width: 200px;
+}
+.cartleft .upsell_add_btn:hover{
+  background: linear-gradient(to right,#ea3323 0%,#702990 50%,#0020f5 100%);
+}
+.cartleft .upsell_body .img_wrap img{
+  border-radius: 4px;
+    display: block;
+}
+.cartleft .upsell_add_btn img {
+  margin-right: 14px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.cartleft .upsell_body .img_wrap{
+  max-width: 53px;
+  border: none;
+    max-height: 53px;
+}
+.cartleft .upsell_title{
+color: #212121 !important;
+font-family: 'Urbanist';
+font-size: 20px;
+font-weight: 400;
+line-height: 22px;
+letter-spacing: 1px;
+max-width: 315px;
+text-transform: initial;
+}
+.cartleft .upsell_price_wrap .new_price{
+color: #0021F0 !important;
+font-family: 'Urbanist';
+}
+.cartleft span.accent_strikethrough{
+  font-family: 'Urbanist';
+      font-size: 16px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0.8px;
+    color: #000;
+}
+@media (max-width: 768px) {
+  .product_wrap + .product_wrap {
+    margin-top: 20px;
+}
+.upsell_header p{
+      font-size: 14px;
+}
+.upsell_header .discount_box{
+      font-size: 16px;
+    font-weight: 800;
+    line-height: 22px;
+    letter-spacing: 0.8px;
+}
+.upsell_card .btn_wrap{
+      gap: 14px;
+}
+.upsell_add_btn{
+      min-width: 74px;
+}
+.slide_in_guarantee span{
+  color: #3D4852;
+font-family: 'Urbanist';
+font-size: 14px;
+font-weight: 500;
+line-height: 20px;
+letter-spacing: 0.7px;
+}
+.slide_in_to_checkout, .product_upsell_add_btn{
+  font-size: 16px;
+    padding: 12px 32px;
+}
+.slide_in_body{
+      margin-right: 6px;
+}
+.cartleft .upsell_body{
+      flex-wrap: wrap;
+          gap: 30px;
+}
+.cartleft .upsell_card .btn_wrap{
+  margin: 0;
+  width: 100%;
+}
+.cartleft .upsell_add_btn{
+  width: 100%;
+    max-width: 100%;
+    min-width: unset;
+}
+.cartleft .upsell_header p{
+  font-weight: 500;
+}
+.cartleft .upsell_header {
+    margin-bottom: 10px;
+        max-width: 345px;
+}
+.cartleft .upsell_body .img_wrap + div{
+  width: 60%;
+}
+.cartleft .upsell_title{
+      margin-bottom: 5px;
+}
+.cartleft .upsell_card{
+  margin-top: 35px;
+}
+.overlay_popup .container_popup{
+  padding: 20px 16px;
+  border-bottom: 1px solid #E2E2E2;
+  border-radius: unset;
+}
+.overlay_popup .container_popup > svg{
+      top: 20px;
+    right: 16px;
+}
+.product_upsell_title{
+  font-size: 22px;
+  margin: 0 0 4px;
+}
+.product_upsell_descr{
+  font-size: 16px;
+line-height: 22px;
+letter-spacing: 0.8px;
+    margin: 0 0 16px;
+}
+.product_upsell_descr_wrapp{
+  gap: 24px;
+    flex-direction: column;
+}
+.product_upsell_item{
+  margin: 0;
+}
+.product_upsell_item span{
+  max-width: 290px;
+}
+.fixed_wrapp_mob{
+    position: fixed;
+    bottom: 0;
+    background: #FFF;
+    box-shadow: 0px 0px 16px 0px rgba(107, 28, 235, 0.16);
+    left: 0;
+    right: 0;
+    padding: 16px;
+}
+.product_upsell_info_wrapp .product_upsell_price_wrap{
+  align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0 0 14px;
+}
+.product_upsell_info_wrapp .product_upsell_price_wrap::before{
+  content: unset; 
+}
+}
+@media (max-width: 376px) {
+.cartleft .upsell_title{
+  font-size: 18px;
+}
+}
     </style>
     `;
 
@@ -698,7 +898,7 @@ margin: 0 12px 0 6px;
         </svg>
       </div>
       <div class="slide_in_body">
-        <ul class="slide_in_products"><p>slide_in_products</p></ul>
+        <div class="slide_in_products"><p>slide_in_products</p></div>
         <div class="upsells_wrapp"></div>
       </div>
       <div class="slide_in_footer">
@@ -752,12 +952,14 @@ margin: 0 12px 0 6px;
             <li class="product_upsell_item"><span><b>Pressure Sensor</b> that alerts you if you're applying too much force</span></li>
             <li class="product_upsell_item"><span><b>Long-lasting Battery Life</b> that provides weeks of use on a single charge</span></li>
           </ul>
-          <div class="product_upsell_price_wrap">
-            <span class="accent_weight_bold new_price">$99.90</span>
-            <span class="accent_strikethrough old_price">$199.90</span>
-            <span class="discount_txt">-50%</span>
+          <div class="fixed_wrapp_mob">
+            <div class="product_upsell_price_wrap">
+              <span class="accent_weight_bold new_price">$99.90</span>
+              <span class="accent_strikethrough old_price">$199.90</span>
+              <span class="discount_txt">-50%</span>
+            </div>
+            <a href="" class="product_upsell_add_btn">Add to Cart</a>
           </div>
-          <a href="" class="product_upsell_add_btn">Add to Cart</a>
         </div>
       </div>
     </div>
@@ -766,11 +968,11 @@ margin: 0 12px 0 6px;
 `;
 
     let upselsObjNovaa = {
-      47100514140505: ["Novaa oral Care Pro", "https://novaalab.com/cdn/shop/products/IMG_1001-600pxquaqre_medium.jpg?v=1662108128", "$99.90", "$199.90", "https://conversionratestore.github.io/projects/novaalab/img/rating_stars.svg", "4.8", "50", "gum & teeth treatment", "https://novaalab.com/products/novaa-oral-care-gums-periodontal-treatment", "link", "upsels_novaa"],
+      47100514140505: ["Novaa oral Care Pro", "https://novaalab.com/cdn/shop/products/IMG_1001-600pxquaqre_medium.jpg?v=1662108128", "$99.90", "$199.90", "https://conversionratestore.github.io/projects/novaalab/img/rating_stars.svg", "4.8", "50", "gum & teeth treatment", "https://novaalab.com/products/novaa-oral-care-gums-periodontal-treatment", "link", "upsels_novaa", "Novoral Care Pro - Oral Care at home"],
     };
 
     let upselsObjSonic = {
-      46932997865817: ["Sonic toothbrush", "https://conversionratestore.github.io/projects/novaalab/img/sonic_toothbrush.png", "$49.90", "$129.90", "https://conversionratestore.github.io/projects/novaalab/img/rating_stars.svg", "4.8", "60", "a gentle Sonic Toothbrush ", "", "popup", "upsels_sonic"],
+      46932997865817: ["Sonic toothbrush", "https://conversionratestore.github.io/projects/novaalab/img/sonic_toothbrush.png", "$49.90", "$129.90", "https://conversionratestore.github.io/projects/novaalab/img/rating_stars.svg", "4.8", "60", "a gentle Sonic Toothbrush ", "", "popup", "upsels_sonic", "Sonic toothbrush"],
     };
 
     function renderUpselCard(id, title, linkImg, newPrice, oldPrice, linkRating, rating, discount, descr, linkPdp, type, style) {
@@ -803,6 +1005,32 @@ margin: 0 12px 0 6px;
 </div>`;
     }
 
+    function renderUpselCardPage(id, linkImg, newPrice, oldPrice, discount, descr, style, newTitle) {
+      return `
+      <div class="upsell_card ${style}" data-id="${id}">
+  <div class="upsell_header">
+    <p><span class="discount_box">Get ${discount}% OFF</span><b>${descr}</b></p>
+    <p>when adding to the above order.</p>
+  </div>
+  <div class="upsell_body">
+    <div class="img_wrap">
+      <img src="${linkImg}" alt="${newTitle}" />
+    </div>
+    <div>
+      <h3 class="upsell_title">${newTitle}</h3>
+      <div class="upsell_price_wrap">
+      <span class="accent_strikethrough old_price">${oldPrice}</span>
+      <span class="accent_weight_bold new_price">${newPrice}</span>
+      </div>
+    </div>
+    <div class="btn_wrap">
+        <button class="upsell_add_btn" data-variant="${id}"><img src="//novaalab.com/cdn/shop/t/33/assets/pd-cardicon.png?v=35381965385526618761688644318" width="23" height="18" alt="" />Add to cart</button>
+    </div>
+  </div>
+</div>
+      `;
+    }
+
     document.head.insertAdjacentHTML("beforeend", style);
     document.body.insertAdjacentHTML("beforeend", slideInCartHTML);
 
@@ -810,9 +1038,8 @@ margin: 0 12px 0 6px;
       slideInCart();
     }
 
-    // onDiffClick();
-
     function slideInCart() {
+      console.log(`HELLO slide_in_cart`);
       let body = document.body,
         html = document.querySelector("html"),
         overlay = body.querySelector(".slide_in_cart"),
@@ -820,9 +1047,10 @@ margin: 0 12px 0 6px;
 
       // click on icon CART (header)
       document.querySelectorAll('[href="/cart"]').forEach((item) => {
+        console.log(`>>>>>>>>>>>`, item);
         item.addEventListener("click", (e) => {
           if (!e.target.getAttribute("data-test")) {
-            if (e.currentTarget.closest(".bubble-cart") || e.currentTarget.closest(".site-nav__item--compressed")) {
+            if (e.currentTarget.closest(".bubble-cart") || e.currentTarget.closest(".site-nav__item--compressed") || e.currentTarget.closest(".site-nav--mobile")) {
               e.preventDefault();
               e.stopImmediatePropagation();
               console.log(`>>>MyCart`);
@@ -964,26 +1192,28 @@ margin: 0 12px 0 6px;
           });
         }
       }, 100);
-      // learn more upselsObjSonic
+      // learn more Sonic Toothbrush
       let lookForBtnUpselsObjSonic = setInterval(() => {
-        if (document.querySelector('[data-id="46932997865817"]')) {
+        if (document.querySelector(".upsell_card[data-id='46932997865817'] .upsell_learn_more_btn")) {
           clearInterval(lookForBtnUpselsObjSonic);
-          document.querySelector('[data-id="46932997865817"] .upsell_learn_more_btn').addEventListener("click", (e) => {
-            if (!e.target.getAttribute("data-test")) {
-              e.preventDefault();
-              console.log(`object`);
-              renderPopupSonicToothbrush();
-            }
-            e.target.setAttribute("data-test", "1");
-            setTimeout(() => {
-              if (e.target.getAttribute("data-test")) {
-                e.target.removeAttribute("data-test");
+          document.querySelectorAll(".upsell_card[data-id='46932997865817'] .upsell_learn_more_btn").forEach((el) => {
+            el.addEventListener("click", (e) => {
+              if (!e.target.getAttribute("data-test")) {
+                e.preventDefault();
+                console.log(`object`);
+                renderPopupSonicToothbrush();
               }
-            }, 1000);
+              e.target.setAttribute("data-test", "1");
+              setTimeout(() => {
+                if (e.target.getAttribute("data-test")) {
+                  e.target.removeAttribute("data-test");
+                }
+              }, 1000);
+            });
           });
         }
       }, 100);
-      //add to cart upselsObjSonic
+      //add to cart Sonic Toothbrush popup
       document.querySelectorAll(".product_upsell_add_btn")?.forEach((el) => {
         el.addEventListener("click", (e) => {
           if (!e.target.getAttribute("data-test")) {
@@ -993,6 +1223,22 @@ margin: 0 12px 0 6px;
             document.querySelector(".overlay_popup").classList.remove("active");
             body.style.overflow = "auto";
             html.style.overflow = "auto";
+          }
+          e.target.setAttribute("data-test", "1");
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
+            }
+          }, 1000);
+        });
+      });
+      // upsell add btn slide-in-cart Sonic Toothbrush
+      document.querySelectorAll(".upsell_add_btn")?.forEach((el) => {
+        el.addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            e.preventDefault();
+            e.stopPropagation();
+            addToCartCheckout(el.getAttribute("data-variant"), 1);
           }
           e.target.setAttribute("data-test", "1");
           setTimeout(() => {
@@ -1025,6 +1271,9 @@ margin: 0 12px 0 6px;
             response.json();
             onOpenPopup();
             getCartCheckout();
+            if (window.location.pathname.match("/cart")) {
+              window.location = "/cart";
+            }
           })
           .catch((error) => {
             console.error("Error:", error);
@@ -1060,6 +1309,7 @@ margin: 0 12px 0 6px;
       }
     }
 
+    // renderPopupSonicToothbrush
     function renderPopupSonicToothbrush() {
       if (!document.querySelector(".product_upsell_descr_wrapp")) {
         document.body.insertAdjacentHTML("afterbegin", popUpSonicToothbrush);
@@ -1242,7 +1492,7 @@ margin: 0 12px 0 6px;
             });
           });
 
-          if (!document.querySelector(".upsells_wrapp .upsels_novaa") && data.item_count !== 0) {
+          if (data.item_count !== 0) {
             for (let key in upselsObjNovaa) {
               Object.values(data.items).some((el) => {
                 if (el.id === +key) {
@@ -1250,16 +1500,22 @@ margin: 0 12px 0 6px;
                 }
                 setTimeout(() => {
                   if (el.id !== +key) {
-                    if (!document.querySelector(".upsells_wrapp .upsels_novaa") && !localStorage.getItem("upselsObjNovaa")) {
-                      document.querySelector(".upsells_wrapp").insertAdjacentHTML("beforeend", renderUpselCard(key, upselsObjNovaa[key][0], upselsObjNovaa[key][1], upselsObjNovaa[key][2], upselsObjNovaa[key][3], upselsObjNovaa[key][4], upselsObjNovaa[key][5], upselsObjNovaa[key][6], upselsObjNovaa[key][7], upselsObjNovaa[key][8], upselsObjNovaa[key][9], upselsObjNovaa[key][10]));
+                    if (!document.querySelector(".slide_in_cart .upsells_wrapp .upsels_novaa") && !localStorage.getItem("upselsObjNovaa")) {
+                      document.querySelector(".slide_in_cart .upsells_wrapp").insertAdjacentHTML("beforeend", renderUpselCard(key, upselsObjNovaa[key][0], upselsObjNovaa[key][1], upselsObjNovaa[key][2], upselsObjNovaa[key][3], upselsObjNovaa[key][4], upselsObjNovaa[key][5], upselsObjNovaa[key][6], upselsObjNovaa[key][7], upselsObjNovaa[key][8], upselsObjNovaa[key][9], upselsObjNovaa[key][10]));
+                    }
+
+                    if (window.location.pathname.match("/cart")) {
+                      if (document.querySelector(".cartouter .upsellbox") && !document.querySelector(".cartouter .upsels_novaa") && !localStorage.getItem("upselsObjNovaa")) {
+                        document.querySelector(".cartouter .upsellbox").insertAdjacentHTML("afterend", renderUpselCardPage(key, upselsObjNovaa[key][1], upselsObjNovaa[key][2], upselsObjNovaa[key][3], upselsObjNovaa[key][6], upselsObjNovaa[key][7], upselsObjNovaa[key][10], upselsObjNovaa[key][11]));
+                      }
                     }
                   }
-                }, 100);
+                }, 700);
               });
             }
           }
 
-          if (!document.querySelector(".upsells_wrapp .upsels_sonic") && data.item_count !== 0) {
+          if (data.item_count !== 0) {
             for (let key in upselsObjSonic) {
               Object.values(data.items).some((el) => {
                 if (el.id === +key) {
@@ -1267,12 +1523,16 @@ margin: 0 12px 0 6px;
                 }
                 setTimeout(() => {
                   if (el.id !== +key && !localStorage.getItem("upselsSonic") && localStorage.getItem("upselsObjNovaa") && el.id === 47100514140505) {
-                    if (!document.querySelector(".upsells_wrapp .upsels_sonic")) {
-                      console.log(`PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP`, localStorage.getItem("upselsSonic"));
-                      document.querySelector(".upsells_wrapp").insertAdjacentHTML("beforeend", renderUpselCard(key, upselsObjSonic[key][0], upselsObjSonic[key][1], upselsObjSonic[key][2], upselsObjSonic[key][3], upselsObjSonic[key][4], upselsObjSonic[key][5], upselsObjSonic[key][6], upselsObjSonic[key][7], upselsObjSonic[key][8], upselsObjSonic[key][9], upselsObjSonic[key][10]));
+                    if (!document.querySelector(".slide_in_cart .upsells_wrapp .upsels_sonic")) {
+                      document.querySelector(".slide_in_cart .upsells_wrapp").insertAdjacentHTML("beforeend", renderUpselCard(key, upselsObjSonic[key][0], upselsObjSonic[key][1], upselsObjSonic[key][2], upselsObjSonic[key][3], upselsObjSonic[key][4], upselsObjSonic[key][5], upselsObjSonic[key][6], upselsObjSonic[key][7], upselsObjSonic[key][8], upselsObjSonic[key][9], upselsObjSonic[key][10]));
+                    }
+                    if (window.location.pathname.match("/cart")) {
+                      if (document.querySelector(".cartouter .upsellbox") && !document.querySelector(".cartouter .upsels_sonic") && !localStorage.getItem("upselsSonic")) {
+                        document.querySelector(".cartouter .upsellbox").insertAdjacentHTML("afterend", renderUpselCardPage(key, upselsObjSonic[key][1], upselsObjSonic[key][2], upselsObjSonic[key][3], upselsObjSonic[key][6], upselsObjSonic[key][7], upselsObjSonic[key][10], upselsObjSonic[key][11]));
+                      }
                     }
                   }
-                }, 500);
+                }, 700);
               });
             }
           }
@@ -1306,19 +1566,26 @@ margin: 0 12px 0 6px;
           //   el.classList.add("blur_var");
           // });
           getCartCheckout();
+          if (window.location.pathname.match("/cart")) {
+            window.location = "/cart";
+          }
         })
         .catch((error) => {
           console.error("Error:", error);
         });
     }
 
+    if (window.location.pathname.match("/cart")) {
+      getCartCheckout();
+    }
+
     // Observe
-    let observer = new MutationObserver(() => {
+    let observer = new MutationObserver((mutations) => {
       if (document) {
         observer.disconnect();
         console.log(`observer`);
 
-        if (document.querySelector(".slide_in_cart")) {
+        if (document.querySelector(".slide_in_cart") && !window.location.pathname.match("/cart")) {
           slideInCart();
         }
 
