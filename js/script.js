@@ -141,6 +141,13 @@ function getNewUser(name) {
   }
 }
 //
+// getCookie("crsoptimize", "QbDvqZkMtU");
+// getCookie("crsoptimize", "3FnILEeawO");
+function getCookie(name, value) {
+  let matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") + "=([^;]*)"));
+  return matches ? decodeURIComponent(matches[1]).includes(`${value}`) : undefined;
+}
+//
 document.head.insertAdjacentHTML("beforeend", `<style class="exp">body {opacity: 0 !important;}</style>`);
 
 let script = document.createElement("script");
