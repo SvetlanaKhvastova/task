@@ -2,54 +2,6 @@ let startFunk = setInterval(() => {
   if (document.querySelector(".site-header")) {
     clearInterval(startFunk);
 
-    const productsData = {
-      46883225993561: {
-        id: "46883225993561",
-        name: "Novaa deep healing pad with remote [2023]",
-        price: ["600.00", "$299.90"],
-      },
-      47100514140505: {
-        id: "47100514140505",
-        name: "Novoral Care Pro - Oral Care at home [New 2023]",
-        price: ["199.90", "$129.90"],
-      },
-      47116576588121: {
-        id: "47116576588121",
-        name: "Novaa Deep Healing Pad XL",
-        price: ["599.90", "$429.90"],
-      },
-      47048817607001: {
-        id: "47048817607001",
-        name: "Novaa glow therapy mask",
-        price: ["299.00", "$299.90"],
-      },
-      32854816784438: {
-        id: "32854816784438",
-        name: "Novaa light pro",
-        price: ["299.90", "$149.90"],
-      },
-      40156488761398: {
-        id: "40156488761398",
-        name: "Novaa extra strength laser",
-        price: ["399.00", "$299.90"],
-      },
-      39782656311350: {
-        id: "39782656311350",
-        name: "Novaa deep healing pad for your knee",
-        price: ["540.00", "$299.90"],
-      },
-      47057278992729: {
-        id: "47057278992729",
-        name: "Novaa Light Pad + Novaa Light Pro [Flash Sale]",
-        price: ["900.00", "$399.90"],
-      },
-      46932997865817: {
-        id: "46932997865817",
-        name: "1 novoral care pro + 1 sonic toothbrush",
-        price: ["329.80", "$179.80"],
-      },
-    };
-
     let style = /*html */ `
     <style>
 .blur_var {
@@ -1156,7 +1108,7 @@ span.accent_weight_bold {
     };
 
     function renderUpselCard(id, title, linkImg, newPrice, oldPrice, linkRating, rating, discount, descr, linkPdp, type, style) {
-      return `<div class="upsell_card ${style}" data-id="${id}">
+      return /*html */ `<div class="upsell_card ${style}" data-id="${id}">
   <div class="upsell_header">
     <p><span class="discount_box">Get ${discount}% OFF</span><b>${descr}</b></p>
     <p>when adding to the above order.</p>
@@ -1606,14 +1558,16 @@ span.accent_weight_bold {
           document.querySelector(".cart_length span").textContent = `${data.item_count}`;
 
           data.items.forEach((el) => {
-            const item = productsData[el.id];
-            console.log(el.id, `id`);
-            console.log(+item.id, `item`);
-            if (+item.id === el.id) {
-              console.log(item.price[0], `const item`);
-              document.querySelector(".slide_in_products").insertAdjacentHTML(
-                "beforeend",
-                `                         
+            fetch(`/products/${el.handle}.js`, {
+              method: "GET",
+            })
+              .then((response) => {
+                return response.json();
+              })
+              .then((res) => {
+                console.log(res, `RES`);
+                if (el.id === res.variants[0].id) {
+                  let itemCart = `                         
   <div class="product_wrap" id="${el.key}" data-id="${el.id}">
     <a class="img_wrap" href="${el.url}"><img src="${el.image}" alt="" /></a>
     <div class="inform_wrap">
@@ -1621,8 +1575,8 @@ span.accent_weight_bold {
         <h2><a href="${el.url}">${el.product_title}</a></h2>
         <div class="price_wrap">
         <span class="my_price">$${(el.final_line_price / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}</span>
-        <span class="my_old_price">$${(+item.price[0] * el.quantity).toFixed(2)}</span>
-        <span class="discount_txt">${(((el.final_line_price / 100) * 100) / +item.price[0] - 100).toFixed(0)}%</span>
+        <span class="my_old_price">$${(res.variants[0].compare_at_price / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}</span>
+        <span class="discount_txt">${(((el.final_line_price / 100) * 100) / (res.variants[0].compare_at_price / 100) - 100).toFixed(0)}%</span>
         </div>
       </div>
       <div class="qty_wrap">
@@ -1657,9 +1611,194 @@ span.accent_weight_bold {
       </div>
     </div>
   </div>
-                      `
-              );
-            }
+  `;
+                  document.querySelector(".slide_in_products").insertAdjacentHTML("beforeend", itemCart);
+
+                  if (document.querySelector(".slide_in_products").children.length < 1) {
+                    if (!document.querySelector(".slide_in_empty")) {
+                      document.querySelector(".slide_in_body").insertAdjacentHTML("afterbegin", emptySlideInHTML);
+                      document.querySelector(".slide_in_footer").style.display = "none";
+                      document.querySelector(".upsells_wrapp").style.display = "none";
+                    }
+                  } else {
+                    document.querySelector(".slide_in_empty")?.remove();
+                    document.querySelector(".slide_in_footer").style.display = "block";
+                    document.querySelector(".upsells_wrapp").style.display = "block";
+                  }
+                }
+
+                if (document.querySelector(".btn_remove_item")) {
+                  document.querySelectorAll(".btn_remove_item").forEach((el) => {
+                    el.addEventListener("click", (e) => {
+                      if (!e.target.getAttribute("data-test")) {
+                        changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), 0);
+                      }
+                      e.target.setAttribute("data-test", "1");
+                      setTimeout(() => {
+                        if (e.target.getAttribute("data-test")) {
+                          e.target.removeAttribute("data-test");
+                        }
+                      }, 1000);
+                    });
+                  });
+                }
+
+                if (document.querySelector(".increment")) {
+                  document.querySelectorAll(".increment").forEach((item) => {
+                    item.addEventListener("click", (e) => {
+                      if (!e.target.getAttribute("data-test")) {
+                        let qvt = +e.target.closest("div.cart_popup_qty").querySelector(".count_var").value;
+                        e.target.closest("div.cart_popup_qty").querySelector(".count_var").value = qvt + 1;
+
+                        changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), e.target.closest("div.cart_popup_qty").querySelector(".count_var").value);
+                      }
+                      e.target.setAttribute("data-test", "1");
+                      setTimeout(() => {
+                        if (e.target.getAttribute("data-test")) {
+                          e.target.removeAttribute("data-test");
+                        }
+                      }, 1000);
+                    });
+                  });
+                }
+
+                if (document.querySelector(".decrement")) {
+                  document.querySelectorAll(".decrement").forEach((item) => {
+                    if (item.closest(".cart_popup_qty").querySelector(".count_var").value !== "1") {
+                      if (item.getAttribute("disabled")) {
+                        item.removeAttribute("disabled");
+                      }
+
+                      item.addEventListener("click", (e) => {
+                        if (!e.target.getAttribute("data-test")) {
+                          let qvt = +e.target.closest("div.cart_popup_qty").querySelector(".count_var").value;
+
+                          if (+e.target.closest("div.cart_popup_qty").querySelector(".count_var").value >= 0) {
+                            e.target.closest("div.cart_popup_qty").querySelector(".count_var").value = qvt - 1;
+                            changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), e.target.closest("div.cart_popup_qty").querySelector(".count_var").value);
+                          }
+
+                          if (+e.target.closest("div.cart_popup_qty").querySelector(".count_var").value === 0) {
+                            console.log(`value = 0`);
+                            e.target.closest(".product_wrap").remove();
+                            changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), e.target.closest("div.cart_popup_qty").querySelector(".count_var").value);
+                          }
+                        }
+                        e.target.setAttribute("data-test", "1");
+                        setTimeout(() => {
+                          if (e.target.getAttribute("data-test")) {
+                            e.target.removeAttribute("data-test");
+                          }
+                        }, 1000);
+                      });
+                    } else {
+                      item.setAttribute("disabled", "disabled");
+                    }
+                  });
+                }
+
+                document.querySelectorAll(".count_var")?.forEach((el) => {
+                  el.addEventListener("change", (e) => {
+                    if (!e.target.getAttribute("data-test")) {
+                      localStorage.setItem("count", e.currentTarget.value);
+
+                      if (localStorage.getItem("count")) {
+                        changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), localStorage.getItem("count"));
+                      }
+                    }
+                    e.target.setAttribute("data-test", "1");
+                    setTimeout(() => {
+                      if (e.target.getAttribute("data-test")) {
+                        e.target.removeAttribute("data-test");
+                      }
+                    }, 1000);
+                  });
+                });
+
+                if (data.item_count !== 0) {
+                  for (let key in upselsObjNovaa) {
+                    Object.values(data.items).some((el) => {
+                      if (el.id === +key) {
+                        localStorage.setItem("upselsObjNovaa", "yes");
+                      }
+                      setTimeout(() => {
+                        if (el.id !== +key) {
+                          if (!document.querySelector(".slide_in_cart .upsells_wrapp .upsels_novaa") && !localStorage.getItem("upselsObjNovaa")) {
+                            document.querySelector(".slide_in_cart .upsells_wrapp").insertAdjacentHTML("beforeend", renderUpselCard(key, upselsObjNovaa[key][0], upselsObjNovaa[key][1], upselsObjNovaa[key][2], upselsObjNovaa[key][3], upselsObjNovaa[key][4], upselsObjNovaa[key][5], upselsObjNovaa[key][6], upselsObjNovaa[key][7], upselsObjNovaa[key][8], upselsObjNovaa[key][9], upselsObjNovaa[key][10]));
+                          }
+
+                          if (window.location.pathname.match("/cart")) {
+                            if (document.querySelector(".cartouter .upsellbox") && !document.querySelector(".cartouter .upsels_novaa") && !localStorage.getItem("upselsObjNovaa")) {
+                              document.querySelector(".cartouter .upsellbox").insertAdjacentHTML("afterend", renderUpselCardPage(key, upselsObjNovaa[key][1], upselsObjNovaa[key][2], upselsObjNovaa[key][3], upselsObjNovaa[key][6], upselsObjNovaa[key][7], upselsObjNovaa[key][10], upselsObjNovaa[key][11]));
+                            }
+                          }
+                        }
+                      }, 700);
+                    });
+                  }
+                  for (let key in upselsObjSonic) {
+                    Object.values(data.items).some((el) => {
+                      if (el.id === +key) {
+                        localStorage.setItem("upselsSonic", "yes");
+                      }
+                      setTimeout(() => {
+                        if (el.id !== +key && !localStorage.getItem("upselsSonic") && localStorage.getItem("upselsObjNovaa") && el.id === 47100514140505) {
+                          if (!document.querySelector(".slide_in_cart .upsells_wrapp .upsels_sonic")) {
+                            document.querySelector(".slide_in_cart .upsells_wrapp").insertAdjacentHTML("beforeend", renderUpselCard(key, upselsObjSonic[key][0], upselsObjSonic[key][1], upselsObjSonic[key][2], upselsObjSonic[key][3], upselsObjSonic[key][4], upselsObjSonic[key][5], upselsObjSonic[key][6], upselsObjSonic[key][7], upselsObjSonic[key][8], upselsObjSonic[key][9], upselsObjSonic[key][10]));
+                          }
+                          if (window.location.pathname.match("/cart")) {
+                            if (document.querySelector(".cartouter .upsellbox") && !document.querySelector(".cartouter .upsels_sonic") && !localStorage.getItem("upselsSonic")) {
+                              document.querySelector(".cartouter .upsellbox").insertAdjacentHTML("afterend", renderUpselCardPage(key, upselsObjSonic[key][1], upselsObjSonic[key][2], upselsObjSonic[key][3], upselsObjSonic[key][6], upselsObjSonic[key][7], upselsObjSonic[key][10], upselsObjSonic[key][11]));
+                            }
+                          }
+                        }
+                      }, 700);
+                    });
+                  }
+                }
+
+                //
+                let appikonF = setInterval(() => {
+                  if (typeof window.appikon.discounts === "object" && appikon.discounts.discounted_price_html !== undefined) {
+                    clearInterval(appikonF);
+                    console.log(appikon.discounts.discounted_price_html);
+
+                    if (document.querySelector(".slide_in_body")?.classList.contains("blur_var")) {
+                      document.querySelectorAll(".slide_in_body")?.forEach((el) => {
+                        el.classList.remove("blur_var");
+                      });
+                    }
+                    document.querySelector(".sub_total_original_price").textContent = appikon.discounts.discounted_price_html;
+                    window.appikon.discounts.cart.items.forEach((el) => {
+                      if (el.discounted_line_price_format && el.quantity > 1) {
+                        let currPrDsc = el.discounted_line_price_format;
+                        let oldPr = el.compare_at_line_price_format;
+                        console.log(currPrDsc, oldPr);
+                        document.querySelectorAll(".product_wrap").forEach((i) => {
+                          if (i.id === el.key) {
+                            i.querySelector(".my_price").textContent = currPrDsc;
+                            i.querySelector(".my_old_price").textContent = oldPr;
+                            i.querySelector(".discount_txt").textContent = `${((el.discounted_line_price * 100) / el.compare_at_line_price - 100).toFixed(0)}%`;
+                          }
+                        });
+                      }
+                    });
+                  }
+                }, 10);
+
+                setTimeout(() => {
+                  if (appikon.discounts.discounted_price_html === undefined) {
+                    if (document.querySelector(".slide_in_body")?.classList.contains("blur_var")) {
+                      document.querySelectorAll(".slide_in_body")?.forEach((el) => {
+                        el.classList.remove("blur_var");
+                      });
+                    }
+                  }
+                }, 1300);
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+              });
           });
 
           if (document.querySelector(".slide_in_products").children.length < 1) {
@@ -1673,143 +1812,6 @@ span.accent_weight_bold {
             document.querySelector(".slide_in_footer").style.display = "block";
             document.querySelector(".upsells_wrapp").style.display = "block";
           }
-
-          if (document.querySelector(".btn_remove_item")) {
-            document.querySelectorAll(".btn_remove_item").forEach((el) => {
-              el.addEventListener("click", (e) => {
-                changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), 0);
-              });
-            });
-          }
-
-          if (document.querySelector(".increment")) {
-            document.querySelectorAll(".increment").forEach((item) => {
-              item.addEventListener("click", (e) => {
-                let qvt = +e.target.closest("div.cart_popup_qty").querySelector(".count_var").value;
-                e.target.closest("div.cart_popup_qty").querySelector(".count_var").value = qvt + 1;
-
-                changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), e.target.closest("div.cart_popup_qty").querySelector(".count_var").value);
-              });
-            });
-          }
-
-          if (document.querySelector(".decrement")) {
-            document.querySelectorAll(".decrement").forEach((item) => {
-              if (item.closest(".cart_popup_qty").querySelector(".count_var").value !== "1") {
-                if (item.getAttribute("disabled")) {
-                  item.removeAttribute("disabled");
-                }
-
-                item.addEventListener("click", (e) => {
-                  let qvt = +e.target.closest("div.cart_popup_qty").querySelector(".count_var").value;
-
-                  if (+e.target.closest("div.cart_popup_qty").querySelector(".count_var").value >= 0) {
-                    e.target.closest("div.cart_popup_qty").querySelector(".count_var").value = qvt - 1;
-                    changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), e.target.closest("div.cart_popup_qty").querySelector(".count_var").value);
-                  }
-
-                  if (+e.target.closest("div.cart_popup_qty").querySelector(".count_var").value === 0) {
-                    console.log(`value = 0`);
-                    e.target.closest(".product_wrap").remove();
-                    changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), e.target.closest("div.cart_popup_qty").querySelector(".count_var").value);
-                  }
-                });
-              } else {
-                item.setAttribute("disabled", "disabled");
-              }
-            });
-          }
-
-          document.querySelectorAll(".count_var")?.forEach((el) => {
-            el.addEventListener("change", (e) => {
-              localStorage.setItem("count", e.currentTarget.value);
-
-              if (localStorage.getItem("count")) {
-                changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), localStorage.getItem("count"));
-              }
-            });
-          });
-
-          if (data.item_count !== 0) {
-            for (let key in upselsObjNovaa) {
-              Object.values(data.items).some((el) => {
-                if (el.id === +key) {
-                  localStorage.setItem("upselsObjNovaa", "yes");
-                }
-                setTimeout(() => {
-                  if (el.id !== +key) {
-                    if (!document.querySelector(".slide_in_cart .upsells_wrapp .upsels_novaa") && !localStorage.getItem("upselsObjNovaa")) {
-                      document.querySelector(".slide_in_cart .upsells_wrapp").insertAdjacentHTML("beforeend", renderUpselCard(key, upselsObjNovaa[key][0], upselsObjNovaa[key][1], upselsObjNovaa[key][2], upselsObjNovaa[key][3], upselsObjNovaa[key][4], upselsObjNovaa[key][5], upselsObjNovaa[key][6], upselsObjNovaa[key][7], upselsObjNovaa[key][8], upselsObjNovaa[key][9], upselsObjNovaa[key][10]));
-                    }
-
-                    if (window.location.pathname.match("/cart")) {
-                      if (document.querySelector(".cartouter .upsellbox") && !document.querySelector(".cartouter .upsels_novaa") && !localStorage.getItem("upselsObjNovaa")) {
-                        document.querySelector(".cartouter .upsellbox").insertAdjacentHTML("afterend", renderUpselCardPage(key, upselsObjNovaa[key][1], upselsObjNovaa[key][2], upselsObjNovaa[key][3], upselsObjNovaa[key][6], upselsObjNovaa[key][7], upselsObjNovaa[key][10], upselsObjNovaa[key][11]));
-                      }
-                    }
-                  }
-                }, 700);
-              });
-            }
-            for (let key in upselsObjSonic) {
-              Object.values(data.items).some((el) => {
-                if (el.id === +key) {
-                  localStorage.setItem("upselsSonic", "yes");
-                }
-                setTimeout(() => {
-                  if (el.id !== +key && !localStorage.getItem("upselsSonic") && localStorage.getItem("upselsObjNovaa") && el.id === 47100514140505) {
-                    if (!document.querySelector(".slide_in_cart .upsells_wrapp .upsels_sonic")) {
-                      document.querySelector(".slide_in_cart .upsells_wrapp").insertAdjacentHTML("beforeend", renderUpselCard(key, upselsObjSonic[key][0], upselsObjSonic[key][1], upselsObjSonic[key][2], upselsObjSonic[key][3], upselsObjSonic[key][4], upselsObjSonic[key][5], upselsObjSonic[key][6], upselsObjSonic[key][7], upselsObjSonic[key][8], upselsObjSonic[key][9], upselsObjSonic[key][10]));
-                    }
-                    if (window.location.pathname.match("/cart")) {
-                      if (document.querySelector(".cartouter .upsellbox") && !document.querySelector(".cartouter .upsels_sonic") && !localStorage.getItem("upselsSonic")) {
-                        document.querySelector(".cartouter .upsellbox").insertAdjacentHTML("afterend", renderUpselCardPage(key, upselsObjSonic[key][1], upselsObjSonic[key][2], upselsObjSonic[key][3], upselsObjSonic[key][6], upselsObjSonic[key][7], upselsObjSonic[key][10], upselsObjSonic[key][11]));
-                      }
-                    }
-                  }
-                }, 700);
-              });
-            }
-          }
-
-          //
-          let appikonF = setInterval(() => {
-            if (typeof window.appikon.discounts === "object" && appikon.discounts.discounted_price_html !== undefined) {
-              clearInterval(appikonF);
-              console.log(appikon.discounts.discounted_price_html);
-
-              if (document.querySelector(".slide_in_body")?.classList.contains("blur_var")) {
-                document.querySelectorAll(".slide_in_body")?.forEach((el) => {
-                  el.classList.remove("blur_var");
-                });
-              }
-              document.querySelector(".sub_total_original_price").textContent = appikon.discounts.discounted_price_html;
-              window.appikon.discounts.cart.items.forEach((el) => {
-                if (el.discounted_line_price_format) {
-                  let currPrDsc = el.discounted_line_price_format;
-                  let oldPr = el.compare_at_line_price_format;
-                  console.log(currPrDsc, oldPr);
-                  document.querySelectorAll(".product_wrap").forEach((i) => {
-                    if (i.id === el.key) {
-                      i.querySelector(".my_price").textContent = currPrDsc;
-                      i.querySelector(".my_old_price").textContent = oldPr;
-                      i.querySelector(".discount_txt").textContent = `${((el.discounted_line_price * 100) / el.compare_at_line_price - 100).toFixed(0)}%`;
-                    }
-                  });
-                }
-              });
-            }
-          }, 10);
-
-          setTimeout(() => {
-            if (appikon.discounts.discounted_price_html === undefined) {
-              if (document.querySelector(".slide_in_body")?.classList.contains("blur_var")) {
-                document.querySelectorAll(".slide_in_body")?.forEach((el) => {
-                  el.classList.remove("blur_var");
-                });
-              }
-            }
-          }, 1300);
         })
         .catch((error) => {
           console.error("Error:", error);
