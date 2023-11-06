@@ -1,3 +1,19 @@
+.blur_var {
+  pointer-events: none;
+  filter: blur(10px);
+}
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1.8rem;
+  display: inline-block;
+  pointer-events: none;
+}
+.loading svg {
+  animation: rotator 1.4s linear infinite;
+}
 /* Chrome, Safari, Edge, Opera */
 .slide_in_cart input[type="number"]::-webkit-outer-spin-button,
 .slide_in_cart input[type="number"]::-webkit-inner-spin-button {

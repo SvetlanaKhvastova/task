@@ -2,24 +2,72 @@ let startFunk = setInterval(() => {
   if (document.querySelector(".site-header")) {
     clearInterval(startFunk);
 
+    const productsData = {
+      46883225993561: {
+        id: "46883225993561",
+        name: "Novaa deep healing pad with remote [2023]",
+        price: ["600.00", "$299.90"],
+      },
+      47100514140505: {
+        id: "47100514140505",
+        name: "Novoral Care Pro - Oral Care at home [New 2023]",
+        price: ["199.90", "$129.90"],
+      },
+      47116576588121: {
+        id: "47116576588121",
+        name: "Novaa Deep Healing Pad XL",
+        price: ["599.90", "$429.90"],
+      },
+      47048817607001: {
+        id: "47048817607001",
+        name: "Novaa glow therapy mask",
+        price: ["299.00", "$299.90"],
+      },
+      32854816784438: {
+        id: "32854816784438",
+        name: "Novaa light pro",
+        price: ["299.90", "$149.90"],
+      },
+      40156488761398: {
+        id: "40156488761398",
+        name: "Novaa extra strength laser",
+        price: ["399.00", "$299.90"],
+      },
+      39782656311350: {
+        id: "39782656311350",
+        name: "Novaa deep healing pad for your knee",
+        price: ["540.00", "$299.90"],
+      },
+      47057278992729: {
+        id: "47057278992729",
+        name: "Novaa Light Pad + Novaa Light Pro [Flash Sale]",
+        price: ["900.00", "$399.90"],
+      },
+      46932997865817: {
+        id: "46932997865817",
+        name: "1 novoral care pro + 1 sonic toothbrush",
+        price: ["329.80", "$179.80"],
+      },
+    };
+
     let style = /*html */ `
     <style>
-                  .blur_var{
-                pointer-events: none;
-                filter: blur(10px);
-            }
-            .loading{
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 1.8rem;
-                display: inline-block;
-                pointer-events: none;
-            }
-            .loading svg{
-                animation: rotator 1.4s linear infinite;
-            }
+.blur_var {
+  pointer-events: none;
+  filter: blur(10px);
+}
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1.8rem;
+  display: inline-block;
+  pointer-events: none;
+}
+.loading svg {
+  animation: rotator 1.4s linear infinite;
+}
 /* Chrome, Safari, Edge, Opera */
 .slide_in_cart input[type="number"]::-webkit-outer-spin-button,
 .slide_in_cart input[type="number"]::-webkit-inner-spin-button {
@@ -995,6 +1043,7 @@ span.accent_weight_bold {
     height: auto;
   }
 }
+
     </style>
     `;
 
@@ -1085,8 +1134,8 @@ span.accent_weight_bold {
           </ul>
           <div class="fixed_wrapp_mob">
             <div class="product_upsell_price_wrap">
-              <span class="accent_weight_bold new_price">$99.90</span>
-              <span class="accent_strikethrough old_price">$199.90</span>
+              <span class="accent_weight_bold new_price">$49.90</span>
+              <span class="accent_strikethrough old_price">$129.90</span>
               <span class="discount_txt">-50%</span>
             </div>
             <a href="" class="product_upsell_add_btn">Add to Cart</a>
@@ -1099,7 +1148,7 @@ span.accent_weight_bold {
 `;
 
     let upselsObjNovaa = {
-      47100514140505: ["Novaa oral Care Pro", "https://novaalab.com/cdn/shop/products/IMG_1001-600pxquaqre_medium.jpg?v=1662108128", "$99.90", "$199.90", "https://conversionratestore.github.io/projects/novaalab/img/rating_stars.svg", "4.8", "50", "gum & teeth treatment", "https://novaalab.com/products/novaa-oral-care-gums-periodontal-treatment", "link", "upsels_novaa", "Novoral Care Pro - Oral Care at home"],
+      47100514140505: ["Novaa oral Care Pro", "https://novaalab.com/cdn/shop/products/IMG_1001-600pxquaqre_medium.jpg?v=1662108128", "$129.90", "$199.90", "https://conversionratestore.github.io/projects/novaalab/img/rating_stars.svg", "4.8", "50", "gum & teeth treatment", "https://novaalab.com/products/novaa-oral-care-gums-periodontal-treatment", "link", "upsels_novaa", "Novoral Care Pro - Oral Care at home"],
     };
 
     let upselsObjSonic = {
@@ -1548,11 +1597,6 @@ span.accent_weight_bold {
             localStorage.removeItem("upselsSonic");
           }
 
-          if (document.querySelector(".slide_in_body")?.classList.contains("blur_var")) {
-            document.querySelectorAll(".slide_in_body")?.forEach((el) => {
-              el.classList.remove("blur_var");
-            });
-          }
           document.querySelectorAll(".sub_total_last_price").forEach((el) => {
             el.textContent = `$${(data.original_total_price / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}`;
           });
@@ -1560,58 +1604,62 @@ span.accent_weight_bold {
             el.textContent = `$${(data.total_price / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}`;
           });
           document.querySelector(".cart_length span").textContent = `${data.item_count}`;
-          data.items.forEach((el) => {
-            let originalLinePrice = el.original_line_price / 100;
-            let procentOldPr = originalLinePrice / 2;
-            console.log(procentOldPr);
-            document.querySelector(".slide_in_products").insertAdjacentHTML(
-              "beforeend",
-              `                         
-<div class="product_wrap" id="${el.key}" data-id="${el.id}">
-  <a class="img_wrap" href="${el.url}"><img src="${el.image}" alt="" /></a>
-  <div class="inform_wrap">
-    <div>
-      <h2><a href="${el.url}">${el.product_title}</a></h2>
-      <div class="price_wrap">
-      <span class="my_price">$${(el.final_line_price / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}</span>
-      <span class="my_old_price">$${(el.original_line_price / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}</span>
-      <span class="discount_txt">-${(((el.final_line_price / 100) * 100) / el.original_line_price / 100).toFixed(0)}%</span>
-      </div>
-    </div>
-    <div class="qty_wrap">
-      <div class="cart_popup_qty">
-        <span class="decrement">
-          <svg width="10" height="2" viewBox="0 0 10 2" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_606_235)">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M0.5 1C0.5 0.7 0.7 0.5 1 0.5H9C9.13261 0.5 9.25979 0.552678 9.35355 0.646447C9.44732 0.740215 9.5 0.867392 9.5 1C9.5 1.13261 9.44732 1.25979 9.35355 1.35355C9.25979 1.44732 9.13261 1.5 9 1.5H1C0.867392 1.5 0.740215 1.44732 0.646447 1.35355C0.552678 1.25979 0.5 1.13261 0.5 1Z" fill="black" />
-            </g>
-            <defs>
-              <clipPath id="clip0_606_235">
-                <rect width="10" height="2" fill="white" />
-              </clipPath>
-            </defs>
-          </svg>
-        </span>
-        <input class="count_var" type="number" pattern="[0-9]*" min="1" value="${el.quantity}" />
-        <span class="increment">
-<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M7 5V0H5V5H0V7H5V12H7V7H12V5H7Z" fill="#773BD9"/>
-</svg>
-        </span>
-      </div>
 
-      <svg class="btn_remove_item" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
-        <rect x="0.5" y="0.5" width="35" height="35" rx="3.5" stroke="#E2E2E2" />
-        <path
-          d="M12.8571 23.6875C12.8571 24.4258 13.4196 25 14.1429 25H21.8571C22.5536 25 23.1429 24.4258 23.1429 23.6875V14.5H12.8571V23.6875ZM20.1429 16.6875C20.1429 16.4688 20.3304 16.25 20.5714 16.25C20.7857 16.25 21 16.4688 21 16.6875V22.8125C21 23.0586 20.7857 23.25 20.5714 23.25C20.3304 23.25 20.1429 23.0586 20.1429 22.8125V16.6875ZM17.5714 16.6875C17.5714 16.4688 17.7589 16.25 18 16.25C18.2143 16.25 18.4286 16.4688 18.4286 16.6875V22.8125C18.4286 23.0586 18.2143 23.25 18 23.25C17.7589 23.25 17.5714 23.0586 17.5714 22.8125V16.6875ZM15 16.6875C15 16.4688 15.1875 16.25 15.4286 16.25C15.6429 16.25 15.8571 16.4688 15.8571 16.6875V22.8125C15.8571 23.0586 15.6429 23.25 15.4286 23.25C15.1875 23.25 15 23.0586 15 22.8125V16.6875ZM23.5714 11.875H20.3571L20.0893 11.3828C19.9821 11.1641 19.7679 11 19.5268 11H16.4464C16.2054 11 15.9911 11.1641 15.8839 11.3828L15.6429 11.875H12.4286C12.1875 11.875 12 12.0938 12 12.3125V13.1875C12 13.4336 12.1875 13.625 12.4286 13.625H23.5714C23.7857 13.625 24 13.4336 24 13.1875V12.3125C24 12.0938 23.7857 11.875 23.5714 11.875Z"
-          fill="#BBBBBB"
-        />
-      </svg>
+          data.items.forEach((el) => {
+            const item = productsData[el.id];
+            console.log(el.id, `id`);
+            console.log(+item.id, `item`);
+            if (+item.id === el.id) {
+              console.log(item.price[0], `const item`);
+              document.querySelector(".slide_in_products").insertAdjacentHTML(
+                "beforeend",
+                `                         
+  <div class="product_wrap" id="${el.key}" data-id="${el.id}">
+    <a class="img_wrap" href="${el.url}"><img src="${el.image}" alt="" /></a>
+    <div class="inform_wrap">
+      <div>
+        <h2><a href="${el.url}">${el.product_title}</a></h2>
+        <div class="price_wrap">
+        <span class="my_price">$${(el.final_line_price / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}</span>
+        <span class="my_old_price">$${(+item.price[0] * el.quantity).toFixed(2)}</span>
+        <span class="discount_txt">${(((el.final_line_price / 100) * 100) / +item.price[0] - 100).toFixed(0)}%</span>
+        </div>
+      </div>
+      <div class="qty_wrap">
+        <div class="cart_popup_qty">
+          <span class="decrement">
+            <svg width="10" height="2" viewBox="0 0 10 2" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_606_235)">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M0.5 1C0.5 0.7 0.7 0.5 1 0.5H9C9.13261 0.5 9.25979 0.552678 9.35355 0.646447C9.44732 0.740215 9.5 0.867392 9.5 1C9.5 1.13261 9.44732 1.25979 9.35355 1.35355C9.25979 1.44732 9.13261 1.5 9 1.5H1C0.867392 1.5 0.740215 1.44732 0.646447 1.35355C0.552678 1.25979 0.5 1.13261 0.5 1Z" fill="black" />
+              </g>
+              <defs>
+                <clipPath id="clip0_606_235">
+                  <rect width="10" height="2" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+          </span>
+          <input class="count_var" type="number" pattern="[0-9]*" min="1" value="${el.quantity}" />
+          <span class="increment">
+  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M7 5V0H5V5H0V7H5V12H7V7H12V5H7Z" fill="#773BD9"/>
+  </svg>
+          </span>
+        </div>
+  
+        <svg class="btn_remove_item" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <rect x="0.5" y="0.5" width="35" height="35" rx="3.5" stroke="#E2E2E2" />
+          <path
+            d="M12.8571 23.6875C12.8571 24.4258 13.4196 25 14.1429 25H21.8571C22.5536 25 23.1429 24.4258 23.1429 23.6875V14.5H12.8571V23.6875ZM20.1429 16.6875C20.1429 16.4688 20.3304 16.25 20.5714 16.25C20.7857 16.25 21 16.4688 21 16.6875V22.8125C21 23.0586 20.7857 23.25 20.5714 23.25C20.3304 23.25 20.1429 23.0586 20.1429 22.8125V16.6875ZM17.5714 16.6875C17.5714 16.4688 17.7589 16.25 18 16.25C18.2143 16.25 18.4286 16.4688 18.4286 16.6875V22.8125C18.4286 23.0586 18.2143 23.25 18 23.25C17.7589 23.25 17.5714 23.0586 17.5714 22.8125V16.6875ZM15 16.6875C15 16.4688 15.1875 16.25 15.4286 16.25C15.6429 16.25 15.8571 16.4688 15.8571 16.6875V22.8125C15.8571 23.0586 15.6429 23.25 15.4286 23.25C15.1875 23.25 15 23.0586 15 22.8125V16.6875ZM23.5714 11.875H20.3571L20.0893 11.3828C19.9821 11.1641 19.7679 11 19.5268 11H16.4464C16.2054 11 15.9911 11.1641 15.8839 11.3828L15.6429 11.875H12.4286C12.1875 11.875 12 12.0938 12 12.3125V13.1875C12 13.4336 12.1875 13.625 12.4286 13.625H23.5714C23.7857 13.625 24 13.4336 24 13.1875V12.3125C24 12.0938 23.7857 11.875 23.5714 11.875Z"
+            fill="#BBBBBB"
+          />
+        </svg>
+      </div>
     </div>
   </div>
-</div>
-                    `
-            );
+                      `
+              );
+            }
           });
 
           if (document.querySelector(".slide_in_products").children.length < 1) {
@@ -1729,19 +1777,39 @@ span.accent_weight_bold {
             if (typeof window.appikon.discounts === "object" && appikon.discounts.discounted_price_html !== undefined) {
               clearInterval(appikonF);
               console.log(appikon.discounts.discounted_price_html);
+
+              if (document.querySelector(".slide_in_body")?.classList.contains("blur_var")) {
+                document.querySelectorAll(".slide_in_body")?.forEach((el) => {
+                  el.classList.remove("blur_var");
+                });
+              }
               document.querySelector(".sub_total_original_price").textContent = appikon.discounts.discounted_price_html;
               window.appikon.discounts.cart.items.forEach((el) => {
-                let currPrDsc = el.discounted_line_price_format;
-                let oldPr = el.compare_at_line_price_format;
-                console.log(currPrDsc, oldPr);
-                document.querySelectorAll(".product_wrap").forEach((i) => {
-                  if (i.id === el.key) {
-                    i.querySelector(".my_price").textContent = currPrDsc;
-                  }
-                });
+                if (el.discounted_line_price_format) {
+                  let currPrDsc = el.discounted_line_price_format;
+                  let oldPr = el.compare_at_line_price_format;
+                  console.log(currPrDsc, oldPr);
+                  document.querySelectorAll(".product_wrap").forEach((i) => {
+                    if (i.id === el.key) {
+                      i.querySelector(".my_price").textContent = currPrDsc;
+                      i.querySelector(".my_old_price").textContent = oldPr;
+                      i.querySelector(".discount_txt").textContent = `${((el.discounted_line_price * 100) / el.compare_at_line_price - 100).toFixed(0)}%`;
+                    }
+                  });
+                }
               });
             }
           }, 10);
+
+          setTimeout(() => {
+            if (appikon.discounts.discounted_price_html === undefined) {
+              if (document.querySelector(".slide_in_body")?.classList.contains("blur_var")) {
+                document.querySelectorAll(".slide_in_body")?.forEach((el) => {
+                  el.classList.remove("blur_var");
+                });
+              }
+            }
+          }, 1300);
         })
         .catch((error) => {
           console.error("Error:", error);
