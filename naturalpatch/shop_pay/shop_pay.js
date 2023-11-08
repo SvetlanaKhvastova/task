@@ -5,6 +5,22 @@ let startFuncShopPay = setInterval(() => {
       observerCart: true,
     };
 
+    function pushDataLayer([event_name, event_desc, event_type, event_loc]) {
+      console.log(event_name + " / " + event_desc + " / " + event_type + " / " + event_loc);
+
+      // Send a Google Analytics event
+      const eventData = {
+        event: "event-to-ga4",
+        event_name,
+        event_desc,
+        event_type,
+        event_loc,
+      };
+
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push(eventData);
+    }
+
     let shopPayStyle = /*html */ `
     <style>
       .slider.slider--mobile{
@@ -337,11 +353,17 @@ font-size: 14px !important;
 font-weight: 400;
 line-height: 16px;
 }
-.icart-all-btn-shopify{
+body .icart .additional-checkout-buttons{
 position: relative;
     margin-top: 40px !important;
     display: block !important;
 }
+.icart-all-btn-shopify{
+  display: flex !important;
+  position: relative;
+    margin-top: 40px !important;
+}
+body .icart .additional-checkout-buttons::before,
 .icart-all-btn-shopify::before{
 position: absolute;
     content: 'Or';
@@ -357,6 +379,7 @@ position: absolute;
     background: #FFF;
     padding: 0 10px;
 }
+body .icart .additional-checkout-buttons::after,
 .icart-all-btn-shopify::after{
 position: absolute;
     content: '';
@@ -504,7 +527,7 @@ background: #EFEFEF;
         `;
 
         let instalmentsInfoTxtNotShopPay = /*html */ `
-        <div class="instal_info_txt_not_shoppay">
+        <div class="instal_info_txt_not_shoppay second_block_not_shoppay">
           Choose <b>3 packs</b> or <b>4 packs</b> for 4 interest-free payments with
           <svg xmlns="http://www.w3.org/2000/svg" width="59" height="15" viewBox="0 0 59 15" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M39.0029 0.526367C37.7958 0.526367 36.8173 1.47185 36.8173 2.63817V12.2426C36.8173 13.409 37.7958 14.3545 39.0029 14.3545H56.8143C58.0215 14.3545 59 13.409 59 12.2426V2.63817C59 1.47185 58.0215 0.526367 56.8143 0.526367H39.0029ZM42.1228 10.183V7.74856H43.708C45.1562 7.74856 45.9262 6.96402 45.9262 5.77509C45.9262 4.58616 45.1562 3.87443 43.708 3.87443H41.1016V10.183H42.1228ZM42.1228 4.81263H43.4736C44.411 4.81263 44.8715 5.18467 44.8715 5.80745C44.8715 6.43022 44.4278 6.80227 43.5153 6.80227H42.1228V4.81263ZM47.7267 10.3124C48.5052 10.3124 49.0158 9.98084 49.2502 9.41467C49.3172 10.0455 49.7107 10.3691 50.5645 10.1507L50.5729 9.47938C50.2296 9.51174 50.1626 9.39042 50.1626 9.04264V7.39269C50.1626 6.42213 49.5014 5.84788 48.2793 5.84788C47.0737 5.84788 46.379 6.43022 46.379 7.41695H47.3166C47.3166 6.94785 47.6598 6.66477 48.2625 6.66477C48.8986 6.66477 49.1917 6.93168 49.1832 7.39269V7.60297L48.1034 7.71621C46.8896 7.8456 46.22 8.29045 46.22 9.06689C46.22 9.70585 46.6886 10.3124 47.7267 10.3124ZM47.9359 9.58453C47.4086 9.58453 47.1994 9.30954 47.1994 9.03453C47.1994 8.6625 47.6347 8.49264 48.4885 8.3956L49.1582 8.32281C49.1163 9.03453 48.6224 9.58453 47.9359 9.58453ZM53.6736 10.4985C53.2468 11.5014 52.5603 11.8006 51.4889 11.8006H51.0284V10.9757H51.5224C52.1082 10.9757 52.3929 10.7977 52.7027 10.2882L50.8024 5.97729H51.8571L53.2133 9.12351L54.4186 5.97729H55.4483L53.6736 10.4985Z" fill="#5A31F4"/>
             <path d="M4.14419 6.60447C2.74586 6.31139 2.1229 6.19671 2.1229 5.67609C2.1229 5.18641 2.54449 4.94248 3.38763 4.94248C4.12913 4.94248 4.67116 5.25559 5.07015 5.86904C5.10025 5.91638 5.16236 5.93276 5.21317 5.90728L6.78654 5.13908C6.84299 5.11177 6.8637 5.04261 6.83171 4.98981C6.17865 3.89578 4.97228 3.29688 3.38386 3.29688C1.29671 3.29688 0 4.2908 0 5.87087C0 7.54924 1.57901 7.97338 2.97923 8.26646C4.37944 8.55954 5.00427 8.67421 5.00427 9.19483C5.00427 9.71545 4.54883 9.96121 3.6398 9.96121C2.80043 9.96121 2.17749 9.58986 1.80108 8.869C1.77286 8.8162 1.70698 8.79436 1.65241 8.82167L0.0828093 9.57347C0.0282294 9.60078 0.0056452 9.66448 0.0338763 9.7191C0.656822 10.9296 1.93471 11.6104 3.64169 11.6104C5.81542 11.6104 7.12906 10.6329 7.12906 9.00371C7.12906 7.37448 5.54252 6.9012 4.14419 6.60812V6.60447Z" fill="#5A31F4" />
@@ -517,13 +540,27 @@ background: #EFEFEF;
           let oldPrice = document.querySelector(".cPrice span").textContent;
           document.querySelector(".price--large").insertAdjacentHTML("afterbegin", `<span class="new_txt_old_price">${oldPrice}</span>`);
         }
-        if ((countPacks === 3 || countPacks === 4) && !document.querySelector(".instal_info_txt")) {
-          document.querySelector(".instal_info_txt_not_shoppay")?.remove();
+        if (!document.querySelector(".instal_info_txt")) {
           document.querySelector(".price--large").insertAdjacentHTML("afterend", instalmentsInfoTxt);
+          waitForElement(".instal_info_txt").then((el) => {
+            handleVisibility(el, ["exp_shop_pay_v_fs_ftut", "up to two - {{focusTime}}", "Visibility", "First screen"]);
+          });
         }
-        if ((countPacks === 1 || countPacks === 2) && !document.querySelector(".instal_info_txt_not_shoppay")) {
-          document.querySelector(".instal_info_txt")?.remove();
+        if (!document.querySelector(".instal_info_txt_not_shoppay")) {
           document.querySelector(".price--large").insertAdjacentHTML("afterend", instalmentsInfoTxtNotShopPay);
+          waitForElement(".second_block_not_shoppay").then((el) => {
+            handleVisibility(el, ["exp_shop_pay_v_fs_ftot", "over two packs - {{focusTime}}", "Visibility", "First screen "]);
+          });
+        }
+        if (countPacks === 3 || countPacks === 4) {
+          if (document.querySelector(".instal_info_txt_not_shoppay")) {
+            document.querySelector(".instal_info_txt_not_shoppay").style.display = "none";
+          }
+        }
+        if (countPacks === 1 || countPacks === 2) {
+          if (document.querySelector(".instal_info_txt")) {
+            document.querySelector(".instal_info_txt").style.display = "none";
+          }
         }
 
         let contentPopup = /*html */ `
@@ -533,7 +570,7 @@ background: #EFEFEF;
         <div class="no_impact_banner">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M8.00004 14.6668C11.6667 14.6668 14.6667 11.6668 14.6667 8.00016C14.6667 4.3335 11.6667 1.3335 8.00004 1.3335C4.33337 1.3335 1.33337 4.3335 1.33337 8.00016C1.33337 11.6668 4.33337 14.6668 8.00004 14.6668Z" fill="#0DA802"/>
-            <path d="M5.16663 7.99995L7.05329 9.88661L10.8333 6.11328" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M5.16663 7.99995L7.05329 9.88661L10.8333 6ф.11328" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <span>No impact on your credit score</span>
         </div>
@@ -575,7 +612,7 @@ background: #EFEFEF;
             </div>
           </div>
         </div>
-        <a href="/checkout" class="continue_to_checkout_btn ${styleBtn}">Continue to checkout</a>
+        <a href="/" class="continue_to_checkout_btn ${styleBtn}">Continue to checkout</a>
         <div class="all_descr_box">
           <h3>Checking your eligibility won’t affect your credit.</h3>
           <p class="all_txt_descr">The estimated payment amount excludes taxes and shipping. Rates range from 0-36% APR. Payment options through Shop Pay Installments are subject to an eligibility check and are provided by these lending partners:<a href="affirm.com/lenders">affirm.com/lenders</a>.Options depend on your purchase amount, and a down payment may be required. More options may be available upon approval. State notices to consumers:<a href="affirm.com/licenses">affirm.com/licenses</a>.</p>
@@ -604,6 +641,7 @@ background: #EFEFEF;
 
             btnClose.addEventListener("click", (e) => {
               if (!e.target.getAttribute("data-test")) {
+                pushDataLayer(["exp_shop_pay_b_pudyn_c", " Close", "Button", "Pop up did you now"]);
                 onClosePopup();
               }
               e.target.setAttribute("data-test", "1");
@@ -619,8 +657,17 @@ background: #EFEFEF;
                 onClosePopup();
               }
             });
-            document.querySelector(".view_sample_plans_link").addEventListener("click", () => {
-              onOpenPopup();
+            document.querySelector(".view_sample_plans_link").addEventListener("click", (e) => {
+              if (!e.target.getAttribute("data-test")) {
+                pushDataLayer(["exp_shop_pay_l_fs_vsp", "View sample plans", "Link", "First screen"]);
+                onOpenPopup();
+              }
+              e.target.setAttribute("data-test", "1");
+              setTimeout(() => {
+                if (e.target.getAttribute("data-test")) {
+                  e.target.removeAttribute("data-test");
+                }
+              }, 1000);
             });
 
             function onClosePopup() {
@@ -639,6 +686,33 @@ background: #EFEFEF;
               if (!document.querySelector(" .overlay_popup .content_popup")) {
                 containerPopup?.insertAdjacentHTML("beforeend", contentPopup);
               }
+
+              let lookForBtn = setInterval(() => {
+                if (document.querySelector(".continue_to_checkout_btn")) {
+                  clearInterval(lookForBtn);
+                  document.querySelector(".continue_to_checkout_btn").addEventListener("click", (e) => {
+                    if (!e.target.getAttribute("data-test")) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      pushDataLayer(["exp_shop_pay_b_pudyn_cc", "Continue to checkout", "Button", "Pop up did you now"]);
+                      onClosePopup();
+                      setTimeout(() => {
+                        window.location = "/checkout";
+                      }, 100);
+                    }
+                    e.target.setAttribute("data-test", "1");
+                    setTimeout(() => {
+                      if (e.target.getAttribute("data-test")) {
+                        e.target.removeAttribute("data-test");
+                      }
+                    }, 1000);
+                  });
+                }
+              }, 100);
+
+              waitForElement(".content_popup").then((el) => {
+                handleVisibility(el, ["exp_shop_pay_v_pudyn_ft", "{{focusTime}}", "Visibility", "Pop up did you now"]);
+              });
             }
           }
         }
@@ -657,7 +731,7 @@ background: #EFEFEF;
           let price = el.textContent.trim().slice(1).replace(/\D/g, "") / 100;
           array1.push(price);
         });
-        let subTotal = document.querySelector(".icart .icart-main .icart-cart-price label").textContent.trim().slice(1).replace(/\D/g, "") / 100;
+        let subTotal = document.querySelector(".icart .icart-main .icart-cart-price label")?.textContent.trim().slice(1).replace(/\D/g, "") / 100;
         let sumWithInitial = array1.reduce((accumulator, currentValue) => accumulator + currentValue, initialValue);
         let totalSaving = sumWithInitial - subTotal;
         console.log(array1);
@@ -687,14 +761,14 @@ background: #EFEFEF;
             }
           }
         }, 100);
-        let d = setInterval(() => {
-          if (document.querySelector(".icart-checkout-block  .icart-plr-comman")) {
-            clearInterval(d);
-            if (!document.querySelector(".icart-checkout-block  .icart-all-btn-shopify")) {
-              document.querySelector(".icart-checkout-block  .icart-plr-comman").insertAdjacentHTML("afterend", `<div class="icart-all-btn-shopify"></div>`);
-            }
-          }
-        }, 100);
+        // let d = setInterval(() => {
+        //   if (document.querySelector(".icart-checkout-block  .icart-plr-comman")) {
+        //     clearInterval(d);
+        //     if (!document.querySelector(".dynamic-checkout__content > button")) {
+        //       document.querySelector(".dynamic-checkout__content").insertAdjacentHTML("afterbegin", `<button class="icart-all-btn-shopify">Meta Pay</button>`);
+        //     }
+        //   }
+        // }, 100);
         let e = setInterval(() => {
           if (document.querySelector(".icart .icart-main .icart-cart-total label")) {
             clearInterval(e);
@@ -704,22 +778,27 @@ background: #EFEFEF;
           }
         }, 100);
         if (!document.querySelector(".total_saving")) {
-          document.querySelector(".icartCartSubTotalContain .icart-ai-c").insertAdjacentHTML("afterend", `<div class="total_saving"><span>Your total saving on this order:</span><span>${currencyCart}${totalSaving.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}</span></div>`);
+          document.querySelector(".icartCartSubTotalContain .icart-ai-c")?.insertAdjacentHTML("afterend", `<div class="total_saving"><span>Your total saving on this order:</span><span>${currencyCart}${totalSaving.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}</span></div>`);
         }
       }
     }
 
     // observer Pdp
-    let observer = new MutationObserver(() => {
-      if (document) {
-        observer.disconnect();
+    let observer = new MutationObserver((mutations) => {
+      for (let mutation of mutations) {
+        for (let node of mutation.addedNodes) {
+          if (!(node instanceof HTMLElement)) continue;
+          if (document) {
+            observer.disconnect();
 
-        renderNewElem();
+            renderNewElem();
 
-        observer.observe(document, {
-          childList: true,
-          subtree: true,
-        });
+            observer.observe(document, {
+              childList: true,
+              subtree: true,
+            });
+          }
+        }
       }
     });
 
@@ -783,5 +862,71 @@ background: #EFEFEF;
         }
       }
     }
+
+    function visibElem() {}
+
+    // *** Utils *** //
+    function handleVisibility(el, eventParams) {
+      let isVisible = false;
+      let entryTime;
+      const config = {
+        root: null,
+        threshold: 0, // Trigger when any part of the element is out of viewport
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (!isVisible) {
+              // The element has become visible
+              isVisible = true;
+              entryTime = new Date().getTime();
+            }
+          } else if (isVisible) {
+            // The element is out of the viewport, calculate visibility duration
+            isVisible = false;
+            const exitTime = new Date().getTime();
+            const visibilityDuration = exitTime - entryTime; // / 1000 Convert to seconds
+            const roundedDuration = Math.round(visibilityDuration);
+
+            if (roundedDuration) {
+              const eventData = eventParams;
+              eventData[1] = roundedDuration;
+              pushDataLayer(eventData);
+              observer.disconnect();
+            }
+          }
+        });
+      }, config);
+
+      observer.observe(el);
+    }
+
+    function waitForElement(selector) {
+      return new Promise((resolve) => {
+        if (document.querySelector(selector)) {
+          return resolve(document.querySelector(selector));
+        }
+
+        const observer = new MutationObserver(() => {
+          if (document.querySelector(selector)) {
+            resolve(document.querySelector(selector));
+            observer.disconnect();
+          }
+        });
+
+        observer.observe(document.documentElement, {
+          childList: true,
+          subtree: true,
+        });
+      });
+    }
+
+    const record = setInterval(() => {
+      if (typeof clarity === "function") {
+        clearInterval(record);
+        clarity("set", "exp_shop_pay", "variant_1");
+      }
+    }, 200);
   }
 }, 100);
