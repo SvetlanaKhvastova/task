@@ -325,3 +325,24 @@ if (!Math.ceil10) {
     return decimalAdjust("ceil", value, exp);
   };
 }
+
+//
+function getVerifiedReviews() {
+  console.log(`object`);
+  fetchArr("https://treblehealth.com/");
+
+  async function fetchArr(url) {
+    let res = await fetch(url);
+    res = await res.text();
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(res, "text/html");
+    console.log(doc.querySelector("#testimonials .elementor-hidden-tablet.google-ti.g-rev-custom"), `res`);
+    // document
+    //   .querySelector('.verified_reviews_on_google_wrapp')
+    //   .insertAdjacentElement(
+    //     'beforeend',
+    //     doc.querySelector('#testimonials .elementor-hidden-tablet.google-ti.g-rev-custom'),
+    //   );
+  }
+}
