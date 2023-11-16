@@ -226,9 +226,9 @@ let startFunkFastNav = setInterval(() => {
       }
 
       // fasterAvailabilityBlock switch-label
-      // if (document.querySelector(".collection-filter__item.collection-filter__item--sort") && !document.querySelector("#fasterAvailabilitySwitchBlock")) {
-      //   document.querySelector(".collection-filter__item.collection-filter__item--sort").insertAdjacentHTML("afterbegin", fasterAvailabilityBlock);
-      // }
+      if (document.querySelector(".collection-filter__item.collection-filter__item--sort") && !document.querySelector("#fasterAvailabilitySwitchBlock")) {
+        document.querySelector(".collection-filter__item.collection-filter__item--sort").insertAdjacentHTML("afterbegin", fasterAvailabilityBlock);
+      }
     }
 
     function tooltipInit() {
@@ -273,6 +273,14 @@ let startFunkFastNav = setInterval(() => {
           });
         }
       }, 500);
+    }
+
+    function onChangeSwitch() {
+      document.querySelectorAll(".switch_btn_label").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          console.log(e.currentTarget);
+        });
+      });
     }
 
     const record = setInterval(() => {

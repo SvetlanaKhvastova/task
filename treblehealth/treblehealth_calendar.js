@@ -314,6 +314,9 @@ padding: 28px 0 12px;
   font-weight: 700;
   line-height: 30px;
 }
+.calendar_body{
+  height: 100%;
+}
 .calendar_footer{
   padding: 20px 32px;
   background: #EFECFB;
@@ -670,6 +673,87 @@ box-shadow: 0px 0px 23px 7px rgba(0, 0, 0, 0.12);
   background: #efecfb;
   padding: 80px 0;
 }
+.clinically_proven_results_box {
+  max-width: 944px;
+  margin: 0 auto;
+  border-radius: 32px;
+    background: #FFF;
+    box-shadow: 0px 4px 35px 0px rgba(153, 133, 235, 0.20);
+    padding: 40px;
+}
+.clinically_proven_results_box .main_title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.clinically_proven_results_box > p {
+  color: #2e168d;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  margin-top: 40px;
+}
+.clinically_proven_results_wrapp .grab_your_free_btn {
+  margin: 28px auto 0;
+}
+.circular_chart_list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.circular_chart_item {
+  position: relative;
+  width: 100%;
+    max-width: 231px;
+}
+.circular_chart_item:nth-child(2)::before,
+.circular_chart_item:nth-child(2)::after{
+  position: absolute;;
+  content: '';
+  width: 3px;
+height: 49px;
+border-radius: 3px;
+background: #2E168D;
+top: 50%;
+  transform: translateY(-50%);
+}
+.circular_chart_item:nth-child(2)::before{
+left: -64px;
+}
+.circular_chart_item:nth-child(2)::after{
+right: -64px;
+}
+.circular_chart_info {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.circular_chart_item_title {
+  color: #2e168d;
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 45px;
+  margin-bottom: 8px;
+      text-align: center;
+}
+#clinicallyProvenResultsBlock p.circular_chart_item_txt {
+  color: #2e168d;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  width: 100%;
+    min-width: 151px;
+    text-align: center;
+    min-height: 100px;
+}
+#clinicallyProvenResultsBlock .circular_chart_item:nth-child(1) p.circular_chart_item_txt{
+      min-width: 118px;
+}
+.circle {
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+}
 /*trustpilotBlock */
 #trustpilotBlock {
   background: #efecfb;
@@ -741,19 +825,17 @@ margin: 28px auto 0;
 .ti-reviews-container-wrapper {
   overflow: visible;
   display: flex;
-  -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
 }
 .ti-column {
-  -ms-flex: 0 0 33.333%;
-  flex: 0 0 33.333%;
-  max-width: 33.333%;
+  flex: 0 0 23%;
+  max-width: 25%;
 }
 .ti-review-item {
   padding: 8px !important;
   transition: transform 300ms ease-out;
 }
-.ti-inner {
+.ti-review-item > .ti-inner {
   border-top-width: 2px !important;
   border-bottom-width: 2px !important;
   border-left-width: 2px !important;
@@ -849,26 +931,23 @@ margin: 28px auto 0;
   overflow: inherit !important;
   height: unset;
   text-align: left;
-  transition: height 0.5s;
+  transition: all 300ms ease-out;
   font-style: normal;
   -webkit-line-clamp: 4;
   display: -webkit-box;
   -webkit-box-orient: vertical;
 }
 .ti-review-content .ti-inner {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
   line-height: 21.75px;
-  height: 87px;
+  height: 77px;
   font-size: 15px;
   text-align: left;
-  transition: height 0.5s;
-  font-style: normal;
-  -webkit-line-clamp: 4;
+   transition: all 700ms ease-out;
   overflow: hidden;
   padding-right: 0;
-  height: unset;
-  max-height: 87px;
+}
+.ti-review-content .ti-inner.active{
+      height: max-content;
 }
 .ti-highlight {
   padding: 1px 2px;
@@ -901,14 +980,17 @@ margin: 28px auto 0;
   font-size: 13.5px;
   color: #000000;
   opacity: 0.5;
-  text-decoration: none !important;
-  transition: color 300ms ease-out;
+  transition: all 300ms ease-out;
   cursor: pointer;
 }
 .ti-review-item:hover {
   -webkit-transform: translate(0, -5px);
   -ms-transform: translate(0, -5px);
   transform: translate(0, -5px);
+}
+.ti-read-more span:hover{
+  text-decoration:underline;
+  opacity: 1;
 }
 /*completeRecoveryBlock */
 #completeRecoveryBlock {
@@ -1046,7 +1128,9 @@ margin: 28px auto 0;
     <li><p>Zoom call</p></li>
   </ul>
 </div>
-<div class="calendar_body"></div>
+<div class="calendar_body">
+  <iframe src="https://calendly.com/treble-health-audiologists/tinnitus-relief-discovery?embed_domain=treblehealth.com&amp;embed_type=Inline&amp;hide_event_type_details=1&amp;hide_gdpr_banner=1&amp;primary_color=4622da&amp;utm_term=1261762004.1699950023" width="100%" height="100%" frameborder="0" title="Select a Date &amp; Time - Calendly" data-gtm-yt-inspected-14="true" data-gtm-yt-inspected-60173040_75="true"></iframe>
+</div>
 <div class="calendar_footer">
   <div class="calendar_contacts">
     <h3 class="calendar_footer_title">Can’t find a time?</h3>
@@ -1186,9 +1270,49 @@ margin: 28px auto 0;
       </div>
     </div>
   </section>
-  <section id="clinicallyProvenResultsBlock">
-    <div class="container_var"></div>
-  </section>
+<section id="clinicallyProvenResultsBlock">
+  <div class="container_var">
+    <div class="clinically_proven_results_wrapp">
+      <div class="clinically_proven_results_box">
+        <h2 class="main_title">Clinically Proven Results</h2>
+        <div class="circular_chart_list">
+          <div class="circular_chart_item animation-none1 animated">
+            <svg width="231" height="230" viewBox="0 0 231 230" fill="none" xmlns="http://www.w3.org/2000/svg" class="circular-chart">
+              <path class="circle-bg" d="M230.629 115C230.629 178.513 179.142 230 115.629 230C52.1163 230 0.629028 178.513 0.629028 115C0.629028 51.4873 52.1163 0 115.629 0C179.142 0 230.629 51.4873 230.629 115ZM21.6398 115C21.6398 166.909 63.7202 208.989 115.629 208.989C167.538 208.989 209.618 166.909 209.618 115C209.618 63.0912 167.538 21.0108 115.629 21.0108C63.7202 21.0108 21.6398 63.0912 21.6398 115Z" fill="#B5A6F2" fill-opacity="0.2"></path>
+              <circle id="circle1" class="circle" cx="115" cy="115" r="105" stroke="#B5A6F2" stroke-width="20" stroke-linecap="round" stroke-dasharray="552, 20000"></circle>
+            </svg>
+            <div class="circular_chart_info">
+              <h3 class="circular_chart_item_title"><span class="count-number1">85</span>%</h3>
+              <p class="circular_chart_item_txt">of patients report reduced tinnitus</p>
+            </div>
+          </div>
+          <div class="circular_chart_item animation-none2 animated">
+            <svg width="231" height="230" viewBox="0 0 231 230" fill="none" xmlns="http://www.w3.org/2000/svg" class="circular-chart">
+              <path class="circle-bg" d="M230.629 115C230.629 178.513 179.142 230 115.629 230C52.1163 230 0.629028 178.513 0.629028 115C0.629028 51.4873 52.1163 0 115.629 0C179.142 0 230.629 51.4873 230.629 115ZM21.6398 115C21.6398 166.909 63.7202 208.989 115.629 208.989C167.538 208.989 209.618 166.909 209.618 115C209.618 63.0912 167.538 21.0108 115.629 21.0108C63.7202 21.0108 21.6398 63.0912 21.6398 115Z" fill="#B5A6F2" fill-opacity="0.2"></path>
+              <circle id="circle2" class="circle" cx="115" cy="115" r="105" stroke="#B5A6F2" stroke-width="20" stroke-linecap="round" stroke-dasharray="492, 20000"></circle>
+            </svg>
+            <div class="circular_chart_info">
+              <h3 class="circular_chart_item_title"><span class="count-number2">75</span>%</h3>
+              <p class="circular_chart_item_txt">of patients showed clinically significant improvements in their tinnitus within six months*</p>
+            </div>
+          </div>
+          <div class="circular_chart_item animation-none3 animated">
+            <svg width="231" height="230" viewBox="0 0 231 230" fill="none" xmlns="http://www.w3.org/2000/svg" class="circular-chart">
+              <path class="circle-bg" d="M230.629 115C230.629 178.513 179.142 230 115.629 230C52.1163 230 0.629028 178.513 0.629028 115C0.629028 51.4873 52.1163 0 115.629 0C179.142 0 230.629 51.4873 230.629 115ZM21.6398 115C21.6398 166.909 63.7202 208.989 115.629 208.989C167.538 208.989 209.618 166.909 209.618 115C209.618 63.0912 167.538 21.0108 115.629 21.0108C63.7202 21.0108 21.6398 63.0912 21.6398 115Z" fill="#B5A6F2" fill-opacity="0.2"></path>
+              <circle id="circle3" class="circle" cx="115" cy="115" r="105" stroke="#B5A6F2" stroke-width="20" stroke-linecap="round" stroke-dasharray="630, 20000"></circle>
+            </svg>
+            <div class="circular_chart_info">
+              <h3 class="circular_chart_item_title"><span class="count-number3">98</span>%</h3>
+              <p class="circular_chart_item_txt">of patients can have their initial video visit within 3 days of signing up</p>
+            </div>
+          </div>
+        </div>
+        <p>*This data comes from our 2023 results using the Tinnitus Functional Index (TFI), out of 247 patients.</p>
+      </div>
+      <button class="grab_your_free_btn">Grab Your FREE Seat Now!</button>
+    </div>
+  </div>
+</section>
   <section id="trustpilotBlock">
     <div class="container_var"></div>
   </section>
@@ -1205,6 +1329,12 @@ margin: 28px auto 0;
     <div class="container_var">
       <div class="verified_reviews_on_google_wrapp">
         <h2 class="main_title">Verified Reviews on Google</h2>
+        <div class="ti-reviews-container-wrapper">
+          <div class="ti-column firts_var"></div>
+          <div class="ti-column second_var"></div>
+          <div class="ti-column third_var"></div>
+          <div class="ti-column fourth_var"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -1238,161 +1368,6 @@ margin: 28px auto 0;
 </div>
       `;
 
-    let verifiedReviewsHtml = /*html */ `
-    <div class="ti-reviews-container-wrapper">
-      <div class="ti-column">
-        <div class="ti-review-item source-Google" data-index="2">
-          <div class="ti-inner">
-            <div class="ti-review-header">
-              <div class="ti-profile-img"><img src="https://lh3.googleusercontent.com/a-/AFdZucrTUcw2LtbZJP4NDf2gx89PuqC3Hgv4wZ1OsQ4BHw=s120-c-c-rp-w64-h64-mo-ba2-br100" alt="Naf Steinmetz" /></div>
-              <div class="ti-profile-details">
-                <div class="ti-name">Naf Steinmetz</div>
-                <div class="ti-date"></div>
-              </div>
-            </div>
-            <span class="ti-stars"><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span></span>
-            <div class="ti-review-content">
-             <div class="ti-inner" style="height: 87px !important; max-height: unset !important;" data-initial-height="87"><mark class="ti-highlight">I am so glad I found Treble Health!</mark> I have been suffering with a major tinnitus spike for the last two months and now I have resources to help mitigate the intrusiveness of the noise in my head. Dr. Ramsay has been great to work with! She got me set up with hearing aids and a sound therapy plan. I now have hope that I will habituate to the tinnitus. Thank you!!</div>
-              <span class="ti-read-more" data-container=".ti-review-content .ti-inner" data-collapse-text="Hide" data-open-text="Read more"><span class="ti-read-more-active">Read more</span></span>
-            </div>
-          </div>
-        </div>
-        <div class="ti-review-item source-Google" data-index="2">
-          <div class="ti-inner">
-            <div class="ti-review-header">
-              <div class="ti-profile-img"><img src="https://lh3.googleusercontent.com/a-/AFdZucrTUcw2LtbZJP4NDf2gx89PuqC3Hgv4wZ1OsQ4BHw=s120-c-c-rp-w64-h64-mo-ba2-br100" alt="Naf Steinmetz" /></div>
-              <div class="ti-profile-details">
-                <div class="ti-name">Naf Steinmetz</div>
-                <div class="ti-date"></div>
-              </div>
-            </div>
-            <span class="ti-stars"><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span></span>
-            <div class="ti-review-content">
-              <div class="ti-inner">These are some studious, <mark class="ti-highlight">extremely well-informed professionals</mark>. That matters a lot.</div>
-              <span class="ti-read-more" data-container=".ti-review-content .ti-inner" data-collapse-text="Hide" data-open-text="Read more"><span class="ti-read-more-active">Read more</span></span>
-            </div>
-          </div>
-        </div>
-        <div class="ti-review-item source-Google" data-index="2">
-          <div class="ti-inner">
-            <div class="ti-review-header">
-              <div class="ti-profile-img"><img src="https://lh3.googleusercontent.com/a-/AFdZucrTUcw2LtbZJP4NDf2gx89PuqC3Hgv4wZ1OsQ4BHw=s120-c-c-rp-w64-h64-mo-ba2-br100" alt="Naf Steinmetz" /></div>
-              <div class="ti-profile-details">
-                <div class="ti-name">Naf Steinmetz</div>
-                <div class="ti-date"></div>
-              </div>
-            </div>
-            <span class="ti-stars"><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span></span>
-            <div class="ti-review-content">
-              <div class="ti-inner">These are some studious, <mark class="ti-highlight">extremely well-informed professionals</mark>. That matters a lot.</div>
-              <span class="ti-read-more" data-container=".ti-review-content .ti-inner" data-collapse-text="Hide" data-open-text="Read more"><span class="ti-read-more-active">Read more</span></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="ti-column">
-        <div class="ti-review-item source-Google" data-index="2">
-          <div class="ti-inner">
-            <div class="ti-review-header">
-              <div class="ti-profile-img"><img src="https://lh3.googleusercontent.com/a-/AFdZucrTUcw2LtbZJP4NDf2gx89PuqC3Hgv4wZ1OsQ4BHw=s120-c-c-rp-w64-h64-mo-ba2-br100" alt="Naf Steinmetz" /></div>
-              <div class="ti-profile-details">
-                <div class="ti-name">Naf Steinmetz</div>
-                <div class="ti-date"></div>
-              </div>
-            </div>
-            <span class="ti-stars"><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span></span>
-            <div class="ti-review-content">
-              <div class="ti-inner">These are some studious, <mark class="ti-highlight">extremely well-informed professionals</mark>. That matters a lot.</div>
-              <span class="ti-read-more" data-container=".ti-review-content .ti-inner" data-collapse-text="Hide" data-open-text="Read more"><span class="ti-read-more-active">Read more</span></span>
-            </div>
-          </div>
-        </div>
-        <div class="ti-review-item source-Google" data-index="2">
-          <div class="ti-inner">
-            <div class="ti-review-header">
-              <div class="ti-profile-img"><img src="https://lh3.googleusercontent.com/a-/AFdZucrTUcw2LtbZJP4NDf2gx89PuqC3Hgv4wZ1OsQ4BHw=s120-c-c-rp-w64-h64-mo-ba2-br100" alt="Naf Steinmetz" /></div>
-              <div class="ti-profile-details">
-                <div class="ti-name">Naf Steinmetz</div>
-                <div class="ti-date"></div>
-              </div>
-            </div>
-            <span class="ti-stars"><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span></span>
-            <div class="ti-review-content">
-              <div class="ti-inner">These are some studious, <mark class="ti-highlight">extremely well-informed professionals</mark>. That matters a lot.</div>
-              <span class="ti-read-more" data-container=".ti-review-content .ti-inner" data-collapse-text="Hide" data-open-text="Read more"><span class="ti-read-more-active">Read more</span></span>
-            </div>
-          </div>
-        </div>
-        <div class="ti-review-item source-Google" data-index="2">
-          <div class="ti-inner">
-            <div class="ti-review-header">
-              <div class="ti-profile-img"><img src="https://lh3.googleusercontent.com/a-/AFdZucrTUcw2LtbZJP4NDf2gx89PuqC3Hgv4wZ1OsQ4BHw=s120-c-c-rp-w64-h64-mo-ba2-br100" alt="Naf Steinmetz" /></div>
-              <div class="ti-profile-details">
-                <div class="ti-name">Naf Steinmetz</div>
-                <div class="ti-date"></div>
-              </div>
-            </div>
-            <span class="ti-stars"><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span></span>
-            <div class="ti-review-content">
-              <div class="ti-inner">These are some studious, <mark class="ti-highlight">extremely well-informed professionals</mark>. That matters a lot.</div>
-              <span class="ti-read-more" data-container=".ti-review-content .ti-inner" data-collapse-text="Hide" data-open-text="Read more"><span class="ti-read-more-active">Read more</span></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="ti-column">
-        <div class="ti-review-item source-Google" data-index="2">
-          <div class="ti-inner">
-            <div class="ti-review-header">
-              <div class="ti-profile-img"><img src="https://lh3.googleusercontent.com/a-/AFdZucrTUcw2LtbZJP4NDf2gx89PuqC3Hgv4wZ1OsQ4BHw=s120-c-c-rp-w64-h64-mo-ba2-br100" alt="Naf Steinmetz" /></div>
-              <div class="ti-profile-details">
-                <div class="ti-name">Naf Steinmetz</div>
-                <div class="ti-date"></div>
-              </div>
-            </div>
-            <span class="ti-stars"><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span></span>
-            <div class="ti-review-content">
-              <div class="ti-inner">These are some studious, <mark class="ti-highlight">extremely well-informed professionals</mark>. That matters a lot.</div>
-              <span class="ti-read-more" data-container=".ti-review-content .ti-inner" data-collapse-text="Hide" data-open-text="Read more"><span class="ti-read-more-active">Read more</span></span>
-            </div>
-          </div>
-        </div>
-        <div class="ti-review-item source-Google" data-index="2">
-          <div class="ti-inner">
-            <div class="ti-review-header">
-              <div class="ti-profile-img"><img src="https://lh3.googleusercontent.com/a-/AFdZucrTUcw2LtbZJP4NDf2gx89PuqC3Hgv4wZ1OsQ4BHw=s120-c-c-rp-w64-h64-mo-ba2-br100" alt="Naf Steinmetz" /></div>
-              <div class="ti-profile-details">
-                <div class="ti-name">Naf Steinmetz</div>
-                <div class="ti-date"></div>
-              </div>
-            </div>
-            <span class="ti-stars"><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span></span>
-            <div class="ti-review-content">
-              <div class="ti-inner">These are some studious, <mark class="ti-highlight">extremely well-informed professionals</mark>. That matters a lot.</div>
-              <span class="ti-read-more" data-container=".ti-review-content .ti-inner" data-collapse-text="Hide" data-open-text="Read more"><span class="ti-read-more-active">Read more</span></span>
-            </div>
-          </div>
-        </div>
-        <div class="ti-review-item source-Google" data-index="2">
-          <div class="ti-inner">
-            <div class="ti-review-header">
-              <div class="ti-profile-img"><img src="https://lh3.googleusercontent.com/a-/AFdZucrTUcw2LtbZJP4NDf2gx89PuqC3Hgv4wZ1OsQ4BHw=s120-c-c-rp-w64-h64-mo-ba2-br100" alt="Naf Steinmetz" /></div>
-              <div class="ti-profile-details">
-                <div class="ti-name">Naf Steinmetz</div>
-                <div class="ti-date"></div>
-              </div>
-            </div>
-            <span class="ti-stars"><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span></span>
-            <div class="ti-review-content">
-              <div class="ti-inner">These are some studious, <mark class="ti-highlight">extremely well-informed professionals</mark>. That matters a lot.</div>
-              <span class="ti-read-more" data-container=".ti-review-content .ti-inner" data-collapse-text="Hide" data-open-text="Read more"><span class="ti-read-more-active">Read more</span></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    `;
-
     let arrQuestions = {
       1: [`"I was told that tinnitus is permanent and I just have to “learn to live with it.” Can your services actually lower tinnitus?"`, `<p>Many doctors do not know that there are treatments for tinnitus. It’s true, there is no surgery or medication to <a href="https://treblehealth.com/tinnitus-cure/">cure tinnitus</a>, but research has shown that about 80% of patients can reduce the perception of tinnitus using tinnitus retraining techniques. Oftentimes, the volume gets softer too.</p>`],
       2: [`"Tinnitus retraining therapy takes too long. I’m looking for the fastest way to lower my tinnitus. Are you aware of any cures for tinnitus?"`, `<p><span style="font-weight: 400;">For a majority of tinnitus cases, there is no “quick-fix” solution. As part of our new patient onboarding, we help our patients identify any possible medical cause to tinnitus and refer them to the appropriate medical tests when applicable. Usually, habituation-based protocols (like the system we follow) are the only way to improve tinnitus.</span></p>`],
@@ -1412,6 +1387,28 @@ margin: 28px auto 0;
       16: [`“My doctor said there’s nothing that can be done for tinnitus, is that the case?”`, `<p dir="ltr" role="presentation">No, that is not the case. Our program uses Tinnitus Retraining Therapy, which is based on decades of research and has been shown to significantly reduce tinnitus in more than 80% of cases. In most cases, there is no surgery or medication that cures tinnitus, bringing it to zero, but there are legitimate approaches that reduce it and improve quality of life. Our goal is to significantly reduce tinnitus, which is absolutely possible.</p>`],
     };
 
+    let arrGoogleReviews1 = {
+      "Krista Keleher": ["https://lh3.googleusercontent.com/a-/AFdZucrEI6CcP1Pvnp3JYChAfrMZj8Yybr-3P0MVGbxllCk=s120-c-c-rp-w64-h64-mo-br100", '<mark class="ti-highlight">I am so glad I found Treble Health!</mark> I have been suffering with a major tinnitus spike for the last two months and now I have resources to help mitigate the intrusiveness of the noise in my head. Dr. Ramsay has been great to work with! She got me set up with hearing aids and a sound therapy plan. I now have hope that I will habituate to the tinnitus. Thank you!!'],
+      "Tom Shell": ["https://lh3.googleusercontent.com/a-/AFdZucop5i96XVE1RojzBG-Hu2RUFxKYH1NgtFrwWrBz5g=s120-c-c-rp-w64-h64-mo-br100", `Tracy had <mark class="ti-highlight">excellent input and really listened to my particular case</mark>. I was very impressed and will be working more with Treble Health in the future.`],
+      "Robbie Wigley": ["https://lh3.googleusercontent.com/a-/AFdZucrSsAAMBWRQo-Wg0vhm7j76sFgftjQ1FgUpgdfvXpY=s120-c-c-rp-w64-h64-mo-br100", `My audiologist was <mark class="ti-highlight">extremely professional very knowledgeable and respectful</mark>. She addressed all my questions and made me feel comfortable in sharing my situation. I am very grateful that I had the opportunity to speak with her and I recommend her highly to anyone else that is having difficulties.`],
+    };
+    let arrGoogleReviews2 = {
+      "David Anderson": ["https://lh3.googleusercontent.com/a/AItbvmnda_W86_SEFT3Xw7EVJnk1rBRxnsVQfH1MqctC=s120-c-c-rp-w64-h64-mo-br100", `I think <mark class="ti-highlight">Treble Health is the most AWESOME team available for tinnitus</mark>. Your team truly cares. I think you all deserve more than an EXCELLENT. You all are beyond EXCELLENT. THANK YOU SO MUCH.`],
+      "B. B.": ["https://lh3.googleusercontent.com/a/AItbvmmbY39YsL7j5_s4-ltoF77ZZ6YTcOEyY28mEgtx=s120-c-c-rp-w64-h64-mo-br100", `A life saver... <mark class="ti-highlight">I can't recommend this service enough to everyone struggling with tinnitus</mark> at the beginning, when it can as scary as hell. Suzanne has been helping me practically from the first minutes... I've seen great improvements in less than a month. Thank you Treble Health...`],
+      "Pierre Alauzet": ["https://lh3.googleusercontent.com/a-/AFdZucpBgVz4iH5NW4EB8Tu6NW8QdX_WOj2C_5DnPoCB3Dg=s120-c-c-rp-w64-h64-mo-br100", `<mark class="ti-highlight">Love the services offered by Treble Health!</mark> It's helping me so much to quickly jump into the issue and doing it remotely. Thank you guys!`],
+    };
+    let arrGoogleReviews3 = {
+      "Naf Steinmetz": ["https://lh3.googleusercontent.com/a-/AFdZucrTUcw2LtbZJP4NDf2gx89PuqC3Hgv4wZ1OsQ4BHw=s120-c-c-rp-w64-h64-mo-ba2-br100", `These are some studious, <mark class="ti-highlight">extremely well-informed professionals</mark>. That matters a lot.`],
+      "Robert Berry": ["https://lh3.googleusercontent.com/a-/AFdZucqA4HdVs7owPyGh7_YKmx9aOFmYIi9oqDHgNDmYYQ=s120-c-c-rp-w64-h64-mo-ba2-br100", `<mark class="ti-highlight">The best.</mark><br><br>If you're struggling with Tinnitus stop what you are doing and give them a call.<br><br>Treble Health can help.<br><br>I am deeply appreciative for their care and efforts as without a doubt it had a huge positive impact on my life.  Thank you Dr. May.`],
+    };
+    let arrGoogleReviews4 = {
+      "Preston D": ["https://lh3.googleusercontent.com/a/AItbvmk-58HU2kUx7f2PsN7-yRcyI0i3y0ELTlmrp7bZyg=s120-c-c-rp-w64-h64-mo-br100", 'From my experience, <mark class="ti-highlight">they are very knowledgeable</mark>. I feel better about the fact that they use proven science and methods that have been successful using techniques that were pioneered by a respected scientist.'],
+      "Mark Button": [
+        "https://lh3.googleusercontent.com/a-/AFdZucrdT3FgeRWu-e-Q4-zghzQ2Gv4-8DLsW75Vh0ODjQ=s120-c-c-rp-w64-h64-mo-br100",
+        `Treble Health has <mark class="ti-highlight">helped me enormously in a fairly short amount of time when other doctors couldn’t</mark>. My audiologist (Dr May) has 18 years of experience in dealing with tinnitus and has suffered with and habituated to tinnitus herself.<br><br>My story…<br>I lived and dealt with tinnitus on my own for 8. years until one week when it really spiked. I couldn’t sleep, couldn’t focus and I became extremely anxious about my condition. I had very loud ringing 24/7 and was wondering if I was going to be able to live with it.  I saw my GP who referred me to an audiologist who basically I said that this is the way it’s going to be for you, and then wanted to sell me a generic hearing aid.<br><br>I did my own research into the latest and most effective tinnitus treatments, and into who could provide them. Two months later… my anxiety is nearly gone and I am sleeping well. At the moment I can go hours without noticing my tinnitus and I am hopeful that will even improve to most of my day.<br><br>Treble Health provided real solutions and gave me hope.  They deserve 10 STARS!`,
+      ],
+    };
+
     document.head.insertAdjacentHTML("beforeend", newStyle);
     renderNewElem();
     slickSliderInit();
@@ -1419,15 +1416,36 @@ margin: 28px auto 0;
     tooltipInit();
     stickyHeaderInit();
     accordionInit();
+    onCircularInit();
+    onClickReviewsGoogle();
+    onClickBtnGrabYourFREE();
+    onClickTrustScoreWrapp();
 
     function renderNewElem() {
       // newHtml
       if (document.querySelector("#lp-pom-root") && !document.querySelector(".new_body")) {
         document.querySelector("#lp-pom-root").insertAdjacentHTML("beforebegin", newHtml);
       }
-      //
-      if (document.querySelector(".verified_reviews_on_google_wrapp")) {
-        document.querySelector(".verified_reviews_on_google_wrapp").insertAdjacentHTML("beforeend", verifiedReviewsHtml);
+      //Verified Reviews on Google items
+      if (document.querySelector(".verified_reviews_on_google_wrapp") && document.querySelector(".verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.firts_var").children.length !== arrGoogleReviews1.length) {
+        for (let key in arrGoogleReviews1) {
+          document.querySelector(".verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.firts_var").insertAdjacentHTML("beforeend", setGoogleReviews(key, arrGoogleReviews1[key][0], arrGoogleReviews1[key][1]));
+        }
+      }
+      if (document.querySelector(".verified_reviews_on_google_wrapp") && document.querySelector(".verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.second_var").children.length !== arrGoogleReviews2.length) {
+        for (let key in arrGoogleReviews2) {
+          document.querySelector(".verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.second_var").insertAdjacentHTML("beforeend", setGoogleReviews(key, arrGoogleReviews2[key][0], arrGoogleReviews2[key][1]));
+        }
+      }
+      if (document.querySelector(".verified_reviews_on_google_wrapp") && document.querySelector(".verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.third_var").children.length !== arrGoogleReviews4.length) {
+        for (let key in arrGoogleReviews4) {
+          document.querySelector(".verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.third_var").insertAdjacentHTML("beforeend", setGoogleReviews(key, arrGoogleReviews4[key][0], arrGoogleReviews4[key][1]));
+        }
+      }
+      if (document.querySelector(".verified_reviews_on_google_wrapp") && document.querySelector(".verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.fourth_var").children.length !== arrGoogleReviews3.length) {
+        for (let key in arrGoogleReviews3) {
+          document.querySelector(".verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.fourth_var").insertAdjacentHTML("beforeend", setGoogleReviews(key, arrGoogleReviews3[key][0], arrGoogleReviews3[key][1]));
+        }
       }
       // questions_accordion
       if (document.querySelector(".questions_accordion") && document.querySelector(".questions_accordion").children.length !== arrQuestions.length) {
@@ -1615,6 +1633,180 @@ margin: 28px auto 0;
   </div>
 </li>
         `;
+    }
+
+    function setGoogleReviews(name, img, text) {
+      return `
+        <div class="ti-review-item source-Google">
+          <div class="ti-inner">
+            <div class="ti-review-header">
+              <div class="ti-profile-img"><img src="${img}" alt="${name}" /></div>
+              <div class="ti-profile-details">
+                <div class="ti-name">${name}</div>
+              </div>
+            </div>
+            <span class="ti-stars"><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span><span class="ti-star f"></span></span>
+            <div class="ti-review-content">
+            <div class="ti-inner">${text}</div>
+              <span class="ti-read-more"><span class="ti-read-more-active">Read more</span></span>
+            </div>
+          </div>
+        </div>
+        `;
+    }
+
+    function onCircularInit() {
+      let s = setInterval(() => {
+        if (typeof jQuery === "function") {
+          clearInterval(s);
+          const counterAnim = (qSelector, start = 0, end, duration = 1000) => {
+            const target = document.querySelector(qSelector);
+            let startTimestamp = null;
+            const step = (timestamp) => {
+              if (!startTimestamp) startTimestamp = timestamp;
+              const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+              target.innerText = Math.floor(progress * (end - start) + start);
+              if (progress < 1) {
+                window.requestAnimationFrame(step);
+              }
+            };
+            window.requestAnimationFrame(step);
+          };
+          let counter1 = 0;
+          let counter2 = 0;
+          let counter3 = 0;
+
+          jQuery(document).scroll(function () {
+            if (jQuery(".animation-none1").hasClass("animated")) {
+              counter1 += 1;
+            } else {
+            }
+            if (counter1 == 1) {
+              circle1();
+              counterAnim(".count-number1", 0, 85, 1800);
+            }
+
+            if (jQuery(".animation-none2").hasClass("animated")) {
+              counter2 += 1;
+            } else {
+            }
+            if (counter2 == 1) {
+              circle2();
+              counterAnim(".count-number2", 0, 75, 1350);
+            }
+
+            if (jQuery(".animation-none3").hasClass("animated")) {
+              counter3 += 1;
+            } else {
+            }
+            if (counter3 == 1) {
+              circle3();
+              counterAnim(".count-number3", 0, 98, 2000);
+            }
+          });
+
+          function circle1() {
+            var circle1 = document.getElementById("circle1");
+            var interval1 = 18;
+            var angle1 = 0;
+            var angle_increment1 = 6;
+
+            window.timer1 = window.setInterval(
+              function () {
+                circle1.setAttribute("stroke-dasharray", angle1 + ", 20000");
+
+                if (angle1 >= 550) {
+                  window.clearInterval(window.timer1);
+                }
+                angle1 += angle_increment1;
+              }.bind(this),
+              interval1
+            );
+          }
+          function circle2() {
+            var circle2 = document.getElementById("circle2");
+            var interval2 = 15;
+            var angle2 = 0;
+            var angle_increment2 = 6;
+
+            window.timer2 = window.setInterval(
+              function () {
+                circle2.setAttribute("stroke-dasharray", angle2 + ", 20000");
+
+                if (angle2 >= 490) {
+                  window.clearInterval(window.timer2);
+                }
+                angle2 += angle_increment2;
+              }.bind(this),
+              interval2
+            );
+          }
+          function circle3() {
+            var circle3 = document.getElementById("circle3");
+            var interval3 = 18;
+            var angle3 = 0;
+            var angle_increment3 = 6;
+
+            window.timer3 = window.setInterval(
+              function () {
+                circle3.setAttribute("stroke-dasharray", angle3 + ", 20000");
+
+                if (angle3 >= 630) {
+                  window.clearInterval(window.timer3);
+                }
+                angle3 += angle_increment3;
+              }.bind(this),
+              interval3
+            );
+          }
+        }
+      }, 10);
+    }
+
+    function onClickReviewsGoogle() {
+      let lookForJqueryReviews = setInterval(() => {
+        if (document.querySelector(".ti-read-more")) {
+          clearInterval(lookForJqueryReviews);
+          document.querySelectorAll(".ti-read-more-active").forEach((el) => {
+            el.addEventListener("click", (e) => {
+              e.currentTarget.classList.toggle("active");
+              e.currentTarget.closest(".ti-read-more").previousElementSibling.classList.toggle("active");
+              if (e.currentTarget.classList.contains("active")) {
+                e.currentTarget.textContent = "Hide";
+              } else {
+                e.currentTarget.scrollIntoView({ block: "center", behavior: "smooth" });
+                e.currentTarget.textContent = "Read more";
+              }
+            });
+          });
+        }
+      }, 100);
+    }
+
+    function onClickBtnGrabYourFREE() {
+      if (document.querySelector(".new_body")) {
+        document.querySelectorAll(".grab_your_free_btn").forEach((el) => {
+          el.addEventListener("click", () => {
+            document.querySelector(".calendar_header").scrollIntoView({ block: "start", behavior: "smooth" });
+          });
+        });
+      }
+    }
+
+    function onClickTrustScoreWrapp() {
+      if (document.querySelector(".new_body")) {
+        document.querySelectorAll(".trust_score_wrapp").forEach((el) => {
+          el.addEventListener("click", () => {
+            const headerOffset = 50;
+            const elementPosition = document.querySelector("#verifiedReviewsOnGoogleBlock").getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            });
+          });
+        });
+      }
     }
   }
 }, 100);
