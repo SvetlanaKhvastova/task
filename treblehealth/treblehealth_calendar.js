@@ -27,11 +27,22 @@ let treblehealthCalendar = setInterval(() => {
     scriptTippy.src = "https://unpkg.com/tippy.js@5";
     scriptTippy.async = false;
     document.body.appendChild(scriptTippy);
+    // scriptTrustpilot
+    let scriptTrustpilot = document.createElement("script");
+    scriptTrustpilot.src = "//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js";
+    scriptTrustpilot.async = false;
+    document.head.appendChild(scriptTrustpilot);
 
     let newStyle = /*html */ `
     <style>
 /*main */
-#lp-pom-root {
+#lp-pom-root,
+#learnMobBlock,
+#bookCalendarMob,
+.learn_from_call_box_mob,
+.grab_your_free_btn.mob_var,
+p.mob_txt,
+.mob_img {
   display: none;
 }
 /* */
@@ -47,7 +58,7 @@ let treblehealthCalendar = setInterval(() => {
 }
 .container_var {
   max-width: 1136px;
-  width: 95%;
+  width: 90%;
   margin: 0 auto;
 }
 .main_title {
@@ -135,7 +146,7 @@ max-width: 211px;
   display: flex;
 justify-content: flex-end;
     gap: 28px;
-    width: 30%;
+    width: 33%;
 }
 .sticky_header .trust_score_wrapp p{
 color: #2E168D;
@@ -199,14 +210,14 @@ font-weight: 800;
 line-height: 26px;
 margin-bottom: 20px;
 }
-#heroBlock .learn_item{
+.learn_list .learn_item{
   position: relative;
   padding-left: 32px;
 }
-#heroBlock .learn_item + .learn_item{
+.learn_list .learn_item + .learn_item{
   margin-top: 12px;
 }
-#heroBlock .learn_item::before {
+.learn_list .learn_item::before {
   position: absolute;
   content: "";
   width: 20px;
@@ -217,10 +228,10 @@ margin-bottom: 20px;
   top: 3px;
   left: 0;
 }
-#heroBlock .learn_item p{
+.learn_list .learn_item p{
   color: #0A0A0A;
 }
-#heroBlock .learn_item p .accent_color_black{
+.learn_list .learn_item p .accent_color_black{
 font-weight: 700;
 }
 .featured_box{
@@ -243,6 +254,11 @@ font-weight: 700;
   justify-content: flex-start;
       width: max-content;
     cursor: pointer;
+}
+.trust_score_wrapp > div{
+  display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 .trust_score_wrapp p {
   color: #fff;
@@ -280,17 +296,17 @@ padding: 28px 0 12px;
       max-width: 270px;
     text-align: center;
 }
-.calendar_header ul {
+ul.calendar_header_list {
   display: flex;
       align-items: center;
     justify-content: center;
   gap: 20px;
 }
-.calendar_header ul li {
+ul.calendar_header_list li {
   position: relative;
   padding-left: 28px;
 }
-.calendar_header ul li::before {
+ul.calendar_header_list li::before {
   position: absolute;
   content: "";
   width: 24px;
@@ -302,13 +318,13 @@ padding: 28px 0 12px;
   left: 0;
   transform: translateY(-50%);
 }
-.calendar_header ul li:nth-child(2):before{
+ul.calendar_header_list li:nth-child(2):before{
  background: url(https://conversionratestore.github.io/projects/treblehealth/img/clock.svg) center no-repeat;
 }
-.calendar_header ul li:nth-child(3):before{
+ul.calendar_header_list li:nth-child(3):before{
  background: url(https://conversionratestore.github.io/projects/treblehealth/img/zoom.svg) center no-repeat;
 }
-.calendar_header ul li p {
+ul.calendar_header_list li p {
   color: #2e168d;
   font-size: 14px;
   font-weight: 700;
@@ -376,6 +392,25 @@ line-height: 25px;
 .exclusive_bonus_wrapp li:nth-child(1) {
   padding: 28px;
 }
+.exclusive_bonus_wrapp li:nth-child(2) {
+  width: 63%;
+  background: var(--bg-2, #b5a6f2);
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  padding: 12px;
+  border-radius: 0 8px 8px 0;
+}
+.exclusive_bonus_wrapp li:nth-child(2) .img_wrapp {
+  max-height: 341px;
+  height: 305px;
+  max-width: 269px;
+}
+.exclusive_bonus_wrapp li:nth-child(2) .img_wrapp img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
 .exclusive_bonus_wrapp .sub_title {
   margin-bottom: 12px;
 }
@@ -386,7 +421,8 @@ line-height: 25px;
 }
 .exclusive_bonus_wrapp img {
   display: block;
-  border-radius: 8px;
+  width: 100%;
+  height: 100%;
 }
 /*ourPatientsLoveTrebleHealthBlock */
 #ourPatientsLoveTrebleHealthBlock {
@@ -759,6 +795,18 @@ right: -64px;
   background: #efecfb;
   padding: 40px 0 80px;
 }
+#trustpilotBlock .container_var > svg{
+  display: block;
+max-width: 180px;
+margin: 0 auto 20px;
+text-align:center;
+}
+#trustpilotBlock  .main_title{
+  text-align:center;
+  max-width: 530px;
+  margin: 0 auto 67px;
+}
+
 /*frequentlyAskedQuestionsBlock */
 #frequentlyAskedQuestionsBlock {
   padding: 80px 0;
@@ -1034,6 +1082,491 @@ margin: 28px auto 0;
   display: flex;
   gap: 22px;
 }
+@media (max-width: 768px) {
+    .main_title {
+  font-size: 28px;
+  line-height: 36px;
+}
+.sub_title{
+  font-size: 20px;
+line-height: 28px;
+}
+.grab_your_free_btn {
+  margin: 20px auto 0;
+  max-width: unset;
+}
+#exclusiveBonusBlock,
+#heroBlock .book_calendar_wrapp,
+#heroBlock .learn_wrapp,
+.sticky_header .logo_link,
+.sticky_btn_wrapp .tel_link,
+p.desk_txt,
+.desk_img{
+  display: none;
+}
+.new_header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+      z-index: 5;
+}
+/*.sticky_header */
+.sticky_header.is_fixed_mob.is_intersecting{
+    padding: 20px 0;
+  opacity: 1;
+  position: fixed;
+  left: 0;
+  z-index: 111111111;
+  overflow: initial;
+  height: max-content;
+  bottom: 0;
+  border-top: 1px solid #E5E5E5;
+background: #EFECFB;
+box-shadow: 0px -4px 35px 0px rgba(153, 133, 235, 0.20);
+}
+.sticky_header .new_header_wrapp{
+  gap: 9px;
+}
+.sticky_header .trust_score_wrapp {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+.sticky_btn_wrapp {
+  width: 100%;
+  max-width: 148px;
+}
+.sticky_header .trust_score_wrapp p.reviews_txt{
+  margin-left: 0;
+}
+.trust_score_wrapp > div {
+  width: 100%;
+  display: flex;
+}
+/*new_body */
+.new_body {
+  padding-top: 97px;
+  background: #fff;
+}
+/* heroBlock */
+#heroBlock {
+  padding: 20px 0 40px;
+}
+.hero_wrapper {
+  flex-direction: column;
+}
+.hero_wrapper > div.main_descr_wrapp {
+  width: 100%;
+}
+.hero_main_title {
+  font-size: 34px;
+  line-height: 48px;
+  margin: 28px auto 16px;
+  text-align: center;
+}
+.hero_sub_title {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 25px;
+  text-align: center;
+}
+#heroBlock p.hero_txt {
+  text-align: center;
+}
+.learn_from_call_box_mob {
+  display: block;
+  border-radius: 8px;
+  background: var(--bg-1, #efecfb);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+  padding: 20px;
+  margin-bottom: 28px;
+}
+.learn_from_call_box_mob .grab_your_free_btn {
+  margin: 16px 0;
+}
+.learn_from_call_btn {
+  color: #2e168d;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 25px;
+  text-decoration-line: underline;
+  cursor: pointer;
+      margin: 0 auto;
+    text-align: center;
+    display: block;
+    width: max-content;
+}
+.trust_score_wrapp p {
+  font-size: 14px;
+  line-height: 20px;
+}
+.trust_score_wrapp p span {
+  font-weight: 600;
+}
+.featured_img_wrapp img:nth-child(1) {
+  max-width: 69px;
+}
+.featured_img_wrapp img:nth-child(2) {
+  max-width: 141px;
+}
+.featured_img_wrapp img:nth-child(3) {
+  max-width: 78px;
+}
+/*learnMobBlock */
+#learnMobBlock {
+  display: block;
+  padding: 40px 0;
+}
+.learn_wrapp {
+  border-radius: 0;
+  background: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+.learn_wrapp .hero_sub_title {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 36px;
+  max-width: 350px;
+}
+.learn_list .learn_item p {
+  color: #2e168d;
+}
+.learn_list .learn_item + .learn_item {
+  margin-top: 8px;
+}
+.learn_list .learn_item::before {
+  background: url(https://conversionratestore.github.io/projects/treblehealth/img/check_icon.svg) center no-repeat;
+  background-size: contain;
+}
+.exclusive_bonus_wrapp {
+  border-radius: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+  flex-direction: column;
+}
+.exclusive_bonus_wrapp li:nth-child(1) {
+  border-radius: 8px;
+  border: 1px solid var(--borders, #e5e5e5);
+  background: var(--white, #fff);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+  padding: 12px;
+  display: flex;
+  gap: 4px;
+}
+.exclusive_bonus_wrapp li:nth-child(2){
+  width: 100%;
+  padding: 0;
+    width: 100%;
+    border-radius: 0;
+    background: unset;
+}
+.exclusive_bonus_wrapp .sub_title {
+  margin-bottom: 2px;
+}
+.exclusive_bonus_wrapp .accent_color {
+  font-weight: 400;
+  margin-bottom: 8px;
+  color: #2E168D;
+  font-size: 14px;
+line-height: 20px;
+}
+.exclusive_bonus_wrapp p:last-child{
+  color: #0A0A0A;
+    font-size: 14px;
+line-height: 20px;
+}
+.exclusive_bonus_wrapp .img_wrapp{
+  max-width: 104px;
+    width: 100%;
+    min-width: 104px;
+}
+/*bookCalendarMob */
+#bookCalendarMob {
+  display: block;
+  background: #efecfb;
+  padding: 40px 0;
+}
+#bookCalendarMob .book_calendar_wrapp {
+  border-radius: 0;
+  background: unset;
+  box-shadow: none;
+}
+#bookCalendarMob .calendar_header {
+  padding: 0 0 20px;
+  border-bottom: none;
+  margin: 0;
+}
+#bookCalendarMob .calendar_header h2 {
+  font-size: 20px;
+  line-height: 28px;
+  max-width: 304px;
+}
+#bookCalendarMob iframe {
+  height: 611px;
+  border-radius: 8px;
+  background: #fff;
+}
+#bookCalendarMob .calendar_footer {
+  padding: 20px 0 0;
+  background: none;
+  border-radius: 0;
+}
+#bookCalendarMob .calendar_footer p.calendar_footer_txt {
+  font-size: 14px;
+  line-height: 20px;
+}
+#bookCalendarMob .calendar_contacts {
+  gap: 12px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+#bookCalendarMob .calendar_footer_title {
+  line-height: 28px;
+}
+#bookCalendarMob .calendar_footer p.calendar_footer_txt br{
+  display: none;
+}
+#bookCalendarMob .calendar_contacts .tel_link span {
+  font-size: 14px;
+  line-height: 20px;
+}
+#bookCalendarMob .calendar_contacts .tel_link span:nth-child(3) {
+  font-weight: 600;
+}
+/* ourPatientsLoveTrebleHealthBlock */
+#ourPatientsLoveTrebleHealthBlock {
+  padding: 40px 0;
+}
+.our_patients_treble_health_wrapp .main_title {
+  text-align: center;
+}
+.our_patients_treble_health_wrapp > p {
+  margin: 0 auto 20px;
+}
+#ourPatientsLoveTrebleHealthBlock .slick-slide > div {
+  border-radius: 8px;
+}
+#ourPatientsLoveTrebleHealthBlock p.video_descr {
+  padding: 12px;
+  border-radius: 8px 8px 0 0;
+}
+#ourPatientsLoveTrebleHealthBlock .video_link_wrapp {
+  height: 197px;
+}
+#ourPatientsLoveTrebleHealthBlock .video_link_wrapp::before {
+  height: 48px;
+  width: 48px;
+}
+#ourPatientsLoveTrebleHealthBlock .slick-slide {
+  margin: 0 4px;
+  border-radius: 8px;
+}
+#ourPatientsLoveTrebleHealthBlock .video_link_wrapp img {
+  border-radius: 0 0 8px 8px;
+}
+#ourPatientsLoveTrebleHealthBlock .slick-arrow {
+  top: unset;
+  transform: unset;
+  bottom: -5px;
+  height: 24px;
+  width: 24px;
+}
+
+/* whoShouldAttendBlock */
+#whoShouldAttendBlock {
+  padding: 0 0 40px;
+}
+.who_should_attend_wrapp {
+  gap: 20px;
+  flex-direction: column-reverse;
+}
+.who_should_attend_descr .main_title {
+  text-align: center;
+}
+.who_should_attend_descr .main_title + p {
+  text-align: center;
+  max-width: 317px;
+  margin: 0 auto;
+}
+.who_should_attend_descr_list {
+  gap: 8px;
+}
+.who_should_attend_descr_list + p {
+  text-align: center;
+}
+.who_should_attend_item:nth-child(1) > div:nth-child(2) {
+  padding: 12px;
+}
+.who_should_attend_item:nth-child(1) > div > p {
+  margin-top: 8px;
+}
+p.mob_txt{
+  display: block;
+}
+.who_should_attend_item:nth-child(1) .img_wrapp {
+  max-width: 100px;
+}
+.who_should_attend_item:nth-child(1) .img_wrapp p.name_founder {
+  padding: 4px;
+}
+.who_should_attend_item:nth-child(1) .img_wrapp p.name_founder span {
+    max-width: 88px;
+}
+.who_should_attend_item .grab_your_free_btn{
+  display: none;
+}
+.grab_your_free_btn.mob_var{
+  display: flex;
+}
+.who_should_attend_item:nth-child(1) > div:nth-child(2)::after{
+  width: 41px;
+    height: 57px;
+    background: url(https://conversionratestore.github.io/projects/treblehealth/img/arrow_icon_mob.svg) center no-repeat;
+    background-size: contain;
+    bottom: -20px;
+    right: 50px;
+}
+/* yourHostsBlock */
+#yourHostsBlock {
+  padding: 0 0 40px;
+}
+.your_hosts_wrapp .main_title {
+    margin: 0 auto 77px;
+}
+.your_hosts_list {
+  gap: 77px;
+  flex-direction: column;
+}
+.your_hosts_list > li {
+  padding: 73px 20px 20px;
+}
+.host_full_info {
+  flex-direction: column;
+  gap: 0;
+}
+.host_name {
+  font-size: 20px;
+  line-height: 28px;
+}
+.your_hosts_list p.host_doctor_of {
+  text-align: center;
+}
+.host_full_info .img_wrapp {
+  margin-top: -133px;
+}
+/* #clinicallyProvenResultsBlock */
+#clinicallyProvenResultsBlock {
+  padding: 40px 0;
+}
+.clinically_proven_results_box .main_title {
+  margin-bottom: 20px;
+}
+.circular_chart_list {
+  flex-direction: column;
+  gap: 43px;
+}
+.circular_chart_item:nth-child(2)::before,
+.circular_chart_item:nth-child(2)::after {
+  left: 50%;
+  top: -49px;
+  transform: translateX(-50%) rotate(90deg);
+}
+.circular_chart_item:nth-child(2)::after {
+    right: 50%;
+    top: unset;
+    bottom: -45px;
+}
+.clinically_proven_results_box > p {
+  margin-top: 20px;
+}
+#clinicallyProvenResultsBlock p.circular_chart_item_txt {
+  min-height: unset;
+}
+#clinicallyProvenResultsBlock .circular_chart_item:nth-child(1) p.circular_chart_item_txt {
+  min-width: 110px;
+}
+.clinically_proven_results_wrapp .grab_your_free_btn {
+  margin: 20px 0 0;
+}
+.clinically_proven_results_box {
+  padding: 28px 20px;
+}
+/* trustpilotBlock */
+#trustpilotBlock {
+  padding: 0 0 40px;
+}
+#trustpilotBlock .main_title {
+    margin: 0 auto 12px;
+}
+/* frequentlyAskedQuestionsBlock */
+#frequentlyAskedQuestionsBlock {
+  padding: 40px 0;
+}
+.frequently_asked_questions_wrapp .grab_your_free_btn {
+  margin: 0;
+}
+#frequentlyAskedQuestionsBlock .questions_accordion_link p {
+  font-size: 17px;
+}
+/* verifiedReviewsOnGoogleBlock */
+#verifiedReviewsOnGoogleBlock {
+  padding: 40px 0 59px;
+}
+.verified_reviews_on_google_wrapp .main_title {
+  margin: 0 auto 20px;
+  text-align: center;
+}
+.ti-reviews-container-wrapper {
+  flex-direction: column;
+}
+.ti-column {
+  flex: unset;
+  max-width: 100%;
+}
+  /*#completeRecoveryBlock */
+  #completeRecoveryBlock{
+    background: #FBFAFE;
+    padding: 0 0 40px;
+  }
+#completeRecoveryBlock .complete_recovery_wrapp {
+  flex-direction: column;
+  justify-content: center;
+  gap: 19px;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+  background: #fff;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+}
+.complete_recovery_wrapp .main_title {
+  margin-bottom: 8px;
+  text-align: center;
+}
+#completeRecoveryBlock p{
+  text-align:center;
+}
+.complete_recovery_wrapp .img_wrapp {
+    border-radius: 0;
+}
+.complete_recovery_wrapp .img_wrapp img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px 8px 0 0;
+}
+.mob_img{
+  display: block;
+}
+/*new_footer_wrapp */
+.new_footer_wrapp {
+  flex-direction: column-reverse;
+}
+.new_footer {
+    padding: 20px 0 109px;
+}
+
+}
     </style>
     `;
 
@@ -1058,12 +1591,14 @@ margin: 28px auto 0;
       </a>
       <div class="trust_score_wrapp">
           <img class="trust_score_stars" src="https://conversionratestore.github.io/projects/treblehealth/img/trust_score_stars.svg" alt="stars" />
-          <p class="reviews_txt">TrustScore</p>
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M14.001 5.4958L2.67338 13.374L4.32601 8.50498L-0.000976562 5.4958H5.3474L7.00002 0.626465L8.65265 5.4958H14.001ZM7.00044 10.3651L10.0941 9.74213L11.3267 13.374L7.00044 10.3651Z" fill="#2E168D"/>
-          </svg>
-          <p class="reviews_mark">4.9</p>
-          <p class="reviews_count">(<span><b>432</b> reviews</span>)</p>
+          <div>
+            <p class="reviews_txt">TrustScore</p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M14.001 5.4958L2.67338 13.374L4.32601 8.50498L-0.000976562 5.4958H5.3474L7.00002 0.626465L8.65265 5.4958H14.001ZM7.00044 10.3651L10.0941 9.74213L11.3267 13.374L7.00044 10.3651Z" fill="#2E168D"/>
+            </svg>
+            <p class="reviews_mark">4.9</p>
+            <p class="reviews_count">(<span><b>432</b> reviews</span>)</p>
+          </div>
         </div>
       <div class="sticky_btn_wrapp">
         <a class="tel_link" href="clkn/tel/3369414041">
@@ -1090,6 +1625,15 @@ margin: 28px auto 0;
         </div>
         <h1 class="hero_main_title">Unlock Relief from Tinnitus Today!</h1>
         <p class="hero_txt">Book your spot in our discovery call and take your first step towards quieter days - <b>absolutely FREE!</b></p>
+<div class="learn_from_call_box_mob">
+  <ul class="calendar_header_list">
+    <li><p>Free</p></li>
+    <li><p>20 minutes</p></li>
+    <li><p>Zoom call</p></li>
+  </ul>
+  <button class="grab_your_free_btn">Grab Your FREE Seat Now!</button>
+  <span class="learn_from_call_btn">What will I learn from the call?</span>
+</div>
         <div class="learn_wrapp">
           <h2 class="hero_sub_title">In this FREE discovery call, you’ll learn:</h2>
           <ul class="learn_list">
@@ -1122,7 +1666,7 @@ margin: 28px auto 0;
       <div class="book_calendar_wrapp">
         <div class="calendar_header">
   <h2>Book Your Spot in a Free Tinnitus Relief Discovery Call</h2>
-  <ul>
+  <ul class="calendar_header_list">
     <li><p>Free</p></li>
     <li><p>20 minutes</p></li>
     <li><p>Zoom call</p></li>
@@ -1159,12 +1703,85 @@ margin: 28px auto 0;
         </li>
         <li>
           <div class="img_wrapp">
-            <img src="https://conversionratestore.github.io/projects/treblehealth/img/tinnitus_guide_img.png" alt="book" />
+            <img src="https://conversionratestore.github.io/projects/treblehealth/img/tinnitus_guide_img_new.png" alt="book" />
           </div>
         </li>
       </ul>
     </div>
   </section>
+  <section id="learnMobBlock">
+  <div class="container_var">
+    <div class="learn_mob_wrapp">
+      <div class="learn_wrapp">
+        <h2 class="hero_sub_title">In this FREE discovery call, you’ll learn:</h2>
+        <ul class="learn_list">
+          <li class="learn_item">
+            <p>Effective <span class="accent_color_black">treatment options</span> from licensed doctors of audiology.</p>
+          </li>
+          <li class="learn_item">
+            <p>Our science-backed approach to tinnitus relief with an <span class="accent_color_black">80% success rate*</span>.</p>
+          </li>
+          <li class="learn_item">
+            <p>Techniques to dramatically reduce symptoms.</p>
+          </li>
+          <li class="learn_item">
+            <p>Success stories of individuals reducing their tinnitus and reclaiming their lives.</p>
+          </li>
+          <li class="learn_item">
+            <p>How anyone seeking tinnitus relief can integrate these habits into their daily life.</p>
+          </li>
+        </ul>
+      </div>
+      <ul class="exclusive_bonus_wrapp">
+        <li>
+          <div>
+            <h3 class="sub_title">Exclusive Bonus!</h3>
+            <p class="accent_color">You will receive the “Tinnitus Guide: 2023 Edition” for <b>FREE.</b></p>
+            <p>This guide covers today's leading tinnitus treatments, how to find the root cause, and the newest research. It's an in-depth overview for managing tinnitus.</p>
+          </div>
+          <div class="img_wrapp">
+            <img src="https://conversionratestore.github.io/projects/treblehealth/img/tinnitus_guide_img_new.png" alt="book" />
+          </div>
+        </li>
+        <li>
+          <button class="grab_your_free_btn">Grab Your FREE Seat Now!</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section id="bookCalendarMob">
+  <div class="container_var">
+    <div class="book_calendar_mob_wrapp">
+      <div class="book_calendar_wrapp">
+        <div class="calendar_header">
+          <h2>Book Your Spot in a Free Tinnitus Relief Discovery Call</h2>
+          <ul class="calendar_header_list">
+            <li><p>Free</p></li>
+            <li><p>20 minutes</p></li>
+            <li><p>Zoom call</p></li>
+          </ul>
+        </div>
+        <div class="calendar_body no_sticky">
+          <iframe src="https://calendly.com/treble-health-audiologists/tinnitus-relief-discovery?embed_domain=treblehealth.com&amp;embed_type=Inline&amp;hide_event_type_details=1&amp;hide_gdpr_banner=1&amp;primary_color=4622da&amp;utm_term=1261762004.1699950023" width="100%" height="100%" frameborder="0" title="Select a Date &amp; Time - Calendly" data-gtm-yt-inspected-14="true" data-gtm-yt-inspected-60173040_75="true"></iframe>
+        </div>
+        <div class="calendar_footer">
+          <div class="calendar_contacts">
+            <h3 class="calendar_footer_title">Can’t find a time?</h3>
+            <a class="tel_link" href="clkn/tel/8559224236">
+              <img src="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" alt="" data-src-desktop-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" data-src-mobile-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" />
+              <span>Call us</span> <span>(855) 922-4236</span>
+            </a>
+          </div>
+          <div class="calendar_footer_members">
+            <img src="https://conversionratestore.github.io/projects/treblehealth/img/team members.png" alt="Our consultants" />
+            <p class="calendar_footer_txt">We’re ready to support you.<br />Team members are standing by 24/7.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
   <section id="ourPatientsLoveTrebleHealthBlock">
     <div class="container_var">
       <div class="our_patients_treble_health_wrapp">
@@ -1207,7 +1824,8 @@ margin: 28px auto 0;
           <div>
             <h3 class="sub_title">Spaces are limited and filling up fast</h3>
             <p>Grab this limited time offer to transform your life today.</p>
-            <p>Click the button to secure your spot!</p>
+            <p class="desk_txt">Click the button to secure your spot!</p>
+            <p class="mob_txt">Click the button below to secure your spot!</p>
           </div>
         </li>
         <li class="who_should_attend_item">
@@ -1225,6 +1843,7 @@ margin: 28px auto 0;
           <button class="grab_your_free_btn">Grab Your FREE Seat Now!</button>
         </li>
       </ul>
+       <button class="grab_your_free_btn mob_var">Grab Your FREE Seat Now!</button>
     </div>
   </section>
   <section id="yourHostsBlock">
@@ -1314,7 +1933,26 @@ margin: 28px auto 0;
   </div>
 </section>
   <section id="trustpilotBlock">
-    <div class="container_var"></div>
+    <div class="container_var">
+      <svg xmlns="http://www.w3.org/2000/svg" width="180" height="44" viewBox="0 0 180 44" fill="none">
+  <g clip-path="url(#clip0_193_1701)">
+    <path d="M47.295 15.4906H65.5175V18.8514H58.3535V37.7481H54.4115V18.8514H47.2783V15.4893H47.2938L47.295 15.4906ZM64.7396 21.6311H68.1082V24.7422H68.1712C68.283 24.3022 68.4888 23.8777 68.7909 23.4688C69.4369 22.5923 70.3113 21.9128 71.3173 21.5056C71.8283 21.3018 72.3723 21.1952 72.9219 21.1911C73.3333 21.1911 73.6367 21.2067 73.7962 21.2235C73.9543 21.239 74.1125 21.2701 74.2873 21.2856V24.7098C74.0293 24.6644 73.7699 24.6277 73.5095 24.5998C73.2509 24.5691 72.9907 24.5535 72.7303 24.5533C72.126 24.5533 71.5552 24.6788 71.0152 24.9156C70.4752 25.1498 70.0136 25.5109 69.6176 25.9677C69.1951 26.4785 68.8715 27.0645 68.6636 27.6954C68.4257 28.3864 68.3139 29.1707 68.3139 30.0675V37.7325H64.7242V21.6311H64.7396ZM90.7946 37.7494H87.2679V35.5028H87.2036C86.7587 36.3207 86.1082 36.9651 85.2339 37.4517C84.3596 37.9383 83.4699 38.1894 82.5648 38.1894C80.4202 38.1894 78.8619 37.6717 77.9105 36.6183C76.9565 35.5662 76.4795 33.9796 76.4795 31.8586V21.6324H80.0705V31.513C80.0705 32.9275 80.3405 33.933 80.8972 34.5141C81.4372 35.0951 82.215 35.3941 83.1999 35.3941C83.9623 35.3941 84.582 35.2841 85.0899 35.0473C85.599 34.8117 86.0118 34.5141 86.3139 34.1207C86.6315 33.7441 86.8539 33.273 86.9979 32.7386C87.1393 32.2041 87.2036 31.623 87.2036 30.9954V21.648H90.7946V37.7494ZM96.9107 32.582C97.0226 33.6173 97.4186 34.342 98.1026 34.7651C98.8008 35.1741 99.6275 35.3941 100.597 35.3941C100.931 35.3941 101.312 35.3617 101.741 35.3151C102.169 35.2673 102.582 35.1573 102.948 35.0175C103.329 34.8751 103.63 34.6551 103.884 34.373C104.124 34.0883 104.234 33.7286 104.219 33.273C104.217 33.0616 104.17 32.853 104.083 32.6608C103.995 32.4686 103.869 32.2971 103.711 32.1575C103.392 31.8598 102.996 31.6398 102.502 31.4509C101.952 31.2591 101.389 31.1069 100.818 30.9954C100.183 30.8698 99.5477 30.7275 98.8972 30.5864C98.2418 30.4437 97.5945 30.2653 96.9583 30.052C96.3616 29.8595 95.7988 29.5734 95.2907 29.2043C94.7956 28.8565 94.3919 28.3929 94.1143 27.8533C93.8135 27.3033 93.6695 26.6277 93.6695 25.8111C93.6695 24.9311 93.8919 24.209 94.3213 23.6111C94.7545 23.0182 95.3136 22.5301 95.958 22.1824C96.6506 21.8139 97.395 21.5543 98.1656 21.4124C98.9756 21.2714 99.7547 21.1924 100.485 21.1924C101.327 21.1924 102.137 21.2869 102.901 21.4603C103.64 21.6197 104.345 21.9121 104.981 22.3235C105.601 22.7169 106.109 23.2346 106.523 23.8635C106.935 24.4911 107.19 25.2611 107.301 26.1567H103.551C103.377 25.309 102.995 24.728 102.376 24.4446C101.757 24.1469 101.042 24.0046 100.247 24.0046C99.9926 24.0046 99.6905 24.0201 99.342 24.068C99.0063 24.1129 98.6759 24.1918 98.3559 24.3035C98.0634 24.4119 97.7979 24.5833 97.578 24.8056C97.4713 24.9216 97.3883 25.0577 97.3338 25.206C97.2793 25.3544 97.2544 25.5121 97.2605 25.6701C97.2605 26.1101 97.4186 26.4556 97.7207 26.7222C98.0229 26.9888 98.4202 27.2088 98.9126 27.3977C99.405 27.5711 99.9617 27.7277 100.597 27.8533C101.232 27.9788 101.883 28.1198 102.551 28.2622C103.202 28.4033 103.837 28.5922 104.473 28.7954C105.108 28.9998 105.664 29.2833 106.158 29.6443C106.65 30.0054 107.047 30.4454 107.348 30.9798C107.65 31.513 107.81 32.1886 107.81 32.9741C107.81 33.9317 107.587 34.7341 107.141 35.4096C106.698 36.0696 106.125 36.6183 105.426 37.0273C104.694 37.4518 103.9 37.7591 103.074 37.9383C102.234 38.1244 101.376 38.219 100.516 38.2204C99.5523 38.2313 98.5914 38.1152 97.6577 37.8749C96.7835 37.6394 96.021 37.2938 95.3859 36.8396C94.7582 36.3805 94.2421 35.784 93.8765 35.0951C93.5113 34.4041 93.3197 33.5707 93.2889 32.613H96.9107V32.582ZM108.762 21.6337H111.479V16.7937H115.07V21.6337H118.31V24.2867H115.071V32.8964C115.071 33.2717 115.087 33.5875 115.119 33.8696C115.15 34.1375 115.23 34.373 115.341 34.5607C115.463 34.7578 115.648 34.9075 115.865 34.9851C116.104 35.0796 116.405 35.1275 116.819 35.1275C117.072 35.1275 117.327 35.1275 117.581 35.1107C117.836 35.0951 118.089 35.0641 118.344 35.0007V37.7494C117.946 37.7973 117.549 37.8283 117.184 37.8749C116.799 37.9199 116.412 37.9411 116.024 37.9383C115.071 37.9383 114.309 37.8438 113.736 37.6717C113.165 37.4983 112.703 37.2317 112.386 36.8862C112.051 36.5407 111.846 36.1162 111.718 35.5973C111.595 35.0137 111.526 34.4196 111.513 33.823V24.3164H108.796V21.6298H108.764L108.762 21.6337ZM120.852 21.6337H124.253V23.8156H124.317C124.824 22.8735 125.523 22.2135 126.428 21.8058C127.353 21.3918 128.356 21.1826 129.369 21.1924C130.654 21.1924 131.766 21.4124 132.72 21.868C133.673 22.308 134.468 22.9214 135.103 23.7056C135.738 24.4911 136.2 25.4022 136.517 26.4401C136.841 27.5197 137.002 28.6422 136.994 29.7698C136.994 30.853 136.851 31.9051 136.565 32.912C136.301 33.8831 135.865 34.7982 135.278 35.6128C134.7 36.3981 133.95 37.0381 133.086 37.4828C132.196 37.9538 131.163 38.1894 129.956 38.1894C129.428 38.1888 128.902 38.1412 128.382 38.047C127.864 37.9531 127.359 37.8007 126.874 37.5928C126.393 37.3908 125.943 37.1206 125.538 36.7904C125.139 36.4695 124.79 36.0884 124.506 35.6607H124.442V43.7036H120.852V21.6311V21.6337ZM133.403 29.7064C133.404 28.9901 133.308 28.277 133.118 27.5867C132.942 26.9326 132.651 26.3155 132.259 25.7646C131.887 25.2404 131.404 24.8055 130.846 24.4911C130.246 24.1649 129.573 23.9974 128.892 24.0046C127.382 24.0046 126.238 24.5222 125.475 25.5601C124.713 26.5967 124.331 27.9801 124.331 29.7064C124.331 30.523 124.428 31.2775 124.633 31.9685C124.839 32.6596 125.126 33.2575 125.538 33.7596C125.937 34.263 126.413 34.6551 126.969 34.9373C127.525 35.2362 128.177 35.3773 128.907 35.3773C129.734 35.3773 130.416 35.2051 130.989 34.8751C131.543 34.5543 132.02 34.1147 132.386 33.5875C132.751 33.053 133.023 32.4551 133.181 31.7809C133.327 31.0992 133.402 30.4039 133.403 29.7064ZM139.742 15.4906H143.333V18.8527H139.742V15.4906ZM139.742 21.6324H143.333V37.7494H139.742V21.6324ZM146.542 15.4906H150.133V37.7494H146.542V15.4906ZM161.142 38.1894C159.839 38.1894 158.679 37.9694 157.663 37.5462C156.69 37.1442 155.808 36.5452 155.074 35.7862C154.36 35.0119 153.813 34.0972 153.468 33.0996C153.09 31.9985 152.902 30.8403 152.913 29.6754C152.913 28.4498 153.103 27.3201 153.468 26.2822C153.813 25.2851 154.36 24.3708 155.074 23.5969C155.772 22.8424 156.646 22.2614 157.663 21.8369C158.679 21.4124 159.839 21.1924 161.142 21.1924C162.445 21.1924 163.605 21.4124 164.622 21.8369C165.639 22.2614 166.496 22.8593 167.211 23.5969C167.925 24.3706 168.471 25.285 168.816 26.2822C169.181 27.3188 169.371 28.4498 169.371 29.6754C169.371 30.9177 169.181 32.063 168.816 33.0996C168.471 34.0973 167.925 35.0122 167.211 35.7862C166.512 36.5407 165.639 37.1217 164.622 37.5462C163.605 37.9694 162.445 38.1894 161.142 38.1894ZM161.142 35.3773C161.937 35.3773 162.635 35.2051 163.223 34.8751C163.795 34.5543 164.29 34.1086 164.669 33.5707C165.05 33.0375 165.32 32.4241 165.511 31.7486C165.686 31.073 165.781 30.382 165.781 29.6754C165.781 28.9843 165.686 28.3088 165.511 27.6177C165.348 26.9622 165.062 26.3439 164.669 25.7956C164.289 25.2628 163.795 24.8228 163.223 24.508C162.635 24.178 161.937 24.0046 161.142 24.0046C160.348 24.0046 159.648 24.178 159.061 24.508C158.493 24.8276 158 25.2668 157.616 25.7956C157.229 26.3472 156.943 26.9644 156.774 27.6177C156.598 28.2894 156.506 28.9807 156.502 29.6754C156.502 30.382 156.599 31.073 156.774 31.7486C156.948 32.4241 157.234 33.0375 157.616 33.5707C157.996 34.1051 158.473 34.5451 159.061 34.8751C159.648 35.2207 160.348 35.3773 161.142 35.3773ZM170.42 21.6337H173.137V16.7937H176.728V21.6337H179.968V24.2867H176.728V32.8964C176.728 33.2717 176.743 33.5875 176.774 33.8696C176.806 34.1375 176.886 34.373 176.998 34.5607C177.119 34.758 177.304 34.9078 177.521 34.9851C177.76 35.0796 178.061 35.1275 178.475 35.1275C178.728 35.1275 178.983 35.1275 179.238 35.1107C179.492 35.0951 179.745 35.0641 180 35.0007V37.7494C179.603 37.7973 179.205 37.8283 178.84 37.8749C178.455 37.9199 178.068 37.9411 177.681 37.9383C176.728 37.9383 175.964 37.8438 175.392 37.6717C174.821 37.4983 174.36 37.2317 174.042 36.8862C173.709 36.5407 173.502 36.1162 173.375 35.5973C173.251 35.0136 173.182 34.4196 173.169 33.823V24.3164H170.452V21.6298H170.42V21.6337Z" fill="#0A0A0A"/>
+    <path d="M43.101 15.4893H26.6426L21.5589 0L16.4571 15.4906L0 15.4738L13.329 25.0554L8.22986 40.5279L21.5589 30.9618L34.8724 40.5279L29.7887 25.0554L43.101 15.4893Z" fill="#04DA8D"/>
+    <path d="M30.9319 28.5599L29.7877 25.0568L21.5591 30.9631L30.9319 28.5599Z" fill="#126849"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_193_1701">
+      <rect width="180" height="44" fill="white"/>
+    </clipPath>
+  </defs>
+</svg>
+       <h2 class="main_title">People just like you achieve great results</h2>
+<!-- TrustBox widget - Slider -->
+<div class="trustpilot-widget" data-locale="en-GB" data-template-id="54ad5defc6454f065c28af8b" data-businessunit-id="6397ccb1f1b97c8d18a77a5d" data-style-height="240px" data-style-width="100%" data-theme="light" data-stars="1,2,3,4,5" data-review-languages="en">
+  <a href="https://uk.trustpilot.com/review/treblehealth.com" target="_blank" rel="noopener">Trustpilot</a>
+</div>
+<!-- End TrustBox widget -->
+    </div>
   </section>
   <section id="frequentlyAskedQuestionsBlock">
     <div class="container_var">
@@ -1342,7 +1980,8 @@ margin: 28px auto 0;
     <div class="container_var">
       <div class="complete_recovery_wrapp">
         <div class="img_wrapp">
-          <img src="https://conversionratestore.github.io/projects/treblehealth/img/complete_recovery_img.png" alt="man" />
+          <img class="desk_img" src="https://conversionratestore.github.io/projects/treblehealth/img/complete_recovery_img.png" alt="man" />
+          <img class="mob_img" src="https://conversionratestore.github.io/projects/treblehealth/img/complete_recovery_img_mob.png" alt="man" />
         </div>
         <div class="complete_recovery_descr">
           <h2 class="main_title">A complete recovery from tinnitus is possible</h2>
@@ -1408,6 +2047,13 @@ margin: 28px auto 0;
         `Treble Health has <mark class="ti-highlight">helped me enormously in a fairly short amount of time when other doctors couldn’t</mark>. My audiologist (Dr May) has 18 years of experience in dealing with tinnitus and has suffered with and habituated to tinnitus herself.<br><br>My story…<br>I lived and dealt with tinnitus on my own for 8. years until one week when it really spiked. I couldn’t sleep, couldn’t focus and I became extremely anxious about my condition. I had very loud ringing 24/7 and was wondering if I was going to be able to live with it.  I saw my GP who referred me to an audiologist who basically I said that this is the way it’s going to be for you, and then wanted to sell me a generic hearing aid.<br><br>I did my own research into the latest and most effective tinnitus treatments, and into who could provide them. Two months later… my anxiety is nearly gone and I am sleeping well. At the moment I can go hours without noticing my tinnitus and I am hopeful that will even improve to most of my day.<br><br>Treble Health provided real solutions and gave me hope.  They deserve 10 STARS!`,
       ],
     };
+    let arrGoogleReviewsMob = {
+      "Randy Spear": ['https://lh3.googleusercontent.com/a/AItbvmkkr8HFUQFUSbIpierOi_tssRDrUkx-hUDdpVdp=s120-c-c-rp-w64-h64-mo-br100"', '<mark class="ti-highlight">Treble Health gave me hope for my tinnitus</mark> when no one else could.  My medical provider told me there was no cure (true) and gave me some pills.  But Treble Health provided expert counseling and therapy.  Their methods provided great relief and gave me back my life.  Dr. Tracy at Treble Health was fantastic!'],
+      "Alicia Toole ": [
+        "https://lh3.googleusercontent.com/a-/AFdZucrdT3FgeRWu-e-Q4-zghzQ2Gv4-8DLsW75Vh0ODjQ=s120-c-c-rp-w64-h64-mo-br100",
+        `Treble Health has <mark class="ti-highlight">helped me enormously in a fairly short amount of time when other doctors couldn’t</mark>. My audiologist (Dr May) has 18 years of experience in dealing with tinnitus and has suffered with and habituated to tinnitus herself.<br><br>My story…<br>I lived and dealt with tinnitus on my own for 8. years until one week when it really spiked. I couldn’t sleep, couldn’t focus and I became extremely anxious about my condition. I had very loud ringing 24/7 and was wondering if I was going to be able to live with it.  I saw my GP who referred me to an audiologist who basically I said that this is the way it’s going to be for you, and then wanted to sell me a generic hearing aid.<br><br>I did my own research into the latest and most effective tinnitus treatments, and into who could provide them. Two months later… my anxiety is nearly gone and I am sleeping well. At the moment I can go hours without noticing my tinnitus and I am hopeful that will even improve to most of my day.<br><br>Treble Health provided real solutions and gave me hope.  They deserve 10 STARS!`,
+      ],
+    };
 
     document.head.insertAdjacentHTML("beforeend", newStyle);
     renderNewElem();
@@ -1419,6 +2065,7 @@ margin: 28px auto 0;
     onCircularInit();
     onClickReviewsGoogle();
     onClickBtnGrabYourFREE();
+    onClickBtnLearnFromTheCall();
     onClickTrustScoreWrapp();
 
     function renderNewElem() {
@@ -1494,11 +2141,7 @@ margin: 28px auto 0;
             responsive: [
               {
                 breakpoint: 768,
-                settings: {
-                  slidesToShow: 1,
-                  infinite: false,
-                  arrows: false,
-                },
+                settings: {},
               },
             ],
           });
@@ -1545,17 +2188,54 @@ margin: 28px auto 0;
 
     function stickyHeaderInit() {
       if (document.querySelector(".sticky_header")) {
-        const element = document.querySelector(".sticky_header");
+        let element = document.querySelector(".sticky_header");
         const elemClose = document.querySelector("#heroBlock");
+        if (window.innerWidth <= 768) {
+          window.addEventListener("scroll", () => {
+            const options = {
+              root: null,
+              threshold: 1,
+            };
+            let containerHint = document.querySelector(".calendar_body.no_sticky");
+            let observer = new IntersectionObserver((entries) => {
+              entries.forEach((i) => {
+                console.log(i);
+                if (i.isIntersecting) {
+                  element.classList.remove("is_intersecting");
+                } else {
+                  element.classList.add("is_intersecting");
+                }
+
+                observer.unobserve(i.target);
+              });
+
+              observer.disconnect();
+            });
+
+            observer.observe(containerHint, options);
+          });
+        }
 
         function visible(target) {
-          if (target.getBoundingClientRect().bottom < 0) {
-            element.classList.add("is_fixed");
-            element.style.top = "-1px";
-          } else {
-            if (element.classList.contains("is_fixed")) {
-              element.classList.remove("is_fixed");
+          if (window.innerWidth > 768) {
+            if (target.getBoundingClientRect().bottom < 0) {
+              element.classList.add("is_fixed");
               element.style.top = "-1px";
+            } else {
+              if (element.classList.contains("is_fixed")) {
+                element.classList.remove("is_fixed");
+                element.style.top = "-1px";
+              }
+            }
+          } else {
+            if (target.getBoundingClientRect().bottom < 0) {
+              element.classList.add("is_fixed_mob");
+              element.style.bottom = "-1px";
+            } else {
+              if (element.classList.contains("is_fixed_mob")) {
+                element.classList.remove("is_fixed_mob");
+                element.style.bottom = "-1px";
+              }
             }
           }
         }
@@ -1570,6 +2250,10 @@ margin: 28px auto 0;
       let lookForJquery = setInterval(() => {
         if (typeof $ === "function") {
           clearInterval(lookForJquery);
+          document.querySelectorAll(".questions_accordion_block")[0].classList.add("active");
+          document.querySelectorAll(".questions_accordion_block .questions_accordion_link")[0].classList.add("active");
+          document.querySelectorAll(".questions_accordion_block .questions_accordion_lists")[0].style.display = "block";
+          // questions_accordion_lists
           $(".questions_accordion_link").click(function (e) {
             $(this).toggleClass("active");
             $(this).closest("li").toggleClass("active");
@@ -1787,7 +2471,27 @@ margin: 28px auto 0;
       if (document.querySelector(".new_body")) {
         document.querySelectorAll(".grab_your_free_btn").forEach((el) => {
           el.addEventListener("click", () => {
-            document.querySelector(".calendar_header").scrollIntoView({ block: "start", behavior: "smooth" });
+            document.querySelectorAll(".calendar_header").forEach((el) => {
+              el.scrollIntoView({ block: "start", behavior: "smooth" });
+            });
+          });
+        });
+      }
+    }
+
+    function onClickBtnLearnFromTheCall() {
+      if (document.querySelector(".new_body")) {
+        document.querySelectorAll(".learn_from_call_btn").forEach((el) => {
+          el.addEventListener("click", () => {
+            document.querySelectorAll(".calendar_header").forEach((el) => {
+              const headerOffset = 100;
+              const elementPosition = document.querySelector("#learnMobBlock").getBoundingClientRect().top;
+              const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+              window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth",
+              });
+            });
           });
         });
       }
