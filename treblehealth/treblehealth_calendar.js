@@ -42,7 +42,8 @@ let treblehealthCalendar = setInterval(() => {
 .learn_from_call_box_mob,
 .grab_your_free_btn.mob_var,
 p.mob_txt,
-.mob_img {
+.mob_img,
+.ti-column.mob_var {
   display: none;
 }
 /* */
@@ -1101,7 +1102,11 @@ line-height: 28px;
 .sticky_header .logo_link,
 .sticky_btn_wrapp .tel_link,
 p.desk_txt,
-.desk_img{
+.desk_img,
+.ti-column.firts_var,
+.ti-column.second_var,
+.ti-column.third_var,
+.ti-column.fourth_var {
   display: none;
 }
 .new_header {
@@ -1525,6 +1530,9 @@ p.mob_txt{
 .ti-column {
   flex: unset;
   max-width: 100%;
+}
+.ti-column.mob_var{
+  display: block;
 }
   /*#completeRecoveryBlock */
   #completeRecoveryBlock{
@@ -1972,6 +1980,7 @@ p.mob_txt{
           <div class="ti-column second_var"></div>
           <div class="ti-column third_var"></div>
           <div class="ti-column fourth_var"></div>
+          <div class="ti-column mob_var"></div>
         </div>
       </div>
     </div>
@@ -2049,9 +2058,13 @@ p.mob_txt{
     };
     let arrGoogleReviewsMob = {
       "Randy Spear": ['https://lh3.googleusercontent.com/a/AItbvmkkr8HFUQFUSbIpierOi_tssRDrUkx-hUDdpVdp=s120-c-c-rp-w64-h64-mo-br100"', '<mark class="ti-highlight">Treble Health gave me hope for my tinnitus</mark> when no one else could.  My medical provider told me there was no cure (true) and gave me some pills.  But Treble Health provided expert counseling and therapy.  Their methods provided great relief and gave me back my life.  Dr. Tracy at Treble Health was fantastic!'],
-      "Alicia Toole ": [
-        "https://lh3.googleusercontent.com/a-/AFdZucrdT3FgeRWu-e-Q4-zghzQ2Gv4-8DLsW75Vh0ODjQ=s120-c-c-rp-w64-h64-mo-br100",
-        `Treble Health has <mark class="ti-highlight">helped me enormously in a fairly short amount of time when other doctors couldn’t</mark>. My audiologist (Dr May) has 18 years of experience in dealing with tinnitus and has suffered with and habituated to tinnitus herself.<br><br>My story…<br>I lived and dealt with tinnitus on my own for 8. years until one week when it really spiked. I couldn’t sleep, couldn’t focus and I became extremely anxious about my condition. I had very loud ringing 24/7 and was wondering if I was going to be able to live with it.  I saw my GP who referred me to an audiologist who basically I said that this is the way it’s going to be for you, and then wanted to sell me a generic hearing aid.<br><br>I did my own research into the latest and most effective tinnitus treatments, and into who could provide them. Two months later… my anxiety is nearly gone and I am sleeping well. At the moment I can go hours without noticing my tinnitus and I am hopeful that will even improve to most of my day.<br><br>Treble Health provided real solutions and gave me hope.  They deserve 10 STARS!`,
+      "Alicia Toole": ["https://lh3.googleusercontent.com/a-/AFdZucpN_mxnE8ZkgQeGNeRszBAciUSbOXMwQHGguYMTVGU=s120-c-c-rp-w64-h64-mo-br100", `<mark class="ti-highlight">Excellent source of help for those of us suffering with tinnitus</mark>!  I have a plan and I have hope!  Dr. Holcomb was great!  So thankful to have found this resource.`],
+      "Douglas Le Comte": ["https://lh3.googleusercontent.com/a/AItbvmlhBMa78iqBpJV1E04-LQumMFBojt4qyFYLAFA=s120-c-c-rp-w64-h64-mo-br100", `Can't praise the audiologists at Treble Health enough</mark>. Smart, caring, helpful...all you could ask for.`],
+      "Victor Marquez": ["https://lh3.googleusercontent.com/a/AItbvmnH8U9v2RyRMEX9Dtz520XVU6bqHZcv4lDrel8I=s120-c-c-rp-w64-h64-mo-br100", `<mark class="ti-highlight">They helped me with my hyperacusis</mark>. I would recommended to anyone who has been struggling to find help with their hyperacusis.`],
+      "Bubba Saul": ["https://lh3.googleusercontent.com/a-/AFdZucoeBRbx1X33g-kn3GbESgqkNpYVu-Qk2aeQiMdmLA=s120-c-c-rp-w64-h64-mo-br100", `<mark class="ti-highlight">Treble Health has done wonders for me</mark>. Thank God I found them very soon after my tinnitus started. Earlier in my treatment I started tinnitus maskers (Tranquil II) and the Jasterboff protocol with Dr. Jen, who is great to work with. Within 3 months I basically habituated. I love my maskers and plan to wear them as long as I have tinnitus. I wish everyone the same success that I have had with Treble Health.`],
+      "Jordan Marie": [
+        "https://lh3.googleusercontent.com/a-/AFdZucrlfUVXg6qygbaayWvgd5mlfmpj6RQuxi9WUuzl=s120-c-c-rp-w64-h64-mo-br100",
+        `<mark class="ti-highlight">Treble Health has been the only thing that has truly helped with my tinnitus</mark>. After seeing an ENT and a couple of audiologists who offered me no help, having someone who actually understood and gave me tools, made things so much better - even after the first visit. I'm a few weeks into treatment, and I no longer have any suicidal thoughts, my tinnitus is less noticeable, and less annoying. It's really true what they say - don't look at message boards!!! I finally see a road to habituation when I NEVER thought it was possible, and I'm really looking forward to having my normal life back. I work with Dr. Poindexter, and she has been nothing but kind, supportive, and thoughtful. I feel really comfortable with her and shes always available! Highly recommend Treble Health, as I've found it the only place with knowledgeable experts.`,
       ],
     };
 
@@ -2092,6 +2105,11 @@ p.mob_txt{
       if (document.querySelector(".verified_reviews_on_google_wrapp") && document.querySelector(".verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.fourth_var").children.length !== arrGoogleReviews3.length) {
         for (let key in arrGoogleReviews3) {
           document.querySelector(".verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.fourth_var").insertAdjacentHTML("beforeend", setGoogleReviews(key, arrGoogleReviews3[key][0], arrGoogleReviews3[key][1]));
+        }
+      }
+      if (document.querySelector(".verified_reviews_on_google_wrapp") && document.querySelector(".verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.mob_var").children.length !== arrGoogleReviewsMob.length) {
+        for (let key in arrGoogleReviewsMob) {
+          document.querySelector(".verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.mob_var").insertAdjacentHTML("beforeend", setGoogleReviews(key, arrGoogleReviewsMob[key][0], arrGoogleReviewsMob[key][1]));
         }
       }
       // questions_accordion
