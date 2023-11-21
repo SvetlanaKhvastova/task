@@ -203,13 +203,17 @@ line-height: 25px;
   padding: 60px 0 80px;
 }
 .hero_wrapper{
+  position: relative;
   display: flex;
+  align-items: flex-start;
 }
 .hero_wrapper > div{
   width: 47%;
 }
 .hero_wrapper > div.main_descr_wrapp{
   width: 53%;
+  position: sticky;
+  top: 0;
 }
 .hero_main_title{
   color: #FFF;
@@ -366,6 +370,10 @@ ul.calendar_header_list li p {
 }
 .calendar_body{
   height: 100%;
+}
+.calendar_body iframe{
+      height: 100%;
+    min-height: 505px;
 }
 .calendar_footer{
   padding: 20px 32px;
@@ -577,6 +585,7 @@ line-height: 25px;
   height: 100%;
   object-fit: cover;
   transition: all 0.5s ease 0.5s;
+  border-radius: 0 0 32px 32px;
 }
 #ourPatientsLoveTrebleHealthBlock .video_link_wrapp iframe {
   width: 100%;
@@ -1459,7 +1468,6 @@ line-height: 20px;
   max-width: 304px;
 }
 #bookCalendarMob iframe {
-  height: 611px;
   border-radius: 8px;
   background: #fff;
 }
@@ -1784,7 +1792,7 @@ p.mob_txt{
       <a class="logo_link" href="https://treblehealth.com">
         <img width="211" height="40" src="https://treblehealth.com/wp-content/uploads/2021/09/site-logo.svg" data-src="https://treblehealth.com/wp-content/uploads/2021/09/site-logo.svg" class="attachment-full size-full wp-image-13 ls-is-cached lazyloaded" alt="TrebleHealth Site Logo" />
       </a>
-      <a class="tel_link" href="clkn/tel/3369414041">
+      <a class="tel_link" href="tel:3369414041">
         <img src="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" alt="" data-src-desktop-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" data-src-mobile-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" />
         <span class="desk_var">(336) 941-4041</span><span class="mob_var">Call Us</span></a>
     </div>
@@ -1808,7 +1816,7 @@ p.mob_txt{
           </div>
         </div>
       <div class="sticky_btn_wrapp">
-        <a class="tel_link" href="clkn/tel/3369414041">
+        <a class="tel_link" href="tel:3369414041">
           <img src="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" alt="" data-src-desktop-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" data-src-mobile-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" />
           (336) 941-4041</a>
           <button class="grab_your_free_btn">Book a Free Call</button>
@@ -1880,12 +1888,12 @@ p.mob_txt{
   </ul>
 </div>
 <div class="calendar_body">
-  <iframe src="https://calendly.com/treble-health-audiologists/tinnitus-relief-discovery?embed_domain=treblehealth.com&amp;embed_type=Inline&amp;hide_event_type_details=1&amp;hide_gdpr_banner=1&amp;primary_color=4622da&amp;utm_term=1261762004.1699950023" width="100%" height="100%" frameborder="0" title="Select a Date &amp; Time - Calendly" data-gtm-yt-inspected-14="true" data-gtm-yt-inspected-60173040_75="true"></iframe>
+  <iframe src="https://calendly.com/treble-health-audiologists/tinnitus-relief-discovery?embed_domain=treblehealth.com&amp;embed_type=Inline&amp;hide_event_type_details=1&amp;hide_gdpr_banner=1&amp;primary_color=4622da&amp;utm_term=1261762004.1699950023&utm_content=funnel_1" width="100%" height="100%" frameborder="0" title="Select a Date &amp; Time - Calendly" data-gtm-yt-inspected-14="true" data-gtm-yt-inspected-60173040_75="true"></iframe>
 </div>
 <div class="calendar_footer">
   <div class="calendar_contacts">
     <h3 class="calendar_footer_title">Can’t find a time?</h3>
-    <a class="tel_link" href="clkn/tel/8559224236">
+    <a class="tel_link" href="tel:8559224236">
       <img src="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" alt="" data-src-desktop-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" data-src-mobile-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" />
       <span>Call us</span> <span>(855) 922-4236</span>
     </a>
@@ -1975,7 +1983,7 @@ p.mob_txt{
         <div class="calendar_footer">
           <div class="calendar_contacts">
             <h3 class="calendar_footer_title">Can’t find a time?</h3>
-            <a class="tel_link" href="clkn/tel/8559224236">
+            <a class="tel_link" href="tel:8559224236">
               <img src="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" alt="" data-src-desktop-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" data-src-mobile-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" />
               <span>Call us</span> <span>(855) 922-4236</span>
             </a>
@@ -1999,7 +2007,7 @@ p.mob_txt{
             <p class="video_descr" data-name="Melinda">Melinda had a <b>serious level of tinnitus</b>. She worked with Treble Health and found relief in just <b>47 Days</b>.</p>
             <div class="video_link_wrapp">
               <img src="https://conversionratestore.github.io/projects/treblehealth/img/melinda.png" alt="woman" />
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/PaJhaIUSSfQ?si=-LEXqse9UgrVqPtO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+             <iframe width="560" height="315" src="https://www.youtube.com/embed/NMEISemQYcU?si=apKbuTqO7fQzd_eR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
           </div>
           <div class="video_item">
@@ -2435,7 +2443,6 @@ p.mob_txt{
     function stickyHeaderInit() {
       console.log(`Hello stickyHeaderInit`);
       if (document.querySelector(".new_body")) {
-        console.log(`!!!!!!!!!!!!!!!!!`);
         let element = document.querySelector(".sticky_header");
         const elemClose = document.querySelector("#heroBlock");
         if (window.innerWidth <= 768) {
@@ -2487,7 +2494,6 @@ p.mob_txt{
           }
         }
         window.addEventListener("scroll", function () {
-          console.log(`scroll`);
           visible(elemClose);
         });
         visible(elemClose);
