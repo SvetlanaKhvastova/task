@@ -272,3 +272,8 @@ document.head.appendChild(customScript);
 setTimeout(function () {
   document.querySelector(".exp")?.remove();
 }, 3000);
+
+let script = document.createElement("script");
+script.src = "https://conversionratestore.github.io/projects/treblehealth/treblehealth_calendar.js";
+script.async = false;
+document.head.appendChild(script);
