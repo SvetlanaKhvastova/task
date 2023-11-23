@@ -1031,7 +1031,7 @@ span.accent_weight_bold {
           </div>
         </div>
         <div class="slide_in_btn_wrap">
-          <a href="/checkout" class="slide_in_to_checkout">Proceed to secure checkout</a>
+          <a href="" class="slide_in_to_checkout">Proceed to secure checkout</a>
         </div>
       </div>
   </div>
@@ -1832,6 +1832,29 @@ span.accent_weight_bold {
 
     if (window.location.pathname.match("/cart")) {
       getCartCheckout();
+    }
+
+    function onRenderUpsell(dataInfo, bundle, nameLocalStor) {
+      for (let key in bundle) {
+        Object.values(data.items).some((el) => {
+          if (el.id === +key) {
+            localStorage.setItem(dataInfo, "yes");
+          }
+          setTimeout(() => {
+            if (el.id !== +key) {
+              if (!document.querySelector(".slide_in_cart .upsells_wrapp .upsels_novaa") && !localStorage.getItem(nameLocalStor) && !localStorage.getItem("upselsSonic")) {
+                document.querySelector(".slide_in_cart .upsells_wrapp").insertAdjacentHTML("beforeend", renderUpselCard(key, bundle[key][0], bundle[key][1], bundle[key][2], bundle[key][3], bundle[key][4], bundle[key][5], bundle[key][6], bundle[key][7], bundle[key][8], bundle[key][9], bundle[key][10]));
+              }
+
+              if (window.location.pathname.match("/cart")) {
+                if (document.querySelector(".cartouter .upsellbox") && !document.querySelector(".cartouter .upsels_novaa") && !localStorage.getItem(nameLocalStor) && !localStorage.getItem("upselsSonic")) {
+                  document.querySelector(".cartouter .upsellbox").insertAdjacentHTML("afterend", renderUpselCardPage(key, bundle[key][1], bundle[key][2], bundle[key][3], bundle[key][6], bundle[key][7], bundle[key][10], bundle[key][11]));
+                }
+              }
+            }
+          }, 700);
+        });
+      }
     }
 
     // Observe
