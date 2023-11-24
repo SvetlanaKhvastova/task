@@ -2,6 +2,22 @@ let startFunk = setInterval(() => {
   if (document.querySelector(".site-header")) {
     clearInterval(startFunk);
 
+    function pushDataLayer([event_name, event_desc, event_type, event_loc]) {
+      console.log(event_name + " / " + event_desc + " / " + event_type + " / " + event_loc);
+
+      // Send a Google Analytics event
+      const eventData = {
+        event: "event-to-ga4",
+        event_name,
+        event_desc,
+        event_type,
+        event_loc,
+      };
+
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push(eventData);
+    }
+
     let style = /*html */ `
     <style>
 .blur_var {
@@ -1076,15 +1092,15 @@ span.accent_weight_bold {
 `;
 
     let upselsObjNovaa = {
-      47100514140505: ["Novaa oral Care Pro", "https://novaalab.com/cdn/shop/products/IMG_1001-600pxquaqre_medium.jpg?v=1662108128", "$129.90", "$199.90", "https://conversionratestore.github.io/projects/novaalab/img/rating_stars.svg", "4.8", "35", "gum & teeth treatment", "https://novaalab.com/products/novaa-oral-care-gums-periodontal-treatment", "link", "upsels_novaa", "Novoral Care Pro - Oral Care at home"],
+      "": ["Novaa oral Care Pro", "https://novaalab.com/cdn/shop/products/IMG_1001-600pxquaqre_medium.jpg?v=1662108128", "$99.90", "$199.90", "https://conversionratestore.github.io/projects/novaalab/img/rating_stars.svg", "4.8", "50", "gum & teeth treatment", "https://novaalab.com/products/novaa-oral-care-gums-periodontal-treatment", "link", "upsels_novaa", "Novoral Care Pro - Oral Care at home"],
     };
 
     let upselsObjSonic = {
       46932997865817: ["Sonic toothbrush", "https://conversionratestore.github.io/projects/novaalab/img/sonic_toothbrush.png", "$49.90", "$129.90", "https://conversionratestore.github.io/projects/novaalab/img/rating_stars.svg", "4.8", "60", "a gentle Sonic Toothbrush ", "", "popup", "upsels_sonic", "Sonic toothbrush"],
     };
 
-    function renderUpselCard(id, title, linkImg, newPrice, oldPrice, linkRating, rating, discount, descr, linkPdp, type, style) {
-      return /*html */ `<div class="upsell_card ${style}" data-id="${id}">
+    function renderUpselCard(id, title, linkImg, newPrice, oldPrice, linkRating, rating, discount, descr, linkPdp, type, style, dataName) {
+      return /*html */ `<div class="upsell_card ${style}" data-id="${id}" data-name="${dataName}">
   <div class="upsell_header">
     <p><span class="discount_box">Get ${discount}% OFF</span><b>${descr}</b></p>
     <p>when adding to the above order.</p>
@@ -1148,6 +1164,7 @@ span.accent_weight_bold {
 
     if (document.querySelector(".slide_in_cart")) {
       slideInCart();
+      visibElem();
     }
 
     function slideInCart() {
@@ -1310,8 +1327,27 @@ span.accent_weight_bold {
             el.addEventListener("click", (e) => {
               if (!e.target.getAttribute("data-test")) {
                 e.preventDefault();
-                console.log(`object`);
+                pushDataLayer(["exp_nov_oral_butt_slidcartsonic_learn", "Learn more", "Button", "Slide-in cart Sonic Toothbrush"]);
                 renderPopupSonicToothbrush();
+              }
+              e.target.setAttribute("data-test", "1");
+              setTimeout(() => {
+                if (e.target.getAttribute("data-test")) {
+                  e.target.removeAttribute("data-test");
+                }
+              }, 1000);
+            });
+          });
+        }
+      }, 100);
+      // learn more Novoral Care Pro
+      let lookForBtNovoralCarePro = setInterval(() => {
+        if (document.querySelector(".upsell_learn_more_btn")) {
+          clearInterval(lookForBtNovoralCarePro);
+          document.querySelectorAll('.upsell_learn_more_btn[href="https://novaalab.com/products/novaa-oral-care-gums-periodontal-treatment"]').forEach((el) => {
+            el.addEventListener("click", (e) => {
+              if (!e.target.getAttribute("data-test")) {
+                pushDataLayer(["exp_nov_oral_butt_slidcartoral_lern", "Learn more", "Button", "Slide-in cart Novaa oral Care Pro"]);
               }
               e.target.setAttribute("data-test", "1");
               setTimeout(() => {
@@ -1329,7 +1365,13 @@ span.accent_weight_bold {
           if (!e.target.getAttribute("data-test")) {
             e.preventDefault();
             e.stopPropagation();
+            pushDataLayer(["exp_nov_oral_but_popup_add", "Add to Cart", "Button", "Pop up did you now"]);
+
+            localStorage.setItem("upsellInit", `yes`);
+            localStorage.setItem("upselsAddBtn", "yes");
+
             addToCartCheckout(46932997865817, 1);
+
             document.querySelector(".overlay_popup").classList.remove("active");
             body.style.overflow = "auto";
             html.style.overflow = "auto";
@@ -1348,11 +1390,14 @@ span.accent_weight_bold {
           if (!e.target.getAttribute("data-test")) {
             e.preventDefault();
             e.stopPropagation();
-
-            localStorage.setItem("upselsAdd_btn", "yes");
-            if (el.closest(".upsels_novaa")) {
-              localStorage.setItem("upselsNovaaAddBtn", "yes");
+            if (e.target.closest(".upsels_sonic")) {
+              pushDataLayer(["exp_nov_oral_butt_slidcartsonic_add", "Add", "Button", "Slide-in cart Sonic Toothbrush"]);
+            } else {
+              pushDataLayer(["exp_nov_oral_butt_slidcartoral_add", `Add ${e.target.closest(".upsell_card").getAttribute("data-name")}`, "Button", `"Slide-in cart Novaa oral Care Pro"`]);
             }
+            localStorage.setItem("upsellInit", `yes`);
+            localStorage.setItem("upselsAddBtn", "yes");
+
             addToCartCheckout(el.getAttribute("data-variant"), 1);
           }
           e.target.setAttribute("data-test", "1");
@@ -1363,6 +1408,31 @@ span.accent_weight_bold {
           }, 1000);
         });
       });
+      //Proceed to secure checkout
+      let lookForBtnProceedCheckout = setInterval(() => {
+        if (document.querySelectorAll(".slide_in_to_checkout")) {
+          clearInterval(lookForBtnProceedCheckout);
+          document.querySelectorAll(".slide_in_to_checkout")?.forEach((el) => {
+            el.addEventListener("click", (e) => {
+              if (!e.target.getAttribute("data-test")) {
+                e.preventDefault();
+                e.stopPropagation();
+                pushDataLayer(["exp_nov_oral_butt_slidcart_check", "Proceed to secure checkout", "Button", "Slide-in cart"]);
+
+                setTimeout(() => {
+                  window.location.pathname = "/checkout";
+                }, 300);
+              }
+              e.target.setAttribute("data-test", "1");
+              setTimeout(() => {
+                if (e.target.getAttribute("data-test")) {
+                  e.target.removeAttribute("data-test");
+                }
+              }, 1000);
+            });
+          });
+        }
+      }, 100);
 
       //add to cart to checkout
       async function addToCartCheckout(idValue, qt) {
@@ -1387,17 +1457,18 @@ span.accent_weight_bold {
             response.json();
 
             let q = setInterval(() => {
-              if (localStorage.getItem("upselsSonic") && localStorage.getItem("upselsAdd_btn")) {
+              if (localStorage.getItem("upsellInit") && localStorage.getItem("firstUpsellId") && localStorage.getItem("upselsAddBtn")) {
                 clearInterval(q);
-                changeCartCheckout("47100514140505", 0);
+                let id = localStorage.getItem("firstUpsellId");
+                let count = +localStorage.getItem("countForUps");
+                changeCartCheckout(id, count);
               }
-            }, 100);
+            }, 700);
 
             getCartCheckout();
 
-            if (window.location.pathname.match("/cart") && localStorage.getItem("upselsNovaaAddBtn")) {
-              localStorage.removeItem("upselsNovaaAddBtn");
-              window.location = "/cart";
+            if (window.location.pathname.match("/cart") && localStorage.getItem("upsellInit") && localStorage.getItem("firstUpsellId") && localStorage.getItem("upselsAddBtn")) {
+              // window.location = '/cart';
             } else {
               onOpenPopup();
             }
@@ -1463,7 +1534,16 @@ span.accent_weight_bold {
 
       btnClose.forEach((el) => {
         el.addEventListener("click", (e) => {
-          onClosePopup();
+          if (!e.target.getAttribute("data-test")) {
+            pushDataLayer(["exp_nov_oral_but_popup_close", "Close", "Button", "Pop up did you now"]);
+            onClosePopup();
+          }
+          e.target.setAttribute("data-test", "1");
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
+            }
+          }, 1000);
         });
       });
 
@@ -1504,15 +1584,44 @@ span.accent_weight_bold {
           document.querySelector(".slide_in_products").innerHTML = "";
           document.querySelector(".upsells_wrapp").innerHTML = "";
 
-          if (localStorage.getItem("upselsObjNovaa")) {
-            localStorage.removeItem("upselsObjNovaa");
+          if (localStorage.getItem("novaaLightPad")) {
+            localStorage.removeItem("novaaLightPad");
+          }
+
+          if (localStorage.getItem("novaaLightPadXl")) {
+            localStorage.removeItem("novaaLightPadXl");
+          }
+
+          if (localStorage.getItem("novaaGlowTherapyMask")) {
+            localStorage.removeItem("novaaGlowTherapyMask");
+          }
+
+          if (localStorage.getItem("novaaLightPro")) {
+            localStorage.removeItem("novaaLightPro");
+          }
+
+          if (localStorage.getItem("novaaExtraStrengthLaser")) {
+            localStorage.removeItem("novaaExtraStrengthLaser");
+          }
+          if (localStorage.getItem("novaaLightPadForKneePain")) {
+            localStorage.removeItem("novaaLightPadForKneePain");
           }
           if (localStorage.getItem("upselsSonic")) {
             localStorage.removeItem("upselsSonic");
           }
 
+          if (localStorage.getItem("firstUpsellId")) {
+            localStorage.removeItem("firstUpsellId");
+          }
+          if (localStorage.getItem("countForUps")) {
+            localStorage.removeItem("countForUps");
+          }
+
           if (data.item_count === 0) {
             if (!document.querySelector(".slide_in_empty")) {
+              if (localStorage.getItem("upsellInit")) {
+                localStorage.removeItem("upsellInit");
+              }
               document.querySelector(".slide_in_body").insertAdjacentHTML("afterbegin", emptySlideInHTML);
               document.querySelector(".slide_in_footer").style.display = "none";
               document.querySelector(".upsells_wrapp").style.opacity = "0";
@@ -1624,6 +1733,10 @@ span.accent_weight_bold {
               document.querySelectorAll(".btn_remove_item").forEach((el) => {
                 el.addEventListener("click", (e) => {
                   if (!e.target.getAttribute("data-test")) {
+                    pushDataLayer(["exp_nov_oral_butt_slidcart_delete", "Delete", "Button", "Slide-in cart"]);
+                    if (localStorage.getItem("upsellInit") && +e.target.closest(".product_wrap").getAttribute("data-id") === 46932997865817) {
+                      localStorage.removeItem("upsellInit");
+                    }
                     changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), 0);
                   }
                   e.target.setAttribute("data-test", "1");
@@ -1640,6 +1753,7 @@ span.accent_weight_bold {
               document.querySelectorAll(".increment").forEach((item) => {
                 item.addEventListener("click", (e) => {
                   if (!e.target.getAttribute("data-test")) {
+                    pushDataLayer(["exp_nov_oral_butt_slidcart_name", "plus", "Button", "Slide-in cart"]);
                     let qvt = +e.target.closest("div.cart_popup_qty").querySelector(".count_var").value;
                     e.target.closest("div.cart_popup_qty").querySelector(".count_var").value = qvt + 1;
 
@@ -1664,6 +1778,7 @@ span.accent_weight_bold {
 
                   item.addEventListener("click", (e) => {
                     if (!e.target.getAttribute("data-test")) {
+                      pushDataLayer(["exp_nov_oral_butt_slidcart_name", "minus", "Button", "Slide-in cart"]);
                       let qvt = +e.target.closest("div.cart_popup_qty").querySelector(".count_var").value;
 
                       if (+e.target.closest("div.cart_popup_qty").querySelector(".count_var").value >= 0) {
@@ -1672,7 +1787,6 @@ span.accent_weight_bold {
                       }
 
                       if (+e.target.closest("div.cart_popup_qty").querySelector(".count_var").value === 0) {
-                        console.log(`value = 0`);
                         e.target.closest(".product_wrap").remove();
                         changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), e.target.closest("div.cart_popup_qty").querySelector(".count_var").value);
                       }
@@ -1708,46 +1822,53 @@ span.accent_weight_bold {
               });
             });
 
-            if (data.item_count !== 0) {
-              for (let key in upselsObjNovaa) {
-                Object.values(data.items).some((el) => {
-                  if (el.id === +key) {
-                    localStorage.setItem("upselsObjNovaa", "yes");
-                  }
-                  setTimeout(() => {
-                    if (el.id !== +key) {
-                      if (!document.querySelector(".slide_in_cart .upsells_wrapp .upsels_novaa") && !localStorage.getItem("upselsObjNovaa") && !localStorage.getItem("upselsSonic")) {
-                        document.querySelector(".slide_in_cart .upsells_wrapp").insertAdjacentHTML("beforeend", renderUpselCard(key, upselsObjNovaa[key][0], upselsObjNovaa[key][1], upselsObjNovaa[key][2], upselsObjNovaa[key][3], upselsObjNovaa[key][4], upselsObjNovaa[key][5], upselsObjNovaa[key][6], upselsObjNovaa[key][7], upselsObjNovaa[key][8], upselsObjNovaa[key][9], upselsObjNovaa[key][10]));
-                      }
+            if (data.item_count !== 0 && document.querySelector(".slide_in_products").children.length === data.items.length) {
+              let firstUpsell;
 
-                      if (window.location.pathname.match("/cart")) {
-                        if (document.querySelector(".cartouter .upsellbox") && !document.querySelector(".cartouter .upsels_novaa") && !localStorage.getItem("upselsObjNovaa") && !localStorage.getItem("upselsSonic")) {
-                          document.querySelector(".cartouter .upsellbox").insertAdjacentHTML("afterend", renderUpselCardPage(key, upselsObjNovaa[key][1], upselsObjNovaa[key][2], upselsObjNovaa[key][3], upselsObjNovaa[key][6], upselsObjNovaa[key][7], upselsObjNovaa[key][10], upselsObjNovaa[key][11]));
-                        }
-                      }
-                    }
-                  }, 700);
-                });
+              let firstUpsellId = +document.querySelector(".slide_in_products")?.lastElementChild.getAttribute("data-id");
+
+              let countForUps = +document.querySelector(".slide_in_products")?.lastElementChild.querySelector(".count_var").value - 1;
+
+              if (!localStorage.getItem("firstUpsellId")) {
+                localStorage.setItem("firstUpsellId", firstUpsellId);
               }
-              for (let key in upselsObjSonic) {
-                Object.values(data.items).some((el) => {
-                  if (el.id === +key) {
-                    localStorage.setItem("upselsSonic", "yes");
+              if (!localStorage.getItem("countForUps")) {
+                localStorage.setItem("countForUps", countForUps);
+              }
+
+              setTimeout(() => {
+                if (localStorage.getItem("firstUpsellId") && !localStorage.getItem("upsellInit")) {
+                  firstUpsell = +localStorage.getItem("firstUpsellId");
+                  if (firstUpsell === 46883225993561) {
+                    onRenderUpsell(data.items, upselsObjNovaa, "novaaLightPad", 46883225993561, "novaa_light_pad", 47368669593945);
                   }
-                  setTimeout(() => {
-                    if (el.id !== +key && !localStorage.getItem("upselsSonic") && localStorage.getItem("upselsObjNovaa") && el.id === 47100514140505) {
-                      if (!document.querySelector(".slide_in_cart .upsells_wrapp .upsels_sonic")) {
-                        document.querySelector(".slide_in_cart .upsells_wrapp").insertAdjacentHTML("beforeend", renderUpselCard(key, upselsObjSonic[key][0], upselsObjSonic[key][1], upselsObjSonic[key][2], upselsObjSonic[key][3], upselsObjSonic[key][4], upselsObjSonic[key][5], upselsObjSonic[key][6], upselsObjSonic[key][7], upselsObjSonic[key][8], upselsObjSonic[key][9], upselsObjSonic[key][10]));
-                      }
-                      if (window.location.pathname.match("/cart")) {
-                        if (document.querySelector(".cartouter .upsellbox") && !document.querySelector(".cartouter .upsels_sonic") && !localStorage.getItem("upselsSonic")) {
-                          document.querySelector(".cartouter .upsellbox").insertAdjacentHTML("afterend", renderUpselCardPage(key, upselsObjSonic[key][1], upselsObjSonic[key][2], upselsObjSonic[key][3], upselsObjSonic[key][6], upselsObjSonic[key][7], upselsObjSonic[key][10], upselsObjSonic[key][11]));
-                        }
-                      }
-                    }
-                  }, 700);
-                });
-              }
+                  if (firstUpsell === 47116576588121) {
+                    onRenderUpsell(data.items, upselsObjNovaa, "novaaLightPadXl", 47116576588121, "novaa_light_pad_xl", 47368670118233);
+                  }
+                  if (firstUpsell === 47048817607001) {
+                    onRenderUpsell(data.items, upselsObjNovaa, "novaaGlowTherapyMask", 47048817607001, "novaa_glow_therapy_mask", 47368679293273);
+                  }
+                  if (firstUpsell === 32854816784438) {
+                    onRenderUpsell(data.items, upselsObjNovaa, "novaaLightPro", 32854816784438, "novaa_light_pro", 47368679752025);
+                  }
+                  if (firstUpsell === 40156488761398) {
+                    onRenderUpsell(data.items, upselsObjNovaa, "novaaExtraStrengthLaser", 40156488761398, "novaa_extra_strength_laser", 47368681161049);
+                  }
+                  // if (firstUpsell === 39782656311350) {
+                  //   onRenderUpsell(
+                  //     data.items,
+                  //     upselsObjNovaa,
+                  //     'novaaLightPadForKneePain',
+                  //     39782656311350,
+                  //     'novaa_light_padfor_knee_pain',
+                  //     '',
+                  //   );
+                  // }
+                  if (firstUpsell === 47100514140505) {
+                    onRenderUpsell(data.items, upselsObjSonic, "upselsSonic", 47100514140505, "upsels_sonic", 46932997865817);
+                  }
+                }
+              }, 1000);
             }
           });
 
@@ -1760,12 +1881,10 @@ span.accent_weight_bold {
                   return (newSubTotalLastPrice = total + amount);
                 }, 0);
 
-                p.textContent = `$${newSubTotalLastPrice.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}`;
-                console.log(p.textContent, `window.appikon.discounts.discounted_price_html === undefined`);
+                p.textContent = `$${newSubTotalLastPrice?.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}`;
                 removeBlurLoadCart();
               } else {
                 p.textContent = `$${(data.original_total_price / 100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}`;
-                console.log(p.textContent, `sub_total_last_price END`);
                 removeBlurLoadCart();
               }
             }, 1000);
@@ -1801,12 +1920,13 @@ span.accent_weight_bold {
           console.log(data);
           addBlurLoadCart();
 
-          if (localStorage.getItem("upselsAdd_btn")) {
-            localStorage.removeItem("upselsAdd_btn");
+          if (localStorage.getItem("upselsAddBtn")) {
+            localStorage.removeItem("upselsAddBtn");
           }
-          if (!localStorage.getItem("upselsAdd_btn")) {
+          if (!localStorage.getItem("upselsAddBtn")) {
             getCartCheckout();
           }
+
           if (window.location.pathname.match("/cart")) {
             window.location = "/cart";
           }
@@ -1830,31 +1950,42 @@ span.accent_weight_bold {
       }
     }
 
-    if (window.location.pathname.match("/cart")) {
-      getCartCheckout();
-    }
-
-    function onRenderUpsell(dataInfo, bundle, nameLocalStor) {
+    function onRenderUpsell(dataInfo, bundle, nameLocalStor, idProductForUpsell, className, idBundl) {
       for (let key in bundle) {
-        Object.values(data.items).some((el) => {
-          if (el.id === +key) {
-            localStorage.setItem(dataInfo, "yes");
+        Object.values(dataInfo).some((el) => {
+          if (el.id === +idBundl) {
+            localStorage.setItem(nameLocalStor, "yes");
           }
           setTimeout(() => {
             if (el.id !== +key) {
-              if (!document.querySelector(".slide_in_cart .upsells_wrapp .upsels_novaa") && !localStorage.getItem(nameLocalStor) && !localStorage.getItem("upselsSonic")) {
-                document.querySelector(".slide_in_cart .upsells_wrapp").insertAdjacentHTML("beforeend", renderUpselCard(key, bundle[key][0], bundle[key][1], bundle[key][2], bundle[key][3], bundle[key][4], bundle[key][5], bundle[key][6], bundle[key][7], bundle[key][8], bundle[key][9], bundle[key][10]));
+              if (!document.querySelector(`.slide_in_cart .upsells_wrapp .${className}`) && !localStorage.getItem(nameLocalStor) && el.id === idProductForUpsell) {
+                document.querySelector(".slide_in_cart .upsells_wrapp").insertAdjacentHTML("beforeend", renderUpselCard(idBundl, bundle[key][0], bundle[key][1], bundle[key][2], bundle[key][3], bundle[key][4], bundle[key][5], bundle[key][6], bundle[key][7], bundle[key][8], bundle[key][9], className, nameLocalStor));
               }
 
               if (window.location.pathname.match("/cart")) {
-                if (document.querySelector(".cartouter .upsellbox") && !document.querySelector(".cartouter .upsels_novaa") && !localStorage.getItem(nameLocalStor) && !localStorage.getItem("upselsSonic")) {
-                  document.querySelector(".cartouter .upsellbox").insertAdjacentHTML("afterend", renderUpselCardPage(key, bundle[key][1], bundle[key][2], bundle[key][3], bundle[key][6], bundle[key][7], bundle[key][10], bundle[key][11]));
+                if (document.querySelector(".cartouter .upsellbox") && !document.querySelector(`.cartouter .${className}`) && !localStorage.getItem(nameLocalStor) && el.id === idProductForUpsell) {
+                  document.querySelector(".cartouter .upsellbox").insertAdjacentHTML("afterend", renderUpselCardPage(idBundl, bundle[key][1], bundle[key][2], bundle[key][3], bundle[key][6], bundle[key][7], className, bundle[key][11], nameLocalStor));
                 }
               }
             }
           }, 700);
         });
       }
+    }
+
+    if (window.location.pathname.match("/cart")) {
+      if (localStorage.getItem("upsellInit")) {
+        localStorage.removeItem("upsellInit");
+      }
+      getCartCheckout();
+
+      document.querySelectorAll(".btnqty").forEach((el) => {
+        el.addEventListener("click", () => {
+          let countForUps = +el.closest(".qtybox").querySelector(".quantity-input").value - 1;
+
+          localStorage.setItem("countForUps", countForUps);
+        });
+      });
     }
 
     // Observe
@@ -1883,5 +2014,80 @@ span.accent_weight_bold {
       childList: true,
       subtree: true,
     });
+
+    function visibElem() {
+      waitForElement(".slide_in_guarantee").then((el) => {
+        handleVisibility(el, ["exp_nov_oral_butt_slidcartguar_check", " {{focusTime}} ", "Visibility ", "Slide-in cart 60-day money back guarantee"]);
+      });
+      waitForElement(".overlay_popup.active").then((el) => {
+        handleVisibility(el, ["exp_nov_oral_vis_popup_focus", " {{focusTime}} ", "Visibility ", "Pop up did you now"]);
+      });
+      waitForElement(".slide_in_cart.active").then((el) => {
+        handleVisibility(el, ["exp_nov_oral_vis_slidcart_focus", " {{focusTime}} ", "Visibility ", "Slide-in cart"]);
+      });
+    }
+
+    function handleVisibility(el, eventParams) {
+      let isVisible = false;
+      let entryTime;
+      const config = {
+        root: null,
+        threshold: 0, // Trigger when any part of the element is out of viewport
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (!isVisible) {
+              // The element has become visible
+              isVisible = true;
+              entryTime = new Date().getTime();
+            }
+          } else if (isVisible) {
+            // The element is out of the viewport, calculate visibility duration
+            isVisible = false;
+            const exitTime = new Date().getTime();
+            const visibilityDuration = exitTime - entryTime; // / 1000 Convert to seconds
+            const roundedDuration = Math.round(visibilityDuration);
+
+            if (roundedDuration) {
+              const eventData = eventParams;
+              eventData[1] = roundedDuration;
+              pushDataLayer(eventData);
+              observer.disconnect();
+            }
+          }
+        });
+      }, config);
+
+      observer.observe(el);
+    }
+
+    function waitForElement(selector) {
+      return new Promise((resolve) => {
+        if (document.querySelector(selector)) {
+          return resolve(document.querySelector(selector));
+        }
+
+        const observer = new MutationObserver(() => {
+          if (document.querySelector(selector)) {
+            resolve(document.querySelector(selector));
+            observer.disconnect();
+          }
+        });
+
+        observer.observe(document.documentElement, {
+          childList: true,
+          subtree: true,
+        });
+      });
+    }
+
+    const record = setInterval(() => {
+      if (typeof clarity === "function") {
+        clearInterval(record);
+        clarity("set", "exp_nov_oral", "variant_1");
+      }
+    }, 200);
   }
 }, 600);

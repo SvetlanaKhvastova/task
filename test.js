@@ -347,3 +347,9 @@ function getVerifiedReviews() {
   }
 }
 //
+document.querySelectorAll(".nc-title").forEach((el) => {
+  console.log(el.textContent);
+  if (el.textContent === "Novaa Deep Healing Pad XL") {
+    el.closest(".nc-product-card").style.display = "none";
+  }
+});
