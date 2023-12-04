@@ -30,7 +30,6 @@ let startFunk = setInterval(() => {
   -webkit-appearance: none;
   margin: 0;
 }
-
 /* Firefox */
 .slide_in_cart input[type="number"] {
   -moz-appearance: textfield;
@@ -40,11 +39,14 @@ html.gemapp.video.fixed_body {
   width: 100%;
   overflow: hidden !important;
 }
+.visib_cart {
+  position: absolute;
+}
 .slide_in_cart {
   position: fixed;
   right: 0;
   top: 0;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   background: rgba(20, 20, 20, 0.6);
   z-index: 2147483001;
@@ -53,8 +55,14 @@ html.gemapp.video.fixed_body {
   transition: all 0.3s ease;
   font-family: "Urbanist", sans-serif;
 }
-html.gemapp.video.active {
+html.gemapp.video.active,
+body.gempage.active {
   overflow: hidden !important;
+}
+html.active,
+body.active {
+  overflow: hidden !important;
+  display: block;
 }
 .slide_in_cart.active {
   opacity: 1;
@@ -80,7 +88,7 @@ html.gemapp.video.active {
   width: 100%;
   max-width: 351px;
   background: #ffffff;
-  height: 100vh;
+  height: 100%;
   overflow-y: auto;
   margin: 0 0 0 auto;
   padding: 0;
@@ -114,6 +122,10 @@ html.gemapp.video.active {
 .slide_in_body {
   max-height: 550px;
   overflow-y: auto;
+      height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .slide_in_body::-webkit-scrollbar {
   width: 4px;
@@ -121,8 +133,6 @@ html.gemapp.video.active {
 .slide_in_body::-webkit-scrollbar-thumb {
   background: #e2e2e2;
   border-radius: 20px;
-}
-.slide_in_body.my_height {
 }
 .slide_in_products {
   position: relative;
@@ -745,9 +755,53 @@ span.accent_weight_bold {
   width: 100%;
   padding: 15.5px 20px;
 }
-.choose-kit .add-to-cart,
-.bundle__form .add-to-cart-btn {
+.add_to_cart_new_btn_mask{
+  width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+    white-space: normal;
+    cursor: pointer;
+    border: 1px solid transparent;
+    max-width: 168px;
+    margin: 0 auto;
+    padding: 12px 20px;
+  background: linear-gradient(90deg,rgba(63,94,251,1) 0%,rgba(88,26,204,1) 0%,rgba(146,58,190,1) 100%);
+    color: #f7f7f7!important;
+    font-weight: 800!important;
+    font-size: 19px!important;
+    font-family: Urbanist!important;
+    border-radius: 12px!important;
+    transition: background-color .15s ease-out;
+        line-height: 1.6 !important;
+    text-transform: inherit;
+}
+.add_to_cart_new_btn_mask + .gf_add-to-cart{
   display: none !important;
+}
+.choose-kit .add-to-cart,
+.bundle__form .add-to-cart-btn,
+.gf_tab .item-content .gf_add-to-cart:not(.new_btn_icon) {
+  display: none !important;
+}
+.new_btn_icon {
+  padding: 10px 10px 20px 50px;
+  background-image: url(https://ucarecdn.com/1ae13a7f-2f76-4c32-9a6e-09c31e3253a2/Group%20130%20_3_.svg) !important;
+  background-repeat: no-repeat !important;
+  background-color: transparent !important;
+  color: #212121 !important;
+  line-height: 1.6 !important;
+  text-transform: inherit;
+  font-family: Montserrat, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0.1em;
+  font-size: 0.8125em;
+  width: auto;
+  max-width: 100%;
 }
 /**add_bundle_new_btn */
 .add_bundle_new_btn {
@@ -893,6 +947,10 @@ span.accent_weight_bold {
   }
   .slide_in_body {
     margin-right: 6px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   .cartleft .upsell_body {
     flex-wrap: wrap;
@@ -1015,6 +1073,7 @@ span.accent_weight_bold {
     <div class="slide_in_cart">
   <div class="container">
       <div class="slide_in_header">
+        <span class="visib_cart"></span>
         <p class="cart_length">Cart (<span>0</span>)</p>
         <svg class="slide_in_cart_close" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M8.00022 6.54522L1.45508 0.00012207L0.000548353 1.45464L6.54569 7.99973L0 14.5454L1.45453 15.9999L8.00022 9.45425L14.5458 15.9998L16.0004 14.5453L9.45475 7.99973L15.9998 1.45471L14.5453 0.000194265L8.00022 6.54522Z" fill="#212121" />
@@ -1044,6 +1103,7 @@ span.accent_weight_bold {
               />
             </svg>
             <span>60-day money back guarantee</span>
+            <span class="visib_guarantee"></span>
           </div>
         </div>
         <div class="slide_in_btn_wrap">
@@ -1063,6 +1123,7 @@ span.accent_weight_bold {
 
     <div class="content_popup">
       <h2 class="product_upsell_title">Add the GumCare Sonic Toothbrush for healthy gums</h2>
+      <span class="visib_product_upsell"></span>
       <p class="product_upsell_descr">Clean your teeth while protecting your gum</p>
       <div class="product_upsell_descr_wrapp">
         <div class="product_upsell_img_wrap">
@@ -1129,9 +1190,9 @@ span.accent_weight_bold {
 </div>`;
     }
 
-    function renderUpselCardPage(id, linkImg, newPrice, oldPrice, discount, descr, style, newTitle) {
+    function renderUpselCardPage(id, linkImg, newPrice, oldPrice, discount, descr, style, newTitle, dataName) {
       return `
-      <div class="upsell_card ${style}" data-id="${id}">
+      <div class="upsell_card ${style}" data-id="${id}" data-name="${dataName}">
   <div class="upsell_header">
     <p><span class="discount_box">Get ${discount}% OFF</span><b>${descr}</b></p>
     <p>when adding to the above order.</p>
@@ -1164,7 +1225,6 @@ span.accent_weight_bold {
 
     if (document.querySelector(".slide_in_cart")) {
       slideInCart();
-      visibElem();
     }
 
     function slideInCart() {
@@ -1250,6 +1310,45 @@ span.accent_weight_bold {
         }
       });
 
+      if (window.location.pathname === "/products/novaa-glow-therapy-mask" && window.innerWidth <= 768) {
+        document.querySelectorAll(".item-content button.gf_add-to-cart")?.forEach((el) => {
+          if (!document.querySelector(`[data-id="${el.closest(".AddToCartForm").querySelector('[name="id"]').value}"] + .add_to_cart_new_btn_mask`)) {
+            console.log(`object`);
+            let count = 1;
+            if (el.closest(".AddToCartForm").querySelector('input[name="quantity"]')) {
+              count = el.closest(".AddToCartForm").querySelector('input[name="quantity"]').value;
+            }
+            el.insertAdjacentHTML("beforebegin", `<button class="add_to_cart_new_btn_mask" data-count=${count} data-id=${el.closest(".AddToCartForm").querySelector('[name="id"]').value}>Add to Cart</button>`);
+          }
+        });
+
+        let w = setInterval(() => {
+          if (document.querySelectorAll('.AddToCartForm input[name="quantity"]') && document.querySelectorAll(".add_to_cart_new_btn_mask")) {
+            clearInterval(w);
+            document.querySelectorAll(".add_to_cart_new_btn_mask")?.forEach((el) => {
+              el.addEventListener("click", (e) => {
+                if (!e.target.getAttribute("data-test")) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  let count = 1;
+                  if (el.closest(".AddToCartForm").querySelector('input[name="quantity"]')) {
+                    count = +el.closest(".AddToCartForm").querySelector('input[name="quantity"]').value;
+                  }
+
+                  addToCartCheckout(+e.currentTarget.getAttribute("data-id"), count);
+                }
+                e.target.setAttribute("data-test", "1");
+                setTimeout(() => {
+                  if (e.target.getAttribute("data-test")) {
+                    e.target.removeAttribute("data-test");
+                  }
+                }, 1000);
+              });
+            });
+          }
+        }, 100);
+      }
+
       // click on radioBTN Choose your kit
       if (document.querySelectorAll('.choose-kit__kits input[name="quantity"]')) {
         document.querySelectorAll('.choose-kit__kits input[name="quantity"]').forEach((el) => {
@@ -1258,6 +1357,25 @@ span.accent_weight_bold {
           });
         });
       }
+      //add to cart with icon PDP
+      if (!document.querySelector(".new_btn_icon") && document.querySelector(".gf_tab .item-content .gf_add-to-cart")) {
+        document.querySelector(".gf_tab .item-content .gf_add-to-cart")?.insertAdjacentHTML("afterend", `<button class="new_btn_icon">Add To Cart</button>`);
+      }
+
+      document.querySelector(".new_btn_icon")?.addEventListener("click", (e) => {
+        if (!e.target.getAttribute("data-test")) {
+          e.preventDefault();
+          e.stopPropagation();
+          pushDataLayer(["exp_nov_oral_butt_add_cart_nav_bar", "Add to cart", "Button", "Navigation bar"]);
+          addToCartCheckout(e.currentTarget.closest(".AddToCartForm").querySelector('[name="id"]').getAttribute("data-value"), e.currentTarget.closest(".AddToCartForm").querySelector('[name="quantity"]') ? e.currentTarget.closest(".AddToCartForm").querySelector('[name="quantity"]')?.value : 1);
+        }
+        e.target.setAttribute("data-test", "1");
+        setTimeout(() => {
+          if (e.target.getAttribute("data-test")) {
+            e.target.removeAttribute("data-test");
+          }
+        }, 1000);
+      });
 
       // add to cart PDP Pick your bundle
       document.querySelectorAll(".item-content .gf_add-to-cart")?.forEach((el) => {
@@ -1265,6 +1383,7 @@ span.accent_weight_bold {
           if (!e.target.getAttribute("data-test")) {
             e.preventDefault();
             e.stopPropagation();
+            console.log(`object`);
             addToCartCheckout(e.currentTarget.closest(".AddToCartForm").querySelector('[name="id"]').getAttribute("data-value"), e.currentTarget.closest(".AddToCartForm").querySelector('[name="quantity"]') ? e.currentTarget.closest(".AddToCartForm").querySelector('[name="quantity"]')?.value : 1);
           }
           e.target.setAttribute("data-test", "1");
@@ -1285,6 +1404,7 @@ span.accent_weight_bold {
               if (!e.target.getAttribute("data-test")) {
                 e.preventDefault();
                 e.stopPropagation();
+                pushDataLayer(["exp_nov_oral_butt_add_cart_pdp", "Add to Cart", "Button", "PDP"]);
                 addToCartCheckout(e.currentTarget.getAttribute("data-id"), e.currentTarget.getAttribute("data-count"));
               }
               e.target.setAttribute("data-test", "1");
@@ -1390,10 +1510,18 @@ span.accent_weight_bold {
           if (!e.target.getAttribute("data-test")) {
             e.preventDefault();
             e.stopPropagation();
-            if (e.target.closest(".upsels_sonic")) {
-              pushDataLayer(["exp_nov_oral_butt_slidcartsonic_add", "Add", "Button", "Slide-in cart Sonic Toothbrush"]);
+            if (window.location.pathname.match("/cart")) {
+              if (e.target.closest(".upsels_sonic")) {
+                pushDataLayer(["exp_nov_oral_butt_cart_sonic_add", "Add to Cart", "Button", "Cart Sonic Toothbrush"]);
+              } else {
+                pushDataLayer(["exp_nov_oral_butt_cart_oral_add", `Add to Cart ${e.target.closest(".upsell_card").getAttribute("data-name")}`, "Button", `Cart Novaa oral Care Pro`]);
+              }
             } else {
-              pushDataLayer(["exp_nov_oral_butt_slidcartoral_add", `Add ${e.target.closest(".upsell_card").getAttribute("data-name")}`, "Button", `"Slide-in cart Novaa oral Care Pro"`]);
+              if (e.target.closest(".upsels_sonic")) {
+                pushDataLayer(["exp_nov_oral_butt_slidcartsonic_add", "Add", "Button", "Slide-in cart Sonic Toothbrush"]);
+              } else {
+                pushDataLayer(["exp_nov_oral_butt_slidcartoral_add", `Add ${e.target.closest(".upsell_card").getAttribute("data-name")}`, "Button", `"Slide-in cart Novaa oral Care Pro"`]);
+              }
             }
             localStorage.setItem("upsellInit", `yes`);
             localStorage.setItem("upselsAddBtn", "yes");
@@ -1418,10 +1546,29 @@ span.accent_weight_bold {
                 e.preventDefault();
                 e.stopPropagation();
                 pushDataLayer(["exp_nov_oral_butt_slidcart_check", "Proceed to secure checkout", "Button", "Slide-in cart"]);
-
-                setTimeout(() => {
-                  window.location.pathname = "/checkout";
-                }, 300);
+                window.appikonDiscount.checkoutEventHandler(jQuery, e);
+                // setTimeout(() => {
+                //   window.location.pathname = "/checkout";
+                // }, 300);
+              }
+              e.target.setAttribute("data-test", "1");
+              setTimeout(() => {
+                if (e.target.getAttribute("data-test")) {
+                  e.target.removeAttribute("data-test");
+                }
+              }, 1000);
+            });
+          });
+        }
+      }, 100);
+      // Shop All Products
+      let lookForBtnShopAllProducts = setInterval(() => {
+        if (document.querySelectorAll(".empty_cart_btn_shop_all")) {
+          clearInterval(lookForBtnShopAllProducts);
+          document.querySelectorAll(".empty_cart_btn_shop_all")?.forEach((el) => {
+            el.addEventListener("click", (e) => {
+              if (!e.target.getAttribute("data-test")) {
+                pushDataLayer(["exp_nov_oral_but_slidcart_shop_all", "Shop all products", "Button", "Slide-in cart"]);
               }
               e.target.setAttribute("data-test", "1");
               setTimeout(() => {
@@ -1457,18 +1604,24 @@ span.accent_weight_bold {
             response.json();
 
             let q = setInterval(() => {
-              if (localStorage.getItem("upsellInit") && localStorage.getItem("firstUpsellId") && localStorage.getItem("upselsAddBtn")) {
+              // localStorage.getItem("upsellInit");
+              if (localStorage.getItem("firstUpsellId") && localStorage.getItem("upselsAddBtn")) {
                 clearInterval(q);
-                let id = localStorage.getItem("firstUpsellId");
-                let count = +localStorage.getItem("countForUps");
-                changeCartCheckout(id, count);
+                setTimeout(() => {
+                  let id = localStorage.getItem("firstUpsellId");
+                  let count = +localStorage.getItem("countForUps");
+                  console.log(count, `count`);
+                  changeCartCheckout(id, count);
+                }, 400);
               }
             }, 700);
 
             getCartCheckout();
 
             if (window.location.pathname.match("/cart") && localStorage.getItem("upsellInit") && localStorage.getItem("firstUpsellId") && localStorage.getItem("upselsAddBtn")) {
-              // window.location = '/cart';
+              setTimeout(() => {
+                window.location = "/cart";
+              }, 500);
             } else {
               onOpenPopup();
             }
@@ -1482,6 +1635,7 @@ span.accent_weight_bold {
       btnClose.forEach((el) => {
         el.addEventListener("click", (e) => {
           if (!e.target.getAttribute("data-test")) {
+            pushDataLayer(["exp_nov_oral_but_slidcart_close", "Close", "Button", "Slide-in cart"]);
             onClosePopup();
           }
           e.target.setAttribute("data-test", "1");
@@ -1510,18 +1664,34 @@ span.accent_weight_bold {
 
       function onOpenPopup() {
         html.classList.add("active");
-
+        body.classList.add("active");
         overlay.classList.add("active");
-        body.style.overflow = "hidden";
-        html.style.overflow = "hidden";
-        body.style.display = "block";
+        if (!document.querySelector(".visib_cart")) {
+          document.querySelector(".slide_in_header")?.insertAdjacentHTML("afterbegin", `<span class="visib_cart"></span>`);
+        }
+        if (!document.querySelector(".visib_guarantee")) {
+          document.querySelector(".slide_in_guarantee")?.insertAdjacentHTML("beforeend", `<span class="visib_guarantee"></span>`);
+        }
+
+        waitForElement(".visib_guarantee").then((el) => {
+          handleVisibility(el, ["exp_nov_oral_butt_slidcartguar_check", " {{focusTime}} ", "Visibility ", "Slide-in cart 60-day money back guarantee"]);
+        });
+        waitForElement(".visib_cart").then((el) => {
+          handleVisibility(el, ["exp_nov_oral_vis_slidcart_focus", " {{focusTime}} ", "Visibility ", "Slide-in cart"]);
+        });
       }
 
       function onClosePopup() {
         html.classList.remove("active");
         overlay.classList.remove("active");
+        body.classList.remove("active");
         body.style.overflow = "auto";
         html.style.overflow = "auto";
+
+        setTimeout(() => {
+          document.querySelector(".visib_cart")?.remove();
+          document.querySelector(".visib_guarantee")?.remove();
+        }, 10);
       }
     }
 
@@ -1559,6 +1729,12 @@ span.accent_weight_bold {
       }
 
       function onOpenPopup() {
+        if (!document.querySelector(".visib_product_upsell")) {
+          document.querySelector(".product_upsell_descr")?.insertAdjacentHTML("afterbegin", `<span class="visib_product_upsell"></span>`);
+        }
+        waitForElement(".visib_product_upsell").then((el) => {
+          handleVisibility(el, ["exp_nov_oral_vis_popup_focus", " {{focusTime}} ", "Visibility ", "Pop up did you now"]);
+        });
         overlay.classList.add("active");
         body.style.overflow = "hidden";
         html.style.overflow = "hidden";
@@ -1567,6 +1743,9 @@ span.accent_weight_bold {
 
       function onClosePopup() {
         overlay.classList.remove("active");
+        setTimeout(() => {
+          document.querySelector(".visib_product_upsell")?.remove();
+        }, 10);
       }
     }
 
@@ -1583,6 +1762,10 @@ span.accent_weight_bold {
 
           document.querySelector(".slide_in_products").innerHTML = "";
           document.querySelector(".upsells_wrapp").innerHTML = "";
+
+          if (localStorage.getItem("upsellInit")) {
+            localStorage.removeItem("upsellInit");
+          }
 
           if (localStorage.getItem("novaaLightPad")) {
             localStorage.removeItem("novaaLightPad");
@@ -1867,6 +2050,9 @@ span.accent_weight_bold {
                   if (firstUpsell === 47100514140505) {
                     onRenderUpsell(data.items, upselsObjSonic, "upselsSonic", 47100514140505, "upsels_sonic", 46932997865817);
                   }
+                  if (firstUpsell === 40365298679862) {
+                    onRenderUpsell(data.items, upselsObjSonic, "upselsSonic", 40365298679862, "upsels_sonic", 46932997865817);
+                  }
                 }
               }, 1000);
             }
@@ -2015,17 +2201,7 @@ span.accent_weight_bold {
       subtree: true,
     });
 
-    function visibElem() {
-      waitForElement(".slide_in_guarantee").then((el) => {
-        handleVisibility(el, ["exp_nov_oral_butt_slidcartguar_check", " {{focusTime}} ", "Visibility ", "Slide-in cart 60-day money back guarantee"]);
-      });
-      waitForElement(".overlay_popup.active").then((el) => {
-        handleVisibility(el, ["exp_nov_oral_vis_popup_focus", " {{focusTime}} ", "Visibility ", "Pop up did you now"]);
-      });
-      waitForElement(".slide_in_cart.active").then((el) => {
-        handleVisibility(el, ["exp_nov_oral_vis_slidcart_focus", " {{focusTime}} ", "Visibility ", "Slide-in cart"]);
-      });
-    }
+    function visibElem() {}
 
     function handleVisibility(el, eventParams) {
       let isVisible = false;
