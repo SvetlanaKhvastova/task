@@ -981,9 +981,12 @@ span.accent_weight_bold {
   .cartleft .upsell_card {
     margin-top: 35px;
   }
+  .overlay_popup{
+        background: #F5F5FD;
+  }
   .overlay_popup .container_popup {
     padding: 20px 16px;
-    border-bottom: 1px solid #e2e2e2;
+    border-bottom: none;
     border-radius: unset;
     height: 100%;
   }
@@ -1261,6 +1264,7 @@ span.accent_weight_bold {
         el.addEventListener("click", (e) => {
           if (!e.target.getAttribute("data-test")) {
             e.preventDefault();
+            pushDataLayer(["exp_nov_oral_butt_add_cart_pdp", "Add to Cart", "Button", "PDP"]);
             addToCartCheckout(e.currentTarget.closest("form").querySelector('[name="id"]').value, 1);
           }
           e.target.setAttribute("data-test", "1");
@@ -1330,6 +1334,7 @@ span.accent_weight_bold {
                 if (!e.target.getAttribute("data-test")) {
                   e.preventDefault();
                   e.stopPropagation();
+                  pushDataLayer(["exp_nov_oral_butt_add_cart_pdp", "Add to Cart", "Button", "PDP"]);
                   let count = 1;
                   if (el.closest(".AddToCartForm").querySelector('input[name="quantity"]')) {
                     count = +el.closest(".AddToCartForm").querySelector('input[name="quantity"]').value;
@@ -1384,7 +1389,26 @@ span.accent_weight_bold {
             e.preventDefault();
             e.stopPropagation();
             console.log(`object`);
+            pushDataLayer(["exp_nov_oral_butt_add_cart_pdp", "Add to Cart", "Button", "PDP"]);
             addToCartCheckout(e.currentTarget.closest(".AddToCartForm").querySelector('[name="id"]').getAttribute("data-value"), e.currentTarget.closest(".AddToCartForm").querySelector('[name="quantity"]') ? e.currentTarget.closest(".AddToCartForm").querySelector('[name="quantity"]')?.value : 1);
+          }
+          e.target.setAttribute("data-test", "1");
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
+            }
+          }, 1000);
+        });
+      });
+
+      // add to cart PDP ---> PACK 2 BRUSH HEADS
+      document.querySelectorAll("#product_form_8465377984857 button[type='submit']")?.forEach((el) => {
+        el.addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            e.preventDefault();
+            e.stopPropagation();
+            pushDataLayer(["exp_nov_oral_butt_add_cart_pdp", "Add to Cart", "Button", "PDP"]);
+            addToCartCheckout(e.currentTarget.closest("#product_form_8465377984857").querySelector('[name="id"]').value, e.currentTarget.closest("#product_form_8465377984857").querySelector('[name="quantity"]').value);
           }
           e.target.setAttribute("data-test", "1");
           setTimeout(() => {
@@ -1427,6 +1451,7 @@ span.accent_weight_bold {
               if (!e.target.getAttribute("data-test")) {
                 e.preventDefault();
                 e.stopPropagation();
+                pushDataLayer(["exp_nov_oral_butt_add_cart_pdp", "Add to Cart", "Button", "PDP"]);
                 addToCartCheckout(e.currentTarget.getAttribute("data-id"), 1);
               }
               e.target.setAttribute("data-test", "1");
@@ -1603,19 +1628,6 @@ span.accent_weight_bold {
           .then((response) => {
             response.json();
 
-            let q = setInterval(() => {
-              // localStorage.getItem("upsellInit");
-              if (localStorage.getItem("firstUpsellId") && localStorage.getItem("upselsAddBtn")) {
-                clearInterval(q);
-                setTimeout(() => {
-                  let id = localStorage.getItem("firstUpsellId");
-                  let count = +localStorage.getItem("countForUps");
-                  console.log(count, `count`);
-                  changeCartCheckout(id, count);
-                }, 400);
-              }
-            }, 700);
-
             getCartCheckout();
 
             if (window.location.pathname.match("/cart") && localStorage.getItem("upsellInit") && localStorage.getItem("firstUpsellId") && localStorage.getItem("upselsAddBtn")) {
@@ -1626,6 +1638,19 @@ span.accent_weight_bold {
               onOpenPopup();
             }
             document.querySelector(".slide_in_products")?.scrollIntoView({ block: "start", behavior: "smooth" });
+          })
+          .then(() => {
+            let q = setInterval(() => {
+              if (localStorage.getItem("upsellInit") && localStorage.getItem("firstUpsellId") && localStorage.getItem("upselsAddBtn")) {
+                clearInterval(q);
+                setTimeout(() => {
+                  let id = localStorage.getItem("firstUpsellId");
+                  let count = +localStorage.getItem("countForUps");
+                  console.log(count, `count`);
+                  changeCartCheckout(id, count);
+                }, 200);
+              }
+            }, 700);
           })
           .catch((error) => {
             console.error("Error:", error);
@@ -1762,10 +1787,6 @@ span.accent_weight_bold {
 
           document.querySelector(".slide_in_products").innerHTML = "";
           document.querySelector(".upsells_wrapp").innerHTML = "";
-
-          if (localStorage.getItem("upsellInit")) {
-            localStorage.removeItem("upsellInit");
-          }
 
           if (localStorage.getItem("novaaLightPad")) {
             localStorage.removeItem("novaaLightPad");
@@ -1917,7 +1938,7 @@ span.accent_weight_bold {
                 el.addEventListener("click", (e) => {
                   if (!e.target.getAttribute("data-test")) {
                     pushDataLayer(["exp_nov_oral_butt_slidcart_delete", "Delete", "Button", "Slide-in cart"]);
-                    if (localStorage.getItem("upsellInit") && +e.target.closest(".product_wrap").getAttribute("data-id") === 46932997865817) {
+                    if (localStorage.getItem("upsellInit") && (+e.target.closest(".product_wrap").getAttribute("data-id") === 46932997865817 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368669593945 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368670118233 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368679293273 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368679752025 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368681161049)) {
                       localStorage.removeItem("upsellInit");
                     }
                     changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), 0);
@@ -2024,17 +2045,13 @@ span.accent_weight_bold {
                   firstUpsell = +localStorage.getItem("firstUpsellId");
                   if (firstUpsell === 46883225993561) {
                     onRenderUpsell(data.items, upselsObjNovaa, "novaaLightPad", 46883225993561, "novaa_light_pad", 47368669593945);
-                  }
-                  if (firstUpsell === 47116576588121) {
+                  } else if (firstUpsell === 47116576588121) {
                     onRenderUpsell(data.items, upselsObjNovaa, "novaaLightPadXl", 47116576588121, "novaa_light_pad_xl", 47368670118233);
-                  }
-                  if (firstUpsell === 47048817607001) {
+                  } else if (firstUpsell === 47048817607001) {
                     onRenderUpsell(data.items, upselsObjNovaa, "novaaGlowTherapyMask", 47048817607001, "novaa_glow_therapy_mask", 47368679293273);
-                  }
-                  if (firstUpsell === 32854816784438) {
+                  } else if (firstUpsell === 32854816784438) {
                     onRenderUpsell(data.items, upselsObjNovaa, "novaaLightPro", 32854816784438, "novaa_light_pro", 47368679752025);
-                  }
-                  if (firstUpsell === 40156488761398) {
+                  } else if (firstUpsell === 40156488761398) {
                     onRenderUpsell(data.items, upselsObjNovaa, "novaaExtraStrengthLaser", 40156488761398, "novaa_extra_strength_laser", 47368681161049);
                   }
                   // if (firstUpsell === 39782656311350) {
@@ -2047,11 +2064,14 @@ span.accent_weight_bold {
                   //     '',
                   //   );
                   // }
-                  if (firstUpsell === 47100514140505) {
+                  else if (firstUpsell === 47100514140505) {
                     onRenderUpsell(data.items, upselsObjSonic, "upselsSonic", 47100514140505, "upsels_sonic", 46932997865817);
-                  }
-                  if (firstUpsell === 40365298679862) {
+                  } else if (firstUpsell === 40365298679862) {
                     onRenderUpsell(data.items, upselsObjSonic, "upselsSonic", 40365298679862, "upsels_sonic", 46932997865817);
+                  } else {
+                    if (localStorage.getItem("upsellInit")) {
+                      localStorage.removeItem("upsellInit");
+                    }
                   }
                 }
               }, 1000);
@@ -2103,7 +2123,6 @@ span.accent_weight_bold {
           response.json();
         })
         .then((data) => {
-          console.log(data);
           addBlurLoadCart();
 
           if (localStorage.getItem("upselsAddBtn")) {
@@ -2201,8 +2220,6 @@ span.accent_weight_bold {
       subtree: true,
     });
 
-    function visibElem() {}
-
     function handleVisibility(el, eventParams) {
       let isVisible = false;
       let entryTime;
@@ -2267,3 +2284,113 @@ span.accent_weight_bold {
     }, 200);
   }
 }, 600);
+
+let startFunkCheckout = setInterval(() => {
+  // checkout
+  if (window.location.pathname.match("checkout")) {
+    clearInterval(startFunkCheckout);
+
+    function pushDataLayer([event_name, event_desc, event_type, event_loc]) {
+      console.log(event_name + " / " + event_desc + " / " + event_type + " / " + event_loc);
+
+      // Send a Google Analytics event
+      const eventData = {
+        event: "event-to-ga4",
+        event_name,
+        event_desc,
+        event_type,
+        event_loc,
+      };
+
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push(eventData);
+    }
+
+    renderLink();
+    renderLinkReturnToCart();
+
+    function renderLink() {
+      if (document.querySelector(".breadcrumb.breadcrumb--center") && !document.querySelector(".new_cart_link") && !document.querySelector(".breadcrumb__item")?.textContent.includes("Cart")) {
+        document.querySelector(".breadcrumb.breadcrumb--center").insertAdjacentHTML(
+          "afterbegin",
+          `<li class="breadcrumb__item breadcrumb__item--completed new_cart_link">
+            <a class="breadcrumb__link" href="https://novaalab.com/cart">Cart</a>
+            <svg class="icon-svg icon-svg--color-adaptive-light icon-svg--size-10 breadcrumb__chevron-icon" aria-hidden="true" focusable="false"> <use xlink:href="#chevron-right"></use> </svg>
+          </li>`
+        );
+      }
+
+      if (document.querySelector(".new_cart_link")) {
+        document.querySelector(".new_cart_link").addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            pushDataLayer(["exp_nov_oral_butt_cart_checkout", "Cart", "Link", "Checkout"]);
+          }
+          e.target.setAttribute("data-test", "1");
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
+            }
+          }, 1000);
+        });
+      }
+    }
+
+    function renderLinkReturnToCart() {
+      if (document.querySelector(".step__footer") && !document.querySelector(".new_return_cart_link") && !document.querySelector(".step__footer__previous-link-content")?.textContent.includes("Return to cart")) {
+        document.querySelector(".step__footer").insertAdjacentHTML("beforeend", `<a class="step__footer__previous-link new_return_cart_link" href="https://novaalab.com/cart"><svg focusable="false" aria-hidden="true" class="icon-svg icon-svg--color-accent icon-svg--size-10 previous-link__icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M8 1L7 0 3 4 2 5l1 1 4 4 1-1-4-4"></path></svg><span class="step__footer__previous-link-content">Return to cart</span></a>`);
+      }
+
+      if (document.querySelector(".new_return_cart_link")) {
+        document.querySelector(".new_return_cart_link").addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            pushDataLayer(["exp_nov_oral_butt_return_cart_checkout", "Return to cart", "Link", "Checkout"]);
+          }
+          e.target.setAttribute("data-test", "1");
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
+            }
+          }, 1000);
+        });
+      }
+    }
+
+    // Observe
+    let observer = new MutationObserver((mutations) => {
+      for (let mutation of mutations) {
+        for (let node of mutation.addedNodes) {
+          if (!(node instanceof HTMLElement)) continue;
+          if (document) {
+            observer.disconnect();
+            // console.log(`observer`);
+
+            if (!document.querySelector(".new_cart_link")) {
+              renderLink();
+            }
+
+            if (!document.querySelector(".new_return_cart_link")) {
+              renderLinkReturnToCart();
+            }
+
+            observer.observe(document, {
+              childList: true,
+              subtree: true,
+            });
+          }
+        }
+      }
+    });
+
+    observer.observe(document, {
+      childList: true,
+      subtree: true,
+    });
+
+    const record = setInterval(() => {
+      if (typeof clarity === "function") {
+        clearInterval(record);
+        clarity("set", "exp_nov_oral", "variant_1");
+      }
+    }, 200);
+  }
+}, 500);
