@@ -1629,15 +1629,6 @@ span.accent_weight_bold {
             response.json();
 
             getCartCheckout();
-
-            if (window.location.pathname.match("/cart") && localStorage.getItem("upsellInit") && localStorage.getItem("firstUpsellId") && localStorage.getItem("upselsAddBtn")) {
-              setTimeout(() => {
-                window.location = "/cart";
-              }, 500);
-            } else {
-              onOpenPopup();
-            }
-            document.querySelector(".slide_in_products")?.scrollIntoView({ block: "start", behavior: "smooth" });
           })
           .then(() => {
             let q = setInterval(() => {
@@ -1651,6 +1642,15 @@ span.accent_weight_bold {
                 }, 200);
               }
             }, 700);
+
+            if (window.location.pathname.match("/cart") && localStorage.getItem("upsellInit") && localStorage.getItem("firstUpsellId") && localStorage.getItem("upselsAddBtn")) {
+              setTimeout(() => {
+                // window.location = "/cart";
+              }, 700);
+            } else {
+              onOpenPopup();
+            }
+            document.querySelector(".slide_in_products")?.scrollIntoView({ block: "start", behavior: "smooth" });
           })
           .catch((error) => {
             console.error("Error:", error);
@@ -1903,7 +1903,9 @@ span.accent_weight_bold {
 
                     items.querySelector(".my_old_price").textContent = `$${((res.variants[0].compare_at_price / 100) * items.querySelector(".count_var").value).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")}`;
 
-                    items.querySelector(".discount_txt").textContent = `${(((el.final_line_price / 100) * 100) / (res.variants[0].compare_at_price / 100) - 100).toFixed(0)}%`;
+                    items.querySelector(".discount_txt").textContent = `${(((el.final_line_price / 100) * 100) / ((res.variants[0].compare_at_price / 100) * items.querySelector(".count_var").value) - 100).toFixed(0)}%`;
+                    console.log((el.final_line_price / 100) * 100, `el.final_line_price / 100) * 100`, res.variants[0].id);
+                    console.log(res.variants[0].compare_at_price / 100 - 100, `res.variants[0].compare_at_price / 100) - 100`, res.variants[0].id);
                   }
 
                   let appikonF = setInterval(() => {
@@ -1922,6 +1924,8 @@ span.accent_weight_bold {
                             items.querySelector(".my_price").textContent = currPrDsc;
                             items.querySelector(".my_old_price").textContent = oldPr;
                             items.querySelector(".discount_txt").textContent = `${((appikonItem.discounted_line_price * 100) / appikonItem.compare_at_line_price - 100).toFixed(0)}%`;
+                            console.log(appikonItem.discounted_line_price * 100, `(appikonItem.discounted_line_price * 100)`, res.variants[0].id);
+                            console.log(appikonItem.compare_at_line_price - 100, `appikonItem.compare_at_line_price - 100`, res.variants[0].id);
                           }
                         }
                       });
@@ -1938,7 +1942,7 @@ span.accent_weight_bold {
                 el.addEventListener("click", (e) => {
                   if (!e.target.getAttribute("data-test")) {
                     pushDataLayer(["exp_nov_oral_butt_slidcart_delete", "Delete", "Button", "Slide-in cart"]);
-                    if (localStorage.getItem("upsellInit") && (+e.target.closest(".product_wrap").getAttribute("data-id") === 46932997865817 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368669593945 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368670118233 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368679293273 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368679752025 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368681161049)) {
+                    if (localStorage.getItem("upsellInit") && (+e.target.closest(".product_wrap").getAttribute("data-id") === 46932997865817 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368669593945 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368670118233 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368679293273 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368679752025 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47368681161049 || +e.target.closest(".product_wrap").getAttribute("data-id") === 47442481348953)) {
                       localStorage.removeItem("upsellInit");
                     }
                     changeCartCheckout(e.target.closest(".product_wrap").getAttribute("id"), 0);
@@ -2052,19 +2056,14 @@ span.accent_weight_bold {
                   } else if (firstUpsell === 32854816784438) {
                     onRenderUpsell(data.items, upselsObjNovaa, "novaaLightPro", 32854816784438, "novaa_light_pro", 47368679752025);
                   } else if (firstUpsell === 40156488761398) {
-                    onRenderUpsell(data.items, upselsObjNovaa, "novaaExtraStrengthLaser", 40156488761398, "novaa_extra_strength_laser", 47368681161049);
+                    onRenderUpsell(data.items, upselsObjNovaa, "novaaExtraStrengthLaser", 40156488761398, "novaa_extra_strength_laser", 47442481348953);
                   }
-                  // if (firstUpsell === 39782656311350) {
-                  //   onRenderUpsell(
-                  //     data.items,
-                  //     upselsObjNovaa,
-                  //     'novaaLightPadForKneePain',
-                  //     39782656311350,
-                  //     'novaa_light_padfor_knee_pain',
-                  //     '',
-                  //   );
-                  // }
-                  else if (firstUpsell === 47100514140505) {
+                  if (firstUpsell === 39782656311350) {
+                    onRenderUpsell(data.items, upselsObjNovaa, "novaaLightPadForKneePain", 39782656311350, "novaa_light_padfor_knee_pain", 47368681161049);
+                  }
+                  if (firstUpsell === 39737414484022) {
+                    onRenderUpsell(data.items, upselsObjNovaa, "novaaLightPadForKneePain", 39737414484022, "novaa_light_padfor_knee_pain", 47368681161049);
+                  } else if (firstUpsell === 47100514140505) {
                     onRenderUpsell(data.items, upselsObjSonic, "upselsSonic", 47100514140505, "upsels_sonic", 46932997865817);
                   } else if (firstUpsell === 40365298679862) {
                     onRenderUpsell(data.items, upselsObjSonic, "upselsSonic", 40365298679862, "upsels_sonic", 46932997865817);
@@ -2336,8 +2335,8 @@ let startFunkCheckout = setInterval(() => {
     }
 
     function renderLinkReturnToCart() {
-      if (document.querySelector(".step__footer") && !document.querySelector(".new_return_cart_link") && !document.querySelector(".step__footer__previous-link-content")?.textContent.includes("Return to cart")) {
-        document.querySelector(".step__footer").insertAdjacentHTML("beforeend", `<a class="step__footer__previous-link new_return_cart_link" href="https://novaalab.com/cart"><svg focusable="false" aria-hidden="true" class="icon-svg icon-svg--color-accent icon-svg--size-10 previous-link__icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M8 1L7 0 3 4 2 5l1 1 4 4 1-1-4-4"></path></svg><span class="step__footer__previous-link-content">Return to cart</span></a>`);
+      if (document.querySelector(".step__footer") && !document.querySelector(".new_return_cart_link") && !document.querySelector(".new_return_cart_link .step__footer__previous-link-content")?.textContent.includes("Return to cart")) {
+        document.querySelector(".step__footer #continue_button").insertAdjacentHTML("afterend", `<a class="step__footer__previous-link new_return_cart_link" href="https://novaalab.com/cart"><svg focusable="false" aria-hidden="true" class="icon-svg icon-svg--color-accent icon-svg--size-10 previous-link__icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M8 1L7 0 3 4 2 5l1 1 4 4 1-1-4-4"></path></svg><span class="step__footer__previous-link-content">Return to cart</span></a>`);
       }
 
       if (document.querySelector(".new_return_cart_link")) {
@@ -2352,6 +2351,10 @@ let startFunkCheckout = setInterval(() => {
             }
           }, 1000);
         });
+
+        if (!document.querySelector(".step__footer").lastElementChild.classList.contains("new_return_cart_link")) {
+          document.querySelector(".new_return_cart_link").style.display = "none";
+        }
       }
     }
 

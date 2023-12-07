@@ -373,7 +373,7 @@ ul.calendar_header_list li p {
 }
 .calendar_body iframe{
       height: 100%;
-    min-height: 505px;
+    min-height: 600px;
 }
 .calendar_footer{
   padding: 20px 32px;
@@ -525,6 +525,7 @@ line-height: 25px;
 }
 #ourPatientsLoveTrebleHealthBlock .slick-arrow.slick-disabled {
   opacity: 0.2;
+  pointer-events: none;
 }
 #ourPatientsLoveTrebleHealthBlock .next_btn.slick-arrow {
   right: 0;
@@ -1792,9 +1793,9 @@ p.mob_txt{
       <a class="logo_link" href="https://treblehealth.com">
         <img width="211" height="40" src="https://treblehealth.com/wp-content/uploads/2021/09/site-logo.svg" data-src="https://treblehealth.com/wp-content/uploads/2021/09/site-logo.svg" class="attachment-full size-full wp-image-13 ls-is-cached lazyloaded" alt="TrebleHealth Site Logo" />
       </a>
-      <a class="tel_link" href="tel:3369414041">
+      <a class="tel_link" href="tel:+8558732531">
         <img src="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" alt="" data-src-desktop-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" data-src-mobile-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" />
-        <span class="desk_var">(336) 941-4041</span><span class="mob_var">Call Us</span></a>
+        <span class="desk_var">(855) 873-2531</span><span class="mob_var">Call Us</span></a>
     </div>
   </div>
 </div>
@@ -1816,10 +1817,10 @@ p.mob_txt{
           </div>
         </div>
       <div class="sticky_btn_wrapp">
-        <a class="tel_link" href="tel:3369414041">
+        <a class="tel_link" href="tel:+8558732531">
           <img src="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" alt="" data-src-desktop-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" data-src-mobile-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" />
-          (336) 941-4041</a>
-          <button class="grab_your_free_btn">Book a Free Call</button>
+          (855) 873-2531</a>
+          <button class="grab_your_free_btn">Grab a Free Seat</button>
       </div>
     </div>
   </div>
@@ -1888,14 +1889,14 @@ p.mob_txt{
   </ul>
 </div>
 <div class="calendar_body">
-  <iframe src="https://calendly.com/treble-health-audiologists/tinnitus-relief-discovery?embed_domain=treblehealth.com&amp;embed_type=Inline&amp;hide_event_type_details=1&amp;hide_gdpr_banner=1&amp;primary_color=4622da&amp;utm_term=1261762004.1699950023&utm_content=funnel_1" width="100%" height="100%" frameborder="0" title="Select a Date &amp; Time - Calendly" data-gtm-yt-inspected-14="true" data-gtm-yt-inspected-60173040_75="true"></iframe>
+ <iframe src="https://calendly.com/treble-health-audiologists/tinnitus-relief-discovery?embed_domain=treblehealth.com&embed_type=Inline&hide_event_type_details=1&hide_gdpr_banner=1&primary_color=4622da&month=2023-11&utm_content=funnel_1" width="100%" height="100%" frameborder="0" title="Select a Date &amp; Time - Calendly" data-gtm-yt-inspected-14="true" data-gtm-yt-inspected-60173040_75="true"></iframe>
 </div>
 <div class="calendar_footer">
   <div class="calendar_contacts">
     <h3 class="calendar_footer_title">Can’t find a time?</h3>
-    <a class="tel_link" href="tel:8559224236">
+    <a class="tel_link" href="tel:+8558732531">
       <img src="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" alt="" data-src-desktop-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" data-src-mobile-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" />
-      <span>Call us</span> <span>(855) 922-4236</span>
+      <span>Call us</span> <span>(855) 873-2531</span>
     </a>
   </div>
   <div class="calendar_footer_members">
@@ -1978,14 +1979,14 @@ p.mob_txt{
           </ul>
         </div>
         <div class="calendar_body no_sticky">
-          <iframe src="https://calendly.com/treble-health-audiologists/tinnitus-relief-discovery?embed_domain=treblehealth.com&amp;embed_type=Inline&amp;hide_event_type_details=1&amp;hide_gdpr_banner=1&amp;primary_color=4622da&amp;utm_term=1261762004.1699950023" width="100%" height="100%" frameborder="0" title="Select a Date &amp; Time - Calendly" data-gtm-yt-inspected-14="true" data-gtm-yt-inspected-60173040_75="true"></iframe>
+ <iframe src="https://calendly.com/treble-health-audiologists/tinnitus-relief-discovery?embed_domain=treblehealth.com&embed_type=Inline&hide_event_type_details=1&hide_gdpr_banner=1&primary_color=4622da&month=2023-11&utm_content=funnel_1" width="100%" height="100%" frameborder="0" title="Select a Date &amp; Time - Calendly" data-gtm-yt-inspected-14="true" data-gtm-yt-inspected-60173040_75="true"></iframe>
         </div>
         <div class="calendar_footer">
           <div class="calendar_contacts">
             <h3 class="calendar_footer_title">Can’t find a time?</h3>
-            <a class="tel_link" href="tel:8559224236">
+            <a class="tel_link" href="tel:+8558732531">
               <img src="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" alt="" data-src-desktop-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" data-src-mobile-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" />
-              <span>Call us</span> <span>(855) 922-4236</span>
+              <span>Call us</span> <span>(855) 873-2531</span>
             </a>
           </div>
           <div class="calendar_footer_members">
@@ -2007,21 +2008,21 @@ p.mob_txt{
             <p class="video_descr" data-name="Melinda">Melinda had a <b>serious level of tinnitus</b>. She worked with Treble Health and found relief in just <b>47 Days</b>.</p>
             <div class="video_link_wrapp">
               <img src="https://conversionratestore.github.io/projects/treblehealth/img/melinda.png" alt="woman" />
-             <iframe width="560" height="315" src="https://www.youtube.com/embed/NMEISemQYcU?si=apKbuTqO7fQzd_eR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+             <iframe width="560" height="315" src="https://www.youtube.com/embed/NMEISemQYcU?si=apKbuTqO7fQzd_eR&enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
           </div>
           <div class="video_item">
             <p class="video_descr" data-name="Randy">Randy <b>lowered his tinnitus and got his life back</b> working with Treble Health over a <b>three-month</b> time period.</p>
             <div class="video_link_wrapp">
               <img src="https://conversionratestore.github.io/projects/treblehealth/img/randy.png" alt="man" />
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/PaJhaIUSSfQ?si=-LEXqse9UgrVqPtO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/PaJhaIUSSfQ?si=-LEXqse9UgrVqPtO&enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
           </div>
           <div class="video_item">
             <p class="video_descr" data-name="James">James had severe tinnitus. He worked with Treble Health and <b>improved his condition by 75%.</b></p>
             <div class="video_link_wrapp">
               <img src="https://conversionratestore.github.io/projects/treblehealth/img/james.png" alt="man" />
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/8EwDVQ0gKVY?si=MmoerJmfnQog73GA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/8EwDVQ0gKVY?si=MmoerJmfnQog73GA&enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
           </div>
         </div>
@@ -2380,7 +2381,11 @@ p.mob_txt{
               },
             ],
           });
-          slider.on("swipe", function () {});
+          slider.on("afterChange", function () {
+            document.querySelectorAll("iframe").forEach((el) => {
+              el.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', "*");
+            });
+          });
           document.querySelectorAll("#ourPatientsLoveTrebleHealthBlock .slick-dots li").forEach((el) => {
             el.addEventListener("click", (i, idx) => {
               pushDataLayer(["exp_call_book_page_pagin_video_click", "Click ", "Pagination  ", "Why Our Patients Love Treble Health"]);
@@ -2397,6 +2402,15 @@ p.mob_txt{
               }
             });
           });
+
+          // document.querySelectorAll('iframe').forEach(el => {
+          //   el.addEventListener('click', i => {
+          //     console.log(i.target, `i`);
+          //     if (!i.target) {
+          //       el.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+          //     }
+          //   });
+          // });
         }
       }, 100);
     }
@@ -2814,8 +2828,8 @@ p.mob_txt{
             if (e.currentTarget.closest("#heroBlock")) {
               pushDataLayer(["exp_call_book_page_link_reviews_click", "Click reviews", "Link", "First screen"]);
             }
-            const headerOffset = 50;
-            const elementPosition = document.querySelector("#verifiedReviewsOnGoogleBlock").getBoundingClientRect().top;
+            const headerOffset = 60;
+            const elementPosition = document.querySelector("#trustpilotBlock").getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
             window.scrollTo({
               top: offsetPosition,
