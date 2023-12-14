@@ -51,23 +51,26 @@ let treblehealthCalendar = setInterval(() => {
 
     let newStyle = /*html */ `
     <style>
-      body{
-        font-family: 'Plus Jakarta Sans', sans-serif !important;
-      }
-      html, body{
-        overflow:initial;
-      }
+body {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+}
+html,
+body {
+  overflow: initial;
+}
 /*main */
 #lp-pom-root,
 #learnMobBlock,
 #bookCalendarMob,
 .learn_from_call_box_mob,
-.grab_your_free_btn.mob_var,
+button.grab_your_free_btn.mob_var,
 p.mob_txt,
 .mob_img,
 .ti-column.mob_var,
 .new_header_wrapp .tel_link span.mob_var,
-._2eZHnh_PMhyzt7w_zi7 #root {
+._2eZHnh_PMhyzt7w_zi7 #root,
+[data-elementor-type="header"],
+main#content {
   display: none;
 }
 /* */
@@ -86,7 +89,8 @@ p.mob_txt,
   width: 90%;
   margin: 0 auto;
 }
-.main_title {
+h2.main_title {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
   color: #2e168d;
   font-size: 40px;
   font-weight: 800;
@@ -94,58 +98,61 @@ p.mob_txt,
   margin: 0;
 }
 .sub_title {
-  color: #2e168d;
-  font-size: 30px;
-  font-weight: 800;
-  line-height: 40px;
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  color: #2e168d !important;
+  font-size: 30px !important;
+  font-weight: 800 !important;
+  line-height: 40px !important;
   margin: 0;
 }
-.grab_your_free_btn {
+button.grab_your_free_btn {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   max-width: 310px;
   height: 62px;
-  color: #fff;
+  color: #fff !important;
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  line-height: 28px !important;
+  margin: 28px 0 0;
+  border-radius: 5px !important;
+  border: 2px solid #ff2e1f !important;
+  background: #ff2e1f !important;
+  cursor: pointer !important;
+  outline: none;
+}
+/*new_header */
+.new_header {
+  border-bottom: 1px solid #e6e6e6;
+  background: #efecfb;
+  padding: 20px 0;
+}
+.new_header_wrapp {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tel_link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #2e168d !important;
   font-size: 18px;
   font-weight: 800;
   line-height: 28px;
-  margin: 28px 0 0;
-  border-radius: 5px;
-  border: 2px solid #ff2e1f;
-  background: #ff2e1f;
-  cursor: pointer;
+  text-decoration: none;
 }
-/*new_header */
-.new_header{
-  border-bottom: 1px solid #E6E6E6;
-  background: #EFECFB;
-  padding: 20px 0;
-}
-.new_header_wrapp{
-  display: flex;
-align-items: center;
-    justify-content: space-between;
-}
-.tel_link{
-    display: flex;
-align-items: center;
-gap: 12px;
-color: #2E168D;
-font-size: 18px;
-font-weight: 800;
-line-height: 28px;
-text-decoration: none;
-}
-.tel_link img{
+.tel_link img {
   width: 24px;
 }
 /* sticky_header */
 .sticky_header {
   width: 100%;
-  border-bottom: 1px solid #E6E6E6;
-  background: #EFECFB;
+  border-bottom: 1px solid #e6e6e6;
+  background: #efecfb;
   height: 0;
   opacity: 0;
   transition: opacity 0.7s;
@@ -162,94 +169,97 @@ text-decoration: none;
   overflow: initial;
   height: max-content;
 }
-.sticky_header .container_var{
-max-width: 1280px;
+.sticky_header .container_var {
+  max-width: 1280px;
 }
-.sticky_header .logo_link{
-max-width: 211px;
+.sticky_header .logo_link {
+  max-width: 211px;
 }
 .sticky_btn_wrapp {
   display: flex;
-justify-content: flex-end;
-    gap: 28px;
-    width: 33%;
+  justify-content: flex-end;
+  gap: 28px;
+  width: 33%;
 }
-.sticky_header .trust_score_wrapp p{
-color: #2E168D;
-font-size: 13px;
-font-weight: 400;
-line-height: 20px;
+.sticky_header .trust_score_wrapp p {
+  color: #2e168d;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0;
 }
 .sticky_header .trust_score_wrapp p.reviews_txt {
-    margin: 0 2px 0 8px;
+  margin: 0 2px 0 8px;
 }
 .sticky_header .trust_score_wrapp p.reviews_mark {
-    color: #2E168D;
-    font-weight: 600;
-    margin: 0 4px 0 2px;
-    font-size: 14px;
+  color: #2e168d;
+  font-weight: 600;
+  margin: 0 4px 0 2px;
+  font-size: 14px;
 }
-.sticky_header .grab_your_free_btn{
+.sticky_header button.grab_your_free_btn {
   margin: 0;
   max-width: 148px;
   height: 48px;
-font-size: 16px;
-font-weight: 700;
-line-height: 25px;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 25px !important;
 }
 /*heroBlock */
-#heroBlock{
-  background: #2E168D;
+#heroBlock {
+  background: #2e168d;
   padding: 60px 0 80px;
 }
-.hero_wrapper{
+.hero_wrapper {
   position: relative;
   display: flex;
   align-items: flex-start;
 }
-.hero_wrapper > div{
+.hero_wrapper > div {
   width: 47%;
 }
-.hero_wrapper > div.main_descr_wrapp{
+.hero_wrapper > div.main_descr_wrapp {
   width: 53%;
   position: sticky;
   top: 0;
 }
-.hero_main_title{
-  color: #FFF;
-font-size: 55px;
-font-weight: 800;
-line-height: 65px;
-margin: 20px 0;
+h1.hero_main_title {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  color: #fff !important;
+  font-size: 55px !important;
+  font-weight: 800 !important;
+  line-height: 65px !important;
+  margin: 20px 0;
 }
-#heroBlock p.hero_txt{
-color: #EFECFB;
-margin-bottom: 28px;
-max-width: 552px;
+#heroBlock p.hero_txt {
+  color: #efecfb;
+  margin-bottom: 28px;
+  max-width: 552px;
 }
-.learn_wrapp{
+.learn_wrapp {
   border-radius: 8px 0 0 8px;
-background: #EFECFB;
-padding: 28px;
-margin-bottom: 28px;
+  background: #efecfb;
+  padding: 28px;
+  margin-bottom: 28px;
 }
-.hero_sub_title{
-  color: #2E168D;
-font-size: 18px;
-font-weight: 800;
-line-height: 26px;
-margin-bottom: 20px;
+h2.hero_sub_title {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  color: #2e168d;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 26px;
+  margin: 0 0 20px;
 }
-#heroBlock .learn_list{
-margin: 0;
-padding: 0;
-list-style: none;
+#heroBlock .learn_list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
-.learn_list .learn_item{
+.learn_list .learn_item {
   position: relative;
   padding-left: 32px;
 }
-.learn_list .learn_item + .learn_item{
+.learn_list .learn_item + .learn_item {
   margin-top: 12px;
 }
 .learn_list .learn_item::before {
@@ -263,17 +273,17 @@ list-style: none;
   top: 3px;
   left: 0;
 }
-.learn_list .learn_item p{
-  color: #0A0A0A;
+.learn_list .learn_item p {
+  color: #0a0a0a;
 }
-.learn_list .learn_item p .accent_color_black{
-font-weight: 700;
+.learn_list .learn_item p .accent_color_black {
+  font-weight: 700;
 }
-.featured_box{
+.featured_box {
   max-width: 552px;
 }
-.featured_box .hero_sub_title {
-  color: #FFF;
+.featured_box h2.hero_sub_title {
+  color: #fff;
   margin-bottom: 12px;
   padding-bottom: 12px;
   border-bottom: 1px solid rgb(239 236 251 / 30%);
@@ -287,58 +297,59 @@ font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-      width: max-content;
-    cursor: pointer;
+  width: max-content;
+  cursor: pointer;
 }
-.trust_score_wrapp > div{
+.trust_score_wrapp > div {
   display: flex;
-    align-items: center;
-    justify-content: flex-start;
+  align-items: center;
+  justify-content: flex-start;
 }
 .trust_score_wrapp p {
   color: #fff;
 }
-.trust_score_wrapp p.reviews_txt{
+.trust_score_wrapp p.reviews_txt {
   margin: 0 4px 0 12px;
 }
-.trust_score_wrapp p.reviews_mark{
-color: #00B67A;
-font-weight: 700;
-margin: 0 12px 0 2px;
+.trust_score_wrapp p.reviews_mark {
+  color: #00b67a;
+  font-weight: 700;
+  margin: 0 12px 0 2px;
 }
-.trust_score_wrapp p.reviews_count span{
-text-decoration-line: underline;
+.trust_score_wrapp p.reviews_count span {
+  text-decoration-line: underline;
 }
-.book_calendar_wrapp{
+.book_calendar_wrapp {
   display: flex;
-    flex-direction: column;
-    justify-content: space-between;
- border-radius: 16px;
-background: #FFF;
-box-shadow: 0px 4px 35px 0px rgba(153, 133, 235, 0.20);
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0px 4px 35px 0px rgba(153, 133, 235, 0.2);
 }
 .calendar_header {
-padding: 28px 0 12px;
-    border-bottom: 1px solid #E5E5E5;
-    margin: 0 32px;
+  padding: 28px 0 12px;
+  border-bottom: 1px solid #e5e5e5;
+  margin: 0 32px;
 }
 .calendar_header h2 {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
   color: #2e168d;
   font-size: 18px;
   font-weight: 800;
   line-height: 26px;
   margin: 0 auto 12px;
-      max-width: 270px;
-    text-align: center;
+  max-width: 270px;
+  text-align: center;
 }
 ul.calendar_header_list {
   display: flex;
-      align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
   gap: 20px;
   list-style: none;
   margin: 0;
-    padding: 0;
+  padding: 0;
 }
 ul.calendar_header_list li {
   position: relative;
@@ -356,11 +367,11 @@ ul.calendar_header_list li::before {
   left: 0;
   transform: translateY(-50%);
 }
-ul.calendar_header_list li:nth-child(2):before{
- background: url(https://conversionratestore.github.io/projects/treblehealth/img/clock.svg) center no-repeat;
+ul.calendar_header_list li:nth-child(2):before {
+  background: url(https://conversionratestore.github.io/projects/treblehealth/img/clock.svg) center no-repeat;
 }
-ul.calendar_header_list li:nth-child(3):before{
- background: url(https://conversionratestore.github.io/projects/treblehealth/img/zoom.svg) center no-repeat;
+ul.calendar_header_list li:nth-child(3):before {
+  background: url(https://conversionratestore.github.io/projects/treblehealth/img/zoom.svg) center no-repeat;
 }
 ul.calendar_header_list li p {
   color: #2e168d;
@@ -368,45 +379,46 @@ ul.calendar_header_list li p {
   font-weight: 700;
   line-height: 30px;
 }
-.calendar_body{
+.calendar_body {
   height: 100%;
 }
-.calendar_body iframe{
-      height: 100%;
-    min-height: 600px;
+.calendar_body iframe {
+  height: 100%;
+  min-height: 600px;
 }
-.calendar_footer{
+.calendar_footer {
   padding: 20px 32px;
-  background: #EFECFB;
+  background: #efecfb;
   border-radius: 0 0 16px 16px;
 }
-.calendar_contacts{
+.calendar_contacts {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   margin-bottom: 12px;
   gap: 20px;
 }
-.calendar_footer_title{
-  color: #2E168D;
-font-size: 18px;
-font-weight: 800;
-line-height: 26px;
+h3.calendar_footer_title {
+  color: #2e168d;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 26px;
+  margin: 0;
 }
 .calendar_contacts .tel_link {
   gap: 6px;
 }
-.calendar_contacts .tel_link img{
+.calendar_contacts .tel_link img {
   width: 20px;
 }
-.calendar_contacts .tel_link span:nth-child(3){
+.calendar_contacts .tel_link span:nth-child(3) {
   font-weight: 700;
   text-decoration-line: underline;
 }
-.calendar_contacts .tel_link span{
+.calendar_contacts .tel_link span {
   font-weight: 400;
-font-size: 16px;
-line-height: 25px;
+  font-size: 16px;
+  line-height: 25px;
 }
 .calendar_footer_members {
   display: flex;
@@ -414,7 +426,7 @@ line-height: 25px;
   justify-content: flex-start;
   align-items: center;
 }
-.calendar_footer_members img{
+.calendar_footer_members img {
   max-width: 104px;
 }
 .calendar_footer p.calendar_footer_txt {
@@ -475,7 +487,7 @@ line-height: 25px;
 #ourPatientsLoveTrebleHealthBlock {
   padding: 80px 0;
 }
-.our_patients_treble_health_wrapp .main_title {
+.our_patients_treble_health_wrapp h2.main_title {
   max-width: max-content;
   margin: 0 auto 8px;
 }
@@ -557,6 +569,7 @@ line-height: 25px;
   border-radius: 50%;
   border: none;
   margin: 0 4px;
+  padding: 0;
 }
 #ourPatientsLoveTrebleHealthBlock .slick-dots li.slick-active button {
   background: #2e168d;
@@ -610,7 +623,7 @@ line-height: 25px;
   padding: 0;
   list-style: none;
 }
-.who_should_attend_descr .main_title {
+.who_should_attend_descr h2.main_title {
   margin-bottom: 8px;
 }
 .who_should_attend_descr_list {
@@ -697,7 +710,7 @@ line-height: 25px;
 #yourHostsBlock {
   padding: 0 0 80px;
 }
-.your_hosts_wrapp .main_title {
+.your_hosts_wrapp h2.main_title {
   max-width: max-content;
   margin: 0 auto 48px;
 }
@@ -721,15 +734,16 @@ line-height: 25px;
   gap: 10px;
   margin-bottom: 16px;
 }
-.host_full_info img{
+.host_full_info img {
   max-width: 90px;
 }
-.host_name {
+h3.host_name {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
   color: #2e168d;
   font-size: 18px;
   font-weight: 800;
   line-height: 26px;
-  margin-bottom: 8px;
+  margin: 0 0 8px;
 }
 .your_hosts_list p.host_doctor_of {
   color: #0a0a0a;
@@ -741,13 +755,13 @@ line-height: 25px;
   color: #0a0a0a;
 }
 #yourHostsBlock .tippy-tooltip {
-border-radius: 8px;
-background: #FFF;
-color: #2E168D;
-font-size: 14px;
-font-weight: 400;
-line-height: 20px;
-box-shadow: 0px 0px 23px 7px rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  background: #fff;
+  color: #2e168d;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  box-shadow: 0px 0px 23px 7px rgba(0, 0, 0, 0.12);
 }
 #yourHostsBlock .tippy-popper {
   max-width: 167px !important;
@@ -760,11 +774,11 @@ box-shadow: 0px 0px 23px 7px rgba(0, 0, 0, 0.12);
   border-top-color: #fff;
 }
 #yourHostsBlock .tippy-tooltip[data-placement^="top"] .tippy-arrow {
-    border-width: 22px 29px 0;
-    bottom: -17px;
+  border-width: 22px 29px 0;
+  bottom: -17px;
 }
 #yourHostsBlock .tippy-content {
-    padding: 16px;
+  padding: 16px;
 }
 /*clinicallyProvenResultsBlock */
 #clinicallyProvenResultsBlock {
@@ -775,11 +789,12 @@ box-shadow: 0px 0px 23px 7px rgba(0, 0, 0, 0.12);
   max-width: 944px;
   margin: 0 auto;
   border-radius: 32px;
-    background: #FFF;
-    box-shadow: 0px 4px 35px 0px rgba(153, 133, 235, 0.20);
-    padding: 40px;
+  background: #fff;
+  box-shadow: 0px 4px 35px 0px rgba(153, 133, 235, 0.2);
+  padding: 40px;
+  box-sizing: initial;
 }
-.clinically_proven_results_box .main_title {
+.clinically_proven_results_box h2.main_title {
   text-align: center;
   margin-bottom: 40px;
 }
@@ -791,7 +806,7 @@ box-shadow: 0px 0px 23px 7px rgba(0, 0, 0, 0.12);
   line-height: 20px;
   margin-top: 40px;
 }
-.clinically_proven_results_wrapp .grab_your_free_btn {
+.clinically_proven_results_wrapp button.grab_your_free_btn {
   margin: 28px auto 0;
 }
 .circular_chart_list {
@@ -802,24 +817,24 @@ box-shadow: 0px 0px 23px 7px rgba(0, 0, 0, 0.12);
 .circular_chart_item {
   position: relative;
   width: 100%;
-    max-width: 231px;
+  max-width: 231px;
 }
 .circular_chart_item:nth-child(2)::before,
-.circular_chart_item:nth-child(2)::after{
-  position: absolute;;
-  content: '';
+.circular_chart_item:nth-child(2)::after {
+  position: absolute;
+  content: "";
   width: 3px;
-height: 49px;
-border-radius: 3px;
-background: #2E168D;
-top: 50%;
+  height: 49px;
+  border-radius: 3px;
+  background: #2e168d;
+  top: 50%;
   transform: translateY(-50%);
 }
-.circular_chart_item:nth-child(2)::before{
-left: -64px;
+.circular_chart_item:nth-child(2)::before {
+  left: -64px;
 }
-.circular_chart_item:nth-child(2)::after{
-right: -64px;
+.circular_chart_item:nth-child(2)::after {
+  right: -64px;
 }
 .circular_chart_info {
   position: absolute;
@@ -828,12 +843,13 @@ right: -64px;
   transform: translate(-50%, -50%);
 }
 .circular_chart_item_title {
-  color: #2e168d;
-  font-size: 36px;
-  font-weight: 800;
-  line-height: 45px;
-  margin-bottom: 8px;
-      text-align: center;
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  color: #2e168d !important;
+  font-size: 36px !important;
+  font-weight: 800 !important;
+  line-height: 45px !important;
+  margin: 0 0 8px;
+  text-align: center;
 }
 #clinicallyProvenResultsBlock p.circular_chart_item_txt {
   color: #2e168d;
@@ -841,30 +857,30 @@ right: -64px;
   font-weight: 600;
   line-height: 20px;
   width: 100%;
-    min-width: 151px;
-    text-align: center;
-    min-height: 100px;
+  min-width: 151px;
+  text-align: center;
+  min-height: 100px;
 }
-#clinicallyProvenResultsBlock .circular_chart_item:nth-child(1) p.circular_chart_item_txt{
-      min-width: 118px;
+#clinicallyProvenResultsBlock .circular_chart_item:nth-child(1) p.circular_chart_item_txt {
+  min-width: 118px;
 }
 .circle {
-    transform: rotate(-90deg);
-    transform-origin: 50% 50%;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
 }
 /*trustpilotBlock */
 #trustpilotBlock {
   background: #efecfb;
   padding: 40px 0 80px;
 }
-#trustpilotBlock .container_var .trustpilot_link{
+#trustpilotBlock .container_var .trustpilot_link {
   display: block;
-max-width: 180px;
-margin: 0 auto 20px;
-text-align:center;
+  max-width: 180px;
+  margin: 0 auto 20px;
+  text-align: center;
 }
-#trustpilotBlock  .main_title{
-  text-align:center;
+#trustpilotBlock h2.main_title {
+  text-align: center;
   max-width: 530px;
   margin: 0 auto 67px;
 }
@@ -873,64 +889,64 @@ text-align:center;
 #frequentlyAskedQuestionsBlock {
   padding: 80px 0;
 }
-.frequently_asked_questions_wrapp .main_title{
-text-align:center;
-margin-bottom: 48px;
+.frequently_asked_questions_wrapp h2.main_title {
+  text-align: center;
+  margin-bottom: 48px;
 }
-.questions_accordion{
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0;
-      list-style: none;
+.questions_accordion {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
 }
 .questions_accordion_link {
   padding: 20px;
   cursor: pointer;
 }
-#frequentlyAskedQuestionsBlock .questions_accordion_link p{
+#frequentlyAskedQuestionsBlock .questions_accordion_link p {
   color: #2e168d;
   font-weight: 800;
   line-height: 28px;
-    font-size: 18px;
+  font-size: 18px;
 }
-.questions_accordion_lists{
+.questions_accordion_lists {
   padding: 15px 40px 20px 40px;
   display: none;
 }
-.accordion_icon_wrapp{
+.accordion_icon_wrapp {
   margin-right: 10px;
   display: inline-block;
   float: left;
 }
 .accordion_icon_closed,
-.accordion_icon_opened{
-display: inline-block;
-    width: 100%;
-    max-width: 24px;
-    max-height: 17px;
-    height: 100%;
+.accordion_icon_opened {
+  display: inline-block;
+  width: 100%;
+  max-width: 24px;
+  max-height: 17px;
+  height: 100%;
 }
 .accordion_icon_closed svg,
-.accordion_icon_opened svg{
+.accordion_icon_opened svg {
   width: 100%;
   height: 100%;
 }
 .accordion_icon_opened,
-.questions_accordion_block.active .accordion_icon_closed{
+.questions_accordion_block.active .accordion_icon_closed {
   display: none;
 }
-.questions_accordion_block.active .accordion_icon_opened{
- display: block;
+.questions_accordion_block.active .accordion_icon_opened {
+  display: block;
 }
-.frequently_asked_questions_wrapp .grab_your_free_btn{
-margin: 28px auto 0;
+.frequently_asked_questions_wrapp button.grab_your_free_btn {
+  margin: 28px auto 0;
 }
 /*verifiedReviewsOnGoogleBlock */
 #verifiedReviewsOnGoogleBlock {
   background: #fbfafe;
   padding: 80px 0;
 }
-.verified_reviews_on_google_wrapp .main_title {
+.verified_reviews_on_google_wrapp h2.main_title {
   max-width: max-content;
   margin: 0 auto 48px;
 }
@@ -1054,12 +1070,12 @@ margin: 28px auto 0;
   height: 77px;
   font-size: 15px;
   text-align: left;
-   transition: all 700ms ease-out;
+  transition: all 700ms ease-out;
   overflow: hidden;
   padding-right: 0;
 }
-.ti-review-content .ti-inner.active{
-      height: max-content;
+.ti-review-content .ti-inner.active {
+  height: max-content;
 }
 .ti-highlight {
   padding: 1px 2px;
@@ -1100,8 +1116,8 @@ margin: 28px auto 0;
   -ms-transform: translate(0, -5px);
   transform: translate(0, -5px);
 }
-.ti-read-more span:hover{
-  text-decoration:underline;
+.ti-read-more span:hover {
+  text-decoration: underline;
   opacity: 1;
 }
 /*completeRecoveryBlock */
@@ -1116,10 +1132,10 @@ margin: 28px auto 0;
 .complete_recovery_wrapp .img_wrapp {
   border-radius: 16px;
 }
-.complete_recovery_wrapp .img_wrapp .desk_img{
+.complete_recovery_wrapp .img_wrapp .desk_img {
   max-width: 560px;
 }
-.complete_recovery_wrapp .main_title {
+.complete_recovery_wrapp h2.main_title {
   margin-bottom: 12px;
 }
 /*new_footer */
@@ -1159,7 +1175,7 @@ margin: 28px auto 0;
   .who_should_attend_descr_list + p {
     font-size: 14px;
   }
-  .main_title {
+  h2.main_title {
     font-size: 39px;
   }
   .featured_img_wrapp {
@@ -1167,573 +1183,577 @@ margin: 28px auto 0;
   }
   .sticky_header .tel_link {
     font-size: 14px;
-}
-#ourPatientsLoveTrebleHealthBlock .slick-list {
+  }
+  #ourPatientsLoveTrebleHealthBlock .slick-list {
     max-width: 820px;
-}
-.hero_main_title {
-    font-size: 50px;
-}
-.new_body p {
+  }
+  h1.hero_main_title {
+    font-size: 50px !important;
+  }
+  .new_body p {
     font-size: 15px;
-}
-.calendar_contacts .tel_link span {
+  }
+  .calendar_contacts .tel_link span {
     font-size: 13px;
-}
-#ourPatientsLoveTrebleHealthBlock p.video_descr {
+  }
+  #ourPatientsLoveTrebleHealthBlock p.video_descr {
     font-size: 15px;
-}
+  }
 }
 @media only screen and (min-width: 900px) and (max-width: 1090px) {
   .sticky_header .tel_link {
     font-size: 12px;
-}
-.who_should_attend_descr_list + p {
+  }
+  .who_should_attend_descr_list + p {
     font-size: 13px;
-}
-.who_should_attend_descr .main_title + p{
-   font-size: 14px;
-}
-.sticky_header .grab_your_free_btn {
+  }
+  .who_should_attend_descr h2.main_title + p {
+    font-size: 14px;
+  }
+  .sticky_header button.grab_your_free_btn {
     max-width: 133px;
-}
-#ourPatientsLoveTrebleHealthBlock .slick-list {
+  }
+  #ourPatientsLoveTrebleHealthBlock .slick-list {
     max-width: 792px;
-}
-.main_title {
+  }
+  h2.main_title {
     font-size: 31px;
-}
-.new_body p {
+  }
+  .new_body p {
     font-size: 14px;
-}
-#ourPatientsLoveTrebleHealthBlock p.video_descr {
+  }
+  #ourPatientsLoveTrebleHealthBlock p.video_descr {
     font-size: 14px;
-}
-.circular_chart_item:nth-child(2)::after {
+  }
+  .circular_chart_item:nth-child(2)::after {
     right: -42px;
-}
-.circular_chart_item:nth-child(2)::before {
+  }
+  .circular_chart_item:nth-child(2)::before {
     left: -42px;
-}
+  }
 }
 
 @media (max-width: 768px) {
-    .main_title {
-  font-size: 28px;
-  line-height: 36px;
-}
-.sub_title{
-  font-size: 20px;
-line-height: 28px;
-}
-.grab_your_free_btn {
-  margin: 20px auto 0;
-  max-width: unset;
-}
-#exclusiveBonusBlock,
-#heroBlock .book_calendar_wrapp,
-#heroBlock .learn_wrapp,
-.sticky_header .logo_link,
-.sticky_btn_wrapp .tel_link,
-p.desk_txt,
-.desk_img,
-.ti-column.firts_var,
-.ti-column.second_var,
-.ti-column.third_var,
-.ti-column.fourth_var,
-.new_header_wrapp .tel_link span.desk_var {
-  display: none;
-}
-/*new_header */
-.new_header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-      z-index: 5;
-      padding: 8px 0;
-}
-.new_header_wrapp .logo_link {
-  max-width: 150px;
-  max-height: 28px;
-}
-.new_header_wrapp .logo_link img {
-  width: 100%;
-  height: 100%;
-}
-.new_header_wrapp .tel_link span.mob_var{
-  display: block;
-}
-.new_header_wrapp .tel_link {
+  h2.main_title {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  .sub_title {
+    font-size: 20px !important;
+    line-height: 28px !important;
+  }
+  button.grab_your_free_btn {
+    margin: 20px auto 0;
+    max-width: unset;
+  }
+  #exclusiveBonusBlock,
+  #heroBlock .book_calendar_wrapp,
+  #heroBlock .learn_wrapp,
+  .sticky_header .logo_link,
+  .sticky_btn_wrapp .tel_link,
+  p.desk_txt,
+  .desk_img,
+  .ti-column.firts_var,
+  .ti-column.second_var,
+  .ti-column.third_var,
+  .ti-column.fourth_var,
+  .new_header_wrapp .tel_link span.desk_var {
+    display: none;
+  }
+  /*new_header */
+  .new_header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    padding: 8px 0;
+  }
+  .new_header_wrapp .logo_link {
+    max-width: 150px;
+    max-height: 28px;
+  }
+  .new_header_wrapp .logo_link img {
+    width: 100%;
+    height: 100%;
+  }
+  .new_header_wrapp .tel_link span.mob_var {
+    display: block;
+  }
+  .new_header_wrapp .tel_link {
     color: #333;
     font-size: 12px;
     font-weight: 400;
     line-height: 18px;
     flex-direction: column;
     gap: 0;
-}
-.new_header_wrapp .tel_link img {
+  }
+  .new_header_wrapp .tel_link img {
     width: 26px;
-}
-/*.sticky_header */
-.sticky_header.is_fixed_mob.is_intersecting{
+  }
+  /*.sticky_header */
+  .sticky_header.is_fixed_mob.is_intersecting {
     padding: 20px 0;
-  opacity: 1;
-  position: fixed;
-  left: 0;
-  z-index: 111111111;
-  overflow: initial;
-  height: max-content;
-  bottom: 0;
-  border-top: 1px solid #E5E5E5;
-background: #EFECFB;
-box-shadow: 0px -4px 35px 0px rgba(153, 133, 235, 0.20);
-}
-.sticky_header .new_header_wrapp{
-  gap: 9px;
-}
-.sticky_header .trust_score_wrapp {
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-}
-.sticky_btn_wrapp {
-  width: 100%;
-  max-width: 148px;
-}
-.sticky_header .trust_score_wrapp p.reviews_txt{
-  margin-left: 0;
-}
-.trust_score_wrapp > div {
-  width: 100%;
-  display: flex;
-}
-/*new_body */
-.new_body {
-  padding-top: 60px;
-  background: #fff;
-}
-/* heroBlock */
-#heroBlock {
-  padding: 20px 0 40px;
-}
-.hero_wrapper {
-  flex-direction: column;
-}
-.hero_wrapper > div.main_descr_wrapp {
-  width: 100%;
-}
-.hero_main_title {
-  font-size: 34px;
-  line-height: 48px;
-  margin: 28px auto 16px;
-  text-align: center;
-}
-.hero_sub_title {
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 25px;
-  text-align: center;
-}
-#heroBlock p.hero_txt {
-  text-align: center;
-}
-.learn_from_call_box_mob {
-  display: block;
-  border-radius: 8px;
-  background: var(--bg-1, #efecfb);
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
-  padding: 20px;
-  margin-bottom: 28px;
-}
-.learn_from_call_box_mob .grab_your_free_btn {
-  margin: 16px 0;
-}
-.learn_from_call_btn {
-  color: #2e168d;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 25px;
-  text-decoration-line: underline;
-  cursor: pointer;
-      margin: 0 auto;
+    opacity: 1;
+    position: fixed;
+    left: 0;
+    z-index: 111111111;
+    overflow: initial;
+    height: max-content;
+    bottom: 0;
+    border-top: 1px solid #e5e5e5;
+    background: #efecfb;
+    box-shadow: 0px -4px 35px 0px rgba(153, 133, 235, 0.2);
+  }
+  .sticky_header .new_header_wrapp {
+    gap: 9px;
+  }
+  .sticky_header .trust_score_wrapp {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .sticky_btn_wrapp {
+    width: 100%;
+    max-width: 148px;
+  }
+  .sticky_header .trust_score_wrapp p.reviews_txt {
+    margin-left: 0;
+  }
+  .trust_score_wrapp > div {
+    width: 100%;
+    display: flex;
+  }
+  /*new_body */
+  .new_body {
+    padding-top: 60px;
+    background: #fff;
+  }
+  /* heroBlock */
+  #heroBlock {
+    padding: 20px 0 40px;
+  }
+  .hero_wrapper {
+    flex-direction: column;
+  }
+  .hero_wrapper > div.main_descr_wrapp {
+    width: 100%;
+  }
+  h1.hero_main_title {
+    font-size: 34px !important;
+    line-height: 48px !important;
+    margin: 28px auto 16px;
+    text-align: center;
+  }
+  h2.hero_sub_title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 25px;
+    text-align: center;
+  }
+  #heroBlock p.hero_txt {
+    text-align: center;
+  }
+  .learn_from_call_box_mob {
+    display: block;
+    border-radius: 8px;
+    background: var(--bg-1, #efecfb);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+    padding: 20px;
+    margin-bottom: 28px;
+  }
+  .learn_from_call_box_mob button.grab_your_free_btn {
+    margin: 16px 0;
+  }
+  .learn_from_call_btn {
+    color: #2e168d;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 25px;
+    text-decoration-line: underline;
+    cursor: pointer;
+    margin: 0 auto;
     text-align: center;
     display: block;
     width: max-content;
-}
-.trust_score_wrapp p {
-  font-size: 14px;
-  line-height: 20px;
-}
-.trust_score_wrapp p span {
-  font-weight: 600;
-}
-.featured_img_wrapp img:nth-child(1) {
-  max-width: 69px;
-}
-.featured_img_wrapp img:nth-child(2) {
-  max-width: 141px;
-}
-.featured_img_wrapp img:nth-child(3) {
-  max-width: 78px;
-}
-/*learnMobBlock */
-#learnMobBlock {
-  display: block;
-  padding: 40px 0;
-}
-.learn_wrapp {
-  border-radius: 0;
-  background: none;
-  padding: 0;
-  margin-bottom: 20px;
-}
-.learn_wrapp .hero_sub_title {
-  font-size: 28px;
-  font-weight: 800;
-  line-height: 36px;
-  max-width: 350px;
-}
-.learn_list .learn_item p {
-  color: #2e168d;
-}
-.learn_list .learn_item + .learn_item {
-  margin-top: 8px;
-}
-.learn_list .learn_item::before {
-  background: url(https://conversionratestore.github.io/projects/treblehealth/img/check_icon.svg) center no-repeat;
-  background-size: contain;
-}
-.exclusive_bonus_wrapp {
-  border-radius: 0;
-  border: none;
-  background: none;
-  box-shadow: none;
-  flex-direction: column;
-}
-.exclusive_bonus_wrapp li:nth-child(1) {
-  border-radius: 8px;
-  border: 1px solid var(--borders, #e5e5e5);
-  background: var(--white, #fff);
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
-  padding: 12px;
-  display: flex;
-  gap: 4px;
-}
-.exclusive_bonus_wrapp li:nth-child(2){
-  width: 100%;
-  padding: 0;
+  }
+  .trust_score_wrapp p {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .trust_score_wrapp p span {
+    font-weight: 600;
+  }
+  .featured_img_wrapp img:nth-child(1) {
+    max-width: 69px;
+  }
+  .featured_img_wrapp img:nth-child(2) {
+    max-width: 141px;
+  }
+  .featured_img_wrapp img:nth-child(3) {
+    max-width: 78px;
+  }
+  /*learnMobBlock */
+  #learnMobBlock {
+    display: block;
+    padding: 40px 0;
+  }
+  .learn_wrapp {
+    border-radius: 0;
+    background: none;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+  .learn_wrapp h2.hero_sub_title {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 36px;
+    max-width: 350px;
+  }
+  .learn_list {
+    list-style: none;
+    padding: 0;
+  }
+  .learn_list .learn_item p {
+    color: #2e168d;
+  }
+  .learn_list .learn_item + .learn_item {
+    margin-top: 8px;
+  }
+  .learn_list .learn_item::before {
+    background: url(https://conversionratestore.github.io/projects/treblehealth/img/check_icon.svg) center no-repeat;
+    background-size: contain;
+  }
+  .exclusive_bonus_wrapp {
+    border-radius: 0;
+    border: none;
+    background: none;
+    box-shadow: none;
+    flex-direction: column;
+  }
+  .exclusive_bonus_wrapp li:nth-child(1) {
+    border-radius: 8px;
+    border: 1px solid var(--borders, #e5e5e5);
+    background: var(--white, #fff);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+    padding: 12px;
+    display: flex;
+    gap: 4px;
+  }
+  .exclusive_bonus_wrapp li:nth-child(2) {
+    width: 100%;
+    padding: 0;
     width: 100%;
     border-radius: 0;
     background: unset;
-}
-.exclusive_bonus_wrapp .sub_title {
-  margin-bottom: 2px;
-}
-.exclusive_bonus_wrapp .accent_color {
-  font-weight: 400;
-  margin-bottom: 8px;
-  color: #2E168D;
-  font-size: 14px;
-line-height: 20px;
-}
-.exclusive_bonus_wrapp p:last-child{
-  color: #0A0A0A;
+  }
+  .exclusive_bonus_wrapp .sub_title {
+    margin-bottom: 2px;
+  }
+  .exclusive_bonus_wrapp .accent_color {
+    font-weight: 400;
+    margin-bottom: 8px;
+    color: #2e168d;
     font-size: 14px;
-line-height: 20px;
-}
-.exclusive_bonus_wrapp .img_wrapp{
-  max-width: 104px;
+    line-height: 20px;
+  }
+  .exclusive_bonus_wrapp p:last-child {
+    color: #0a0a0a;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .exclusive_bonus_wrapp .img_wrapp {
+    max-width: 104px;
     width: 100%;
     min-width: 104px;
-}
-/*bookCalendarMob */
-#bookCalendarMob {
-  display: block;
-  background: #efecfb;
-  padding: 40px 0;
-}
-#bookCalendarMob .book_calendar_wrapp {
-  border-radius: 0;
-  background: unset;
-  box-shadow: none;
-}
-#bookCalendarMob .calendar_header {
-  padding: 0 0 20px;
-  border-bottom: none;
-  margin: 0;
-}
-#bookCalendarMob .calendar_header h2 {
-  font-size: 20px;
-  line-height: 28px;
-  max-width: 304px;
-}
-#bookCalendarMob iframe {
-  border-radius: 8px;
-  background: #fff;
-}
-#bookCalendarMob .calendar_footer {
-  padding: 20px 0 0;
-  background: none;
-  border-radius: 0;
-}
-#bookCalendarMob .calendar_footer p.calendar_footer_txt {
-  font-size: 14px;
-  line-height: 20px;
-}
-#bookCalendarMob .calendar_contacts {
-  gap: 12px;
-  flex-direction: column;
-  align-items: flex-start;
-}
-#bookCalendarMob .calendar_footer_title {
-  line-height: 28px;
-}
-#bookCalendarMob .calendar_footer p.calendar_footer_txt br{
-  display: none;
-}
-#bookCalendarMob .calendar_contacts .tel_link span {
-  font-size: 14px;
-  line-height: 20px;
-}
-#bookCalendarMob .calendar_contacts .tel_link span:nth-child(3) {
-  font-weight: 600;
-}
-/* ourPatientsLoveTrebleHealthBlock */
-#ourPatientsLoveTrebleHealthBlock {
-  padding: 40px 0;
-}
-.our_patients_treble_health_wrapp .main_title {
-  text-align: center;
-}
-.our_patients_treble_health_wrapp > p {
-  margin: 0 auto 20px;
-}
-#ourPatientsLoveTrebleHealthBlock .slick-slide > div {
-  border-radius: 8px;
-}
-#ourPatientsLoveTrebleHealthBlock p.video_descr {
-  padding: 12px;
-  border-radius: 8px 8px 0 0;
-}
-#ourPatientsLoveTrebleHealthBlock .video_link_wrapp {
-  height: 197px;
-}
-#ourPatientsLoveTrebleHealthBlock .video_link_wrapp::before {
-  height: 48px;
-  width: 48px;
-}
-#ourPatientsLoveTrebleHealthBlock .video_link_wrapp iframe {
+  }
+  /*bookCalendarMob */
+  #bookCalendarMob {
+    display: block;
+    background: #efecfb;
+    padding: 40px 0;
+  }
+  #bookCalendarMob .book_calendar_wrapp {
+    border-radius: 0;
+    background: unset;
+    box-shadow: none;
+  }
+  #bookCalendarMob .calendar_header {
+    padding: 0 0 20px;
+    border-bottom: none;
+    margin: 0;
+  }
+  #bookCalendarMob .calendar_header h2 {
+    font-size: 20px;
+    line-height: 28px;
+    max-width: 304px;
+  }
+  #bookCalendarMob iframe {
+    border-radius: 8px;
+    background: #fff;
+  }
+  #bookCalendarMob .calendar_footer {
+    padding: 20px 0 0;
+    background: none;
+    border-radius: 0;
+  }
+  #bookCalendarMob .calendar_footer p.calendar_footer_txt {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  #bookCalendarMob .calendar_contacts {
+    gap: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  #bookCalendarMob h3.calendar_footer_title {
+    line-height: 28px;
+  }
+  #bookCalendarMob .calendar_footer p.calendar_footer_txt br {
+    display: none;
+  }
+  #bookCalendarMob .calendar_contacts .tel_link span {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  #bookCalendarMob .calendar_contacts .tel_link span:nth-child(3) {
+    font-weight: 600;
+  }
+  /* ourPatientsLoveTrebleHealthBlock */
+  #ourPatientsLoveTrebleHealthBlock {
+    padding: 40px 0;
+  }
+  .our_patients_treble_health_wrapp h2.main_title {
+    text-align: center;
+  }
+  .our_patients_treble_health_wrapp > p {
+    margin: 0 auto 20px;
+  }
+  #ourPatientsLoveTrebleHealthBlock .slick-slide > div {
+    border-radius: 8px;
+  }
+  #ourPatientsLoveTrebleHealthBlock p.video_descr {
+    padding: 12px;
+    border-radius: 8px 8px 0 0;
+  }
+  #ourPatientsLoveTrebleHealthBlock .video_link_wrapp {
+    height: 197px;
+  }
+  #ourPatientsLoveTrebleHealthBlock .video_link_wrapp::before {
+    height: 48px;
+    width: 48px;
+  }
+  #ourPatientsLoveTrebleHealthBlock .video_link_wrapp iframe {
     border-radius: 0 0 8px 8px;
-}
-#ourPatientsLoveTrebleHealthBlock .slick-slide {
-  margin: 0 4px;
-  border-radius: 8px;
-}
-#ourPatientsLoveTrebleHealthBlock .video_link_wrapp img {
-  border-radius: 0 0 8px 8px;
-}
-#ourPatientsLoveTrebleHealthBlock .slick-arrow {
-  top: unset;
-  transform: unset;
-  bottom: -5px;
-  height: 24px;
-  width: 24px;
-}
+  }
+  #ourPatientsLoveTrebleHealthBlock .slick-slide {
+    margin: 0 4px;
+    border-radius: 8px;
+  }
+  #ourPatientsLoveTrebleHealthBlock .video_link_wrapp img {
+    border-radius: 0 0 8px 8px;
+  }
+  #ourPatientsLoveTrebleHealthBlock .slick-arrow {
+    top: unset;
+    transform: unset;
+    bottom: -5px;
+    height: 24px;
+    width: 24px;
+  }
 
-/* whoShouldAttendBlock */
-#whoShouldAttendBlock {
-  padding: 0 0 40px;
-}
-.who_should_attend_wrapp {
-  gap: 20px;
-  flex-direction: column-reverse;
-}
-.who_should_attend_descr .main_title {
-  text-align: center;
-}
-.who_should_attend_descr .main_title + p {
-  text-align: center;
-  max-width: 317px;
-  margin: 0 auto;
-}
-.who_should_attend_descr_list {
-  gap: 8px;
-}
-.who_should_attend_descr_list + p {
-  text-align: center;
-}
-.who_should_attend_item:nth-child(1) > div:nth-child(2) {
-  padding: 12px;
-}
-.who_should_attend_item:nth-child(1) > div > p {
-  margin-top: 8px;
-}
-p.mob_txt{
-  display: block;
-}
-.who_should_attend_item:nth-child(1) .img_wrapp {
-  max-width: 100px;
-}
-.who_should_attend_item:nth-child(1) .img_wrapp p.name_founder {
-  padding: 4px;
-}
-.who_should_attend_item:nth-child(1) .img_wrapp p.name_founder span {
+  /* whoShouldAttendBlock */
+  #whoShouldAttendBlock {
+    padding: 0 0 40px;
+  }
+  .who_should_attend_wrapp {
+    gap: 20px;
+    flex-direction: column-reverse;
+  }
+  .who_should_attend_descr h2.main_title {
+    text-align: center;
+  }
+  .who_should_attend_descr h2.main_title + p {
+    text-align: center;
+    max-width: 317px;
+    margin: 0 auto;
+  }
+  .who_should_attend_descr_list {
+    gap: 8px;
+  }
+  .who_should_attend_descr_list + p {
+    text-align: center;
+  }
+  .who_should_attend_item:nth-child(1) > div:nth-child(2) {
+    padding: 12px;
+  }
+  .who_should_attend_item:nth-child(1) > div > p {
+    margin-top: 8px;
+  }
+  p.mob_txt {
+    display: block;
+  }
+  .who_should_attend_item:nth-child(1) .img_wrapp {
+    max-width: 100px;
+  }
+  .who_should_attend_item:nth-child(1) .img_wrapp p.name_founder {
+    padding: 4px;
+  }
+  .who_should_attend_item:nth-child(1) .img_wrapp p.name_founder span {
     max-width: 88px;
-}
-.who_should_attend_item .grab_your_free_btn{
-  display: none;
-}
-.grab_your_free_btn.mob_var{
-  display: flex;
-}
-.who_should_attend_item:nth-child(1) > div:nth-child(2)::after{
-  width: 41px;
+  }
+  .who_should_attend_item button.grab_your_free_btn {
+    display: none;
+  }
+  button.grab_your_free_btn.mob_var {
+    display: flex;
+  }
+  .who_should_attend_item:nth-child(1) > div:nth-child(2)::after {
+    width: 41px;
     height: 57px;
     background: url(https://conversionratestore.github.io/projects/treblehealth/img/arrow_icon_mob.svg) center no-repeat;
     background-size: contain;
     bottom: -20px;
     right: 50px;
-}
-/* yourHostsBlock */
-#yourHostsBlock {
-  padding: 0 0 40px;
-}
-.your_hosts_wrapp .main_title {
+  }
+  /* yourHostsBlock */
+  #yourHostsBlock {
+    padding: 0 0 40px;
+  }
+  .your_hosts_wrapp h2.main_title {
     margin: 0 auto 77px;
-}
-.your_hosts_list {
-  gap: 77px;
-  flex-direction: column;
-}
-.your_hosts_list > li {
-  padding: 73px 20px 20px;
-}
-.host_full_info {
-  flex-direction: column;
-  gap: 0;
-}
-.host_name {
-  font-size: 20px;
-  line-height: 28px;
-}
-.your_hosts_list p.host_doctor_of {
-  text-align: center;
-}
-.host_full_info .img_wrapp {
-  margin-top: -133px;
-}
-/* #clinicallyProvenResultsBlock */
-#clinicallyProvenResultsBlock {
-  padding: 40px 0;
-}
-.clinically_proven_results_box .main_title {
-  margin-bottom: 20px;
-}
-.circular_chart_list {
-  flex-direction: column;
-  gap: 43px;
-}
-.circular_chart_item:nth-child(2)::before,
-.circular_chart_item:nth-child(2)::after {
-  left: 50%;
-  top: -49px;
-  transform: translateX(-50%) rotate(90deg);
-}
-.circular_chart_item:nth-child(2)::after {
+  }
+  .your_hosts_list {
+    gap: 77px;
+    flex-direction: column;
+  }
+  .your_hosts_list > li {
+    padding: 73px 20px 20px;
+  }
+  .host_full_info {
+    flex-direction: column;
+    gap: 0;
+  }
+  h3.host_name {
+    font-size: 20px;
+    line-height: 28px;
+  }
+  .your_hosts_list p.host_doctor_of {
+    text-align: center;
+  }
+  .host_full_info .img_wrapp {
+    margin-top: -133px;
+  }
+  /* #clinicallyProvenResultsBlock */
+  #clinicallyProvenResultsBlock {
+    padding: 40px 0;
+  }
+  .clinically_proven_results_box h2.main_title {
+    margin-bottom: 20px;
+  }
+  .circular_chart_list {
+    flex-direction: column;
+    gap: 43px;
+  }
+  .circular_chart_item:nth-child(2)::before,
+  .circular_chart_item:nth-child(2)::after {
+    left: 50%;
+    top: -49px;
+    transform: translateX(-50%) rotate(90deg);
+  }
+  .circular_chart_item:nth-child(2)::after {
     right: 50%;
     top: unset;
     bottom: -45px;
-}
-.clinically_proven_results_box > p {
-  margin-top: 20px;
-}
-#clinicallyProvenResultsBlock p.circular_chart_item_txt {
-  min-height: unset;
-}
-#clinicallyProvenResultsBlock .circular_chart_item:nth-child(1) p.circular_chart_item_txt {
-  min-width: 110px;
-}
-.clinically_proven_results_wrapp .grab_your_free_btn {
-  margin: 20px 0 0;
-}
-.clinically_proven_results_box {
-  padding: 28px 20px;
-}
-/* trustpilotBlock */
-#trustpilotBlock {
-  padding: 0 0 40px;
-}
-#trustpilotBlock .main_title {
-    margin: 0 auto 12px;
-}
-/* frequentlyAskedQuestionsBlock */
-#frequentlyAskedQuestionsBlock {
-  padding: 40px 0;
-}
-.frequently_asked_questions_wrapp .grab_your_free_btn {
-  margin: 0;
-}
-#frequentlyAskedQuestionsBlock .questions_accordion_link p {
-  font-size: 17px;
-}
-/* verifiedReviewsOnGoogleBlock */
-#verifiedReviewsOnGoogleBlock {
-  padding: 40px 0 59px;
-}
-.verified_reviews_on_google_wrapp .main_title {
-  margin: 0 auto 20px;
-  text-align: center;
-}
-.ti-reviews-container-wrapper {
-  flex-direction: column;
-}
-.ti-column {
-  flex: unset;
-  max-width: 100%;
-}
-.ti-column.mob_var{
-  display: block;
-}
-  /*#completeRecoveryBlock */
-  #completeRecoveryBlock{
-    background: #FBFAFE;
+  }
+  .clinically_proven_results_box > p {
+    margin-top: 20px;
+  }
+  #clinicallyProvenResultsBlock p.circular_chart_item_txt {
+    min-height: unset;
+  }
+  #clinicallyProvenResultsBlock .circular_chart_item:nth-child(1) p.circular_chart_item_txt {
+    min-width: 110px;
+  }
+  .clinically_proven_results_wrapp button.grab_your_free_btn {
+    margin: 20px 0 0;
+  }
+  .clinically_proven_results_box {
+    padding: 28px 20px;
+  }
+  /* trustpilotBlock */
+  #trustpilotBlock {
     padding: 0 0 40px;
   }
-#completeRecoveryBlock .complete_recovery_wrapp {
-  flex-direction: column;
-  justify-content: center;
-  gap: 19px;
-  border-radius: 8px;
-  border: 1px solid #e5e5e5;
-  background: #fff;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
-}
-.complete_recovery_wrapp .main_title {
-  margin-bottom: 8px;
-  text-align: center;
-}
-#completeRecoveryBlock p{
-  text-align:center;
-}
-.complete_recovery_wrapp .img_wrapp {
+  #trustpilotBlock h2.main_title {
+    margin: 0 auto 12px;
+  }
+  /* frequentlyAskedQuestionsBlock */
+  #frequentlyAskedQuestionsBlock {
+    padding: 40px 0;
+  }
+  .frequently_asked_questions_wrapp button.grab_your_free_btn {
+    margin: 0;
+  }
+  #frequentlyAskedQuestionsBlock .questions_accordion_link p {
+    font-size: 17px;
+  }
+  /* verifiedReviewsOnGoogleBlock */
+  #verifiedReviewsOnGoogleBlock {
+    padding: 40px 0 59px;
+  }
+  .verified_reviews_on_google_wrapp h2.main_title {
+    margin: 0 auto 20px;
+    text-align: center;
+  }
+  .ti-reviews-container-wrapper {
+    flex-direction: column;
+  }
+  .ti-column {
+    flex: unset;
+    max-width: 100%;
+  }
+  .ti-column.mob_var {
+    display: block;
+  }
+  /*#completeRecoveryBlock */
+  #completeRecoveryBlock {
+    background: #fbfafe;
+    padding: 0 0 40px;
+  }
+  #completeRecoveryBlock .complete_recovery_wrapp {
+    flex-direction: column;
+    justify-content: center;
+    gap: 19px;
+    border-radius: 8px;
+    border: 1px solid #e5e5e5;
+    background: #fff;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+  }
+  .complete_recovery_wrapp h2.main_title {
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  #completeRecoveryBlock p {
+    text-align: center;
+  }
+  .complete_recovery_wrapp .img_wrapp {
     border-radius: 0;
-}
-.complete_recovery_wrapp .img_wrapp img {
-  width: 100%;
-  height: 100%;
-  border-radius: 8px 8px 0 0;
-}
-.mob_img{
-  display: block;
-}
-/*new_footer_wrapp */
-.new_footer_wrapp {
-  flex-direction: column-reverse;
-}
-.new_footer {
+  }
+  .complete_recovery_wrapp .img_wrapp img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px 8px 0 0;
+  }
+  .mob_img {
+    display: block;
+  }
+  /*new_footer_wrapp */
+  .new_footer_wrapp {
+    flex-direction: column-reverse;
+  }
+  .new_footer {
     padding: 20px 0 109px;
-}
+  }
 }
 @media (max-width: 376px) {
   .sticky_header .trust_score_wrapp p {
@@ -1743,8 +1763,8 @@ p.mob_txt{
     font-size: 15px;
   }
   .learn_list .learn_item p {
-  font-size: 15px;
-}
+    font-size: 15px;
+  }
 }
 @media (max-width: 361px) {
   ul.calendar_header_list li p {
@@ -1753,7 +1773,7 @@ p.mob_txt{
     font-weight: 700;
     line-height: 30px;
   }
-  .main_title {
+  h2.main_title {
     font-size: 27px;
   }
   .new_body p {
@@ -1775,11 +1795,11 @@ p.mob_txt{
   .sticky_header .trust_score_wrapp p {
     font-size: 10px;
   }
-  .sticky_header .grab_your_free_btn {
-    font-size: 15px;
+  .sticky_header button.grab_your_free_btn {
+    font-size: 15px !important;
   }
-  .grab_your_free_btn {
-    font-size: 16px;
+  button.grab_your_free_btn {
+    font-size: 16px !important;
   }
 }
 
@@ -1889,7 +1909,7 @@ p.mob_txt{
   </ul>
 </div>
 <div class="calendar_body">
- <iframe src="https://calendly.com/treble-health-audiologists/tinnitus-relief-discovery?embed_domain=treblehealth.com&embed_type=Inline&hide_event_type_details=1&hide_gdpr_banner=1&primary_color=4622da&month=2023-11&utm_content=funnel_1" width="100%" height="100%" frameborder="0" title="Select a Date &amp; Time - Calendly" data-gtm-yt-inspected-14="true" data-gtm-yt-inspected-60173040_75="true"></iframe>
+ <iframe class="new_iframe_calendly" src="https://calendly.com/treble-health-audiologists/tinnitus-relief-discovery?embed_domain=treblehealth.com&embed_type=Inline&hide_event_type_details=1&hide_gdpr_banner=1&primary_color=4622da&month=2023-11&utm_content=funnel_1" width="100%" height="100%" frameborder="0" title="Select a Date &amp; Time - Calendly" data-gtm-yt-inspected-14="true" data-gtm-yt-inspected-60173040_75="true"></iframe>
 </div>
 <div class="calendar_footer">
   <div class="calendar_contacts">
@@ -1979,7 +1999,7 @@ p.mob_txt{
           </ul>
         </div>
         <div class="calendar_body no_sticky">
- <iframe src="https://calendly.com/treble-health-audiologists/tinnitus-relief-discovery?embed_domain=treblehealth.com&embed_type=Inline&hide_event_type_details=1&hide_gdpr_banner=1&primary_color=4622da&month=2023-11&utm_content=funnel_1" width="100%" height="100%" frameborder="0" title="Select a Date &amp; Time - Calendly" data-gtm-yt-inspected-14="true" data-gtm-yt-inspected-60173040_75="true"></iframe>
+          <iframe class="new_iframe_calendly" src="https://calendly.com/treble-health-audiologists/tinnitus-relief-discovery?embed_domain=treblehealth.com&embed_type=Inline&hide_event_type_details=1&hide_gdpr_banner=1&primary_color=4622da&month=2023-11&utm_content=funnel_1" width="100%" height="100%" frameborder="0" title="Select a Date &amp; Time - Calendly" data-gtm-yt-inspected-14="true" data-gtm-yt-inspected-60173040_75="true"></iframe>
         </div>
         <div class="calendar_footer">
           <div class="calendar_contacts">
@@ -2300,9 +2320,21 @@ p.mob_txt{
         document.querySelector("#lp-pom-root").insertAdjacentHTML("beforebegin", newHtml);
       }
 
-      if (document.querySelector("#root") && !document.querySelector(".new_body") && window.location.pathname === "/treble-health-audiologists/tinnitus-relief-discovery/") {
-        document.querySelector("#root").insertAdjacentHTML("beforebegin", newHtml);
+      if (window.location.pathname === "/product/maskers-bundle/" && document.querySelector(".elementor-12891 .elementor-element.elementor-element-3816e4b .elementor-button")?.href !== "https://treblehealth.com/aud-consult-sign-up-calendly-v2/") {
+        document.querySelector(".elementor-12891 .elementor-element.elementor-element-3816e4b .elementor-button").href = "https://treblehealth.com/aud-consult-sign-up-calendly-v2/";
       }
+
+      if (document.querySelector("#content") && !document.querySelector(".new_body") && window.location.pathname === "/aud-consult-sign-up-calendly-v2/") {
+        document.querySelector("#content").insertAdjacentHTML("beforebegin", newHtml);
+      }
+      // new_iframe_calendly
+      if (document.querySelector("#content") && document.querySelector(".new_body") && window.location.pathname === "/aud-consult-sign-up-calendly-v2/" && document.querySelectorAll(".new_iframe_calendly") && !document.querySelector(".new_iframe_calendly_second")) {
+        document.querySelectorAll(".new_iframe_calendly").forEach((el) => {
+          el.insertAdjacentHTML("beforebegin", `<div class="new_iframe_calendly_second"><iframe src="https://calendly.com/treble-health-audiologists/treble-health-consultation?embed_domain=treblehealth.com&amp;embed_type=Inline&amp;hide_event_type_details=1&amp;hide_gdpr_banner=1&amp;primary_color=4622da&amp;utm_term=1261762004.1699950023&utm_content=funnel_1" width="100%" height="100%" frameborder="0" title="Select a Date &amp; Time - Calendly" data-gtm-yt-inspected-60173040_75="true" data-gtm-yt-inspected-15="true"></iframe></div>`);
+          el.remove();
+        });
+      }
+
       //Verified Reviews on Google items
       if (document.querySelector(".verified_reviews_on_google_wrapp") && document.querySelector(".verified_reviews_on_google_wrapp .ti-reviews-container-wrapper .ti-column.firts_var").children.length !== arrGoogleReviews1.length) {
         for (let key in arrGoogleReviews1) {
