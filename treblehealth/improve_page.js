@@ -1,59 +1,84 @@
-console.log(
-  '%c EXP: Trial Selection (DEV: SKh)',
-  'background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;'
-)
-const $$el = selector => document.querySelectorAll(selector)
-const $el = selector => document.querySelector(selector)
-const git = 'https://conversionratestore.github.io/projects/'
+console.log("%c EXP: Trial Selection (DEV: SKh)", "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;");
+const $$el = (selector) => document.querySelectorAll(selector);
+const $el = (selector) => document.querySelector(selector);
+const git = "https://conversionratestore.github.io/projects/";
+
+// cdn slider
+let scriptCustomSlider = document.createElement("script");
+scriptCustomSlider.src = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js";
+scriptCustomSlider.async = false;
+document.head.appendChild(scriptCustomSlider);
+
+let scriptCustomSliderStyle = document.createElement("link");
+scriptCustomSliderStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css";
+scriptCustomSliderStyle.rel = "stylesheet";
+document.head.appendChild(scriptCustomSliderStyle);
+// script tooltip
+let scriptPopper = document.createElement("script");
+scriptPopper.src = "https://unpkg.com/popper.js@1";
+scriptPopper.async = false;
+document.body.appendChild(scriptPopper);
+
+let scriptTippy = document.createElement("script");
+scriptTippy.src = "https://unpkg.com/tippy.js@5";
+scriptTippy.async = false;
+document.body.appendChild(scriptTippy);
 
 const clarityInterval = setInterval(function () {
-  if (typeof clarity == 'function') {
-    clearInterval(clarityInterval)
-    clarity('set', '', 'variant_1')
+  if (typeof clarity == "function") {
+    clearInterval(clarityInterval);
+    clarity("set", "", "variant_1");
   }
-}, 1000)
+}, 1000);
 
-const pushDataLayer = (name, desc, type = '', loc = '') => {
-  window.dataLayer = window.dataLayer || []
+const pushDataLayer = (name, desc, type = "", loc = "") => {
+  window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({
-    event: 'event-to-ga4',
+    event: "event-to-ga4",
     event_name: name,
     event_desc: desc,
     event_type: type,
-    event_loc: loc
-  })
-  console.log(`Event: ${name} ${desc} ${type} ${loc}`)
-}
+    event_loc: loc,
+  });
+  console.log(`Event: ${name} ${desc} ${type} ${loc}`);
+};
 
-let level = ''
-let disclaimerDates = ''
-const currentMonth = new Date().toLocaleString('en-US', {
-  month: 'long'
-})
+let level = "";
+let disclaimerDates = "";
+let levelImg = "";
+const currentMonth = new Date().toLocaleString("en-US", {
+  month: "short",
+});
 
 switch (window.pathname) {
-  case '/tiq-score-severe-v1/':
-    level = 'severe'
-    disclaimerDates = 56
+  case "/tiq-score-severe-v1/":
+    level = "severe";
+    disclaimerDates = 56;
+    levelImg = `${git}/treblehealth/img/severe_img.svg`;
 
-    break
-  case '/tiq-score-serious-v1/':
-    level = 'serious'
-    disclaimerDates = 47
-    break
-  case '/tiq-score-moderate-v1/':
-    level = 'moderate'
-    disclaimerDates = 34
-    break
+    break;
+  case "/tiq-score-serious-v1/":
+    level = "serious";
+    disclaimerDates = 47;
+    levelImg = `${git}/treblehealth/img/serious_img.svg`;
+    break;
+  case "/tiq-score-moderate-v1/":
+    level = "moderate";
+    disclaimerDates = 34;
+    levelImg = `${git}/treblehealth/img/moderate_img.svg`;
+    break;
 
   default:
-    break
+    break;
 }
 
-let reliefDate = new Date(new Date().getTime() + disclaimerDates * 24 * 60 * 60 * 1000).toLocaleString('en-US', {
-  day: '2-digit',
-  month: 'short'
-})
+let reliefDate = new Date(new Date().getTime() + disclaimerDates * 24 * 60 * 60 * 1000).toLocaleString("en-US", {
+  day: "2-digit",
+  month: "short",
+});
+let reliefMonth = new Date(new Date().getTime() + disclaimerDates * 24 * 60 * 60 * 1000).toLocaleString("en-US", {
+  month: "short",
+});
 
 const svgObj = {
   ear: /*html*/ `
@@ -85,7 +110,7 @@ const svgObj = {
     </svg>
     `,
   tooltip: /*html*/ `
-    <svg data-tooltip data-title="" class="tooltip_toggle" xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
        <path d="M8.25 1C4.38428 1 1.25 4.13541 1.25 8C1.25 11.8668 4.38428 15 8.25 15C12.1157 15 15.25 11.8668 15.25 8C15.25 4.13541 12.1157 1 8.25 1ZM8.25 4.10484C8.90473 4.10484 9.43548 4.6356 9.43548 5.29032C9.43548 5.94505 8.90473 6.47581 8.25 6.47581C7.59527 6.47581 7.06452 5.94505 7.06452 5.29032C7.06452 4.6356 7.59527 4.10484 8.25 4.10484ZM9.83064 11.2742C9.83064 11.4612 9.67899 11.6129 9.49193 11.6129H7.00806C6.82101 11.6129 6.66935 11.4612 6.66935 11.2742V10.5968C6.66935 10.4097 6.82101 10.2581 7.00806 10.2581H7.34677V8.45161H7.00806C6.82101 8.45161 6.66935 8.29996 6.66935 8.1129V7.43548C6.66935 7.24843 6.82101 7.09677 7.00806 7.09677H8.81452C9.00157 7.09677 9.15323 7.24843 9.15323 7.43548V10.2581H9.49193C9.67899 10.2581 9.83064 10.4097 9.83064 10.5968V11.2742Z" fill="#2E168D"/>
     </svg>`,
   starReview: /*html*/ `
@@ -99,8 +124,54 @@ const svgObj = {
        </g><g clip-path="url(#clip13_780_2415)"><path d="M90.3252 10.4498L86.0752 9.80377L84.1542 5.77477C84.0409 5.54811 83.8709 5.39227 83.6442 5.30727C83.4175 5.22227 83.1909 5.22227 82.9642 5.30727C82.7375 5.39227 82.5675 5.54811 82.4542 5.77477L80.5502 9.80377L76.3002 10.4498C76.0509 10.4951 75.8525 10.6113 75.7052 10.7983C75.5579 10.9853 75.4899 11.1978 75.5012 11.4358C75.5125 11.6738 75.6089 11.8891 75.7902 12.0818L78.8502 15.1928L78.1362 19.5958C78.0909 19.8451 78.139 20.0718 78.2807 20.2758C78.4224 20.4798 78.6065 20.6158 78.8332 20.6838C79.0599 20.7518 79.2752 20.7178 79.4792 20.5818L83.3042 18.5248L87.1292 20.5818C87.3559 20.6951 87.5854 20.7206 87.8177 20.6583C88.05 20.5959 88.2285 20.4656 88.3532 20.2673C88.4779 20.0689 88.5175 19.8451 88.4722 19.5958L87.7752 15.1928L90.8182 12.0818C90.9995 11.9004 91.093 11.6851 91.0987 11.4358C91.1044 11.1864 91.0335 10.9654 90.8862 10.7728C90.7389 10.5801 90.5519 10.4724 90.3252 10.4498ZM86.2112 14.6998L86.9252 18.8818L83.3042 16.8928L79.7002 18.8818L80.3972 14.6998L77.4902 11.7248L81.5362 11.0788L83.3042 7.33877L85.1402 11.1638L89.1862 11.7928L86.2112 14.6998Z" fill="#CCD6DF"/>
        </g><g clip-path="url(#clip14_780_2415)"><path d="M115.325 10.4498L111.075 9.80377L109.154 5.77477C109.041 5.54811 108.871 5.39227 108.644 5.30727C108.418 5.22227 108.191 5.22227 107.964 5.30727C107.738 5.39227 107.568 5.54811 107.454 5.77477L105.55 9.80377L101.3 10.4498C101.051 10.4951 100.853 10.6113 100.705 10.7983C100.558 10.9853 100.49 11.1978 100.501 11.4358C100.513 11.6738 100.609 11.8891 100.79 12.0818L103.85 15.1928L103.136 19.5958C103.091 19.8451 103.139 20.0718 103.281 20.2758C103.422 20.4798 103.607 20.6158 103.833 20.6838C104.06 20.7518 104.275 20.7178 104.479 20.5818L108.304 18.5248L112.129 20.5818C112.356 20.6951 112.585 20.7206 112.818 20.6583C113.05 20.5959 113.229 20.4656 113.353 20.2673C113.478 20.0689 113.518 19.8451 113.472 19.5958L112.775 15.1928L115.818 12.0818C116 11.9004 116.093 11.6851 116.099 11.4358C116.104 11.1864 116.034 10.9654 115.886 10.7728C115.739 10.5801 115.552 10.4724 115.325 10.4498ZM111.211 14.6998L111.925 18.8818L108.304 16.8928L104.7 18.8818L105.397 14.6998L102.49 11.7248L106.536 11.0788L108.304 7.33877L110.14 11.1638L114.186 11.7928L111.211 14.6998Z" fill="#CCD6DF"/>
        </g><defs><clipPath id="clip0_780_2415"><rect width="17" height="25" fill="white" transform="translate(0.5 0.5)"/></clipPath><clipPath id="clip1_780_2415"><rect width="17" height="25" fill="white" transform="matrix(1 0 0 -1 0.5 25.5)"/></clipPath><clipPath id="clip2_780_2415"><rect width="17" height="25" fill="white" transform="translate(25.5 0.5)"/></clipPath><clipPath id="clip3_780_2415"><rect width="17" height="25" fill="white" transform="matrix(1 0 0 -1 25.5 25.5)"/></clipPath><clipPath id="clip4_780_2415"><rect width="17" height="25" fill="white" transform="translate(50.5 0.5)"/></clipPath><clipPath id="clip5_780_2415"><rect width="17" height="25" fill="white" transform="matrix(1 0 0 -1 50.5 25.5)"/></clipPath><clipPath id="clip6_780_2415"><rect width="17" height="25" fill="white" transform="translate(75.5 0.5)"/></clipPath><clipPath id="clip7_780_2415"><rect width="17" height="25" fill="white" transform="matrix(1 0 0 -1 75.5 25.5)"/></clipPath><clipPath id="clip8_780_2415"><rect width="17" height="25" fill="white" transform="translate(100.5 0.5)"/></clipPath><clipPath id="clip9_780_2415"><rect width="17" height="25" fill="white" transform="matrix(1 0 0 -1 100.5 25.5)"/></clipPath><clipPath id="clip10_780_2415"><rect width="17" height="17" fill="white" transform="matrix(1 0 0 -1 0.5 21.5)"/></clipPath><clipPath id="clip11_780_2415"><rect width="17" height="17" fill="white" transform="matrix(1 0 0 -1 25.5 21.5)"/></clipPath><clipPath id="clip12_780_2415"><rect width="17" height="17" fill="white" transform="matrix(1 0 0 -1 50.5 21.5)"/></clipPath><clipPath id="clip13_780_2415"><rect width="17" height="17" fill="white" transform="matrix(1 0 0 -1 75.5 21.5)"/></clipPath><clipPath id="clip14_780_2415"><rect width="17" height="17" fill="white" transform="matrix(1 0 0 -1 100.5 21.5)"/></clipPath></defs>
-    </svg>`
-}
+    </svg>`,
+  arrowLine: /*html*/ `
+    <svg xmlns="http://www.w3.org/2000/svg" width="56" height="66" viewBox="0 0 56 66" fill="none">
+      <path d="M11.9486 11.4523C11.4249 11.3972 10.9114 11.8115 10.8018 12.3778C10.6922 12.944 11.028 13.4477 11.5517 13.5028L11.9486 11.4523ZM35.8509 24.4004L35.0505 25.0703L35.8509 24.4004ZM31.3141 57.1989C31.2788 57.7672 31.683 58.2081 32.217 58.1835L40.9185 57.7828C41.4525 57.7582 41.914 57.2775 41.9493 56.7091C41.9846 56.1408 41.5804 55.6999 41.0464 55.7245L33.3117 56.0807L33.8234 47.8474C33.8587 47.2791 33.4544 46.8382 32.9205 46.8628C32.3865 46.8874 31.925 47.3681 31.8897 47.9365L31.3141 57.1989ZM34.973 55.4077C35.3202 54.9371 35.2715 54.2964 34.8642 53.9768C34.457 53.6571 33.8454 53.7795 33.4982 54.2502L34.973 55.4077ZM36.3917 49.1994C36.158 49.7353 36.3588 50.3246 36.8402 50.5158C37.3216 50.7069 37.9013 50.4275 38.135 49.8916L36.3917 49.1994ZM40.0527 43.901C40.1729 43.336 39.8475 42.8241 39.326 42.7576C38.8045 42.6911 38.2844 43.0953 38.1643 43.6603L40.0527 43.901ZM38.7883 37.9676C38.7848 38.5335 39.2157 38.945 39.7509 38.8866C40.286 38.8283 40.7226 38.3222 40.7261 37.7563L38.7883 37.9676ZM40.1053 31.7459C39.9865 31.2083 39.4672 30.9233 38.9454 31.1094C38.4236 31.2955 38.097 31.8822 38.2158 32.4198L40.1053 31.7459ZM36.4088 27.3358C36.6517 27.8116 37.2352 27.9444 37.712 27.6324C38.1889 27.3204 38.3785 26.6818 38.1356 26.2061L36.4088 27.3358ZM34.414 20.8903C34.0663 20.5007 33.4547 20.521 33.0479 20.9356C32.6411 21.3502 32.5932 22.0021 32.9409 22.3917L34.414 20.8903ZM27.8416 18.0695C28.2801 18.3428 28.8843 18.1599 29.191 17.6609C29.4977 17.1619 29.3909 16.5359 28.9524 16.2626L27.8416 18.0695ZM22.4437 13.3571C21.9465 13.2055 21.383 13.5272 21.185 14.0756C20.9871 14.6239 21.2296 15.1913 21.7268 15.3429L22.4437 13.3571ZM15.0162 13.9236C15.5361 13.9975 16.0604 13.6 16.1873 13.0359C16.3142 12.4718 15.9957 11.9547 15.4758 11.8808L15.0162 13.9236ZM32.9194 57.8506C33.6499 57.0897 34.3354 56.2722 34.973 55.4077L33.4982 54.2502C32.919 55.0354 32.2993 55.774 31.6425 56.4581L32.9194 57.8506ZM38.135 49.8916C38.968 47.9816 39.614 45.9646 40.0527 43.901L38.1643 43.6603C37.7576 45.5734 37.1596 47.4387 36.3917 49.1994L38.135 49.8916ZM40.7261 37.7563C40.7386 35.7275 40.5386 33.7057 40.1053 31.7459L38.2158 32.4198C38.6146 34.2237 38.7998 36.0897 38.7883 37.9676L40.7261 37.7563ZM38.1356 26.2061C37.6995 25.3518 37.2054 24.5246 36.6513 23.7305L35.0505 25.0703C35.5575 25.7968 36.0096 26.5538 36.4088 27.3358L38.1356 26.2061ZM36.6513 23.7305C35.9304 22.6974 35.1844 21.7534 34.414 20.8903L32.9409 22.3917C33.6641 23.2019 34.3676 24.0917 35.0505 25.0703L36.6513 23.7305ZM28.9524 16.2626C26.8893 14.9768 24.7139 14.0491 22.4437 13.3571L21.7268 15.3429C23.8814 15.9997 25.9202 16.8721 27.8416 18.0695L28.9524 16.2626ZM15.4758 11.8808C14.3183 11.7164 13.1417 11.5777 11.9486 11.4523L11.5517 13.5028C12.7311 13.6269 13.8856 13.763 15.0162 13.9236L15.4758 11.8808Z" fill="url(#paint0_linear_780_2470)"/>
+      <path d="M31.3097 57.2004C31.2744 57.7687 31.6786 58.2096 32.2126 58.185L40.9141 57.7843C41.4481 57.7597 41.9096 57.279 41.9449 56.7106C41.9802 56.1423 41.576 55.7014 41.042 55.726L33.3073 56.0822L33.8189 47.8489C33.8543 47.2806 33.45 46.8397 32.916 46.8643C32.3821 46.8889 31.9206 47.3696 31.8853 47.938L31.3097 57.2004ZM39.1673 47.1714C39.3488 46.6183 39.0878 46.0618 38.5844 45.9284C38.081 45.795 37.5257 46.1352 37.3443 46.6882L39.1673 47.1714ZM37.3443 46.6882C36.1146 50.4352 34.1495 53.8437 31.6381 56.4596L32.915 57.8521C35.7037 54.9473 37.8409 51.2131 39.1673 47.1714L37.3443 46.6882Z" fill="#B5A6F2"/>
+      <defs>
+        <linearGradient id="paint0_linear_780_2470" x1="39.4242" y1="42.9809" x2="23.1884" y2="20.0847" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#977EFE"/>
+          <stop offset="1" stop-color="#6845F4" stop-opacity="0.2"/>
+        </linearGradient>
+      </defs>
+    </svg>
+  `,
+  star: /*html*/ `
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M16 6.28095L3.05597 15.2833L4.94442 9.71952L0 6.28095H6.11155L8 0.716797L9.88844 6.28095H16ZM8.00047 11.8451L11.5356 11.1332L12.9441 15.2833L8.00047 11.8451Z" fill="#00B67A"/>
+    </svg>
+  `,
+};
+
+const arrTooltipTable = {
+  "money back guarantee": [`<p class="tooltip_txt">Work with Treble for 45 days. If you’re not fully satisfied, we’ll refund your entire order.</p>`],
+  "tinnitus relief bundle": [
+    `<div class="bundle_tooltip_wrapp">
+        <div class="bundle_tooltip_slider">
+          <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-7.png" alt="" />
+          <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-10.png" alt="" />
+          <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-14.png" alt="" />
+          <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-11.png" alt="" />
+          <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-6.png" alt="" />
+          <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-8.png" alt="" />
+          <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-9.png" alt="" />
+          <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-12.png" alt="" />
+          <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-13.png" alt="" />
+          <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-15.png" alt="" />
+        </div>
+        <ul class="bundle_tooltip_list">
+          <li><p>Pair of Treble Maskers</p></li>
+          <li><p>Sleep headband for day and night relief</p></li>
+          <li><p>Sound Oasis Tinnitus Sound Machine</p></li>
+          <li><p>Five private sessions (two FREE)</p></li>
+          <li><p>Six group sessions</p></li>
+          <li><p>Priority email and text for 3 months</p></li>
+          <li><p>Guided breathing and relaxation audio course</p></li>
+        </ul>
+    </div>`,
+  ],
+};
 
 const mainStyle = /*html */ `
 <style>
@@ -121,51 +192,432 @@ const mainStyle = /*html */ `
     line-height: 24px;
     margin: 0;
   }
-  h3.third_title{
-  color: #2E168D;
-  font-family: "Plus Jakarta Sans", sans-serif !important;
-  font-size: 20px;
-  font-weight: 800;
-  line-height: 28px;
-  margin: 0;
-  }
   .txt_underline{
-          text-decoration-line: underline;
-}
-h2.second_title{
-color: #2E168D;
-font-family: "Plus Jakarta Sans", sans-serif !important;
-font-size: 36px;
-font-weight: 800;
-line-height: 42px;
-margin: 0;
-}
+    text-decoration-line: underline;
+  }
+  h2.second_title{
+    color: #2E168D;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 42px;
+    margin: 0;
+  }
+  h3.third_title{
+    color: #2E168D;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 28px;
+    margin: 0;
+  }
+  h3.fourth_title{
+    color: #2E168D;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 32px;
+    margin: 0;
+  }
+  button.call_your_free_btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 56px;
+    color: #fff !important;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+    margin: 0 auto;
+    border-radius: 5px;
+    border: none !important;
+    background: #FF331F !important;
+    cursor: pointer;
+    outline: none !important;
+    padding: 0;
+  }
+  .tippy-tooltip{
+    border-radius: 8px;
+    background: #FFF;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+  }
+  .tippy-content{
+    padding: 16px;
+  }
+  .tippy-tooltip[data-placement^=top]>.tippy-arrow {
+    border-top-color: #FFF;
+  }
+  .tippy-tooltip[data-placement^=bottom]>.tippy-arrow {
+    border-bottom-color: #FFF;
+  }
+  .mob_var{
+    display: none;
+  }
+  @media (max-width: 768px) {
+    .desktop_var{
+      display: none;
+    }
+    .mob_var{
+      display: block;
+    }
+    h2.second_title{
+      font-size: 28px;
+      line-height: 36px;
+    }
+    .new_main{
+      padding-top: 64px;
+    }
+  }
 </style>
-`
+`;
 
-$el('head').insertAdjacentHTML('beforeend', mainStyle)
+$el("head").insertAdjacentHTML("beforeend", mainStyle);
 
 class ImprovePage {
-  constructor(level, disclaimerDates, reliefDate) {
-    this.level = level
-    this.disclaimerDates = disclaimerDates
-    this.reliefDate = reliefDate
+  constructor(level, disclaimerDates, reliefDate, levelImg, currentMonth, reliefMonth) {
+    this.level = level;
+    this.disclaimerDates = disclaimerDates;
+    this.reliefDate = reliefDate;
+    this.levelImg = levelImg;
+    this.currentMonth = currentMonth;
+    this.reliefMonth = reliefMonth;
 
-    this.init()
+    this.init();
   }
 
   onRenderHtml(selectorStart, place, selectorNew, newHtml) {
     if (!$el(selectorNew) && $el(selectorStart)) {
-      $el(selectorStart).insertAdjacentHTML(place, newHtml)
+      $el(selectorStart).insertAdjacentHTML(place, newHtml);
     }
   }
 
+  onRenderTooltip() {
+    for (let key in arrTooltipTable) {
+      $$el("[data-title]").forEach((el) => {
+        let title = el.getAttribute("data-title");
+
+        if (key === title) {
+          el.setAttribute("data-tooltip", arrTooltipTable[key][0]);
+        }
+      });
+    }
+  }
+
+  initTooltip() {
+    let tippyRun = setInterval(() => {
+      if (typeof tippy === "function" && $$el("[data-tooltip]")) {
+        clearInterval(tippyRun);
+
+        $$el("[data-tooltip]").forEach((el) => {
+          tippy(el, {
+            content: el.getAttribute("data-tooltip"),
+            trigger: "click",
+            placement: "top",
+            interactive: true,
+            onShow(instance) {},
+            onTrigger(e) {},
+          });
+          setTimeout(() => {
+            this.initSlickSlider();
+          }, 700);
+        });
+      }
+    }, 500);
+  }
+
+  initSlickSlider() {
+    let slickInterval = setInterval(() => {
+      if (typeof jQuery === "function" && typeof jQuery(".bundle_tooltip_slider").slick === "function" && $el(".bundle_tooltip_slider")) {
+        clearInterval(slickInterval);
+
+        //  slider
+        let slider = jQuery(".bundle_tooltip_slider").slick({
+          dots: true,
+          infinite: true,
+          arrows: false,
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          autoplay: true,
+          autoplaySpeed: 3000,
+        });
+        slider.on("init", function () {
+          if (!$el(".bundle_tooltip_slider").classList.contains("is_load")) {
+            $el(".bundle_tooltip_slider").classList.add("is_load");
+          }
+        });
+        slider.on("afterChange", function () {});
+      }
+    }, 500);
+  }
+
+  initializeClock(timeValue, selectorValue) {
+    let timer = 0.1;
+    let amountTime = timer * 60;
+
+    function calculateTime() {
+      const countdown = $el(selectorValue);
+
+      let minutes = Math.floor(amountTime / 60);
+      let seconds = amountTime % 60;
+
+      if (seconds < 10) {
+        seconds = "0" + seconds;
+      }
+
+      if (minutes < 10) {
+        minutes = "0" + minutes;
+      }
+
+      countdown.textContent = `${minutes}:${seconds}`;
+      amountTime--;
+
+      if (amountTime < 0) {
+        stopTimer();
+        amountTime = 0;
+      }
+
+      function stopTimer() {
+        clearInterval();
+      }
+    }
+
+    function startTimer(timeValue) {
+      amountTime = timeValue * 60;
+      setInterval(calculateTime, 1000);
+    }
+
+    startTimer(timeValue);
+  }
+
+  initStickyHeader() {
+    if ($el(".new_main") && $el(".new_header.sticky_var")) {
+      let element = $el(".new_header.sticky_var");
+      const elemClose = $el("#provenSuccess");
+      // if (window.innerWidth <= 768) {
+      //   window.addEventListener('scroll', () => {
+      //     const options = {
+      //       root: null,
+      //       threshold: 1
+      //     }
+      //     let containerHint = document.querySelector('.calendar_body.no_sticky')
+      //     let observer = new IntersectionObserver(entries => {
+      //       entries.forEach(i => {
+      //         if (i.isIntersecting) {
+      //           element.classList.remove('is_intersecting')
+      //         } else {
+      //           element.classList.add('is_intersecting')
+      //         }
+
+      //         observer.unobserve(i.target)
+      //       })
+
+      //       observer.disconnect()
+      //     })
+
+      //     observer.observe(containerHint, options)
+      //   })
+      // }
+
+      function visible(target) {
+        if (target.getBoundingClientRect().bottom < 0) {
+          element.classList.add("is_fixed");
+        } else {
+          if (element.classList.contains("is_fixed")) {
+            element.classList.remove("is_fixed");
+          }
+        }
+      }
+      window.addEventListener("scroll", function () {
+        visible(elemClose);
+      });
+      visible(elemClose);
+    }
+  }
+
+  initChartJs() {}
   init() {
+    const trustScoreStarsBlock = /*html */ `
+    <style>
+        /*trust_score_wrapp */
+      .trust_score_wrapp{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: max-content;
+        cursor: pointer;
+        gap: 12px;
+      }
+      .trust_score_wrapp > img{
+        max-width: 127px;
+        width: 100%;
+      }
+      .trust_score_wrapp > div {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      .trust_score_wrapp p {
+        font-size: 14px;
+        line-height: 20px;
+        margin: 0 4px 0 0;
+      }
+      p.reviews_mark{
+        font-weight: 600;
+        margin: 0 8px 0 2px;
+      }
+      p.reviews_count{
+        width: max-content;
+        text-decoration: underline;
+        margin: 0;
+      }
+      @media (max-width: 768px) {
+        #trustScoreStarsMob{
+          padding: 16px 0 0;
+        }
+        #trustScoreStarsMob .trust_score_wrapp{
+          border-radius: 5px;
+          background: #F9F9FA;
+          padding: 6px 12px;
+          gap: 8px;
+        }
+        #trustScoreStarsMob .trust_score_wrapp p{
+          color: #0A0A0A;
+        }
+        /* new_header sticky_var*/
+        .new_header.sticky_var .trust_score_wrapp{
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 4px;
+        }
+        .new_header.sticky_var .trust_score_wrapp p{
+          font-size: 13px;
+          margin: 0 2px 0 0;
+        }
+        .new_header.sticky_var .trust_score_wrapp svg path{
+          fill: #2E168D;
+        }
+        .new_header.sticky_var .call_your_free_btn{
+          max-width: 132px;
+        }
+      }
+    </style>
+    <div class="trust_score_wrapp">
+      <img class="trust_score_stars" src="${git}/treblehealth/img/trust_score_stars.svg" alt="stars" />
+      <div>
+        <p class="reviews_txt">TrustScore</p>
+        ${svgObj.star}
+        <p class="reviews_mark">4.9</p>
+        <p class="reviews_count">
+          (<span><b>432</b> reviews</span>)
+        </p>
+      </div>
+    </div>
+    `;
+    const newheader = /*html */ `
+    <div class="new_header">
+      <style>
+        .new_header{
+          background: #EEEBFB;
+          padding: 16px 0;
+          transition: all 0.5s ease;
+        }
+        .new_header .container_var{
+          max-width: 1280px;
+        }
+        .new_header_wrapp{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+        .new_header_btn_wrapp{
+          width: 50%;
+          display: flex;
+          gap: 38px;
+          align-items: center;
+          justify-content: flex-end;
+        }
+        .new_header_btn_wrapp .call_your_free_btn{
+          max-width: 156px;
+          height: 48px;
+          font-size: 14px;
+          margin: 0;
+        }
+        .new_header_btn_wrapp > p{
+          font-size: 16px;
+          font-weight: 500;
+        }
+        #countdown{
+          font-weight: 700;
+        }
+        @media (max-width: 768px) {
+          .new_header:not(.sticky_var){
+            padding: 8px 0;
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+          }
+          .new_header_btn_wrapp {
+            width: 100%;
+            gap: 34px;
+          }
+          .new_header_btn_wrapp > p {
+            font-size: 14px;
+            line-height: 20px;
+          }
+        }
+      </style>
+      <div class="container_var">
+        <div class="new_header_wrapp">
+          <div class="new_header_btn_wrapp">
+            <p>Your spot is reserved for: <span id="countdown"></span></p>
+            <button class="call_your_free_btn">Book a Free Call</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="new_header sticky_var">
+      <style>
+        .new_header.sticky_var{
+          padding: 20px 0;
+        }
+        .new_header.sticky_var.is_fixed{
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          z-index: 1;
+          transform: translateY(0);
+          animation: ani  0.5s ease;
+        }
+        @keyframes ani {
+          0% {
+            transform: translateY(100%);
+          }
+          100% {
+            transform: translateY(0);
+          }
+        }
+      </style>
+      <div class="container_var">
+        <div class="new_header_wrapp">
+          <div class="new_header_btn_wrapp">
+            <button class="call_your_free_btn">Book a Free Call</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    `;
     const heroSection = /*html */ `
     <section id="hero">
       <style>
         #hero{
           padding: 60px 0 78px;
+        }
+        .new_header.is_fixed + #hero{
+          padding-top: 140px;
         }
         h1.hero_title{
           font-family: "Plus Jakarta Sans", sans-serif !important;
@@ -192,27 +644,59 @@ class ImprovePage {
           margin: 0 auto;
         }
         .chart_wrapp{
-          margin: 32px 0 24px;
+          margin: 32px 0 0;
+        }
+        .chart_img_wrapp{
+          margin-bottom: 24px;
         }
         #hero .chart_txt{
           color: #636A85;
-          line-height: 20px; 
+          line-height: 20px;
+        }
+        @media (max-width: 768px) {
+          #hero {
+            padding: 24px 0 15px;
+          }
+          .chart_wrapp{
+            margin: 0;
+          }
+          .chart_img_wrapp{
+            margin: 35px 0 20px;
+          }
+          h1.hero_title{
+            text-transform: lowercase;
+            font-size: 28px;
+            line-height: 36px;
+            margin: 8px 0;
+          }
+          #hero .chart_txt{
+            font-size: 13px;
+            line-height: 16px;
+            text-align: center;
+          }
+          #hero .hero_txt b{
+            display: block;
+          }
         }
       </style>
       <div class="container_var">
         <div class="hero_wrapp">
+          <p class="hero_txt mob_var">Based on your answers,</p>
           <h1 class="hero_title">Your tinnitus is <b>${this.level}</b></h1>
-          <p class="hero_txt">
+          <p class="hero_txt mob_var">and you can experience relief from tinnitus <b>by ${this.reliefDate}*</b> <span class="txt_underline"><b>with Tinnitus Relief Bundle</b></p>
+          <p class="hero_txt desktop_var">
             Based on your answers, you can experience relief from tinnitus <b>by ${this.reliefDate}*</b> <span class="txt_underline"><b>with Tinnitus Relief Bundle</b></span>
           </p>
           <div class="chart_wrapp">
-            <div class="chart"></div>
-            <p class="chart_txt">*based on Treble Health users like you, we predict you’ll find relief from tinnitus in <span>${this.disclaimerDates}</span> days</p>
+            <div class="chart_img_wrapp">
+              <img src="${this.levelImg}" alt="chart">
+            </div>
+            <p class="chart_txt">*based on Treble Health users like you, <br class="mob_var"/> we predict you’ll find relief from tinnitus in <span>${this.disclaimerDates}</span> days</p>
           </div>
         </div>
       </div>
     </section>
-    `
+    `;
     const provenSuccessSection = /*html */ `
     <section id="provenSuccess">
       <style>
@@ -239,10 +723,20 @@ class ImprovePage {
         .proven_success_wrapp p{
           font-weight: 500;
         }
+        @media (max-width: 768px) {
+          #provenSuccess{
+            padding: 24px 0;
+          }
+          .proven_success_wrapp{
+            padding: 16px;
+          }
+        }
       </style>
       <div class="container_var">
         <div class="proven_success_wrapp">
-          ${svgObj.ear}
+          <span class="desktop_var">
+            ${svgObj.ear}
+          </span>
           <div>
             <h3 class="third_title">Proven Success</h3>
             <p>Over <b>85%*</b> of customers using <b>Tinnitus Relief Bundle</b> report <b>better hearing.</b></p>
@@ -250,8 +744,7 @@ class ImprovePage {
         </div>
       </div>
     </section>
-    `
-
+    `;
     const tinnitusReliefBundleSection = /*html */ `
     <section id="tinnitusReliefBundle">
       <style>
@@ -260,11 +753,11 @@ class ImprovePage {
         }
         .tinnitus_relief_bundle_wrapp{
           max-width: 973px;
-              display: flex;
-    gap: 80px;
-        justify-content: flex-start;
-    align-items: center;
-    margin: 0 auto;
+          display: flex;
+          gap: 80px;
+          justify-content: flex-start;
+          align-items: center;
+          margin: 0 auto;
         }
         .tinnitus_relief_bundle_wrapp .img_wrapp{
           max-width: 430px;
@@ -279,28 +772,172 @@ class ImprovePage {
           margin-bottom: 12px;
         }
         #tinnitusReliefBundle .third_title{
-font-weight: 500;
-margin-bottom: 12px;
+          font-weight: 500;
+          margin-bottom: 12px;
+        }
+        .tinnitus_relief_bundle_reviews{
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          margin: 0 0 24px;
+          gap: 16px;
+        }
+        .tinnitus_relief_bundle_reviews span{
+          color: #2E168D;
+          font-family: "Plus Jakarta Sans", sans-serif !important;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 15px;
+          margin: 0;
+        }
+        #tinnitusReliefBundle .tinnitus_relief_bundle_txt{
+          font-weight: 500;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 6px;
+          margin: 0 0 24px;
+        }
+        .tinnitus_relief_bundle_descr h3.fourth_title{
+          line-height: 26px;
+          margin-bottom: 16px;
+        }
+        .tinnitus_relief_bundle_descr ul,
+        .bundle_tooltip_list{
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+        .bundle_tooltip_list {
+          margin-top: 16px;
+        }
+        .tinnitus_relief_bundle_descr ul li,
+        .bundle_tooltip_list li{
+          position: relative;
+          padding-left: 32px;
+        }
+        .tinnitus_relief_bundle_descr ul li::before,
+        .bundle_tooltip_list li::before{
+          position: absolute;
+          content: "";
+          width: 20px;
+          height: 20px;
+          background: url(${git}/treblehealth/img/check_icon.svg) center no-repeat;
+          background-size: contain;
+          border-radius: 0;
+          top: 3px;
+          left: 0;
+        }
+        .tinnitus_relief_bundle_descr ul li + li,
+        .bundle_tooltip_list li + li{
+          margin-top: 8px;
+        }
+        .bundle_tooltip_list li p{
+          font-size: 14px;
+        }
+        .tinnitus_relief_bundle_descr ul li p{
+          line-height: 25px;
+        }
+        .bundle_tooltip_slider{
+          display: none;
+         transition: all 0.5s ease 0.5s;
+        }
+        .is_load{
+          display: block;
+        }
+        .bundle_tooltip_slider .slick-slide{
+          margin: 0 2px;
+        }
+        .bundle_tooltip_slider img{
+          height: 100%;
+          width: 100%;
+          border-radius: 8px;
+          object-fit: cover;
+        }
+        .bundle_tooltip_slider .slick-dots {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 16px auto 0;
+          list-style: none;
+          padding: 0;
+        }
+        .bundle_tooltip_slider .slick-dots li button {
+          font-size: 0;
+          line-height: 0;
+          display: block;
+          width: 10px;
+          height: 10px;
+          cursor: pointer;
+          color: transparent;
+          outline: none;
+          background: #EFECFB;
+          border-radius: 5px;
+          border: 1px solid #2E168D;
+          margin: 0 6px;
+          padding: 0;
+        }
+        .bundle_tooltip_slider .slick-dots li.slick-active button {
+          background: #2E168D;
+        }
+        @media (max-width: 768px) {
+          #tinnitusReliefBundle {
+            padding: 16px 0 24px;
+          }
+          .tinnitus_relief_bundle_wrapp {
+            gap: 12px;
+            flex-direction: column;
+          }
+          #tinnitusReliefBundle .second_title{
+            text-align: center;
+          }
+          #tinnitusReliefBundle .third_title{
+            font-size: 16px;
+            line-height: 24px;
+          }
+          .tinnitus_relief_bundle_reviews {
+            justify-content: center;
+            margin: 0 0 12px;
+          }
+          .tinnitus_relief_bundle_wrapp .img_wrapp {
+            max-width: 335px;
+          }
+          #tinnitusReliefBundle .tinnitus_relief_bundle_txt {
+            justify-content: center;
+            gap: 4px;
+          }
         }
       </style>
       <div class="container_var">
         <div class="tinnitus_relief_bundle_wrapp">
+          <div class="mob_var">
+            <h2 class="second_title">Tinnitus Relief Bundle</h2>
+            <h3 class="third_title">For individuals with <b><span>${this.level}</span> tinnitus.</b></h3>
+            <div class="tinnitus_relief_bundle_reviews">
+              ${svgObj.starReview}
+              <span>430+ reviews</span>
+            </div>
+          </div>
           <div class="img_wrapp">
             <img src="https://treblehealth.com/wp-content/uploads/2022/12/Wordpress-images-3.png" alt="Tinnitus Relief Bundle" />
           </div>
           <div>
-            <h2 class="second_title">Tinnitus Relief Bundle</h2>
-            <h3 class="third_title">For individuals with <b><span>${this.level}</span> tinnitus.</b></h3>
-            <div>
-              ${svgObj.starReview}
-              <span>430+ reviews</span>
+            <div class="desktop_var">
+              <h2 class="second_title">Tinnitus Relief Bundle</h2>
+              <h3 class="third_title">For individuals with <b><span>${this.level}</span> tinnitus.</b></h3>
+              <div class="tinnitus_relief_bundle_reviews">
+                ${svgObj.starReview}
+                <span>430+ reviews</span>
+              </div>
             </div>
-            <p>
+            <p class="tinnitus_relief_bundle_txt">
                What’s in the bundle?
-               ${svgObj.tooltip}
+               <span data-title="tinnitus relief bundle">
+                ${svgObj.tooltip}
+               </span>
             </p>
-            <div>
-              <h3>What you’ll get:</h3>
+            <div class="tinnitus_relief_bundle_descr">
+              <h3 class="fourth_title">What you’ll get:</h3>
               <ul class="">
                 <li class=""><p>Enhanced focus and attention during the day</p></li>
                 <li class=""><p>Tools to fall asleep at night</p></li>
@@ -311,37 +948,130 @@ margin-bottom: 12px;
           </div>
         </div>
       </div>
-    </section>`
-
+    </section>
+    `;
     const backGuaranteeSection = /*html */ `
     <section id="backGuarantee">
-      <style></style>
+      <style>
+        #backGuarantee{
+          padding: 0 0 8px;
+        }
+        .back_guarantee_wrapp{
+          text-align: center;
+          max-width: 520px;
+          margin: 0 auto;
+        }
+        .back_guarantee_wrapp .fourth_title{
+          position: relative;
+          margin-bottom: 20px;
+        }
+        .back_guarantee_wrapp .call_your_free_btn{
+          max-width: 400px;
+        }
+        .back_guarantee_descr{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          max-width: 400px;
+          border-radius: 8px;
+          background: #FFF;
+          box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.11);
+          margin: 16px auto 0;
+          padding: 8px 20px;
+        }
+        .back_guarantee_wrapp p{
+          font-size: 14px;
+          font-weight: 800;
+          margin: 0 8px 0 16px;
+        }
+        .back_guarantee_wrapp .fourth_title::after{
+          position: absolute;
+          content: "";
+          width: 41px;
+          height: 57px;
+          background: url(${git}/treblehealth/img/arrow_icon_mob.svg) center no-repeat;
+          background-size: contain;
+          bottom: -36px;
+          right: 0;
+          transform: rotate(24deg);
+        }
+        .back_guarantee_wrapp .tippy-popper {
+          max-width: 229px !important;
+        }
+        .back_guarantee_wrapp .tooltip_txt{
+          font-size: 13px;
+          font-weight: 400;
+          line-height: 18px;
+          margin: 0;
+          text-align: left;
+        }
+        @media (max-width: 768px) {
+          #backGuarantee{
+            background: #EEEBFB;
+            padding: 24px 0;
+          }
+          .back_guarantee_wrapp .fourth_title{
+            max-width: 280px;
+            line-height: 26px;
+            margin-bottom: 24px;
+            text-align: start;
+          }
+          .back_guarantee_wrapp p{
+            margin: 0 4px 0 12px;
+          }
+          .back_guarantee_wrapp .fourth_title::after {
+            bottom: -14px;
+            right: -60px;
+            transform: unset;
+          }
+        }
+      </style>
       <div class="container_var">
         <div class="back_guarantee_wrapp">
-          <h3>Book a FREE Tinnitus Relief Discovery Call for personalized recommendations from a Doctor of Audiology</h3>
+          <h3 class="fourth_title">Book a FREE Tinnitus Relief Discovery Call for personalized recommendations from a Doctor of Audiology</h3>
           <button class="call_your_free_btn">Book a FREE Discovery Call</button>
-          <div>
+          <div class="back_guarantee_descr">
             ${svgObj.guarantee}
             <p>45 day money back guarantee</p>
-            ${svgObj.tooltip}
+            <span data-title="money back guarantee">
+              ${svgObj.tooltip}
+            </span>
           </div>
         </div>
       </div>
-    </section>`
+    </section>
+    `;
 
-    //
-    this.onRenderHtml('#content', 'afterbegin', '.new_main', `<div class="new_main"></div>`)
+    // new main
+    this.onRenderHtml("#content", "afterbegin", ".new_main", `<div class="new_main"></div>`);
+    //new header
+    this.onRenderHtml(".new_main", "afterbegin", ".new_header", newheader);
+    //new header ->>> trustScoreStarsBlock
+    if (window.innerWidth > 768) {
+      this.onRenderHtml(".new_header:not(.sticky_var) .new_header_wrapp", "afterbegin", ".trust_score_wrapp", trustScoreStarsBlock);
+    }
+    //new header sticky_var ->>> trustScoreStarsBlock
+    this.onRenderHtml(".new_header.sticky_var .new_header_wrapp", "afterbegin", ".new_header.sticky_var .trust_score_wrapp", trustScoreStarsBlock);
     // hero
-    this.onRenderHtml('.new_main', 'afterbegin', '#hero', heroSection)
+    this.onRenderHtml(".new_header", "afterend", "#hero", heroSection);
+    if (window.innerWidth <= 768) {
+      this.onRenderHtml("#hero", "beforebegin", "#trustScoreStarsMob", `<section id="trustScoreStarsMob"><div class="container_var">${trustScoreStarsBlock}</div></section>`);
+    }
     // provenSuccess
-    this.onRenderHtml('#hero', 'afterend', '#provenSuccess', provenSuccessSection)
+    this.onRenderHtml("#hero", "afterend", "#provenSuccess", provenSuccessSection);
     // tinnitusReliefBundle
-    this.onRenderHtml('#provenSuccess', 'afterend', '#tinnitusReliefBundle', tinnitusReliefBundleSection)
+    this.onRenderHtml("#provenSuccess", "afterend", "#tinnitusReliefBundle", tinnitusReliefBundleSection);
     // backGuarantee
-    this.onRenderHtml('#tinnitusReliefBundle', 'afterend', '#backGuarantee', backGuaranteeSection)
+    this.onRenderHtml("#tinnitusReliefBundle", "afterend", "#backGuarantee", backGuaranteeSection);
 
-    console.log(this.level, this.disclaimerDates, this.reliefDate)
+    this.onRenderTooltip();
+    this.initTooltip();
+    this.initializeClock(15, `#countdown`);
+    this.initStickyHeader();
+    this.initChartJs();
+
+    console.log(this.level, this.disclaimerDates, this.reliefDate);
   }
 }
 
-new ImprovePage(level, disclaimerDates, reliefDate)
+new ImprovePage(level, disclaimerDates, reliefDate, levelImg, currentMonth, reliefMonth);
