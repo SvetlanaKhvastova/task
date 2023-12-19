@@ -52,6 +52,25 @@ let treblehealthPages = setInterval(() => {
       console.log(`Event: ${name} ${desc} ${type} ${loc}`);
     };
 
+    function checkFocusTime(selector, event, location) {
+      const checker = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !entry.target.getAttribute("data-startShow")) {
+            entry.target.setAttribute("data-startShow", new Date().getTime());
+          } else if (!entry.isIntersecting && entry.target.getAttribute("data-startShow")) {
+            const startShow = entry.target.getAttribute("data-startShow");
+            const endShow = new Date().getTime();
+            const timeShow = Math.round(endShow - startShow);
+            entry.target.removeAttribute("data-startShow");
+            pushDataLayer(event, timeShow, "Visibility", location);
+            checker.unobserve(entry.target);
+          }
+        });
+      });
+
+      checker.observe(document.querySelector(selector));
+    }
+
     let time = "";
     if (!sessionStorage.getItem("time")) {
       sessionStorage.setItem("time", 15);
@@ -401,15 +420,25 @@ let treblehealthPages = setInterval(() => {
             $$el("[data-tooltip]").forEach((el) => {
               tippy(el, {
                 content: el.getAttribute("data-tooltip"),
-                trigger: "click",
+                // trigger: 'click',
                 placement: "top",
                 interactive: true,
-                onShow(instance) {},
-                onTrigger(e) {},
+                onShow(instance) {
+                  let s = setInterval(() => {
+                    if ($el(".bundle_tooltip_wrapp")) {
+                      clearInterval(s);
+                      checkFocusTime(".bundle_tooltip_wrapp", "exp_res_surv_fun_vis_succes_focu", "Tinnitus Relief Bundle Tooltip");
+                    }
+                  }, 100);
+                },
+                onTrigger(e) {
+                  pushDataLayer("exp_res_surv_fun_tool_relie_bundl", "What’s in the bundle?", "Tooltip", "Tinnitus Relief Bundle");
+                },
               });
+
               setTimeout(() => {
                 this.initSlickSlider();
-              }, 700);
+              }, 200);
             });
           }
         }, 500);
@@ -430,11 +459,20 @@ let treblehealthPages = setInterval(() => {
               autoplaySpeed: 3000,
             });
             slider.on("init", function () {
-              if (!$el(".bundle_tooltip_slider").classList.contains("is_load")) {
+              if (!$el(".bundle_tooltip_slider").classList.contains("is_load") && $el(".bundle_tooltip_slider")) {
                 $el(".bundle_tooltip_slider").classList.add("is_load");
               }
             });
-            slider.on("afterChange", function () {});
+            slider.on("afterChange", function () {
+              if (!$el(".bundle_tooltip_slider").classList.contains("is_load") && $el(".bundle_tooltip_slider")) {
+                $el(".bundle_tooltip_slider").classList.add("is_load");
+              }
+            });
+            $$el(".bundle_tooltip_slider .slick-dots li").forEach((el) => {
+              el.addEventListener("click", (i, idx) => {
+                pushDataLayer("exp_res_surv_fun_pagin_tool_image", "Image", "Pagination  ", "Tooltip What’s in the bundle?");
+              });
+            });
           }
         }, 500);
       }
@@ -502,7 +540,32 @@ let treblehealthPages = setInterval(() => {
           $$el(".call_your_free_btn").forEach((el) => {
             el.addEventListener("click", (e) => {
               if (!e.target.getAttribute("data-test")) {
-                $el(".elementor-element-baad601 .elementor-button-wrapper a").click();
+                if (e.currentTarget.closest("#frequentlyAskedQuestionsBlock")) {
+                  pushDataLayer("exp_res_surv_fun_but_quest_discov", "Book a FREE Discovery Call", "Button", "Frequently Asked Questions");
+                }
+                if (e.currentTarget.closest("#completeRecoveryBlock")) {
+                  pushDataLayer("exp_res_surv_fun_but_recov_discov", "Book a FREE Discovery Call", "Button", "A complete recovery from tinnitus is possible");
+                }
+                if (e.currentTarget.closest("#backGuarantee")) {
+                  pushDataLayer("exp_res_surv_fun_but_bundl_discov", "Book a FREE Discovery Call", "Button", "Tinnitus Relief Bundle");
+                }
+                if (e.currentTarget.closest(".sticky_var")) {
+                  let maxScrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                  let currentScrollHeight = window.pageYOffset.toFixed(0);
+
+                  pushDataLayer("exp_res_surv_fun_stick_site_book_footer", `${((currentScrollHeight / maxScrollHeight) * 100).toFixed(0)}% - Book a Free Call`, "Sticky button", "Sitewide Footer");
+                }
+                if (e.currentTarget.closest(".new_header:not(.sticky_var)")) {
+                  if (window.innerWidth <= 768) {
+                    let maxScrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                    let currentScrollHeight = window.pageYOffset.toFixed(0);
+
+                    pushDataLayer("exp_res_surv_fun_stick_site_book", `${((currentScrollHeight / maxScrollHeight) * 100).toFixed(0)}% - Book a Free Call`, "Sticky button", "Sitewide Header");
+                  } else {
+                    pushDataLayer("exp_res_surv_fun_stick_site_book_header", `Book a Free Call`, "Not Sticky button", "Sitewide Header");
+                  }
+                }
+                // $el('.elementor-element-baad601 .elementor-button-wrapper a').click()
               }
               e.target.setAttribute("data-test", "1");
               setTimeout(() => {
@@ -518,6 +581,7 @@ let treblehealthPages = setInterval(() => {
         if ($el(".trust_score_wrapp") && $el("#trustpilotBlock")) {
           $$el(".trust_score_wrapp").forEach((el) => {
             el.addEventListener("click", (e) => {
+              pushDataLayer("exp_res_surv_fun_link_trust_review", "Reviews", "Link", "Header TrustScore");
               let headerOffset = 60;
               if (window.innerWidth > 768) {
                 headerOffset = 0;
@@ -536,6 +600,7 @@ let treblehealthPages = setInterval(() => {
         if ($el(".product_scroll_trigger") && $el("#tinnitusReliefBundle")) {
           $$el(".product_scroll_trigger").forEach((el) => {
             el.addEventListener("click", (e) => {
+              pushDataLayer("exp_res_surv_fun_link_first_bundl", "With Tinnitus Relief Bundle", "Link", "First screen");
               let headerOffset = 60;
               if (window.innerWidth > 768) {
                 headerOffset = 0;
@@ -559,38 +624,38 @@ let treblehealthPages = setInterval(() => {
       }
       setAccordionItem(count, title, text) {
         const item = `
-    <li class="questions_accordion_block" data-visability="${count}">
-      <div class="questions_accordion_link">
-        <span class="accordion_icon_wrapp">
-          <span class="accordion_icon_closed"
-            ><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
-              <g id="icon_plus" data-name="icon plus" transform="translate(-1210 -3068)">
-                <g id="Ellipse_13" data-name="Ellipse 13" transform="translate(1210 3068)" fill="#f8fbf9" stroke="#4521d9" stroke-width="2">
-                  <circle cx="15" cy="15" r="15" stroke="none"></circle>
-                  <circle cx="15" cy="15" r="14" fill="none"></circle>
-                </g>
-                <rect id="Rectangle_2395" data-name="Rectangle 2395" width="2" height="12" transform="translate(1224 3077)" fill="#4521d9"></rect>
-                <rect id="Rectangle_2396" data-name="Rectangle 2396" width="2" height="12" transform="translate(1231 3082) rotate(90)" fill="#4521d9"></rect>
-              </g></svg
-          ></span>
-          <span class="accordion_icon_opened"
-            ><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
-              <g id="icon_minus" data-name="icon minus" transform="translate(-1210 -3068)">
-                <g id="Ellipse_13" data-name="Ellipse 13" transform="translate(1210 3068)" fill="#f8fbf9" stroke="#4521d9" stroke-width="2">
-                  <circle cx="15" cy="15" r="15" stroke="none"></circle>
-                  <circle cx="15" cy="15" r="14" fill="none"></circle>
-                </g>
-                <rect id="Rectangle_2395" data-name="Rectangle 2395" width="2" height="12" transform="translate(1231 3082) rotate(90)" fill="#6ed097"></rect>
-                <rect id="Rectangle_2396" data-name="Rectangle 2396" width="2" height="12" transform="translate(1231 3082) rotate(90)" fill="#4521d9"></rect>
-              </g></svg
-          ></span>
-        </span>
-        <p>${title}</p>
-      </div>
-      <div class="questions_accordion_lists" data-visability-open="${count}">
-        <div>${text}</div>
-      </div>
-    </li>
+        <li class="questions_accordion_block" data-visability="${count}">
+          <div class="questions_accordion_link">
+            <span class="accordion_icon_wrapp">
+              <span class="accordion_icon_closed"
+                ><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+                  <g id="icon_plus" data-name="icon plus" transform="translate(-1210 -3068)">
+                    <g id="Ellipse_13" data-name="Ellipse 13" transform="translate(1210 3068)" fill="#f8fbf9" stroke="#4521d9" stroke-width="2">
+                      <circle cx="15" cy="15" r="15" stroke="none"></circle>
+                      <circle cx="15" cy="15" r="14" fill="none"></circle>
+                    </g>
+                    <rect id="Rectangle_2395" data-name="Rectangle 2395" width="2" height="12" transform="translate(1224 3077)" fill="#4521d9"></rect>
+                    <rect id="Rectangle_2396" data-name="Rectangle 2396" width="2" height="12" transform="translate(1231 3082) rotate(90)" fill="#4521d9"></rect>
+                  </g></svg
+              ></span>
+              <span class="accordion_icon_opened"
+                ><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+                  <g id="icon_minus" data-name="icon minus" transform="translate(-1210 -3068)">
+                    <g id="Ellipse_13" data-name="Ellipse 13" transform="translate(1210 3068)" fill="#f8fbf9" stroke="#4521d9" stroke-width="2">
+                      <circle cx="15" cy="15" r="15" stroke="none"></circle>
+                      <circle cx="15" cy="15" r="14" fill="none"></circle>
+                    </g>
+                    <rect id="Rectangle_2395" data-name="Rectangle 2395" width="2" height="12" transform="translate(1231 3082) rotate(90)" fill="#6ed097"></rect>
+                    <rect id="Rectangle_2396" data-name="Rectangle 2396" width="2" height="12" transform="translate(1231 3082) rotate(90)" fill="#4521d9"></rect>
+                  </g></svg
+              ></span>
+            </span>
+            <p>${title}</p>
+          </div>
+          <div class="questions_accordion_lists" data-visability-open="${count}">
+            <div>${text}</div>
+          </div>
+        </li>
         `;
         return item;
       }
@@ -1584,6 +1649,13 @@ let treblehealthPages = setInterval(() => {
         this.onClickProductTxt();
         this.onClickBtnTrustpilotLink();
         this.initAccordionQuestions();
+        // Visibility
+        checkFocusTime("#completeRecoveryBlock", "exp_res_surv_fun_vis_recov_focu", "A complete recovery from tinnitus is possible");
+        checkFocusTime("#frequentlyAskedQuestionsBlock", "exp_res_surv_fun_vis_quest_focu", "Frequently Asked Questions");
+        checkFocusTime("#trustpilotBlock", "exp_res_surv_fun_vis_result_focu", "People just like you achieve great results");
+        checkFocusTime("#hero", "exp_res_surv_fun_vis_bundl_focu", "Tinnitus Relief Bundle");
+        checkFocusTime("#tinnitusReliefBundle", "exp_res_surv_fun_vis_moder_focu", "First screen Your tinnitus is Moderate");
+        checkFocusTime("#provenSuccess", "exp_res_surv_fun_vis_succes_focu", "Proven Success");
       }
     }
 
