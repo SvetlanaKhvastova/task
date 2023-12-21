@@ -433,7 +433,7 @@ let treblehealthPages = setInterval(() => {
                   let s = setInterval(() => {
                     if ($el(".bundle_tooltip_wrapp")) {
                       clearInterval(s);
-                      checkFocusTime(".bundle_tooltip_wrapp", "exp_res_surv_fun_vis_succes_focu", "Tinnitus Relief Bundle Tooltip");
+                      checkFocusTime(".bundle_tooltip_wrapp", "exp_res_surv_fun_visib_tool_focu", "Tinnitus Relief Bundle Tooltip");
                     }
                   }, 100);
                 },

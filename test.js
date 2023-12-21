@@ -353,3 +353,66 @@ document.querySelectorAll(".nc-title").forEach((el) => {
     el.closest(".nc-product-card").style.display = "none";
   }
 });
+//
+async function renderReadyToShipSlider() {
+  const parser = new DOMParser();
+  const requests = [];
+
+  for (let i = 1; i <= 9; i++) {
+    requests.push(fetchArr(`https://capucinne.com/collections/ready-to-ship?page=${i}`));
+  }
+
+  await Promise.all(requests)
+    .then((results) => {
+      for (const items of results) {
+        for (let item of items) {
+          document.querySelector(".ready_to_ship_container .ready_to_ship_list").insertAdjacentElement("beforeend", item);
+        }
+      }
+
+      const interval = setInterval(() => {
+        if (typeof jQuery === "function" && typeof jQuery("#readyToShip .ready_to_ship_list:not(.slick-initialized)").slick === "function") {
+          clearInterval(interval);
+          initSlider();
+        }
+      }, 100);
+    })
+    .catch((e) => {
+      console.log(e);
+      document.querySelector("#readyToShip").remove();
+    });
+
+  async function fetchArr(url) {
+    let res = await fetch(url);
+    text = await res.text();
+
+    const doc = parser.parseFromString(text, "text/html");
+    return doc.querySelectorAll(".grid.grid--uniform .grid__item");
+  }
+
+  function initSlider() {
+    const options = {
+      slidesToShow: 5,
+      slidesToScroll: 5,
+      arrows: true,
+      dots: false,
+      infinite: true,
+      adaptiveHeight: true,
+      prevArrow: `<div class="prev_btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M9.99994 12L5.99994 7.49999L9.99994 3" stroke="#1C1D1D" stroke-linecap="square" stroke-linejoin="round"/></svg></div>`,
+      nextArrow: `<div class="next_btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M5.99994 12L9.99994 7.49999L5.99994 3" stroke="#1C1D1D" stroke-linecap="square" stroke-linejoin="round"/></svg></div>`,
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 2.7,
+            slidesToScroll: 3,
+            infinite: false,
+            arrows: false,
+          },
+        },
+      ],
+    };
+
+    let slider = jQuery("#readyToShip .ready_to_ship_list:not(.slick-initialized)").slick(options);
+  }
+}
