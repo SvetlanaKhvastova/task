@@ -103,7 +103,7 @@ let treblehealthPages = setInterval(() => {
         disclaimerDates = 34;
         levelImg = `${git}/treblehealth/img/moderate_img.svg`;
         break;
-      case "/intl-tiq-score-mild/":
+      case "/tiq-score-mild/":
         level = "mild";
         disclaimerDates = 21;
         levelImg = `${git}/treblehealth/img/mild_img.svg`;
@@ -226,7 +226,7 @@ let treblehealthPages = setInterval(() => {
           <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-8.png" alt="product" />
           <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-9.png" alt="product" />
           <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-12.png" alt="product" />
-          <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-13.png" alt="product" />
+          <img src="https://drive.google.com/uc?export=view&id=1rzQ2UBJSHjK8jJgzv2cJf3Y16bcoT5qC" alt="product" />
           <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-15.png" alt="product" />
         </div>
         <ul class="bundle_tooltip_list">
@@ -543,8 +543,11 @@ let treblehealthPages = setInterval(() => {
         }
       }
       onClickCallBtn() {
-        if ($$el(".call_your_free_btn") && $el(".elementor-element-baad601 .elementor-button-wrapper a")) {
+        if (($$el(".call_your_free_btn") && $el(".elementor-element-baad601 .elementor-button-wrapper a")) || $el(".elementor-element-0cdfd73 .elementor-button-wrapper a")) {
           $$el(".call_your_free_btn").forEach((el) => {
+            if (window.location.pathname === "/tiq-score-mild/") {
+              el.textContent = "Continue";
+            }
             el.addEventListener("click", (e) => {
               if (!e.target.getAttribute("data-test")) {
                 if (e.currentTarget.closest("#frequentlyAskedQuestionsBlock")) {
@@ -572,7 +575,12 @@ let treblehealthPages = setInterval(() => {
                     pushDataLayer("exp_res_surv_fun_stick_site_book_header", `Book a Free Call`, "Not Sticky button", "Sitewide Header");
                   }
                 }
-                $el(".elementor-element-baad601 .elementor-button-wrapper a").click();
+                if (window.location.pathname === "/tiq-score-mild/") {
+                  console.log(`<<<<<<<<<<<<<object>>>>>>>>>>>>>`);
+                  $el(".elementor-element-0cdfd73 .elementor-button-wrapper a").click();
+                } else {
+                  $el(".elementor-element-baad601 .elementor-button-wrapper a").click();
+                }
               }
               e.target.setAttribute("data-test", "1");
               setTimeout(() => {
@@ -954,11 +962,10 @@ let treblehealthPages = setInterval(() => {
                 text-align: center;
               }
               #hero .hero_txt{
-                max-width: 335px;
                 margin: 0 auto;
               }
-              #hero .hero_txt:nth-child(1){
-                max-width: 280px;
+              #hero .hero_txt br{
+                display: none;
               }
               .current_month_txt, .relief_month_txt, .next_current_month_txt{
                 font-size: 12px;
@@ -976,9 +983,9 @@ let treblehealthPages = setInterval(() => {
           </style>
           <div class="container_var">
             <div class="hero_wrapp">
-              <p class="hero_txt">We’ve identified key points to help treat your tinnitus.</p>
-              <h1 class="hero_title">Based on your answers, your tinnitus is <b>${this.level}</b></h1>
-              <p class="hero_txt">and you can experience relief from tinnitus <b>by ${this.reliefDate}*</b> <span class="txt_underline"><b class="product_scroll_trigger">with Tinnitus Relief Bundle</b></p>
+              <p class="hero_txt">Based on your answers,</p>
+              <h1 class="hero_title">Your tinnitus is <b>${this.level}</b></h1>
+              <p class="hero_txt">We’ve identified key points to help treat your tinnitus,<br> and you can experience relief from tinnitus <b>by ${this.reliefDate}*</b> <span class="txt_underline"><b class="product_scroll_trigger">the Tinnitus Relief Bundle</b></p>
               <div class="chart_wrapp">
                 <div class="chart_img_wrapp">
                   <img src="${this.levelImg}" alt="chart">
@@ -1032,7 +1039,7 @@ let treblehealthPages = setInterval(() => {
               </span>
               <div>
                 <h3 class="third_title">Proven Success</h3>
-                <p>Over <b>85%*</b> of customers using <b>Tinnitus Relief Bundle</b> report <b>better hearing.</b></p>
+                <p>Over <b>85%*</b> of individuals using <b>the Tinnitus Relief Bundle </b> report <b>reduced tinnitus.*</b></p>
               </div>
             </div>
           </div>
@@ -1213,7 +1220,7 @@ let treblehealthPages = setInterval(() => {
                 </div>
               </div>
               <div class="img_wrapp">
-                <img src="https://treblehealth.com/wp-content/uploads/2022/12/Wordpress-images-3.png" alt="Tinnitus Relief Bundle" />
+                <img src="${git}/treblehealth/img/tinnitus_relief_bundle_img.png" alt="Tinnitus Relief Bundle" />
               </div>
               <div>
                 <div class="desktop_var">
@@ -1233,10 +1240,10 @@ let treblehealthPages = setInterval(() => {
                 <div class="tinnitus_relief_bundle_descr">
                   <h3 class="fourth_title">What you’ll get:</h3>
                   <ul class="">
+                    <li class=""><p>Sound therapy devices for maximum relief</p></li>
                     <li class=""><p>Enhanced focus and attention during the day</p></li>
                     <li class=""><p>Tools to fall asleep at night</p></li>
                     <li class=""><p>Peace of mind and calm</p></li>
-                    <li class=""><p>Sound therapy devices for maximum relief.</p></li>
                   </ul>
                 </div>
               </div>
