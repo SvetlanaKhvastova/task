@@ -19,14 +19,19 @@ document.querySelectorAll(".view-more-btn")?.forEach((el) => {
   el.addEventListener("click", (e) => {
     if (!e.target.getAttribute("data-test")) {
       e.preventDefault();
-      let headerOffset = 70;
-      const elementPosition = el.closest(".view-more-btn-wrapp").previousElementSibling.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
       el.closest(".view-more-btn-wrapp").previousElementSibling.classList.toggle("is_closed");
+      if (el.closest(".view-more-btn-wrapp").previousElementSibling.classList.contains("is_closed")) {
+        el.querySelector("span").textContent = "View more";
+        let headerOffset = 70;
+        const elementPosition = el.closest(".view-more-btn-wrapp").previousElementSibling.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      } else {
+        el.querySelector("span").textContent = "View less";
+      }
     }
     e.target.setAttribute("data-test", "1");
     setTimeout(() => {
