@@ -356,17 +356,13 @@ let startFuncShopPay = setInterval(() => {
   line-height: 16px;
 }
 body .icart .additional-checkout-buttons {
-  position: relative;
-  margin-top: 40px !important;
   display: block !important;
 }
-.icart-all-btn-shopify {
-  display: flex !important;
+.dynamic-checkout__content {
   position: relative;
-  margin-top: 40px !important;
+ padding-top: 40px !important;
 }
-body .icart .additional-checkout-buttons::before,
-.icart-all-btn-shopify::before {
+.dynamic-checkout__content::before {
   position: absolute;
   content: "Or";
   color: #5b5b5b;
@@ -381,8 +377,13 @@ body .icart .additional-checkout-buttons::before,
   background: #fff;
   padding: 0 10px;
 }
-body .icart .additional-checkout-buttons::after,
-.icart-all-btn-shopify::after {
+.dynamic-checkout__content::before {
+  top: 9px;
+}
+.cart__footer .dynamic-checkout__content::before {
+  background: #EFEFEF;
+}
+.dynamic-checkout__content::after {
   position: absolute;
   content: "";
   background: #d9d9d9;
@@ -392,6 +393,9 @@ body .icart .additional-checkout-buttons::after,
   left: 50%;
   transform: translateX(-50%);
   z-index: 1;
+}
+.dynamic-checkout__content::after{
+  top: 19px;
 }
 .icart .icart-main .icart-inner .icart-cart-main .icart-content .icart-checkout label {
   color: #000 !important;
@@ -455,6 +459,35 @@ body .icart .additional-checkout-buttons::after,
 /*cart */
 .cart__footer .icart-all-btn-shopify::before {
   background: #efefef;
+}
+.cart__dynamic-checkout-buttons.additional-checkout-buttons{
+  border-radius: 0px 0px 3px 3px;
+  border: 1px solid rgba(0, 0, 0, 0.13);
+  background: #EFEFEF;
+  border-top: unset;
+  padding: 0 10px 20px;
+  margin: 0;
+}
+ul[data-shopify-buttoncontainer] li:nth-child(1){
+  margin: 0 !important;
+}
+#main-cart-footer .cart__ctas{
+  border-bottom: unset !important;
+  margin: 0 !important;
+  padding: 16px 10px 0 !important;
+}
+body .shopify-cleanslate .IcgSIE7pEVZrlnAeRS6j, body .shopify-cleanslate .DefhEHZZf4y32pvV7mZj,
+body .shopify-cleanslate .pGZsIynlCgQUe6S16lYw, body .shopify-cleanslate .XLcXEW3RnM9fyU7k7fvC,
+body .shopify-cleanslate .KHqjJyKjVNT1lCGf2bnQ {
+  height: 54px !important;
+  border-radius: 30px !important;
+}
+body .shopify-cleanslate .wOEViUrCyNb9maEe3QrQ{
+  height: 100%;
+  border-radius: 30px !important;
+}
+body .icart .additional-checkout-buttons .dynamic-checkout__content .shopify-cleanslate ul>li>div {
+  height: 54px!important;
 }
 @media (max-width: 320px) {
 }
