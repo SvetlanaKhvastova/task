@@ -106,11 +106,11 @@ p:empty {
 .mt-minus-m {
   margin-top: -12px;
 }
+.section.section-pb-standard {
+  padding-block: 30px;
+}
 .section.section-pt-standard {
   padding-top: 60px;
-}
-.section.section-pb-standard {
-  padding-block: 60px;
 }
 .section.section-pbt-standard {
   padding-bottom: 60px;
@@ -221,7 +221,7 @@ main.main p {
   line-height: 150%;
 }
 .case_contain .text_box p {
-  max-width: 580px;
+  max-width: 581px;
 }
 .time {
   gap: 6px;
@@ -267,6 +267,9 @@ main.main p {
   background: var(--Dark-violet, #4b4667);
   border: none;
 }
+.accent-block.bgr-dark h4 {
+  color: var(--White, #fff) !important;
+}
 .accent-block__img--sm {
   width: 28px;
   height: 28px;
@@ -278,7 +281,6 @@ main.main p {
 .ordered-list li {
   font-size: 16px !important;
   margin-bottom: 16px;
-  max-width: 550px;
 }
 .ordered-list li:last-child {
   margin-bottom: 0;
@@ -509,11 +511,110 @@ main.main p {
 .mr-5 {
   margin-right: 5px !important;
 }
+.iterations {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+  background: var(--White, #fff);
+  box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.15);
+  padding: 32px 0px;
+  text-align: center;
+  gap: 20px;
+}
+.iterations.large-size {
+  margin: 0 -100px;
+  width: calc(100% + 200px);
+}
+.iterations.large-size p {
+  max-width: unset;
+}
+.iterations.large-size .result-img {
+  max-width: 716px;
+  width: 100%;
+}
+.iterations.large-size .result-img img {
+  max-width: 100%;
+}
+.iterations img {
+  max-width: 320px;
+  max-height: 570px;
+}
+#client .list-stores {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+#client .list-stores p {
+  font-size: 16px !important;
+  line-height: 150%;
+}
+#client .list-stores li {
+  position: relative;
+  padding-left: 71px;
+  min-height: 65px;
+  align-items: center;
+}
+#client .list-stores li::before {
+  position: absolute;
+  content: "";
+  width: 59px;
+  height: 65px;
+  background: url(/wp-content/themes/conversionrate/assets/images/case-sleepypatch/stores-icon-1.svg) center no-repeat;
+  background-size: contain;
+  border-radius: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+}
+#client .list-stores li:nth-child(2):before {
+  background: url(/wp-content/themes/conversionrate/assets/images/case-sleepypatch/stores-icon-2.svg) center no-repeat;
+  background-size: contain;
+}
+#client .list-stores li:nth-child(3):before {
+  background: url(/wp-content/themes/conversionrate/assets/images/case-sleepypatch/stores-icon-3.svg) center no-repeat;
+  background-size: contain;
+}
+#client .list-stores li:nth-child(4):before {
+  background: url(/wp-content/themes/conversionrate/assets/images/case-sleepypatch/stores-icon-4.svg) center no-repeat;
+  background-size: contain;
+}
+#client .list-stores li:nth-child(5):before {
+  background: url(/wp-content/themes/conversionrate/assets/images/case-sleepypatch/stores-icon-5.svg) center no-repeat;
+  background-size: contain;
+}
+#results .unordered-list {
+  padding-left: 26px;
+}
+#results .unordered-list li {
+  font-size: 11px !important;
+}
+#results .unordered-list li p {
+  line-height: 160%;
+}
+#results .flow p {
+  max-width: 580px;
+}
+@media (min-width: 1160px) and (max-width: 1293px) {
+  .iterations.large-size {
+    margin: 0 -40px;
+    width: calc(100% + 80px);
+  }
+}
+@media (min-width: 993px) and (max-width: 1160px) {
+  .iterations.large-size {
+    margin: 0;
+    width: 100%;
+  }
+}
 @media (min-width: 550px) and (max-width: 992px) {
   .heading-1 {
     max-width: 555px;
     text-align: center;
     margin: 0 auto !important;
+  }
+  .accent-block.bgr-dark h4 {
+    max-width: 670px !important;
   }
   #empathizing div.two-columns {
     justify-content: flex-start;
@@ -534,6 +635,12 @@ main.main p {
     max-width: 100% !important;
   }
 }
+@media (min-width: 768px) and (max-width: 992px) {
+  .iterations.large-size .result-img {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+}
 @media (min-width: 992px) {
   .d-lg-none {
     display: none !important;
@@ -543,6 +650,12 @@ main.main p {
   #initialEvaluation img.dn-mob,
   #initialEvaluation img.dn-desk {
     width: 100% !important;
+  }
+  #results .flow p {
+    max-width: 335px;
+  }
+  #results .unordered-list li p {
+    max-width: 307px;
   }
   .view-more-btn {
     display: flex;
@@ -582,7 +695,7 @@ main.main p {
     border-radius: 0;
   }
   .banner.accent-block {
-    padding-top: 3px;
+    padding-top: 8px;
   }
   .flow--bigger {
     gap: 20px;
@@ -594,6 +707,7 @@ main.main p {
   }
   .ordered-list li {
     max-width: 309px;
+    font-size: 18px !important;
   }
   .d-lg-block {
     display: none;
@@ -618,15 +732,17 @@ main.main p {
   .section {
     padding-block: 20px;
   }
+  .section.section-pb-standard {
+    padding-block: 20px;
+  }
   .section.section-pt-standard {
     padding-top: 40px;
   }
-  .section.section-pb-standard {
+  .section.section-pbt-standard {
     padding-bottom: 40px;
-    padding-top: 40px;
   }
   #results {
-    padding-bottom: 0;
+    padding-bottom: 20px;
   }
   .section.section-pt-standard-var {
     padding-top: 0;
@@ -635,7 +751,7 @@ main.main p {
     padding-top: 40px;
   }
   .case_contain .text_box p {
-    max-width: 336px;
+    max-width: 335px;
   }
   #key-takeaway.section {
     padding-top: 40px;
@@ -652,7 +768,6 @@ main.main p {
   .heading-1 {
     font-size: 30px;
     line-height: 38px;
-    max-width: 325px;
   }
   .heading-2 {
     font-size: 28px;
@@ -673,6 +788,57 @@ main.main p {
     gap: 8px;
     font-size: 16px;
     line-height: 150%;
+  }
+  .accent-block.bgr-dark h4 {
+    max-width: 290px;
+  }
+  #client .list-stores p {
+    max-width: 263px;
+  }
+  .iterations {
+    padding: 24px 28px 24px 27px;
+    box-shadow: unset;
+  }
+  .iterations.large-size {
+    position: relative;
+    margin: 0;
+    width: 100%;
+    padding: 24px 10px 14px;
+    align-items: initial;
+  }
+  .iterations.large-size .result-img {
+    position: relative;
+    max-width: 250px;
+    width: 100%;
+  }
+  .iterations.large-size .result-img:nth-of-type(3) {
+    margin: 0 0 0 auto;
+    text-align: right;
+  }
+  .iterations.large-size .result-img:nth-of-type(3)::before {
+    position: absolute;
+    content: "";
+    width: 63px;
+    height: 122px;
+    background: url(/wp-content/themes/conversionrate/assets/images/case-sleepypatch/line-left-bottom.svg) center no-repeat;
+    background-size: contain;
+    border-radius: 0;
+    bottom: -3px;
+    left: -35px;
+  }
+  .iterations.large-size .result-img.slide-in-var:nth-of-type(3)::before {
+    left: -27px;
+  }
+  .iterations.large-size .result-img:nth-of-type(2)::before {
+    position: absolute;
+    content: "";
+    width: 63px;
+    height: 315px;
+    background: url(/wp-content/themes/conversionrate/assets/images/case-sleepypatch/line-right-bottom.svg) center no-repeat;
+    background-size: contain;
+    border-radius: 0;
+    bottom: -5px;
+    right: -16px;
   }
   .case_contain .text_box .accent-block p {
     font-size: 16px !important;
@@ -778,11 +944,12 @@ main.main p {
   }
 }
 @media (max-width: 768px) {
-  img.dn-desk {
+  img.dn-desk,
+  .dn-desk {
     display: block;
   }
   .header__logo {
-    width: 154px;
+    width: 116px;
     height: 46px;
   }
   .dn-mob,
@@ -792,7 +959,6 @@ main.main p {
   .breadcrumbs {
     padding-top: 22px;
   }
-  .flow .heading-4 + p,
   #conclusion p,
   #reasons .unordered-list li,
   #results .unordered-list li {
@@ -833,33 +999,4 @@ main.main p {
   .d-xs-none {
     display: none;
   }
-}
-
-#client .list-stores li::before {
-  position: absolute;
-  content: "";
-  width: 59px;
-  height: 65px;
-  background: url(/wp-content/themes/conversionrate/assets/images/case-sleepypatch/stores-icon-1.svg) center no-repeat;
-  background-size: contain;
-  border-radius: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 0;
-}
-#client .list-stores li:nth-child(2):before {
-  background: url(/wp-content/themes/conversionrate/assets/images/case-sleepypatch/stores-icon-2.svg) center no-repeat;
-  background-size: contain;
-}
-#client .list-stores li:nth-child(3):before {
-  background: url(/wp-content/themes/conversionrate/assets/images/case-sleepypatch/stores-icon-3.svg) center no-repeat;
-  background-size: contain;
-}
-#client .list-stores li:nth-child(4):before {
-  background: url(/wp-content/themes/conversionrate/assets/images/case-sleepypatch/stores-icon-4.svg) center no-repeat;
-  background-size: contain;
-}
-#client .list-stores li:nth-child(5):before {
-  background: url(/wp-content/themes/conversionrate/assets/images/case-sleepypatch/stores-icon-5.svg) center no-repeat;
-  background-size: contain;
 }
