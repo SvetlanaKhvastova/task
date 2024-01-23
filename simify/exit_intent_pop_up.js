@@ -31,8 +31,11 @@ function checkFocusTime(selector, event, location) {
         const startShow = entry.target.getAttribute("data-startShow");
         const endShow = new Date().getTime();
         const timeShow = Math.round(endShow - startShow);
+        console.log(timeShow, `timeShow`);
         entry.target.removeAttribute("data-startShow");
-        pushDataLayer(event, timeShow, "Visibility", location);
+        if (timeShow >= 3000) {
+          pushDataLayer(event, timeShow, "Visibility", location);
+        }
         checker.unobserve(entry.target);
       }
     });
@@ -211,19 +214,25 @@ class IntentPopup {
 
   init() {
     this.initMainStyles();
+    this.createPopup();
     const currentUrl = location.href;
 
-    if (currentUrl.includes(this.targetUrl)) {
-      this.createPopup();
+    if (currentUrl.includes(this.targetUrl) && this.targetUrl === "/collections") {
+      console.log(`ONLY POPUP >>>>>`);
       this.intentPopupTriggers();
     }
 
     // reDesignPdp
-    this.initMainPdpStyles();
-    this.reDesignHero();
-    this.newVideoExplanationBlock();
-    this.newBtnSelectPlan();
-    this.newBtnLearnMoreAboutHowToActivate();
+    if (currentUrl.includes(this.targetUrl) && this.targetUrl === "/products") {
+      console.log(`ONLY PDP!!!!!`);
+      this.initMainPdpStyles();
+      this.reDesignHero();
+      this.newVideoExplanationBlock();
+      this.newBtnSelectPlan();
+      this.newBtnLearnMoreAboutHowToActivate();
+      this.onClickQuantitySelectorBtn();
+      this.onVisibleStickyBanner();
+    }
   }
 
   // IntentPopup
@@ -434,7 +443,6 @@ class IntentPopup {
     const videoBoxStyle = /* HTML */ `
       <style>
         #videoExplanation {
-          display: none;
           margin: 80px 0 0;
         }
         #videoExplanation .esim-compatible-inner {
@@ -485,18 +493,30 @@ class IntentPopup {
           height: 100%;
         }
         .video-explanation__opened,
-        .video-explanation__link.active .video-explanation__closed {
+        .video-explanation__link.active_var .video-explanation__closed {
           display: none;
         }
-        .video-explanation__link.active .video-explanation__opened {
+        .video-explanation__link.active_var .video-explanation__opened {
           display: block;
         }
         .video-explanation__description {
           margin-top: 10px;
         }
-        .video-explanation__lists iframe {
+        .video-explanation__iframe {
+          position: relative;
+        }
+        .video-explanation__lists .video-explanation__iframe iframe {
           width: 100%;
           border-radius: 6px;
+          border: none;
+          max-height: 298px;
+        }
+        .video-explanation__bgr {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
         }
         .video-explanation__lists ul,
         .video-explanation__lists ol,
@@ -528,6 +548,10 @@ class IntentPopup {
           .video-explanation__description {
             max-width: 311px;
           }
+          .video-explanation__lists .video-explanation__iframe iframe {
+            max-height: 147px;
+            height: 100%;
+          }
         }
       </style>
     `;
@@ -536,7 +560,7 @@ class IntentPopup {
         ${videoBoxStyle}
         <div class="esim-compatible-inner">
           <div class="video-explanation__block">
-            <div class="video-explanation__link">
+            <div class="video-explanation__link active_var">
               <p>Learn how to activate your eSIM</p>
               <span class="video-explanation__icon">
                 <span class="video-explanation__closed">+</span>
@@ -544,7 +568,10 @@ class IntentPopup {
               </span>
             </div>
             <div class="video-explanation__lists">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/NMEISemQYcU?si=apKbuTqO7fQzd_eR&enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <div class="video-explanation__iframe">
+                <!-- <div class="video-explanation__bgr"></div> -->
+                <iframe src="https://drive.google.com/file/d/1WLyRJl8BMIhAcySn2IoOtql5OZZDa97_/preview" width="640" height="480" allow="autoplay"></iframe>
+              </div>
               <div class="video-explanation__description">
                 <p>Detailed eSIM Activation Guide</p>
                 <ol>
@@ -578,32 +605,38 @@ class IntentPopup {
         </div>
       </section>
     `;
-
-    if (!$el("#videoExplanation")) {
-      this.insert(videoBoxHtml, "#shopify-section-esim-compatible", "beforebegin");
-    }
+    waitForElement("#shopify-section-esim-compatible").then((i) => {
+      if (!$el("#videoExplanation")) {
+        this.insert(videoBoxHtml, "#shopify-section-esim-compatible", "beforebegin");
+      }
+    });
 
     waitForElement("#videoExplanation").then((el) => {
       this.onClickVideoExplanationBlock();
     });
   }
   onClickVideoExplanationBlock() {
-    $$el(".video-explanation__link")[0].classList.add("active");
     jQuery(".video-explanation__link").click(function (e) {
-      jQuery(this).toggleClass("active");
-      jQuery(this).closest("li").toggleClass("active");
+      pushDataLayer("exp_pdp_enhanc_accor_pdpeuukactiv_lear", "Learn how to activate your eSIM", "Accordion", "PDP Europe & UK eSIM (50 Countries)");
+      jQuery(this).toggleClass("active_var");
+      jQuery(this).closest("li").toggleClass("active_var");
       jQuery(this).next(".video-explanation__lists").slideToggle();
       if (jQuery(".video-explanation__link").not(this)) {
-        jQuery(".video-explanation__link").not(this).removeClass("active");
-        jQuery("video-explanation__link").not(this).closest("li").removeClass("active");
-      }
-
-      if (e.currentTarget.classList.contains("active")) {
-        // pushDataLayer('Open block', `${e.currentTarget.querySelector('p').textContent}`);
-      } else {
-        // pushDataLayer('Close block', `${e.currentTarget.querySelector('p').textContent}`);
+        jQuery(".video-explanation__link").not(this).removeClass("active_var");
+        jQuery("video-explanation__link").not(this).closest("li").removeClass("active_var");
       }
     });
+
+    // waitForElement('.video-explanation__iframe iframe').then(i => {
+    //   i.addEventListener('click', () => {
+    //     pushDataLayer(
+    //       'exp_pdp_enhanc_play_pdpeuukactiv_video',
+    //       'Video',
+    //       'Play',
+    //       'PDP Europe & UK eSIM (50 Countries) Learn how to activate your eSIM'
+    //     )
+    //   })
+    // })
   }
   newBtnSelectPlan() {
     const btnSelectPlanStyle = /* HTML */ `
@@ -662,24 +695,48 @@ class IntentPopup {
       </div>
     `;
 
-    if (!$el("#shopify-section-sim-works .select-plan__wrapper")) {
-      this.insert(btnSelectPlanHtml, ".esim-work-around", "afterend");
-    }
-    if (!$el(".esim-compatible-wrapper .select-plan__wrapper")) {
-      this.insert(btnSelectPlanHtml, ".esim-compatible-wrapper");
-    }
-    if (!$el(".why-esim-wrapper .select-plan__wrapper")) {
-      this.insert(btnSelectPlanHtml, ".why-esim-wrapper");
-    }
-    if (!$el(".section-review .select-plan__wrapper")) {
-      this.insert(btnSelectPlanHtml, ".section-review");
-    }
+    waitForElement(".esim-work-around").then((i) => {
+      if (!$el("#shopify-section-sim-works .select-plan__wrapper")) {
+        this.insert(btnSelectPlanHtml, ".esim-work-around", "afterend");
+      }
+    });
+    waitForElement(".esim-compatible-wrapper").then((i) => {
+      if (!$el(".esim-compatible-wrapper .select-plan__wrapper")) {
+        this.insert(btnSelectPlanHtml, ".esim-compatible-wrapper");
+      }
+    });
+    waitForElement(".why-esim-wrapper").then((i) => {
+      if (!$el(".why-esim-wrapper .select-plan__wrapper")) {
+        this.insert(btnSelectPlanHtml, ".why-esim-wrapper");
+      }
+    });
+    waitForElement(".section-review").then((i) => {
+      if (!$el(".section-review .select-plan__wrapper")) {
+        this.insert(btnSelectPlanHtml, ".section-review");
+      }
+    });
 
+    waitForElement("[data-cta]").then((i) => {
+      this.onClickBtnSelectPlan();
+    });
+  }
+  onClickBtnSelectPlan() {
     const btnSelectPlan = $$el("[data-cta]");
-    btnSelectPlan.forEach((item) => {
+    btnSelectPlan?.forEach((item) => {
       item.addEventListener("click", (e) => {
         if (!e.target.getAttribute("data-test")) {
-          console.log($el('[data-action="add-to-cart"]'));
+          if (e.target.closest("#shopify-section-sim-works")) {
+            pushDataLayer("exp_pdp_enhanc_but_pdpeuuk_sel1", "Select Plan 1", "Button", "PDP Europe & UK eSIM (50 Countries) Under block How do eSIMs work?");
+          }
+          if (e.target.closest(".esim-compatible-wrapper")) {
+            pushDataLayer("exp_pdp_enhanc_but_pdpeuuk_sel2", "Select Plan 2", "Button", "PDP Europe & UK eSIM (50 Countries) Under block Is my device eSIM compatible?");
+          }
+          if (e.target.closest(".why-esim-wrapper")) {
+            pushDataLayer("exp_pdp_enhanc_but_pdpeuuk_sel3", "Select Plan 3", "Button", "PDP Europe & UK eSIM (50 Countries) Under block Why Simify eSIMs?");
+          }
+          if (e.target.closest(".section-review")) {
+            pushDataLayer("exp_pdp_enhanc_but_pdpeuuk_sel4", "Select Plan 4", "Button", "PDP Europe & UK eSIM (50 Countries) Footer");
+          }
           $el('[data-action="add-to-cart"]')?.click();
         }
         e.target.setAttribute("data-test", "1");
@@ -739,10 +796,10 @@ class IntentPopup {
     }
 
     const btnLearnMoreAboutHowToActivate = $$el("[data-learnMore]");
-    btnLearnMoreAboutHowToActivate.forEach((item) => {
+    btnLearnMoreAboutHowToActivate?.forEach((item) => {
       item.addEventListener("click", (e) => {
         if (!e.target.getAttribute("data-test")) {
-          console.log(`object`);
+          pushDataLayer("exp_pdp_learn_mr_ab_how_t_actvt", "Learn more about how to activate", "Click", "PDP banner Learn more about how to activate");
           this.showLearnMoreAboutHowToActivate();
         }
         e.target.setAttribute("data-test", "1");
@@ -823,10 +880,10 @@ class IntentPopup {
         }
 
         @media (max-width: 768px) {
-          .learn-more-backdrop .intent-popup {
+          .learn-more-backdrop .new-popup {
             top: 130px;
           }
-          .learn-more-backdrop .intent-popup__close {
+          .learn-more-backdrop .new-popup__close {
             top: -105px;
           }
         }
@@ -880,42 +937,52 @@ class IntentPopup {
     const bgr = /* HTML */ `
       <div class="hero-img__brg">
         <style>
-          .mobile_img-esim {
-            position: relative;
-            display: block;
-          }
-          .mobile_img-esim img {
-            height: 386px;
-          }
-          .hero-img__brg {
-            position: absolute;
-            display: block;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 89.32%);
-            backdrop-filter: blur(2.5px);
-            z-index: 1;
+          @media (min-width: 768px) {
+            .mobile_img-esim {
+              position: relative;
+              display: block;
+            }
+            .mobile_img-esim img {
+              height: 386px;
+            }
+            .hero-img__brg {
+              position: absolute;
+              display: block;
+              width: 100%;
+              height: 100%;
+              background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 89.32%);
+              backdrop-filter: blur(2.5px);
+              z-index: 1;
+            }
           }
         </style>
       </div>
     `;
-    if (!$el(".hero-img__brg")) {
-      this.insert(bgr, ".mobile_img-esim", "afterbegin");
+
+    if (window.innerWidth > 768) {
+      if (!$el(".hero-img__brg")) {
+        this.insert(bgr, ".mobile_img-esim", "afterbegin");
+      }
     }
 
-    //
     const newWrapHeroStyles = /* HTML */ `
       <style>
-        .new_Product_Wrapper {
-          max-width: 874px;
-          margin: -300px auto 0;
-          border-radius: 12px;
-          background: #fff;
-          box-shadow: 0px -16px 28px 0px rgba(0, 0, 0, 0.08);
-          z-index: 1;
-          display: block;
-          position: relative;
-          padding: 50px 50px 20px;
+        @media (min-width: 768px) {
+          .new_Product_Wrapper {
+            max-width: 874px;
+            margin: -300px auto 0;
+            border-radius: 12px;
+            background: #fff;
+            box-shadow: 0px -16px 28px 0px rgba(0, 0, 0, 0.08);
+            z-index: 1;
+            display: block;
+            position: relative;
+            padding: 50px 50px 20px;
+          }
+        }
+        .Product {
+          margin: 0 0 50px;
+          max-width: 100%;
         }
         .new_Product-inner {
           flex-direction: column;
@@ -1026,38 +1093,7 @@ class IntentPopup {
           height: 100%;
         }
         .hero-body .comp-esim {
-          margin: 0 0 40px;
-          padding: 0;
-          background: none;
-          border: none;
-          display: flex;
-          align-items: center;
-          justify-content: flex-start;
-        }
-        .hero-body .comp-esim a {
-          position: relative;
-          width: 100%;
-          border-radius: 6px;
-          background: #eef4fc;
-          color: #333f48;
-          font-family: "Poppins";
-          font-size: 14px;
-          font-weight: 500;
-          line-height: 20px;
-          text-decoration-line: underline;
-          padding: 8px 0px 8px 30px;
-        }
-        .hero-body .comp-esim a::before {
-          position: absolute;
-          content: "";
-          width: 20px;
-          height: 20px;
-          background: url(${git}simify/img/info-circle.svg) center no-repeat;
-          background-size: contain;
-          border-radius: 0;
-          top: 50%;
-          transform: translateY(-50%);
-          left: 38px;
+          display: none;
         }
         .hero-body .esim-tabs {
           margin-bottom: 30px;
@@ -1094,21 +1130,21 @@ class IntentPopup {
         .hero-body .pro_tab-content p {
           margin: 0;
         }
-        .hero-body .new_pro-grid > .product_text {
+        .hero-body .product_text:not(.large__hide) {
           max-width: 312px;
           display: flex;
           justify-content: space-between;
           flex-wrap: wrap;
           margin: 18px auto 0;
         }
-        .hero-body .new_pro-grid > .product_text li {
+        .hero-body .product_text li {
           margin: 0;
         }
-        .hero-body .new_pro-grid > .product_text li:nth-child(1),
-        .hero-body .new_pro-grid > .product_text li:nth-child(2) {
+        .hero-body .product_text li:nth-child(1),
+        .hero-body .product_text li:nth-child(2) {
           width: 45%;
         }
-        .hero-body .new_pro-grid > .product_text li:nth-child(3) {
+        .hero-body .product_text li:nth-child(3) {
           width: 100%;
           border-top: 1px dashed rgba(51, 63, 72, 0.2);
           padding-top: 12px;
@@ -1179,6 +1215,87 @@ class IntentPopup {
           margin: 0;
           text-transform: initial;
         }
+        @media (max-width: 768px) {
+          .new_Product_Wrapper {
+            margin: 20px auto 0;
+            padding: 0 20px;
+          }
+          .new_Product-inner {
+            gap: 20px;
+            margin-bottom: 30px;
+          }
+          .Product {
+            margin: 0 0 40px;
+          }
+          .esim-tabs {
+            margin-bottom: 24px;
+            justify-content: space-between;
+          }
+          .esim-tabs .tab-link {
+            margin: 0 !important;
+            padding: 11px;
+          }
+          .pro_tab-content {
+            padding: 0;
+          }
+          .hero-header {
+            gap: 0;
+            flex-direction: column;
+          }
+          .hero-header .ProductMeta__Title.Heading.u-h2 {
+            font-size: 26px;
+            line-height: 32px;
+          }
+          .hero-header span.stamped-product-reviews-badge {
+            margin-top: 8px;
+          }
+          .hero-header__img,
+          .hero-header .pro_subtitle,
+          .product_text.large__hide {
+            display: none;
+          }
+          .hero-body {
+            gap: 27px;
+            flex-direction: column;
+          }
+          .hero-body .new_pro-grid .QuantitySelector {
+            margin-right: 10px;
+          }
+          .new_pro-grid .ProductForm__Variants .SizeSwatchList .HorizontalList__Item {
+            margin-bottom: 16px;
+          }
+          .new_pro-grid .ProductForm__Variants .HorizontalList--spacingTight .HorizontalList__Item .SizeSwatch {
+            padding: 10px 16px 36px 48px;
+          }
+          .new_pro-grid .ProductForm__Variants .SizeSwatchList.HorizontalList label:before {
+            left: 16px;
+          }
+          .new_pro-grid .ProductForm__Variants .SizeSwatchList.HorizontalList label:after,
+          .new_pro-grid .ProductForm__Variants .SizeSwatchList.HorizontalList input[type="radio"]:checked + label:after {
+            left: 22px;
+          }
+          .cstm-tag_wrapp {
+            top: -12px;
+          }
+          .hero-body .product_text {
+            margin-top: 14px;
+          }
+          .hero-body .product_text li:nth-child(3) {
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(51, 63, 72, 0.2);
+          }
+          .hero-body .new_pro-grid .Product__InfoWrap .ProductForm__AddToCart {
+            padding: 11px;
+            margin: 0;
+          }
+          .hero-body .mob-bgr-wrapper {
+            width: 112%;
+            background: #eef4fc;
+            padding: 18px 20px;
+            margin: 20px -20px 0;
+          }
+        }
       </style>
     `;
 
@@ -1209,6 +1326,40 @@ class IntentPopup {
       </p>
     `;
 
+    const isMyDeviceCompatibleBlock = /* HTML */ `
+      <style>
+        .is-my-device-compatible__block {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          gap: 10px;
+          border-radius: 6px;
+          background: #eef4fc;
+          padding: 12px;
+          margin-bottom: 40px;
+          cursor: pointer;
+        }
+        .is-my-device-compatible__block p {
+          color: #333f48;
+          font-family: "Poppins";
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 20px;
+          text-decoration-line: underline;
+        }
+        @media (max-width: 768px) {
+          .is-my-device-compatible__block {
+            margin: 0;
+          }
+        }
+      </style>
+      <div class="is-my-device-compatible__block">
+        ${icons.infoCircle}
+        <p>Is my device compatible with eSIM?</p>
+      </div>
+    `;
+
     const itWorkInBlock = /* HTML */ `
       <style>
         .it-work-in__wrapper {
@@ -1219,7 +1370,7 @@ class IntentPopup {
           width: 100%;
           border-radius: 6px;
           background: #eef4fc;
-          padding: 8px 12px;
+          padding: 12px;
           margin-top: 32px;
           cursor: pointer;
         }
@@ -1231,6 +1382,11 @@ class IntentPopup {
           line-height: 20px;
           text-decoration-line: underline;
         }
+        @media (max-width: 768px) {
+          .it-work-in__wrapper {
+            margin-top: 28px;
+          }
+        }
       </style>
       <div class="it-work-in__wrapper">
         ${icons.world}
@@ -1241,9 +1397,11 @@ class IntentPopup {
     const bestValueTxt = "🔥Best value";
     const buyNowTxt = "Buy Now";
 
-    if (!$el(".hero-header")) {
-      this.insert(newWrapHero, ".new_Product-inner", "afterbegin");
-    }
+    waitForElement(".new_Product-inner").then((i) => {
+      if (!$el(".hero-header")) {
+        this.insert(newWrapHero, ".new_Product-inner", "afterbegin");
+      }
+    });
 
     waitForElement(".hero-header").then((el) => {
       waitForElement(".new_pro-grid .ProductItem__Wrap .Product__Gallery").then((i) => {
@@ -1266,17 +1424,37 @@ class IntentPopup {
       waitForElement(".new_pro-grid").then((i) => {
         this.insertElem(i, ".hero-body", "beforeend");
       });
-      waitForElement(".comp-esim").then((i) => {
-        this.insertElem(i, ".new_pro-conent");
+      waitForElement(".new_pro-conent").then((i) => {
+        if (!$el(".is-my-device-compatible__block")) {
+          this.insert(isMyDeviceCompatibleBlock, ".new_pro-conent", "afterbegin");
+        }
       });
       waitForElement(".link_Coverage").then((i) => {
         if (!$el(".it-work-in__wrapper")) {
           this.insert(itWorkInBlock, "#tab-1", "beforeend");
         }
       });
-      waitForElement(".product_text").then((i) => {
-        this.insertElem(i, ".new_pro-grid", "beforeend");
-      });
+
+      if (window.innerWidth > 768) {
+        waitForElement(".product_text").then((i) => {
+          this.insertElem(i, ".new_pro-grid", "beforeend");
+        });
+      } else {
+        waitForElement(".Product__InfoWrap form").then((i) => {
+          if (!$el(".mob-bgr-wrapper")) {
+            this.insert(`<div class="mob-bgr-wrapper"></div>`, ".Product__InfoWrap form", "beforeend");
+          }
+        });
+        waitForElement(".mob-bgr-wrapper").then((i) => {
+          waitForElement('[data-action="add-to-cart"]').then((i) => {
+            this.insertElem(i, ".mob-bgr-wrapper", "beforeend");
+          });
+          waitForElement(".product_text").then((i) => {
+            this.insertElem(i, ".mob-bgr-wrapper", "beforeend");
+          });
+        });
+      }
+
       waitForElement(".ProductForm__QuantitySelector").then((i) => {
         if (!$el(".txt-quantity")) {
           this.insert(txtQuantity, ".ProductForm__QuantitySelector", "afterbegin");
@@ -1286,7 +1464,7 @@ class IntentPopup {
       waitForElement(".it-work-in__wrapper").then((el) => {
         this.onClickItWorkInBlock(el);
       });
-      waitForElement(".hero-body .comp-esim a").then((el) => {
+      waitForElement(".is-my-device-compatible__block").then((el) => {
         this.onClickIsMyDeviceCompatibleBlock(el);
       });
 
@@ -1305,7 +1483,6 @@ class IntentPopup {
       this.newInfoElemForInput();
     });
   }
-
   newInfoElemForInput() {
     const infoElem = /* HTML */ `
       <style>
@@ -1340,10 +1517,10 @@ class IntentPopup {
       }
     });
   }
-
   onClickItWorkInBlock(el) {
     el.addEventListener("click", (e) => {
       if (!e.target.getAttribute("data-test")) {
+        pushDataLayer("exp_pdp_see_wt_countr_it_work_in", "See what countries it work in", "Click", "PDP banner See what countries it work in");
         let coverageElem = $el(".link_Coverage");
 
         checkScrollPosition(130, coverageElem);
@@ -1357,11 +1534,11 @@ class IntentPopup {
       }, 1000);
     });
   }
-
   onClickIsMyDeviceCompatibleBlock(el) {
     el.addEventListener("click", (e) => {
       if (!e.target.getAttribute("data-test")) {
         e.preventDefault();
+        pushDataLayer("exp_pdp_is_my_dvc_cmptbl", "Is my device compatible with eSIM?", "Click", "PDP banner Is my device compatible with eSIM?");
         let coverageElem = $el("#shopify-section-esim-compatible");
 
         checkScrollPosition(130, coverageElem);
@@ -1374,12 +1551,66 @@ class IntentPopup {
       }, 1000);
     });
   }
+  onClickQuantitySelectorBtn() {
+    waitForElement(".hero-body").then((i) => {
+      waitForElement(".QuantitySelector").then((i) => {
+        const quantitySelectorBtn = $$el(".hero-body .new_pro-grid .QuantitySelector__Button");
+
+        let atr = "";
+        quantitySelectorBtn?.forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            if (!e.target.getAttribute("data-test") && !$el(".product_fix_bar.active")) {
+              if (e.target.getAttribute("data-action") === "decrease-quantity") {
+                atr = "minus";
+              }
+              if (e.target.getAttribute("data-action") === "increase-quantity") {
+                atr = "plus";
+              }
+              pushDataLayer("exp_pdp_enhanc_clic_pdpeuuk_buttit", atr, "Click", "PDP Europe & UK eSIM (50 Countries) Travelling in a group?  Order eSIMs for everyone");
+            }
+            e.target.setAttribute("data-test", "1");
+            setTimeout(() => {
+              if (e.target.getAttribute("data-test")) {
+                e.target.removeAttribute("data-test");
+              }
+            }, 1000);
+          });
+        });
+      });
+    });
+  }
+  onVisibleStickyBanner() {
+    waitForElement('[data-action="add-to-cart"]').then((i) => {
+      const element = i;
+      let top = 80;
+
+      if (window.innerWidth < 768) {
+        top = 50;
+      }
+
+      function visible(target) {
+        if (target.getBoundingClientRect().top < top) {
+          $el(".product_fix_bar").classList.add("new_active");
+        } else {
+          if ($el(".product_fix_bar").classList.contains("new_active")) {
+            $el(".product_fix_bar").classList.remove("new_active");
+          }
+        }
+      }
+
+      window.addEventListener("scroll", function () {
+        visible(element);
+      });
+
+      visible(element);
+    });
+  }
 
   // common func
   createPopup() {
     const popupStyle = /* HTML */ `
       <style>
-        .intent-popup-backdrop {
+        .new-popup-backdrop {
           background: rgba(39, 48, 56, 0.65);
           backdrop-filter: blur(5px);
           position: fixed;
@@ -1391,11 +1622,11 @@ class IntentPopup {
           z-index: 1000000000000;
           transition: all 0.8s ease 0s;
         }
-        .intent-popup-backdrop.is-hidden {
+        .new-popup-backdrop.is-hidden {
           opacity: 0;
           pointer-events: none;
         }
-        .intent-popup {
+        .new-popup {
           position: absolute;
           top: 50%;
           left: 50%;
@@ -1404,7 +1635,7 @@ class IntentPopup {
           width: calc(100% - 32px);
           background: #eef4fc;
         }
-        .intent-popup__close {
+        .new-popup__close {
           position: absolute;
           background: none;
           padding: 0;
@@ -1414,17 +1645,17 @@ class IntentPopup {
           height: 24px;
           z-index: 1;
         }
-        .intent-popup__close:hover,
-        .intent-popup__close:focus {
+        .new-popup__close:hover,
+        .new-popup__close:focus {
           background: none;
         }
         @media (max-width: 768px) {
-          .intent-popup {
+          .new-popup {
             max-width: 335px;
             top: 80px;
             transform: translateX(-50%);
           }
-          .intent-popup__close {
+          .new-popup__close {
             top: -50px;
             right: 0;
           }
@@ -1433,18 +1664,18 @@ class IntentPopup {
     `;
     const popup = /* HTML */ `
       ${popupStyle}
-      <div class="intent-popup-backdrop is-hidden">
-        <div class="intent-popup">
-          <button class="intent-popup__close" data-popup="close">${icons.close}</button>
-          <div class="intent-popup__content"></div>
+      <div class="new-popup-backdrop is-hidden">
+        <div class="new-popup">
+          <button class="new-popup__close" data-popup="close">${icons.close}</button>
+          <div class="new-popup__content"></div>
         </div>
       </div>
     `;
 
-    if (!$el(".intent-popup-backdrop")) {
+    if (!$el(".new-popup-backdrop")) {
       this.insert(popup, "body", "afterbegin");
     }
-    waitForElement(".intent-popup-backdrop").then((el) => {
+    waitForElement(".new-popup-backdrop").then((el) => {
       this.handleClosePopup();
     });
   }
@@ -1453,8 +1684,8 @@ class IntentPopup {
     if (isShowed) return;
 
     const body = $el("body"),
-      backdrop = $el(".intent-popup-backdrop"),
-      popup = $el(".intent-popup .intent-popup__content");
+      backdrop = $el(".new-popup-backdrop"),
+      popup = $el(".new-popup .new-popup__content");
 
     if (backdrop.classList.contains("is-hidden")) {
       backdrop.classList.remove("is-hidden");
@@ -1463,14 +1694,11 @@ class IntentPopup {
     popup.innerHTML = content;
     setSessionStorage(name, "yes");
     if (name === "discountPopup") {
-      //   checkFocusTime(
-      //     '.discount__popup',
-      //     'exp_exit_popup_vis_popbook_focu',
-      //     'Popup BOOK NOW & get 10% OFF on your tickets'
-      //   )
+      checkFocusTime(".discount__popup", "exp_pdp_enhanc_vis_expopup_elem", "Exit intent pop-up Wait! Don’t leave without staying connected!");
       this.copyDiscount();
     }
     if (name === "learnMorePopup") {
+      checkFocusTime(".learn-more__popup", "exp_pdp_learn_more_vis_expopup_elem", "pop-up How to activateyour eSIM");
       if (!backdrop.classList.contains("learn-more-backdrop")) {
         backdrop.classList.add("learn-more-backdrop");
       }
@@ -1480,25 +1708,58 @@ class IntentPopup {
   }
   handleClosePopup() {
     const body = $el("body"),
-      backdrop = $el(".intent-popup-backdrop"),
-      popup = $el(".intent-popup"),
+      backdrop = $el(".new-popup-backdrop"),
+      popup = $el(".new-popup"),
       closePopupBtns = popup.querySelectorAll('[data-popup="close"]');
     closePopupBtns.forEach((btn) => {
-      btn.addEventListener("click", (event) => {
-        if (backdrop.querySelector(".discount__popup")) {
-          pushDataLayer("exp_pdp_enhanc_but_expopup_clos", "Close", "Button", "Exit intent pop-up Wait! Don’t leave without staying connected!");
+      btn.addEventListener("click", (e) => {
+        if (!e.target.getAttribute("data-test")) {
+          backdrop.classList.add("is-hidden");
+          body.style.overflow = "initial";
+          removeSessionStorage("learnMorePopup");
+          if (backdrop.querySelector(".discount__popup")) {
+            pushDataLayer("exp_pdp_enhanc_but_expopup_clos", "Close", "Button", "Exit intent pop-up Wait! Don’t leave without staying connected!");
+          }
+          if (backdrop.querySelector(".learn-more__popup")) {
+            pushDataLayer("exp_pdp_learn_more_expopup_clos", "Close", "Button", "pop-up How to activateyour eSIM");
+          }
+          setTimeout(() => {
+            $el(".new-popup__content").innerHTML = "";
+          }, 500);
         }
-        backdrop.classList.add("is-hidden");
-        body.style.overflow = "initial";
-        removeSessionStorage("learnMorePopup");
+        e.target.setAttribute("data-test", "1");
+        setTimeout(() => {
+          if (e.target.getAttribute("data-test")) {
+            e.target.removeAttribute("data-test");
+          }
+        }, 1000);
       });
     });
-    backdrop.addEventListener("click", (event) => {
-      if (event.target.matches(".intent-popup-backdrop")) {
-        backdrop.classList.add("is-hidden");
-        body.style.overflow = "initial";
-        removeSessionStorage("learnMorePopup");
+    backdrop.addEventListener("click", (e) => {
+      if (!e.target.getAttribute("data-test")) {
+        if (e.target.matches(".new-popup-backdrop")) {
+          backdrop.classList.add("is-hidden");
+          body.style.overflow = "initial";
+          removeSessionStorage("learnMorePopup");
+
+          if (backdrop.querySelector(".discount__popup")) {
+            pushDataLayer("exp_pdp_enhanc_but_expopup_clos_overlay", "Close", "Overlay", "Exit intent pop-up Wait! Don’t leave without staying connected!");
+          }
+          if (backdrop.querySelector(".learn-more__popup")) {
+            pushDataLayer("exp_pdp_learn_more_expopup_clos_overlay", "Close", "Overlay", "pop-up How to activateyour eSIM");
+          }
+
+          setTimeout(() => {
+            $el(".new-popup__content").innerHTML = "";
+          }, 500);
+        }
       }
+      e.target.setAttribute("data-test", "1");
+      setTimeout(() => {
+        if (e.target.getAttribute("data-test")) {
+          e.target.removeAttribute("data-test");
+        }
+      }, 1000);
     });
   }
   insertElem(html, selector, position = "afterbegin") {
@@ -1537,10 +1798,6 @@ class IntentPopup {
           padding-top: 0;
           margin: 80px 0;
         }
-        .Product {
-          margin: 0 0 50px;
-          max-width: 100%;
-        }
         /* shopify-section-esim-compatible*/
         #shopify-section-esim-compatible h2.esim-title {
           margin-bottom: 22px;
@@ -1564,6 +1821,10 @@ class IntentPopup {
           max-width: 356px;
           height: 47px;
           width: 100%;
+        }
+        /* product_fix_bar */
+        .product_fix_bar.new_active {
+          display: block;
         }
         @media (max-width: 768px) {
           /*shopify-section-esim-compatible, section-review, shopify-section-why-esim */
@@ -1594,4 +1855,4 @@ class IntentPopup {
 }
 
 new IntentPopup("/collections");
-// new IntentPopup('/products')
+new IntentPopup("/products");
