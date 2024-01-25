@@ -85,11 +85,6 @@ function checkScrollPosition(headerOff, elPosition) {
 function setSessionStorage(name, value) {
   sessionStorage.setItem(name, value);
 }
-
-function getSessionStorage(name) {
-  let getSessionStorage = sessionStorage.getItem(name);
-  return getSessionStorage;
-}
 function removeSessionStorage(name) {
   let getSessionStorage = sessionStorage.getItem(name);
   let removeSessionStorage = null;
@@ -98,6 +93,26 @@ function removeSessionStorage(name) {
   }
   return removeSessionStorage;
 }
+function getSessionStorage(name) {
+  let getSessionStorage = sessionStorage.getItem(name);
+  return getSessionStorage;
+}
+function setLocalStorage(name, value) {
+  localStorage.setItem(name, value);
+}
+function getLocalStorage(name) {
+  let getLocalStorage = localStorage.getItem(name);
+  return getLocalStorage;
+}
+function removeLocalStorage(name) {
+  let getLocalStorage = localStorage.getItem(name);
+  let removeLocalStorage = null;
+  if (getLocalStorage) {
+    removeLocalStorage = localStorage.removeItem(name);
+  }
+  return removeLocalStorage;
+}
+
 function waitForElement(selector) {
   return new Promise((resolve) => {
     if (document.querySelector(selector)) {
@@ -207,9 +222,12 @@ const icons = {
 removeSessionStorage("learnMorePopup");
 // IntentPopup
 class IntentPopup {
-  constructor(targetUrl) {
+  constructor(targetUrl, delayTime) {
+    this.delayTime = delayTime;
+    this.timeoutId = null;
     this.targetUrl = targetUrl;
     this.device = screen.width <= 768 ? "Mobile" : "Desktop";
+    this.buyNowTxt = "Buy Now";
     this.init();
   }
 
@@ -234,27 +252,19 @@ class IntentPopup {
       this.onClickQuantitySelectorBtn();
       this.onClickSizeSwatchLinkBtn();
       this.onVisibleStickyBanner();
+      this.initMutationObserver();
     }
   }
 
   // IntentPopup
   intentPopupTriggers() {
-    // let o = 0
-    // setInterval(() => {
-    //   if (o < 20) {
-    //     console.log((o += 1), `TIME`)
-    //   }
-    // }, 1000)
-    const timer = setTimeout(() => {
-      this.showIntentPopup();
-      clearTimeout(timer);
-      // console.log(`HELLO POPUP`)
-    }, 20000);
+    this.setupListeners();
+    this.resetTimer();
 
     if (this.device === "Mobile") {
       window.addEventListener("scroll", () => {
         const scrollSpeed = checkScrollSpeed();
-        if (scrollSpeed > 70) {
+        if (scrollSpeed > 70 && !localStorage.getItem("onClickIsMyDeviceCompatibleBlock") && !localStorage.getItem("onClickStampedReviewsBlock")) {
           this.showIntentPopup();
         }
       });
@@ -265,6 +275,28 @@ class IntentPopup {
         }
       });
     }
+  }
+  resetTimer() {
+    // Clear the previous timeout
+    clearTimeout(this.timeoutId);
+    // Set a new timeout
+    this.timeoutId = setTimeout(() => this.showIntentPopup(), this.delayTime);
+  }
+  setupListeners() {
+    // Attach the resetTimer function to relevant events
+    document.addEventListener("mousemove", () => this.resetTimer());
+    document.addEventListener("keydown", () => this.resetTimer());
+
+    // Add touch event listeners for mobile devices
+    if (window.innerWidth <= 768) {
+      document.addEventListener("touchstart", () => this.resetTimer());
+      document.addEventListener("touchmove", () => this.resetTimer());
+    }
+  }
+  removePopupClient() {
+    waitForElement('[aria-label="POPUP Form"]').then((i) => {
+      $el('[aria-label="POPUP Form"]')?.closest(".kl-private-reset-css-Xuajs1")?.closest(".kl-private-reset-css-Xuajs1")?.closest(".needsclick").parentElement.remove();
+    });
   }
   showIntentPopup() {
     const popupStyle = /* HTML */ `
@@ -530,9 +562,9 @@ class IntentPopup {
         .video-explanation__lists ul,
         .video-explanation__lists ol,
         .video-explanation__description p {
-          color: #7b8791;
-          font-family: Poppins;
-          font-size: 12px;
+          color: #333f48;
+          font-family: "Roboto";
+          font-size: 14px;
           font-weight: 500;
           line-height: 20px;
           margin: 0;
@@ -579,7 +611,7 @@ class IntentPopup {
             <div class="video-explanation__lists">
               <div class="video-explanation__iframe">
                 <!-- <div class="video-explanation__bgr"></div> -->
-                <iframe src="https://drive.google.com/file/d/1WLyRJl8BMIhAcySn2IoOtql5OZZDa97_/preview" width="640" height="480" allow="autoplay"></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/OpbckLzqF-s?si=5tiqW6esFdUfkKDw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
               </div>
               <div class="video-explanation__description">
                 <p>Detailed eSIM Activation Guide</p>
@@ -807,7 +839,7 @@ class IntentPopup {
     `;
 
     if (!$el("#shopify-section-sim-works .learn-more__btn")) {
-      this.insert(btnLearnMoreAboutHowToActivateHtml, ".esim-work-around", "afterend");
+      this.insert(btnLearnMoreAboutHowToActivateHtml, ".esim-work-inner", "afterend");
     }
 
     const btnLearnMoreAboutHowToActivate = $$el("[data-learnMore]");
@@ -958,7 +990,7 @@ class IntentPopup {
               display: block;
             }
             .mobile_img-esim img {
-              height: 386px;
+              height: 388px;
             }
             .hero-img__brg {
               position: absolute;
@@ -1171,7 +1203,7 @@ class IntentPopup {
         }
         .new_pro-grid .ProductForm__Variants .HorizontalList--spacingTight .HorizontalList__Item .SizeSwatch {
           justify-content: space-between;
-          padding: 10px 26px 36px 57px;
+          padding: 10px 26px 13px 57px;
         }
         .new_pro-grid .ProductForm__Variants .SizeSwatchList.HorizontalList label span {
           color: #333f48;
@@ -1280,7 +1312,7 @@ class IntentPopup {
             margin-bottom: 16px;
           }
           .new_pro-grid .ProductForm__Variants .HorizontalList--spacingTight .HorizontalList__Item .SizeSwatch {
-            padding: 10px 16px 36px 48px;
+            padding: 10px 16px 13px 48px;
           }
           .new_pro-grid .ProductForm__Variants .SizeSwatchList.HorizontalList label:before {
             left: 16px;
@@ -1410,7 +1442,6 @@ class IntentPopup {
     `;
 
     const bestValueTxt = "🔥Best value";
-    const buyNowTxt = "Buy Now";
 
     waitForElement(".new_Product-inner").then((i) => {
       if (!$el(".hero-header")) {
@@ -1493,19 +1524,29 @@ class IntentPopup {
         }
       });
 
-      waitForElement('[data-action="add-to-cart"]').then((el) => {
-        if (el.textContent !== buyNowTxt) {
-          el.textContent = buyNowTxt;
-        }
-      });
+      this.onChangeTxtMainBtn();
 
       this.newInfoElemForInput();
+    });
+  }
+  onChangeTxtMainBtn() {
+    waitForElement('[data-action="add-to-cart"]').then((el) => {
+      if (el.textContent !== this.buyNowTxt) {
+        el.textContent = this.buyNowTxt;
+      }
+    });
+
+    waitForElement(".product_fix_bar_inner a.Button").then((el) => {
+      if (el.textContent !== this.buyNowTxt) {
+        el.textContent = this.buyNowTxt;
+      }
     });
   }
   newInfoElemForInput() {
     const infoElem = /* HTML */ `
       <style>
         .info-elem {
+          display: none;
           position: absolute;
           left: 0;
           bottom: 0;
@@ -1557,10 +1598,15 @@ class IntentPopup {
     el.addEventListener("click", (e) => {
       if (!e.target.getAttribute("data-test")) {
         e.preventDefault();
+        e.stopPropagation();
+        setLocalStorage("onClickIsMyDeviceCompatibleBlock", `yes`);
         pushDataLayer("exp_pdp_enhanc_link_is_device_compat", "Is my device compatible with eSIM?", "Link", "PDP Europe & UK eSIM (50 Countries) Footer");
         let coverageElem = $el("#shopify-section-esim-compatible");
 
         checkScrollPosition(130, coverageElem);
+        setTimeout(() => {
+          removeLocalStorage("onClickIsMyDeviceCompatibleBlock");
+        }, 1000);
       }
       e.target.setAttribute("data-test", "1");
       setTimeout(() => {
@@ -1629,12 +1675,15 @@ class IntentPopup {
       e.preventDefault();
       e.stopPropagation();
       if (!e.target.getAttribute("data-test")) {
+        setLocalStorage("onClickStampedReviewsBlock", `yes`);
         pushDataLayer("exp_pdp_enhanc_link_reviews", "Reviews", "Link", "PDP Europe & UK eSIM (50 Countries) Footer");
 
         let coverageElem = $el(".section-review");
 
         checkScrollPosition(130, coverageElem);
-        coverageElem?.click();
+        setTimeout(() => {
+          removeLocalStorage("onClickStampedReviewsBlock");
+        }, 1000);
       }
       e.target.setAttribute("data-test", "1");
       setTimeout(() => {
@@ -1663,6 +1712,25 @@ class IntentPopup {
           });
         });
       });
+    });
+  }
+  initMutationObserver() {
+    let observer = new MutationObserver(() => {
+      if (document) {
+        observer.disconnect();
+
+        this.onChangeTxtMainBtn();
+
+        observer.observe(document, {
+          childList: true,
+          subtree: true,
+        });
+      }
+    });
+
+    observer.observe(document, {
+      childList: true,
+      subtree: true,
     });
   }
 
@@ -1832,6 +1900,9 @@ class IntentPopup {
   initMainStyles() {
     const mainStyles = /* HTML */ `
       <style>
+        body div .kl-private-reset-css-Xuajs1 {
+          display: none !important;
+        }
         .dn_desk {
           display: none;
         }
@@ -1914,5 +1985,5 @@ class IntentPopup {
   }
 }
 
-new IntentPopup("/collections");
-new IntentPopup("/products");
+new IntentPopup("/collections", 20000);
+new IntentPopup("/products", 20000);
