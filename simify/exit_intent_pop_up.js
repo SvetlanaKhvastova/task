@@ -51,7 +51,7 @@ const checkScrollSpeed = (function (settings) {
   let newPos;
   let timer;
   let delta,
-    delay = settings.delay || 70;
+    delay = settings.delay || 50;
 
   function clear() {
     lastPos = null;
@@ -262,9 +262,10 @@ class IntentPopup {
     this.resetTimer();
 
     if (this.device === "Mobile") {
-      window.addEventListener("scroll", () => {
+      document.addEventListener("scroll", () => {
         const scrollSpeed = checkScrollSpeed();
-        if (scrollSpeed > 70 && !localStorage.getItem("onClickIsMyDeviceCompatibleBlock") && !localStorage.getItem("onClickStampedReviewsBlock")) {
+        if ((+scrollSpeed < -100 || +scrollSpeed > 100) && !localStorage.getItem("onClickIsMyDeviceCompatibleBlock") && !localStorage.getItem("onClickStampedReviewsBlock")) {
+          console.log(`scroll`);
           this.showIntentPopup();
         }
       });
@@ -655,6 +656,48 @@ class IntentPopup {
     waitForElement("#videoExplanation").then((el) => {
       this.onClickVideoExplanationBlock();
     });
+
+    // NEW
+    // const videoWrappStyle = /* HTML */ `
+    //   <style>
+    //     .new-video_wrapp {
+    //       display: flex;
+    //       flex-direction: row-reverse;
+    //       justify-content: space-between;
+    //       gap: 93px;
+    //     }
+    //     .new-video_wrapp .video-explanation__iframe iframe {
+    //       max-width: 357px;
+    //     }
+    //   </style>
+    // `
+    // const videoWrapp = /* HTML */ `
+    //   ${videoWrappStyle}
+    //   <div class="new-video_wrapp">
+    //     <div class="video-explanation__iframe">
+    //       <iframe
+    //         width="560"
+    //         height="315"
+    //         src="https://www.youtube.com/embed/OpbckLzqF-s?si=5tiqW6esFdUfkKDw"
+    //         title="YouTube video player"
+    //         frameborder="0"
+    //         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    //         allowfullscreen
+    //       ></iframe>
+    //     </div>
+    //   </div>
+    // `
+
+    // waitForElement('.esim-title').then(el => {
+    //   if (!$el('#shopify-section-sim-works .new-video_wrapp')) {
+    //     this.insert(videoWrapp, '.esim-title', 'afterend')
+    //   }
+    // })
+    // waitForElement('.new-video_wrapp').then(el => {
+    //   waitForElement('.esim-work-inner').then(i => {
+    //     this.insertElem(i, '.new-video_wrapp', 'beforeend')
+    //   })
+    // })
   }
   onClickVideoExplanationBlock() {
     jQuery(".video-explanation__link").click(function (e) {
@@ -741,11 +784,12 @@ class IntentPopup {
         this.insert(btnSelectPlanHtml, ".esim-work-around", "afterend");
       }
     });
-    waitForElement(".esim-compatible-wrapper").then((i) => {
-      if (!$el(".esim-compatible-wrapper .select-plan__wrapper")) {
-        this.insert(btnSelectPlanHtml, ".esim-compatible-wrapper");
-      }
-    });
+
+    // waitForElement('.esim-compatible-wrapper').then(i => {
+    //   if (!$el('.esim-compatible-wrapper .select-plan__wrapper')) {
+    //     this.insert(btnSelectPlanHtml, '.esim-compatible-wrapper')
+    //   }
+    // })
     waitForElement(".why-esim-wrapper").then((i) => {
       if (!$el(".why-esim-wrapper .select-plan__wrapper")) {
         this.insert(btnSelectPlanHtml, ".why-esim-wrapper");
@@ -870,19 +914,18 @@ class IntentPopup {
         }
         .learn-more__header {
           text-align: center;
-          max-width: 243px;
           margin: 0 auto;
           padding: 20px 22px 0;
         }
         .learn-more__header h2 {
           color: #333f48;
           font-family: "Poppins";
-          font-size: 24px;
+          font-size: 18px;
           font-weight: 700;
-          line-height: 28.8px;
+          line-height: 20px;
         }
         .learn-more__body {
-          padding: 0 12px 20px 22px;
+          padding: 0 60px 20px;
           margin-right: 6px;
           overflow-y: scroll;
           max-height: 345px;
@@ -890,7 +933,7 @@ class IntentPopup {
           font-family: "Roboto";
           font-size: 16px;
           font-weight: 400;
-          line-height: 150%;
+          line-height: 175%;
         }
         .learn-more__body::-webkit-scrollbar {
           width: 4px;
@@ -924,6 +967,9 @@ class IntentPopup {
           height: 22px;
           border-radius: 6px;
           background: linear-gradient(170deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
+        }
+        .learn-more-backdrop .new-popup {
+          max-width: 546px;
         }
 
         @media (max-width: 768px) {
@@ -1163,7 +1209,7 @@ class IntentPopup {
           background: rgba(51, 63, 72, 0.1);
           color: #333f48;
         }
-        .hero-body .pro_tab-content {
+        .hero-body [id="tab-1"] .pro_tab-content {
           display: flex;
           flex-direction: column;
           max-width: 357px;
@@ -1205,12 +1251,21 @@ class IntentPopup {
           justify-content: space-between;
           padding: 10px 26px 13px 57px;
         }
+        .new_pro-grid .ProductForm__Variants .HorizontalList--spacingTight .HorizontalList__Item .SizeSwatch > div:nth-child(2) {
+          min-width: 70px;
+          display: flex;
+          flex-direction: column;
+        }
         .new_pro-grid .ProductForm__Variants .SizeSwatchList.HorizontalList label span {
           color: #333f48;
         }
         .new_pro-grid .ProductForm__Variants .SizeSwatch > div:nth-of-type(1) {
           display: flex;
           align-items: center;
+          justify-content: flex-end;
+          max-width: 150px;
+          width: 100%;
+          margin-right: 2px;
           flex-direction: row-reverse;
           gap: 30px;
         }
@@ -1230,6 +1285,9 @@ class IntentPopup {
           font-weight: 500;
           line-height: 23px;
           margin: 0;
+          min-width: 23px;
+          display: block;
+          width: 40%;
         }
         .new_pro-grid .ProductForm__Variants .SizeSwatchList.HorizontalList label:before {
           transform: unset;

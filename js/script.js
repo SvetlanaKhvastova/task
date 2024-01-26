@@ -287,3 +287,8 @@ let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/simify/exit_intent_pop_up.js";
 script.async = false;
 document.head.appendChild(script);
+//
+let script = document.createElement("script");
+script.src = "https://conversionratestore.github.io/projects/treblehealth/improve_page_3rd_iteration.js";
+script.async = false;
+document.head.appendChild(script);

@@ -1,8 +1,8 @@
 let treblehealthPages = setInterval(() => {
-  if (document.querySelector(".page-content")) {
+  if (document.querySelector(".page-content") && (window.pathname === "/tiq-score-severe-v1/" || window.pathname === "/tiq-score-serious-v1/" || window.pathname === "/tiq-score-moderate-v1/")) {
     clearInterval(treblehealthPages);
 
-    console.log("%c EXP: Trial Selection (DEV: SKh)", "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;");
+    console.log("%c EXP: TrebleHealth: 3rd iteration  (DEV: SKh)", "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;");
     const $$el = (selector) => document.querySelectorAll(selector);
     const $el = (selector) => document.querySelector(selector);
     const git = "https://conversionratestore.github.io/projects/";
@@ -70,11 +70,27 @@ let treblehealthPages = setInterval(() => {
 
       checker.observe(document.querySelector(selector));
     }
+    function waitForElement(selector) {
+      return new Promise((resolve) => {
+        if (document.querySelector(selector)) {
+          return resolve(document.querySelector(selector));
+        }
 
-    let timeCount = 15;
-    if (!sessionStorage.getItem("time")) {
-      sessionStorage.setItem("time", timeCount);
+        const observer = new MutationObserver(() => {
+          if (document.querySelector(selector)) {
+            resolve(document.querySelector(selector));
+            observer.disconnect();
+          }
+        });
+
+        observer.observe(document.documentElement, {
+          childList: true,
+          subtree: true,
+          characterData: true,
+        });
+      });
     }
+
     let level = "";
     let disclaimerDates = "";
     let levelImg = "";
@@ -224,7 +240,7 @@ let treblehealthPages = setInterval(() => {
           <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-11.png" alt="product" />
           <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-6.png" alt="product" />
           <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-9.png" alt="product" />
-          <img src="https://drive.google.com/uc?export=view&id=1rzQ2UBJSHjK8jJgzv2cJf3Y16bcoT5qC" alt="product" />
+          <img src='${git}/treblehealth/img/frame-135.png.png' alt="product" />
           <img src="https://treblehealth.com/wp-content/uploads/2023/06/Frame-15.png" alt="product" />
         </div>
         <ul class="bundle_tooltip_list">
@@ -271,129 +287,127 @@ let treblehealthPages = setInterval(() => {
       16: [`“Are the treatments at Treble Health covered by insurance?”`, `<p>Insurance coverage for tinnitus treatment varies. We recommend checking with your insurance provider to understand your benefits. Occasionally a hearing aid benefit can be used. Our team is also available to assist with any questions regarding coverage and payment options.</p>`],
     };
 
-    const mainStyle = /*HTML */ `
-    <style>
-      [data-elementor-type="header"],
-      [data-elementor-type="footer"],
-      main .page-content{
-        display: none;
-      }
-      .container_var {
-        max-width: 1136px;
-        width: 90%;
-        margin: 0 auto;
-      }
-      .new_main{
-        padding-bottom: 88px;
-      }
-      .new_main p{
-        font-family: "Plus Jakarta Sans", sans-serif !important;
-        color: #2E168D;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 24px;
-        margin: 0;
-      }
-      .txt_underline{
-        text-decoration-line: underline;
-      }
-      h2.main_title {
-        font-family: "Plus Jakarta Sans", sans-serif !important;
-        color: #2e168d;
-        font-size: 40px;
-        font-weight: 800;
-        line-height: 50px;
-        margin: 0;
-      }
-      h2.second_title{
-        color: #2E168D;
-        font-family: "Plus Jakarta Sans", sans-serif !important;
-        font-size: 36px;
-        font-weight: 800;
-        line-height: 42px;
-        margin: 0;
-      }
-      h3.third_title{
-        color: #2E168D;
-        font-family: "Plus Jakarta Sans", sans-serif !important;
-        font-size: 20px;
-        font-weight: 800;
-        line-height: 28px;
-        margin: 0;
-      }
-      h3.fourth_title{
-        color: #2E168D;
-        font-family: "Plus Jakarta Sans", sans-serif !important;
-        font-size: 18px;
-        font-weight: 800;
-        line-height: 32px;
-        margin: 0;
-      }
-      button.call_your_free_btn{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 56px;
-        color: #fff !important;
-        font-family: "Plus Jakarta Sans", sans-serif !important;
-        font-size: 18px;
-        font-weight: 700;
-        line-height: 24px;
-        margin: 0 auto;
-        border: none !important;
-        border-radius: 5px;
-        background: #4622DA;
-        cursor: pointer;
-        outline: none !important;
-        padding: 0;
-      }
-      .tippy-tooltip{
-        border-radius: 8px;
-        background: #FFF;
-        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
-      }
-      .tippy-content{
-        padding: 16px;
-      }
-      .tippy-tooltip[data-placement^=top]>.tippy-arrow {
-        border-top-color: #FFF;
-      }
-      .tippy-tooltip[data-placement^=bottom]>.tippy-arrow {
-        border-bottom-color: #FFF;
-      }
-      .mob_var{
-        display: none;
-      }
-      @media only screen and (min-width: 900px) and (max-width: 1194px) {
+    const mainStyle = /* HTML */ `
+      <style>
+        [data-elementor-type="header"],
+        [data-elementor-type="footer"],
+        main .page-content {
+          display: none;
+        }
+        .container_var {
+          max-width: 1136px;
+          width: 90%;
+          margin: 0 auto;
+        }
+        .new_main p {
+          font-family: "Plus Jakarta Sans", sans-serif !important;
+          color: #2e168d;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 24px;
+          margin: 0;
+        }
+        .txt_underline {
+          text-decoration-line: underline;
+        }
+        h2.main_title {
+          font-family: "Plus Jakarta Sans", sans-serif !important;
+          color: #2e168d;
+          font-size: 40px;
+          font-weight: 800;
+          line-height: 50px;
+          margin: 0;
+        }
+        h2.second_title {
+          color: #2e168d;
+          font-family: "Plus Jakarta Sans", sans-serif !important;
+          font-size: 36px;
+          font-weight: 800;
+          line-height: 42px;
+          margin: 0;
+        }
+        h3.third_title {
+          color: #2e168d;
+          font-family: "Plus Jakarta Sans", sans-serif !important;
+          font-size: 20px;
+          font-weight: 800;
+          line-height: 28px;
+          margin: 0;
+        }
+        h3.fourth_title {
+          color: #2e168d;
+          font-family: "Plus Jakarta Sans", sans-serif !important;
+          font-size: 18px;
+          font-weight: 800;
+          line-height: 32px;
+          margin: 0;
+        }
+        button.call_your_free_btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 56px;
+          color: #fff !important;
+          font-family: "Plus Jakarta Sans", sans-serif !important;
+          font-size: 18px;
+          font-weight: 700;
+          line-height: 24px;
+          margin: 0 auto;
+          border: none !important;
+          border-radius: 5px;
+          background: #4622da !important;
+          cursor: pointer;
+          outline: none !important;
+          padding: 0;
+        }
+        .tippy-tooltip {
+          border-radius: 8px;
+          background: #fff;
+          box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+        }
+        .tippy-content {
+          padding: 16px;
+        }
+        .tippy-tooltip[data-placement^="top"] > .tippy-arrow {
+          border-top-color: #fff;
+        }
+        .tippy-tooltip[data-placement^="bottom"] > .tippy-arrow {
+          border-bottom-color: #fff;
+        }
+        .mob_var {
+          display: none !important;
+        }
+        @media only screen and (min-width: 900px) and (max-width: 1194px) {
           h2.main_title {
             font-size: 39px;
           }
-      }
-      @media only screen and (min-width: 900px) and (max-width: 1090px) {
+        }
+        @media only screen and (min-width: 900px) and (max-width: 1090px) {
           h2.main_title {
             font-size: 31px;
           }
-      }
-      @media (max-width: 768px) {
-        .desktop_var{
-          display: none;
         }
-        .mob_var{
-          display: block;
+        @media (max-width: 768px) {
+          .desktop_var {
+            display: none !important;
+          }
+          .mob_var {
+            display: block !important;
+          }
+          h2.main_title {
+            font-size: 28px;
+            line-height: 36px;
+          }
+          h2.second_title {
+            font-size: 28px;
+            line-height: 36px;
+          }
+          .new_main {
+            padding-top: 64px;
+            padding-bottom: 80px;
+          }
         }
-        h2.main_title {
-          font-size: 28px;
-          line-height: 36px;
-        }
-        h2.second_title{
-          font-size: 28px;
-          line-height: 36px;
-        }
-        .new_main{
-          padding-top: 64px;
-        }
-      }
       </style>
     `;
 
@@ -492,50 +506,10 @@ let treblehealthPages = setInterval(() => {
           }
         }, 500);
       }
-      initializeClock(timeValue, selectorValue) {
-        let timer = 0.1;
-        let amountTime = timer * 60;
-
-        function calculateTime() {
-          const countdown = $el(selectorValue);
-
-          let minutes = Math.floor(amountTime / 60);
-          let seconds = amountTime % 60;
-
-          if (seconds < 10) {
-            seconds = "0" + seconds;
-          }
-
-          if (minutes < 10) {
-            minutes = "0" + minutes;
-          }
-
-          countdown.textContent = `${minutes}:${seconds}`;
-          amountTime--;
-          sessionStorage.setItem("time", amountTime / 60);
-
-          if (amountTime < 0) {
-            sessionStorage.setItem("time", 0);
-            stopTimer();
-            amountTime = 0;
-          }
-
-          function stopTimer() {
-            clearInterval();
-          }
-        }
-
-        function startTimer(timeValue) {
-          amountTime = timeValue * 60;
-          setInterval(calculateTime, 1000);
-        }
-
-        startTimer(timeValue);
-      }
       initStickyHeader() {
         if ($el(".new_main") && $el(".new_header.sticky_var")) {
           let element = $el(".new_header.sticky_var");
-          const elemClose = $el("#provenSuccess");
+          const elemClose = $el("#hero");
 
           function visible(target) {
             if (target.getBoundingClientRect().bottom < 0) {
@@ -589,7 +563,6 @@ let treblehealthPages = setInterval(() => {
                   }
                 }
                 if (window.location.pathname === "/tiq-score-mild/") {
-                  console.log(`<<<<<<<<<<<<<object>>>>>>>>>>>>>`);
                   $el(".elementor-element-0cdfd73 .elementor-button-wrapper a").click();
                 } else {
                   $el(".elementor-element-baad601 .elementor-button-wrapper a").click();
@@ -609,10 +582,14 @@ let treblehealthPages = setInterval(() => {
         if ($el(".trust_score_wrapp") && $el("#trustpilotBlock")) {
           $$el(".trust_score_wrapp").forEach((el) => {
             el.addEventListener("click", (e) => {
-              pushDataLayer("exp_res_surv_fun_link_trust_review", "Reviews", "Link", "Header TrustScore");
+              if (e.currentTarget.closest(".hero_wrapp")) {
+                pushDataLayer("exp_res_surv_fun_link_trust_review_hero", "Reviews", "Link", "Hero TrustScore");
+              } else {
+                pushDataLayer("exp_res_surv_fun_link_trust_review", "Reviews", "Link", "Header TrustScore");
+              }
               let headerOffset = 60;
               if (window.innerWidth > 768) {
-                headerOffset = 0;
+                headerOffset = 60;
               }
               const elementPosition = $el("#trustpilotBlock").getBoundingClientRect().top;
               const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
@@ -703,188 +680,234 @@ let treblehealthPages = setInterval(() => {
       }
 
       init() {
-        const trustScoreStarsBlock = /*html */ `
-        <style>
-            /*trust_score_wrapp */
-          .trust_score_wrapp{
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            width: max-content;
-            cursor: pointer;
-            gap: 12px;
-          }
-          .trust_score_wrapp > img{
-            max-width: 127px;
-            width: 100%;
-          }
-          .trust_score_wrapp > div {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-          }
-          .trust_score_wrapp p {
-            font-size: 14px;
-            line-height: 20px;
-            margin: 0 4px 0 0;
-          }
-          p.reviews_mark{
-            font-weight: 600;
-            margin: 0 8px 0 2px;
-          }
-          p.reviews_count{
-            width: max-content;
-            text-decoration: underline;
-            margin: 0;
-          }
-          @media (max-width: 768px) {
-            #trustScoreStarsMob{
-              padding: 16px 0 0;
-              background: #FFF;
-            }
-            #trustScoreStarsMob .trust_score_wrapp{
-              border-radius: 5px;
-              background: #F9F9FA;
-              padding: 6px 12px;
-              gap: 8px;
-            }
-            #trustScoreStarsMob .trust_score_wrapp p{
-              color: #0A0A0A;
-            }
-            /* new_header sticky_var*/
-            .new_header.sticky_var .trust_score_wrapp{
-              align-items: flex-start;
-              flex-direction: column;
-              gap: 4px;
-            }
-            .new_header.sticky_var .trust_score_wrapp p{
-              font-size: 13px;
-              margin: 0 2px 0 0;
-            }
-            .new_header.sticky_var .trust_score_wrapp svg path{
-              fill: #2E168D;
-            }
-            .new_header.sticky_var .call_your_free_btn{
-              max-width: 132px;
-              margin: 0 0 0 auto;
-            }
-          }
-        </style>
-        <div class="trust_score_wrapp">
-          <img class="trust_score_stars" src="${git}/treblehealth/img/trust_score_stars.svg" alt="stars" />
-          <div>
-            <p class="reviews_txt">TrustScore</p>
-            ${svgObj.star}
-            <p class="reviews_mark">4.9</p>
-            <p class="reviews_count">
-              (<span><b>432</b> reviews</span>)
-            </p>
-          </div>
-        </div>
-        `;
-        const newheader = /*html */ `
-        <div class="new_header">
+        const trustScoreStarsBlock = /* HTML */ `
           <style>
-            .new_header{
-              background: #EEEBFB;
-              padding: 16px 0;
-              transition: all 0.5s ease;
-            }
-            .new_header .container_var{
-              max-width: 1280px;
-            }
-            .new_header_wrapp{
+            /*trust_score_wrapp */
+            .trust_score_wrapp {
               display: flex;
               align-items: center;
-              justify-content: space-between;
+              justify-content: flex-start;
+              width: max-content;
+              cursor: pointer;
+              gap: 12px;
             }
-            .new_header_btn_wrapp{
-              width: 50%;
+            .trust_score_wrapp > img {
+              max-width: 127px;
+              width: 100%;
+            }
+            .trust_score_wrapp > div {
               display: flex;
-              gap: 38px;
               align-items: center;
-              justify-content: flex-end;
+              justify-content: flex-start;
             }
-            .new_header_btn_wrapp .call_your_free_btn{
-              max-width: 156px;
-              height: 48px;
+            .trust_score_wrapp p {
               font-size: 14px;
+              line-height: 20px;
+              margin: 0 4px 0 0;
+            }
+            p.reviews_mark {
+              font-weight: 600;
+              margin: 0 8px 0 2px;
+            }
+            p.reviews_count {
+              width: max-content;
+              text-decoration: underline;
               margin: 0;
             }
-            .new_header_btn_wrapp > p{
-              font-size: 16px;
-              font-weight: 500;
+            .hero_wrapp .trust_score_wrapp {
+              border-radius: 5px;
+              background: #f9f9fa;
+              padding: 6px 12px;
+              gap: 8px;
+              margin: 0 auto 20px;
             }
-            #countdown{
-              font-weight: 700;
+            .hero_wrapp .trust_score_wrapp p {
+              color: #0a0a0a;
             }
             @media (max-width: 768px) {
-              .new_header:not(.sticky_var){
-                padding: 8px 0;
-                position: fixed;
-                left: 0;
-                right: 0;
-                top: 0;
-                z-index: 100000;
+              /* new_header sticky_var*/
+              .new_header.sticky_var .trust_score_wrapp {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 4px;
               }
-              .new_header_btn_wrapp {
-                width: 100%;
-                gap: 34px;
+              .new_header.sticky_var .trust_score_wrapp p {
+                font-size: 13px;
+                margin: 0 2px 0 0;
+              }
+              .new_header.sticky_var .trust_score_wrapp svg path {
+                fill: #2e168d;
+              }
+              .new_header.sticky_var .call_your_free_btn {
+                max-width: 100%;
+                margin: 0 0 0 auto;
+              }
+              .hero_wrapp .trust_score_wrapp {
+                margin-bottom: 24px;
+              }
+            }
+          </style>
+          <div class="trust_score_wrapp">
+            <img class="trust_score_stars" src="${git}/treblehealth/img/trust_score_stars.svg" alt="stars" />
+            <div>
+              <p class="reviews_txt">TrustScore</p>
+              ${svgObj.star}
+              <p class="reviews_mark">4.9</p>
+              <p class="reviews_count">
+                (<span><b>600+</b> reviews</span>)
+              </p>
+            </div>
+          </div>
+        `;
+        const newheader = /* HTML */ `
+          <div class="new_header">
+            <style>
+              .new_header {
+                background: #eeebfb;
+                padding: 16px 0;
+                transition: all 0.5s ease;
+              }
+              .new_header .container_var {
+                max-width: 1280px;
+              }
+              .new_header_wrapp {
+                display: flex;
+                align-items: center;
                 justify-content: space-between;
               }
-              .new_header_btn_wrapp > p {
+              .new_header_btn_wrapp {
+                width: 50%;
+                display: flex;
+                gap: 38px;
+                align-items: center;
+                justify-content: flex-end;
+              }
+              .new_header_btn_wrapp .call_your_free_btn {
+                max-width: 156px;
+                height: 48px;
                 font-size: 14px;
-                line-height: 20px;
-                max-width: 145px;
+                margin: 0;
               }
-            }
-          </style>
-          <div class="container_var">
-            <div class="new_header_wrapp">
-              <div class="new_header_btn_wrapp">
-                <p>Your spot is reserved for: <span id="countdown"></span></p>
-                <button class="call_your_free_btn">Continue</button>
+              .new_header_btn_wrapp > p {
+                font-size: 16px;
+                font-weight: 500;
+              }
+              @media (max-width: 768px) {
+                .new_header:not(.sticky_var) {
+                  padding: 10px 0;
+                  position: fixed;
+                  left: 0;
+                  right: 0;
+                  top: 0;
+                  z-index: 100000;
+                }
+                .new_header_btn_wrapp {
+                  display: none;
+                }
+              }
+            </style>
+            <div class="container_var">
+              <div class="new_header_wrapp">
+                <a class="logo_link" href="https://treblehealth.com">
+                  <img width="211" height="40" src="https://treblehealth.com/wp-content/uploads/2021/09/site-logo.svg" data-src="https://treblehealth.com/wp-content/uploads/2021/09/site-logo.svg" class="attachment-full size-full wp-image-13 ls-is-cached lazyloaded" alt="TrebleHealth Site Logo" />
+                </a>
+                <a class="tel_link" href="tel:+8558732531">
+                  <img src="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" alt="" data-src-desktop-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" data-src-mobile-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" />
+                  <span class="desktop_var">(855) 873-2531</span><span class="mob_var">Call Us</span></a
+                >
               </div>
             </div>
           </div>
-        </div>
-        <div class="new_header sticky_var">
-          <style>
-            .new_header.sticky_var{
-              padding: 20px 0;
-            }
-            .new_header.sticky_var.is_fixed{
-              position: fixed;
-              bottom: 0;
-              left: 0;
-              right: 0;
-              z-index: 100000;
-              transform: translateY(0);
-              animation: ani  0.5s ease;
-            }
-            @keyframes ani {
-              0% {
-                transform: translateY(100%);
+          <div class="new_header sticky_var">
+            <style>
+              .new_header.sticky_var {
+                padding: 28px 0 24px;
               }
-              100% {
-                transform: translateY(0);
+              .new_header.sticky_var.is_fixed {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 100000;
+                transform: translateY(0%);
+                animation: ani 0.5s ease;
               }
-            }
-          </style>
-          <div class="container_var">
-            <div class="new_header_wrapp">
-              <div class="new_header_btn_wrapp">
-                <button class="call_your_free_btn">Continue</button>
+              .tel_link {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                color: #2e168d !important;
+                font-size: 18px;
+                font-weight: 800;
+                line-height: 28px;
+                text-decoration: none;
+              }
+              .tel_link img {
+                width: 24px;
+              }
+              @keyframes ani {
+                0% {
+                  transform: translateY(-100%);
+                }
+                100% {
+                  transform: translateY(0);
+                }
+              }
+              @media (max-width: 768px) {
+                .new_header.sticky_var {
+                  padding: 12px 0;
+                }
+                .new_header.sticky_var.is_fixed {
+                  top: unset;
+                  bottom: 0;
+                }
+                @keyframes ani {
+                  0% {
+                    transform: translateY(100%);
+                  }
+                  100% {
+                    transform: translateY(0);
+                  }
+                }
+                .new_header_wrapp .logo_link {
+                  max-width: 150px;
+                  max-height: 28px;
+                }
+                .new_header_wrapp .logo_link img {
+                  width: 100%;
+                  height: 100%;
+                }
+                .new_header_wrapp .tel_link {
+                  color: #333;
+                  font-size: 12px;
+                  font-weight: 400;
+                  line-height: 18px;
+                  flex-direction: column;
+                  gap: 0;
+                }
+                .new_header_wrapp .tel_link img {
+                  width: 26px;
+                }
+              }
+            </style>
+            <div class="container_var">
+              <div class="new_header_wrapp">
+                <div class="new_header_btn_wrapp">
+                  <a class="tel_link desktop_var" href="tel:+8558732531">
+                    <img src="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" alt="" data-src-desktop-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" data-src-mobile-1x="//d9hhrg4mnvzow.cloudfront.net/try.treblehealth.com/tinnitus-relief-discovery-call-v1-1/4c38b6a3-header-phone-icon.svg" />
+                    <span class="desktop_var">(855) 873-2531</span></a
+                  >
+                </div>
+                <button class="call_your_free_btn mob_var">Continue</button>
               </div>
             </div>
           </div>
-        </div>
         `;
-        const heroSection = /*html */ `
+        const heroSection = /* HTML */ `
         <section id="hero">
           <style>
             #hero{
-              padding: 60px 0 32px;
+              padding: 48px 0;
               background: #FFF;
             }
             .new_header.is_fixed + #hero{
@@ -914,7 +937,7 @@ let treblehealthPages = setInterval(() => {
               margin: 0;
             }
             .chart_wrapp{
-              margin: 49px auto 0;
+              margin: 24px auto 0;
               max-width: 588px;
             }
             .chart_img_wrapp{
@@ -948,6 +971,7 @@ let treblehealthPages = setInterval(() => {
               width: 100%;
             }
             #hero .chart_txt{
+              font-size: 14px;
               color: #636A85;
               line-height: 20px;
             }
@@ -957,14 +981,11 @@ let treblehealthPages = setInterval(() => {
             }
             @media (max-width: 768px) {
               #hero {
-                padding: 24px 0;
+                padding: 16px 0 24px;
               }
               .chart_wrapp{
                 margin: 0;
               }
-              .product_scroll_trigger{
-                display: block;
-             }
               .chart_img_wrapp{
                 margin: 35px 0 20px;
               }
@@ -981,6 +1002,8 @@ let treblehealthPages = setInterval(() => {
               }
               #hero .hero_txt{
                 margin: 0 auto;
+                line-height: 24px;
+                max-width: 343px;
               }
               .current_month_txt, .relief_month_txt, .next_current_month_txt{
                 font-size: 12px;
@@ -1000,7 +1023,7 @@ let treblehealthPages = setInterval(() => {
             <div class="hero_wrapp">
               <p class="hero_txt">Based on your answers,</p>
               <h1 class="hero_title">your tinnitus is <b>${this.level}</b></h1>
-              <p class="hero_txt">We’ve identified key points to help treat your tinnitus. You can experience relief from tinnitus <b>by ${this.reliefDate}*</b> <span class=""><b class="product_scroll_trigger"> with the Tinnitus Relief Bundle</b></p>
+              <p class="hero_txt">We’ve identified <b>key points</b> to help treat your tinnitus. You can experience relief from tinnitus <b>by ${this.reliefDate}*</b> <span class=""><b class="product_scroll_trigger"> with the Tinnitus Relief Bundle</b></p>
               <div class="chart_wrapp">
                 <div class="chart_img_wrapp">
                   <img src="${this.levelImg}" alt="chart">
@@ -1013,508 +1036,516 @@ let treblehealthPages = setInterval(() => {
           </div>
         </section>
         `;
-        const provenSuccessSection = /*html */ `
-        <section id="provenSuccess">
-          <style>
-            #provenSuccess{
-              background: #EEEBFB;
-              padding: 24px 0 32px;
-            }
-            .proven_success_wrapp{
-              max-width: 800px;
-              width: 100%;
-              margin: 0 auto;
-              border-radius: 8px;
-              background: #FFF;
-              box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
-              padding: 20px 50px;
-            }
-            .proven_success_main{
-              display: flex;
-              align-items: center;
-              justify-content: flex-start;
-              gap: 20px;
-            }
-            .proven_success_wrapp p.proven_success_txt{
-              color: #636A85;
-              font-size: 13px;
-              line-height: 16px;
-              margin-top: 8px;
-            }
-            .proven_success_wrapp .third_title{
-              margin-bottom: 4px;
-            }
-            .proven_success_main p{
-              font-weight: 500;
-            }
-            @media (max-width: 768px) {
-              #provenSuccess{
-                padding: 24px 0;
+        const provenSuccessSection = /* HTML */ `
+          <section id="provenSuccess">
+            <style>
+              #provenSuccess {
+                background: #eeebfb;
+                padding: 16px 0;
               }
-              .proven_success_wrapp{
-                padding: 16px;
+              .proven_success_wrapp {
+                max-width: 800px;
+                width: 100%;
+                margin: 0 auto;
+                border-radius: 8px;
+                background: #fff;
+                box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
+                padding: 20px 50px;
               }
-            }
-          </style>
-          <div class="container_var">
-            <div class="proven_success_wrapp">
-              <div class="proven_success_main">
-                <span class="desktop_var">
-                  ${svgObj.ear}
-                </span>
-                <div>
-                  <h3 class="third_title">Proven Success</h3>
-                  <p>Over <b>85%</b> of individuals using <b>the Tinnitus Relief Bundle </b> report <b>reduced tinnitus.</b></p>
+              .proven_success_main {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 20px;
+              }
+              .proven_success_wrapp p.proven_success_txt {
+                color: #636a85;
+                font-size: 13px;
+                line-height: 16px;
+                margin-top: 8px;
+              }
+              .proven_success_wrapp .third_title {
+                margin-bottom: 4px;
+              }
+              .proven_success_main p {
+                font-weight: 500;
+              }
+              @media (max-width: 768px) {
+                #provenSuccess {
+                  padding: 24px 0;
+                }
+                .proven_success_wrapp {
+                  padding: 16px;
+                }
+                .proven_success_main p {
+                  max-width: 305px;
+                }
+              }
+            </style>
+            <div class="container_var">
+              <div class="proven_success_wrapp">
+                <div class="proven_success_main">
+                  <span class="desktop_var"> ${svgObj.ear} </span>
+                  <div>
+                    <h3 class="third_title">Proven Success</h3>
+                    <p>
+                      Over <b>85%</b> of individuals using <b>the Tinnitus Relief Bundle </b> report
+                      <b>reduced tinnitus.</b>
+                    </p>
+                  </div>
                 </div>
+                <p class="proven_success_txt">This data comes from our 2023 results using the Tinnitus Functional Index (TFI), out of 247 patients.</p>
               </div>
-              <p class="proven_success_txt">This data comes from our 2023 results using the Tinnitus Functional Index (TFI), out of 247 patients.</p>
             </div>
-          </div>
-        </section>
+          </section>
         `;
-        const tinnitusReliefBundleSection = /*html */ `
-        <section id="tinnitusReliefBundle">
-          <style>
-            #tinnitusReliefBundle{
-              padding: 80px 0 32px;
-              background: #FFF;
-            }
-            .tinnitus_relief_bundle_wrapp{
-              max-width: 973px;
-              display: flex;
-              gap: 80px;
-              justify-content: flex-start;
-              align-items: center;
-              margin: 0 auto;
-            }
-            .tinnitus_relief_bundle_wrapp .img_wrapp{
-              max-width: 430px;
-              border-radius: 30px;
-            }
-            .tinnitus_relief_bundle_wrapp .img_wrapp img{
-              border-radius: 30px;
-              width: 100%;
-              height: 100%;
-            }
-            #tinnitusReliefBundle .second_title{
-              margin-bottom: 12px;
-            }
-            #tinnitusReliefBundle .third_title{
-              font-weight: 500;
-              margin-bottom: 12px;
-            }
-            .tinnitus_relief_bundle_reviews{
-              display: flex;
-              align-items: center;
-              justify-content: flex-start;
-              margin: 0 0 24px;
-              gap: 16px;
-            }
-            .tinnitus_relief_bundle_reviews span{
-              color: #2E168D;
-              font-family: "Plus Jakarta Sans", sans-serif !important;
-              font-size: 12px;
-              font-weight: 500;
-              line-height: 15px;
-              margin: 0;
-            }
-            #tinnitusReliefBundle .tinnitus_relief_bundle_txt{
-              font-weight: 500;
-              display: flex;
-              align-items: center;
-              justify-content: flex-start;
-              gap: 6px;
-              margin: 0 0 24px;
-            }
-            .tinnitus_relief_bundle_descr h3.fourth_title{
-              line-height: 26px;
-              margin-bottom: 16px;
-            }
-            .tinnitus_relief_bundle_descr ul,
-            .bundle_tooltip_list{
-              list-style: none;
-              padding: 0;
-              margin: 0;
-            }
-            .bundle_tooltip_list {
-              margin-top: 16px;
-            }
-            .tinnitus_relief_bundle_descr ul li,
-            .bundle_tooltip_list li{
-              position: relative;
-              padding-left: 32px;
-            }
-            .tinnitus_relief_bundle_descr ul li::before,
-            .bundle_tooltip_list li::before{
-              position: absolute;
-              content: "";
-              width: 20px;
-              height: 20px;
-              background: url(${git}/treblehealth/img/check_icon.svg) center no-repeat;
-              background-size: contain;
-              border-radius: 0;
-              top: 3px;
-              left: 0;
-            }
-            .tinnitus_relief_bundle_descr ul li + li,
-            .bundle_tooltip_list li + li{
-              margin-top: 8px;
-            }
-            .bundle_tooltip_list li p{
-              font-size: 14px;
-            }
-            .tinnitus_relief_bundle_descr ul li p{
-              line-height: 25px;
-            }
-            .bundle_tooltip_slider{
-              display: none;
-            transition: all 0.5s ease 0.5s;
-            }
-            .is_load{
-              display: block;
-            }
-            .bundle_tooltip_slider .slick-slide{
-              margin: 0 2px;
-            }
-            .bundle_tooltip_slider img{
-              height: 100%;
-              width: 100%;
-              border-radius: 8px;
-              object-fit: cover;
-            }
-            .bundle_tooltip_slider .slick-dots {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              margin: 16px auto 0;
-              list-style: none;
-              padding: 0;
-            }
-            .bundle_tooltip_slider .slick-dots li button {
-              font-size: 0;
-              line-height: 0;
-              display: block;
-              width: 10px;
-              height: 10px;
-              cursor: pointer;
-              color: transparent;
-              outline: none;
-              background: #EFECFB;
-              border-radius: 5px;
-              border: 1px solid #2E168D;
-              margin: 0 6px;
-              padding: 0;
-            }
-            .bundle_tooltip_slider .slick-dots li.slick-active button {
-              background: #2E168D;
-            }
-            @media (max-width: 768px) {
+        const tinnitusReliefBundleSection = /* HTML */ `
+          <section id="tinnitusReliefBundle">
+            <style>
               #tinnitusReliefBundle {
-                padding: 16px 0 24px;
+                padding: 80px 0 32px;
+                background: #fff;
               }
               .tinnitus_relief_bundle_wrapp {
-                gap: 12px;
-                flex-direction: column;
-              }
-              #tinnitusReliefBundle .second_title{
-                text-align: center;
-              }
-              #tinnitusReliefBundle .third_title{
-                font-size: 16px;
-                line-height: 24px;
-              }
-              .tinnitus_relief_bundle_reviews {
-                justify-content: center;
-                margin: 0 0 12px;
+                max-width: 973px;
+                display: flex;
+                gap: 80px;
+                justify-content: flex-start;
+                align-items: center;
+                margin: 0 auto;
               }
               .tinnitus_relief_bundle_wrapp .img_wrapp {
-                max-width: 335px;
+                max-width: 430px;
+                border-radius: 30px;
+              }
+              .tinnitus_relief_bundle_wrapp .img_wrapp img {
+                border-radius: 30px;
+                width: 100%;
+                height: 100%;
+              }
+              #tinnitusReliefBundle .second_title {
+                margin-bottom: 12px;
+              }
+              #tinnitusReliefBundle .third_title {
+                font-weight: 500;
+                margin-bottom: 12px;
+              }
+              .tinnitus_relief_bundle_reviews {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                margin: 0 0 24px;
+                gap: 16px;
+              }
+              .tinnitus_relief_bundle_reviews span {
+                color: #2e168d;
+                font-family: "Plus Jakarta Sans", sans-serif !important;
+                font-size: 12px;
+                font-weight: 500;
+                line-height: 15px;
+                margin: 0;
               }
               #tinnitusReliefBundle .tinnitus_relief_bundle_txt {
-                justify-content: center;
-                gap: 4px;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 6px;
+                margin: 0 0 24px;
               }
-            }
-          </style>
-          <div class="container_var">
-            <div class="tinnitus_relief_bundle_wrapp">
-              <div class="mob_var">
-                <h2 class="second_title">Tinnitus Relief Bundle</h2>
-                <h3 class="third_title">For individuals with <b><span>${this.level}</span> tinnitus.</b></h3>
-                <div class="tinnitus_relief_bundle_reviews">
-                  ${svgObj.starReview}
-                  <span>430+ reviews</span>
-                </div>
-              </div>
-              <div class="img_wrapp">
-                <img src="${git}/treblehealth/img/tinnitus_relief_bundle_img.png" alt="Tinnitus Relief Bundle" />
-              </div>
-              <div>
-                <div class="desktop_var">
+              .tinnitus_relief_bundle_descr h3.fourth_title {
+                line-height: 26px;
+                margin-bottom: 16px;
+              }
+              .tinnitus_relief_bundle_descr ul,
+              .bundle_tooltip_list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+              }
+              .bundle_tooltip_list {
+                margin-top: 16px;
+              }
+              .tinnitus_relief_bundle_descr ul li,
+              .bundle_tooltip_list li {
+                position: relative;
+                padding-left: 32px;
+              }
+              .tinnitus_relief_bundle_descr ul li::before,
+              .bundle_tooltip_list li::before {
+                position: absolute;
+                content: "";
+                width: 20px;
+                height: 20px;
+                background: url(${git}/treblehealth/img/check_icon.svg) center no-repeat;
+                background-size: contain;
+                border-radius: 0;
+                top: 3px;
+                left: 0;
+              }
+              .tinnitus_relief_bundle_descr ul li + li,
+              .bundle_tooltip_list li + li {
+                margin-top: 8px;
+              }
+              .bundle_tooltip_list li p {
+                font-size: 14px;
+              }
+              .tinnitus_relief_bundle_descr ul li p {
+                line-height: 25px;
+              }
+              .bundle_tooltip_slider {
+                display: none;
+                transition: all 0.5s ease 0.5s;
+              }
+              .is_load {
+                display: block;
+              }
+              .bundle_tooltip_slider .slick-slide {
+                margin: 0 2px;
+              }
+              .bundle_tooltip_slider img {
+                height: 100%;
+                width: 100%;
+                border-radius: 8px;
+                object-fit: cover;
+              }
+              .bundle_tooltip_slider .slick-dots {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 16px auto 0;
+                list-style: none;
+                padding: 0;
+              }
+              .bundle_tooltip_slider .slick-dots li button {
+                font-size: 0;
+                line-height: 0;
+                display: block;
+                width: 10px;
+                height: 10px;
+                cursor: pointer;
+                color: transparent;
+                outline: none;
+                background: #efecfb;
+                border-radius: 5px;
+                border: 1px solid #2e168d;
+                margin: 0 6px;
+                padding: 0;
+              }
+              .bundle_tooltip_slider .slick-dots li.slick-active button {
+                background: #2e168d;
+              }
+              @media (max-width: 768px) {
+                #tinnitusReliefBundle {
+                  padding: 16px 0 24px;
+                }
+                .tinnitus_relief_bundle_wrapp {
+                  gap: 12px;
+                  flex-direction: column;
+                }
+                #tinnitusReliefBundle .second_title {
+                  text-align: center;
+                }
+                #tinnitusReliefBundle .third_title {
+                  font-size: 16px;
+                  line-height: 24px;
+                }
+                .tinnitus_relief_bundle_reviews {
+                  justify-content: center;
+                  margin: 0 0 12px;
+                }
+                .tinnitus_relief_bundle_wrapp .img_wrapp {
+                  max-width: 335px;
+                }
+                .tinnitus_relief_bundle_descr ul li p {
+                  max-width: 305px;
+                }
+                #tinnitusReliefBundle .tinnitus_relief_bundle_txt {
+                  justify-content: center;
+                  gap: 4px;
+                }
+              }
+            </style>
+            <div class="container_var">
+              <div class="tinnitus_relief_bundle_wrapp">
+                <div class="mob_var">
                   <h2 class="second_title">Tinnitus Relief Bundle</h2>
-                  <h3 class="third_title">For individuals with <b><span>${this.level}</span> tinnitus.</b></h3>
+                  <h3 class="third_title">
+                    For individuals with <b><span>${this.level}</span> tinnitus.</b>
+                  </h3>
                   <div class="tinnitus_relief_bundle_reviews">
                     ${svgObj.starReview}
                     <span>430+ reviews</span>
                   </div>
                 </div>
-                <p class="tinnitus_relief_bundle_txt">
-                  What’s in the bundle?
-                  <span data-title="tinnitus relief bundle">
-                    ${svgObj.tooltip}
-                  </span>
-                </p>
-                <div class="tinnitus_relief_bundle_descr">
-                  <h3 class="fourth_title">What you’ll get:</h3>
-                  <ul class="">
-                    <li class=""><p>Sound therapy devices for maximum relief</p></li>
-                    <li class=""><p>Enhanced focus and attention during the day</p></li>
-                    <li class=""><p>Tools to fall asleep at night</p></li>
-                    <li class=""><p>Peace of mind and calm</p></li>
-                  </ul>
+                <div class="img_wrapp">
+                  <img src="${git}/treblehealth/img/tinnitus_relief_bundle_img.png" alt="Tinnitus Relief Bundle" />
+                </div>
+                <div>
+                  <div class="desktop_var">
+                    <h2 class="second_title">Tinnitus Relief Bundle</h2>
+                    <h3 class="third_title">
+                      For individuals with <b><span>${this.level}</span> tinnitus.</b>
+                    </h3>
+                    <div class="tinnitus_relief_bundle_reviews">
+                      ${svgObj.starReview}
+                      <span>430+ reviews</span>
+                    </div>
+                  </div>
+                  <p class="tinnitus_relief_bundle_txt">
+                    What’s in the bundle?
+                    <span data-title="tinnitus relief bundle"> ${svgObj.tooltip} </span>
+                  </p>
+                  <div class="tinnitus_relief_bundle_descr">
+                    <h3 class="fourth_title">What you’ll get:</h3>
+                    <ul class="">
+                      <li class=""><p>Sound therapy devices for maximum relief</p></li>
+                      <li class=""><p>Enhanced focus and attention during the day</p></li>
+                      <li class=""><p>Tools to fall asleep at night</p></li>
+                      <li class=""><p>Peace of mind and calm</p></li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
         `;
-        const backGuaranteeSection = /*html */ `
-        <section id="backGuarantee">
-          <style>
-            #backGuarantee{
-              background: #FFF;
-              padding: 0 0 40px;
-            }
-            .back_guarantee_wrapp{
-              text-align: center;
-              max-width: 520px;
-              margin: 0 auto;
-            }
-            .back_guarantee_wrapp .fourth_title{
-              display: none;
-              position: relative;
-              margin-bottom: 20px;
-            }
-            .back_guarantee_wrapp .call_your_free_btn{
-              max-width: 400px;
-            }
-            .back_guarantee_wrapp p{
-              font-size: 14px;
-              font-weight: 800;
-              margin: 0 8px 0 16px;
-            }
-            .back_guarantee_wrapp .fourth_title::after{
-              position: absolute;
-              content: "";
-              width: 41px;
-              height: 57px;
-              background: url(${git}/treblehealth/img/arrow_icon_mob.svg) center no-repeat;
-              background-size: contain;
-              bottom: -36px;
-              right: 0;
-              transform: rotate(24deg);
-            }
-            .back_guarantee_wrapp .tippy-popper {
-              max-width: 229px !important;
-            }
-            .back_guarantee_wrapp .tooltip_txt{
-              font-size: 13px;
-              font-weight: 400;
-              line-height: 18px;
-              margin: 0;
-              text-align: left;
-            }
-            @media (max-width: 768px) {
-              #backGuarantee{
-                background: #EEEBFB;
-                padding: 24px 0;
+        const backGuaranteeSection = /* HTML */ `
+          <section id="backGuarantee">
+            <style>
+              #backGuarantee {
+                background: #fff;
+                padding: 0 0 80px;
               }
-              .back_guarantee_wrapp .fourth_title{
-                max-width: 280px;
-                line-height: 26px;
-                margin-bottom: 24px;
-                text-align: start;
+              .back_guarantee_wrapp {
+                text-align: center;
+                max-width: 520px;
+                margin: 0 auto;
               }
-              .back_guarantee_wrapp p{
-                margin: 0 4px 0 12px;
+              .back_guarantee_wrapp .fourth_title {
+                display: none;
+                position: relative;
+                margin-bottom: 20px;
+              }
+              .back_guarantee_wrapp .call_your_free_btn {
+                max-width: 400px;
+              }
+              .back_guarantee_wrapp p {
+                font-size: 14px;
+                font-weight: 800;
+                margin: 0 8px 0 16px;
               }
               .back_guarantee_wrapp .fourth_title::after {
-                bottom: -14px;
-                right: -60px;
-                transform: unset;
+                position: absolute;
+                content: "";
+                width: 41px;
+                height: 57px;
+                background: url(${git}/treblehealth/img/arrow_icon_mob.svg) center no-repeat;
+                background-size: contain;
+                bottom: -36px;
+                right: 0;
+                transform: rotate(24deg);
               }
-            }
-          </style>
-          <div class="container_var">
-            <div class="back_guarantee_wrapp">
-              <h3 class="fourth_title">Book a FREE Tinnitus Relief Discovery Call for personalized recommendations from a Doctor of Audiology</h3>
-              <button class="call_your_free_btn">Continue</button>
+              .back_guarantee_wrapp .tippy-popper {
+                max-width: 229px !important;
+              }
+              .back_guarantee_wrapp .tooltip_txt {
+                font-size: 13px;
+                font-weight: 400;
+                line-height: 18px;
+                margin: 0;
+                text-align: left;
+              }
+              @media (max-width: 768px) {
+                #backGuarantee {
+                  padding: 0 0 40px;
+                }
+                .back_guarantee_wrapp .fourth_title {
+                  max-width: 280px;
+                  line-height: 26px;
+                  margin-bottom: 24px;
+                  text-align: start;
+                }
+                .back_guarantee_wrapp p {
+                  margin: 0 4px 0 12px;
+                }
+                .back_guarantee_wrapp .fourth_title::after {
+                  bottom: -14px;
+                  right: -60px;
+                  transform: unset;
+                }
+              }
+            </style>
+            <div class="container_var">
+              <div class="back_guarantee_wrapp">
+                <h3 class="fourth_title">Book a FREE Tinnitus Relief Discovery Call for personalized recommendations from a Doctor of Audiology</h3>
+                <button class="call_your_free_btn">Continue</button>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
         `;
-        const trustpilotSection = /*html */ `
-        <section id="trustpilotBlock">
-          <style>
-            #trustpilotBlock {
-              background: #efecfb;
-              padding: 40px 0 80px;
-            }
-            #trustpilotBlock .container_var .trustpilot_link {
-              display: block;
-              max-width: 180px;
-              margin: 0 auto 20px;
-              text-align: center;
-            }
-            #trustpilotBlock h2.main_title {
-              text-align: center;
-              max-width: 530px;
-              margin: 0 auto 67px;
-            }
-            @media (max-width: 768px){
+        const trustpilotSection = /* HTML */ `
+          <section id="trustpilotBlock">
+            <style>
               #trustpilotBlock {
-                padding: 0 0 40px;
+                background: #efecfb;
+                padding: 40px 0 80px;
+              }
+              #trustpilotBlock .container_var .trustpilot_link {
+                display: block;
+                max-width: 180px;
+                margin: 0 auto 20px;
+                text-align: center;
               }
               #trustpilotBlock h2.main_title {
-                margin: 0 auto 12px;
+                text-align: center;
+                max-width: 530px;
+                margin: 0 auto 67px;
               }
-            }
-          </style>
-          <div class="container_var">
-            <a href="https://uk.trustpilot.com/review/treblehealth.com" class="trustpilot_link" target="_blank">
-              ${svgObj.trustpilotIcon}
-            </a>
-            <h2 class="main_title">People just like you achieve great results</h2>
-            <!-- TrustBox widget - Slider -->
-            <div class="trustpilot-widget" data-locale="en-GB" data-template-id="54ad5defc6454f065c28af8b" data-businessunit-id="6397ccb1f1b97c8d18a77a5d" data-style-height="240px" data-style-width="100%" data-theme="light" data-stars="1,2,3,4,5" data-review-languages="en">
-              <a href="https://uk.trustpilot.com/review/treblehealth.com" target="_blank" rel="noopener">Trustpilot</a>
+              @media (max-width: 768px) {
+                #trustpilotBlock {
+                  padding: 40px 0;
+                }
+                #trustpilotBlock h2.main_title {
+                  margin: 0 auto 12px;
+                  max-width: 364px;
+                }
+              }
+            </style>
+            <div class="container_var">
+              <a href="https://uk.trustpilot.com/review/treblehealth.com" class="trustpilot_link" target="_blank"> ${svgObj.trustpilotIcon} </a>
+              <h2 class="main_title">People just like you achieve great results</h2>
+              <!-- TrustBox widget - Slider -->
+              <div class="trustpilot-widget" data-locale="en-GB" data-template-id="54ad5defc6454f065c28af8b" data-businessunit-id="6397ccb1f1b97c8d18a77a5d" data-style-height="240px" data-style-width="100%" data-theme="light" data-stars="1,2,3,4,5" data-review-languages="en">
+                <a href="https://uk.trustpilot.com/review/treblehealth.com" target="_blank" rel="noopener">Trustpilot</a>
+              </div>
+              <!-- End TrustBox widget -->
             </div>
-            <!-- End TrustBox widget -->
-          </div>
-        </section>
+          </section>
         `;
-        const frequentlyAskedQuestionsSection = /*html */ `
-        <section id="frequentlyAskedQuestionsBlock">
-          <style>
-            #frequentlyAskedQuestionsBlock {
-              padding: 80px 0;
-              background: #FFF;
-            }
-            .frequently_asked_questions_wrapp h2.main_title {
-              text-align: center;
-              margin-bottom: 48px;
-            }
-            .questions_accordion {
-              max-width: 1000px;
-              margin: 0 auto;
-              padding: 0;
-              list-style: none;
-            }
-            .questions_accordion_link {
-              padding: 20px;
-              cursor: pointer;
-            }
-            #frequentlyAskedQuestionsBlock .questions_accordion_link p {
-              color: #2e168d;
-              font-weight: 800;
-              line-height: 28px;
-              font-size: 18px;
-            }
-            .questions_accordion_lists {
-              padding: 15px 40px 20px 40px;
-              display: none;
-            }
-            .questions_accordion_lists a{
-              text-decoration: underline;
-            }
-            .sub_list_questions{
-              margin: 10px 0;
-              list-style: disc;
-              color: #2E168D;
-            }
-            .accordion_icon_wrapp {
-              display: flex;
-              margin-right: 10px;
-              float: left;
-            }
-            .accordion_icon_closed,
-            .accordion_icon_opened {
-              display: inline-block;
-              width: 100%;
-              max-width: 24px;
-              max-height: 17px;
-              height: 100%;
-            }
-            .accordion_icon_closed svg,
-            .accordion_icon_opened svg {
-              width: 100%;
-              height: 100%;
-            }
-            .accordion_icon_opened,
-            .questions_accordion_block.active .accordion_icon_closed {
-              display: none;
-            }
-            .questions_accordion_block.active .accordion_icon_opened {
-              display: block;
-            }
-            .frequently_asked_questions_wrapp button.call_your_free_btn {
-              margin: 28px auto 0;
-              max-width: 317px;
-              line-height: 28px;
-              height: 62px;
-            }
-            @media (max-width: 768px) {
+        const frequentlyAskedQuestionsSection = /* HTML */ `
+          <section id="frequentlyAskedQuestionsBlock">
+            <style>
               #frequentlyAskedQuestionsBlock {
-                padding: 40px 0;
+                padding: 80px 0;
+                background: #fff;
               }
-              .frequently_asked_questions_wrapp button.call_your_free_btn{
-                max-width: unset;
-                margin: 0;
+              .frequently_asked_questions_wrapp h2.main_title {
+                text-align: center;
+                margin-bottom: 48px;
               }
-            }
-          </style>
-          <div class="container_var">
-            <div class="frequently_asked_questions_wrapp">
-              <h2 class="main_title">Frequently Asked Questions</h2>
-              <ul class="questions_accordion"></ul>
-              <button class="call_your_free_btn">Continue</button>
+              .questions_accordion {
+                max-width: 1000px;
+                margin: 0 auto;
+                padding: 0;
+                list-style: none;
+              }
+              .questions_accordion_link {
+                padding: 20px;
+                cursor: pointer;
+              }
+              #frequentlyAskedQuestionsBlock .questions_accordion_link p {
+                color: #2e168d;
+                font-weight: 800;
+                line-height: 28px;
+                font-size: 18px;
+              }
+              .questions_accordion_lists {
+                padding: 15px 40px 20px 40px;
+                display: none;
+              }
+              .questions_accordion_lists a {
+                text-decoration: underline;
+              }
+              .sub_list_questions {
+                margin: 10px 0;
+                list-style: disc;
+                color: #2e168d;
+              }
+              .accordion_icon_wrapp {
+                display: flex;
+                margin-right: 10px;
+                float: left;
+              }
+              .accordion_icon_closed,
+              .accordion_icon_opened {
+                display: inline-block;
+                width: 100%;
+                max-width: 24px;
+                max-height: 17px;
+                height: 100%;
+              }
+              .accordion_icon_closed svg,
+              .accordion_icon_opened svg {
+                width: 100%;
+                height: 100%;
+              }
+              .accordion_icon_opened,
+              .questions_accordion_block.active .accordion_icon_closed {
+                display: none;
+              }
+              .questions_accordion_block.active .accordion_icon_opened {
+                display: block;
+              }
+              .frequently_asked_questions_wrapp button.call_your_free_btn {
+                margin: 8px auto 0;
+                max-width: 400px;
+                height: 56px;
+              }
+              @media (max-width: 768px) {
+                #frequentlyAskedQuestionsBlock {
+                  padding: 40px 0;
+                }
+                .frequently_asked_questions_wrapp button.call_your_free_btn {
+                  max-width: unset;
+                  margin: 0;
+                  height: 62px;
+                  line-height: 28px;
+                }
+              }
+            </style>
+            <div class="container_var">
+              <div class="frequently_asked_questions_wrapp">
+                <h2 class="main_title">Frequently Asked Questions</h2>
+                <ul class="questions_accordion"></ul>
+                <button class="call_your_free_btn">Continue</button>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
         `;
-        const completeRecoverySection = /*html */ `
-        <section id="completeRecoveryBlock">
-          <style>
-            #completeRecoveryBlock {
-              padding: 80px 0;
-              background: #FFF;
-            }
-            #completeRecoveryBlock .complete_recovery_wrapp {
-              display: flex;
-              align-items: center;
-              gap: 36px;
-            }
-            .complete_recovery_wrapp .img_wrapp {
-              border-radius: 16px;
-            }
-            .complete_recovery_wrapp .img_wrapp .desktop_var {
-              max-width: 560px;
-            }
-            .complete_recovery_wrapp h2.main_title {
-              margin-bottom: 12px;
-            }
-            #completeRecoveryBlock button.call_your_free_btn{
-              margin: 28px 0 0;
-              max-width: 317px;
-            }
-            @media only screen and (min-width: 769px) and (max-width: 1020px) {
-              .complete_recovery_wrapp .img_wrapp .desktop_var {
-                max-width: 455px;
+        const completeRecoverySection = /* HTML */ `
+          <section id="completeRecoveryBlock">
+            <style>
+              #completeRecoveryBlock {
+                padding: 80px 0;
+                background: #fff;
               }
-            }
-            @media (max-width: 768px) {
+              #completeRecoveryBlock .complete_recovery_wrapp {
+                display: flex;
+                align-items: center;
+                gap: 36px;
+              }
+              .complete_recovery_wrapp .img_wrapp {
+                border-radius: 16px;
+              }
+              .complete_recovery_wrapp .img_wrapp .desktop_var {
+                max-width: 560px;
+              }
+              .complete_recovery_wrapp h2.main_title {
+                margin-bottom: 12px;
+              }
+              #completeRecoveryBlock button.call_your_free_btn {
+                margin: 28px 0 0;
+                max-width: 360px;
+              }
+              @media only screen and (min-width: 769px) and (max-width: 1020px) {
+                .complete_recovery_wrapp .img_wrapp .desktop_var {
+                  max-width: 455px;
+                }
+              }
+              @media (max-width: 768px) {
                 #completeRecoveryBlock {
-                  background: #FBFAFE;
+                  background: #fbfafe;
                   padding: 0 0 40px;
                 }
                 #completeRecoveryBlock .complete_recovery_wrapp {
@@ -1535,97 +1566,96 @@ let treblehealthPages = setInterval(() => {
                 }
                 .complete_recovery_wrapp .img_wrapp {
                   border-radius: 0;
+                  width: 100%;
                 }
                 .complete_recovery_wrapp .img_wrapp img {
                   width: 100%;
                   height: 100%;
                   border-radius: 8px 8px 0 0;
                 }
-                #completeRecoveryBlock button.call_your_free_btn{
+                #completeRecoveryBlock button.call_your_free_btn {
                   margin: 20px auto 0;
                   max-width: unset;
                 }
-            }
-          </style>
-          <div class="container_var">
-            <div class="complete_recovery_wrapp">
-              <div class="img_wrapp">
-                <img class="desktop_var" src="${git}/treblehealth/img/complete_recovery_img.png" alt="man" />
-                <img class="mob_var" src="${git}/treblehealth/img/complete_recovery_img_mob.png" alt="man" />
-              </div>
-              <div class="complete_recovery_descr">
-                <h2 class="main_title">A complete recovery from tinnitus is possible</h2>
-                <p>Learn how in under an hour. </p>
-                <button class="call_your_free_btn">Continue</button>
-              </div>
-            </div>
-          </div>
-        </section>
-        `;
-        const newFooter = /*html */ `
-        <div class="new_footer">
-          <style>
-            .new_footer {
-              background: #b5a6f2;
-              padding: 20px 0;
-            }
-            .new_footer_wrapp {
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-            }
-            .copyright_wrapp p {
-              color: #2e168d;
-              font-size: 14px;
-              font-weight: 600;
-              line-height: 30px;
-              margin: 0;
-            }
-            .policy_conditions_wrapp a {
-              color: #4622da;
-              font-size: 14px;
-              font-weight: 400;
-              line-height: 30px;
-            }
-            .policy_conditions_wrapp {
-              display: flex;
-              gap: 22px;
-            }
-            @media (max-width: 768px) {
-              .new_footer_wrapp {
-                flex-direction: column-reverse;
               }
-            }
-          </style>
-          <div class="container_var">
-            <div class="new_footer_wrapp">
-              <div class="copyright_wrapp">
-                <p>© Copyright 2023 Treble Health, LLC</p>
+            </style>
+            <div class="container_var">
+              <div class="complete_recovery_wrapp">
+                <div class="img_wrapp">
+                  <img class="desktop_var" src="${git}/treblehealth/img/complete_recovery_img.png" alt="man" />
+                  <img class="mob_var" src="${git}/treblehealth/img/complete_recovery_img_mob.png" alt="man" />
+                </div>
+                <div class="complete_recovery_descr">
+                  <h2 class="main_title">A complete recovery from tinnitus is possible</h2>
+                  <p>Learn how in under an hour. </p>
+                  <button class="call_your_free_btn">Continue</button>
+                </div>
               </div>
-              <div class="policy_conditions_wrapp">
-                <a target="_blank" class="policy_link" href="https://treblehealth.com/privacy-policy/">Privacy Policy</a>
-                <a target="_blank" class="condition_link" href="https://treblehealth.com/terms-of-service/">Terms Conditions</a>
+            </div>
+          </section>
+        `;
+        const newFooter = /* HTML */ `
+          <div class="new_footer">
+            <style>
+              .new_footer {
+                background: #b5a6f2;
+                padding: 20px 0;
+              }
+              .new_footer_wrapp {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              }
+              .copyright_wrapp p {
+                color: #2e168d;
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 30px;
+                margin: 0;
+              }
+              .policy_conditions_wrapp a {
+                color: #4622da;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 30px;
+              }
+              .policy_conditions_wrapp {
+                display: flex;
+                gap: 22px;
+              }
+              @media (max-width: 768px) {
+                .new_footer_wrapp {
+                  flex-direction: column-reverse;
+                }
+              }
+            </style>
+            <div class="container_var">
+              <div class="new_footer_wrapp">
+                <div class="copyright_wrapp">
+                  <p>© Copyright 2023 Treble Health, LLC</p>
+                </div>
+                <div class="policy_conditions_wrapp">
+                  <a target="_blank" class="policy_link" href="https://treblehealth.com/privacy-policy/">Privacy Policy</a>
+                  <a target="_blank" class="condition_link" href="https://treblehealth.com/terms-of-service/">Terms Conditions</a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
         `;
         // RENDER HTML
         // new main
         this.onRenderHtml("#content", "afterbegin", ".new_main", `<div class="new_main"></div>`);
         //new header
         this.onRenderHtml(".new_main", "afterbegin", ".new_header", newheader);
-        //new header ->>> trustScoreStarsBlock
-        if (window.innerWidth > 768) {
-          this.onRenderHtml(".new_header:not(.sticky_var) .new_header_wrapp", "afterbegin", ".trust_score_wrapp", trustScoreStarsBlock);
-        }
         //new header sticky_var ->>> trustScoreStarsBlock
-        this.onRenderHtml(".new_header.sticky_var .new_header_wrapp", "afterbegin", ".new_header.sticky_var .trust_score_wrapp", trustScoreStarsBlock);
+        if (window.innerWidth > 768) {
+          this.onRenderHtml(".new_header.sticky_var .new_header_wrapp", "afterbegin", ".new_header.sticky_var .trust_score_wrapp", trustScoreStarsBlock);
+        }
         // hero
         this.onRenderHtml(".new_header", "afterend", "#hero", heroSection);
-        if (window.innerWidth <= 768) {
-          this.onRenderHtml("#hero", "beforebegin", "#trustScoreStarsMob", `<section id="trustScoreStarsMob"><div class="container_var">${trustScoreStarsBlock}</div></section>`);
-        }
+        waitForElement(".hero_wrapp").then((i) => {
+          this.onRenderHtml(".hero_wrapp", "afterbegin", ".hero_wrapp .trust_score_wrapp", trustScoreStarsBlock);
+        });
         // provenSuccess
         this.onRenderHtml("#hero", "afterend", "#provenSuccess", provenSuccessSection);
         // tinnitusReliefBundle
@@ -1647,14 +1677,12 @@ let treblehealthPages = setInterval(() => {
         if ($el(".trustpilot-widget") && window.Trustpilot) {
           window.Trustpilot.loadFromElement($el(".trustpilot-widget"));
         }
-
         // on Click
         this.initTooltip();
-        if ($el("#countdown") && sessionStorage.getItem("time")) {
-          this.initializeClock(+sessionStorage.getItem("time"), `#countdown`);
-        }
         this.onClickCallBtn();
-        this.onClickTrustScoreWrapp();
+        waitForElement(".trust_score_wrapp").then((i) => {
+          this.onClickTrustScoreWrapp();
+        });
         // this.onClickProductTxt();
         this.onClickBtnTrustpilotLink();
         this.initAccordionQuestions();
@@ -1671,3 +1699,207 @@ let treblehealthPages = setInterval(() => {
     new ImprovePage(level, disclaimerDates, reliefDate, levelImg, currentMonth, reliefMonth, nextCurrentMonth);
   }
 }, 500);
+
+let treblehealthCalendar = setInterval(() => {
+  if (window.pathname === "/group-calendly-v1/") {
+    clearInterval(treblehealthCalendar);
+
+    console.log("%c EXP: TrebleHealth: 3rd iteration  (DEV: SKh)", "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;");
+    const $el = (selector) => document.querySelector(selector);
+
+    const clarityInterval = setInterval(function () {
+      if (typeof clarity == "function") {
+        clearInterval(clarityInterval);
+        clarity("set", "exp_res_surv_fun", "variant_1");
+      }
+    }, 1000);
+    function waitForElement(selector) {
+      return new Promise((resolve) => {
+        if (document.querySelector(selector)) {
+          return resolve(document.querySelector(selector));
+        }
+
+        const observer = new MutationObserver(() => {
+          if (document.querySelector(selector)) {
+            resolve(document.querySelector(selector));
+            observer.disconnect();
+          }
+        });
+
+        observer.observe(document.documentElement, {
+          childList: true,
+          subtree: true,
+          characterData: true,
+        });
+      });
+    }
+    function setSessionStorage(name, value) {
+      sessionStorage.setItem(name, value);
+    }
+
+    class Countdown {
+      constructor(timeCount, delayTime) {
+        this.timeCount = timeCount;
+        this.device = screen.width <= 768 ? "Mobile" : "Desktop";
+
+        this.init();
+      }
+
+      init() {
+        if (!sessionStorage.getItem("time")) {
+          setSessionStorage("time", this.timeCount);
+        }
+        this.initMainStyles();
+        this.countdownTxtBock();
+      }
+
+      countdownTxtBock() {
+        const countdownTxt = /* HTML */ `
+          <style>
+            .countdown_txt {
+              color: #2e168d;
+              font-family: "Plus Jakarta Sans";
+              font-size: 16px;
+              font-weight: 500;
+              line-height: 24px;
+              margin: 0;
+            }
+            #countdown {
+              font-weight: 800;
+            }
+            .elementor-section-items-middle.elementor-sticky.elementor-sticky--effects .countdown_txt {
+              opacity: 0;
+            }
+            .elementor-section-items-middle.elementor-sticky.elementor-sticky--effects.active .countdown_txt {
+              opacity: 1;
+            }
+            @media (max-width: 992px) {
+              .countdown_txt {
+                width: 42%;
+                font-size: 14px;
+                line-height: 20px;
+              }
+            }
+          </style>
+          <p class="countdown_txt">Your spot is reserved for: <span id="countdown"></span></p>
+        `;
+        let selector = ".elementor-section-items-middle.elementor-sticky.elementor-sticky--effects .has_eae_slider.cus_phone_number";
+
+        if (innerWidth < 992) {
+          selector = ".elementor-17450 .elementor-element.elementor-element-c5b1aa8";
+        }
+
+        const timeSessionStorage = sessionStorage.getItem("time");
+        if (timeSessionStorage) {
+          waitForElement(selector).then((i) => {
+            if (!$el(".countdown_txt")) {
+              this.insert(countdownTxt, selector, "beforebegin");
+            }
+          });
+          // initializeClock
+          waitForElement(".countdown_txt").then((i) => {
+            this.initializeClock(+timeSessionStorage, `#countdown`);
+          });
+        }
+      }
+
+      initializeClock(timeValue, selectorValue) {
+        let timer = 0.1;
+        let amountTime = timer * 60;
+
+        function calculateTime() {
+          const countdown = $el(selectorValue);
+
+          let minutes = Math.floor(amountTime / 60);
+          let seconds = amountTime % 60;
+
+          if (seconds < 10) {
+            seconds = "0" + seconds;
+          }
+
+          if (minutes < 10) {
+            minutes = "0" + minutes;
+          }
+
+          countdown.textContent = `${minutes}:${seconds}`;
+          amountTime--;
+          setSessionStorage("time", amountTime / 60);
+
+          if (amountTime < 0) {
+            setSessionStorage("time", 0);
+            stopTimer();
+            amountTime = 0;
+          }
+
+          function stopTimer() {
+            clearInterval();
+          }
+        }
+
+        function startTimer(timeValue) {
+          amountTime = timeValue * 60;
+          setInterval(calculateTime, 1000);
+        }
+
+        startTimer(timeValue);
+      }
+
+      // common func
+      insert(html, selector, position = "beforeend") {
+        $el(selector).insertAdjacentHTML(position, html);
+      }
+      initMainStyles() {
+        const mainStyles = /* HTML */ `
+          <style>
+            body .elementor-section-items-middle.elementor-sticky.elementor-sticky--effects.active .has_eae_slider.cus_phone_number .scroll_to_review.cus_review_header.elementor-widget {
+              display: none !important;
+            }
+            body .elementor-17450 .elementor-element.elementor-element-ea9775c > .elementor-container {
+              justify-content: space-between;
+            }
+            body .elementor-17450 .elementor-element.elementor-element-5df5566 {
+              width: 25%;
+            }
+            @media (min-width: 1235px) {
+              body .elementor-17450 .elementor-element.elementor-element-c4a38f7 {
+                width: 30%;
+              }
+            }
+            @media (min-width: 992px) {
+              body .elementor-17450 .elementor-element.elementor-element-c4a38f7 {
+                width: 40%;
+              }
+            }
+            @media (max-width: 992px) {
+              body .elementor-17450 .elementor-element.elementor-element-c5b1aa8 {
+                display: none;
+              }
+              body .elementor-17450 .elementor-element.elementor-element-6f783e7 {
+                max-width: 148px;
+              }
+              body .elementor-17450 .elementor-element.elementor-element-15742f5.elementor-column.elementor-element[data-element_type="column"] > .elementor-widget-wrap.elementor-element-populated {
+                justify-content: space-between;
+              }
+              body .elementor-17450 .elementor-element.elementor-element-6f783e7 .elementor-button {
+                font-size: 16px;
+                line-height: 25px;
+                margin: 0;
+                padding: 0;
+                height: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+              body .elementor-17450 .elementor-element.elementor-element-108d1b7 {
+                padding: 8px 20px !important;
+              }
+            }
+          </style>
+        `;
+        this.insert(mainStyles, "head");
+      }
+    }
+
+    new Countdown(15);
+  }
+}, 100);
