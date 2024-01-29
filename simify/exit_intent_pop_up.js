@@ -217,6 +217,28 @@ const icons = {
       <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#333F48" stroke-width="1.5" />
     </svg>
   `,
+  upsell: /* html */ `
+  <svg xmlns="http://www.w3.org/2000/svg" width="43" height="53" viewBox="0 0 43 53" fill="none">
+    <g clip-path="url(#clip0_2136_1852)">
+      <path d="M39.89 17.9899C40.19 25.3999 40.34 32.0599 40.34 39.4699C40.34 40.7599 40.28 42.1999 39.35 43.0899C38.56 43.8499 37.37 43.9799 36.27 44.0599C29.47 44.5399 22.64 44.5899 15.83 44.2299C14.99 44.1899 14.03 44.0699 13.54 43.3799C13.21 42.9199 13.19 42.3099 13.18 41.7399C13.04 31.6499 12.91 21.5599 12.34 11.6799C12.22 9.55987 13.9 7.77987 16.02 7.79987C16.02 7.79987 27.9 7.19987 29.33 7.65987C31.52 8.35987 33.41 10.3699 35.14 12.1099C36.98 13.9499 39.78 15.7499 39.87 17.9999L39.89 17.9899Z" fill="white" stroke="#333F48" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"/>
+      <path d="M28.5502 24.5504C28.8502 31.9604 29.0002 38.6204 29.0002 46.0304C29.0002 47.3204 28.9402 48.7604 28.0102 49.6504C27.2202 50.4104 26.0302 50.5404 24.9302 50.6204C18.1302 51.1004 11.3002 51.1504 4.49019 50.7904C3.65019 50.7504 2.69019 50.6304 2.20019 49.9404C1.87019 49.4804 1.85019 48.8704 1.84019 48.3004C1.70019 38.2104 1.57019 28.1204 1.00019 18.2404C0.880192 16.1204 2.56019 14.3404 4.68019 14.3604C4.68019 14.3604 16.5602 13.7604 17.9902 14.2204C20.1802 14.9204 22.0702 16.9304 23.8002 18.6704C25.6402 20.5104 28.5002 23 28.5002 24L28.5502 24.5504Z" fill="white" stroke="#333F48" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"/>
+      <path d="M35.2198 1L34.2798 3.7L35.2198 1Z" fill="white"/>
+      <path d="M35.2198 1L34.2798 3.7" stroke="#FAA41A" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"/>
+      <path d="M39.0201 1.36035C38.2301 2.32035 37.6001 3.40035 37.1401 4.55035L39.0201 1.36035Z" fill="white"/>
+      <path d="M39.0201 1.36035C38.2301 2.32035 37.6001 3.40035 37.1401 4.55035" stroke="#FAA41A" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"/>
+      <path d="M41.66 4.5498L39.02 7.4898L41.66 4.5498Z" fill="white"/>
+      <path d="M41.66 4.5498L39.02 7.4898" stroke="#FAA41A" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"/>
+      <path d="M5.8999 30.2295C8.6199 32.4195 10.8599 35.2095 12.4199 38.3395" stroke="#333F48" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round"/>
+      <path d="M11.1799 28.1797C10.0899 31.6997 9.00992 35.2297 7.91992 38.7497" stroke="#333F48" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round"/>
+      <path d="M16.27 28.5695C16.72 27.8295 17.19 27.0495 17.94 26.6095C18.69 26.1695 19.79 26.1995 20.29 26.9095C20.72 27.5195 20.56 28.3595 20.34 29.0795C19.45 32.0695 18.04 34.8795 16.61 37.6695C18.74 36.1695 21.59 35.7495 24.06 36.5695" stroke="#333F48" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <defs>
+      <clipPath id="clip0_2136_1852">
+        <rect width="42.66" height="52.02" fill="white"/>
+      </clipPath>
+    </defs>
+  </svg>
+  `,
 };
 
 removeSessionStorage("learnMorePopup");
@@ -234,6 +256,7 @@ class IntentPopup {
   init() {
     this.initMainStyles();
     this.createPopup();
+
     const currentUrl = location.href;
 
     if (currentUrl.includes(this.targetUrl) && this.targetUrl === "/collections") {
@@ -252,6 +275,12 @@ class IntentPopup {
       this.onClickQuantitySelectorBtn();
       this.onClickSizeSwatchLinkBtn();
       this.onVisibleStickyBanner();
+    }
+
+    if (currentUrl.includes(this.targetUrl) && (this.targetUrl === "/simsdirect" || this.targetUrl === "/simify")) {
+      console.log(`ONLY SLIDE-IN-CART!!!!!`);
+      this.initUpsellBlock();
+      // this.initNewQuantityBtnSlideInCart()
       this.initMutationObserver();
     }
   }
@@ -647,57 +676,195 @@ class IntentPopup {
         </div>
       </section>
     `;
-    waitForElement("#shopify-section-esim-compatible").then((i) => {
-      if (!$el("#videoExplanation")) {
-        this.insert(videoBoxHtml, "#shopify-section-esim-compatible", "beforebegin");
-      }
-    });
-
-    waitForElement("#videoExplanation").then((el) => {
-      this.onClickVideoExplanationBlock();
-    });
-
-    // NEW
-    // const videoWrappStyle = /* HTML */ `
-    //   <style>
-    //     .new-video_wrapp {
-    //       display: flex;
-    //       flex-direction: row-reverse;
-    //       justify-content: space-between;
-    //       gap: 93px;
-    //     }
-    //     .new-video_wrapp .video-explanation__iframe iframe {
-    //       max-width: 357px;
-    //     }
-    //   </style>
-    // `
-    // const videoWrapp = /* HTML */ `
-    //   ${videoWrappStyle}
-    //   <div class="new-video_wrapp">
-    //     <div class="video-explanation__iframe">
-    //       <iframe
-    //         width="560"
-    //         height="315"
-    //         src="https://www.youtube.com/embed/OpbckLzqF-s?si=5tiqW6esFdUfkKDw"
-    //         title="YouTube video player"
-    //         frameborder="0"
-    //         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    //         allowfullscreen
-    //       ></iframe>
-    //     </div>
-    //   </div>
-    // `
-
-    // waitForElement('.esim-title').then(el => {
-    //   if (!$el('#shopify-section-sim-works .new-video_wrapp')) {
-    //     this.insert(videoWrapp, '.esim-title', 'afterend')
+    // waitForElement('#shopify-section-esim-compatible').then(i => {
+    //   if (!$el('#videoExplanation')) {
+    //     this.insert(videoBoxHtml, '#shopify-section-esim-compatible', 'beforebegin')
     //   }
     // })
-    // waitForElement('.new-video_wrapp').then(el => {
-    //   waitForElement('.esim-work-inner').then(i => {
-    //     this.insertElem(i, '.new-video_wrapp', 'beforeend')
-    //   })
+
+    // waitForElement('#videoExplanation').then(el => {
+    //   this.onClickVideoExplanationBlock()
     // })
+
+    // NEW
+    const videoWrappStyle = /* HTML */ `
+      <style>
+        .new-video__wrapp {
+          display: flex;
+          justify-content: space-between;
+          gap: 69px;
+          max-width: 783px;
+          margin: 0 auto;
+        }
+        .new-video__wrapp > div {
+          width: 50%;
+        }
+        .new-video__wrapp .video-explanation__iframe {
+          position: relative;
+        }
+        .new-video__wrapp .video-explanation__iframe iframe {
+          max-width: 357px;
+          height: 100%;
+          width: 100%;
+          border-radius: 10px;
+        }
+        .new-video__list {
+          list-style: none;
+        }
+        .new-video__list .new-video__item {
+          position: relative;
+          margin-bottom: 50px;
+          padding-left: 76px;
+        }
+        .new-video__list .new-video__item::before {
+          position: absolute;
+          content: "";
+          width: 50px;
+          height: 50px;
+          background: url(https://cdn.shopify.com/s/files/1/2979/3338/files/Check_compatibility.svg?v=1685600637) no-repeat center center;
+          top: 50%;
+          left: 0;
+          background-size: contain;
+          transform: translateY(-50%);
+        }
+        .new-video__list .new-video__item:nth-child(2):before {
+          background: url(https://cdn.shopify.com/s/files/1/2979/3338/files/add-to-cart_1.svg?v=1685600652) no-repeat center center;
+          background-size: contain;
+        }
+        .new-video__list .new-video__item:nth-child(3):before {
+          background: url(https://cdn.shopify.com/s/files/1/2979/3338/files/Scan_Activate.svg?v=1685600669) no-repeat center center;
+          background-size: contain;
+        }
+        .new-video__list .new-video__item h3 {
+          color: #333f48;
+          font-family: "Poppins";
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 25px;
+          margin-bottom: 7px;
+        }
+        .new-video__list .new-video__item p {
+          color: #333f48;
+          font-family: "Roboto";
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 22px;
+          margin: 0;
+        }
+        .new-video__here {
+          text-decoration-line: underline;
+          cursor: pointer;
+        }
+        .video-explanation__bgr {
+          position: absolute;
+          background: url(${git}/simify/img/video_brg.png) no-repeat center center;
+          border-radius: 10px;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 1;
+          cursor: pointer;
+        }
+        @media (max-width: 768px) {
+          .new-video__wrapp {
+            gap: 37px;
+            flex-direction: column-reverse;
+          }
+          .new-video__wrapp > div {
+            width: 100%;
+          }
+          .new-video__list .new-video__item {
+            margin-bottom: 40px;
+            padding: 75px 0 0;
+            text-align: center;
+            max-width: 318px;
+          }
+          .new-video__list .new-video__item::before {
+            position: absolute;
+            content: "";
+            width: 75px;
+            height: 75px;
+            top: -10px;
+            left: 50%;
+            background-size: contain;
+            transform: translateX(-50%);
+          }
+          .new-video__here {
+            display: block;
+            margin-top: 10px;
+          }
+          .new-video__wrapp .video-explanation__iframe {
+            min-height: 425px;
+          }
+          .new-video__wrapp .video-explanation__iframe iframe {
+            height: 425px;
+          }
+        }
+      </style>
+    `;
+    const videoWrapp = /* HTML */ `
+      ${videoWrappStyle}
+      <div class="new-video__wrapp">
+        <div class="new-video__descr">
+          <ol class="new-video__list">
+            <li class="new-video__item">
+              <h3>1. Check Compatibility</h3>
+              <p>You can find the list of eSIM compatible phones <span class="new-video__here">here.</span></p>
+            </li>
+            <li class="new-video__item">
+              <h3>2. Buy your eSIM</h3>
+              <p>Choose an eSIM plan that fits your travel needs and get it delivered instantly via email!</p>
+            </li>
+            <li class="new-video__item">
+              <h3>3. Activate via Email</h3>
+              <p>Scan the QR code in your email and turn on Data Roaming to activate your eSIM. Start using it right away!</p>
+            </li>
+          </ol>
+        </div>
+        <div class="video-explanation__iframe">
+          <div class="video-explanation__bgr" data-video="MVLj0z__LkM"></div>
+        </div>
+      </div>
+    `;
+
+    waitForElement("#shopify-section-esim-compatible").then((el) => {
+      if (!$el("#shopify-section-sim-works .new-video__wrapp")) {
+        this.insert(videoWrapp, ".esim-title", "afterend");
+      }
+    });
+    waitForElement("#shopify-section-sim-works .new-video__here").then((el) => {
+      waitForElement(".esim-work-inner .Rte a").then((i) => {
+        el.addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            i.click();
+          }
+          e.target.setAttribute("data-test", "1");
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
+            }
+          }, 1000);
+        });
+      });
+    });
+
+    waitForElement(".video-explanation__bgr").then((i) => {
+      this.initPlayVideo();
+    });
+  }
+  initPlayVideo() {
+    const $videoCover = $(".video-explanation__bgr");
+    const $videoPlayer = $(".video-explanation__iframe");
+    const $videoUrl = $(".video-explanation__bgr").data("video");
+
+    $videoCover.on("click", function () {
+      pushDataLayer("exp_pdp_enhanc_play_pdpeuukactiv_video", "Video", "Play", "PDP Europe & UK eSIM (50 Countries) Learn how to activate your eSIM");
+
+      $videoPlayer.html('<iframe src="https://www.youtube.com/embed/' + $videoUrl + '?feature=oembed&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>');
+
+      $videoCover.fadeOut();
+    });
   }
   onClickVideoExplanationBlock() {
     jQuery(".video-explanation__link").click(function (e) {
@@ -710,17 +877,6 @@ class IntentPopup {
         jQuery("video-explanation__link").not(this).closest("li").removeClass("active_var");
       }
     });
-
-    // waitForElement('.video-explanation__iframe iframe').then(i => {
-    //   i.addEventListener('click', () => {
-    //     pushDataLayer(
-    //       'exp_pdp_enhanc_play_pdpeuukactiv_video',
-    //       'Video',
-    //       'Play',
-    //       'PDP Europe & UK eSIM (50 Countries) Learn how to activate your eSIM'
-    //     )
-    //   })
-    // })
   }
   newBtnSelectPlan() {
     const btnSelectPlanStyle = /* HTML */ `
@@ -753,14 +909,14 @@ class IntentPopup {
           margin-top: 50px;
         }
         .esim-work-wrapper .select-plan__wrapper {
-          margin-top: 26px;
+          margin-top: 30px;
         }
         @media (max-width: 768px) {
           .select-plan__wrapper {
             max-width: 90%;
           }
           #shopify-section-sim-works .select-plan__wrapper {
-            margin-top: 32px;
+            margin-top: 40px;
           }
           .section-review .select-plan__wrapper {
             margin-top: 40px;
@@ -881,24 +1037,27 @@ class IntentPopup {
       ${btnLearnMoreAboutHowToActivateStyle}
       <div data-learnmore class="learn-more__btn">${icons.tabler}Learn more about how to activate</div>
     `;
+    waitForElement("#shopify-section-sim-works .new-video__wrapp").then((el) => {
+      if (!$el("#shopify-section-sim-works .learn-more__btn")) {
+        this.insert(btnLearnMoreAboutHowToActivateHtml, "#shopify-section-sim-works .new-video__descr", "beforeend");
+      }
+    });
 
-    if (!$el("#shopify-section-sim-works .learn-more__btn")) {
-      this.insert(btnLearnMoreAboutHowToActivateHtml, ".esim-work-inner", "afterend");
-    }
-
-    const btnLearnMoreAboutHowToActivate = $$el("[data-learnMore]");
-    btnLearnMoreAboutHowToActivate?.forEach((item) => {
-      item.addEventListener("click", (e) => {
-        if (!e.target.getAttribute("data-test")) {
-          pushDataLayer("exp_pdp_enhanc_link_learn_how_activate", "Learn more about how to activate", "Link", "PDP Europe & UK eSIM (50 Countries) Footer");
-          this.showLearnMoreAboutHowToActivate();
-        }
-        e.target.setAttribute("data-test", "1");
-        setTimeout(() => {
-          if (e.target.getAttribute("data-test")) {
-            e.target.removeAttribute("data-test");
+    waitForElement("#shopify-section-sim-works .learn-more__btn").then((el) => {
+      const btnLearnMoreAboutHowToActivate = $$el("[data-learnMore]");
+      btnLearnMoreAboutHowToActivate?.forEach((item) => {
+        item.addEventListener("click", (e) => {
+          if (!e.target.getAttribute("data-test")) {
+            pushDataLayer("exp_pdp_enhanc_link_learn_how_activate", "Learn more about how to activate", "Link", "PDP Europe & UK eSIM (50 Countries) Footer");
+            this.showLearnMoreAboutHowToActivate();
           }
-        }, 1000);
+          e.target.setAttribute("data-test", "1");
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
+            }
+          }, 1000);
+        });
       });
     });
   }
@@ -1772,21 +1931,285 @@ class IntentPopup {
       });
     });
   }
+  initUpsellBlock() {
+    const upsellBlockStyle = /* HTML */ `
+      <style>
+        #sidebar-cart .Drawer__Content .cart-drawer-annoucement-bar {
+          background: #ffefd3;
+          padding: 8px 16px;
+        }
+        #sidebar-cart .Drawer__Content .cart-drawer-annoucement-bar p {
+          color: #333f48;
+          font-family: "Poppins";
+          font-size: 12px;
+          font-weight: 600;
+          line-height: normal;
+        }
+        #sidebar-cart .Drawer__Content .Drawer__Container {
+          padding: 0;
+        }
+        #sidebar-cart {
+          max-width: 355px;
+          width: 100%;
+        }
+        .cart-updates .CartItemWrapper .CartItem__ImageWrapper img {
+        }
+        .CartItem__Actions,
+        .CartItem__PropertyList {
+          margin: 0 !important;
+        }
+        .cart-updates .cartItem__Specification ul li .tick-icon svg path {
+          stroke: rgba(254, 170, 0, 1);
+        }
+        .cart-updates .cartItem__Specification ul li.list-item {
+          color: #333f48;
+          font-family: "Roboto";
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 20px;
+        }
+        /* */
+        .upsell-block__wrapper {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          border-radius: 5px;
+          background: #eef4fc;
+          padding: 16px;
+          gap: 10px;
+          margin-top: -8px;
+        }
+        .upsell-block__limited {
+          display: block;
+          width: max-content;
+          margin-top: 34px;
+          color: #fff;
+          font-family: "Poppins";
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 18px;
+          border-radius: 5px;
+          background: #188ff8;
+          padding: 3px 16px 12px 16px;
+        }
+        .upsell-block__descr {
+          display: flex;
+          gap: 13px;
+          z-index: 2;
+        }
+        .upsell-block__descr svg {
+          flex: 0 0 42px;
+        }
+        .upsell-block__descr p {
+          max-width: 230px;
+          color: #333f48;
+          font-family: "Poppins";
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 18px;
+          margin: 0;
+        }
+        .upsell-block__btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 48px;
+          width: 100%;
+          border-radius: 5px;
+          border: 1.4px solid #188ff8;
+          background: #fff;
+          color: #188ff8;
+          font-family: "Poppins";
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 24px;
+        }
+        @media (max-width: 768px) {
+          .upsell-block__descr p {
+            max-width: unset;
+          }
+        }
+      </style>
+    `;
+    const upsellBlockHtml = /* HTML */ `
+      ${upsellBlockStyle}
+      <span class="upsell-block__limited">Limited time offer</span>
+      <div class="upsell-block__wrapper">
+        <div class="upsell-block__descr">
+          ${icons.upsell}
+          <p>
+            <b>Take care of your friends and family!</b><br />
+            Get an extra SIM/eSIM and stay connected together!
+          </p>
+        </div>
+        <button class="upsell-block__btn">Add 1 more</button>
+      </div>
+    `;
+
+    waitForElement(".CartItemWrapper").then((i) => {
+      $$el(".CartItemWrapper").forEach((el) => {
+        const qtValue = +el.querySelector('[name="quantity-selector"]').value;
+
+        if (!el.querySelector(".upsell-block__wrapper") && qtValue < 10) {
+          el.insertAdjacentHTML("beforeend", upsellBlockHtml);
+        }
+      });
+    });
+
+    this.onClickBtnAddUpsell();
+  }
+  onClickBtnAddUpsell() {
+    $$el(".upsell-block__btn").forEach((el) => {
+      el.addEventListener("click", (e) => {
+        if (!e.target.getAttribute("data-test")) {
+          const select = e.target.closest(".CartItemWrapper")?.querySelector('[name="quantity-selector"]');
+          pushDataLayer("exp_pdp_enhanc_but_slidcarlim_add", "Add 1 more ", "Button", "Slide-in Cart Europe & UK eSIM (50 Countries) Limited time offer");
+          this.onChangeQuantitySelector(select);
+        }
+        e.target.setAttribute("data-test", "1");
+        setTimeout(() => {
+          if (e.target.getAttribute("data-test")) {
+            e.target.removeAttribute("data-test");
+          }
+        }, 1000);
+      });
+    });
+  }
+  onChangeQuantitySelector(select) {
+    select.value = +select.value + 1;
+
+    let event = new Event("change", { bubbles: true });
+    select.dispatchEvent(event);
+  }
+  initNewQuantityBtnSlideInCart() {
+    const quantityBtnStyle = /* HTML */ `
+      <style>
+        .cart-updates .CartItem__QuantitySelector {
+          width: 100%;
+        }
+        .new-quantity-block {
+          display: flex;
+          align-items: center;
+          border-radius: 4px;
+          background: #eef4fc;
+          padding: 3px;
+          gap: 6px;
+        }
+
+        .new-quantity-control,
+        .new-quantity-input {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 20px;
+          height: 20px;
+          cursor: pointer;
+          border-radius: 4px;
+          background: #fff;
+          box-shadow: 0px 2.753px 5.506px 0px rgba(0, 0, 0, 0.06), 0px 0px 2.753px 0px rgba(0, 0, 0, 0.04);
+          overflow: hidden;
+          color: #333f48;
+          font-family: "Poppins";
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 14px;
+        }
+
+        .new-quantity-input {
+          text-align: center;
+          background: unset;
+          box-shadow: unset;
+          border: none;
+        }
+      </style>
+    `;
+    const quantityBtnHtml = /* HTML */ `
+      ${quantityBtnStyle}
+      <div class="new-quantity-block">
+        <div class="new-quantity-control decrease">–</div>
+        <input type="text" class="new-quantity-input" pattern="[0-9]*" value="1" max="10" />
+        <div class="new-quantity-control increase">+</div>
+      </div>
+    `;
+
+    waitForElement(".CartItem__Actions").then((i) => {
+      $$el(".CartItem__Actions").forEach((el) => {
+        if (!el.querySelector(".new-quantity-block")) {
+          el.insertAdjacentHTML("afterbegin", quantityBtnHtml);
+        }
+      });
+    });
+
+    $$el(".new-quantity-block").forEach((el) => {
+      el.addEventListener("click", (e) => {
+        if (!e.target.getAttribute("data-test")) {
+          const select = e.target.closest(".CartItemWrapper")?.querySelector('[name="quantity-selector"]');
+          this.loadQuantity(e);
+          this.handleBtnQuantityClick(e, select);
+        }
+        e.target.setAttribute("data-test", "1");
+        setTimeout(() => {
+          if (e.target.getAttribute("data-test")) {
+            e.target.removeAttribute("data-test");
+          }
+        }, 300);
+      });
+    });
+  }
+
+  handleBtnQuantityClick(event, select) {
+    const target = event.target;
+    if (target.classList.contains("new-quantity-control")) {
+      const adjustment = target.classList.contains("increase") ? 1 : -1;
+      const quantityInput = target.closest(".new-quantity-block").querySelector(".new-quantity-input");
+
+      console.log(quantityInput, adjustment);
+      this.adjustQuantity(quantityInput, adjustment, select);
+    }
+  }
+
+  loadQuantity(event) {
+    const target = event.target;
+    // Load the quantity from localStorage
+    const storedQuantity = localStorage.getItem(`-quantity`);
+    const quantityInput = target.closest(".new-quantity-block").querySelector(".new-quantity-input");
+
+    if (storedQuantity) {
+      // If a quantity is stored, update the input value
+      quantityInput.value = storedQuantity;
+    }
+  }
+
+  adjustQuantity(inputElement, adjustment, select) {
+    let currentQuantity = parseInt(inputElement.value);
+    currentQuantity += adjustment;
+    currentQuantity = Math.min(10, Math.max(1, currentQuantity));
+    inputElement.value = currentQuantity;
+    localStorage.setItem(`-quantity`, currentQuantity);
+    select.value = currentQuantity;
+    let event = new Event("change", { bubbles: true });
+    select.dispatchEvent(event);
+  }
+
   initMutationObserver() {
-    let observer = new MutationObserver(() => {
-      if (document) {
+    const cartList = $el("#sidebar-cart");
+    let observer = new MutationObserver((muts) => {
+      if (cartList) {
         observer.disconnect();
 
-        this.onChangeTxtMainBtn();
+        if (this.targetUrl === "/simsdirect" || this.targetUrl === "/simify") {
+          this.initUpsellBlock();
+          // this.initNewQuantityBtnSlideInCart()
+        }
 
-        observer.observe(document, {
+        observer.observe(cartList, {
           childList: true,
           subtree: true,
         });
       }
     });
 
-    observer.observe(document, {
+    observer.observe(cartList, {
       childList: true,
       subtree: true,
     });
@@ -1994,6 +2417,13 @@ class IntentPopup {
         #shopify-section-esim-compatible .esim-compa-tab .pro_tab-content ul {
           list-style: none;
         }
+        /*shopify-section-sim-works */
+        #shopify-section-sim-works h2.esim-title {
+          margin-bottom: 47px;
+        }
+        #shopify-section-sim-works .esim-work-inner {
+          display: none !important;
+        }
         /*shopify-section-why-esim */
         #shopify-section-why-esim h2.esim-title {
           margin-bottom: 22px;
@@ -2029,6 +2459,10 @@ class IntentPopup {
           #shopify-section-esim-compatible .esim-compa-tab .pro_tab-content ul {
             list-style: circle;
           }
+          /*shopify-section-sim-works */
+          #shopify-section-sim-works h2.esim-title {
+            margin-bottom: 26px;
+          }
           /*shopify-section-e-sim-faq */
           #shopify-section-e-sim-faq h2.esim-title {
             max-width: 216px;
@@ -2045,3 +2479,5 @@ class IntentPopup {
 
 new IntentPopup("/collections", 20000);
 new IntentPopup("/products", 20000);
+new IntentPopup("/simsdirect", "");
+new IntentPopup("/simify", "");
