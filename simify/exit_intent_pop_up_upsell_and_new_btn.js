@@ -1,145 +1,154 @@
-console.log("%c EXP: exit intent popup (DEV: SKh)", "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;");
-const $$el = (selector) => document.querySelectorAll(selector);
-const $el = (selector) => document.querySelector(selector);
-const git = "https://conversionratestore.github.io/projects/";
+console.log(
+  '%c EXP: exit intent popup (DEV: SKh)',
+  'background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;'
+)
+const $$el = selector => document.querySelectorAll(selector)
+const $el = selector => document.querySelector(selector)
+const git = 'https://conversionratestore.github.io/projects/'
 // clarity script
 const clarityInterval = setInterval(function () {
-  if (typeof clarity == "function") {
-    clearInterval(clarityInterval);
-    clarity("set", "exp_pdp_enhanc", "variant_1");
+  if (typeof clarity == 'function') {
+    clearInterval(clarityInterval)
+    clarity('set', 'exp_pdp_enhanc', 'variant_1')
   }
-}, 1000);
+}, 1000)
 // funtion for push data to GA4
-const pushDataLayer = (name, desc, type = "", loc = "") => {
-  window.dataLayer = window.dataLayer || [];
+const pushDataLayer = (name, desc, type = '', loc = '') => {
+  window.dataLayer = window.dataLayer || []
   window.dataLayer.push({
-    event: "event-to-ga4",
+    event: 'event-to-ga4',
     event_name: name,
     event_desc: desc,
     event_type: type,
-    event_loc: loc,
-  });
-  console.log(`Event: ${name} ${desc} ${type} ${loc}`);
-};
+    event_loc: loc
+  })
+  console.log(`Event: ${name} ${desc} ${type} ${loc}`)
+}
 
 function checkFocusTime(selector, event, location) {
-  const checker = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting && !entry.target.getAttribute("data-startShow")) {
-        entry.target.setAttribute("data-startShow", new Date().getTime());
-      } else if (!entry.isIntersecting && entry.target.getAttribute("data-startShow")) {
-        const startShow = entry.target.getAttribute("data-startShow");
-        const endShow = new Date().getTime();
-        const timeShow = Math.round(endShow - startShow);
-        console.log(timeShow, `timeShow`);
-        entry.target.removeAttribute("data-startShow");
+  const checker = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.getAttribute('data-startShow')) {
+        entry.target.setAttribute('data-startShow', new Date().getTime())
+      } else if (!entry.isIntersecting && entry.target.getAttribute('data-startShow')) {
+        const startShow = entry.target.getAttribute('data-startShow')
+        const endShow = new Date().getTime()
+        const timeShow = Math.round(endShow - startShow)
+        console.log(timeShow, `timeShow`)
+        entry.target.removeAttribute('data-startShow')
         if (timeShow >= 3000) {
-          pushDataLayer(event, timeShow, "Visibility", location);
+          pushDataLayer(event, timeShow, 'Visibility', location)
         }
-        checker.unobserve(entry.target);
+        checker.unobserve(entry.target)
       }
-    });
-  });
+    })
+  })
 
-  checker.observe(document.querySelector(selector));
+  checker.observe(document.querySelector(selector))
 }
 
 const checkScrollSpeed = (function (settings) {
-  settings = settings || {};
+  settings = settings || {}
 
-  let lastPos;
-  let newPos;
-  let timer;
+  let lastPos
+  let newPos
+  let timer
   let delta,
-    delay = settings.delay || 50;
+    delay = settings.delay || 50
 
   function clear() {
-    lastPos = null;
-    delta = 0;
+    lastPos = null
+    delta = 0
   }
 
-  clear();
+  clear()
 
   return function () {
-    newPos = window.scrollY;
+    newPos = window.scrollY
     if (lastPos != null) {
-      delta = newPos - lastPos;
+      delta = newPos - lastPos
     }
-    lastPos = newPos;
-    clearTimeout(timer);
-    timer = setTimeout(clear, delay);
-    return delta;
-  };
-})();
+    lastPos = newPos
+    clearTimeout(timer)
+    timer = setTimeout(clear, delay)
+    return delta
+  }
+})()
 
 function checkScrollPosition(headerOff, elPosition) {
-  const headerOffset = headerOff;
-  const elementPosition = elPosition?.getBoundingClientRect().top;
-  const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+  const headerOffset = headerOff
+  const elementPosition = elPosition?.getBoundingClientRect().top
+  const offsetPosition = elementPosition + window.pageYOffset - headerOffset
   window.scrollTo({
     top: offsetPosition,
-    behavior: "smooth",
-  });
+    behavior: 'smooth'
+  })
 }
 
 function setSessionStorage(name, value) {
-  sessionStorage.setItem(name, value);
+  sessionStorage.setItem(name, value)
 }
 function removeSessionStorage(name) {
-  let getSessionStorage = sessionStorage.getItem(name);
-  let removeSessionStorage = null;
+  let getSessionStorage = sessionStorage.getItem(name)
+  let removeSessionStorage = null
   if (getSessionStorage) {
-    removeSessionStorage = sessionStorage.removeItem(name);
+    removeSessionStorage = sessionStorage.removeItem(name)
   }
-  return removeSessionStorage;
+  return removeSessionStorage
 }
 function getSessionStorage(name) {
-  let getSessionStorage = sessionStorage.getItem(name);
-  return getSessionStorage;
+  let getSessionStorage = sessionStorage.getItem(name)
+  return getSessionStorage
 }
 function setLocalStorage(name, value) {
-  localStorage.setItem(name, value);
+  localStorage.setItem(name, value)
 }
 function getLocalStorage(name) {
-  let getLocalStorage = localStorage.getItem(name);
-  return getLocalStorage;
+  let getLocalStorage = localStorage.getItem(name)
+  return getLocalStorage
 }
 function removeLocalStorage(name) {
-  let getLocalStorage = localStorage.getItem(name);
-  let removeLocalStorage = null;
+  let getLocalStorage = localStorage.getItem(name)
+  let removeLocalStorage = null
   if (getLocalStorage) {
-    removeLocalStorage = localStorage.removeItem(name);
+    removeLocalStorage = localStorage.removeItem(name)
   }
-  return removeLocalStorage;
+  return removeLocalStorage
 }
 
 function waitForElement(selector) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     if (document.querySelector(selector)) {
-      return resolve(document.querySelector(selector));
+      return resolve(document.querySelector(selector))
     }
 
     const observer = new MutationObserver(() => {
       if (document.querySelector(selector)) {
-        resolve(document.querySelector(selector));
-        observer.disconnect();
+        resolve(document.querySelector(selector))
+        observer.disconnect()
       }
-    });
+    })
 
     observer.observe(document.documentElement, {
       childList: true,
       subtree: true,
-      characterData: true,
-    });
-  });
+      characterData: true
+    })
+  })
 }
 
 const icons = {
   close: /* HTML */ `
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
       <g clip-path="url(#clip0_1656_33454)">
-        <path d="M0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12Z" fill="white" />
-        <path d="M17.7338 6.27531C17.3788 5.92036 16.8055 5.92036 16.4505 6.27531L12 10.7167L7.54949 6.26621C7.19454 5.91126 6.62116 5.91126 6.26621 6.26621C5.91126 6.62116 5.91126 7.19454 6.26621 7.54949L10.7167 12L6.26621 16.4505C5.91126 16.8055 5.91126 17.3788 6.26621 17.7338C6.62116 18.0887 7.19454 18.0887 7.54949 17.7338L12 13.2833L16.4505 17.7338C16.8055 18.0887 17.3788 18.0887 17.7338 17.7338C18.0887 17.3788 18.0887 16.8055 17.7338 16.4505L13.2833 12L17.7338 7.54949C18.0796 7.20364 18.0796 6.62116 17.7338 6.27531Z" fill="#273038" />
+        <path
+          d="M0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12Z"
+          fill="white"
+        />
+        <path
+          d="M17.7338 6.27531C17.3788 5.92036 16.8055 5.92036 16.4505 6.27531L12 10.7167L7.54949 6.26621C7.19454 5.91126 6.62116 5.91126 6.26621 6.26621C5.91126 6.62116 5.91126 7.19454 6.26621 7.54949L10.7167 12L6.26621 16.4505C5.91126 16.8055 5.91126 17.3788 6.26621 17.7338C6.62116 18.0887 7.19454 18.0887 7.54949 17.7338L12 13.2833L16.4505 17.7338C16.8055 18.0887 17.3788 18.0887 17.7338 17.7338C18.0887 17.3788 18.0887 16.8055 17.7338 16.4505L13.2833 12L17.7338 7.54949C18.0796 7.20364 18.0796 6.62116 17.7338 6.27531Z"
+          fill="#273038"
+        />
       </g>
       <defs>
         <clipPath id="clip0_1656_33454">
@@ -213,8 +222,16 @@ const icons = {
   `,
   world: /* HTML */ `
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <path d="M19.5 6L18.033 7.1C17.6868 7.35964 17.2657 7.5 16.833 7.5H13.475C13.1496 7.50013 12.8322 7.60086 12.5662 7.78839C12.3003 7.97592 12.0988 8.24109 11.9894 8.54756C11.8801 8.85404 11.8681 9.18684 11.9552 9.50038C12.0423 9.81392 12.2242 10.0929 12.476 10.299L14.476 11.935C15.2506 12.5688 15.8544 13.3862 16.2324 14.313C16.6103 15.2397 16.7505 16.2463 16.64 17.241L16.594 17.658C16.5317 18.2179 16.4103 18.7696 16.232 19.304L16 20M2.5 10.5L5.738 9.96C6.05209 9.90757 6.37415 9.9309 6.67741 10.028C6.98067 10.1252 7.25634 10.2933 7.48151 10.5185C7.70668 10.7437 7.87482 11.0193 7.97196 11.3226C8.0691 11.6258 8.09243 11.9479 8.04 12.262L7.905 13.069C7.78781 13.773 7.89939 14.496 8.22336 15.1318C8.54733 15.7677 9.06662 16.283 9.705 16.602C10.2142 16.8568 10.6214 17.2777 10.8592 17.7951C11.097 18.3125 11.1512 18.8956 11.013 19.448L10.5 21.5" stroke="#333F48" stroke-width="1.5" />
-      <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#333F48" stroke-width="1.5" />
+      <path
+        d="M19.5 6L18.033 7.1C17.6868 7.35964 17.2657 7.5 16.833 7.5H13.475C13.1496 7.50013 12.8322 7.60086 12.5662 7.78839C12.3003 7.97592 12.0988 8.24109 11.9894 8.54756C11.8801 8.85404 11.8681 9.18684 11.9552 9.50038C12.0423 9.81392 12.2242 10.0929 12.476 10.299L14.476 11.935C15.2506 12.5688 15.8544 13.3862 16.2324 14.313C16.6103 15.2397 16.7505 16.2463 16.64 17.241L16.594 17.658C16.5317 18.2179 16.4103 18.7696 16.232 19.304L16 20M2.5 10.5L5.738 9.96C6.05209 9.90757 6.37415 9.9309 6.67741 10.028C6.98067 10.1252 7.25634 10.2933 7.48151 10.5185C7.70668 10.7437 7.87482 11.0193 7.97196 11.3226C8.0691 11.6258 8.09243 11.9479 8.04 12.262L7.905 13.069C7.78781 13.773 7.89939 14.496 8.22336 15.1318C8.54733 15.7677 9.06662 16.283 9.705 16.602C10.2142 16.8568 10.6214 17.2777 10.8592 17.7951C11.097 18.3125 11.1512 18.8956 11.013 19.448L10.5 21.5"
+        stroke="#333F48"
+        stroke-width="1.5"
+      />
+      <path
+        d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
+        stroke="#333F48"
+        stroke-width="1.5"
+      />
     </svg>
   `,
   upsell: /* html */ `
@@ -238,95 +255,108 @@ const icons = {
       </clipPath>
     </defs>
   </svg>
-  `,
-};
+  `
+}
 
-removeSessionStorage("learnMorePopup");
+removeSessionStorage('learnMorePopup')
 // IntentPopup
 class IntentPopup {
   constructor(targetUrl, delayTime) {
-    this.delayTime = delayTime;
-    this.timeoutId = null;
-    this.targetUrl = targetUrl;
-    this.device = screen.width <= 768 ? "Mobile" : "Desktop";
-    this.buyNowTxt = "Buy Now";
-    this.init();
+    this.delayTime = delayTime
+    this.timeoutId = null
+    this.targetUrl = targetUrl
+    this.device = screen.width <= 768 ? 'Mobile' : 'Desktop'
+    this.buyNowTxt = 'Buy Now'
+    this.init()
   }
 
   init() {
-    this.initMainStyles();
-    this.createPopup();
+    this.initMainStyles()
+    this.createPopup()
 
-    const currentUrl = location.href;
+    const currentUrl = location.href
 
-    if (currentUrl.includes(this.targetUrl) && this.targetUrl === "/collections") {
-      console.log(`ONLY POPUP >>>>>`);
-      this.intentPopupTriggers();
+    if (currentUrl.includes(this.targetUrl) && this.targetUrl === '/collections') {
+      console.log(`ONLY POPUP >>>>>`)
+      this.intentPopupTriggers()
     }
 
     // reDesignPdp
-    if (currentUrl.includes(this.targetUrl) && this.targetUrl === "/products") {
-      console.log(`ONLY PDP!!!!!`);
-      this.initMainPdpStyles();
-      this.reDesignHero();
-      this.newVideoExplanationBlock();
-      this.newBtnSelectPlan();
-      this.newBtnLearnMoreAboutHowToActivate();
-      this.onClickQuantitySelectorBtn();
-      this.onClickSizeSwatchLinkBtn();
-      this.onVisibleStickyBanner();
+    if (currentUrl.includes(this.targetUrl) && this.targetUrl === '/products') {
+      console.log(`ONLY PDP!!!!!`)
+      this.initMainPdpStyles()
+      this.reDesignHero()
+      this.newVideoExplanationBlock()
+      this.newBtnSelectPlan()
+      this.newBtnLearnMoreAboutHowToActivate()
+      this.onClickQuantitySelectorBtn()
+      this.onClickSizeSwatchLinkBtn()
+      this.onVisibleStickyBanner()
     }
 
-    if (currentUrl.includes(this.targetUrl) && (this.targetUrl === "/simsdirect" || this.targetUrl === "/simify")) {
-      console.log(`ONLY SLIDE-IN-CART!!!!!`);
-      this.initUpsellBlock();
+    if (currentUrl.includes(this.targetUrl) && (this.targetUrl === '/simsdirect' || this.targetUrl === '/simify')) {
+      console.log(`ONLY SLIDE-IN-CART!!!!!`)
+      this.initUpsellBlock()
       // this.initNewQuantityBtnSlideInCart()
-      this.initMutationObserver();
+      this.initMutationObserver()
     }
   }
 
   // IntentPopup
   intentPopupTriggers() {
-    this.setupListeners();
-    this.resetTimer();
+    this.setupListeners()
+    this.resetTimer()
 
-    if (this.device === "Mobile") {
-      document.addEventListener("scroll", () => {
-        const scrollSpeed = checkScrollSpeed();
-        if ((+scrollSpeed < -100 || +scrollSpeed > 100) && !localStorage.getItem("onClickIsMyDeviceCompatibleBlock") && !localStorage.getItem("onClickStampedReviewsBlock")) {
-          console.log(`scroll`);
-          this.showIntentPopup();
+    if (this.device === 'Mobile') {
+      document.addEventListener('scroll', () => {
+        const scrollSpeed = checkScrollSpeed()
+        if (
+          (+scrollSpeed < -100 || +scrollSpeed > 100) &&
+          !localStorage.getItem('onClickIsMyDeviceCompatibleBlock') &&
+          !localStorage.getItem('onClickStampedReviewsBlock')
+        ) {
+          console.log(`scroll`)
+          this.showIntentPopup()
         }
-      });
+      })
     } else {
-      document.addEventListener("mouseleave", (event) => {
-        if (event.clientY <= 0 || event.clientX <= 0 || event.clientX >= window.innerWidth || event.clientY >= window.innerHeight) {
-          this.showIntentPopup();
+      document.addEventListener('mouseleave', event => {
+        if (
+          event.clientY <= 0 ||
+          event.clientX <= 0 ||
+          event.clientX >= window.innerWidth ||
+          event.clientY >= window.innerHeight
+        ) {
+          this.showIntentPopup()
         }
-      });
+      })
     }
   }
   resetTimer() {
     // Clear the previous timeout
-    clearTimeout(this.timeoutId);
+    clearTimeout(this.timeoutId)
     // Set a new timeout
-    this.timeoutId = setTimeout(() => this.showIntentPopup(), this.delayTime);
+    this.timeoutId = setTimeout(() => this.showIntentPopup(), this.delayTime)
   }
   setupListeners() {
     // Attach the resetTimer function to relevant events
-    document.addEventListener("mousemove", () => this.resetTimer());
-    document.addEventListener("keydown", () => this.resetTimer());
+    document.addEventListener('mousemove', () => this.resetTimer())
+    document.addEventListener('keydown', () => this.resetTimer())
 
     // Add touch event listeners for mobile devices
     if (window.innerWidth <= 768) {
-      document.addEventListener("touchstart", () => this.resetTimer());
-      document.addEventListener("touchmove", () => this.resetTimer());
+      document.addEventListener('touchstart', () => this.resetTimer())
+      document.addEventListener('touchmove', () => this.resetTimer())
     }
   }
   removePopupClient() {
-    waitForElement('[aria-label="POPUP Form"]').then((i) => {
-      $el('[aria-label="POPUP Form"]')?.closest(".kl-private-reset-css-Xuajs1")?.closest(".kl-private-reset-css-Xuajs1")?.closest(".needsclick").parentElement.remove();
-    });
+    waitForElement('[aria-label="POPUP Form"]').then(i => {
+      $el('[aria-label="POPUP Form"]')
+        ?.closest('.kl-private-reset-css-Xuajs1')
+        ?.closest('.kl-private-reset-css-Xuajs1')
+        ?.closest('.needsclick')
+        .parentElement.remove()
+    })
   }
   showIntentPopup() {
     const popupStyle = /* HTML */ `
@@ -345,7 +375,7 @@ class IntentPopup {
           gap: 6px;
           color: #fff;
           text-align: center;
-          font-family: "Poppins";
+          font-family: 'Poppins';
           font-size: 22px;
           font-weight: 700;
           line-height: 28px;
@@ -372,7 +402,7 @@ class IntentPopup {
         .discount__code-title {
           color: #333f48;
           text-align: center;
-          font-family: "Poppins";
+          font-family: 'Poppins';
           font-size: 24px;
           font-weight: 700;
           line-height: normal;
@@ -412,7 +442,7 @@ class IntentPopup {
         }
         .discount__code-container span {
           color: #333f48;
-          font-family: "Poppins";
+          font-family: 'Poppins';
           font-size: 15px;
           font-weight: 500;
           line-height: 24px;
@@ -427,7 +457,7 @@ class IntentPopup {
         .discount__description p {
           color: #333f48;
           text-align: center;
-          font-family: "Roboto";
+          font-family: 'Roboto';
           font-size: 16px;
           font-weight: 400;
           line-height: 23.1px;
@@ -457,7 +487,7 @@ class IntentPopup {
           }
         }
       </style>
-    `;
+    `
     const discountPopup = /* HTML */ `
       ${popupStyle}
       <div class="discount__popup">
@@ -481,32 +511,37 @@ class IntentPopup {
           </div>
         </div>
       </div>
-    `;
-    this.handleShowPopup(discountPopup, "discountPopup");
+    `
+    this.handleShowPopup(discountPopup, 'discountPopup')
   }
   copyDiscount() {
-    $$el("[data-discount]").forEach((btn) => {
-      btn.addEventListener("click", (event) => {
-        navigator.clipboard.writeText("STAYCONNECTED10");
-        if (!$el(".copy_code_inform")) {
-          event.currentTarget.insertAdjacentHTML("afterbegin", this.showCopiedBadge());
-          btn.closest(".discount__code-container").classList.add("is_active");
+    $$el('[data-discount]').forEach(btn => {
+      btn.addEventListener('click', event => {
+        navigator.clipboard.writeText('STAYCONNECTED10')
+        if (!$el('.copy_code_inform')) {
+          event.currentTarget.insertAdjacentHTML('afterbegin', this.showCopiedBadge())
+          btn.closest('.discount__code-container').classList.add('is_active')
         }
         setTimeout(() => {
-          $el(".copy_code_inform").remove();
-          if (btn.closest(".discount__code-container").classList.contains("is_active")) {
-            btn.closest(".discount__code-container").classList.remove("is_active");
+          $el('.copy_code_inform').remove()
+          if (btn.closest('.discount__code-container').classList.contains('is_active')) {
+            btn.closest('.discount__code-container').classList.remove('is_active')
           }
-        }, 2000);
-        if (event.currentTarget.dataset.target === "popup") {
-          pushDataLayer("exp_pdp_enhanc_click_expopup_promo", "Promo Code", "Click", "Exit intent pop-up Wait! Don’t leave without staying connected!");
+        }, 2000)
+        if (event.currentTarget.dataset.target === 'popup') {
+          pushDataLayer(
+            'exp_pdp_enhanc_click_expopup_promo',
+            'Promo Code',
+            'Click',
+            'Exit intent pop-up Wait! Don’t leave without staying connected!'
+          )
         }
-      });
-    });
+      })
+    })
   }
   showCopiedBadge() {
-    const copied = /* HTML */ ` <div class="copy_code_inform">${icons.copied}</div> `;
-    return copied;
+    const copied = /* HTML */ ` <div class="copy_code_inform">${icons.copied}</div> `
+    return copied
   }
 
   // reDesignPdp
@@ -593,7 +628,7 @@ class IntentPopup {
         .video-explanation__lists ol,
         .video-explanation__description p {
           color: #333f48;
-          font-family: "Roboto";
+          font-family: 'Roboto';
           font-size: 14px;
           font-weight: 500;
           line-height: 20px;
@@ -625,7 +660,7 @@ class IntentPopup {
           }
         }
       </style>
-    `;
+    `
     const videoBoxHtml = /* HTML */ `
       <section id="videoExplanation">
         ${videoBoxStyle}
@@ -641,7 +676,15 @@ class IntentPopup {
             <div class="video-explanation__lists">
               <div class="video-explanation__iframe">
                 <!-- <div class="video-explanation__bgr"></div> -->
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/OpbckLzqF-s?si=5tiqW6esFdUfkKDw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/OpbckLzqF-s?si=5tiqW6esFdUfkKDw"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
               </div>
               <div class="video-explanation__description">
                 <p>Detailed eSIM Activation Guide</p>
@@ -657,13 +700,19 @@ class IntentPopup {
                     Scan Your QR Code:
                     <ul>
                       <li>Locate the QR code in the email we sent you.</li>
-                      <li>Use your phone's camera to scan the QR code. Make sure to position the camera directly over the code so it's clearly visible.</li>
+                      <li>
+                        Use your phone's camera to scan the QR code. Make sure to position the camera directly over the
+                        code so it's clearly visible.
+                      </li>
                     </ul>
                   </li>
                   <li>
                     Finalize Activation:
                     <ul>
-                      <li>Once your phone reads the QR code, a confirmation message will appear asking you to confirm the eSIM profile installation.</li>
+                      <li>
+                        Once your phone reads the QR code, a confirmation message will appear asking you to confirm the
+                        eSIM profile installation.
+                      </li>
                       <li>Confirm and wait for the activation to complete, which may take a few moments.</li>
                       <li>After activation, label your new plan (for example, "Travel eSIM") for easy management.</li>
                       <li>Turn on 'Data Roaming' if you're traveling, to connect to the local network.</li>
@@ -675,7 +724,7 @@ class IntentPopup {
           </div>
         </div>
       </section>
-    `;
+    `
     // waitForElement('#shopify-section-esim-compatible').then(i => {
     //   if (!$el('#videoExplanation')) {
     //     this.insert(videoBoxHtml, '#shopify-section-esim-compatible', 'beforebegin')
@@ -718,26 +767,29 @@ class IntentPopup {
         }
         .new-video__list .new-video__item::before {
           position: absolute;
-          content: "";
+          content: '';
           width: 50px;
           height: 50px;
-          background: url(https://cdn.shopify.com/s/files/1/2979/3338/files/Check_compatibility.svg?v=1685600637) no-repeat center center;
+          background: url(https://cdn.shopify.com/s/files/1/2979/3338/files/Check_compatibility.svg?v=1685600637)
+            no-repeat center center;
           top: 50%;
           left: 0;
           background-size: contain;
           transform: translateY(-50%);
         }
         .new-video__list .new-video__item:nth-child(2):before {
-          background: url(https://cdn.shopify.com/s/files/1/2979/3338/files/add-to-cart_1.svg?v=1685600652) no-repeat center center;
+          background: url(https://cdn.shopify.com/s/files/1/2979/3338/files/add-to-cart_1.svg?v=1685600652) no-repeat
+            center center;
           background-size: contain;
         }
         .new-video__list .new-video__item:nth-child(3):before {
-          background: url(https://cdn.shopify.com/s/files/1/2979/3338/files/Scan_Activate.svg?v=1685600669) no-repeat center center;
+          background: url(https://cdn.shopify.com/s/files/1/2979/3338/files/Scan_Activate.svg?v=1685600669) no-repeat
+            center center;
           background-size: contain;
         }
         .new-video__list .new-video__item h3 {
           color: #333f48;
-          font-family: "Poppins";
+          font-family: 'Poppins';
           font-size: 16px;
           font-weight: 700;
           line-height: 25px;
@@ -745,7 +797,7 @@ class IntentPopup {
         }
         .new-video__list .new-video__item p {
           color: #333f48;
-          font-family: "Roboto";
+          font-family: 'Roboto';
           font-size: 16px;
           font-weight: 400;
           line-height: 22px;
@@ -782,7 +834,7 @@ class IntentPopup {
           }
           .new-video__list .new-video__item::before {
             position: absolute;
-            content: "";
+            content: '';
             width: 75px;
             height: 75px;
             top: -10px;
@@ -802,7 +854,7 @@ class IntentPopup {
           }
         }
       </style>
-    `;
+    `
     const videoWrapp = /* HTML */ `
       ${videoWrappStyle}
       <div class="new-video__wrapp">
@@ -818,7 +870,10 @@ class IntentPopup {
             </li>
             <li class="new-video__item">
               <h3>3. Activate via Email</h3>
-              <p>Scan the QR code in your email and turn on Data Roaming to activate your eSIM. Start using it right away!</p>
+              <p>
+                Scan the QR code in your email and turn on Data Roaming to activate your eSIM. Start using it right
+                away!
+              </p>
             </li>
           </ol>
         </div>
@@ -826,57 +881,71 @@ class IntentPopup {
           <div class="video-explanation__bgr" data-video="MVLj0z__LkM"></div>
         </div>
       </div>
-    `;
+    `
 
-    waitForElement("#shopify-section-esim-compatible").then((el) => {
-      if (!$el("#shopify-section-sim-works .new-video__wrapp")) {
-        this.insert(videoWrapp, ".esim-title", "afterend");
+    waitForElement('#shopify-section-esim-compatible').then(el => {
+      if (!$el('#shopify-section-sim-works .new-video__wrapp')) {
+        this.insert(videoWrapp, '.esim-title', 'afterend')
       }
-    });
-    waitForElement("#shopify-section-sim-works .new-video__here").then((el) => {
-      waitForElement(".esim-work-inner .Rte a").then((i) => {
-        el.addEventListener("click", (e) => {
-          if (!e.target.getAttribute("data-test")) {
-            i.click();
+    })
+    waitForElement('#shopify-section-sim-works .new-video__here').then(el => {
+      waitForElement('.esim-work-inner .Rte a').then(i => {
+        el.addEventListener('click', e => {
+          if (!e.target.getAttribute('data-test')) {
+            i.click()
           }
-          e.target.setAttribute("data-test", "1");
+          e.target.setAttribute('data-test', '1')
           setTimeout(() => {
-            if (e.target.getAttribute("data-test")) {
-              e.target.removeAttribute("data-test");
+            if (e.target.getAttribute('data-test')) {
+              e.target.removeAttribute('data-test')
             }
-          }, 1000);
-        });
-      });
-    });
+          }, 1000)
+        })
+      })
+    })
 
-    waitForElement(".video-explanation__bgr").then((i) => {
-      this.initPlayVideo();
-    });
+    waitForElement('.video-explanation__bgr').then(i => {
+      this.initPlayVideo()
+    })
   }
   initPlayVideo() {
-    const $videoCover = $(".video-explanation__bgr");
-    const $videoPlayer = $(".video-explanation__iframe");
-    const $videoUrl = $(".video-explanation__bgr").data("video");
+    const $videoCover = $('.video-explanation__bgr')
+    const $videoPlayer = $('.video-explanation__iframe')
+    const $videoUrl = $('.video-explanation__bgr').data('video')
 
-    $videoCover.on("click", function () {
-      pushDataLayer("exp_pdp_enhanc_play_pdpeuukactiv_video", "Video", "Play", "PDP Europe & UK eSIM (50 Countries) Learn how to activate your eSIM");
+    $videoCover.on('click', function () {
+      pushDataLayer(
+        'exp_pdp_enhanc_play_pdpeuukactiv_video',
+        'Video',
+        'Play',
+        'PDP Europe & UK eSIM (50 Countries) Learn how to activate your eSIM'
+      )
 
-      $videoPlayer.html('<iframe src="https://www.youtube.com/embed/' + $videoUrl + '?feature=oembed&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>');
+      $videoPlayer.html(
+        '<iframe src="https://www.youtube.com/embed/' +
+          $videoUrl +
+          '?feature=oembed&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>'
+      )
 
-      $videoCover.fadeOut();
-    });
+      $videoCover.fadeOut()
+    })
   }
   onClickVideoExplanationBlock() {
-    jQuery(".video-explanation__link").click(function (e) {
-      pushDataLayer("exp_pdp_enhanc_accor_pdpeuukactiv_lear", "Learn how to activate your eSIM", "Accordion", "PDP Europe & UK eSIM (50 Countries)");
-      jQuery(this).toggleClass("active_var");
-      jQuery(this).closest("li").toggleClass("active_var");
-      jQuery(this).next(".video-explanation__lists").slideToggle();
-      if (jQuery(".video-explanation__link").not(this)) {
-        jQuery(".video-explanation__link").not(this).removeClass("active_var");
-        jQuery("video-explanation__link").not(this).closest("li").removeClass("active_var");
+    jQuery('.video-explanation__link').click(function (e) {
+      pushDataLayer(
+        'exp_pdp_enhanc_accor_pdpeuukactiv_lear',
+        'Learn how to activate your eSIM',
+        'Accordion',
+        'PDP Europe & UK eSIM (50 Countries)'
+      )
+      jQuery(this).toggleClass('active_var')
+      jQuery(this).closest('li').toggleClass('active_var')
+      jQuery(this).next('.video-explanation__lists').slideToggle()
+      if (jQuery('.video-explanation__link').not(this)) {
+        jQuery('.video-explanation__link').not(this).removeClass('active_var')
+        jQuery('video-explanation__link').not(this).closest('li').removeClass('active_var')
       }
-    });
+    })
   }
   newBtnSelectPlan() {
     const btnSelectPlanStyle = /* HTML */ `
@@ -927,73 +996,93 @@ class IntentPopup {
           }
         }
       </style>
-    `;
+    `
     const btnSelectPlanHtml = /* HTML */ `
       <div class="select-plan__wrapper">
         ${btnSelectPlanStyle}
         <button data-cta class="select-plan__btn">Select Plan</button>
       </div>
-    `;
+    `
 
-    waitForElement(".esim-work-around").then((i) => {
-      if (!$el("#shopify-section-sim-works .select-plan__wrapper")) {
-        this.insert(btnSelectPlanHtml, ".esim-work-around", "afterend");
+    waitForElement('.esim-work-around').then(i => {
+      if (!$el('#shopify-section-sim-works .select-plan__wrapper')) {
+        this.insert(btnSelectPlanHtml, '.esim-work-around', 'afterend')
       }
-    });
+    })
 
     // waitForElement('.esim-compatible-wrapper').then(i => {
     //   if (!$el('.esim-compatible-wrapper .select-plan__wrapper')) {
     //     this.insert(btnSelectPlanHtml, '.esim-compatible-wrapper')
     //   }
     // })
-    waitForElement(".why-esim-wrapper").then((i) => {
-      if (!$el(".why-esim-wrapper .select-plan__wrapper")) {
-        this.insert(btnSelectPlanHtml, ".why-esim-wrapper");
+    waitForElement('.why-esim-wrapper').then(i => {
+      if (!$el('.why-esim-wrapper .select-plan__wrapper')) {
+        this.insert(btnSelectPlanHtml, '.why-esim-wrapper')
       }
-    });
-    waitForElement(".section-review").then((i) => {
-      if (!$el(".section-review .select-plan__wrapper")) {
-        this.insert(btnSelectPlanHtml, ".section-review");
+    })
+    waitForElement('.section-review').then(i => {
+      if (!$el('.section-review .select-plan__wrapper')) {
+        this.insert(btnSelectPlanHtml, '.section-review')
       }
-    });
+    })
 
-    waitForElement("[data-cta]").then((i) => {
-      this.onClickBtnSelectPlan();
-    });
+    waitForElement('[data-cta]').then(i => {
+      this.onClickBtnSelectPlan()
+    })
   }
   onClickBtnSelectPlan() {
-    const btnSelectPlan = $$el("[data-cta]");
-    btnSelectPlan?.forEach((item) => {
-      item.addEventListener("click", (e) => {
-        if (!e.target.getAttribute("data-test")) {
-          if (e.target.closest("#shopify-section-sim-works")) {
-            pushDataLayer("exp_pdp_enhanc_but_pdpeuuk_sel1", "Select Plan 1", "Button", "PDP Europe & UK eSIM (50 Countries) Under block How do eSIMs work?");
+    const btnSelectPlan = $$el('[data-cta]')
+    btnSelectPlan?.forEach(item => {
+      item.addEventListener('click', e => {
+        if (!e.target.getAttribute('data-test')) {
+          if (e.target.closest('#shopify-section-sim-works')) {
+            pushDataLayer(
+              'exp_pdp_enhanc_but_pdpeuuk_sel1',
+              'Select Plan 1',
+              'Button',
+              'PDP Europe & UK eSIM (50 Countries) Under block How do eSIMs work?'
+            )
           }
-          if (e.target.closest(".esim-compatible-wrapper")) {
-            pushDataLayer("exp_pdp_enhanc_but_pdpeuuk_sel2", "Select Plan 2", "Button", "PDP Europe & UK eSIM (50 Countries) Under block Is my device eSIM compatible?");
+          if (e.target.closest('.esim-compatible-wrapper')) {
+            pushDataLayer(
+              'exp_pdp_enhanc_but_pdpeuuk_sel2',
+              'Select Plan 2',
+              'Button',
+              'PDP Europe & UK eSIM (50 Countries) Under block Is my device eSIM compatible?'
+            )
           }
-          if (e.target.closest(".why-esim-wrapper")) {
-            pushDataLayer("exp_pdp_enhanc_but_pdpeuuk_sel3", "Select Plan 3", "Button", "PDP Europe & UK eSIM (50 Countries) Under block Why Simify eSIMs?");
+          if (e.target.closest('.why-esim-wrapper')) {
+            pushDataLayer(
+              'exp_pdp_enhanc_but_pdpeuuk_sel3',
+              'Select Plan 3',
+              'Button',
+              'PDP Europe & UK eSIM (50 Countries) Under block Why Simify eSIMs?'
+            )
           }
-          if (e.target.closest(".section-review")) {
-            pushDataLayer("exp_pdp_enhanc_but_pdpeuuk_sel4", "Select Plan 4", "Button", "PDP Europe & UK eSIM (50 Countries) Footer");
+          if (e.target.closest('.section-review')) {
+            pushDataLayer(
+              'exp_pdp_enhanc_but_pdpeuuk_sel4',
+              'Select Plan 4',
+              'Button',
+              'PDP Europe & UK eSIM (50 Countries) Footer'
+            )
           }
-          let coverageElem = $el(".Product__InfoWrap .ProductForm");
+          let coverageElem = $el('.Product__InfoWrap .ProductForm')
 
           if (window.innerWidth > 768) {
-            checkScrollPosition(140, coverageElem);
+            checkScrollPosition(140, coverageElem)
           } else {
-            checkScrollPosition(120, coverageElem);
+            checkScrollPosition(120, coverageElem)
           }
         }
-        e.target.setAttribute("data-test", "1");
+        e.target.setAttribute('data-test', '1')
         setTimeout(() => {
-          if (e.target.getAttribute("data-test")) {
-            e.target.removeAttribute("data-test");
+          if (e.target.getAttribute('data-test')) {
+            e.target.removeAttribute('data-test')
           }
-        }, 1000);
-      });
-    });
+        }, 1000)
+      })
+    })
   }
   newBtnLearnMoreAboutHowToActivate() {
     const btnLearnMoreAboutHowToActivateStyle = /* HTML */ `
@@ -1032,34 +1121,39 @@ class IntentPopup {
           }
         }
       </style>
-    `;
+    `
     const btnLearnMoreAboutHowToActivateHtml = /* HTML */ `
       ${btnLearnMoreAboutHowToActivateStyle}
       <div data-learnmore class="learn-more__btn">${icons.tabler}Learn more about how to activate</div>
-    `;
-    waitForElement("#shopify-section-sim-works .new-video__wrapp").then((el) => {
-      if (!$el("#shopify-section-sim-works .learn-more__btn")) {
-        this.insert(btnLearnMoreAboutHowToActivateHtml, "#shopify-section-sim-works .new-video__descr", "beforeend");
+    `
+    waitForElement('#shopify-section-sim-works .new-video__wrapp').then(el => {
+      if (!$el('#shopify-section-sim-works .learn-more__btn')) {
+        this.insert(btnLearnMoreAboutHowToActivateHtml, '#shopify-section-sim-works .new-video__descr', 'beforeend')
       }
-    });
+    })
 
-    waitForElement("#shopify-section-sim-works .learn-more__btn").then((el) => {
-      const btnLearnMoreAboutHowToActivate = $$el("[data-learnMore]");
-      btnLearnMoreAboutHowToActivate?.forEach((item) => {
-        item.addEventListener("click", (e) => {
-          if (!e.target.getAttribute("data-test")) {
-            pushDataLayer("exp_pdp_enhanc_link_learn_how_activate", "Learn more about how to activate", "Link", "PDP Europe & UK eSIM (50 Countries) Footer");
-            this.showLearnMoreAboutHowToActivate();
+    waitForElement('#shopify-section-sim-works .learn-more__btn').then(el => {
+      const btnLearnMoreAboutHowToActivate = $$el('[data-learnMore]')
+      btnLearnMoreAboutHowToActivate?.forEach(item => {
+        item.addEventListener('click', e => {
+          if (!e.target.getAttribute('data-test')) {
+            pushDataLayer(
+              'exp_pdp_enhanc_link_learn_how_activate',
+              'Learn more about how to activate',
+              'Link',
+              'PDP Europe & UK eSIM (50 Countries) Footer'
+            )
+            this.showLearnMoreAboutHowToActivate()
           }
-          e.target.setAttribute("data-test", "1");
+          e.target.setAttribute('data-test', '1')
           setTimeout(() => {
-            if (e.target.getAttribute("data-test")) {
-              e.target.removeAttribute("data-test");
+            if (e.target.getAttribute('data-test')) {
+              e.target.removeAttribute('data-test')
             }
-          }, 1000);
-        });
-      });
-    });
+          }, 1000)
+        })
+      })
+    })
   }
   showLearnMoreAboutHowToActivate() {
     const learnMorePopupStyle = /* HTML */ `
@@ -1078,7 +1172,7 @@ class IntentPopup {
         }
         .learn-more__header h2 {
           color: #333f48;
-          font-family: "Poppins";
+          font-family: 'Poppins';
           font-size: 18px;
           font-weight: 700;
           line-height: 20px;
@@ -1089,7 +1183,7 @@ class IntentPopup {
           overflow-y: scroll;
           max-height: 345px;
           color: #333f48;
-          font-family: "Roboto";
+          font-family: 'Roboto';
           font-size: 16px;
           font-weight: 400;
           line-height: 175%;
@@ -1140,7 +1234,7 @@ class IntentPopup {
           }
         }
       </style>
-    `;
+    `
     const learnMorePopup = /* HTML */ `
       ${learnMorePopupStyle}
       <div class="learn-more__popup">
@@ -1162,7 +1256,9 @@ class IntentPopup {
                   <b>Manual Installation:</b> If QR scan fails,
                   <ul class="learn-more__details">
                     <li>iOS: Settings > Cellular/Mobile Data > Add eSIM > Enter Details Manually.</li>
-                    <li>Android: Settings > Connections > SIM Manager > Add Mobile/eSIM Plan > Enter Details Manually.</li>
+                    <li>
+                      Android: Settings > Connections > SIM Manager > Add Mobile/eSIM Plan > Enter Details Manually.
+                    </li>
                   </ul>
                 </li>
                 <li>Enter details provided in your email.</li>
@@ -1182,8 +1278,8 @@ class IntentPopup {
         </div>
         <div class="learn-more__bgr"></div>
       </div>
-    `;
-    this.handleShowPopup(learnMorePopup, "learnMorePopup");
+    `
+    this.handleShowPopup(learnMorePopup, 'learnMorePopup')
   }
   reDesignHero() {
     const bgr = /* HTML */ `
@@ -1209,11 +1305,11 @@ class IntentPopup {
           }
         </style>
       </div>
-    `;
+    `
 
     if (window.innerWidth > 768) {
-      if (!$el(".hero-img__brg")) {
-        this.insert(bgr, ".mobile_img-esim", "afterbegin");
+      if (!$el('.hero-img__brg')) {
+        this.insert(bgr, '.mobile_img-esim', 'afterbegin')
       }
     }
 
@@ -1327,7 +1423,9 @@ class IntentPopup {
           justify-content: center;
           border-radius: 6px;
           background: #fff;
-          box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.06), 0px 0px 4px 0px rgba(0, 0, 0, 0.04);
+          box-shadow:
+            0px 4px 8px 0px rgba(0, 0, 0, 0.06),
+            0px 0px 4px 0px rgba(0, 0, 0, 0.04);
           max-width: 30px;
           max-height: 30px;
           width: 100%;
@@ -1358,7 +1456,7 @@ class IntentPopup {
           border: 2px solid transparent;
           padding: 10px;
           color: rgba(51, 63, 72, 0.4);
-          font-family: "Poppins";
+          font-family: 'Poppins';
           font-size: 14px;
           font-weight: 700;
           line-height: 23px;
@@ -1368,7 +1466,7 @@ class IntentPopup {
           background: rgba(51, 63, 72, 0.1);
           color: #333f48;
         }
-        .hero-body [id="tab-1"] .pro_tab-content {
+        .hero-body [id='tab-1'] .pro_tab-content {
           display: flex;
           flex-direction: column;
           max-width: 357px;
@@ -1410,7 +1508,12 @@ class IntentPopup {
           justify-content: space-between;
           padding: 10px 26px 13px 57px;
         }
-        .new_pro-grid .ProductForm__Variants .HorizontalList--spacingTight .HorizontalList__Item .SizeSwatch > div:nth-child(2) {
+        .new_pro-grid
+          .ProductForm__Variants
+          .HorizontalList--spacingTight
+          .HorizontalList__Item
+          .SizeSwatch
+          > div:nth-child(2) {
           min-width: 70px;
           display: flex;
           flex-direction: column;
@@ -1430,7 +1533,7 @@ class IntentPopup {
         }
         .new_pro-grid .ProductForm__Variants .SizeSwatch > div:nth-of-type(1) p {
           color: #333f48;
-          font-family: "Poppins";
+          font-family: 'Poppins';
           font-size: 24px;
           font-weight: 600;
           line-height: 33px;
@@ -1439,7 +1542,7 @@ class IntentPopup {
         }
         .new_pro-grid .ProductForm__Variants .SizeSwatch > div:nth-of-type(1) span {
           color: rgba(51, 63, 72, 0.8);
-          font-family: "Poppins";
+          font-family: 'Poppins';
           font-size: 14px;
           font-weight: 500;
           line-height: 23px;
@@ -1452,7 +1555,7 @@ class IntentPopup {
           transform: unset;
           top: 24px;
         }
-        .new_pro-grid .ProductForm__Variants .SizeSwatchList.HorizontalList input[type="radio"]:checked + label:after,
+        .new_pro-grid .ProductForm__Variants .SizeSwatchList.HorizontalList input[type='radio']:checked + label:after,
         .new_pro-grid .ProductForm__Variants .SizeSwatchList.HorizontalList label:after {
           transform: unset;
           top: 30px;
@@ -1471,7 +1574,7 @@ class IntentPopup {
           border: none;
           border-radius: unset;
           text-align: center;
-          font-family: "Poppins";
+          font-family: 'Poppins';
           font-size: 12px;
           font-weight: 500;
           line-height: 18px;
@@ -1535,7 +1638,11 @@ class IntentPopup {
             left: 16px;
           }
           .new_pro-grid .ProductForm__Variants .SizeSwatchList.HorizontalList label:after,
-          .new_pro-grid .ProductForm__Variants .SizeSwatchList.HorizontalList input[type="radio"]:checked + label:after {
+          .new_pro-grid
+            .ProductForm__Variants
+            .SizeSwatchList.HorizontalList
+            input[type='radio']:checked
+            + label:after {
             left: 22px;
           }
           .cstm-tag_wrapp {
@@ -1561,7 +1668,7 @@ class IntentPopup {
           }
         }
       </style>
-    `;
+    `
 
     const newWrapHero = /* HTML */ `
       ${newWrapHeroStyles}
@@ -1570,7 +1677,7 @@ class IntentPopup {
         <div class="hero-header__name"></div>
       </div>
       <div class="hero-body"></div>
-    `;
+    `
 
     const txtQuantity = /* HTML */ `
       <style>
@@ -1588,7 +1695,7 @@ class IntentPopup {
         Travelling in a group? <br />
         Order eSIMs for everyone
       </p>
-    `;
+    `
 
     const isMyDeviceCompatibleBlock = /* HTML */ `
       <style>
@@ -1606,7 +1713,7 @@ class IntentPopup {
         }
         .is-my-device-compatible__block p {
           color: #333f48;
-          font-family: "Poppins";
+          font-family: 'Poppins';
           font-size: 14px;
           font-weight: 500;
           line-height: 20px;
@@ -1622,7 +1729,7 @@ class IntentPopup {
         ${icons.infoCircle}
         <p>Is my device compatible with eSIM?</p>
       </div>
-    `;
+    `
 
     const itWorkInBlock = /* HTML */ `
       <style>
@@ -1640,7 +1747,7 @@ class IntentPopup {
         }
         .it-work-in__wrapper p {
           color: #333f48;
-          font-family: "Poppins";
+          font-family: 'Poppins';
           font-size: 14px;
           font-weight: 500;
           line-height: 20px;
@@ -1656,108 +1763,108 @@ class IntentPopup {
         ${icons.world}
         <p>See what countries it work in</p>
       </div>
-    `;
+    `
 
-    const bestValueTxt = "🔥Best value";
+    const bestValueTxt = '🔥Best value'
 
-    waitForElement(".new_Product-inner").then((i) => {
-      if (!$el(".hero-header")) {
-        this.insert(newWrapHero, ".new_Product-inner", "afterbegin");
+    waitForElement('.new_Product-inner').then(i => {
+      if (!$el('.hero-header')) {
+        this.insert(newWrapHero, '.new_Product-inner', 'afterbegin')
       }
-    });
+    })
 
-    waitForElement(".hero-header").then((el) => {
-      waitForElement(".new_pro-grid .ProductItem__Wrap .Product__Gallery").then((i) => {
-        this.insertElem(i, ".hero-header__img");
-      });
-      waitForElement(".pro_subtitle").then((i) => {
-        this.insertElem(i, ".hero-header__name");
-      });
-      waitForElement(".new_pro-conent .ProductMeta__Title").then((i) => {
-        this.insertElem(i, ".hero-header__name", "beforeend");
-      });
-      waitForElement("span.stamped-product-reviews-badge").then((i) => {
-        this.insertElem(i, ".hero-header__name", "beforeend");
-      });
-    });
-    waitForElement(".hero-body").then((el) => {
-      waitForElement(".new_pro-conent").then((i) => {
-        this.insertElem(i, ".hero-body", "beforeend");
-      });
-      waitForElement(".new_pro-grid").then((i) => {
-        this.insertElem(i, ".hero-body", "beforeend");
-      });
-      waitForElement(".new_pro-conent").then((i) => {
-        if (!$el(".is-my-device-compatible__block")) {
-          this.insert(isMyDeviceCompatibleBlock, ".new_pro-conent", "afterbegin");
+    waitForElement('.hero-header').then(el => {
+      waitForElement('.new_pro-grid .ProductItem__Wrap .Product__Gallery').then(i => {
+        this.insertElem(i, '.hero-header__img')
+      })
+      waitForElement('.pro_subtitle').then(i => {
+        this.insertElem(i, '.hero-header__name')
+      })
+      waitForElement('.new_pro-conent .ProductMeta__Title').then(i => {
+        this.insertElem(i, '.hero-header__name', 'beforeend')
+      })
+      waitForElement('span.stamped-product-reviews-badge').then(i => {
+        this.insertElem(i, '.hero-header__name', 'beforeend')
+      })
+    })
+    waitForElement('.hero-body').then(el => {
+      waitForElement('.new_pro-conent').then(i => {
+        this.insertElem(i, '.hero-body', 'beforeend')
+      })
+      waitForElement('.new_pro-grid').then(i => {
+        this.insertElem(i, '.hero-body', 'beforeend')
+      })
+      waitForElement('.new_pro-conent').then(i => {
+        if (!$el('.is-my-device-compatible__block')) {
+          this.insert(isMyDeviceCompatibleBlock, '.new_pro-conent', 'afterbegin')
         }
-      });
-      waitForElement(".link_Coverage").then((i) => {
-        if (!$el(".it-work-in__wrapper")) {
-          this.insert(itWorkInBlock, "#tab-1", "beforeend");
+      })
+      waitForElement('.link_Coverage').then(i => {
+        if (!$el('.it-work-in__wrapper')) {
+          this.insert(itWorkInBlock, '#tab-1', 'beforeend')
         }
-      });
+      })
 
       if (window.innerWidth > 768) {
-        waitForElement(".product_text").then((i) => {
-          this.insertElem(i, ".new_pro-grid", "beforeend");
-        });
+        waitForElement('.product_text').then(i => {
+          this.insertElem(i, '.new_pro-grid', 'beforeend')
+        })
       } else {
-        waitForElement(".Product__InfoWrap form").then((i) => {
-          if (!$el(".mob-bgr-wrapper")) {
-            this.insert(`<div class="mob-bgr-wrapper"></div>`, ".Product__InfoWrap form", "beforeend");
+        waitForElement('.Product__InfoWrap form').then(i => {
+          if (!$el('.mob-bgr-wrapper')) {
+            this.insert(`<div class="mob-bgr-wrapper"></div>`, '.Product__InfoWrap form', 'beforeend')
           }
-        });
-        waitForElement(".mob-bgr-wrapper").then((i) => {
-          waitForElement('[data-action="add-to-cart"]').then((i) => {
-            this.insertElem(i, ".mob-bgr-wrapper", "beforeend");
-          });
-          waitForElement(".product_text").then((i) => {
-            this.insertElem(i, ".mob-bgr-wrapper", "beforeend");
-          });
-        });
+        })
+        waitForElement('.mob-bgr-wrapper').then(i => {
+          waitForElement('[data-action="add-to-cart"]').then(i => {
+            this.insertElem(i, '.mob-bgr-wrapper', 'beforeend')
+          })
+          waitForElement('.product_text').then(i => {
+            this.insertElem(i, '.mob-bgr-wrapper', 'beforeend')
+          })
+        })
       }
 
-      waitForElement(".ProductForm__QuantitySelector").then((i) => {
-        if (!$el(".txt-quantity")) {
-          this.insert(txtQuantity, ".ProductForm__QuantitySelector", "afterbegin");
+      waitForElement('.ProductForm__QuantitySelector').then(i => {
+        if (!$el('.txt-quantity')) {
+          this.insert(txtQuantity, '.ProductForm__QuantitySelector', 'afterbegin')
         }
-      });
+      })
 
-      waitForElement(".it-work-in__wrapper").then((el) => {
-        this.onClickItWorkInBlock(el);
-      });
-      waitForElement(".is-my-device-compatible__block").then((el) => {
-        this.onClickIsMyDeviceCompatibleBlock(el);
-      });
-      waitForElement(".stamped-product-reviews-badge").then((el) => {
-        this.onClickStampedReviewsBlock(el);
-      });
+      waitForElement('.it-work-in__wrapper').then(el => {
+        this.onClickItWorkInBlock(el)
+      })
+      waitForElement('.is-my-device-compatible__block').then(el => {
+        this.onClickIsMyDeviceCompatibleBlock(el)
+      })
+      waitForElement('.stamped-product-reviews-badge').then(el => {
+        this.onClickStampedReviewsBlock(el)
+      })
       //
 
-      waitForElement(".cstm-tag").then((el) => {
+      waitForElement('.cstm-tag').then(el => {
         if (el.textContent !== bestValueTxt) {
-          el.textContent = bestValueTxt;
+          el.textContent = bestValueTxt
         }
-      });
+      })
 
-      this.onChangeTxtMainBtn();
+      this.onChangeTxtMainBtn()
 
-      this.newInfoElemForInput();
-    });
+      this.newInfoElemForInput()
+    })
   }
   onChangeTxtMainBtn() {
-    waitForElement('[data-action="add-to-cart"]').then((el) => {
+    waitForElement('[data-action="add-to-cart"]').then(el => {
       if (el.textContent !== this.buyNowTxt) {
-        el.textContent = this.buyNowTxt;
+        el.textContent = this.buyNowTxt
       }
-    });
+    })
 
-    waitForElement(".product_fix_bar_inner a.Button").then((el) => {
+    waitForElement('.product_fix_bar_inner a.Button').then(el => {
       if (el.textContent !== this.buyNowTxt) {
-        el.textContent = this.buyNowTxt;
+        el.textContent = this.buyNowTxt
       }
-    });
+    })
   }
   newInfoElemForInput() {
     const infoElem = /* HTML */ `
@@ -1774,162 +1881,189 @@ class IntentPopup {
           background: #fff;
           color: #333f48;
           text-align: center;
-          font-family: "Poppins";
+          font-family: 'Poppins';
           font-size: 12px;
           font-weight: 500;
           line-height: 20px;
           text-transform: uppercase;
         }
-        .new_pro-grid .ProductForm__Variants .SizeSwatchList.HorizontalList input[type="radio"]:checked + label .info-elem {
+        .new_pro-grid
+          .ProductForm__Variants
+          .SizeSwatchList.HorizontalList
+          input[type='radio']:checked
+          + label
+          .info-elem {
           border-top: none;
           background: #fed786;
         }
       </style>
       <div class="info-elem">Unlimited local calls and texts included!</div>
-    `;
-    const variantItem = $$el(".new_pro-grid .ProductForm__Variants label.SizeSwatch");
-    variantItem?.forEach((i) => {
-      if (!i.querySelector(".info-elem")) {
-        i.insertAdjacentHTML("beforeend", infoElem);
+    `
+    const variantItem = $$el('.new_pro-grid .ProductForm__Variants label.SizeSwatch')
+    variantItem?.forEach(i => {
+      if (!i.querySelector('.info-elem')) {
+        i.insertAdjacentHTML('beforeend', infoElem)
       }
-    });
+    })
   }
   onClickItWorkInBlock(el) {
-    el.addEventListener("click", (e) => {
-      if (!e.target.getAttribute("data-test")) {
-        pushDataLayer("exp_pdp_enhanc_link_see_what_count_work", "See what countries it work in", "Link", "PDPEurope & UK eSIM(50 Countries)Footer");
-        let coverageElem = $el(".link_Coverage");
+    el.addEventListener('click', e => {
+      if (!e.target.getAttribute('data-test')) {
+        pushDataLayer(
+          'exp_pdp_enhanc_link_see_what_count_work',
+          'See what countries it work in',
+          'Link',
+          'PDPEurope & UK eSIM(50 Countries)Footer'
+        )
+        let coverageElem = $el('.link_Coverage')
 
-        checkScrollPosition(130, coverageElem);
-        coverageElem?.click();
+        checkScrollPosition(130, coverageElem)
+        coverageElem?.click()
       }
-      e.target.setAttribute("data-test", "1");
+      e.target.setAttribute('data-test', '1')
       setTimeout(() => {
-        if (e.target.getAttribute("data-test")) {
-          e.target.removeAttribute("data-test");
+        if (e.target.getAttribute('data-test')) {
+          e.target.removeAttribute('data-test')
         }
-      }, 1000);
-    });
+      }, 1000)
+    })
   }
   onClickIsMyDeviceCompatibleBlock(el) {
-    el.addEventListener("click", (e) => {
-      if (!e.target.getAttribute("data-test")) {
-        e.preventDefault();
-        e.stopPropagation();
-        setLocalStorage("onClickIsMyDeviceCompatibleBlock", `yes`);
-        pushDataLayer("exp_pdp_enhanc_link_is_device_compat", "Is my device compatible with eSIM?", "Link", "PDP Europe & UK eSIM (50 Countries) Footer");
-        let coverageElem = $el("#shopify-section-esim-compatible");
+    el.addEventListener('click', e => {
+      if (!e.target.getAttribute('data-test')) {
+        e.preventDefault()
+        e.stopPropagation()
+        setLocalStorage('onClickIsMyDeviceCompatibleBlock', `yes`)
+        pushDataLayer(
+          'exp_pdp_enhanc_link_is_device_compat',
+          'Is my device compatible with eSIM?',
+          'Link',
+          'PDP Europe & UK eSIM (50 Countries) Footer'
+        )
+        let coverageElem = $el('#shopify-section-esim-compatible')
 
-        checkScrollPosition(130, coverageElem);
+        checkScrollPosition(130, coverageElem)
         setTimeout(() => {
-          removeLocalStorage("onClickIsMyDeviceCompatibleBlock");
-        }, 1000);
+          removeLocalStorage('onClickIsMyDeviceCompatibleBlock')
+        }, 1000)
       }
-      e.target.setAttribute("data-test", "1");
+      e.target.setAttribute('data-test', '1')
       setTimeout(() => {
-        if (e.target.getAttribute("data-test")) {
-          e.target.removeAttribute("data-test");
+        if (e.target.getAttribute('data-test')) {
+          e.target.removeAttribute('data-test')
         }
-      }, 1000);
-    });
+      }, 1000)
+    })
   }
   onClickQuantitySelectorBtn() {
-    waitForElement(".hero-body").then((i) => {
-      waitForElement(".QuantitySelector").then((i) => {
-        const quantitySelectorBtn = $$el(".hero-body .new_pro-grid .QuantitySelector__Button");
+    waitForElement('.hero-body').then(i => {
+      waitForElement('.QuantitySelector').then(i => {
+        const quantitySelectorBtn = $$el('.hero-body .new_pro-grid .QuantitySelector__Button')
 
-        let atr = "";
-        quantitySelectorBtn?.forEach((btn) => {
-          btn.addEventListener("click", (e) => {
-            if (!e.target.getAttribute("data-test") && !$el(".product_fix_bar.active")) {
-              if (e.target.getAttribute("data-action") === "decrease-quantity") {
-                atr = "minus";
+        let atr = ''
+        quantitySelectorBtn?.forEach(btn => {
+          btn.addEventListener('click', e => {
+            if (!e.target.getAttribute('data-test') && !$el('.product_fix_bar.active')) {
+              if (e.target.getAttribute('data-action') === 'decrease-quantity') {
+                atr = 'minus'
               }
-              if (e.target.getAttribute("data-action") === "increase-quantity") {
-                atr = "plus";
+              if (e.target.getAttribute('data-action') === 'increase-quantity') {
+                atr = 'plus'
               }
-              pushDataLayer("exp_pdp_enhanc_clic_pdpeuuk_buttit", atr, "Click", "PDP Europe & UK eSIM (50 Countries) Travelling in a group?  Order eSIMs for everyone");
+              pushDataLayer(
+                'exp_pdp_enhanc_clic_pdpeuuk_buttit',
+                atr,
+                'Click',
+                'PDP Europe & UK eSIM (50 Countries) Travelling in a group?  Order eSIMs for everyone'
+              )
             }
-            e.target.setAttribute("data-test", "1");
+            e.target.setAttribute('data-test', '1')
             setTimeout(() => {
-              if (e.target.getAttribute("data-test")) {
-                e.target.removeAttribute("data-test");
+              if (e.target.getAttribute('data-test')) {
+                e.target.removeAttribute('data-test')
               }
-            }, 1000);
-          });
-        });
-      });
-    });
+            }, 1000)
+          })
+        })
+      })
+    })
   }
   onVisibleStickyBanner() {
-    waitForElement('[data-action="add-to-cart"]').then((i) => {
-      const element = i;
-      let top = 80;
+    waitForElement('[data-action="add-to-cart"]').then(i => {
+      const element = i
+      let top = 80
 
       if (window.innerWidth < 768) {
-        top = 50;
+        top = 50
       }
 
       function visible(target) {
         if (target.getBoundingClientRect().top < top) {
-          $el(".product_fix_bar").classList.add("new_active");
+          $el('.product_fix_bar').classList.add('new_active')
         } else {
-          if ($el(".product_fix_bar").classList.contains("new_active")) {
-            $el(".product_fix_bar").classList.remove("new_active");
+          if ($el('.product_fix_bar').classList.contains('new_active')) {
+            $el('.product_fix_bar').classList.remove('new_active')
           }
         }
       }
 
-      window.addEventListener("scroll", function () {
-        visible(element);
-      });
+      window.addEventListener('scroll', function () {
+        visible(element)
+      })
 
-      visible(element);
-    });
+      visible(element)
+    })
   }
   onClickStampedReviewsBlock(el) {
-    el.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      if (!e.target.getAttribute("data-test")) {
-        setLocalStorage("onClickStampedReviewsBlock", `yes`);
-        pushDataLayer("exp_pdp_enhanc_link_reviews", "Reviews", "Link", "PDP Europe & UK eSIM (50 Countries) Footer");
+    el.addEventListener('click', e => {
+      e.preventDefault()
+      e.stopPropagation()
+      if (!e.target.getAttribute('data-test')) {
+        setLocalStorage('onClickStampedReviewsBlock', `yes`)
+        pushDataLayer('exp_pdp_enhanc_link_reviews', 'Reviews', 'Link', 'PDP Europe & UK eSIM (50 Countries) Footer')
 
-        let coverageElem = $el(".section-review");
+        let coverageElem = $el('.section-review')
 
-        checkScrollPosition(130, coverageElem);
+        checkScrollPosition(130, coverageElem)
         setTimeout(() => {
-          removeLocalStorage("onClickStampedReviewsBlock");
-        }, 1000);
+          removeLocalStorage('onClickStampedReviewsBlock')
+        }, 1000)
       }
-      e.target.setAttribute("data-test", "1");
+      e.target.setAttribute('data-test', '1')
       setTimeout(() => {
-        if (e.target.getAttribute("data-test")) {
-          e.target.removeAttribute("data-test");
+        if (e.target.getAttribute('data-test')) {
+          e.target.removeAttribute('data-test')
         }
-      }, 1000);
-    });
+      }, 1000)
+    })
   }
   onClickSizeSwatchLinkBtn() {
-    waitForElement(".hero-body").then((i) => {
-      waitForElement(".ProductForm__Variants").then((i) => {
-        const quantitySelectorBtn = $$el('.new_pro-grid .ProductForm__Variants .SizeSwatchList.HorizontalList--spacingTight input[type="checkbox"]');
+    waitForElement('.hero-body').then(i => {
+      waitForElement('.ProductForm__Variants').then(i => {
+        const quantitySelectorBtn = $$el(
+          '.new_pro-grid .ProductForm__Variants .SizeSwatchList.HorizontalList--spacingTight input[type="checkbox"]'
+        )
 
-        quantitySelectorBtn?.forEach((btn) => {
-          btn.addEventListener("click", (e) => {
-            if (!e.target.getAttribute("data-test")) {
-              pushDataLayer("exp_pdp_enhanc_button_esim_item", `${e.target.value}`, "Button", "PDP Europe & UK eSIM (50 Countries) Footer");
+        quantitySelectorBtn?.forEach(btn => {
+          btn.addEventListener('click', e => {
+            if (!e.target.getAttribute('data-test')) {
+              pushDataLayer(
+                'exp_pdp_enhanc_button_esim_item',
+                `${e.target.value}`,
+                'Button',
+                'PDP Europe & UK eSIM (50 Countries) Footer'
+              )
             }
-            e.target.setAttribute("data-test", "1");
+            e.target.setAttribute('data-test', '1')
             setTimeout(() => {
-              if (e.target.getAttribute("data-test")) {
-                e.target.removeAttribute("data-test");
+              if (e.target.getAttribute('data-test')) {
+                e.target.removeAttribute('data-test')
               }
-            }, 3000);
-          });
-        });
-      });
-    });
+            }, 3000)
+          })
+        })
+      })
+    })
   }
   initUpsellBlock() {
     const upsellBlockStyle = /* HTML */ `
@@ -1940,7 +2074,7 @@ class IntentPopup {
         }
         #sidebar-cart .Drawer__Content .cart-drawer-annoucement-bar p {
           color: #333f48;
-          font-family: "Poppins";
+          font-family: 'Poppins';
           font-size: 12px;
           font-weight: 600;
           line-height: normal;
@@ -1963,7 +2097,7 @@ class IntentPopup {
         }
         .cart-updates .cartItem__Specification ul li.list-item {
           color: #333f48;
-          font-family: "Roboto";
+          font-family: 'Roboto';
           font-size: 12px;
           font-weight: 400;
           line-height: 20px;
@@ -1984,7 +2118,7 @@ class IntentPopup {
           width: max-content;
           margin-top: 34px;
           color: #fff;
-          font-family: "Poppins";
+          font-family: 'Poppins';
           font-size: 12px;
           font-weight: 500;
           line-height: 18px;
@@ -2003,7 +2137,7 @@ class IntentPopup {
         .upsell-block__descr p {
           max-width: 230px;
           color: #333f48;
-          font-family: "Poppins";
+          font-family: 'Poppins';
           font-size: 12px;
           font-weight: 400;
           line-height: 18px;
@@ -2019,7 +2153,7 @@ class IntentPopup {
           border: 1.4px solid #188ff8;
           background: #fff;
           color: #188ff8;
-          font-family: "Poppins";
+          font-family: 'Poppins';
           font-size: 16px;
           font-weight: 500;
           line-height: 24px;
@@ -2030,7 +2164,7 @@ class IntentPopup {
           }
         }
       </style>
-    `;
+    `
     const upsellBlockHtml = /* HTML */ `
       ${upsellBlockStyle}
       <span class="upsell-block__limited">Limited time offer</span>
@@ -2044,43 +2178,48 @@ class IntentPopup {
         </div>
         <button class="upsell-block__btn">Add 1 more</button>
       </div>
-    `;
+    `
 
-    waitForElement(".CartItemWrapper").then((i) => {
-      $$el(".CartItemWrapper").forEach((el) => {
-        const qtValue = +el.querySelector('[name="quantity-selector"]').value;
+    waitForElement('.CartItemWrapper').then(i => {
+      $$el('.CartItemWrapper').forEach(el => {
+        const qtValue = +el.querySelector('[name="quantity-selector"]').value
 
-        if (!el.querySelector(".upsell-block__wrapper") && qtValue < 10) {
-          el.insertAdjacentHTML("beforeend", upsellBlockHtml);
+        if (!el.querySelector('.upsell-block__wrapper') && qtValue < 10) {
+          el.insertAdjacentHTML('beforeend', upsellBlockHtml)
         }
-      });
-    });
+      })
+    })
 
-    this.onClickBtnAddUpsell();
+    this.onClickBtnAddUpsell()
   }
   onClickBtnAddUpsell() {
-    $$el(".upsell-block__btn").forEach((el) => {
-      el.addEventListener("click", (e) => {
-        if (!e.target.getAttribute("data-test")) {
-          e.preventDefault();
-          const select = e.target.closest(".CartItemWrapper")?.querySelector('[name="quantity-selector"]');
-          pushDataLayer("exp_pdp_enhanc_but_slidcarlim_add", "Add 1 more ", "Button", "Slide-in Cart Europe & UK eSIM (50 Countries) Limited time offer");
-          this.onChangeQuantitySelector(select);
+    $$el('.upsell-block__btn').forEach(el => {
+      el.addEventListener('click', e => {
+        if (!e.target.getAttribute('data-test')) {
+          e.preventDefault()
+          const select = e.target.closest('.CartItemWrapper')?.querySelector('[name="quantity-selector"]')
+          pushDataLayer(
+            'exp_pdp_enhanc_but_slidcarlim_add',
+            'Add 1 more ',
+            'Button',
+            'Slide-in Cart Europe & UK eSIM (50 Countries) Limited time offer'
+          )
+          this.onChangeQuantitySelector(select)
         }
-        e.target.setAttribute("data-test", "1");
+        e.target.setAttribute('data-test', '1')
         setTimeout(() => {
-          if (e.target.getAttribute("data-test")) {
-            e.target.removeAttribute("data-test");
+          if (e.target.getAttribute('data-test')) {
+            e.target.removeAttribute('data-test')
           }
-        }, 1000);
-      });
-    });
+        }, 1000)
+      })
+    })
   }
   onChangeQuantitySelector(select) {
-    select.value = +select.value + 1;
+    select.value = +select.value + 1
 
-    let event = new Event("change", { bubbles: true });
-    select.dispatchEvent(event);
+    let event = new Event('change', { bubbles: true })
+    select.dispatchEvent(event)
   }
   initNewQuantityBtnSlideInCart() {
     const quantityBtnStyle = /* HTML */ `
@@ -2107,10 +2246,12 @@ class IntentPopup {
           cursor: pointer;
           border-radius: 4px;
           background: #fff;
-          box-shadow: 0px 2.753px 5.506px 0px rgba(0, 0, 0, 0.06), 0px 0px 2.753px 0px rgba(0, 0, 0, 0.04);
+          box-shadow:
+            0px 2.753px 5.506px 0px rgba(0, 0, 0, 0.06),
+            0px 0px 2.753px 0px rgba(0, 0, 0, 0.04);
           overflow: hidden;
           color: #333f48;
-          font-family: "Poppins";
+          font-family: 'Poppins';
           font-size: 12px;
           font-weight: 500;
           line-height: 14px;
@@ -2123,7 +2264,7 @@ class IntentPopup {
           border: none;
         }
       </style>
-    `;
+    `
     const quantityBtnHtml = /* HTML */ `
       ${quantityBtnStyle}
       <div class="new-quantity-block">
@@ -2131,79 +2272,79 @@ class IntentPopup {
         <input type="text" class="new-quantity-input" pattern="[0-9]*" value="1" max="10" />
         <div class="new-quantity-control increase">+</div>
       </div>
-    `;
+    `
 
-    waitForElement(".CartItem__Actions").then((i) => {
-      $$el(".CartItem__Actions").forEach((el) => {
-        if (!el.querySelector(".new-quantity-block")) {
-          el.insertAdjacentHTML("afterbegin", quantityBtnHtml);
+    waitForElement('.CartItem__Actions').then(i => {
+      $$el('.CartItem__Actions').forEach(el => {
+        if (!el.querySelector('.new-quantity-block')) {
+          el.insertAdjacentHTML('afterbegin', quantityBtnHtml)
         }
-      });
-    });
+      })
+    })
 
-    $$el(".new-quantity-block").forEach((el) => {
-      const vaueOldSelect = +el.closest(".CartItemWrapper")?.querySelector('[name="quantity-selector"]').value;
-      el.closest(".new-quantity-block").querySelector(".new-quantity-input").value = vaueOldSelect;
+    $$el('.new-quantity-block').forEach(el => {
+      const vaueOldSelect = +el.closest('.CartItemWrapper')?.querySelector('[name="quantity-selector"]').value
+      el.closest('.new-quantity-block').querySelector('.new-quantity-input').value = vaueOldSelect
 
-      el.addEventListener("click", (e) => {
-        if (!e.target.getAttribute("data-test")) {
-          const select = e.target.closest(".CartItemWrapper")?.querySelector('[name="quantity-selector"]');
-          this.handleBtnQuantityClick(e, select);
+      el.addEventListener('click', e => {
+        if (!e.target.getAttribute('data-test')) {
+          const select = e.target.closest('.CartItemWrapper')?.querySelector('[name="quantity-selector"]')
+          this.handleBtnQuantityClick(e, select)
         }
-        e.target.setAttribute("data-test", "1");
+        e.target.setAttribute('data-test', '1')
         setTimeout(() => {
-          if (e.target.getAttribute("data-test")) {
-            e.target.removeAttribute("data-test");
+          if (e.target.getAttribute('data-test')) {
+            e.target.removeAttribute('data-test')
           }
-        }, 300);
-      });
-    });
+        }, 300)
+      })
+    })
   }
 
   handleBtnQuantityClick(event, select) {
-    const target = event.target;
-    if (target.classList.contains("new-quantity-control")) {
-      const adjustment = target.classList.contains("increase") ? 1 : -1;
-      const quantityInput = target.closest(".new-quantity-block").querySelector(".new-quantity-input");
+    const target = event.target
+    if (target.classList.contains('new-quantity-control')) {
+      const adjustment = target.classList.contains('increase') ? 1 : -1
+      const quantityInput = target.closest('.new-quantity-block').querySelector('.new-quantity-input')
 
-      console.log(quantityInput, adjustment);
-      this.adjustQuantity(quantityInput, adjustment, select);
+      console.log(quantityInput, adjustment)
+      this.adjustQuantity(quantityInput, adjustment, select)
     }
   }
 
   adjustQuantity(inputElement, adjustment, select) {
-    let currentQuantity = parseInt(inputElement.value);
-    currentQuantity += adjustment;
-    currentQuantity = Math.min(10, Math.max(1, currentQuantity));
-    inputElement.value = currentQuantity;
+    let currentQuantity = parseInt(inputElement.value)
+    currentQuantity += adjustment
+    currentQuantity = Math.min(10, Math.max(1, currentQuantity))
+    inputElement.value = currentQuantity
 
-    select.value = currentQuantity;
-    let event = new Event("change", { bubbles: true });
-    select.dispatchEvent(event);
+    select.value = currentQuantity
+    let event = new Event('change', { bubbles: true })
+    select.dispatchEvent(event)
   }
 
   initMutationObserver() {
-    const cartList = $el("#sidebar-cart");
-    let observer = new MutationObserver((muts) => {
+    const cartList = $el('#sidebar-cart')
+    let observer = new MutationObserver(muts => {
       if (cartList) {
-        observer.disconnect();
+        observer.disconnect()
 
-        if (this.targetUrl === "/simsdirect" || this.targetUrl === "/simify") {
-          this.initUpsellBlock();
+        if (this.targetUrl === '/simsdirect' || this.targetUrl === '/simify') {
+          this.initUpsellBlock()
           // this.initNewQuantityBtnSlideInCart()
         }
 
         observer.observe(cartList, {
           childList: true,
-          subtree: true,
-        });
+          subtree: true
+        })
       }
-    });
+    })
 
     observer.observe(cartList, {
       childList: true,
-      subtree: true,
-    });
+      subtree: true
+    })
   }
 
   // common func
@@ -2261,7 +2402,7 @@ class IntentPopup {
           }
         }
       </style>
-    `;
+    `
     const popup = /* HTML */ `
       ${popupStyle}
       <div class="new-popup-backdrop is-hidden">
@@ -2270,103 +2411,127 @@ class IntentPopup {
           <div class="new-popup__content"></div>
         </div>
       </div>
-    `;
+    `
 
-    if (!$el(".new-popup-backdrop")) {
-      this.insert(popup, "body", "afterbegin");
+    if (!$el('.new-popup-backdrop')) {
+      this.insert(popup, 'body', 'afterbegin')
     }
-    waitForElement(".new-popup-backdrop").then((el) => {
-      this.handleClosePopup();
-    });
+    waitForElement('.new-popup-backdrop').then(el => {
+      this.handleClosePopup()
+    })
   }
   handleShowPopup(content, name) {
-    const isShowed = getSessionStorage(name);
-    if (isShowed) return;
+    const isShowed = getSessionStorage(name)
+    if (isShowed) return
 
-    const body = $el("body"),
-      backdrop = $el(".new-popup-backdrop"),
-      popup = $el(".new-popup .new-popup__content");
+    const body = $el('body'),
+      backdrop = $el('.new-popup-backdrop'),
+      popup = $el('.new-popup .new-popup__content')
 
-    if (backdrop.classList.contains("is-hidden")) {
-      backdrop.classList.remove("is-hidden");
+    if (backdrop.classList.contains('is-hidden')) {
+      backdrop.classList.remove('is-hidden')
     }
-    body.style.overflow = "hidden";
-    popup.innerHTML = content;
-    setSessionStorage(name, "yes");
-    if (name === "discountPopup") {
-      checkFocusTime(".discount__popup", "exp_pdp_enhanc_vis_expopup_elem", "Exit intent pop-up Wait! Don’t leave without staying connected!");
-      this.copyDiscount();
+    body.style.overflow = 'hidden'
+    popup.innerHTML = content
+    setSessionStorage(name, 'yes')
+    if (name === 'discountPopup') {
+      checkFocusTime(
+        '.discount__popup',
+        'exp_pdp_enhanc_vis_expopup_elem',
+        'Exit intent pop-up Wait! Don’t leave without staying connected!'
+      )
+      this.copyDiscount()
     }
-    if (name === "learnMorePopup") {
-      checkFocusTime(".learn-more__popup", "exp_pdp_enhanc_vis_act_esim_popup_elem", "Popup How to activate your eSim");
-      if (!backdrop.classList.contains("learn-more-backdrop")) {
-        backdrop.classList.add("learn-more-backdrop");
+    if (name === 'learnMorePopup') {
+      checkFocusTime('.learn-more__popup', 'exp_pdp_enhanc_vis_act_esim_popup_elem', 'Popup How to activate your eSim')
+      if (!backdrop.classList.contains('learn-more-backdrop')) {
+        backdrop.classList.add('learn-more-backdrop')
       }
     }
 
-    this.handleClosePopup();
+    this.handleClosePopup()
   }
   handleClosePopup() {
-    const body = $el("body"),
-      backdrop = $el(".new-popup-backdrop"),
-      popup = $el(".new-popup"),
-      closePopupBtns = popup.querySelectorAll('[data-popup="close"]');
-    closePopupBtns.forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        if (!e.target.getAttribute("data-test")) {
-          backdrop.classList.add("is-hidden");
-          body.style.overflow = "initial";
-          removeSessionStorage("learnMorePopup");
-          if (backdrop.querySelector(".discount__popup")) {
-            pushDataLayer("exp_pdp_enhanc_but_expopup_clos", "Close", "Button", "Exit intent pop-up Wait! Don’t leave without staying connected!");
+    const body = $el('body'),
+      backdrop = $el('.new-popup-backdrop'),
+      popup = $el('.new-popup'),
+      closePopupBtns = popup.querySelectorAll('[data-popup="close"]')
+    closePopupBtns.forEach(btn => {
+      btn.addEventListener('click', e => {
+        if (!e.target.getAttribute('data-test')) {
+          backdrop.classList.add('is-hidden')
+          body.style.overflow = 'initial'
+          removeSessionStorage('learnMorePopup')
+          if (backdrop.querySelector('.discount__popup')) {
+            pushDataLayer(
+              'exp_pdp_enhanc_but_expopup_clos',
+              'Close',
+              'Button',
+              'Exit intent pop-up Wait! Don’t leave without staying connected!'
+            )
           }
-          if (backdrop.querySelector(".learn-more__popup")) {
-            pushDataLayer("exp_pdp_enhanc_but_learn_how_activate_close", "Close", "Button", "Popup How to activate your eSim");
+          if (backdrop.querySelector('.learn-more__popup')) {
+            pushDataLayer(
+              'exp_pdp_enhanc_but_learn_how_activate_close',
+              'Close',
+              'Button',
+              'Popup How to activate your eSim'
+            )
           }
           setTimeout(() => {
-            $el(".new-popup__content").innerHTML = "";
-          }, 500);
+            $el('.new-popup__content').innerHTML = ''
+          }, 500)
         }
-        e.target.setAttribute("data-test", "1");
+        e.target.setAttribute('data-test', '1')
         setTimeout(() => {
-          if (e.target.getAttribute("data-test")) {
-            e.target.removeAttribute("data-test");
+          if (e.target.getAttribute('data-test')) {
+            e.target.removeAttribute('data-test')
           }
-        }, 1000);
-      });
-    });
-    backdrop.addEventListener("click", (e) => {
-      if (!e.target.getAttribute("data-test")) {
-        if (e.target.matches(".new-popup-backdrop")) {
-          backdrop.classList.add("is-hidden");
-          body.style.overflow = "initial";
-          removeSessionStorage("learnMorePopup");
+        }, 1000)
+      })
+    })
+    backdrop.addEventListener('click', e => {
+      if (!e.target.getAttribute('data-test')) {
+        if (e.target.matches('.new-popup-backdrop')) {
+          backdrop.classList.add('is-hidden')
+          body.style.overflow = 'initial'
+          removeSessionStorage('learnMorePopup')
 
-          if (backdrop.querySelector(".discount__popup")) {
-            pushDataLayer("exp_pdp_enhanc_but_expopup_clos_overlay", "Close", "Overlay", "Exit intent pop-up Wait! Don’t leave without staying connected!");
+          if (backdrop.querySelector('.discount__popup')) {
+            pushDataLayer(
+              'exp_pdp_enhanc_but_expopup_clos_overlay',
+              'Close',
+              'Overlay',
+              'Exit intent pop-up Wait! Don’t leave without staying connected!'
+            )
           }
-          if (backdrop.querySelector(".learn-more__popup")) {
-            pushDataLayer("exp_pdp_learn_more_expopup_clos_overlay", "Close", "Overlay", "pop-up How to activateyour eSIM");
+          if (backdrop.querySelector('.learn-more__popup')) {
+            pushDataLayer(
+              'exp_pdp_learn_more_expopup_clos_overlay',
+              'Close',
+              'Overlay',
+              'pop-up How to activateyour eSIM'
+            )
           }
 
           setTimeout(() => {
-            $el(".new-popup__content").innerHTML = "";
-          }, 500);
+            $el('.new-popup__content').innerHTML = ''
+          }, 500)
         }
       }
-      e.target.setAttribute("data-test", "1");
+      e.target.setAttribute('data-test', '1')
       setTimeout(() => {
-        if (e.target.getAttribute("data-test")) {
-          e.target.removeAttribute("data-test");
+        if (e.target.getAttribute('data-test')) {
+          e.target.removeAttribute('data-test')
         }
-      }, 1000);
-    });
+      }, 1000)
+    })
   }
-  insertElem(html, selector, position = "afterbegin") {
-    $el(selector)?.insertAdjacentElement(position, html);
+  insertElem(html, selector, position = 'afterbegin') {
+    $el(selector)?.insertAdjacentElement(position, html)
   }
-  insert(html, selector, position = "beforeend") {
-    $el(selector).insertAdjacentHTML(position, html);
+  insert(html, selector, position = 'beforeend') {
+    $el(selector).insertAdjacentHTML(position, html)
   }
   // common styles
   initMainStyles() {
@@ -2387,8 +2552,8 @@ class IntentPopup {
           }
         }
       </style>
-    `;
-    this.insert(mainStyles, "head");
+    `
+    this.insert(mainStyles, 'head')
   }
 
   initMainPdpStyles() {
@@ -2462,13 +2627,13 @@ class IntentPopup {
           }
         }
       </style>
-    `;
+    `
 
-    this.insert(mainPdpStyles, "head");
+    this.insert(mainPdpStyles, 'head')
   }
 }
 
-new IntentPopup("/collections", 20000);
-new IntentPopup("/products", 20000);
-new IntentPopup("/simsdirect", "");
-new IntentPopup("/simify", "");
+new IntentPopup('/collections', 20000)
+new IntentPopup('/products', 20000)
+new IntentPopup('/simsdirect', '')
+new IntentPopup('/simify', '')

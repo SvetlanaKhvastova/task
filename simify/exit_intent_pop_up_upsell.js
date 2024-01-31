@@ -1,4 +1,11 @@
 console.log("%c EXP: exit intent popup (DEV: SKh)", "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;");
+
+// scriptTrustpilot
+let scriptTrustpilot = document.createElement("script");
+scriptTrustpilot.src = "https://www.youtube.com/iframe_api";
+scriptTrustpilot.async = false;
+document.head.appendChild(scriptTrustpilot);
+
 const $$el = (selector) => document.querySelectorAll(selector);
 const $el = (selector) => document.querySelector(selector);
 const git = "https://conversionratestore.github.io/projects/";
@@ -275,13 +282,13 @@ class IntentPopup {
       this.onClickQuantitySelectorBtn();
       this.onClickSizeSwatchLinkBtn();
       this.onVisibleStickyBanner();
+      this.initMutationObserverPdp();
     }
 
     if (currentUrl.includes(this.targetUrl) && (this.targetUrl === "/simsdirect" || this.targetUrl === "/simify")) {
       console.log(`ONLY SLIDE-IN-CART!!!!!`);
       this.initUpsellBlock();
-      // this.initNewQuantityBtnSlideInCart()
-      this.initMutationObserver();
+      this.initMutationObserverCart();
     }
   }
 
@@ -775,7 +782,7 @@ class IntentPopup {
             width: 100%;
           }
           .new-video__list .new-video__item {
-            margin-bottom: 40px;
+            margin: 0 auto 40px;
             padding: 75px 0 0;
             text-align: center;
             max-width: 318px;
@@ -824,6 +831,7 @@ class IntentPopup {
         </div>
         <div class="video-explanation__iframe">
           <div class="video-explanation__bgr" data-video="MVLj0z__LkM"></div>
+          <div id="player"></div>
         </div>
       </div>
     `;
@@ -855,13 +863,20 @@ class IntentPopup {
   }
   initPlayVideo() {
     const $videoCover = $(".video-explanation__bgr");
-    const $videoPlayer = $(".video-explanation__iframe");
     const $videoUrl = $(".video-explanation__bgr").data("video");
 
     $videoCover.on("click", function () {
       pushDataLayer("exp_pdp_enhanc_play_pdpeuukactiv_video", "Video", "Play", "PDP Europe & UK eSIM (50 Countries) Learn how to activate your eSIM");
-
-      $videoPlayer.html('<iframe src="https://www.youtube.com/embed/' + $videoUrl + '?feature=oembed&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>');
+      const player = new YT.Player("player", {
+        height: "315",
+        width: "560",
+        videoId: $videoUrl,
+        events: {
+          onReady: function (event) {
+            event.target.playVideo();
+          },
+        },
+      });
 
       $videoCover.fadeOut();
     });
@@ -1932,26 +1947,32 @@ class IntentPopup {
     });
   }
   initUpsellBlock() {
-    const upsellBlockStyle = /* HTML */ `
+    const mainCartStyles = /* HTML */ `
       <style>
         #sidebar-cart .Drawer__Content .cart-drawer-annoucement-bar {
-          background: #ffefd3;
-          padding: 8px 16px;
+          background: #ffefd3 !important;
+          padding: 8px 16px !important;
         }
         #sidebar-cart .Drawer__Content .cart-drawer-annoucement-bar p {
-          color: #333f48;
+          color: #333f48 !important;
           font-family: "Poppins";
           font-size: 12px;
-          font-weight: 600;
-          line-height: normal;
+          font-weight: 600 !important;
+          line-height: normal !important;
         }
         #sidebar-cart .Drawer__Content .Drawer__Container {
-          padding: 0;
+          padding: 0 !important;
         }
         #sidebar-cart {
-          max-width: 355px;
-          width: 100%;
+          max-width: 355px !important;
+          width: 100% !important;
         }
+      </style>
+    `;
+    this.insert(mainCartStyles, "head");
+
+    const upsellBlockStyle = /* HTML */ `
+      <style>
         .cart-updates .CartItemWrapper .CartItem__ImageWrapper img {
         }
         .CartItem__Actions,
@@ -2082,107 +2103,8 @@ class IntentPopup {
     let event = new Event("change", { bubbles: true });
     select.dispatchEvent(event);
   }
-  initNewQuantityBtnSlideInCart() {
-    const quantityBtnStyle = /* HTML */ `
-      <style>
-        .cart-updates .CartItem__QuantitySelector {
-          width: 100%;
-        }
-        .new-quantity-block {
-          display: flex;
-          align-items: center;
-          border-radius: 4px;
-          background: #eef4fc;
-          padding: 3px;
-          gap: 6px;
-        }
 
-        .new-quantity-control,
-        .new-quantity-input {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 20px;
-          height: 20px;
-          cursor: pointer;
-          border-radius: 4px;
-          background: #fff;
-          box-shadow: 0px 2.753px 5.506px 0px rgba(0, 0, 0, 0.06), 0px 0px 2.753px 0px rgba(0, 0, 0, 0.04);
-          overflow: hidden;
-          color: #333f48;
-          font-family: "Poppins";
-          font-size: 12px;
-          font-weight: 500;
-          line-height: 14px;
-        }
-
-        .new-quantity-input {
-          text-align: center;
-          background: unset;
-          box-shadow: unset;
-          border: none;
-        }
-      </style>
-    `;
-    const quantityBtnHtml = /* HTML */ `
-      ${quantityBtnStyle}
-      <div class="new-quantity-block">
-        <div class="new-quantity-control decrease">–</div>
-        <input type="text" class="new-quantity-input" pattern="[0-9]*" value="1" max="10" />
-        <div class="new-quantity-control increase">+</div>
-      </div>
-    `;
-
-    waitForElement(".CartItem__Actions").then((i) => {
-      $$el(".CartItem__Actions").forEach((el) => {
-        if (!el.querySelector(".new-quantity-block")) {
-          el.insertAdjacentHTML("afterbegin", quantityBtnHtml);
-        }
-      });
-    });
-
-    $$el(".new-quantity-block").forEach((el) => {
-      const vaueOldSelect = +el.closest(".CartItemWrapper")?.querySelector('[name="quantity-selector"]').value;
-      el.closest(".new-quantity-block").querySelector(".new-quantity-input").value = vaueOldSelect;
-
-      el.addEventListener("click", (e) => {
-        if (!e.target.getAttribute("data-test")) {
-          const select = e.target.closest(".CartItemWrapper")?.querySelector('[name="quantity-selector"]');
-          this.handleBtnQuantityClick(e, select);
-        }
-        e.target.setAttribute("data-test", "1");
-        setTimeout(() => {
-          if (e.target.getAttribute("data-test")) {
-            e.target.removeAttribute("data-test");
-          }
-        }, 300);
-      });
-    });
-  }
-
-  handleBtnQuantityClick(event, select) {
-    const target = event.target;
-    if (target.classList.contains("new-quantity-control")) {
-      const adjustment = target.classList.contains("increase") ? 1 : -1;
-      const quantityInput = target.closest(".new-quantity-block").querySelector(".new-quantity-input");
-
-      console.log(quantityInput, adjustment);
-      this.adjustQuantity(quantityInput, adjustment, select);
-    }
-  }
-
-  adjustQuantity(inputElement, adjustment, select) {
-    let currentQuantity = parseInt(inputElement.value);
-    currentQuantity += adjustment;
-    currentQuantity = Math.min(10, Math.max(1, currentQuantity));
-    inputElement.value = currentQuantity;
-
-    select.value = currentQuantity;
-    let event = new Event("change", { bubbles: true });
-    select.dispatchEvent(event);
-  }
-
-  initMutationObserver() {
+  initMutationObserverCart() {
     const cartList = $el("#sidebar-cart");
     let observer = new MutationObserver((muts) => {
       if (cartList) {
@@ -2190,7 +2112,6 @@ class IntentPopup {
 
         if (this.targetUrl === "/simsdirect" || this.targetUrl === "/simify") {
           this.initUpsellBlock();
-          // this.initNewQuantityBtnSlideInCart()
         }
 
         observer.observe(cartList, {
@@ -2201,6 +2122,27 @@ class IntentPopup {
     });
 
     observer.observe(cartList, {
+      childList: true,
+      subtree: true,
+    });
+  }
+
+  initMutationObserverPdp() {
+    const pdpPage = $el("section.Product");
+    let observer = new MutationObserver((muts) => {
+      if (pdpPage) {
+        observer.disconnect();
+
+        this.onChangeTxtMainBtn();
+
+        observer.observe(pdpPage, {
+          childList: true,
+          subtree: true,
+        });
+      }
+    });
+
+    observer.observe(pdpPage, {
       childList: true,
       subtree: true,
     });
@@ -2377,6 +2319,24 @@ class IntentPopup {
         }
         .dn_desk {
           display: none;
+        }
+        #sidebar-cart .Drawer__Content .cart-drawer-annoucement-bar {
+          background: #ffefd3 !important;
+          padding: 8px 16px !important;
+        }
+        #sidebar-cart .Drawer__Content .cart-drawer-annoucement-bar p {
+          color: #333f48 !important;
+          font-family: "Poppins";
+          font-size: 12px;
+          font-weight: 600 !important;
+          line-height: normal !important;
+        }
+        #sidebar-cart .Drawer__Content .Drawer__Container {
+          padding: 0 !important;
+        }
+        #sidebar-cart {
+          max-width: 355px !important;
+          width: 100% !important;
         }
         @media (max-width: 768px) {
           .dn_mob {
