@@ -108,7 +108,7 @@ const icons = {
 class HomePage {
   constructor(targetUrl) {
     this.targetUrl = targetUrl;
-    this.device = screen.width <= 1025 ? "Mobile" : "Desktop";
+    this.device = innerWidth <= 1025 ? "Mobile" : "Desktop";
     this.init();
   }
 
@@ -393,10 +393,21 @@ class HomePage {
             width: max-content;
             margin: 0 auto;
           }
-          .new_btn_burger_menu .book_a_call_btn {
+          .new_btn_burger_menu .take_assessment_btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 62px;
             width: 100%;
+            border-radius: 6px;
+            background: #ebbd45;
             max-width: 100%;
             margin: 30px 0 14px;
+            color: #2b3e51;
+            font-family: "Lato";
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 20px;
           }
           .new_btn_burger_menu .schedule_a_free_link {
             height: 62px;
@@ -409,7 +420,7 @@ class HomePage {
       </style>
       <div class="new_btn_burger_menu">
         <a class="log_in_link" href="https://app.grantme.com/?__hstc=171153535.ea99a1c023c26b49f6cec8b875a1d24c.1677748523116.1683211802760.1683277102530.17&amp;__hssc=171153535.2.1683277102530&amp;__hsfp=3100531308">Log In</a>
-        <a class="book_a_call_btn" href="https://app.grantme.com/grantme-program-assessment?__hstc=171153535.ea99a1c023c26b49f6cec8b875a1d24c.1677748523116.1683211802760.1683277102530.17&__hssc=171153535.1.1683277102530&__hsfp=3100531308">Take Assessment</a>
+        <a class="take_assessment_btn" href="https://app.grantme.com/grantme-program-assessment?__hstc=171153535.ea99a1c023c26b49f6cec8b875a1d24c.1677748523116.1683211802760.1683277102530.17&__hssc=171153535.1.1683277102530&__hsfp=3100531308">Take Assessment</a>
         ${this.scheduleFreeConsultationBtnHtml()}
       </div>
     `;
@@ -644,7 +655,7 @@ class HomePage {
           font-size: 76px;
         }
         #heroScheduleConsultationCallBlock .counter_block .counter_text {
-          margin: 0;
+          margin: 0 auto;
         }
         #heroScheduleConsultationCallBlock .schedule_txt.mob_var {
           display: none;
@@ -984,6 +995,34 @@ class HomePage {
           }
           .elementor-24572 .elementor-element.elementor-element-e3c03f0 .hfe-nav-menu__toggle {
             margin: 0;
+          }
+        }
+        @media only screen and (min-width: 710px) and (max-width: 1026px) {
+          .main_section .main_slider_hor {
+            margin-top: 0;
+          }
+          #heroScheduleConsultationCallBlock ul {
+            flex-wrap: nowrap !important;
+          }
+          .tuition_section p:last-of-type {
+            max-width: unset;
+          }
+        }
+        @media (max-width: 431px) {
+          .elementor-24572 .elementor-element.elementor-element-e3c03f0 .hfe-dropdown.menu-is-active {
+            height: 850px;
+            justify-content: space-between;
+            overflow-y: scroll;
+          }
+        }
+        @media (max-width: 391px) {
+          .elementor-24572 .elementor-element.elementor-element-e3c03f0 .hfe-dropdown.menu-is-active {
+            height: 770px;
+          }
+        }
+        @media (max-width: 376px) {
+          .elementor-24572 .elementor-element.elementor-element-e3c03f0 .hfe-dropdown.menu-is-active {
+            height: 600px;
           }
         }
       </style>
