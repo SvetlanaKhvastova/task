@@ -7,7 +7,7 @@ const git = "https://conversionratestore.github.io/projects/";
 const clarityInterval = setInterval(function () {
   if (typeof clarity == "function") {
     clearInterval(clarityInterval);
-    // clarity('set', 'exp_pdp_enhanc', 'variant_1')
+    clarity("set", "exp_add_flow", "variant_1");
   }
 }, 1000);
 // funtion for push data to GA4
@@ -128,7 +128,8 @@ class HomePage {
       this.renderHeroScheduleConsultationCallBlock();
       this.reDesignTuitionSection();
       this.onClickTrustScoreStarsBlocks();
-      this.onClickscheduleFreeConsultationBtns();
+      this.onClickScheduleFreeConsultationBtns();
+      this.onClickDifferentBtns();
     }
   }
   scheduleFreeConsultationBtnHtml() {
@@ -287,9 +288,8 @@ class HomePage {
       </style>
     `;
     const trustScoreStarsBlock = /* HTML */ `
-      ${trustScoreStarsStyle}
       <div class="trust_score_wrapp">
-        ${icons.trustScore}
+        ${trustScoreStarsStyle} ${icons.trustScore}
         <div>
           <p class="reviews_txt">TrustScore</p>
           ${icons.star}
@@ -467,7 +467,7 @@ class HomePage {
           top: 0;
           left: 0;
           right: 0;
-          z-index: 100000;
+          z-index: 100;
           transform: translateY(0%);
           animation: ani 0.5s ease;
         }
@@ -595,6 +595,7 @@ class HomePage {
           color: #2b3e51;
           margin: 0 auto;
           max-width: max-content;
+          cursor: pointer;
         }
         #heroScheduleConsultationCallBlock .additional_txt::before {
           position: absolute;
@@ -767,21 +768,85 @@ class HomePage {
   onClickTrustScoreStarsBlocks() {
     waitForElement(".trust_score_wrapp").then((el) => {
       $$el(".trust_score_wrapp").forEach((el) => {
-        el.addEventListener("click", () => {
+        el.addEventListener("click", (e) => {
+          if (e.target.closest(".sticky_header")) {
+            pushDataLayer("exp_add_flow_trust_score_homstickyheader", "Trust Score", "Button", "Homepage First screen Sticky Header");
+          }
+          if (e.target.closest("#masthead + .trust_score_wrapp")) {
+            pushDataLayer("exp_add_flow_trust_score_homfirshero", "Trust Score", "Button", "Homepage First screen Hero");
+          }
           let coverageElem = $el(".testimonials_video");
           checkScrollPosition(0, coverageElem);
         });
       });
     });
   }
-  onClickscheduleFreeConsultationBtns() {
+  onClickScheduleFreeConsultationBtns() {
     waitForElement(".schedule_a_free_link").then((el) => {
       $$el(".schedule_a_free_link").forEach((el) => {
         el.addEventListener("click", (e) => {
           e.preventDefault();
-          console.log(`onClickscheduleFreeConsultationBtn`);
+          if (e.target.closest(".new_btn_burger_menu")) {
+            pushDataLayer("exp_add_flow_but_menu_consultain", "Schedule a free consultation call", "Button", "Menu");
+          }
+          if (e.target.closest("#heroScheduleConsultationCallBlock")) {
+            pushDataLayer("exp_add_flow_but_homprog_concall", "Schedule a free consultation call", "Button", "Homepage Get in touch with a program advisor today");
+          }
+          if (e.target.closest(".tuition_section")) {
+            pushDataLayer("exp_add_flow_but_homfirshead_menu", "Menu", "Button", "Homepage First screen Header");
+          }
+          if (e.target.closest(".sticky_header.is_fixed")) {
+            let maxScrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let currentScrollHeight = window.pageYOffset.toFixed(0);
+            if (this.device === "Mobile") {
+              pushDataLayer("exp_add_flow_stickbut_home_concall", `${((currentScrollHeight / maxScrollHeight) * 100).toFixed(0)}% - Schedule a free consultation call`, "Sticky button ", "Homepage");
+            } else {
+              pushDataLayer("exp_add_flow_stick_homdesk_cancal", `${((currentScrollHeight / maxScrollHeight) * 100).toFixed(0)}% - Schedule a free consultation call`, "Sticky button ", "Homepage Header Desktop");
+            }
+          }
         });
       });
+    });
+  }
+  onClickDifferentBtns() {
+    document.addEventListener("click", function (e) {
+      if (!e.target.getAttribute("data-test")) {
+        const targetElement = e.target;
+        // console.log(targetElement, `targetElement`)
+        if (targetElement.matches(".elementor-icons")) {
+          pushDataLayer("exp_add_flow_but_homfirshead_menu", "Menu", "Button", "Homepage First screen Header");
+        }
+        if (targetElement.matches(".tel_link")) {
+          pushDataLayer("exp_add_flow_but_homfirshead_call", "Call", "Button", "Homepage First screen Header");
+        }
+        if (targetElement.matches(".take_assessment_btn")) {
+          pushDataLayer("exp_add_flow_but_menu_assessm", "Take Assessment", "Button", "Menu");
+        }
+        if (targetElement.matches(".competition-section + .future_section .btn_yellow")) {
+          pushDataLayer("exp_add_flow_but_compet_takasse", "Take Assessment", "Button", "Homepage Block Leave Your Competition In The Dust");
+        }
+        if (targetElement.matches(".top_universities_section + .future_section .btn_yellow")) {
+          pushDataLayer("exp_add_flow_but_stud_takasse", "Take Assessment", "Button", "Homepage Block Leave Your Competition In The Dust");
+        }
+        if (targetElement.matches(".new_btn_burger_menu .log_in_link")) {
+          pushDataLayer("exp_add_flow_but_menu_login", "Log In", "Button", "Menu");
+        }
+        if (targetElement.matches("#heroScheduleConsultationCallBlock .additional_txt")) {
+          let coverageElem = $el("#heroScheduleConsultationCallBlock ul");
+          if (this.device === "Mobile") {
+            checkScrollPosition(80, coverageElem);
+          } else {
+            checkScrollPosition(30, coverageElem);
+          }
+          pushDataLayer("exp_add_flow_lin_homefirst_sure", "Not sure if it is right for you?", "Link", "Homepage First screen");
+        }
+      }
+      e.target.setAttribute("data-test", "1");
+      setTimeout(() => {
+        if (e.target.getAttribute("data-test")) {
+          e.target.removeAttribute("data-test");
+        }
+      }, 1000);
     });
   }
 
