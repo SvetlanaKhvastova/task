@@ -140,7 +140,6 @@ function waitForElement(selector) {
     });
   });
 }
-
 const icons = {
   close: /* HTML */ `
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -305,14 +304,13 @@ class IntentPopup {
     if (this.device === "Mobile") {
       document.addEventListener("scroll", () => {
         const scrollSpeed = checkScrollSpeed();
-        if ((+scrollSpeed < -100 || +scrollSpeed > 100) && !localStorage.getItem("onClickIsMyDeviceCompatibleBlock") && !localStorage.getItem("onClickStampedReviewsBlock")) {
-          console.log(`scroll`);
+        if ((+scrollSpeed < -100 || +scrollSpeed > 100) && !localStorage.getItem("onClickIsMyDeviceCompatibleBlock") && !localStorage.getItem("onClickStampedReviewsBlock") && !localStorage.getItem("onClickBtnSelectPlan") && !localStorage.getItem("onClickItWorkInBlock")) {
           this.showIntentPopup();
         }
       });
     } else {
-      document.addEventListener("mouseleave", (event) => {
-        if (event.clientY <= 0 || event.clientX <= 0 || event.clientX >= window.innerWidth || event.clientY >= window.innerHeight) {
+      document.addEventListener("mouseout", (event) => {
+        if (!event.relatedTarget) {
           this.showIntentPopup();
         }
       });
@@ -872,18 +870,23 @@ class IntentPopup {
 
     $videoCover.on("click", function () {
       pushDataLayer("exp_pdp_enhanc_play_pdpeuukactiv_video", "Video", "Play", "PDP Europe & UK eSIM (50 Countries) Learn how to activate your eSIM");
-      const player = new YT.Player("player", {
-        height: "315",
-        width: "560",
-        videoId: $videoUrl,
-        events: {
-          onReady: function (event) {
-            event.target.playVideo();
-          },
-        },
-      });
+      let windowYT = setInterval(() => {
+        if (window.YT) {
+          clearInterval(windowYT);
+          const player = new YT.Player("player", {
+            height: "315",
+            width: "560",
+            videoId: $videoUrl,
+            events: {
+              onReady: function (event) {
+                event.target.playVideo();
+              },
+            },
+          });
 
-      $videoCover.fadeOut();
+          $videoCover.fadeOut();
+        }
+      }, 800);
     });
   }
   onClickVideoExplanationBlock() {
@@ -998,6 +1001,7 @@ class IntentPopup {
           if (e.target.closest(".section-review")) {
             pushDataLayer("exp_pdp_enhanc_but_pdpeuuk_sel4", "Select Plan 4", "Button", "PDP Europe & UK eSIM (50 Countries) Footer");
           }
+          setLocalStorage("onClickBtnSelectPlan", `yes`);
           let coverageElem = $el(".Product__InfoWrap .ProductForm");
 
           if (window.innerWidth > 768) {
@@ -1005,6 +1009,10 @@ class IntentPopup {
           } else {
             checkScrollPosition(120, coverageElem);
           }
+
+          setTimeout(() => {
+            removeLocalStorage("onClickBtnSelectPlan");
+          }, 1000);
         }
         e.target.setAttribute("data-test", "1");
         setTimeout(() => {
@@ -1817,10 +1825,14 @@ class IntentPopup {
   onClickItWorkInBlock(el) {
     el.addEventListener("click", (e) => {
       if (!e.target.getAttribute("data-test")) {
+        setLocalStorage("onClickItWorkInBlock", `yes`);
         pushDataLayer("exp_pdp_enhanc_link_see_what_count_work", "See what countries it work in", "Link", "PDPEurope & UK eSIM(50 Countries)Footer");
         let coverageElem = $el(".link_Coverage");
 
         checkScrollPosition(130, coverageElem);
+        setTimeout(() => {
+          removeLocalStorage("onClickItWorkInBlock");
+        }, 1000);
         coverageElem?.click();
       }
       e.target.setAttribute("data-test", "1");
