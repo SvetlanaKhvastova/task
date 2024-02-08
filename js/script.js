@@ -97,6 +97,11 @@ script.src = "https://conversionratestore.github.io/projects/grantme/grantme_qui
 script.async = false;
 document.head.appendChild(script);
 //
+let script = document.createElement("script");
+script.src = "https://conversionratestore.github.io/projects/grantme/additional_flow_on_home_page.js";
+script.async = false;
+document.head.appendChild(script);
+//
 //
 let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/zenithprepacademy/video_reviews.js";
