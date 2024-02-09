@@ -130,6 +130,8 @@ class HomePage {
       this.onClickTrustScoreStarsBlocks();
       this.onClickScheduleFreeConsultationBtns();
       this.onClickDifferentBtns();
+      this.onChangeTxtTuitionSection();
+      this.onChangeTxtReviews();
     }
   }
   scheduleFreeConsultationBtnHtml() {
@@ -294,7 +296,7 @@ class HomePage {
           <p class="reviews_txt">TrustScore</p>
           ${icons.star}
           <p class="reviews_mark">4.8</p>
-          <p class="reviews_count">(<span>879 reviews</span>)</p>
+          <p class="reviews_count">(<span>1,620+ reviews</span>)</p>
         </div>
       </div>
     `;
@@ -595,7 +597,6 @@ class HomePage {
           color: #2b3e51;
           margin: 0 auto;
           max-width: max-content;
-          cursor: pointer;
         }
         #heroScheduleConsultationCallBlock .additional_txt::before {
           position: absolute;
@@ -775,7 +776,7 @@ class HomePage {
           if (e.target.closest("#masthead + .trust_score_wrapp")) {
             pushDataLayer("exp_add_flow_trust_score_homfirshero", "Trust Score", "Button", "Homepage First screen Hero");
           }
-          let coverageElem = $el(".testimonials_video");
+          let coverageElem = $el(".report_card_section");
           checkScrollPosition(0, coverageElem);
         });
       });
@@ -785,7 +786,7 @@ class HomePage {
     waitForElement(".schedule_a_free_link").then((el) => {
       $$el(".schedule_a_free_link").forEach((el) => {
         el.addEventListener("click", (e) => {
-          e.preventDefault();
+          //   e.preventDefault()
           if (e.target.closest(".new_btn_burger_menu")) {
             pushDataLayer("exp_add_flow_but_menu_consultain", "Schedule a free consultation call", "Button", "Menu");
           }
@@ -793,7 +794,7 @@ class HomePage {
             pushDataLayer("exp_add_flow_but_homprog_concall", "Schedule a free consultation call", "Button", "Homepage Get in touch with a program advisor today");
           }
           if (e.target.closest(".tuition_section")) {
-            pushDataLayer("exp_add_flow_but_homfirshead_menu", "Menu", "Button", "Homepage First screen Header");
+            pushDataLayer("exp_add_flow_but_homsave_concall", "Schedule a free consultation call", "Button", "Homepage Got 15-Minutes? We’ll Save You Up To 30 Hours");
           }
           if (e.target.closest(".sticky_header.is_fixed")) {
             let maxScrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -805,7 +806,7 @@ class HomePage {
             }
           }
 
-          window.location.href = "https://app.grantme.com/assessment-outcome?user_type=parent";
+          //   window.location.href = 'https://app.grantme.com/assessment-outcome?user_type=parent'
         });
       });
     });
@@ -828,18 +829,19 @@ class HomePage {
           pushDataLayer("exp_add_flow_but_compet_takasse", "Take Assessment", "Button", "Homepage Block Leave Your Competition In The Dust");
         }
         if (targetElement.matches(".top_universities_section + .future_section .btn_yellow")) {
-          pushDataLayer("exp_add_flow_but_stud_takasse", "Take Assessment", "Button", "Homepage Block Leave Your Competition In The Dust");
+          pushDataLayer("exp_add_flow_but_stud_takasse", "Take Assessment", "Button", '"Homepage Block Get Into Top Universities');
         }
         if (targetElement.matches(".new_btn_burger_menu .log_in_link")) {
           pushDataLayer("exp_add_flow_but_menu_login", "Log In", "Button", "Menu");
         }
         if (targetElement.matches("#heroScheduleConsultationCallBlock .additional_txt")) {
-          let coverageElem = $el("#heroScheduleConsultationCallBlock ul");
-          if (this.device === "Mobile") {
-            checkScrollPosition(80, coverageElem);
-          } else {
-            checkScrollPosition(30, coverageElem);
-          }
+          //   let coverageElem = $el('#heroScheduleConsultationCallBlock ul')
+          //   console.log(`coverageElem`, coverageElem)
+          //   if (this.device === 'Mobile') {
+          //     checkScrollPosition(100, coverageElem)
+          //   } else {
+          //     checkScrollPosition(30, coverageElem)
+          //   }
           pushDataLayer("exp_add_flow_lin_homefirst_sure", "Not sure if it is right for you?", "Link", "Homepage First screen");
         }
       }
@@ -849,6 +851,23 @@ class HomePage {
           e.target.removeAttribute("data-test");
         }
       }, 1000);
+    });
+  }
+  onChangeTxtTuitionSection() {
+    waitForElement(".tuition_section").then((el) => {
+      if (el.querySelector("h2").textContent !== "Got 15-Minutes? We’ll Save You Up To 30 Hours") {
+        el.querySelector("h2").textContent = "Got 15-Minutes? We’ll Save You Up To 30 Hours";
+      }
+      if (!el.querySelector("p:nth-of-type(1)").textContent.includes("15-minute")) {
+        el.querySelector("p:nth-of-type(1)").textContent = "GrantMe offers a 15-minute complimentary initial consultation to learn about our consulting programs & pricing. You’ll also learn how you can increase your odds of getting into university, securing funding, & save more than 30 hours as you do it.";
+      }
+    });
+  }
+  onChangeTxtReviews() {
+    waitForElement("p.reviews_count span").then((el) => {
+      if (el.textContent !== "1,620+ reviews") {
+        el.textContent = "1,620+ reviews";
+      }
     });
   }
 
@@ -1063,6 +1082,13 @@ class HomePage {
           .elementor-24572 .elementor-element.elementor-element-e3c03f0 .hfe-nav-menu__toggle {
             margin: 0;
           }
+          .elementor-kit-31553 h2 {
+            font-size: 29px;
+          }
+          #hubspot-messages-iframe-container.widget-align-right {
+            bottom: 75px !important;
+            z-index: 99;
+          }
         }
         @media only screen and (min-width: 710px) and (max-width: 1026px) {
           .main_section .main_slider_hor {
@@ -1075,6 +1101,7 @@ class HomePage {
             max-width: unset;
           }
         }
+        /*
         @media (max-width: 431px) {
           .elementor-24572 .elementor-element.elementor-element-e3c03f0 .hfe-dropdown.menu-is-active {
             height: 850px;
@@ -1092,6 +1119,7 @@ class HomePage {
             height: 600px;
           }
         }
+        */
       </style>
     `;
     this.insert(mainStyles, "head");
@@ -1123,6 +1151,10 @@ class BookingPage {
       this.onClickSlickArrow();
       this.onClickAccordion();
       this.visibleBookingCalendar();
+      this.onChangeTxtReviews();
+      this.onClickTrustScoreStarsBlocks();
+      this.fixIconAccordion();
+      this.observerBookingSteps();
 
       if (this.device === "Mobile") {
         this.replaceElement();
@@ -1203,6 +1235,41 @@ class BookingPage {
           }, 100);
         });
       });
+    });
+  }
+  observerBookingSteps() {
+    waitForElement(".new_schedule .nav_steps").then((el) => {
+      let triggerMut = el;
+      let observer = new MutationObserver(() => {
+        observer.disconnect();
+
+        if (triggerMut.querySelector("svg").getAttribute("data-navsteps") === "2") {
+          let txt = "Select a Time (Duration: 15min)";
+          if (this.device === "Mobile") {
+            txt = "Select a Time (15min)";
+          }
+          if (triggerMut.querySelector("svg + p").textContent !== txt) {
+            triggerMut.querySelector("svg + p").textContent = txt;
+          }
+        }
+
+        observer.observe(triggerMut, {
+          childList: true,
+          subtree: true,
+        });
+      });
+
+      observer.observe(triggerMut, {
+        childList: true,
+        subtree: true,
+      });
+    });
+  }
+  onChangeTxtReviews() {
+    waitForElement(".reviews_btn_wrapper p:last-child").then((el) => {
+      if (el.textContent !== "(1,620+ reviews)") {
+        el.textContent = "(1,620+ reviews)";
+      }
     });
   }
   replaceElement() {
@@ -1305,11 +1372,36 @@ class BookingPage {
       });
     });
   }
+  onClickTrustScoreStarsBlocks() {
+    waitForElement(".reviews_btn_wrapper").then((el) => {
+      $$el(".reviews_btn_wrapper").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          let coverageElem = $el(".what_users_say_box");
+          if (this.device === "Desktop") {
+            checkScrollPosition(80, coverageElem);
+          } else {
+            checkScrollPosition(0, coverageElem);
+          }
+        });
+      });
+    });
+  }
+  fixIconAccordion() {
+    waitForElement("#accordion .panel .panel-title a").then((el) => {
+      if ($$el("#accordion .panel .panel-title a")[3]) {
+        $$el("#accordion .panel .panel-title a")[3].classList.add("collapsed");
+      }
+      if ($$el("#accordion .panel .panel-title a")[4]) {
+        $$el("#accordion .panel .panel-title a")[4].classList.add("collapsed");
+      }
+    });
+  }
   visibleBookingCalendar() {
     waitForElement("#newScheduleBox").then((el) => {
       checkFocusTime("#newScheduleBox", "exp_add_flow_vis_bookcons_page", "Booking page Schedule a Complimentary Consultation");
     });
   }
+
   // common func
   initMainStyles() {
     const mainStyles = /* HTML */ `
@@ -1318,6 +1410,9 @@ class BookingPage {
         .sticky_header .book_free_call_btn {
           display: flex !important;
           max-width: 164px;
+        }
+        .reviews_btn_wrapper p:last-child {
+          text-decoration: underline !important;
         }
         /*hero */
         .greetings_box,
@@ -1404,6 +1499,27 @@ class BookingPage {
         .footer-start-free-trial > p {
           padding-top: 32px;
         }
+        @media only screen and (min-width: 768px) and (max-width: 1199px) {
+          .path-schedule-consultation .block-schedule-consulation-header #scholarshipListContent .academy-waiting-left * {
+            text-align: left;
+          }
+          .navbar-default .region.region-navigation {
+            width: 100%;
+          }
+
+          .container_video.container {
+            max-width: 912px;
+            width: 100%;
+          }
+        }
+        @media only screen and (min-width: 768px) and (max-width: 1080px) {
+          .new_hero_title {
+            font-size: 39px !important;
+          }
+          .new_hero_title span:before {
+            right: -35px;
+          }
+        }
         @media (max-width: 768px) {
           .path-schedule-consultation .block-schedule-consulation-header #scholarshipListContent .academy-waiting {
             display: flex;
@@ -1488,11 +1604,6 @@ class BookingPage {
             max-width: 360px;
             margin: 0 auto;
           }
-        }
-
-        @media (max-width: 391px) {
-        }
-        @media (max-width: 376px) {
         }
       </style>
     `;
