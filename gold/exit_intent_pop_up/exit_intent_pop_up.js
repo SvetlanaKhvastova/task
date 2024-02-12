@@ -1,109 +1,106 @@
-console.log(
-  '%c EXP: exit intent popup (DEV: SKh)',
-  'background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;'
-)
+console.log("%c EXP: exit intent popup (DEV: SKh)", "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;");
 
-const $$el = selector => document.querySelectorAll(selector)
-const $el = selector => document.querySelector(selector)
-const git = 'https://conversionratestore.github.io/projects/'
+const $$el = (selector) => document.querySelectorAll(selector);
+const $el = (selector) => document.querySelector(selector);
+const git = "https://conversionratestore.github.io/projects/";
 // clarity script
 const clarityInterval = setInterval(function () {
-  if (typeof clarity == 'function') {
-    clearInterval(clarityInterval)
-    // clarity('set', 'exp_pdp_enhanc', 'variant_1')
+  if (typeof clarity == "function") {
+    clearInterval(clarityInterval);
+    clarity("set", "exp_exit_pop_up", "variant_1");
   }
-}, 1000)
+}, 1000);
 // funtion for push data to GA4
-const pushDataLayer = (name, desc, type = '', loc = '') => {
-  window.dataLayer = window.dataLayer || []
+const pushDataLayer = (name, desc, type = "", loc = "") => {
+  window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({
-    event: 'event-to-ga4',
+    event: "event-to-ga4",
     event_name: name,
     event_desc: desc,
     event_type: type,
-    event_loc: loc
-  })
-  console.log(`Event: ${name} ${desc} ${type} ${loc}`)
-}
+    event_loc: loc,
+  });
+  console.log(`Event: ${name} ${desc} ${type} ${loc}`);
+};
 
 function checkFocusTime(selector, event, location) {
-  const checker = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !entry.target.getAttribute('data-startShow')) {
-        entry.target.setAttribute('data-startShow', new Date().getTime())
-      } else if (!entry.isIntersecting && entry.target.getAttribute('data-startShow')) {
-        const startShow = entry.target.getAttribute('data-startShow')
-        const endShow = new Date().getTime()
-        const timeShow = Math.round(endShow - startShow)
-        console.log(timeShow, `timeShow`)
-        entry.target.removeAttribute('data-startShow')
+  const checker = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !entry.target.getAttribute("data-startShow")) {
+        entry.target.setAttribute("data-startShow", new Date().getTime());
+      } else if (!entry.isIntersecting && entry.target.getAttribute("data-startShow")) {
+        const startShow = entry.target.getAttribute("data-startShow");
+        const endShow = new Date().getTime();
+        const timeShow = Math.round(endShow - startShow);
+        console.log(timeShow, `timeShow`);
+        entry.target.removeAttribute("data-startShow");
         if (timeShow >= 3000) {
-          pushDataLayer(event, timeShow, 'Visibility', location)
+          pushDataLayer(event, `Block view ${timeShow}`, "Visibility", location);
         }
-        checker.unobserve(entry.target)
+        checker.unobserve(entry.target);
       }
-    })
-  })
+    });
+  });
 
-  checker.observe(document.querySelector(selector))
+  checker.observe(document.querySelector(selector));
 }
 
 const checkScrollSpeed = (function (settings) {
-  settings = settings || {}
+  settings = settings || {};
 
-  let lastPos
-  let newPos
-  let timer
+  let lastPos;
+  let newPos;
+  let timer;
   let delta,
-    delay = settings.delay || 50
+    delay = settings.delay || 50;
 
   function clear() {
-    lastPos = null
-    delta = 0
+    lastPos = null;
+    delta = 0;
   }
 
-  clear()
+  clear();
 
   return function () {
-    newPos = window.scrollY
+    newPos = window.scrollY;
     if (lastPos != null) {
-      delta = newPos - lastPos
+      delta = newPos - lastPos;
     }
-    lastPos = newPos
-    clearTimeout(timer)
-    timer = setTimeout(clear, delay)
-    return delta
-  }
-})()
+    lastPos = newPos;
+    clearTimeout(timer);
+    timer = setTimeout(clear, delay);
+    return delta;
+  };
+})();
 
 function checkScrollPosition(headerOff, elPosition) {
-  const headerOffset = headerOff
-  const elementPosition = elPosition?.getBoundingClientRect().top
-  const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+  const headerOffset = headerOff;
+  const elementPosition = elPosition?.getBoundingClientRect().top;
+  const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
   window.scrollTo({
     top: offsetPosition,
-    behavior: 'smooth'
-  })
+    behavior: "smooth",
+  });
 }
 function waitForElement(selector) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     if (document.querySelector(selector)) {
-      return resolve(document.querySelector(selector))
+      return resolve(document.querySelector(selector));
     }
 
     const observer = new MutationObserver(() => {
       if (document.querySelector(selector)) {
-        resolve(document.querySelector(selector))
-        observer.disconnect()
+        resolve(document.querySelector(selector));
+        observer.disconnect();
       }
-    })
+    });
 
     observer.observe(document.documentElement, {
       childList: true,
       subtree: true,
-      characterData: true
-    })
-  })
+      characterData: true,
+    });
+  });
 }
 const icons = {
   close: /* HTML */ `
@@ -126,121 +123,210 @@ const icons = {
         fill="#8F4FC0"
       />
     </svg>
-  `
+  `,
+};
+
+const localTxt = {
+  ua: {
+    productsHeaderTitle: "Вже майже ваше!",
+    productsHeaderTitleTxt: "Залишився лише один крок",
+    productsBannerLimitTxt: "Це популярний виріб, кількість лімітована",
+    outOfStockTxtPart1: "Лише",
+    outOfStockTxtPart2: "шт. залишилось на складі",
+    productsFooterInfoTxt: 'Ми не можемо гарантувати наявність, якщо ви не <span class="accent_color">зробите замовлення зараз</span>',
+    orderBtn: "Оформити замовлення",
+    hrefBtn: "https://gold.ua/ua/order/create",
+  },
+  ru: {
+    productsHeaderTitle: "!",
+    productsHeaderTitleTxt: "",
+    productsBannerLimitTxt: "",
+    outOfStockTxtPart1: "",
+    outOfStockTxtPart2: "",
+    productsFooterInfoTxt: ' <span class="accent_color"></span>',
+    orderBtn: "",
+    hrefBtn: "https://gold.ua/order/create",
+  },
+};
+
+const locationHref = window.location.href;
+let locale = null;
+let localTxtValue = null;
+if (locationHref.includes("/ua/")) {
+  locale = "ua";
+} else {
+  locale = "ru";
 }
 
 // IntentPopup
 class IntentPopup {
-  constructor(delayTime) {
-    this.delayTime = delayTime
-    this.timeoutId = null
-    this.sessionKey = 'exitIntentPopupShown'
-    this.maxPopupCount = 3
-    this.storageKey = 'lastCartItemAddedTime'
-    this.showDelay = 10 * 1000
-    this.intervalId = null // Ідентифікатор інтервалу
-    this.device = screen.width <= 768 ? 'Mobile' : 'Desktop'
+  constructor(locale, delayTime) {
+    this.locale = locale;
+    this.delayTime = delayTime;
+    this.timeoutId = null;
+    this.sessionKey = "exitIntentPopupShown";
+    this.maxPopupCount = 3;
+    this.outOfStockNumbers = [2, 3, 4, 5];
+    this.device = screen.width <= 768 ? "Mobile" : "Desktop";
   }
 
   init() {
-    this.initMainStyles()
-    this.createPopup()
-    this.intentPopupTriggers()
+    localTxtValue = localTxt[this.locale];
+    this.initMainStyles();
+    this.createPopup();
+    this.intentPopupTriggers();
 
-    console.log(`ONLY POPUP >>>>>`)
+    console.log(`ONLY POPUP >>>>>`, this.locale);
   }
 
   // IntentPopup
   intentPopupTriggers() {
-    if (this.device === 'Mobile') {
+    if (this.device === "Mobile") {
       // Скролл вверх (JS speed value: 70) для всіх сторінок
       // Свайп різкий вверх, вниз для всіх сторінок
-      document.addEventListener('scroll', () => {
-        const scrollSpeed = checkScrollSpeed()
+      document.addEventListener("scroll", () => {
+        const scrollSpeed = checkScrollSpeed();
         if (+scrollSpeed < -70 || +scrollSpeed > 70) {
-          this.showIntentPopup()
+          this.getItemsBasket();
         }
-      })
+      });
 
       // На 30ту секунду на поп-апі із чекаутом (https://monosnap.com/file/CCs1KFK0zBy9c4uMsOGY1SuxdXipot)
       // чи на чекаут сторінці(https://gold.ua/ua/order/create), якщо немає ніякої активності ці 30 сек.
-      waitForElement('#b4Modal').then(i => {
-        this.delayTime = 30000
-        console.log('на поп-апі із чекаутом')
-        this.setupListeners()
-        this.resetTimer()
-      })
-      if (window.location.href === 'https://gold.ua/ua/order/create') {
-        this.delayTime = 30000
-        this.setupListeners()
-        this.resetTimer()
+      waitForElement("#b4Modal").then((i) => {
+        this.delayTime = 30000;
+        console.log("на поп-апі із чекаутом");
+        this.setupListeners();
+        this.resetTimer();
+      });
+      if (window.location.href === localTxtValue["hrefBtn"]) {
+        this.delayTime = 30000;
+        this.setupListeners();
+        this.resetTimer();
       }
     }
 
-    if (this.device === 'Desktop') {
+    if (this.device === "Desktop") {
       // Скролл вверх (JS speed value: 70) для всіх сторінок
-      document.addEventListener('scroll', () => {
-        const scrollSpeed = checkScrollSpeed()
+      document.addEventListener("scroll", () => {
+        const scrollSpeed = checkScrollSpeed();
+
         if (+scrollSpeed < -70) {
-          this.showIntentPopup()
+          console.log("scroll Desktop");
+          // this.getItemsBasket()
         }
-      })
+      });
       // Курсор виходить за межі рамки сторінки в браузері, для вісх сторінок
-      document.addEventListener('mouseout', event => {
+      document.addEventListener("mouseout", (event) => {
         if (!event.relatedTarget) {
-          this.showIntentPopup()
+          console.log("mouseout");
+          this.getItemsBasket();
         }
-      })
+      });
     }
 
     // На 180 секунду після додовання крайнього товару в кошик, на будь якій сторінці сайту,
     // якщо не було чекауту(користувач додав товар у кошик і серфить сайт далі та не повертається у кошик, та не додає нові товари)
-    this.initMutationObserverCartPopup()
 
     // На 60 секунду на будь якій сторінці на сайті, якщо не відбувається ніякої дії.
-    this.setupListeners()
-    this.resetTimer()
+    this.setupListeners();
+    this.resetTimer();
 
     // Зміна фокусу екрану, якщо користувач перемкнувся на інше вікно/інший таб у браузері (чи відкрив якийсь інший додаток і тп)
     // і знову повернувся на сайт, і при цьому у нього доданий товар у кошик.
     // window.addEventListener('focus', () => {
     //   console.log(`Зміна фокусу екрану`)
-    //   this.showIntentPopup()
+    //  this.getItemsBasket()
     // })
   }
+  async getItemsBasket() {
+    if (this.isPopupOpen()) {
+      return;
+    }
+    console.log(`getItemsBasket`);
 
+    if (sessionStorage.getItem("intentPopup")) {
+      sessionStorage.removeItem("intentPopup");
+    }
+
+    let res = await fetch(localTxtValue["hrefBtn"]);
+    res = await res.text();
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(res, "text/html");
+    const itemsBasket = doc.querySelectorAll(".basket-page .product-item");
+    if (itemsBasket.length !== 0) {
+      this.showIntentPopup();
+      itemsBasket.forEach((el) => {
+        const link = el.querySelector(".image.me-3 > a")?.href;
+        const img = el.querySelector(".image.me-3 > a")?.innerHTML;
+        const info = el.querySelector(".info")?.innerHTML;
+
+        waitForElement(".product_list").then((i) => {
+          if (i.length !== el.children.length) {
+            i.insertAdjacentHTML("beforeend", this.productItemHtml(link, img, this.generateMessageOutOfStock(), info));
+          }
+        });
+      });
+
+      this.onClickProductItemInfo();
+      this.onClickOrderBtn();
+    }
+  }
+  // Тріггери для поп-апу (товар доданий до кошику)
   initMutationObserverCartPopup() {
-    const cartList = document.body
-    let observer = new MutationObserver(muts => {
+    const cartList = document.body;
+    let observer = new MutationObserver((muts) => {
       for (let mutation of muts) {
         for (let node of mutation.addedNodes) {
-          if (!(node instanceof HTMLElement)) continue
-          if (node.matches('.modal-backdrop.show')) {
-            this.saveLastCartItemAddedTime()
+          if (!(node instanceof HTMLElement)) continue;
+          if (node.matches(".modal-backdrop.show")) {
+            console.log(`mutation >>>>>>>>>>>>>>>>>>>>>>>.`);
+            // this.getItemsBasket()
           }
         }
       }
-    })
+    });
 
     observer.observe(cartList, {
       childList: true,
-      subtree: true
-    })
+      subtree: true,
+    });
   }
   resetTimer() {
-    clearTimeout(this.timeoutId) // Clear the previous timeout
-    this.timeoutId = setTimeout(() => this.showIntentPopup(), this.delayTime) // Set a new timeout
+    clearTimeout(this.timeoutId); // Clear the previous timeout
+    this.timeoutId = setTimeout(() => this.this.getItemsBasket(), this.delayTime); // Set a new timeout
   }
   setupListeners() {
     // Attach the resetTimer function to relevant events
-    document.addEventListener('mousemove', () => this.resetTimer())
-    document.addEventListener('keydown', () => this.resetTimer())
+    document.addEventListener("mousemove", () => this.resetTimer());
+    document.addEventListener("keydown", () => this.resetTimer());
 
     // Add touch event listeners for mobile devices
-    if (this.device === 'Mobile') {
-      document.addEventListener('touchstart', () => this.resetTimer())
-      document.addEventListener('touchmove', () => this.resetTimer())
+    if (this.device === "Mobile") {
+      document.addEventListener("touchstart", () => this.resetTimer());
+      document.addEventListener("touchmove", () => this.resetTimer());
     }
+  }
+  productItemHtml(pdpLink, img, outOfStock, info) {
+    const productItem = /* HTML */ `
+      <div class="product_item">
+        <div class="img_wrapper">
+          <a href="${pdpLink}"> ${img} </a>
+        </div>
+        <div class="product_item_descr">
+          <div class="out_of_stock_wrapper">${icons.flames} ${outOfStock}</div>
+          <div class="product_item_info" data-info="${pdpLink}">${info}</div>
+        </div>
+      </div>
+    `;
+    return productItem;
+  }
+  generateMessageOutOfStock() {
+    const randomIndex = Math.floor(Math.random() * this.outOfStockNumbers.length);
+    const randomNumber = this.outOfStockNumbers[randomIndex];
+    const outOfStockTxt = `<p>${localTxtValue["outOfStockTxtPart1"]} <span class="out_of_stock_count">${randomNumber}</span> ${localTxtValue["outOfStockTxtPart2"]}</p>`;
+    return outOfStockTxt;
   }
   showIntentPopup() {
     const popupStyle = /* HTML */ `
@@ -261,7 +347,7 @@ class IntentPopup {
         .products_header h2 {
           color: #000;
           text-align: center;
-          font-family: 'Lora';
+          font-family: "Lora";
           font-size: 24px;
           font-weight: 400;
           line-height: 28px;
@@ -271,7 +357,7 @@ class IntentPopup {
         .products_header p {
           color: #666;
           text-align: center;
-          font-family: 'Euclid Circular A';
+          font-family: "Euclid Circular A";
           font-size: 14px;
           font-weight: 400;
           line-height: 20px;
@@ -285,7 +371,7 @@ class IntentPopup {
         .products_banner_limit p {
           color: #000;
           text-align: center;
-          font-family: 'Euclid Circular A';
+          font-family: "Euclid Circular A";
           font-size: 14px;
           font-weight: 400;
           line-height: 20px;
@@ -310,7 +396,7 @@ class IntentPopup {
         }
         .products_footer_info p {
           color: #666;
-          font-family: 'Euclid Circular A';
+          font-family: "Euclid Circular A";
           font-size: 14px;
           font-style: normal;
           font-weight: 400;
@@ -328,7 +414,7 @@ class IntentPopup {
           width: 100%;
           height: 56px;
           color: #fff;
-          font-family: 'Euclid Circular A';
+          font-family: "Euclid Circular A";
           font-size: 16px;
           font-weight: 600;
           line-height: 24px;
@@ -359,7 +445,7 @@ class IntentPopup {
           }
         }
       </style>
-    `
+    `;
 
     const productItemStyle = /* HTML */ `
       <style>
@@ -368,8 +454,12 @@ class IntentPopup {
           gap: 24px;
           align-items: center;
           justify-content: flex-start;
+          flex: 1 0 363px;
+        }
+        .product_item:not(:last-child) {
           border-right: 1px solid rgba(0, 0, 0, 0.06);
-          flex: 1 0 390px;
+          padding: 0 10px 0 0;
+          margin-right: 15px;
         }
         .product_item .img_wrapper {
           max-width: 120px;
@@ -392,7 +482,7 @@ class IntentPopup {
         }
         .product_item .out_of_stock_wrapper p {
           color: #8f4fc0;
-          font-family: 'Euclid Circular A';
+          font-family: "Euclid Circular A";
           font-size: 12px;
           font-weight: 400;
           line-height: 16px;
@@ -402,10 +492,10 @@ class IntentPopup {
         .product_item .product_item_descr a {
           text-decoration: none;
         }
-        .product_item .product_item_descr a > h3 {
+        .product_item .product_item_descr .name a {
           color: #000;
           text-overflow: ellipsis;
-          font-family: 'Lora';
+          font-family: "Lora";
           font-size: 18px;
           font-weight: 500;
           line-height: 24px;
@@ -413,9 +503,12 @@ class IntentPopup {
           margin-bottom: 4px;
           max-width: 250px;
         }
+        .product_item_info {
+          cursor: pointer;
+        }
         .product_item .property_name {
           color: #666;
-          font-family: 'Euclid Circular A';
+          font-family: "Euclid Circular A";
           font-size: 14px;
           font-weight: 400;
           line-height: 20px;
@@ -428,7 +521,7 @@ class IntentPopup {
         .product_item .price_wrapper .last_price,
         .product_item .promo_code_txt {
           color: #666;
-          font-family: 'Euclid Circular A';
+          font-family: "Euclid Circular A";
           font-size: 14px;
           font-weight: 400;
           line-height: 24px;
@@ -440,7 +533,7 @@ class IntentPopup {
         }
         .product_item .price_wrapper .new_price {
           color: #000;
-          font-family: 'Euclid Circular A';
+          font-family: "Euclid Circular A";
           font-size: 18px;
           font-weight: 600;
           line-height: 24px;
@@ -449,7 +542,7 @@ class IntentPopup {
         }
         .product_item .promo_code_price {
           color: #955bc3;
-          font-family: 'Euclid Circular A';
+          font-family: "Euclid Circular A";
           font-size: 16px;
           font-weight: 600;
           line-height: 24px;
@@ -462,147 +555,64 @@ class IntentPopup {
         @media (max-width: 768px) {
         }
       </style>
-    `
+    `;
     const productsPopup = /* HTML */ `
       ${popupStyle}
       <div class="products_popup">
         <div class="products_header">
-          <h2>Вже майже ваше!</h2>
-          <p>Залишився лише один крок</p>
+          <h2>${localTxtValue["productsHeaderTitle"]}</h2>
+          <p>${localTxtValue["productsHeaderTitleTxt"]}</p>
         </div>
         <div class="products_banner_limit">
-          <p>Це популярний виріб, кількість лімітована</p>
+          <p>${localTxtValue["productsBannerLimitTxt"]}</p>
         </div>
         <div class="products_body">
-          <div class="product_list">
-            ${productItemStyle}
-            ${this.productItemHtml(
-              'https://gold.ua/prod/rda7742r',
-              '//cdn.gold.ua/ua/prodphotos/45/130885_1_i_160.jpg',
-              'Золота каблучка з діамантами (130885)',
-              '17 163 грн',
-              '12 044 грн',
-              '9 635 грн'
-            )}
-            ${this.productItemHtml(
-              'https://gold.ua/prod/rda7742r',
-              '//cdn.gold.ua/ua/prodphotos/45/130885_1_i_160.jpg',
-              'Золота каблучка з діамантами (130885)',
-              '17 163 грн',
-              '12 044 грн',
-              '9 635 грн'
-            )}
-          </div>
+          <div class="product_list">${productItemStyle}</div>
         </div>
         <div class="products_footer">
           <div class="products_footer_info">
             ${icons.info}
-            <p>
-              Ми не можемо гарантувати наявність, якщо ви не <span class="accent_color">зробите замовлення зараз</span>
-            </p>
+            <p>${localTxtValue["productsFooterInfoTxt"]}</p>
           </div>
-          <a class="order_btn" href="https://gold.ua/ua/order/create">Оформити замовлення</a>
+          <a class="order_btn" href="${localTxtValue["hrefBtn"]}">${localTxtValue["orderBtn"]}</a>
         </div>
       </div>
-    `
+    `;
 
     // Показувати поп-ап максимум 3 рази на унікальну сессію
-    if (this.isPopupOpen()) {
-      return
-    }
-    const popupCount = this.getPopupCount()
-    if (popupCount < this.maxPopupCount) {
-      this.handleShowPopup(productsPopup)
-      this.savePopupCount(popupCount + 1)
+    const popupCount = this.getPopupCount();
+    if (popupCount < this.maxPopupCount && !sessionStorage.getItem("intentPopup")) {
+      this.handleShowPopup(productsPopup);
+      this.savePopupCount(popupCount + 1);
     }
   }
   getPopupCount() {
-    const sessionData = sessionStorage.getItem(this.sessionKey)
-    return sessionData ? parseInt(sessionData, 10) : 0
+    const sessionData = sessionStorage.getItem(this.sessionKey);
+    return sessionData ? parseInt(sessionData, 10) : 0;
   }
   savePopupCount(count) {
-    sessionStorage.setItem(this.sessionKey, count)
+    sessionStorage.setItem(this.sessionKey, count);
   }
   isPopupOpen() {
-    return $el('.new-popup__content')?.children.length > 0
+    return $el(".new-popup__content")?.children.length > 0;
   }
-
-  saveLastCartItemAddedTime() {
-    const currentTime = Date.now()
-    localStorage.setItem(this.storageKey, currentTime)
-    console.log(currentTime, `currentTime`)
-    this.startPopupInterval()
+  onClickProductItemInfo() {
+    waitForElement(".product_item_info").then((el) => {
+      $$el(".product_item_info").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          if (e.currentTarget.getAttribute("data-info")) {
+            window.location = e.currentTarget.getAttribute("data-info");
+          }
+        });
+      });
+    });
   }
-  clearLastCartItemAddedTime() {
-    localStorage.removeItem(this.storageKey)
-  }
-  getLastCartItemAddedTime() {
-    return localStorage.getItem(this.storageKey)
-  }
-  startPopupInterval() {
-    if (this.intervalId !== null) {
-      clearInterval(this.intervalId)
-    }
-    const lastAddedTime = this.getLastCartItemAddedTime()
-    if (!lastAddedTime) {
-      return
-    }
-    console.log(lastAddedTime, `lastAddedTime`)
-    // Перевіряємо та показуємо попап що 180 секунд
-    this.intervalId = setInterval(() => {
-      console.log(`>>>>>>>>>>>>>>>>>>>>>>>>>.`, this.showDelay)
-      this.checkAndShowPopup(lastAddedTime)
-    }, this.showDelay)
-  }
-  checkAndShowPopup(lastAddedTime) {
-    this.clearLastCartItemAddedTime()
-
-    const currentTime = Date.now()
-    const elapsedTime = currentTime - parseInt(lastAddedTime)
-    if (elapsedTime >= this.showDelay) {
-      console.log('Показати попап по кліку')
-      // this.showIntentPopup()
-    }
-  }
-
-  //
-  productItemHtml(pdpLink, img, title, lastPrice, newPrice, promoCode) {
-    const productItem = /* HTML */ `
-      <div class="product_item">
-        <div class="img_wrapper">
-          <a href="${pdpLink}">
-            <img src="${img}" alt="${title}" />
-          </a>
-        </div>
-        <div class="product_item_descr">
-          <div class="out_of_stock_wrapper">
-            ${icons.flames}
-            <p>Лише <span class="out_of_stock_count">3</span> шт. залишилось на складі</p>
-          </div>
-          <a href="${pdpLink}">
-            <h3>${title}</h3>
-            <p class="property_name">Золото 585 ° 1.46 грамм</p>
-            <div class="price_wrapper">
-              <span class="last_price">${lastPrice}</span>
-              <span class="new_price">${newPrice}</span>
-            </div>
-            <p class="promo_code_wrapper">
-              <span class="promo_code_txt">Ціна із промо кодом:</span>
-              <span class="promo_code_price">${promoCode}</span>
-            </p>
-          </a>
-        </div>
-      </div>
-    `
-    return productItem
-  }
-  async getCart() {
-    let res = await fetch('https://gold.ua/order/create')
-    res = await res.text()
-
-    const parser = new DOMParser()
-    const doc = parser.parseFromString(res, 'text/html')
-    console.log(doc, `https://gold.ua/order/create`)
+  onClickOrderBtn() {
+    waitForElement(".products_footer .order_btn").then((el) => {
+      el.addEventListener("click", (e) => {
+        pushDataLayer("exp_exit_pop_up_but_prodcart_order", "Make an order", "Button", "Exit popup for users with product in cart");
+      });
+    });
   }
 
   // common func
@@ -665,7 +675,7 @@ class IntentPopup {
           }
         }
       </style>
-    `
+    `;
     const popup = /* HTML */ `
       ${popupStyle}
       <div class="new-popup-backdrop is-hidden">
@@ -674,104 +684,105 @@ class IntentPopup {
           <div class="new-popup__content"></div>
         </div>
       </div>
-    `
+    `;
 
-    if (!$el('.new-popup-backdrop')) {
-      this.insert(popup, 'body', 'afterbegin')
+    if (!$el(".new-popup-backdrop")) {
+      this.insert(popup, "body", "afterbegin");
     }
-    waitForElement('.new-popup-backdrop').then(el => {
-      this.handleClosePopup()
-    })
+    waitForElement(".new-popup-backdrop").then((el) => {
+      this.handleClosePopup();
+    });
   }
   handleShowPopup(content) {
-    const body = $el('body'),
-      backdrop = $el('.new-popup-backdrop'),
-      popup = $el('.new-popup .new-popup__content')
+    const body = $el("body"),
+      backdrop = $el(".new-popup-backdrop"),
+      popup = $el(".new-popup .new-popup__content");
 
-    if (backdrop.classList.contains('is-hidden')) {
-      backdrop.classList.remove('is-hidden')
+    if (backdrop.classList.contains("is-hidden")) {
+      backdrop.classList.remove("is-hidden");
     }
-    body.style.overflow = 'hidden'
-    popup.innerHTML = content
-
-    this.handleClosePopup()
+    body.style.overflow = "hidden";
+    popup.innerHTML = content;
+    sessionStorage.setItem("intentPopup", `yes`);
+    checkFocusTime(".products_popup", "exp_exit_pop_up_vis_prodcart_block", "Exit popup for users with product in cart");
+    this.handleClosePopup();
   }
   handleClosePopup() {
-    const body = $el('body'),
-      backdrop = $el('.new-popup-backdrop'),
-      popup = $el('.new-popup'),
-      closePopupBtns = popup.querySelectorAll('[data-popup="close"]')
-    closePopupBtns.forEach(btn => {
-      btn.addEventListener('click', e => {
-        if (!e.target.getAttribute('data-test')) {
-          backdrop.classList.add('is-hidden')
-          body.style.overflow = 'initial'
+    const body = $el("body"),
+      backdrop = $el(".new-popup-backdrop"),
+      popup = $el(".new-popup"),
+      closePopupBtns = popup.querySelectorAll('[data-popup="close"]');
+    closePopupBtns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        if (!e.target.getAttribute("data-test")) {
+          backdrop.classList.add("is-hidden");
+          body.style.overflow = "initial";
+
+          pushDataLayer("exp_exit_pop_up_but_prodcart_close", "Close", "Button", "Exit popup for users with product in cart");
 
           setTimeout(() => {
-            $el('.new-popup__content').innerHTML = ''
-          }, 500)
+            $el(".new-popup__content").innerHTML = "";
+          }, 500);
         }
-        e.target.setAttribute('data-test', '1')
+        e.target.setAttribute("data-test", "1");
         setTimeout(() => {
-          if (e.target.getAttribute('data-test')) {
-            e.target.removeAttribute('data-test')
+          if (e.target.getAttribute("data-test")) {
+            e.target.removeAttribute("data-test");
           }
-        }, 1000)
-      })
-    })
-    backdrop.addEventListener('click', e => {
-      if (!e.target.getAttribute('data-test')) {
-        if (e.target.matches('.new-popup-backdrop')) {
-          backdrop.classList.add('is-hidden')
-          body.style.overflow = 'initial'
+        }, 1000);
+      });
+    });
+    backdrop.addEventListener("click", (e) => {
+      if (!e.target.getAttribute("data-test")) {
+        if (e.target.matches(".new-popup-backdrop")) {
+          backdrop.classList.add("is-hidden");
+          body.style.overflow = "initial";
+
+          pushDataLayer("exp_exit_pop_up_clibeh_prodcart_close", "Close", "Сlick behind the pop-up area", "Exit popup for users with product in cart");
           setTimeout(() => {
-            $el('.new-popup__content').innerHTML = ''
-          }, 500)
+            $el(".new-popup__content").innerHTML = "";
+          }, 500);
         }
       }
-      e.target.setAttribute('data-test', '1')
+      e.target.setAttribute("data-test", "1");
       setTimeout(() => {
-        if (e.target.getAttribute('data-test')) {
-          e.target.removeAttribute('data-test')
+        if (e.target.getAttribute("data-test")) {
+          e.target.removeAttribute("data-test");
         }
-      }, 1000)
-    })
+      }, 1000);
+    });
   }
-  insertElem(html, selector, position = 'afterbegin') {
-    $el(selector)?.insertAdjacentElement(position, html)
+  insertElem(html, selector, position = "afterbegin") {
+    $el(selector)?.insertAdjacentElement(position, html);
   }
-  insert(html, selector, position = 'beforeend') {
-    $el(selector).insertAdjacentHTML(position, html)
+  insert(html, selector, position = "beforeend") {
+    $el(selector).insertAdjacentHTML(position, html);
   }
   // common styles
   initMainStyles() {
     const mainStyles = /* HTML */ `
       <style>
         @font-face {
-          font-family: 'Euclid Circular A';
-          src: url(https://conversionratestore.github.io/projects/gold_ua/fonts/EuclidCircularA/EuclidCircularA-Bold.woff)
-            format('woff');
+          font-family: "Euclid Circular A";
+          src: url(https://conversionratestore.github.io/projects/gold_ua/fonts/EuclidCircularA/EuclidCircularA-Bold.woff) format("woff");
           font-weight: 700;
           font-style: normal;
         }
         @font-face {
-          font-family: 'Euclid Circular A';
-          src: url(https://conversionratestore.github.io/projects/gold_ua/fonts/EuclidCircularA/EuclidCircularA-SemiBold.woff)
-            format('woff');
+          font-family: "Euclid Circular A";
+          src: url(https://conversionratestore.github.io/projects/gold_ua/fonts/EuclidCircularA/EuclidCircularA-SemiBold.woff) format("woff");
           font-weight: 600;
           font-style: normal;
         }
         @font-face {
-          font-family: 'Euclid Circular A';
-          src: url(https://conversionratestore.github.io/projects/gold_ua/fonts/EuclidCircularA/EuclidCircularA-Medium.woff)
-            format('woff');
+          font-family: "Euclid Circular A";
+          src: url(https://conversionratestore.github.io/projects/gold_ua/fonts/EuclidCircularA/EuclidCircularA-Medium.woff) format("woff");
           font-weight: 500;
           font-style: normal;
         }
         @font-face {
-          font-family: 'Euclid Circular A';
-          src: url(https://conversionratestore.github.io/projects/gold_ua/fonts/EuclidCircularA/EuclidCircularA-Regular.woff)
-            format('woff');
+          font-family: "Euclid Circular A";
+          src: url(https://conversionratestore.github.io/projects/gold_ua/fonts/EuclidCircularA/EuclidCircularA-Regular.woff) format("woff");
           font-weight: 400;
           font-style: normal;
         }
@@ -788,10 +799,10 @@ class IntentPopup {
           }
         }
       </style>
-    `
-    this.insert(mainStyles, 'head')
+    `;
+    this.insert(mainStyles, "head");
   }
 }
 
-const exitIntentPopup = new IntentPopup(60000)
-exitIntentPopup.init()
+const exitIntentPopup = new IntentPopup(locale, 60000);
+exitIntentPopup.init();
