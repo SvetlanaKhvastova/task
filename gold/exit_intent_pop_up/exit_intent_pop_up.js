@@ -160,12 +160,14 @@ if (locationHref.includes("/ua/")) {
 
 // IntentPopup
 class IntentPopup {
-  constructor(locale, delayTime) {
+  constructor(locale, delayTime, lastAddedTimerStart) {
     this.locale = locale;
     this.delayTime = delayTime;
     this.timeoutId = null;
     this.sessionKey = "exitIntentPopupShown";
-    this.maxPopupCount = 3;
+    this.checkLastAddedTimer = null;
+    this.lastAddedTimerStart = lastAddedTimerStart;
+    this.maxPopupCount = 1;
     this.outOfStockNumbers = [2, 3, 4, 5];
     this.device = screen.width <= 768 ? "Mobile" : "Desktop";
   }
@@ -175,6 +177,7 @@ class IntentPopup {
     this.initMainStyles();
     this.createPopup();
     this.intentPopupTriggers();
+    this.checkAndRemoveLastAddedTime();
 
     console.log(`ONLY POPUP >>>>>`, this.locale);
   }
@@ -187,7 +190,10 @@ class IntentPopup {
       document.addEventListener("scroll", () => {
         const scrollSpeed = checkScrollSpeed();
         if (+scrollSpeed < -70 || +scrollSpeed > 70) {
-          this.getItemsBasket();
+          if (!sessionStorage.getItem("scrollForPopup")) {
+            sessionStorage.setItem("scrollForPopup", "yes");
+            this.getItemsBasket();
+          }
         }
       });
 
@@ -195,10 +201,10 @@ class IntentPopup {
       // чи на чекаут сторінці(https://gold.ua/ua/order/create), якщо немає ніякої активності ці 30 сек.
       waitForElement("#b4Modal").then((i) => {
         this.delayTime = 30000;
-        console.log("на поп-апі із чекаутом");
         this.setupListeners();
         this.resetTimer();
       });
+
       if (window.location.href === localTxtValue["hrefBtn"]) {
         this.delayTime = 30000;
         this.setupListeners();
@@ -212,14 +218,15 @@ class IntentPopup {
         const scrollSpeed = checkScrollSpeed();
 
         if (+scrollSpeed < -70) {
-          console.log("scroll Desktop");
-          // this.getItemsBasket()
+          if (!sessionStorage.getItem("scrollForPopup")) {
+            sessionStorage.setItem("scrollForPopup", "yes");
+            this.getItemsBasket();
+          }
         }
       });
       // Курсор виходить за межі рамки сторінки в браузері, для вісх сторінок
       document.addEventListener("mouseout", (event) => {
         if (!event.relatedTarget) {
-          console.log("mouseout");
           this.getItemsBasket();
         }
       });
@@ -227,6 +234,7 @@ class IntentPopup {
 
     // На 180 секунду після додовання крайнього товару в кошик, на будь якій сторінці сайту,
     // якщо не було чекауту(користувач додав товар у кошик і серфить сайт далі та не повертається у кошик, та не додає нові товари)
+    this.initMutationObserverCartPopup();
 
     // На 60 секунду на будь якій сторінці на сайті, якщо не відбувається ніякої дії.
     this.setupListeners();
@@ -234,16 +242,17 @@ class IntentPopup {
 
     // Зміна фокусу екрану, якщо користувач перемкнувся на інше вікно/інший таб у браузері (чи відкрив якийсь інший додаток і тп)
     // і знову повернувся на сайт, і при цьому у нього доданий товар у кошик.
-    // window.addEventListener('focus', () => {
-    //   console.log(`Зміна фокусу екрану`)
-    //  this.getItemsBasket()
-    // })
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) {
+        console.log("Зміна фокусу екрану: сторінка стала видимою");
+        this.getItemsBasket();
+      }
+    });
   }
   async getItemsBasket() {
     if (this.isPopupOpen()) {
       return;
     }
-    console.log(`getItemsBasket`);
 
     if (sessionStorage.getItem("intentPopup")) {
       sessionStorage.removeItem("intentPopup");
@@ -281,8 +290,7 @@ class IntentPopup {
         for (let node of mutation.addedNodes) {
           if (!(node instanceof HTMLElement)) continue;
           if (node.matches(".modal-backdrop.show")) {
-            console.log(`mutation >>>>>>>>>>>>>>>>>>>>>>>.`);
-            // this.getItemsBasket()
+            this.saveLastAddedTime();
           }
         }
       }
@@ -295,7 +303,7 @@ class IntentPopup {
   }
   resetTimer() {
     clearTimeout(this.timeoutId); // Clear the previous timeout
-    this.timeoutId = setTimeout(() => this.this.getItemsBasket(), this.delayTime); // Set a new timeout
+    this.timeoutId = setTimeout(() => this.getItemsBasket(), this.delayTime); // Set a new timeout
   }
   setupListeners() {
     // Attach the resetTimer function to relevant events
@@ -582,6 +590,9 @@ class IntentPopup {
     // Показувати поп-ап максимум 3 рази на унікальну сессію
     const popupCount = this.getPopupCount();
     if (popupCount < this.maxPopupCount && !sessionStorage.getItem("intentPopup")) {
+      if (sessionStorage.getItem("scrollForPopup")) {
+        sessionStorage.removeItem("scrollForPopup");
+      }
       this.handleShowPopup(productsPopup);
       this.savePopupCount(popupCount + 1);
     }
@@ -613,6 +624,36 @@ class IntentPopup {
         pushDataLayer("exp_exit_pop_up_but_prodcart_order", "Make an order", "Button", "Exit popup for users with product in cart");
       });
     });
+  }
+  saveLastAddedTime() {
+    const currentTime = new Date().getTime();
+    console.log(new Date(), `start`);
+    sessionStorage.setItem("lastAddedTime", currentTime.toString());
+    // Якщо таймер уже запущений, зупиняємо його перед запуском нового
+    if (this.checkLastAddedTimer) {
+      clearTimeout(this.checkLastAddedTimer);
+    }
+    // Перевіряємо через 180 секунд
+    this.checkLastAddedTimer = setTimeout(() => {
+      this.checkLastAddedTime();
+    }, this.lastAddedTimerStart); // 180 секунд
+  }
+  checkLastAddedTime() {
+    const lastAddedTime = sessionStorage.getItem("lastAddedTime");
+    if (lastAddedTime) {
+      const currentTime = new Date().getTime();
+      const timeDiff = currentTime - parseInt(lastAddedTime);
+      const secondsDiff = timeDiff / 1000;
+      if (secondsDiff >= this.lastAddedTimerStart / 1000) {
+        this.getItemsBasket();
+      }
+    }
+  }
+  checkAndRemoveLastAddedTime() {
+    const localTxtValue = JSON.parse(sessionStorage.getItem("localTxtValue"));
+    if (localTxtValue && window.location.href === localTxtValue["hrefBtn"]) {
+      sessionStorage.removeItem("lastAddedTime");
+    }
   }
 
   // common func
@@ -804,5 +845,5 @@ class IntentPopup {
   }
 }
 
-const exitIntentPopup = new IntentPopup(locale, 60000);
+const exitIntentPopup = new IntentPopup(locale, 60000, 180000);
 exitIntentPopup.init();
