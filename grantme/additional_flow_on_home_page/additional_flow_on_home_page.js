@@ -214,7 +214,7 @@ class HomePage {
     `;
     const scheduleFreeConsultationBtn = /* HTML */ `
       ${scheduleFreeConsultationBtnStyle}
-      <a class="schedule_a_free_link" href="https://app.grantme.com/assessment-outcome?user_type=parent">Schedule a free consultation call <span>now</span> ${icons.arrowBlue} </a>
+      <a class="schedule_a_free_link" target="_blank" href="https://app.grantme.com/assessment-outcome?user_type=parent">Schedule a free consultation call <span>now</span> ${icons.arrowBlue} </a>
     `;
     return scheduleFreeConsultationBtn;
   }
@@ -373,7 +373,7 @@ class HomePage {
     `;
     const telLink = /* HTML */ `
       ${telLinkStyle}
-      <a class="tel_link" href="tel:+18004934084">(800) 493-4084</a>
+      <a class="tel_link" href="tel:+16042565139">(604) 256-5139</a>
     `;
     return telLink;
   }
@@ -1155,6 +1155,7 @@ class BookingPage {
       this.onClickTrustScoreStarsBlocks();
       this.fixIconAccordion();
       this.observerBookingSteps();
+      this.onChangeTelTxt();
 
       if (this.device === "Mobile") {
         this.replaceElement();
@@ -1401,6 +1402,16 @@ class BookingPage {
       checkFocusTime("#newScheduleBox", "exp_add_flow_vis_bookcons_page", "Booking page Schedule a Complimentary Consultation");
     });
   }
+  onChangeTelTxt() {
+    waitForElement(".our_consultants_wrapper>p a").then((el) => {
+      if (el.textContent !== "(604) 256-5139") {
+        el.textContent = "(604) 256-5139";
+      }
+      if (el.href !== "tel:+16042565139") {
+        el.href = "tel:+16042565139";
+      }
+    });
+  }
 
   // common func
   initMainStyles() {
@@ -1408,7 +1419,6 @@ class BookingPage {
       <style>
         /*header */
         .sticky_header .book_free_call_btn {
-          display: flex !important;
           max-width: 164px;
         }
         .reviews_btn_wrapper p:last-child {
@@ -1454,12 +1464,8 @@ class BookingPage {
         body .consultation_descr_box > div ul li + li {
           margin-top: 16px;
         }
-        .our_consultants_wrapper > p:before {
-          background: url(${git}/grantme/img/telephone_blue.svg) no-repeat center center;
-        }
         .new_schedule_box > h2 {
           margin: 0 auto;
-          max-width: 358px;
         }
         .path-start-free-trial.path-schedule-consultation #scholarshipListContent .col-lg-7.center {
           max-width: 590px;
@@ -1520,7 +1526,13 @@ class BookingPage {
             right: -35px;
           }
         }
+        .new_schedule_box .new_schedule_descr span:nth-child(3):before {
+          background: url(${git}/grantme/img/telephone_blue.svg) no-repeat center center;
+        }
         @media (max-width: 768px) {
+          .our_consultants_wrapper > p:before {
+            background: url(${git}/grantme/img/telephone_blue.svg) no-repeat center center;
+          }
           .path-schedule-consultation .block-schedule-consulation-header #scholarshipListContent .academy-waiting {
             display: flex;
             flex-direction: column-reverse;
@@ -1540,7 +1552,7 @@ class BookingPage {
             background: url(${git}/grantme/img/clock_yellow.svg) no-repeat center center;
           }
           .new_schedule_box .new_schedule_descr span:nth-child(3):before {
-            background: url(${git}/grantme/img/zoom_yellow.svg) no-repeat center center;
+            background: url(https://app.grantme.com/themes/custom/grantmenew2/images/booking/telephone-yellow.svg) no-repeat center center;
           }
           body .our_consultants_wrapper h3 {
             color: #fff !important;
