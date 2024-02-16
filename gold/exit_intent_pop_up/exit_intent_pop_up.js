@@ -82,6 +82,45 @@ function checkScrollPosition(headerOff, elPosition) {
     behavior: "smooth",
   });
 }
+// load script
+const loadScriptOrStyle = (url) => {
+  return new Promise((resolve, reject) => {
+    // check script by document.scripts
+    const type = url.split(".").pop();
+    if (type === "js") {
+      const loadedScripts = Array.from(document.scripts).map((script) => script.src.toLowerCase());
+      if (loadedScripts.includes(url.toLowerCase())) {
+        console.log(`Script ${url} allready downloaded!`);
+        return resolve("");
+      }
+      const script = document.createElement("script");
+      script.src = url;
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.appendChild(script);
+    } else if (type === "css") {
+      const loadedStyles = Array.from(document.styleSheets).map((style) => style.href?.toLowerCase());
+      if (loadedStyles.includes(url.toLowerCase())) {
+        console.log(`Style ${url} allready downloaded!`);
+        return resolve("");
+      }
+      const style = document.createElement("link");
+      style.rel = "stylesheet";
+      style.href = url;
+      style.onload = resolve;
+      style.onerror = reject;
+      document.head.appendChild(style);
+    }
+  });
+};
+// load list of scripts
+const loadScriptsOrStyles = async (urls) => {
+  for (const url of urls) {
+    await loadScriptOrStyle(url);
+    console.log(`Loaded librari ${url}`);
+  }
+  console.log("All libraries loaded!");
+};
 function waitForElement(selector) {
   return new Promise((resolve) => {
     if (document.querySelector(selector)) {
@@ -117,11 +156,21 @@ const icons = {
     </svg>
   `,
   flames: /* HTML */ `
-    <svg xmlns="http://www.w3.org/2000/svg" width="9" height="12" viewBox="0 0 10 12" fill="none">
+    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="12" viewBox="0 0 10 12" fill="none">
       <path
         d="M9.47436 7.02583C9.33689 5.23617 8.50364 4.11466 7.76855 3.12499C7.08788 2.20877 6.5 1.41757 6.5 0.250428C6.5 0.156678 6.4475 0.0709907 6.36425 0.0280298C6.28074 -0.015189 6.1804 -0.00811086 6.10449 0.047061C5.00049 0.837045 4.07935 2.16851 3.75758 3.43891C3.53419 4.32337 3.50464 5.31768 3.50049 5.97438C2.48096 5.75662 2.25001 4.23159 2.24757 4.21497C2.23609 4.13587 2.18776 4.06704 2.11744 4.02944C2.04641 3.99234 1.9629 3.98965 1.89087 4.02529C1.83741 4.05117 0.578609 4.69078 0.505367 7.24455C0.500234 7.32951 0.5 7.41473 0.5 7.49993C0.5 9.98095 2.51879 11.9996 5 11.9996C5.00342 11.9999 5.00708 12.0003 5.01001 11.9996C5.01099 11.9996 5.01195 11.9996 5.01317 11.9996C7.48829 11.9925 9.5 9.97656 9.5 7.49993C9.5 7.37517 9.47436 7.02583 9.47436 7.02583ZM5 11.4997C4.17284 11.4997 3.5 10.7829 3.5 9.90187C3.5 9.87185 3.49976 9.84156 3.50194 9.80446C3.51195 9.43291 3.58252 9.17927 3.65991 9.01056C3.80494 9.32207 4.06421 9.60843 4.48536 9.60843C4.62355 9.60843 4.73537 9.49661 4.73537 9.35845C4.73537 9.00253 4.7427 8.5919 4.83132 8.22131C4.91019 7.89271 5.09865 7.54312 5.33743 7.26288C5.44362 7.62663 5.65067 7.92103 5.85282 8.20837C6.14213 8.61946 6.44119 9.0445 6.49369 9.76931C6.49686 9.81227 6.50004 9.85549 6.50004 9.90187C6.5 10.7829 5.82715 11.4997 5 11.4997Z"
-        fill="#8F4FC0"
+        fill="#EB3300"
       />
+    </svg>
+  `,
+  arrowPrev: /* HTML */ `
+    <svg xmlns="http://www.w3.org/2000/svg" width="6" height="10" viewBox="0 0 6 10" fill="none">
+      <path d="M5 8.5L1.5 5L5 1.5" stroke="#212529" stroke-width="2" stroke-linecap="round" />
+    </svg>
+  `,
+  arrowNext: /* HTML */ `
+    <svg xmlns="http://www.w3.org/2000/svg" width="6" height="10" viewBox="0 0 6 10" fill="none">
+      <path d="M1 1.5L4.5 5L1 8.5" stroke="#212529" stroke-width="2" stroke-linecap="round" />
     </svg>
   `,
 };
@@ -129,22 +178,20 @@ const icons = {
 const localTxt = {
   ua: {
     productsHeaderTitle: "Вже майже ваше!",
-    productsHeaderTitleTxt: "Залишився лише один крок",
-    productsBannerLimitTxt: "Це популярний виріб, кількість лімітована",
-    outOfStockTxtPart1: "Лише",
-    outOfStockTxtPart2: "шт. залишилось на складі",
+    outOfStockTxtPart1: "Залишилося менше",
+    outOfStockTxtPart2: "шт. на складі",
+    productsPriceTxt: "Ціна зі знижкою:",
     productsFooterInfoTxt: 'Ми не можемо гарантувати наявність, якщо ви не <span class="accent_color">зробите замовлення зараз</span>',
     orderBtn: "Оформити замовлення",
     hrefBtn: "https://gold.ua/ua/order/create",
   },
   ru: {
-    productsHeaderTitle: "!",
-    productsHeaderTitleTxt: "",
-    productsBannerLimitTxt: "",
-    outOfStockTxtPart1: "",
-    outOfStockTxtPart2: "",
-    productsFooterInfoTxt: ' <span class="accent_color"></span>',
-    orderBtn: "",
+    productsHeaderTitle: "Уже почти ваше!",
+    outOfStockTxtPart1: "Осталось меньше",
+    outOfStockTxtPart2: "шт. на складе",
+    productsPriceTxt: "Цена со скидкой:",
+    productsFooterInfoTxt: 'Мы не можем гарантировать наличие, если вы не <span class="accent_color">сделаете заказ сейчас</span>',
+    orderBtn: "Оформить заказ",
     hrefBtn: "https://gold.ua/order/create",
   },
 };
@@ -266,18 +313,24 @@ class IntentPopup {
     const itemsBasket = doc.querySelectorAll(".basket-page .product-item");
     if (itemsBasket.length !== 0) {
       this.showIntentPopup();
+
       itemsBasket.forEach((el) => {
         const link = el.querySelector(".image.me-3 > a")?.href;
         const img = el.querySelector(".image.me-3 > a")?.innerHTML;
-        const info = el.querySelector(".info")?.innerHTML;
+        const title = el.querySelector(".info .name a")?.textContent;
+        const price = el.querySelector(".info .price")?.textContent.split("x")[0];
 
         waitForElement(".product_list").then((i) => {
+          if (itemsBasket.length === 1) {
+            i.closest(".swiper").classList.add("one_item");
+          }
           if (i.length !== el.children.length) {
-            i.insertAdjacentHTML("beforeend", this.productItemHtml(link, img, this.generateMessageOutOfStock(), info));
+            i.insertAdjacentHTML("beforeend", this.productItemHtml(link, img, this.generateMessageOutOfStock(), title, price));
           }
         });
       });
 
+      this.allGroupProductSlider();
       this.onClickProductItemInfo();
       this.onClickOrderBtn();
     }
@@ -316,15 +369,27 @@ class IntentPopup {
       document.addEventListener("touchmove", () => this.resetTimer());
     }
   }
-  productItemHtml(pdpLink, img, outOfStock, info) {
+  productItemHtml(pdpLink, img, outOfStock, title, price) {
     const productItem = /* HTML */ `
-      <div class="product_item">
-        <div class="img_wrapper">
-          <a href="${pdpLink}"> ${img} </a>
-        </div>
-        <div class="product_item_descr">
-          <div class="out_of_stock_wrapper">${icons.flames} ${outOfStock}</div>
-          <div class="product_item_info" data-info="${pdpLink}">${info}</div>
+      <div class="product_item_wrapper swiper-slide">
+        <div class="product_item">
+          <div class="img_wrapper">
+            <a href="${pdpLink}"> ${img} </a>
+          </div>
+          <div class="product_item_descr">
+            <div class="out_of_stock_wrapper">${icons.flames} ${outOfStock}</div>
+            <div class="product_item_info" data-info="${pdpLink}">
+              <a href="${pdpLink}">
+                <h3 class="product_item_title">${title}</h3>
+              </a>
+              <a href="${pdpLink}">
+                <div class="product_item_price_wrapper">
+                  <span class="product_item_price_txt">${localTxtValue["productsPriceTxt"]}</span>
+                  <span class="product_item_price_value">${price}</span>
+                </div>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     `;
@@ -350,17 +415,17 @@ class IntentPopup {
           box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
         }
         .products_header {
-          padding: 12px 16px 16px;
+          padding: 12px 16px 8px;
         }
         .products_header h2 {
           color: #000;
           text-align: center;
           font-family: "Lora";
-          font-size: 24px;
+          font-size: 22px;
           font-weight: 400;
           line-height: 28px;
-          letter-spacing: -0.48px;
-          margin-bottom: 2px;
+          letter-spacing: -0.44px;
+          margin: 0;
         }
         .products_header p {
           color: #666;
@@ -386,11 +451,11 @@ class IntentPopup {
           margin: 0;
         }
         .products_body {
-          padding: 12px 16px 5px;
+          padding: 16px 0 0;
           background: #fff;
         }
         .products_footer {
-          padding: 12px 16px 16px 16px;
+          padding: 24px 16px 16px 16px;
           background: #fff;
         }
         .products_footer_info {
@@ -401,6 +466,7 @@ class IntentPopup {
           padding: 8px 11px 8px 12px;
           margin-bottom: 12px;
           background: rgba(63, 18, 99, 0.05);
+          display: none;
         }
         .products_footer_info p {
           color: #666;
@@ -431,25 +497,12 @@ class IntentPopup {
           background: #7a3dab;
           text-decoration: none;
         }
-
-        .product_list {
-          display: flex;
-          overflow-x: auto;
-          padding-bottom: 15px;
-        }
-        .product_list::-webkit-scrollbar-thumb {
-          background: #212121;
-          border-radius: 10px;
-        }
-        .product_list::-webkit-scrollbar {
-          height: 4px;
-        }
-        .product_list::-webkit-scrollbar-track {
-          background: #dddee9;
-        }
         @media (max-width: 768px) {
           .products_header {
             padding: 12px 16px 8px;
+          }
+          .products_footer {
+            padding: 12px 16px 16px;
           }
         }
       </style>
@@ -458,20 +511,20 @@ class IntentPopup {
     const productItemStyle = /* HTML */ `
       <style>
         .product_item {
-          display: flex;
-          gap: 24px;
+          display: flex !important;
+          gap: 12px;
           align-items: center;
           justify-content: flex-start;
-          flex: 1 0 363px;
+          flex: 1 0 335px;
+          flex-direction: column;
+          padding: 0 16px;
         }
-        .product_item:not(:last-child) {
-          border-right: 1px solid rgba(0, 0, 0, 0.06);
-          padding: 0 10px 0 0;
-          margin-right: 15px;
+        .swiper.one_item .swiper-wrapper .product_item {
+          flex: initial;
         }
         .product_item .img_wrapper {
-          max-width: 120px;
-          max-height: 120px;
+          max-width: 220px;
+          max-height: 220px;
           width: 100%;
           height: 100%;
         }
@@ -484,12 +537,12 @@ class IntentPopup {
         .product_item .out_of_stock_wrapper {
           display: flex;
           align-items: center;
-          justify-content: flex-start;
+          justify-content: center;
           gap: 7px;
-          margin-bottom: 6px;
+          margin-bottom: 8px;
         }
         .product_item .out_of_stock_wrapper p {
-          color: #8f4fc0;
+          color: #eb3300;
           font-family: "Euclid Circular A";
           font-size: 12px;
           font-weight: 400;
@@ -500,67 +553,100 @@ class IntentPopup {
         .product_item .product_item_descr a {
           text-decoration: none;
         }
-        .product_item .product_item_descr .name a {
+        .product_item_info {
+          text-align: center;
+        }
+        .product_item .product_item_title {
           color: #000;
           text-overflow: ellipsis;
           font-family: "Lora";
-          font-size: 18px;
+          font-size: 16px;
           font-weight: 500;
-          line-height: 24px;
-          letter-spacing: -0.18px;
-          margin-bottom: 4px;
-          max-width: 250px;
+          line-height: 22px;
+          letter-spacing: -0.16px;
+          margin: 0 auto 12px;
+          max-width: 280px;
         }
-        .product_item_info {
-          cursor: pointer;
-        }
-        .product_item .property_name {
+        .product_item_price_txt {
           color: #666;
+          text-align: center;
           font-family: "Euclid Circular A";
-          font-size: 14px;
-          font-weight: 400;
-          line-height: 20px;
-          letter-spacing: -0.28px;
-          margin: 0;
-        }
-        .product_item .price_wrapper {
-          margin-top: 12px;
-        }
-        .product_item .price_wrapper .last_price,
-        .product_item .promo_code_txt {
-          color: #666;
-          font-family: "Euclid Circular A";
-          font-size: 14px;
+          font-size: 16px;
           font-weight: 400;
           line-height: 24px;
-          letter-spacing: -0.28px;
-          margin: 0;
+          letter-spacing: -0.32px;
         }
-        .product_item .price_wrapper .last_price {
-          text-decoration: line-through;
-        }
-        .product_item .price_wrapper .new_price {
-          color: #000;
+        .product_item_price_value {
+          color: #3f1263;
           font-family: "Euclid Circular A";
           font-size: 18px;
           font-weight: 600;
           line-height: 24px;
           letter-spacing: -0.36px;
-          margin: 0;
         }
-        .product_item .promo_code_price {
-          color: #955bc3;
-          font-family: "Euclid Circular A";
-          font-size: 16px;
-          font-weight: 600;
-          line-height: 24px;
-          letter-spacing: -0.32px;
+        /*.swiper */
+        .swiper {
+          padding-bottom: 25px;
         }
-        .product_item .promo_code_wrapper {
-          display: none;
-          margin: 0;
+        .swiper.one_item {
+          padding-bottom: 0;
+        }
+        .swiper-horizontal > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic,
+        .swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
+          bottom: 0;
+        }
+        .swiper-button-next,
+        .swiper-button-prev {
+          bottom: 0 !important;
+          top: unset;
+          width: 4px;
+          height: 7px;
+        }
+        .swiper-button-prev:after,
+        .swiper-rtl .swiper-button-next:after,
+        .swiper-button-next:after,
+        .swiper-rtl .swiper-button-prev:after {
+          content: unset;
+        }
+        .swiper-button-next,
+        .swiper-rtl .swiper-button-prev {
+          right: 190px;
+        }
+        .swiper-button-prev,
+        .swiper-rtl .swiper-button-next {
+          left: 190px;
+        }
+        .swiper-pagination-bullet {
+          background: #d9d9d9;
+          opacity: 1;
+        }
+        .swiper-pagination-bullet-active {
+          background: #212121;
+        }
+
+        .swiper .swiper-wrapper .product_item_wrapper:not(:last-child) {
+          border-right: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .swiper .swiper-wrapper .product_item_wrapper {
+          flex: 1 0 355px;
+          display: flex;
+          flex-direction: column;
         }
         @media (max-width: 768px) {
+          .swiper .swiper-wrapper .product_item_wrapper {
+            flex: 1 0 271px;
+          }
+          .product_item {
+            flex: 1 0 335px;
+          }
+          .product_item .product_item_title {
+            max-width: 239px;
+          }
+          .swiper-button-next,
+          .swiper-button-prev {
+            display: none;
+          }
         }
       </style>
     `;
@@ -569,13 +655,17 @@ class IntentPopup {
       <div class="products_popup">
         <div class="products_header">
           <h2>${localTxtValue["productsHeaderTitle"]}</h2>
-          <p>${localTxtValue["productsHeaderTitleTxt"]}</p>
-        </div>
-        <div class="products_banner_limit">
-          <p>${localTxtValue["productsBannerLimitTxt"]}</p>
         </div>
         <div class="products_body">
-          <div class="product_list">${productItemStyle}</div>
+          <div class="product_list_wrapper">
+            ${productItemStyle}
+            <div class="swiper">
+              <div class="swiper-wrapper product_list"></div>
+              <div class="swiper-pagination"></div>
+              <div class="swiper-button-prev">${icons.arrowPrev}</div>
+              <div class="swiper-button-next">${icons.arrowNext}</div>
+            </div>
+          </div>
         </div>
         <div class="products_footer">
           <div class="products_footer_info">
@@ -612,7 +702,6 @@ class IntentPopup {
       $$el(".product_item_info").forEach((el) => {
         el.addEventListener("click", (e) => {
           if (e.currentTarget.getAttribute("data-info")) {
-            window.location = e.currentTarget.getAttribute("data-info");
           }
         });
       });
@@ -655,6 +744,33 @@ class IntentPopup {
       sessionStorage.removeItem("lastAddedTime");
     }
   }
+  allGroupProductSlider() {
+    loadScriptsOrStyles(["https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css", "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"]).then(async () => {
+      let s = setInterval(() => {
+        if (typeof Swiper === "function" && $el(".swiper")) {
+          clearInterval(s);
+          console.log(typeof Swiper, `typeof Swiper `);
+
+          const swiperMain = new Swiper(".swiper", {
+            // Optional parameters
+            direction: "horizontal",
+            slidesPerView: "auto",
+
+            pagination: {
+              el: ".swiper-pagination",
+              dynamicBullets: true,
+              clickable: true,
+            },
+
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+          });
+        }
+      }, 100);
+    });
+  }
 
   // common func
   createPopup() {
@@ -681,7 +797,7 @@ class IntentPopup {
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          max-width: 485px;
+          max-width: 490px;
           width: calc(100% - 32px);
           background: #eef4fc;
         }
@@ -705,9 +821,9 @@ class IntentPopup {
         }
         @media (max-width: 768px) {
           .new-popup {
-            max-width: 100%;
+            max-width: 340px;
             width: 100%;
-            top: 9px;
+            top: 57px;
             transform: translateX(-50%);
           }
           .new-popup__close {
