@@ -273,7 +273,7 @@ class IntentPopup {
 
     if (currentUrl.includes(this.targetUrl) && this.targetUrl === "/collections") {
       console.log(`ONLY POPUP >>>>>`);
-      this.intentPopupTriggers();
+      // this.intentPopupTriggers()
     }
 
     // reDesignPdp
@@ -1451,6 +1451,13 @@ class IntentPopup {
         .new_pro-grid .ProductForm__Variants .SizeSwatchList.HorizontalList label span {
           color: #333f48;
         }
+        .new_pro-grid .ProductForm__Variants .SizeSwatchList.HorizontalList label span s {
+          font-family: "Poppins";
+          color: #333f48;
+          margin: -0 3px -3px 0;
+          font-weight: 500;
+          font-size: 15px;
+        }
         .new_pro-grid .ProductForm__Variants .SizeSwatch > div:nth-of-type(1) {
           display: flex;
           align-items: center;
@@ -1459,7 +1466,7 @@ class IntentPopup {
           width: 100%;
           margin-right: 2px;
           flex-direction: row-reverse;
-          gap: 30px;
+          gap: 15px;
         }
         .new_pro-grid .ProductForm__Variants .SizeSwatch > div:nth-of-type(1) p {
           color: #333f48;
@@ -1526,7 +1533,7 @@ class IntentPopup {
           }
           .esim-tabs {
             margin-bottom: 24px;
-            justify-content: space-between;
+            justify-content: flex-start;
           }
           .esim-tabs .tab-link {
             margin: 0 !important;
@@ -2524,9 +2531,11 @@ class IntentPopup {
   initMainStyles() {
     const mainStyles = /* HTML */ `
       <style>
+        /*
         body div .kl-private-reset-css-Xuajs1 {
           display: none !important;
         }
+        */
         .dn_desk {
           display: none;
         }
