@@ -137,9 +137,123 @@ const dataSavings = {
   $800: ["$138,212", "$239,784", "$101,571"],
 };
 
+const dataStatesInfo = {
+  "California (CA)": [
+    {
+      name: "SGIP:",
+      description: "Rebate for solar battery installation",
+    },
+    {
+      name: "Property tax exclusion:",
+      description: "No increased property taxes after installing solar panels",
+    },
+    {
+      name: "PACE program:",
+      description: "Financing for solar panels paid through property taxes",
+    },
+    {
+      name: "Local California solar incentives:",
+      description: "Varies by power company and location",
+    },
+  ],
+  Florida: [
+    {
+      name: "Property tax exemption:",
+      description: "No increased property taxes from increased home value after installation",
+    },
+    {
+      name: "Sales tax exemption:",
+      description: "No sales tax on solar purchase",
+    },
+    {
+      name: "Solar loans:",
+      description: "Financing options for solar panel installations",
+    },
+  ],
+  "New York (NY)": [
+    {
+      name: "New York State Solar Equipment Tax Credit:",
+      description: "25% tax credit for fully installed solar panel systems",
+    },
+    {
+      name: "Megawatt Block Incentive:",
+      description: "Savings are based on watts installed",
+    },
+    {
+      name: "NY-Sun Initiative:",
+      description: "Help lower the cost of installing solar",
+    },
+    {
+      name: "Sales Tax Exemption:",
+      description: "No 4% sales tax on solar purchase",
+    },
+    {
+      name: "Property Tax Exemption:",
+      description: "No increased property taxes after installing solar panels",
+    },
+  ],
+  "Massachusetts (MA)": [
+    {
+      name: "Massachusetts state solar tax credit:",
+      description: "State income tax credit worth 15% of total solar installation cost, up to $1,000",
+    },
+    {
+      name: "Solar property tax exemption:",
+      description: "No increased property taxes after installing solar panels",
+    },
+    {
+      name: "Solar sales tax exemption:",
+      description: "No 6.25% sales tax on solar purchase",
+    },
+    {
+      name: "Solar Massachusetts Renewable Target (SMART) program:",
+      description: "Payments from investor-owned utility companies for electricity generated through solar",
+    },
+    {
+      name: "Massachusetts Municipal Light Plant Solar Program:",
+      description: "Various rebates for customers of six publicly owned utility companies for installing solar",
+    },
+  ],
+  "Connecticut (CT)": [
+    {
+      name: "RSIP:",
+      description: "Cost per watt reduction for solar system owners",
+    },
+    {
+      name: "Connecticut Residential Renewable Energy Solutions Program:",
+      description: "A variety of incentives available to customers ",
+    },
+    {
+      name: "Solar property tax exemption:",
+      description: "No increased property taxes after installing solar panels",
+    },
+    {
+      name: "Solar sales tax exemption:",
+      description: "No sales tax on solar purchase",
+    },
+  ],
+  Nevada: [
+    {
+      name: "Net Metering",
+      description: "",
+    },
+  ],
+  Hawaii: [
+    {
+      name: "RETITC:",
+      description: "Tax break of 35% on residential solar installations (maximum $5,000)",
+    },
+    {
+      name: "GEM$ On-Bill Program:",
+      description: "Offers immediate bill savings and long-term financing of up to 20 years",
+    },
+  ],
+};
+
 function roundToNearestMultiple(number) {
   // Визначення множника
   const multiple = number < 100 ? 5 : 50;
+  console.log(Math.ceil(number / multiple) * multiple, `multiple`);
 
   // Округлення до найближчого більшого числа, кратного множнику
   return Math.ceil(number / multiple) * multiple;
@@ -323,39 +437,16 @@ class changeFlow {
     `;
     return savingsOnEnergyHtml;
   }
-  safeAndSecureHtml() {
-    const safeAndSecureStyle = /* HTML */ `
-      <style>
-        .safe_and_secure_wrapper {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 10px;
-          max-width: 540px;
-          width: 100%;
-          margin: 18px auto 0;
-        }
-        .safe_and_secure_wrapper p {
-          color: #2b3d50;
-          font-size: 14px;
-          font-weight: 700;
-          line-height: 20px;
-          margin: 0;
-        }
-        @media (max-width: 768px) {
-        }
-      </style>
-    `;
-    const safeAndSecureHtml = /* HTML */ `
-      <div class="safe_and_secure_wrapper">
-        ${safeAndSecureStyle} ${icons.securitySafe}
-        <p>Your data is safe and secure</p>
-      </div>
-    `;
-    return safeAndSecureHtml;
-  }
-
+  //
   searchingAvailableIncentiveProgramsHtml() {
+    const price = $(".rangeslider-tooltip").text() ? $(".rangeslider-tooltip").text().replace("+", "") : "$50",
+      solarBefore = price,
+      solarAfter = `$${parseFloat(price.replace(price[0], "").split(",")[0]) * 0.46}`,
+      toPriceAfterBefore = roundToNearestMultiple(parseFloat(solarBefore.replace(solarBefore[0], "").split(",")[0])),
+      costWit = dataSavings[price][0],
+      costWithout = dataSavings[price][1],
+      toPrice = roundToNearestMultiple(parseFloat(costWithout.replace(costWithout[0], "").split(",")[0]));
+
     const style = /* HTML */ `
       <style>
         .federal_credit {
@@ -363,7 +454,7 @@ class changeFlow {
           transform: translate3d(-4942px, 0px, 0px);
           transition-duration: 0ms;
         }
-        .federal_credit div {
+        .federal_credit > div {
           width: 100%;
         }
         .searching_programs_wrapper {
@@ -401,11 +492,14 @@ class changeFlow {
             transform: rotate(360deg);
           }
         }
-        /*available_incentive_found_wrapper */
-        .available_incentive_found_wrapper {
+        /*incentive_wrapper */
+        .incentive_wrapper {
           width: 100%;
         }
-        .available_incentive_found_wrapper h2 {
+        .incentive_wrapper.is_hidden {
+          display: none;
+        }
+        .incentive_wrapper h2 {
           color: #2b3d50;
           font-size: 32px;
           font-weight: 900;
@@ -413,7 +507,7 @@ class changeFlow {
           margin: 0 0 16px;
           text-align: center;
         }
-        .available_incentive_found_list li {
+        .incentive_list li {
           display: flex;
           gap: 14px;
           border-radius: 8px;
@@ -423,14 +517,14 @@ class changeFlow {
           justify-content: flex-start;
           align-items: flex-start;
         }
-        .available_incentive_found_list li p {
+        .incentive_list li p {
           color: #427596;
           font-size: 18px;
           font-weight: 700;
           line-height: 24px;
           margin: 0 0 4px;
         }
-        .available_incentive_found_list li span {
+        .incentive_list li span {
           color: #757575;
           font-size: 16px;
           font-weight: 400;
@@ -447,9 +541,9 @@ class changeFlow {
             ${icons.loader}
             <p>Searching available Incentive Programs in your area</p>
           </div>
-          <div class="available_incentive_found_wrapper is_hidden">
+          <div class="incentive_wrapper is_hidden">
             <h2>Available incentives found</h2>
-            <ul class="available_incentive_found_list">
+            <ul class="incentive_list">
               <li>
                 ${icons.tickCircle}
                 <div>
@@ -459,14 +553,83 @@ class changeFlow {
               </li>
             </ul>
           </div>
-          ${this.showSolarSavingsBtnBlockHtml()}
+          ${this.lifetimeCostAnalysisHtml("Monthly bill comparison", solarAfter, solarBefore, toPriceAfterBefore, "Before solar", "After  solar")}
         </div>
       </li>
     `;
 
     return html;
   }
+  // ${this.lifetimeCostAnalysisHtml(
+  //   'Monthly bill comparison',
+  //   solarAfter,
+  //   solarBefore,
+  //   toPriceAfterBefore,
+  //   'Before solar',
+  //   'After  solar'
+  // )}
 
+  //  ${this.lifetimeCostAnalysisHtml(
+  //   'Lifetime cost analysis with and without solar',
+  //   costWit,
+  //   costWithout,
+  //   toPrice,
+  //   'Without solar',
+  //   'With solar'
+  // )}
+  incentiveListCustomHtml(name, description) {
+    const style = /* HTML */ `
+      <style>
+        .incentive_list_custom {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          border-radius: 8px;
+          border: 1px solid rgba(66, 117, 150, 0.16);
+          background: #fff;
+          padding: 17px 12px 18px 12px;
+          margin-top: 7px;
+        }
+        .incentive_list_custom li {
+          display: flex;
+          gap: 14px;
+          justify-content: flex-start;
+          align-items: flex-start;
+        }
+        .incentive_list_custom li svg {
+          width: 18px;
+          height: 18px;
+        }
+        .incentive_list_custom li p {
+          color: #427596;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 20px;
+          margin: 0;
+        }
+        .incentive_list_custom li span {
+          color: #757575;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 16px;
+        }
+      </style>
+    `;
+    const html = /* HTML */ `
+      <ul class="incentive_list_custom">
+        ${style}
+        <li>
+          ${icons.tickCircle}
+          <div>
+            <p>${name}</p>
+            <span>${description}</span>
+          </div>
+        </li>
+      </ul>
+    `;
+
+    return html;
+  }
   showSolarSavingsBtnBlockHtml() {
     const style = /* HTML */ `
       <style>
@@ -518,8 +681,294 @@ class changeFlow {
     `;
     return html;
   }
+  //
+  lifetimeCostAnalysisHtml(title, costWit, costWithout, toPrice, txt1, txt2) {
+    const style = /* HTML */ ` <style>
+      .lifetime_cost_analysis_wrapper h2 {
+        color: #2b3d50;
+        font-size: 32px;
+        font-weight: 900;
+        line-height: 40px;
+        margin: 0 auto;
+        max-width: 400px;
+        text-align: center;
+      }
+      .monthly_bill_box {
+        border-radius: 8px;
+        border: 1px solid rgba(66, 117, 150, 0.16);
+        background: #fff;
+        margin: 16px 0 0;
+        padding: 16px 20px 10px;
+      }
+      .monthly_bill_box > p {
+        color: #2b3d50;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 20px;
+        margin: 0 0 14px;
+      }
+      .lifetime_cost_analysis_wrapper .powered_by_wrapper {
+        background: none;
+        margin-top: 15px;
+      }
+      .lifetime_cost_analysis_wrapper .powered_by_wrapper p {
+        display: none;
+      }
+      /* crs_graphic*/
+      .crs_graphic {
+        width: 100%;
+      }
+      .crs_graphic_line_wrapp {
+        position: relative;
+        height: 62px;
+        padding: 8px 15px 10px;
+      }
+      .crs_graphic_line_wrapp::before {
+        position: absolute;
+        content: "";
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+      }
+      .crs_graphic_line_wrapp.navy::before {
+        opacity: 0.24;
+        background: #fd9d90;
+      }
+      .crs_graphic_line_wrapp.green::before {
+        opacity: 0.2;
+        background: #83be63;
+      }
+      .crs_graphic_line_wrapp.green::after {
+        position: absolute;
+        content: "";
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: url(${git}sunvalue/img/tick_circle.svg) no-repeat;
+        width: 40px;
+        height: 40px;
+        background-size: initial;
+        opacity: 0.2;
+      }
+      .crs_graphic_line_wrapp + .crs_graphic_line_wrapp {
+        margin-top: 14px;
+      }
+      .crs_graphic_line_wrapp p {
+        position: relative;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 900;
+        line-height: 16px;
+        letter-spacing: 0.12px;
+        text-align: left;
+        margin: 0;
+        z-index: 1;
+      }
+      .crs_graphic_line_wrapp span {
+        position: relative;
+        display: block;
+        color: #fff;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 28px;
+        margin: 0;
+        z-index: 1;
+      }
+      .crs_graphic_line {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        z-index: 0;
+      }
+      .crs_graphic_line.navy {
+        border-radius: 8px;
+        background: #ff9384;
+      }
+      .crs_graphic_line.green {
+        border-radius: 8px;
+        background: #83be63;
+      }
+    </style>`;
+    const html = /* HTML */ `
+      <div class="lifetime_cost_analysis_wrapper">
+        ${style}
+        <h2>${title}</h2>
+        <div class="monthly_bill_box">
+          <p>Monthly bill:</p>
+          <div class="crs_graphic">
+            <div class="crs_graphic_line_wrapp navy">
+              <p><b>${txt1}</b></p>
+              <span>${costWithout}</span>
+              <div class="crs_graphic_line navy" style="width: ${(100 * parseFloat(costWithout.replace(costWithout[0], "").split(",")[0])) / toPrice}%"></div>
+            </div>
+            <div class="crs_graphic_line_wrapp green">
+              <p><b>${txt2}</b></p>
+              <span>${costWit}</span>
+              <div class="crs_graphic_line green" style="width: ${(100 * parseFloat(costWit.replace(costWit[0], "").split(",")[0])) / toPrice}%"></div>
+            </div>
+          </div>
+          ${this.poweredByHtml()}
+        </div>
+      </div>
+    `;
 
-  //change slides
+    return html;
+  }
+  //
+  estimatedLifetimeSavingsHtml() {
+    const price = $(".rangeslider-tooltip").text();
+
+    const style = /* HTML */ `
+      <style>
+        .estimated_lifetime_sav_wrapper h2 {
+          color: #2b3d50;
+          font-size: 32px;
+          font-weight: 900;
+          line-height: 40px;
+          margin: 0;
+          text-align: center;
+        }
+        .you_will_save_box {
+          border-radius: 8px;
+          border: 1px solid rgba(66, 117, 150, 0.16);
+          background: #fff;
+          margin: 16px 0 0;
+          padding: 16px 20px 10px;
+        }
+        .you_will_save_box p {
+          color: #2b3d50;
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 20px;
+          margin: 0 0 14px;
+        }
+        .save_price_box {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 8px;
+          border-radius: 8px;
+          background: rgba(251, 115, 6, 0.12);
+          padding: 12px;
+          margin: 0 0 10px;
+        }
+        .save_price_box span {
+          color: #fb7306;
+          font-size: 32px;
+          font-weight: 700;
+          line-height: 40px;
+        }
+        .you_will_save_box .powered_by_wrapper {
+          background: none;
+        }
+        .you_will_save_box .powered_by_wrapper p {
+          display: none;
+        }
+      </style>
+    `;
+    const html = /* HTML */ `
+      <div class="estimated_lifetime_sav_wrapper">
+        ${style}
+        <h2>Estimated lifetime savings</h2>
+        <div class="you_will_save_box">
+          <p>You will save:</p>
+          <div class="save_price_box">
+            <img src="${git}/sunvalue/img/moneybox.svg" alt="moneybox icon" />
+            <span>${dataSavings[price][2]}</span>
+          </div>
+          ${this.poweredByHtml()}
+        </div>
+      </div>
+    `;
+    return html;
+  }
+  findOutIfYouQualifyBtnHtml() {
+    const style = /* HTML */ `
+      <style>
+        .find_out_if_you_qualify_wrapper {
+          width: 100%;
+          padding: 12px 16px;
+          border-radius: 8px;
+          border-top: 1px solid #e0e4eb;
+          background: #fff;
+        }
+        .find_out_if_you_qualify_wrapper p {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 5px;
+          color: #2b3d50;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 24px;
+          margin: 0 0 12px;
+        }
+        #findOutIfYouQualifyBtn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 16px 53px;
+          border-radius: 8px;
+          background: #83be63;
+          color: #fff;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 24px;
+          letter-spacing: 0.5px;
+          text-transform: uppercase;
+          cursor: pointer;
+        }
+      </style>
+    `;
+    const html = /* HTML */ `
+      <div class="find_out_if_you_qualify_wrapper">
+        ${style}
+        <p>
+          Ready to save with solar? Explore your qualification for limited time program with SunValue
+          <img src="${git}/sunvalue/img/money_icon.png" alt="money icon" />
+        </p>
+        <div id="findOutIfYouQualifyBtn">FIND OUT IF YOU QUALIFY</div>
+      </div>
+    `;
+    return html;
+  }
+  //
+  safeAndSecureHtml() {
+    const safeAndSecureStyle = /* HTML */ `
+      <style>
+        .safe_and_secure_wrapper {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          max-width: 540px;
+          width: 100%;
+          margin: 18px auto 0;
+        }
+        .safe_and_secure_wrapper p {
+          color: #2b3d50;
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 20px;
+          margin: 0;
+        }
+        @media (max-width: 768px) {
+        }
+      </style>
+    `;
+    const safeAndSecureHtml = /* HTML */ `
+      <div class="safe_and_secure_wrapper">
+        ${safeAndSecureStyle} ${icons.securitySafe}
+        <p>Your data is safe and secure</p>
+      </div>
+    `;
+    return safeAndSecureHtml;
+  }
+
+  // change slides
   changeSlides() {
     waitForElement(".swiper-wrapper .swiper-slide").then((el) => {
       let steps = $$el(".swiper-wrapper .swiper-slide");
@@ -650,8 +1099,8 @@ class changeFlow {
 
   updateRangeSlider() {
     const rangeBlock = `
-        <input type="range" min="50" value="300" max="800" step="50" name="monthly_elec" data-rangeslider>
-        <div class="rangeslider-tooltip">$<output></output></div>
+        <input type="range" min="50" value="800" max="800" step="50" name="monthly_elec" data-rangeslider>
+        <div class="rangeslider-tooltip">$<output>800</output></div>
         <div class="sliderLegend">
             <p class="sliderLegendItem--start">$50</p>
             <p class="sliderLegendItem--end">$800+</p>
@@ -672,152 +1121,6 @@ class changeFlow {
     });
 
     initRangeSlider();
-  }
-
-  addAnalyzedInfo() {
-    const style = /* HTML */ `
-      <style>
-        .crs_analyzing {
-          padding: 0;
-        }
-        .crs_analyzing li {
-          border-radius: 5px;
-          background: #fff;
-          margin: 0 0 12px 0;
-          padding: 10px;
-          list-style-type: none;
-        }
-        .crs_analyzing p {
-          color: #4a4a4a;
-          text-align: center;
-          font-size: 16px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: 24px;
-          margin: 0;
-        }
-        .crs_analyzing p b {
-          color: #427596;
-          font-size: 14px;
-          font-weight: 700;
-          line-height: 24px;
-        }
-        .crs_analyzing p:not(.flex-center) b {
-          font-size: 24px;
-          line-height: 36px;
-        }
-        .crs_analyzing p svg {
-          flex-shrink: 0;
-          margin-right: 8px;
-          margin-top: 6px;
-        }
-        .crs_analyzing p span {
-          padding-right: 5px;
-        }
-        .crs_analyzing p:first-child {
-          margin-bottom: 4px;
-        }
-        .flex-center {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .crs_graphic {
-          width: calc(100% - 16px);
-          margin: 0 auto;
-        }
-        .crs_graphic p,
-        .crs_thank .crs_analyzing .crs_graphic b {
-          color: #4a4a4a;
-          font-size: 12px;
-          font-style: normal;
-          font-weight: 700;
-          line-height: 20px;
-          padding: 0 8px 4px;
-          text-align: left;
-        }
-        .crs_graphic_line {
-          height: 42px;
-          flex-shrink: 0;
-          margin-bottom: 6px;
-        }
-        .crs_graphic_line span {
-          display: block;
-          text-align: right;
-          line-height: 42px;
-          color: #fff;
-          font-family: "Noto Sans SC", sans-serif;
-          font-size: 12px;
-          font-style: normal;
-          font-weight: 700;
-          padding: 0 4px;
-        }
-        .crs_graphic_line.navy {
-          background: #427596;
-          margin-bottom: 10px;
-        }
-        .crs_graphic_line.green {
-          background: #83be63;
-        }
-
-        .crs_analyzing h3 {
-          color: #4a4a4a;
-          font-family: "Noto Sans SC", sans-serif;
-          font-size: 16px;
-          font-style: normal;
-          line-height: 24px;
-        }
-        @media (min-width: 770px) {
-          .crs_analyzing h3 {
-            margin: 0 0 24px 0;
-          }
-          .crs_analyzing li:last-child {
-            padding: 24px 30px;
-          }
-          .crs_graphic {
-            width: 100%;
-          }
-        }
-      </style>
-    `;
-    const price = $(".rangeslider-tooltip").text(),
-      costWit = dataSavings[price][0],
-      costWithout = dataSavings[price][1],
-      toPrice = roundToNearestMultiple(parseFloat(costWithout.replace(costWithout[0], "").split(",")[0]));
-
-    console.log(costWit, `costWit>>>>>>>>>>>>>>>>>>.`);
-    const html = /* HTML */ `
-      ${style}
-      <ul class="crs_analyzing">
-        <li>
-          <p>Your Latest Energy Bill</p>
-          <p><b>${price}</b></p>
-        </li>
-        <li>
-          <p>You will save:</p>
-          <p><b>${dataSavings[price][2]}</b></p>
-        </li>
-        <li>
-          <h3>Monthly bill:</h3>
-          <div class="crs_graphic">
-            <div>
-              <p><b>Without solar</b></p>
-              <div class="crs_graphic_line navy" style="width: ${(100 * parseFloat(costWithout.replace(costWithout[0], "").split(",")[0])) / toPrice}%">
-                <span>${costWithout}</span>
-              </div>
-            </div>
-            <div>
-              <p><b>With solar</b></p>
-              <div class="crs_graphic_line green" style="width: ${(100 * parseFloat(costWit.replace(costWit[0], "").split(",")[0])) / toPrice}%">
-                <span>${costWit}</span>
-              </div>
-            </div>
-          </div>
-        </li>
-      </ul>
-    `;
-
-    return html;
   }
 
   // Thank You Page
@@ -850,7 +1153,7 @@ class changeFlow {
           height: 100%;
           position: absolute;
           content: "";
-          background: linear-gradient(180deg, #edf2f5 12.81%, rgba(255, 255, 255, 0) 100%), url("${git}/sunvalue/img//bgr_img.png");
+          background: linear-gradient(180deg, #edf2f5 12.81%, rgba(255, 255, 255, 0) 100%), url("${git}/sunvalue/img/bgr_img.png");
           background-position: bottom;
           opacity: 1;
           background-size: cover;
@@ -1001,7 +1304,7 @@ class changeFlow {
           padding: 27px 0;
         }
         .wrapper::before {
-          background: linear-gradient(180deg, #edf2f5 12.81%, rgba(255, 255, 255, 0) 100%), url("${git}/sunvalue/img//bgr_img.png");
+          background: linear-gradient(180deg, #edf2f5 12.81%, rgba(255, 255, 255, 0) 100%), url("${git}/sunvalue/img/bgr_img.png");
           background-position: bottom;
           opacity: 1;
           background-size: cover;
