@@ -224,7 +224,6 @@ class IntentPopup {
     this.initMainStyles();
     this.createPopup();
     this.intentPopupTriggers();
-    this.checkAndRemoveLastAddedTime();
 
     console.log(`ONLY POPUP >>>>>`, this.locale);
   }
@@ -236,8 +235,9 @@ class IntentPopup {
       // Свайп різкий вверх, вниз для всіх сторінок
       document.addEventListener("scroll", () => {
         const scrollSpeed = checkScrollSpeed();
-        if (+scrollSpeed < -70 || +scrollSpeed > 70) {
+        if (+scrollSpeed < -100 || +scrollSpeed > 100) {
           if (!sessionStorage.getItem("scrollForPopup")) {
+            console.log(scrollSpeed, `scrollSpeed`);
             sessionStorage.setItem("scrollForPopup", "yes");
             this.getItemsBasket();
           }
@@ -282,6 +282,7 @@ class IntentPopup {
     // На 180 секунду після додовання крайнього товару в кошик, на будь якій сторінці сайту,
     // якщо не було чекауту(користувач додав товар у кошик і серфить сайт далі та не повертається у кошик, та не додає нові товари)
     this.initMutationObserverCartPopup();
+    this.checkLastAddedTime();
 
     // На 60 секунду на будь якій сторінці на сайті, якщо не відбувається ніякої дії.
     this.setupListeners();
@@ -343,7 +344,7 @@ class IntentPopup {
         for (let node of mutation.addedNodes) {
           if (!(node instanceof HTMLElement)) continue;
           if (node.matches(".modal-backdrop.show")) {
-            this.saveLastAddedTime();
+            sessionStorage.setItem("lastAddedTime", new Date().getTime());
           }
         }
       }
@@ -714,35 +715,14 @@ class IntentPopup {
       });
     });
   }
-  saveLastAddedTime() {
-    const currentTime = new Date().getTime();
-    console.log(new Date(), `start`);
-    sessionStorage.setItem("lastAddedTime", currentTime.toString());
-    // Якщо таймер уже запущений, зупиняємо його перед запуском нового
-    if (this.checkLastAddedTimer) {
-      clearTimeout(this.checkLastAddedTimer);
-    }
-    // Перевіряємо через 180 секунд
-    this.checkLastAddedTimer = setTimeout(() => {
-      this.checkLastAddedTime();
-    }, this.lastAddedTimerStart); // 180 секунд
-  }
   checkLastAddedTime() {
-    const lastAddedTime = sessionStorage.getItem("lastAddedTime");
-    if (lastAddedTime) {
-      const currentTime = new Date().getTime();
-      const timeDiff = currentTime - parseInt(lastAddedTime);
-      const secondsDiff = timeDiff / 1000;
-      if (secondsDiff >= this.lastAddedTimerStart / 1000) {
+    let timer = setInterval(() => {
+      const timesTamp = sessionStorage.getItem("lastAddedTime");
+      if (new Date().getTime() - +timesTamp >= 180000 && window.location.href !== localTxtValue["hrefBtn"]) {
+        clearInterval(timer);
         this.getItemsBasket();
       }
-    }
-  }
-  checkAndRemoveLastAddedTime() {
-    const localTxtValue = JSON.parse(sessionStorage.getItem("localTxtValue"));
-    if (localTxtValue && window.location.href === localTxtValue["hrefBtn"]) {
-      sessionStorage.removeItem("lastAddedTime");
-    }
+    }, 1000);
   }
   allGroupProductSlider() {
     loadScriptsOrStyles(["https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css", "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"]).then(async () => {
@@ -871,25 +851,22 @@ class IntentPopup {
       closePopupBtns = popup.querySelectorAll('[data-popup="close"]');
     closePopupBtns.forEach((btn) => {
       btn.addEventListener("click", (e) => {
-        if (!e.target.getAttribute("data-test")) {
-          backdrop.classList.add("is-hidden");
-          body.style.overflow = "initial";
+        if (e.currentTarget) {
+          if (!e.currentTarget.getAttribute("data-test")) {
+            backdrop.classList.add("is-hidden");
+            body.style.overflow = "initial";
 
-          pushDataLayer("exp_exit_pop_up_but_prodcart_close", "Close", "Button", "Exit popup for users with product in cart");
+            pushDataLayer("exp_exit_pop_up_but_prodcart_close", "Close", "Button", "Exit popup for users with product in cart");
 
-          setTimeout(() => {
-            $el(".new-popup__content").innerHTML = "";
-          }, 500);
-        }
-        e.target.setAttribute("data-test", "1");
-        setTimeout(() => {
-          if (e.target.getAttribute("data-test")) {
-            e.target.removeAttribute("data-test");
+            setTimeout(() => {
+              $el(".new-popup__content").innerHTML = "";
+            }, 500);
           }
-        }, 1000);
+          e.currentTarget.setAttribute("data-test", "1");
+        }
       });
     });
-    backdrop.addEventListener("click", (e) => {
+    backdrop.addEventListener(this.device === "Mobile" ? "click" : "mousedown", (e) => {
       if (!e.target.getAttribute("data-test")) {
         if (e.target.matches(".new-popup-backdrop")) {
           backdrop.classList.add("is-hidden");

@@ -272,6 +272,12 @@ class changeFlow {
       this.initMainStyles();
       this.updateRangeSlider();
       this.changeSlides();
+      this.onClickNewNextBtns();
+      this.onClickOldNextBtn();
+      this.onClickCompaniesInput();
+      this.onClickEstimateShadeInput();
+      this.onClickShowSolarSavingsBtn();
+      this.onClickMonthlyBillBtns();
     }
 
     if (location.pathname === "/received/") {
@@ -280,6 +286,39 @@ class changeFlow {
     }
   }
 
+  // HTML ---------------->
+  renderNewNextBtns() {
+    const style = /* HTML */ `
+      <style>
+        .new_btn_next {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          max-width: 300px;
+          width: 100%;
+          padding: 16px 53px;
+          border-radius: 5px;
+          background: #83be63;
+          color: #fff;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 24px;
+          letter-spacing: 0.5px;
+          text-transform: uppercase;
+          margin-left: auto;
+        }
+        .new_btn_next.is_hidden {
+          display: none;
+        }
+      </style>
+    `;
+    const btnNextHtml = /* HTML */ `
+      ${style}
+      <a class="new_btn_next step_three is_hidden" href="#">Next</a>
+      <a class="new_btn_next step_five is_hidden" href="#">Next</a>
+    `;
+    return btnNextHtml;
+  }
   poweredByHtml() {
     const poweredByStyle = /* HTML */ `
       <style>
@@ -300,6 +339,10 @@ class changeFlow {
           font-weight: 400;
           line-height: 26px;
           margin: 0;
+        }
+        /*id="estimate-map" */
+        [id="estimate-map"] .powered_by_wrapper {
+          margin-top: 150px;
         }
         @media (max-width: 768px) {
         }
@@ -437,32 +480,9 @@ class changeFlow {
     `;
     return savingsOnEnergyHtml;
   }
-  //
-  searchingAvailableIncentiveProgramsHtml() {
-    const price = $(".rangeslider-tooltip").text() ? $(".rangeslider-tooltip").text().replace("+", "") : "$50",
-      solarBefore = price,
-      solarAfter = `$${parseFloat(price.replace(price[0], "").split(",")[0]) * 0.46}`,
-      toPriceAfterBefore = roundToNearestMultiple(parseFloat(solarBefore.replace(solarBefore[0], "").split(",")[0])),
-      costWit = dataSavings[price][0],
-      costWithout = dataSavings[price][1],
-      toPrice = roundToNearestMultiple(parseFloat(costWithout.replace(costWithout[0], "").split(",")[0]));
-
+  searchingProgramsLoader() {
     const style = /* HTML */ `
       <style>
-        .federal_credit {
-          opacity: 0;
-          transform: translate3d(-4942px, 0px, 0px);
-          transition-duration: 0ms;
-        }
-        .federal_credit > div {
-          width: 100%;
-        }
-        .searching_programs_wrapper {
-          display: none;
-        }
-        .searching_programs_wrapper.is_visible {
-          display: block;
-        }
         .searching_programs_wrapper h2 {
           color: #2b3d50;
           font-size: 32px;
@@ -479,7 +499,7 @@ class changeFlow {
           max-width: 326px;
           text-align: center;
         }
-        .rotate_svg {
+        .searching_programs_wrapper .rotate_svg {
           display: block;
           margin: 0 auto 15px;
           animation: rotate 2s linear infinite;
@@ -492,9 +512,39 @@ class changeFlow {
             transform: rotate(360deg);
           }
         }
+      </style>
+    `;
+    const html = /* HTML */ `
+      <div class="searching_programs_wrapper">
+        ${style}
+        <h2><span data-city>[City]</span> Solar Incentive Programs</h2>
+        ${icons.loader}
+        <p>Searching available Incentive Programs in your area</p>
+      </div>
+    `;
+    return html;
+  }
+  searchingAvailableIncentiveProgramsHtml() {
+    const price = $(".rangeslider-tooltip").text() ? $(".rangeslider-tooltip").text().replace("+", "") : "$50",
+      solarBefore = price,
+      solarAfter = `$${parseFloat(price.replace(price[0], "").split(",")[0]) * 0.46}`,
+      toPriceAfterBefore = roundToNearestMultiple(parseFloat(solarBefore.replace(solarBefore[0], "").split(",")[0])),
+      costWit = dataSavings[price][0],
+      costWithout = dataSavings[price][1],
+      toPrice = roundToNearestMultiple(parseFloat(costWithout.replace(costWithout[0], "").split(",")[0]));
+
+    const style = /* HTML */ `
+      <style>
+        .federal_credit {
+          width: 100%;
+          height: 100%;
+        }
         /*incentive_wrapper */
         .incentive_wrapper {
           width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
         }
         .incentive_wrapper.is_hidden {
           display: none;
@@ -533,50 +583,26 @@ class changeFlow {
       </style>
     `;
     const html = /* HTML */ `
-      <li class="swiper-slide steps federal_credit">
-        <div>
-          <div class="searching_programs_wrapper">
-            ${style}
-            <h2>[City] Solar Incentive Programs</h2>
-            ${icons.loader}
-            <p>Searching available Incentive Programs in your area</p>
-          </div>
-          <div class="incentive_wrapper is_hidden">
-            <h2>Available incentives found</h2>
-            <ul class="incentive_list">
-              <li>
-                ${icons.tickCircle}
-                <div>
-                  <p>Federal Investment Tax Credit:</p>
-                  <span>30% of income tax credit</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-          ${this.lifetimeCostAnalysisHtml("Monthly bill comparison", solarAfter, solarBefore, toPriceAfterBefore, "Before solar", "After  solar")}
+      <div class="federal_credit">
+        ${style}
+        <div class="incentive_wrapper is_hidden">
+          <h2>Available incentives found</h2>
+          <ul class="incentive_list">
+            <li>
+              ${icons.tickCircle}
+              <div>
+                <p>Federal Investment Tax Credit:</p>
+                <span>30% of income tax credit</span>
+              </div>
+            </li>
+          </ul>
+          ${this.showSolarSavingsBtnBlockHtml()}
         </div>
-      </li>
+        ${this.lifetimeCostAnalysisHtml("Monthly bill comparison", solarAfter, solarBefore, toPriceAfterBefore, "Before solar", "After solar", "monthly_bill_comparison", "Next")} ${this.lifetimeCostAnalysisHtml("Lifetime cost analysis with and without solar", costWit, costWithout, toPrice, "Without solar", "With solar", "lifetime_cost_analysis", "View your lifetime solar savings")} ${this.estimatedLifetimeSavingsHtml()}
+      </div>
     `;
-
     return html;
   }
-  // ${this.lifetimeCostAnalysisHtml(
-  //   'Monthly bill comparison',
-  //   solarAfter,
-  //   solarBefore,
-  //   toPriceAfterBefore,
-  //   'Before solar',
-  //   'After  solar'
-  // )}
-
-  //  ${this.lifetimeCostAnalysisHtml(
-  //   'Lifetime cost analysis with and without solar',
-  //   costWit,
-  //   costWithout,
-  //   toPrice,
-  //   'Without solar',
-  //   'With solar'
-  // )}
   incentiveListCustomHtml(name, description) {
     const style = /* HTML */ `
       <style>
@@ -627,7 +653,6 @@ class changeFlow {
         </li>
       </ul>
     `;
-
     return html;
   }
   showSolarSavingsBtnBlockHtml() {
@@ -639,6 +664,7 @@ class changeFlow {
           border-radius: 8px;
           border-top: 1px solid #e0e4eb;
           background: #fff;
+          margin: auto 0 0;
         }
         .show_solar_savings_wrapper p {
           display: flex;
@@ -681,119 +707,216 @@ class changeFlow {
     `;
     return html;
   }
-  //
-  lifetimeCostAnalysisHtml(title, costWit, costWithout, toPrice, txt1, txt2) {
-    const style = /* HTML */ ` <style>
-      .lifetime_cost_analysis_wrapper h2 {
-        color: #2b3d50;
-        font-size: 32px;
-        font-weight: 900;
-        line-height: 40px;
-        margin: 0 auto;
-        max-width: 400px;
-        text-align: center;
-      }
-      .monthly_bill_box {
-        border-radius: 8px;
-        border: 1px solid rgba(66, 117, 150, 0.16);
-        background: #fff;
-        margin: 16px 0 0;
-        padding: 16px 20px 10px;
-      }
-      .monthly_bill_box > p {
-        color: #2b3d50;
-        font-size: 14px;
-        font-weight: 700;
-        line-height: 20px;
-        margin: 0 0 14px;
-      }
-      .lifetime_cost_analysis_wrapper .powered_by_wrapper {
-        background: none;
-        margin-top: 15px;
-      }
-      .lifetime_cost_analysis_wrapper .powered_by_wrapper p {
-        display: none;
-      }
-      /* crs_graphic*/
-      .crs_graphic {
-        width: 100%;
-      }
-      .crs_graphic_line_wrapp {
-        position: relative;
-        height: 62px;
-        padding: 8px 15px 10px;
-      }
-      .crs_graphic_line_wrapp::before {
-        position: absolute;
-        content: "";
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        border-radius: 8px;
-      }
-      .crs_graphic_line_wrapp.navy::before {
-        opacity: 0.24;
-        background: #fd9d90;
-      }
-      .crs_graphic_line_wrapp.green::before {
-        opacity: 0.2;
-        background: #83be63;
-      }
-      .crs_graphic_line_wrapp.green::after {
-        position: absolute;
-        content: "";
-        right: 12px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: url(${git}sunvalue/img/tick_circle.svg) no-repeat;
-        width: 40px;
-        height: 40px;
-        background-size: initial;
-        opacity: 0.2;
-      }
-      .crs_graphic_line_wrapp + .crs_graphic_line_wrapp {
-        margin-top: 14px;
-      }
-      .crs_graphic_line_wrapp p {
-        position: relative;
-        color: #fff;
-        font-size: 12px;
-        font-weight: 900;
-        line-height: 16px;
-        letter-spacing: 0.12px;
-        text-align: left;
-        margin: 0;
-        z-index: 1;
-      }
-      .crs_graphic_line_wrapp span {
-        position: relative;
-        display: block;
-        color: #fff;
-        font-size: 20px;
-        font-weight: 700;
-        line-height: 28px;
-        margin: 0;
-        z-index: 1;
-      }
-      .crs_graphic_line {
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-        z-index: 0;
-      }
-      .crs_graphic_line.navy {
-        border-radius: 8px;
-        background: #ff9384;
-      }
-      .crs_graphic_line.green {
-        border-radius: 8px;
-        background: #83be63;
-      }
-    </style>`;
+  monthlyBillBtnsBlockHtml(txtBtn) {
+    const style = /* HTML */ `
+      <style>
+        .monthly_bill_btns_wrapper {
+          width: 100%;
+          padding: 12px 16px;
+          border-radius: 8px;
+          border-top: 1px solid #e0e4eb;
+          background: #fff;
+          margin: auto 0 0;
+        }
+        .monthly_bill_btns_wrapper p {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 5px;
+          color: #2b3d50;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 24px;
+          margin: 0 0 12px;
+        }
+        .monthly_bill_btns_links {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .monthly_bill_btn_back {
+          position: relative;
+          color: #4a4a4a;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 24px;
+          text-transform: uppercase;
+          padding-left: 27px;
+        }
+        .monthly_bill_btn_back::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 0;
+          width: 25px;
+          height: 100%;
+          background-image: url(/images/back.svg);
+          background-repeat: no-repeat;
+          background-position: left center;
+          background-size: 20px;
+        }
+        .monthly_bill_btn_next {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          max-width: 300px;
+          padding: 16px 53px;
+          border-radius: 8px;
+          background: #83be63;
+          color: #fff;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 24px;
+          letter-spacing: 0.5px;
+          text-transform: uppercase;
+          cursor: pointer;
+        }
+        /*lifetime_cost_analysis */
+        .lifetime_cost_analysis .monthly_bill_btns_wrapper p {
+          display: none;
+        }
+        .lifetime_cost_analysis .monthly_bill_btn_next {
+          max-width: 356px;
+          padding: 16px 24px;
+        }
+      </style>
+    `;
     const html = /* HTML */ `
-      <div class="lifetime_cost_analysis_wrapper">
+      <div class="monthly_bill_btns_wrapper">
+        ${style}
+        <p>Explore Lifetime Cost Analysis: Solar vs. Non-Solar</p>
+        <div class="monthly_bill_btns_links">
+          <a href="#" class="monthly_bill_btn_back">Back</a>
+          <a href="#" class="monthly_bill_btn_next">${txtBtn}</a>
+        </div>
+      </div>
+    `;
+    return html;
+  }
+  lifetimeCostAnalysisHtml(title, costWit, costWithout, toPrice, txt1, txt2, classBox, txtBtn) {
+    const style = /* HTML */ `
+      <style>
+        .lifetime_cost_analysis_wrapper {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+        }
+        .lifetime_cost_analysis_wrapper.is_hidden {
+          display: none;
+        }
+        .lifetime_cost_analysis_wrapper h2 {
+          color: #2b3d50;
+          font-size: 32px;
+          font-weight: 900;
+          line-height: 40px;
+          margin: 0 auto;
+          max-width: 400px;
+          text-align: center;
+        }
+        .monthly_bill_box {
+          border-radius: 8px;
+          border: 1px solid rgba(66, 117, 150, 0.16);
+          background: #fff;
+          margin: 16px 0 0;
+          padding: 16px 20px 10px;
+        }
+        .monthly_bill_box > p {
+          color: #2b3d50;
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 20px;
+          margin: 0 0 14px;
+        }
+        .lifetime_cost_analysis_wrapper .powered_by_wrapper {
+          background: none;
+          margin-top: 15px;
+        }
+        .lifetime_cost_analysis_wrapper .powered_by_wrapper p {
+          display: none;
+        }
+        /* crs_graphic*/
+        .crs_graphic {
+          width: 100%;
+        }
+        .crs_graphic_line_wrapp {
+          position: relative;
+          height: 62px;
+          padding: 8px 15px 10px;
+        }
+        .crs_graphic_line_wrapp::before {
+          position: absolute;
+          content: "";
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          border-radius: 8px;
+        }
+        .crs_graphic_line_wrapp.navy::before {
+          opacity: 0.24;
+          background: #fd9d90;
+        }
+        .crs_graphic_line_wrapp.green::before {
+          opacity: 0.2;
+          background: #83be63;
+        }
+        .crs_graphic_line_wrapp.green::after {
+          position: absolute;
+          content: "";
+          right: 12px;
+          top: 50%;
+          transform: translateY(-50%);
+          background: url(${git}sunvalue/img/tick_circle.svg) no-repeat;
+          width: 40px;
+          height: 40px;
+          background-size: initial;
+          opacity: 0.2;
+        }
+        .crs_graphic_line_wrapp + .crs_graphic_line_wrapp {
+          margin-top: 14px;
+        }
+        .crs_graphic_line_wrapp p {
+          position: relative;
+          color: #fff;
+          font-size: 12px;
+          font-weight: 900;
+          line-height: 16px;
+          letter-spacing: 0.12px;
+          text-align: left;
+          margin: 0;
+          z-index: 1;
+        }
+        .crs_graphic_line_wrapp span {
+          position: relative;
+          display: block;
+          color: #fff;
+          font-size: 20px;
+          font-weight: 700;
+          line-height: 28px;
+          margin: 0;
+          z-index: 1;
+        }
+        .crs_graphic_line {
+          position: absolute;
+          left: 0;
+          top: 0;
+          height: 100%;
+          z-index: 0;
+        }
+        .crs_graphic_line.navy {
+          border-radius: 8px;
+          background: #ff9384;
+        }
+        .crs_graphic_line.green {
+          border-radius: 8px;
+          background: #83be63;
+        }
+      </style>
+    `;
+    const html = /* HTML */ `
+      <div class="lifetime_cost_analysis_wrapper is_hidden ${classBox}">
         ${style}
         <h2>${title}</h2>
         <div class="monthly_bill_box">
@@ -812,17 +935,24 @@ class changeFlow {
           </div>
           ${this.poweredByHtml()}
         </div>
+        ${this.monthlyBillBtnsBlockHtml(txtBtn)}
       </div>
     `;
-
     return html;
   }
-  //
   estimatedLifetimeSavingsHtml() {
-    const price = $(".rangeslider-tooltip").text();
+    const price = $(".rangeslider-tooltip").text() ? $(".rangeslider-tooltip").text().replace("+", "") : "$50";
 
     const style = /* HTML */ `
       <style>
+        .estimated_lifetime_sav_wrapper {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+        }
+        .estimated_lifetime_sav_wrapper.is_hidden {
+          display: none;
+        }
         .estimated_lifetime_sav_wrapper h2 {
           color: #2b3d50;
           font-size: 32px;
@@ -870,7 +1000,7 @@ class changeFlow {
       </style>
     `;
     const html = /* HTML */ `
-      <div class="estimated_lifetime_sav_wrapper">
+      <div class="estimated_lifetime_sav_wrapper is_hidden">
         ${style}
         <h2>Estimated lifetime savings</h2>
         <div class="you_will_save_box">
@@ -881,6 +1011,7 @@ class changeFlow {
           </div>
           ${this.poweredByHtml()}
         </div>
+        ${this.findOutIfYouQualifyBtnHtml()}
       </div>
     `;
     return html;
@@ -894,6 +1025,7 @@ class changeFlow {
           border-radius: 8px;
           border-top: 1px solid #e0e4eb;
           background: #fff;
+          margin: auto 0 0;
         }
         .find_out_if_you_qualify_wrapper p {
           display: flex;
@@ -935,7 +1067,6 @@ class changeFlow {
     `;
     return html;
   }
-  //
   safeAndSecureHtml() {
     const safeAndSecureStyle = /* HTML */ `
       <style>
@@ -970,24 +1101,22 @@ class changeFlow {
 
   // change slides
   changeSlides() {
+    waitForElement("#slider-block").then((el) => {
+      el.insertAdjacentHTML("beforeend", this.renderNewNextBtns());
+    });
     waitForElement(".swiper-wrapper .swiper-slide").then((el) => {
       let steps = $$el(".swiper-wrapper .swiper-slide");
       steps = $$el(".swiper-wrapper .swiper-slide");
       steps.forEach((element, index) => {
-        const btn = element.querySelector("a.btn > span");
-        const container = element.querySelector(".container");
-        const smallContainer = element.querySelector(".small-container");
-        const mediumContainer = element.querySelector(".medium-container");
-
         // estimate-zip
         if (element.querySelector('[id="estimate-zip"]')) {
-          btn.textContent = "Discover Incentive Program";
+          element.querySelector("a.btn > span").textContent = "Discover Incentive Program";
           if (!element.querySelector(".available_incentives_wrapper")) {
             element.querySelector("h1.title").insertAdjacentHTML("afterend", this.availableIncentivesHtml());
           }
 
           if (!element.querySelector(".no_personal_inform_wrapper")) {
-            smallContainer.insertAdjacentHTML("afterend", this.noPersonalInformationRequiredHtml());
+            element.querySelector(".small-container").insertAdjacentHTML("afterend", this.noPersonalInformationRequiredHtml());
           }
 
           if (element.querySelector('[id="zip"]').placeholder !== "Enter Your Zip Code") {
@@ -1030,10 +1159,10 @@ class changeFlow {
           }
           //
           if (!el.querySelector(".savings_on_energy_wrapper")) {
-            smallContainer.insertAdjacentHTML("afterend", this.savingsOnEnergyHtml());
+            element.querySelector(".small-container").insertAdjacentHTML("afterend", this.savingsOnEnergyHtml());
           }
           if (!el.querySelector(".powered_by_wrapper")) {
-            container.insertAdjacentHTML("beforeend", this.poweredByHtml());
+            element.querySelector(".container").insertAdjacentHTML("beforeend", this.poweredByHtml());
           }
         }
         //estimate-shade
@@ -1041,7 +1170,6 @@ class changeFlow {
           element.querySelectorAll(".title").forEach((t) => {
             t.innerHTML = "Does your roof get sunlight?";
           });
-          element.insertAdjacentHTML("afterend", this.searchingAvailableIncentiveProgramsHtml());
         }
         // estimate-email
         if (element.querySelector('[id="estimate-email"]')) {
@@ -1055,7 +1183,10 @@ class changeFlow {
             limited-time program`;
           });
           if (!element.querySelector(".safe_and_secure_wrapper")) {
-            smallContainer.insertAdjacentHTML("afterend", this.safeAndSecureHtml());
+            element.querySelector(".small-container").insertAdjacentHTML("afterend", this.safeAndSecureHtml());
+          }
+          if (!$el(".federal_credit")) {
+            element.querySelector('[id="estimate-email"]').insertAdjacentHTML("afterend", this.searchingAvailableIncentiveProgramsHtml());
           }
         }
         // estimate-name
@@ -1070,7 +1201,7 @@ class changeFlow {
             element.querySelector('[id="lname"]').placeholder = "Family Name";
           }
           if (!element.querySelector(".safe_and_secure_wrapper")) {
-            mediumContainer.insertAdjacentHTML("afterend", this.safeAndSecureHtml());
+            element.querySelector(".medium-container").insertAdjacentHTML("afterend", this.safeAndSecureHtml());
           }
         }
         // estimate-phone
@@ -1086,25 +1217,26 @@ class changeFlow {
           }
         }
         // federal_credit
-        waitForElement(".federal_credit").then((i) => {
-          if (i.querySelector(".searching_programs_wrapper").classList.contains("is_visible")) {
-            setTimeout(() => {
-              i.querySelector(".searching_programs_wrapper").classList.remove("is_visible");
-            }, 4000);
-          }
+        waitForElement(".federal_credit .searching_programs_wrapper").then((i) => {
+          setTimeout(() => {
+            i.remove();
+            if ($el(".incentive_wrapper").classList.contains("is_hidden")) {
+              $el(".incentive_wrapper").classList.remove("is_hidden");
+            }
+          }, 4000);
         });
       });
     });
   }
 
   updateRangeSlider() {
-    const rangeBlock = `
-        <input type="range" min="50" value="800" max="800" step="50" name="monthly_elec" data-rangeslider>
-        <div class="rangeslider-tooltip">$<output>800</output></div>
-        <div class="sliderLegend">
-            <p class="sliderLegendItem--start">$50</p>
-            <p class="sliderLegendItem--end">$800+</p>
-        </div>
+    const rangeBlock = /* HTML */ `
+      <input type="range" min="50" value="800" max="800" step="50" name="monthly_elec" data-rangeslider />
+      <div class="rangeslider-tooltip">$<output>800</output></div>
+      <div class="sliderLegend">
+        <p class="sliderLegendItem--start">$50</p>
+        <p class="sliderLegendItem--end">$800+</p>
+      </div>
     `;
     // Get the rangeslider instance
     let slider = $("#bill-slider");
@@ -1121,6 +1253,127 @@ class changeFlow {
     });
 
     initRangeSlider();
+  }
+  setLocalStorageDataInfo() {
+    let data = {};
+    data.price = $el(".rangeslider-tooltip")?.textContent;
+    data.city = $el(".htitle")?.textContent.split("Solar")[0].trim();
+
+    localStorage.setItem("crs_data", JSON.stringify(data));
+    console.log(data, `data`);
+  }
+
+  // ON CLICK ---------------->
+  // step second || fourth
+  onClickOldNextBtn() {
+    waitForElement("#slider-block .default").then((el) => {
+      el.addEventListener("click", (e) => {
+        if ($(".swiper-slide").eq(2).hasClass("swiper-slide-active")) {
+          this.setLocalStorageDataInfo();
+          el.classList.add("is_hidden");
+          if ($el(".new_btn_next.step_three")?.classList.contains("is_hidden")) {
+            $el(".new_btn_next.step_three")?.classList.remove("is_hidden");
+          }
+        }
+        if ($(".swiper-slide").eq(4).hasClass("swiper-slide-active")) {
+          el.classList.add("is_hidden");
+          if ($el(".new_btn_next.step_five")?.classList.contains("is_hidden")) {
+            $el(".new_btn_next.step_five")?.classList.remove("is_hidden");
+          }
+        }
+        if ($(".swiper-slide").eq(6).hasClass("swiper-slide-active")) {
+          console.log("6");
+        }
+        if ($(".swiper-slide").eq(7).hasClass("swiper-slide-active")) {
+        }
+      });
+    });
+  }
+  // step third || step fifth
+  onClickNewNextBtns() {
+    // step_three
+    waitForElement(".new_btn_next.step_three").then((el) => {
+      el.addEventListener("click", (e) => {
+        e.preventDefault();
+        if ($el("#slider-block .default").classList.contains("is_hidden")) {
+          $el("#slider-block .default").classList.remove("is_hidden");
+        }
+        el.classList.add("is_hidden");
+        $el('[id="util-other"]').click();
+      });
+    });
+    // step_five
+    waitForElement(".new_btn_next.step_five").then((el) => {
+      el.addEventListener("click", (e) => {
+        e.preventDefault();
+        el.classList.add("is_hidden");
+        $el('.radioNext [value="unknown"]').click();
+        $el("#slider-block").classList.add("is_hidden");
+        $el('[id="estimate-email"]').style.display = "none";
+        if (!$el(".searching_programs_wrapper")) {
+          $el(".federal_credit").insertAdjacentHTML("afterbegin", this.searchingProgramsLoader());
+        }
+      });
+    });
+  }
+  // step third
+  onClickCompaniesInput() {
+    waitForElement('[id="companies"] .custom-radio-item').then((el) => {
+      $$el('[id="companies"] input').forEach((i) => {
+        i.addEventListener("click", (e) => {
+          if ($el("#slider-block .default").classList.contains("is_hidden")) {
+            $el("#slider-block .default").classList.remove("is_hidden");
+          }
+          $el(".new_btn_next.step_three").classList.add("is_hidden");
+        });
+      });
+    });
+  }
+  //  step fifth
+  onClickEstimateShadeInput() {
+    waitForElement('[id="estimate-shade"] .custom-radio-item').then((el) => {
+      $$el('[id="estimate-shade"] input').forEach((i) => {
+        i.addEventListener("click", (e) => {
+          $el(".new_btn_next.step_five").classList.add("is_hidden");
+          $el("#slider-block").classList.add("is_hidden");
+          $el('[id="estimate-email"]').style.display = "none";
+          if (!$el(".searching_programs_wrapper")) {
+            $el(".federal_credit").insertAdjacentHTML("afterbegin", this.searchingProgramsLoader());
+          }
+        });
+      });
+    });
+  }
+  // step sixth
+  onClickShowSolarSavingsBtn() {
+    waitForElement("#showSolarSavingsBtn").then((el) => {
+      el.addEventListener("click", (e) => {
+        if ($el(".monthly_bill_comparison").classList.contains("is_hidden")) {
+          $el(".monthly_bill_comparison").classList.remove("is_hidden");
+        }
+        $el(".incentive_wrapper").classList.add("is_hidden");
+      });
+    });
+  }
+  onClickMonthlyBillBtns() {
+    waitForElement(".monthly_bill_btns_links").then((el) => {
+      el.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", (e) => {
+          console.log(`object`);
+          if (e.target.classList.contains("monthly_bill_btn_next")) {
+            if (e.target.closest(".monthly_bill_comparison")) {
+              e.target.closest(".monthly_bill_comparison").classList.add("is_hidden");
+              if ($el(".lifetime_cost_analysis").classList.contains("is_hidden")) {
+                $el(".lifetime_cost_analysis").classList.remove("is_hidden");
+              }
+            }
+            if (e.target.closest(".lifetime_cost_analysis")) {
+              e.target.closest(".lifetime_cost_analysis").classList.add("is_hidden");
+            }
+          }
+        });
+      });
+    });
   }
 
   // Thank You Page
@@ -1275,7 +1528,7 @@ class changeFlow {
       <div class="crs_thank">
         ${style}
         <div class="container">
-          <h2 class="title">You'll be contacted by a Solar Expert Partner in [City]</h2>
+          <h2 class="title">You'll be contacted by a Solar Expert Partner in <span data-city>[City]</span></h2>
           <p>Next steps:</p>
           <ul class="crs_thank_list">
             <li data-num="1">One of our Solar Expert Partners will call you</li>
@@ -1315,8 +1568,9 @@ class changeFlow {
         }
         .wrapper .banner-slider {
           max-width: 600px;
-          padding: 0 30px;
-          margin: 30px 0 0;
+          padding: 150px 30px 50px;
+          margin: 0;
+          height: 100vh;
         }
         .wrapper .progress {
           max-width: 540px;
@@ -1347,7 +1601,13 @@ class changeFlow {
           padding: 0;
         }
         .swiper-container-autoheight .swiper-wrapper {
-          height: auto !important;
+          height: 100% !important;
+        }
+        .wrapper .v-center {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          height: 100%;
         }
         .wrapper .title {
           color: #2b3d50;
@@ -1356,6 +1616,9 @@ class changeFlow {
           font-weight: 900;
           line-height: 40px;
           margin: 0 auto;
+        }
+        .banner-slider .swiper-slide.swiper-slide-active {
+          height: 100%;
         }
         .wrapper .sub-title {
           color: #2b3d50;
@@ -1594,6 +1857,9 @@ class changeFlow {
           background: #eef3f6;
           padding: 12px 16px;
         }
+        #slider-block.is_hidden {
+          display: none !important;
+        }
         .wrapper #slider-block .btn-block .back-link {
           color: #4a4a4a;
           font-size: 16px;
@@ -1624,6 +1890,9 @@ class changeFlow {
           letter-spacing: 0.5px;
           text-transform: uppercase;
           margin-left: auto;
+        }
+        .wrapper #slider-block .d-none.is_hidden {
+          display: none !important;
         }
         /*footer */
         .site-footer {
