@@ -272,17 +272,19 @@ class changeFlow {
       this.initMainStyles();
       this.updateRangeSlider();
       this.changeSlides();
+      this.setLocalStorageDataInfo();
+      this.onClickYourSavingsBtn();
       this.onClickNewNextBtns();
       this.onClickOldNextBtn();
-      this.onClickCompaniesInput();
-      this.onClickEstimateShadeInput();
-      this.onClickShowSolarSavingsBtn();
-      this.onClickMonthlyBillBtns();
+      this.onClickOldBtnBack();
+      this.observereProgressBar();
+      this.setNameCity();
     }
 
-    if (location.pathname === "/received/") {
+    if (location.pathname === "/received/" || location.pathname === "/thankyou/") {
       document.head.insertAdjacentHTML("beforeend", `<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap" rel="stylesheet">`);
       this.changeReceivedPage();
+      this.setNameCity();
     }
   }
 
@@ -307,7 +309,30 @@ class changeFlow {
           text-transform: uppercase;
           margin-left: auto;
         }
-        .new_btn_next.is_hidden {
+        .new_btn_prev {
+          position: relative;
+          color: #4a4a4a;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 24px;
+          text-transform: uppercase;
+          padding-left: 27px;
+        }
+        .new_btn_prev::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 0;
+          width: 25px;
+          height: 100%;
+          background-image: url(/images/back.svg);
+          background-repeat: no-repeat;
+          background-position: left center;
+          background-size: 20px;
+        }
+        .new_btn_next.is_hidden,
+        .new_btn_prev.is_hidden {
           display: none;
         }
       </style>
@@ -316,6 +341,7 @@ class changeFlow {
       ${style}
       <a class="new_btn_next step_three is_hidden" href="#">Next</a>
       <a class="new_btn_next step_five is_hidden" href="#">Next</a>
+      <a class="new_btn_prev step_email is_hidden" href="#">Back</a>
     `;
     return btnNextHtml;
   }
@@ -489,6 +515,7 @@ class changeFlow {
           font-weight: 900;
           line-height: 40px;
           margin: 0 0 76px;
+          text-align: center;
         }
         .searching_programs_wrapper p {
           color: #2b3d50;
@@ -524,8 +551,8 @@ class changeFlow {
     `;
     return html;
   }
-  searchingAvailableIncentiveProgramsHtml() {
-    const price = $(".rangeslider-tooltip").text() ? $(".rangeslider-tooltip").text().replace("+", "") : "$50",
+  searchingAvailableIncentiveProgramsHtml(crsData) {
+    const price = crsData.price.replace("+", ""),
       solarBefore = price,
       solarAfter = `$${parseFloat(price.replace(price[0], "").split(",")[0]) * 0.46}`,
       toPriceAfterBefore = roundToNearestMultiple(parseFloat(solarBefore.replace(solarBefore[0], "").split(",")[0])),
@@ -538,6 +565,9 @@ class changeFlow {
         .federal_credit {
           width: 100%;
           height: 100%;
+        }
+        .federal_credit.is_hidden {
+          display: none;
         }
         /*incentive_wrapper */
         .incentive_wrapper {
@@ -1028,15 +1058,15 @@ class changeFlow {
           margin: auto 0 0;
         }
         .find_out_if_you_qualify_wrapper p {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 5px;
           color: #2b3d50;
           font-size: 16px;
           font-weight: 700;
           line-height: 24px;
           margin: 0 0 12px;
+          text-align: center;
+        }
+        .find_out_if_you_qualify_wrapper p img {
+          display: inline;
         }
         #findOutIfYouQualifyBtn {
           display: flex;
@@ -1059,7 +1089,8 @@ class changeFlow {
       <div class="find_out_if_you_qualify_wrapper">
         ${style}
         <p>
-          Ready to save with solar? Explore your qualification for limited time program with SunValue
+          Ready to save with solar? Explore your <br />
+          qualification for limited time program with SunValue
           <img src="${git}/sunvalue/img/money_icon.png" alt="money icon" />
         </p>
         <div id="findOutIfYouQualifyBtn">FIND OUT IF YOU QUALIFY</div>
@@ -1134,6 +1165,7 @@ class changeFlow {
             let findCity = stringData.split('"' + element.querySelector("h1.title").textContent.split(" ")[0].trim())[0];
             let findZipCodes = findCity.split('"zip_code":');
             let zipCode = findZipCodes[findZipCodes.length - 1].split(",")[0];
+            console.log(zipCode, findZipCodes[findZipCodes.length - 1], `findCity`);
             const inputElement = $el("input#zip");
             inputElement.value = zipCode;
             inputElement.dispatchEvent(new Event("input", { bubbles: true }));
@@ -1185,9 +1217,6 @@ class changeFlow {
           if (!element.querySelector(".safe_and_secure_wrapper")) {
             element.querySelector(".small-container").insertAdjacentHTML("afterend", this.safeAndSecureHtml());
           }
-          if (!$el(".federal_credit")) {
-            element.querySelector('[id="estimate-email"]').insertAdjacentHTML("afterend", this.searchingAvailableIncentiveProgramsHtml());
-          }
         }
         // estimate-name
         if (element.querySelector('[id="estimate-name"]')) {
@@ -1216,23 +1245,13 @@ class changeFlow {
             element.querySelector('[for="leadid_tcpa_disclosure"]').insertAdjacentHTML("afterend", this.safeAndSecureHtml());
           }
         }
-        // federal_credit
-        waitForElement(".federal_credit .searching_programs_wrapper").then((i) => {
-          setTimeout(() => {
-            i.remove();
-            if ($el(".incentive_wrapper").classList.contains("is_hidden")) {
-              $el(".incentive_wrapper").classList.remove("is_hidden");
-            }
-          }, 4000);
-        });
       });
     });
   }
-
   updateRangeSlider() {
     const rangeBlock = /* HTML */ `
-      <input type="range" min="50" value="800" max="800" step="50" name="monthly_elec" data-rangeslider />
-      <div class="rangeslider-tooltip">$<output>800</output></div>
+      <input type="range" min="50" value="300" max="800" step="50" name="monthly_elec" data-rangeslider />
+      <div class="rangeslider-tooltip">$<output></output></div>
       <div class="sliderLegend">
         <p class="sliderLegendItem--start">$50</p>
         <p class="sliderLegendItem--end">$800+</p>
@@ -1262,14 +1281,92 @@ class changeFlow {
     localStorage.setItem("crs_data", JSON.stringify(data));
     console.log(data, `data`);
   }
+  setNameCity() {
+    const crsData = JSON.parse(localStorage.getItem("crs_data"));
+    let t = setInterval(() => {
+      if (crsData) {
+        clearInterval(t);
+        waitForElement("[data-city]").then((el) => {
+          $$el("[data-city]").forEach((i) => {
+            i.textContent = crsData.city;
+          });
+        });
+      }
+    }, 100);
+  }
+  changeProgressBar() {
+    switch ($el(".progress-width")?.textContent) {
+      case "25%":
+        $el(".progress-width").textContent = "12%";
+        $el(".progress-bar").style.width = "12%";
+        break;
+      case "38%":
+        $el(".progress-width").textContent = "24%";
+        $el(".progress-bar").style.width = "24%";
+        break;
+      case "50%":
+        $el(".progress-width").textContent = "36%";
+        $el(".progress-bar").style.width = "36%";
+        break;
+      case "63%":
+        $el(".progress-width").textContent = "48%";
+        $el(".progress-bar").style.width = "48%";
+        break;
+      case "75%":
+        $el(".progress-width").textContent = "60%";
+        $el(".progress-bar").style.width = "60%";
+        break;
+      case "60%":
+        if (!$el("#estimate-email")?.classList.contains("is_hidden")) {
+          $el(".progress-width").textContent = "72%";
+          $el(".progress-bar").style.width = "72%";
+        }
+        break;
+      case "88%":
+        $el(".progress-width").textContent = "72%";
+        $el(".progress-bar").style.width = "72%";
+        break;
+
+      default:
+        break;
+    }
+  }
+  observereProgressBar() {
+    let observer = new MutationObserver(() => {
+      if ($el(".progress-width")) {
+        observer.disconnect();
+        this.changeProgressBar();
+
+        observer.observe(document, {
+          childList: true,
+          subtree: true,
+        });
+      }
+    });
+
+    observer.observe(document, {
+      childList: true,
+      subtree: true,
+    });
+  }
 
   // ON CLICK ---------------->
+  // step first
+  onClickYourSavingsBtn() {
+    waitForElement("#calculateYourSavings").then((el) => {
+      el.addEventListener("click", (e) => {
+        this.onClickEstimateShadeInput();
+        this.onClickCompaniesInput();
+      });
+    });
+  }
   // step second || fourth
   onClickOldNextBtn() {
     waitForElement("#slider-block .default").then((el) => {
       el.addEventListener("click", (e) => {
         if ($(".swiper-slide").eq(2).hasClass("swiper-slide-active")) {
           this.setLocalStorageDataInfo();
+
           el.classList.add("is_hidden");
           if ($el(".new_btn_next.step_three")?.classList.contains("is_hidden")) {
             $el(".new_btn_next.step_three")?.classList.remove("is_hidden");
@@ -1282,9 +1379,13 @@ class changeFlow {
           }
         }
         if ($(".swiper-slide").eq(6).hasClass("swiper-slide-active")) {
-          console.log("6");
+          if ($el(".wrapper .btn-block .back-link")?.classList.contains("is_hidden")) {
+            $el(".wrapper .btn-block .back-link")?.classList.remove("is_hidden");
+          }
+          $el(".new_btn_prev.step_email").classList.add("is_hidden");
         }
         if ($(".swiper-slide").eq(7).hasClass("swiper-slide-active")) {
+          $el(".wrapper #slider-block").classList.add("is_hidden");
         }
       });
     });
@@ -1295,24 +1396,14 @@ class changeFlow {
     waitForElement(".new_btn_next.step_three").then((el) => {
       el.addEventListener("click", (e) => {
         e.preventDefault();
-        if ($el("#slider-block .default").classList.contains("is_hidden")) {
-          $el("#slider-block .default").classList.remove("is_hidden");
-        }
-        el.classList.add("is_hidden");
-        $el('[id="util-other"]').click();
+        $el('[id="util-other"]')?.click();
       });
     });
     // step_five
     waitForElement(".new_btn_next.step_five").then((el) => {
       el.addEventListener("click", (e) => {
         e.preventDefault();
-        el.classList.add("is_hidden");
         $el('.radioNext [value="unknown"]').click();
-        $el("#slider-block").classList.add("is_hidden");
-        $el('[id="estimate-email"]').style.display = "none";
-        if (!$el(".searching_programs_wrapper")) {
-          $el(".federal_credit").insertAdjacentHTML("afterbegin", this.searchingProgramsLoader());
-        }
       });
     });
   }
@@ -1334,17 +1425,41 @@ class changeFlow {
     waitForElement('[id="estimate-shade"] .custom-radio-item').then((el) => {
       $$el('[id="estimate-shade"] input').forEach((i) => {
         i.addEventListener("click", (e) => {
+          const crsData = JSON.parse(localStorage.getItem("crs_data"));
+
+          if (crsData) {
+            if (!$el(".federal_credit")) {
+              $el('[id="estimate-email"]').insertAdjacentHTML("afterend", this.searchingAvailableIncentiveProgramsHtml(crsData));
+            }
+
+            waitForElement(".federal_credit").then((el) => {
+              this.onClickShowSolarSavingsBtn();
+              this.onClickMonthlyBillBtns();
+              this.onClickNewBtnBack();
+              this.onClickfindOutIfYouQualifyBtn();
+            });
+          }
+
           $el(".new_btn_next.step_five").classList.add("is_hidden");
           $el("#slider-block").classList.add("is_hidden");
-          $el('[id="estimate-email"]').style.display = "none";
+          $el('[id="estimate-email"]').classList.add("is_hidden");
           if (!$el(".searching_programs_wrapper")) {
-            $el(".federal_credit").insertAdjacentHTML("afterbegin", this.searchingProgramsLoader());
+            $el(".federal_credit")?.insertAdjacentHTML("afterbegin", this.searchingProgramsLoader());
           }
+          // federal_credit
+          waitForElement(".federal_credit .searching_programs_wrapper").then((i) => {
+            setTimeout(() => {
+              i.remove();
+              if ($el(".incentive_wrapper").classList.contains("is_hidden")) {
+                $el(".incentive_wrapper").classList.remove("is_hidden");
+              }
+            }, 3000);
+          });
         });
       });
     });
   }
-  // step sixth
+
   onClickShowSolarSavingsBtn() {
     waitForElement("#showSolarSavingsBtn").then((el) => {
       el.addEventListener("click", (e) => {
@@ -1357,10 +1472,9 @@ class changeFlow {
   }
   onClickMonthlyBillBtns() {
     waitForElement(".monthly_bill_btns_links").then((el) => {
-      el.querySelectorAll("a").forEach((link) => {
+      $$el(".monthly_bill_btns_links .monthly_bill_btn_next").forEach((link) => {
         link.addEventListener("click", (e) => {
-          console.log(`object`);
-          if (e.target.classList.contains("monthly_bill_btn_next")) {
+          if (!e.target.getAttribute("data-test")) {
             if (e.target.closest(".monthly_bill_comparison")) {
               e.target.closest(".monthly_bill_comparison").classList.add("is_hidden");
               if ($el(".lifetime_cost_analysis").classList.contains("is_hidden")) {
@@ -1369,10 +1483,130 @@ class changeFlow {
             }
             if (e.target.closest(".lifetime_cost_analysis")) {
               e.target.closest(".lifetime_cost_analysis").classList.add("is_hidden");
+              if ($el(".estimated_lifetime_sav_wrapper").classList.contains("is_hidden")) {
+                $el(".estimated_lifetime_sav_wrapper").classList.remove("is_hidden");
+              }
+            }
+          }
+          e.target.setAttribute("data-test", "1");
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
+            }
+          }, 1000);
+        });
+      });
+    });
+  }
+  onClickfindOutIfYouQualifyBtn() {
+    waitForElement("#findOutIfYouQualifyBtn").then((el) => {
+      el.addEventListener("click", (e) => {
+        if ($el('[id="estimate-email"]').classList.contains("is_hidden")) {
+          $el('[id="estimate-email"]').classList.remove("is_hidden");
+        }
+        if ($el(".wrapper #slider-block").classList.contains("is_hidden")) {
+          $el(".wrapper #slider-block").classList.remove("is_hidden");
+        }
+        if ($el(".wrapper #slider-block .d-none").classList.contains("is_hidden")) {
+          $el(".wrapper #slider-block .d-none").classList.remove("is_hidden");
+        }
+        if ($el(".new_btn_prev.step_email").classList.contains("is_hidden")) {
+          $el(".new_btn_prev.step_email").classList.remove("is_hidden");
+        }
+        $el(".estimated_lifetime_sav_wrapper").classList.add("is_hidden");
+        $el(".wrapper .btn-block .back-link").classList.add("is_hidden");
+        $el(".federal_credit").classList.add("is_hidden");
+      });
+    });
+  }
+  onClickOldBtnBack() {
+    $el(".back-link").addEventListener("click", () => {
+      $$el(".swiper-slide-next").forEach((el) => {
+        let step = el.getAttribute("aria-label").split("/")[0];
+        if (step.includes("2")) {
+          console.log(step);
+        }
+        if (step.includes("3")) {
+          console.log(step);
+          $el(".new_btn_next.step_three").classList.add("is_hidden");
+          if ($el(".wrapper #slider-block .d-none").classList.contains("is_hidden")) {
+            $el(".wrapper #slider-block .d-none").classList.remove("is_hidden");
+          }
+        }
+        if (step.includes("4")) {
+          console.log(step);
+          $el(".wrapper #slider-block .d-none").classList.add("is_hidden");
+
+          if ($el(".new_btn_next.step_three").classList.contains("is_hidden")) {
+            $el(".new_btn_next.step_three").classList.remove("is_hidden");
+          }
+        }
+        if (step.includes("5")) {
+          console.log(step);
+          $el(".new_btn_next.step_five").classList.add("is_hidden");
+          if ($el(".wrapper #slider-block .d-none").classList.contains("is_hidden")) {
+            $el(".wrapper #slider-block .d-none").classList.remove("is_hidden");
+          }
+        }
+        if (step.includes("7")) {
+          console.log(step);
+          if ($el(".new_btn_prev.step_email")?.classList.contains("is_hidden")) {
+            $el(".new_btn_prev.step_email")?.classList.remove("is_hidden");
+          }
+          $el(" .wrapper .btn-block .back-link").classList.add("is_hidden");
+        }
+        if (step.includes("8")) {
+          console.log(step);
+        }
+      });
+    });
+  }
+  onClickNewBtnBack() {
+    $$el(".monthly_bill_btn_back").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        $$el(".swiper-slide-next").forEach((el) => {
+          let step = el.getAttribute("aria-label").split("/")[0];
+          console.log(e.target);
+          console.log(step);
+
+          if (step.includes("7") && e.target.closest(".monthly_bill_comparison")) {
+            if ($el(".incentive_wrapper").classList.contains("is_hidden")) {
+              $el(".incentive_wrapper").classList.remove("is_hidden");
+            }
+            $el(".monthly_bill_comparison").classList.add("is_hidden");
+            // $el('.wrapper .btn-block .back-link').click()
+            // if ($el('.wrapper #slider-block .d-none').classList.contains('is_hidden')) {
+            //   $el('.wrapper #slider-block .d-none').classList.remove('is_hidden')
+            // }
+            // if ($el('.wrapper #slider-block').classList.contains('is_hidden')) {
+            //   $el('.wrapper #slider-block').classList.remove('is_hidden')
+            // }
+            // $el('.federal_credit')?.remove()
+          }
+          if (step.includes("7") && e.target.closest(".lifetime_cost_analysis")) {
+            e.target.closest(".lifetime_cost_analysis").classList.add("is_hidden");
+            if ($el(".monthly_bill_comparison").classList.contains("is_hidden")) {
+              $el(".monthly_bill_comparison").classList.remove("is_hidden");
             }
           }
         });
       });
+    });
+    $el(".new_btn_prev.step_email").addEventListener("click", (e) => {
+      $el('[id="estimate-email"]').classList.add("is_hidden");
+      $el(".new_btn_prev.step_email").classList.add("is_hidden");
+      $el(".wrapper #slider-block").classList.add("is_hidden");
+      $el(".wrapper #slider-block .d-none").classList.add("is_hidden");
+      if ($el(".federal_credit").classList.contains("is_hidden")) {
+        $el(".federal_credit").classList.remove("is_hidden");
+      }
+
+      if ($el(".estimated_lifetime_sav_wrapper").classList.contains("is_hidden")) {
+        $el(".estimated_lifetime_sav_wrapper").classList.remove("is_hidden");
+      }
+      if ($el(".wrapper .btn-block .back-link").classList.contains("is_hidden")) {
+        $el(".wrapper .btn-block .back-link").classList.remove("is_hidden");
+      }
     });
   }
 
@@ -1603,6 +1837,9 @@ class changeFlow {
         .swiper-container-autoheight .swiper-wrapper {
           height: 100% !important;
         }
+        .wrapper .btn-block .back-link.is_hidden {
+          display: none;
+        }
         .wrapper .v-center {
           display: flex;
           flex-direction: column;
@@ -1792,6 +2029,9 @@ class changeFlow {
           margin: 0;
         }
         /*#estimate-email */
+        #estimate-email.is_hidden {
+          display: none;
+        }
         #estimate-email .sub-title {
           margin: 12px 0;
         }
@@ -1873,6 +2113,7 @@ class changeFlow {
         }
         .wrapper .back-link {
           padding-left: 27px;
+          left: 16px !important;
         }
         .wrapper #slider-block .d-none {
           display: flex !important;
@@ -1890,6 +2131,7 @@ class changeFlow {
           letter-spacing: 0.5px;
           text-transform: uppercase;
           margin-left: auto;
+          order: 2;
         }
         .wrapper #slider-block .d-none.is_hidden {
           display: none !important;
@@ -1911,3 +2153,7 @@ class changeFlow {
 }
 
 new changeFlow(device);
+
+document.addEventListener("click", (e) => {
+  console.log(e.target, `>>>>>>>>>>>>>>>`);
+});
