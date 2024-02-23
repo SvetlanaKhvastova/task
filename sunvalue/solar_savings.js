@@ -138,7 +138,25 @@ const dataSavings = {
 };
 
 const dataStatesInfo = {
-  "California (CA)": [
+  "Kyiv City": [
+    {
+      name: "SGIP:",
+      description: "Rebate for solar battery installation",
+    },
+    {
+      name: "Property tax exclusion:",
+      description: "No increased property taxes after installing solar panels",
+    },
+    {
+      name: "PACE program:",
+      description: "Financing for solar panels paid through property taxes",
+    },
+    {
+      name: "Local California solar incentives:",
+      description: "Varies by power company and location",
+    },
+  ],
+  California: [
     {
       name: "SGIP:",
       description: "Rebate for solar battery installation",
@@ -170,7 +188,7 @@ const dataStatesInfo = {
       description: "Financing options for solar panel installations",
     },
   ],
-  "New York (NY)": [
+  "New York": [
     {
       name: "New York State Solar Equipment Tax Credit:",
       description: "25% tax credit for fully installed solar panel systems",
@@ -192,7 +210,7 @@ const dataStatesInfo = {
       description: "No increased property taxes after installing solar panels",
     },
   ],
-  "Massachusetts (MA)": [
+  Massachusetts: [
     {
       name: "Massachusetts state solar tax credit:",
       description: "State income tax credit worth 15% of total solar installation cost, up to $1,000",
@@ -214,7 +232,7 @@ const dataStatesInfo = {
       description: "Various rebates for customers of six publicly owned utility companies for installing solar",
     },
   ],
-  "Connecticut (CT)": [
+  Connecticut: [
     {
       name: "RSIP:",
       description: "Cost per watt reduction for solar system owners",
@@ -298,7 +316,7 @@ class changeFlow {
           justify-content: center;
           max-width: 300px;
           width: 100%;
-          padding: 16px 53px;
+          padding: 16px 10px;
           border-radius: 5px;
           background: #83be63;
           color: #fff;
@@ -334,6 +352,11 @@ class changeFlow {
         .new_btn_next.is_hidden,
         .new_btn_prev.is_hidden {
           display: none;
+        }
+        @media (max-width: 1024px) {
+          .new_btn_next {
+            max-width: 200px;
+          }
         }
       </style>
     `;
@@ -418,7 +441,17 @@ class changeFlow {
           line-height: 20px;
           margin: 0;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
+          .available_incentives_list {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+          .available_incentives_wrapper h2 {
+            font-size: 14px;
+            line-height: 20px;
+            margin: 0 0 8px;
+            text-align: left;
+          }
         }
       </style>
     `;
@@ -501,7 +534,7 @@ class changeFlow {
       <div class="savings_on_energy_wrapper">
         ${savingsOnEnergyStyle}
         <img src="${git}/sunvalue/img/moneybox.svg" alt="moneybox" />
-        <p>Up to 49%* savings on energy with solar</p>
+        <p>Up to 46% savings on energy with solar</p>
       </div>
     `;
     return savingsOnEnergyHtml;
@@ -576,7 +609,8 @@ class changeFlow {
           display: flex;
           flex-direction: column;
         }
-        .incentive_wrapper.is_hidden {
+        .incentive_wrapper.is_hidden,
+        .incentive_list_custom.is_hidden {
           display: none;
         }
         .incentive_wrapper h2 {
@@ -610,32 +644,7 @@ class changeFlow {
           font-weight: 400;
           line-height: 24px;
         }
-      </style>
-    `;
-    const html = /* HTML */ `
-      <div class="federal_credit">
-        ${style}
-        <div class="incentive_wrapper is_hidden">
-          <h2>Available incentives found</h2>
-          <ul class="incentive_list">
-            <li>
-              ${icons.tickCircle}
-              <div>
-                <p>Federal Investment Tax Credit:</p>
-                <span>30% of income tax credit</span>
-              </div>
-            </li>
-          </ul>
-          ${this.showSolarSavingsBtnBlockHtml()}
-        </div>
-        ${this.lifetimeCostAnalysisHtml("Monthly bill comparison", solarAfter, solarBefore, toPriceAfterBefore, "Before solar", "After solar", "monthly_bill_comparison", "Next")} ${this.lifetimeCostAnalysisHtml("Lifetime cost analysis with and without solar", costWit, costWithout, toPrice, "Without solar", "With solar", "lifetime_cost_analysis", "View your lifetime solar savings")} ${this.estimatedLifetimeSavingsHtml()}
-      </div>
-    `;
-    return html;
-  }
-  incentiveListCustomHtml(name, description) {
-    const style = /* HTML */ `
-      <style>
+        /* incentive_list_custom*/
         .incentive_list_custom {
           display: flex;
           flex-direction: column;
@@ -669,19 +678,44 @@ class changeFlow {
           font-weight: 400;
           line-height: 16px;
         }
+        @media (max-width: 1024px) {
+          .incentive_list_custom {
+            padding: 17px 39px 18px 12px;
+          }
+        }
       </style>
     `;
     const html = /* HTML */ `
-      <ul class="incentive_list_custom">
+      <div class="federal_credit">
         ${style}
-        <li>
-          ${icons.tickCircle}
-          <div>
-            <p>${name}</p>
-            <span>${description}</span>
-          </div>
-        </li>
-      </ul>
+        <div class="incentive_wrapper is_hidden">
+          <h2>Available incentives found</h2>
+          <ul class="incentive_list is_hidden">
+            <li>
+              ${icons.tickCircle}
+              <div>
+                <p>Federal Investment Tax Credit:</p>
+                <span>30% of income tax credit</span>
+              </div>
+            </li>
+          </ul>
+          <ul class="incentive_list_custom is_hidden"></ul>
+          ${this.showSolarSavingsBtnBlockHtml()}
+        </div>
+        ${this.lifetimeCostAnalysisHtml("Monthly bill comparison", "Monthly bill:", solarAfter, solarBefore, toPriceAfterBefore, "Before solar", "After solar*", "monthly_bill_comparison", `${this.device === "mobile" ? "Next" : "Explore Lifetime Cost Analysis"}`)} ${this.lifetimeCostAnalysisHtml("Lifetime cost analysis with and without solar", "Lifetime cost*:", costWit, costWithout, toPrice, "Without solar", "With solar", "lifetime_cost_analysis", `${this.device === "mobile" ? "Next" : "View your lifetime solar savings"}`)} ${this.estimatedLifetimeSavingsHtml()}
+      </div>
+    `;
+    return html;
+  }
+  incentiveListCustomHtml(name, description) {
+    const html = /* HTML */ `
+      <li>
+        ${icons.tickCircle}
+        <div>
+          <p>${name}</p>
+          <span>${description}</span>
+        </div>
+      </li>
     `;
     return html;
   }
@@ -711,7 +745,7 @@ class changeFlow {
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 16px 53px;
+          padding: 16px 10px;
           border-radius: 8px;
           background: #83be63;
           color: #fff;
@@ -721,6 +755,16 @@ class changeFlow {
           letter-spacing: 0.5px;
           text-transform: uppercase;
           cursor: pointer;
+        }
+        @media (max-width: 1024px) {
+          .show_solar_savings_wrapper {
+            padding: 12px 20px;
+          }
+          .show_solar_savings_wrapper p {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+          }
         }
       </style>
     `;
@@ -791,8 +835,8 @@ class changeFlow {
           align-items: center;
           justify-content: center;
           width: 100%;
-          max-width: 300px;
-          padding: 16px 53px;
+          max-width: max-content;
+          padding: 16px 24px;
           border-radius: 8px;
           background: #83be63;
           color: #fff;
@@ -804,12 +848,28 @@ class changeFlow {
           cursor: pointer;
         }
         /*lifetime_cost_analysis */
-        .lifetime_cost_analysis .monthly_bill_btns_wrapper p {
+        .lifetime_cost_analysis .monthly_bill_btns_wrapper p,
+        .monthly_bill_comparison .monthly_bill_btns_wrapper p {
           display: none;
         }
         .lifetime_cost_analysis .monthly_bill_btn_next {
-          max-width: 356px;
-          padding: 16px 24px;
+        }
+        @media (max-width: 1024px) {
+          .monthly_bill_btns_wrapper {
+            padding: 12px 20px;
+          }
+          .monthly_bill_btns_wrapper p {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+          }
+          .lifetime_cost_analysis .monthly_bill_btns_wrapper p,
+          .monthly_bill_comparison .monthly_bill_btns_wrapper p {
+            display: block;
+          }
+          .monthly_bill_btn_next {
+            max-width: 200px;
+          }
         }
       </style>
     `;
@@ -825,7 +885,7 @@ class changeFlow {
     `;
     return html;
   }
-  lifetimeCostAnalysisHtml(title, costWit, costWithout, toPrice, txt1, txt2, classBox, txtBtn) {
+  lifetimeCostAnalysisHtml(title, subTitle, costWit, costWithout, toPrice, txt1, txt2, classBox, txtBtn) {
     const style = /* HTML */ `
       <style>
         .lifetime_cost_analysis_wrapper {
@@ -943,6 +1003,15 @@ class changeFlow {
           border-radius: 8px;
           background: #83be63;
         }
+        .footnote_txt {
+          color: #757575;
+          text-align: center;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 16px;
+          max-width: 330px;
+          margin: auto;
+        }
       </style>
     `;
     const html = /* HTML */ `
@@ -950,7 +1019,7 @@ class changeFlow {
         ${style}
         <h2>${title}</h2>
         <div class="monthly_bill_box">
-          <p>Monthly bill:</p>
+          <p>${subTitle}</p>
           <div class="crs_graphic">
             <div class="crs_graphic_line_wrapp navy">
               <p><b>${txt1}</b></p>
@@ -965,6 +1034,7 @@ class changeFlow {
           </div>
           ${this.poweredByHtml()}
         </div>
+        <p class="footnote_txt">*These numbers are estimates according to our research from Project Sunroof research and may vary</p>
         ${this.monthlyBillBtnsBlockHtml(txtBtn)}
       </div>
     `;
@@ -1072,7 +1142,7 @@ class changeFlow {
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 16px 53px;
+          padding: 16px 10px;
           border-radius: 8px;
           background: #83be63;
           color: #fff;
@@ -1083,15 +1153,21 @@ class changeFlow {
           text-transform: uppercase;
           cursor: pointer;
         }
+        /** */
+        @media (max-width: 1024px) {
+          .find_out_if_you_qualify_wrapper p br {
+            display: none;
+          }
+        }
       </style>
     `;
     const html = /* HTML */ `
       <div class="find_out_if_you_qualify_wrapper">
         ${style}
         <p>
-          Ready to save with solar? Explore your <br />
-          qualification for limited time program with SunValue
-          <img src="${git}/sunvalue/img/money_icon.png" alt="money icon" />
+          Ready to save with solar? <br />
+          Explore your qualification for limited-time program
+          <img src="${git}/sunvalue/img/sun_icon.png" alt="sun icon" />
         </p>
         <div id="findOutIfYouQualifyBtn">FIND OUT IF YOU QUALIFY</div>
       </div>
@@ -1159,17 +1235,6 @@ class changeFlow {
               element.querySelector('[id="estimate-zip"]').insertAdjacentHTML("beforeend", this.poweredByHtml());
             }
           });
-
-          dataState.then((data) => {
-            let stringData = JSON.stringify(data);
-            let findCity = stringData.split('"' + element.querySelector("h1.title").textContent.split(" ")[0].trim())[0];
-            let findZipCodes = findCity.split('"zip_code":');
-            let zipCode = findZipCodes[findZipCodes.length - 1].split(",")[0];
-            console.log(zipCode, findZipCodes[findZipCodes.length - 1], `findCity`);
-            const inputElement = $el("input#zip");
-            inputElement.value = zipCode;
-            inputElement.dispatchEvent(new Event("input", { bubbles: true }));
-          });
         }
         // estimate-bill
         if (element.querySelector('[id="estimate-bill"]')) {
@@ -1189,13 +1254,11 @@ class changeFlow {
           if (element.querySelector('[id="autoaddress"]').placeholder !== "Enter Your Address: e.g. 123 Main Road") {
             element.querySelector('[id="autoaddress"]').placeholder = "Enter Your Address: e.g. 123 Main Road";
           }
-          //
-          if (!el.querySelector(".savings_on_energy_wrapper")) {
-            element.querySelector(".small-container").insertAdjacentHTML("afterend", this.savingsOnEnergyHtml());
-          }
-          if (!el.querySelector(".powered_by_wrapper")) {
-            element.querySelector(".container").insertAdjacentHTML("beforeend", this.poweredByHtml());
-          }
+          //ТУТ БУДЕ СЛАЙДЕР РЕВЬЮ
+
+          // if (!el.querySelector('.powered_by_wrapper')) {
+          //   element.querySelector('.container').insertAdjacentHTML('beforeend', this.poweredByHtml())
+          // }
         }
         //estimate-shade
         if (element.querySelector('[id="estimate-shade"]')) {
@@ -1216,6 +1279,9 @@ class changeFlow {
           });
           if (!element.querySelector(".safe_and_secure_wrapper")) {
             element.querySelector(".small-container").insertAdjacentHTML("afterend", this.safeAndSecureHtml());
+          }
+          if (!el.querySelector(".savings_on_energy_wrapper") && $el(".safe_and_secure_wrapper")) {
+            element.querySelector(".safe_and_secure_wrapper").insertAdjacentHTML("afterend", this.savingsOnEnergyHtml());
           }
         }
         // estimate-name
@@ -1349,6 +1415,20 @@ class changeFlow {
       subtree: true,
     });
   }
+  setIncentiveCustomList(crsData) {
+    const crsDataCity = crsData.city;
+    const city = dataStatesInfo[crsDataCity];
+    if (city) {
+      city.forEach((el) => {
+        if ($el(".incentive_list_custom").children.length !== city.length) {
+          $el(".incentive_list_custom")?.insertAdjacentHTML("beforeend", this.incentiveListCustomHtml(el.name, el.description));
+        }
+      });
+      if ($el(".incentive_list_custom").classList.contains("is_hidden")) {
+        $el(".incentive_list_custom").classList.remove("is_hidden");
+      }
+    }
+  }
 
   // ON CLICK ---------------->
   // step first
@@ -1425,6 +1505,7 @@ class changeFlow {
     waitForElement('[id="estimate-shade"] .custom-radio-item').then((el) => {
       $$el('[id="estimate-shade"] input').forEach((i) => {
         i.addEventListener("click", (e) => {
+          console.log(`object`);
           const crsData = JSON.parse(localStorage.getItem("crs_data"));
 
           if (crsData) {
@@ -1437,6 +1518,7 @@ class changeFlow {
               this.onClickMonthlyBillBtns();
               this.onClickNewBtnBack();
               this.onClickfindOutIfYouQualifyBtn();
+              this.setIncentiveCustomList(crsData);
             });
           }
 
@@ -1507,8 +1589,8 @@ class changeFlow {
         if ($el(".wrapper #slider-block").classList.contains("is_hidden")) {
           $el(".wrapper #slider-block").classList.remove("is_hidden");
         }
-        if ($el(".wrapper #slider-block .d-none").classList.contains("is_hidden")) {
-          $el(".wrapper #slider-block .d-none").classList.remove("is_hidden");
+        if ($el(".wrapper #slider-block .d-none")?.classList.contains("is_hidden")) {
+          $el(".wrapper #slider-block .d-none")?.classList.remove("is_hidden");
         }
         if ($el(".new_btn_prev.step_email").classList.contains("is_hidden")) {
           $el(".new_btn_prev.step_email").classList.remove("is_hidden");
@@ -1596,7 +1678,7 @@ class changeFlow {
       $el('[id="estimate-email"]').classList.add("is_hidden");
       $el(".new_btn_prev.step_email").classList.add("is_hidden");
       $el(".wrapper #slider-block").classList.add("is_hidden");
-      $el(".wrapper #slider-block .d-none").classList.add("is_hidden");
+      $el(".wrapper #slider-block .d-none")?.classList.add("is_hidden");
       if ($el(".federal_credit").classList.contains("is_hidden")) {
         $el(".federal_credit").classList.remove("is_hidden");
       }
@@ -1762,7 +1844,7 @@ class changeFlow {
       <div class="crs_thank">
         ${style}
         <div class="container">
-          <h2 class="title">You'll be contacted by a Solar Expert Partner in <span data-city>[City]</span></h2>
+          <h2 class="title">You'll be contacted by a Solar Expert in <span data-city>[City]</span></h2>
           <p>Next steps:</p>
           <ul class="crs_thank_list">
             <li data-num="1">One of our Solar Expert Partners will call you</li>
@@ -1901,7 +1983,8 @@ class changeFlow {
         }
         /*#estimate-zip */
         #estimate-zip h4,
-        #estimate-zip h5 {
+        #estimate-zip h5,
+        #estimate-bill div h4.sub-title.show-in-mobile {
           display: none;
         }
         #estimate-zip h1.title {
@@ -1910,7 +1993,7 @@ class changeFlow {
         #estimate-zip #calculateYourSavings {
           border-radius: 8px;
           background: #83be63;
-          padding: 16px 53px;
+          padding: 16px 10px;
         }
         #estimate-zip #calculateYourSavings span {
           color: #fff;
@@ -2066,7 +2149,7 @@ class changeFlow {
           height: 100%;
           border-radius: 8px;
           background: #83be63;
-          padding: 16px 53px;
+          padding: 16px 10px;
           color: #fff;
           font-size: 16px;
           font-weight: 700;
@@ -2121,7 +2204,7 @@ class changeFlow {
           justify-content: center;
           max-width: 300px;
           width: 100%;
-          padding: 16px 53px;
+          padding: 16px 10px;
           border-radius: 5px;
           background: #83be63;
           color: #fff;
@@ -2140,7 +2223,59 @@ class changeFlow {
         .site-footer {
           display: none !important;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
+          .wrapper.show::before {
+            background: linear-gradient(180deg, #edf2f5 12.81%, rgba(255, 255, 255, 0) 100%), url(${git}/sunvalue/img/bgr_img.png);
+          }
+          .wrapper .text-field {
+            padding: 16px;
+          }
+          .wrapper .text-field::placeholder {
+            color: #757575;
+            font-size: 16px;
+            font-weight: 350;
+            line-height: 28px;
+          }
+          .wrapper .banner-slider {
+            padding: 88px 20px 30px;
+          }
+          .banner-slider .swiper-slide,
+          .banner-slider .swiper-slide.one {
+            padding: 0;
+          }
+          .wrapper .progress-block p {
+            line-height: 20px;
+          }
+          .sliderLegend .sliderLegendItem--start,
+          .sliderLegend .sliderLegendItem--end {
+            color: #2b3d50;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 24px;
+          }
+          #slider-block {
+            left: 0 !important;
+            bottom: 0 !important;
+            transform: unset;
+            border-radius: unset;
+            background: #edf2f5;
+            padding: 12px 20px;
+          }
+          .wrapper .back-link {
+            left: 20px !important;
+          }
+          .wrapper .btn-block .btn {
+            min-width: 200px;
+          }
+          #estimate-zip #calculateYourSavings {
+            padding: 16px 10px;
+          }
+          #estimate-bill .rangeslider-block {
+            padding: 0;
+          }
+          #estimate-map .title {
+            max-width: 259px;
+          }
         }
       </style>
     `;
