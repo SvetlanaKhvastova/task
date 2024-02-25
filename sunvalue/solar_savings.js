@@ -10,7 +10,43 @@ const clarityInterval = setInterval(function () {
     // clarity('set', 'exp_valu_prop', 'variant_1')
   }
 }, 200);
-
+const loadScriptOrStyle = (url) => {
+  return new Promise((resolve, reject) => {
+    // check script by document.scripts
+    const type = url.split(".").pop();
+    if (type === "js") {
+      const loadedScripts = Array.from(document.scripts).map((script) => script.src.toLowerCase());
+      if (loadedScripts.includes(url.toLowerCase())) {
+        console.log(`Script ${url} allready downloaded!`);
+        return resolve("");
+      }
+      const script = document.createElement("script");
+      script.src = url;
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.appendChild(script);
+    } else if (type === "css") {
+      const loadedStyles = Array.from(document.styleSheets).map((style) => style.href?.toLowerCase());
+      if (loadedStyles.includes(url.toLowerCase())) {
+        console.log(`Style ${url} allready downloaded!`);
+        return resolve("");
+      }
+      const style = document.createElement("link");
+      style.rel = "stylesheet";
+      style.href = url;
+      style.onload = resolve;
+      style.onerror = reject;
+      document.head.appendChild(style);
+    }
+  });
+};
+const loadScriptsOrStyles = async (urls) => {
+  for (const url of urls) {
+    await loadScriptOrStyle(url);
+    console.log(`Loaded librari ${url}`);
+  }
+  console.log("All libraries loaded!");
+};
 function waitForElement(selector) {
   return new Promise((resolve) => {
     if (document.querySelector(selector)) {
@@ -31,7 +67,6 @@ function waitForElement(selector) {
     });
   });
 }
-
 const pushDataLayer = (name, desc, type = "", loc = "") => {
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({
@@ -43,12 +78,27 @@ const pushDataLayer = (name, desc, type = "", loc = "") => {
   });
   console.log(`Event: ${name} ${desc} ${type} ${loc}`);
 };
+function checkFocusTime(selector, event, location) {
+  const checker = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !entry.target.getAttribute("data-startShow")) {
+        entry.target.setAttribute("data-startShow", new Date().getTime());
+      } else if (!entry.isIntersecting && entry.target.getAttribute("data-startShow")) {
+        const startShow = entry.target.getAttribute("data-startShow");
+        const endShow = new Date().getTime();
+        const timeShow = Math.round(endShow - startShow);
+        console.log(timeShow, `timeShow`);
+        entry.target.removeAttribute("data-startShow");
+        if (timeShow >= 3000) {
+          pushDataLayer(event, `Block view ${timeShow}`, "Visibility", location);
+        }
+        checker.unobserve(entry.target);
+      }
+    });
+  });
 
-const dataState = new Promise((resolve, reject) => {
-  fetch("https://raw.githubusercontent.com/millbj92/US-Zip-Codes-JSON/master/USCities.json")
-    .then((data) => data.json())
-    .then((data) => resolve(data));
-});
+  checker.observe(document.querySelector(selector));
+}
 
 const device = window.innerWidth < 769 ? "mobile" : "desktop";
 
@@ -114,6 +164,37 @@ const icons = {
           <rect width="60" height="60" fill="white"/>
         </clipPath>
       </defs>
+    </svg>
+  `,
+  stars: /*html */ `
+    <svg class="stars_reviews_icon" xmlns="http://www.w3.org/2000/svg" width="82" height="13" viewBox="0 0 82 13" fill="none">
+      <path d="M6.86704 0L8.77685 4.45768L13.7341 4.84348L9.95719 7.98427L11.1111 12.6804L6.86704 10.1639L2.62297 12.6804L3.77687 7.98427L0 4.84348L4.95721 4.45768L6.86704 0Z" fill="#FDB948"/>
+      <path d="M23.9334 0L25.8433 4.45768L30.8005 4.84348L27.0236 7.98427L28.1775 12.6804L23.9334 10.1639L19.6894 12.6804L20.8433 7.98427L17.0664 4.84348L22.0236 4.45768L23.9334 0Z" fill="#FDB948"/>
+      <path d="M41.0003 0L42.9101 4.45768L47.8674 4.84348L44.0905 7.98427L45.2444 12.6804L41.0003 10.1639L36.7563 12.6804L37.9102 7.98427L34.1333 4.84348L39.0905 4.45768L41.0003 0Z" fill="#FDB948"/>
+      <path d="M58.0663 0L59.9761 4.45768L64.9333 4.84348L61.1564 7.98427L62.3103 12.6804L58.0663 10.1639L53.8222 12.6804L54.9761 7.98427L51.1992 4.84348L56.1564 4.45768L58.0663 0Z" fill="#FDB948"/>
+      <path d="M75.1327 0L77.0425 4.45768L81.9997 4.84348L78.2228 7.98427L79.3767 12.6804L75.1327 10.1639L70.8886 12.6804L72.0425 7.98427L68.2656 4.84348L73.2228 4.45768L75.1327 0Z" fill="#FDB948"/>
+    </svg>
+  `,
+  arrPrev: /* HTML */ `
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M11 12.59L6.36437 8L11 3.41L9.57287 2L3.5 8L9.57287 14L11 12.59Z" fill="white" />
+    </svg>
+  `,
+  arrNext: /* HTML */ `
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M5 12.59L9.63563 8L5 3.41L6.42713 2L12.5 8L6.42713 14L5 12.59Z" fill="white" />
+    </svg>
+  `,
+  bgrAbsol: /*html */ `
+    <svg class="bgr_absol" xmlns="http://www.w3.org/2000/svg" width="288" height="173" viewBox="0 0 288 173" fill="none">
+      <path d="M0 10.5C0 4.97715 4.47715 0.5 10 0.5H278C283.523 0.5 288 4.97715 288 10.5V137.5C288 143.023 283.523 147.5 278 147.5H151.5H65.75H45.3102C34.1919 147.5 23.5752 152.128 16.0071 160.273L5.19772 171.906C3.34209 173.903 0 172.59 0 169.864V10.5Z" fill="#FAFBFC"/>
+      <path d="M0.5 10.5C0.5 5.25329 4.7533 1 10 1H278C283.247 1 287.5 5.25329 287.5 10.5V137.5C287.5 142.747 283.247 147 278 147H151.5H65.75H45.3102C34.0529 147 23.3035 151.685 15.6408 159.932L4.83144 171.566C3.28507 173.23 0.5 172.136 0.5 169.864V10.5Z" stroke="#427596" stroke-opacity="0.16"/>
+    </svg>
+  `,
+  close: /*html */ `
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path d="M7.75732 7.75735L16.2426 16.2426" stroke="#2B3D50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M7.75739 16.2426L16.2427 7.75735" stroke="#2B3D50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
   `,
 };
@@ -268,6 +349,12 @@ const dataStatesInfo = {
   ],
 };
 
+const arrSliderReviews = {
+  1: [`${icons.stars}`, "We love our SunPower Solar. We had an extremely rainy winter and we still didn't nave a bill at the end of our year. Everyone associated with SunPower went above and beyond to be sure we were satisfied with our new system.", `https://go.sunvalue.com/images/logo-no-bg.svg`],
+  2: [`${icons.stars}`, "Our experience with the techs was very, very positive. It went very smoothly. We had a very professional crew take care of all details and they not only installed the panels, but also installed a brand new electrical panel as well. We just got our first electric bill from our electrical provider and it was -$45 so everything that SunRun said was true. We are now producing more electricity than we are using.", `https://go.sunvalue.com/images/logo-no-bg.svg`],
+  3: [`${icons.stars}`, "They followed through with everything and completed the installation on time. They call ahead of time and let you know what you want to do each step of the way. My electric bill has been reduced so it seems to be working. They are saving me money.", `https://go.sunvalue.com/images/logo-no-bg.svg`],
+};
+
 function roundToNearestMultiple(number) {
   // Визначення множника
   const multiple = number < 100 ? 5 : 50;
@@ -288,8 +375,10 @@ class changeFlow {
   init() {
     if (location.pathname === "/save/") {
       this.initMainStyles();
-      this.updateRangeSlider();
-      this.changeSlides();
+      this.createPopup();
+      this.updateRangeSliderSteps();
+      this.initSliderReviews();
+      this.changeSlidesSteps();
       this.setLocalStorageDataInfo();
       this.onClickYourSavingsBtn();
       this.onClickNewNextBtns();
@@ -393,7 +482,18 @@ class changeFlow {
         [id="estimate-map"] .powered_by_wrapper {
           margin-top: 150px;
         }
+        #slider-block + .powered_by_wrapper {
+          position: fixed;
+          left: 50%;
+          bottom: 6vh;
+          transform: translateX(-50%);
+        }
+        #slider-block + .powered_by_wrapper.is_hidden {
+          display: none;
+        }
         @media (max-width: 768px) {
+          #slider-block + .powered_by_wrapper {
+          }
         }
       </style>
     `;
@@ -598,6 +698,7 @@ class changeFlow {
         .federal_credit {
           width: 100%;
           height: 100%;
+          max-width: 540px;
         }
         .federal_credit.is_hidden {
           display: none;
@@ -700,9 +801,8 @@ class changeFlow {
             </li>
           </ul>
           <ul class="incentive_list_custom is_hidden"></ul>
-          ${this.showSolarSavingsBtnBlockHtml()}
         </div>
-        ${this.lifetimeCostAnalysisHtml("Monthly bill comparison", "Monthly bill:", solarAfter, solarBefore, toPriceAfterBefore, "Before solar", "After solar*", "monthly_bill_comparison", `${this.device === "mobile" ? "Next" : "Explore Lifetime Cost Analysis"}`)} ${this.lifetimeCostAnalysisHtml("Lifetime cost analysis with and without solar", "Lifetime cost*:", costWit, costWithout, toPrice, "Without solar", "With solar", "lifetime_cost_analysis", `${this.device === "mobile" ? "Next" : "View your lifetime solar savings"}`)} ${this.estimatedLifetimeSavingsHtml()}
+        ${this.lifetimeCostAnalysisHtml("Monthly bill comparison", "Monthly bill:", solarAfter, solarBefore, toPriceAfterBefore, "Before solar", "After solar*", "monthly_bill_comparison")} ${this.lifetimeCostAnalysisHtml("Lifetime cost analysis with and without solar", "Lifetime cost*:", costWit, costWithout, toPrice, "Without solar", "With solar", "lifetime_cost_analysis")} ${this.estimatedLifetimeSavingsHtml()}
       </div>
     `;
     return html;
@@ -723,12 +823,21 @@ class changeFlow {
     const style = /* HTML */ `
       <style>
         .show_solar_savings_wrapper {
+          max-width: 540px;
+          position: fixed;
+          left: 50%;
+          bottom: 3vh;
+          transform: translateX(-50%);
           width: 100%;
           padding: 12px 16px;
           border-radius: 8px;
           border-top: 1px solid #e0e4eb;
           background: #fff;
-          margin: auto 0 0;
+          margin: 0 auto 0;
+          z-index: 1;
+        }
+        .show_solar_savings_wrapper.is_hidden {
+          display: none;
         }
         .show_solar_savings_wrapper p {
           display: flex;
@@ -758,7 +867,11 @@ class changeFlow {
         }
         @media (max-width: 1024px) {
           .show_solar_savings_wrapper {
+            max-width: 100%;
             padding: 12px 20px;
+            left: 0;
+            bottom: 0;
+            transform: unset;
           }
           .show_solar_savings_wrapper p {
             font-size: 14px;
@@ -769,7 +882,7 @@ class changeFlow {
       </style>
     `;
     const html = /* HTML */ `
-      <div class="show_solar_savings_wrapper">
+      <div class="show_solar_savings_wrapper is_hidden">
         ${style}
         <p>
           Discover Your Solar
@@ -781,16 +894,25 @@ class changeFlow {
     `;
     return html;
   }
-  monthlyBillBtnsBlockHtml(txtBtn) {
+  monthlyBillBtnsBlockHtml(txtTitle, txtBtn, classBox) {
     const style = /* HTML */ `
       <style>
         .monthly_bill_btns_wrapper {
+          max-width: 540px;
+          position: fixed;
+          left: 50%;
+          bottom: 3vh;
+          transform: translateX(-50%);
           width: 100%;
           padding: 12px 16px;
           border-radius: 8px;
           border-top: 1px solid #e0e4eb;
           background: #fff;
           margin: auto 0 0;
+          z-index: 1;
+        }
+        .monthly_bill_btns_wrapper.is_hidden {
+          display: none;
         }
         .monthly_bill_btns_wrapper p {
           display: flex;
@@ -856,7 +978,11 @@ class changeFlow {
         }
         @media (max-width: 1024px) {
           .monthly_bill_btns_wrapper {
+            max-width: 100%;
             padding: 12px 20px;
+            left: 0;
+            bottom: 0;
+            transform: unset;
           }
           .monthly_bill_btns_wrapper p {
             font-size: 14px;
@@ -867,16 +993,13 @@ class changeFlow {
           .monthly_bill_comparison .monthly_bill_btns_wrapper p {
             display: block;
           }
-          .monthly_bill_btn_next {
-            max-width: 200px;
-          }
         }
       </style>
     `;
     const html = /* HTML */ `
-      <div class="monthly_bill_btns_wrapper">
+      <div class="monthly_bill_btns_wrapper is_hidden ${classBox}">
         ${style}
-        <p>Explore Lifetime Cost Analysis: Solar vs. Non-Solar</p>
+        <p>${txtTitle}</p>
         <div class="monthly_bill_btns_links">
           <a href="#" class="monthly_bill_btn_back">Back</a>
           <a href="#" class="monthly_bill_btn_next">${txtBtn}</a>
@@ -885,7 +1008,7 @@ class changeFlow {
     `;
     return html;
   }
-  lifetimeCostAnalysisHtml(title, subTitle, costWit, costWithout, toPrice, txt1, txt2, classBox, txtBtn) {
+  lifetimeCostAnalysisHtml(title, subTitle, costWit, costWithout, toPrice, txt1, txt2, classBox) {
     const style = /* HTML */ `
       <style>
         .lifetime_cost_analysis_wrapper {
@@ -1010,7 +1133,7 @@ class changeFlow {
           font-weight: 400;
           line-height: 16px;
           max-width: 330px;
-          margin: auto;
+          margin: 30px auto;
         }
       </style>
     `;
@@ -1035,7 +1158,6 @@ class changeFlow {
           ${this.poweredByHtml()}
         </div>
         <p class="footnote_txt">*These numbers are estimates according to our research from Project Sunroof research and may vary</p>
-        ${this.monthlyBillBtnsBlockHtml(txtBtn)}
       </div>
     `;
     return html;
@@ -1111,7 +1233,6 @@ class changeFlow {
           </div>
           ${this.poweredByHtml()}
         </div>
-        ${this.findOutIfYouQualifyBtnHtml()}
       </div>
     `;
     return html;
@@ -1120,12 +1241,21 @@ class changeFlow {
     const style = /* HTML */ `
       <style>
         .find_out_if_you_qualify_wrapper {
+          max-width: 540px;
+          position: fixed;
+          left: 50%;
+          bottom: 6vh;
+          transform: translateX(-50%);
           width: 100%;
           padding: 12px 16px;
           border-radius: 8px;
           border-top: 1px solid #e0e4eb;
           background: #fff;
           margin: auto 0 0;
+          z-index: 1;
+        }
+        .find_out_if_you_qualify_wrapper.is_hidden {
+          display: none;
         }
         .find_out_if_you_qualify_wrapper p {
           color: #2b3d50;
@@ -1155,6 +1285,12 @@ class changeFlow {
         }
         /** */
         @media (max-width: 1024px) {
+          .find_out_if_you_qualify_wrapper {
+            max-width: 100%;
+            left: 0;
+            bottom: 0;
+            transform: unset;
+          }
           .find_out_if_you_qualify_wrapper p br {
             display: none;
           }
@@ -1162,7 +1298,7 @@ class changeFlow {
       </style>
     `;
     const html = /* HTML */ `
-      <div class="find_out_if_you_qualify_wrapper">
+      <div class="find_out_if_you_qualify_wrapper is_hidden">
         ${style}
         <p>
           Ready to save with solar? <br />
@@ -1205,12 +1341,205 @@ class changeFlow {
     `;
     return safeAndSecureHtml;
   }
+  itemSliderReviewsHtml(stars, txt, img) {
+    const item = /* HTML */ `
+      <div class="slider_card">
+        <div class="slider_content">
+          ${icons.bgrAbsol} ${stars}
+          <p class="slider_description">${txt}</p>
+          <p class="read_more_btn">...<span data-more>Read more</span></p>
+        </div>
+        <img src="${img}" alt="logo img" class="logo_img" />
+      </div>
+    `;
+    return item;
+  }
+  sliderReviewsBoxHtml() {
+    let style = /* HTML */ `
+      <style>
+        .reviews_box {
+          margin-top: 38px;
+        }
+        .reviews_box h3 {
+          color: #2b3d50;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 20px;
+          text-align: left;
+          margin: 0 0 12px;
+        }
+        .slider_reviews {
+          position: relative;
+        }
+        .slider_reviews_wrapper .slider_arrow {
+          position: absolute;
+          top: 50%;
+          z-index: 1;
+          transform: translateY(-50%);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 48px;
+          height: 48px;
+          border-radius: 100px;
+          background: #fb7306;
+          box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.11);
+        }
+        .slider_reviews_wrapper .slider_arrow.prev_btn {
+          left: 0;
+        }
+        .slider_reviews_wrapper .slider_arrow.next_btn {
+          right: 0;
+        }
+        .slider_reviews_wrapper .slick-slide {
+          margin: 0 7px;
+        }
+        .slick-slide {
+          width: 288px !important;
+        }
+        /*slider_card */
+        .slider_card {
+          text-align: left;
+        }
+        .slider_card .slider_content {
+          position: relative;
+          background: #fafbfc;
+          padding: 12px 14px;
+          border-radius: 10px;
+          border: 1px solid rgba(66, 117, 150, 0.16);
+          border-bottom: unset;
+          border-bottom-left-radius: unset;
+        }
+        .slider_card .bgr_absol {
+          position: absolute;
+          left: -1px;
+          top: 0;
+          width: 242px;
+          z-index: -1;
+        }
+        .slider_card .slider_description {
+          color: #444;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 16px;
+          margin: 10px 0 0;
+          display: -webkit-box;
+          -webkit-line-clamp: 5;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        .slider_card .read_more_btn {
+          position: absolute;
+          bottom: 12px;
+          right: 14px;
+          width: 96px;
+          height: 16px;
+          color: #2b3d50;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 16px;
+          background: #fafbfc;
+        }
+        .slider_card .read_more_btn span {
+          text-decoration-line: underline;
+          cursor: pointer;
+        }
+        .slider_card .logo_img {
+          margin: 19px 0 0 16px;
+          max-width: 85px;
+          width: 100%;
+        }
+        /* new-popup__content*/
+        .new-popup__content .slider_card {
+          padding: 20px;
+        }
+        .new-popup__content .slider_card .read_more_btn,
+        .new-popup__content .slider_card .bgr_absol {
+          display: none;
+        }
+        .new-popup__content .slider_card .slider_content {
+          padding: 0;
+          border-radius: unset;
+          border: unset;
+        }
+        .new-popup__content .slider_card .slider_description {
+          max-width: 295px;
+          color: #444;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 20px;
+          margin: 10px 0;
+          display: block;
+          -webkit-line-clamp: initial;
+          -webkit-box-orient: unset;
+          overflow: initial;
+        }
+        .new-popup__content .slider_card .logo_img {
+          margin: 10px 0 0;
+        }
+        @media (max-width: 1024px) {
+          .reviews_box {
+            margin: 18px -20px 0 0;
+          }
+          .slider_reviews_wrapper .slick-slide {
+            margin: 0 14px 0 0;
+          }
+          .slider_card .slider_content {
+            padding: 12px 14px 20px;
+          }
+          .slider_card .slider_description {
+            -webkit-line-clamp: 4;
+          }
+          .slider_card .read_more_btn {
+            width: 111px;
+            bottom: 20px;
+          }
+          .slider_card .bgr_absol {
+            width: 200px;
+          }
+        }
+      </style>
+    `;
+    const html = /* HTML */ `
+      <div class="reviews_box">
+        ${style}
+        <h3>About our trusted installers:</h3>
+        <div class="slider_reviews">
+          <div class="slider_reviews_wrapper"></div>
+        </div>
+      </div>
+    `;
+    return html;
+  }
 
-  // change slides
-  changeSlides() {
+  // change slides Steps
+  changeSlidesSteps() {
     waitForElement("#slider-block").then((el) => {
       el.insertAdjacentHTML("beforeend", this.renderNewNextBtns());
+      if (!$el("#slider-block + .powered_by_wrapper")) {
+        el.insertAdjacentHTML("afterend", this.poweredByHtml());
+      }
     });
+    waitForElement("#slider-block + .powered_by_wrapper").then((el) => {
+      if (!$el(".powered_by_wrapper + .show_solar_savings_wrapper")) {
+        el.insertAdjacentHTML("afterend", this.showSolarSavingsBtnBlockHtml());
+      }
+    });
+    waitForElement(".show_solar_savings_wrapper").then((el) => {
+      if (!$el(".show_solar_savings_wrapper + .find_out_if_you_qualify_wrapper")) {
+        el.insertAdjacentHTML("afterend", this.findOutIfYouQualifyBtnHtml());
+      }
+    });
+    waitForElement(".find_out_if_you_qualify_wrapper").then((el) => {
+      if (!$el(".find_out_if_you_qualify_wrapper + .monthly_bill_btns_wrapper.monthly_bill_comparison")) {
+        el.insertAdjacentHTML("afterend", this.monthlyBillBtnsBlockHtml("Explore Lifetime Cost Analysis: Solar vs. Non-Solar", `${this.device === "mobile" ? "Next" : "Explore Lifetime Cost Analysis"}`, "monthly_bill_comparison"));
+      }
+    });
+    waitForElement(".find_out_if_you_qualify_wrapper").then((el) => {
+      if (!$el(".find_out_if_you_qualify_wrapper + .monthly_bill_btns_wrapper.lifetime_cost_analysis")) {
+        el.insertAdjacentHTML("afterend", this.monthlyBillBtnsBlockHtml('View your lifetime solar savings <img src="https://conversionratestore.github.io/projects//sunvalue/img/money_icon.png" alt="money icon">', `${this.device === "mobile" ? "Next" : "View your lifetime solar savings"}`, "lifetime_cost_analysis"));
+      }
+    }); //
     waitForElement(".swiper-wrapper .swiper-slide").then((el) => {
       let steps = $$el(".swiper-wrapper .swiper-slide");
       steps = $$el(".swiper-wrapper .swiper-slide");
@@ -1229,12 +1558,6 @@ class changeFlow {
           if (element.querySelector('[id="zip"]').placeholder !== "Enter Your Zip Code") {
             element.querySelector('[id="zip"]').placeholder = "Enter Your Zip Code";
           }
-
-          waitForElement(".no_personal_inform_wrapper").then((i) => {
-            if (!element.querySelector(".powered_by_wrapper")) {
-              element.querySelector('[id="estimate-zip"]').insertAdjacentHTML("beforeend", this.poweredByHtml());
-            }
-          });
         }
         // estimate-bill
         if (element.querySelector('[id="estimate-bill"]')) {
@@ -1256,9 +1579,9 @@ class changeFlow {
           }
           //ТУТ БУДЕ СЛАЙДЕР РЕВЬЮ
 
-          // if (!el.querySelector('.powered_by_wrapper')) {
-          //   element.querySelector('.container').insertAdjacentHTML('beforeend', this.poweredByHtml())
-          // }
+          if (!el.querySelector(".reviews_box")) {
+            element.querySelector(".container").insertAdjacentHTML("beforeend", this.sliderReviewsBoxHtml());
+          }
         }
         //estimate-shade
         if (element.querySelector('[id="estimate-shade"]')) {
@@ -1314,7 +1637,7 @@ class changeFlow {
       });
     });
   }
-  updateRangeSlider() {
+  updateRangeSliderSteps() {
     const rangeBlock = /* HTML */ `
       <input type="range" min="50" value="300" max="800" step="50" name="monthly_elec" data-rangeslider />
       <div class="rangeslider-tooltip">$<output></output></div>
@@ -1429,6 +1752,44 @@ class changeFlow {
       }
     }
   }
+  initSliderReviews() {
+    waitForElement(".reviews_box").then((el) => {
+      for (let key in arrSliderReviews) {
+        $el(".slider_reviews_wrapper").insertAdjacentHTML("beforeend", this.itemSliderReviewsHtml(arrSliderReviews[key][0], arrSliderReviews[key][1], arrSliderReviews[key][2]));
+      }
+
+      this.onClickReadMore();
+    });
+
+    loadScriptsOrStyles(["https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css", "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"]).then(async () => {
+      let s = setInterval(() => {
+        if (typeof jQuery(".slider_reviews_wrapper").slick === "function" && $el(".slider_reviews_wrapper")) {
+          clearInterval(s);
+
+          let slider = jQuery(".slider_reviews_wrapper").slick({
+            centerMode: true,
+            infinite: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            variableWidth: true,
+            prevArrow: ` <div class="prev_btn slider_arrow">${icons.arrPrev}</div> `,
+            nextArrow: ` <div class="next_btn slider_arrow">${icons.arrNext}</div> `,
+            responsive: [
+              {
+                breakpoint: 1024,
+                settings: {
+                  slidesToShow: 1.1,
+                  centerMode: false,
+                  arrows: false,
+                  infinite: false,
+                },
+              },
+            ],
+          });
+        }
+      }, 100);
+    });
+  }
 
   // ON CLICK ---------------->
   // step first
@@ -1437,6 +1798,9 @@ class changeFlow {
       el.addEventListener("click", (e) => {
         this.onClickEstimateShadeInput();
         this.onClickCompaniesInput();
+        if ($el("#zip-error").textContent === "") {
+          $el("#slider-block + .powered_by_wrapper").classList.add("is_hidden");
+        }
       });
     });
   }
@@ -1535,6 +1899,9 @@ class changeFlow {
               if ($el(".incentive_wrapper").classList.contains("is_hidden")) {
                 $el(".incentive_wrapper").classList.remove("is_hidden");
               }
+              if ($el(".show_solar_savings_wrapper").classList.contains("is_hidden")) {
+                $el(".show_solar_savings_wrapper").classList.remove("is_hidden");
+              }
             }, 3000);
           });
         });
@@ -1548,7 +1915,11 @@ class changeFlow {
         if ($el(".monthly_bill_comparison").classList.contains("is_hidden")) {
           $el(".monthly_bill_comparison").classList.remove("is_hidden");
         }
+        if ($el(".monthly_bill_btns_wrapper.monthly_bill_comparison").classList.contains("is_hidden")) {
+          $el(".monthly_bill_btns_wrapper.monthly_bill_comparison").classList.remove("is_hidden");
+        }
         $el(".incentive_wrapper").classList.add("is_hidden");
+        $el(".show_solar_savings_wrapper").classList.add("is_hidden");
       });
     });
   }
@@ -1559,14 +1930,22 @@ class changeFlow {
           if (!e.target.getAttribute("data-test")) {
             if (e.target.closest(".monthly_bill_comparison")) {
               e.target.closest(".monthly_bill_comparison").classList.add("is_hidden");
+              $el(".lifetime_cost_analysis_wrapper.monthly_bill_comparison").classList.add("is_hidden");
               if ($el(".lifetime_cost_analysis").classList.contains("is_hidden")) {
                 $el(".lifetime_cost_analysis").classList.remove("is_hidden");
+              }
+              if ($el(".monthly_bill_btns_wrapper.lifetime_cost_analysis").classList.contains("is_hidden")) {
+                $el(".monthly_bill_btns_wrapper.lifetime_cost_analysis").classList.remove("is_hidden");
               }
             }
             if (e.target.closest(".lifetime_cost_analysis")) {
               e.target.closest(".lifetime_cost_analysis").classList.add("is_hidden");
+              $el(".lifetime_cost_analysis_wrapper.lifetime_cost_analysis").classList.add("is_hidden");
               if ($el(".estimated_lifetime_sav_wrapper").classList.contains("is_hidden")) {
                 $el(".estimated_lifetime_sav_wrapper").classList.remove("is_hidden");
+              }
+              if ($el(".find_out_if_you_qualify_wrapper").classList.contains("is_hidden")) {
+                $el(".find_out_if_you_qualify_wrapper").classList.remove("is_hidden");
               }
             }
           }
@@ -1598,6 +1977,7 @@ class changeFlow {
         $el(".estimated_lifetime_sav_wrapper").classList.add("is_hidden");
         $el(".wrapper .btn-block .back-link").classList.add("is_hidden");
         $el(".federal_credit").classList.add("is_hidden");
+        $el(".find_out_if_you_qualify_wrapper").classList.add("is_hidden");
       });
     });
   }
@@ -1607,6 +1987,9 @@ class changeFlow {
         let step = el.getAttribute("aria-label").split("/")[0];
         if (step.includes("2")) {
           console.log(step);
+          if ($el("#slider-block + .powered_by_wrapper").classList.contains("is_hidden")) {
+            $el("#slider-block + .powered_by_wrapper").classList.remove("is_hidden");
+          }
         }
         if (step.includes("3")) {
           console.log(step);
@@ -1648,27 +2031,28 @@ class changeFlow {
       btn.addEventListener("click", (e) => {
         $$el(".swiper-slide-next").forEach((el) => {
           let step = el.getAttribute("aria-label").split("/")[0];
-          console.log(e.target);
-          console.log(step);
+
+          // console.log(step)
 
           if (step.includes("7") && e.target.closest(".monthly_bill_comparison")) {
             if ($el(".incentive_wrapper").classList.contains("is_hidden")) {
               $el(".incentive_wrapper").classList.remove("is_hidden");
             }
-            $el(".monthly_bill_comparison").classList.add("is_hidden");
-            // $el('.wrapper .btn-block .back-link').click()
-            // if ($el('.wrapper #slider-block .d-none').classList.contains('is_hidden')) {
-            //   $el('.wrapper #slider-block .d-none').classList.remove('is_hidden')
-            // }
-            // if ($el('.wrapper #slider-block').classList.contains('is_hidden')) {
-            //   $el('.wrapper #slider-block').classList.remove('is_hidden')
-            // }
-            // $el('.federal_credit')?.remove()
+            e.target.closest(".monthly_bill_comparison").classList.add("is_hidden");
+            $el(".lifetime_cost_analysis_wrapper.monthly_bill_comparison").classList.add("is_hidden");
+            if ($el(".show_solar_savings_wrapper").classList.contains("is_hidden")) {
+              $el(".show_solar_savings_wrapper").classList.remove("is_hidden");
+            }
           }
           if (step.includes("7") && e.target.closest(".lifetime_cost_analysis")) {
+            console.log(e.target);
             e.target.closest(".lifetime_cost_analysis").classList.add("is_hidden");
-            if ($el(".monthly_bill_comparison").classList.contains("is_hidden")) {
-              $el(".monthly_bill_comparison").classList.remove("is_hidden");
+            $el(".lifetime_cost_analysis_wrapper.lifetime_cost_analysis").classList.add("is_hidden");
+            if ($el(".lifetime_cost_analysis_wrapper.monthly_bill_comparison").classList.contains("is_hidden")) {
+              $el(".lifetime_cost_analysis_wrapper.monthly_bill_comparison").classList.remove("is_hidden");
+            }
+            if ($el(".monthly_bill_btns_wrapper.monthly_bill_comparison").classList.contains("is_hidden")) {
+              $el(".monthly_bill_btns_wrapper.monthly_bill_comparison").classList.remove("is_hidden");
             }
           }
         });
@@ -1686,9 +2070,30 @@ class changeFlow {
       if ($el(".estimated_lifetime_sav_wrapper").classList.contains("is_hidden")) {
         $el(".estimated_lifetime_sav_wrapper").classList.remove("is_hidden");
       }
+      if ($el(".find_out_if_you_qualify_wrapper").classList.contains("is_hidden")) {
+        $el(".find_out_if_you_qualify_wrapper").classList.remove("is_hidden");
+      }
       if ($el(".wrapper .btn-block .back-link").classList.contains("is_hidden")) {
         $el(".wrapper .btn-block .back-link").classList.remove("is_hidden");
       }
+    });
+  }
+
+  onClickReadMore() {
+    const productsPopup = /* HTML */ ``;
+    waitForElement(".reviews_box").then((el) => {
+      el.querySelectorAll("[data-more]").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          console.log(e.target);
+          const parent = e.target.closest(".slider_card");
+          const stars = parent.querySelector(".stars_reviews_icon").outerHTML;
+          const txt = parent.querySelector(".slider_description")?.textContent;
+          const img = parent.querySelector(".logo_img")?.src;
+
+          console.log(parent.querySelector(".logo_img"));
+          this.handleShowPopup(this.itemSliderReviewsHtml(stars, txt, img));
+        });
+      });
     });
   }
 
@@ -1866,27 +2271,147 @@ class changeFlow {
   }
 
   // common func
+  createPopup() {
+    const popupStyle = /* HTML */ `
+      <style>
+        .new-popup-backdrop {
+          background: rgba(48, 58, 98, 0.2);
+          backdrop-filter: blur(12px);
+          position: fixed;
+          opacity: 1;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 1000000000000;
+          transition: all 0.8s ease 0s;
+        }
+        .new-popup-backdrop.is-hidden {
+          opacity: 0;
+          pointer-events: none;
+        }
+        .new-popup {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          max-width: 343px;
+          width: calc(100% - 32px);
+          border-radius: 10px;
+          border: 1px solid rgba(66, 117, 150, 0.16);
+          background: #fafbfc;
+        }
+        .new-popup__close {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          top: -53px;
+          right: 0;
+          width: 32px;
+          height: 32px;
+          z-index: 1;
+          cursor: pointer;
+          background: #fafbfc;
+          border-radius: 50%;
+          border: 1px solid rgba(66, 117, 150, 0.16);
+        }
+        @media (max-width: 768px) {
+          .new-popup {
+          }
+        }
+      </style>
+    `;
+    const popup = /* HTML */ `
+      ${popupStyle}
+      <div class="new-popup-backdrop is-hidden">
+        <div class="new-popup">
+          <span class="new-popup__close" data-popup="close">${icons.close}</span>
+          <div class="new-popup__content"></div>
+        </div>
+      </div>
+    `;
+
+    if (!$el(".new-popup-backdrop")) {
+      this.insert(popup, "body", "afterbegin");
+    }
+    waitForElement(".new-popup-backdrop").then((el) => {
+      this.handleClosePopup();
+    });
+  }
+  handleShowPopup(content) {
+    const body = $el("body"),
+      backdrop = $el(".new-popup-backdrop"),
+      popup = $el(".new-popup .new-popup__content");
+
+    if (backdrop.classList.contains("is-hidden")) {
+      backdrop.classList.remove("is-hidden");
+    }
+    body.style.overflow = "hidden";
+    popup.innerHTML = content;
+    checkFocusTime(".slider_card", "exp_exit_pop_up_vis_prodcart_block", "Exit popup for users with product in cart");
+    this.handleClosePopup();
+  }
+  handleClosePopup() {
+    const body = $el("body"),
+      backdrop = $el(".new-popup-backdrop"),
+      popup = $el(".new-popup"),
+      closePopupBtns = popup.querySelectorAll('[data-popup="close"]');
+    closePopupBtns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        if (e.currentTarget) {
+          if (!e.target.getAttribute("data-test")) {
+            backdrop.classList.add("is-hidden");
+            body.style.overflow = "initial";
+
+            pushDataLayer("exp_exit_pop_up_but_prodcart_close", "Close", "Button", "Exit popup for users with product in cart");
+
+            setTimeout(() => {
+              $el(".new-popup__content").innerHTML = "";
+            }, 500);
+          }
+          e.target.setAttribute("data-test", "1");
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
+            }
+          }, 1000);
+        }
+      });
+    });
+    backdrop.addEventListener("click", (e) => {
+      if (!e.target.getAttribute("data-test")) {
+        if (e.target.matches(".new-popup-backdrop")) {
+          backdrop.classList.add("is-hidden");
+          body.style.overflow = "initial";
+
+          pushDataLayer("exp_exit_pop_up_clibeh_prodcart_close", "Close", "Сlick behind the pop-up area", "Exit popup for users with product in cart");
+          setTimeout(() => {
+            $el(".new-popup__content").innerHTML = "";
+          }, 500);
+        }
+      }
+      e.target.setAttribute("data-test", "1");
+      setTimeout(() => {
+        if (e.target.getAttribute("data-test")) {
+          e.target.removeAttribute("data-test");
+        }
+      }, 1000);
+    });
+  }
   initMainStyles() {
     const mainStyles = /* HTML */ `
       <style>
-        .site-header {
-          padding: 27px 0;
+        [aria-label="6 / 8"] {
+          min-height: 412px !important;
+          height: 100% !important;
         }
-        .wrapper::before {
-          background: linear-gradient(180deg, #edf2f5 12.81%, rgba(255, 255, 255, 0) 100%), url("${git}/sunvalue/img/bgr_img.png");
-          background-position: bottom;
-          opacity: 1;
-          background-size: cover;
-        }
-        .wrapper::after {
-          opacity: 1;
-          background: unset;
+        .wrapper {
+          align-items: start;
+          padding: 144px 0;
         }
         .wrapper .banner-slider {
           max-width: 600px;
-          padding: 150px 30px 50px;
-          margin: 0;
-          height: 100vh;
         }
         .wrapper .progress {
           max-width: 540px;
@@ -1902,22 +2427,6 @@ class changeFlow {
         }
         .wrapper .progress-block p span {
           color: #fb7306;
-        }
-        .wrapper {
-          padding: 0;
-        }
-        .wrapper.show::before {
-          opacity: 1;
-        }
-        .wrapper.show {
-          padding: 0;
-        }
-        .wrapper .container {
-          max-width: 100%;
-          padding: 0;
-        }
-        .swiper-container-autoheight .swiper-wrapper {
-          height: 100% !important;
         }
         .wrapper .btn-block .back-link.is_hidden {
           display: none;
@@ -1935,9 +2444,6 @@ class changeFlow {
           font-weight: 900;
           line-height: 40px;
           margin: 0 auto;
-        }
-        .banner-slider .swiper-slide.swiper-slide-active {
-          height: 100%;
         }
         .wrapper .sub-title {
           color: #2b3d50;
@@ -2190,6 +2696,13 @@ class changeFlow {
           line-height: 24px;
           text-transform: uppercase;
         }
+        .wrapper .btn-block .back-link {
+          position: relative;
+          display: flex;
+          transform: unset;
+          align-items: center;
+          justify-content: center;
+        }
         .wrapper .back-link::before {
           top: 0;
           width: 19px;
@@ -2224,6 +2737,15 @@ class changeFlow {
           display: none !important;
         }
         @media (max-width: 1024px) {
+          .wrapper .container {
+            padding: 0;
+          }
+          .wrapper.show {
+            padding: 75px 0;
+          }
+          .wrapper {
+            padding: 120px 0;
+          }
           .wrapper.show::before {
             background: linear-gradient(180deg, #edf2f5 12.81%, rgba(255, 255, 255, 0) 100%), url(${git}/sunvalue/img/bgr_img.png);
           }
@@ -2237,7 +2759,10 @@ class changeFlow {
             line-height: 28px;
           }
           .wrapper .banner-slider {
-            padding: 88px 20px 30px;
+            padding: 0 20px;
+          }
+          .banner-slider .swiper-slide {
+            display: block !important;
           }
           .banner-slider .swiper-slide,
           .banner-slider .swiper-slide.one {
@@ -2253,6 +2778,10 @@ class changeFlow {
             font-weight: 700;
             line-height: 24px;
           }
+          [aria-label="6 / 8"] {
+            min-height: 495px !important;
+            height: 100% !important;
+          }
           #slider-block {
             left: 0 !important;
             bottom: 0 !important;
@@ -2260,12 +2789,15 @@ class changeFlow {
             border-radius: unset;
             background: #edf2f5;
             padding: 12px 20px;
+            max-width: 100%;
+            justify-content: space-between;
           }
           .wrapper .back-link {
             left: 20px !important;
           }
           .wrapper .btn-block .btn {
             min-width: 200px;
+            order: 1;
           }
           #estimate-zip #calculateYourSavings {
             padding: 16px 10px;
@@ -2275,6 +2807,12 @@ class changeFlow {
           }
           #estimate-map .title {
             max-width: 259px;
+          }
+        }
+        @media (max-width: 361px) {
+          [aria-label="6 / 8"] {
+            min-height: 520px !important;
+            height: 100% !important;
           }
         }
       </style>
@@ -2288,7 +2826,3 @@ class changeFlow {
 }
 
 new changeFlow(device);
-
-document.addEventListener("click", (e) => {
-  console.log(e.target, `>>>>>>>>>>>>>>>`);
-});
