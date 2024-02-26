@@ -7,7 +7,7 @@ const git = "https://conversionratestore.github.io/projects/";
 const clarityInterval = setInterval(function () {
   if (typeof clarity == "function") {
     clearInterval(clarityInterval);
-    // clarity('set', 'exp_valu_prop', 'variant_1')
+    clarity("set", "exp_intr_sol_sav", "variant_1");
   }
 }, 200);
 const loadScriptOrStyle = (url) => {
@@ -349,10 +349,15 @@ const dataStatesInfo = {
   ],
 };
 
-const arrSliderReviews = {
-  1: [`${icons.stars}`, "We love our SunPower Solar. We had an extremely rainy winter and we still didn't nave a bill at the end of our year. Everyone associated with SunPower went above and beyond to be sure we were satisfied with our new system.", `https://go.sunvalue.com/images/logo-no-bg.svg`],
-  2: [`${icons.stars}`, "Our experience with the techs was very, very positive. It went very smoothly. We had a very professional crew take care of all details and they not only installed the panels, but also installed a brand new electrical panel as well. We just got our first electric bill from our electrical provider and it was -$45 so everything that SunRun said was true. We are now producing more electricity than we are using.", `https://go.sunvalue.com/images/logo-no-bg.svg`],
-  3: [`${icons.stars}`, "They followed through with everything and completed the installation on time. They call ahead of time and let you know what you want to do each step of the way. My electric bill has been reduced so it seems to be working. They are saving me money.", `https://go.sunvalue.com/images/logo-no-bg.svg`],
+const arrSliderReviewsMob = {
+  1: [`${icons.stars}`, "We love our SunPower Solar. We had an extremely rainy winter and we still didn't nave a bill at the end of our year. Everyone associated with SunPower went above and beyond to be sure we were satisfied with our new system.", `${git}sunvalue/img/sunpower.png`],
+  2: [`${icons.stars}`, "Our experience with the techs was very, very positive. It went very smoothly. We had a very professional crew take care of all details and they not only installed the panels, but also installed a brand new electrical panel as well. We just got our first electric bill from our electrical provider and it was -$45 so everything that SunRun said was true. We are now producing more electricity than we are using.", `${git}sunvalue/img/sunrun.png`],
+  3: [`${icons.stars}`, "They followed through with everything and completed the installation on time. They call ahead of time and let you know what you want to do each step of the way. My electric bill has been reduced so it seems to be working. They are saving me money.", `${git}sunvalue/img/momentum_solar.png`],
+};
+const arrSliderReviewsDesk = {
+  1: [`${icons.stars}`, "Our experience with the techs was very, very positive. It went very smoothly. We had a very professional crew take care of all details and they not only installed the panels, but also installed a brand new electrical panel as well. We just got our first electric bill from our electrical provider and it was -$45 so everything that SunRun said was true. We are now producing more electricity than we are using.", `${git}sunvalue/img/sunrun.png`],
+  2: [`${icons.stars}`, "They followed through with everything and completed the installation on time. They call ahead of time and let you know what you want to do each step of the way. My electric bill has been reduced so it seems to be working. They are saving me money.", `${git}sunvalue/img/momentum_solar.png`],
+  3: [`${icons.stars}`, "We love our SunPower Solar. We had an extremely rainy winter and we still didn't nave a bill at the end of our year. Everyone associated with SunPower went above and beyond to be sure we were satisfied with our new system.", `${git}sunvalue/img/sunpower.png`],
 };
 
 function roundToNearestMultiple(number) {
@@ -386,6 +391,7 @@ class changeFlow {
       this.onClickOldBtnBack();
       this.observereProgressBar();
       this.setNameCity();
+      this.onClickInputsTextFieldForm();
     }
 
     if (location.pathname === "/received/" || location.pathname === "/thankyou/") {
@@ -485,14 +491,15 @@ class changeFlow {
         #slider-block + .powered_by_wrapper {
           position: fixed;
           left: 50%;
-          bottom: 6vh;
+          bottom: 8vh;
           transform: translateX(-50%);
         }
         #slider-block + .powered_by_wrapper.is_hidden {
           display: none;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
           #slider-block + .powered_by_wrapper {
+            bottom: 3vh;
           }
         }
       </style>
@@ -525,11 +532,12 @@ class changeFlow {
         .available_incentives_list {
           display: flex;
           align-items: center;
-          justify-content: space-between;
+          justify-content: flex-start;
           gap: 8px;
           width: 100%;
         }
         .available_incentives_list li {
+          min-width: 174px;
           display: flex;
           align-items: center;
           gap: 10px;
@@ -617,7 +625,7 @@ class changeFlow {
           gap: 10px;
           max-width: 540px;
           width: 100%;
-          margin: 18px auto;
+          margin: 24px auto 0;
         }
         .savings_on_energy_wrapper p {
           color: #2b3d50;
@@ -626,7 +634,10 @@ class changeFlow {
           line-height: 20px;
           margin: 0;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
+          .savings_on_energy_wrapper {
+            margin-top: 12px;
+          }
         }
       </style>
     `;
@@ -722,6 +733,9 @@ class changeFlow {
           margin: 0 0 16px;
           text-align: center;
         }
+        .incentive_wrapper h2 br {
+          display: none;
+        }
         .incentive_list li {
           display: flex;
           gap: 14px;
@@ -737,7 +751,7 @@ class changeFlow {
           font-size: 18px;
           font-weight: 700;
           line-height: 24px;
-          margin: 0 0 4px;
+          margin: 0 0 2px;
         }
         .incentive_list li span {
           color: #757575;
@@ -749,7 +763,7 @@ class changeFlow {
         .incentive_list_custom {
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: 14px;
           border-radius: 8px;
           border: 1px solid rgba(66, 117, 150, 0.16);
           background: #fff;
@@ -758,7 +772,7 @@ class changeFlow {
         }
         .incentive_list_custom li {
           display: flex;
-          gap: 14px;
+          gap: 16px;
           justify-content: flex-start;
           align-items: flex-start;
         }
@@ -771,7 +785,7 @@ class changeFlow {
           font-size: 14px;
           font-weight: 500;
           line-height: 20px;
-          margin: 0;
+          margin: 0 0 -5px;
         }
         .incentive_list_custom li span {
           color: #757575;
@@ -780,8 +794,21 @@ class changeFlow {
           line-height: 16px;
         }
         @media (max-width: 1024px) {
+          .incentive_wrapper h2 br {
+            display: block;
+          }
+          .incentive_list li {
+            gap: 6px;
+          }
+          .incentive_list li svg {
+            margin-top: 2px;
+          }
           .incentive_list_custom {
-            padding: 17px 39px 18px 12px;
+            padding: 17px 42px 18px 12px;
+            margin-top: 6px;
+          }
+          .incentive_list_custom li {
+            gap: 10px;
           }
         }
       </style>
@@ -790,7 +817,10 @@ class changeFlow {
       <div class="federal_credit">
         ${style}
         <div class="incentive_wrapper is_hidden">
-          <h2>Available incentives found</h2>
+          <h2>
+            Available <br />
+            incentives found
+          </h2>
           <ul class="incentive_list is_hidden">
             <li>
               ${icons.tickCircle}
@@ -802,7 +832,7 @@ class changeFlow {
           </ul>
           <ul class="incentive_list_custom is_hidden"></ul>
         </div>
-        ${this.lifetimeCostAnalysisHtml("Monthly bill comparison", "Monthly bill:", solarAfter, solarBefore, toPriceAfterBefore, "Before solar", "After solar*", "monthly_bill_comparison")} ${this.lifetimeCostAnalysisHtml("Lifetime cost analysis with and without solar", "Lifetime cost*:", costWit, costWithout, toPrice, "Without solar", "With solar", "lifetime_cost_analysis")} ${this.estimatedLifetimeSavingsHtml()}
+        ${this.lifetimeCostAnalysisHtml("Monthly <br/> bill comparison", "Monthly bill:", solarAfter, solarBefore, toPriceAfterBefore, "Before solar", "After solar*", "monthly_bill_comparison")} ${this.lifetimeCostAnalysisHtml("Lifetime cost  <br/> analysis with and without solar", "Lifetime cost*:", costWit, costWithout, toPrice, "Without solar", "With solar", "lifetime_cost_analysis")} ${this.estimatedLifetimeSavingsHtml()}
       </div>
     `;
     return html;
@@ -872,6 +902,7 @@ class changeFlow {
             left: 0;
             bottom: 0;
             transform: unset;
+            border-radius: unset;
           }
           .show_solar_savings_wrapper p {
             font-size: 14px;
@@ -918,12 +949,12 @@ class changeFlow {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 5px;
           color: #2b3d50;
           font-size: 16px;
           font-weight: 700;
           line-height: 24px;
           margin: 0 0 12px;
+          display: none;
         }
         .monthly_bill_btns_links {
           display: flex;
@@ -969,13 +1000,6 @@ class changeFlow {
           text-transform: uppercase;
           cursor: pointer;
         }
-        /*lifetime_cost_analysis */
-        .lifetime_cost_analysis .monthly_bill_btns_wrapper p,
-        .monthly_bill_comparison .monthly_bill_btns_wrapper p {
-          display: none;
-        }
-        .lifetime_cost_analysis .monthly_bill_btn_next {
-        }
         @media (max-width: 1024px) {
           .monthly_bill_btns_wrapper {
             max-width: 100%;
@@ -983,15 +1007,19 @@ class changeFlow {
             left: 0;
             bottom: 0;
             transform: unset;
+            border-radius: unset;
           }
           .monthly_bill_btns_wrapper p {
+            display: flex;
             font-size: 14px;
             font-weight: 500;
             line-height: 20px;
           }
-          .lifetime_cost_analysis .monthly_bill_btns_wrapper p,
-          .monthly_bill_comparison .monthly_bill_btns_wrapper p {
-            display: block;
+          .monthly_bill_btns_wrapper p img {
+            max-width: 18px;
+          }
+          .monthly_bill_btn_next {
+            min-width: 200px;
           }
         }
       </style>
@@ -1028,6 +1056,9 @@ class changeFlow {
           max-width: 400px;
           text-align: center;
         }
+        .lifetime_cost_analysis_wrapper h2 br {
+          display: none;
+        }
         .monthly_bill_box {
           border-radius: 8px;
           border: 1px solid rgba(66, 117, 150, 0.16);
@@ -1045,9 +1076,13 @@ class changeFlow {
         .lifetime_cost_analysis_wrapper .powered_by_wrapper {
           background: none;
           margin-top: 15px;
+          padding: 0;
         }
         .lifetime_cost_analysis_wrapper .powered_by_wrapper p {
           display: none;
+        }
+        .lifetime_cost_analysis_wrapper .powered_by_wrapper img {
+          max-height: 22px;
         }
         /* crs_graphic*/
         .crs_graphic {
@@ -1133,7 +1168,22 @@ class changeFlow {
           font-weight: 400;
           line-height: 16px;
           max-width: 330px;
-          margin: 30px auto;
+          margin: 60px auto 0;
+        }
+        /*lifetime_cost_analysis */
+        .lifetime_cost_analysis .footnote_txt {
+          margin-top: 30px;
+        }
+        @media (max-width: 1024px) {
+          .lifetime_cost_analysis_wrapper h2 br {
+            display: block;
+          }
+          .footnote_txt {
+            margin-top: 20px;
+          }
+          .lifetime_cost_analysis .footnote_txt {
+            margin-top: 20px;
+          }
         }
       </style>
     `;
@@ -1183,6 +1233,9 @@ class changeFlow {
           margin: 0;
           text-align: center;
         }
+        .estimated_lifetime_sav_wrapper h2 br {
+          display: none;
+        }
         .you_will_save_box {
           border-radius: 8px;
           border: 1px solid rgba(66, 117, 150, 0.16);
@@ -1219,12 +1272,20 @@ class changeFlow {
         .you_will_save_box .powered_by_wrapper p {
           display: none;
         }
+        @media (max-width: 1024px) {
+          .estimated_lifetime_sav_wrapper h2 br {
+            display: block;
+          }
+        }
       </style>
     `;
     const html = /* HTML */ `
       <div class="estimated_lifetime_sav_wrapper is_hidden">
         ${style}
-        <h2>Estimated lifetime savings</h2>
+        <h2>
+          Estimated <br />
+          lifetime savings
+        </h2>
         <div class="you_will_save_box">
           <p>You will save:</p>
           <div class="save_price_box">
@@ -1267,6 +1328,9 @@ class changeFlow {
         }
         .find_out_if_you_qualify_wrapper p img {
           display: inline;
+          width: 22px;
+          height: 22px;
+          margin-top: 2px;
         }
         #findOutIfYouQualifyBtn {
           display: flex;
@@ -1283,16 +1347,26 @@ class changeFlow {
           text-transform: uppercase;
           cursor: pointer;
         }
-        /** */
         @media (max-width: 1024px) {
           .find_out_if_you_qualify_wrapper {
             max-width: 100%;
             left: 0;
             bottom: 0;
             transform: unset;
+            border-radius: unset;
+          }
+          .find_out_if_you_qualify_wrapper p {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
           }
           .find_out_if_you_qualify_wrapper p br {
             display: none;
+          }
+          .find_out_if_you_qualify_wrapper p img {
+            width: 18px;
+            height: 18px;
+            margin: 0;
           }
         }
       </style>
@@ -1328,6 +1402,10 @@ class changeFlow {
           font-weight: 700;
           line-height: 20px;
           margin: 0;
+        }
+        /*id="estimate-phone" */
+        [id="estimate-phone"] .safe_and_secure_wrapper {
+          margin: 16px auto 0;
         }
         @media (max-width: 768px) {
         }
@@ -1412,7 +1490,7 @@ class changeFlow {
         }
         .slider_card .bgr_absol {
           position: absolute;
-          left: -1px;
+          left: -1.5px;
           top: 0;
           width: 242px;
           z-index: -1;
@@ -1537,7 +1615,7 @@ class changeFlow {
     });
     waitForElement(".find_out_if_you_qualify_wrapper").then((el) => {
       if (!$el(".find_out_if_you_qualify_wrapper + .monthly_bill_btns_wrapper.lifetime_cost_analysis")) {
-        el.insertAdjacentHTML("afterend", this.monthlyBillBtnsBlockHtml('View your lifetime solar savings <img src="https://conversionratestore.github.io/projects//sunvalue/img/money_icon.png" alt="money icon">', `${this.device === "mobile" ? "Next" : "View your lifetime solar savings"}`, "lifetime_cost_analysis"));
+        el.insertAdjacentHTML("afterend", this.monthlyBillBtnsBlockHtml('View your lifetime solar savings<img src="https://conversionratestore.github.io/projects//sunvalue/img/money_icon.png" alt="money icon">', `${this.device === "mobile" ? "Next" : "View your lifetime solar savings"}`, "lifetime_cost_analysis"));
       }
     }); //
     waitForElement(".swiper-wrapper .swiper-slide").then((el) => {
@@ -1577,8 +1655,6 @@ class changeFlow {
           if (element.querySelector('[id="autoaddress"]').placeholder !== "Enter Your Address: e.g. 123 Main Road") {
             element.querySelector('[id="autoaddress"]').placeholder = "Enter Your Address: e.g. 123 Main Road";
           }
-          //ТУТ БУДЕ СЛАЙДЕР РЕВЬЮ
-
           if (!el.querySelector(".reviews_box")) {
             element.querySelector(".container").insertAdjacentHTML("beforeend", this.sliderReviewsBoxHtml());
           }
@@ -1586,7 +1662,7 @@ class changeFlow {
         //estimate-shade
         if (element.querySelector('[id="estimate-shade"]')) {
           element.querySelectorAll(".title").forEach((t) => {
-            t.innerHTML = "Does your roof get sunlight?";
+            t.innerHTML = "Does your <br/> roof get sunlight?";
           });
         }
         // estimate-email
@@ -1597,7 +1673,7 @@ class changeFlow {
             element.querySelector('[id="email"]').placeholder = "Enter Your Email";
           }
           element.querySelectorAll(".sub-title.banner").forEach((t) => {
-            t.innerHTML = `${banner}You're almost qualified for this
+            t.innerHTML = `${banner}You're almost qualified <br/> for this
             limited-time program`;
           });
           if (!element.querySelector(".safe_and_secure_wrapper")) {
@@ -1652,11 +1728,21 @@ class changeFlow {
 
     let changeSlider = 0;
     $("[data-rangeslider]").change(function (e) {
+      if (!e.target.getAttribute("data-test")) {
+        pushDataLayer("exp_intr_sol_sav_range_enerbill_slider", "Slider", "Range slider", "How much wasyour latest monthly energy bill? 2nd step");
+      }
+      e.target.setAttribute("data-test", "1");
+      setTimeout(() => {
+        if (e.target.getAttribute("data-test")) {
+          e.target.removeAttribute("data-test");
+        }
+      }, 500);
       if (changeSlider == 1) {
         const price = e.target.value;
         $(".crs_analyzing li:first-child b").html($(".rangeslider-tooltip").text());
         $(".crs_analyzing li:nth-child(2) span").html((price / 50) * 8);
       }
+
       changeSlider = 1;
     });
 
@@ -1747,13 +1833,13 @@ class changeFlow {
           $el(".incentive_list_custom")?.insertAdjacentHTML("beforeend", this.incentiveListCustomHtml(el.name, el.description));
         }
       });
-      if ($el(".incentive_list_custom").classList.contains("is_hidden")) {
-        $el(".incentive_list_custom").classList.remove("is_hidden");
-      }
+      $el(".incentive_list_custom").classList.toggle("is_hidden");
     }
   }
   initSliderReviews() {
     waitForElement(".reviews_box").then((el) => {
+      let arrSliderReviews = this.device === "mobile" ? arrSliderReviewsMob : arrSliderReviewsDesk;
+
       for (let key in arrSliderReviews) {
         $el(".slider_reviews_wrapper").insertAdjacentHTML("beforeend", this.itemSliderReviewsHtml(arrSliderReviews[key][0], arrSliderReviews[key][1], arrSliderReviews[key][2]));
       }
@@ -1796,6 +1882,7 @@ class changeFlow {
   onClickYourSavingsBtn() {
     waitForElement("#calculateYourSavings").then((el) => {
       el.addEventListener("click", (e) => {
+        pushDataLayer("exp_intr_sol_sav_but_solince_discov", "Discover Incentive Program", "Button", "[City] SolarIncentive Programs 1st step");
         this.onClickEstimateShadeInput();
         this.onClickCompaniesInput();
         if ($el("#zip-error").textContent === "") {
@@ -1809,27 +1896,35 @@ class changeFlow {
     waitForElement("#slider-block .default").then((el) => {
       el.addEventListener("click", (e) => {
         if ($(".swiper-slide").eq(2).hasClass("swiper-slide-active")) {
+          pushDataLayer("exp_intr_sol_sav_but_enerbill_next", "Next", "Button", "How much wasyour latest monthly energy bill? 2nd step");
           this.setLocalStorageDataInfo();
-
           el.classList.add("is_hidden");
-          if ($el(".new_btn_next.step_three")?.classList.contains("is_hidden")) {
-            $el(".new_btn_next.step_three")?.classList.remove("is_hidden");
-          }
+          $el(".new_btn_next.step_three")?.classList.toggle("is_hidden");
         }
         if ($(".swiper-slide").eq(4).hasClass("swiper-slide-active")) {
-          el.classList.add("is_hidden");
-          if ($el(".new_btn_next.step_five")?.classList.contains("is_hidden")) {
-            $el(".new_btn_next.step_five")?.classList.remove("is_hidden");
+          if ($el(".wrapper").classList.contains("is_step_three")) {
+            pushDataLayer("exp_intr_sol_sav_but_housloc_nex", "Next", "Button", "Find yourhouse location 4th step");
           }
+          el.classList.add("is_hidden");
+          $el(".new_btn_next.step_five")?.classList.toggle("is_hidden");
+          $el(".wrapper").classList.toggle("is_step_three");
+        }
+        if ($el(".wrapper").classList.contains("is_step_three")) {
+          pushDataLayer("exp_intr_sol_sav_but_housloc_nex", "Next", "Button", "Find yourhouse location 4th step");
         }
         if ($(".swiper-slide").eq(6).hasClass("swiper-slide-active")) {
+          console.log(`6`);
+          // pushDataLayer('exp_intr_sol_sav_but_emeadres_nex', 'Next', 'Button', 'What is your email address?')
           if ($el(".wrapper .btn-block .back-link")?.classList.contains("is_hidden")) {
             $el(".wrapper .btn-block .back-link")?.classList.remove("is_hidden");
           }
           $el(".new_btn_prev.step_email").classList.add("is_hidden");
         }
         if ($(".swiper-slide").eq(7).hasClass("swiper-slide-active")) {
+          console.log(`7`);
           $el(".wrapper #slider-block").classList.add("is_hidden");
+          $el(".wrapper").classList.add("step_phone");
+          $el(".wrapper").classList.add("slide-active-analyzing");
         }
       });
     });
@@ -1840,6 +1935,7 @@ class changeFlow {
     waitForElement(".new_btn_next.step_three").then((el) => {
       el.addEventListener("click", (e) => {
         e.preventDefault();
+        pushDataLayer("exp_intr_sol_sav_but_utilprov_next", "Next", "Button", "Who is your utility provider? 3rd step");
         $el('[id="util-other"]')?.click();
       });
     });
@@ -1847,6 +1943,7 @@ class changeFlow {
     waitForElement(".new_btn_next.step_five").then((el) => {
       el.addEventListener("click", (e) => {
         e.preventDefault();
+        pushDataLayer("exp_intr_sol_sav_but_roofgetsun_next", "Next", "Button", "Does yourroof get sunlight? 5th step");
         $el('.radioNext [value="unknown"]').click();
       });
     });
@@ -1856,10 +1953,11 @@ class changeFlow {
     waitForElement('[id="companies"] .custom-radio-item').then((el) => {
       $$el('[id="companies"] input').forEach((i) => {
         i.addEventListener("click", (e) => {
-          if ($el("#slider-block .default").classList.contains("is_hidden")) {
-            $el("#slider-block .default").classList.remove("is_hidden");
-          }
+          const txtInput = e.currentTarget.closest(".custom-radio-item").innerText;
+          pushDataLayer("exp_intr_sol_sav_but_utilprov_watpow", txtInput, "Button", "Who is your utility provider? 3rd step");
+          $el("#slider-block .default").classList.toggle("is_hidden");
           $el(".new_btn_next.step_three").classList.add("is_hidden");
+          $el(".wrapper").classList.add("is_step_three");
         });
       });
     });
@@ -1869,41 +1967,61 @@ class changeFlow {
     waitForElement('[id="estimate-shade"] .custom-radio-item').then((el) => {
       $$el('[id="estimate-shade"] input').forEach((i) => {
         i.addEventListener("click", (e) => {
-          console.log(`object`);
-          const crsData = JSON.parse(localStorage.getItem("crs_data"));
+          if (!e.target.getAttribute("data-test")) {
+            const txtInput = e.currentTarget.closest(".custom-radio-item").innerText;
+            let ev = "";
+            if (txtInput === "Some Shade") {
+              ev = "shad";
+            } else if (txtInput === "Severe Shade") {
+              ev = "sever";
+            } else if (txtInput === "Uncertain") {
+              ev = "uncer";
+            } else if ((txtInput = "Full Sunlight")) {
+              ev = "full";
+            }
+            pushDataLayer(`exp_intr_sol_sav_but_roofgetsun_${ev}`, txtInput, "Button", "Does yourroof get sunlight? 5th step");
 
-          if (crsData) {
-            if (!$el(".federal_credit")) {
-              $el('[id="estimate-email"]').insertAdjacentHTML("afterend", this.searchingAvailableIncentiveProgramsHtml(crsData));
+            const crsData = JSON.parse(localStorage.getItem("crs_data"));
+
+            if (crsData) {
+              if (!$el(".federal_credit")) {
+                $el('[id="estimate-email"]').insertAdjacentHTML("afterend", this.searchingAvailableIncentiveProgramsHtml(crsData));
+              }
+
+              waitForElement(".federal_credit").then((el) => {
+                this.onClickShowSolarSavingsBtn();
+                this.onClickMonthlyBillBtns();
+                this.onClickNewBtnBack();
+                this.onClickfindOutIfYouQualifyBtn();
+                this.setIncentiveCustomList(crsData);
+              });
             }
 
-            waitForElement(".federal_credit").then((el) => {
-              this.onClickShowSolarSavingsBtn();
-              this.onClickMonthlyBillBtns();
-              this.onClickNewBtnBack();
-              this.onClickfindOutIfYouQualifyBtn();
-              this.setIncentiveCustomList(crsData);
+            $el(".new_btn_next.step_five").classList.add("is_hidden");
+            $el("#slider-block").classList.add("is_hidden");
+            $el('[id="estimate-email"]').classList.add("is_hidden");
+            if (!$el(".searching_programs_wrapper")) {
+              $el(".federal_credit")?.insertAdjacentHTML("afterbegin", this.searchingProgramsLoader());
+            }
+            $el(".wrapper").classList.add("slide-active-analyzing");
+            // federal_credit
+            waitForElement(".federal_credit .searching_programs_wrapper").then((i) => {
+              setTimeout(() => {
+                i.remove();
+                console.log(`>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>`);
+                $el(".incentive_wrapper").classList.toggle("is_hidden");
+                $el(".show_solar_savings_wrapper").classList.toggle("is_hidden");
+                $el(".wrapper").classList.toggle("slide-active-analyzing");
+                $el(".wrapper").classList.add("is_step_monthly");
+              }, 3000);
             });
           }
-
-          $el(".new_btn_next.step_five").classList.add("is_hidden");
-          $el("#slider-block").classList.add("is_hidden");
-          $el('[id="estimate-email"]').classList.add("is_hidden");
-          if (!$el(".searching_programs_wrapper")) {
-            $el(".federal_credit")?.insertAdjacentHTML("afterbegin", this.searchingProgramsLoader());
-          }
-          // federal_credit
-          waitForElement(".federal_credit .searching_programs_wrapper").then((i) => {
-            setTimeout(() => {
-              i.remove();
-              if ($el(".incentive_wrapper").classList.contains("is_hidden")) {
-                $el(".incentive_wrapper").classList.remove("is_hidden");
-              }
-              if ($el(".show_solar_savings_wrapper").classList.contains("is_hidden")) {
-                $el(".show_solar_savings_wrapper").classList.remove("is_hidden");
-              }
-            }, 3000);
-          });
+          e.target.setAttribute("data-test", "1");
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
+            }
+          }, 1000);
         });
       });
     });
@@ -1912,12 +2030,9 @@ class changeFlow {
   onClickShowSolarSavingsBtn() {
     waitForElement("#showSolarSavingsBtn").then((el) => {
       el.addEventListener("click", (e) => {
-        if ($el(".monthly_bill_comparison").classList.contains("is_hidden")) {
-          $el(".monthly_bill_comparison").classList.remove("is_hidden");
-        }
-        if ($el(".monthly_bill_btns_wrapper.monthly_bill_comparison").classList.contains("is_hidden")) {
-          $el(".monthly_bill_btns_wrapper.monthly_bill_comparison").classList.remove("is_hidden");
-        }
+        pushDataLayer("exp_intr_sol_sav_but_available_show", "Show solar savings", "Button", "Availableincentives found 7th step");
+        $el(".monthly_bill_comparison").classList.toggle("is_hidden");
+        $el(".monthly_bill_btns_wrapper.monthly_bill_comparison").classList.toggle("is_hidden");
         $el(".incentive_wrapper").classList.add("is_hidden");
         $el(".show_solar_savings_wrapper").classList.add("is_hidden");
       });
@@ -1929,24 +2044,18 @@ class changeFlow {
         link.addEventListener("click", (e) => {
           if (!e.target.getAttribute("data-test")) {
             if (e.target.closest(".monthly_bill_comparison")) {
+              pushDataLayer("exp_intr_sol_sav_but_comparis_next", "Next", "Button", "Monthlybill comparison 8th step");
               e.target.closest(".monthly_bill_comparison").classList.add("is_hidden");
               $el(".lifetime_cost_analysis_wrapper.monthly_bill_comparison").classList.add("is_hidden");
-              if ($el(".lifetime_cost_analysis").classList.contains("is_hidden")) {
-                $el(".lifetime_cost_analysis").classList.remove("is_hidden");
-              }
-              if ($el(".monthly_bill_btns_wrapper.lifetime_cost_analysis").classList.contains("is_hidden")) {
-                $el(".monthly_bill_btns_wrapper.lifetime_cost_analysis").classList.remove("is_hidden");
-              }
+              $el(".lifetime_cost_analysis").classList.toggle("is_hidden");
+              $el(".monthly_bill_btns_wrapper.lifetime_cost_analysis").classList.toggle("is_hidden");
             }
             if (e.target.closest(".lifetime_cost_analysis")) {
+              pushDataLayer("exp_intr_sol_sav_but_lifeanalys_next", "Next", "Button", "Lifetime cost analysis with and without solar  9th step");
               e.target.closest(".lifetime_cost_analysis").classList.add("is_hidden");
               $el(".lifetime_cost_analysis_wrapper.lifetime_cost_analysis").classList.add("is_hidden");
-              if ($el(".estimated_lifetime_sav_wrapper").classList.contains("is_hidden")) {
-                $el(".estimated_lifetime_sav_wrapper").classList.remove("is_hidden");
-              }
-              if ($el(".find_out_if_you_qualify_wrapper").classList.contains("is_hidden")) {
-                $el(".find_out_if_you_qualify_wrapper").classList.remove("is_hidden");
-              }
+              $el(".estimated_lifetime_sav_wrapper").classList.toggle("is_hidden");
+              $el(".find_out_if_you_qualify_wrapper").classList.toggle("is_hidden");
             }
           }
           e.target.setAttribute("data-test", "1");
@@ -1962,18 +2071,12 @@ class changeFlow {
   onClickfindOutIfYouQualifyBtn() {
     waitForElement("#findOutIfYouQualifyBtn").then((el) => {
       el.addEventListener("click", (e) => {
-        if ($el('[id="estimate-email"]').classList.contains("is_hidden")) {
-          $el('[id="estimate-email"]').classList.remove("is_hidden");
-        }
-        if ($el(".wrapper #slider-block").classList.contains("is_hidden")) {
-          $el(".wrapper #slider-block").classList.remove("is_hidden");
-        }
-        if ($el(".wrapper #slider-block .d-none")?.classList.contains("is_hidden")) {
-          $el(".wrapper #slider-block .d-none")?.classList.remove("is_hidden");
-        }
-        if ($el(".new_btn_prev.step_email").classList.contains("is_hidden")) {
-          $el(".new_btn_prev.step_email").classList.remove("is_hidden");
-        }
+        pushDataLayer("exp_intr_sol_sav_but_estimat_find", "FIND OUT IF YOU QUALIFY", "Button", "Estimatedlifetime savings  10th step");
+        $el('[id="estimate-email"]').classList.toggle("is_hidden");
+        $el(".wrapper #slider-block").classList.toggle("is_hidden");
+        $el(".wrapper #slider-block .nextSlide")?.classList.toggle("is_hidden");
+        $el(".new_btn_prev.step_email").classList.toggle("is_hidden");
+        $el(".wrapper").classList.toggle("is_step_monthly");
         $el(".estimated_lifetime_sav_wrapper").classList.add("is_hidden");
         $el(".wrapper .btn-block .back-link").classList.add("is_hidden");
         $el(".federal_credit").classList.add("is_hidden");
@@ -1986,42 +2089,30 @@ class changeFlow {
       $$el(".swiper-slide-next").forEach((el) => {
         let step = el.getAttribute("aria-label").split("/")[0];
         if (step.includes("2")) {
-          console.log(step);
-          if ($el("#slider-block + .powered_by_wrapper").classList.contains("is_hidden")) {
-            $el("#slider-block + .powered_by_wrapper").classList.remove("is_hidden");
-          }
+          pushDataLayer("exp_intr_sol_sav_but_enerbill_back", "Back", "Button", "How much wasyour latest monthly energy bill? 2nd step");
+          $el("#slider-block + .powered_by_wrapper").classList.toggle("is_hidden");
         }
         if (step.includes("3")) {
-          console.log(step);
+          pushDataLayer("exp_intr_sol_sav_but_utilprov_black", "Back", "Button", "Who is your utility provider? 3rd step");
           $el(".new_btn_next.step_three").classList.add("is_hidden");
-          if ($el(".wrapper #slider-block .d-none").classList.contains("is_hidden")) {
-            $el(".wrapper #slider-block .d-none").classList.remove("is_hidden");
-          }
+          $el(".wrapper #slider-block .nextSlide").classList.toggle("is_hidden");
         }
         if (step.includes("4")) {
-          console.log(step);
-          $el(".wrapper #slider-block .d-none").classList.add("is_hidden");
-
-          if ($el(".new_btn_next.step_three").classList.contains("is_hidden")) {
-            $el(".new_btn_next.step_three").classList.remove("is_hidden");
-          }
+          pushDataLayer("exp_intr_sol_sav_but_housloc_back", "Back", "Button", "Find yourhouse location 4th step");
+          $el(".wrapper #slider-block .nextSlide").classList.add("is_hidden");
+          $el(".new_btn_next.step_three").classList.toggle("is_hidden");
+          $el(".wrapper").classList.toggle("is_step_three");
         }
         if (step.includes("5")) {
-          console.log(step);
+          pushDataLayer("exp_intr_sol_sav_but_roofgetsun_back", "Back", "Button", "Does yourroof get sunlight? 5th step");
           $el(".new_btn_next.step_five").classList.add("is_hidden");
-          if ($el(".wrapper #slider-block .d-none").classList.contains("is_hidden")) {
-            $el(".wrapper #slider-block .d-none").classList.remove("is_hidden");
-          }
+          $el(".wrapper #slider-block .nextSlide").classList.toggle("is_hidden");
+          $el(".wrapper").classList.add("is_step_three");
         }
         if (step.includes("7")) {
-          console.log(step);
-          if ($el(".new_btn_prev.step_email")?.classList.contains("is_hidden")) {
-            $el(".new_btn_prev.step_email")?.classList.remove("is_hidden");
-          }
+          pushDataLayer("exp_intr_sol_sav_but_yourname_back", "Back", "Button", "What is your name?");
+          $el(".new_btn_prev.step_email")?.classList.toggle("is_hidden");
           $el(" .wrapper .btn-block .back-link").classList.add("is_hidden");
-        }
-        if (step.includes("8")) {
-          console.log(step);
         }
       });
     });
@@ -2031,56 +2122,38 @@ class changeFlow {
       btn.addEventListener("click", (e) => {
         $$el(".swiper-slide-next").forEach((el) => {
           let step = el.getAttribute("aria-label").split("/")[0];
-
-          // console.log(step)
-
           if (step.includes("7") && e.target.closest(".monthly_bill_comparison")) {
-            if ($el(".incentive_wrapper").classList.contains("is_hidden")) {
-              $el(".incentive_wrapper").classList.remove("is_hidden");
-            }
+            pushDataLayer("exp_intr_sol_sav_but_comparis_back", "Back", "Button", "Monthlybill comparison 8th step");
             e.target.closest(".monthly_bill_comparison").classList.add("is_hidden");
+            $el(".incentive_wrapper").classList.toggle("is_hidden");
             $el(".lifetime_cost_analysis_wrapper.monthly_bill_comparison").classList.add("is_hidden");
-            if ($el(".show_solar_savings_wrapper").classList.contains("is_hidden")) {
-              $el(".show_solar_savings_wrapper").classList.remove("is_hidden");
-            }
+            $el(".show_solar_savings_wrapper").classList.toggle("is_hidden");
           }
           if (step.includes("7") && e.target.closest(".lifetime_cost_analysis")) {
-            console.log(e.target);
+            pushDataLayer("exp_intr_sol_sav_but_lifeanalys_back", "Back", "Button", "Lifetime cost analysis with and without solar  9th step");
             e.target.closest(".lifetime_cost_analysis").classList.add("is_hidden");
             $el(".lifetime_cost_analysis_wrapper.lifetime_cost_analysis").classList.add("is_hidden");
-            if ($el(".lifetime_cost_analysis_wrapper.monthly_bill_comparison").classList.contains("is_hidden")) {
-              $el(".lifetime_cost_analysis_wrapper.monthly_bill_comparison").classList.remove("is_hidden");
-            }
-            if ($el(".monthly_bill_btns_wrapper.monthly_bill_comparison").classList.contains("is_hidden")) {
-              $el(".monthly_bill_btns_wrapper.monthly_bill_comparison").classList.remove("is_hidden");
-            }
+            $el(".lifetime_cost_analysis_wrapper.monthly_bill_comparison").classList.toggle("is_hidden");
+            $el(".monthly_bill_btns_wrapper.monthly_bill_comparison").classList.toggle("is_hidden");
           }
         });
       });
     });
     $el(".new_btn_prev.step_email").addEventListener("click", (e) => {
-      $el('[id="estimate-email"]').classList.add("is_hidden");
-      $el(".new_btn_prev.step_email").classList.add("is_hidden");
-      $el(".wrapper #slider-block").classList.add("is_hidden");
-      $el(".wrapper #slider-block .d-none")?.classList.add("is_hidden");
-      if ($el(".federal_credit").classList.contains("is_hidden")) {
-        $el(".federal_credit").classList.remove("is_hidden");
-      }
-
-      if ($el(".estimated_lifetime_sav_wrapper").classList.contains("is_hidden")) {
-        $el(".estimated_lifetime_sav_wrapper").classList.remove("is_hidden");
-      }
-      if ($el(".find_out_if_you_qualify_wrapper").classList.contains("is_hidden")) {
-        $el(".find_out_if_you_qualify_wrapper").classList.remove("is_hidden");
-      }
-      if ($el(".wrapper .btn-block .back-link").classList.contains("is_hidden")) {
-        $el(".wrapper .btn-block .back-link").classList.remove("is_hidden");
-      }
+      pushDataLayer("exp_intr_sol_sav_but_emeadres_back", "Back", "Button", "What is your email address?");
+      e.target.classList.add("is_hidden");
+      $el('[id="estimate-email"]')?.classList.add("is_hidden");
+      $el(".wrapper #slider-block")?.classList.add("is_hidden");
+      $el(".wrapper #slider-block .nextSlide")?.classList.add("is_hidden");
+      $el(".federal_credit")?.classList.toggle("is_hidden");
+      $el(".estimated_lifetime_sav_wrapper")?.classList.toggle("is_hidden");
+      $el(".find_out_if_you_qualify_wrapper")?.classList.toggle("is_hidden");
+      $el(".wrapper .btn-block .back-link")?.classList.toggle("is_hidden");
+      $el(".wrapper")?.classList.toggle("is_step_monthly");
     });
   }
 
   onClickReadMore() {
-    const productsPopup = /* HTML */ ``;
     waitForElement(".reviews_box").then((el) => {
       el.querySelectorAll("[data-more]").forEach((btn) => {
         btn.addEventListener("click", (e) => {
@@ -2089,11 +2162,35 @@ class changeFlow {
           const stars = parent.querySelector(".stars_reviews_icon").outerHTML;
           const txt = parent.querySelector(".slider_description")?.textContent;
           const img = parent.querySelector(".logo_img")?.src;
-
-          console.log(parent.querySelector(".logo_img"));
           this.handleShowPopup(this.itemSliderReviewsHtml(stars, txt, img));
         });
       });
+    });
+  }
+
+  onClickInputsTextFieldForm() {
+    $("#zip").change(function () {
+      pushDataLayer("exp_intr_sol_sav_inp_solince_zipcod", "Enter Your Zip Code", "Input", "[City] SolarIncentive Programs 1st step");
+    });
+    $("#autoaddress").change(function () {
+      pushDataLayer("exp_intr_sol_sav_inp_housloc_adress", "Enter Your Address", "Input", "Find yourhouse location 4th step");
+    });
+    $(".swiper-wrapper .swiper-slide:nth-child(6) input").change(function () {
+      pushDataLayer("exp_intr_sol_sav_inp_emeadres_enter", "Enter Your Email", "Input", "What is youremail address?");
+    });
+    $(".swiper-wrapper .swiper-slide:nth-child(7) input").change(function (e) {
+      let eventName = $(this).attr("placeholder").includes("First Name") ? "first" : "family";
+      let eventDesk = eventName == "firs" ? "First" : "Family";
+      pushDataLayer("exp_intr_sol_sav_inp_yourname" + eventName, eventDesk + " Name", "Input", "What is your name?");
+    });
+    $(".swiper-wrapper .swiper-slide:nth-child(8) input").change(function () {
+      pushDataLayer("exp_intr_sol_sav_inp_numbreach_mobil", "Enter your mobile phone number", "Input", "What is the best number to reach you at if you qualify?");
+    });
+    $("#submit").click(function () {
+      pushDataLayer("exp_intr_sol_sav_but_numbreach_subm", "Submit", "Button", "What is the best number to reach you at if you qualify?");
+    });
+    $("#tcpa_label a").click(function (e) {
+      pushDataLayer("exp_intr_sol_sav_lin_numbreach_solar", "4 solar partners", "Link", "What is the best number to reach you at if you qualify?");
     });
   }
 
@@ -2118,6 +2215,7 @@ class changeFlow {
           background: #edf2f5;
           border: none;
           padding: 27px 100px;
+          margin-bottom: 16px;
         }
         .content-wrapper {
           position: relative;
@@ -2176,7 +2274,7 @@ class changeFlow {
         .crs_thank p {
           font-weight: 700;
           text-align: center;
-          margin: 12px 0 16px;
+          margin: 0 0 16px;
         }
         .crs_thank_list {
           list-style-type: none;
@@ -2241,7 +2339,50 @@ class changeFlow {
           color: #757575;
           font-family: "Noto Sans SC", sans-serif;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
+          .content-wrapper::before {
+            opacity: 1;
+            background: #edf2f5;
+          }
+          .step-page .site-header {
+            padding: 15px 8px;
+            margin-bottom: 8px;
+          }
+          .logo {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          .site-header .lock {
+            left: 5px;
+          }
+          .steps-wrapper .container {
+            padding: 0 20px !important;
+            width: 100%;
+          }
+          .crs_thank h2 {
+            max-width: 325px;
+          }
+          .crs_thank p {
+            margin-bottom: 24px;
+          }
+          .crs_thank_list li + li {
+            margin-top: 16px;
+          }
+          .crs_thank_list li:first-child:after {
+            content: "";
+            height: calc(100% - 23px);
+            width: 0;
+            border-right: 2px dotted #83be63;
+            left: 18px;
+            bottom: -11px;
+          }
+        }
+        @media (min-width: 430px) and (max-width: 431px) {
+          .crs_thank_list li:first-child:after {
+            bottom: -14px;
+          }
         }
       </style>
     `;
@@ -2403,12 +2544,21 @@ class changeFlow {
     const mainStyles = /* HTML */ `
       <style>
         [aria-label="6 / 8"] {
-          min-height: 412px !important;
+          min-height: 395px !important;
           height: 100% !important;
         }
         .wrapper {
           align-items: start;
-          padding: 144px 0;
+          padding: 150px 0;
+        }
+        .wrapper.show {
+          padding: 128px 0;
+        }
+        .wrapper.step_phone {
+          padding: 140px 0;
+        }
+        .site-header {
+          padding: 27px 0;
         }
         .wrapper .banner-slider {
           max-width: 600px;
@@ -2417,6 +2567,10 @@ class changeFlow {
           max-width: 540px;
           border-radius: 5px;
           background: #e5e9eb;
+          padding: 3px 0;
+        }
+        .wrapper .progress-block {
+          top: 75px;
         }
         .wrapper .progress-block p {
           color: #393939;
@@ -2609,6 +2763,9 @@ class changeFlow {
           margin: 24px 0 0;
           justify-content: space-between;
         }
+        #estimate-shade .title br {
+          display: none;
+        }
         #estimate-shade .custom-radio-item {
           width: calc(50% - 10px);
           color: #fff;
@@ -2624,12 +2781,13 @@ class changeFlow {
         #estimate-email .sub-title {
           margin: 12px 0;
         }
-        #estimate-email > div > h4.sub-title.hide-in-mobile.banner {
+        #estimate-email > div > h4.sub-title.hide-in-mobile.banner,
+        #estimate-email > div > h4.sub-title.show-in-mobile.banner {
           display: flex;
           align-items: center;
           justify-content: center;
           gap: 10px;
-          margin-bottom: 10px;
+          margin: 0 0 10px;
           border-radius: unset;
           color: #2b3d50;
           padding: 6px 0px 8px 0px;
@@ -2638,9 +2796,16 @@ class changeFlow {
           font-weight: 500;
           line-height: 20px;
         }
+        #estimate-email > div > h4.sub-title.hide-in-mobile.banner,
+        #estimate-email > div > h4.sub-title.show-in-mobile.banner br {
+          display: none;
+        }
+        #estimate-email > div > h4.sub-title.show-in-mobile.banner {
+          display: none;
+        }
         /*estimate-name */
         #estimate-name .title {
-          margin-bottom: 20px;
+          margin-bottom: 20px !important;
         }
         #estimate-name .safe_and_secure_wrapper {
           margin-top: 8px;
@@ -2664,7 +2829,7 @@ class changeFlow {
           text-transform: uppercase;
         }
         #estimate-phone [for="leadid_tcpa_disclosure"] {
-          margin-top: 16px;
+          margin-top: 16px !important;
           color: #757575;
           font-size: 12px;
           font-weight: 400;
@@ -2711,7 +2876,7 @@ class changeFlow {
           padding-left: 27px;
           left: 16px !important;
         }
-        .wrapper #slider-block .d-none {
+        .wrapper #slider-block .nextSlide {
           display: flex !important;
           align-items: center;
           justify-content: center;
@@ -2729,14 +2894,47 @@ class changeFlow {
           margin-left: auto;
           order: 2;
         }
-        .wrapper #slider-block .d-none.is_hidden {
+        .wrapper #slider-block .nextSlide.is_hidden {
           display: none !important;
         }
         /*footer */
         .site-footer {
           display: none !important;
         }
+        @media (min-width: 1024px) {
+          .wrapper::before {
+            background: linear-gradient(180deg, #edf2f5 12.81%, rgba(255, 255, 255, 0) 100%), url(${git}/sunvalue/img/bgr_img.png) bottom no-repeat;
+            opacity: 1 !important;
+            background-size: cover;
+          }
+          .wrapper::after {
+            content: unset;
+          }
+        }
         @media (max-width: 1024px) {
+          .wrapper.show::before {
+            background: linear-gradient(180deg, #edf2f5 12.81%, rgba(238, 243, 246, 0.93) 23.54%, rgba(255, 255, 255, 0.2) 100%), url(${git}sunvalue/img/bgr_img_show_mob.png) no-repeat;
+            opacity: 1 !important;
+            background-size: cover;
+          }
+          .wrapper.show::after {
+            content: unset;
+          }
+          .wrapper.slide-active-analyzing::before {
+            opacity: 0.7;
+          }
+          .wrapper:not(.slide-active-analyzing, .show)::before {
+            background-position: center bottom 81px;
+            opacity: 0.7;
+          }
+          .wrapper.is_step_monthly::before {
+            background-position: center bottom 111px;
+          }
+          .wrapper::after {
+            background: -moz-linear-gradient(top, #edf2f5 0%, rgba(255, 255, 255, 0) 100%);
+            background: -webkit-linear-gradient(top, #edf2f5 0%, rgba(255, 255, 255, 0) 100%);
+            background: linear-gradient(to bottom, #edf2f5 0%, rgba(255, 255, 255, 0) 100%);
+          }
           .wrapper .container {
             padding: 0;
           }
@@ -2745,9 +2943,13 @@ class changeFlow {
           }
           .wrapper {
             padding: 120px 0;
+            background: var(--Light-Grey, #edf2f5);
           }
-          .wrapper.show::before {
-            background: linear-gradient(180deg, #edf2f5 12.81%, rgba(255, 255, 255, 0) 100%), url(${git}/sunvalue/img/bgr_img.png);
+          .wrapper.is_step_three::before {
+            content: unset;
+          }
+          .site-header {
+            padding: 15px 0;
           }
           .wrapper .text-field {
             padding: 16px;
@@ -2767,6 +2969,9 @@ class changeFlow {
           .banner-slider .swiper-slide,
           .banner-slider .swiper-slide.one {
             padding: 0;
+          }
+          .wrapper .progress-block {
+            top: 55px;
           }
           .wrapper .progress-block p {
             line-height: 20px;
@@ -2793,7 +2998,7 @@ class changeFlow {
             justify-content: space-between;
           }
           .wrapper .back-link {
-            left: 20px !important;
+            left: 0 !important;
           }
           .wrapper .btn-block .btn {
             min-width: 200px;
@@ -2802,17 +3007,51 @@ class changeFlow {
           #estimate-zip #calculateYourSavings {
             padding: 16px 10px;
           }
+          #estimate-provider #companies .custom-radio-item {
+            padding: 16px 30px;
+          }
           #estimate-bill .rangeslider-block {
             padding: 0;
           }
+          #estimate-shade .title br {
+            display: block;
+          }
           #estimate-map .title {
             max-width: 259px;
+          }
+          #estimate-email .title {
+            max-width: 298px;
+          }
+          #estimate-email > div > h4.sub-title.show-in-mobile.banner {
+            display: block;
+          }
+          #estimate-email > div > h4.sub-title.show-in-mobile.banner br {
+            display: block;
+          }
+          #estimate-email > div > h4.sub-title.show-in-mobile.banner img {
+            display: inline;
+            margin-right: 2px;
+          }
+          #estimate-phone .sub-title {
+            max-width: 298px;
+            margin: 16px auto;
+          }
+          #estimate-phone [for="leadid_tcpa_disclosure"] {
+            max-width: 334px;
+            margin: 16px auto 0 !important;
+          }
+          .wrapper #slider-block .nextSlide {
+            max-width: 200px;
+          }
+          #estimate-name .title {
+            margin-bottom: 16px !important;
           }
         }
         @media (max-width: 361px) {
           [aria-label="6 / 8"] {
             min-height: 520px !important;
             height: 100% !important;
+            margin-right: 3px;
           }
         }
       </style>
