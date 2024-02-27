@@ -67,6 +67,19 @@ function waitForElement(selector) {
     });
   });
 }
+function checkVisibilityElem(selector, event, location) {
+  const checker = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        pushDataLayer(event, `Screen view`, "Visibility", location);
+      }
+    });
+  });
+
+  waitForElement(selector).then((el) => {
+    checker.observe(document.querySelector(selector));
+  });
+}
 const pushDataLayer = (name, desc, type = "", loc = "") => {
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({
@@ -78,27 +91,6 @@ const pushDataLayer = (name, desc, type = "", loc = "") => {
   });
   console.log(`Event: ${name} ${desc} ${type} ${loc}`);
 };
-function checkFocusTime(selector, event, location) {
-  const checker = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting && !entry.target.getAttribute("data-startShow")) {
-        entry.target.setAttribute("data-startShow", new Date().getTime());
-      } else if (!entry.isIntersecting && entry.target.getAttribute("data-startShow")) {
-        const startShow = entry.target.getAttribute("data-startShow");
-        const endShow = new Date().getTime();
-        const timeShow = Math.round(endShow - startShow);
-        console.log(timeShow, `timeShow`);
-        entry.target.removeAttribute("data-startShow");
-        if (timeShow >= 3000) {
-          pushDataLayer(event, `Block view ${timeShow}`, "Visibility", location);
-        }
-        checker.unobserve(entry.target);
-      }
-    });
-  });
-
-  checker.observe(document.querySelector(selector));
-}
 
 const device = window.innerWidth < 769 ? "mobile" : "desktop";
 
@@ -219,24 +211,6 @@ const dataSavings = {
 };
 
 const dataStatesInfo = {
-  "Kyiv City": [
-    {
-      name: "SGIP:",
-      description: "Rebate for solar battery installation",
-    },
-    {
-      name: "Property tax exclusion:",
-      description: "No increased property taxes after installing solar panels",
-    },
-    {
-      name: "PACE program:",
-      description: "Financing for solar panels paid through property taxes",
-    },
-    {
-      name: "Local California solar incentives:",
-      description: "Varies by power company and location",
-    },
-  ],
   California: [
     {
       name: "SGIP:",
@@ -363,11 +337,12 @@ const arrSliderReviewsDesk = {
 function roundToNearestMultiple(number) {
   // Визначення множника
   const multiple = number < 100 ? 5 : 50;
-  console.log(Math.ceil(number / multiple) * multiple, `multiple`);
 
   // Округлення до найближчого більшого числа, кратного множнику
   return Math.ceil(number / multiple) * multiple;
 }
+
+let viewedSlide = -1;
 
 class changeFlow {
   constructor(device) {
@@ -391,13 +366,15 @@ class changeFlow {
       this.onClickOldBtnBack();
       this.observereProgressBar();
       this.setNameCity();
-      this.onClickInputsTextFieldForm();
+      this.onClickElemPushDataLayer();
+      this.visibScreenView();
     }
 
     if (location.pathname === "/received/" || location.pathname === "/thankyou/") {
       document.head.insertAdjacentHTML("beforeend", `<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap" rel="stylesheet">`);
       this.changeReceivedPage();
       this.setNameCity();
+      checkVisibilityElem(".crs_thank", "exp_intr_sol_sav_vis_thankyou_page", "You'll be contacted by a Solar Expert Partner in [City]  Thank you page");
     }
   }
 
@@ -1462,6 +1439,7 @@ class changeFlow {
           border-radius: 100px;
           background: #fb7306;
           box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.11);
+          cursor: pointer;
         }
         .slider_reviews_wrapper .slider_arrow.prev_btn {
           left: 0;
@@ -1728,16 +1706,16 @@ class changeFlow {
 
     let changeSlider = 0;
     $("[data-rangeslider]").change(function (e) {
-      if (!e.target.getAttribute("data-test")) {
-        pushDataLayer("exp_intr_sol_sav_range_enerbill_slider", "Slider", "Range slider", "How much wasyour latest monthly energy bill? 2nd step");
-      }
-      e.target.setAttribute("data-test", "1");
-      setTimeout(() => {
-        if (e.target.getAttribute("data-test")) {
-          e.target.removeAttribute("data-test");
-        }
-      }, 500);
       if (changeSlider == 1) {
+        if (!e.target.getAttribute("data-test")) {
+          pushDataLayer("exp_intr_sol_sav_range_enerbill_slider", "Slider", "Range slider", "How much was your latest monthly energy bill? 2nd step");
+        }
+        e.target.setAttribute("data-test", "1");
+        setTimeout(() => {
+          if (e.target.getAttribute("data-test")) {
+            e.target.removeAttribute("data-test");
+          }
+        }, 500);
         const price = e.target.value;
         $(".crs_analyzing li:first-child b").html($(".rangeslider-tooltip").text());
         $(".crs_analyzing li:nth-child(2) span").html((price / 50) * 8);
@@ -1788,18 +1766,39 @@ class changeFlow {
         $el(".progress-bar").style.width = "48%";
         break;
       case "75%":
-        $el(".progress-width").textContent = "60%";
-        $el(".progress-bar").style.width = "60%";
-        break;
-      case "60%":
-        if (!$el("#estimate-email")?.classList.contains("is_hidden")) {
+        if ($el(".wrapper.is_step_monthly") || $el(".wrapper.slide-active-analyzing")) {
+          $el(".progress-width").textContent = "60%";
+          $el(".progress-bar").style.width = "60%";
+        }
+        if ($el(".wrapper.is_step_email")) {
           $el(".progress-width").textContent = "72%";
           $el(".progress-bar").style.width = "72%";
         }
         break;
+      case "60%":
+        if ($el(".wrapper.is_step_email")) {
+          $el(".progress-width").textContent = "72%";
+          $el(".progress-bar").style.width = "72%";
+        }
+        break;
+      case "72%":
+        if ($el(".wrapper.is_step_name")) {
+          $el(".progress-width").textContent = "84%";
+          $el(".progress-bar").style.width = "84%";
+        }
+        if ($el(".wrapper.is_step_monthly")) {
+          $el(".progress-width").textContent = "60%";
+          $el(".progress-bar").style.width = "60%";
+        }
+        break;
       case "88%":
-        $el(".progress-width").textContent = "72%";
-        $el(".progress-bar").style.width = "72%";
+        if ($el(".wrapper.is_step_name")) {
+          $el(".progress-width").textContent = "84%";
+          $el(".progress-bar").style.width = "84%";
+        } else {
+          $el(".progress-width").textContent = "72%";
+          $el(".progress-bar").style.width = "72%";
+        }
         break;
 
       default:
@@ -1872,6 +1871,20 @@ class changeFlow {
               },
             ],
           });
+          slider.on("swipe", function (event, slick, direction) {
+            pushDataLayer("exp_intr_sol_sav_but_houslocpup_swipe", direction, "Swipe slider", `Find your house location 4th step ${window.innerWidth < 769 ? "Mobile" : "Desktop"}`);
+          });
+          $$el(".slider_arrow").forEach((el) => {
+            el.addEventListener("click", (i) => {
+              let arrowsTitle = null;
+              if (i.currentTarget.classList.contains("prev_btn")) {
+                arrowsTitle = "left";
+              } else if (i.currentTarget.classList.contains("next_btn")) {
+                arrowsTitle = "right";
+              }
+              pushDataLayer("exp_intr_sol_sav_but_houslocpup_arrow", arrowsTitle, "Button", `Find your house location 4th step ${window.innerWidth < 769 ? "Mobile" : "Desktop"}`);
+            });
+          });
         }
       }, 100);
     });
@@ -1896,33 +1909,47 @@ class changeFlow {
     waitForElement("#slider-block .default").then((el) => {
       el.addEventListener("click", (e) => {
         if ($(".swiper-slide").eq(2).hasClass("swiper-slide-active")) {
-          pushDataLayer("exp_intr_sol_sav_but_enerbill_next", "Next", "Button", "How much wasyour latest monthly energy bill? 2nd step");
+          pushDataLayer("exp_intr_sol_sav_but_enerbill_next", "Next", "Button", "How much was your latest monthly energy bill? 2nd step");
           this.setLocalStorageDataInfo();
           el.classList.add("is_hidden");
           $el(".new_btn_next.step_three")?.classList.toggle("is_hidden");
         }
         if ($(".swiper-slide").eq(4).hasClass("swiper-slide-active")) {
           if ($el(".wrapper").classList.contains("is_step_three")) {
-            pushDataLayer("exp_intr_sol_sav_but_housloc_nex", "Next", "Button", "Find yourhouse location 4th step");
+            pushDataLayer("exp_intr_sol_sav_but_housloc_nex", "Next", "Button", "Find your house location 4th step");
           }
           el.classList.add("is_hidden");
           $el(".new_btn_next.step_five")?.classList.toggle("is_hidden");
           $el(".wrapper").classList.toggle("is_step_three");
         }
         if ($el(".wrapper").classList.contains("is_step_three")) {
-          pushDataLayer("exp_intr_sol_sav_but_housloc_nex", "Next", "Button", "Find yourhouse location 4th step");
+          pushDataLayer("exp_intr_sol_sav_but_housloc_nex", "Next", "Button", "Find your house location 4th step");
+        }
+        if ($el(".wrapper").classList.contains("is_step_email")) {
+          pushDataLayer("exp_intr_sol_sav_but_emeadres_nex", "Next", "Button", "What is your email address?");
         }
         if ($(".swiper-slide").eq(6).hasClass("swiper-slide-active")) {
-          console.log(`6`);
-          // pushDataLayer('exp_intr_sol_sav_but_emeadres_nex', 'Next', 'Button', 'What is your email address?')
+          setTimeout(() => {
+            if ($el(".wrapper").classList.contains("is_step_email")) {
+              $el(".wrapper").classList.remove("is_step_email");
+            }
+          }, 100);
+          $el(".wrapper").classList.add("is_step_name");
+          if (!$el(".wrapper").classList.contains("is_step_email")) {
+            pushDataLayer("exp_intr_sol_sav_but_yourname_nex", "Next", "Button", "What is your name?");
+          }
+
           if ($el(".wrapper .btn-block .back-link")?.classList.contains("is_hidden")) {
             $el(".wrapper .btn-block .back-link")?.classList.remove("is_hidden");
           }
           $el(".new_btn_prev.step_email").classList.add("is_hidden");
         }
         if ($(".swiper-slide").eq(7).hasClass("swiper-slide-active")) {
-          console.log(`7`);
+          if (!$el(".wrapper").classList.contains("is_step_email")) {
+            pushDataLayer("exp_intr_sol_sav_but_yourname_nex", "Next", "Button", "What is your name?");
+          }
           $el(".wrapper #slider-block").classList.add("is_hidden");
+          $el(".wrapper").classList.toggle("is_step_name");
           $el(".wrapper").classList.add("step_phone");
           $el(".wrapper").classList.add("slide-active-analyzing");
         }
@@ -1935,6 +1962,7 @@ class changeFlow {
     waitForElement(".new_btn_next.step_three").then((el) => {
       el.addEventListener("click", (e) => {
         e.preventDefault();
+        localStorage.setItem("stepThree", `yes`);
         pushDataLayer("exp_intr_sol_sav_but_utilprov_next", "Next", "Button", "Who is your utility provider? 3rd step");
         $el('[id="util-other"]')?.click();
       });
@@ -1943,7 +1971,8 @@ class changeFlow {
     waitForElement(".new_btn_next.step_five").then((el) => {
       el.addEventListener("click", (e) => {
         e.preventDefault();
-        pushDataLayer("exp_intr_sol_sav_but_roofgetsun_next", "Next", "Button", "Does yourroof get sunlight? 5th step");
+        localStorage.setItem("stepFive", `yes`);
+        pushDataLayer("exp_intr_sol_sav_but_roofgetsun_next", "Next", "Button", "Does your roof get sunlight? 5th step");
         $el('.radioNext [value="unknown"]').click();
       });
     });
@@ -1954,10 +1983,15 @@ class changeFlow {
       $$el('[id="companies"] input').forEach((i) => {
         i.addEventListener("click", (e) => {
           const txtInput = e.currentTarget.closest(".custom-radio-item").innerText;
-          pushDataLayer("exp_intr_sol_sav_but_utilprov_watpow", txtInput, "Button", "Who is your utility provider? 3rd step");
+          if (!localStorage.getItem("stepThree")) {
+            pushDataLayer("exp_intr_sol_sav_but_utilprov_watpow", txtInput, "Button", "Who is your utility provider? 3rd step");
+          }
           $el("#slider-block .default").classList.toggle("is_hidden");
           $el(".new_btn_next.step_three").classList.add("is_hidden");
           $el(".wrapper").classList.add("is_step_three");
+          if (localStorage.getItem("stepThree")) {
+            localStorage.removeItem("stepThree");
+          }
         });
       });
     });
@@ -1970,16 +2004,18 @@ class changeFlow {
           if (!e.target.getAttribute("data-test")) {
             const txtInput = e.currentTarget.closest(".custom-radio-item").innerText;
             let ev = "";
-            if (txtInput === "Some Shade") {
+            if (txtInput.includes("Some Shade")) {
               ev = "shad";
-            } else if (txtInput === "Severe Shade") {
+            } else if (txtInput.includes("Severe Shade")) {
               ev = "sever";
-            } else if (txtInput === "Uncertain") {
+            } else if (txtInput.includes("Uncertain")) {
               ev = "uncer";
-            } else if ((txtInput = "Full Sunlight")) {
+            } else if (txtInput.includes("Full Sunlight")) {
               ev = "full";
             }
-            pushDataLayer(`exp_intr_sol_sav_but_roofgetsun_${ev}`, txtInput, "Button", "Does yourroof get sunlight? 5th step");
+            if (!localStorage.getItem("stepFive")) {
+              pushDataLayer(`exp_intr_sol_sav_but_roofgetsun_${ev}`, txtInput, "Button", "Does your roof get sunlight? 5th step");
+            }
 
             const crsData = JSON.parse(localStorage.getItem("crs_data"));
 
@@ -2008,13 +2044,15 @@ class changeFlow {
             waitForElement(".federal_credit .searching_programs_wrapper").then((i) => {
               setTimeout(() => {
                 i.remove();
-                console.log(`>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>`);
                 $el(".incentive_wrapper").classList.toggle("is_hidden");
                 $el(".show_solar_savings_wrapper").classList.toggle("is_hidden");
                 $el(".wrapper").classList.toggle("slide-active-analyzing");
                 $el(".wrapper").classList.add("is_step_monthly");
               }, 3000);
             });
+            if (localStorage.getItem("stepFive")) {
+              localStorage.removeItem("stepFive");
+            }
           }
           e.target.setAttribute("data-test", "1");
           setTimeout(() => {
@@ -2026,7 +2064,6 @@ class changeFlow {
       });
     });
   }
-
   onClickShowSolarSavingsBtn() {
     waitForElement("#showSolarSavingsBtn").then((el) => {
       el.addEventListener("click", (e) => {
@@ -2074,9 +2111,10 @@ class changeFlow {
         pushDataLayer("exp_intr_sol_sav_but_estimat_find", "FIND OUT IF YOU QUALIFY", "Button", "Estimatedlifetime savings  10th step");
         $el('[id="estimate-email"]').classList.toggle("is_hidden");
         $el(".wrapper #slider-block").classList.toggle("is_hidden");
-        $el(".wrapper #slider-block .nextSlide")?.classList.toggle("is_hidden");
+        $el(".wrapper #slider-block .default")?.classList.toggle("is_hidden");
         $el(".new_btn_prev.step_email").classList.toggle("is_hidden");
         $el(".wrapper").classList.toggle("is_step_monthly");
+        $el(".wrapper").classList.add("is_step_email");
         $el(".estimated_lifetime_sav_wrapper").classList.add("is_hidden");
         $el(".wrapper .btn-block .back-link").classList.add("is_hidden");
         $el(".federal_credit").classList.add("is_hidden");
@@ -2089,28 +2127,32 @@ class changeFlow {
       $$el(".swiper-slide-next").forEach((el) => {
         let step = el.getAttribute("aria-label").split("/")[0];
         if (step.includes("2")) {
-          pushDataLayer("exp_intr_sol_sav_but_enerbill_back", "Back", "Button", "How much wasyour latest monthly energy bill? 2nd step");
+          pushDataLayer("exp_intr_sol_sav_but_enerbill_back", "Back", "Button", "How much was your latest monthly energy bill? 2nd step");
           $el("#slider-block + .powered_by_wrapper").classList.toggle("is_hidden");
         }
         if (step.includes("3")) {
           pushDataLayer("exp_intr_sol_sav_but_utilprov_black", "Back", "Button", "Who is your utility provider? 3rd step");
           $el(".new_btn_next.step_three").classList.add("is_hidden");
-          $el(".wrapper #slider-block .nextSlide").classList.toggle("is_hidden");
+          $el(".wrapper #slider-block .default").classList.toggle("is_hidden");
         }
         if (step.includes("4")) {
-          pushDataLayer("exp_intr_sol_sav_but_housloc_back", "Back", "Button", "Find yourhouse location 4th step");
-          $el(".wrapper #slider-block .nextSlide").classList.add("is_hidden");
+          pushDataLayer("exp_intr_sol_sav_but_housloc_back", "Back", "Button", "Find your house location 4th step");
+          $el(".wrapper #slider-block .default").classList.add("is_hidden");
           $el(".new_btn_next.step_three").classList.toggle("is_hidden");
           $el(".wrapper").classList.toggle("is_step_three");
         }
         if (step.includes("5")) {
-          pushDataLayer("exp_intr_sol_sav_but_roofgetsun_back", "Back", "Button", "Does yourroof get sunlight? 5th step");
+          pushDataLayer("exp_intr_sol_sav_but_roofgetsun_back", "Back", "Button", "Does your roof get sunlight? 5th step");
           $el(".new_btn_next.step_five").classList.add("is_hidden");
-          $el(".wrapper #slider-block .nextSlide").classList.toggle("is_hidden");
+          $el(".wrapper #slider-block .default").classList.toggle("is_hidden");
           $el(".wrapper").classList.add("is_step_three");
         }
         if (step.includes("7")) {
           pushDataLayer("exp_intr_sol_sav_but_yourname_back", "Back", "Button", "What is your name?");
+          $el(".wrapper").classList.add("is_step_email");
+          setTimeout(() => {
+            $el(".wrapper").classList.toggle("is_step_name");
+          }, 200);
           $el(".new_btn_prev.step_email")?.classList.toggle("is_hidden");
           $el(" .wrapper .btn-block .back-link").classList.add("is_hidden");
         }
@@ -2142,9 +2184,10 @@ class changeFlow {
     $el(".new_btn_prev.step_email").addEventListener("click", (e) => {
       pushDataLayer("exp_intr_sol_sav_but_emeadres_back", "Back", "Button", "What is your email address?");
       e.target.classList.add("is_hidden");
+      $el(".wrapper").classList.toggle("is_step_email");
       $el('[id="estimate-email"]')?.classList.add("is_hidden");
       $el(".wrapper #slider-block")?.classList.add("is_hidden");
-      $el(".wrapper #slider-block .nextSlide")?.classList.add("is_hidden");
+      $el(".wrapper #slider-block .default")?.classList.add("is_hidden");
       $el(".federal_credit")?.classList.toggle("is_hidden");
       $el(".estimated_lifetime_sav_wrapper")?.classList.toggle("is_hidden");
       $el(".find_out_if_you_qualify_wrapper")?.classList.toggle("is_hidden");
@@ -2152,12 +2195,11 @@ class changeFlow {
       $el(".wrapper")?.classList.toggle("is_step_monthly");
     });
   }
-
   onClickReadMore() {
     waitForElement(".reviews_box").then((el) => {
       el.querySelectorAll("[data-more]").forEach((btn) => {
         btn.addEventListener("click", (e) => {
-          console.log(e.target);
+          pushDataLayer("exp_intr_sol_sav_lin_housloc_more", "Read more", "Link", "Find your house location 4th step");
           const parent = e.target.closest(".slider_card");
           const stars = parent.querySelector(".stars_reviews_icon").outerHTML;
           const txt = parent.querySelector(".slider_description")?.textContent;
@@ -2167,16 +2209,15 @@ class changeFlow {
       });
     });
   }
-
-  onClickInputsTextFieldForm() {
+  onClickElemPushDataLayer() {
     $("#zip").change(function () {
       pushDataLayer("exp_intr_sol_sav_inp_solince_zipcod", "Enter Your Zip Code", "Input", "[City] SolarIncentive Programs 1st step");
     });
     $("#autoaddress").change(function () {
-      pushDataLayer("exp_intr_sol_sav_inp_housloc_adress", "Enter Your Address", "Input", "Find yourhouse location 4th step");
+      pushDataLayer("exp_intr_sol_sav_inp_housloc_adress", "Enter Your Address", "Input", "Find your house location 4th step");
     });
     $(".swiper-wrapper .swiper-slide:nth-child(6) input").change(function () {
-      pushDataLayer("exp_intr_sol_sav_inp_emeadres_enter", "Enter Your Email", "Input", "What is youremail address?");
+      pushDataLayer("exp_intr_sol_sav_inp_emeadres_enter", "Enter Your Email", "Input", "What is your email address?");
     });
     $(".swiper-wrapper .swiper-slide:nth-child(7) input").change(function (e) {
       let eventName = $(this).attr("placeholder").includes("First Name") ? "first" : "family";
@@ -2192,6 +2233,58 @@ class changeFlow {
     $("#tcpa_label a").click(function (e) {
       pushDataLayer("exp_intr_sol_sav_lin_numbreach_solar", "4 solar partners", "Link", "What is the best number to reach you at if you qualify?");
     });
+  }
+
+  visibScreenView() {
+    const globalMutation = new MutationObserver((mutations) => {
+      if ($(".swiper-slide-active")) {
+        this.visibleSwiperSlideActivePage($(".swiper-slide-active").attr("aria-label").split(" /")[0]);
+      }
+
+      globalMutation.disconnect();
+
+      globalMutation.observe(document.body, {
+        childList: true,
+        subtree: true,
+      });
+    });
+
+    globalMutation.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
+    checkVisibilityElem(".searching_programs_wrapper", "exp_intr_sol_sav_vis_incenprog_page", "[City] SolarIncentive Programs 6th step");
+    checkVisibilityElem(".incentive_wrapper", "exp_intr_sol_sav_vis_available_page", "Availableincentives found 7th step");
+    checkVisibilityElem(".monthly_bill_comparison", "exp_intr_sol_sav_vis_comparis_page", "Monthlybill comparison 8th step");
+    checkVisibilityElem(".lifetime_cost_analysis", "exp_intr_sol_sav_vis_lifeanalys_page", "Lifetime cost analysis with and without solar  9th step");
+    checkVisibilityElem(".estimated_lifetime_sav_wrapper", "exp_intr_sol_sav_vis_estimat_page", "Estimated lifetime savings  10th step");
+    checkVisibilityElem(".wrapper.is_step_email", "exp_intr_sol_sav_vis_emeadres_page", "What is your email address?");
+  }
+
+  visibleSwiperSlideActivePage(i) {
+    let index = +i - 1;
+    setTimeout(() => {
+      if (viewedSlide != index && $(".swiper-slide").eq(index).hasClass("swiper-slide-active")) {
+        viewedSlide = index;
+
+        if (index == 0) {
+          pushDataLayer("exp_intr_sol_sav_vis_solince_page", "Screen view", "Visibility ", "[City] SolarIncentive Programs 1st step");
+        } else if (index == 1) {
+          pushDataLayer("exp_intr_sol_sav_vis_enerbill_page", "Screen view", "Visibility ", "How much wasyour latest monthly energy bill? 2nd step");
+        } else if (index == 2) {
+          pushDataLayer("exp_intr_sol_sav_vis_utilprov_page", "Screen view", "Visibility ", "Who is your utility provider? 3rd step");
+        } else if (index == 3) {
+          pushDataLayer("exp_intr_sol_sav_vis_housloc_page", "Screen view", "Visibility ", "Find yourhouse location 4th step");
+        } else if (index == 4) {
+          pushDataLayer("exp_intr_sol_sav_vis_roofgetsun_page", "Screen view", "Visibility ", "Does yourroof get sunlight? 5th step");
+        } else if (index == 6) {
+          pushDataLayer("exp_intr_sol_sav_vis_yourname_page", "Screen view", "Visibility ", "What is your name?");
+        } else if (index == 7) {
+          pushDataLayer("exp_intr_sol_sav_vis_numbreach_page", "Screen view", "Visibility ", "What is the best number to reach you at if you qualify?");
+        }
+      }
+    }, 200);
   }
 
   // Thank You Page
@@ -2339,7 +2432,7 @@ class changeFlow {
           color: #757575;
           font-family: "Noto Sans SC", sans-serif;
         }
-        @media (max-width: 1024px) {
+        @media (max-width: 768px) {
           .content-wrapper::before {
             opacity: 1;
             background: #edf2f5;
@@ -2488,9 +2581,10 @@ class changeFlow {
     if (backdrop.classList.contains("is-hidden")) {
       backdrop.classList.remove("is-hidden");
     }
+    pushDataLayer("exp_intr_sol_sav_vis_houslocpup_scre", "Screen view", "Visibility ", "Find yourhouse location 4th step Pop up comment ");
     body.style.overflow = "hidden";
     popup.innerHTML = content;
-    checkFocusTime(".slider_card", "exp_exit_pop_up_vis_prodcart_block", "Exit popup for users with product in cart");
+
     this.handleClosePopup();
   }
   handleClosePopup() {
@@ -2505,7 +2599,7 @@ class changeFlow {
             backdrop.classList.add("is-hidden");
             body.style.overflow = "initial";
 
-            pushDataLayer("exp_exit_pop_up_but_prodcart_close", "Close", "Button", "Exit popup for users with product in cart");
+            pushDataLayer("exp_intr_sol_sav_but_houslocpup_clos", "Close", "Button", "Find your house location 4th step Pop up comment");
 
             setTimeout(() => {
               $el(".new-popup__content").innerHTML = "";
@@ -2526,7 +2620,7 @@ class changeFlow {
           backdrop.classList.add("is-hidden");
           body.style.overflow = "initial";
 
-          pushDataLayer("exp_exit_pop_up_clibeh_prodcart_close", "Close", "Сlick behind the pop-up area", "Exit popup for users with product in cart");
+          pushDataLayer("exp_intr_sol_sav_but_houslocpup_clos_behind", "Close", "Сlick behind the pop-up area", "Find your house location 4th step Pop up comment");
           setTimeout(() => {
             $el(".new-popup__content").innerHTML = "";
           }, 500);
@@ -2876,7 +2970,7 @@ class changeFlow {
           padding-left: 27px;
           left: 16px !important;
         }
-        .wrapper #slider-block .nextSlide {
+        .wrapper #slider-block .default {
           display: flex !important;
           align-items: center;
           justify-content: center;
@@ -2894,14 +2988,14 @@ class changeFlow {
           margin-left: auto;
           order: 2;
         }
-        .wrapper #slider-block .nextSlide.is_hidden {
+        .wrapper #slider-block .default.is_hidden {
           display: none !important;
         }
         /*footer */
         .site-footer {
           display: none !important;
         }
-        @media (min-width: 1024px) {
+        @media (min-width: 1023px) {
           .wrapper::before {
             background: linear-gradient(180deg, #edf2f5 12.81%, rgba(255, 255, 255, 0) 100%), url(${git}/sunvalue/img/bgr_img.png) bottom no-repeat;
             opacity: 1 !important;
@@ -2912,14 +3006,6 @@ class changeFlow {
           }
         }
         @media (max-width: 1024px) {
-          .wrapper.show::before {
-            background: linear-gradient(180deg, #edf2f5 12.81%, rgba(238, 243, 246, 0.93) 23.54%, rgba(255, 255, 255, 0.2) 100%), url(${git}sunvalue/img/bgr_img_show_mob.png) no-repeat;
-            opacity: 1 !important;
-            background-size: cover;
-          }
-          .wrapper.show::after {
-            content: unset;
-          }
           .wrapper.slide-active-analyzing::before {
             opacity: 0.7;
           }
@@ -2947,6 +3033,10 @@ class changeFlow {
           }
           .wrapper.is_step_three::before {
             content: unset;
+          }
+          .wrapper.is_step_name {
+            display: flex;
+            align-items: center;
           }
           .site-header {
             padding: 15px 0;
@@ -3040,11 +3130,21 @@ class changeFlow {
             max-width: 334px;
             margin: 16px auto 0 !important;
           }
-          .wrapper #slider-block .nextSlide {
+          .wrapper #slider-block .default {
             max-width: 200px;
           }
           #estimate-name .title {
             margin-bottom: 16px !important;
+          }
+        }
+        @media (max-width: 768px) {
+          .wrapper.show::before {
+            background: linear-gradient(180deg, #edf2f5 12.81%, rgba(238, 243, 246, 0.93) 23.54%, rgba(255, 255, 255, 0.2) 100%), url(${git}sunvalue/img/bgr_img_show_mob.png) no-repeat;
+            opacity: 1 !important;
+            background-size: cover;
+          }
+          .wrapper.show::after {
+            content: unset;
           }
         }
         @media (max-width: 361px) {

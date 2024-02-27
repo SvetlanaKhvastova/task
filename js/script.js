@@ -278,15 +278,6 @@ setTimeout(function () {
   document.querySelector(".exp")?.remove();
 }, 3000);
 
-let script = document.createElement("script");
-script.src = "https://conversionratestore.github.io/projects/treblehealth/treblehealth_calendar.js";
-script.async = false;
-document.head.appendChild(script);
-//
-let script = document.createElement("script");
-script.src = "https://conversionratestore.github.io/projects/treblehealth/improve_page.js";
-script.async = false;
-document.head.appendChild(script);
 //
 let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/simify/exit_intent_pop_up.js";
@@ -296,14 +287,29 @@ let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/simify/exit_intent_pop_up_upsell.js";
 script.async = false;
 document.head.appendChild(script);
-//
+//treblehealth
 let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/treblehealth/improve_page_3rd_iteration.js";
 script.async = false;
 document.head.appendChild(script);
-
 //
 let script = document.createElement("script");
+script.src = "https://conversionratestore.github.io/projects/treblehealth/treblehealth_calendar.js";
+script.async = false;
+document.head.appendChild(script);
+//
+let script = document.createElement("script");
+script.src = "https://conversionratestore.github.io/projects/treblehealth/improve_page.js";
+script.async = false;
+document.head.appendChild(script);
+
+//gold_ua
+let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/gold_ua/exit_intent_pop_up.js";
+script.async = false;
+document.head.appendChild(script);
+//sunvalue
+let script = document.createElement("script");
+script.src = "https://conversionratestore.github.io/projects/sunvalue/solar_savings.js";
 script.async = false;
 document.head.appendChild(script);
