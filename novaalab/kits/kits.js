@@ -1,63 +1,63 @@
 let treblehealthPages = setInterval(() => {
-  if (document.querySelector('#PageContainer')) {
-    clearInterval(treblehealthPages)
+  if (document.querySelector("#PageContainer")) {
+    clearInterval(treblehealthPages);
 
-    console.log('%c EXP: Kits (DEV: SKh)', 'background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;')
-    const $$el = selector => document.querySelectorAll(selector)
-    const $el = selector => document.querySelector(selector)
-    const git = 'https://conversionratestore.github.io/projects/'
+    console.log("%c EXP: Kits (DEV: SKh)", "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;");
+    const $$el = (selector) => document.querySelectorAll(selector);
+    const $el = (selector) => document.querySelector(selector);
+    const git = "https://conversionratestore.github.io/projects/";
 
     const clarityInterval = setInterval(function () {
-      if (typeof clarity == 'function') {
-        clearInterval(clarityInterval)
+      if (typeof clarity == "function") {
+        clearInterval(clarityInterval);
         //
       }
-    }, 1000)
+    }, 1000);
 
-    const pushDataLayer = (name, desc, type = '', loc = '') => {
-      window.dataLayer = window.dataLayer || []
+    const pushDataLayer = (name, desc, type = "", loc = "") => {
+      window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
-        event: 'event-to-ga4',
+        event: "event-to-ga4",
         event_name: name,
         event_desc: desc,
         event_type: type,
-        event_loc: loc
-      })
-      console.log(`Event: ${name} ${desc} ${type} ${loc}`)
-    }
+        event_loc: loc,
+      });
+      console.log(`Event: ${name} ${desc} ${type} ${loc}`);
+    };
 
     function checkFocusTime(selector, event, location) {
-      const checker = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && !entry.target.getAttribute('data-startShow')) {
-            entry.target.setAttribute('data-startShow', new Date().getTime())
-          } else if (!entry.isIntersecting && entry.target.getAttribute('data-startShow')) {
-            const startShow = entry.target.getAttribute('data-startShow')
-            const endShow = new Date().getTime()
-            const timeShow = Math.round(endShow - startShow)
-            entry.target.removeAttribute('data-startShow')
-            pushDataLayer(event, timeShow, 'Visibility', location)
-            checker.unobserve(entry.target)
+      const checker = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !entry.target.getAttribute("data-startShow")) {
+            entry.target.setAttribute("data-startShow", new Date().getTime());
+          } else if (!entry.isIntersecting && entry.target.getAttribute("data-startShow")) {
+            const startShow = entry.target.getAttribute("data-startShow");
+            const endShow = new Date().getTime();
+            const timeShow = Math.round(endShow - startShow);
+            entry.target.removeAttribute("data-startShow");
+            pushDataLayer(event, timeShow, "Visibility", location);
+            checker.unobserve(entry.target);
           }
-        })
-      })
+        });
+      });
 
-      checker.observe(document.querySelector(selector))
+      checker.observe(document.querySelector(selector));
     }
 
-    let page = null
+    let page = null;
     switch (window.pathname) {
-      case '/':
-        page = 'homePage'
-        break
-      case '/cart':
-        page = 'cartPage'
-        break
-      case '/collections/best-red-light-therapy-catalog':
-        page = 'catalogPage'
-        break
+      case "/":
+        page = "homePage";
+        break;
+      case "/cart":
+        page = "cartPage";
+        break;
+      case "/collections/best-red-light-therapy-catalog":
+        page = "catalogPage";
+        break;
       default:
-        break
+        break;
     }
 
     const svgObj = {
@@ -83,56 +83,29 @@ let treblehealthPages = setInterval(() => {
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M8.32986 18.6063C7.89467 18.6063 7.46926 18.7354 7.10742 18.9771C6.74557 19.2189 6.46355 19.5626 6.29701 19.9646C6.13048 20.3667 6.0869 20.8091 6.1718 21.2359C6.2567 21.6627 6.46626 22.0548 6.77399 22.3625C7.08171 22.6702 7.47377 22.8798 7.90059 22.9647C8.32742 23.0496 8.76983 23.006 9.17189 22.8395C9.57395 22.673 9.91759 22.3909 10.1594 22.0291C10.4011 21.6673 10.5302 21.2418 10.5302 20.8067C10.5302 20.2231 10.2984 19.6634 9.88573 19.2508C9.47308 18.8381 8.91342 18.6063 8.32986 18.6063ZM18.5981 18.6063C18.1629 18.6063 17.7375 18.7354 17.3756 18.9771C17.0138 19.2189 16.7318 19.5626 16.5652 19.9646C16.3987 20.3667 16.3551 20.8091 16.44 21.2359C16.5249 21.6627 16.7345 22.0548 17.0422 22.3625C17.3499 22.6702 17.742 22.8798 18.1688 22.9647C18.5956 23.0496 19.038 23.006 19.4401 22.8395C19.8422 22.673 20.1858 22.3909 20.4276 22.0291C20.6694 21.6673 20.7984 21.2418 20.7984 20.8067C20.7984 20.2231 20.5666 19.6634 20.1539 19.2508C19.7413 18.8381 19.1816 18.6063 18.5981 18.6063ZM7.20998 13.7963C7.20998 13.7963 15.9196 13.5373 18.3877 13.4906C18.8149 13.4823 19.2305 13.3498 19.5838 13.1093C19.937 12.8687 20.2125 12.5305 20.3767 12.136L22.831 6.24046C22.9702 5.906 23.0247 5.54232 22.9897 5.18173C22.9546 4.82114 22.831 4.47478 22.6299 4.17342C22.4289 3.87205 22.1565 3.62501 21.837 3.45421C21.5174 3.28342 21.1607 3.19417 20.7984 3.19437L5.62528 3.20033L5.57944 2.8767C5.50107 2.35568 5.23834 1.88008 4.83901 1.53636C4.43969 1.19264 3.93029 1.00362 3.4034 1.00367L1.73344 1C1.53892 1 1.35237 1.07727 1.21482 1.21482C1.07727 1.35237 1 1.53892 1 1.73344C1 1.92797 1.07727 2.11452 1.21482 2.25207C1.35237 2.38961 1.53892 2.46689 1.73344 2.46689H3.40295C3.57856 2.46756 3.7481 2.53122 3.88076 2.64629C4.01342 2.76137 4.10038 2.92022 4.12585 3.09398L5.75822 14.0136C5.88792 14.8826 6.32531 15.6761 6.99078 16.2498C7.65625 16.8235 8.50557 17.1392 9.38418 17.1394H20.065C20.2595 17.1394 20.446 17.0622 20.5836 16.9246C20.7211 16.7871 20.7984 16.6005 20.7984 16.406C20.7984 16.2115 20.7211 16.0249 20.5836 15.8874C20.446 15.7498 20.2595 15.6725 20.065 15.6725H9.38418C8.85703 15.6725 8.3474 15.4832 7.94804 15.1392C7.54868 14.7951 7.28612 14.319 7.20815 13.7977L7.20998 13.7963Z" fill="#212121"/>
         </svg>
-        `
-    }
+        `,
+    };
 
     let arrKits = [
       {
-        1: [
-          'Novaa Light Pad with remote control + Novoral Care Pro',
-          'https://novaalab.com/cdn/shop/products/IMG_1001-600pxquaqre_medium.jpg?v=1662108128',
-          '$359.80',
-          '$800.00',
-          '-55%',
-          `${git}novaalab/img/rating_stars.svg`,
-          '(339)',
-          'Home & Travel Kit'
-        ]
+        1: ["Novaa Light Pad with remote control + Novoral Care Pro", "https://novaalab.com/cdn/shop/products/IMG_1001-600pxquaqre_medium.jpg?v=1662108128", "$359.80", "$800.00", "-55%", `${git}novaalab/img/rating_stars.svg`, "(339)", "Home & Travel Kit"],
       },
       {
-        2: [
-          'Novoral Care Pro + Sonic Toothbrush + 2 Brush heads',
-          'https://novaalab.com/cdn/shop/products/IMG_1001-600pxquaqre_medium.jpg?v=1662108128',
-          '$175.70',
-          '$345.70',
-          '-49%',
-          `${git}novaalab/img/rating_stars.svg`,
-          '(111)',
-          'Complex Care Kit'
-        ]
+        2: ["Novoral Care Pro + Sonic Toothbrush + 2 Brush heads", "https://novaalab.com/cdn/shop/products/IMG_1001-600pxquaqre_medium.jpg?v=1662108128", "$175.70", "$345.70", "-49%", `${git}novaalab/img/rating_stars.svg`, "(111)", "Complex Care Kit"],
       },
       {
-        3: [
-          'Novaa Light Pad with remote control + Novaa Light Pro',
-          'https://novaalab.com/cdn/shop/products/IMG_1001-600pxquaqre_medium.jpg?v=1662108128',
-          '$329.90',
-          '$900.00',
-          '-63%',
-          `${git}novaalab/img/rating_stars.svg`,
-          '(227)',
-          'Oral Health Care Kit'
-        ]
-      }
-    ]
+        3: ["Novaa Light Pad with remote control + Novaa Light Pro", "https://novaalab.com/cdn/shop/products/IMG_1001-600pxquaqre_medium.jpg?v=1662108128", "$329.90", "$900.00", "-63%", `${git}novaalab/img/rating_stars.svg`, "(227)", "Oral Health Care Kit"],
+      },
+    ];
 
     let arrKitsPopup = [
       {
         2: [
-          'Complete Oral HealthCare Kit',
-          'Rewind the clock on gum damage and tooth decay using Novoral Care Pro’s advanced “Dual-Action Light Therapy”; pair with the Sonic Toothbrush and our silky brush heads to brush to brush sensitive teeth for your cleanest, healthiest, brightest smile yet.',
-          '$175.70',
-          '$345.70',
-          'Save $170.00',
+          "Complete Oral HealthCare Kit",
+          "Rewind the clock on gum damage and tooth decay using Novoral Care Pro’s advanced “Dual-Action Light Therapy”; pair with the Sonic Toothbrush and our silky brush heads to brush to brush sensitive teeth for your cleanest, healthiest, brightest smile yet.",
+          "$175.70",
+          "$345.70",
+          "Save $170.00",
           `<ul class="popup_list_product">
             <li class="popup_item_product">
                 <div class="popup_item_wrapper">
@@ -181,16 +154,16 @@ let treblehealthPages = setInterval(() => {
                 <li class="popup_item_descr">Replace every three month for best results</li>
                 </ul>
             </li>
-            </ul>`
-        ]
+            </ul>`,
+        ],
       },
       {
         3: [
-          'Home & Travel Kit',
-          'Relieve back, knee, and neck pain, accelerate post surgery healing, and alleviate cellular damage from arthritis and neuropathy with Novaa Light Pad’s NEW 2023 Red Light Therapy. Pair with the Novaa Light Pro, perfect for travel, and designed to give you a compact, efficient, and convenient way to access red light therapy pain relief, improved blood circulation, and healthier skin while on the go.',
-          '$329.90',
-          '$900.00',
-          'Save $570.10',
+          "Home & Travel Kit",
+          "Relieve back, knee, and neck pain, accelerate post surgery healing, and alleviate cellular damage from arthritis and neuropathy with Novaa Light Pad’s NEW 2023 Red Light Therapy. Pair with the Novaa Light Pro, perfect for travel, and designed to give you a compact, efficient, and convenient way to access red light therapy pain relief, improved blood circulation, and healthier skin while on the go.",
+          "$329.90",
+          "$900.00",
+          "Save $570.10",
           `<ul class="popup_list_product">
             <li class="popup_item_product">
                 <div class="popup_item_wrapper">
@@ -229,16 +202,16 @@ let treblehealthPages = setInterval(() => {
                 <li class="popup_item_descr">Promotes improved skin health</li>
                 </ul>
             </li>
-            </ul>`
-        ]
+            </ul>`,
+        ],
       },
       {
         1: [
-          'Complex Care Kit',
-          'This kit provides comprehensive care by addressing both physical pain and oral health needs. The Novaa Light Pad offers targeted pain relief and promotes healing in areas like the back, knees, and neck, making it ideal for various conditions and post-surgery recovery. Simultaneously, the Novoral Care Pro ensures optimal oral hygiene, treating gum diseases, whitening teeth, and eliminating bad breath, contributing to overall health and wellness.',
-          '$359.80',
-          '$800.00',
-          'Save $440.20',
+          "Complex Care Kit",
+          "This kit provides comprehensive care by addressing both physical pain and oral health needs. The Novaa Light Pad offers targeted pain relief and promotes healing in areas like the back, knees, and neck, making it ideal for various conditions and post-surgery recovery. Simultaneously, the Novoral Care Pro ensures optimal oral hygiene, treating gum diseases, whitening teeth, and eliminating bad breath, contributing to overall health and wellness.",
+          "$359.80",
+          "$800.00",
+          "Save $440.20",
           `<ul class="popup_list_product">
             <li class="popup_item_product">
                 <div class="popup_item_wrapper">
@@ -278,10 +251,10 @@ let treblehealthPages = setInterval(() => {
                 <li class="popup_item_descr">Advanced technology: use for only 5 minutes per day for transformed teeth and oral hygiene.</li>
                 </ul>
             </li>
-            </ul>`
-        ]
-      }
-    ]
+            </ul>`,
+        ],
+      },
+    ];
 
     const mainStyle = /*html */ `
     <style>
@@ -292,19 +265,19 @@ let treblehealthPages = setInterval(() => {
             padding-top: 61px;
         }
     </style>
-    `
+    `;
 
-    $el('head').insertAdjacentHTML('beforeend', mainStyle)
+    $el("head").insertAdjacentHTML("beforeend", mainStyle);
 
     class ImprovePage {
       constructor(page) {
-        this.page = page
-        this.init()
+        this.page = page;
+        this.init();
       }
 
       onRenderHtml(selectorStart, place, selectorNew, newHtml) {
         if (!$el(selectorNew) && $el(selectorStart)) {
-          $el(selectorStart).insertAdjacentHTML(place, newHtml)
+          $el(selectorStart).insertAdjacentHTML(place, newHtml);
         }
       }
 
@@ -336,47 +309,34 @@ let treblehealthPages = setInterval(() => {
                     </div>
                 </div>
             </li>
-        `
-        return kitsItem
+        `;
+        return kitsItem;
       }
 
       onRenderHomePageKits() {
-        if ($el('.kits_list')?.children.length !== arrKits.length) {
-          arrKits.forEach(kit => {
+        if ($el(".kits_list")?.children.length !== arrKits.length) {
+          arrKits.forEach((kit) => {
             for (let key in kit) {
-              $el('.kits_list')?.insertAdjacentHTML(
-                'beforeend',
-                this.onRenderKitItem(
-                  key,
-                  kit[key][0],
-                  kit[key][1],
-                  kit[key][2],
-                  kit[key][3],
-                  kit[key][4],
-                  kit[key][5],
-                  kit[key][6],
-                  kit[key][7]
-                )
-              )
+              $el(".kits_list")?.insertAdjacentHTML("beforeend", this.onRenderKitItem(key, kit[key][0], kit[key][1], kit[key][2], kit[key][3], kit[key][4], kit[key][5], kit[key][6], kit[key][7]));
             }
-          })
+          });
         }
       }
 
       onClickBtnLearnMore() {
-        $$el('.kit_learn_more')?.forEach(el => {
-          el.addEventListener('click', e => {
-            if (!e.target.getAttribute('data-test')) {
-              this.onTogglePopUp(el.getAttribute('data-id'))
+        $$el(".kit_learn_more")?.forEach((el) => {
+          el.addEventListener("click", (e) => {
+            if (!e.target.getAttribute("data-test")) {
+              this.onTogglePopUp(el.getAttribute("data-id"));
             }
-            e.target.setAttribute('data-test', '1')
+            e.target.setAttribute("data-test", "1");
             setTimeout(() => {
-              if (e.target.getAttribute('data-test')) {
-                e.target.removeAttribute('data-test')
+              if (e.target.getAttribute("data-test")) {
+                e.target.removeAttribute("data-test");
               }
-            }, 1000)
-          })
-        })
+            }, 1000);
+          });
+        });
       }
 
       onRenderContentPopUp(id, title, txt, price, oldPrice, discountTxt, htmlDescr) {
@@ -384,7 +344,7 @@ let treblehealthPages = setInterval(() => {
         <style>
 
         </style>
-        `
+        `;
         const contentPopUp = /*html */ `
             ${styleContentPopUp}
             <div class="content_popup">
@@ -407,73 +367,62 @@ let treblehealthPages = setInterval(() => {
                     </div>
                 </div>
             </div>
-        `
+        `;
 
-        return contentPopUp
+        return contentPopUp;
       }
 
       onTogglePopUp(id) {
         const body = document.body,
-          html = $el('html'),
-          overlay = $el('.overlay_popup'),
-          btnClose = $$el('.popup_close')
+          html = $el("html"),
+          overlay = $el(".overlay_popup"),
+          btnClose = $$el(".popup_close");
 
-        arrKitsPopup.forEach(kit => {
+        arrKitsPopup.forEach((kit) => {
           for (let key in kit) {
-            if (key === id && !$el('.content_popup')) {
-              $el('.container_popup')?.insertAdjacentHTML(
-                'beforeend',
-                this.onRenderContentPopUp(
-                  key,
-                  kit[key][0],
-                  kit[key][1],
-                  kit[key][2],
-                  kit[key][3],
-                  kit[key][4],
-                  kit[key][5]
-                )
-              )
+            if (key === id && !$el(".content_popup")) {
+              $el(".container_popup")?.insertAdjacentHTML("beforeend", this.onRenderContentPopUp(key, kit[key][0], kit[key][1], kit[key][2], kit[key][3], kit[key][4], kit[key][5]));
             }
           }
-        })
+        });
 
-        onOpenPopup()
+        onOpenPopup();
 
-        btnClose.forEach(el => {
-          el.addEventListener('click', e => {
-            if (!e.target.getAttribute('data-test')) {
-              onClosePopup()
+        btnClose.forEach((el) => {
+          el.addEventListener("click", (e) => {
+            if (!e.target.getAttribute("data-test")) {
+              onClosePopup();
             }
-            e.target.setAttribute('data-test', '1')
+            e.target.setAttribute("data-test", "1");
             setTimeout(() => {
-              if (e.target.getAttribute('data-test')) {
-                e.target.removeAttribute('data-test')
+              if (e.target.getAttribute("data-test")) {
+                e.target.removeAttribute("data-test");
               }
-            }, 1000)
-          })
-        })
+            }, 1000);
+          });
+        });
 
         // click on overlay popup
-        overlay.addEventListener('click', e => {
-          if (e.target.matches('.overlay_popup')) {
-            onClosePopup()
+        overlay.addEventListener("click", (e) => {
+          if (e.target.matches(".overlay_popup")) {
+            onClosePopup();
           }
-        })
+        });
 
         function onOpenPopup() {
-          overlay.classList.add('active')
-          body.style.overflow = 'hidden'
-          html.style.overflow = 'hidden'
+          overlay.classList.add("active");
+          body.style.overflow = "hidden";
+          html.style.overflow = "hidden";
         }
 
         function onClosePopup() {
-          overlay.classList.remove('active')
-          body.style.overflow = 'initial'
-          html.style.overflow = 'initial'
+          overlay.classList.remove("active");
+          body.style.overflow = "initial";
+          html.style.overflow = "initial";
 
           setTimeout(() => {
-            $el('.content_popup')?.remove()
-          }, 600)
+            $el(".content_popup")?.remove();
+          }, 600);
         }
       }
 
@@ -524,7 +473,7 @@ let treblehealthPages = setInterval(() => {
                 </svg>
             </div>
         </div>
-        `
+        `;
         const styleKitItem = /*html */ `
         <style>
         .kits_item{
@@ -681,7 +630,7 @@ let treblehealthPages = setInterval(() => {
 
         }
         </style>
-        `
+        `;
         const kitsHomePage = /*html */ `
         <div class="kits_home_page">
             <style>
@@ -719,29 +668,24 @@ let treblehealthPages = setInterval(() => {
                 <ul class="kits_list">${styleKitItem}</ul>
             </div>
         </div>
-        `
+        `;
         // RENDER HTML
         //  popup
-        if (this.page === 'homePage' || this.page === 'catalogPage') {
-          this.onRenderHtml('body', 'afterbegin', '.overlay_popup', popUp)
+        if (this.page === "homePage" || this.page === "catalogPage") {
+          this.onRenderHtml("body", "afterbegin", ".overlay_popup", popUp);
         }
         // homePage
-        this.onRenderHtml(
-          '#shopify-section-template--20243474579801__main',
-          'afterend',
-          '.kits_home_page',
-          kitsHomePage
-        )
+        this.onRenderHtml("#shopify-section-template--20243474579801__main", "afterend", ".kits_home_page", kitsHomePage);
         // homePage Kits
-        if (this.page === 'homePage') {
-          this.onRenderHomePageKits()
+        if (this.page === "homePage") {
+          this.onRenderHomePageKits();
         }
 
         // on Click Btn Learn More
-        this.onClickBtnLearnMore()
+        this.onClickBtnLearnMore();
       }
     }
 
-    new ImprovePage(page)
+    new ImprovePage(page);
   }
-}, 500)
+}, 500);
