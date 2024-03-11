@@ -416,3 +416,18 @@ async function renderReadyToShipSlider() {
     let slider = jQuery("#readyToShip .ready_to_ship_list:not(.slick-initialized)").slick(options);
   }
 }
+
+async function getCartCheckout() {
+  await fetch("/cart.js", {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}

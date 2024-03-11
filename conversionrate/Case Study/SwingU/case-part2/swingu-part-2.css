@@ -602,6 +602,9 @@ main.main p {
   #research-insights .unordered-list {
     max-width: unset !important;
   }
+  #research-insights .heading-4 {
+    max-width: unset !important;
+  }
   #hypothesis .heading-4 {
     max-width: unset !important;
   }
@@ -695,7 +698,7 @@ main.main p {
     padding-top: 0;
   }
   .case_contain .text_box p {
-    max-width: 336px;
+    max-width: 335px;
   }
   .heading-1 {
     font-size: 30px;
@@ -741,7 +744,10 @@ main.main p {
     max-width: 100%;
   }
   #research-insights .ordered-list li p {
-    max-width: 298px;
+    max-width: 306px;
+  }
+  #research-insights .heading-4 {
+    max-width: 332px;
   }
   #results.section .heading-wrap {
     margin-bottom: 8px;
@@ -754,7 +760,6 @@ main.main p {
   }
   #hypothesis .heading-4 {
     max-width: 326px;
-    margin-bottom: -12px;
   }
   #hypothesis .unordered-list li p {
     font-size: 18px !important;

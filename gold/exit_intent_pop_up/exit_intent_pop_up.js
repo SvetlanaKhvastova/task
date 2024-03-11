@@ -34,9 +34,7 @@ function checkFocusTime(selector, event, location) {
         const timeShow = Math.round(endShow - startShow);
         console.log(timeShow, `timeShow`);
         entry.target.removeAttribute("data-startShow");
-        if (timeShow >= 3000) {
-          pushDataLayer(event, `Block view ${timeShow}`, "Visibility", location);
-        }
+        pushDataLayer(event, `Block view`, "Visibility", location);
         checker.unobserve(entry.target);
       }
     });

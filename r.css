@@ -1,0 +1,25 @@
+.free_delivery_banner {
+  display: flex;
+  padding: 7px 0px;
+  background: #202945;
+
+  & li {
+    display: flex;
+    gap: 4px;
+
+    & p {
+      color: #fff;
+      font-family: "Source Sans 3";
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 18px;
+      text-transform: uppercase;
+    }
+  }
+
+  & li:first-child {
+    padding-right: 16px;
+    border-right: 1px solid #868c9d;
+    margin-right: 16px;
+  }
+}
