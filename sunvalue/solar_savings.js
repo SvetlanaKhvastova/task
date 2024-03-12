@@ -1,3 +1,4 @@
+// window.onload = () => {
 console.log("%c EXP: Sunvalue: Introduce solar savings and build trust through the funnel (DEV: SKh)", "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;");
 
 const $$el = (selector) => document.querySelectorAll(selector);
@@ -1702,31 +1703,33 @@ class changeFlow {
       </div>
     `;
     // Get the rangeslider instance
-    let slider = $("#bill-slider");
-    slider.html(rangeBlock);
+    waitForElement("#bill-slider").then((el) => {
+      let slider = $("#bill-slider");
+      slider.html(rangeBlock);
 
-    let changeSlider = 0;
-    $("[data-rangeslider]").change(function (e) {
-      if (changeSlider == 1) {
-        if (!e.target.getAttribute("data-test")) {
-          pushDataLayer("exp_intr_sol_sav_range_enerbill_slider", "Slider", "Range slider", "How much was your latest monthly energy bill? 2nd step");
-          e.target.setAttribute("data-style", $(".rangeslider-tooltip")?.text());
-        }
-        e.target.setAttribute("data-test", "1");
-        setTimeout(() => {
-          if (e.target.getAttribute("data-test")) {
-            e.target.removeAttribute("data-test");
+      let changeSlider = 0;
+      $("[data-rangeslider]").change(function (e) {
+        if (changeSlider == 1) {
+          if (!e.target.getAttribute("data-test")) {
+            pushDataLayer("exp_intr_sol_sav_range_enerbill_slider", "Slider", "Range slider", "How much was your latest monthly energy bill? 2nd step");
+            e.target.setAttribute("data-style", $(".rangeslider-tooltip")?.text());
           }
-        }, 500);
-        const price = e.target.value;
-        $(".crs_analyzing li:first-child b").html($(".rangeslider-tooltip").text());
-        $(".crs_analyzing li:nth-child(2) span").html((price / 50) * 8);
-      }
+          e.target.setAttribute("data-test", "1");
+          setTimeout(() => {
+            if (e.target.getAttribute("data-test")) {
+              e.target.removeAttribute("data-test");
+            }
+          }, 500);
+          const price = e.target.value;
+          $(".crs_analyzing li:first-child b").html($(".rangeslider-tooltip").text());
+          $(".crs_analyzing li:nth-child(2) span").html((price / 50) * 8);
+        }
 
-      changeSlider = 1;
+        changeSlider = 1;
+      });
+
+      initRangeSlider();
     });
-
-    initRangeSlider();
   }
   setLocalStorageDataInfo() {
     let data = {};
@@ -2679,6 +2682,12 @@ class changeFlow {
   initMainStyles() {
     const mainStyles = /* HTML */ `
       <style>
+        .wrapper .status-indicator {
+          display: none !important;
+        }
+        #header-with-id {
+          display: block !important;
+        }
         [aria-label="6 / 8"] {
           min-height: 429px !important;
           height: 100% !important;
@@ -3201,3 +3210,4 @@ class changeFlow {
 }
 
 new changeFlow(device);
+// };

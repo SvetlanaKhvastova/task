@@ -345,6 +345,7 @@ class IntentPopup {
             sessionStorage.setItem("lastAddedTime", new Date().getTime());
           }
         }
+        console.log(mutation);
       }
     });
 
