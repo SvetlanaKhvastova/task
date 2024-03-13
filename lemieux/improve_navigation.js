@@ -1,5 +1,6 @@
-(() => {
+window.onload = () => {
   console.log("%c EXP: Improve navigation on PDP (DEV: OS)", "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;");
+
   const $$el = (selector) => document.querySelectorAll(selector);
   const $el = (selector) => document.querySelector(selector);
   const git = "https://conversionratestore.github.io/projects/";
@@ -59,6 +60,27 @@
     });
   };
 
+  const handleTouch = (cb) => {
+    let touchStartY = 0;
+    let touchEndY = 0;
+
+    function handleTouchStart(evt) {
+      touchStartY = evt.touches[0].clientY;
+    }
+
+    function handleTouchMove(evt) {
+      touchEndY = evt.touches[0].clientY;
+    }
+    function handleTouchEnd(evt) {
+      if (touchStartY - touchEndY < 150) {
+        cb();
+      }
+    }
+
+    document.addEventListener("touchstart", handleTouchStart, false);
+    document.addEventListener("touchmove", handleTouchMove, false);
+    document.addEventListener("touchend", handleTouchEnd, false);
+  };
   // load script
   const loadScriptOrStyle = (url) => {
     return new Promise((resolve, reject) => {
@@ -183,6 +205,9 @@
     mobile: "Mobile",
     desktop: "Desktop",
   };
+
+  const observerConfig = { attributes: true, attributeOldValue: true, attributeFilter: ["class", "id"] };
+
   class PdpImprovement {
     constructor() {
       this.observer = null;
@@ -192,13 +217,12 @@
     }
 
     init() {
-      waitForElement("body.content-initiated").then(() => {
-        this.breadcrumps();
-        this.sizeChart();
-        this.initSwiper();
-        this.similarProducts();
-        this.splitCarrousels();
-        this.returnBadge();
+      const timer = setInterval(() => {
+        const initiated = document.querySelector("body.content-initiated");
+        if (initiated) {
+          clearInterval(timer);
+          this.initComponents();
+        }
       });
     }
     observePageChange() {
@@ -206,41 +230,70 @@
         mutations.forEach((mutation) => {
           if (window.location.pathname !== this.lastPath) {
             this.lastPath = window.location.pathname;
-            this.init();
+            this.initComponents();
           }
         });
       });
 
-      const config = { childList: true, subtree: true };
-      this.observer.observe(document.body, config);
+      this.observer.observe(document.body, observerConfig);
     }
-
+    initComponents() {
+      this.breadcrumps();
+      this.sizeChart();
+      this.similarProducts();
+      this.returnBadge();
+      this.footer();
+      this.newStaButton();
+      this.splitCarrousels();
+    }
     disconnectObserver() {
       if (this.observer) {
         this.observer.disconnect();
       }
     }
     getCurrentProductId() {
-      const productId = JSON.parse(localStorage.getItem("ngStorage-/-recentlyViewed"))[0];
+      let productId = null;
+      productId = JSON.parse(localStorage.getItem("ngStorage-/-recentlyViewed"))[0];
       return productId;
     }
     returnBadge() {
       $el(".return-badge")?.remove();
       const returnBadge = /* HTML */ `
         <style>
+          product-view-delivery-note div:first-child {
+            background: none;
+          }
+          product-view-delivery-note :is(p, i) {
+            color: #212121 !important;
+            font-size: 16px;
+            font-weight: 600 !important;
+          }
+          product-view-delivery-note i {
+            font-size: 1.7em !important;
+            padding-right: 0.3em !important;
+            color: #212121 !important;
+          }
           .return-badge {
             display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 10px;
+            justify-content: flex-start;
+            padding: 0;
             margin-bottom: 20px;
+            border-bottom: 1px solid #cfd2d3;
+            padding-bottom: 20px;
+            margin-top: 16px;
+          }
+          .return-badge,
+          product-view-delivery-note div:first-child {
+            justify-content: flex-start;
           }
           .return-badge svg {
             margin-right: 10px;
           }
           .return-badge p {
-            font-size: 14px;
-            color: #595959;
+            color: #212121;
+            font-size: 16px;
+            font-weight: 600;
           }
           .return-badge__inform {
             position: relative;
@@ -272,6 +325,13 @@
             position: absolute;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7' height='12' viewBox='0 0 7 12' fill='none'%3E%3Cpath d='M7.5 11L7.5 12.0675L6.67991 11.3841L0.679908 6.38411L0.218975 6L0.679908 5.61589L6.67991 0.61589L7.5 -0.0675211L7.5 1L7.5 11Z' fill='white' stroke='%23CFD2D3' stroke-linejoin='round'/%3E%3C/svg%3E");
           }
+          @media (min-width: 1024px) {
+            .return-badge {
+              margin-top: 12px;
+              border: 0;
+              padding: 0;
+            }
+          }
         </style>
         <div class="return-badge">
           ${icons.return}
@@ -283,19 +343,22 @@
           </div>
         </div>
       `;
-      $el("product-view-details")?.insertAdjacentHTML("beforebegin", returnBadge);
+      $el("product-view-delivery-note")?.insertAdjacentHTML("beforeend", returnBadge);
       blockVisibility(
         ".return-badge",
         "exp_impro_pdp_vis_polic_block",
         "Block view",
         `PDP
-      Add message about return policy`
+        Add message about return policy`
       );
 
       $el(".return-badge__inform")?.addEventListener("mouseleave", () => {
         pushDataLayer("exp_impro_pdp_tool_retpolic_click", "Click", "Tooltip", "PDP 60 day return policy");
       });
-      blockVisibility(".return-badge__message", "exp_impro_pdp_vis_polic_tooltip", "Element view", "PDP Tips We accept returns on all items within 60 days of purchase.");
+      blockVisibility(".return-badge__message", "exp_impro_pdp_visib_tips_element", "Element view", "PDP Tips We accept returns on all items within 60 days of purchase.");
+      blockVisibility("product-view-klarna-msg", "exp_impro_pdp_vis_klarna_block", "Block view", "PDP Klarna");
+
+      blockVisibility("bottom-panel action[cy-basketaddbutton]", "exp_impro_pdp_vis_addbag_button", "Button view", "PDP Add to bag");
     }
 
     async similarProducts() {
@@ -303,10 +366,9 @@
       const productId = this.getCurrentProductId();
       const productResponse = await this.getFetch(`n/product/${productId}/verbosity/3`);
       const categoryId = productResponse.result[0]?.categories?.last || productResponse.result[0]?.categories?.first;
-      $el(".similar-products")?.remove();
+
       const categoryResponse = await this.getFetch(`n/category/${categoryId}/verbosity/3`);
       if (!productResponse || !categoryResponse) return;
-
       const filteredCatalog = categoryResponse.catalog.filter((item) => item.type === "product");
       let filteredArray = filteredCatalog.filter((value, index, self) => {
         let words = value.url.split("/");
@@ -317,80 +379,87 @@
           }) === index
         );
       });
-
       const similarProductsHTML = /* HTML */ `
-        <style>
-          .similar-products {
-            margin-bottom: 20px;
-            padding-inline: 20px;
-          }
-          .similar-products img {
-            width: 100%;
-            height: auto;
-          }
-          .similar-products h2 {
-            color: var(--Black, #212121);
-            margin-block: 48px;
-            text-align: center;
-            font-family: Baskerville;
-            font-size: 32px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 40px; /* 125% */
-            letter-spacing: 0.5px;
-          }
-
-          .wishlist-wrap {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-          }
-          .swipe-item h3 {
-            margin-block: 10px;
-            font-size: 0.9375rem;
-            letter-spacing: 0.0625rem;
-            line-height: 1.25rem;
-          }
-          .swipe-item h3 + div {
-            font-size: 0.9375rem;
-            letter-spacing: 0.0625rem;
-            line-height: 1.25rem;
-            color: var(--atomic-color-12, #acacac);
-          }
-          .swipe-item p {
-            font-size: 0.9375rem;
-            letter-spacing: 0.0625rem;
-            line-height: 1.25rem;
-          }
-          .similar-products .swiper {
-            padding-block: 20px;
-          }
-          .similar-products .swiper-scrollbar {
-            width: 13.75rem;
-            background-color: #f6f5f5;
-            height: 2px;
-            left: 50%;
-            bottom: 0;
-            transform: translate(-50%);
-            z-index: 1;
-          }
-          .similar-products .swiper-scrollbar-drag {
-            background-color: #595959;
-          }
-
-          @media (min-width: 1024px) {
+        <div class="similar-products">
+          <style>
+            .similar-products {
+              margin-bottom: 20px;
+              padding-inline: 20px;
+            }
             .similar-products img {
               width: 100%;
-              height: 500px;
-              object-fit: cover;
+              height: auto;
             }
-            .similar-products a[cy-listingproductname] {
-              display: block;
-              min-height: 60px;
+            .similar-products h2 {
+              color: var(--Black, #212121);
+              margin-block: 32px;
+              font-family: baskerville-urw, sans-serif;
+              font-size: 32px;
+
+              line-height: 1.25;
+              letter-spacing: 0.5px;
+              text-align: center;
+              color: #212121;
             }
-          }
-        </style>
-        <div class="similar-products">
+
+            .wishlist-wrap {
+              position: absolute;
+              top: 10px;
+              right: 10px;
+            }
+            .swipe-item h3 {
+              margin-block: 10px;
+              font-size: 0.9375rem;
+              letter-spacing: 0.0625rem;
+              line-height: 1.25rem;
+            }
+            .swipe-item h3 + div {
+              font-size: 0.9375rem;
+              letter-spacing: 0.0625rem;
+              line-height: 1.25rem;
+              color: var(--atomic-color-12, #acacac);
+            }
+            .swipe-item p {
+              font-size: 0.9375rem;
+              letter-spacing: 0.0625rem;
+              line-height: 1.25rem;
+            }
+            .swiper-scrollbar-container {
+              margin-top: 20px;
+            }
+            .similar-products .swiper-scrollbar {
+              width: 13.75rem;
+              background-color: #f6f5f5;
+              height: 2px;
+              left: 50%;
+              bottom: 0;
+              transform: translate(-50%);
+              z-index: 1;
+            }
+            .similar-products .swiper-scrollbar-drag {
+              background-color: #595959;
+            }
+
+            @media (min-width: 1024px) {
+              .similar-products h2 {
+                margin-block: 48px;
+                text-align: center;
+                font-family: baskerville-urw, sans-serif;
+                font-size: 48px;
+                line-height: 56px;
+                color: #212121;
+              }
+              .similar-products img {
+                width: 100%;
+                height: 500px;
+                object-fit: cover;
+              }
+              .similar-products a[cy-listingproductname] {
+                display: block;
+                min-height: 60px;
+              }
+            }
+          </style>
           <h2>Similar items</h2>
           <div class="swiper">
             <div class="swiper-wrapper">
@@ -438,11 +507,13 @@
                 })
                 .join("")}
             </div>
-            <div class="swiper-scrollbar"></div>
+            <div class="swiper-scrollbar-container">
+              <div class="swiper-scrollbar"></div>
+            </div>
           </div>
         </div>
       `;
-
+      $el(".similar-products")?.remove();
       $el("product-highlights")?.insertAdjacentHTML("beforebegin", similarProductsHTML);
 
       blockVisibility(
@@ -450,7 +521,7 @@
         "exp_impro_pdp_vis_similar_block",
         "Block view",
         `PDP
-        Similar items`
+          Similar items`
       );
       new Swiper(".similar-products .swiper", swiperConfig);
 
@@ -462,7 +533,7 @@
             product: productId,
           };
           this.postFetch("wishlist/add", body).then((dataWishlist) => {
-            let webCode = window.autoInitData.website.websiteCode != "base" ? "/" + window.autoInitData.website.websiteCode : "";
+            let webCode = window?.autoInitData?.website?.websiteCode != "base" ? "/" + window?.autoInitData?.website.websiteCode : "";
             if (dataWishlist.error && dataWishlist.error == "LOGGEDOUT") {
               window.location.href = webCode + "/login";
             } else {
@@ -479,56 +550,17 @@
     }
 
     splitCarrousels() {
-      const html = /* HTML */ ` <style>
-          .crs-carousel-wrap {
-            .margin-block: 20px;
-          }
-          .crs-carousel-wrap h3 {
-            color: var(--Black, #212121);
-            text-align: center;
-            font-family: Baskerville;
-            font-size: 32px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 40px; /* 125% */
-            letter-spacing: 0.5px;
-            margin-block: 20px;
-          }
-          .recently, .perfectly {
-            padding-inline: 20px;
-          }
-          :is(.recently, .perfectly) swiper,
-          :is(.recently, .perfectly) .swiper-slide {
-            pointer-events: none;
-          }
-          :is(.recently, .perfectly) a {
-            pointer-events: all;
-          }
-          .recently:has(related-products:empty) {
-            display: none;
-          },
-        </style>
-        <div class="crs-carousel-wrap">
-          <div class="recently">
-            <h3>Recently viewed</h3>
-          </div>
-          <div class="perfectly">
-            <h3>Goes Perfectly With</h3>
-          </div>
-        </div>`;
-      waitForElement("product-view-cms-carousel related-products").then(() => {
-        const carrousel = $el("product-view-cms-carousel");
-        if ($el(".crs-carousel-wrap")) return;
-        carrousel.insertAdjacentHTML("beforebegin", html);
-
-        const [perfectlyWith, recentlyViewed] = $$el("related-products");
-        $el(".crs-carousel-wrap .perfectly").append(perfectlyWith);
+      setTimeout(() => {
+        const el = $$el("page-component-product-carousel related-products");
+        const perfectlyWith = el[0];
+        const recentlyViewed = el[1];
+        if ($el(".perfectly")) return;
+        if ($el(".recently")) return;
+        perfectlyWith?.insertAdjacentHTML("beforebegin", '<h2 class="perfectly">Goes perfectly with</h2>');
         if (recentlyViewed) {
-          $el(".crs-carousel-wrap .recently").append(recentlyViewed);
-        } else {
-          $el(".crs-carousel-wrap .recently").style.display = "none";
+          recentlyViewed?.insertAdjacentHTML("beforebegin", '<h2 class="recently">Recently viewed</h2>');
+          recentlyViewed.parentElement.after(perfectlyWith.parentElement);
         }
-        carrousel.style.display = "none";
 
         blockVisibility(".recently", "exp_impro_pdp_vis_recently_block", "Block view", `PDP Recently viewed`);
         blockVisibility("page-footer rating", "exp_impro_pdp_vis_review_block", "Block view", "PDP Rated as ‘excellent’ by our customers");
@@ -545,7 +577,7 @@
           }
         });
 
-        $el(".recently").addEventListener("mousedown", (e) => {
+        $el(".recently")?.addEventListener("mousedown", (e) => {
           const target = e.target;
           if (target.closest("a[cy-listingproductname]")) {
             const title = target.closest("a[cy-listingproductname]").textContent;
@@ -556,7 +588,7 @@
             pushDataLayer("exp_impro_pdp_icon_recenview_prod", title, "Icone", "PDP Recently viewed");
           }
         });
-        $el(".perfectly").addEventListener("mousedown", (e) => {
+        $el(".perfectly")?.addEventListener("mousedown", (e) => {
           const target = e.target;
           if (target.closest("a[cy-listingproductname]")) {
             const title = target.closest("a[cy-listingproductname]").textContent;
@@ -567,13 +599,12 @@
             pushDataLayer("exp_impro_pdp_icon_perfect_prod", title, "Icone", "PDP Goes Perfectly With");
           }
         });
-      });
+      }, 1500);
     }
 
     async sizeChart() {
       const productId = this.getCurrentProductId();
       const [productResponse, sizeResponse] = await Promise.all([this.getFetch(`n/product/${productId}/verbosity/3`), this.getFetch(`n/attribute/size/verbosity/3`)]);
-
       const hash = window.location.hash.substring(1);
       const params = new URLSearchParams(hash);
       const obj = {};
@@ -587,8 +618,14 @@
       }
       // get product color
       const colors = [];
+      const stockMap = {};
+      for (const item of productResponse.catalog) {
+        if (item.type === "stock") {
+          stockMap[item.id] = item;
+        }
+      }
       productResponse.catalog.forEach((item) => {
-        if (item?.color && !colors.find((color) => color.color === item.color)) {
+        if (item?.color && stockMap[item.id]?.isOutTemp === false && !colors.find((color) => color.color === item.color)) {
           colors.push({ id: item.id, color: item.color, image: item.image });
         }
       });
@@ -597,7 +634,7 @@
       const productSizesIds = productResponse.result[0].size;
       const productSizes = sizeResponse.result[0].options.filter((size) => productSizesIds.includes(size.value));
       const selectedSizeOBJ = productSizes.find((size) => size.value === +selectedSize);
-      if (productSizes[0].value === 6703) return;
+
       // get product quantity
       const products = [];
       productResponse.catalog.forEach((item) => {
@@ -615,39 +652,40 @@
 
       const review = $$el("product-reviews-summary")[0];
 
-      $el("h1").parentElement.prepend(review);
+      $el("h1")?.parentElement.prepend(review);
 
       const colorChartHTML = /* HTML */ `
-        <style>
-          .crs-color-chart__colors {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-          }
-          .crs-color-chart__color {
-            width: 36px;
-            height: auto;
-            cursor: pointer;
-            padding: 4px;
-          }
-          .crs-color-chart__color[data-checked="true"] {
-            border: 1px solid #000;
-          }
-          .crs-color-chart__color img {
-            width: 100%;
-            height: 100%;
-          }
-          .crs-color-chart + div:has(h6) {
-            display: none;
-          }
-          #pdpConfigurableOptions h6 + div {
-            visibility: hidden;
-            height: 0;
-          }
-        </style>
         <div class="crs-color-chart" data-id="${productId}">
+          <style>
+            .crs-color-chart__colors {
+              display: flex;
+              flex-wrap: wrap;
+              gap: 20px;
+            }
+            .crs-color-chart__color {
+              width: 36px;
+              height: auto;
+              cursor: pointer;
+              padding: 4px;
+            }
+            .crs-color-chart__color[data-checked="true"] {
+              border: 1px solid #000;
+            }
+            .crs-color-chart__color img {
+              width: 100%;
+              height: 100%;
+            }
+            .crs-color-chart + div:has(h6) {
+              display: none;
+            }
+            #pdpConfigurableOptions h6 + div {
+              visibility: hidden;
+              height: 0;
+            }
+          </style>
           <div class="crs-color-chart__colors">
             ${colors
+              .reverse()
               .map(
                 (color) => /* HTML */ `
                   <div class="crs-color-chart__color" data-color="${color.color}" data-checked="${color.color === selectedColor}">
@@ -677,6 +715,9 @@
               display: flex;
               justify-content: center;
               align-items: center;
+              font-size: 14px;
+              font-weight: 600;
+              line-height: 24px;
             }
             .crs-size-chart__dialog {
               z-index: 1000;
@@ -694,13 +735,23 @@
             .crs-size-chart__dialog[open] {
               animation: show 0.3s ease-in-out;
             }
-            .crs-size-chart__dialog li {
+            .crs-size-chart__dialog li div {
               display: flex;
               justify-content: space-between;
               align-items: center;
               border-bottom: 1px solid #cfd2d3;
               padding-block: 10px;
               cursor: pointer;
+            }
+            .crs-size-chart__dialog li > div > span:first-child {
+              font-size: 16px;
+              font-weight: 600;
+              line-height: 24px;
+            }
+            .crs-size-chart__dialog .crs-size-chart__title {
+              font-size: 18px !important;
+              font-weight: 400 !important;
+              line-height: 26px !important;
             }
             .crs-size-chart__dialog li[data-checked="true"] {
               background: #f6f5f5;
@@ -713,6 +764,9 @@
             }
             .crs-size-chart__dialog li[data-stock="unavailable"] {
               color: #acacac;
+            }
+            .crs-size-chart__dialog li [data-qty="1"] {
+              color: #8e1538;
             }
             .crs-size-chart__backdrop {
               display: none;
@@ -738,6 +792,17 @@
               justify-content: center;
               align-items: center;
             }
+            .crs-size-chart__notify-text {
+              font-size: 14px;
+              text-decoration: underline;
+              line-height: 24px;
+              letter-spacing: 1px;
+              text-align: right;
+              color: #212121;
+            }
+            .crs-size-chart__list .crs-size-chart__info {
+              margin-top: 0 !important;
+            }
             @keyframes show {
               from {
                 transform: translateY(110%);
@@ -760,17 +825,32 @@
                 position: relative;
                 display: grid;
               }
+              .crs-size-chart__btn {
+                padding: 12px 16px;
+                margin-bottom: 0;
+              }
               .crs-size-chart__dialog {
                 position: absolute;
                 border-radius: 0px 0px 2px 2px;
                 border-right: 1px solid var(--Stroke, #cfd2d3);
                 border-bottom: 1px solid var(--Stroke, #cfd2d3);
                 border-left: 1px solid var(--Stroke, #cfd2d3);
+                border-top: none;
                 background: #fff;
                 height: auto;
                 bottom: auto;
-                top: 60px;
+                top: 45px;
+                padding: 0;
                 animation: none;
+              }
+              .crs-size-chart__dialog li:first-child {
+                display: none;
+              }
+              .crs-size-chart__dialog li {
+                padding: 0 16px;
+              }
+              .crs-size-chart__dialog li div {
+                padding: 8px 0;
               }
               .crs-size-chart__dialog[open] {
                 animation: none;
@@ -778,23 +858,30 @@
               .crs-size-chart__backdrop {
                 background: transparent;
               }
+              .crs-size-chart__btn:has(+ .crs-size-chart__dialog[open]) .crs-size-chart__arrow {
+                transform: rotate(180deg);
+              }
             }
           </style>
-          <button class="crs-size-chart__btn"><span>${selectedSizeOBJ?.label || "Select size"}</span> <span>${icons.arrowDown}</span></button>
+          <button class="crs-size-chart__btn">
+            <span>${selectedSizeOBJ?.label || "Select size"}</span>
+            <span class="crs-size-chart__arrow">${icons.arrowDown}</span>
+          </button>
           <dialog class="crs-size-chart__dialog">
             <ul class="crs-size-chart__list">
-              <li data-select-size><span>Select size</span></li>
+              <li data-select-size>
+                <div><span class="crs-size-chart__title">Select size</span></div>
+              </li>
               ${productSizes
                 .map((size) => {
-                  // Find the product once and store it in a variable
                   const product = products.find((item) => item.color === obj["selection.color"] && item.size === size.value);
                   const qty = product?.qty;
-
-                  // Use the variable in your template
                   return /* HTML */ `
-                    <li value="${size.value}" data-checked="${size.value === +selectedSizeOBJ?.value}" data-stock="${qty ? "available" : "unavailable"}">
-                      <span>${size.label}</span>
-                      <span data-qty="${qty || 0}"> ${qty <= 5 && qty > 0 ? `Only ${qty} left` : !qty || qty === 0 ? `<span class="crs-size-chart__mail">${icons.mail}</span> Notify me` : ""} </span>
+                    <li data-value="${size.value}" data-checked="${size.value === +selectedSizeOBJ?.value}" data-stock="${qty ? "available" : "unavailable"}">
+                      <div>
+                        <span>${size.label}</span>
+                        <span data-qty="${qty || 0}"> ${qty <= 5 && qty > 0 ? `Only ${qty} left` : !qty || qty === 0 ? `<span class="crs-size-chart__mail">${icons.mail}</span> <span class="crs-size-chart__notify-text">Notify me</span>` : ""} </span>
+                      </div>
                     </li>
                   `;
                 })
@@ -817,7 +904,7 @@
             .crs-size-chart__notify h3 {
               color: var(--Black, #212121);
               text-align: center;
-              font-family: Baskerville;
+              font-family: baskerville-urw, sans-serif;
               font-size: 32px;
               font-weight: 400;
               letter-spacing: 0.5px;
@@ -888,173 +975,223 @@
           <div class="crs-size-chart__backdrop"></div>
         </div>
       `;
-      const isOutTemp = productResponse.catalog.find((item) => item.type === "stock" && item.id === productId).isOutTemp;
-      $el(".crs-stock")?.remove();
-      const inStock = /* HTML */ `<style>
-          .crs-stock__wrap {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 10px;
-          }
-          .crs-stock {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-          }
-          .crs-stock .icon {
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: #2c7226;
-          }
-          .crs-stock .text {
-            text-transform: uppercase;
-            color: var(--Green, #2c7226);
-            text-align: right;
-            font-family: "Source Sans 3";
-            font-size: 14px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 24px; /* 171.429% */
-            letter-spacing: 1px;
-            text-transform: uppercase;
-          }
-          .crs-stock__wrap .crs-size-chart__info {
-            margin-top: 0 !important;
-          }
-        </style>
+      const isInStock = productResponse.catalog.find((item) => item.type === "stock" && item.id === productId);
+      const isProduct = productResponse.catalog.find((item) => item.type === "product" && item.id === productId);
+
+      const isOut = isProduct ? isInStock.isOut : true;
+
+      const inStock = /* HTML */ `
         <div class="crs-stock__wrap">
-          <span class="crs-stock">
+          <style>
+            .crs-stock__wrap {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-top: 10px;
+              margin-bottom: 8px;
+            }
+            .crs-stock__wrap:has(.crs-stock[style*="display: none"]) {
+              justify-content: flex-end;
+            }
+            .crs-stock {
+              display: flex;
+              align-items: center;
+              gap: 5px;
+            }
+            .crs-stock .icon {
+              width: 5px;
+              height: 5px;
+              border-radius: 50%;
+              background: #2c7226;
+            }
+            .crs-stock .text {
+              text-transform: uppercase;
+              color: var(--Green, #2c7226);
+              text-align: right;
+              font-family: "Source Sans 3";
+              font-size: 14px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 24px; /* 171.429% */
+              letter-spacing: 1px;
+              text-transform: uppercase;
+            }
+            .crs-stock__wrap .crs-size-chart__info {
+              margin-top: 0 !important;
+            }
+            .crs-stock__wrap .crs-size-chart__info span {
+              font-size: 14px;
+              line-height: 24px;
+              color: #595959;
+            }
+            .title_color {
+              font-size: 16px;
+              line-height: 24px;
+              color: #595959;
+            }
+            .type_color {
+              color: #212121;
+              font-size: 16px;
+              line-height: 24px;
+            }
+          </style>
+
+          <span class="crs-stock" style="display: ${isOut ? "none" : "flex"}">
             <span class="icon"></span>
             <span class="text">In Stock</span>
           </span>
-        </div> `;
+        </div>
+      `;
 
-      // $el('.crs-color-chart')?.remove()
       $el(".crs-size-chart")?.remove();
-      waitForElement("#pdpConfigurableOptions").then(() => {
-        $el("#pdpConfigurableOptions").insertAdjacentHTML("afterend", sizeChartHTML);
-        if (!isOutTemp) {
-          $el("#pdpConfigurableOptions")?.insertAdjacentHTML("beforeend", inStock);
-          blockVisibility(".crs-stock", "exp_impro_pdp_vis_stock_block", "Block view", "PDP In Stock");
-          blockVisibility("product-view-klarna-msg", "exp_impro_pdp_vis_klarna_block", "Block view", "PDP Klarna");
+      $el(".crs-color-chart")?.remove();
+      $el(".crs-stock__wrap")?.remove();
+      $$el("#pdpConfigurableOptions h6").forEach((title) => {
+        if (title.textContent.toLowerCase().includes("colour")) {
+          let text = title.textContent.split(":");
+          title.innerHTML = `<span class="title_color">${text[0]}:</span> <span class="type_color">${text[1]}</span>`;
+          title.parentElement.insertAdjacentHTML("afterend", colorChartHTML);
         }
-        $el("#pdpConfigurableOptions > div:first-child").insertAdjacentHTML("afterend", colorChartHTML);
+        if (title.textContent.toLowerCase().includes("size")) {
+          title.parentElement.style.display = "none";
+          title.parentElement.insertAdjacentHTML("afterend", sizeChartHTML);
 
-        blockVisibility(".crs-size-chart__dialog", "exp_impro_pdp_vis_selecsize_block", "Block view", "PDP Select Size");
-        blockVisibility(".crs-size-chart__notify", "exp_impro_pdp_vis_currently_block", "Block view", '"PDP Currently Out of Stock"');
-        $$el("#pdpConfigurableOptions button").forEach((btn) => {
-          if (btn.textContent === "View size guide") {
-            btn.classList.add("crs-size-chart__info");
+          title.parentElement.insertAdjacentHTML("afterend", inStock);
+        }
+      });
+      blockVisibility(".crs-stock", "exp_impro_pdp_vis_stock_block", "Block view", "PDP In Stock");
 
-            $el(".crs-stock__wrap").append(btn);
+      blockVisibility(".crs-size-chart__dialog", "exp_impro_pdp_vis_selecsize_block", "Block view", "PDP Select Size");
+      blockVisibility(".crs-size-chart__notify", "exp_impro_pdp_vis_currently_block", "Block view", '"PDP Currently Out of Stock"');
 
-            btn.addEventListener("click", () => {
-              pushDataLayer("exp_impro_pdp_lin_popsize_viewguid", "View size guide", "Link", "PDP Pop up Select Size");
-            });
-          }
-        });
-        $el(".crs-size-chart__btn")?.addEventListener("click", () => {
-          $el(".crs-size-chart__dialog").show();
-        });
+      $$el("#pdpConfigurableOptions button").forEach((btn) => {
+        if (btn.textContent.includes("View size guide") && !$el("button.crs-size-chart__info")) {
+          btn.classList.add("crs-size-chart__info");
 
-        const updateHash = ({ size, color }) => {
-          const hash = window.location.hash.substring(1);
-          const params = new URLSearchParams(hash);
-          if (size) {
-            params.set("selection.size", size);
-          }
-          if (color) {
-            params.set("selection.color", color);
-          }
-          window.location.hash = params.toString();
-        };
+          $el(".crs-stock__wrap")?.append(btn);
 
-        // Size chart
-        $el(".crs-size-chart__dialog")?.addEventListener("click", (e) => {
-          const listItem = e.target.closest("li");
-          if (listItem) {
-            if (listItem.dataset.stock === "unavailable") {
-              if (this.device === devices.mobile) {
-                $el(".crs-size-chart__notify").show();
-              } else {
-                $el(".crs-size-chart__notify").showModal();
-              }
+          btn.addEventListener("click", () => {
+            pushDataLayer("exp_impro_pdp_lin_popsize_viewguid", "View size guide", "Link", "PDP Pop up Select Size");
+          });
+          return;
+        }
+      });
+      $el(".crs-size-chart__btn")?.addEventListener("click", () => {
+        $el(".crs-size-chart__dialog").show();
+        $el(".crs-size-chart__list li:first-child div").append($el(".crs-size-chart__info"));
+      });
 
-              $el(".crs-size-chart__notify input").addEventListener("change", (e) => {
-                pushDataLayer("exp_impro_pdp_inp_popstock_email", "Email Address", "Input", "PDP Pop up Currently Out of Stock");
-              });
-              $el(".crs-size-chart__notify button").addEventListener("click", (e) => {
-                pushDataLayer("exp_impro_pdp_but_popstock_notif", "Notify Me When Available", "Button", "PDP Pop up Currently Out of Stock");
-              });
-              $el(".crs-size-chart__dialog").close();
-              pushDataLayer("exp_impro_pdp_lin_popsize_notif", "Notify me", "Link", "PDP Pop up Select Size");
+      const updateHash = ({ size, color }) => {
+        const hash = window.location.hash.substring(1);
+        const params = new URLSearchParams(hash);
+        if (size) {
+          params.set("selection.size", size);
+        }
+        if (color) {
+          params.set("selection.color", color);
+        }
+        window.location.hash = params.toString();
+      };
 
-              return;
+      // Size chart
+      $el(".crs-size-chart__dialog")?.addEventListener("click", (e) => {
+        const listItem = e.target.closest("li");
+        if (listItem) {
+          if (listItem.dataset.stock === "unavailable") {
+            if (this.device === devices.mobile) {
+              $el(".crs-size-chart__notify").show();
+            } else {
+              $el(".crs-size-chart__notify").showModal();
             }
-            updateHash({ size: e.target.value });
-            const title = listItem.querySelector("span:first-child").textContent;
-            $el(".crs-size-chart__btn span:first-child").textContent = title;
-            $$el('li[data-checked="true"]').forEach((li) => {
-              li.dataset.checked = false;
+            $el(".crs-size-chart__notify form").addEventListener("submit", (event) => {
+              event.preventDefault();
+              const body = {
+                product_id: productId,
+                guest_email: $el(".crs-size-chart__notify input").value,
+              };
+              this.postFetch("email/stock", body).then((res) => {
+                $el(".crs-size-chart__notify").close();
+              });
             });
-            listItem.dataset.checked = true;
-            waitForElement("box.is-selected").then((elem) => {
-              elem.click();
+            $el(".crs-size-chart__notify input").addEventListener("change", (e) => {
+              pushDataLayer("exp_impro_pdp_inp_popstock_email", "Email Address", "Input", "PDP Pop up Currently Out of Stock");
+            });
+            $el(".crs-size-chart__notify button").addEventListener("click", (e) => {
+              pushDataLayer("exp_impro_pdp_but_popstock_notif", "Notify Me When Available", "Button", "PDP Pop up Currently Out of Stock");
             });
             $el(".crs-size-chart__dialog").close();
+            $el(".crs-stock__wrap")?.append($el(".crs-size-chart__info"));
+            pushDataLayer("exp_impro_pdp_lin_popsize_notif", "Notify me", "Link", "PDP Pop up Select Size");
 
-            if (listItem.innerText.includes("Only")) {
-              pushDataLayer("exp_impro_pdp_selec_popsize_only", "Only ", "Select", "PDP Pop up Select Size");
-            } else {
-              pushDataLayer("exp_impro_pdp_drop_change_size", "Select Size", "Dropdown", "PDP Change size selector");
-            }
+            return;
           }
-        });
 
-        // Color chart
-        $el(".crs-color-chart__colors")?.addEventListener("click", (e) => {
-          if (!e.target.closest(".crs-color-chart__color")) return;
-          const color = e.target.parentElement.dataset.color;
-          updateHash({ color });
-          $$el(".crs-color-chart__color").forEach((item) => (item.dataset.checked = false));
-          e.target.closest(".crs-color-chart__color").dataset.checked = true;
-          waitForElement("swatch:has(.is-checked)").then(() => {
-            document.querySelector("swatch:has(.is-checked)").click();
+          updateHash({ size: e.target.closest("li").dataset.value });
+          const title = listItem.querySelector("span:first-child").textContent;
+          $el(".crs-size-chart__btn span:first-child").textContent = title;
+          $$el('li[data-checked="true"]').forEach((li) => {
+            li.dataset.checked = false;
           });
-        });
+          listItem.dataset.checked = true;
+          setTimeout(() => {
+            $el("box.is-selected")?.click();
+            $el(".crs-size-chart__dialog").close();
+            $el(".crs-stock__wrap")?.append($el(".crs-size-chart__info"));
+          }, 200);
 
-        $el(".crs-size-chart__notify__close")?.addEventListener("click", () => {
-          pushDataLayer("exp_impro_pdp_but_popstock_clos", "Close", "Button", "PDP Pop up Currently Out of Stock");
-          $el(".crs-size-chart__notify").close();
-        });
+          if (listItem.innerText.includes("Only")) {
+            pushDataLayer("exp_impro_pdp_selec_popsize_only", "Only ", "Select", "PDP Pop up Select Size");
+          } else {
+            pushDataLayer("exp_impro_pdp_drop_change_size", "Select Size", "Dropdown", "PDP Change size selector");
+          }
+        }
+      });
 
-        $el(".crs-size-chart__notify")?.addEventListener("click", (e) => {
-          if (e.target === $el(".crs-size-chart__notify")) {
-            pushDataLayer("exp_impro_pdp_click_popstock_behin", "Close behind the pop-up area", "Link", "PDP Pop up Currently Out of Stock");
-            $el(".crs-size-chart__notify")?.close();
-          }
-        });
-        $el(".crs-size-chart__backdrop").addEventListener("click", (e) => {
-          if ($el(".crs-size-chart__dialog[open]")) {
-            pushDataLayer("exp_impro_pdp_clic_popsize_behin", "Close behind the pop-up area", "Link", "PDP Pop up Select Size");
-          }
-          if ($el(".crs-size-chart__notify[open]")) {
-            pushDataLayer("exp_impro_pdp_click_popstock_behin", "Close behind the pop-up area", "Link", "PDP Pop up Currently Out of Stock");
-          }
-          $$el("dialog").forEach((item) => item.close());
-        });
+      // Color chart
+      $el(".crs-color-chart__colors")?.addEventListener("click", (e) => {
+        if (!e.target.closest(".crs-color-chart__color")) return;
+        const color = e.target.parentElement.dataset.color;
+        $$el(".crs-color-chart__color").forEach((item) => (item.dataset.checked = false));
+        e.target.closest(".crs-color-chart__color").dataset.checked = true;
+        updateHash({ color });
+        setTimeout(() => {
+          document.querySelector("swatch:has(.is-checked)")?.click();
+        }, 200);
+        // location.reload()
+      });
+
+      $el(".crs-size-chart__notify__close")?.addEventListener("click", () => {
+        pushDataLayer("exp_impro_pdp_but_popstock_clos", "Close", "Button", "PDP Pop up Currently Out of Stock");
+        $el(".crs-size-chart__notify").close();
+      });
+
+      $el(".crs-size-chart__notify")?.addEventListener("click", (e) => {
+        if (e.target === $el(".crs-size-chart__notify")) {
+          pushDataLayer("exp_impro_pdp_click_popstock_behin", "Close behind the pop-up area", "Link", "PDP Pop up Currently Out of Stock");
+          $el(".crs-size-chart__notify")?.close();
+        }
+      });
+      $el(".crs-size-chart__backdrop")?.addEventListener("click", (e) => {
+        if ($el(".crs-size-chart__dialog[open]")) {
+          pushDataLayer("exp_impro_pdp_clic_popsize_behin", "Close behind the pop-up area", "Link", "PDP Pop up Select Size");
+        }
+        if ($el(".crs-size-chart__notify[open]")) {
+          pushDataLayer("exp_impro_pdp_click_popstock_behin", "Close behind the pop-up area", "Link", "PDP Pop up Currently Out of Stock");
+        }
+        $$el("dialog").forEach((item) => item.close());
+        $el(".crs-stock__wrap")?.append($el(".crs-size-chart__info"));
       });
 
       const ctaButtonInner = $el("action[cy-basketaddbutton] > span:last-child");
       if (ctaButtonInner) {
         ctaButtonInner.textContent = "Add to bag";
       }
-      blockVisibility("action[cy-basketaddbutton]", "exp_impro_pdp_vis_addbag_button", "Button view", "PDP Add to bag");
+
       $el("action[cy-basketaddbutton]")?.addEventListener("click", () => {
-        if (!obj["selection.size"]) {
-          $el(".crs-size-chart__dialog").show();
+        const selectedSize = +params.get("selection.size");
+        if (!selectedSize) {
+          $el(".crs-size-chart__dialog")?.show();
+          $el(".crs-size-chart__list li:first-child div").append($el(".crs-size-chart__info"));
         }
         if (this.device === devices.mobile) {
           pushDataLayer("exp_impro_pdp_sticbut_product_add", "Add to bag", "Sticky button", "PDP");
@@ -1082,6 +1219,14 @@
           });
         });
       });
+
+      if (this.device === devices.mobile) {
+        handleTouch(() => {
+          $el(".crs-size-chart__dialog")?.close();
+          $el(".crs-size-chart__notify")?.close();
+          $el(".crs-size-chart__backdrop")?.click();
+        });
+      }
     }
 
     async initSwiper() {
@@ -1089,11 +1234,52 @@
       await loadScriptsOrStyles(["https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css", "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"]);
     }
 
-    async breadcrumps() {
+    newStaButton() {
+      const html = /* HTML */ `
+        <style>
+          #new-sta-btn {
+            padding: 0 !important;
+          }
+        </style>
+        <div _ngcontent-ng-c48037730="" class="wrap p-t p-b" id="new-sta-btn">
+          <div class="flex ng-star-inserted">
+            <action data-add-to-bag class="button p-r-0-s p-l-0-s p-r-0-m p-l-0-m flex-grow"
+              ><span _ngcontent-ng-c3660662962="" class="button__busy"><span _ngcontent-ng-c3660662962="" class="bounce1"></span><span _ngcontent-ng-c3660662962="" class="bounce2"></span></span
+              ><!----><span _ngcontent-ng-c3660662962="" class="button__body">Add to bag</span></action
+            ><product-view-wishlist-toggle class="m-l-2 ng-star-inserted"
+              ><action data-add-to-wishlist notification="Wishlist error" class="button-10 icon-button icon-only" _nghost-ng-c3660662962=""
+                ><span _ngcontent-ng-c3660662962="" class="button__busy"><span _ngcontent-ng-c3660662962="" class="bounce1"></span><span _ngcontent-ng-c3660662962="" class="bounce2"></span></span><span _ngcontent-ng-c3660662962="" class="icon icon-wishlist ng-star-inserted"></span
+                ><!----><span _ngcontent-ng-c3660662962="" class="button__body"></span></action></product-view-wishlist-toggle
+            ><!---->
+          </div>
+          <result class="block hidden ng-star-inserted"><p class="s2 m-t-1"></p></result
+          ><!----><!---->
+        </div>
+      `;
+
+      if (this.device === devices.mobile) {
+        $el("#new-sta-btn")?.remove();
+
+        $el("product-configurable-options").insertAdjacentHTML("beforeend", html);
+        $el("[data-add-to-bag]").addEventListener("click", () => {
+          $el("action[cy-basketaddbutton]").click();
+        });
+        $el("[data-add-to-wishlist]").addEventListener("click", () => {
+          $el("product-view-wishlist-toggle action:not([data-add-to-wishlist])").click();
+        });
+      }
+    }
+    footer() {
+      waitForElement("page-footer footer").then((elem) => {
+        const targetDiv = elem.querySelector("div");
+        const modal = $el("product-reviews-modal");
+      });
+    }
+    breadcrumps() {
       const changeBreadcrumpsPosition = async () => {
         if (this.device === devices.mobile) {
-          const breadcrumps = await waitForElement("breadcrumbs");
-          const productGallery = await waitForElement("product-gallery");
+          const breadcrumps = $el("breadcrumbs");
+          const productGallery = $el("product-gallery");
           if (breadcrumps && productGallery) {
             productGallery.insertAdjacentElement("afterend", breadcrumps);
           }
@@ -1111,7 +1297,7 @@
 
     getFetch(api) {
       return new Promise((resolve, reject) => {
-        let webCode = window.autoInitData.website.websiteCode != "base" ? "/" + window.autoInitData.website.websiteCode : "";
+        let webCode = window?.autoInitData?.website?.websiteCode != "base" ? "/" + window.autoInitData.website.websiteCode : "";
 
         fetch(`${webCode}/api/${api}`, {
           headers: {
@@ -1134,7 +1320,7 @@
 
     postFetch(host, body) {
       return new Promise((resolve, reject) => {
-        let webCode = window.autoInitData.website.websiteCode != "base" ? "/" + window.autoInitData.website.websiteCode : "";
+        let webCode = window?.autoInitData?.website?.websiteCode != "base" ? "/" + window.autoInitData.website.websiteCode : "";
 
         fetch(`${webCode}/api/p/${host}`, {
           headers: {
@@ -1155,12 +1341,92 @@
 
     initStyles() {
       const styles = /* HTML */ ` <style>
+        ._button[_ngcontent-ng-c710315143] {
+          padding: 8px 16px;
+          font-size: 16px;
+          line-height: 24px;
+          cursor: pointer;
+        }
+        add-this:has(> div:empty) {
+          display: none !important;
+        }
+        body:has(dialog[open]) {
+          overflow: hidden;
+        }
+        product-view-fashion-recommendation h5 {
+          text-align: center;
+        }
         .forward-block {
           display: block !important;
+        }
+        product-configurable-options div:empty:not(.crs-size-chart__backdrop) {
+          display: none !important;
         }
         product-gallery swiper-dots {
           display: flex;
           justify-content: center;
+        }
+        product-view-cms-carousel page-component-product-carousel div:has(related-products).ng-hide:not(.ng-hide-animate) {
+          display: block !important;
+        }
+        div:has(> related-product:empty) {
+          display: none;
+        }
+        page-component-product-carousel h3 {
+          position: absolute;
+          left: 9999px;
+        }
+        page-component-product-carousel > div div.underline {
+          display: none !important;
+        }
+        .swiper-horizontal > .swiper-scrollbar,
+        .swiper-scrollbar.swiper-scrollbar-horizontal {
+          left: 50% !important;
+        }
+        product-view-cms-carousel div:empty {
+          display: none !important;
+        }
+        .perfectly,
+        .recently {
+          font-family: baskerville-urw, sans-serif;
+          font-size: 48px;
+          line-height: 56px;
+          letter-spacing: 0.5px;
+          text-align: center;
+          color: #212121;
+          padding-bottom: 48px;
+        }
+        :is(.perfectly, .recently):has(~ related-products:empty) {
+          visibility: hidden;
+        }
+        scroll-nav button {
+          border-radius: 2px !important;
+        }
+        page-footer footer > div {
+          gap: 16px;
+          flex-direction: column;
+        }
+        page-footer footer > div .logo-feefo {
+          order: 1;
+        }
+        page-footer footer > div > span {
+          order: 2;
+          font-size: 32px !important;
+          line-height: 40px !important;
+          letter-spacing: 0.5px !important;
+          margin-top: 0 !important;
+          text-align: center;
+        }
+        page-footer footer > div rating {
+          margin-top: 0 !important;
+          order: 3;
+        }
+        @media (max-width: 1100px) {
+          .perfectly,
+          .recently {
+            font-size: 32px;
+            line-height: 40px;
+          }
         }
       </style>`;
 
@@ -1171,4 +1437,4 @@
   const pdpImprovement = new PdpImprovement();
   pdpImprovement.init();
   pdpImprovement.observePageChange();
-})();
+};

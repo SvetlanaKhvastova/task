@@ -1,4 +1,7 @@
-import { freeDeliveryBannerStyles, thresholdBannerStyles } from './style'
+// @ts-ignore
+import freeDeliveryBannerStyles from './free_delivery_banner.css?raw'
+// @ts-ignore
+import thresholdBannerStyles from './threshold_banner.css?raw'
 
 const svg = {
   deliveryBox: /* html */ `
@@ -48,55 +51,73 @@ const svg = {
     `
 }
 
-const freeDeliveryBanner = /* HTML */ `
-  <div class="free_delivery_banner">
-    <style>
-      ${freeDeliveryBannerStyles}
-    </style>
-    <div class="free_delivery_banner_item">
-      ${svg.deliveryBox}
-      <p>FREE Delivery on £75</p>
+const freeDeliveryBanner = (currency: string, threshold: number) => {
+  return /* HTML */ `
+    <div class="free_delivery_banner">
+      <style>
+        ${freeDeliveryBannerStyles}
+      </style>
+      <div class="free_delivery_banner_item">
+        ${svg.deliveryBox}
+        <p>FREE Delivery on ${currency}${threshold}</p>
+      </div>
+      <div class="free_delivery_banner_item">
+        ${svg.deliveryArrows}
+        <p>60 days FREE returns</p>
+      </div>
     </div>
-    <div class="free_delivery_banner_item">
-      ${svg.deliveryArrows}
-      <p>60 days FREE returns</p>
+  `
+}
+
+const needMoreBlock = (country: 'UK' | 'US', currency: string, threshold: number) => {
+  return /* HTML */ `
+    <div class="crs_need_more threshold_banner">
+      <style>
+        ${thresholdBannerStyles}
+      </style>
+      ${svg.packMore}
+      <p>
+        <b>Free Express ${country} Delivery</b> on orders over
+        <span class="accent_color_red">${currency}${threshold}</span>
+      </p>
     </div>
-  </div>
-`
+  `
+}
 
-// ${this.country} ${this.currency + this.threshold}
-const needMoreBlock = /* HTML */ `
-  <div class="crs_need_more threshold_banner">
-    <style>
-      ${thresholdBannerStyles}
-    </style>
-    ${svg.packMore}
-    <p><b>Free Express UK Delivery</b> on orders over <span class="accent_color_red">£75</span></p>
-  </div>
-`
+const completeBlock = (country: 'UK' | 'US') => {
+  return /* HTML */ `
+    <div class="crs_complete threshold_banner">
+      <style>
+        ${thresholdBannerStyles}
+      </style>
+      ${svg.packSuccess}
+      <p>
+        <b>Congratulations!</b> You have <br /><span class="accent_color_green">Free Express ${country} Delivery</span>
+      </p>
+    </div>
+  `
+}
 
-// ${this.country}
-const completeBlock = /* HTML */ `
-  <div class="crs_complete threshold_banner">
-    <style>
-      ${thresholdBannerStyles}
-    </style>
-    ${svg.packSuccess}
-    <p><b>Congratulations!</b> You have <br /><span class="accent_color_green">Free Express UK Delivery</span></p>
-  </div>
-`
-
-//${progressWidth} ${this.currency}${(this.threshold - price).toFixed(2)} ${this.country}
-const progressBlock = /*html*/ `
+const progressBlock = (
+  progressWidth: number,
+  currency: string,
+  threshold: number,
+  price: number,
+  country: 'UK' | 'US'
+) => {
+  return /*html*/ `
   <div class="crs_progress threshold_banner">
     <style>
       ${thresholdBannerStyles}
     </style>
     <div class="crs_progress_bar">
-        <div class="crs_progress_line" style="width: 75%"></div>
+        <div class="crs_progress_line" style="width: ${progressWidth.toFixed(0)}%"></div>
     </div>
-    <p>You are <span class="accent_color_red">£69.95</span> away from <b>Free Express UK Delivery</b></p>
+    <p>You are <span class="accent_color_red">${currency}${(
+      threshold - price
+    ).toFixed()} </span> away from <b>Free Express ${country} Delivery</b></p>
   </div>
 `
+}
 
 export { svg, freeDeliveryBanner, needMoreBlock, completeBlock, progressBlock }

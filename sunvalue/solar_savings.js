@@ -1,4 +1,3 @@
-// window.onload = () => {
 console.log("%c EXP: Sunvalue: Introduce solar savings and build trust through the funnel (DEV: SKh)", "background: #3498eb; color: #fccf3a; font-size: 20px; font-weight: bold;");
 
 const $$el = (selector) => document.querySelectorAll(selector);
@@ -353,22 +352,24 @@ class changeFlow {
   }
 
   init() {
-    if (location.pathname === "/save/") {
-      this.initMainStyles();
-      this.createPopup();
-      this.updateRangeSliderSteps();
-      this.initSliderReviews();
-      this.changeSlidesSteps();
-      this.setLocalStorageDataInfo();
-      this.onClickYourSavingsBtn();
-      this.onClickNewNextBtns();
-      this.onClickOldNextBtn();
-      this.onClickOldBtnBack();
-      this.observereProgressBar();
-      this.setNameCity();
-      this.onClickElemPushDataLayer();
-      this.visibScreenView();
-    }
+    waitForElement(".swiper-slide-active").then(() => {
+      if (location.pathname === "/save/") {
+        this.initMainStyles();
+        this.createPopup();
+        this.updateRangeSliderSteps();
+        this.initSliderReviews();
+        this.changeSlidesSteps();
+        this.setLocalStorageDataInfo();
+        this.onClickYourSavingsBtn();
+        this.onClickNewNextBtns();
+        this.onClickOldNextBtn();
+        this.onClickOldBtnBack();
+        this.observereProgressBar();
+        this.setNameCity();
+        this.onClickElemPushDataLayer();
+        this.visibScreenView();
+      }
+    });
 
     if (location.pathname === "/received/" || location.pathname === "/thankyou/") {
       document.head.insertAdjacentHTML("beforeend", `<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap" rel="stylesheet">`);
@@ -3210,4 +3211,3 @@ class changeFlow {
 }
 
 new changeFlow(device);
-// };
