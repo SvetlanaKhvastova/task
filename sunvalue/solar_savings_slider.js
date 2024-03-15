@@ -1879,7 +1879,7 @@ class changeFlow {
 
     loadScriptsOrStyles(["https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css", "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"]).then(async () => {
       let s = setInterval(() => {
-        if (typeof jQuery(".slider_reviews_wrapper").slick === "function" && $el(".slider_reviews_wrapper").length === arrSliderReviews.length) {
+        if (typeof jQuery(".slider_reviews_wrapper").slick === "function" && $el(".slider_reviews_wrapper")) {
           clearInterval(s);
 
           let slider = jQuery(".slider_reviews_wrapper").slick({

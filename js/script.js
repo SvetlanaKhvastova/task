@@ -313,3 +313,8 @@ let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/sunvalue/solar_savings.js";
 script.async = false;
 document.head.appendChild(script);
+//lemieux
+let script = document.createElement("script");
+script.src = "";
+script.async = false;
+document.head.appendChild(script);
