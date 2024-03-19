@@ -1,9 +1,9 @@
-import { startLog, $el, $$el, waitForElement, visibilityOfTime, pushData, clarityInterval } from '../../libraries'
+import { startLog, $el, $$el, waitForElement, visibilityOfTime, pushData, hjInterval } from '../../libraries'
 import { svg, freeDeliveryBanner, needMoreBlock, completeBlock, progressBlock } from './blocks'
 // @ts-ignore
 import styleMain from './style_main.css?raw'
 
-clarityInterval('exp_free_delivery')
+hjInterval('free_delivery')
 startLog({ name: 'Free Delivery Threshold_2nd iteration', dev: 'SKh' })
 
 const baseUrl = window.location.pathname
@@ -153,6 +153,7 @@ class FreeDelivery {
       let priceElement = $el('product-view-price .price')
       let basketPrice: any | null = localStorage.getItem('basketPriceForIcon')
       const thresholdExceeded: boolean = basketPrice !== null
+      // $el('product-view-layout .threshold_banner')?.remove()
       if (pdp) {
         $el('product-view-layout .threshold_banner')?.remove()
         console.log(`remove >>>>>>>>>.`)
