@@ -199,6 +199,15 @@ main.main p {
   max-width: 580px;
   line-height: 160%;
 }
+.case_contain .text_box p a,
+#research-insights .ordered-list.quantitative-research-wrapp a,
+.heading-4 a {
+  color: inherit !important;
+  text-decoration: unset;
+}
+#research-insights .ordered-list p a {
+  text-decoration: underline;
+}
 .underline-txt {
   text-decoration-line: underline;
 }
@@ -575,6 +584,18 @@ main.main p {
 .flow.small-fs p {
   font-size: 16px !important;
   line-height: 150%;
+}
+@media (min-width: 767px) and (max-width: 992px) {
+  .stats-increase::before {
+    top: -23px;
+    left: 71px;
+  }
+}
+@media (min-width: 580px) and (max-width: 767px) {
+  .stats-increase::before {
+    top: -22px !important;
+    left: 84px !important;
+  }
 }
 @media (min-width: 768px) and (max-width: 992px) {
   .heading-1 {
