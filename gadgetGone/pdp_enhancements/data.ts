@@ -181,12 +181,12 @@ const svg = {
 
 const conditionObj = [
   {
-    class: 'choose_var is_hidden',
+    class: 'choose_var',
     title: 'Choose to see criteria',
     txt: ''
   },
   {
-    class: 'brandnew',
+    class: 'brandnew is_hidden',
     title: 'Brand New',
     txt: '<li><p><span>Factory sealed:</span> Original packaging with all included accessories, never activated.</p></li><li><p><span>Clean ESN:</span> No financial balances or blocks on the device.</p></li>'
   },

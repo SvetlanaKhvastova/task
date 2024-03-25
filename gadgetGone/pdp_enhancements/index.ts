@@ -207,9 +207,11 @@ class pdpEnhancements {
           $$el('.radio_option_wrapp input.custom_radio').forEach(el => {
             el.checked = false
           })
+          this.changeClassListConditionBlock('', true)
         })
       })
     })
+    //   label
     waitForElement('.radio_option_wrapp').then(i => {
       $$el('.radio_option_wrapp input.custom_radio + label').forEach(el => {
         let parentClass = el.closest('.radio_block').className
@@ -222,19 +224,34 @@ class pdpEnhancements {
               select.dispatchEvent(event)
             }
           })
-          console.log(value)
           if (el.closest('.pa_condition')) {
-            console.log($el('#conditionBlock > div').classList)
-            console.log($el('#conditionBlock > div').classList.contains(value))
-            // switch (value) {
-            //   case value:
-            //     break
-
-            //   default:
-            //     break
-            // }
+            this.changeClassListConditionBlock(value)
           }
         })
+      })
+    })
+  }
+
+  changeClassListConditionBlock(atr: string, reset: boolean = false) {
+    waitForElement('#conditionBlock').then(i => {
+      $$el('#conditionBlock > div').forEach(d => {
+        d.classList.add('is_hidden')
+        if ($el('.txt_choose').classList.contains('is_hidden')) {
+          $el('.txt_choose').classList.remove('is_hidden')
+        }
+
+        if (d.classList.contains(atr) && d.classList.contains('is_hidden')) {
+          d.classList.remove('is_hidden')
+        }
+
+        if (reset && d.classList.contains('is_hidden') && d.classList.contains('choose_var')) {
+          d.classList.remove('is_hidden')
+          waitForElement('.txt_choose').then(i => {
+            if (!$el('.txt_choose').classList.contains('is_hidden')) {
+              $el('.txt_choose').classList.add('is_hidden')
+            }
+          })
+        }
       })
     })
   }

@@ -86,6 +86,86 @@
   display: none;
 }
 
+.variations-content > .row {
+  display: none !important;
+}
+
+.summary.entry-summary {
+  padding: 0 !important;
+}
+
+.variations {
+  flex: 1 0 60% !important;
+  max-width: 60% !important;
+  margin: 0 !important;
+}
+
+form.variations_form {
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  gap: 55px !important;
+}
+
+.variations > .variations-content {
+  padding: 40px 48px !important;
+  border-radius: 16px !important;
+  border: 1px solid #f0f2f4 !important;
+  background: #fff !important;
+  box-shadow: 0px 8px 16px 0px rgba(41, 53, 60, 0.03) !important;
+}
+
+.single_variation_wrap {
+  flex: 1 1 35% !important;
+  max-width: 35% !important;
+}
+.single_variation_wrap .single_variation_wrap--inner {
+  border-radius: 16px !important;
+  border: 1px solid #f0f2f4 !important;
+  background: #fff !important;
+  box-shadow: 0px 8px 16px 0px rgba(41, 53, 60, 0.03) !important;
+  padding: 20px 24px !important;
+  margin: 0 0 24px !important;
+  align-items: center !important;
+}
+.single_variation_wrap .single_variation_wrap--inner .woocommerce-product-gallery {
+  padding: 0 !important;
+  max-width: 99px !important;
+  margin-right: 30px !important;
+}
+.single_variation_wrap .single_variation_wrap--inner .variation-description-overview-placeholder {
+  padding: 0 !important;
+}
+.single_variation_wrap .single_variation_wrap--inner .variation-title {
+  color: #29353c;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+.single_variation_wrap .single_variation_wrap--inner .variation-title b {
+  font-weight: 700;
+}
+.single_variation_wrap .add-to-cart-block {
+  margin: 0 !important;
+}
+.single_variation_wrap .add-to-cart-block > div {
+  width: 100%;
+}
+.single_variation_wrap .add-to-cart-block > div .single_add_to_cart_button {
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 0 !important;
+  padding: 20px 38px !important;
+  width: 100% !important;
+  color: #fff !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  line-height: 24px !important;
+}
+
+.woocommerce-page div.product div.summary .single_variation_wrap .variation-description-overview-placeholder .variation-description-overview .ggv2-variation-condition .variation-title:not(:last-child) {
+  margin-bottom: 4px !important;
+}
+
 footer[role=contentinfo] {
   padding: 72px 0 40px !important;
 }
@@ -118,15 +198,22 @@ footer[role=contentinfo] #seo-nav li:after {
   width: 100%;
 }
 
-.variations-content > .row {
-  display: none;
+.radio_block + .radio_block {
+  margin-top: 24px;
 }
-
-.radio_option_wrapp {
+.radio_block h3 {
+  color: #29353c;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  margin: 0 0 12px;
+}
+.radio_block .radio_option_wrapp {
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
 }
-.radio_option_wrapp input.custom_radio {
+.radio_block .radio_option_wrapp input.custom_radio {
   z-index: -1;
   opacity: 0;
   height: 0;
@@ -134,31 +221,110 @@ footer[role=contentinfo] #seo-nav li:after {
   padding: 0;
   display: none;
 }
-.radio_option_wrapp label {
+.radio_block .radio_option_wrapp label {
   position: relative;
-  width: 100%;
+  width: -moz-max-content;
+  width: max-content;
   border-radius: 6px;
   border: 2px solid #d6d9dc;
   background: #fff;
-  padding: 14px 16px;
+  padding: 12.5px 16px;
   margin: 0;
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
   cursor: pointer;
-  text-align: left;
+  gap: 8px;
 }
-.radio_option_wrapp label[for=choose_opt_condition], .radio_option_wrapp label[for=choose_opt_storage], .radio_option_wrapp label[for=choose_opt_carrier], .radio_option_wrapp label[for=choose_opt_connectivity], .radio_option_wrapp label[for=choose_opt_including_original_charger], .radio_option_wrapp label[for=choose_opt_memory_ram], .radio_option_wrapp label[for=choose_opt_hard_drive], .radio_option_wrapp label[for=choose_opt_processor], .radio_option_wrapp label[for=choose_opt_graphics_card], .radio_option_wrapp label[for=choose_opt_display_resolution], .radio_option_wrapp label[for=choose_opt_case_size], .radio_option_wrapp label[for=choose_opt_case_type], .radio_option_wrapp label[for=choose_opt_how_many_original_controllers] {
+.radio_block .radio_option_wrapp label[for=choose_opt_condition], .radio_block .radio_option_wrapp label[for=choose_opt_storage], .radio_block .radio_option_wrapp label[for=choose_opt_carrier], .radio_block .radio_option_wrapp label[for=choose_opt_connectivity], .radio_block .radio_option_wrapp label[for=choose_opt_including_original_charger], .radio_block .radio_option_wrapp label[for=choose_opt_memory_ram], .radio_block .radio_option_wrapp label[for=choose_opt_hard_drive], .radio_block .radio_option_wrapp label[for=choose_opt_processor], .radio_block .radio_option_wrapp label[for=choose_opt_graphics_card], .radio_block .radio_option_wrapp label[for=choose_opt_display_resolution], .radio_block .radio_option_wrapp label[for=choose_opt_case_size], .radio_block .radio_option_wrapp label[for=choose_opt_case_type], .radio_block .radio_option_wrapp label[for=choose_opt_how_many_original_controllers] {
   display: none;
 }
-.radio_option_wrapp label .radio_txt {
+.radio_block .radio_option_wrapp label .radio_txt_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.radio_block .radio_option_wrapp label .radio_txt_box svg {
+  max-height: 18px;
+  height: 100%;
+}
+.radio_block .radio_option_wrapp label .radio_txt {
   color: #29353c;
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
 }
-.radio_option_wrapp label::before {
+.radio_block .radio_option_wrapp label .condition_level {
+  display: none;
+}
+.radio_block .radio_option_wrapp label::before {
   content: unset;
+}
+.radio_block .radio_option_wrapp [type=radio]:checked + label::after {
+  content: unset;
+}
+.radio_block .radio_option_wrapp [type=radio]:checked + label {
+  border: 2px solid #63dd1a;
+}
+.radio_block.pa_condition h3 .txt_choose {
+  color: #757575;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0 0 0 10px;
+}
+.radio_block.pa_condition h3 .txt_choose.is_hidden {
+  display: none;
+}
+.radio_block.pa_condition label {
+  max-width: 110px;
+  width: 30%;
+  padding: 7px 16px 4px;
+}
+.radio_block.pa_condition label .condition_level {
+  display: flex;
+  width: 100%;
+  gap: 3px;
+}
+.radio_block.pa_condition label .condition_level span {
+  width: 15%;
+  height: 6px;
+  background: #5fdf00;
+}
+.radio_block.pa_condition label .condition_level span:first-child {
+  border-radius: 111px 0px 0px 111px;
+}
+.radio_block.pa_condition label .condition_level span:last-child {
+  border-radius: 0px 111px 111px 0px;
+}
+.radio_block.pa_condition label[for=flawless] .condition_level span:nth-child(1) {
+  background: #d6d9dc;
+}
+.radio_block.pa_condition label[for=good] .condition_level span {
+  background: #ded50e;
+}
+.radio_block.pa_condition label[for=good] .condition_level span:nth-child(1), .radio_block.pa_condition label[for=good] .condition_level span:nth-child(2) {
+  background: #d6d9dc;
+}
+.radio_block.pa_condition label[for=average] .condition_level span {
+  background: #ded50e;
+}
+.radio_block.pa_condition label[for=average] .condition_level span:nth-child(1), .radio_block.pa_condition label[for=average] .condition_level span:nth-child(2), .radio_block.pa_condition label[for=average] .condition_level span:nth-child(3) {
+  background: #d6d9dc;
+}
+.radio_block.pa_condition label[for=fair] .condition_level span {
+  background: #d6d9dc;
+}
+.radio_block.pa_condition label[for=fair] .condition_level span:nth-child(5), .radio_block.pa_condition label[for=fair] .condition_level span:nth-child(6) {
+  background: #df7800;
+}
+.radio_block.pa_condition label[for=faulty] .condition_level span {
+  background: #d6d9dc;
+}
+.radio_block.pa_condition label[for=faulty] .condition_level span:nth-child(6) {
+  background: #df7800;
 }
 
 #conditionBlock {
@@ -177,7 +343,7 @@ footer[role=contentinfo] #seo-nav li:after {
 #conditionBlock ul {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
   list-style: disc;
   padding-left: 25px;
   margin: 8px 0 0;

@@ -102,7 +102,10 @@ const frequentlyAskedQuestionSection = /* HTML */ `
 const radioBlock = (title: string, classRadioBlock: string) => {
   return /* HTML */ `
     <div class="radio_block ${classRadioBlock}">
-      <h3><span>${title}</span> *</h3>
+      <h3>
+        <span>${title}</span> *
+        ${classRadioBlock === 'pa_condition' ? `<span class="txt_choose is_hidden">choose to see criteria</span>` : ''}
+      </h3>
       <div class="radio_option_wrapp"></div>
     </div>
   `
@@ -111,7 +114,20 @@ const inputValue = (nameRadioBtn: string, valueRadioBtn: string, txt: string) =>
   return /* HTML */ `
     <input class="custom_radio" id="${valueRadioBtn}" type="radio" name="${nameRadioBtn}" value="${valueRadioBtn}" />
     <label for="${valueRadioBtn}" tabindex="0" data-name="">
-      <span class="radio_txt">${txt}</span>
+      <div class="radio_txt_box">
+        ${valueRadioBtn === 'unlocked' ? svg.unlocked : ''} ${valueRadioBtn === 'verizon' ? svg.verizon : ''}
+        ${valueRadioBtn === 'att' ? svg.aTT : ''}
+        ${valueRadioBtn === 't-mobile' ? svg.tMobile : ''}${valueRadioBtn === 'other' ? svg.other : ''}
+        <span class="radio_txt">${txt}</span>
+      </div>
+      <div class="condition_level">
+        <span class="green_bgr"></span>
+        <span class="green_bgr"></span>
+        <span class="green_bgr"></span>
+        <span class="green_bgr"></span>
+        <span class="green_bgr"></span>
+        <span class="green_bgr"></span>
+      </div>
     </label>
   `
 }
