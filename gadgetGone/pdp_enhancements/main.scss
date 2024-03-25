@@ -1,0 +1,398 @@
+.new_container {
+  width: 90%;
+  margin: 0 auto;
+}
+.new_title_box {
+  color: #29353c;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 32px;
+  margin: 0 0 24px;
+}
+.main_title {
+  color: #29353c;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 32px;
+  margin: 0 0 24px;
+}
+//
+.reset_variations {
+  display: none !important;
+}
+.device-details-title {
+  padding: 40px 0 16px;
+}
+.device-details-title h5 {
+  color: #757575;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  margin: 0 0 4px;
+}
+.device-details-title h1 {
+  color: #29353c;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 48px;
+  letter-spacing: -0.69px;
+}
+.device-step-header.step-number-3 {
+  display: flex;
+  justify-content: center;
+  gap: 56px;
+  border: none;
+  margin: 0 0 60px;
+  padding: 0;
+}
+.device-step-header .bread-crumbs {
+  color: #29353c;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 33px;
+}
+.device-step-header .progress-dots li {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.device-step-header .progress-dots li::before {
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 20px;
+}
+.woocommerce #content div.product div.summary .add-to-cart-block {
+  padding: 0;
+  border: none;
+  background: inherit;
+  box-shadow: none;
+}
+.variations-content > .row > h4,
+.variation-description-overview > h4,
+.order_benefits,
+.support-link,
+.order_reviews {
+  display: none;
+}
+// footer
+footer[role='contentinfo'] {
+  padding: 72px 0 40px !important;
+}
+.menu-seo-menu-container {
+  border-bottom: 1px solid #f0f2f4;
+  margin: 32px 0;
+}
+.copyright {
+  padding: 0 !important;
+  color: #29353c;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+footer[role='contentinfo'] #seo-nav {
+  margin: 0 0 22px;
+}
+footer[role='contentinfo'] #seo-nav li:after {
+  width: 1px;
+  height: 20px;
+}
+// device_price_wrapper
+.device_price_wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.variations-content > .row {
+  display: none;
+}
+// radio_option_wrapp
+.radio_option_wrapp {
+  display: flex;
+  gap: 12px;
+  & input.custom_radio {
+    z-index: -1;
+    opacity: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    display: none;
+  }
+  & label {
+    position: relative;
+    width: 100%;
+    border-radius: 6px;
+    border: 2px solid #d6d9dc;
+    background: #fff;
+    padding: 14px 16px;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    text-align: left;
+
+    &[for='choose_opt_condition'],
+    &[for='choose_opt_storage'],
+    &[for='choose_opt_carrier'],
+    &[for='choose_opt_connectivity'],
+    &[for='choose_opt_including_original_charger'],
+    &[for='choose_opt_memory_ram'],
+    &[for='choose_opt_hard_drive'],
+    &[for='choose_opt_processor'],
+    &[for='choose_opt_graphics_card'],
+    &[for='choose_opt_display_resolution'],
+    &[for='choose_opt_case_size'],
+    &[for='choose_opt_case_type'],
+    &[for='choose_opt_how_many_original_controllers'] {
+      display: none;
+    }
+
+    & .radio_txt {
+      color: #29353c;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 20px;
+    }
+  }
+  & label::before {
+    content: unset;
+  }
+}
+// conditionBlock
+#conditionBlock {
+  border-radius: 6px;
+  border: 1px solid #f0f2f4;
+  background: #fafbfb;
+  padding: 14px 16px;
+  margin: 12px 0 0;
+  & h5 {
+    color: #757575;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 24px;
+  }
+  & ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style: disc;
+    padding-left: 25px;
+    margin: 8px 0 0;
+    & li {
+      & p {
+        color: #29353c;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 24px;
+        margin: 0;
+        & span {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  & > div {
+    &.is_hidden {
+      display: none;
+    }
+    &.choose_var {
+      & ul {
+        display: none;
+      }
+    }
+  }
+}
+// clear_form_block
+.clear_form_block {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-start;
+  width: max-content;
+  cursor: pointer;
+  margin: 32px 0 0;
+
+  & span {
+    color: #858d92;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 24px;
+    margin: 0;
+  }
+}
+// benefitsBlock
+#benefitsBlock {
+  margin: 24px 0;
+  & ul {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 16px;
+    & li {
+      width: 33%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      text-align: center;
+      & span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+      }
+      & p {
+        color: #29353c;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 18px;
+        margin: 0 auto;
+        max-width: 120px;
+      }
+    }
+  }
+}
+// reviewsBlock
+#reviewsBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid #f0f2f4;
+  padding-top: 24px;
+  & a {
+    max-width: 100px;
+    width: 100%;
+    & img {
+      width: 100%;
+      height: 100%;
+      min-height: 74px;
+      object-fit: cover;
+    }
+  }
+}
+// howItWorksSection
+#howItWorksSection {
+  margin: 60px 0;
+  & .how_it_works_list {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 32px;
+    padding: 40px 48px;
+    margin: 0 auto;
+    border-radius: 16px;
+    border: 1px solid #f0f2f4;
+    background: #fff;
+    box-shadow: 0px 8px 16px 0px rgba(41, 53, 60, 0.03);
+    & li {
+      width: 35%;
+      text-align: center;
+      & span {
+        position: relative;
+        width: 80px;
+        height: 80px;
+        display: block;
+        border-radius: 100px;
+        border: 2px solid #d6d9dc;
+        margin: 0 auto 8px;
+        padding: 19px 18px;
+      }
+      & span::after {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        content: '1';
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        background: #0092e6;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 18px;
+      }
+      & h3 {
+        color: #29353c;
+        font-size: 18px;
+        font-weight: 800;
+        line-height: 28px;
+      }
+      & h4,
+      p {
+        color: #29353c;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 24px;
+      }
+      & p {
+        color: #757575;
+        font-weight: 400;
+        max-width: 387px;
+        margin: 12px auto 0;
+      }
+    }
+    & li:nth-child(2) {
+      & span::after {
+        content: '2';
+      }
+    }
+    & li:nth-child(3) {
+      & span::after {
+        content: '3';
+      }
+    }
+  }
+}
+// frequentlyAskedQuestionSection
+#frequentlyAskedQuestionSection {
+  & .questions_accordion {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    & li {
+      border-bottom: 1px solid #d6d9dc;
+      & .questions_accordion_link {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 0;
+        cursor: pointer;
+        & svg {
+          transition: all 0.5s ease;
+        }
+        & p {
+          color: #29353c;
+          font-size: 18px;
+          font-weight: 700;
+          line-height: 24px;
+          margin: 0;
+        }
+      }
+      & .questions_accordion_lists {
+        display: none;
+        border-top: 1px solid #d6d9dc;
+        padding: 10px 0;
+        & > div {
+          padding: 14px;
+          & p {
+            color: #29353c;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            margin: 0;
+          }
+        }
+      }
+    }
+    & li.active {
+      & svg {
+        transform: rotateX(180deg);
+      }
+    }
+  }
+}
