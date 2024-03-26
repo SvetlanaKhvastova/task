@@ -176,41 +176,64 @@ const svg = {
         fill="#29353C"
       />
     </svg>
+  `,
+  bgrFooter: /* html */ `
+    <svg class="bgr_footer" width="208" height="361" viewBox="0 0 208 361" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M181.273 0.699524C181.273 0.699524 181.337 0.681641 181.337 0.687866C181.345 0.736084 177.294 1.13354 177.205 1.14285C84.488 11.4996 28.038 99.0261 28.038 99.0261C-13.6488 163.661 4.51125 206.975 -34.7378 238.894C-67.176 265.273 -105.481 256.751 -113.208 255.032C-166.134 243.258 -181.829 194.511 -211.296 201.237C-223.979 204.132 -241.929 219.913 -258.378 287.31C-258.45 191.773 -258.523 96.2363 -258.596 0.699524H181.273Z" fill="url(#paint0_linear_288_298)"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M208 0.688446C161.941 4.20468 111.555 17.6901 56.8432 41.1447C-25.2251 76.3265 -91.4821 144.177 -161.504 245.534C-231.525 346.891 -272.183 250.56 -373.074 250.56C-440.335 250.56 -477.605 317.936 -484.885 452.686C-485.037 251.989 -485.152 101.466 -485.228 1.11786L208 0.688446Z" fill="url(#paint1_linear_288_298)"/>
+      <defs>
+      <linearGradient id="paint0_linear_288_298" x1="181.337" y1="-28375" x2="-43555" y2="-28375" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0092E6"/>
+      <stop offset="1" stop-color="#5109E6"/>
+      </linearGradient>
+      <linearGradient id="paint1_linear_288_298" x1="-4097.24" y1="-31755.1" x2="-61854.4" y2="1863.8" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5FDF00"/>
+      <stop offset="1" stop-color="#00AB03"/>
+      </linearGradient>
+      </defs>
+    </svg>
   `
 }
 
 const conditionObj = [
   {
+    name: 'choose',
     class: 'choose_var',
     title: 'Choose to see criteria',
     txt: ''
   },
   {
+    name: 'brandnew',
     class: 'brandnew is_hidden',
     title: 'Brand New',
     txt: '<li><p><span>Factory sealed:</span> Original packaging with all included accessories, never activated.</p></li><li><p><span>Clean ESN:</span> No financial balances or blocks on the device.</p></li>'
   },
   {
+    name: 'flawless',
     class: 'flawless is_hidden',
     title: 'Flawless',
     txt: '<li><p><span>Perfect condition:</span> Fully Functional with no scratches, blemishes, or flaws.</p></li><li><p><span>Clean ESN:</span> No financial balances or blocks on the device.</p></li><li><p><span>Battery health:</span> Minimum 80% capacity without "service battery" alert.</p></li>'
   },
   {
+    name: 'good',
     class: 'good is_hidden',
     title: 'Good',
     txt: '<li><p><span>Minimal wear:</span> Fully functional with only light scratches or scuffs not visible from 8 inches away.</p></li><li><p><span>Clean ESN:</span> No financial balances or blocks on the device.</p></li><li><p><span>Battery health:</span> Minimum 80% capacity without "service battery" alert.</p></li>'
   },
   {
+    name: 'average',
     class: 'average is_hidden',
     title: 'Average',
     txt: '<li><p><span>Moderate wear:</span> Fully functional with moderate dings, scuffs or scratches that don’t catch your fingernail.</p></li><li><p><span>Clean ESN:</span> No financial balances or blocks on the device.</p></li><li><p><span>Battery health:</span> Minimum 80% capacity without "service battery" alert.</p></li>'
   },
   {
+    name: 'fair',
     class: 'fair is_hidden',
     title: 'Fair',
     txt: '<li><p><span>Heavy wear:</span> Fully functional with excessive scratches, dings, scuffs or deep scratches that catch your fingernail; but no cracks.</p></li><li><p><span>Clean ESN:</span> No financial balances or blocks on the device.</p></li><li><p><span>Battery health:</span> Minimum 80% capacity without "service battery" alert.</p></li>'
   },
   {
+    name: 'faulty',
     class: 'faulty is_hidden',
     title: 'Faulty',
     txt: "<li><p><span>Significant Issues:</span> Powers on but may have cracks, damaged housing, battery with <80% capacity or “service battery” message, functional defects, LCD defects, engravings, or aftermarket screen.</p></li><li><p><span>Exclusions:</span> Devices that are account locked, reported lost/stolen, won't power on, or can't be fully tested are not purchased.</p></li>"

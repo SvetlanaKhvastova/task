@@ -10,6 +10,7 @@ import {
   radioBlock,
   inputValue
 } from './blocks'
+import { svg } from './data'
 // @ts-ignore
 import mainStyle from './main.css?raw'
 
@@ -38,6 +39,16 @@ class pdpEnhancements {
 
       this.renderInputsWrapp()
       this.onClickElems()
+      if (window.innerWidth < 1100) {
+        this.renderBgrFooter()
+      }
+    })
+  }
+  renderBgrFooter() {
+    waitForElement('.svg.footer-wave-mobile').then(i => {
+      if (!$el('.bgr_footer')) {
+        $el('.svg.footer-wave-mobile').insertAdjacentHTML('afterbegin', svg.bgrFooter)
+      }
     })
   }
   observePageChange() {
@@ -48,7 +59,6 @@ class pdpEnhancements {
 
           if (node.matches('.woocommerce-variation-price')) {
             console.log(`>>>>>>>>>>>>>..`)
-            //   $el('.device_price_wrapper').insertAdjacentElement('afterbegin', $el('.woocommerce-variation-price'))
           }
         }
       })
@@ -61,14 +71,19 @@ class pdpEnhancements {
     waitForElement('.device-details-title').then(i => {
       $el('.device-details-title').after($el('.device-step-header.step-number-3'))
     })
-    if ($el('.device-step-header.step-number-3 .step').textContent !== 'Step 3: Device') {
+
+    if ($el('.device-step-header.step-number-3 .step').textContent !== 'Step 3: Device' && this.device === 'desktop') {
       $el('.device-step-header.step-number-3 .step').textContent = 'Step 3: Device'
     }
   }
   addNewBlocksToDetails() {
     waitForElement('.variations').then(i => {
       if (!$el('.variations .new_title_box')) {
-        $el('.variations').insertAdjacentHTML('afterbegin', newTitleBox('Details'))
+        if (window.innerWidth < 1100) {
+          $el('.variations .variations-content').insertAdjacentHTML('afterbegin', newTitleBox('Details'))
+        } else {
+          $el('.variations').insertAdjacentHTML('afterbegin', newTitleBox('Details'))
+        }
       }
     })
     waitForElement('.variations-content').then(i => {
@@ -84,14 +99,29 @@ class pdpEnhancements {
   addNewBlocksToOfferSummary() {
     waitForElement('.single_variation_wrap').then(i => {
       if (!$el('.single_variation_wrap .new_title_box')) {
-        $el('.single_variation_wrap').insertAdjacentHTML('afterbegin', newTitleBox('Offer Summary'))
+        if (window.innerWidth < 1100) {
+          $el('.single_variation_wrap .single_variation_wrap--inner').insertAdjacentHTML(
+            'afterbegin',
+            newTitleBox('Offer Summary')
+          )
+        } else {
+          $el('.single_variation_wrap').insertAdjacentHTML('afterbegin', newTitleBox('Offer Summary'))
+        }
       }
 
       if (!$el('#benefitsBlock')) {
         $el('.order_benefits')?.insertAdjacentHTML('afterend', benefitsBlock)
       }
-      if (!$el('#reviewsBlock')) {
-        $el('.single_variation_wrap')?.insertAdjacentHTML('beforeend', reviewsBlock)
+      if (this.device === 'desktop') {
+        if (!$el('#reviewsBlock')) {
+          $el('.single_variation_wrap')?.insertAdjacentHTML('beforeend', reviewsBlock)
+        }
+      } else {
+        waitForElement('#howItWorksSection').then(i => {
+          if (!$el('#reviewsBlock')) {
+            $el('#howItWorksSection').insertAdjacentHTML('beforebegin', reviewsBlock)
+          }
+        })
       }
       if (!$el('.device_price_wrapper')) {
         $el('.single_variation_wrap--inner').insertAdjacentHTML('beforeend', `<div class="device_price_wrapper"></div>`)
@@ -161,11 +191,13 @@ class pdpEnhancements {
     //   pa_condition
     waitForElement('#pa_condition').then(i => {
       this.renderInputs('#pa_condition')
-      waitForElement('.radio_block.pa_condition').then(i => {
-        if (!$el('#conditionBlock')) {
-          $el('.radio_block.pa_condition').insertAdjacentHTML('afterend', conditionBlock)
-        }
-      })
+      if (window.innerWidth >= 1100) {
+        waitForElement('.radio_block.pa_condition').then(i => {
+          if (!$el('#conditionBlock')) {
+            $el('.radio_block.pa_condition').insertAdjacentHTML('afterend', conditionBlock)
+          }
+        })
+      }
     })
   }
 
@@ -208,6 +240,11 @@ class pdpEnhancements {
             el.checked = false
           })
           this.changeClassListConditionBlock('', true)
+          waitForElement('.radio_descr_mob').then(i => {
+            $$el('.radio_descr_mob').forEach(t => {
+              t.classList.add('is_hidden')
+            })
+          })
         })
       })
     })
@@ -217,6 +254,7 @@ class pdpEnhancements {
         let parentClass = el.closest('.radio_block').className
         el.addEventListener('click', (e: any) => {
           let value = e.currentTarget.getAttribute('for')
+
           $$el('.flex-wrapper select').forEach(select => {
             if (parentClass.includes(select.getAttribute('id'))) {
               select.value = value
@@ -226,6 +264,14 @@ class pdpEnhancements {
           })
           if (el.closest('.pa_condition')) {
             this.changeClassListConditionBlock(value)
+            waitForElement('.radio_descr_mob').then(i => {
+              $$el('.radio_descr_mob').forEach(t => {
+                t.classList.add('is_hidden')
+              })
+              if (e.target.closest('label').querySelector('.radio_descr_mob')?.classList.contains('is_hidden')) {
+                e.target.closest('label').querySelector('.radio_descr_mob').classList.remove('is_hidden')
+              }
+            })
           }
         })
       })
@@ -289,6 +335,16 @@ class pdpEnhancements {
         })
       }
     }, 100)
+  }
+
+  checkScrollPosition(headerOff, elPosition) {
+    const headerOffset = headerOff
+    const elementPosition = elPosition?.getBoundingClientRect().top
+    const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    })
   }
 }
 new pdpEnhancements(device)
