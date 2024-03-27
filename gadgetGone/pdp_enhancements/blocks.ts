@@ -147,6 +147,11 @@ const inputValue = (nameRadioBtn: string, valueRadioBtn: string, txt: string) =>
     </label>
   `
 }
+const newStickyBlock = /* HTML */ `
+  <div class="new_sticky_block">
+    <button class="disabled">Trade-In</button>
+  </div>
+`
 
 export {
   newTitleBox,
@@ -157,5 +162,6 @@ export {
   howItWorksSection,
   frequentlyAskedQuestionSection,
   radioBlock,
-  inputValue
+  inputValue,
+  newStickyBlock
 }

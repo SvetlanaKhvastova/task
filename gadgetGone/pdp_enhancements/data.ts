@@ -295,31 +295,31 @@ const howItWorksObj: HowItWorks[] = [
 const frequentlyAskedQuestionsObj: FAQ[] = [
   {
     title: `What if I’m unsure about my device’s condition?`,
-    txt: `<p></p>`
+    txt: `<p>If you're uncertain about the condition of your device, we encourage you to reach out to us through our contact form. Our team is ready to assist you with assessing your device's condition to ensure you receive the most accurate offer. This step can help you understand our evaluation criteria better and make an informed decision about selling your device.</p>`
   },
   {
     title: `What if I don’t agree with GadgetGone’s evaluation?`,
-    txt: `<p>Choose between a Bank Transfer, Virtual Visa Card, PayPal Payment or Amazon / Target Gift Card. We'll make sure you get paid ASAP after your device is delivered.</p>`
+    txt: `<p>If unsatisfied with our revised offer for your device, you can opt to have it returned for free. Please respond to our re-quote email promptly. Without a response within 14 days, we'll proceed with the revised offer payment and consider the device for resale.</p>`
   },
   {
     title: `How soon after delivery will my device be evaluated?`,
-    txt: `<p></p>`
+    txt: `<p>We aim to evaluate devices within 3-7 business days post-delivery. However, due to high volume periods like after new product launches, evaluations might take slightly longer.</p>`
   },
   {
     title: `What is checked during the evaluation process?`,
-    txt: `<p></p>`
+    txt: `<p>We verify your device's stated specifications (model, carrier, storage) and condition through inspections and tests. We do not accept devices that are blacklisted, iCloud locked, remote managed, or too damaged for proper assessment.</p>`
   },
   {
     title: `What are my payment options?`,
-    txt: `<p></p>`
+    txt: `<p>Choose from PayPal, Direct Bank Transfer, Virtual Visa Card, or PrizeOut gift cards. PayPal transactions incur a fee of 2.9% + $0.30, which we do not cover. Bank Transfers and Virtual Visa Cards are fee-free and delivered via email. PrizeOut offers numerous gift card options, some with up to a 20% bonus.</p>`
   },
   {
     title: `When will I be paid?`,
-    txt: `<p></p>`
+    txt: `<p>Payments are issued the same day your device is evaluated. Bank transfers take 2-4 business days, while other methods are sent via email immediately.</p>`
   },
   {
     title: `Do you price match?`,
-    txt: `<p></p>`
+    txt: `<p>Found a better offer elsewhere? We'll match it! Contact us before accepting our offer. This applies to trade-in sites with instant cash offers only and excludes retail and in-store credit offers. We reserve the right to decline price match requests at our discretion.</p>`
   }
 ]
 
