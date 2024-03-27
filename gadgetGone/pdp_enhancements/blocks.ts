@@ -149,6 +149,7 @@ const inputValue = (nameRadioBtn: string, valueRadioBtn: string, txt: string) =>
 }
 const newStickyBlock = /* HTML */ `
   <div class="new_sticky_block">
+    <span class="new_sticky_default_txt">*Please enter device details to get a quote.</span>
     <button class="disabled">Trade-In</button>
   </div>
 `

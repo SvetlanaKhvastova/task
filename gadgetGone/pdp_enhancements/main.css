@@ -238,8 +238,8 @@ form.variations_form {
 }
 
 .qty-itputbox input.input-text.qty {
-  height: 48px !important;
-  width: 121px !important;
+  height: 45px !important;
+  width: 118px !important;
   border: unset;
   color: #29353c;
   font-size: 16px;
@@ -340,6 +340,20 @@ footer[role=contentinfo] #seo-nav li:after {
   }
   .single_add_to_cart_button.button {
     position: relative !important;
+    border-radius: 100px !important;
+  }
+  .single_add_to_cart_button.button::before {
+    display: none !important;
+  }
+  .single_variation_wrap .single_variation_wrap--inner {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .single_variation_wrap .single_variation_wrap--inner .new_title_box {
+    width: 100%;
+  }
+  .woocommerce-variation.single_variation {
+    max-width: 59% !important;
   }
   footer[role=contentinfo] {
     padding: 24px 0 70px !important;
@@ -399,6 +413,12 @@ footer[role=contentinfo] #seo-nav li:after {
   }
   footer[role=contentinfo] .logo-container .logos .logo-wrapper:nth-child(2) {
     max-width: 115px;
+  }
+}
+@media (max-width: 376px) {
+  .single_variation_wrap .single_variation_wrap--inner .variation-description-overview-placeholder,
+  .woocommerce-variation.single_variation {
+    max-width: 55% !important;
   }
 }
 .device_price_wrapper {
@@ -559,7 +579,7 @@ footer[role=contentinfo] #seo-nav li:after {
 }
 @media (max-width: 1100px) {
   .radio_block .radio_option_wrapp label {
-    padding: 12.5px 7px;
+    padding: 12.5px 5px;
     min-width: 63px;
   }
   .radio_block .radio_option_wrapp label .radio_info {
@@ -575,7 +595,7 @@ footer[role=contentinfo] #seo-nav li:after {
   .radio_block.pa_condition .radio_option_wrapp label {
     width: 100%;
     max-width: 100%;
-    padding: 14px 16px;
+    padding: 12.5px 16px;
   }
   .radio_block.pa_condition .radio_option_wrapp label .radio_txt_box {
     width: 100%;
@@ -625,6 +645,9 @@ footer[role=contentinfo] #seo-nav li:after {
   }
   .radio_block.pa_condition .radio_option_wrapp label .radio_descr_mob li + li {
     margin-top: 10px;
+  }
+  .radio_block.pa_condition .radio_option_wrapp [type=radio]:checked + label {
+    padding: 14px 16px;
   }
   .radio_block.pa_condition .radio_option_wrapp [type=radio]:checked + label .new_custom_radio {
     border: 2px solid #63dd1a;
@@ -752,6 +775,9 @@ footer[role=contentinfo] #seo-nav li:after {
   max-width: 120px;
 }
 @media (max-width: 768px) {
+  #benefitsBlock {
+    margin: 30px 0 34px;
+  }
   #benefitsBlock ul {
     gap: 24px;
   }
@@ -759,6 +785,11 @@ footer[role=contentinfo] #seo-nav li:after {
     font-size: 12px;
     line-height: normal;
     max-width: 100%;
+  }
+}
+@media (max-width: 376px) {
+  #benefitsBlock ul {
+    gap: 15px;
   }
 }
 
@@ -946,15 +977,26 @@ footer[role=contentinfo] #seo-nav li:after {
   line-height: 24px;
   margin: 0;
 }
+#frequentlyAskedQuestionSection .questions_accordion li .questions_accordion_lists > div p a {
+  color: #0092e6;
+  font-weight: 700;
+  text-decoration-line: underline;
+  cursor: pointer;
+}
 #frequentlyAskedQuestionSection .questions_accordion li.active svg {
   transform: rotateX(180deg);
 }
 @media (max-width: 768px) {
+  #frequentlyAskedQuestionSection .main_title {
+    margin-bottom: 16px;
+  }
   #frequentlyAskedQuestionSection .questions_accordion li .questions_accordion_lists {
     padding: 10px 0 14px;
   }
   #frequentlyAskedQuestionSection .questions_accordion li .questions_accordion_link p {
     max-width: 267px;
+    font-size: 16px;
+    line-height: 20px;
   }
 }
 
@@ -971,8 +1013,20 @@ body {
   border-top: 1px solid #f0f2f4;
   background: #fff;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 16px;
   z-index: 100;
+}
+.new_sticky_block .new_sticky_default_txt {
+  color: #757575;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  margin: 0;
+}
+.new_sticky_block .new_sticky_default_txt.is_hidden {
+  display: none;
 }
 .new_sticky_block button {
   display: flex;
@@ -984,16 +1038,49 @@ body {
   order: 1;
   border-radius: 36px;
   background: #63dd1a;
-  margin: 0;
   color: #fff;
   font-size: 16px;
   font-weight: 800;
   line-height: 24px;
   border: none;
+  margin: 0 0 0 auto;
 }
 .new_sticky_block button.disabled {
   background: #858d92;
 }
-.new_sticky_block .device-placeholder-price .offer-container {
-  display: none;
+.new_sticky_block .woocommerce-variation-price h4 {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  line-height: 12px !important;
+  margin-bottom: 8px !important;
+}
+.new_sticky_block .woocommerce-Price-amount.amount {
+  font-size: 22px !important;
+  line-height: 20px !important;
+}
+.new_sticky_block .woocommerce-variation-price {
+  min-width: 143px;
+  text-align: center;
+}
+
+.radio_section {
+  position: relative;
+}
+
+.rotate_svg {
+  display: block;
+  animation: rotate 2s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }/*# sourceMappingURL=main.css.map */

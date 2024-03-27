@@ -192,6 +192,24 @@ const svg = {
       </linearGradient>
       </defs>
     </svg>
+  `,
+  loader: /*html */ `
+    <svg class="rotate_svg" xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60" fill="none">
+      <g clip-path="url(#clip0_3504_3548)">
+        <path d="M17.7273 29.9997C17.7273 28.4936 16.5062 27.2725 15 27.2725H4.09092C2.58474 27.2725 1.36365 28.4936 1.36365 29.9997C1.36365 31.5059 2.58474 32.727 4.09092 32.727H15C16.5062 32.727 17.7273 31.5059 17.7273 29.9997Z" fill="#83BE63"/>
+        <path d="M55.9092 27.2725H50.4547C48.9485 27.2725 47.7274 28.4936 47.7274 29.9997C47.7274 31.5059 48.9485 32.727 50.4547 32.727H55.9092C57.4154 32.727 58.6365 31.5059 58.6365 29.9997C58.6365 28.4936 57.4154 27.2725 55.9092 27.2725Z" fill="#83BE63"/>
+        <path d="M31.3636 16.3636C32.8698 16.3636 34.0909 15.1425 34.0909 13.6364V2.72727C34.0909 1.22109 32.8698 0 31.3636 0C29.8574 0 28.6364 1.22109 28.6364 2.72727V13.6364C28.6364 15.1425 29.8574 16.3636 31.3636 16.3636Z" fill="#83BE63"/>
+        <path d="M31.3639 43.6367C29.8577 43.6367 28.6366 44.8578 28.6366 46.364V57.2731C28.6366 58.7793 29.8577 60.0004 31.3639 60.0004C32.8701 60.0004 34.0911 58.7793 34.0911 57.2731V46.364C34.0911 44.8578 32.8701 43.6367 31.3639 43.6367Z" fill="#83BE63"/>
+        <path d="M14.0073 8.78679C12.9426 7.7217 11.2157 7.72188 10.1504 8.78679C9.08529 9.85188 9.08529 11.5786 10.1504 12.6437L17.8644 20.3579C18.3969 20.8904 19.0949 21.1568 19.7927 21.1568C20.4906 21.1568 21.1887 20.8904 21.7211 20.3581C22.7862 19.293 22.7862 17.5662 21.7211 16.5012L14.0073 8.78679Z" fill="#83BE63"/>
+        <path d="M44.8629 39.6424C43.798 38.5775 42.0711 38.5775 41.006 39.6424C39.9409 40.7075 39.9411 42.4342 41.006 43.4993L48.7202 51.2132C49.2528 51.7457 49.9507 52.0119 50.6487 52.0119C51.3467 52.0119 52.0448 51.7455 52.5771 51.2132C53.6422 50.1481 53.6422 48.4213 52.5771 47.3562L44.8629 39.6424Z" fill="#83BE63"/>
+        <path d="M17.8642 39.6428L10.1504 47.3566C9.08529 48.4217 9.08529 50.1484 10.1504 51.2135C10.6829 51.7461 11.3809 52.0123 12.0789 52.0123C12.7769 52.0123 13.4749 51.7461 14.0073 51.2135L21.7211 43.4997C22.7862 42.4346 22.7862 40.7079 21.7211 39.6428C20.656 38.5777 18.9291 38.5777 17.8642 39.6428Z" fill="#83BE63"/>
+      </g>
+      <defs>
+        <clipPath id="clip0_3504_3548">
+          <rect width="60" height="60" fill="white"/>
+        </clipPath>
+      </defs>
+    </svg>
   `
 }
 
@@ -295,7 +313,7 @@ const howItWorksObj: HowItWorks[] = [
 const frequentlyAskedQuestionsObj: FAQ[] = [
   {
     title: `What if I’m unsure about my device’s condition?`,
-    txt: `<p>If you're uncertain about the condition of your device, we encourage you to reach out to us through our contact form. Our team is ready to assist you with assessing your device's condition to ensure you receive the most accurate offer. This step can help you understand our evaluation criteria better and make an informed decision about selling your device.</p>`
+    txt: `<p>If you're uncertain about the condition of your device, we encourage you to reach out to us through our <a href="https://www.gadgetgone.com/support/" target="_blank">contact form</a>. Our team is ready to assist you with assessing your device's condition to ensure you receive the most accurate offer. This step can help you understand our evaluation criteria better and make an informed decision about selling your device.</p>`
   },
   {
     title: `What if I don’t agree with GadgetGone’s evaluation?`,
@@ -319,7 +337,7 @@ const frequentlyAskedQuestionsObj: FAQ[] = [
   },
   {
     title: `Do you price match?`,
-    txt: `<p>Found a better offer elsewhere? We'll match it! Contact us before accepting our offer. This applies to trade-in sites with instant cash offers only and excludes retail and in-store credit offers. We reserve the right to decline price match requests at our discretion.</p>`
+    txt: `<p>Found a better offer elsewhere? We'll match it! <a href="https://www.gadgetgone.com/support/" target="_blank">Contact us</a> before accepting our offer. This applies to trade-in sites with instant cash offers only and excludes retail and in-store credit offers. We reserve the right to decline price match requests at our discretion.</p>`
   }
 ]
 

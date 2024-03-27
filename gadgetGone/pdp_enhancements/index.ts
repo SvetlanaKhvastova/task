@@ -107,7 +107,7 @@ class pdpEnhancements {
     })
     waitForElement('.variations-content').then(i => {
       if (!$el('.radio_section')) {
-        $el('.variations-content').insertAdjacentHTML('beforeend', `<div class="radio_section"></div>`)
+        $el('.variations-content').insertAdjacentHTML('beforeend', `<div class="radio_section">${svg.loader}</div>`)
       }
       if (!$el('.clear_form_block')) {
         $el('.variations-content').insertAdjacentHTML('beforeend', clearFormBlock)
@@ -275,6 +275,7 @@ class pdpEnhancements {
               'beforeend',
               inputValue(nameRadioBlock, opt.value === '' ? `choose_opt_${nameRadioBlock}` : opt.value, opt.textContent)
             )
+            $el('.rotate_svg')?.remove()
           })
         })
       }
@@ -343,6 +344,37 @@ class pdpEnhancements {
         })
       }
     }, 100)
+    if (this.device === 'mobile') {
+      // mob sticky btn
+      let isActive = false
+      let waitForStickyBtn = setInterval(() => {
+        if ($el('.new_sticky_block button')) {
+          clearInterval(waitForStickyBtn)
+          $el('.new_sticky_block button').addEventListener('click', () => {
+            isActive = true
+            pushData('exp_pdp_improve_stiky_button_01', 'Trade-In', 'Sticky button', 'Step 3: Device Details')
+            $el('.single_variation_wrap .add-to-cart-block > div .single_add_to_cart_button')?.click()
+            setTimeout(() => {
+              isActive = false
+            }, 1000)
+          })
+        }
+      }, 100)
+      // mob waitForSingleAddToCart_
+      let waitForSingleAddToCart_ = setInterval(() => {
+        if ($el('.single_variation_wrap .add-to-cart-block > div .single_add_to_cart_button')) {
+          clearInterval(waitForSingleAddToCart_)
+          $el('.single_variation_wrap .add-to-cart-block > div .single_add_to_cart_button').addEventListener(
+            'click',
+            (e: any) => {
+              if (!isActive) {
+                pushData('exp_pdp_improve_button_04', 'Trade-In Device', 'Button', 'Step 3: Device Details on-page')
+              }
+            }
+          )
+        }
+      }, 100)
+    }
   }
 
   changeClassListConditionBlock(atr: string, reset: boolean = false) {
@@ -433,13 +465,15 @@ class pdpEnhancements {
           $('.questions_accordion_link').not(this).removeClass('active').closest('li').removeClass('active')
         })
       }
-    }, 100)
+    }, 1000)
   }
   changeClassListPriceAndBtnTradeIn() {
     let woocommerceVariationPrice = $$el('.woocommerce-variation-price')
     let quantity = $$el('.ggv2-quantity:not(.ggv2-quantity--disabled)')
     let placeholderPrice = $$el('.device-placeholder-price')
     let quantityDisabled = $$el('.ggv2-quantity.ggv2-quantity--disabled')
+    let stickyBtn = $el('.new_sticky_block button')
+    let stickyDefaultTxt = $el('.new_sticky_block .new_sticky_default_txt')
 
     if ($el('.woocommerce-variation-add-to-cart .single_add_to_cart_button.button')?.classList.contains('disabled')) {
       woocommerceVariationPrice.forEach(i => {
@@ -462,6 +496,12 @@ class pdpEnhancements {
           i.classList.remove('is_hidden')
         }
       })
+      if (stickyBtn && !stickyBtn.classList.contains('disabled')) {
+        stickyBtn.classList.add('disabled')
+      }
+      if (stickyDefaultTxt && stickyDefaultTxt.classList.contains('is_hidden')) {
+        stickyDefaultTxt.classList.remove('is_hidden')
+      }
     } else {
       placeholderPrice.forEach(i => {
         if (i && !i.classList.contains('is_hidden')) {
@@ -483,6 +523,16 @@ class pdpEnhancements {
           i.classList.remove('is_hidden')
         }
       })
+      if (stickyBtn && stickyBtn.classList.contains('disabled')) {
+        stickyBtn.classList.remove('disabled')
+      }
+      if (
+        stickyDefaultTxt &&
+        !stickyDefaultTxt.classList.contains('is_hidden') &&
+        $el('.new_sticky_block .woocommerce-variation-price')
+      ) {
+        stickyDefaultTxt.classList.add('is_hidden')
+      }
     }
   }
   renderNewStickyBlock() {
@@ -492,11 +542,6 @@ class pdpEnhancements {
     let w = setInterval(() => {
       if ($el('.new_sticky_block')) {
         clearInterval(w)
-
-        let clonedNodePrice = $el('.device-placeholder-price')?.cloneNode(true)
-        if (!$el('.new_sticky_block .device-placeholder-price')) {
-          $el('.new_sticky_block')?.appendChild(clonedNodePrice)
-        }
 
         let s = setInterval(() => {
           if ($el('.woocommerce-variation-price')) {
