@@ -41,21 +41,33 @@ class pdpEnhancements {
       this.observePageChange()
       this.renderInputsWrapp()
       this.onClickElems()
-      if (window.innerWidth < 1100) {
-        this.renderBgrFooter()
-      }
+      this.renderNewElemFooter()
       if (this.device === 'mobile') {
         this.renderNewStickyBlock()
       }
       this.visibleHandler()
     })
   }
-  renderBgrFooter() {
-    waitForElement('.svg.footer-wave-mobile').then(i => {
-      if (!$el('.bgr_footer')) {
-        $el('.svg.footer-wave-mobile').insertAdjacentHTML('afterbegin', svg.bgrFooter)
-      }
-    })
+  renderNewElemFooter() {
+    if (window.innerWidth < 1100) {
+      waitForElement('.svg.footer-wave-mobile').then(i => {
+        if (!$el('.bgr_footer')) {
+          $el('.svg.footer-wave-mobile').insertAdjacentHTML('afterbegin', svg.bgrFooter)
+        }
+      })
+    } else {
+      waitForElement('footer[role=contentinfo] .logo-container .logos').then(i => {
+        if (!$el('.accredited_business_img')) {
+          $el('footer[role=contentinfo] .logo-container .logos').insertAdjacentHTML(
+            'afterbegin',
+            svg.accreditedBusinessImg
+          )
+        }
+        if (!$el('.pay_pal_img')) {
+          $el('footer[role=contentinfo] .logo-container .logos').insertAdjacentHTML('beforeend', svg.payPalImg)
+        }
+      })
+    }
   }
   observePageChange() {
     this.observer = new MutationObserver(mutations => {
@@ -83,6 +95,8 @@ class pdpEnhancements {
       if ($el('.device-details-title')) {
         clearInterval(waitForStep)
         $el('.device-details-title').after($el('.device-step-header.step-number-3'))
+        $$el('.device-step-header .progress-dots ol li')[0]?.insertAdjacentHTML('afterbegin', svg.stepIcon)
+        $$el('.device-step-header .progress-dots ol li')[1]?.insertAdjacentHTML('afterbegin', svg.stepIcon)
       }
     }, 100)
 
@@ -328,18 +342,35 @@ class pdpEnhancements {
             })
             if (el.closest('.pa_condition')) {
               this.changeClassListConditionBlock(value)
-              let waitForRadioDescrMob = setInterval(() => {
-                if ($el('.radio_descr_mob')) {
-                  clearInterval(waitForRadioDescrMob)
-                  $$el('.radio_descr_mob').forEach(t => {
-                    t.classList.add('is_hidden')
-                  })
-                  if (e.target.closest('label').querySelector('.radio_descr_mob')?.classList.contains('is_hidden')) {
-                    e.target.closest('label').querySelector('.radio_descr_mob').classList.remove('is_hidden')
-                  }
-                }
-              }, 100)
+              this.changeClassListConditionBlockMob(e.currentTarget)
             }
+          })
+        })
+      }
+    }, 100)
+    // reviewsBlock links
+    let waitForReviewsBlock = setInterval(() => {
+      if ($el('#reviewsBlock')) {
+        clearInterval(waitForReviewsBlock)
+        $$el('#reviewsBlock a').forEach(link => {
+          link.addEventListener('click', (e: any) => {
+            if (!e.target.getAttribute('data-test')) {
+              if (e.currentTarget.getAttribute('href').includes('trustpilot')) {
+                pushData(`exp_pdp_improve_button_01`, 'Trustpilot', 'Button', 'Step 3: Reviews Block')
+              }
+              if (e.currentTarget.getAttribute('href').includes('google')) {
+                pushData(`exp_pdp_improve_button_02`, 'Google', 'Button', 'Step 3: Reviews Block')
+              }
+              if (e.currentTarget.getAttribute('href').includes('aloma')) {
+                pushData(`exp_pdp_improve_button_03`, 'AccreditedBusiness', 'Button', 'Step 3: Reviews Block')
+              }
+            }
+            e.target.setAttribute('data-test', '1')
+            setTimeout(() => {
+              if (e.target.getAttribute('data-test')) {
+                e.target.removeAttribute('data-test')
+              }
+            }, 1000)
           })
         })
       }
@@ -406,6 +437,19 @@ class pdpEnhancements {
       }
     }, 100)
   }
+  changeClassListConditionBlockMob(target: any) {
+    let waitForRadioDescrMob = setInterval(() => {
+      if ($el('.radio_descr_mob')) {
+        clearInterval(waitForRadioDescrMob)
+        $$el('.radio_descr_mob').forEach(t => {
+          t.classList.add('is_hidden')
+        })
+        if (target.closest('label').querySelector('.radio_descr_mob')?.classList.contains('is_hidden')) {
+          target.closest('label').querySelector('.radio_descr_mob').classList.remove('is_hidden')
+        }
+      }
+    }, 100)
+  }
 
   initDefaultChooseSelectValue() {
     $$el('.flex-wrapper select')?.forEach(s => {
@@ -413,59 +457,19 @@ class pdpEnhancements {
         let w = setInterval(() => {
           if ($$el('.radio_block .radio_option_wrapp input.custom_radio')) {
             clearInterval(w)
-            console.log(s.value)
             $$el('.radio_block .radio_option_wrapp input.custom_radio')?.forEach(i => {
               if (s.value === i.value) {
                 i.checked = true
+                if (i.closest('.pa_condition')) {
+                  this.changeClassListConditionBlock(i.value)
+                  this.changeClassListConditionBlockMob(i.nextElementSibling)
+                }
               }
             })
           }
         }, 1000)
       }
     })
-  }
-
-  renderHowItWorksSection(): void {
-    if (!$el('#howItWorksSection')) {
-      $el('.product.type-product')?.insertAdjacentHTML('afterend', howItWorksSection)
-    }
-  }
-  renderFrequentlyAskedQuestionSection(): void {
-    let waitForHowItWorksSection = setTimeout(() => {
-      if ($el('#howItWorksSection')) {
-        clearInterval(waitForHowItWorksSection)
-        if (!$el('#frequentlyAskedQuestionSection')) {
-          $el('#howItWorksSection')?.insertAdjacentHTML('afterend', frequentlyAskedQuestionSection)
-        }
-      }
-    }, 100)
-    this.initAccordionQuestions()
-  }
-
-  initAccordionQuestions() {
-    let lookForJquery = setInterval(() => {
-      if (typeof jQuery === 'function' && $el('#frequentlyAskedQuestionSection')) {
-        clearInterval(lookForJquery)
-        $('.questions_accordion_block').eq(1).addClass('active')
-        $('.questions_accordion_block .questions_accordion_link').eq(1).addClass('active')
-        $('.questions_accordion_block .questions_accordion_lists').eq(1).css('display', 'block')
-
-        $('.questions_accordion_link').on('click', function (e: any) {
-          pushData(
-            'exp_pdp_improve_accordion_01',
-            `${e.currentTarget.querySelector('p').textContent}`,
-            'Accordion',
-            'Step 3: Device Details Frequently Asked Questions'
-          )
-          $(this).toggleClass('active')
-          $(this).closest('li').toggleClass('active')
-          $(this).next('.questions_accordion_lists').slideToggle()
-
-          $('.questions_accordion_link').not(this).next('.questions_accordion_lists').slideUp()
-          $('.questions_accordion_link').not(this).removeClass('active').closest('li').removeClass('active')
-        })
-      }
-    }, 1000)
   }
   changeClassListPriceAndBtnTradeIn() {
     let woocommerceVariationPrice = $$el('.woocommerce-variation-price')
@@ -554,6 +558,47 @@ class pdpEnhancements {
         }, 100)
       }
     }, 100)
+  }
+  renderHowItWorksSection(): void {
+    if (!$el('#howItWorksSection')) {
+      $el('.product.type-product')?.insertAdjacentHTML('afterend', howItWorksSection)
+    }
+  }
+  renderFrequentlyAskedQuestionSection(): void {
+    let waitForHowItWorksSection = setTimeout(() => {
+      if ($el('#howItWorksSection')) {
+        clearInterval(waitForHowItWorksSection)
+        if (!$el('#frequentlyAskedQuestionSection')) {
+          $el('#howItWorksSection')?.insertAdjacentHTML('afterend', frequentlyAskedQuestionSection)
+        }
+      }
+    }, 100)
+    this.initAccordionQuestions()
+  }
+  initAccordionQuestions() {
+    let lookForJquery = setInterval(() => {
+      if (typeof jQuery === 'function' && $el('#frequentlyAskedQuestionSection')) {
+        clearInterval(lookForJquery)
+        $('.questions_accordion_block').eq(1).addClass('active')
+        $('.questions_accordion_block .questions_accordion_link').eq(1).addClass('active')
+        $('.questions_accordion_block .questions_accordion_lists').eq(1).css('display', 'block')
+
+        $('.questions_accordion_link').on('click', function (e: any) {
+          pushData(
+            'exp_pdp_improve_accordion_01',
+            `${e.currentTarget.querySelector('p').textContent}`,
+            'Accordion',
+            'Step 3: Device Details Frequently Asked Questions'
+          )
+          $(this).toggleClass('active')
+          $(this).closest('li').toggleClass('active')
+          $(this).next('.questions_accordion_lists').slideToggle()
+
+          $('.questions_accordion_link').not(this).next('.questions_accordion_lists').slideUp()
+          $('.questions_accordion_link').not(this).removeClass('active').closest('li').removeClass('active')
+        })
+      }
+    }, 1000)
   }
 
   visibleHandler() {

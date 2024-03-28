@@ -17,6 +17,12 @@
   line-height: 32px;
   margin: 0 0 24px;
 }
+.device-step-header .progress-dots li svg.step_icon {
+  width: 13px;
+}
+.step_icon + svg {
+  display: none;
+}
 .reset_variations {
   display: none !important;
 }
@@ -248,6 +254,36 @@ footer[role='contentinfo'] #seo-nav {
 footer[role='contentinfo'] #seo-nav li:after {
   width: 1px;
   height: 20px;
+}
+@media (min-width: 1100px) {
+  footer[role='contentinfo'] .nav-container {
+    padding: 47px 72px 47px 0 !important;
+  }
+  footer[role='contentinfo'] .logo-container .logos .logo-wrapper {
+    display: none;
+  }
+  footer[role='contentinfo'] .logo-container .logos {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
+@media (min-width: 1100px) and (max-width: 1290px) {
+  .variations > .variations-content {
+    padding: 30px 30px !important;
+  }
+  .variations {
+    flex: 1 0 55% !important;
+    max-width: 55% !important;
+    margin: 0 !important;
+  }
+  .woocommerce #content div.product div.summary form.variations_form,
+  .woocommerce div.product div.summary form.variations_form,
+  .woocommerce-page #content div.product div.summary form.variations_form,
+  .woocommerce-page div.product div.summary form.variations_form {
+    display: flex !important;
+  }
 }
 @media (max-width: 1100px) {
   .new_container {
