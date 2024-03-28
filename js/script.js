@@ -318,3 +318,8 @@ let script = document.createElement("script");
 script.src = "";
 script.async = false;
 document.head.appendChild(script);
+// gadgetgone
+let script = document.createElement("script");
+script.src = "https://conversionratestore.github.io/projects/gadgetgone/pdp_enhancements.js";
+script.async = false;
+document.head.appendChild(script);

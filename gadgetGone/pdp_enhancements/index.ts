@@ -44,6 +44,7 @@ class pdpEnhancements {
       this.renderNewElemFooter()
       if (this.device === 'mobile') {
         this.renderNewStickyBlock()
+        this.intersectionObserverTradeInBtn()
       }
       this.visibleHandler()
     })
@@ -166,8 +167,8 @@ class pdpEnhancements {
             $el('.device_price_wrapper')?.appendChild(clonedNodePlaceholdePrice)
           }
         })
-        waitForElement('.woocommerce-variation-price').then(i => {
-          let clonedNodeVariationPrice = $el('.woocommerce-variation-price').cloneNode(true)
+        waitForElement('.add-to-cart-block .woocommerce-variation-price').then(i => {
+          let clonedNodeVariationPrice = $el('.add-to-cart-block .woocommerce-variation-price').cloneNode(true)
           if (!$el('.device_price_wrapper .woocommerce-variation-price')) {
             $el('.device_price_wrapper')?.appendChild(clonedNodeVariationPrice)
           }
@@ -338,6 +339,9 @@ class pdpEnhancements {
                 select.value = value
                 let event = new Event('change', { bubbles: true })
                 select.dispatchEvent(event)
+                // setTimeout(() => {
+                //   el.scrollIntoView({ block: 'center', behavior: 'smooth' })
+                // }, 3000)
               }
             })
             if (el.closest('.pa_condition')) {
@@ -478,6 +482,7 @@ class pdpEnhancements {
     let quantityDisabled = $$el('.ggv2-quantity.ggv2-quantity--disabled')
     let stickyBtn = $el('.new_sticky_block button')
     let stickyDefaultTxt = $el('.new_sticky_block .new_sticky_default_txt')
+    let stickyDefaultPrice = $el('.new_sticky_block .new_sticky_default_price')
 
     if ($el('.woocommerce-variation-add-to-cart .single_add_to_cart_button.button')?.classList.contains('disabled')) {
       woocommerceVariationPrice.forEach(i => {
@@ -506,6 +511,9 @@ class pdpEnhancements {
       if (stickyDefaultTxt && stickyDefaultTxt.classList.contains('is_hidden')) {
         stickyDefaultTxt.classList.remove('is_hidden')
       }
+      if (stickyDefaultPrice && !stickyDefaultPrice.classList.contains('is_hidden')) {
+        stickyDefaultPrice.classList.add('is_hidden')
+      }
     } else {
       placeholderPrice.forEach(i => {
         if (i && !i.classList.contains('is_hidden')) {
@@ -530,12 +538,11 @@ class pdpEnhancements {
       if (stickyBtn && stickyBtn.classList.contains('disabled')) {
         stickyBtn.classList.remove('disabled')
       }
-      if (
-        stickyDefaultTxt &&
-        !stickyDefaultTxt.classList.contains('is_hidden') &&
-        $el('.new_sticky_block .woocommerce-variation-price')
-      ) {
+      if (stickyDefaultTxt && !stickyDefaultTxt.classList.contains('is_hidden')) {
         stickyDefaultTxt.classList.add('is_hidden')
+      }
+      if (stickyDefaultPrice && stickyDefaultPrice.classList.contains('is_hidden')) {
+        stickyDefaultPrice.classList.remove('is_hidden')
       }
     }
   }
@@ -544,20 +551,29 @@ class pdpEnhancements {
       $el('body').insertAdjacentHTML('afterbegin', newStickyBlock)
     }
     let w = setInterval(() => {
-      if ($el('.new_sticky_block')) {
+      if ($el('.new_sticky_block') && $el('.device_price_wrapper > .woocommerce-variation-price bdi')) {
         clearInterval(w)
-
-        let s = setInterval(() => {
-          if ($el('.woocommerce-variation-price')) {
-            clearInterval(s)
-            let clonedNodePriceValue = $el('.woocommerce-variation-price')?.cloneNode(true)
-            if (!$el('.new_sticky_block .woocommerce-variation-price')) {
-              $el('.new_sticky_block')?.appendChild(clonedNodePriceValue)
-            }
-          }
-        }, 100)
+        let priceValue = $el('.device_price_wrapper > .woocommerce-variation-price bdi').textContent
+        $el('.new_sticky_block .new_sticky_default_price h4').textContent = 'Device Value'
+        $el('.new_sticky_block .new_sticky_default_price span').textContent = priceValue
+        $el('.new_sticky_block .new_sticky_default_price p').textContent = ''
       }
     }, 100)
+  }
+  intersectionObserverTradeInBtn() {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          $el('.new_sticky_block').classList.add('show')
+        } else {
+          if ($el('.new_sticky_block').classList.contains('show')) {
+            $el('.new_sticky_block').classList.remove('show')
+          }
+        }
+      })
+    })
+
+    observer.observe($el('.single_add_to_cart_button'))
   }
   renderHowItWorksSection(): void {
     if (!$el('#howItWorksSection')) {
@@ -616,23 +632,19 @@ class pdpEnhancements {
       'Step 3: Device Details Social Trust Section'
     )
     visibilityOfTime(
-      '#reviewsBlock',
-      'exp_pdp_improve_section_02',
-      'Section',
-      'Step 3: Device Details Social Trust Section'
-    )
-    visibilityOfTime(
       '#howItWorksSection',
       'exp_pdp_improve_section_03',
       'Section',
       'Step 3: Device Details How it works'
     )
-    visibilityOfTime(
-      '#howItWorksSection',
-      'exp_pdp_improve_section_04',
-      'Section',
-      'Step 3: Device Details Frequently Asked Questions'
-    )
+    waitForElement('#frequentlyAskedQuestionSection').then(i => {
+      visibilityOfTime(
+        '#frequentlyAskedQuestionSection',
+        'exp_pdp_improve_section_04',
+        'Section',
+        'Step 3: Device Details Frequently Asked Questions'
+      )
+    })
   }
 }
 new pdpEnhancements(device)

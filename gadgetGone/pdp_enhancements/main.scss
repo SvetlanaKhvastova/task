@@ -732,6 +732,15 @@ footer[role='contentinfo'] #seo-nav li:after {
       }
     }
   }
+  @media (max-width: 376px) {
+    &.pa_carrier {
+      & .radio_option_wrapp {
+        & label {
+          width: 46%;
+        }
+      }
+    }
+  }
 }
 // conditionBlock
 #conditionBlock {
@@ -1037,6 +1046,10 @@ footer[role='contentinfo'] #seo-nav li:after {
             line-height: 24px;
             margin: 0;
             & a {
+              &:hover {
+                border: none !important;
+              }
+              border: unset !important;
               color: #0092e6;
               font-weight: 700;
               text-decoration-line: underline;
@@ -1089,6 +1102,12 @@ body {
   justify-content: space-between;
   gap: 16px;
   z-index: 100;
+  transition: bottom 0.3s ease;
+  &.show {
+    bottom: -60px;
+    opacity: 0;
+    pointer-events: none;
+  }
   & .new_sticky_default_txt {
     color: #757575;
     font-size: 14px;
@@ -1119,19 +1138,33 @@ body {
       background: #858d92;
     }
   }
-  & .woocommerce-variation-price h4 {
-    font-size: 14px !important;
-    font-weight: 600 !important;
-    line-height: 12px !important;
-    margin-bottom: 8px !important;
-  }
-  & .woocommerce-Price-amount.amount {
-    font-size: 22px !important;
-    line-height: 20px !important;
-  }
-  & .woocommerce-variation-price {
-    min-width: 143px;
-    text-align: center;
+  & .new_sticky_default_price {
+    & > div {
+      min-width: 143px;
+      text-align: center;
+    }
+    &.is_hidden {
+      display: none;
+    }
+    h4 {
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      line-height: 12px !important;
+      margin-bottom: 8px !important;
+    }
+    & span {
+      color: #63dd1a;
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 20px;
+    }
+    & p {
+      color: #757575;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 24px;
+      margin: 0;
+    }
   }
 }
 //loader
