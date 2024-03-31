@@ -493,6 +493,11 @@ main.main p {
 #preliminary-information a {
   color: #5c51a5;
 }
+#preliminary-information img {
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 20px;
+}
 #research-insights .ordered-list p a {
   text-decoration: underline;
 }
@@ -811,6 +816,9 @@ main.main p {
   }
   .unordered-list.clr-bullets {
     max-width: 350px;
+  }
+  #preliminary-information img {
+    max-height: 150px;
   }
 }
 @media (max-width: 990px) {

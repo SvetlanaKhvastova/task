@@ -453,6 +453,11 @@ footer[role=contentinfo] #seo-nav li:after {
     max-width: 115px;
   }
 }
+@media (min-width: 1290px) and (max-width: 1534px) {
+  .variations {
+    max-width: 57% !important;
+  }
+}
 @media (max-width: 376px) {
   .single_variation_wrap .single_variation_wrap--inner .variation-description-overview-placeholder,
   .woocommerce-variation.single_variation {
@@ -1063,7 +1068,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  z-index: 100;
+  z-index: 15;
   transition: bottom 0.3s ease;
 }
 .new_sticky_block.show {

@@ -625,12 +625,14 @@ class pdpEnhancements {
       'Step 3: Device Details Offer Summary'
     )
     visibilityOfTime('.variations', 'exp_pdp_improve_section_01', 'Section', 'Step 3: Device Details')
-    visibilityOfTime(
-      '#reviewsBlock',
-      'exp_pdp_improve_section_02',
-      'Section',
-      'Step 3: Device Details Social Trust Section'
-    )
+    waitForElement('#reviewsBlock').then(i => {
+      visibilityOfTime(
+        '#reviewsBlock',
+        'exp_pdp_improve_section_02',
+        'Section',
+        'Step 3: Device Details Social Trust Section'
+      )
+    })
     visibilityOfTime(
       '#howItWorksSection',
       'exp_pdp_improve_section_03',

@@ -313,6 +313,11 @@ let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/sunvalue/solar_savings.js";
 script.async = false;
 document.head.appendChild(script);
+//
+let script = document.createElement("script");
+script.src = "https://conversionratestore.github.io/projects/sunvalue/solar_savings_v2.js";
+script.async = false;
+document.head.appendChild(script);
 //lemieux
 let script = document.createElement("script");
 script.src = "";
@@ -323,3 +328,4 @@ let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/gadgetgone/pdp_enhancements.js";
 script.async = false;
 document.head.appendChild(script);
+//
