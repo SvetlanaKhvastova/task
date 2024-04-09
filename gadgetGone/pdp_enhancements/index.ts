@@ -251,6 +251,10 @@ class pdpEnhancements {
     waitForElement('#pa_controller-count').then(i => {
       this.renderInputs('#pa_controller-count')
     })
+    // pa_case-included
+    waitForElement('#pa_case-included').then(i => {
+      this.renderInputs('#pa_case-included')
+    })
     //   pa_condition
     waitForElement('#pa_condition').then(i => {
       this.renderInputs('#pa_condition')
@@ -298,6 +302,13 @@ class pdpEnhancements {
   }
 
   onClickElems() {
+    $('body').on('found_variation', function (e) {
+      if ($(window).width() < 1200) {
+        setTimeout(function () {
+          $('html, body').stop()
+        }, 1050)
+      }
+    })
     //   clear form
     let waitForClearFormBlock = setInterval(() => {
       if ($el('.clear_form_block')) {

@@ -503,7 +503,8 @@ footer[role='contentinfo'] #seo-nav li:after {
       &[for='choose_opt_display_resolution'],
       &[for='choose_opt_case_size'],
       &[for='choose_opt_case_type'],
-      &[for='choose_opt_how_many_original_controllers'] {
+      &[for='choose_opt_how_many_original_controllers'],
+      &[for='choose_opt_case_included'] {
         display: none;
       }
       & .radio_txt_box {
