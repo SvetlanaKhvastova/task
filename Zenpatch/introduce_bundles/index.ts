@@ -2,6 +2,7 @@ import { startLog, $el, $$el, waitForElement, loadScriptsOrStyles, visibilityOfT
 // @ts-ignore
 import mainStyle from './main.css?raw'
 import { newBundleItem } from './blocks'
+import { git } from './data'
 
 startLog({ name: 'Introduce bundle on the page', dev: 'SKh' })
 const device = window.innerWidth < 768 ? 'mobile' : 'desktop'
@@ -18,9 +19,10 @@ class introduceBundle {
     if (this.device === 'mobile') {
       document.head.insertAdjacentHTML(
         'beforeend',
-        `<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">`
+        `<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Noto+Sans+SC:wght@100..900&family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">`
       )
       document.head.insertAdjacentHTML('beforeend', `<style>${mainStyle}</style>`)
+      this.replaceElemsSlideInCart()
       this.renderNewBundleItem()
       this.addClickOldPaksHandler()
       this.addClickBtnsOpenSlideInCartHandler()
@@ -28,13 +30,50 @@ class introduceBundle {
         this.initTooltip()
         this.addClickNewBundleHandlers()
       })
+      this.addClassScrollBlock()
+
+      window.addEventListener('resize', () => {
+        this.getHeightSlideInCartScroll()
+      })
     }
   }
 
+  replaceElemsSlideInCart() {
+    $el('#cons').insertAdjacentHTML(
+      'afterbegin',
+      `<div id="slideInCartScroll"><div class="scroll_wrapper"></div></div>`
+    )
+    $el('#cons').insertAdjacentHTML('afterbegin', `<div id="slideInCartHeader"></div>`)
+    $el('#cons').insertAdjacentHTML('beforeend', `<div id="slideInCartFooter"></div>`)
+
+    waitForElement('#slideInCartHeader').then(i => {
+      $el('#slideInCartHeader').insertAdjacentElement('afterbegin', $el('#cons .title-logo'))
+    })
+    waitForElement('#slideInCartScroll').then(i => {
+      $el('#slideInCartScroll .scroll_wrapper').insertAdjacentElement('beforeend', $el('#cons .magicpatch-packs'))
+    })
+
+    waitForElement('#slideInCartFooter').then(i => {
+      $el('#slideInCartFooter').insertAdjacentElement('afterbegin', $el('#cons .view-prices'))
+      $el('#slideInCartFooter').insertAdjacentElement('beforeend', $el('#cons .reviews-slide'))
+    })
+    $$el('.reviews-slide img').forEach(i => {
+      i.src = `${git}/img/new_logos.png`
+    })
+    $$el('.close-btn').forEach(i => {
+      i.src = `${git}/img/close_icon.svg`
+    })
+    //
+    $$el('.np-one-pack').forEach(t => {
+      t.innerHTML =
+        'Select 2, 3 or 4 packs to subscribe with an <b>extra 15% off</b> - <span>save time and money</span>'
+    })
+  }
   renderNewBundleItem() {
     $$el('.list-packs.list-packs-3').forEach(pack => {
       if (!pack.nextElementSibling.classList.contains('list-packs-bundle')) {
         pack.insertAdjacentHTML('afterend', newBundleItem)
+        this.getHeightSlideInCartScroll()
       }
     })
   }
@@ -44,6 +83,9 @@ class introduceBundle {
         if (!pack.classList.contains('list-packs-bundle')) {
           this.removeOrChangeElems()
         }
+        setTimeout(() => {
+          this.getHeightSlideInCartScroll()
+        }, 500)
       })
     })
   }
@@ -51,6 +93,7 @@ class introduceBundle {
     $$el('#open').forEach(pack => {
       pack.addEventListener('click', () => {
         this.removeOrChangeElems()
+        this.getHeightSlideInCartScroll()
       })
     })
   }
@@ -166,7 +209,9 @@ class introduceBundle {
     })
       .then(response => {
         response.json()
-        window.location.href = '/checkout'
+        setTimeout(() => {
+          window.location.href = '/checkout'
+        }, 300)
       })
       .catch(error => {
         console.error('Error:', error)
@@ -209,6 +254,21 @@ class introduceBundle {
         })
       }
     }, 100)
+  }
+  addClassScrollBlock() {
+    $$el('[for="rtxSubscribe"]')?.forEach(el => {
+      el.addEventListener('click', () => {
+        this.getHeightSlideInCartScroll()
+      })
+    })
+  }
+  getHeightSlideInCartScroll() {
+    waitForElement('#slideInCartScroll').then(i => {
+      console.log('slideInCartScroll!!!!!!!!!!!!!!!!!!')
+      $el('#slideInCartScroll').style.maxHeight = `${
+        $el('#cons')?.clientHeight - $el('#slideInCartFooter')?.clientHeight + 12
+      }px`
+    })
   }
 }
 
