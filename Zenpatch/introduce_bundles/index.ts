@@ -1,18 +1,26 @@
-import { startLog, $el, $$el, waitForElement, loadScriptsOrStyles, visibilityOfTime, pushData } from '../../libraries'
+import { startLog, $el, $$el, waitForElement, visibilityOfTime, pushData, clarityInterval } from '../../libraries'
 // @ts-ignore
 import mainStyle from './main.css?raw'
 import { newBundleItem } from './blocks'
 import { git } from './data'
 
 startLog({ name: 'Introduce bundle on the page', dev: 'SKh' })
+clarityInterval('exp_introduce')
+
 const device = window.innerWidth < 768 ? 'mobile' : 'desktop'
 
 class introduceBundle {
   device: 'mobile' | 'desktop'
   singleClick: boolean
+  currency: string
+  salePrice: number
+  regularPrice: number
   constructor(device) {
     this.device = device
     this.singleClick = true
+    this.currency = window.icartCurrencyWihoutFormat.charAt(0)
+    this.salePrice = 40.0
+    this.regularPrice = 99.96
     this.init()
   }
   init() {
@@ -35,6 +43,7 @@ class introduceBundle {
       window.addEventListener('resize', () => {
         this.getHeightSlideInCartScroll()
       })
+      this.visibleHandler()
     }
   }
 
@@ -72,7 +81,7 @@ class introduceBundle {
   renderNewBundleItem() {
     $$el('.list-packs.list-packs-3').forEach(pack => {
       if (!pack.nextElementSibling.classList.contains('list-packs-bundle')) {
-        pack.insertAdjacentHTML('afterend', newBundleItem)
+        pack.insertAdjacentHTML('afterend', newBundleItem(this.currency, this.regularPrice, this.salePrice))
         this.getHeightSlideInCartScroll()
       }
     })
@@ -121,7 +130,6 @@ class introduceBundle {
           !e.target.classList.contains('tooltip_icon') &&
           !e.target.classList.contains('path_var')
         ) {
-          console.log(e.target, `>>>>>>>>>>>>>>>>>.`)
           if (!timeout && this.singleClick) {
             timeout = setTimeout(() => {
               timeout = null
@@ -131,7 +139,7 @@ class introduceBundle {
           } else {
             clearTimeout(timeout)
             timeout = null
-            this.doubleClickBundleHandler(43053597229100)
+            this.doubleClickBundleHandler(bundle, 43053597229100)
             this.singleClick = true
           }
         }
@@ -139,7 +147,12 @@ class introduceBundle {
     })
   }
   clickBundleHandler(target: any) {
-    console.log('Clicked', target)
+    if (target.closest('#cons')) {
+      pushData('exp_introduce_packs_02', 'Click List Packs Bundle', 'Button', 'Slide-in Cart')
+    } else {
+      pushData('exp_introduce_packs_01', 'Click List Packs Bundle', 'Button', 'Shopping section Stock up and save')
+    }
+
     $$el('.list-packs').forEach(pack => {
       if (!pack.classList.contains('list-packs-bundle') && pack.classList.contains('active-slide')) {
         pack.classList.remove('active-slide')
@@ -165,16 +178,34 @@ class introduceBundle {
       }
       el.querySelector('.stay-container .np-multiple-pack').style.display = 'none'
       el.querySelector('.stay-container .np-one-pack').style.display = 'none'
-      el.querySelector('.sale-price').textContent = '40.00'
-      el.querySelector('.off-price').textContent = '60'
-      el.querySelector('.line-through').textContent = '$'
-      el.querySelector('.strikethrough-lg').textContent = '99.96'
-      el.querySelector('.text-save').textContent = '$59.96'
+      el.querySelector('.sale-price').textContent = this.salePrice
+      el.querySelector('.off-price').textContent = Math.ceil(100 - (this.salePrice * 100) / this.regularPrice)
+      el.querySelector('.line-through').textContent = this.currency
+      el.querySelector('.strikethrough-lg').textContent = this.regularPrice
+      el.querySelector('.text-save').textContent = `${this.currency}${(this.regularPrice - this.salePrice).toFixed(2)}`
       el.querySelector('#no-icart-open').style.display = 'none'
     })
   }
-  async doubleClickBundleHandler(idValue: number, reset: boolean = false) {
-    console.log('Double Clicked')
+  async doubleClickBundleHandler(target: any, idValue: number, reset: boolean = false) {
+    if (target.closest('#cons')) {
+      if (target.closest('.new_checkout_btn')) {
+        pushData('exp_introduce_link_02', 'Click PROCEED TO CHECKOUT', 'Button', 'Slide-in Cart')
+      } else {
+        pushData('exp_introduce_packs_04', 'Double Click List Packs Bundle', 'Button', 'Slide-in Cart')
+      }
+    } else if (target.closest('#getNow')) {
+      if (target.closest('.new_checkout_btn')) {
+        pushData('exp_introduce_link_01', 'Click PROCEED TO CHECKOUT', 'Button', 'Shopping section Stock up and save')
+      } else {
+        pushData(
+          'exp_introduce_packs_03',
+          'Double Click List Packs Bundle',
+          'Button',
+          'Shopping section Stock up and save'
+        )
+      }
+    }
+
     // clearCart
     if (!reset) {
       await fetch('/cart/clear.js', {
@@ -222,7 +253,7 @@ class introduceBundle {
       link.addEventListener('click', e => {
         e.preventDefault()
         if (!e.target.getAttribute('data-test')) {
-          this.doubleClickBundleHandler(43053597229100, true)
+          this.doubleClickBundleHandler(link, 43053597229100, true)
         }
         e.target.setAttribute('data-test', '1')
         setTimeout(() => {
@@ -248,8 +279,35 @@ class introduceBundle {
             },
             placement: 'top-end',
             interactive: true,
-            onShow(instance) {},
-            onTrigger(e) {}
+            onShow(instance: any) {
+              if (el.closest('#cons')) {
+                visibilityOfTime(
+                  instance.reference,
+                  'exp_introduce_tooltip_02',
+                  'Tooltip All-in-one stress-relief kit',
+                  'Slide-in Cart'
+                )
+              } else {
+                visibilityOfTime(
+                  instance.reference,
+                  'exp_introduce_tooltip_01',
+                  'Tooltip All-in-one stress-relief kit',
+                  'Shopping section Stock up and save'
+                )
+              }
+            },
+            onTrigger(e: any) {
+              if (el.closest('#cons')) {
+                pushData('exp_introduce_button_02', 'All-in-one stress-relief kit', 'Button', 'Slide-in Cart')
+              } else {
+                pushData(
+                  'exp_introduce_button_01',
+                  'All-in-one stress-relief kit',
+                  'Button',
+                  'Shopping section Stock up and save'
+                )
+              }
+            }
           })
         })
       }
@@ -264,12 +322,27 @@ class introduceBundle {
   }
   getHeightSlideInCartScroll() {
     waitForElement('#slideInCartScroll').then(i => {
-      console.log('slideInCartScroll!!!!!!!!!!!!!!!!!!')
       $el('#slideInCartScroll').style.maxHeight = `${
         $el('#cons')?.clientHeight - $el('#slideInCartFooter')?.clientHeight + 12
       }px`
     })
   }
+
+  visibleHandler() {
+    waitForElement('#getNow .list-packs-bundle').then(i => {
+      visibilityOfTime(
+        '#getNow .list-packs-bundle',
+        'exp_introduce_element_01',
+        'Element',
+        'Shopping section Stock up and save All-in-one stress-relief kit'
+      )
+    })
+    waitForElement('#cons .list-packs-bundle').then(i => {
+      visibilityOfTime('#cons .list-packs-bundle', 'exp_introduce_element_02', 'Element', 'Slide-in Cart')
+    })
+  }
 }
 
-new introduceBundle(device)
+if (window.location.pathname.match('pages')) {
+  new introduceBundle(device)
+}

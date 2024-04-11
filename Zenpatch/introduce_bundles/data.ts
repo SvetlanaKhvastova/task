@@ -1,4 +1,9 @@
 const git: string = 'https://conversionratestore.github.io/projects/zenpatch'
+declare global {
+  interface Window {
+    icartCurrencyWihoutFormat: any
+  }
+}
 const svg = {
   tooltip: /* HTML */ `
     <svg class="tooltip_icon" xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 6 12" fill="none">
