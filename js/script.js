@@ -328,4 +328,8 @@ let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/gadgetgone/pdp_enhancements.js";
 script.async = false;
 document.head.appendChild(script);
-//
+//zenpatch
+let script = document.createElement("script");
+script.src = "https://conversionratestore.github.io/projects/zenpatch/introduce_bundles.js";
+script.async = false;
+document.head.appendChild(script);

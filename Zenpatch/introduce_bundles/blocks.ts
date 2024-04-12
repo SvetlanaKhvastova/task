@@ -13,19 +13,13 @@ const newBundleItem = (currency: string, regularPrice: number, salePrice: number
           <p class="pcs pcs-bundle">3 Packs + 24 Bedtime Stickers</p>
           <div class="before-after-prices">
             <p class="strikethrough">
-              <span
-                class="reg-price-bundle"
-                data-price="${regularPrice.toFixed(2)}"
-                data-subscription-price="${regularPrice.toFixed(2)}"
-                >${currency}${regularPrice.toFixed(2)}</span
+              <span class="reg-price-bundle" data-price="${regularPrice}" data-subscription-price="${regularPrice}"
+                >${currency}${regularPrice}</span
               >
             </p>
             <p class="after-price">
-              <span
-                class="save-price-bundle"
-                data-price="${salePrice.toFixed(2)}"
-                data-subscription-price="${salePrice.toFixed(2)}"
-                >${currency}${salePrice.toFixed(2)}</span
+              <span class="save-price-bundle" data-price="${salePrice}" data-subscription-price="${salePrice}"
+                >${currency}${salePrice}</span
               >
             </p>
           </div>

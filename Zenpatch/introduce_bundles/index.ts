@@ -1,4 +1,13 @@
-import { startLog, $el, $$el, waitForElement, visibilityOfTime, pushData, clarityInterval } from '../../libraries'
+import {
+  startLog,
+  $el,
+  $$el,
+  waitForElement,
+  visibilityOfTime,
+  pushData,
+  clarityInterval,
+  loadScriptsOrStyles
+} from '../../libraries'
 // @ts-ignore
 import mainStyle from './main.css?raw'
 import { newBundleItem } from './blocks'
@@ -15,12 +24,16 @@ class introduceBundle {
   currency: string
   salePrice: number
   regularPrice: number
+  offPrice: number
+  savePrice: number
   constructor(device) {
     this.device = device
     this.singleClick = true
-    this.currency = window.icartCurrencyWihoutFormat.charAt(0)
-    this.salePrice = 40.0
-    this.regularPrice = 99.96
+    this.currency = $el('.all-in-one-bundle span').getAttribute('data-currency')
+    this.salePrice = $el('.all-in-one-bundle span').getAttribute('data-price')
+    this.regularPrice = $el('.all-in-one-bundle span').getAttribute('data-price-compare')
+    this.offPrice = $el('.all-in-one-bundle span').getAttribute('data-price-off')
+    this.savePrice = $el('.all-in-one-bundle span').getAttribute('data-price-save')
     this.init()
   }
   init() {
@@ -29,6 +42,7 @@ class introduceBundle {
         'beforeend',
         `<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Noto+Sans+SC:wght@100..900&family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">`
       )
+
       document.head.insertAdjacentHTML('beforeend', `<style>${mainStyle}</style>`)
       this.replaceElemsSlideInCart()
       this.renderNewBundleItem()
@@ -130,6 +144,15 @@ class introduceBundle {
           !e.target.classList.contains('tooltip_icon') &&
           !e.target.classList.contains('path_var')
         ) {
+          $$el('.list-packs').forEach(pack => {
+            if (!pack.classList.contains('list-packs-bundle') && pack.classList.contains('active-slide')) {
+              pack.classList.remove('active-slide')
+            }
+            if (pack.classList.contains('list-packs-bundle')) {
+              pack.classList.add('active-slide')
+            }
+          })
+
           if (!timeout && this.singleClick) {
             timeout = setTimeout(() => {
               timeout = null
@@ -153,15 +176,6 @@ class introduceBundle {
       pushData('exp_introduce_packs_01', 'Click List Packs Bundle', 'Button', 'Shopping section Stock up and save')
     }
 
-    $$el('.list-packs').forEach(pack => {
-      if (!pack.classList.contains('list-packs-bundle') && pack.classList.contains('active-slide')) {
-        pack.classList.remove('active-slide')
-      }
-      if (pack.classList.contains('list-packs-bundle')) {
-        pack.classList.add('active-slide')
-      }
-    })
-
     $$el('.view-prices').forEach(el => {
       if (!el.querySelector('.info_subscription')) {
         el.querySelector('.stay-container').insertAdjacentHTML(
@@ -176,14 +190,14 @@ class introduceBundle {
         )
         this.clickNewCheckoutBtnHandler()
       }
+      el.querySelector('#no-icart-open').style.display = 'none'
       el.querySelector('.stay-container .np-multiple-pack').style.display = 'none'
       el.querySelector('.stay-container .np-one-pack').style.display = 'none'
       el.querySelector('.sale-price').textContent = this.salePrice
-      el.querySelector('.off-price').textContent = Math.ceil(100 - (this.salePrice * 100) / this.regularPrice)
+      el.querySelector('.off-price').textContent = this.offPrice
       el.querySelector('.line-through').textContent = this.currency
       el.querySelector('.strikethrough-lg').textContent = this.regularPrice
-      el.querySelector('.text-save').textContent = `${this.currency}${(this.regularPrice - this.salePrice).toFixed(2)}`
-      el.querySelector('#no-icart-open').style.display = 'none'
+      el.querySelector('.text-save').textContent = `${this.currency}${this.savePrice}`
     })
   }
   async doubleClickBundleHandler(target: any, idValue: number, reset: boolean = false) {
@@ -242,7 +256,7 @@ class introduceBundle {
         response.json()
         setTimeout(() => {
           window.location.href = '/checkout'
-        }, 300)
+        }, 400)
       })
       .catch(error => {
         console.error('Error:', error)
@@ -265,53 +279,110 @@ class introduceBundle {
     })
   }
   initTooltip() {
-    let s = setInterval(() => {
-      if (typeof tippy === 'function') {
-        clearInterval(s)
-        $$el('[data-tooltip]').forEach(el => {
-          tippy(el, {
-            content: el.getAttribute('data-title'),
-            trigger: 'click',
-            arrow: true,
-            arrowType: 'round',
-            appendTo: function () {
-              return el.closest('li')
-            },
-            placement: 'top-end',
-            interactive: true,
-            onShow(instance: any) {
-              if (el.closest('#cons')) {
-                visibilityOfTime(
-                  instance.reference,
-                  'exp_introduce_tooltip_02',
-                  'Tooltip All-in-one stress-relief kit',
-                  'Slide-in Cart'
-                )
-              } else {
-                visibilityOfTime(
-                  instance.reference,
-                  'exp_introduce_tooltip_01',
-                  'Tooltip All-in-one stress-relief kit',
-                  'Shopping section Stock up and save'
-                )
+    // loadScriptsOrStyles(['https://unpkg.com/popper.js@1', 'https://unpkg.com/tippy.js@5']).then(async () => {
+    //   let s = setInterval(() => {
+    //     if (typeof tippy === 'function') {
+    //       clearInterval(s)
+    //       console.log(`>>>>>>>>>>>>>>>>>>>>>>.`)
+    //       $$el('[data-tooltip]').forEach(el => {
+    //         tippy(el, {
+    //           content: el.getAttribute('data-title'),
+    //           trigger: 'click',
+    //           arrow: true,
+    //           arrowType: 'round',
+    //           appendTo: function () {
+    //             return el.closest('li')
+    //           },
+    //           placement: 'top-end',
+    //           interactive: true,
+    //           onShow(instance: any) {
+    //             if (el.closest('#cons')) {
+    //               visibilityOfTime(
+    //                 instance.reference,
+    //                 'exp_introduce_tooltip_02',
+    //                 'Tooltip All-in-one stress-relief kit',
+    //                 'Slide-in Cart'
+    //               )
+    //             } else {
+    //               visibilityOfTime(
+    //                 instance.reference,
+    //                 'exp_introduce_tooltip_01',
+    //                 'Tooltip All-in-one stress-relief kit',
+    //                 'Shopping section Stock up and save'
+    //               )
+    //             }
+    //           },
+    //           onTrigger(e: any) {
+    //             if (el.closest('#cons')) {
+    //               pushData('exp_introduce_button_02', 'All-in-one stress-relief kit', 'Button', 'Slide-in Cart')
+    //             } else {
+    //               pushData(
+    //                 'exp_introduce_button_01',
+    //                 'All-in-one stress-relief kit',
+    //                 'Button',
+    //                 'Shopping section Stock up and save'
+    //               )
+    //             }
+    //           }
+    //         })
+    //       })
+    //     }
+    //   }, 100)
+    // })
+    loadScriptsOrStyles([
+      'https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.js',
+      'https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js'
+    ]).then(async () => {
+      let s = setInterval(() => {
+        if (typeof tippy === 'function') {
+          clearInterval(s)
+          console.log(`>>>>>>>>>>>>>>>>>>>>>>.`)
+          $$el('[data-tooltip]').forEach(el => {
+            tippy(el, {
+              content: el.getAttribute('data-title'),
+              trigger: 'click',
+              allowHTML: true,
+              arrow: true,
+              arrowType: 'round',
+              appendTo: function () {
+                return el.closest('li')
+              },
+              placement: 'top-end',
+              interactive: true,
+              onShow(instance: any) {
+                if (el.closest('#cons')) {
+                  visibilityOfTime(
+                    instance.reference,
+                    'exp_introduce_tooltip_02',
+                    'Tooltip All-in-one stress-relief kit',
+                    'Slide-in Cart'
+                  )
+                } else {
+                  visibilityOfTime(
+                    instance.reference,
+                    'exp_introduce_tooltip_01',
+                    'Tooltip All-in-one stress-relief kit',
+                    'Shopping section Stock up and save'
+                  )
+                }
+              },
+              onTrigger(e: any) {
+                if (el.closest('#cons')) {
+                  pushData('exp_introduce_button_02', 'All-in-one stress-relief kit', 'Button', 'Slide-in Cart')
+                } else {
+                  pushData(
+                    'exp_introduce_button_01',
+                    'All-in-one stress-relief kit',
+                    'Button',
+                    'Shopping section Stock up and save'
+                  )
+                }
               }
-            },
-            onTrigger(e: any) {
-              if (el.closest('#cons')) {
-                pushData('exp_introduce_button_02', 'All-in-one stress-relief kit', 'Button', 'Slide-in Cart')
-              } else {
-                pushData(
-                  'exp_introduce_button_01',
-                  'All-in-one stress-relief kit',
-                  'Button',
-                  'Shopping section Stock up and save'
-                )
-              }
-            }
+            })
           })
-        })
-      }
-    }, 100)
+        }
+      }, 100)
+    })
   }
   addClassScrollBlock() {
     $$el('[for="rtxSubscribe"]')?.forEach(el => {
@@ -343,6 +414,8 @@ class introduceBundle {
   }
 }
 
-if (window.location.pathname.match('pages')) {
-  new introduceBundle(device)
-}
+waitForElement('.all-in-one-bundle').then(i => {
+  if (window.location.pathname.match('pages')) {
+    new introduceBundle(device)
+  }
+})
