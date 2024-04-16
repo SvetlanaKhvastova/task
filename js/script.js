@@ -315,6 +315,11 @@ script.async = false;
 document.head.appendChild(script);
 //
 let script = document.createElement("script");
+script.src = "https://conversionratestore.github.io/projects/sunvalue/solar_savings_v3.js";
+script.async = false;
+document.head.appendChild(script);
+//
+let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/sunvalue/solar_savings_v2.js";
 script.async = false;
 document.head.appendChild(script);

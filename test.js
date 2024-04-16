@@ -431,3 +431,76 @@ async function getCartCheckout() {
       console.error("Error:", error);
     });
 }
+
+//Glide
+function initGlideSlider() {
+  loadScriptsOrStyles(["https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/css/glide.core.min.css", "https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/glide.min.js"]).then(() => {
+    const waitForEl = setInterval(() => {
+      if (typeof Glide !== "undefined" && document.querySelector(".glide")) {
+        clearInterval(waitForEl);
+
+        new Glide(".glide", {
+          type: "carousel",
+          startAt: 0,
+          perView: 2,
+          focusAt: "center",
+
+          keyboard: false,
+          bound: true,
+          rewind: true,
+
+          controls: {
+            prev: ".glide__arrow--left",
+            next: ".glide__arrow--right",
+          },
+          breakpoints: {
+            768: {
+              perView: 1.6,
+            },
+          },
+        }).mount();
+
+        const waitForArrows = setInterval(() => {
+          const prevButton = document.querySelector(".glide__arrow--left");
+          const nextButton = document.querySelector(".glide__arrow--right");
+          const glide = document.querySelector(".glide");
+
+          if (prevButton && nextButton) {
+            console.log("Arrows are ready");
+
+            clearInterval(waitForArrows);
+
+            glide.addEventListener("click", (e) => {
+              console.log(e.target);
+
+              if (e.target.closest(".swiper-button-prev-mob")) {
+                prevButton.dispatchEvent(new Event("click"));
+              }
+              if (e.target.closest(".swiper-button-next-mob")) {
+                nextButton.dispatchEvent(new Event("click"));
+              }
+            });
+          }
+        }, WAIT_INTERVAL_TIMEOUT);
+      }
+    }, WAIT_INTERVAL_TIMEOUT);
+  });
+}
+{
+  /* <div class="glide">
+        <div class="glide__track" data-glide-el="track">
+          <ul class="glide__slides">
+            ${slides}
+          </ul>
+        </div>
+
+        <div class="glide__arrows" data-glide-el="controls">
+          <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+            <img src="${dir}/arrow-l.svg" alt="arrow left">
+          </button>
+          <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
+            <img src="${dir}/arrow-r.svg" alt="arrow right">
+          </button>
+        </div>
+      </div> */
+}
