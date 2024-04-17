@@ -26,6 +26,7 @@ class introduceBundle {
   regularPrice: number
   offPrice: number
   savePrice: number
+  observer: null | MutationObserver
   constructor(device) {
     this.device = device
     this.singleClick = true
@@ -34,6 +35,7 @@ class introduceBundle {
     this.regularPrice = $el('.all-in-one-bundle span').getAttribute('data-price-compare')
     this.offPrice = $el('.all-in-one-bundle span').getAttribute('data-price-off')
     this.savePrice = $el('.all-in-one-bundle span').getAttribute('data-price-save')
+    this.observer = null
     this.init()
   }
   init() {
@@ -58,13 +60,14 @@ class introduceBundle {
         this.getHeightSlideInCartScroll()
       })
       this.visibleHandler()
+      this.initCustomScrollBar()
     }
   }
 
   replaceElemsSlideInCart() {
     $el('#cons').insertAdjacentHTML(
       'afterbegin',
-      `<div id="slideInCartScroll"><div class="scroll_wrapper"></div></div>`
+      `<div id="slideInCartScroll"><div class="scroll_wrapper"></div><div class="new_scroll_bar"><div class="new_thumb"></div></div></div>`
     )
     $el('#cons').insertAdjacentHTML('afterbegin', `<div id="slideInCartHeader"></div>`)
     $el('#cons').insertAdjacentHTML('beforeend', `<div id="slideInCartFooter"></div>`)
@@ -115,8 +118,11 @@ class introduceBundle {
   addClickBtnsOpenSlideInCartHandler() {
     $$el('#open').forEach(pack => {
       pack.addEventListener('click', () => {
+        $el('html').classList.add('is_open')
+        document.documentElement.style.overflow = 'hidden'
         this.removeOrChangeElems()
         this.getHeightSlideInCartScroll()
+        this.changeActiveClassHtml()
       })
     })
   }
@@ -133,6 +139,7 @@ class introduceBundle {
     })
   }
   addClickNewBundleHandlers() {
+    console.log(`addClickNewBundleHandlers`)
     const elements = $$el('.list-packs-bundle')
 
     let timeout: any
@@ -144,14 +151,15 @@ class introduceBundle {
           !e.target.classList.contains('tooltip_icon') &&
           !e.target.classList.contains('path_var')
         ) {
-          $$el('.list-packs').forEach(pack => {
-            if (!pack.classList.contains('list-packs-bundle') && pack.classList.contains('active-slide')) {
-              pack.classList.remove('active-slide')
-            }
-            if (pack.classList.contains('list-packs-bundle')) {
-              pack.classList.add('active-slide')
-            }
-          })
+          // $$el('.list-packs').forEach(pack => {
+          //   if (!pack.classList.contains('list-packs-bundle') && pack.classList.contains('active-slide')) {
+          //     pack.classList.remove('active-slide')
+          //   }
+          //   if (pack.classList.contains('list-packs-bundle')) {
+          //     pack.classList.add('active-slide')
+          //     console.log(`list-packs-bundle, .add('active-slide')`)
+          //   }
+          // })
 
           if (!timeout && this.singleClick) {
             timeout = setTimeout(() => {
@@ -170,6 +178,16 @@ class introduceBundle {
     })
   }
   clickBundleHandler(target: any) {
+    $$el('.list-packs').forEach(pack => {
+      if (!pack.classList.contains('list-packs-bundle') && pack.classList.contains('active-slide')) {
+        pack.classList.remove('active-slide')
+      }
+      if (pack.classList.contains('list-packs-bundle')) {
+        pack.classList.add('active-slide')
+        console.log(`list-packs-bundle, .add('active-slide')`)
+      }
+    })
+
     if (target.closest('#cons')) {
       pushData('exp_introduce_packs_02', 'Click List Packs Bundle', 'Button', 'Slide-in Cart')
     } else {
@@ -201,6 +219,16 @@ class introduceBundle {
     })
   }
   async doubleClickBundleHandler(target: any, idValue: number, reset: boolean = false) {
+    $$el('.list-packs').forEach(pack => {
+      if (!pack.classList.contains('list-packs-bundle') && pack.classList.contains('active-slide')) {
+        pack.classList.remove('active-slide')
+      }
+      if (pack.classList.contains('list-packs-bundle')) {
+        pack.classList.add('active-slide')
+        console.log(`list-packs-bundle, .add('active-slide')`)
+      }
+    })
+
     if (target.closest('#cons')) {
       if (target.closest('.new_checkout_btn')) {
         pushData('exp_introduce_link_02', 'Click PROCEED TO CHECKOUT', 'Button', 'Slide-in Cart')
@@ -255,8 +283,9 @@ class introduceBundle {
       .then(response => {
         response.json()
         setTimeout(() => {
+          console.log(`Go to checkout !!!!!!!!!!!!!! `)
           window.location.href = '/checkout'
-        }, 400)
+        }, 350)
       })
       .catch(error => {
         console.error('Error:', error)
@@ -279,56 +308,6 @@ class introduceBundle {
     })
   }
   initTooltip() {
-    // loadScriptsOrStyles(['https://unpkg.com/popper.js@1', 'https://unpkg.com/tippy.js@5']).then(async () => {
-    //   let s = setInterval(() => {
-    //     if (typeof tippy === 'function') {
-    //       clearInterval(s)
-    //       console.log(`>>>>>>>>>>>>>>>>>>>>>>.`)
-    //       $$el('[data-tooltip]').forEach(el => {
-    //         tippy(el, {
-    //           content: el.getAttribute('data-title'),
-    //           trigger: 'click',
-    //           arrow: true,
-    //           arrowType: 'round',
-    //           appendTo: function () {
-    //             return el.closest('li')
-    //           },
-    //           placement: 'top-end',
-    //           interactive: true,
-    //           onShow(instance: any) {
-    //             if (el.closest('#cons')) {
-    //               visibilityOfTime(
-    //                 instance.reference,
-    //                 'exp_introduce_tooltip_02',
-    //                 'Tooltip All-in-one stress-relief kit',
-    //                 'Slide-in Cart'
-    //               )
-    //             } else {
-    //               visibilityOfTime(
-    //                 instance.reference,
-    //                 'exp_introduce_tooltip_01',
-    //                 'Tooltip All-in-one stress-relief kit',
-    //                 'Shopping section Stock up and save'
-    //               )
-    //             }
-    //           },
-    //           onTrigger(e: any) {
-    //             if (el.closest('#cons')) {
-    //               pushData('exp_introduce_button_02', 'All-in-one stress-relief kit', 'Button', 'Slide-in Cart')
-    //             } else {
-    //               pushData(
-    //                 'exp_introduce_button_01',
-    //                 'All-in-one stress-relief kit',
-    //                 'Button',
-    //                 'Shopping section Stock up and save'
-    //               )
-    //             }
-    //           }
-    //         })
-    //       })
-    //     }
-    //   }, 100)
-    // })
     loadScriptsOrStyles([
       'https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.js',
       'https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js'
@@ -350,19 +329,20 @@ class introduceBundle {
               placement: 'top-end',
               interactive: true,
               onShow(instance: any) {
+                $el('#slideInCartScroll').classList.add('tooltip_open')
                 if (el.closest('#cons')) {
                   visibilityOfTime(
                     instance.reference,
                     'exp_introduce_tooltip_02',
-                    'Tooltip All-in-one stress-relief kit',
-                    'Slide-in Cart'
+                    'Slide-in Cart',
+                    'Tooltip All-in-one stress-relief kit'
                   )
                 } else {
                   visibilityOfTime(
                     instance.reference,
                     'exp_introduce_tooltip_01',
-                    'Tooltip All-in-one stress-relief kit',
-                    'Shopping section Stock up and save'
+                    'Shopping section Stock up and save',
+                    'Tooltip All-in-one stress-relief kit'
                   )
                 }
               },
@@ -377,6 +357,9 @@ class introduceBundle {
                     'Shopping section Stock up and save'
                   )
                 }
+              },
+              onHide(instance: any) {
+                $el('#slideInCartScroll').classList.toggle('tooltip_open')
               }
             })
           })
@@ -396,26 +379,71 @@ class introduceBundle {
       $el('#slideInCartScroll').style.maxHeight = `${
         $el('#cons')?.clientHeight - $el('#slideInCartFooter')?.clientHeight + 12
       }px`
+
+      // Получите элементы
+      let slideInCartScroll = $el('#slideInCartScroll')
+      let newScrollBar = $el('.new_scroll_bar')
+      let newThumb = $el('.new_thumb')
+
+      newScrollBar.style.maxHeight = `${$el('#cons')?.clientHeight - $el('#slideInCartFooter')?.clientHeight}px`
+
+      // Проверьте, есть ли скролл в slideInCartScroll
+      let hasScroll = slideInCartScroll.scrollHeight > slideInCartScroll.clientHeight
+
+      // Если нет скролла, скройте new_scroll_bar
+      if (!hasScroll) {
+        newScrollBar.style.display = 'none'
+      } else {
+        newScrollBar.style.display = 'block'
+      }
+
+      // Установите высоту newThumb в соответствии с высотой контента и высотой прокрутки
+      let scrollHeight = slideInCartScroll.scrollHeight
+      let clientHeight = slideInCartScroll.clientHeight
+      newThumb.style.height = (clientHeight / scrollHeight) * 100 + '%'
+
+      // Добавьте обработчик события прокрутки
+      slideInCartScroll.addEventListener('scroll', function (e: any) {
+        // Вычислите новую позицию newThumb
+        let scrollTop = slideInCartScroll.scrollTop
+        let thumbHeight = newThumb.offsetHeight
+        let trackHeight = clientHeight - thumbHeight
+        let scrollRatio = scrollTop / (clientHeight - thumbHeight)
+        newThumb.style.top = scrollRatio * trackHeight + 'px'
+      })
     })
   }
-
   visibleHandler() {
     waitForElement('#getNow .list-packs-bundle').then(i => {
       visibilityOfTime(
         '#getNow .list-packs-bundle',
         'exp_introduce_element_01',
-        'Element',
-        'Shopping section Stock up and save All-in-one stress-relief kit'
+        'Shopping section Stock up and save All-in-one stress-relief kit',
+        'Element'
       )
     })
     waitForElement('#cons .list-packs-bundle').then(i => {
-      visibilityOfTime('#cons .list-packs-bundle', 'exp_introduce_element_02', 'Element', 'Slide-in Cart')
+      $el('html').classList.add('is_open')
+      document.documentElement.style.overflow = 'hidden'
+      visibilityOfTime('#cons .list-packs-bundle', 'exp_introduce_element_02', 'Slide-in Cart', 'Element')
     })
   }
+  changeActiveClassHtml() {
+    let t = setInterval(() => {
+      if (!$el('.sidebar').classList.contains('active-sidebar') && $el('html').classList.contains('is_open')) {
+        clearInterval(t)
+        $el('html').classList.remove('is_open')
+        document.documentElement.style.overflow = ''
+      }
+    }, 100)
+  }
+  initCustomScrollBar() {}
 }
 
 waitForElement('.all-in-one-bundle').then(i => {
-  if (window.location.pathname.match('pages')) {
-    new introduceBundle(device)
-  }
+  setTimeout(() => {
+    if (window.location.pathname.match('pages')) {
+      new introduceBundle(device)
+    }
+  }, 1000)
 })

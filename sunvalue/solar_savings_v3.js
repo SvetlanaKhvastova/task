@@ -161,10 +161,10 @@ class changeFlow {
         if (location.pathname === "/save/") {
           this.initMainStyles();
           this.setLocalStorageDataInfo();
-          this.setNameCity();
 
           this.updateRangeSliderSteps();
           this.changeSlidesSteps();
+          this.setNameCity();
           this.onClickYourSavingsBtn();
           this.onClickOldNextBtn();
           this.onClickOldBtnBack();
@@ -339,17 +339,24 @@ class changeFlow {
 
   // change slides Steps
   setLocalStorageDataInfo() {
-    let data = {};
-    data.city = $el(".htitle")?.textContent.split("Solar")[0].trim();
+    let s = setInterval(() => {
+      if ($el(".htitle") && $el(".htitle").textContent !== "") {
+        clearInterval(s);
+        console.log($el(".htitle").textContent);
+        let data = {};
+        data.city = $el(".htitle").textContent.split("Solar")[0].trim();
 
-    localStorage.setItem("crs_data", JSON.stringify(data));
+        localStorage.setItem("crs_data", JSON.stringify(data));
+      }
+    }, 300);
   }
   setNameCity() {
-    const crsData = JSON.parse(localStorage.getItem("crs_data"));
     let t = setInterval(() => {
-      if (crsData) {
+      if (JSON.parse(localStorage.getItem("crs_data")) !== null) {
         clearInterval(t);
+        let crsData = JSON.parse(localStorage.getItem("crs_data"));
         waitForElement("[data-city]").then((el) => {
+          console.log(`data-city]`);
           $$el("[data-city]").forEach((i) => {
             i.textContent = crsData.city;
           });
@@ -396,9 +403,6 @@ class changeFlow {
           element.querySelectorAll(".sub-title").forEach((t) => {
             t.innerHTML = "Enter your house address to find <span data-city></span> Government  Programs";
           });
-          if (element.querySelector('[id="autoaddress"]').placeholder !== "123 Test Street") {
-            element.querySelector('[id="autoaddress"]').placeholder = "123 Test Street";
-          }
         }
         //estimate-shade
         if (element.querySelector('[id="estimate-shade"]')) {
@@ -832,10 +836,6 @@ class changeFlow {
           font-size: 16px;
           font-weight: 400;
           line-height: 24px;
-        }
-        #autoaddress::placeholder {
-          color: #2b3d50;
-          font-weight: 500;
         }
         /*#next-block */
         #next-block {
