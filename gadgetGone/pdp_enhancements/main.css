@@ -1106,6 +1106,9 @@ body {
 .new_sticky_block button.disabled {
   background: #858d92;
 }
+.new_sticky_block button.whmc-spinner::after {
+  right: 24px;
+}
 .new_sticky_block .new_sticky_default_price > div {
   min-width: 143px;
   text-align: center;

@@ -1143,6 +1143,9 @@ body {
     &.disabled {
       background: #858d92;
     }
+    &.whmc-spinner::after {
+      right: 24px;
+    }
   }
   & .new_sticky_default_price {
     & > div {

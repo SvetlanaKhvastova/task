@@ -396,10 +396,13 @@ class pdpEnhancements {
       let waitForStickyBtn = setInterval(() => {
         if ($el('.new_sticky_block button')) {
           clearInterval(waitForStickyBtn)
-          $el('.new_sticky_block button').addEventListener('click', () => {
+          $el('.new_sticky_block button').addEventListener('click', (e: any) => {
             isActive = true
             pushData('exp_pdp_improve_stiky_button_01', 'Trade-In', 'Sticky button', 'Step 3: Device Details')
             $el('.single_variation_wrap .add-to-cart-block > div .single_add_to_cart_button')?.click()
+            if (!e.target.classList.contains('disabled')) {
+              e.target.classList.add('whmc-spinner')
+            }
             setTimeout(() => {
               isActive = false
             }, 1000)

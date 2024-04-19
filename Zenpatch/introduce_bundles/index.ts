@@ -103,6 +103,31 @@ class introduceBundle {
       }
     })
   }
+  renderInfoSubscription() {
+    $$el('.view-prices').forEach(el => {
+      if (!el.querySelector('.info_subscription')) {
+        el.querySelector('.stay-container').insertAdjacentHTML(
+          'beforebegin',
+          `<div class="info_subscription"><p>Subscription is available for 2, 3, or 4 packs of ZenPatch only</p></div>`
+        )
+      }
+      if (!el.querySelector('.new_checkout_btn')) {
+        el.querySelector('#no-icart-open').insertAdjacentHTML(
+          'beforebegin',
+          `<a class="new_checkout_btn" href="#">PROCEED TO CHECKOUT</a>`
+        )
+        this.clickNewCheckoutBtnHandler()
+      }
+      el.querySelector('#no-icart-open').style.display = 'none'
+      el.querySelector('.stay-container .np-multiple-pack').style.display = 'none'
+      el.querySelector('.stay-container .np-one-pack').style.display = 'none'
+      el.querySelector('.sale-price').textContent = this.salePrice
+      el.querySelector('.off-price').textContent = this.offPrice
+      el.querySelector('.line-through').textContent = this.currency
+      el.querySelector('.strikethrough-lg').textContent = this.regularPrice
+      el.querySelector('.text-save').textContent = `${this.currency}${this.savePrice}`
+    })
+  }
   addClickOldPaksHandler() {
     $$el('.list-packs').forEach(pack => {
       pack.addEventListener('click', () => {
@@ -123,6 +148,13 @@ class introduceBundle {
         this.removeOrChangeElems()
         this.getHeightSlideInCartScroll()
         this.changeActiveClassHtml()
+
+        $$el('#cons .list-packs').forEach(pack => {
+          if (pack.classList.contains('list-packs-bundle') && pack.classList.contains('active-slide')) {
+            console.log(`list-packs-bundle, .add('active-slide')!!!!!!!!!!!!!!!!!!!!!!!!!`)
+            this.renderInfoSubscription()
+          }
+        })
       })
     })
   }
@@ -151,28 +183,19 @@ class introduceBundle {
           !e.target.classList.contains('tooltip_icon') &&
           !e.target.classList.contains('path_var')
         ) {
-          // $$el('.list-packs').forEach(pack => {
-          //   if (!pack.classList.contains('list-packs-bundle') && pack.classList.contains('active-slide')) {
-          //     pack.classList.remove('active-slide')
-          //   }
-          //   if (pack.classList.contains('list-packs-bundle')) {
-          //     pack.classList.add('active-slide')
-          //     console.log(`list-packs-bundle, .add('active-slide')`)
-          //   }
-          // })
-
           if (!timeout && this.singleClick) {
             timeout = setTimeout(() => {
               timeout = null
               this.singleClick = false
               this.clickBundleHandler(bundle)
             }, 300)
-          } else {
-            clearTimeout(timeout)
-            timeout = null
-            this.doubleClickBundleHandler(bundle, 43053597229100)
-            this.singleClick = true
           }
+          // else {
+          //   clearTimeout(timeout)
+          //   timeout = null
+          //   this.doubleClickBundleHandler(bundle, 43053597229100)
+          //   this.singleClick = true
+          // }
         }
       })
     })
@@ -194,29 +217,7 @@ class introduceBundle {
       pushData('exp_introduce_packs_01', 'Click List Packs Bundle', 'Button', 'Shopping section Stock up and save')
     }
 
-    $$el('.view-prices').forEach(el => {
-      if (!el.querySelector('.info_subscription')) {
-        el.querySelector('.stay-container').insertAdjacentHTML(
-          'beforebegin',
-          `<div class="info_subscription"><p>Subscription is available for 2, 3, or 4 packs of ZenPatch only</p></div>`
-        )
-      }
-      if (!el.querySelector('.new_checkout_btn')) {
-        el.querySelector('#no-icart-open').insertAdjacentHTML(
-          'beforebegin',
-          `<a class="new_checkout_btn" href="#">PROCEED TO CHECKOUT</a>`
-        )
-        this.clickNewCheckoutBtnHandler()
-      }
-      el.querySelector('#no-icart-open').style.display = 'none'
-      el.querySelector('.stay-container .np-multiple-pack').style.display = 'none'
-      el.querySelector('.stay-container .np-one-pack').style.display = 'none'
-      el.querySelector('.sale-price').textContent = this.salePrice
-      el.querySelector('.off-price').textContent = this.offPrice
-      el.querySelector('.line-through').textContent = this.currency
-      el.querySelector('.strikethrough-lg').textContent = this.regularPrice
-      el.querySelector('.text-save').textContent = `${this.currency}${this.savePrice}`
-    })
+    this.renderInfoSubscription()
   }
   async doubleClickBundleHandler(target: any, idValue: number, reset: boolean = false) {
     $$el('.list-packs').forEach(pack => {
@@ -423,8 +424,6 @@ class introduceBundle {
       )
     })
     waitForElement('#cons .list-packs-bundle').then(i => {
-      $el('html').classList.add('is_open')
-      document.documentElement.style.overflow = 'hidden'
       visibilityOfTime('#cons .list-packs-bundle', 'exp_introduce_element_02', 'Slide-in Cart', 'Element')
     })
   }
