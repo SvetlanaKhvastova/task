@@ -28,12 +28,17 @@ class contactInfoImrovement {
     document.head.insertAdjacentHTML('beforeend', `<style>${mainStyle}</style>`)
     this.renderNewFormStep()
     this.initLoaderStep()
+    this.clickContinueBtn()
+    this.clickSeeMyResultsBtn()
+    this.clickGoogleSignInBtn()
   }
 
   initLoaderStep() {
     $$el('#edit-what-is-your-family-s-approximate-yearly-household-income- label').forEach(el => {
       el.addEventListener('click', (e: any) => {
         setTimeout(() => {
+          $el('.dialog-off-canvas-main-canvas')?.classList.add('is_loader')
+          $el('.dialog-off-canvas-main-canvas')?.classList.add('is_loader_active')
           $el('#edit-what-is-your-contact-info-')?.classList.add('is_loader')
           $el('#edit-what-is-your-contact-info-2')?.classList.add('is_loader')
           // https://app.grantme.com/program-assessment
@@ -58,7 +63,7 @@ class contactInfoImrovement {
             $el('.testimonials').insertAdjacentHTML('afterbegin', reviewsBlock)
           }
           this.initSliderReviews()
-        }, 700)
+        }, 300)
       })
     })
   }
@@ -112,11 +117,11 @@ class contactInfoImrovement {
       if (phoneFieldInput.placeholder !== '(___) ___-____') {
         phoneFieldInput.placeholder = '(___) ___-____'
       }
-      if (btnSubmit.textContent !== 'See My Results') {
-        btnSubmit.textContent = 'See My Results'
-      }
-      $el('.phone_box').insertAdjacentElement('beforeend', phoneField)
-      $el('.phone_box').insertAdjacentElement('beforeend', btnSubmit)
+      $el('.phone_box #seeMyResultsBtn').insertAdjacentElement('beforebegin', phoneField)
+      // if (btnSubmit.textContent !== 'See My Results') {
+      //   btnSubmit.textContent = 'See My Results'
+      // }
+      // $el('.phone_box').insertAdjacentElement('beforeend', btnSubmit)
     })
   }
 
@@ -167,7 +172,7 @@ class contactInfoImrovement {
         setProgress(progress)
 
         if (progress >= 100) {
-          loader.style.display = 'none' // Замените 'loader' на селектор вашего лоадера
+          loader.style.display = 'none'
           if (
             $el('#edit-what-is-your-contact-info-') &&
             $el('#edit-what-is-your-contact-info-').classList.contains('is_loader')
@@ -180,14 +185,15 @@ class contactInfoImrovement {
           ) {
             $el('#edit-what-is-your-contact-info-2').classList.remove('is_loader')
           }
-          //
+          if ($el('.dialog-off-canvas-main-canvas')?.classList.contains('is_loader_active')) {
+            $el('.dialog-off-canvas-main-canvas')?.classList.remove('is_loader_active')
+          }
         } else if (frame < totalFrames) {
           frame++
           requestAnimationFrame(animate)
         }
       }
       animate()
-
       // Запуск анимации текста загрузки
       const paragraphs = Array.from($$el('.loading_txt_wrapper p'))
       this.animateLoadingText(paragraphs)
@@ -262,15 +268,170 @@ class contactInfoImrovement {
           })
 
           // Клонируем последний слайд и добавляем его в начало слайдера
-          let lastSlide = $('.new_reviews_list').find('.slick-slide').last().clone()
-          $('.new_reviews_list').slick('slickAdd', lastSlide)
+          let lastSlide = jQuery('.new_reviews_list').find('.slick-slide').last().clone()
+          jQuery('.new_reviews_list').slick('slickAdd', lastSlide)
         }
       }, 400)
     })
   }
+  // GoogleSignIn
+  clickGoogleSignInBtn() {
+    waitForElement('#googleSignInBtn').then(i => {
+      $el('#googleSignInBtn').addEventListener('click', (e: any) => {
+        e.preventDefault()
+        gapi.load('auth2', () => {
+          gapi.auth2.init({
+            client_id: '569574819297-i3o28u5doob33c39p0aqd8slo5jg4rc0.apps.googleusercontent.com'
+          })
+
+          let auth2 = gapi.auth2.getAuthInstance()
+          auth2.signIn().then(this.onSignIn, this.onFailure)
+        })
+      })
+    })
+  }
+  onSignIn(googleUser: any) {
+    let profile = googleUser.getBasicProfile()
+    console.log('Full Name: ' + profile.getName())
+    console.log('Given Name: ' + profile.getGivenName())
+    console.log('Family Name: ' + profile.getFamilyName())
+    console.log('Email: ' + profile.getEmail())
+
+    $el('#edit-first-name').value = profile.getName()
+    $el('#edit-email-address').value = profile.getEmail()
+  }
+  onFailure(error: any) {
+    console.error('Google Sign-In failed:', error)
+  }
+  //
+  clickContinueBtn() {
+    waitForElement('#continueValidationBtn').then(i => {
+      $el('#continueValidationBtn').addEventListener('click', (e: any) => {
+        e.preventDefault()
+        this.validationFormEmailNameBox($el(`#edit-first-name`), true)
+        this.validationFormEmailNameBox($el(`#edit-email-address`), true)
+      })
+    })
+
+    $$el('#edit-what-is-your-contact-info- input').forEach(i => {
+      i.addEventListener('input', (e: any) => {
+        if (e.target.getAttribute('name') !== 'mobile_number') {
+          this.validationFormEmailNameBox(e.target)
+        }
+      })
+    })
+  }
+  clickSeeMyResultsBtn() {
+    waitForElement('#seeMyResultsBtn').then(i => {
+      $el('#seeMyResultsBtn').addEventListener('click', (e: any) => {
+        e.preventDefault()
+        this.validationFormPhoneBox($el(`#edit-mobile-number`))
+      })
+    })
+  }
+  validationFormEmailNameBox(target: any, nextStep: boolean = false) {
+    console.log(target, `target`)
+    let inputValueFirstName = $el(`#edit-first-name`).value.match(/\S+/)
+    let inputValueEmail = $el(`#edit-email-address`).value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)
+
+    if (target.getAttribute('name') === 'first_name') {
+      if (inputValueFirstName == null) {
+        console.log(target, `targetINPUT`)
+        target.previousElementSibling.classList.add('label_error')
+        if (!$el(`#edit-first-name-error`)) {
+          target.insertAdjacentHTML(
+            'afterend',
+            `<label id="edit-first-name-error" class="error" for="edit-first-name">Please Enter First Name</label>`
+          )
+        }
+        let s = setInterval(() => {
+          if (
+            $el(`#edit-first-name-error`) &&
+            $el(`#edit-first-name-error`).textContent !== 'Please Enter First Name'
+          ) {
+            clearInterval(s)
+            $el(`#edit-first-name-error`).textContent = 'Please Enter First Name'
+          }
+        }, 100)
+      } else {
+        target.previousElementSibling.classList.remove('label_error')
+        $el(`#edit-first-name-error`)?.remove()
+      }
+    }
+
+    if (target.getAttribute('name') === 'email_address') {
+      if (inputValueEmail === null) {
+        target.previousElementSibling.classList.add('label_error')
+
+        if (!$el(`#edit-email-address-error`)) {
+          target.insertAdjacentHTML(
+            'afterend',
+            `<label id="edit-email-address-error" class="error" for="edit-email-address">Please Enter Valid Email Address</label>`
+          )
+        }
+        setTimeout(() => {
+          if (
+            $el(`#edit-email-address-error`) &&
+            $el(`#edit-email-address-error`).textContent !== 'Please Enter Valid Email Address'
+          ) {
+            $el(`#edit-email-address-error`).textContent = 'Please Enter Valid Email Address'
+          }
+        }, 200)
+      } else {
+        target.previousElementSibling.classList.remove('label_error')
+        $el(`#edit-email-address-error`)?.remove()
+      }
+    }
+
+    if (!$el(`#edit-first-name-error`) && !$el(`#edit-email-address-error`) && nextStep) {
+      $el('.email_name_box').classList.add('is_hidden')
+      if ($el('.phone_box').classList.contains('is_hidden')) {
+        $el('.phone_box').classList.remove('is_hidden')
+      }
+      if (!$el('.new_reviews_block').classList.contains('is_hidden')) {
+        $el('.new_reviews_block').classList.add('is_hidden')
+      }
+    }
+  }
+  validationFormPhoneBox(target: any) {
+    let inputValuePhone = $el(`#edit-mobile-number`).value.match(/^\(\d{3}\) \d{3}-\d{4}$/)
+    if (target.getAttribute('name') === 'mobile_number') {
+      if (inputValuePhone == null) {
+        target.previousElementSibling.classList.add('label_error')
+
+        if (!$el(`#edit-mobile-number-error`)) {
+          target.insertAdjacentHTML(
+            'afterend',
+            `<label id="edit-mobile-number-error" class="error" for="edit-mobile-number">Please Enter Mobile Number</label>`
+          )
+        }
+        setTimeout(() => {
+          if (
+            $el(`#edit-mobile-number-error`) &&
+            $el(`#edit-mobile-number-error`).textContent !== 'Please Enter Mobile Number'
+          ) {
+            $el(`#edit-mobile-number-error`).textContent = 'Please Enter Mobile Number'
+          }
+        }, 200)
+      } else {
+        $el('.path-program-assessment .webform-button--submit').click()
+      }
+    }
+  }
 }
 
-//
 waitForElement('#edit-loading-screen').then(i => {
   new contactInfoImrovement(device)
 })
+
+// clear value LastName on the booking step
+let resetLastName = setTimeout(() => {
+  if (location.pathname.match('assessment-results')) {
+    clearInterval(resetLastName)
+    waitForElement('#newLastName').then(i => {
+      if ($el('#newLastName').value === 'CRO test') {
+        $el('#newLastName').value = ''
+      }
+    })
+  }
+}, 1000)

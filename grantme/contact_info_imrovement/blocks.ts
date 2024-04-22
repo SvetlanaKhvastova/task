@@ -2,10 +2,12 @@ import { git, svg, reviewsObj } from './data'
 
 const guaranteeBlock = /* HTML */ `
   <div class="guarantee_block">
-    ${svg.guaranteeIcon}
-    <p>
-      Qualified GrantMe students are guaranteed scholarship winnings and admission to their top-choice universities.
-    </p>
+    <div class="guarantee_block_container">
+      ${svg.guaranteeIcon}
+      <p>
+        Qualified GrantMe students are guaranteed scholarship winnings and admission to their top-choice universities.
+      </p>
+    </div>
   </div>
 `
 const loaderBlock = (texts: string[]): string => {
@@ -27,7 +29,11 @@ const lastStepsWrapper = /* HTML */ `
   <div class="last_steps_wrapper">
     <div class="email_name_box">
       <h2 class="last_steps_main_title">Your results are ready!</h2>
-      <p class="last_steps_main_txt">Unlock your chances of admission and scholarship funding by signing in below.</p>
+      <p class="last_steps_main_txt">
+        ${window.innerWidth < 768
+          ? 'Unlock your chances of admission and scholarship funding by providing the information below.'
+          : 'Unlock your chances of admission and scholarship funding by signing in below.'}
+      </p>
       <button id="continueValidationBtn">Continue</button>
       <div class="safe_and_secure_box">
         ${svg.secureIcon}
@@ -35,7 +41,9 @@ const lastStepsWrapper = /* HTML */ `
       </div>
       <p class="or_txt"><span>OR</span></p>
       <div id="btnSignInBlock">
-        <a id="googleSignInBtn" href="#">${svg.googleIcon}<span>Sign in with Google</span></a>
+        <a id="googleSignInBtn" href="#"
+          >${svg.googleIcon}<span>${window.innerWidth < 768 ? 'Google' : 'Sign in with Google'}</span></a
+        >
       </div>
       <p class="new_footnote">
         By clicking, “Continue”, “Sign in with Google” I Agree to GrantMe’s
@@ -54,12 +62,13 @@ const lastStepsWrapper = /* HTML */ `
         and consent to receiving promotional messages.
       </p>
     </div>
-    <div class="phone_box">
+    <div class="phone_box is_hidden">
       <h2 class="last_steps_main_title">Almost done!</h2>
       <p class="last_steps_main_txt">
         Please provide your mobile phone number below to receive personalised content and offers based on your
         assessment results, totally free.
       </p>
+      <button id="seeMyResultsBtn" class="">See My Results</button>
     </div>
   </div>
 `
