@@ -108,6 +108,8 @@
   .loading_txt_wrapper p {
     font-size: 18px;
     line-height: 25px;
+    max-width: 305px;
+    margin: 0 auto;
   }
 }
 
@@ -124,7 +126,7 @@
   background: linear-gradient(180deg, #fff 84%, #f7f7f8 100%);
   padding: 16px;
   margin: 0 auto;
-  max-width: 552px;
+  max-width: 558px;
 }
 .guarantee_block .guarantee_block_container svg {
   max-width: 44px;
@@ -181,6 +183,7 @@
   position: relative;
   margin: 24px 0 0 56px;
   padding-bottom: 56px;
+  visibility: hidden;
 }
 .new_reviews_block .new_reviews_item {
   position: relative;
@@ -311,6 +314,10 @@
   }
 }
 
+.last_steps_wrapper {
+  max-width: 552px;
+  margin: 0 auto 40px;
+}
 .last_steps_wrapper .phone_box.is_hidden, .last_steps_wrapper .email_name_box.is_hidden {
   display: none;
 }
@@ -392,16 +399,16 @@
 }
 .last_steps_wrapper #btnSignInBlock {
   width: 100%;
-  height: 51px;
+  height: 100%;
   margin-bottom: 16px;
 }
 .last_steps_wrapper #btnSignInBlock #googleSignInBtn {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 51px;
   gap: 10px;
   width: 100%;
-  height: 100%;
   border-radius: 6px;
   background: #f2f2f2;
   color: #2b3e51;
@@ -449,7 +456,18 @@
 .last_steps_wrapper .benefits ul li:last-child {
   padding: 0;
 }
+.last_steps_wrapper .benefits ul li img {
+  max-width: 40px;
+  max-height: 40px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
 @media (max-width: 768px) {
+  .last_steps_wrapper {
+    margin: -8px 16px 0;
+  }
   .last_steps_wrapper .last_steps_main_title {
     font-size: 24px;
     line-height: 36px;
@@ -481,11 +499,29 @@
     padding-bottom: 12px;
   }
   .last_steps_wrapper .benefits ul li:last-child {
-    padding: 0;
+    padding-bottom: 16px;
+  }
+  .last_steps_wrapper .benefits .hidden-xs {
+    display: block !important;
+  }
+  .last_steps_wrapper .benefits .hidden-xs ul {
+    display: none;
+  }
+  .last_steps_wrapper .benefits .visible-xs > p {
+    display: none !important;
   }
   .last_steps_wrapper .benefits > div > p {
     line-height: 24px;
   }
+}
+
+.g_id_signin > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.g_id_signin iframe {
+  margin: 0 !important;
 }
 
 #edit-processed-text-73 .card-dark-blue,
@@ -495,21 +531,55 @@ html.js .webform-card.webform-card--active.is_loader,
 .form-item-last-name,
 #edit-what-is-your-contact-info- .js-form-type-processed-text,
 #edit-what-is-your-contact-info-2 .js-form-type-processed-text,
-.path-program-assessment .webform-button--submit {
+.webform-button--submit,
+.is_loader .webform-progress-wrapper,
+.is_loader .webform-progress,
+.is_loader .back-button-wrapper,
+.is_loader .quiz-title {
   display: none !important;
+}
+
+.is_loader form {
+  padding: 0 !important;
+}
+
+.is_loader .navbar-top .navbar-header {
+  margin: 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.is_loader .navbar-default {
+  background: none;
+}
+
+.is_loader .navbar .logo {
+  padding: 40px 0;
 }
 
 #webform-submission-grantme-program-assessment-add-form {
   min-height: 100% !important;
 }
 
-.testimonials {
+.path-scholarship-eligibility-quiz .is_loader .form-wrapper {
+  padding: 0;
+  margin: 0;
+}
+
+.testimonials,
+.path-scholarship-eligibility-quiz .main-container {
   background: none;
   padding: 0;
 }
 
 .navbar-header .logo img {
   width: 236px !important;
+  max-height: 71px;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 body .form-type-textfield .form-text,
@@ -558,21 +628,26 @@ body .form-item.form-type-tel label:not(.error) {
   margin: 0 0 8px !important;
 }
 
-.error {
+.last_steps_wrapper .error {
   display: block !important;
   text-align: left !important;
 }
 
+.last_steps_wrapper strong.error {
+  display: none !important;
+}
+
 #edit-qa13-wrap.panel .panel-body {
-  padding: 0 16px 16px;
-  max-width: 584px;
+  padding: 0;
+}
+
+.is_loader .navbar-top .navbar-header .col-md-offset-2 {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100%;
 }
 
 @media (max-width: 768px) {
-  #edit-qa13-wrap.panel .panel-body {
-    padding: 0 16px 0;
-    margin-top: -8px;
-  }
   .dialog-off-canvas-main-canvas.is_loader_active .navbar-default {
     background: #f7f7f8;
   }
@@ -583,7 +658,9 @@ body .form-item.form-type-tel label:not(.error) {
     width: 90px !important;
     min-width: 100% !important;
   }
-  .path-program-assessment .main-container .row {
+  .is_loader .main-container .row,
+  .is_loader .main-container .row > .col-sm-12 {
     margin: 0 !important;
+    padding: 0 !important;
   }
 }/*# sourceMappingURL=main.css.map */

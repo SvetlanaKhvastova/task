@@ -14,7 +14,7 @@ import { loaderBlock, lastStepsWrapper, reviewsBlock } from './blocks'
 import { git, svg } from './data'
 
 startLog({ name: 'Contact info imrovement', dev: 'SKh' })
-// clarityInterval('')
+clarityInterval('exp_improve_contact')
 
 const device = window.innerWidth < 768 ? 'mobile' : 'desktop'
 
@@ -28,62 +28,51 @@ class contactInfoImrovement {
     document.head.insertAdjacentHTML('beforeend', `<style>${mainStyle}</style>`)
     this.renderNewFormStep()
     this.initLoaderStep()
+    this.initSliderReviews()
+    this.clickInputs()
     this.clickContinueBtn()
     this.clickSeeMyResultsBtn()
     this.clickGoogleSignInBtn()
+    this.visibleHandler()
+    const script = document.createElement('script')
+    script.src = 'https://accounts.google.com/gsi/client'
+    script.async = true
+    document.head.appendChild(script)
   }
 
   initLoaderStep() {
     $$el('#edit-what-is-your-family-s-approximate-yearly-household-income- label').forEach(el => {
       el.addEventListener('click', (e: any) => {
+        console.log(`#edit-what-is-your-family-s-approximate-yearly-household-income- label`, e.target)
         setTimeout(() => {
           $el('.dialog-off-canvas-main-canvas')?.classList.add('is_loader')
           $el('.dialog-off-canvas-main-canvas')?.classList.add('is_loader_active')
-          $el('#edit-what-is-your-contact-info-')?.classList.add('is_loader')
-          $el('#edit-what-is-your-contact-info-2')?.classList.add('is_loader')
-          // https://app.grantme.com/program-assessment
-          if ($el('.path-program-assessment .webform-progress-wrapper')) {
-            $el('.path-program-assessment .webform-progress-wrapper').style.display = 'none'
-          }
-          // https://app.grantme.com/scholarship-eligibility-quiz
-          if ($el('.webform-progress')) {
-            $el('.webform-progress').style.display = 'none'
-          }
-          if ($el('.back-button-wrapper')) {
-            $el('.back-button-wrapper').style.display = 'none'
-          }
-          if ($el('.quiz-title')) {
-            $el('.quiz-title').style.display = 'none'
-          }
-
+          $el('section.form-wrapper.webform-card[data-title="What is your contact info?"]')?.classList.add('is_loader')
           this.renderNewLoaderBlock()
           this.createLoader()
-
-          if (!$el('.new_reviews_block') && $el('.testimonials')) {
-            $el('.testimonials').insertAdjacentHTML('afterbegin', reviewsBlock)
-          }
-          this.initSliderReviews()
+          this.renderReviewsBlock()
+          this.changeLogoImg()
         }, 300)
       })
     })
   }
 
   renderNewFormStep() {
-    waitForElement('[data-drupal-selector="edit-what-is-your-contact-info-"]').then(i => {
+    waitForElement('section.form-wrapper.webform-card[data-title="What is your contact info?"]').then(i => {
       if (!$el('.last_steps_wrapper')) {
-        $el('[data-drupal-selector="edit-what-is-your-contact-info-"] .panel-body').insertAdjacentHTML(
-          'afterbegin',
-          lastStepsWrapper
-        )
+        $el(
+          'section.form-wrapper.webform-card[data-title="What is your contact info?"] .webform-card-wrapper'
+        ).insertAdjacentHTML('afterbegin', lastStepsWrapper)
       }
     })
 
-    //
     waitForElement('.email_name_box').then(i => {
       const emailField = $el('.form-item-email-address')
       const emailFieldLabel = $el('.form-item-email-address label:not(.error)')
       const firstNameField = $el('.form-item-first-name')
       const firstNameFieldLabel = $el('.form-item-first-name label:not(.error)')
+      const firstNameFieldInput = $el('#edit-first-name')
+
       let lastNameFieldInput = $el('.form-item-last-name #edit-last-name')
       if (firstNameFieldLabel.textContent !== 'First Name') {
         firstNameFieldLabel.textContent = 'First Name'
@@ -93,6 +82,9 @@ class contactInfoImrovement {
       }
       if (lastNameFieldInput.value !== 'CRO test') {
         lastNameFieldInput.value = 'CRO test'
+      }
+      if (firstNameFieldInput.placeholder !== 'John') {
+        firstNameFieldInput.placeholder = 'John'
       }
       $el('#continueValidationBtn').insertAdjacentElement('beforebegin', firstNameField)
       $el('#continueValidationBtn').insertAdjacentElement('beforebegin', emailField)
@@ -109,7 +101,6 @@ class contactInfoImrovement {
       let phoneField = $el('.form-type-tel')
       let phoneFieldLabel = $el('.form-type-tel label:not(.error)')
       let phoneFieldInput = $el('#edit-mobile-number')
-      let btnSubmit = $el('.path-program-assessment .webform-button--submit')
 
       if (phoneFieldLabel.textContent !== 'Mobile phone number') {
         phoneFieldLabel.textContent = 'Mobile phone number'
@@ -118,32 +109,22 @@ class contactInfoImrovement {
         phoneFieldInput.placeholder = '(___) ___-____'
       }
       $el('.phone_box #seeMyResultsBtn').insertAdjacentElement('beforebegin', phoneField)
-      // if (btnSubmit.textContent !== 'See My Results') {
-      //   btnSubmit.textContent = 'See My Results'
-      // }
-      // $el('.phone_box').insertAdjacentElement('beforeend', btnSubmit)
     })
   }
 
   renderNewLoaderBlock() {
     // edit-what-is-your-contact-info
-    waitForElement('#edit-what-is-your-contact-info-').then(i => {
+    waitForElement('section.form-wrapper.webform-card[data-title="What is your contact info?"]').then(i => {
       const liElements = $$el('.loading-data li')
       const texts = Array.from(liElements, li => li.textContent)
       if (!$el('.new_loader_block')) {
-        $el('#edit-what-is-your-contact-info-').insertAdjacentHTML('beforebegin', loaderBlock(texts))
-      }
-    })
-    // edit-what-is-your-contact-info-2
-    waitForElement('#edit-what-is-your-contact-info-2').then(i => {
-      const liElements = $$el('.loading-data li')
-      const texts = Array.from(liElements, li => li.textContent)
-      if (!$el('.new_loader_block')) {
-        $el('#edit-what-is-your-contact-info-2').insertAdjacentHTML('beforebegin', loaderBlock(texts))
+        $el('section.form-wrapper.webform-card[data-title="What is your contact info?"]').insertAdjacentHTML(
+          'beforebegin',
+          loaderBlock(texts)
+        )
       }
     })
   }
-
   createLoader() {
     const duration = 12000 // 12 seconds
     const frameDuration = 1000 / 60 // 60 FPS
@@ -174,20 +155,25 @@ class contactInfoImrovement {
         if (progress >= 100) {
           loader.style.display = 'none'
           if (
-            $el('#edit-what-is-your-contact-info-') &&
-            $el('#edit-what-is-your-contact-info-').classList.contains('is_loader')
+            $el('section.form-wrapper.webform-card[data-title="What is your contact info?"]') &&
+            $el('section.form-wrapper.webform-card[data-title="What is your contact info?"]').classList.contains(
+              'is_loader'
+            )
           ) {
-            $el('#edit-what-is-your-contact-info-').classList.remove('is_loader')
-          }
-          if (
-            $el('#edit-what-is-your-contact-info-2') &&
-            $el('#edit-what-is-your-contact-info-2').classList.contains('is_loader')
-          ) {
-            $el('#edit-what-is-your-contact-info-2').classList.remove('is_loader')
+            $el('section.form-wrapper.webform-card[data-title="What is your contact info?"]').classList.remove(
+              'is_loader'
+            )
           }
           if ($el('.dialog-off-canvas-main-canvas')?.classList.contains('is_loader_active')) {
             $el('.dialog-off-canvas-main-canvas')?.classList.remove('is_loader_active')
           }
+          if (
+            $el('.dialog-off-canvas-main-canvas') &&
+            !$el('.dialog-off-canvas-main-canvas').classList.contains('is_loader')
+          ) {
+            $el('.dialog-off-canvas-main-canvas').classList.add('is_loader')
+          }
+          this.renderReviewsBlock()
         } else if (frame < totalFrames) {
           frame++
           requestAnimationFrame(animate)
@@ -199,7 +185,6 @@ class contactInfoImrovement {
       this.animateLoadingText(paragraphs)
     })
   }
-
   animateLoadingText(paragraphs: string | any[]) {
     let currentIndex = 0
     let intervalId: number | NodeJS.Timeout | null = null
@@ -221,6 +206,7 @@ class contactInfoImrovement {
 
         // Остановить интервал, если достигнут конец
         if (currentIndex >= paragraphs.length) {
+          paragraphs[currentIndex - 1].style.display = 'block'
           clearInterval(intervalId as unknown as number)
         }
 
@@ -231,93 +217,142 @@ class contactInfoImrovement {
     // Начать анимацию
     startAnimation()
   }
+  changeLogoImg() {
+    if (
+      $el('.dialog-off-canvas-main-canvas.is_loader .navbar-header .logo img') &&
+      $el('.dialog-off-canvas-main-canvas.is_loader .navbar-header .logo img').src !==
+        '/sites/default/files/inline-images/GrantMe_Colour_Full_Logo_2X_0.png'
+    ) {
+      $el('.dialog-off-canvas-main-canvas.is_loader .navbar-header .logo img').src =
+        '/sites/default/files/inline-images/GrantMe_Colour_Full_Logo_2X_0.png'
+    }
+  }
 
+  // SliderReviews
+  renderReviewsBlock() {
+    if (!$el('.new_reviews_block') && $el('.testimonials')) {
+      $el('.testimonials').insertAdjacentHTML('afterbegin', reviewsBlock)
+    }
+  }
   initSliderReviews() {
     loadScriptsOrStyles([
       'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css',
       'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js'
     ]).then(async () => {
       let s = setInterval(() => {
-        if (
-          typeof jQuery('.new_reviews_list').slick === 'function' &&
-          $el('.new_reviews_list') &&
-          $el('.new_reviews_list').children.length > 3
-        ) {
+        if (typeof jQuery('.new_reviews_list').slick === 'function' && $el('.new_reviews_list')) {
           clearInterval(s)
           let slidesToShowDesktop = 3.92
           let slidesToShowMobile = 1
 
-          let slider = jQuery('.new_reviews_list').slick({
-            slidesToShow: slidesToShowDesktop,
-            slidesToScroll: 1,
-            initialSlide: 0,
-            adaptiveHeight: true,
-            autoplay: true,
-            autoplaySpeed: 2000,
-            prevArrow: `<div class="prev_btn slider_arrow">${svg.arrPrev}</div>`,
-            nextArrow: `<div class="next_btn slider_arrow">${svg.arrNext}</div>`,
-            responsive: [
-              {
-                breakpoint: 767,
-                settings: {
-                  slidesToShow: slidesToShowMobile,
-                  slidesToScroll: 1
+          let slider = jQuery('.new_reviews_list')
+            .on('init', function () {
+              jQuery(this).css('visibility', 'visible')
+            })
+            .slick({
+              slidesToShow: slidesToShowDesktop,
+              slidesToScroll: 1,
+              initialSlide: 0,
+              adaptiveHeight: true,
+              autoplay: true,
+              autoplaySpeed: 2000,
+              prevArrow: `<div class="prev_btn slider_arrow">${svg.arrPrev}</div>`,
+              nextArrow: `<div class="next_btn slider_arrow">${svg.arrNext}</div>`,
+              responsive: [
+                {
+                  breakpoint: 767,
+                  settings: {
+                    slidesToShow: slidesToShowMobile,
+                    slidesToScroll: 1
+                  }
                 }
-              }
-            ]
-          })
+              ]
+            })
 
           // Клонируем последний слайд и добавляем его в начало слайдера
-          let lastSlide = jQuery('.new_reviews_list').find('.slick-slide').last().clone()
-          jQuery('.new_reviews_list').slick('slickAdd', lastSlide)
+          let d = setInterval(() => {
+            if (typeof $ === 'function') {
+              clearInterval(d)
+              let lastSlide = $('.new_reviews_list').find('.slick-slide').last().clone()
+              $('.new_reviews_list').slick('slickAdd', lastSlide)
+            }
+          }, 300)
+
+          slider.on('swipe', function (event, slick, direction) {
+            pushData('exp_improve_contact_swipe_01', direction, 'Swipe slider', `Contact info Step 1 Review`)
+          })
+          $$el('.slider_arrow').forEach(el => {
+            el.addEventListener('click', (i: { currentTarget: { classList: { contains: (arg0: string) => any } } }) => {
+              let arrowsTitle: string | null = null
+              if (i.currentTarget.classList.contains('prev_btn')) {
+                arrowsTitle = 'left'
+              } else if (i.currentTarget.classList.contains('next_btn')) {
+                arrowsTitle = 'right'
+              }
+              pushData('exp_improve_contact_arrows_01', arrowsTitle || '', 'Arrows', `Contact info Step 1 Review`)
+            })
+          })
         }
       }, 400)
     })
   }
   // GoogleSignIn
   clickGoogleSignInBtn() {
-    waitForElement('#googleSignInBtn').then(i => {
-      $el('#googleSignInBtn').addEventListener('click', (e: any) => {
-        e.preventDefault()
-        gapi.load('auth2', () => {
-          gapi.auth2.init({
-            client_id: '569574819297-i3o28u5doob33c39p0aqd8slo5jg4rc0.apps.googleusercontent.com'
-          })
+    window.onSignIn = function (res: any) {
+      pushData('exp_improve_contact_button_03', 'Google', 'Button', 'Your results are ready! Step 2')
+      let parts = res.credential.split('.')
+      let user_info = JSON.parse(atob(parts[1]))
+      console.log(user_info)
+      let fNameUser = user_info.given_name
+      let emailUser = user_info.email
 
-          let auth2 = gapi.auth2.getAuthInstance()
-          auth2.signIn().then(this.onSignIn, this.onFailure)
-        })
-      })
-    })
+      if ($el('#edit-first-name')) {
+        $el('#edit-first-name').value = fNameUser
+      }
+      if ($el('#edit-email-address')) {
+        $el('#edit-email-address').value = emailUser
+      }
+      setTimeout(() => {
+        if ($el('#edit-first-name').value !== '' && $el('#edit-email-address').value !== '') {
+          $el('.email_name_box').classList.add('is_hidden')
+          if ($el('.phone_box').classList.contains('is_hidden')) {
+            $el('.phone_box').classList.remove('is_hidden')
+          }
+          if (!$el('.new_reviews_block').classList.contains('is_hidden')) {
+            $el('.new_reviews_block').classList.add('is_hidden')
+          }
+        }
+      }, 500)
+    }
   }
-  onSignIn(googleUser: any) {
-    let profile = googleUser.getBasicProfile()
-    console.log('Full Name: ' + profile.getName())
-    console.log('Given Name: ' + profile.getGivenName())
-    console.log('Family Name: ' + profile.getFamilyName())
-    console.log('Email: ' + profile.getEmail())
-
-    $el('#edit-first-name').value = profile.getName()
-    $el('#edit-email-address').value = profile.getEmail()
-  }
-  onFailure(error: any) {
-    console.error('Google Sign-In failed:', error)
-  }
-  //
+  //click on ----> Continue | SeeMyResults | input edit-first-name | input edit-email-address | input edit-mobile-number
   clickContinueBtn() {
     waitForElement('#continueValidationBtn').then(i => {
       $el('#continueValidationBtn').addEventListener('click', (e: any) => {
         e.preventDefault()
         this.validationFormEmailNameBox($el(`#edit-first-name`), true)
         this.validationFormEmailNameBox($el(`#edit-email-address`), true)
+        pushData('exp_improve_contact_button_01', 'Continue', 'Button', 'Your results are ready! Step 2')
       })
     })
-
-    $$el('#edit-what-is-your-contact-info- input').forEach(i => {
-      i.addEventListener('input', (e: any) => {
-        if (e.target.getAttribute('name') !== 'mobile_number') {
-          this.validationFormEmailNameBox(e.target)
-        }
+  }
+  clickInputs() {
+    waitForElement('section.form-wrapper.webform-card[data-title="What is your contact info?"]').then(i => {
+      $$el('section.form-wrapper.webform-card[data-title="What is your contact info?"] input').forEach(i => {
+        i.addEventListener('input', (e: any) => {
+          if (e.target.getAttribute('name') !== 'mobile_number') {
+            this.validationFormEmailNameBox(e.target)
+          } else {
+            setTimeout(() => {
+              this.validationFormPhoneBox(e.target)
+            }, 400)
+          }
+        })
+        i.addEventListener('change', (e: any) => {
+          if (e.target.getAttribute('name') === 'mobile_number') {
+            pushData('exp_improve_contact_input_01', 'Mobile phone number', 'Input', 'Almost done! Step 3')
+          }
+        })
       })
     })
   }
@@ -325,19 +360,17 @@ class contactInfoImrovement {
     waitForElement('#seeMyResultsBtn').then(i => {
       $el('#seeMyResultsBtn').addEventListener('click', (e: any) => {
         e.preventDefault()
-        this.validationFormPhoneBox($el(`#edit-mobile-number`))
+        pushData('exp_improve_contact_button_04', 'See My Results', 'Button', 'Almost done! Step 3')
+        this.validationFormPhoneBox($el(`#edit-mobile-number`), true)
       })
     })
   }
   validationFormEmailNameBox(target: any, nextStep: boolean = false) {
-    console.log(target, `target`)
     let inputValueFirstName = $el(`#edit-first-name`).value.match(/\S+/)
-    let inputValueEmail = $el(`#edit-email-address`).value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)
+    let inputValueEmail = $el(`#edit-email-address`).value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/)
 
     if (target.getAttribute('name') === 'first_name') {
       if (inputValueFirstName == null) {
-        console.log(target, `targetINPUT`)
-        target.previousElementSibling.classList.add('label_error')
         if (!$el(`#edit-first-name-error`)) {
           target.insertAdjacentHTML(
             'afterend',
@@ -354,36 +387,35 @@ class contactInfoImrovement {
           }
         }, 100)
       } else {
-        target.previousElementSibling.classList.remove('label_error')
         $el(`#edit-first-name-error`)?.remove()
       }
     }
 
     if (target.getAttribute('name') === 'email_address') {
       if (inputValueEmail === null) {
-        target.previousElementSibling.classList.add('label_error')
-
+        console.log(`inputValueEmail === null`)
         if (!$el(`#edit-email-address-error`)) {
           target.insertAdjacentHTML(
             'afterend',
             `<label id="edit-email-address-error" class="error" for="edit-email-address">Please Enter Valid Email Address</label>`
           )
         }
-        setTimeout(() => {
+        let t = setInterval(() => {
           if (
             $el(`#edit-email-address-error`) &&
             $el(`#edit-email-address-error`).textContent !== 'Please Enter Valid Email Address'
           ) {
+            clearInterval(t)
             $el(`#edit-email-address-error`).textContent = 'Please Enter Valid Email Address'
           }
-        }, 200)
+        }, 100)
       } else {
-        target.previousElementSibling.classList.remove('label_error')
+        console.log('$el(`#edit-email-address-error`)?.remove()')
         $el(`#edit-email-address-error`)?.remove()
       }
     }
 
-    if (!$el(`#edit-first-name-error`) && !$el(`#edit-email-address-error`) && nextStep) {
+    if (inputValueEmail !== null && inputValueFirstName !== null && nextStep) {
       $el('.email_name_box').classList.add('is_hidden')
       if ($el('.phone_box').classList.contains('is_hidden')) {
         $el('.phone_box').classList.remove('is_hidden')
@@ -393,30 +425,63 @@ class contactInfoImrovement {
       }
     }
   }
-  validationFormPhoneBox(target: any) {
+  validationFormPhoneBox(target: any, nextStep: boolean = false) {
     let inputValuePhone = $el(`#edit-mobile-number`).value.match(/^\(\d{3}\) \d{3}-\d{4}$/)
     if (target.getAttribute('name') === 'mobile_number') {
       if (inputValuePhone == null) {
-        target.previousElementSibling.classList.add('label_error')
-
         if (!$el(`#edit-mobile-number-error`)) {
           target.insertAdjacentHTML(
             'afterend',
             `<label id="edit-mobile-number-error" class="error" for="edit-mobile-number">Please Enter Mobile Number</label>`
           )
         }
-        setTimeout(() => {
+        let s = setInterval(() => {
           if (
             $el(`#edit-mobile-number-error`) &&
             $el(`#edit-mobile-number-error`).textContent !== 'Please Enter Mobile Number'
           ) {
+            clearInterval(s)
             $el(`#edit-mobile-number-error`).textContent = 'Please Enter Mobile Number'
           }
-        }, 200)
+        }, 100)
       } else {
-        $el('.path-program-assessment .webform-button--submit').click()
+        $el(`#edit-mobile-number-error`)?.remove()
+        if (nextStep) {
+          $el('.webform-button--submit').click()
+        }
       }
     }
+  }
+
+  visibleHandler() {
+    waitForElement('.guarantee_block').then(i => {
+      visibilityOfTime(
+        '.guarantee_block',
+        'exp_improve_contact_banner_01',
+        'Banner',
+        'Contact info Step 1 Qualified GrantMe students are guaranteed scholarship winnings'
+      )
+    })
+    waitForElement('.loader_timing_box').then(i => {
+      visibilityOfTime(
+        '.loader_timing_box',
+        'exp_improve_contact_block_01',
+        'Block',
+        'Contact infoStep 1 Searching for scholarship opportunities'
+      )
+    })
+    waitForElement('.leyton').then(i => {
+      visibilityOfTime('.leyton', 'exp_improve_contact_review_01', 'Leyton - Review', 'Contact info Step 1')
+    })
+    waitForElement('.lauren').then(i => {
+      visibilityOfTime('.lauren', 'exp_improve_contact_review_01', 'Lauren - Review', 'Contact info Step 1')
+    })
+    waitForElement('.ashleigh').then(i => {
+      visibilityOfTime('.ashleigh', 'exp_improve_contact_review_01', 'Ashleigh - Review', 'Contact info Step 1')
+    })
+    waitForElement('.salwa').then(i => {
+      visibilityOfTime('.salwa', 'exp_improve_contact_review_01', 'Salwa- Review', 'Contact info Step 1')
+    })
   }
 }
 

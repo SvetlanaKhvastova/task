@@ -41,9 +41,26 @@ const lastStepsWrapper = /* HTML */ `
       </div>
       <p class="or_txt"><span>OR</span></p>
       <div id="btnSignInBlock">
-        <a id="googleSignInBtn" href="#"
-          >${svg.googleIcon}<span>${window.innerWidth < 768 ? 'Google' : 'Sign in with Google'}</span></a
-        >
+        <div
+          id="g_id_onload"
+          data-client_id="569574819297-i3o28u5doob33c39p0aqd8slo5jg4rc0.apps.googleusercontent.com"
+          data-context="signin"
+          data-ux_mode="popup"
+          data-callback="onSignIn"
+          data-auto_prompt="false"
+        ></div>
+
+        <div
+          class="g_id_signin"
+          data-type="standard"
+          data-shape="rectangular"
+          data-theme="outline"
+          data-text="signin_with"
+          data-size="large"
+          data-locale="en-US"
+          data-logo_alignment="center"
+          data-width="${window.innerWidth < 768 ? '300' : '900'}"
+        ></div>
       </div>
       <p class="new_footnote">
         By clicking, “Continue”, “Sign in with Google” I Agree to GrantMe’s
@@ -81,7 +98,7 @@ const reviewsBlock = /* HTML */ `
       ${reviewsObj
         .map((r, i) => {
           return /* HTML */ `
-            <div class="new_reviews_item">
+            <div class="new_reviews_item ${r.title.toLocaleLowerCase()}">
               <div class="stars_wrapper">${r.svgIcon}</div>
               <h3 class="new_reviews_item_title">${r.title}</h3>
               <h4 class="new_reviews_item_subtitle">${r.subTitle}</h4>
