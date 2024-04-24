@@ -302,13 +302,18 @@ class pdpEnhancements {
   }
 
   onClickElems() {
-    $('body').on('found_variation', function (e) {
-      if ($(window).width() < 1200) {
-        setTimeout(function () {
-          $('html, body').stop()
-        }, 1050)
+    let s = setInterval(() => {
+      if (typeof $ === 'function') {
+        clearInterval(s)
+        $('body').on('found_variation', function (e) {
+          if ($(window).width() < 1200) {
+            setTimeout(function () {
+              $('html, body').stop()
+            }, 1050)
+          }
+        })
       }
-    })
+    }, 200)
     //   clear form
     let waitForClearFormBlock = setInterval(() => {
       if ($el('.clear_form_block')) {
