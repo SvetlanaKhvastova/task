@@ -1,6 +1,165 @@
-.is_homepage header:not(.is-sticky) .header_icon path {
-  fill: white;
+.new_banners_list {
+  visibility: hidden;
+  position: relative;
+  margin: 10px 0 48px;
 }
-.is_homepage .page-header__wrapper:hover .header_icon path {
-  fill: #2c7226;
+.new_banners_item {
+  background: #161616 url(https://conversionratestore.github.io/projects/blackoakled/img/link_camera_nitron.png) right bottom no-repeat;
+  background-size: auto 100%;
+}
+.link_marine_lithium {
+  background: #010101 url({{"explore_lithium_desktop.png"|asset_url}}) right bottom no-repeat;
+  background-size: auto 100%;
+}
+.new_banners_item .container_custom {
+  padding: 26px 48px;
+}
+.new_banners_item .container_custom > h2 {
+  font-family: "Helvetica", sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 36px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+#content .new_banners_item .container_custom p {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  color: #ffffff;
+  margin: 8px 0 16px;
+  max-width: 478px;
+}
+#content .new_banners_item.link_marine_lithium .container_custom p {
+  max-width: 370px;
+}
+.new_banners_item .container_custom > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 267px;
+  height: 48px;
+  border: 1px solid #415b17;
+  background: #68922a;
+  box-shadow: -3px -3px 2px 1px rgba(0, 0, 0, 0.25) inset, 3px 3px 2px 1px rgba(255, 255, 255, 0.35) inset;
+  font-family: "Roboto";
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #ffffff;
+  outline: none;
+  text-decoration: unset;
+}
+.new_banners_list .slick-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+}
+.new_banners_list .slick-dots li button {
+  font-size: 0;
+  line-height: 0;
+  display: block;
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+  color: transparent;
+  border: 0;
+  outline: none;
+  background: rgb(255 255 255 / 40%);
+  border-radius: 50%;
+  border: none;
+  margin: 0 10px;
+  padding: 0;
+}
+.new_banners_list .slick-dots li.slick-active button {
+  background: white;
+}
+
+@media (max-width: 768px) {
+  .new_banners_item {
+    background: #161616 url(https://conversionratestore.github.io/projects/blackoakled/img/link_camera_nitron_mob.png) top right no-repeat;
+    background-size: auto;
+  }
+  .link_marine_lithium {
+    background: #010101 url({{"explore_lithium_mob.png"|asset_url}}) top right no-repeat;
+    background-size: cover;
+  }
+  .new_banners_item .container_custom {
+    text-align: center;
+    padding: 248px 30px 30px;
+  }
+  #content .new_banners_item.link_marine_lithium .container_custom {
+    padding: 228px 13px 20px;
+  }
+  .new_banners_item .container_custom > h2 {
+    font-size: 22px;
+    line-height: 28px;
+    position: relative;
+    padding-top: 20px;
+  }
+  .new_banners_item:not(.link_marine_lithium) .container_custom > h2::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #3f4042;
+    height: 2px;
+  }
+  #content .new_banners_item.link_marine_lithium .container_custom h2 {
+    color: #1d2428;
+  }
+  #content .new_banners_item .container_custom p {
+    font-size: 13px !important;
+    line-height: 18px !important;
+    margin: 8px auto 12px;
+  }
+  #content .new_banners_item.link_marine_lithium .container_custom p {
+    color: #1d2428;
+    max-width: 294px;
+  }
+  .new_banners_item .container_custom > a {
+    margin: 0 auto;
+    height: 40px;
+  }
+  .new_banners_list .slick-dots {
+    position: relative;
+    margin-top: 15px;
+    bottom: 0;
+  }
+  .new_banners_list .slick-dots li button {
+    background: #e1e1e1;
+  }
+  .new_banners_list .slick-dots li.slick-active button {
+    background: #1d2428;
+  }
+  .new_banners_list .slick-slide {
+    margin: 0 5px;
+  }
+}
+
+@media (max-width: 320px) {
+  .new_banners_item {
+    background: #161616 url(https://conversionratestore.github.io/projects/blackoakled/img/link_camera_nitron_mob.png) top right no-repeat;
+    background-size: auto 68%;
+  }
+  .new_banners_item .container_custom {
+    padding: 220px 30px 30px;
+  }
+  .new_banners_item .container_custom > h2 {
+    font-size: 28px;
+  }
+  #content .new_banners_item .container_custom p {
+    font-size: 8px !important;
+  }
 }
