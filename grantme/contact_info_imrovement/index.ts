@@ -12,6 +12,7 @@ import {
 import mainStyle from './main.css?raw'
 import { loaderBlock, lastStepsWrapper, reviewsBlock } from './blocks'
 import { git, svg } from './data'
+import Inputmask from 'inputmask'
 
 startLog({ name: 'Contact info imrovement', dev: 'SKh' })
 clarityInterval('exp_improve_contact')
@@ -20,12 +21,16 @@ const device = window.innerWidth < 768 ? 'mobile' : 'desktop'
 
 class contactInfoImrovement {
   device: 'mobile' | 'desktop'
+  observer: null | MutationObserver
+
   constructor(device) {
     this.device = device
+    this.observer = null
     this.init()
   }
   init() {
     document.head.insertAdjacentHTML('beforeend', `<style>${mainStyle}</style>`)
+    this.observerBagControlVersion()
     this.renderNewFormStep()
     this.initLoaderStep()
     this.initSliderReviews()
@@ -43,7 +48,6 @@ class contactInfoImrovement {
   initLoaderStep() {
     $$el('#edit-what-is-your-family-s-approximate-yearly-household-income- label').forEach(el => {
       el.addEventListener('click', (e: any) => {
-        console.log(`#edit-what-is-your-family-s-approximate-yearly-household-income- label`, e.target)
         setTimeout(() => {
           $el('.dialog-off-canvas-main-canvas')?.classList.add('is_loader')
           $el('.dialog-off-canvas-main-canvas')?.classList.add('is_loader_active')
@@ -108,6 +112,9 @@ class contactInfoImrovement {
       if (phoneFieldInput.placeholder !== '(___) ___-____') {
         phoneFieldInput.placeholder = '(___) ___-____'
       }
+
+      this.observePhoneNumberPlaceholderChange()
+
       $el('.phone_box #seeMyResultsBtn').insertAdjacentElement('beforebegin', phoneField)
     })
   }
@@ -255,7 +262,7 @@ class contactInfoImrovement {
               initialSlide: 0,
               adaptiveHeight: true,
               autoplay: true,
-              autoplaySpeed: 2000,
+              autoplaySpeed: 4000,
               prevArrow: `<div class="prev_btn slider_arrow">${svg.arrPrev}</div>`,
               nextArrow: `<div class="next_btn slider_arrow">${svg.arrNext}</div>`,
               responsive: [
@@ -302,7 +309,6 @@ class contactInfoImrovement {
       pushData('exp_improve_contact_button_03', 'Google', 'Button', 'Your results are ready! Step 2')
       let parts = res.credential.split('.')
       let user_info = JSON.parse(atob(parts[1]))
-      console.log(user_info)
       let fNameUser = user_info.given_name
       let emailUser = user_info.email
 
@@ -348,7 +354,7 @@ class contactInfoImrovement {
             }, 400)
           }
         })
-        i.addEventListener('change', (e: any) => {
+        i.addEventListener('blur', (e: any) => {
           if (e.target.getAttribute('name') === 'mobile_number') {
             pushData('exp_improve_contact_input_01', 'Mobile phone number', 'Input', 'Almost done! Step 3')
           }
@@ -393,7 +399,6 @@ class contactInfoImrovement {
 
     if (target.getAttribute('name') === 'email_address') {
       if (inputValueEmail === null) {
-        console.log(`inputValueEmail === null`)
         if (!$el(`#edit-email-address-error`)) {
           target.insertAdjacentHTML(
             'afterend',
@@ -410,7 +415,6 @@ class contactInfoImrovement {
           }
         }, 100)
       } else {
-        console.log('$el(`#edit-email-address-error`)?.remove()')
         $el(`#edit-email-address-error`)?.remove()
       }
     }
@@ -422,6 +426,10 @@ class contactInfoImrovement {
       }
       if (!$el('.new_reviews_block').classList.contains('is_hidden')) {
         $el('.new_reviews_block').classList.add('is_hidden')
+      }
+      let phoneFieldInput = $el('#edit-mobile-number')
+      if (phoneFieldInput && phoneFieldInput.placeholder !== '(___) ___-____') {
+        phoneFieldInput.placeholder = '(___) ___-____'
       }
     }
   }
@@ -458,29 +466,66 @@ class contactInfoImrovement {
       visibilityOfTime(
         '.guarantee_block',
         'exp_improve_contact_banner_01',
-        'Banner',
-        'Contact info Step 1 Qualified GrantMe students are guaranteed scholarship winnings'
+        'Contact info Step 1 Qualified GrantMe students are guaranteed scholarship winnings',
+        'Banner'
       )
     })
     waitForElement('.loader_timing_box').then(i => {
       visibilityOfTime(
         '.loader_timing_box',
         'exp_improve_contact_block_01',
-        'Block',
-        'Contact infoStep 1 Searching for scholarship opportunities'
+        'Contact infoStep 1 Searching for scholarship opportunities',
+        'Block'
       )
     })
     waitForElement('.leyton').then(i => {
-      visibilityOfTime('.leyton', 'exp_improve_contact_review_01', 'Leyton - Review', 'Contact info Step 1')
+      visibilityOfTime('.leyton', 'exp_improve_contact_review_01', 'Contact info Step 1', 'Leyton - Review')
     })
     waitForElement('.lauren').then(i => {
-      visibilityOfTime('.lauren', 'exp_improve_contact_review_01', 'Lauren - Review', 'Contact info Step 1')
+      visibilityOfTime('.lauren', 'exp_improve_contact_review_01', 'Contact info Step 1', 'Lauren - Review')
     })
     waitForElement('.ashleigh').then(i => {
-      visibilityOfTime('.ashleigh', 'exp_improve_contact_review_01', 'Ashleigh - Review', 'Contact info Step 1')
+      visibilityOfTime('.ashleigh', 'exp_improve_contact_review_01', 'Contact info Step 1', 'Ashleigh - Review')
     })
     waitForElement('.salwa').then(i => {
-      visibilityOfTime('.salwa', 'exp_improve_contact_review_01', 'Salwa- Review', 'Contact info Step 1')
+      visibilityOfTime('.salwa', 'exp_improve_contact_review_01', 'Contact info Step 1', 'Salwa- Review')
+    })
+  }
+
+  observePhoneNumberPlaceholderChange() {
+    const observer = new MutationObserver(() => {
+      if ($el('#edit-mobile-number') && $el('#edit-mobile-number').placeholder !== '(___) ___-____') {
+        let phoneFieldInput = $el('#edit-mobile-number')
+        const inputmask = new Inputmask('(999) 999-9999')
+        inputmask.mask(phoneFieldInput)
+        phoneFieldInput.placeholder = '(___) ___-____'
+        observer.disconnect()
+      }
+    })
+
+    observer.observe(document.documentElement, {
+      childList: true,
+      subtree: true,
+      characterData: true
+    })
+  }
+  observerBagControlVersion() {
+    const observer = new MutationObserver(() => {
+      let q = $el('section.form-wrapper.webform-card[data-title="What is your contact info?"]')
+      if (
+        q.classList.contains('webform-card--active') &&
+        !$el('.dialog-off-canvas-main-canvas').classList.contains('is_loader')
+      ) {
+        $el('.dialog-off-canvas-main-canvas').classList.add('is_loader')
+        this.renderReviewsBlock()
+        observer.disconnect()
+      }
+    })
+
+    observer.observe(document.documentElement, {
+      childList: true,
+      subtree: true,
+      characterData: true
     })
   }
 }
@@ -491,11 +536,22 @@ waitForElement('#edit-loading-screen').then(i => {
 
 // clear value LastName on the booking step
 let resetLastName = setTimeout(() => {
-  if (location.pathname.match('assessment-results')) {
+  if ($el('.calc_step_third') || $el('.acuity-booking')) {
     clearInterval(resetLastName)
+    console.log(`>>>>>>>>>>>>>>>>>>`)
     waitForElement('#newLastName').then(i => {
       if ($el('#newLastName').value === 'CRO test') {
         $el('#newLastName').value = ''
+      }
+    })
+    waitForElement('#edit-parent-last-name').then(i => {
+      if ($el('#edit-parent-last-name').value === 'CRO test') {
+        $el('#edit-parent-last-name').value = ''
+      }
+    })
+    waitForElement('#edit-last-name').then(i => {
+      if ($el('#edit-last-name').value === 'CRO test') {
+        $el('#edit-last-name').value = ''
       }
     })
   }
