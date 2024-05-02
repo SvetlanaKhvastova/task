@@ -1,0 +1,288 @@
+.new-popup-backdrop {
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  opacity: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000000000000;
+  transition: all 0.8s ease 0s;
+}
+.new-popup-backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.new-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 767px;
+  width: calc(100% - 32px);
+}
+.new-popup__close {
+  position: absolute;
+  background: none;
+  padding: 0;
+  top: 16px;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+  z-index: 1;
+  border: none;
+  transition: all 0.8s ease 0s;
+}
+.new-popup__close:hover,
+.new-popup__close:focus {
+  background: none;
+  transform: scale(0.8);
+}
+@media (max-width: 768px) {
+  .new-popup {
+    max-width: 343px;
+    top: 55px;
+    transform: translateX(-50%);
+  }
+  .new-popup__close {
+  }
+}
+
+// exit-intent__popup
+.exit-intent__popup {
+  display: flex;
+  & .logo_wrapper {
+    border-radius: 16px 0px 0px 16px;
+    background: linear-gradient(144deg, #65de18 16.04%, #0393e5 85.17%);
+    & > a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: max-content;
+      margin: 39px auto 0;
+      & svg {
+        max-height: 63px;
+      }
+    }
+    & > p {
+      max-width: 235px;
+      color: #fff;
+      text-align: center;
+      font-family: 'Nunito Sans';
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 32px;
+      margin: 20px auto 0;
+    }
+  }
+  & .information_wrapper {
+    flex: 1 0 440px;
+    border-radius: 0px 16px 16px 0px;
+    background: linear-gradient(180deg, #f1f8fe 0%, rgba(255, 255, 255, 0) 60.78%), #fff;
+    padding: 48px 64px 40px 64px;
+    & h2 {
+      color: #0db203;
+      font-family: 'Nunito Sans';
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 36px;
+      text-align: center;
+      margin: 0 0 4px;
+    }
+    & h3 {
+      color: #29353c;
+      font-family: 'Nunito Sans';
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 32px;
+      text-align: center;
+      margin: 0 0 24px;
+    }
+    & .counter_wrapper {
+      & .counter_title {
+        color: #29353c;
+        text-align: center;
+        font-family: 'Nunito Sans';
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 24px;
+        margin-bottom: 16px;
+      }
+      & #counter {
+        display: flex;
+        justify-content: space-between;
+        max-width: 263px;
+        margin: 0 auto;
+      }
+      & .time_block {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+      }
+      & .gradient_border {
+        display: inline-block;
+        padding: 1px;
+        background: linear-gradient(to right bottom, #65de18, #0393e5);
+        border-radius: 9px;
+      }
+      & .time_txt {
+        display: flex;
+        padding: 5px 16.2px;
+        justify-content: center;
+        align-items: center;
+        color: #29353c;
+        font-family: 'Nunito Sans';
+        font-size: 36px;
+        font-weight: 800;
+        line-height: 44px;
+        border-radius: 8px;
+        background: white;
+      }
+      & .counter_label {
+        color: #29353c;
+        text-align: center;
+        font-family: 'Nunito Sans';
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 22px;
+      }
+      & .time_separator {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-height: 56px;
+        color: #29353c;
+        font-family: 'Nunito Sans';
+        font-size: 24px;
+        font-weight: 800;
+        line-height: 26px;
+        margin: 0 10px;
+      }
+    }
+    & .discount_code_wrapper {
+      max-width: 263px;
+      margin: 20px auto 20px;
+      & .discount_code_txt {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 12px 0px;
+        border-radius: 8px;
+        border: 2px dashed #0092e6;
+        background: #fff;
+        color: #0092e6;
+        font-family: 'Nunito Sans';
+        font-size: 20px;
+        font-weight: 800;
+        line-height: 24px;
+        letter-spacing: 2px;
+        cursor: pointer;
+      }
+      & .discount_code_descr {
+        color: #29353c;
+        text-align: center;
+        font-family: 'Nunito Sans';
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 24px;
+        margin: 12px 0 0;
+      }
+    }
+    & > p {
+      color: #757575;
+      text-align: center;
+      font-family: 'Nunito Sans';
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 20px;
+      margin: 0;
+    }
+    & .complete_your_trade_in_btn {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 64px;
+      color: #fff;
+      font-family: 'Nunito Sans';
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 24px;
+      border-radius: 100px;
+      background: #63dd1a;
+      margin: 20px 0;
+      cursor: pointer;
+    }
+    & .no_thanks_btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-width: max-content;
+      color: #757575;
+      font-family: 'Nunito Sans';
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 24px;
+      text-decoration-line: underline;
+      margin: 0 auto;
+      cursor: pointer;
+      transition: all 0.8s ease 0s;
+      &:hover {
+        transform: scale(0.9);
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    & {
+      flex-direction: column-reverse;
+      & .information_wrapper {
+        padding: 40px 24px 16px;
+        border-radius: 16px;
+        border: none;
+        background: linear-gradient(180deg, #f1f8fe 0%, rgba(255, 255, 255, 0) 60.78%), var(--Main-White, #fff);
+        & h2 {
+          font-size: 28px;
+          line-height: 32px;
+          margin-bottom: 2px;
+        }
+        & h3 {
+          font-size: 24px;
+          line-height: 32px;
+          margin-bottom: 20px;
+        }
+        & .counter_wrapper {
+          & .counter_title {
+            margin-bottom: 12px;
+          }
+          & .time_txt {
+            line-height: 40px;
+            padding: 7px 16.2px;
+          }
+        }
+        & .discount_code_wrapper {
+          & .discount_code_txt {
+            letter-spacing: normal;
+          }
+        }
+        & > p {
+          line-height: 18px;
+        }
+        & .complete_your_trade_in_btn {
+          height: 56px;
+          font-size: 16px;
+          margin-bottom: 16px;
+        }
+        & .no_thanks_btn {
+          margin-bottom: 24px;
+        }
+      }
+      & .logo_wrapper {
+        display: none;
+      }
+    }
+  }
+}
