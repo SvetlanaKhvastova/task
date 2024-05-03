@@ -19,16 +19,18 @@ class exitIntentPopup {
   init() {
     startLog({ name: 'Exit Intent Popup', dev: 'SKh' })
     clarityInterval('exp_intent_popup')
-    document.head.insertAdjacentHTML('beforeend', `<style>${mainStyle}</style>`)
-    if (!sessionStorage.getItem('exitIntentPopup')) {
-      this.createPopup()
-      this.intentPopupTriggers()
-      this.copyDiscount()
-      this.onClickCompleteYourTradeInBtn()
+    if (sessionStorage.getItem('exitIntentPopup')) {
+      return
     }
+    document.head.insertAdjacentHTML('beforeend', `<style>${mainStyle}</style>`)
+    this.createPopup()
+    this.intentPopupTriggers()
+    this.copyDiscount()
+    this.onClickCompleteYourTradeInBtn()
   }
 
   intentPopupTriggers() {
+    console.log(`intentPopupTriggers`)
     if (this.device === 'mobile') {
       // Scroll up (JS speed value: 70)
       // Swiping (upward or downward swipes)
@@ -36,9 +38,8 @@ class exitIntentPopup {
         const scrollSpeed = checkScrollSpeed()
         if (+scrollSpeed < -100 || +scrollSpeed > 100) {
           if (!sessionStorage.getItem('scrollForPopup')) {
-            console.log(scrollSpeed, `scrollSpeed`)
             sessionStorage.setItem('scrollForPopup', 'yes')
-            this.showIntentPopup()
+            this.showIntentPopup('Scroll up (JS speed value: 70)/Swiping')
           }
         }
       })
@@ -51,21 +52,20 @@ class exitIntentPopup {
         if (+scrollSpeed < -70) {
           if (!sessionStorage.getItem('scrollForPopup')) {
             sessionStorage.setItem('scrollForPopup', 'yes')
-            this.showIntentPopup()
+            this.showIntentPopup('Scroll up (JS speed value: 70)')
           }
         }
       })
       // Cursor leaving active area
       document.addEventListener('mouseout', event => {
         if (!event.relatedTarget) {
-          this.showIntentPopup()
+          this.showIntentPopup('Cursor leaving active area')
         }
       })
       // Page focus change (activates when the user switches between tabs or windows and then returns)
       document.addEventListener('visibilitychange', () => {
         if (!document.hidden) {
-          console.log('Зміна фокусу екрану: сторінка стала видимою')
-          this.showIntentPopup()
+          this.showIntentPopup('Page focus change')
         }
       })
     }
@@ -82,7 +82,7 @@ class exitIntentPopup {
     }
     if (cartVisitsCount >= 3) {
       setTimeout(() => {
-        this.showIntentPopup()
+        this.showIntentPopup('Frequent revisiting the cart/checkout')
       }, 600)
     }
   }
@@ -99,18 +99,24 @@ class exitIntentPopup {
   }
   resetTimer() {
     clearTimeout(this.timeoutId) // Clear the previous timeout
-    this.timeoutId = setTimeout(() => this.showIntentPopup(), this.delayTime) // Set a new timeout
+    this.timeoutId = setTimeout(
+      () => this.showIntentPopup('In 60 sec. on any page without any action.'),
+      this.delayTime
+    ) // Set a new timeout
   }
 
-  showIntentPopup() {
+  showIntentPopup(trigger: string) {
+    if (sessionStorage.getItem('exitIntentPopup')) {
+      return
+    }
     waitForElement('#mini-cart-count_footer').then(i => {
       let s = setInterval(() => {
-        if ($el('#mini-cart-count_footer') && +$el('#mini-cart-count_footer').textContent > 0) {
+        if (+$el('#mini-cart-count_footer').textContent > 0) {
           clearInterval(s)
-          console.log(+$el('#mini-cart-count_footer').textContent)
-          this.handleShowPopup(contentPopup, 'exitIntentPopup')
+          console.log(+$el('#mini-cart-count_footer').textContent, '<--------at least 1 device at their cart added')
+          this.handleShowPopup(contentPopup, 'exitIntentPopup', trigger)
         }
-      }, 100)
+      }, 10)
     })
   }
   startCountdown() {
@@ -133,6 +139,7 @@ class exitIntentPopup {
     }, 1000)
   }
   createPopup() {
+    console.log(`createPopup`)
     if (!$el('.new-popup-backdrop')) {
       $el('body').insertAdjacentHTML('afterbegin', popup)
     }
@@ -140,9 +147,10 @@ class exitIntentPopup {
       this.handleClosePopup()
     })
   }
-  handleShowPopup(content: string, name: string) {
+  handleShowPopup(content: string, name: string, trigger: string) {
     const isShowed = sessionStorage.getItem(name)
     if (isShowed) return
+    console.log(`handleShowPopup`, trigger)
 
     const body = $el('body'),
       backdrop = $el('.new-popup-backdrop'),
