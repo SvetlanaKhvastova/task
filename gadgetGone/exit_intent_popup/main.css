@@ -44,10 +44,14 @@
 }
 
 @media (max-width: 768px) {
+  .new-popup-backdrop {
+    overflow: auto;
+  }
   .new-popup {
     max-width: 343px;
     top: 55px;
     transform: translateX(-50%);
+    padding-bottom: 5px;
   }
 }
 .exit-intent__popup {

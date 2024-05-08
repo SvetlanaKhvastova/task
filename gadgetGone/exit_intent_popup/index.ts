@@ -37,10 +37,7 @@ class exitIntentPopup {
       document.addEventListener('scroll', () => {
         const scrollSpeed = checkScrollSpeed()
         if (+scrollSpeed < -100 || +scrollSpeed > 100) {
-          if (!sessionStorage.getItem('scrollForPopup')) {
-            sessionStorage.setItem('scrollForPopup', 'yes')
-            this.showIntentPopup('Scroll up (JS speed value: 70)/Swiping')
-          }
+          this.showIntentPopup('Scroll up (JS speed value: 70)/Swiping')
         }
       })
     }
@@ -50,10 +47,7 @@ class exitIntentPopup {
         const scrollSpeed = checkScrollSpeed()
 
         if (+scrollSpeed < -70) {
-          if (!sessionStorage.getItem('scrollForPopup')) {
-            sessionStorage.setItem('scrollForPopup', 'yes')
-            this.showIntentPopup('Scroll up (JS speed value: 70)')
-          }
+          this.showIntentPopup('Scroll up (JS speed value: 70)')
         }
       })
       // Cursor leaving active area
@@ -193,7 +187,7 @@ class exitIntentPopup {
       if (!e.target.getAttribute('data-test')) {
         if (e.target.matches('.new-popup-backdrop')) {
           pushData(
-            'exp_intent_popup_button_03',
+            'exp_intent_popup_button_05',
             'Сlick behind the pop-up area',
             'Backdrop',
             'Pop Up Get paid as you like. In no time!'
