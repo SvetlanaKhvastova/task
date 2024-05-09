@@ -1,4 +1,9 @@
 export const git: string = 'https://conversionratestore.github.io/projects/buzzpatch/img/'
+declare global {
+  interface JQuery {
+    swipe: any
+  }
+}
 export const svg = {
   giftIcon: /* HTML */ `
     <svg class="gift_icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -53,6 +58,11 @@ export const svg = {
           <rect width="24" height="24" fill="white" />
         </clipPath>
       </defs>
+    </svg>
+  `,
+  borderIcon: /* HTML */ `
+    <svg xmlns="http://www.w3.org/2000/svg" width="134" height="34" viewBox="0 0 134 34" fill="none">
+      <rect y="21" width="134" height="5" rx="2.5" fill="black" />
     </svg>
   `
 }

@@ -21,9 +21,12 @@ body .gift_box.banner_box {
   z-index: 1;
   position: relative;
 }
-body .gift_box.classVar {
+body .gift_box.bundle_box {
+  max-width: 323px;
   padding: 12px 16px;
   border-radius: 4px;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 body .gift_box svg {
   width: 16px;
@@ -42,9 +45,8 @@ body .gift_box p {
   letter-spacing: normal;
 }
 body .gift_box p span {
-  width: -moz-max-content;
-  width: max-content;
-  color: #007bff;
+  color: #1e4fd1;
+  font-weight: 600;
   text-decoration-line: underline;
   cursor: pointer;
 }
@@ -85,6 +87,134 @@ body .hand-banner a.get-it {
   color: #fff;
 }
 
+#getNow {
+  position: relative;
+  padding: 0 16px !important;
+}
+#getNow > h2 {
+  text-align: left;
+  color: #212529;
+  font-family: "DINEngschrift LT";
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: 0.72px;
+  text-transform: uppercase;
+}
+#getNow > h2 + p {
+  text-align: left;
+  color: #212529;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  line-height: 24px !important;
+  margin: 8px 0 31px;
+}
+#getNow p > br {
+  display: none;
+}
+#getNow .sub.js-desktop + img {
+  position: absolute;
+  top: -10px;
+  right: 13px;
+  max-width: 135px;
+}
+#getNow .js-packs:nth-child(1) input[type=radio] + label {
+  border-top-left-radius: 0;
+}
+#getNow input[type=radio] + label {
+  font-family: "DIN Condensed";
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 8.4px 20px;
+}
+#getNow input[type=radio] + label .gift_icon {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+}
+#getNow input[type=radio] + label span {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+}
+#getNow .form-group {
+  margin: 0 !important;
+}
+#getNow .new-bundle-pack h3 {
+  color: #212529;
+  font-family: "DIN Condensed";
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin: 0 0 3px;
+}
+#getNow .new-bundle-pack .bundle-off {
+  color: #fff;
+  font-family: "DIN Condensed";
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 2px 2px 0px 0px;
+  background: #000;
+  margin-top: -24px;
+}
+#getNow .new-bundle-pack input[type=radio] + label {
+  padding: 6px 8px 6px 11px;
+}
+#getNow .new-bundle-pack input[type=radio] + label .gift_icon {
+  right: 8px;
+  top: 8px;
+}
+#getNow .new-bundle-pack input[type=radio] + label span {
+  font-weight: 400;
+  margin-top: 4px;
+  display: inline-block;
+}
+#getNow .new-bundle-pack input[type=radio] + label span.pack-title {
+  font-weight: 700;
+  line-height: 22px;
+  margin: 0;
+}
+#getNow .new-bundle-pack img {
+  background: inherit !important;
+  padding: 0 !important;
+  width: 78px;
+  margin-right: 21px !important;
+}
+#getNow .new-bundle-pack .btn-tooltip {
+  right: 8px;
+  bottom: 8px;
+  width: 20px;
+}
+#getNow .prices .js-total {
+  color: #181717;
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30px;
+  margin-bottom: 4px;
+}
+#getNow .prices .js-regular {
+  margin-bottom: 12px;
+}
+#getNow #addToCart {
+  padding: 20px 10px;
+}
+#getNow .days {
+  margin-top: 0 !important;
+  margin-bottom: 23px !important;
+}
+
 .js-packs input[type=radio]:checked + label .gift_icon path,
 .new-bundle-pack .js-packs input[type=radio]:checked + label .pack-label .gift_icon path {
   fill: white;
@@ -100,6 +230,7 @@ body .hand-banner a.get-it {
   height: 100%;
   z-index: 1000000000000;
   transition: all 0.8s ease 0s;
+  overflow: auto;
 }
 
 .new_popup_backdrop.is_hidden {
@@ -109,9 +240,7 @@ body .hand-banner a.get-it {
 
 .new_popup {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  height: 100%;
   width: 100%;
 }
 
@@ -127,14 +256,31 @@ body .hand-banner a.get-it {
   border: none;
   transition: all 0.8s ease 0s;
 }
-
-.new_popup_close:hover,
-.new_popup_close:focus {
-  background: none;
-  transform: scale(0.8);
+.new_popup_close svg {
+  vertical-align: baseline;
 }
 
-.gift_stickers_title {
+.new_popup_content {
+  padding: 32px 20px 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.new_popup_content img {
+  margin: 0 auto;
+  display: block;
+}
+.new_popup_content img:nth-child(1) {
+  width: 100%;
+  max-width: 240px;
+}
+.new_popup_content img:nth-child(2) {
+  width: 100%;
+  max-width: 335px;
+  margin-top: 24px;
+}
+.new_popup_content .gift_stickers_title {
   color: #2c56a5;
   text-align: center;
   font-family: "DIN Condensed";
@@ -143,5 +289,11 @@ body .hand-banner a.get-it {
   line-height: 22px;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  margin: 0;
+  margin: 40px 0 12px;
+}
+.new_popup_content .border_icon {
+  text-align: center;
+  margin: auto auto 0;
+  width: -moz-max-content;
+  width: max-content;
 }/*# sourceMappingURL=main.css.map */
