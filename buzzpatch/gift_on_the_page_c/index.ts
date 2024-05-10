@@ -5,7 +5,7 @@ import {
   waitForElement,
   pushData,
   clarityInterval,
-  checkScrollSpeed,
+  visibilityOfTime,
   loadScriptsOrStyles
 } from '../../libraries'
 import { giftBox, popup } from './blocks'
@@ -26,7 +26,7 @@ class exitIntentPopup {
 
   init() {
     startLog({ name: 'Exit Intent Popup', dev: 'SKh' })
-    clarityInterval('exp_intent_popup')
+    clarityInterval('exp_introduce_b')
     document.head.insertAdjacentHTML(
       'beforeend',
       `<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">`
@@ -37,6 +37,7 @@ class exitIntentPopup {
     this.triggerPopupOpen()
     this.setupSwipeToClosePopup()
     this.clickAddToCartBtnHandler()
+    this.visibleHandler()
   }
 
   rendergGiftElements() {
@@ -57,7 +58,7 @@ class exitIntentPopup {
       }
     })
     $$el('#getNow input[type=radio] + label').forEach((el: HTMLElement) => {
-      if (el.getAttribute('for') === 'radios-3') return
+      if (el.getAttribute('for') === 'radios-3' || el.getAttribute('for') === 'radios-2') return
       el.insertAdjacentHTML('afterbegin', svg.giftIcon)
     })
     if ($el('.new-bundle-pack img').src !== `${git}new_bundle_img.png`) {
@@ -71,7 +72,7 @@ class exitIntentPopup {
     waitForElement('.trigger_popup_open').then(i => {
       $el('.trigger_popup_open').addEventListener('click', (e: any) => {
         e.preventDefault()
-        console.log(`trigger_popup_open`)
+        pushData('exp_introduce_b_link_01', '16 magical characters', 'Link', 'Shopping section')
         this.handleShowPopup()
       })
     })
@@ -85,7 +86,7 @@ class exitIntentPopup {
           clearInterval(s)
           $('.border_icon').swipe({
             swipeUp: function () {
-              console.log(`swipeUp`)
+              pushData('exp_introduce_b_line_01', 'Swipe Up', 'Line', 'Pop up')
               $el('.new_popup_backdrop').classList.add('is_hidden')
               $el('body').style.overflow = 'initial'
             },
@@ -95,7 +96,6 @@ class exitIntentPopup {
       }, 400)
     })
   }
-
   createPopup() {
     if (!$el('.new_popup_backdrop')) {
       $el('body').insertAdjacentHTML('afterbegin', popup)
@@ -111,6 +111,7 @@ class exitIntentPopup {
       backdrop.classList.remove('is_hidden')
     }
     body.style.overflow = 'hidden'
+    pushData('exp_introduce_b_popup_01', '16 magical characters', 'Visibility', 'Pop up')
   }
   handleClosePopup() {
     const body = $el('body'),
@@ -120,7 +121,7 @@ class exitIntentPopup {
     closePopupBtns.forEach((btn: HTMLElement) => {
       btn.addEventListener('click', (e: any) => {
         if (e.currentTarget) {
-          console.log(`closePopupBtns`)
+          pushData('exp_introduce_b_button_01', 'Close', 'Button', 'Pop up')
           backdrop.classList.add('is_hidden')
           body.style.overflow = 'initial'
         }
@@ -131,8 +132,9 @@ class exitIntentPopup {
     $el('#addToCart')?.addEventListener('click', (e: any) => {
       e.preventDefault()
       let idValue = $el('.js-packs input[type=radio]:checked+label')?.previousElementSibling.value
-      console.log(idValue, `idValue`)
-      idValue === '39542857695276' ? this.addToCartGiftHandler(idValue, false) : this.addToCartGiftHandler(idValue)
+      idValue === '39542857695276' || idValue === '39542857728044'
+        ? this.addToCartGiftHandler(idValue, false)
+        : this.addToCartGiftHandler(idValue)
     })
   }
   async addToCartGiftHandler(idValue: number, gift: boolean = true) {
@@ -172,6 +174,38 @@ class exitIntentPopup {
     })
 
     window.location.href = '/checkout'
+  }
+  visibleHandler() {
+    waitForElement('.hand-banner .banner_box').then(i => {
+      visibilityOfTime('.hand-banner .banner_box', 'exp_introduce_b_element_01', 'First screen', 'Limited time offer')
+    })
+    waitForElement('.effectiveness .cta_box').then(i => {
+      visibilityOfTime(
+        '.effectiveness .cta_box',
+        'exp_introduce_b_element_02',
+        'Limited Time Offer',
+        `Limited time offer - 1`
+      )
+    })
+    waitForElement('.bp-comparison .cta_box').then(i => {
+      visibilityOfTime(
+        '.bp-comparison .cta_box',
+        'exp_introduce_b_element_02',
+        'Limited Time Offer',
+        `Limited time offer - 2`
+      )
+    })
+    waitForElement('#ingredients .cta_box').then(i => {
+      visibilityOfTime(
+        '#ingredients .cta_box',
+        'exp_introduce_b_element_02',
+        'Limited Time Offer',
+        `Limited time offer - 3`
+      )
+    })
+    waitForElement('#getNow .bundle_box').then(i => {
+      visibilityOfTime('#getNow .bundle_box', 'exp_introduce_b_element_03', 'Shopping section', 'Limited time offer')
+    })
   }
 }
 
