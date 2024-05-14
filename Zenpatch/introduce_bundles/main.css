@@ -422,4 +422,11 @@ body .reviews-slide img.days {
     margin-top: 5px;
     font-size: 12px !important;
   }
+}
+.sidebar {
+  z-index: 888888888889 !important;
+}
+
+.rly-container {
+  z-index: 888888888 !important;
 }/*# sourceMappingURL=main.css.map */
