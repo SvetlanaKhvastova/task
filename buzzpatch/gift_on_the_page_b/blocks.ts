@@ -2,13 +2,15 @@ import { svg, git } from './data'
 
 const giftBox = (cta: boolean, classVar: string = ''): string => {
   return /*HTML */ `
-  <div class="gift_box ${classVar}">
-    ${svg.giftIcon}
-    ${
-      cta
-        ? `<p><b>Limited Time Offer:</b> Get a free NATPAT sticker set with your purchase</p>`
-        : `<p>Get a free NATPAT sticker set with any 2-4 pack purchase. Collect all <span class="trigger_popup_open">16 magical characters!</span></p>`
-    }
+  <div class="gift_box_wrapper">
+    <div class="gift_box ${classVar}">
+      ${svg.giftIcon}
+      ${
+        cta
+          ? `<p><b>Limited Time Offer:</b> Get a free NATPAT sticker set with your purchase</p>`
+          : `<p>Get a free NATPAT sticker set with any 2-4 pack purchase. Collect all <span class="trigger_popup_open">16 magical characters!</span></p>`
+      }
+    </div>
   </div>
 `
 }
