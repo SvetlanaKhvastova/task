@@ -8,7 +8,7 @@ const giftBox = (cta: boolean, classVar: string = ''): string => {
       ${
         cta
           ? `<p><b>Limited Time Offer:</b> Get a free NATPAT sticker set with your purchase</p>`
-          : `<p>Get a free NATPAT sticker set with any 2-4 pack purchase. Collect all <span class="trigger_popup_open">16 magical characters!</span></p>`
+          : `<p>Get a free <span class="trigger_popup_open">NATPAT sticker set</span> with any 2-4 pack purchase.</p>`
       }
     </div>
   </div>

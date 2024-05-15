@@ -6,7 +6,7 @@ import {
   pushData,
   clarityInterval,
   visibilityOfTime,
-  loadScriptsOrStyles
+  checkScrollPosition
 } from '../../libraries'
 import { giftBox, popup } from './blocks'
 import { svg, git } from './data'
@@ -25,7 +25,7 @@ class exitIntentPopup {
   }
 
   init() {
-    startLog({ name: 'Exit Intent Popup', dev: 'SKh' })
+    startLog({ name: 'Exit Intent Popup v.C', dev: 'SKh' })
     clarityInterval('exp_introduce_b')
     document.head.insertAdjacentHTML(
       'beforeend',
@@ -35,9 +35,9 @@ class exitIntentPopup {
     this.createPopup()
     this.rendergGiftElements()
     this.triggerPopupOpen()
-    this.setupSwipeToClosePopup()
     this.clickAddToCartBtnHandler()
     this.visibleHandler()
+    this.handleClickGetNow()
   }
 
   rendergGiftElements() {
@@ -77,25 +77,6 @@ class exitIntentPopup {
       })
     })
   }
-  setupSwipeToClosePopup() {
-    loadScriptsOrStyles([
-      'https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js'
-    ]).then(async () => {
-      let s = setInterval(() => {
-        if (typeof $('.border_icon').swipe === 'function' && $el('.border_icon')) {
-          clearInterval(s)
-          $('.border_icon').swipe({
-            swipeUp: function () {
-              pushData('exp_introduce_b_line_01', 'Swipe Up', 'Line', 'Pop up')
-              $el('.new_popup_backdrop').classList.add('is_hidden')
-              $el('body').style.overflow = 'initial'
-            },
-            threshold: 0
-          })
-        }
-      }, 400)
-    })
-  }
   createPopup() {
     if (!$el('.new_popup_backdrop')) {
       $el('body').insertAdjacentHTML('afterbegin', popup)
@@ -106,24 +87,28 @@ class exitIntentPopup {
   }
   handleShowPopup() {
     const body = $el('body'),
-      backdrop = $el('.new_popup_backdrop')
+      backdrop = $el('.new_popup_backdrop'),
+      html = $el('html')
     if (backdrop.classList.contains('is_hidden')) {
       backdrop.classList.remove('is_hidden')
     }
     body.style.overflow = 'hidden'
+    html.style.overflow = 'hidden'
     pushData('exp_introduce_b_popup_01', '16 magical characters', 'Visibility', 'Pop up')
   }
   handleClosePopup() {
     const body = $el('body'),
       backdrop = $el('.new_popup_backdrop'),
       popup = $el('.new_popup'),
-      closePopupBtns = popup.querySelectorAll('[data-popup="close"]')
+      closePopupBtns = popup.querySelectorAll('[data-popup="close"]'),
+      html = $el('html')
     closePopupBtns.forEach((btn: HTMLElement) => {
       btn.addEventListener('click', (e: any) => {
         if (e.currentTarget) {
           pushData('exp_introduce_b_button_01', 'Close', 'Button', 'Pop up')
           backdrop.classList.add('is_hidden')
           body.style.overflow = 'initial'
+          html.style.overflow = 'initial'
         }
       })
     })
@@ -205,6 +190,23 @@ class exitIntentPopup {
     })
     waitForElement('#getNow .bundle_box').then(i => {
       visibilityOfTime('#getNow .bundle_box', 'exp_introduce_b_element_03', 'Shopping section', 'Limited time offer')
+    })
+  }
+  handleClickGetNow() {
+    waitForElement('#getNow').then(i => {
+      $$el('[href="#getNow"]').forEach(el => {
+        el.addEventListener('click', (e: any) => {
+          e.preventDefault()
+          e.stopPropagation()
+          $('html, body').stop()
+          let coverageElem: HTMLElement = $el('#getNow')
+          let headerOffset: number = 35
+          if (e.target.closest('.hand-banner') || (e.target.closest('.navbar') && !e.target.closest('.fixed-top'))) {
+            headerOffset = 110
+          }
+          checkScrollPosition(headerOffset, coverageElem)
+        })
+      })
     })
   }
 }
