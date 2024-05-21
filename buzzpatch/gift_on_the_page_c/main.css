@@ -318,4 +318,8 @@ body .hand-banner a.get-it {
   margin: auto auto 0;
   width: -moz-max-content;
   width: max-content;
+}
+
+#nudge-ui-container {
+  display: none !important;
 }/*# sourceMappingURL=main.css.map */

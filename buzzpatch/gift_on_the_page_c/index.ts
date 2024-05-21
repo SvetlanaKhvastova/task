@@ -200,11 +200,22 @@ class exitIntentPopup {
           e.stopPropagation()
           $('html, body').stop()
           let coverageElem: HTMLElement = $el('#getNow')
+
           let headerOffset: number = 35
-          if (e.target.closest('.hand-banner') || (e.target.closest('.navbar') && !e.target.closest('.fixed-top'))) {
-            headerOffset = 110
-          }
-          checkScrollPosition(headerOffset, coverageElem)
+          let scroll = true
+          let s = setInterval(async () => {
+            if (
+              coverageElem.getBoundingClientRect().top > headerOffset - 1 &&
+              coverageElem.getBoundingClientRect().top <= headerOffset + 1
+            ) {
+              clearInterval(s)
+            } else {
+              if (scroll) {
+                scroll = false
+                scroll = await checkScrollPosition(headerOffset, coverageElem)
+              }
+            }
+          }, 100)
         })
       })
     })
