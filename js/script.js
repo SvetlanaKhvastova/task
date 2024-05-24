@@ -318,7 +318,11 @@ let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/treblehealth/improve_page.js";
 script.async = false;
 document.head.appendChild(script);
-
+//
+let script = document.createElement("script");
+script.src = "https://conversionratestore.github.io/projects/treblehealth/blog_pages.js";
+script.async = false;
+document.head.appendChild(script);
 //gold_ua
 let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/gold_ua/exit_intent_pop_up.js";

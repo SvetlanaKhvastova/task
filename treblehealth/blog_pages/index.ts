@@ -17,7 +17,7 @@ class blogPageHypSecond {
 
   init() {
     startLog({ name: 'AB test Blog pages', dev: 'SKh' })
-    // clarityInterval('')
+    clarityInterval('exp_blog')
     document.head.insertAdjacentHTML('beforeend', `<style>${mainStyle}</style>`)
     this.changeTxtHeaderBanner()
     this.changeTxtAndLinkBtns()
@@ -25,25 +25,43 @@ class blogPageHypSecond {
     this.changeTxtBloclNextStep()
   }
   changeTxtHeaderBanner() {
-    $$el('.elementor-659 .elementor-element.elementor-element-c1c5677 .elementor-button-text').forEach(el => {
-      if (el.innerHTML !== 'Take the Tinnitus Quiz. <span>Start Now.</span>') {
-        el.innerHTML = 'Take the Tinnitus Quiz. <span>Start Now.</span>'
-      }
-      el.querySelector('span').addEventListener('click', (e: any) => {
-        e.preventDefault()
-        console.log(`object`)
+    waitForElement('.elementor-659 .elementor-element.elementor-element-c1c5677 .elementor-button-text').then(i => {
+      $$el('.elementor-659 .elementor-element.elementor-element-c1c5677 .elementor-button-text').forEach(el => {
+        if (el.closest('.elementor-button')) {
+          el.closest('.elementor-button').addEventListener('click', (e: any) => {
+            e.preventDefault()
+            window.location.href = 'https://treblehealth.com/survey/'
+          })
+        }
+
+        if (el.innerHTML !== 'Take the Tinnitus Quiz. <span>Start Now.</span>') {
+          el.innerHTML = 'Take the Tinnitus Quiz. <span>Start Now.</span>'
+        }
+        el.querySelector('span').addEventListener('click', (e: any) => {
+          e.preventDefault()
+        })
       })
     })
   }
   changeTxtAndLinkBtns() {
-    $$el('.elementor-button-link').forEach(link => {
-      if (link.textContent !== 'Take the Tinnitus Quiz' && !link.closest('.elementor-location-header')) {
-        link.textContent = 'Take the Tinnitus Quiz'
-      }
-      link.addEventListener('click', (e: any) => {
-        e.preventDefault()
-        console.log(link.href)
-        window.location.href = 'https://treblehealth.com/survey/'
+    waitForElement('div.post .elementor-button-link').then(i => {
+      $$el('div.post .elementor-button-link').forEach(link => {
+        if (
+          link.textContent !== 'Take the Tinnitus Quiz' &&
+          !link.closest('.elementor-location-header') &&
+          !link.closest('.elementor-popup-modal')
+        ) {
+          link.textContent = 'Take the Tinnitus Quiz'
+        }
+        if (
+          !link.closest('.elementor-659 .elementor-element.elementor-element-e55687d') &&
+          !link.closest('.elementor-popup-modal')
+        ) {
+          link.addEventListener('click', (e: any) => {
+            e.preventDefault()
+            window.location.href = 'https://treblehealth.com/survey/'
+          })
+        }
       })
     })
   }
@@ -54,7 +72,7 @@ class blogPageHypSecond {
       }
       $el('body .floating_button a').addEventListener('click', (e: any) => {
         e.preventDefault()
-        window.location.href = 'https://treblehealth.com/intl-survey/'
+        window.location.href = 'https://treblehealth.com/survey/'
       })
     })
   }
@@ -79,6 +97,8 @@ class blogPageHypSecond {
   }
 }
 
-if (window.location.pathname.match('tinnitus-cure')) {
-  new blogPageHypSecond(device)
-}
+waitForElement('.post-template-default').then(i => {
+  setTimeout(() => {
+    new blogPageHypSecond(device)
+  }, 800)
+})
