@@ -345,7 +345,7 @@ script.async = false;
 document.head.appendChild(script);
 //lemieux
 let script = document.createElement("script");
-script.src = "";
+script.src = "https://conversionratestore.github.io/projects/lemieux/free_delivery_v2.js";
 script.async = false;
 document.head.appendChild(script);
 // gadgetgone

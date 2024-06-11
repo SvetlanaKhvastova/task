@@ -7,7 +7,7 @@ import {
   clarityInterval,
   visibilityOfTime,
   checkScrollPosition
-} from '../../libraries'
+} from '../../../libraries'
 import { giftBox, popup } from './blocks'
 import { svg, git } from './data'
 // @ts-ignore
