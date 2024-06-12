@@ -7,7 +7,7 @@ import {
   clarityInterval,
   visibilityOfTime,
   checkScrollPosition
-} from '../../../libraries'
+} from '../../../../libraries'
 import { popup } from './blocks'
 import { svg, git } from './data'
 // @ts-ignore
@@ -27,6 +27,9 @@ class exitIntentPopup {
   init() {
     startLog({ name: 'Gift hypothesis (second iteration) v.B', dev: 'SKh' })
     clarityInterval('exp_introduce_b')
+    if (localStorage.getItem('clickCheckoutBtn') === 'yes') localStorage.removeItem('clickCheckoutBtn')
+    if (localStorage.getItem('setTimeout3000') === 'yes') localStorage.removeItem('setTimeout3000')
+
     document.head.insertAdjacentHTML(
       'beforeend',
       `<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">`
@@ -36,6 +39,7 @@ class exitIntentPopup {
     this.rendergGiftElements()
     this.clickProceedToCheckoutBtnHandler()
     this.clickNewCheckoutBtnHandler()
+    this.clickNewNoThanksBtnHandler()
     this.visibleHandler()
     this.handleClickGetNow()
   }
@@ -52,6 +56,19 @@ class exitIntentPopup {
       $el('#getNow .days').src = `${git}new_trustpilot_reviews_img.png`
     }
   }
+  triggerPopupOpenVerB(idValue: number) {
+    this.handleShowPopup()
+    // Start the progress bar animation
+    setTimeout(() => {
+      if (localStorage.getItem('clickCheckoutBtn') === 'yes') return
+      this.addToCartGiftHandler(idValue)
+      localStorage.setItem('setTimeout3000', 'yes')
+    }, 3000)
+  }
+  triggerPopupOpenVerC(idValue: number) {
+    this.handleShowPopup()
+  }
+
   createPopup() {
     if (!$el('.new_popup_backdrop')) {
       $el('body').insertAdjacentHTML('afterbegin', popup)
@@ -60,7 +77,7 @@ class exitIntentPopup {
       this.handleClosePopup()
     })
   }
-  handleShowPopup(idValue: number) {
+  handleShowPopup() {
     const body = $el('body'),
       backdrop = $el('.new_popup_backdrop'),
       html = $el('html')
@@ -69,12 +86,7 @@ class exitIntentPopup {
     }
     body.style.overflow = 'hidden'
     html.style.overflow = 'hidden'
-    // Start the progress bar animation
-    setTimeout(() => {
-      this.addToCartGiftHandler(idValue)
-    }, 3000)
-    $el('.progress_bar').classList.add('progress_bar_fill')
-
+    $el('.progress_bar')?.classList.add('progress_bar_fill')
     pushData('exp_introduce_b_popup_01', '16 magical characters', 'Visibility', 'Pop up')
   }
   handleClosePopup() {
@@ -99,20 +111,41 @@ class exitIntentPopup {
       e.preventDefault()
       let idValue = $el('.js-packs input[type=radio]:checked+label')?.previousElementSibling.value
       let idValueForFalse = '39542857695276'
-      idValue === idValueForFalse ? this.addToCartGiftHandler(idValue, false) : this.handleShowPopup(idValue)
+      // version B
+      // idValue === idValueForFalse ? this.addToCartGiftHandler(idValue, false) : this.triggerPopupOpenVerB(idValue)
+      // version C
+      idValue === idValueForFalse ? this.addToCartGiftHandler(idValue, false) : this.triggerPopupOpenVerC(idValue)
     })
   }
   clickNewCheckoutBtnHandler() {
     waitForElement('.new_checkout_btn').then(i => {
       $el('.new_checkout_btn')?.addEventListener('click', (e: any) => {
         e.preventDefault()
+        localStorage.setItem('clickCheckoutBtn', 'yes')
+        if (localStorage.getItem('setTimeout3000') === 'yes') return
         let idValue = $el('.js-packs input[type=radio]:checked+label')?.previousElementSibling.value
         let idValueForFalse = '39542857695276'
-        idValue === idValueForFalse ? this.addToCartGiftHandler(idValue, false) : this.addToCartGiftHandler(idValue)
+        // version B
+        // idValue === idValueForFalse ? this.addToCartGiftHandler(idValue, false) : this.addToCartGiftHandler(idValue)
+        // version C
+        let idValueSocks = $el('.socks_radio_wrapper input[type=radio]:checked')?.value
+        idValue === idValueForFalse
+          ? this.addToCartGiftHandler(idValue, false)
+          : this.addToCartGiftHandler(idValue, true, true, idValueSocks)
       })
     })
   }
-  async addToCartGiftHandler(idValue: number, gift: boolean = true) {
+  clickNewNoThanksBtnHandler() {
+    // version C
+    waitForElement('.new_no_thanks_btn').then(i => {
+      $el('.new_no_thanks_btn')?.addEventListener('click', (e: any) => {
+        e.preventDefault()
+        let idValue = $el('.js-packs input[type=radio]:checked+label')?.previousElementSibling.value
+        this.addToCartGiftHandler(idValue, false, true)
+      })
+    })
+  }
+  async addToCartGiftHandler(idValue: number, gift: boolean = true, closed = false, idValueSocks?: number) {
     // clearCart
     await fetch('/cart/clear.js', {
       method: 'POST',
@@ -130,7 +163,7 @@ class exitIntentPopup {
 
     if (gift) {
       items.push({
-        id: 43320074436652,
+        id: idValueSocks ?? 43320074436652,
         quantity: 1
       })
     }
@@ -147,7 +180,11 @@ class exitIntentPopup {
       },
       body: JSON.stringify(formData)
     })
-
+    if (closed) {
+      $el('.new_popup_backdrop')?.classList.add('is_hidden')
+      $el('body').style.overflow = 'initial'
+      $el('html').style.overflow = 'initial'
+    }
     window.location.href = '/checkout'
   }
   visibleHandler() {}
