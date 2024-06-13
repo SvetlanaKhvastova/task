@@ -61,8 +61,8 @@ const popup = (price: string) => {
   return /* HTML */ `
     <div class="new_popup_backdrop is_hidden">
       <div class="new_popup">
-        <div class="new_popup_content version_b">${contentPopupVerB(price)}</div>
-        <!-- <div class="new_popup_content version_c">${contentPopupVerC}</div> -->
+        <!-- <div class="new_popup_content version_b">${contentPopupVerB(price)}</div> -->
+        <div class="new_popup_content version_c">${contentPopupVerC}</div>
       </div>
     </div>
   `

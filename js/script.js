@@ -13,7 +13,16 @@ let scriptCustom = document.createElement("script");
 scriptCustom.src = "https://conversionratestore.github.io/projects/buzzpatch/gift_on_the_page_c.js";
 scriptCustom.async = false;
 document.head.appendChild(scriptCustom);
-
+//
+let scriptCustom = document.createElement("script");
+scriptCustom.src = "https://conversionratestore.github.io/projects/buzzpatch/gift_on_the_page_b_second_iteration.js";
+scriptCustom.async = false;
+document.head.appendChild(scriptCustom);
+//
+let scriptCustom = document.createElement("script");
+scriptCustom.src = "https://conversionratestore.github.io/projects/buzzpatch/gift_on_the_page_c_second_iteration.js";
+scriptCustom.async = false;
+document.head.appendChild(scriptCustom);
 //knineti
 let scriptCustom = document.createElement("script");
 scriptCustom.src = "https://conversionratestore.github.io/projects/knineti/new_page.js";

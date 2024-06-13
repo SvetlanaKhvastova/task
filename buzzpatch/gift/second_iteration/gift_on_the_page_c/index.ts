@@ -25,8 +25,8 @@ class exitIntentPopup {
   }
 
   init() {
-    startLog({ name: 'Gift hypothesis (second iteration) v.B', dev: 'SKh' })
-    clarityInterval('exp_introduce_b')
+    startLog({ name: 'Gift hypothesis (second iteration) v.C', dev: 'SKh' })
+    clarityInterval('exp_introduce_c')
 
     if (localStorage.getItem('clickCheckoutBtn') === 'yes') localStorage.removeItem('clickCheckoutBtn')
     if (localStorage.getItem('setTimeout3000') === 'yes') localStorage.removeItem('setTimeout3000')
@@ -40,6 +40,8 @@ class exitIntentPopup {
     this.rendergGiftElements()
     this.clickProceedToCheckoutBtnHandler()
     this.clickNewCheckoutBtnHandler()
+    this.clickNewNoThanksBtnHandler()
+    this.clickRadioBtnHandler()
     this.handleClickGetNow()
   }
 
@@ -55,14 +57,8 @@ class exitIntentPopup {
       $el('#getNow .days').src = `${git}new_trustpilot_reviews_img.png`
     }
   }
-  triggerPopupOpenVerB(idValue: number) {
+  triggerPopupOpenVerC(idValue: number) {
     this.handleShowPopup()
-    // Start the progress bar animation
-    setTimeout(() => {
-      if (localStorage.getItem('clickCheckoutBtn') === 'yes') return
-      this.addToCartGiftHandler(idValue)
-      localStorage.setItem('setTimeout3000', 'yes')
-    }, 3000)
   }
 
   createPopup() {
@@ -84,7 +80,7 @@ class exitIntentPopup {
     body.style.overflow = 'hidden'
     html.style.overflow = 'hidden'
     $el('.progress_bar')?.classList.add('progress_bar_fill')
-    pushData('exp_introduce_v2_element_01', 'Popover', 'Visibility', 'Congratulations! You get a FREE GIFT!')
+    pushData('exp_introduce_v2_element_01', 'Popover', 'Visibility', 'Congratulations! You get a FREE GIFT!  ')
   }
   handleClosePopup() {
     const body = $el('body'),
@@ -107,21 +103,59 @@ class exitIntentPopup {
       e.preventDefault()
       let idValue = $el('.js-packs input[type=radio]:checked+label')?.previousElementSibling.value
       let idValueForFalse = '39542857695276'
-      // version B
-      idValue === idValueForFalse ? this.addToCartGiftHandler(idValue, false) : this.triggerPopupOpenVerB(idValue)
+      // version C
+      idValue === idValueForFalse ? this.addToCartGiftHandler(idValue, false) : this.triggerPopupOpenVerC(idValue)
     })
   }
   clickNewCheckoutBtnHandler() {
     waitForElement('.new_checkout_btn').then(i => {
       $el('.new_checkout_btn')?.addEventListener('click', (e: any) => {
         e.preventDefault()
-        pushData('exp_introduce_v2_button_02', 'Checkout', 'Button', 'Congratulations! You get a FREE GIFT!')
+        pushData(
+          'exp_introduce_v2_button_04',
+          'Add Gift to order and check out',
+          'Button',
+          'Congratulations! You get a FREE GIFT!  '
+        )
         localStorage.setItem('clickCheckoutBtn', 'yes')
         if (localStorage.getItem('setTimeout3000') === 'yes') return
         let idValue = $el('.js-packs input[type=radio]:checked+label')?.previousElementSibling.value
         let idValueForFalse = '39542857695276'
-        // version B
-        idValue === idValueForFalse ? this.addToCartGiftHandler(idValue, false) : this.addToCartGiftHandler(idValue)
+        // version C
+        let idValueSocks = $el('.socks_radio_wrapper input[type=radio]:checked')?.value
+        idValue === idValueForFalse
+          ? this.addToCartGiftHandler(idValue, false)
+          : this.addToCartGiftHandler(idValue, true, true, idValueSocks)
+      })
+    })
+  }
+  clickNewNoThanksBtnHandler() {
+    // version C
+    waitForElement('.new_no_thanks_btn').then(i => {
+      $el('.new_no_thanks_btn')?.addEventListener('click', (e: any) => {
+        e.preventDefault()
+        pushData(
+          'exp_introduce_v2_button_05',
+          'No, thanks. I do not want the free gift',
+          'Button',
+          'Congratulations! You get a FREE GIFT!  '
+        )
+        let idValue = $el('.js-packs input[type=radio]:checked+label')?.previousElementSibling.value
+        this.addToCartGiftHandler(idValue, false, true)
+      })
+    })
+  }
+  clickRadioBtnHandler() {
+    waitForElement('.socks_radio_wrapper').then(i => {
+      $$el('.socks_radio_wrapper label').forEach(el => {
+        el.addEventListener('click', (e: any) => {
+          pushData(
+            'exp_introduce_v2_button_03',
+            el.textContent.trim(),
+            'Button',
+            'Congratulations! You get a FREE GIFT!'
+          )
+        })
       })
     })
   }
@@ -167,6 +201,7 @@ class exitIntentPopup {
     }
     window.location.href = '/checkout'
   }
+
   handleClickGetNow() {
     waitForElement('#getNow').then(i => {
       $$el('[href="#getFormNow"]').forEach(el => {
