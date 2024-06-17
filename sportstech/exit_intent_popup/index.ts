@@ -1,5 +1,6 @@
 import { startLog, $el, $$el, waitForElement, pushData, clarityInterval, checkScrollSpeed } from '../../libraries'
 import { popup, contentPopup } from './blocks'
+import { svg, git } from './data'
 // @ts-ignore
 import mainStyle from './main.css?raw'
 
@@ -25,7 +26,8 @@ class exitIntentPopup {
     // }
     document.head.insertAdjacentHTML('beforeend', `<style>${mainStyle}</style>`)
     this.createPopup()
-    this.intentPopupTriggers()
+    // this.intentPopupTriggers()
+    this.showIntentPopup('TEST')
     this.copyDiscount()
     this.onClickCompleteYourTradeInBtn()
   }
@@ -115,7 +117,7 @@ class exitIntentPopup {
     // })
   }
   startCountdown() {
-    let time = 18 * 60 // 18 minutes--->seconds
+    let time = 15 * 60 // 18 minutes--->seconds
 
     const intervalId = setInterval(() => {
       time--
@@ -148,8 +150,8 @@ class exitIntentPopup {
     })
   }
   handleShowPopup(content: string, name: string, trigger: string) {
-    const isShowed = sessionStorage.getItem(name)
-    if (isShowed) return
+    // const isShowed = sessionStorage.getItem(name)
+    // if (isShowed) return
     console.log(`handleShowPopup`, trigger)
 
     const body = $el('body'),
@@ -214,12 +216,12 @@ class exitIntentPopup {
     waitForElement('[data-discount]').then(i => {
       $$el('[data-discount]').forEach((btn): void => {
         btn.addEventListener('click', (event: any) => {
-          navigator.clipboard.writeText('GG35')
+          navigator.clipboard.writeText('Welcome10')
           event.currentTarget.textContent = 'Copied!'
           pushData('exp_intent_popup_button_04', 'Promo code', 'Button', 'Pop Up Get paid as you like. In no time!')
           setTimeout(() => {
-            event.target.textContent = 'GG35'
-          }, 1000)
+            btn.innerHTML = `${svg.copyIcon}`
+          }, 600)
         })
       })
     })
