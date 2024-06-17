@@ -30,39 +30,25 @@ class exitIntentPopup {
     this.showIntentPopup('TEST')
     this.copyDiscount()
     this.onClickCompleteYourTradeInBtn()
+    this.getItemsBasket()
   }
 
   intentPopupTriggers() {
     console.log(`intentPopupTriggers`)
     if (this.device === 'mobile') {
-      // Scroll up (JS speed value: 70)
-      // Swiping (upward or downward swipes)
+      // Scroll up (JS speed value: 150)
       document.addEventListener('scroll', () => {
         const scrollSpeed = checkScrollSpeed()
-        if (+scrollSpeed < -100 || +scrollSpeed > 100) {
-          this.showIntentPopup('Scroll up (JS speed value: 100)/Swiping')
+        if (+scrollSpeed < -150) {
+          this.showIntentPopup('Scroll up (JS speed value: 150)')
         }
       })
     }
     if (this.device === 'desktop') {
-      // Scroll up (JS speed value: 100)
-      document.addEventListener('scroll', () => {
-        const scrollSpeed = checkScrollSpeed()
-
-        if (+scrollSpeed < -100) {
-          this.showIntentPopup('Scroll up (JS speed value: 100)')
-        }
-      })
       // Cursor leaving active area
       document.addEventListener('mouseout', event => {
         if (!event.relatedTarget) {
           this.showIntentPopup('Cursor leaving active area')
-        }
-      })
-      // Page focus change (activates when the user switches between tabs or windows and then returns)
-      document.addEventListener('visibilitychange', () => {
-        if (!document.hidden) {
-          this.showIntentPopup('Page focus change')
         }
       })
     }
@@ -258,6 +244,29 @@ class exitIntentPopup {
           console.log(new Date(timeNewUser))
         }
       }
+    }
+  }
+
+  async getItemsBasket() {
+    // if (this.isPopupOpen()) {
+    //   return
+    // }
+
+    let res: Response | string = await fetch('https://www.sportstech.de/checkout/cart')
+    res = await res.text()
+    const parser = new DOMParser()
+    const doc = parser.parseFromString(res, 'text/html')
+    const itemsBasket = doc.querySelectorAll('.checkout-product-table .line-item')
+    if (itemsBasket.length !== 0) {
+      itemsBasket.forEach(item => {
+        let link = item.querySelector('.line-item-label')?.getAttribute('href')
+        let img = item.querySelector('.line-item-img')?.getAttribute('srcset')
+        let title = item.querySelector('.line-item-label')?.textContent
+        let opt = item.querySelector('.line-item-details-characteristics-option')?.textContent
+        let price = item.querySelector('.line-item-total-price-value')?.textContent
+        console.log(link, img, title, opt, price)
+      })
+      console.log(itemsBasket, `itemsBasket>>>>>>>>>>>`)
     }
   }
 }
