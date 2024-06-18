@@ -1,5 +1,14 @@
 import { startLog, $el, $$el, waitForElement, pushData, clarityInterval, checkScrollSpeed } from '../../libraries'
-import { popup, contentPopup } from './blocks'
+import {
+  popup,
+  firstOrderDiscount,
+  exploreOurBestFirst,
+  exploreOurBestSecond,
+  checkOutNow,
+  checkOutNowSecond,
+  checkOutNowThird,
+  productItem
+} from './blocks'
 import { svg, git } from './data'
 // @ts-ignore
 import mainStyle from './main.css?raw'
@@ -10,63 +19,56 @@ class exitIntentPopup {
   device: 'mobile' | 'desktop'
   timeoutId: NodeJS.Timeout | null
   delayTime: number
+  firstSessionTime: number
+
   constructor(device) {
     this.device = device
     this.timeoutId = null
     this.delayTime = 60000
+    this.firstSessionTime = 20 * 1000
     this.init()
   }
 
   init() {
     startLog({ name: 'Exit Intent Popup', dev: 'SKh' })
     clarityInterval('exp_intent_popup')
-    this.getNewUser('_ga')
+
     // if (sessionStorage.getItem('exitIntentPopup')) {
     //   return
     // }
     document.head.insertAdjacentHTML('beforeend', `<style>${mainStyle}</style>`)
     this.createPopup()
-    // this.intentPopupTriggers()
-    this.showIntentPopup('TEST')
+    this.intentPopupTriggers()
     this.copyDiscount()
-    this.onClickCompleteYourTradeInBtn()
-    this.getItemsBasket()
+    this.handlerClickBtns()
   }
 
   intentPopupTriggers() {
-    console.log(`intentPopupTriggers`)
+    // for all users on first session after 20 seconds from the session start.
+    this.getNewUser('_ga')
+
     if (this.device === 'mobile') {
-      // Scroll up (JS speed value: 150)
+      // Scroll up (JS speed value: 150) - for any page
       document.addEventListener('scroll', () => {
         const scrollSpeed = checkScrollSpeed()
         if (+scrollSpeed < -150) {
-          this.showIntentPopup('Scroll up (JS speed value: 150)')
+          this.getItemsBasket('differentUserCategories', 'Scroll up (JS speed value: 150) - for any page')
         }
       })
     }
     if (this.device === 'desktop') {
-      // Cursor leaving active area
+      // cursor moved out of the page frame
       document.addEventListener('mouseout', event => {
         if (!event.relatedTarget) {
-          this.showIntentPopup('Cursor leaving active area')
+          this.getItemsBasket('differentUserCategories', 'cursor moved out of the page frame')
         }
       })
     }
 
-    // In 60 sec. on any page without any action.
-    this.setupListeners()
-    this.resetTimer()
-
-    // Frequent revisiting the cart/checkout page without completing a purchase. !!!!!!!!!!!!!!!!!!!!!!!
-    let cartVisitsCount: string | number | null = parseInt(sessionStorage.getItem('cartVisitsCount') || '0')
+    // In 60sec. at basket, checkout without any action
     if (window.location.href.match('/checkout') || window.location.href.match('/cart')) {
-      cartVisitsCount++
-      sessionStorage.setItem('cartVisitsCount', cartVisitsCount.toString())
-    }
-    if (cartVisitsCount >= 3) {
-      setTimeout(() => {
-        this.showIntentPopup('Frequent revisiting the cart/checkout')
-      }, 600)
+      this.setupListeners()
+      this.resetTimer()
     }
   }
   setupListeners() {
@@ -83,24 +85,83 @@ class exitIntentPopup {
   resetTimer() {
     clearTimeout(this.timeoutId) // Clear the previous timeout
     this.timeoutId = setTimeout(
-      () => this.showIntentPopup('In 60 sec. on any page without any action.'),
+      () => this.getItemsBasket('differentUserCategories', 'In 60sec. at basket, checkout without any action'),
       this.delayTime
-    ) // Set a new timeout
+    )
+  }
+  getNewUser(name: string) {
+    const value = `; ${document.cookie}`
+    const parts = value.split(`; ${name}=`)
+    let valueCookie
+    let timeNewUser
+    if (parts.length === 2 && !localStorage.getItem('initUser')) {
+      valueCookie = parts.pop()?.split(';').shift()
+      if (valueCookie) {
+        timeNewUser = +(valueCookie.split('.').pop() + '000')
+        if (+new Date() - +new Date(timeNewUser) <= 5 * 60 * 1000) {
+          console.log(`New User`)
+          localStorage.setItem('initUser', 'true')
+          setTimeout(() => {
+            console.log(this.firstSessionTime)
+            this.getItemsBasket('firstOrderDiscount', 'firstOrderDiscount')
+          }, this.firstSessionTime)
+        }
+      }
+    }
+  }
+  async getItemsBasket(namePopup: string, trigger: string) {
+    if (this.isPopupOpen()) {
+      return
+    }
+
+    let res: Response | string = await fetch('https://www.sportstech.de/checkout/cart')
+    res = await res.text()
+    const parser = new DOMParser()
+    const doc = parser.parseFromString(res, 'text/html')
+    const itemsBasket = doc.querySelectorAll('.checkout-product-table .line-item')
+    if (itemsBasket.length !== 0) {
+      // checkOutNow -> New users
+      if (namePopup === 'differentUserCategories') {
+        $el('.new-popup-backdrop').classList.add('check_out_now')
+        this.handleShowPopup(checkOutNow, 'checkOutNow', trigger)
+      }
+      // checkOutNowSecond -> Returning users
+      // checkOutNowThird -> Returning users
+      itemsBasket.forEach(item => {
+        let link = item.querySelector('.line-item-label')?.getAttribute('href')
+        let img = item.querySelector('.line-item-img')?.getAttribute('srcset') ?? ''
+        let title = item.querySelector('.line-item-label')?.textContent ?? ''
+        let opt = item.querySelector('.line-item-details-characteristics-option')?.textContent ?? ''
+        let price = item.querySelector('.line-item-total-price-value')?.textContent ?? ''
+        console.log(link, img, title, opt, price)
+
+        waitForElement('.products_list').then(i => {
+          console.log(`products_list`)
+          $el('.products_list').insertAdjacentHTML('beforeend', productItem(img, title, opt, price))
+        })
+      })
+      console.log(itemsBasket, `itemsBasket>>>>>>>>>>>`)
+    } else {
+      console.log(`w/o products in basket>>>>>>>>>>>`)
+      // First order discount popup -> New users
+      if (namePopup === 'firstOrderDiscount') {
+        $el('.new-popup-backdrop').classList.add('first_order_discount')
+        this.handleShowPopup(firstOrderDiscount, 'firstOrderDiscount', trigger)
+      }
+      if (namePopup === 'differentUserCategories') {
+        // exploreOurBestFirst -> New users -> show popup with SALES offer
+        if ($el('.new-popup-backdrop').classList.contains('first_order_discount')) {
+          $el('.new-popup-backdrop').classList.remove('first_order_discount')
+        }
+        this.handleShowPopup(exploreOurBestFirst, 'salesOffer', trigger)
+        // exploreOurBestSecond -> Returning users -> 3 product categories
+        this.handleShowPopup(exploreOurBestSecond, 'threeProductCategories', trigger)
+      }
+    }
   }
 
-  showIntentPopup(trigger: string) {
-    // if (sessionStorage.getItem('exitIntentPopup')) {
-    //   return
-    // }
-    this.handleShowPopup(contentPopup, 'exitIntentPopup', trigger)
-    // waitForElement('#mini-cart-count_footer').then(i => {
-    //   let s = setInterval(() => {
-    //     if (+$el('#mini-cart-count_footer').textContent > 0) {
-    //       clearInterval(s)
-    //       console.log(+$el('#mini-cart-count_footer').textContent, '<--------at least 1 device at their cart added')
-    //     }
-    //   }, 10)
-    // })
+  isPopupOpen() {
+    return $el('.new-popup__content')?.children.length > 0
   }
   startCountdown() {
     let time = 15 * 60 // 18 minutes--->seconds
@@ -131,13 +192,10 @@ class exitIntentPopup {
     if (!$el('.new-popup-backdrop')) {
       $el('body').insertAdjacentHTML('afterbegin', popup)
     }
-    waitForElement('.new-popup-backdrop').then(el => {
-      this.handleClosePopup()
-    })
   }
   handleShowPopup(content: string, name: string, trigger: string) {
-    // const isShowed = sessionStorage.getItem(name)
-    // if (isShowed) return
+    const isShowed = sessionStorage.getItem(name)
+    if (isShowed) return
     console.log(`handleShowPopup`, trigger)
 
     const body = $el('body'),
@@ -151,9 +209,9 @@ class exitIntentPopup {
     popup.innerHTML = content
     sessionStorage.setItem(name, 'yes')
 
-    this.startCountdown()
-
-    pushData('exp_intent_popup_section_01', 'Section', 'Visibility', 'Pop Up Get paid as you like. In no time!')
+    waitForElement('#counter').then(i => {
+      this.startCountdown()
+    })
     this.handleClosePopup()
   }
   handleClosePopup() {
@@ -163,46 +221,39 @@ class exitIntentPopup {
       closePopupBtns = popup.querySelectorAll('[data-popup="close"]')
     closePopupBtns.forEach((btn: HTMLElement) => {
       btn.addEventListener('click', (e: any) => {
-        if (e.currentTarget) {
-          if (!e.currentTarget.getAttribute('data-test')) {
-            if (e.currentTarget.matches('.no_thanks_btn')) {
-              pushData('exp_intent_popup_button_02', 'No, thanks', 'Button', 'Pop Up Get paid as you like. In no time!')
-            } else {
-              pushData('exp_intent_popup_button_01', 'Close', 'Button', 'Pop Up Get paid as you like. In no time!')
-            }
-            backdrop.classList.add('is-hidden')
-            body.style.overflow = 'initial'
-          }
-          e.currentTarget.setAttribute('data-test', '1')
+        if (e.currentTarget.matches('.no_thanks_btn')) {
+          console.log(`no_thanks_btn`)
+        } else if (e.currentTarget.matches('.continue_shopping_btn')) {
+          console.log(`continue_shopping_btn`)
+        } else {
+          console.log(`Close`)
         }
+        backdrop.classList.add('is-hidden')
+        body.style.overflow = 'initial'
+
+        setTimeout(() => {
+          $el('.new-popup__content').innerHTML = ''
+        }, 500)
       })
     })
     backdrop.addEventListener('click', (e: any) => {
-      if (!e.target.getAttribute('data-test')) {
-        if (e.target.matches('.new-popup-backdrop')) {
-          pushData(
-            'exp_intent_popup_button_05',
-            'Сlick behind the pop-up area',
-            'Backdrop',
-            'Pop Up Get paid as you like. In no time!'
-          )
-          backdrop.classList.add('is-hidden')
-          body.style.overflow = 'initial'
-        }
+      if (e.target.matches('.new-popup-backdrop')) {
+        console.log(`Backdrop`)
+        backdrop.classList.add('is-hidden')
+        body.style.overflow = 'initial'
+
+        setTimeout(() => {
+          $el('.new-popup__content').innerHTML = ''
+        }, 500)
       }
-      e.target.setAttribute('data-test', '1')
-      setTimeout(() => {
-        if (e.target.getAttribute('data-test')) {
-          e.target.removeAttribute('data-test')
-        }
-      }, 1000)
     })
   }
   copyDiscount() {
     waitForElement('[data-discount]').then(i => {
       $$el('[data-discount]').forEach((btn): void => {
         btn.addEventListener('click', (event: any) => {
-          navigator.clipboard.writeText('Welcome10')
+          let discount = event.currentTarget.dataset.discount
+          navigator.clipboard.writeText(discount)
           event.currentTarget.textContent = 'Copied!'
           pushData('exp_intent_popup_button_04', 'Promo code', 'Button', 'Pop Up Get paid as you like. In no time!')
           setTimeout(() => {
@@ -212,62 +263,65 @@ class exitIntentPopup {
       })
     })
   }
-  onClickCompleteYourTradeInBtn() {
-    waitForElement('.complete_your_trade_in_btn').then(i => {
-      $el('.complete_your_trade_in_btn').addEventListener('click', (e: any) => {
-        if (!e.target.classList.contains('whmc-spinner')) {
-          e.target.classList.add('whmc-spinner')
+  handlerClickBtns() {
+    document.addEventListener('click', (e: any) => {
+      // Show FIRST ORDER DISCOUNT POPUP -> New users - w/o products in basket (First order discount popup)
+      if (e.target.matches('.get_discount_btn') && e.target.closest('.first_order_discount')) {
+        console.log(`Show FIRST ORDER DISCOUNT POPUP ----> get_discount_btn`)
+        if (e.target.closest('.first_order_discount.first_var')) {
+          e.target.closest('.first_order_discount').classList.add('is_hidden')
         }
-        pushData(
-          'exp_intent_popup_button_03',
-          'Complete Your Trade-In',
-          'Button',
-          'Pop Up Get paid as you like. In no time!'
-        )
-      })
-    })
-  }
-
-  getNewUser(name: string) {
-    const value = `; ${document.cookie}`
-    const parts = value.split(`; ${name}=`)
-    let valueCookie
-    let timeNewUser
-    if (parts.length === 2 && !localStorage.getItem('newUser')) {
-      valueCookie = parts.pop()?.split(';').shift()
-      if (valueCookie) {
-        timeNewUser = +(valueCookie.split('.').pop() + '000')
-        if (+new Date() - +new Date(timeNewUser) <= 5 * 60 * 1000) {
-          console.log(`New User`)
-          localStorage.setItem('newUser', 'true')
-        } else {
-          console.log(new Date(timeNewUser))
+        if ($el('.first_order_discount.second_var').classList.contains('is_hidden')) {
+          $el('.first_order_discount.second_var').classList.remove('is_hidden')
         }
       }
-    }
-  }
+      // New users (1st session) - w/o products in basket -> show popup with SALES offer
+      if (e.target.matches('.shop_now_btn') && e.target.closest('.first_var')) {
+        console.log(`show popup with SALES offer ----> shop_now_btn`)
+        window.location.href = 'https://www.sportstech.de/sale'
+      }
 
-  async getItemsBasket() {
-    // if (this.isPopupOpen()) {
-    //   return
-    // }
+      //  Returning users (session number > 1)- w/o products in basket -> show 3 product categories on popup
+      if (e.target.matches('.shop_now_btn') && e.target.closest('.second_var')) {
+        if (e.target.closest('.bestsellers_item')) {
+          console.log(`show 3 product categories on popup ----> shop_now_btn bestsellers_item`)
+          window.location.href = ' https://www.sportstech.de/restposten'
+        } else if (e.target.closest('.bikes_item')) {
+          console.log(`show 3 product categories on popup ----> shop_now_btn bikes_item`)
+          window.location.href = 'https://www.sportstech.de/bikes'
+        } else if (e.target.closest('.equipment_item')) {
+          console.log(`show 3 product categories on popup ----> shop_now_btn equipment_item`)
+          window.location.href = 'https://www.sportstech.de/equipment'
+        }
+      }
 
-    let res: Response | string = await fetch('https://www.sportstech.de/checkout/cart')
-    res = await res.text()
-    const parser = new DOMParser()
-    const doc = parser.parseFromString(res, 'text/html')
-    const itemsBasket = doc.querySelectorAll('.checkout-product-table .line-item')
-    if (itemsBasket.length !== 0) {
-      itemsBasket.forEach(item => {
-        let link = item.querySelector('.line-item-label')?.getAttribute('href')
-        let img = item.querySelector('.line-item-img')?.getAttribute('srcset')
-        let title = item.querySelector('.line-item-label')?.textContent
-        let opt = item.querySelector('.line-item-details-characteristics-option')?.textContent
-        let price = item.querySelector('.line-item-total-price-value')?.textContent
-        console.log(link, img, title, opt, price)
-      })
-      console.log(itemsBasket, `itemsBasket>>>>>>>>>>>`)
-    }
+      // New users - w/ products in basket (at least 1 product)
+      if (e.target.matches('.check_out_now_btn') && e.target.closest('.first_var')) {
+        console.log(`New users - w/ products in basket (at least 1 product) ----> check_out_now_btn`)
+        window.location.href = '/checkout/confirm'
+      }
+
+      // Returning users (session number >1) with products in basket (at least 1 product at basket)
+      // show popup with discount (on each session until user used this discount)
+      if (
+        e.target.matches('.complete_my_order_now_btn') &&
+        e.target.closest('.second_var') &&
+        e.target.closest('.check_out_now')
+      ) {
+        console.log(`New users - w/ products in basket (at least 1 product) ----> complete_my_order_now_btn second_var`)
+        window.location.href = '/checkout/confirm'
+      }
+
+      //when used discount - show scarcity popup
+      if (
+        e.target.matches('.complete_my_order_now_btn') &&
+        e.target.closest('.third_var') &&
+        e.target.closest('.check_out_now')
+      ) {
+        console.log(`New users - w/ products in basket (at least 1 product) ----> complete_my_order_now_btn third_var`)
+        window.location.href = '/checkout/confirm'
+      }
+    })
   }
 }
 
