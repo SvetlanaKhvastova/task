@@ -71,7 +71,7 @@ export const firstOrderDiscount = /* HTML */ `
             <span class="accent_color_red">Erhalten Sie 5%</span> Rabatt & kostenlose Lieferung!
           </h2>
           <p class="main_description">
-            Klicken Sie auf den unten stehenden Button, um einen <b>personalisierten Code</b> zu erhalten und 5% bei
+            Klicken Sie auf den unten stehenden Button, um <b>einen personalisierten Code zu erhalten</b> und 5% bei
             Ihrer ersten Bestellung zu sparen, plus kostenlosen Versand.
           </p>
         </div>
@@ -94,7 +94,7 @@ export const firstOrderDiscount = /* HTML */ `
           <ul>
             <li>
               <p>
-                Ihr <span class="accent_color_red">5% Rabatt auf die erste Bestellung</span> ist bereit (kein
+                Ihr <span class="accent_color_red">5% Rabatt</span> auf die erste Bestellung ist bereit (kein
                 Mindestbestellwert, keine Ausschlüsse).
               </p>
             </li>

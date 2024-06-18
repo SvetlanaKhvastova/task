@@ -38,7 +38,8 @@ class exitIntentPopup {
     // }
     document.head.insertAdjacentHTML('beforeend', `<style>${mainStyle}</style>`)
     this.createPopup()
-    this.intentPopupTriggers()
+    this.handleShowPopup(exploreOurBestSecond, 'firstOrderDiscount', 'test')
+    // this.intentPopupTriggers()
     this.copyDiscount()
     this.handlerClickBtns()
   }
@@ -195,7 +196,7 @@ class exitIntentPopup {
   }
   handleShowPopup(content: string, name: string, trigger: string) {
     const isShowed = sessionStorage.getItem(name)
-    if (isShowed) return
+    // if (isShowed) return
     console.log(`handleShowPopup`, trigger)
 
     const body = $el('body'),
