@@ -20,26 +20,51 @@ class exitIntentPopup {
   timeoutId: NodeJS.Timeout | null
   delayTime: number
   firstSessionTime: number
+  lastPopupTime: number
+  timeLag: number
 
   constructor(device) {
     this.device = device
     this.timeoutId = null
     this.delayTime = 60000
     this.firstSessionTime = 20 * 1000
+    this.lastPopupTime = Number(sessionStorage.getItem('lastPopupTime')) ?? 0
+    this.timeLag = 3 * 60 * 1000
     this.init()
   }
 
   init() {
+    window.onload = () => {
+      // Check if there is a 'session' value in localStorage
+      if (localStorage.getItem('session') && !sessionStorage.getItem('session')) {
+        // If there is, increment it by 1
+        let session = Number(localStorage.getItem('session'))
+        localStorage.setItem('session', (session + 1).toString())
+        sessionStorage.setItem('session', '1')
+      } else {
+        // If not, set it to 1
+        localStorage.setItem('session', '1')
+        sessionStorage.setItem('session', '1')
+      }
+
+      // Now we can check if the user is returning
+      if (Number(localStorage.getItem('session')) > 1) {
+        console.log('Returning users (session number > 1)', Number(localStorage.getItem('session')))
+      } else {
+        console.log('(1st session)', Number(localStorage.getItem('session')))
+      }
+    }
+
     startLog({ name: 'Exit Intent Popup', dev: 'SKh' })
     clarityInterval('exp_intent_popup')
-
-    // if (sessionStorage.getItem('exitIntentPopup')) {
-    //   return
-    // }
+    document.head.insertAdjacentHTML(
+      'afterbegin',
+      `<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">`
+    )
     document.head.insertAdjacentHTML('beforeend', `<style>${mainStyle}</style>`)
+
     this.createPopup()
-    this.handleShowPopup(exploreOurBestSecond, 'firstOrderDiscount', 'test')
-    // this.intentPopupTriggers()
+    this.intentPopupTriggers()
     this.copyDiscount()
     this.handlerClickBtns()
   }
@@ -120,43 +145,109 @@ class exitIntentPopup {
     const parser = new DOMParser()
     const doc = parser.parseFromString(res, 'text/html')
     const itemsBasket = doc.querySelectorAll('.checkout-product-table .line-item')
+    // _______________________________________________________________________________________
+    //  - - -> with products in basket
     if (itemsBasket.length !== 0) {
-      // checkOutNow -> New users
       if (namePopup === 'differentUserCategories') {
-        $el('.new-popup-backdrop').classList.add('check_out_now')
-        this.handleShowPopup(checkOutNow, 'checkOutNow', trigger)
+        if ($el('.new-popup-backdrop').classList.contains('first_order_discount')) {
+          $el('.new-popup-backdrop').classList.remove('first_order_discount')
+        }
+        if (itemsBasket.length > 1) {
+          $el('.new-popup-backdrop').classList.add('large_popup')
+        } else {
+          if ($el('.new-popup-backdrop').classList.contains('large_popup')) {
+            $el('.new-popup-backdrop').classList.remove('large_popup')
+          }
+        }
+        if (Number(localStorage.getItem('session')) > 1) {
+          // - - -> Returning users
+          // _______________________________________________________________________________________
+          // checkOutNowSecond
+          if (!localStorage.getItem('checkOutNowSecond')) {
+            if ($el('.new-popup-backdrop').classList.contains('check_out_now')) {
+              $el('.new-popup-backdrop').classList.remove('check_out_now')
+            }
+            if ($el('.new-popup-backdrop').classList.contains('check_out_now_third')) {
+              $el('.new-popup-backdrop').classList.remove('check_out_now_third')
+            }
+            $el('.new-popup-backdrop').classList.add('check_out_now_second')
+            this.handleShowPopup(checkOutNowSecond, 'returningUsers', trigger)
+            localStorage.setItem('checkOutNowSecond', 'yes')
+          } else {
+            // _______________________________________________________________________________________
+            // checkOutNowThird
+            if ($el('.new-popup-backdrop').classList.contains('check_out_now')) {
+              $el('.new-popup-backdrop').classList.remove('check_out_now')
+            }
+            if ($el('.new-popup-backdrop').classList.contains('check_out_now_second')) {
+              $el('.new-popup-backdrop').classList.remove('check_out_now_second')
+            }
+            $el('.new-popup-backdrop').classList.add('check_out_now_third')
+            this.handleShowPopup(checkOutNowThird, 'returningUsers', trigger)
+          }
+        } else {
+          // - - -> New users
+          // _______________________________________________________________________________________
+          // checkOutNow
+          if ($el('.new-popup-backdrop').classList.contains('check_out_now_second')) {
+            $el('.new-popup-backdrop').classList.remove('check_out_now_second')
+          }
+          if ($el('.new-popup-backdrop').classList.contains('check_out_now_third')) {
+            $el('.new-popup-backdrop').classList.remove('check_out_now_third')
+          }
+          $el('.new-popup-backdrop').classList.add('check_out_now')
+          this.handleShowPopup(checkOutNow, 'checkOutNow', trigger)
+        }
       }
-      // checkOutNowSecond -> Returning users
-      // checkOutNowThird -> Returning users
+
       itemsBasket.forEach(item => {
-        let link = item.querySelector('.line-item-label')?.getAttribute('href')
+        let link = item.querySelector('.line-item-label')?.getAttribute('href') ?? ''
         let img = item.querySelector('.line-item-img')?.getAttribute('srcset') ?? ''
         let title = item.querySelector('.line-item-label')?.textContent ?? ''
         let opt = item.querySelector('.line-item-details-characteristics-option')?.textContent ?? ''
         let price = item.querySelector('.line-item-total-price-value')?.textContent ?? ''
-        console.log(link, img, title, opt, price)
 
         waitForElement('.products_list').then(i => {
-          console.log(`products_list`)
-          $el('.products_list').insertAdjacentHTML('beforeend', productItem(img, title, opt, price))
+          $el('.products_list').insertAdjacentHTML('beforeend', productItem(link, img, title, opt, price))
         })
       })
-      console.log(itemsBasket, `itemsBasket>>>>>>>>>>>`)
     } else {
-      console.log(`w/o products in basket>>>>>>>>>>>`)
+      // _______________________________________________________________________________________
+      // w/o products in basket
+      if ($el('.new-popup-backdrop').classList.contains('check_out_now')) {
+        $el('.new-popup-backdrop').classList.remove('check_out_now')
+      }
+      if ($el('.new-popup-backdrop').classList.contains('check_out_now_second')) {
+        $el('.new-popup-backdrop').classList.remove('check_out_now_second')
+      }
+      if ($el('.new-popup-backdrop').classList.contains('check_out_now_third')) {
+        $el('.new-popup-backdrop').classList.remove('check_out_now_third')
+      }
+      if ($el('.new-popup-backdrop').classList.contains('large_popup')) {
+        $el('.new-popup-backdrop').classList.remove('large_popup')
+      }
+      // _______________________________________________________________________________________
       // First order discount popup -> New users
       if (namePopup === 'firstOrderDiscount') {
         $el('.new-popup-backdrop').classList.add('first_order_discount')
         this.handleShowPopup(firstOrderDiscount, 'firstOrderDiscount', trigger)
       }
+      // _______________________________________________________________________________________
       if (namePopup === 'differentUserCategories') {
-        // exploreOurBestFirst -> New users -> show popup with SALES offer
         if ($el('.new-popup-backdrop').classList.contains('first_order_discount')) {
           $el('.new-popup-backdrop').classList.remove('first_order_discount')
         }
-        this.handleShowPopup(exploreOurBestFirst, 'salesOffer', trigger)
-        // exploreOurBestSecond -> Returning users -> 3 product categories
-        this.handleShowPopup(exploreOurBestSecond, 'threeProductCategories', trigger)
+        if (Number(localStorage.getItem('session')) > 1) {
+          // - - -> Returning users
+          // _______________________________________________________________________________________
+          // exploreOurBestSecond -> 3 product categories
+          this.handleShowPopup(exploreOurBestSecond, 'returningUsers', trigger)
+        } else {
+          // - - -> New users
+          // _______________________________________________________________________________________
+          // exploreOurBestFirst -> show popup with SALES offer
+          this.handleShowPopup(exploreOurBestFirst, 'salesOffer', trigger)
+        }
       }
     }
   }
@@ -196,8 +287,20 @@ class exitIntentPopup {
   }
   handleShowPopup(content: string, name: string, trigger: string) {
     const isShowed = sessionStorage.getItem(name)
-    // if (isShowed) return
-    console.log(`handleShowPopup`, trigger)
+    if (isShowed) return
+    const now = Date.now()
+    console.log(this.lastPopupTime, `this.lastPopupTime`)
+
+    // not more than 2 popups with time lag in 3 minutes
+    if (now - this.lastPopupTime < this.timeLag) return
+    console.log(
+      `handleShowPopup`,
+      trigger,
+      now - this.lastPopupTime,
+      this.timeLag,
+      now - this.lastPopupTime < this.timeLag
+    )
+    sessionStorage.setItem('lastPopupTime', now.toString())
 
     const body = $el('body'),
       backdrop = $el('.new-popup-backdrop'),
@@ -324,6 +427,28 @@ class exitIntentPopup {
       }
     })
   }
+
+  async getCartCheckout() {
+    // 9f8ea4a4f23542d9af304b6ab317924d
+    await fetch('https://www.sportstech.de/store-api/product/9f8ea4a4f23542d9af304b6ab317924d', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'sw-access-key': 'SWSCY1NPSKHPSFNHWGDLTMM5NQ'
+      }
+    })
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        console.log(data)
+      })
+      .catch(error => {
+        console.error('Error:', error)
+      })
+  }
+
+  // document.querySelectorAll('.needsclick.klaviyo-form')
 }
 
 new exitIntentPopup(device)

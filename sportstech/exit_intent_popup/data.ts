@@ -88,13 +88,13 @@ export const svg = {
       class="bgr_yellow_icon"
       xmlns="http://www.w3.org/2000/svg"
       width="480"
-      height="47"
-      viewBox="0 0 480 47"
+      height="66"
+      viewBox="0 0 480 66"
       fill="none"
     >
       <path
         opacity="0.5"
-        d="M0.00195312 0.464844H479.996V36.5352H38.4238L31.002 46.5352L23.5801 36.5352H0.00195312V0.464844Z"
+        d="M0.00292969 0.964844H479.997V55.0352H38.4248L31.0029 65.0352L23.5811 55.0352H0.00292969V0.964844Z"
         fill="#F8CB87"
       />
     </svg>

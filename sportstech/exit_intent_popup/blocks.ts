@@ -76,6 +76,11 @@ export const firstOrderDiscount = /* HTML */ `
           </p>
         </div>
         <div class="body_popup">
+          <div class="email_wrapper">
+            <label for="email">
+              <input type="email" name="email" id="email" placeholder="Email" />
+            </label>
+          </div>
           <div class="btn_wrapper">
             <div class="get_discount_btn main_btn">5% Rabatt erhalten</div>
             <div class="no_thanks_btn main_btn" data-popup="close">Nein, danke</div>
@@ -302,9 +307,8 @@ export const checkOutNowSecond = /* HTML */ `
       <div class="info_wrapper">
         <div class="header_popup">
           <h2 class="main_title">
-            Jetzt zur Kasse gehen und<br /><span class="accent_color_red"
-              >5% Rabatt sowie kostenlose Lieferung erhalten</span
-            >
+            Jetzt zur Kasse gehen und<br /><span class="accent_color_red">5% Rabatt</span> sowie kostenlose Lieferung
+            erhalten
           </h2>
           <p class="main_description">*5% Rabatt gilt nur für diese Bestellung</p>
         </div>
@@ -342,7 +346,10 @@ export const checkOutNowThird = /* HTML */ `
         <div class="body_popup">
           <div class="stock_wrapper">
             ${window.innerWidth >= 768 ? `${svg.bgrYellowIcon}` : `${svg.bgrYellowMobIcon}`}
-            <p>Beliebte Wahl, wir könnten bald ausverkauft sein. Nur noch <span>3</span> Stück übrig.</p>
+            <p>
+              Beliebte Wahl, wir könnten bald ausverkauft sein.
+              <span class="stock_txt">Nur noch <span>3</span> Stück übrig.</span>
+            </p>
           </div>
           <div class="products_wrapper">
             <ul class="products_list"></ul>
@@ -372,15 +379,17 @@ export const popup = /* HTML */ `
   </div>
 `
 
-export const productItem = (img: string, title: string, descr: string, price: string) => {
+export const productItem = (link: string, img: string, title: string, descr: string, price: string) => {
   return /* HTML */ `
     <li class="products_item">
       <div class="img_wrapper">
-        <img src=${img} alt="photo sportstech" />
+        <a href="${link}">
+          <img src=${img} alt="photo sportstech" />
+        </a>
       </div>
       <div class="item_info">
-        <h3>${title}</h3>
-        {descr && <span class="txt_descr">${descr}</span>}
+        <h3><a href="${link}">${title}</a></h3>
+        ${descr ? `<span class="txt_descr">${descr}</span>` : ''}
         <div class="price_wrapper">
           <div class="stars_wrapper">
             ${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starPartIcon}
