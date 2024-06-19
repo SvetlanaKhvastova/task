@@ -56,7 +56,8 @@ class exitIntentPopup {
     }
 
     startLog({ name: 'Exit Intent Popup', dev: 'SKh' })
-    clarityInterval('exp_intent_popup')
+    clarityInterval('exp_exit_intent_popup')
+
     document.head.insertAdjacentHTML(
       'afterbegin',
       `<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">`
@@ -64,7 +65,9 @@ class exitIntentPopup {
     document.head.insertAdjacentHTML('beforeend', `<style>${mainStyle}</style>`)
 
     this.createPopup()
-    this.intentPopupTriggers()
+    setTimeout(() => {
+      this.intentPopupTriggers()
+    }, 200)
     this.copyDiscount()
     this.handlerClickBtns()
   }
@@ -152,6 +155,12 @@ class exitIntentPopup {
         if ($el('.new-popup-backdrop').classList.contains('first_order_discount')) {
           $el('.new-popup-backdrop').classList.remove('first_order_discount')
         }
+        if ($el('.new-popup-backdrop').classList.contains('sales_offer')) {
+          $el('.new-popup-backdrop').classList.remove('sales_offer')
+        }
+        if ($el('.new-popup-backdrop').classList.contains('categories_product')) {
+          $el('.new-popup-backdrop').classList.remove('categories_product')
+        }
         if (itemsBasket.length > 1) {
           $el('.new-popup-backdrop').classList.add('large_popup')
         } else {
@@ -159,6 +168,7 @@ class exitIntentPopup {
             $el('.new-popup-backdrop').classList.remove('large_popup')
           }
         }
+
         if (Number(localStorage.getItem('session')) > 1) {
           // - - -> Returning users
           // _______________________________________________________________________________________
@@ -171,7 +181,7 @@ class exitIntentPopup {
               $el('.new-popup-backdrop').classList.remove('check_out_now_third')
             }
             $el('.new-popup-backdrop').classList.add('check_out_now_second')
-            this.handleShowPopup(checkOutNowSecond, 'returningUsers', trigger)
+            this.handleShowPopup(checkOutNowSecond, 'returningUsers', trigger, 'checkOutNowSecond')
             localStorage.setItem('checkOutNowSecond', 'yes')
           } else {
             // _______________________________________________________________________________________
@@ -183,7 +193,7 @@ class exitIntentPopup {
               $el('.new-popup-backdrop').classList.remove('check_out_now_second')
             }
             $el('.new-popup-backdrop').classList.add('check_out_now_third')
-            this.handleShowPopup(checkOutNowThird, 'returningUsers', trigger)
+            this.handleShowPopup(checkOutNowThird, 'returningUsers', trigger, 'checkOutNowThird')
           }
         } else {
           // - - -> New users
@@ -195,8 +205,9 @@ class exitIntentPopup {
           if ($el('.new-popup-backdrop').classList.contains('check_out_now_third')) {
             $el('.new-popup-backdrop').classList.remove('check_out_now_third')
           }
+          console.log('!!!!!!!!!!!!!!!!!!!!!!')
           $el('.new-popup-backdrop').classList.add('check_out_now')
-          this.handleShowPopup(checkOutNow, 'checkOutNow', trigger)
+          this.handleShowPopup(checkOutNow, 'checkOutNow', trigger, 'checkOutNow')
         }
       }
 
@@ -226,27 +237,35 @@ class exitIntentPopup {
       if ($el('.new-popup-backdrop').classList.contains('large_popup')) {
         $el('.new-popup-backdrop').classList.remove('large_popup')
       }
+      if ($el('.new-popup-backdrop').classList.contains('categories_product')) {
+        $el('.new-popup-backdrop').classList.remove('categories_product')
+      }
+      if ($el('.new-popup-backdrop').classList.contains('sales_offer')) {
+        $el('.new-popup-backdrop').classList.remove('sales_offer')
+      }
+      if ($el('.new-popup-backdrop').classList.contains('first_order_discount')) {
+        $el('.new-popup-backdrop').classList.remove('first_order_discount')
+      }
       // _______________________________________________________________________________________
       // First order discount popup -> New users
       if (namePopup === 'firstOrderDiscount') {
         $el('.new-popup-backdrop').classList.add('first_order_discount')
-        this.handleShowPopup(firstOrderDiscount, 'firstOrderDiscount', trigger)
+        this.handleShowPopup(firstOrderDiscount, 'firstOrderDiscount', trigger, 'firstOrderDiscount')
       }
       // _______________________________________________________________________________________
       if (namePopup === 'differentUserCategories') {
-        if ($el('.new-popup-backdrop').classList.contains('first_order_discount')) {
-          $el('.new-popup-backdrop').classList.remove('first_order_discount')
-        }
         if (Number(localStorage.getItem('session')) > 1) {
           // - - -> Returning users
           // _______________________________________________________________________________________
           // exploreOurBestSecond -> 3 product categories
-          this.handleShowPopup(exploreOurBestSecond, 'returningUsers', trigger)
+          $el('.new-popup-backdrop').classList.add('categories_product')
+          this.handleShowPopup(exploreOurBestSecond, 'returningUsers', trigger, 'categoriesProduct')
         } else {
           // - - -> New users
           // _______________________________________________________________________________________
           // exploreOurBestFirst -> show popup with SALES offer
-          this.handleShowPopup(exploreOurBestFirst, 'salesOffer', trigger)
+          $el('.new-popup-backdrop').classList.add('sales_offer')
+          this.handleShowPopup(exploreOurBestFirst, 'salesOffer', trigger, 'salesOffer')
         }
       }
     }
@@ -285,7 +304,7 @@ class exitIntentPopup {
       $el('body').insertAdjacentHTML('afterbegin', popup)
     }
   }
-  handleShowPopup(content: string, name: string, trigger: string) {
+  handleShowPopup(content: string, name: string, trigger: string, visibilityName: string) {
     const isShowed = sessionStorage.getItem(name)
     if (isShowed) return
     const now = Date.now()
@@ -313,6 +332,54 @@ class exitIntentPopup {
     popup.innerHTML = content
     sessionStorage.setItem(name, 'yes')
 
+    switch (visibilityName) {
+      case 'firstOrderDiscount':
+        pushData(
+          'exp_exit_intent_popup_section_01',
+          'Section',
+          'Visibility',
+          'Erhalten Sie 5% Rabatt & kostenlose Lieferung!'
+        )
+        break
+      case 'categoriesProduct':
+        pushData(
+          'exp_exit_intent_popup_section_04',
+          'Section',
+          'Visibility',
+          'Entdecken Sie unsere besten Produkte Step 2'
+        )
+        break
+      case 'salesOffer':
+        pushData(
+          'exp_exit_intent_popup_section_03',
+          'Section',
+          'Visibility',
+          'Entdecken Sie unsere besten Produkte Step 1'
+        )
+        break
+      case 'checkOutNow':
+        pushData(
+          'exp_exit_intent_popup_section_05',
+          'Section',
+          'Visibility',
+          'Jetzt zur Kasse gehen und  5% Rabatt auf Ihre erste Bestellung erhalten Step 1'
+        )
+        break
+      case 'checkOutNowSecond':
+        pushData(
+          'exp_exit_intent_popup_section_06',
+          'Section',
+          'Visibility',
+          'Jetzt zur Kasse gehen und  5% Rabatt sowie kostenlose Lieferung erhalten Step 2'
+        )
+        break
+      case 'checkOutNowThird':
+        pushData('exp_exit_intent_popup_section_07', 'Section', 'Visibility', 'Es gehört fast Ihnen!')
+        break
+      default:
+        break
+    }
+
     waitForElement('#counter').then(i => {
       this.startCountdown()
     })
@@ -326,12 +393,61 @@ class exitIntentPopup {
     closePopupBtns.forEach((btn: HTMLElement) => {
       btn.addEventListener('click', (e: any) => {
         if (e.currentTarget.matches('.no_thanks_btn')) {
-          console.log(`no_thanks_btn`)
-        } else if (e.currentTarget.matches('.continue_shopping_btn')) {
-          console.log(`continue_shopping_btn`)
-        } else {
-          console.log(`Close`)
+          pushData(
+            'exp_exit_intent_popup_button_03',
+            'Nein, danke',
+            'Button',
+            'Erhalten Sie 5% Rabatt & kostenlose Lieferung!'
+          )
         }
+        if (e.currentTarget.matches('.continue_shopping_btn')) {
+          pushData('exp_exit_intent_popup_button_06', 'Weiter einkaufen', 'Button', 'Sie stehen auf der Liste')
+        }
+        if (
+          e.currentTarget.closest('.first_order_discount') &&
+          e.currentTarget.matches('.new-popup__close') &&
+          !e.currentTarget.closest('.first_order_discount').querySelector('.first_var').classList.contains('is_hidden')
+        ) {
+          pushData(
+            'exp_exit_intent_popup_button_01',
+            'Close',
+            'Button',
+            'Erhalten Sie 5% Rabatt & kostenlose Lieferung!'
+          )
+        }
+        if (
+          e.currentTarget.closest('.first_order_discount') &&
+          e.currentTarget.matches('.new-popup__close') &&
+          !e.currentTarget.closest('.first_order_discount').querySelector('.second_var').classList.contains('is_hidden')
+        ) {
+          pushData('exp_exit_intent_popup_button_04', 'Close', 'Button', 'Sie stehen auf der Liste')
+        }
+        if (e.currentTarget.closest('.categories_product')) {
+          pushData('exp_exit_intent_popup_button_09', 'Close', 'Button', 'Entdecken Sie unsere besten Produkte Step 2')
+        }
+        if (e.currentTarget.closest('.sales_offer')) {
+          pushData('exp_exit_intent_popup_button_07', 'Close', 'Button', 'Entdecken Sie unsere besten Produkte Step 1')
+        }
+        if (e.currentTarget.closest('.check_out_now')) {
+          pushData(
+            'exp_exit_intent_popup_button_11',
+            'Close',
+            'Button',
+            'Jetzt zur Kasse gehen und  5% Rabatt auf Ihre erste Bestellung erhalten Step 1'
+          )
+        }
+        if (e.currentTarget.closest('.check_out_now_second')) {
+          pushData(
+            'exp_exit_intent_popup_button_14',
+            'Close',
+            'Button',
+            'Jetzt zur Kasse gehen und  5% Rabatt sowie kostenlose Lieferung erhalten Step 2'
+          )
+        }
+        if (e.currentTarget.closest('.check_out_now_third')) {
+          pushData('exp_exit_intent_popup_button_17', 'Close', 'Button', 'Es gehört fast Ihnen!')
+        }
+
         backdrop.classList.add('is-hidden')
         body.style.overflow = 'initial'
 
@@ -342,9 +458,67 @@ class exitIntentPopup {
     })
     backdrop.addEventListener('click', (e: any) => {
       if (e.target.matches('.new-popup-backdrop')) {
-        console.log(`Backdrop`)
         backdrop.classList.add('is-hidden')
         body.style.overflow = 'initial'
+
+        if (
+          e.currentTarget.matches('.first_order_discount') &&
+          !e.currentTarget.querySelector('.first_var').classList.contains('is_hidden')
+        ) {
+          pushData(
+            'exp_exit_intent_popup_click_01',
+            'Close behind the pop-up area',
+            'Click',
+            'Erhalten Sie 5% Rabatt & kostenlose Lieferung!'
+          )
+        }
+
+        if (
+          e.currentTarget.matches('.first_order_discount') &&
+          !e.currentTarget.querySelector('.second_var').classList.contains('is_hidden')
+        ) {
+          pushData(
+            'exp_exit_intent_popup_click_02',
+            'Close behind the pop-up area',
+            'Click',
+            'Sie stehen auf der Liste'
+          )
+        }
+        if (e.currentTarget.matches('.categories_product')) {
+          pushData(
+            'exp_exit_intent_popup_click_04',
+            'Close behind the pop-up area',
+            'Click',
+            'Entdecken Sie unsere besten Produkte Step 2'
+          )
+        }
+        if (e.currentTarget.matches('.sales_offer')) {
+          pushData(
+            'exp_exit_intent_popup_click_03',
+            'Close behind the pop-up area',
+            'Click',
+            'Entdecken Sie unsere besten Produkte Step 1'
+          )
+        }
+        if (e.currentTarget.matches('.check_out_now')) {
+          pushData(
+            'exp_exit_intent_popup_click_05',
+            'Close behind the pop-up area',
+            'Click',
+            'Jetzt zur Kasse gehen und  5% Rabatt auf Ihre erste Bestellung erhalten Step 1'
+          )
+        }
+        if (e.currentTarget.matches('.check_out_now_second')) {
+          pushData(
+            'exp_exit_intent_popup_click_06',
+            'Close behind the pop-up area',
+            'Click',
+            'Jetzt zur Kasse gehen und  5% Rabatt sowie kostenlose Lieferung erhalten Step 2'
+          )
+        }
+        if (e.currentTarget.matches('.check_out_now_third')) {
+          pushData('exp_exit_intent_popup_click_07', 'Close behind the pop-up area', 'Click', 'Es gehört fast Ihnen!')
+        }
 
         setTimeout(() => {
           $el('.new-popup__content').innerHTML = ''
@@ -359,7 +533,27 @@ class exitIntentPopup {
           let discount = event.currentTarget.dataset.discount
           navigator.clipboard.writeText(discount)
           event.currentTarget.textContent = 'Copied!'
-          pushData('exp_intent_popup_button_04', 'Promo code', 'Button', 'Pop Up Get paid as you like. In no time!')
+
+          if (btn.closest('.first_order_discount')) {
+            pushData('exp_exit_intent_popup_button_05', 'Code  Welcome5', 'Button', 'Sie stehen auf der Liste')
+          }
+          if (btn.closest('.check_out_now')) {
+            pushData(
+              'exp_exit_intent_popup_button_12',
+              'Code SPORTSTECH5',
+              'Button',
+              'Jetzt zur Kasse gehen und  5% Rabatt auf Ihre erste Bestellung erhalten Step 1'
+            )
+          }
+          if (btn.closest('.check_out_now_second')) {
+            pushData(
+              'exp_exit_intent_popup_button_15',
+              'Code PRSNLoffer5',
+              'Button',
+              'Jetzt zur Kasse gehen und  5% Rabatt sowie kostenlose Lieferung erhalten Step 2'
+            )
+          }
+
           setTimeout(() => {
             btn.innerHTML = `${svg.copyIcon}`
           }, 600)
@@ -371,37 +565,68 @@ class exitIntentPopup {
     document.addEventListener('click', (e: any) => {
       // Show FIRST ORDER DISCOUNT POPUP -> New users - w/o products in basket (First order discount popup)
       if (e.target.matches('.get_discount_btn') && e.target.closest('.first_order_discount')) {
-        console.log(`Show FIRST ORDER DISCOUNT POPUP ----> get_discount_btn`)
+        pushData(
+          'exp_exit_intent_popup_button_02',
+          '5% Rabatt erhalten',
+          'Button',
+          'Erhalten Sie 5% Rabatt & kostenlose Lieferung!'
+        )
         if (e.target.closest('.first_order_discount.first_var')) {
           e.target.closest('.first_order_discount').classList.add('is_hidden')
         }
         if ($el('.first_order_discount.second_var').classList.contains('is_hidden')) {
           $el('.first_order_discount.second_var').classList.remove('is_hidden')
         }
+        pushData('exp_exit_intent_popup_section_02', 'Section', 'Visibility', 'Sie stehen auf der Liste')
       }
       // New users (1st session) - w/o products in basket -> show popup with SALES offer
       if (e.target.matches('.shop_now_btn') && e.target.closest('.first_var')) {
-        console.log(`show popup with SALES offer ----> shop_now_btn`)
+        pushData(
+          'exp_exit_intent_popup_button_08',
+          ' Jetzt einkaufen',
+          'Button',
+          'Entdecken Sie unsere besten Produkte Step 1'
+        )
         window.location.href = 'https://www.sportstech.de/sale'
       }
 
       //  Returning users (session number > 1)- w/o products in basket -> show 3 product categories on popup
       if (e.target.matches('.shop_now_btn') && e.target.closest('.second_var')) {
         if (e.target.closest('.bestsellers_item')) {
-          console.log(`show 3 product categories on popup ----> shop_now_btn bestsellers_item`)
+          pushData(
+            'exp_exit_intent_popup_button_10',
+            'Bestseller - Jetzt einkaufen',
+            'Button',
+            'Entdecken Sie unsere besten Produkte Step 2'
+          )
           window.location.href = ' https://www.sportstech.de/restposten'
         } else if (e.target.closest('.bikes_item')) {
-          console.log(`show 3 product categories on popup ----> shop_now_btn bikes_item`)
+          pushData(
+            'exp_exit_intent_popup_button_10',
+            'Speedbikes und Ergometer -Jetzt einkaufen',
+            'Button',
+            'Entdecken Sie unsere besten Produkte Step 2'
+          )
           window.location.href = 'https://www.sportstech.de/bikes'
         } else if (e.target.closest('.equipment_item')) {
-          console.log(`show 3 product categories on popup ----> shop_now_btn equipment_item`)
+          pushData(
+            'exp_exit_intent_popup_button_10',
+            'Ausrüstung - Jetzt einkaufen',
+            'Button',
+            'Entdecken Sie unsere besten Produkte Step 2'
+          )
           window.location.href = 'https://www.sportstech.de/equipment'
         }
       }
 
       // New users - w/ products in basket (at least 1 product)
       if (e.target.matches('.check_out_now_btn') && e.target.closest('.first_var')) {
-        console.log(`New users - w/ products in basket (at least 1 product) ----> check_out_now_btn`)
+        pushData(
+          'exp_exit_intent_popup_button_13',
+          'Jetzt zur Kasse',
+          'Button',
+          'Jetzt zur Kasse gehen und  5% Rabatt auf Ihre erste Bestellung erhalten Step 1'
+        )
         window.location.href = '/checkout/confirm'
       }
 
@@ -412,7 +637,12 @@ class exitIntentPopup {
         e.target.closest('.second_var') &&
         e.target.closest('.check_out_now')
       ) {
-        console.log(`New users - w/ products in basket (at least 1 product) ----> complete_my_order_now_btn second_var`)
+        pushData(
+          'exp_exit_intent_popup_button_16',
+          'Meine Bestellung jetzt abschließen',
+          'Button',
+          'Jetzt zur Kasse gehen und  5% Rabatt sowie kostenlose Lieferung erhalten Step 2'
+        )
         window.location.href = '/checkout/confirm'
       }
 
@@ -422,7 +652,12 @@ class exitIntentPopup {
         e.target.closest('.third_var') &&
         e.target.closest('.check_out_now')
       ) {
-        console.log(`New users - w/ products in basket (at least 1 product) ----> complete_my_order_now_btn third_var`)
+        pushData(
+          'exp_exit_intent_popup_button_18',
+          'Meine Bestellung jetzt abschließen',
+          'Button',
+          'Es gehört fast Ihnen!'
+        )
         window.location.href = '/checkout/confirm'
       }
     })

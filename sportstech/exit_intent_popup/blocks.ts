@@ -1,6 +1,7 @@
 import { svg, git } from './data'
 
 // New users (1st session) - w/o products in basket
+// sales_offer ----> backdrop
 export const exploreOurBestFirst = /* HTML */ `
   <div class="exit_intent_popup">
     <div class="explore_our_best first_var">
@@ -22,6 +23,7 @@ export const exploreOurBestFirst = /* HTML */ `
 `
 
 // Returning users (session number > 1)- w/o products in basket
+// categories_products ----> backdrop
 export const exploreOurBestSecond = /* HTML */ `
   <div class="exit_intent_popup">
     <div class="explore_our_best second_var">
