@@ -79,8 +79,8 @@ export const firstOrderDiscount = /* HTML */ `
         </div>
         <div class="body_popup">
           <div class="email_wrapper">
-            <label for="email">
-              <input type="email" name="email" id="email" placeholder="Email" />
+            <label for="emailNew">
+              <input type="email" name="emailNew" id="emailNew" placeholder="Email" />
             </label>
           </div>
           <div class="btn_wrapper">

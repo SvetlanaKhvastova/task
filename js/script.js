@@ -371,3 +371,8 @@ let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/zenpatch/introduce_bundles.js";
 script.async = false;
 document.head.appendChild(script);
+//sportstech
+let script = document.createElement("script");
+script.src = "https://conversionratestore.github.io/projects/sportstech/exit_intent_popup.js";
+script.async = false;
+document.head.appendChild(script);

@@ -22,14 +22,16 @@ class exitIntentPopup {
   firstSessionTime: number
   lastPopupTime: number
   timeLag: number
+  active: boolean
 
   constructor(device) {
     this.device = device
     this.timeoutId = null
     this.delayTime = 60000
     this.firstSessionTime = 20 * 1000
-    this.lastPopupTime = Number(sessionStorage.getItem('lastPopupTime')) ?? 0
+    this.lastPopupTime = 0
     this.timeLag = 3 * 60 * 1000
+    this.active = false
     this.init()
   }
 
@@ -43,8 +45,10 @@ class exitIntentPopup {
         sessionStorage.setItem('session', '1')
       } else {
         // If not, set it to 1
-        localStorage.setItem('session', '1')
-        sessionStorage.setItem('session', '1')
+        if (!localStorage.getItem('session')) {
+          localStorage.setItem('session', '1')
+          sessionStorage.setItem('session', '1')
+        }
       }
 
       // Now we can check if the user is returning
@@ -64,15 +68,37 @@ class exitIntentPopup {
     )
     document.head.insertAdjacentHTML('beforeend', `<style>${mainStyle}</style>`)
 
+    if (!sessionStorage.getItem('firstOrderDiscount') && !localStorage.getItem('initUser')) {
+      document.body.insertAdjacentHTML(
+        'afterbegin',
+        `<style class="crs_style_klaviyo">
+          .needsclick.kl-private-reset-css-Xuajs1 {
+            opacity: 0;
+            pointer-events: none;
+            display: none;
+          }
+        </style`
+      )
+    }
+
     this.createPopup()
     setTimeout(() => {
       this.intentPopupTriggers()
     }, 200)
     this.copyDiscount()
     this.handlerClickBtns()
+    this.handlerClickInput()
+    this.observerKlaviyo()
+    // this.getCartCheckout()
   }
 
   intentPopupTriggers() {
+    if (Number(localStorage.getItem('session')) > 1) {
+      if (sessionStorage.getItem('returningUsers')) return
+    } else {
+      if (sessionStorage.getItem('salesOffer') && sessionStorage.getItem('checkOutNow')) return
+    }
+
     // for all users on first session after 20 seconds from the session start.
     this.getNewUser('_ga')
 
@@ -127,12 +153,18 @@ class exitIntentPopup {
       valueCookie = parts.pop()?.split(';').shift()
       if (valueCookie) {
         timeNewUser = +(valueCookie.split('.').pop() + '000')
+        console.log(`timeNewUser`, new Date(timeNewUser))
         if (+new Date() - +new Date(timeNewUser) <= 5 * 60 * 1000) {
           console.log(`New User`)
           localStorage.setItem('initUser', 'true')
           setTimeout(() => {
             console.log(this.firstSessionTime)
             this.getItemsBasket('firstOrderDiscount', 'firstOrderDiscount')
+            setTimeout(() => {
+              if (!sessionStorage.getItem('firstOrderDiscount')) {
+                this.handlerCloseKlaviyo()
+              }
+            }, 1200)
           }, this.firstSessionTime)
         }
       }
@@ -142,7 +174,17 @@ class exitIntentPopup {
     if (this.isPopupOpen()) {
       return
     }
+    // _______________________________________________________________________________________
+    // not more than 2 popups with time lag in 3 minutes
+    const now = Date.now()
+    if (sessionStorage.getItem('lastPopupTime')) {
+      this.lastPopupTime = Number(sessionStorage.getItem('lastPopupTime'))
+    }
 
+    if (now - this.lastPopupTime < this.timeLag) return
+    sessionStorage.setItem('lastPopupTime', now.toString())
+
+    // _______________________________________________________________________________________
     let res: Response | string = await fetch('https://www.sportstech.de/checkout/cart')
     res = await res.text()
     const parser = new DOMParser()
@@ -252,6 +294,10 @@ class exitIntentPopup {
         $el('.new-popup-backdrop').classList.add('first_order_discount')
         this.handleShowPopup(firstOrderDiscount, 'firstOrderDiscount', trigger, 'firstOrderDiscount')
       }
+      // if (namePopup === 'firstOrderDiscountClick') {
+      //   $el('.new-popup-backdrop').classList.add('first_order_discount')
+      //   this.handleShowPopup(firstOrderDiscount, 'firstOrderDiscountClick', 'click', 'firstOrderDiscount')
+      // }
       // _______________________________________________________________________________________
       if (namePopup === 'differentUserCategories') {
         if (Number(localStorage.getItem('session')) > 1) {
@@ -306,20 +352,8 @@ class exitIntentPopup {
   }
   handleShowPopup(content: string, name: string, trigger: string, visibilityName: string) {
     const isShowed = sessionStorage.getItem(name)
-    if (isShowed) return
-    const now = Date.now()
-    console.log(this.lastPopupTime, `this.lastPopupTime`)
-
-    // not more than 2 popups with time lag in 3 minutes
-    if (now - this.lastPopupTime < this.timeLag) return
-    console.log(
-      `handleShowPopup`,
-      trigger,
-      now - this.lastPopupTime,
-      this.timeLag,
-      now - this.lastPopupTime < this.timeLag
-    )
-    sessionStorage.setItem('lastPopupTime', now.toString())
+    if (isShowed && name !== 'firstOrderDiscountClick') return
+    console.log(`handleShowPopup`, trigger)
 
     const body = $el('body'),
       backdrop = $el('.new-popup-backdrop'),
@@ -392,138 +426,173 @@ class exitIntentPopup {
       closePopupBtns = popup.querySelectorAll('[data-popup="close"]')
     closePopupBtns.forEach((btn: HTMLElement) => {
       btn.addEventListener('click', (e: any) => {
-        if (e.currentTarget.matches('.no_thanks_btn')) {
-          pushData(
-            'exp_exit_intent_popup_button_03',
-            'Nein, danke',
-            'Button',
-            'Erhalten Sie 5% Rabatt & kostenlose Lieferung!'
-          )
-        }
-        if (e.currentTarget.matches('.continue_shopping_btn')) {
-          pushData('exp_exit_intent_popup_button_06', 'Weiter einkaufen', 'Button', 'Sie stehen auf der Liste')
-        }
-        if (
-          e.currentTarget.closest('.first_order_discount') &&
-          e.currentTarget.matches('.new-popup__close') &&
-          !e.currentTarget.closest('.first_order_discount').querySelector('.first_var').classList.contains('is_hidden')
-        ) {
-          pushData(
-            'exp_exit_intent_popup_button_01',
-            'Close',
-            'Button',
-            'Erhalten Sie 5% Rabatt & kostenlose Lieferung!'
-          )
-        }
-        if (
-          e.currentTarget.closest('.first_order_discount') &&
-          e.currentTarget.matches('.new-popup__close') &&
-          !e.currentTarget.closest('.first_order_discount').querySelector('.second_var').classList.contains('is_hidden')
-        ) {
-          pushData('exp_exit_intent_popup_button_04', 'Close', 'Button', 'Sie stehen auf der Liste')
-        }
-        if (e.currentTarget.closest('.categories_product')) {
-          pushData('exp_exit_intent_popup_button_09', 'Close', 'Button', 'Entdecken Sie unsere besten Produkte Step 2')
-        }
-        if (e.currentTarget.closest('.sales_offer')) {
-          pushData('exp_exit_intent_popup_button_07', 'Close', 'Button', 'Entdecken Sie unsere besten Produkte Step 1')
-        }
-        if (e.currentTarget.closest('.check_out_now')) {
-          pushData(
-            'exp_exit_intent_popup_button_11',
-            'Close',
-            'Button',
-            'Jetzt zur Kasse gehen und  5% Rabatt auf Ihre erste Bestellung erhalten Step 1'
-          )
-        }
-        if (e.currentTarget.closest('.check_out_now_second')) {
-          pushData(
-            'exp_exit_intent_popup_button_14',
-            'Close',
-            'Button',
-            'Jetzt zur Kasse gehen und  5% Rabatt sowie kostenlose Lieferung erhalten Step 2'
-          )
-        }
-        if (e.currentTarget.closest('.check_out_now_third')) {
-          pushData('exp_exit_intent_popup_button_17', 'Close', 'Button', 'Es gehört fast Ihnen!')
-        }
+        if (!e.currentTarget.getAttribute('data-test')) {
+          if (e.currentTarget.matches('.no_thanks_btn')) {
+            pushData(
+              'exp_exit_intent_popup_button_03',
+              'Nein, danke',
+              'Button',
+              'Erhalten Sie 5% Rabatt & kostenlose Lieferung!'
+            )
+            this.handlerCloseKlaviyo()
+          }
+          if (e.currentTarget.matches('.continue_shopping_btn')) {
+            pushData('exp_exit_intent_popup_button_06', 'Weiter einkaufen', 'Button', 'Sie stehen auf der Liste')
+          }
+          if (
+            e.currentTarget.closest('.first_order_discount') &&
+            e.currentTarget.matches('.new-popup__close') &&
+            !e.currentTarget
+              .closest('.first_order_discount')
+              .querySelector('.first_var')
+              .classList.contains('is_hidden')
+          ) {
+            pushData(
+              'exp_exit_intent_popup_button_01',
+              'Close',
+              'Button',
+              'Erhalten Sie 5% Rabatt & kostenlose Lieferung!'
+            )
+            this.handlerCloseKlaviyo()
+          }
+          if (
+            e.currentTarget.closest('.first_order_discount') &&
+            e.currentTarget.matches('.new-popup__close') &&
+            !e.currentTarget
+              .closest('.first_order_discount')
+              .querySelector('.second_var')
+              .classList.contains('is_hidden')
+          ) {
+            pushData('exp_exit_intent_popup_button_04', 'Close', 'Button', 'Sie stehen auf der Liste')
+          }
+          if (e.currentTarget.closest('.categories_product')) {
+            pushData(
+              'exp_exit_intent_popup_button_09',
+              'Close',
+              'Button',
+              'Entdecken Sie unsere besten Produkte Step 2'
+            )
+          }
+          if (e.currentTarget.closest('.sales_offer')) {
+            pushData(
+              'exp_exit_intent_popup_button_07',
+              'Close',
+              'Button',
+              'Entdecken Sie unsere besten Produkte Step 1'
+            )
+          }
+          if (e.currentTarget.closest('.check_out_now')) {
+            pushData(
+              'exp_exit_intent_popup_button_11',
+              'Close',
+              'Button',
+              'Jetzt zur Kasse gehen und  5% Rabatt auf Ihre erste Bestellung erhalten Step 1'
+            )
+          }
+          if (e.currentTarget.closest('.check_out_now_second')) {
+            pushData(
+              'exp_exit_intent_popup_button_14',
+              'Close',
+              'Button',
+              'Jetzt zur Kasse gehen und  5% Rabatt sowie kostenlose Lieferung erhalten Step 2'
+            )
+          }
+          if (e.currentTarget.closest('.check_out_now_third')) {
+            pushData('exp_exit_intent_popup_button_17', 'Close', 'Button', 'Es gehört fast Ihnen!')
+          }
 
-        backdrop.classList.add('is-hidden')
-        body.style.overflow = 'initial'
+          backdrop.classList.add('is-hidden')
+          body.style.overflow = 'initial'
 
+          setTimeout(() => {
+            $el('.new-popup__content').innerHTML = ''
+          }, 500)
+        }
+        e.currentTarget.setAttribute('data-test', '1')
         setTimeout(() => {
-          $el('.new-popup__content').innerHTML = ''
-        }, 500)
+          if (btn.getAttribute('data-test')) {
+            btn.removeAttribute('data-test')
+          }
+        }, 1000)
       })
     })
     backdrop.addEventListener('click', (e: any) => {
-      if (e.target.matches('.new-popup-backdrop')) {
-        backdrop.classList.add('is-hidden')
-        body.style.overflow = 'initial'
+      if (!e.target.getAttribute('data-test')) {
+        if (e.target.matches('.new-popup-backdrop')) {
+          backdrop.classList.add('is-hidden')
+          body.style.overflow = 'initial'
 
-        if (
-          e.currentTarget.matches('.first_order_discount') &&
-          !e.currentTarget.querySelector('.first_var').classList.contains('is_hidden')
-        ) {
-          pushData(
-            'exp_exit_intent_popup_click_01',
-            'Close behind the pop-up area',
-            'Click',
-            'Erhalten Sie 5% Rabatt & kostenlose Lieferung!'
-          )
-        }
+          if (
+            e.currentTarget.matches('.first_order_discount') &&
+            !e.currentTarget.querySelector('.first_var').classList.contains('is_hidden')
+          ) {
+            pushData(
+              'exp_exit_intent_popup_click_01',
+              'Close behind the pop-up area',
+              'Click',
+              'Erhalten Sie 5% Rabatt & kostenlose Lieferung!'
+            )
+            this.handlerCloseKlaviyo()
+          }
 
-        if (
-          e.currentTarget.matches('.first_order_discount') &&
-          !e.currentTarget.querySelector('.second_var').classList.contains('is_hidden')
-        ) {
-          pushData(
-            'exp_exit_intent_popup_click_02',
-            'Close behind the pop-up area',
-            'Click',
-            'Sie stehen auf der Liste'
-          )
-        }
-        if (e.currentTarget.matches('.categories_product')) {
-          pushData(
-            'exp_exit_intent_popup_click_04',
-            'Close behind the pop-up area',
-            'Click',
-            'Entdecken Sie unsere besten Produkte Step 2'
-          )
-        }
-        if (e.currentTarget.matches('.sales_offer')) {
-          pushData(
-            'exp_exit_intent_popup_click_03',
-            'Close behind the pop-up area',
-            'Click',
-            'Entdecken Sie unsere besten Produkte Step 1'
-          )
-        }
-        if (e.currentTarget.matches('.check_out_now')) {
-          pushData(
-            'exp_exit_intent_popup_click_05',
-            'Close behind the pop-up area',
-            'Click',
-            'Jetzt zur Kasse gehen und  5% Rabatt auf Ihre erste Bestellung erhalten Step 1'
-          )
-        }
-        if (e.currentTarget.matches('.check_out_now_second')) {
-          pushData(
-            'exp_exit_intent_popup_click_06',
-            'Close behind the pop-up area',
-            'Click',
-            'Jetzt zur Kasse gehen und  5% Rabatt sowie kostenlose Lieferung erhalten Step 2'
-          )
-        }
-        if (e.currentTarget.matches('.check_out_now_third')) {
-          pushData('exp_exit_intent_popup_click_07', 'Close behind the pop-up area', 'Click', 'Es gehört fast Ihnen!')
-        }
+          if (
+            e.currentTarget.matches('.first_order_discount') &&
+            !e.currentTarget.querySelector('.second_var').classList.contains('is_hidden')
+          ) {
+            pushData(
+              'exp_exit_intent_popup_click_02',
+              'Close behind the pop-up area',
+              'Click',
+              'Sie stehen auf der Liste'
+            )
+          }
+          if (e.currentTarget.matches('.categories_product')) {
+            pushData(
+              'exp_exit_intent_popup_click_04',
+              'Close behind the pop-up area',
+              'Click',
+              'Entdecken Sie unsere besten Produkte Step 2'
+            )
+          }
+          if (e.currentTarget.matches('.sales_offer')) {
+            pushData(
+              'exp_exit_intent_popup_click_03',
+              'Close behind the pop-up area',
+              'Click',
+              'Entdecken Sie unsere besten Produkte Step 1'
+            )
+          }
+          if (e.currentTarget.matches('.check_out_now')) {
+            pushData(
+              'exp_exit_intent_popup_click_05',
+              'Close behind the pop-up area',
+              'Click',
+              'Jetzt zur Kasse gehen und  5% Rabatt auf Ihre erste Bestellung erhalten Step 1'
+            )
+          }
+          if (e.currentTarget.matches('.check_out_now_second')) {
+            pushData(
+              'exp_exit_intent_popup_click_06',
+              'Close behind the pop-up area',
+              'Click',
+              'Jetzt zur Kasse gehen und  5% Rabatt sowie kostenlose Lieferung erhalten Step 2'
+            )
+          }
+          if (e.currentTarget.matches('.check_out_now_third')) {
+            pushData('exp_exit_intent_popup_click_07', 'Close behind the pop-up area', 'Click', 'Es gehört fast Ihnen!')
+          }
 
-        setTimeout(() => {
-          $el('.new-popup__content').innerHTML = ''
-        }, 500)
+          setTimeout(() => {
+            $el('.new-popup__content').innerHTML = ''
+          }, 500)
+        }
       }
+      e.target.setAttribute('data-test', '1')
+      setTimeout(() => {
+        if (e.target.getAttribute('data-test')) {
+          e.target.removeAttribute('data-test')
+        }
+      }, 1000)
     })
   }
   copyDiscount() {
@@ -537,7 +606,7 @@ class exitIntentPopup {
           if (btn.closest('.first_order_discount')) {
             pushData('exp_exit_intent_popup_button_05', 'Code  Welcome5', 'Button', 'Sie stehen auf der Liste')
           }
-          if (btn.closest('.check_out_now')) {
+          if (btn.closest('.check_out_now.first_var')) {
             pushData(
               'exp_exit_intent_popup_button_12',
               'Code SPORTSTECH5',
@@ -571,13 +640,7 @@ class exitIntentPopup {
           'Button',
           'Erhalten Sie 5% Rabatt & kostenlose Lieferung!'
         )
-        if (e.target.closest('.first_order_discount.first_var')) {
-          e.target.closest('.first_order_discount').classList.add('is_hidden')
-        }
-        if ($el('.first_order_discount.second_var').classList.contains('is_hidden')) {
-          $el('.first_order_discount.second_var').classList.remove('is_hidden')
-        }
-        pushData('exp_exit_intent_popup_section_02', 'Section', 'Visibility', 'Sie stehen auf der Liste')
+        this.validationFormEmail($el(`#emailNew`), true)
       }
       // New users (1st session) - w/o products in basket -> show popup with SALES offer
       if (e.target.matches('.shop_now_btn') && e.target.closest('.first_var')) {
@@ -663,13 +726,147 @@ class exitIntentPopup {
     })
   }
 
+  handlerClickInput() {
+    waitForElement('#emailNew').then(i => {
+      $$el('#emailNew').forEach(i => {
+        i.addEventListener('input', (e: any) => {
+          this.validationFormEmail(e.target)
+        })
+        i.addEventListener('keyup', (e: any) => {
+          if (e.key === 'Enter') {
+            this.validationFormEmail(e.target)
+          }
+        })
+        i.addEventListener('blur', (e: any) => {
+          pushData(
+            'exp_exit_intent_popup_input_01',
+            '5% Rabatt erhalten',
+            'Input',
+            'Erhalten Sie 5% Rabatt & kostenlose Lieferung!'
+          )
+        })
+      })
+    })
+  }
+
+  validationFormEmail(target: any, nextStep: boolean = false) {
+    let inputValueEmail = $el(`#emailNew`).value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/)
+
+    if (target.getAttribute('name') === 'emailNew') {
+      if (inputValueEmail === null) {
+        if (!$el(`#edit-email-address-error`)) {
+          target.insertAdjacentHTML(
+            'afterend',
+            `<span id="edit-email-address-error" class="error">Please Enter Valid Email Address</span>`
+          )
+        }
+        let t = setInterval(() => {
+          if (
+            $el(`#edit-email-address-error`) &&
+            $el(`#edit-email-address-error`).textContent !== 'Please Enter Valid Email Address'
+          ) {
+            clearInterval(t)
+            $el(`#edit-email-address-error`).textContent = 'Please Enter Valid Email Address'
+          }
+        }, 100)
+      } else {
+        $el(`#edit-email-address-error`)?.remove()
+      }
+    }
+
+    if (inputValueEmail !== null && nextStep) {
+      let waitFoundBtnKlaviyo = setInterval(() => {
+        if ($el('.klaviyo-form [name="email"]')) {
+          clearInterval(waitFoundBtnKlaviyo)
+          const inputElement = $el('.klaviyo-form [name="email"]')
+          inputElement.value = target.value
+          inputElement.dispatchEvent(new Event('input', { bubbles: true }))
+          $el('.klaviyo-form button.needsclick.go952291206.kl-private-reset-css-Xuajs1')?.click()
+          console.log(inputElement.value, `inputElement.value `)
+
+          setTimeout(() => {
+            this.handlerCloseKlaviyo()
+          }, 1000)
+        } else {
+          window._klOnsite = window._klOnsite || []
+          window._klOnsite.push(['openForm', '.get_discount_btn'])
+        }
+      }, 100)
+
+      if ($el('.first_order_discount.first_var')) {
+        $el('.first_order_discount.first_var').classList.add('is_hidden')
+      }
+      if ($el('.first_order_discount.second_var').classList.contains('is_hidden')) {
+        $el('.first_order_discount.second_var').classList.remove('is_hidden')
+      }
+      pushData('exp_exit_intent_popup_section_02', 'Section', 'Visibility', 'Sie stehen auf der Liste')
+    }
+  }
+  handlerCloseKlaviyo() {
+    $el('.needsclick.klaviyo-close-form.kl-private-reset-css-Xuajs1')?.click()
+    setTimeout(() => {
+      $el('.crs_style_klaviyo')?.remove()
+    }, 1000)
+  }
+  hanlderClickBtnFirtsPopupKlaviyo() {
+    let trigger = this.device === 'mobile' ? 'button.needsclick.kl-teaser-SP24tu' : 'button.needsclick.kl-teaser-SH5AsN'
+    waitForElement(trigger).then(i => {
+      $el(trigger).addEventListener('click', (e: any) => {
+        e.preventDefault()
+        e.stopPropagation()
+        console.log(`Click`)
+        document.body.insertAdjacentHTML(
+          'afterbegin',
+          `<style class="crs_style_klaviyo">
+          .needsclick.kl-private-reset-css-Xuajs1 {
+            opacity: 0;
+            pointer-events: none;
+            display: none;
+          }
+        </style`
+        )
+        $el('.new-popup-backdrop').classList.add('first_order_discount')
+        this.handleShowPopup(firstOrderDiscount, 'firstOrderDiscountClick', 'click', 'firstOrderDiscount')
+      })
+    })
+  }
+
+  observerKlaviyo() {
+    let trigger = this.device === 'mobile' ? 'button.needsclick.kl-teaser-SP24tu' : 'button.needsclick.kl-teaser-SH5AsN'
+    const observer = new MutationObserver(mutations => {
+      mutations.forEach(mutation => {
+        for (let node of mutation.removedNodes) {
+          if (!(node instanceof HTMLElement)) continue
+          if (node.querySelector('.needsclick.kl-private-reset-css-Xuajs1')) {
+            this.hanlderClickBtnFirtsPopupKlaviyo()
+          }
+        }
+
+        for (let node of mutation.addedNodes) {
+          if (!(node instanceof HTMLElement)) continue
+          if (node.querySelector(trigger)) {
+            this.hanlderClickBtnFirtsPopupKlaviyo()
+          }
+        }
+      })
+    })
+
+    observer.observe(document.documentElement, {
+      childList: true,
+      subtree: true,
+      characterData: true
+    })
+  }
+  // НЕ ИСПОЛЬЗУЕТСЯ
   async getCartCheckout() {
     // 9f8ea4a4f23542d9af304b6ab317924d
-    await fetch('https://www.sportstech.de/store-api/product/9f8ea4a4f23542d9af304b6ab317924d', {
-      method: 'POST',
+    // https://www.sportstech.de/store-api/checkout/cart
+    // https://www.sportstech.de/store-api/product/9f8ea4a4f23542d9af304b6ab317924d  -> SWSCSNIXRK51Z1JNSMZIUXHEVW -> POST
+    await fetch('https://www.sportstech.de/widgets/checkout/info', {
+      method: 'GET',
       headers: {
-        'Content-Type': 'application/json',
-        'sw-access-key': 'SWSCY1NPSKHPSFNHWGDLTMM5NQ'
+        'Content-Type': 'application/json'
+        // 'sw-access-key': 'SWSCSNIXRK51Z1JNSMZIUXHEVW'
       }
     })
       .then(response => {
@@ -682,8 +879,6 @@ class exitIntentPopup {
         console.error('Error:', error)
       })
   }
-
-  // document.querySelectorAll('.needsclick.klaviyo-form')
 }
 
 new exitIntentPopup(device)
