@@ -7,7 +7,7 @@
   width: 100%;
   height: 100%;
   z-index: 1000000000000;
-  transition: all 0.8s ease 0s;
+  transition: all 0.4s ease 0s;
 }
 .new-popup-backdrop.is-hidden {
   opacity: 0;
@@ -387,9 +387,9 @@
       }
 
       .header_popup {
-        margin-bottom: 40px;
+        margin-bottom: 24px;
         @media (max-width: 768px) {
-          margin-bottom: 20px;
+          margin-bottom: 24px;
         }
         .main_title {
           text-align: left;
@@ -529,6 +529,7 @@
 
     &.second_var {
       .header_popup {
+        margin-bottom: 40px;
         @media (max-width: 768px) {
           margin-bottom: 12px;
         }
@@ -807,6 +808,7 @@
                   font-weight: 400;
                   line-height: 16px;
                   margin: 0;
+                  text-transform: capitalize;
                 }
                 .price_wrapper {
                   display: flex;
@@ -861,7 +863,7 @@
 
           p {
             color: #212121;
-            font-family: 'Source Sans Pro';
+            font-family: 'Open Sans', sans-serif;
             font-size: 13px;
             font-weight: 400;
             line-height: 20px;
@@ -971,7 +973,6 @@
           position: relative;
           margin-bottom: 24px;
           height: 64px;
-          display: none;
           @media (max-width: 768px) {
             margin-bottom: 12px;
             height: 68px;
@@ -981,7 +982,7 @@
             top: 0;
           }
           p {
-            max-width: 350px;
+            max-width: 365px;
             position: relative;
             color: #000;
             font-family: 'Open Sans', sans-serif;
@@ -1099,4 +1100,8 @@
       }
     }
   }
+}
+
+button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-reset-css-Xuajs1 {
+  display: none !important;
 }

@@ -7,7 +7,7 @@
   width: 100%;
   height: 100%;
   z-index: 1000000000000;
-  transition: all 0.8s ease 0s;
+  transition: all 0.4s ease 0s;
 }
 
 .new-popup-backdrop.is-hidden {
@@ -434,11 +434,11 @@
   }
 }
 .exit_intent_popup .first_order_discount .info_wrapper .header_popup {
-  margin-bottom: 40px;
+  margin-bottom: 24px;
 }
 @media (max-width: 768px) {
   .exit_intent_popup .first_order_discount .info_wrapper .header_popup {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
 }
 .exit_intent_popup .first_order_discount .info_wrapper .header_popup .main_title {
@@ -589,6 +589,9 @@
 .exit_intent_popup .first_order_discount .img_wrapper img {
   width: 100%;
   height: 100%;
+}
+.exit_intent_popup .first_order_discount.second_var .header_popup {
+  margin-bottom: 40px;
 }
 @media (max-width: 768px) {
   .exit_intent_popup .first_order_discount.second_var .header_popup {
@@ -887,6 +890,7 @@
   font-weight: 400;
   line-height: 16px;
   margin: 0;
+  text-transform: capitalize;
 }
 .exit_intent_popup .check_out_now .info_wrapper .body_popup .products_wrapper .products_list .products_item .item_info .price_wrapper {
   display: flex;
@@ -941,7 +945,7 @@
 }
 .exit_intent_popup .check_out_now .info_wrapper .body_popup .popular_products p {
   color: #212121;
-  font-family: "Source Sans Pro";
+  font-family: "Open Sans", sans-serif;
   font-size: 13px;
   font-weight: 400;
   line-height: 20px;
@@ -1055,7 +1059,6 @@
   position: relative;
   margin-bottom: 24px;
   height: 64px;
-  display: none;
 }
 @media (max-width: 768px) {
   .exit_intent_popup .check_out_now.second_var .info_wrapper .stock_wrapper, .exit_intent_popup .check_out_now.third_var .info_wrapper .stock_wrapper {
@@ -1068,7 +1071,7 @@
   top: 0;
 }
 .exit_intent_popup .check_out_now.second_var .info_wrapper .stock_wrapper p, .exit_intent_popup .check_out_now.third_var .info_wrapper .stock_wrapper p {
-  max-width: 350px;
+  max-width: 365px;
   position: relative;
   color: #000;
   font-family: "Open Sans", sans-serif;
@@ -1177,4 +1180,8 @@
   .check_out_now_second.large_popup .exit_intent_popup .info_wrapper .body_popup .products_wrapper {
     padding-right: 12px;
   }
+}
+
+button + div.needsclick.kl-private-reset-css-Xuajs1 > div.needsclick.kl-private-reset-css-Xuajs1 {
+  display: none !important;
 }/*# sourceMappingURL=main.css.map */

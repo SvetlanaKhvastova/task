@@ -73,8 +73,7 @@ export const firstOrderDiscount = /* HTML */ `
             <span class="accent_color_red">Erhalten Sie 5%</span> Rabatt & kostenlose Lieferung!
           </h2>
           <p class="main_description">
-            Klicken Sie auf den unten stehenden Button, um <b>einen personalisierten Code zu erhalten</b> und 5% bei
-            Ihrer ersten Bestellung zu sparen, plus kostenlosen Versand.
+            Abonnieren Sie unseren Newsletter und sparen Sie bei Ihrer gesamten ersten Bestellung, ohne Einschränkungen.
           </p>
         </div>
         <div class="body_popup">
@@ -112,10 +111,10 @@ export const firstOrderDiscount = /* HTML */ `
         </div>
         <div class="body_popup">
           <div class="discount_code_wrapper">
-            <p class="discount_code_title">Geben Sie den Code beim Checkout ein</p>
+            <p class="discount_code_title">Geben Sie den Code im Warenkorb ein</p>
             <div class="discount_code_container">
-              <span class="discount_code_txt">Welcome10</span>
-              <span data-discount="Welcome10">${svg.copyIcon}</span>
+              <span class="discount_code_txt">SPORTSTECH5</span>
+              <span data-discount="SPORTSTECH5">${svg.copyIcon}</span>
             </div>
           </div>
           <div class="btn_wrapper">
@@ -175,8 +174,8 @@ export const firstOrderDiscountSecond = /* HTML */ `
           <div class="discount_code_wrapper">
             <p class="discount_code_title">Enter code at checkout</p>
             <div class="discount_code_container">
-              <span class="discount_code_txt">Welcome10</span>
-              <span data-discount="Welcome10">${svg.copyIcon}</span>
+              <span class="discount_code_txt">SPORTSTECH5</span>
+              <span data-discount="SPORTSTECH5">${svg.copyIcon}</span>
             </div>
           </div>
           <div class="btn_wrapper">
@@ -255,7 +254,7 @@ export const checkOutNow = /* HTML */ `
       <div class="info_wrapper">
         <div class="header_popup">
           <h2 class="main_title">
-            Jetzt zur Kasse gehen und <span class="accent_color_red">5%</span> Rabatt auf Ihre erste Bestellung erhalten
+            Jetzt zur Kasse gehen und <span class="accent_color_red">5% Rabatt</span> auf Ihre erste Bestellung erhalten
           </h2>
           <div id="counter">
             <div class="time_block">
@@ -279,11 +278,11 @@ export const checkOutNow = /* HTML */ `
             ${svg.groupIcon}
             <p>
               Beliebtes Produkt. <br /><b><span>${Math.floor(Math.random() * 14) + 2}</span> Personen</b> sehen es sich
-              gerade an.
+              gerade an
             </p>
           </div>
           <div class="discount_code_wrapper">
-            <p class="discount_code_title">Code beim Checkout eingeben</p>
+            <p class="discount_code_title">Der Code wird beim Checkout angewendet</p>
             <div class="discount_code_container">
               <span class="discount_code_txt">SPORTSTECH5</span>
               <span data-discount="SPORTSTECH5">${svg.copyIcon}</span>
@@ -319,10 +318,10 @@ export const checkOutNowSecond = /* HTML */ `
             <ul class="products_list"></ul>
           </div>
           <div class="discount_code_wrapper">
-            <p class="discount_code_title">Code beim Checkout eingeben</p>
+            <p class="discount_code_title">Der Code wird beim Checkout angewendet</p>
             <div class="discount_code_container">
-              <span class="discount_code_txt">PRSNLoffer5</span>
-              <span data-discount="PRSNLoffer5">${svg.copyIcon}</span>
+              <span class="discount_code_txt">SPORTSTECH5</span>
+              <span data-discount="SPORTSTECH5">${svg.copyIcon}</span>
             </div>
           </div>
           <div class="btn_wrapper">
@@ -350,7 +349,9 @@ export const checkOutNowThird = /* HTML */ `
             ${window.innerWidth >= 768 ? `${svg.bgrYellowIcon}` : `${svg.bgrYellowMobIcon}`}
             <p>
               Beliebte Wahl, wir könnten bald ausverkauft sein.
-              <span class="stock_txt">Nur noch <span>3</span> Stück übrig.</span>
+              <span class="stock_txt"
+                >Nur noch <span class="stock_value">${Math.floor(Math.random() * 10) + 1}</span> Stück übrig.</span
+              >
             </p>
           </div>
           <div class="products_wrapper">

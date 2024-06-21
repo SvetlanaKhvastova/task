@@ -1,4 +1,13 @@
-import { startLog, $el, $$el, waitForElement, pushData, clarityInterval, checkScrollSpeed } from '../../libraries'
+import {
+  startLog,
+  $el,
+  $$el,
+  waitForElement,
+  pushData,
+  clarityInterval,
+  checkScrollSpeed,
+  getCookies
+} from '../../libraries'
 import {
   popup,
   firstOrderDiscount,
@@ -68,17 +77,25 @@ class exitIntentPopup {
     )
     document.head.insertAdjacentHTML('beforeend', `<style>${mainStyle}</style>`)
 
-    if (!sessionStorage.getItem('firstOrderDiscount') && !localStorage.getItem('initUser')) {
+    if (
+      !sessionStorage.getItem('firstOrderDiscount') ||
+      !localStorage.getItem('initUser') ||
+      !localStorage.getItem('klaviyoForm')
+    ) {
       document.body.insertAdjacentHTML(
         'afterbegin',
         `<style class="crs_style_klaviyo">
-          .needsclick.kl-private-reset-css-Xuajs1 {
+          div.needsclick.kl-private-reset-css-Xuajs1 {
             opacity: 0;
             pointer-events: none;
             display: none;
           }
         </style`
       )
+    }
+    // for all users on first session after 20 seconds from the session start.
+    if (!localStorage.getItem('initUser')) {
+      this.getNewUser('_ga')
     }
 
     this.createPopup()
@@ -89,7 +106,9 @@ class exitIntentPopup {
     this.handlerClickBtns()
     this.handlerClickInput()
     this.observerKlaviyo()
-    // this.getCartCheckout()
+
+    this.getRating()
+    this.getProductInfo('9f8ea4a4f23542d9af304b6ab317924d')
   }
 
   intentPopupTriggers() {
@@ -98,9 +117,6 @@ class exitIntentPopup {
     } else {
       if (sessionStorage.getItem('salesOffer') && sessionStorage.getItem('checkOutNow')) return
     }
-
-    // for all users on first session after 20 seconds from the session start.
-    this.getNewUser('_ga')
 
     if (this.device === 'mobile') {
       // Scroll up (JS speed value: 150) - for any page
@@ -145,26 +161,29 @@ class exitIntentPopup {
     )
   }
   getNewUser(name: string) {
-    const value = `; ${document.cookie}`
-    const parts = value.split(`; ${name}=`)
-    let valueCookie
-    let timeNewUser
-    if (parts.length === 2 && !localStorage.getItem('initUser')) {
-      valueCookie = parts.pop()?.split(';').shift()
-      if (valueCookie) {
-        timeNewUser = +(valueCookie.split('.').pop() + '000')
-        console.log(`timeNewUser`, new Date(timeNewUser))
+    const ga = getCookies(name)
+    if (!ga) {
+      console.log(`New User`)
+      localStorage.setItem('initUser', 'true')
+      setTimeout(() => {
+        this.getItemsBasket('firstOrderDiscount', 'firstOrderDiscount')
+
+        if (!sessionStorage.getItem('firstOrderDiscount')) {
+          this.handlerCloseKlaviyo()
+        }
+      }, this.firstSessionTime)
+    } else {
+      if (ga) {
+        const timeNewUser = +(ga.split('.').pop() + '000')
         if (+new Date() - +new Date(timeNewUser) <= 5 * 60 * 1000) {
           console.log(`New User`)
           localStorage.setItem('initUser', 'true')
           setTimeout(() => {
-            console.log(this.firstSessionTime)
             this.getItemsBasket('firstOrderDiscount', 'firstOrderDiscount')
-            setTimeout(() => {
-              if (!sessionStorage.getItem('firstOrderDiscount')) {
-                this.handlerCloseKlaviyo()
-              }
-            }, 1200)
+
+            if (!sessionStorage.getItem('firstOrderDiscount')) {
+              this.handlerCloseKlaviyo()
+            }
           }, this.firstSessionTime)
         }
       }
@@ -189,7 +208,7 @@ class exitIntentPopup {
     res = await res.text()
     const parser = new DOMParser()
     const doc = parser.parseFromString(res, 'text/html')
-    const itemsBasket = doc.querySelectorAll('.checkout-product-table .line-item')
+    const itemsBasket = doc.querySelectorAll('.checkout-product-table .line-item-product')
     // _______________________________________________________________________________________
     //  - - -> with products in basket
     if (itemsBasket.length !== 0) {
@@ -351,9 +370,9 @@ class exitIntentPopup {
     }
   }
   handleShowPopup(content: string, name: string, trigger: string, visibilityName: string) {
+    console.log(`handleShowPopup`, trigger, name)
     const isShowed = sessionStorage.getItem(name)
     if (isShowed && name !== 'firstOrderDiscountClick') return
-    console.log(`handleShowPopup`, trigger)
 
     const body = $el('body'),
       backdrop = $el('.new-popup-backdrop'),
@@ -690,7 +709,7 @@ class exitIntentPopup {
           'Button',
           'Jetzt zur Kasse gehen und  5% Rabatt auf Ihre erste Bestellung erhalten Step 1'
         )
-        window.location.href = '/checkout/confirm'
+        this.getCoupon('SPORTSTECH5')
       }
 
       // Returning users (session number >1) with products in basket (at least 1 product at basket)
@@ -706,7 +725,7 @@ class exitIntentPopup {
           'Button',
           'Jetzt zur Kasse gehen und  5% Rabatt sowie kostenlose Lieferung erhalten Step 2'
         )
-        window.location.href = '/checkout/confirm'
+        this.getCoupon('SPORTSTECH5')
       }
 
       //when used discount - show scarcity popup
@@ -780,16 +799,15 @@ class exitIntentPopup {
           clearInterval(waitFoundBtnKlaviyo)
           const inputElement = $el('.klaviyo-form [name="email"]')
           inputElement.value = target.value
-          inputElement.dispatchEvent(new Event('input', { bubbles: true }))
-          $el('.klaviyo-form button.needsclick.go952291206.kl-private-reset-css-Xuajs1')?.click()
-          console.log(inputElement.value, `inputElement.value `)
-
+          inputElement.dispatchEvent(new Event('input'))
           setTimeout(() => {
-            this.handlerCloseKlaviyo()
-          }, 1000)
-        } else {
-          window._klOnsite = window._klOnsite || []
-          window._klOnsite.push(['openForm', '.get_discount_btn'])
+            $el('.klaviyo-form button.needsclick.go952291206.kl-private-reset-css-Xuajs1').click()
+            console.log(inputElement.value, `inputElement.value `)
+            localStorage.setItem('klaviyoForm', 'yes')
+            setTimeout(() => {
+              this.handlerCloseKlaviyo()
+            }, 1000)
+          }, 1500)
         }
       }, 100)
 
@@ -806,7 +824,7 @@ class exitIntentPopup {
     $el('.needsclick.klaviyo-close-form.kl-private-reset-css-Xuajs1')?.click()
     setTimeout(() => {
       $el('.crs_style_klaviyo')?.remove()
-    }, 1000)
+    }, 1600)
   }
   hanlderClickBtnFirtsPopupKlaviyo() {
     let trigger = this.device === 'mobile' ? 'button.needsclick.kl-teaser-SP24tu' : 'button.needsclick.kl-teaser-SH5AsN'
@@ -815,16 +833,6 @@ class exitIntentPopup {
         e.preventDefault()
         e.stopPropagation()
         console.log(`Click`)
-        document.body.insertAdjacentHTML(
-          'afterbegin',
-          `<style class="crs_style_klaviyo">
-          .needsclick.kl-private-reset-css-Xuajs1 {
-            opacity: 0;
-            pointer-events: none;
-            display: none;
-          }
-        </style`
-        )
         $el('.new-popup-backdrop').classList.add('first_order_discount')
         this.handleShowPopup(firstOrderDiscount, 'firstOrderDiscountClick', 'click', 'firstOrderDiscount')
       })
@@ -858,15 +866,15 @@ class exitIntentPopup {
     })
   }
   // НЕ ИСПОЛЬЗУЕТСЯ
-  async getCartCheckout() {
+  async getProductInfo(id: string) {
     // 9f8ea4a4f23542d9af304b6ab317924d
-    // https://www.sportstech.de/store-api/checkout/cart
+    // https://www.sportstech.de/store-api/checkout/cart -> GET
     // https://www.sportstech.de/store-api/product/9f8ea4a4f23542d9af304b6ab317924d  -> SWSCSNIXRK51Z1JNSMZIUXHEVW -> POST
-    await fetch('https://www.sportstech.de/widgets/checkout/info', {
-      method: 'GET',
+    await fetch(`https://www.sportstech.de/store-api/product/${id}`, {
+      method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
-        // 'sw-access-key': 'SWSCSNIXRK51Z1JNSMZIUXHEVW'
+        'Content-Type': 'application/json',
+        'sw-access-key': 'SWSCSNIXRK51Z1JNSMZIUXHEVW'
       }
     })
       .then(response => {
@@ -874,11 +882,90 @@ class exitIntentPopup {
       })
       .then(data => {
         console.log(data)
+        // let stock = data?.product?.stock
+        // console.log(stock)
+        // waitForElement('.stock_value').then(i => {
+        //   $el('.stock_value').textContent = stock
+        // })
       })
       .catch(error => {
         console.error('Error:', error)
       })
   }
+
+  async getCartCheckout() {
+    await fetch(`https://www.sportstech.de/mm-fp/cart `, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        let items = data?.lineItems
+        let keys = Object.keys(items)
+        let lastKey = keys[keys.length - 1]
+        console.log(lastKey)
+        this.getProductInfo(lastKey)
+      })
+      .catch(error => {
+        console.error('Error:', error)
+      })
+  }
+
+  async getRating() {
+    await fetch(
+      `https://api.reviews.io/product/rating-batch?sku=SP_STX300&store=www.sportstech.de&lang=de&enableSyndication=true `,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    )
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        console.log(data, `getRating`)
+        Object.keys(data).forEach(key => {
+          let numRatings = data[key].num_ratings
+          let averageRating = data[key].average_rating
+        })
+      })
+      .catch(error => {
+        console.error('Error:', error)
+      })
+  }
+
+  async getCoupon(code: string) {
+    await fetch(`https://www.sportstech.de/checkout/promotion/add`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        code: code
+      })
+    })
+      .then(response => {
+        console.log(response, `response`)
+        return response
+      })
+      .then(data => {
+        if (data.status === 200) {
+          console.log(data.status, `getCoupon`)
+          window.location.href = '/checkout/confirm'
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error)
+      })
+  }
+
+  //
 }
 
 new exitIntentPopup(device)
