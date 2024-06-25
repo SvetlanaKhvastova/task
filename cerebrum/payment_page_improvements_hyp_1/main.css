@@ -1,0 +1,112 @@
+.hero_section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 80rem;
+  margin: 0 auto 40px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+@media (max-width: 768px) {
+  .hero_section {
+    flex-direction: column-reverse;
+    margin-bottom: 32px;
+    padding-left: 19px;
+    padding-right: 20px;
+  }
+}
+.hero_section .accent_color_blue {
+  color: #0070f0;
+}
+.hero_section .hero_section_content {
+  flex: 0 0 565px;
+}
+@media (max-width: 768px) {
+  .hero_section .hero_section_content {
+    flex: unset;
+  }
+}
+.hero_section .hero_section_content .hero_section_title {
+  color: #11181c;
+  font-family: "Inter", sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  margin: 0;
+}
+@media (max-width: 768px) {
+  .hero_section .hero_section_content .hero_section_title {
+    max-width: 335px;
+    font-size: 24px;
+    line-height: 32px;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .hero_section .hero_section_content .hero_section_title br {
+    display: none;
+  }
+}
+.hero_section .hero_section_content .hero_section_subtitle {
+  color: #52525b;
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 26px;
+  margin: 16px 0 24px;
+}
+@media (max-width: 768px) {
+  .hero_section .hero_section_content .hero_section_subtitle {
+    max-width: 303px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 8px auto 16px;
+  }
+}
+.hero_section .hero_section_content .hero_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  max-width: 360px;
+  width: 100%;
+  border-radius: 8px;
+  background: #0d766e;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  margin: 24px 0 0;
+  transition: all 0.8s ease 0s;
+}
+.hero_section .hero_section_content .hero_btn:hover {
+  opacity: 0.8;
+}
+@media (max-width: 768px) {
+  .hero_section .hero_section_content .hero_btn {
+    margin-top: 16px;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+.hero_section .hero_section_image {
+  max-width: 500px;
+  width: 100%;
+}
+
+#top {
+  padding: 40px 0 64px;
+  background: linear-gradient(206deg, #eff8ff 0.76%, #e0ebfb 48.1%, #f6f9fc 96.4%);
+}
+@media (max-width: 768px) {
+  #top {
+    padding: 16px 0 32px;
+  }
+}
+#top > div.mx-auto.flex {
+  display: none;
+}
+#top > div:nth-child(3) > section {
+  padding: 0;
+}/*# sourceMappingURL=main.css.map */

@@ -652,7 +652,7 @@ class exitIntentPopup {
           event.currentTarget.textContent = 'Copied!'
 
           if (btn.closest('.first_order_discount')) {
-            pushData('exp_exit_intent_popup_button_05', 'Code  SPORTSTECH5', 'Button', 'Sie stehen auf der Liste')
+            pushData('exp_exit_intent_popup_button_05', 'Code  Welcome5', 'Button', 'Sie stehen auf der Liste')
           }
           if (btn.closest('.check_out_now.first_var')) {
             pushData(
@@ -665,7 +665,7 @@ class exitIntentPopup {
           if (btn.closest('.check_out_now_second')) {
             pushData(
               'exp_exit_intent_popup_button_15',
-              'Code SPORTSTECH5',
+              'Code PRSNLoffer5',
               'Button',
               'Jetzt zur Kasse gehen und  5% Rabatt sowie kostenlose Lieferung erhalten Step 2'
             )
