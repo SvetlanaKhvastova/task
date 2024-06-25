@@ -63,7 +63,7 @@ const freeDeliveryBanner = (country: 'UK' | 'US', currency: string, threshold: n
       </div>
       <div class="free_delivery_banner_item">
         ${svg.deliveryArrows}
-        <p>60 days FREE returns</p>
+        <p>60 days returns</p>
       </div>
     </div>
   `

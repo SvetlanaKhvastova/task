@@ -821,7 +821,6 @@
                   justify-content: center;
                   align-items: center;
                   gap: 1px;
-                  display: none;
                   span {
                     color: #000;
                     font-family: 'Open Sans', sans-serif;
@@ -837,7 +836,7 @@
                   font-size: 16px;
                   font-weight: 700;
                   line-height: 24px;
-                  margin: 0;
+                  margin: 0 0 0 auto;
                   @media (max-width: 768px) {
                     font-size: 14px;
                     line-height: 20px;
@@ -1050,6 +1049,13 @@
             font-size: 24px;
           }
         }
+      }
+    }
+
+    &.first_var > .img_wrapper {
+      background: #fff;
+      img {
+        object-fit: contain;
       }
     }
   }

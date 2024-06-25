@@ -85,7 +85,7 @@ class exitIntentPopup {
       document.body.insertAdjacentHTML(
         'afterbegin',
         `<style class="crs_style_klaviyo">
-          div.needsclick.kl-private-reset-css-Xuajs1 {
+          body > div > div.needsclick.kl-private-reset-css-Xuajs1 {
             opacity: 0;
             pointer-events: none;
             display: none;
@@ -102,13 +102,10 @@ class exitIntentPopup {
     setTimeout(() => {
       this.intentPopupTriggers()
     }, 200)
-    this.copyDiscount()
     this.handlerClickBtns()
+    this.copyDiscount()
     this.handlerClickInput()
     this.observerKlaviyo()
-
-    this.getRating()
-    this.getProductInfo('9f8ea4a4f23542d9af304b6ab317924d')
   }
 
   intentPopupTriggers() {
@@ -166,7 +163,12 @@ class exitIntentPopup {
       console.log(`New User`)
       localStorage.setItem('initUser', 'true')
       setTimeout(() => {
-        this.getItemsBasket('firstOrderDiscount', 'firstOrderDiscount')
+        if (this.isPopupOpen()) {
+          return
+        }
+        // First order discount popup -> New users
+        $el('.new-popup-backdrop').classList.add('first_order_discount')
+        this.handleShowPopup(firstOrderDiscount, 'firstOrderDiscount', 'firstOrderDiscount', 'firstOrderDiscount')
 
         if (!sessionStorage.getItem('firstOrderDiscount')) {
           this.handlerCloseKlaviyo()
@@ -179,7 +181,12 @@ class exitIntentPopup {
           console.log(`New User`)
           localStorage.setItem('initUser', 'true')
           setTimeout(() => {
-            this.getItemsBasket('firstOrderDiscount', 'firstOrderDiscount')
+            if (this.isPopupOpen()) {
+              return
+            }
+            // First order discount popup -> New users
+            $el('.new-popup-backdrop').classList.add('first_order_discount')
+            this.handleShowPopup(firstOrderDiscount, 'firstOrderDiscount', 'firstOrderDiscount', 'firstOrderDiscount')
 
             if (!sessionStorage.getItem('firstOrderDiscount')) {
               this.handlerCloseKlaviyo()
@@ -202,6 +209,10 @@ class exitIntentPopup {
 
     if (now - this.lastPopupTime < this.timeLag) return
     sessionStorage.setItem('lastPopupTime', now.toString())
+
+    // _______________________________________________________________________________________
+    // rating
+    const ratingArr = await this.getCartCheckout()
 
     // _______________________________________________________________________________________
     let res: Response | string = await fetch('https://www.sportstech.de/checkout/cart')
@@ -266,10 +277,16 @@ class exitIntentPopup {
           if ($el('.new-popup-backdrop').classList.contains('check_out_now_third')) {
             $el('.new-popup-backdrop').classList.remove('check_out_now_third')
           }
-          console.log('!!!!!!!!!!!!!!!!!!!!!!')
+
           $el('.new-popup-backdrop').classList.add('check_out_now')
           this.handleShowPopup(checkOutNow, 'checkOutNow', trigger, 'checkOutNow')
         }
+      }
+
+      if ($el('.new-popup-backdrop.check_out_now .first_var > .img_wrapper img')) {
+        $el('.new-popup-backdrop.check_out_now .first_var > .img_wrapper img').src = itemsBasket[itemsBasket.length - 1]
+          .querySelector('.line-item-img')
+          ?.getAttribute('src')
       }
 
       itemsBasket.forEach(item => {
@@ -278,9 +295,21 @@ class exitIntentPopup {
         let title = item.querySelector('.line-item-label')?.textContent ?? ''
         let opt = item.querySelector('.line-item-details-characteristics-option')?.textContent ?? ''
         let price = item.querySelector('.line-item-total-price-value')?.textContent ?? ''
+        let rating
+        let stars
+
+        ratingArr.forEach(o => {
+          if (o?.titleProduct?.trim().toLocaleLowerCase() === title.trim().toLocaleLowerCase()) {
+            rating = o.numRatings
+            stars = o.averageRating
+          }
+        })
 
         waitForElement('.products_list').then(i => {
-          $el('.products_list').insertAdjacentHTML('beforeend', productItem(link, img, title, opt, price))
+          $el('.products_list').insertAdjacentHTML(
+            'beforeend',
+            productItem(link, img, title, opt, price, rating, this.renderStars(stars))
+          )
         })
       })
     } else {
@@ -309,13 +338,9 @@ class exitIntentPopup {
       }
       // _______________________________________________________________________________________
       // First order discount popup -> New users
-      if (namePopup === 'firstOrderDiscount') {
-        $el('.new-popup-backdrop').classList.add('first_order_discount')
-        this.handleShowPopup(firstOrderDiscount, 'firstOrderDiscount', trigger, 'firstOrderDiscount')
-      }
-      // if (namePopup === 'firstOrderDiscountClick') {
+      // if (namePopup === 'firstOrderDiscount') {
       //   $el('.new-popup-backdrop').classList.add('first_order_discount')
-      //   this.handleShowPopup(firstOrderDiscount, 'firstOrderDiscountClick', 'click', 'firstOrderDiscount')
+      //   this.handleShowPopup(firstOrderDiscount, 'firstOrderDiscount', trigger, 'firstOrderDiscount')
       // }
       // _______________________________________________________________________________________
       if (namePopup === 'differentUserCategories') {
@@ -507,6 +532,7 @@ class exitIntentPopup {
               'Button',
               'Jetzt zur Kasse gehen und  5% Rabatt auf Ihre erste Bestellung erhalten Step 1'
             )
+            this.getCoupon('SPORTSTECH5', false)
           }
           if (e.currentTarget.closest('.check_out_now_second')) {
             pushData(
@@ -515,6 +541,7 @@ class exitIntentPopup {
               'Button',
               'Jetzt zur Kasse gehen und  5% Rabatt sowie kostenlose Lieferung erhalten Step 2'
             )
+            this.getCoupon('SPORTSTECH5', false)
           }
           if (e.currentTarget.closest('.check_out_now_third')) {
             pushData('exp_exit_intent_popup_button_17', 'Close', 'Button', 'Es gehört fast Ihnen!')
@@ -588,6 +615,7 @@ class exitIntentPopup {
               'Click',
               'Jetzt zur Kasse gehen und  5% Rabatt auf Ihre erste Bestellung erhalten Step 1'
             )
+            this.getCoupon('SPORTSTECH5', false)
           }
           if (e.currentTarget.matches('.check_out_now_second')) {
             pushData(
@@ -596,6 +624,7 @@ class exitIntentPopup {
               'Click',
               'Jetzt zur Kasse gehen und  5% Rabatt sowie kostenlose Lieferung erhalten Step 2'
             )
+            this.getCoupon('SPORTSTECH5', false)
           }
           if (e.currentTarget.matches('.check_out_now_third')) {
             pushData('exp_exit_intent_popup_click_07', 'Close behind the pop-up area', 'Click', 'Es gehört fast Ihnen!')
@@ -623,7 +652,7 @@ class exitIntentPopup {
           event.currentTarget.textContent = 'Copied!'
 
           if (btn.closest('.first_order_discount')) {
-            pushData('exp_exit_intent_popup_button_05', 'Code  Welcome5', 'Button', 'Sie stehen auf der Liste')
+            pushData('exp_exit_intent_popup_button_05', 'Code  SPORTSTECH5', 'Button', 'Sie stehen auf der Liste')
           }
           if (btn.closest('.check_out_now.first_var')) {
             pushData(
@@ -636,7 +665,7 @@ class exitIntentPopup {
           if (btn.closest('.check_out_now_second')) {
             pushData(
               'exp_exit_intent_popup_button_15',
-              'Code PRSNLoffer5',
+              'Code SPORTSTECH5',
               'Button',
               'Jetzt zur Kasse gehen und  5% Rabatt sowie kostenlose Lieferung erhalten Step 2'
             )
@@ -681,7 +710,7 @@ class exitIntentPopup {
             'Button',
             'Entdecken Sie unsere besten Produkte Step 2'
           )
-          window.location.href = ' https://www.sportstech.de/restposten'
+          window.location.href = 'https://www.sportstech.de/sale'
         } else if (e.target.closest('.bikes_item')) {
           pushData(
             'exp_exit_intent_popup_button_10',
@@ -802,7 +831,6 @@ class exitIntentPopup {
           inputElement.dispatchEvent(new Event('input'))
           setTimeout(() => {
             $el('.klaviyo-form button.needsclick.go952291206.kl-private-reset-css-Xuajs1').click()
-            console.log(inputElement.value, `inputElement.value `)
             localStorage.setItem('klaviyoForm', 'yes')
             setTimeout(() => {
               this.handlerCloseKlaviyo()
@@ -832,9 +860,9 @@ class exitIntentPopup {
       $el(trigger).addEventListener('click', (e: any) => {
         e.preventDefault()
         e.stopPropagation()
-        console.log(`Click`)
         $el('.new-popup-backdrop').classList.add('first_order_discount')
         this.handleShowPopup(firstOrderDiscount, 'firstOrderDiscountClick', 'click', 'firstOrderDiscount')
+        this.copyDiscount()
       })
     })
   }
@@ -865,82 +893,126 @@ class exitIntentPopup {
       characterData: true
     })
   }
-  // НЕ ИСПОЛЬЗУЕТСЯ
-  async getProductInfo(id: string) {
-    // 9f8ea4a4f23542d9af304b6ab317924d
-    // https://www.sportstech.de/store-api/checkout/cart -> GET
-    // https://www.sportstech.de/store-api/product/9f8ea4a4f23542d9af304b6ab317924d  -> SWSCSNIXRK51Z1JNSMZIUXHEVW -> POST
-    await fetch(`https://www.sportstech.de/store-api/product/${id}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'sw-access-key': 'SWSCSNIXRK51Z1JNSMZIUXHEVW'
-      }
-    })
-      .then(response => {
-        return response.json()
-      })
-      .then(data => {
-        console.log(data)
-        // let stock = data?.product?.stock
-        // console.log(stock)
-        // waitForElement('.stock_value').then(i => {
-        //   $el('.stock_value').textContent = stock
-        // })
-      })
-      .catch(error => {
-        console.error('Error:', error)
-      })
-  }
 
+  renderStars(averageRating: string): string {
+    const rating = parseFloat(averageRating)
+    const fullStars = Math.floor(rating)
+    const partialStarThreshold = 0.5 // Порог для отображения части звезды
+    const hasPartialStar = rating % 1 >= partialStarThreshold
+    const totalStars = 5
+
+    let starsHtml = ''
+
+    // Добавляем полные звезды
+    for (let i = 0; i < fullStars; i++) {
+      starsHtml += svg.starIcon // Полная звезда
+    }
+
+    // Добавляем часть звезды, если десятичная часть больше порога
+    if (hasPartialStar) {
+      starsHtml += svg.starPartIcon // Часть звезды
+    }
+
+    // Добавляем пустые звезды, учитывая часть звезды
+    const emptyStarsCount = totalStars - fullStars - (hasPartialStar ? 1 : 0)
+    for (let i = 0; i < emptyStarsCount; i++) {
+      starsHtml += svg.starEmptyIcon // Пустая звезда
+    }
+
+    return starsHtml
+  }
+  // ______________________________________________________________________________________
+  // FETCH
   async getCartCheckout() {
-    await fetch(`https://www.sportstech.de/mm-fp/cart `, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(response => {
-        return response.json()
-      })
-      .then(data => {
-        let items = data?.lineItems
-        let keys = Object.keys(items)
-        let lastKey = keys[keys.length - 1]
-        console.log(lastKey)
-        this.getProductInfo(lastKey)
-      })
-      .catch(error => {
-        console.error('Error:', error)
-      })
-  }
-
-  async getRating() {
-    await fetch(
-      `https://api.reviews.io/product/rating-batch?sku=SP_STX300&store=www.sportstech.de&lang=de&enableSyndication=true `,
-      {
-        method: 'GET',
+    try {
+      const response = await fetch(`https://www.sportstech.de/mm-fp/cart `.trim(), {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         }
-      }
-    )
-      .then(response => {
-        return response.json()
       })
-      .then(data => {
-        console.log(data, `getRating`)
-        Object.keys(data).forEach(key => {
-          let numRatings = data[key].num_ratings
-          let averageRating = data[key].average_rating
+      const data = await response.json()
+      const items = data?.lineItems
+      const keys = Object.keys(items)
+
+      const sValues = await Promise.all(
+        keys.map(async el => {
+          const sku = await this.getProductInfo(el)
+          const ratingArr = await this.getRating(sku.manufacturerNumber, sku.titleProduct)
+          return ratingArr
         })
-      })
-      .catch(error => {
-        console.error('Error:', error)
-      })
+      )
+
+      return sValues
+    } catch (error) {
+      throw error
+    }
   }
 
-  async getCoupon(code: string) {
+  async getProductInfo(id: string): Promise<string | undefined> {
+    try {
+      const response = await fetch(`https://www.sportstech.de/store-api/product/${id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'sw-access-key': 'SWSCSNIXRK51Z1JNSMZIUXHEVW'
+        }
+      })
+
+      if (!response.ok) {
+        throw new Error(`Server responded with status ${response.status}`)
+      }
+
+      const data = await response.json()
+      const titleProduct = data?.product?.name
+      const manufacturerNumber = data?.product?.productNumber
+      const q = { titleProduct: titleProduct, manufacturerNumber: manufacturerNumber }
+      return q
+    } catch (error) {
+      throw error
+    }
+  }
+
+  async getRating(sku: string, titleProduct: string): Promise<any> {
+    try {
+      const response = await fetch(
+        `https://api.reviews.io/product/rating-batch?sku=${sku}&store=www.sportstech.de&lang=de&enableSyndication=true`.trim(),
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      )
+
+      if (!response.ok) {
+        throw new Error(`Server responded with status ${response.status}`)
+      }
+      const data = await response.json()
+      // Проверяем, существует ли ключ '0' и возвращаем его значение напрямую
+      if (data.hasOwnProperty('0')) {
+        return {
+          titleProduct: titleProduct,
+          numRatings: data['0'].num_ratings,
+          averageRating: data['0'].average_rating
+        }
+      }
+      // Если ключ '0' отсутствует, возвращаем объект ratings как раньше
+      const ratings = Object.keys(data).reduce((acc, key) => {
+        acc[key] = {
+          titleProduct: titleProduct,
+          numRatings: data[key].num_ratings,
+          averageRating: data[key].average_rating
+        }
+        return acc
+      }, {})
+      return ratings
+    } catch (error) {
+      throw error
+    }
+  }
+
+  async getCoupon(code: string, isActive: boolean = true) {
     await fetch(`https://www.sportstech.de/checkout/promotion/add`, {
       method: 'POST',
       headers: {
@@ -951,21 +1023,20 @@ class exitIntentPopup {
       })
     })
       .then(response => {
-        console.log(response, `response`)
         return response
       })
       .then(data => {
         if (data.status === 200) {
           console.log(data.status, `getCoupon`)
-          window.location.href = '/checkout/confirm'
+          if (isActive) {
+            window.location.href = '/checkout/confirm'
+          }
         }
       })
       .catch(error => {
         console.error('Error:', error)
       })
   }
-
-  //
 }
 
 new exitIntentPopup(device)

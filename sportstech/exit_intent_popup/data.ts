@@ -83,6 +83,16 @@ export const svg = {
       />
     </svg>
   `,
+  starEmptyIcon: /* HTML */ `
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M9.76826 9.17841L10.695 12.6452L8 10.5813L5.30497 12.6452L6.23174 9.17841L3.87289 7.39375H6.72706L8 3.84769L9.27294 7.39375H12.1271L9.76826 9.17841ZM16 6.09375H10.1875L8 0L5.8125 6.09375H0L4.75 9.6875L3.0625 16L8 12.2188L12.9375 16L11.25 9.6875L16 6.09375Z"
+        fill="black"
+      />
+    </svg>
+  `,
   bgrYellowIcon: /* HTML */ `
     <svg
       class="bgr_yellow_icon"

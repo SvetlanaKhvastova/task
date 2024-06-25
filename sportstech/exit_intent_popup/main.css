@@ -903,7 +903,6 @@
   justify-content: center;
   align-items: center;
   gap: 1px;
-  display: none;
 }
 .exit_intent_popup .check_out_now .info_wrapper .body_popup .products_wrapper .products_list .products_item .item_info .stars_wrapper span {
   color: #000;
@@ -919,7 +918,7 @@
   font-size: 16px;
   font-weight: 700;
   line-height: 24px;
-  margin: 0;
+  margin: 0 0 0 auto;
 }
 @media (max-width: 768px) {
   .exit_intent_popup .check_out_now .info_wrapper .body_popup .products_wrapper .products_list .products_item .item_info .price_txt {
@@ -1139,6 +1138,13 @@
   .exit_intent_popup .check_out_now.third_var .info_wrapper .main_title {
     font-size: 24px;
   }
+}
+.exit_intent_popup .check_out_now.first_var > .img_wrapper {
+  background: #fff;
+}
+.exit_intent_popup .check_out_now.first_var > .img_wrapper img {
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .check_out_now.large_popup .exit_intent_popup .info_wrapper .header_popup {

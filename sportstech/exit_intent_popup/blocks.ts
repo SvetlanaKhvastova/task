@@ -382,7 +382,15 @@ export const popup = /* HTML */ `
   </div>
 `
 
-export const productItem = (link: string, img: string, title: string, descr: string, price: string) => {
+export const productItem = (
+  link: string,
+  img: string,
+  title: string,
+  descr: string,
+  price: string,
+  starsTxt: string,
+  stars: string
+) => {
   return /* HTML */ `
     <li class="products_item">
       <div class="img_wrapper">
@@ -394,10 +402,12 @@ export const productItem = (link: string, img: string, title: string, descr: str
         <h3><a href="${link}">${title}</a></h3>
         ${descr ? `<span class="txt_descr">${descr}</span>` : ''}
         <div class="price_wrapper">
-          <div class="stars_wrapper">
-            ${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starPartIcon}
-            <span>(572)</span>
-          </div>
+          ${starsTxt
+            ? `<div class="stars_wrapper">
+         ${stars}
+            <span>(${starsTxt})</span>
+          </div>`
+            : ''}
           <span class="price_txt">${price}</span>
         </div>
       </div>
