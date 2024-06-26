@@ -726,7 +726,7 @@ class exitIntentPopup {
             'Button',
             'Entdecken Sie unsere besten Produkte Step 2'
           )
-          window.location.href = 'https://www.sportstech.de/equipment'
+          window.location.href = 'https://www.sportstech.de/rudergeraet'
         }
       }
 

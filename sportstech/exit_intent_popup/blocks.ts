@@ -50,10 +50,10 @@ export const exploreOurBestSecond = /* HTML */ `
             </div>
           </li>
           <li class="category_item equipment_item">
-            <img src="${git}category_img_3.png" alt="photo sportstech" />
-            <h3>EQUIPMENT</h3>
+            <img src="${git}category_img_3_1.png" alt="photo sportstech" />
+            <h3>Rudergeräte</h3>
             <div class="info_wrapper">
-              <h3>EQUIPMENT</h3>
+              <h3>Rudergeräte</h3>
               <div class="shop_now_btn main_btn">JETZT KAUFEN</div>
             </div>
           </li>
@@ -69,7 +69,7 @@ export const firstOrderDiscount = /* HTML */ `
     <div class="first_order_discount first_var">
       <div class="info_wrapper">
         <div class="header_popup">
-          <h2 class="main_title"><span class="accent_color_red">Hol dir 5 %</span> Rabatt & kostenlosen Versand!</h2>
+          <h2 class="main_title"><span class="accent_color_red">Hol dir 5 % Rabatt</span> & gratis Versand!</h2>
           <p class="main_description">
             Melde dich jetzt für unseren Newsletter an und erhalte einen exklusiven Rabatt auf deine erste Bestellung.
           </p>
@@ -346,7 +346,7 @@ export const checkOutNowThird = /* HTML */ `
           <div class="stock_wrapper">
             ${window.innerWidth >= 768 ? `${svg.bgrYellowIcon}` : `${svg.bgrYellowMobIcon}`}
             <p>
-              Sehr beliebt, bald ausverkauft.
+              Sehr beliebt, bald ausverkauft. <br />
               <span class="stock_txt"
                 >Nur noch <span class="stock_value">${Math.floor(Math.random() * 10) + 1}</span> auf Lager.</span
               >
