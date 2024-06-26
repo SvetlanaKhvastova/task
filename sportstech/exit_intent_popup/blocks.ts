@@ -6,16 +6,16 @@ export const exploreOurBestFirst = /* HTML */ `
   <div class="exit_intent_popup">
     <div class="explore_our_best first_var">
       <div class="header_popup">
-        <h2 class="main_title">Entdecken Sie unsere besten Produkte</h2>
-        <p class="main_description">Werfen Sie einen genaueren Blick auf unsere Top-Auswahl nur für Sie</p>
+        <h2 class="main_title">Entdecke unsere Bestseller!</h2>
+        <p class="main_description">Die besten Deals nur für dich zusammengestellt.</p>
       </div>
       <div class="body_popup">
         <div class="img_wrapper">
           <img src="${git}explore_our_best_img.png" alt="photo sportstech" />
         </div>
         <div class="btn_wrapper">
-          <h3>Verkauf (bis zu <span class="accent_color_red">30%</span>)</h3>
-          <div class="shop_now_btn main_btn">Jetzt einkaufen</div>
+          <h3>Sale (bis zu <span class="accent_color_red">30%</span>)</h3>
+          <div class="shop_now_btn main_btn">JETZT SHOPPEN</div>
         </div>
       </div>
     </div>
@@ -28,8 +28,8 @@ export const exploreOurBestSecond = /* HTML */ `
   <div class="exit_intent_popup">
     <div class="explore_our_best second_var">
       <div class="header_popup">
-        <h2 class="main_title">Entdecken Sie unsere besten Produkte</h2>
-        <p class="main_description">Werfen Sie einen genaueren Blick auf unsere Top-Auswahl nur für Sie</p>
+        <h2 class="main_title">Entdecke unsere besten Produkte!</h2>
+        <p class="main_description">Schau dir unsere Top-Auswahl für dich an</p>
       </div>
       <div class="body_popup">
         <ul class="category_list">
@@ -38,7 +38,7 @@ export const exploreOurBestSecond = /* HTML */ `
             <h3>Bestseller</h3>
             <div class="info_wrapper">
               <h3>Bestseller</h3>
-              <div class="shop_now_btn main_btn">Jetzt einkaufen</div>
+              <div class="shop_now_btn main_btn">JETZT KAUFEN</div>
             </div>
           </li>
           <li class="category_item bikes_item">
@@ -46,15 +46,15 @@ export const exploreOurBestSecond = /* HTML */ `
             <h3>Speedbikes und Ergometer</h3>
             <div class="info_wrapper">
               <h3>Speedbikes und Ergometer</h3>
-              <div class="shop_now_btn main_btn">Jetzt einkaufen</div>
+              <div class="shop_now_btn main_btn">JETZT KAUFEN</div>
             </div>
           </li>
           <li class="category_item equipment_item">
             <img src="${git}category_img_3.png" alt="photo sportstech" />
-            <h3>Ausrüstung</h3>
+            <h3>EQUIPMENT</h3>
             <div class="info_wrapper">
-              <h3>Ausrüstung</h3>
-              <div class="shop_now_btn main_btn">Jetzt einkaufen</div>
+              <h3>EQUIPMENT</h3>
+              <div class="shop_now_btn main_btn">JETZT KAUFEN</div>
             </div>
           </li>
         </ul>
@@ -69,21 +69,19 @@ export const firstOrderDiscount = /* HTML */ `
     <div class="first_order_discount first_var">
       <div class="info_wrapper">
         <div class="header_popup">
-          <h2 class="main_title">
-            <span class="accent_color_red">Erhalten Sie 5%</span> Rabatt & kostenlose Lieferung!
-          </h2>
+          <h2 class="main_title"><span class="accent_color_red">Hol dir 5 %</span> Rabatt & kostenlosen Versand!</h2>
           <p class="main_description">
-            Abonnieren Sie unseren Newsletter und sparen Sie bei Ihrer gesamten ersten Bestellung, ohne Einschränkungen.
+            Melde dich jetzt für unseren Newsletter an und erhalte einen exklusiven Rabatt auf deine erste Bestellung.
           </p>
         </div>
         <div class="body_popup">
           <div class="email_wrapper">
             <label for="emailNew">
-              <input type="email" name="emailNew" id="emailNew" placeholder="Email" />
+              <input type="email" name="emailNew" id="emailNew" placeholder="E-Mail-Adresse eingeben" />
             </label>
           </div>
           <div class="btn_wrapper">
-            <div class="get_discount_btn main_btn">5% Rabatt erhalten</div>
+            <div class="get_discount_btn main_btn">5% RABATT SICHERN</div>
             <div class="no_thanks_btn main_btn" data-popup="close">Nein, danke</div>
           </div>
         </div>
@@ -96,29 +94,29 @@ export const firstOrderDiscount = /* HTML */ `
     <div class="first_order_discount second_var is_hidden">
       <div class="info_wrapper">
         <div class="header_popup">
-          <h2 class="main_title">Sie stehen auf der Liste</h2>
+          <h2 class="main_title">Du bist angemeldet</h2>
           <ul>
             <li>
               <p>
-                Ihr <span class="accent_color_red">5% Rabatt</span> auf die erste Bestellung ist bereit (kein
-                Mindestbestellwert, keine Ausschlüsse).
+                Dein <span class="accent_color_red">5%-Rabatt</span> auf deine erste Bestellung wartet auf dich (ohne
+                Mindestbestellwert, auf das gesamte Sortiment anwendbar).
               </p>
             </li>
             <li>
-              <p>Zusätzlich <span class="accent_color_red">KOSTENLOSE</span> Lieferung vom Hersteller.</p>
+              <p>Plus <span class="accent_color_red">KOSTENLOSE</span> Lieferung</p>
             </li>
           </ul>
         </div>
         <div class="body_popup">
           <div class="discount_code_wrapper">
-            <p class="discount_code_title">Geben Sie den Code im Warenkorb ein</p>
+            <p class="discount_code_title">Gib den Code im Warenkorb ein.</p>
             <div class="discount_code_container">
               <span class="discount_code_txt">SPORTSTECH5</span>
               <span data-discount="SPORTSTECH5">${svg.copyIcon}</span>
             </div>
           </div>
           <div class="btn_wrapper">
-            <div class="continue_shopping_btn main_btn" data-popup="close">Weiter einkaufen</div>
+            <div class="continue_shopping_btn main_btn" data-popup="close">WEITER SHOPPEN</div>
           </div>
         </div>
       </div>
@@ -254,7 +252,7 @@ export const checkOutNow = /* HTML */ `
       <div class="info_wrapper">
         <div class="header_popup">
           <h2 class="main_title">
-            Jetzt zur Kasse gehen und <span class="accent_color_red">5% Rabatt</span> auf Ihre erste Bestellung erhalten
+            Kaufe jetzt und spare <span class="accent_color_red">5%</span> bei deiner ersten Bestellung.
           </h2>
           <div id="counter">
             <div class="time_block">
@@ -282,14 +280,14 @@ export const checkOutNow = /* HTML */ `
             </p>
           </div>
           <div class="discount_code_wrapper">
-            <p class="discount_code_title">Der Code wird beim Checkout angewendet</p>
+            <p class="discount_code_title">Gib den Code beim Checkout ein</p>
             <div class="discount_code_container">
               <span class="discount_code_txt">SPORTSTECH5</span>
               <span data-discount="SPORTSTECH5">${svg.copyIcon}</span>
             </div>
           </div>
           <div class="btn_wrapper">
-            <div class="check_out_now_btn main_btn">Jetzt zur Kasse</div>
+            <div class="check_out_now_btn main_btn">ZUR KASSE</div>
           </div>
         </div>
       </div>
@@ -308,8 +306,8 @@ export const checkOutNowSecond = /* HTML */ `
       <div class="info_wrapper">
         <div class="header_popup">
           <h2 class="main_title">
-            Jetzt zur Kasse gehen und<br /><span class="accent_color_red">5% Rabatt</span> sowie kostenlose Lieferung
-            erhalten
+            Bestelle jetzt und sichere dir<br /><span class="accent_color_red">5% Rabatt</span> plus kostenlose
+            Lieferung
           </h2>
           <p class="main_description">*5% Rabatt gilt nur für diese Bestellung</p>
         </div>
@@ -318,7 +316,7 @@ export const checkOutNowSecond = /* HTML */ `
             <ul class="products_list"></ul>
           </div>
           <div class="discount_code_wrapper">
-            <p class="discount_code_title">Der Code wird beim Checkout angewendet</p>
+            <p class="discount_code_title">Gib den Code beim Checkout ein</p>
             <div class="discount_code_container">
               <span class="discount_code_txt">SPORTSTECH5</span>
               <span data-discount="SPORTSTECH5">${svg.copyIcon}</span>
@@ -326,7 +324,7 @@ export const checkOutNowSecond = /* HTML */ `
           </div>
           <div class="btn_wrapper">
             <p>*Der endgültige Preis wird beim Checkout berechnet</p>
-            <div class="complete_my_order_now_btn main_btn">Meine Bestellung jetzt abschließen</div>
+            <div class="complete_my_order_now_btn main_btn">BESTELLUNG ABSCHLIEßEN</div>
           </div>
         </div>
       </div>
@@ -341,16 +339,16 @@ export const checkOutNowThird = /* HTML */ `
     <div class="check_out_now third_var">
       <div class="info_wrapper">
         <div class="header_popup">
-          <h2 class="main_title">Es gehört fast Ihnen!</h2>
+          <h2 class="main_title">Fast deins!</h2>
           <p class="main_description">Nur noch ein Schritt:</p>
         </div>
         <div class="body_popup">
           <div class="stock_wrapper">
             ${window.innerWidth >= 768 ? `${svg.bgrYellowIcon}` : `${svg.bgrYellowMobIcon}`}
             <p>
-              Beliebte Wahl, wir könnten bald ausverkauft sein.
+              Sehr beliebt, bald ausverkauft.
               <span class="stock_txt"
-                >Nur noch <span class="stock_value">${Math.floor(Math.random() * 10) + 1}</span> Stück übrig.</span
+                >Nur noch <span class="stock_value">${Math.floor(Math.random() * 10) + 1}</span> auf Lager.</span
               >
             </p>
           </div>
@@ -360,12 +358,12 @@ export const checkOutNowThird = /* HTML */ `
           <div class="popular_products">
             ${svg.groupIcon}
             <p>
-              <b><span>${Math.floor(Math.random() * 12) + 4}</span> Personen</b> sehen sich dieses Produkt gerade an.
-              Wir können die Verfügbarkeit nicht garantieren, wenn Sie den Kauf jetzt nicht abschließen.
+              <b><span>${Math.floor(Math.random() * 12) + 4}</span> Personen</b> schauen sich dieses Produkt gerade an.
+              Wir können die Verfügbarkeit nicht garantieren, wenn du den Kauf jetzt nicht abschließt.
             </p>
           </div>
           <div class="btn_wrapper">
-            <div class="complete_my_order_now_btn main_btn">Meine Bestellung jetzt abschließen</div>
+            <div class="complete_my_order_now_btn main_btn">BESTELLUNG ABSCHLIEßEN</div>
           </div>
         </div>
       </div>

@@ -1,9 +1,27 @@
+.is_desk {
+  display: block;
+}
+@media (max-width: 768px) {
+  .is_desk {
+    display: none;
+  }
+}
+
+.is_mob {
+  display: none;
+}
+@media (max-width: 768px) {
+  .is_mob {
+    display: block;
+  }
+}
+
 .hero_section {
   display: flex;
   justify-content: space-between;
   align-items: center;
   max-width: 80rem;
-  margin: 0 auto 40px;
+  margin: 0 auto 64px;
   padding-left: 2rem;
   padding-right: 2rem;
 }
@@ -11,19 +29,19 @@
   .hero_section {
     flex-direction: column-reverse;
     margin-bottom: 32px;
-    padding-left: 19px;
-    padding-right: 20px;
+    padding: 0;
   }
 }
 .hero_section .accent_color_blue {
   color: #0070f0;
 }
 .hero_section .hero_section_content {
-  flex: 0 0 565px;
+  flex: 0 1 565px;
 }
 @media (max-width: 768px) {
   .hero_section .hero_section_content {
     flex: unset;
+    margin-top: 24px;
   }
 }
 .hero_section .hero_section_content .hero_section_title {
@@ -33,6 +51,11 @@
   font-weight: 700;
   line-height: 56px;
   margin: 0;
+}
+@media (max-width: 1071px) {
+  .hero_section .hero_section_content .hero_section_title {
+    font-size: 44px;
+  }
 }
 @media (max-width: 768px) {
   .hero_section .hero_section_content .hero_section_title {
@@ -54,6 +77,11 @@
   line-height: 26px;
   margin: 16px 0 24px;
 }
+@media (max-width: 1071px) {
+  .hero_section .hero_section_content .hero_section_subtitle {
+    font-size: 16px;
+  }
+}
 @media (max-width: 768px) {
   .hero_section .hero_section_content .hero_section_subtitle {
     max-width: 303px;
@@ -63,7 +91,8 @@
     margin: 8px auto 16px;
   }
 }
-.hero_section .hero_section_content .hero_btn {
+.hero_section .hero_section_content .hero_btn,
+.hero_section .hero_section_content button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -79,29 +108,42 @@
   line-height: 24px;
   margin: 24px 0 0;
   transition: all 0.8s ease 0s;
-}
-.hero_section .hero_section_content .hero_btn:hover {
-  opacity: 0.8;
+  cursor: pointer;
 }
 @media (max-width: 768px) {
-  .hero_section .hero_section_content .hero_btn {
+  .hero_section .hero_section_content .hero_btn,
+  .hero_section .hero_section_content button {
     margin-top: 16px;
     width: 100%;
     max-width: 100%;
   }
 }
 .hero_section .hero_section_image {
-  max-width: 500px;
   width: 100%;
+}
+.hero_section.ver_a .hero_section_image {
+  max-width: 508px;
+  border-radius: 11px;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.03), 0px 2px 30px 0px rgba(0, 0, 0, 0.08), 0px 0px 1px 0px rgba(0, 0, 0, 0.3);
+}
+.hero_section.ver_b .hero_section_image {
+  max-width: 472px;
+}
+.hero_section.ver_c .hero_section_image {
+  max-width: 500px;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.03), 0px 2px 30px 0px rgba(0, 0, 0, 0.08), 0px 0px 1px 0px rgba(0, 0, 0, 0.3);
 }
 
 #top {
-  padding: 40px 0 64px;
+  padding: 64px 0 64px;
   background: linear-gradient(206deg, #eff8ff 0.76%, #e0ebfb 48.1%, #f6f9fc 96.4%);
 }
 @media (max-width: 768px) {
   #top {
-    padding: 16px 0 32px;
+    padding: 16px 16px 32px;
   }
 }
 #top > div.mx-auto.flex {
