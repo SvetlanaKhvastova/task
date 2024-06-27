@@ -88,8 +88,8 @@
     right: 12px;
     background: #fff;
     @media (max-width: 768px) {
-      top: 0;
-      right: 0;
+      top: 8px;
+      right: 8px;
     }
   }
 }
@@ -113,6 +113,13 @@
       top: 8px;
       right: 9px;
     }
+  }
+}
+
+.check_out_now_second {
+  .new-popup__close {
+    top: 16px;
+    right: 12px;
   }
 }
 

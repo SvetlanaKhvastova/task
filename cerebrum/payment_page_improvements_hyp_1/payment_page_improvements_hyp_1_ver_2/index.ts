@@ -16,7 +16,7 @@ class exitIntentPopup {
 
   init() {
     startLog({ name: 'Payment-Page-Improvements', dev: 'SKh' })
-    // clarityInterval('')
+    clarityInterval('exp_screen_motivation')
     document.head.insertAdjacentHTML('beforeend', `<style>${mainStyle}</style>`)
 
     this.renderHerosection()
@@ -64,16 +64,20 @@ class exitIntentPopup {
         if (!btn) return
 
         const targetClass = e.target.closest('.ver_a')
-          ? 'ver_a'
+          ? 'ver_1'
           : e.target.closest('.ver_b')
-          ? 'ver_b'
+          ? 'ver_2'
           : e.target.closest('.ver_c')
-          ? 'ver_c'
+          ? 'ver_3'
           : null
 
         if (targetClass) {
-          console.log(targetClass)
-          // $el('#payment').scrollIntoView({ behavior: 'smooth' })
+          pushData(
+            `exp_screen_motivation_button_01_${targetClass}`,
+            'Get My IQ Certificate Now!',
+            'Button',
+            'First screen Header'
+          )
         }
       })
     })
@@ -95,7 +99,7 @@ class exitIntentPopup {
 
   handleVisibility() {
     waitForElement('.hero_section').then(i => {
-      pushData('exp_free_delivery_icon_01', 'Hero', 'Visibility', 'Hero visibility')
+      pushData('exp_screen_motivation_section_01_ver_2', 'Section', 'Visibility', 'First screen Header')
     })
   }
 }
