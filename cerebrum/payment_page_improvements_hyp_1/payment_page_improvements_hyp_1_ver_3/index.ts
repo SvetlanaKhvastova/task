@@ -17,6 +17,10 @@ class exitIntentPopup {
   init() {
     startLog({ name: 'Payment-Page-Improvements', dev: 'SKh' })
     clarityInterval('exp_screen_motivation')
+    document.head.insertAdjacentHTML(
+      'afterbegin',
+      `<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">`
+    )
     document.head.insertAdjacentHTML('beforeend', `<style>${mainStyle}</style>`)
 
     this.renderHerosection()
