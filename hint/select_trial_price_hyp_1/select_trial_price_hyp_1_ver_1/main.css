@@ -1,0 +1,218 @@
+header > header {
+  padding: 12px 16px !important;
+  background: #eff1f5 !important;
+}
+header > header > button.group {
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+}
+header > header > button.group > img {
+  width: 100%;
+  height: 100%;
+}
+header > header > img {
+  width: 51px;
+  height: 24px;
+}
+
+main > div {
+  margin: 0 !important;
+}
+main > div > div {
+  gap: unset !important;
+}
+main p.font-semibold,
+main p.font-semibold + p,
+main p.font-semibold + p + img,
+main .styles_subscriptionText__1MH_S {
+  display: none;
+}
+main button.z-0 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+}
+main .styles_plans__kjWfh {
+  justify-content: space-between;
+  margin: 0;
+  gap: 12px;
+}
+main .styles_plans__kjWfh .styles_plan__w4qlH {
+  max-width: calc((100% - 36px) / 4);
+  width: 100%;
+  border-radius: 8px;
+  border: 2px solid #d1d5db;
+  margin: 0;
+}
+main .styles_plans__kjWfh .styles_plan__w4qlH h3 {
+  color: #121620;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+}
+main .styles_plans__kjWfh .styles_plan__w4qlH.styles_activePlan__3pihe {
+  background: rgba(59, 130, 246, 0.96);
+  border: 2px solid rgba(59, 130, 246, 0.96);
+}
+main .styles_plans__kjWfh .styles_plan__w4qlH.styles_activePlan__3pihe h3 {
+  color: #fff;
+}
+main .styles_plans__kjWfh > :last-child::before {
+  position: absolute;
+  content: "Most popular";
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #066fde;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  width: -moz-max-content;
+  width: max-content;
+}
+main .styles_plans__kjWfh > :last-child::after {
+  background: url(https://conversionratestore.github.io/projects/hint/img/line_element.svg) no-repeat !important;
+  width: 78px;
+  height: 5px;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+}
+
+.accent_color {
+  color: #066fde;
+  font-weight: 700;
+}
+
+.email_block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 4px 10px;
+  background: #dee5f9;
+  width: 100%;
+}
+.email_block .img_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 3px;
+  border-radius: 100px;
+  background: #9eaad5;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 18px;
+}
+.email_block .email_txt {
+  color: #4a567a;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  margin: 0;
+}
+
+.title_block {
+  margin: 32px 0 40px;
+}
+.title_block h2 {
+  max-width: 300px;
+  color: #121620;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  margin: 0 auto 16px;
+}
+.title_block p {
+  color: #4a567a;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0;
+}
+
+.people_joined_block,
+.guarantee_block,
+.proceed_to_find_out_block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.people_joined_block .svg_block,
+.guarantee_block .svg_block,
+.proceed_to_find_out_block .svg_block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+.people_joined_block .txt_block,
+.guarantee_block .txt_block,
+.proceed_to_find_out_block .txt_block {
+  color: #4a567a;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+.people_joined_block .txt_block b,
+.guarantee_block .txt_block b,
+.proceed_to_find_out_block .txt_block b {
+  font-weight: 700;
+}
+
+.people_joined_block {
+  margin-bottom: 16px;
+}
+
+.guarantee_block {
+  margin-top: 16px;
+  gap: 8px;
+}
+
+.proceed_to_find_out_block {
+  margin-bottom: 16px;
+}
+.proceed_to_find_out_block .txt_block {
+  font-weight: 400;
+}
+
+.note_block {
+  border-radius: 8px;
+  border: 1px solid #dee5f9;
+  background: #fff;
+  padding: 16px;
+  margin: 24px 0;
+}
+.note_block p {
+  color: #4a567a;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  margin: 0;
+}/*# sourceMappingURL=main.css.map */
