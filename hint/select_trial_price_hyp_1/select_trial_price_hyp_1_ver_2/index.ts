@@ -15,7 +15,7 @@ class exitIntentPopup {
   }
 
   init() {
-    startLog({ name: 'select Trial Price Page Improvements V1', dev: 'SKh' })
+    startLog({ name: 'select Trial Price Page Improvements V2', dev: 'SKh' })
     // clarityInterval('')
     this.observeMain()
 
@@ -57,7 +57,7 @@ class exitIntentPopup {
     this.renderTitleBlock()
     this.renderEmailBlock()
     this.renderNoteBlock()
-    this.renderPeopleJoinedBlock()
+    this.renderProceedToFindOutBlock()
     this.renderGuaranteeBlock()
     this.replaceTxtBtnGetStarted()
   }
