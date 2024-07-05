@@ -1,0 +1,114 @@
+.accent_color_green {
+  color: #00865a;
+  font-weight: 700;
+  letter-spacing: normal;
+}
+
+.free_shipping_block {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 20px;
+  background: #c7efdb;
+  padding: 8px 12px;
+  margin: 0 0 16px;
+}
+.free_shipping_block svg {
+  width: 22px;
+  height: 22px;
+  flex: 1 0 22px;
+}
+.free_shipping_block p {
+  color: #15206b;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: 0.64px;
+  margin: 0;
+}
+
+.flavor_guarantee_block {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-radius: 10px;
+  background: #ffe7e4;
+  padding: 8px;
+  margin: 0 0 16px;
+}
+.flavor_guarantee_block .img_wrapper {
+  max-width: 72px;
+  max-height: 73px;
+  width: 100%;
+  height: 100%;
+}
+.flavor_guarantee_block .img_wrapper img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.flavor_guarantee_block .info_wrapper > h3 {
+  color: #fc4d38;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0.56px;
+}
+.flavor_guarantee_block .info_wrapper > p {
+  color: #15206b;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.56px;
+  margin: 0;
+}
+.flavor_guarantee_block .info_wrapper > p span:nth-child(1) {
+  display: block;
+}
+.flavor_guarantee_block .info_wrapper > p .learn_more_btn {
+  font-size: 12px;
+  text-decoration-line: underline;
+  cursor: pointer;
+}
+.flavor_guarantee_block .tippy-box {
+  max-width: 291px !important;
+  border-radius: 8px;
+  background: #15206b;
+}
+.flavor_guarantee_block .tippy-box .tippy-content {
+  padding: 14px 12px;
+}
+.flavor_guarantee_block .tippy-box .tippy-box[data-placement^=top] > .tippy-arrow {
+  color: #15206b;
+}
+.flavor_guarantee_block .tippy-box .tooltip_block {
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+}
+.flavor_guarantee_block .tippy-box .tooltip_block svg {
+  flex: 1 0 18px;
+  width: 18px;
+  height: 18px;
+}
+.flavor_guarantee_block .tippy-box .tooltip_block h3 {
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: normal;
+  margin: 0 0 4px;
+}
+.flavor_guarantee_block .tippy-box .tooltip_block p {
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: normal;
+  margin: 0;
+}/*# sourceMappingURL=main.css.map */
