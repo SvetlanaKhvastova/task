@@ -76,11 +76,7 @@ export const payNowTxtBlock = /* HTML */ `
   <div class="pay_now_txt_block">
     <p>
       By clicking "Pay now", you agree to our
-      <a
-        class="terms_sale_link"
-        href="http://https://cerebelly.com/terms-sale"
-        target="_blank"
-        rel="noopener noreferrer"
+      <a class="terms_sale_link" href="https://cerebelly.com/terms-sale" target="_blank" rel="noopener noreferrer"
         >Terms and Conditions</a
       >
       and
@@ -123,6 +119,15 @@ export const newShippingBlock = (standartShipping: string, expeditedShipping: st
           <img src="${git}shipping_img.png" alt="shipping img" />
         </div>
       </label>
+    </div>
+  `
+}
+
+export const newShippingTxtBlock = (price: string, name: string, className: string) => {
+  return /* HTML */ `
+    <div class="new_shipping_txt_block">
+      <span class="txt_name">${name}</span>
+      <span class="txt_price ${className}">${price}</span>
     </div>
   `
 }

@@ -15,9 +15,10 @@ import {
   payNowTxtBlock,
   orderSummaryBlock,
   productItem,
-  newShippingBlock
+  newShippingBlock,
+  newShippingTxtBlock
 } from './blocks'
-import { svg } from './data'
+import { svg, git } from './data'
 
 // @ts-ignore
 import mainStyle from './main.css?raw'
@@ -54,8 +55,8 @@ class cartCheckoutPages {
     if (this.checkPage() === 'cart') {
       if (!$el('.flavor_guarantee_block')) {
         this.renderFlavorGuaranteeBlock()
-        this.initTooltip()
       }
+      this.initTooltip()
       if (!$el('.actions-wrapper button')?.innerHTML.includes('Proceed to checkout')) {
         this.changedTxtBtnCheckout()
       }
@@ -82,14 +83,23 @@ class cartCheckoutPages {
       }
 
       if (!$el('.new_shipping_block')) {
-        this.replaceStandardFreeShippingBlock()
+        this.renderStandardFreeShippingBlock()
       }
       if (!$el('.pay_now_txt_block')) {
         this.renderPayNowTxtBlock()
       }
 
+      this.checkedShippingRadioInit()
+
+      if (!$el('.secure_encrypted_txt') || !$el('.payment_img')) {
+        this.renderPaymentImgAndDescription()
+      }
+
       if (this.device === 'mobile') {
         $el('.sticky_block')?.remove()
+        if (!$el('.footer_mobile')) {
+          this.renderFooterMobile()
+        }
       }
     }
   }
@@ -109,14 +119,32 @@ class cartCheckoutPages {
   observePageChange() {
     this.observer = new MutationObserver(mutations => {
       mutations.forEach(mutation => {
+        if (window.location.pathname !== this.lastPath) {
+          this.lastPath = window.location.pathname
+          console.dir(this.lastPath, `>>>>>>>>>>>>>>>>>>>>>>`)
+          if (this.lastPath === '/checkout') {
+            this.checkedShippingRadioInit()
+
+            if (!$el('.secure_encrypted_txt') || !$el('.payment_img')) {
+              this.renderPaymentImgAndDescription()
+            }
+            if (!$el('.new_shipping_block')) {
+              this.renderStandardFreeShippingBlock()
+            }
+
+            if (this.device === 'mobile') {
+              $el('.sticky_block')?.remove()
+            }
+          }
+        }
         if (mutation.target.nodeName === 'BODY') {
           // _________________________________________________________________________________________________________________
           if (this.checkPage() === 'cart') {
             // console.dir(mutation, `mutation`)
             if (!$el('.flavor_guarantee_block')) {
               this.renderFlavorGuaranteeBlock()
-              this.initTooltip()
             }
+            this.initTooltip()
             if (!$el('.actions-wrapper button')?.innerHTML.includes('Proceed to checkout')) {
               this.changedTxtBtnCheckout()
             }
@@ -135,21 +163,20 @@ class cartCheckoutPages {
           if (this.checkPage() === 'checkout') {
             if (!$el('.flavor_guarantee_block')) {
               this.renderFlavorGuaranteeBlock()
-              this.initTooltip()
             }
+            this.initTooltip()
 
             if (!$el('.order_summary_block')) {
               this.renderOrderSummaryBlock()
             }
-            if (!$el('.new_shipping_block')) {
-              this.replaceStandardFreeShippingBlock()
-            }
+
             if (!$el('.pay_now_txt_block')) {
               this.renderPayNowTxtBlock()
             }
-
             if (this.device === 'mobile') {
-              $el('.sticky_block')?.remove()
+              if (!$el('.footer_mobile')) {
+                this.renderFooterMobile()
+              }
             }
           }
         }
@@ -179,7 +206,7 @@ class cartCheckoutPages {
     const config = { childList: true, subtree: true }
     this.observer.observe(document.body, config)
   }
-
+  // cart and checkout
   renderFlavorGuaranteeBlock() {
     waitForElement('.summary-table').then(() => {
       let elemTrigger: string = ''
@@ -197,8 +224,8 @@ class cartCheckoutPages {
 
         if (this.checkPage() === 'checkout') {
           if (this.device === 'mobile') {
-            // elemTrigger = '.summary-table'
-            // place = 'beforebegin'
+            elemTrigger = '.form-column-left'
+            place = 'afterbegin'
           } else {
             elemTrigger = '.form-column-left'
             place = 'afterbegin'
@@ -347,13 +374,20 @@ class cartCheckoutPages {
       if (!$el('.pay_now_txt_block')) {
         $el('.form-column-left button').insertAdjacentHTML('afterend', payNowTxtBlock)
       }
+      if ($el('.form-column-left button').textContent !== 'Pay now') {
+        $el('.form-column-left button').textContent = 'Pay now'
+      }
     })
   }
   renderOrderSummaryBlock() {
-    waitForElement('.form-column-right').then(() => {
+    waitForElement('.form-column-right .sum-row.total .total').then(() => {
       if (!$el('.order_summary_block')) {
         console.dir('renderOrderSummaryBlock')
-        $el('.form-column-right .checokut-title-wrapper').insertAdjacentHTML('afterend', orderSummaryBlock)
+        if (this.device === 'desktop') {
+          $el('.form-column-right .checokut-title-wrapper').insertAdjacentHTML('afterend', orderSummaryBlock)
+        } else {
+          $el('.form-column-right .checokut-title-wrapper').insertAdjacentHTML('afterend', orderSummaryBlock)
+        }
 
         waitForElement('.order_summary_block .products_list').then(() => {
           if (!localStorage.getItem('v4Cart')) return
@@ -361,7 +395,7 @@ class cartCheckoutPages {
 
           let cartLocalStor = JSON.parse(localStorage.getItem('v4Cart'))
           let products = cartLocalStor.cart.boxes
-          const currency = $el('.order-total .total')?.textContent.charAt(0)
+          const currency = $$el('.sum-row.total .total')[0]?.textContent.charAt(0)
 
           if ($el('.products_list').children.length === products.length) return
 
@@ -393,7 +427,7 @@ class cartCheckoutPages {
       }
     })
   }
-  replaceStandardFreeShippingBlock() {
+  renderStandardFreeShippingBlock() {
     waitForElement('.sum-row.shipping.standard-shipping.active').then(() => {
       const standartShipping = $$el('.sum-row.standard-shipping .total')[0].textContent
       const expeditedShipping = $$el('.sum-row.standard-shipping .total')[1].textContent
@@ -403,14 +437,19 @@ class cartCheckoutPages {
           newShippingBlock(standartShipping, expeditedShipping)
         )
       }
+
       waitForElement('.new_shipping_block').then(() => {
         $$el('.new_shipping_block label').forEach(el => {
           el.addEventListener('click', e => {
             console.dir(el.previousElementSibling.getAttribute('id'))
+            $el('.new_shipping_txt_block')?.remove()
             if (el.previousElementSibling.getAttribute('id') === 'expeditedShippingVar') {
-              $el('.sum-row.shipping [name="shipping-option-1"]').click()
+              $el('.sum-row.shipping [name="shipping-option-1"]')?.click()
             } else {
-              $el('.sum-row.shipping [name="shipping-option-0"]').click()
+              $el('.sum-row.shipping [name="shipping-option-0"]')?.click()
+            }
+            if (!$el('.new_shipping_txt_block')) {
+              this.renderNewShippingTxtBlock()
             }
           })
         })
@@ -418,15 +457,101 @@ class cartCheckoutPages {
     })
   }
   handleDisabledRadioBlock() {
-    if (!$el('.new_shipping_block') && !$el('.form-column-left button')) return
+    waitForElement('.new_shipping_block').then(() => {
+      if (!$el('.form-column-left button')) return
 
-    if ($el('.form-column-left button')?.disabled) {
-      $el('.new_shipping_block').style.opacity = '0.5'
-      $el('.new_shipping_block').style.pointerEvents = 'none'
-    } else {
-      $el('.new_shipping_block').style.opacity = '1'
-      $el('.new_shipping_block').style.pointerEvents = 'auto'
-    }
+      if ($el('.form-column-left button')?.disabled) {
+        $el('.new_shipping_block').style.opacity = '0.5'
+        $el('.new_shipping_block').style.pointerEvents = 'none'
+      } else {
+        $el('.new_shipping_block').style.opacity = '1'
+        $el('.new_shipping_block').style.pointerEvents = 'auto'
+      }
+    })
+  }
+  checkedShippingRadioInit() {
+    waitForElement('.sum-row.shipping.standard-shipping.active').then(() => {
+      if (!$el('.new_shipping_txt_block')) {
+        this.renderNewShippingTxtBlock()
+      }
+
+      $$el('.sum-row.shipping.standard-shipping .total').forEach(el => {
+        if (el.textContent.includes('FREE') && !$el('.free_shipping_block')) {
+          this.renderFreeShippingBlock()
+        }
+      })
+      waitForElement('.new_shipping_block').then(() => {
+        if (
+          document.querySelector('.sum-row.shipping.standard-shipping.active input')?.getAttribute('name') ===
+          'shipping-option-1'
+        ) {
+          $el('#expeditedShippingVar').checked = true
+          console.dir('expeditedShippingVar>>>>>>>>>>>>>>>>>>>')
+        }
+
+        if (
+          document.querySelector('.sum-row.shipping.standard-shipping.active input')?.getAttribute('name') ===
+          'shipping-option-0'
+        ) {
+          $el('#standartShippingVar').checked = true
+          console.dir('standartShippingVar>>>>>>>>>>>>>>')
+        }
+      })
+    })
+  }
+  renderPaymentImgAndDescription() {
+    waitForElement('.form-column-left .title-with-cards').then(() => {
+      if (!$el('.payment_img')) {
+        $el('.form-column-left .title-with-cards').insertAdjacentHTML(
+          'beforeend',
+          `<img class="payment_img" src='${git}payment_img.png' alt="photo" />`
+        )
+      }
+      if (!$el('.secure_encrypted_txt')) {
+        $el('.form-column-left .title-with-cards').insertAdjacentHTML(
+          'afterend',
+          `<p class="secure_encrypted_txt">All transactions are secure and encrypted</p>`
+        )
+      }
+    })
+  }
+  renderNewShippingTxtBlock() {
+    waitForElement('.sum-row.shipping.standard-shipping.active').then(() => {
+      const total = $el('.sum-row.shipping.standard-shipping.active .total').textContent
+      const name = $el('.sum-row.shipping.standard-shipping.active label .name').textContent
+      const className = total.includes('FREE') ? 'accent_color_green' : ''
+
+      if (!$el('.new_shipping_txt_block')) {
+        $el('.sum-row-hr + .sum-row.shipping.standard-shipping').insertAdjacentHTML(
+          'beforebegin',
+          newShippingTxtBlock(total, name, className)
+        )
+      }
+
+      setTimeout(() => {
+        if (!$el('.new_subtotal')) {
+          $el('.sum-row.order-total .total').insertAdjacentHTML(
+            'afterbegin',
+            `<span class="new_subtotal">${$$el('.sum-row.total:not(.coupon) .total')[1].textContent}</span>`
+          )
+        }
+      }, 200)
+    })
+  }
+  renderFooterMobile() {
+    waitForElement('.form-row').then(() => {
+      if (!$el('.footer_mobile')) {
+        $el('.form-row').insertAdjacentHTML('afterbegin', `<div class="footer_mobile"></div>`)
+      }
+    })
+    waitForElement('.footer_mobile').then(() => {
+      if (!$el('.footer_mobile .tm-text')) {
+        $el('.footer_mobile').insertAdjacentElement('afterbegin', $el('.tm-text'))
+      }
+      if (!$el('.footer_mobile .css-1f2tjn7')) {
+        $el('.footer_mobile').insertAdjacentElement('afterbegin', $el('.css-1f2tjn7'))
+      }
+    })
   }
 }
 
