@@ -29,7 +29,7 @@ export const flavorGuaranteeBlock = /* HTML */ `
 export const stickyBlock = /* HTML */ `
   <div class="sticky_block">
     <div class="total_box"></div>
-    <button class="proceed_to_checkout_btn">Proceed to checkout ${svg.arrowWhiteicon}</button>
+    <button class="proceed_to_checkout_btn">Proceed to checkout ${svg.arrowWhiteIcon}</button>
   </div>
 `
 
@@ -43,6 +43,7 @@ export const productItem = (
   img: string,
   title: string,
   itemsCount: string,
+  type: string,
   cadence: string,
   price: string,
   subscribeBoxPercent: number
@@ -56,7 +57,7 @@ export const productItem = (
         <div>
           <h3>${title}</h3>
           <div class="quantity_packs_info">
-            <span class="items_count">${itemsCount}</span>
+            <span class="items_count">${itemsCount} ${type}</span>
             <span>|</span>
             <span class="cadence_txt">${cadence}</span>
           </div>
@@ -131,3 +132,13 @@ export const newShippingTxtBlock = (price: string, name: string, className: stri
     </div>
   `
 }
+
+export const orderSummaryBlockMobile = /* HTML */ `
+  <div class="order_summary_block_mobile">
+    <div class="order_summary_header">
+      <p><span>Show order summary</span> ${svg.arrowBlueIcon}</p>
+      <p class="price_total"></p>
+    </div>
+    <div class="order_summary_body"></div>
+  </div>
+`

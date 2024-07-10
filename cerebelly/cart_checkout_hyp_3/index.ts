@@ -16,7 +16,8 @@ import {
   orderSummaryBlock,
   productItem,
   newShippingBlock,
-  newShippingTxtBlock
+  newShippingTxtBlock,
+  orderSummaryBlockMobile
 } from './blocks'
 import { svg, git } from './data'
 
@@ -67,6 +68,7 @@ class cartCheckoutPages {
         if (!$el('.sticky_block')) {
           this.renderStickyBlock()
         }
+        this.handleClickStickyBtn()
         this.renderTxtStickyBlock()
         this.toggleStickyBlockVisibility()
       }
@@ -100,6 +102,10 @@ class cartCheckoutPages {
         if (!$el('.footer_mobile')) {
           this.renderFooterMobile()
         }
+        if (!$el('.order_summary_block_mobile')) {
+          this.renderOrderSummaryBlockMobile()
+        }
+        this.handleOpenAndCloseOrderSummaryBlockMobile()
       }
     }
   }
@@ -177,6 +183,9 @@ class cartCheckoutPages {
               if (!$el('.footer_mobile')) {
                 this.renderFooterMobile()
               }
+              // if (!$el('.order_summary_block_mobile')) {
+              //   this.renderOrderSummaryBlockMobile()
+              // }
             }
           }
         }
@@ -282,6 +291,7 @@ class cartCheckoutPages {
           if (!$el('.free_shipping_block')) {
             this.renderFreeShippingBlock()
           }
+          el.nextElementSibling.style.lineHeight = '22px'
         } else {
           $el('.free_shipping_block')?.remove()
         }
@@ -300,7 +310,7 @@ class cartCheckoutPages {
     waitForElement('.actions-wrapper button').then(() => {
       const btn = $el('.actions-wrapper button')
       if (btn && !btn.innerHTML.includes('Proceed to checkout')) {
-        btn.innerHTML = `Proceed to checkout ${svg.arrowWhiteicon}`
+        btn.innerHTML = `Proceed to checkout ${svg.arrowWhiteIcon}`
       }
     })
   }
@@ -324,13 +334,15 @@ class cartCheckoutPages {
     })
   }
   handleDisabledStickyBlock() {
-    if (!$el('.sticky_block .proceed_to_checkout_btn') && !$el('.actions-wrapper button')) return
+    waitForElement('.sticky_block .proceed_to_checkout_btn').then(() => {
+      if (!$el('.actions-wrapper button')) return
 
-    if ($el('.actions-wrapper button')?.disabled) {
-      $el('.sticky_block .proceed_to_checkout_btn').disabled = true
-    } else {
-      $el('.sticky_block .proceed_to_checkout_btn').disabled = false
-    }
+      if ($el('.actions-wrapper button')?.disabled) {
+        $el('.sticky_block .proceed_to_checkout_btn').disabled = true
+      } else {
+        $el('.sticky_block .proceed_to_checkout_btn').disabled = false
+      }
+    })
   }
   toggleStickyBlockVisibility() {
     waitForElement('.actions-wrapper').then(() => {
@@ -367,6 +379,14 @@ class cartCheckoutPages {
       visible()
     })
   }
+  handleClickStickyBtn() {
+    waitForElement('.sticky_block button').then(() => {
+      $el('.sticky_block button').addEventListener('click', e => {
+        e.preventDefault()
+        $el('.container-fluid .col-md-4.custom-column .actions-wrapper button').click()
+      })
+    })
+  }
 
   // checkout
   renderPayNowTxtBlock() {
@@ -386,7 +406,9 @@ class cartCheckoutPages {
         if (this.device === 'desktop') {
           $el('.form-column-right .checokut-title-wrapper').insertAdjacentHTML('afterend', orderSummaryBlock)
         } else {
-          $el('.form-column-right .checokut-title-wrapper').insertAdjacentHTML('afterend', orderSummaryBlock)
+          waitForElement('.order_summary_block_mobile').then(() => {
+            $el('.order_summary_block_mobile .order_summary_body').insertAdjacentHTML('afterbegin', orderSummaryBlock)
+          })
         }
 
         waitForElement('.order_summary_block .products_list').then(() => {
@@ -405,9 +427,13 @@ class cartCheckoutPages {
               : `https://cerebelly.com/wp-json/cerebelly/image/get?path=${products[key].image}`
             const title = products[key].title
             const itemsCount = products[key].count
-            const cadence = products[key].cadence.includes('week')
-              ? `Every ${products[key].cadence}`
-              : 'One-time purchase'
+            const type = products[key].blueprint.type === 'medium' ? 'items' : ''
+            console.dir(products[key].blueprint.type)
+
+            const cadence =
+              products[key].cadence.includes('week') && products[key].subscribe
+                ? `Every ${products[key].cadence}`
+                : 'One-time purchase'
 
             const price = `${currency}${products[key].price.toFixed(2)}`
             const subscribeBoxPercent = (
@@ -418,7 +444,7 @@ class cartCheckoutPages {
             if ($el('.products_list').children.length !== products.length) {
               $el('.products_list').insertAdjacentHTML(
                 'beforeend',
-                productItem(img, title, itemsCount, cadence, price, +subscribeBoxPercent)
+                productItem(img, title, itemsCount, type, cadence, price, +subscribeBoxPercent)
               )
             }
           }
@@ -551,6 +577,42 @@ class cartCheckoutPages {
       if (!$el('.footer_mobile .css-1f2tjn7')) {
         $el('.footer_mobile').insertAdjacentElement('afterbegin', $el('.css-1f2tjn7'))
       }
+    })
+  }
+  renderOrderSummaryBlockMobile() {
+    waitForElement('.form-row .form-column-right > .css-kq9w2n').then(() => {
+      if (!$el('.order_summary_block_mobile')) {
+        $el('.form-row .form-column-right > .css-kq9w2n').insertAdjacentHTML('afterbegin', orderSummaryBlockMobile)
+      }
+    })
+  }
+  handleOpenAndCloseOrderSummaryBlockMobile() {
+    waitForElement('.order_summary_block_mobile').then(() => {
+      $el('.order_summary_header').addEventListener('click', el => {
+        const body = el.currentTarget.nextElementSibling
+        el.currentTarget.classList.toggle('is_open')
+        if (body.classList.contains('is_open')) {
+          el.currentTarget.querySelector('p > span').textContent = 'Show order summary'
+          // Если уже открыт, начинаем закрывать
+          const fullHeight = body.scrollHeight
+          body.style.height = fullHeight + 'px' // Устанавливаем высоту, чтобы анимация сработала
+          setTimeout(() => {
+            body.style.height = '0'
+          }, 0)
+        } else {
+          el.currentTarget.querySelector('p > span').textContent = 'Hide order summary'
+          // Если закрыт, начинаем открывать
+          body.style.height = 'auto'
+          const fullHeight = body.scrollHeight + 'px'
+          body.style.height = '0'
+          setTimeout(() => {
+            body.style.height = fullHeight
+          }, 0)
+        }
+
+        body.classList.toggle('is_open')
+        console.dir(`object`)
+      })
     })
   }
 }
