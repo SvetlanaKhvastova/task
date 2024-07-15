@@ -398,3 +398,8 @@ let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/hint/select_trial_price_hyp_1_ver_2.js";
 script.async = false;
 document.head.appendChild(script);
+// cerebelly
+let script = document.createElement("script");
+script.src = "https://conversionratestore.github.io/projects/cerebelly/cart_checkout_hyp_3.js.js";
+script.async = false;
+document.head.appendChild(script);

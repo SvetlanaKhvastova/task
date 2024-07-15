@@ -136,8 +136,11 @@ export const newShippingTxtBlock = (price: string, name: string, className: stri
 export const orderSummaryBlockMobile = /* HTML */ `
   <div class="order_summary_block_mobile">
     <div class="order_summary_header">
-      <p><span>Show order summary</span> ${svg.arrowBlueIcon}</p>
-      <p class="price_total"></p>
+      <p class="order_summary_toggle"><span>Show order summary</span> ${svg.arrowBlueIcon}</p>
+      <p class="price_total">
+        <span class="price_total_strikethrough"></span>
+        <span class="price_order_total"></span>
+      </p>
     </div>
     <div class="order_summary_body"></div>
   </div>
