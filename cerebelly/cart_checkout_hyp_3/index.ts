@@ -32,6 +32,7 @@ class cartCheckoutPages {
   observer: null | MutationObserver
   lastPath: string
   isActivated: boolean
+  isClicked: boolean
 
   constructor(device) {
     this.device = device
@@ -39,6 +40,7 @@ class cartCheckoutPages {
     this.lastPath = window.location.pathname
     this.observePageChange()
     this.isActivated = false
+    this.isClicked = false
     this.init()
     this.observePageChange()
   }
@@ -57,6 +59,7 @@ class cartCheckoutPages {
       if (!$el('.actions-wrapper button')?.innerHTML.includes('Proceed to checkout')) {
         this.changedTxtBtnCheckout()
       }
+      this.handleClickProceedToCheckoutBtn()
 
       if (this.device === 'mobile') {
         if (!$el('.sticky_block')) {
@@ -159,6 +162,7 @@ class cartCheckoutPages {
             if (!$el('.actions-wrapper button')?.innerHTML.includes('Proceed to checkout')) {
               this.changedTxtBtnCheckout()
             }
+            this.handleClickProceedToCheckoutBtn()
             if (this.device === 'mobile' && !$el('.css-jobqsc')) {
               if (!$el('.sticky_block')) {
                 this.renderStickyBlock()
@@ -477,10 +481,22 @@ class cartCheckoutPages {
     waitForElement('.sticky_block button').then(() => {
       $el('.sticky_block button')?.addEventListener('click', e => {
         e.preventDefault()
+        this.isClicked = true
         pushData('exp_stickyproceed_click_03', 'Proceed to Checkout', 'Button', 'Cart - Sticky Banner')
         $el('.container-fluid .col-md-4.custom-column .actions-wrapper button').click()
+        this.isClicked = false
       })
       console.dir('handleClickStickyBtn')
+    })
+  }
+  handleClickProceedToCheckoutBtn() {
+    waitForElement('.container-fluid .col-md-4.custom-column .actions-wrapper button').then(() => {
+      $el('.container-fluid .col-md-4.custom-column .actions-wrapper button')?.addEventListener('click', e => {
+        if (!this.isClicked) {
+          pushData('exp_cartproceed_click_04', 'Proceed to Checkout', 'Button', 'Cart')
+        }
+      })
+      console.dir('handleClickProceedToCheckoutBtn')
     })
   }
 
@@ -522,6 +538,7 @@ class cartCheckoutPages {
           if (!localStorage.getItem('v4Cart')) return
           $el('.products_list').innerHTML = ''
 
+          // @ts-ignore
           let cartLocalStor = JSON.parse(localStorage.getItem('v4Cart'))
           let products = cartLocalStor.cart.boxes
           const currency = $$el('.sum-row.total .total')[0]?.textContent.charAt(0)
@@ -533,38 +550,22 @@ class cartCheckoutPages {
               ? products[key].image
               : `https://cerebelly.com/wp-json/cerebelly/image/get?path=${products[key].image}`
             const title = products[key].title
-            let itemsCount = products[key].count
-            let type = ''
-            switch (products[key].blueprint.type) {
-              case 'small':
-                type = 'items'
-                break
-              case 'medium':
-                type = 'items'
-                break
-              case 'large':
-                type = 'items'
-                break
-              case 'varietypack':
-                type = 'items'
-                break
-              case 'bonebrothpouch':
-                type = 'items'
-                break
-              case 'pouch':
-                itemsCount = ''
-                type = '6-pack'
-                break
-              case 'bar':
-                itemsCount = ''
-                type = '5-pack'
-                break
-
-              default:
-                break
-            }
-
+            const itemsCount = products[key].count
+            // const type = products[key].blueprint.type === 'medium' ? 'items' : ''
+            const type = getTypeName(products[key].blueprint, itemsCount)
             console.dir(products[key].blueprint.type)
+
+            function getTypeName({ type, name }, count) {
+              if (type === 'bar' || name.toLowerCase().includes('bar')) {
+                return count === 1 ? '5-pack' : `5-pack (${count})`
+              }
+
+              if (type === 'pouch' || name.toLowerCase().includes('pouch')) {
+                return count === 1 ? '6-pack' : `6-pack (${count})`
+              }
+
+              return count + ' items' // small, medium, large, family, varietypack, bonebrothpouch
+            }
 
             const cadence =
               products[key].cadence.includes('week') && products[key].subscribe
@@ -580,7 +581,7 @@ class cartCheckoutPages {
             if ($el('.products_list').children.length !== products.length) {
               $el('.products_list').insertAdjacentHTML(
                 'beforeend',
-                productItem(img, title, itemsCount, type, cadence, price, +subscribeBoxPercent)
+                productItem(img, title, type, cadence, price, +subscribeBoxPercent)
               )
             }
           }

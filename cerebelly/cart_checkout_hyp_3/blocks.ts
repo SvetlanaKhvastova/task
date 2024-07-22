@@ -42,7 +42,6 @@ export const orderSummaryBlock = /* HTML */ `
 export const productItem = (
   img: string,
   title: string,
-  itemsCount: string,
   type: string,
   cadence: string,
   price: string,
@@ -57,7 +56,7 @@ export const productItem = (
         <div>
           <h3>${title}</h3>
           <div class="quantity_packs_info">
-            <span class="items_count">${itemsCount} ${type}</span>
+            <span class="items_count">${type}</span>
             <span>|</span>
             <span class="cadence_txt">${cadence}</span>
           </div>
@@ -102,7 +101,8 @@ export const newShippingBlock = (standartShipping: string, expeditedShipping: st
         </div>
         <div class="radio_days">
           <span>5-7 days</span>
-          <img src="${git}shipping_img.png" alt="shipping img" />
+          ${svg.fedExIcon}
+          <!-- <img src="${git}shipping_img.png" alt="shipping img" /> -->
         </div>
       </label>
 
@@ -117,7 +117,8 @@ export const newShippingBlock = (standartShipping: string, expeditedShipping: st
         </div>
         <div class="radio_days">
           <span>1-3 days</span>
-          <img src="${git}shipping_img.png" alt="shipping img" />
+          ${svg.fedExIcon}
+          <!-- <img src="${git}shipping_img.png" alt="shipping img" /> -->
         </div>
       </label>
     </div>

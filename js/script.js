@@ -400,6 +400,12 @@ script.async = false;
 document.head.appendChild(script);
 // cerebelly
 let script = document.createElement("script");
-script.src = "https://conversionratestore.github.io/projects/cerebelly/cart_checkout_hyp_3.js.js";
+script.src = "https://conversionratestore.github.io/projects/cerebelly/cart_checkout_hyp_3.js";
 script.async = false;
 document.head.appendChild(script);
+let script = document.createElement("script");
+script.src = "https://conversionratestore.github.io/projects/cerebelly/cart_checkout_hyp_3_test.js";
+script.async = false;
+document.head.appendChild(script);
+
+if (document.querySelector('[src="https://conversionratestore.github.io/projects/cerebelly/cart_checkout_hyp_3_test.js"]')) return;

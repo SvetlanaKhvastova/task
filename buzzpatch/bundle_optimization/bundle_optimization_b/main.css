@@ -1,0 +1,237 @@
+.new-bundle-pack label > img,
+.new-bundle-pack .pack-label {
+  display: none !important;
+}
+.new-bundle-pack .new_bundle_wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  gap: 12px;
+}
+.new-bundle-pack .new_bundle_wrapper .img_wrapper {
+  max-width: 99px;
+}
+.new-bundle-pack .new_bundle_wrapper .img_wrapper img {
+  max-width: 100% !important;
+  max-height: 100%;
+  width: 100%;
+  height: 100% !important;
+  -o-object-fit: contain;
+     object-fit: contain;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.new-bundle-pack .new_bundle_wrapper .new_bundle_title {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 22px;
+  color: #212529;
+  text-transform: initial;
+  letter-spacing: initial;
+  margin: 0;
+}
+.new-bundle-pack .new_bundle_wrapper .new_bundle_description {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px !important;
+  font-weight: 400;
+  line-height: 18px !important;
+  color: #6f6f6f;
+  text-transform: initial;
+  letter-spacing: initial;
+  margin: 0 0 4px;
+}
+.new-bundle-pack .new_bundle_wrapper .new_bundle_price {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px !important;
+  font-weight: 400;
+  line-height: 18px !important;
+  margin: 0;
+  text-transform: initial;
+  letter-spacing: initial;
+  color: #212529;
+}
+.new-bundle-pack .new_bundle_wrapper .new_bundle_tooltip {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 11px;
+  right: 11px;
+  width: 20px;
+  height: 20px;
+  border-radius: 40px;
+  background: #999;
+}
+.new-bundle-pack input[type=radio]:checked + label .new_bundle_wrapper {
+  background: #ff3c7f;
+}
+.new-bundle-pack input[type=radio]:checked + label .new_bundle_wrapper .new_bundle_title {
+  color: #fff;
+}
+.new-bundle-pack input[type=radio]:checked + label .new_bundle_wrapper .new_bundle_description {
+  color: #fff;
+}
+.new-bundle-pack input[type=radio]:checked + label .new_bundle_wrapper .new_bundle_price {
+  font-weight: 500;
+  color: #fff;
+}
+.new-bundle-pack input[type=radio]:checked + label .new_bundle_wrapper .new_bundle_tooltip {
+  background: #fff;
+}
+.new-bundle-pack input[type=radio]:checked + label .new_bundle_wrapper .new_bundle_tooltip svg path {
+  fill: #ff3c7f;
+}
+
+#getNow > h2 {
+  font-family: "DINEngschrift LT";
+  color: #212529;
+  text-align: center;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 110%;
+  letter-spacing: 0.72px;
+  text-transform: uppercase;
+}
+#getNow > h2 + p {
+  color: #212529;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px !important;
+  font-weight: 500;
+  line-height: 20px !important;
+  letter-spacing: 0.6px;
+  margin: 0;
+}
+#getNow > img {
+  max-width: 220px !important;
+  max-height: 120px !important;
+  -o-object-fit: contain;
+     object-fit: contain;
+  margin: 1px auto 0 !important;
+}
+#getNow > img + p {
+  display: none !important;
+}
+#getNow > .form {
+  margin: 40px 0 20px !important;
+}
+#getNow > .form .form-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 14px;
+  margin: 0 !important;
+}
+#getNow > .form .form-group .js-packs {
+  margin: 0;
+}
+#getNow > .form .form-group input[type=radio] + label {
+  font-family: "DIN Condensed";
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 8.4px 20px;
+  border-radius: 4px;
+  border: 2px solid #ff3c7f;
+  background: #fff;
+}
+#getNow > .form .form-group input[type=radio] + label span {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+}
+#getNow > .form .form-group .js-packs input[type=radio]:checked + label {
+  background: #ff3c7f;
+}
+#getNow > .form .form-group .js-packs input[type=radio]:checked + label span {
+  font-weight: 500;
+}
+#getNow > .form .form-group .js-packs:nth-child(1) input[type=radio] + label {
+  border-top-left-radius: 0;
+}
+#getNow > .form .form-group .js-packs:nth-child(1) .bestseller {
+  color: #fff;
+  text-align: center;
+  font-family: "DIN Condensed";
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+#getNow > .form .new-bundle-pack {
+  margin-top: 16px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+#getNow > .form .new-bundle-pack > h3 {
+  color: #212529;
+  font-family: "DIN Condensed";
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin: 0;
+}
+#getNow > .form .new-bundle-pack .bundle-off {
+  color: #fff;
+  font-family: "DIN Condensed";
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 2px 2px 0px 0px;
+  background: #000;
+  margin-top: -24px;
+}
+#getNow .prices .js-total {
+  color: #181717;
+  text-align: center;
+  font-family: "Helvetica";
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30px;
+  letter-spacing: 0.6px;
+  margin: 0 0 12px;
+}
+#getNow .prices .js-regular {
+  color: #212529;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0 0 20px;
+}
+#getNow .js-btn.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+  color: #fff;
+  text-align: center;
+  font-family: "DIN Condensed";
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 0;
+  margin: 0 auto 20px;
+}
+
+body.tooltip_open {
+  background: rgba(97, 98, 103, 0.23);
+  -webkit-backdrop-filter: blur(1.5px);
+          backdrop-filter: blur(1.5px);
+}/*# sourceMappingURL=main.css.map */
