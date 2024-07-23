@@ -3,6 +3,7 @@
   .pack-label {
     display: none !important;
   }
+
   .new_bundle_wrapper {
     position: relative;
     display: flex;
@@ -33,6 +34,7 @@
       text-transform: initial;
       letter-spacing: initial;
       margin: 0;
+      text-align: left;
     }
     .new_bundle_description {
       font-family: 'Roboto', sans-serif;
@@ -43,8 +45,10 @@
       text-transform: initial;
       letter-spacing: initial;
       margin: 0 0 4px;
+      text-align: left;
     }
     .new_bundle_price {
+      display: block;
       font-family: 'Roboto', sans-serif;
       font-size: 14px !important;
       font-weight: 400;
@@ -53,21 +57,118 @@
       text-transform: initial;
       letter-spacing: initial;
       color: #212529;
+      text-align: left;
     }
-    .new_bundle_tooltip {
-      position: absolute;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      bottom: 11px;
-      right: 11px;
-      width: 20px;
-      height: 20px;
-      border-radius: 40px;
-      background: #999;
+  }
+  .new_bundle_tooltip {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 11px;
+    right: 11px;
+    width: 20px;
+    height: 20px;
+    border-radius: 40px;
+    background: #999;
+    z-index: 111;
+  }
+  [data-tippy-root] {
+    z-index: 100 !important;
+    .tippy-box {
+      background-color: #fff;
+      max-width: 330px !important;
+      left: 19px !important;
+      top: -3px !important;
+      .tippy-content {
+        padding: 16px;
+      }
+      .tippy-arrow {
+        display: block !important;
+        color: #fff;
+        left: -18px !important;
+      }
+      .tooltip_block {
+        .tooltip_wrapper {
+          display: flex;
+          gap: 14px;
+          .img_wrapper {
+            max-width: 70px;
+            max-height: 70px;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .tooltip_info {
+            > div {
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              gap: 9px;
+              span {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                svg {
+                  height: 16px;
+                }
+              }
+            }
+            h2 {
+              color: #1f4fc9;
+              font-family: 'Roboto', sans-serif;
+              font-size: 16px;
+              font-weight: 700;
+              line-height: 22px;
+              margin: 0;
+              text-transform: initial;
+              letter-spacing: initial;
+              text-align: left;
+            }
+            p {
+              color: #212529;
+              font-family: 'Roboto', sans-serif;
+              font-size: 14px !important;
+              font-weight: 400;
+              line-height: 22px !important;
+              margin: 4px 0;
+              text-transform: initial;
+              letter-spacing: initial;
+              text-align: left;
+            }
+            b {
+              color: #1f4fc9;
+              font-family: 'Barlow';
+              font-size: 14px;
+              font-weight: 600;
+              line-height: 18px;
+              text-transform: uppercase;
+              letter-spacing: initial;
+              margin: 0;
+              display: block;
+              text-align: left;
+            }
+          }
+        }
+        > p {
+          color: #212529;
+          font-family: 'Roboto', sans-serif;
+          font-size: 14px !important;
+          font-weight: 400;
+          line-height: 22px !important;
+          margin: 14px 0 0;
+          letter-spacing: initial;
+          text-transform: initial;
+          text-align: left;
+        }
+      }
     }
   }
   input[type='radio']:checked + label {
+    border-radius: 4px 0px 4px 4px;
+    border: 2px solid #ff3c7f;
+    background: #ff3c7f;
     .new_bundle_wrapper {
       background: #ff3c7f;
       .new_bundle_title {
@@ -80,12 +181,12 @@
         font-weight: 500;
         color: #fff;
       }
-      .new_bundle_tooltip {
-        background: #fff;
-        svg path {
-          fill: #ff3c7f;
-        }
-      }
+    }
+  }
+  input[type='radio']:checked + label + .new_bundle_tooltip {
+    background: #fff;
+    svg path {
+      fill: #ff3c7f;
     }
   }
 }
@@ -168,6 +269,7 @@
           line-height: 18px;
           letter-spacing: 0.5px;
           text-transform: uppercase;
+          border-radius: 2px 2px 0px 0px;
         }
       }
     }
@@ -201,7 +303,8 @@
     }
   }
   .prices {
-    .js-total {
+    .js-total,
+    .new_js_total {
       color: #181717;
       text-align: center;
       font-family: 'Helvetica';
@@ -238,7 +341,27 @@
   }
 }
 
-body.tooltip_open {
-  background: rgba(97, 98, 103, 0.23);
-  backdrop-filter: blur(1.5px);
+body {
+  &.tooltip_open {
+    position: relative;
+    &::before {
+      position: absolute;
+      content: '';
+      top: 0;
+      left: 0;
+      display: block;
+      z-index: 11;
+      width: 100%;
+      height: 100%;
+      background: rgba(97, 98, 103, 0.23);
+      backdrop-filter: blur(1.5px);
+    }
+
+    .new_bundle_tooltip {
+      background: #fff;
+      svg path {
+        fill: #ff3c7f;
+      }
+    }
+  }
 }

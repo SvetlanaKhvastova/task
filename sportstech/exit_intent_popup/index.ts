@@ -106,6 +106,7 @@ class exitIntentPopup {
     this.copyDiscount()
     this.handlerClickInput()
     this.observerKlaviyo()
+    this.autoCompleteHiddenInput()
   }
 
   intentPopupTriggers() {
@@ -883,6 +884,9 @@ class exitIntentPopup {
           if (node.querySelector(trigger)) {
             this.hanlderClickBtnFirtsPopupKlaviyo()
           }
+          if (node.closest('.offcanvas')) {
+            this.autoCompleteHiddenInput()
+          }
         }
       })
     })
@@ -920,6 +924,23 @@ class exitIntentPopup {
     }
 
     return starsHtml
+  }
+
+  autoCompleteHiddenInput() {
+    waitForElement('#addPromotionOffcanvasCartInput').then(i => {
+      $$el('#addPromotionOffcanvasCartInput').forEach(i => {
+        if (i.autocomplete !== 'off') {
+          i.autocomplete = 'off'
+        }
+      })
+    })
+    waitForElement('#addPromotionInput').then(i => {
+      $$el('#addPromotionInput').forEach(i => {
+        if (i.autocomplete !== 'off') {
+          i.autocomplete = 'off'
+        }
+      })
+    })
   }
   // ______________________________________________________________________________________
   // FETCH

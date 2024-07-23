@@ -42,7 +42,7 @@ export const exploreOurBestSecond = /* HTML */ `
             </div>
           </li>
           <li class="category_item bikes_item">
-            <img src="${git}category_img_2.png" alt="photo sportstech" />
+            <img src="${git}category_img_3_2.png" alt="photo sportstech" />
             <h3>Speedbikes und Ergometer</h3>
             <div class="info_wrapper">
               <h3>Speedbikes und Ergometer</h3>

@@ -9,7 +9,7 @@ import {
   visibilityOfTime,
   checkScrollPosition
 } from '../../../libraries'
-import { budleHtmlVerB, budleHtmlVerC } from './blocks'
+import { budleHtmlVerB, budleHtmlVerC, tooltipBlockVerB, tooltipBlockVerC } from './blocks'
 import { svg, git, bundlesInfo } from './data'
 // @ts-ignore
 import mainStyle from './main.css?raw'
@@ -26,6 +26,7 @@ class bundleOptimization {
   }
 
   init() {
+    // waitForElement('.new-bundle-pack').then(i => {
     startLog({ name: 'bundle optimization v.B', dev: 'SKh' })
     // clarityInterval('')
     document.head.insertAdjacentHTML(
@@ -34,21 +35,72 @@ class bundleOptimization {
     )
     document.head.insertAdjacentHTML('beforeend', `<style>${mainStyle}</style>`)
     this.changeBundleInfo()
+    this.clickBundleHandler()
     this.handleClickGetNow()
     this.clickProceedToCheckoutBtnHandler()
+    // })
   }
 
   changeBundleInfo() {
     waitForElement('.new-bundle-pack').then(i => {
-      if (!$el('.new_bundle_wrapper')) {
-        $el('.new-bundle-pack label').insertAdjacentHTML('afterbegin', budleHtmlVerB)
-        $el('.new-bundle-pack input').value = bundlesInfo.ver_b.id
+      const dataEachPriceVerB = $el('.np-family-kit span.np-whole-family-kit')?.getAttribute('data-each-price') ?? ''
+      const dataEachPriceVerC = $el('.np-family-kit span.outdoor-protection-kit')?.getAttribute('data-each-price') ?? ''
 
-        // $el('.new-bundle-pack label').insertAdjacentHTML('afterbegin', budleHtmlVerC)
+      if (!$el('.new_bundle_wrapper')) {
+        $el('.new-bundle-pack label').insertAdjacentHTML('afterbegin', budleHtmlVerB(dataEachPriceVerB))
+        $el('.new-bundle-pack input').value = bundlesInfo.ver_b.id
+        $el('.new-bundle-pack label').insertAdjacentHTML('afterend', tooltipBlockVerB)
+
+        // $el('.new-bundle-pack label').insertAdjacentHTML('afterbegin', budleHtmlVerC(dataEachPriceVerC))
         // $el('.new-bundle-pack input').value = bundlesInfo.ver_c.id
+        // $el('.new-bundle-pack label').insertAdjacentHTML('afterend', tooltipBlockVerC)
       }
       this.initTooltip()
     })
+  }
+  clickBundleHandler() {
+    const variantIdVerB = '7674900676652'
+    const variantIdVerC = '7313490542636'
+    $$el('#getNow input[type=radio] + label').forEach((el: HTMLElement) => {
+      el.addEventListener('click', e => {
+        if (
+          el.getAttribute('for') === 'radios-0' ||
+          el.getAttribute('for') === 'radios-1' ||
+          el.getAttribute('for') === 'radios-2' ||
+          el.getAttribute('for') === 'radios-3'
+        ) {
+          $el('.js-total').style.display = 'block'
+          $el('.new_js_total')?.remove()
+        } else {
+          $el('.js-total').style.display = 'none'
+          if (!$el('.new_js_total')) {
+            $el('.js-total').insertAdjacentHTML('afterend', this.npFamilyKitHtml(variantIdVerB))
+            // $el('.js-total').insertAdjacentHTML('afterend', this.npFamilyKitHtml(variantIdVerC))
+          }
+        }
+      })
+    })
+  }
+
+  npFamilyKitHtml(id: string) {
+    const npFamilyKit = $$el('.np-family-kit span')
+    let html = ''
+    if (npFamilyKit) {
+      npFamilyKit?.forEach(el => {
+        if (el.getAttribute('data-variant-id') === id) {
+          html = `<div class="new_js_total">
+            <span class="new_price">${el.getAttribute('data-price')}</span> (<span class="new_price_off"
+              >${el.getAttribute('data-price-off')}%</span
+            >
+            OFF)
+          </div>`
+        }
+      })
+    } else {
+      html = ''
+    }
+
+    return html
   }
 
   clickProceedToCheckoutBtnHandler() {
@@ -125,8 +177,6 @@ class bundleOptimization {
   }
 
   initTooltip() {
-    let placement = 'top-end'
-
     loadScriptsOrStyles([
       'https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.js',
       'https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js'
@@ -142,9 +192,9 @@ class bundleOptimization {
               arrow: true,
               arrowType: 'round',
               appendTo: function () {
-                return el.closest('.new_bundle_wrapper')
+                return el.closest('.new-bundle-pack')
               },
-              placement: placement,
+              placement: 'top-end',
               interactive: true,
               onShow(instance: any) {},
               onTrigger(e: any) {

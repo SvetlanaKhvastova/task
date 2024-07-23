@@ -34,6 +34,7 @@
   text-transform: initial;
   letter-spacing: initial;
   margin: 0;
+  text-align: left;
 }
 .new-bundle-pack .new_bundle_wrapper .new_bundle_description {
   font-family: "Roboto", sans-serif;
@@ -44,8 +45,10 @@
   text-transform: initial;
   letter-spacing: initial;
   margin: 0 0 4px;
+  text-align: left;
 }
 .new-bundle-pack .new_bundle_wrapper .new_bundle_price {
+  display: block;
   font-family: "Roboto", sans-serif;
   font-size: 14px !important;
   font-weight: 400;
@@ -54,8 +57,9 @@
   text-transform: initial;
   letter-spacing: initial;
   color: #212529;
+  text-align: left;
 }
-.new-bundle-pack .new_bundle_wrapper .new_bundle_tooltip {
+.new-bundle-pack .new_bundle_tooltip {
   position: absolute;
   display: flex;
   align-items: center;
@@ -66,6 +70,100 @@
   height: 20px;
   border-radius: 40px;
   background: #999;
+  z-index: 111;
+}
+.new-bundle-pack [data-tippy-root] {
+  z-index: 100 !important;
+}
+.new-bundle-pack [data-tippy-root] .tippy-box {
+  background-color: #fff;
+  max-width: 330px !important;
+  left: 19px !important;
+  top: -3px !important;
+}
+.new-bundle-pack [data-tippy-root] .tippy-box .tippy-content {
+  padding: 16px;
+}
+.new-bundle-pack [data-tippy-root] .tippy-box .tippy-arrow {
+  display: block !important;
+  color: #fff;
+  left: -18px !important;
+}
+.new-bundle-pack [data-tippy-root] .tippy-box .tooltip_block .tooltip_wrapper {
+  display: flex;
+  gap: 14px;
+}
+.new-bundle-pack [data-tippy-root] .tippy-box .tooltip_block .tooltip_wrapper .img_wrapper {
+  max-width: 70px;
+  max-height: 70px;
+}
+.new-bundle-pack [data-tippy-root] .tippy-box .tooltip_block .tooltip_wrapper .img_wrapper img {
+  width: 100%;
+  height: 100%;
+}
+.new-bundle-pack [data-tippy-root] .tippy-box .tooltip_block .tooltip_wrapper .tooltip_info > div {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 9px;
+}
+.new-bundle-pack [data-tippy-root] .tippy-box .tooltip_block .tooltip_wrapper .tooltip_info > div span {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.new-bundle-pack [data-tippy-root] .tippy-box .tooltip_block .tooltip_wrapper .tooltip_info > div span svg {
+  height: 16px;
+}
+.new-bundle-pack [data-tippy-root] .tippy-box .tooltip_block .tooltip_wrapper .tooltip_info h2 {
+  color: #1f4fc9;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 22px;
+  margin: 0;
+  text-transform: initial;
+  letter-spacing: initial;
+  text-align: left;
+}
+.new-bundle-pack [data-tippy-root] .tippy-box .tooltip_block .tooltip_wrapper .tooltip_info p {
+  color: #212529;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px !important;
+  font-weight: 400;
+  line-height: 22px !important;
+  margin: 4px 0;
+  text-transform: initial;
+  letter-spacing: initial;
+  text-align: left;
+}
+.new-bundle-pack [data-tippy-root] .tippy-box .tooltip_block .tooltip_wrapper .tooltip_info b {
+  color: #1f4fc9;
+  font-family: "Barlow";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  text-transform: uppercase;
+  letter-spacing: initial;
+  margin: 0;
+  display: block;
+  text-align: left;
+}
+.new-bundle-pack [data-tippy-root] .tippy-box .tooltip_block > p {
+  color: #212529;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px !important;
+  font-weight: 400;
+  line-height: 22px !important;
+  margin: 14px 0 0;
+  letter-spacing: initial;
+  text-transform: initial;
+  text-align: left;
+}
+.new-bundle-pack input[type=radio]:checked + label {
+  border-radius: 4px 0px 4px 4px;
+  border: 2px solid #ff3c7f;
+  background: #ff3c7f;
 }
 .new-bundle-pack input[type=radio]:checked + label .new_bundle_wrapper {
   background: #ff3c7f;
@@ -80,10 +178,10 @@
   font-weight: 500;
   color: #fff;
 }
-.new-bundle-pack input[type=radio]:checked + label .new_bundle_wrapper .new_bundle_tooltip {
+.new-bundle-pack input[type=radio]:checked + label + .new_bundle_tooltip {
   background: #fff;
 }
-.new-bundle-pack input[type=radio]:checked + label .new_bundle_wrapper .new_bundle_tooltip svg path {
+.new-bundle-pack input[type=radio]:checked + label + .new_bundle_tooltip svg path {
   fill: #ff3c7f;
 }
 
@@ -166,6 +264,7 @@
   line-height: 18px;
   letter-spacing: 0.5px;
   text-transform: uppercase;
+  border-radius: 2px 2px 0px 0px;
 }
 #getNow > .form .new-bundle-pack {
   margin-top: 16px;
@@ -195,7 +294,8 @@
   background: #000;
   margin-top: -24px;
 }
-#getNow .prices .js-total {
+#getNow .prices .js-total,
+#getNow .prices .new_js_total {
   color: #181717;
   text-align: center;
   font-family: "Helvetica";
@@ -231,7 +331,24 @@
 }
 
 body.tooltip_open {
+  position: relative;
+}
+body.tooltip_open::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  display: block;
+  z-index: 11;
+  width: 100%;
+  height: 100%;
   background: rgba(97, 98, 103, 0.23);
   -webkit-backdrop-filter: blur(1.5px);
           backdrop-filter: blur(1.5px);
+}
+body.tooltip_open .new_bundle_tooltip {
+  background: #fff;
+}
+body.tooltip_open .new_bundle_tooltip svg path {
+  fill: #ff3c7f;
 }/*# sourceMappingURL=main.css.map */
