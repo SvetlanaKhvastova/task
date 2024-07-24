@@ -27,7 +27,7 @@ class bundleOptimization {
 
   init() {
     startLog({ name: 'bundle optimization v.B', dev: 'SKh' })
-    clarityInterval('exp_introduce_b')
+    clarityInterval('exp_introduce_c')
     document.head.insertAdjacentHTML(
       'beforeend',
       `<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">`
@@ -46,13 +46,13 @@ class bundleOptimization {
       const dataEachPriceVerC = $el('.np-family-kit span.outdoor-protection-kit')?.getAttribute('data-each-price') ?? ''
 
       if (!$el('.new_bundle_wrapper')) {
-        $el('.new-bundle-pack label').insertAdjacentHTML('afterbegin', budleHtmlVerB(dataEachPriceVerB))
-        $el('.new-bundle-pack input').value = bundlesInfo.ver_b.id
-        $el('.new-bundle-pack label').insertAdjacentHTML('afterend', tooltipBlockVerB)
+        // $el('.new-bundle-pack label').insertAdjacentHTML('afterbegin', budleHtmlVerB(dataEachPriceVerB))
+        // $el('.new-bundle-pack input').value = bundlesInfo.ver_b.id
+        // $el('.new-bundle-pack label').insertAdjacentHTML('afterend', tooltipBlockVerB)
 
-        // $el('.new-bundle-pack label').insertAdjacentHTML('afterbegin', budleHtmlVerC(dataEachPriceVerC))
-        // $el('.new-bundle-pack input').value = bundlesInfo.ver_c.id
-        // $el('.new-bundle-pack label').insertAdjacentHTML('afterend', tooltipBlockVerC)
+        $el('.new-bundle-pack label').insertAdjacentHTML('afterbegin', budleHtmlVerC(dataEachPriceVerC))
+        $el('.new-bundle-pack input').value = bundlesInfo.ver_c.id
+        $el('.new-bundle-pack label').insertAdjacentHTML('afterend', tooltipBlockVerC)
       }
       this.initTooltip()
     })
@@ -71,11 +71,11 @@ class bundleOptimization {
           $el('.js-total').style.display = 'block'
           $el('.new_js_total')?.remove()
         } else {
-          pushData('exp_introduce_v3_click_01', 'Whole family protection kit', 'Click', 'Bundle & save')
+          pushData('exp_introduce_v3_click_01', 'Outdoor protection kit', 'Click', 'Bundle & save')
           $el('.js-total').style.display = 'none'
           if (!$el('.new_js_total')) {
-            $el('.js-total').insertAdjacentHTML('afterend', this.npFamilyKitHtml(variantIdVerB))
-            // $el('.js-total').insertAdjacentHTML('afterend', this.npFamilyKitHtml(variantIdVerC))
+            // $el('.js-total').insertAdjacentHTML('afterend', this.npFamilyKitHtml(variantIdVerB))
+            $el('.js-total').insertAdjacentHTML('afterend', this.npFamilyKitHtml(variantIdVerC))
           }
         }
       })
@@ -197,16 +197,11 @@ class bundleOptimization {
               placement: 'top-end',
               interactive: true,
               onShow(instance: any) {
-                pushData(
-                  'exp_introduce_v3_element_02',
-                  'Whole family protection kit tooltip',
-                  'Visibility',
-                  'Bundle & save'
-                )
+                pushData('exp_introduce_v3_element_02', 'Outdoor protection kit tooltip', 'Visibility', 'Bundle & save')
               },
               onTrigger(e: any) {
                 $el('body').classList.add('tooltip_open')
-                pushData('exp_introduce_v3_click_02', 'Whole family protection kit tooltip', 'Click', 'Bundle & save')
+                pushData('exp_introduce_v3_click_02', 'Outdoor protection kit tooltip', 'Click', 'Bundle & save')
               },
               onHide(instance: any) {
                 $el('body').classList.remove('tooltip_open')
@@ -220,12 +215,7 @@ class bundleOptimization {
 
   visibleHandler() {
     waitForElement('.new_bundle_wrapper').then(i => {
-      visibilityOfTime(
-        '.new_bundle_wrapper',
-        'exp_introduce_v3_element_01',
-        'Bundle & save',
-        'Whole family protection kit'
-      )
+      visibilityOfTime('.new_bundle_wrapper', 'exp_introduce_v3_element_01', 'Bundle & save', 'Outdoor protection kit')
     })
   }
 }

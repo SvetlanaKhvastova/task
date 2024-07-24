@@ -204,7 +204,7 @@ class cartCheckoutPages {
 
           if (node.classList.contains('css-1i5hss0')) {
             this.isActivated = true
-            console.dir(node, `node`)
+            // console.dir(node, `node`)
             // _________________________________________________________________________________________________________________
             if (this.checkPage() === 'cart') {
               if (this.device === 'mobile' && !$el('.css-jobqsc')) {
@@ -296,7 +296,7 @@ class cartCheckoutPages {
         }
 
         $el(elemTrigger)?.insertAdjacentHTML(place, flavorGuaranteeBlock)
-        console.dir('renderFlavorGuaranteeBlock')
+        // console.dir('renderFlavorGuaranteeBlock')
         this.initTooltip()
       }
     })
@@ -365,7 +365,7 @@ class cartCheckoutPages {
     } else {
       $el('body').classList.remove('cart_page')
     }
-    console.dir('renderStyles')
+    // console.dir('renderStyles')
   }
 
   // cart
@@ -390,7 +390,7 @@ class cartCheckoutPages {
         ) {
           el.textContent = `Standart shipping`
           el.classList.add('txt_shipping')
-          console.dir('changedTxtShipping')
+          // console.dir('changedTxtShipping')
         }
       })
     })
@@ -399,7 +399,7 @@ class cartCheckoutPages {
     waitForElement('.actions-wrapper button').then(() => {
       if ($el('.actions-wrapper button') && !$el('.actions-wrapper button').innerHTML.includes('Proceed to checkout')) {
         $el('.actions-wrapper button').innerHTML = `Proceed to checkout ${svg.arrowWhiteIcon}`
-        console.dir('changedTxtBtnCheckout')
+        // console.dir('changedTxtBtnCheckout')
       }
     })
   }
@@ -410,7 +410,7 @@ class cartCheckoutPages {
       }
       this.handleClickStickyBtn()
       this.handleDisabledStickyBlock()
-      console.dir(`renderStickyBlock`)
+      // console.dir(`renderStickyBlock`)
     })
   }
   renderTxtStickyBlock() {
@@ -421,7 +421,7 @@ class cartCheckoutPages {
           let orderTotalElemClone = $el('.container-fluid .sum-row.order-total').cloneNode(true)
           if (!$el('.sticky_block .total_box .sum-row.order-total')) {
             $el('.sticky_block .total_box').insertAdjacentElement('afterbegin', orderTotalElemClone)
-            console.dir('renderTxtStickyBlock')
+            // console.dir('renderTxtStickyBlock')
           }
         }
       })
@@ -435,7 +435,7 @@ class cartCheckoutPages {
         } else {
           $el('.sticky_block .proceed_to_checkout_btn').disabled = false
         }
-        console.dir('handleDisabledStickyBlock')
+        // console.dir('handleDisabledStickyBlock')
       })
     })
   }
@@ -475,7 +475,7 @@ class cartCheckoutPages {
         visible()
       })
     })
-    console.dir('toggleStickyBlockVisibility')
+    // console.dir('toggleStickyBlockVisibility')
   }
   handleClickStickyBtn() {
     waitForElement('.sticky_block button').then(() => {
@@ -486,7 +486,7 @@ class cartCheckoutPages {
         $el('.container-fluid .col-md-4.custom-column .actions-wrapper button').click()
         this.isClicked = false
       })
-      console.dir('handleClickStickyBtn')
+      // console.dir('handleClickStickyBtn')
     })
   }
   handleClickProceedToCheckoutBtn() {
@@ -496,7 +496,7 @@ class cartCheckoutPages {
           pushData('exp_cartproceed_click_04', 'Proceed to Checkout', 'Button', 'Cart')
         }
       })
-      console.dir('handleClickProceedToCheckoutBtn')
+      // console.dir('handleClickProceedToCheckoutBtn')
     })
   }
 
@@ -509,17 +509,17 @@ class cartCheckoutPages {
       if ($el('.form-column-left button').textContent !== 'Pay now') {
         $el('.form-column-left button').textContent = 'Pay now'
       }
-      console.dir('renderPayNowTxtBlock')
+      // console.dir('renderPayNowTxtBlock')
       this.handleClickNewLinksNearPayNow()
     })
   }
   handleClickNewLinksNearPayNow() {
     waitForElement('.pay_now_txt_block').then(() => {
       $el('.terms_sale_link').addEventListener('click', e => {
-        console.dir('terms_sale_link')
+        // console.dir('terms_sale_link')
       })
       $el('.privacy_link').addEventListener('click', e => {
-        console.dir('privacy_link')
+        // console.dir('privacy_link')
       })
     })
   }
@@ -553,7 +553,7 @@ class cartCheckoutPages {
             const itemsCount = products[key].count
             // const type = products[key].blueprint.type === 'medium' ? 'items' : ''
             const type = getTypeName(products[key].blueprint, itemsCount)
-            console.dir(products[key].blueprint.type)
+            // console.dir(products[key].blueprint.type)
 
             function getTypeName({ type, name }, count) {
               if (type === 'bar' || name.toLowerCase().includes('bar')) {
@@ -587,7 +587,7 @@ class cartCheckoutPages {
           }
         })
       }
-      console.dir('renderOrderSummaryBlock')
+      // console.dir('renderOrderSummaryBlock')
     })
   }
   renderStandardFreeShippingBlock() {
@@ -618,7 +618,7 @@ class cartCheckoutPages {
           })
         })
       })
-      console.dir('renderStandardFreeShippingBlock')
+      // console.dir('renderStandardFreeShippingBlock')
     })
   }
   handleDisabledRadioBlock() {
@@ -632,7 +632,7 @@ class cartCheckoutPages {
         $el('.new_shipping_block').style.opacity = '1'
         $el('.new_shipping_block').style.pointerEvents = 'auto'
       }
-      console.dir('handleDisabledRadioBlock')
+      // console.dir('handleDisabledRadioBlock')
     })
   }
   checkedShippingRadioInit() {
@@ -652,7 +652,7 @@ class cartCheckoutPages {
           'shipping-option-1'
         ) {
           $el('#expeditedShippingVar').checked = true
-          console.dir('expeditedShippingVar>>>>>>>>>>>>>>>>>>>')
+          // console.dir('expeditedShippingVar>>>>>>>>>>>>>>>>>>>')
         }
 
         if (
@@ -660,10 +660,10 @@ class cartCheckoutPages {
           'shipping-option-0'
         ) {
           $el('#standartShippingVar').checked = true
-          console.dir('standartShippingVar>>>>>>>>>>>>>>')
+          // console.dir('standartShippingVar>>>>>>>>>>>>>>')
         }
       })
-      console.dir('checkedShippingRadioInit')
+      // console.dir('checkedShippingRadioInit')
     })
   }
   renderPaymentImgAndDescription() {
@@ -680,7 +680,7 @@ class cartCheckoutPages {
           `<p class="secure_encrypted_txt">All transactions are secure and encrypted</p>`
         )
       }
-      console.dir('renderPaymentImgAndDescription')
+      // console.dir('renderPaymentImgAndDescription')
     })
   }
   renderNewShippingTxtBlock() {
@@ -742,7 +742,7 @@ class cartCheckoutPages {
         $el('.footer_mobile').insertAdjacentElement('afterbegin', $el('.css-1f2tjn7'))
       }
     })
-    console.dir('renderFooterMobile')
+    // console.dir('renderFooterMobile')
   }
   renderOrderSummaryBlockMobile() {
     waitForElement('.form-row .form-column-right > .css-kq9w2n').then(() => {
@@ -750,7 +750,7 @@ class cartCheckoutPages {
         $el('.form-row .form-column-right > .css-kq9w2n').insertAdjacentHTML('afterbegin', orderSummaryBlockMobile)
       }
       this.handleOpenAndCloseOrderSummaryBlockMobile()
-      console.dir('renderOrderSummaryBlockMobile')
+      // console.dir('renderOrderSummaryBlockMobile')
     })
   }
   handleOpenAndCloseOrderSummaryBlockMobile() {
@@ -768,7 +768,7 @@ class cartCheckoutPages {
         this.resizeOrderSummaryBlockMobile(body)
         body.classList.toggle('is_open')
       })
-      console.dir('handleOpenAndCloseOrderSummaryBlockMobile')
+      // console.dir('handleOpenAndCloseOrderSummaryBlockMobile')
     })
   }
   resizeOrderSummaryBlockMobile(body: HTMLElement) {
@@ -796,7 +796,7 @@ class cartCheckoutPages {
             $el('.summary-table')
           )
         }
-        console.dir('replaceOrderTotal')
+        // console.dir('replaceOrderTotal')
         this.renderTxtTotalToSummaryBlockMobile()
       })
     })
@@ -810,7 +810,7 @@ class cartCheckoutPages {
         $el('.order_summary_block_mobile .order_summary_header .price_total .price_total_strikethrough').textContent =
           $el('.order_summary_block_mobile .order_summary_body .summary-table .new_subtotal').textContent
 
-        console.dir('renderTxtTotalToSummaryBlockMobile')
+        // console.dir('renderTxtTotalToSummaryBlockMobile')
       })
     })
   }

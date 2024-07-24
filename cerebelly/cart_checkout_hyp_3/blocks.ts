@@ -100,7 +100,7 @@ export const newShippingBlock = (standartShipping: string, expeditedShipping: st
           </div>
         </div>
         <div class="radio_days">
-          <span>5-7 days</span>
+          <span>5-7 business days</span>
           ${svg.fedExIcon}
           <!-- <img src="${git}shipping_img.png" alt="shipping img" /> -->
         </div>
@@ -116,7 +116,7 @@ export const newShippingBlock = (standartShipping: string, expeditedShipping: st
           </div>
         </div>
         <div class="radio_days">
-          <span>1-3 days</span>
+          <span>1-3 business days</span>
           ${svg.fedExIcon}
           <!-- <img src="${git}shipping_img.png" alt="shipping img" /> -->
         </div>

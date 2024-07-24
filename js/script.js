@@ -407,5 +407,12 @@ let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/cerebelly/cart_checkout_hyp_3_test.js";
 script.async = false;
 document.head.appendChild(script);
-
-if (document.querySelector('[src="https://conversionratestore.github.io/projects/cerebelly/cart_checkout_hyp_3_test.js"]')) return;
+//buzzpatch
+let scriptCustom = document.createElement("script");
+scriptCustom.src = "https://conversionratestore.github.io/projects/buzzpatch/bundle_optimization_b.js";
+scriptCustom.async = false;
+document.head.appendChild(scriptCustom);
+let scriptCustom = document.createElement("script");
+scriptCustom.src = "https://conversionratestore.github.io/projects/buzzpatch/bundle_optimization_c.js";
+scriptCustom.async = false;
+document.head.appendChild(scriptCustom);

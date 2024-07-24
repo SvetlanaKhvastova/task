@@ -1,0 +1,71 @@
+.is-ctl-product {
+  position: relative;
+}
+.is-ctl-product .rhweb-fixed-buy-widget.fixedBuyWidgetNone {
+  display: none !important;
+}
+.is-ctl-product .sticky_block_mobile {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-top: 1px solid #d8d8d8;
+  background: #fff;
+  padding: 16px;
+  z-index: 1044;
+}
+.is-ctl-product .sticky_block_mobile .add_to_cart_btn {
+  height: 48px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  border-radius: 3px;
+  border: 1px solid #e4002b;
+  background: #e4002b;
+  cursor: pointer;
+  color: #fff;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 34px;
+}
+.is-ctl-product #pdpBreadcrumbs {
+  margin: 0 0 7px;
+  color: #333;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 1px;
+}
+.is-ctl-product #pdpBreadcrumbs a {
+  color: #333;
+}
+.is-ctl-product #pdpBreadcrumbs .active_pdp {
+  color: rgba(0, 0, 0, 0.35);
+}
+
+.offcanvas .d-grid [href="/checkout/cart"] {
+  display: none !important;
+}
+.offcanvas .btn-block.ml-1 {
+  margin-top: 1rem;
+}
+
+.header-minimal .header-minimal-back-to-shop-button {
+  color: #fff;
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  gap: 12px;
+}
+.header-minimal .header-minimal-logo {
+  margin-bottom: 2px;
+}
+.header-minimal .header-minimal-contact small {
+  line-height: 24px;
+}/*# sourceMappingURL=main.css.map */
