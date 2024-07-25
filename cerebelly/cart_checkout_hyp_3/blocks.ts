@@ -4,7 +4,7 @@ import { svg, git, tooltipObj } from './data'
 export const freeShippingBlock = /* HTML */ `
   <div class="free_shipping_block">
     ${svg.tickCircleIcon}
-    <p>Congtatulations! You get <span class="accent_color_green">Free shipping</span></p>
+    <p>Congratulations! You get <span class="accent_color_green">Free shipping</span></p>
   </div>
 `
 
@@ -101,8 +101,8 @@ export const newShippingBlock = (standartShipping: string, expeditedShipping: st
         </div>
         <div class="radio_days">
           <span>5-7 business days</span>
-          ${svg.fedExIcon}
-          <!-- <img src="${git}shipping_img.png" alt="shipping img" /> -->
+          <!-- ${svg.fedExIcon} -->
+          <img src="${git}shipping_img.png" alt="shipping img" />
         </div>
       </label>
 
@@ -117,8 +117,8 @@ export const newShippingBlock = (standartShipping: string, expeditedShipping: st
         </div>
         <div class="radio_days">
           <span>1-3 business days</span>
-          ${svg.fedExIcon}
-          <!-- <img src="${git}shipping_img.png" alt="shipping img" /> -->
+          <!-- ${svg.fedExIcon} -->
+          <img src="${git}shipping_img.png" alt="shipping img" />
         </div>
       </label>
     </div>
