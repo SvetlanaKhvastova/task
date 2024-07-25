@@ -80,6 +80,9 @@
       max-width: 330px !important;
       left: 19px !important;
       top: -3px !important;
+      @media (max-width: 361px) {
+        left: 12px !important;
+      }
       .tippy-content {
         padding: 16px;
       }
@@ -87,6 +90,9 @@
         display: block !important;
         color: #fff;
         left: -18px !important;
+        @media (max-width: 361px) {
+          left: -12px !important;
+        }
       }
       .tooltip_block {
         .tooltip_wrapper {
@@ -214,7 +220,6 @@
   }
   > img {
     max-width: 220px !important;
-    max-height: 120px !important;
     object-fit: contain;
     margin: 1px auto 0 !important;
   }

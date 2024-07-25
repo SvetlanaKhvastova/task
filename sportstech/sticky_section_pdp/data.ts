@@ -45,18 +45,46 @@ export const svg = {
   arrowBreadcrumbIcon: /* HTML */ `
     <svg
       class="arrow_breadcrumb_icon"
-      xmlns="http://www.w3.org/2000/svg"
-      width="6"
-      height="10"
-      viewBox="0 0 6 10"
+      width="5"
+      height="9"
+      viewBox="0 0 5 9"
       fill="none"
+      xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M0.958157 1.70693L0.958151 1.70693C0.920261 1.66904 0.890204 1.62405 0.869698 1.57455C0.849192 1.52504 0.838637 1.47198 0.838637 1.4184C0.838637 1.36481 0.849192 1.31175 0.869698 1.26224M0.958157 1.70693L0.869698 1.26224M0.958157 1.70693L4.3621 5.11027L0.958241 8.51352L1.02886 8.58432L0.958158 8.51361L0.958205 8.51356C0.920258 8.55142 0.890151 8.59639 0.869606 8.6459C0.849055 8.69543 0.838477 8.74852 0.838477 8.80215C0.838477 8.85577 0.849055 8.90886 0.869606 8.95839C0.890157 9.00791 0.920277 9.0529 0.958241 9.09077M0.958157 1.70693L0.958241 9.09077M0.869698 1.26224C0.890204 1.21274 0.920261 1.16775 0.958151 1.12986C0.996041 1.09197 1.04102 1.06192 1.09053 1.04141C1.14004 1.02091 1.1931 1.01035 1.24668 1.01035C1.30027 1.01035 1.35333 1.02091 1.40283 1.04141C1.45234 1.06192 1.49732 1.09197 1.53521 1.12986L5.227 4.82165L0.869698 1.26224ZM0.958241 9.09077L1.02886 9.01997L0.958241 9.09077ZM5.227 5.39889C5.26496 5.36102 5.29508 5.31604 5.31563 5.26651C5.33618 5.21699 5.34676 5.16389 5.34676 5.11027C5.34676 5.05665 5.33618 5.00356 5.31563 4.95403C5.2951 4.90454 5.26501 4.85959 5.22709 4.82174L5.227 5.39889ZM5.227 5.39889L1.5353 9.09059M5.227 5.39889L1.5353 9.09059M1.5353 9.09059C1.53529 9.0906 1.53527 9.09062 1.53525 9.09064L1.53521 9.09068L1.5353 9.09059Z"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M0.853556 0.353556L4.2477 3.7477L4.60125 4.10125C4.79652 4.29652 4.79652 4.6131 4.60125 4.80836L4.2477 5.16191L0.853596 8.55602C0.658334 8.75128 0.341751 8.75128 0.146487 8.55602C-0.0487767 8.36075 -0.0487782 8.04417 0.146483 7.84891L3.54059 4.4548L0.146451 1.06066C-0.0488128 0.865398 -0.0488143 0.548814 0.146448 0.353552C0.341709 0.158291 0.658292 0.158292 0.853556 0.353556Z"
         fill="#D9D9D9"
-        stroke="#D9D9D9"
-        stroke-width="0.2"
       />
     </svg>
   `
 }
+
+export const urls = [
+  'http://www.sportstech.de/laufband/swalk-grau',
+  'http://www.sportstech.de/hantelbank/brt400',
+  'http://www.sportstech.de/klimmzugstange/ks270',
+  'http://www.sportstech.de/klimmzugstange/ks260',
+  'http://www.sportstech.de/laufband/f37s',
+  'http://www.sportstech.de/hanteln/ah300-20kg',
+  'http://www.sportstech.de/stepper/stx300',
+  'http://www.sportstech.de/speedbike/sbike-lite',
+  'http://www.sportstech.de/laufband/swalk-holzoptik-grau',
+  'http://www.sportstech.de/laufband/f10',
+  'http://www.sportstech.de/laufband/swalk-plus',
+  'http://www.sportstech.de/rudergeraet/wrx1000-dunkelbraun',
+  'http://www.sportstech.de/vibrationsplatte/vp250-tuerkis',
+  'http://www.sportstech.de/laufband/stread-fold',
+  'http://www.sportstech.de/laufband/f31s',
+  'http://www.sportstech.de/ergometer/esx600s',
+  'http://www.sportstech.de/laufband/stread-lite',
+  'http://www.sportstech.de/ergometer/esx500',
+  'http://www.sportstech.de/laufband/f75',
+  'http://www.sportstech.de/laufband/swalk-holzoptik-hell',
+  'http://www.sportstech.de/crosstrainer/cx700',
+  'http://www.sportstech.de/speedbike/sbike',
+  'http://www.sportstech.de/kraftstation/hgx200',
+  'http://www.sportstech.de/kraftstation/hgx100',
+  'http://www.sportstech.de/rudergeraet/srow'
+]

@@ -81,6 +81,11 @@
   left: 19px !important;
   top: -3px !important;
 }
+@media (max-width: 361px) {
+  .new-bundle-pack [data-tippy-root] .tippy-box {
+    left: 12px !important;
+  }
+}
 .new-bundle-pack [data-tippy-root] .tippy-box .tippy-content {
   padding: 16px;
 }
@@ -88,6 +93,11 @@
   display: block !important;
   color: #fff;
   left: -18px !important;
+}
+@media (max-width: 361px) {
+  .new-bundle-pack [data-tippy-root] .tippy-box .tippy-arrow {
+    left: -12px !important;
+  }
 }
 .new-bundle-pack [data-tippy-root] .tippy-box .tooltip_block .tooltip_wrapper {
   display: flex;
@@ -207,7 +217,6 @@
 }
 #getNow > img {
   max-width: 220px !important;
-  max-height: 120px !important;
   -o-object-fit: contain;
      object-fit: contain;
   margin: 1px auto 0 !important;

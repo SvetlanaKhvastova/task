@@ -90,10 +90,7 @@ class bundleOptimization {
         if (el.getAttribute('data-variant-id') === id) {
           html = `<div class="new_js_total">
             <span class="new_price">${el.getAttribute('data-price')}</span> (<span class="new_price_off"
-              >${el.getAttribute('data-price-off')}%</span
-            >
-            OFF)
-          </div>`
+              >60%</span> OFF)</div>`
         }
       })
     } else {
