@@ -53,9 +53,9 @@ class stickySectionOnPDP {
   renderBreadcrumbsBlock() {
     let place = '.product-detail-buy'
     if (this.device === 'mobile') {
-      place = '.container-main'
+      place = '.cms-block-gallery-buybox'
     }
-    waitForElement('.is-ctl-product').then((i: HTMLLinkElement) => {
+    waitForElement(place).then(() => {
       if (!$el('#pdpBreadcrumbs')) {
         $el(place).insertAdjacentHTML('afterbegin', pdpBreadcrumbs)
       }

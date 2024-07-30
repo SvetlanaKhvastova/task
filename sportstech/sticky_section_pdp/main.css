@@ -2,6 +2,9 @@
   position: relative;
 }
 @media (min-width: 768px) {
+  .is-ctl-product .container-main {
+    margin: 0 !important;
+  }
   .is-ctl-product .cms-block-container:empty {
     display: none;
   }
@@ -613,6 +616,10 @@
   margin: 0;
   padding: 0;
 }
+.is-ctl-product .sticky_block_desktop .part_right .btn.btn-primary {
+  width: 100%;
+  text-wrap: wrap;
+}
 .is-ctl-product .fixed_block_desktop {
   display: flex;
   align-items: center;
@@ -712,7 +719,7 @@
 @media (max-width: 768px) {
   .is-ctl-product #pdpBreadcrumbs {
     margin: 0;
-    padding: 16px 20px 0;
+    padding: 16px 0 0;
   }
 }
 .is-ctl-product #pdpBreadcrumbs a {

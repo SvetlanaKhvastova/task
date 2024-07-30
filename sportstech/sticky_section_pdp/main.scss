@@ -2,6 +2,9 @@
 .is-ctl-product {
   position: relative;
   @media (min-width: 768px) {
+    .container-main {
+      margin: 0 !important;
+    }
     .cms-block-container:empty {
       display: none;
     }
@@ -642,6 +645,10 @@
         margin: 0;
         padding: 0;
       }
+      .btn.btn-primary {
+        width: 100%;
+        text-wrap: wrap;
+      }
     }
   }
   & .fixed_block_desktop {
@@ -737,7 +744,7 @@
     letter-spacing: 1px;
     @media (max-width: 768px) {
       margin: 0;
-      padding: 16px 20px 0;
+      padding: 16px 0 0;
     }
     white-space: nowrap;
     overflow: hidden;
