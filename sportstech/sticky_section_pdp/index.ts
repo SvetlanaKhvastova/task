@@ -8,7 +8,7 @@ import {
   checkScrollSpeed,
   getCookies
 } from '../../libraries'
-import { breadcrumbsLinks, pdpBreadcrumbs, stickyBlockDesktop, stickyBlockMobile } from './blocks'
+import { breadcrumbsLinks, fixedBlockDesktop, pdpBreadcrumbs, stickyBlockDesktop, stickyBlockMobile } from './blocks'
 import { svg, git, urls } from './data'
 // @ts-ignore
 import mainStyle from './main.css?raw'
@@ -17,15 +17,19 @@ const device = window.innerWidth < 768 ? 'mobile' : 'desktop'
 
 class stickySectionOnPDP {
   device: 'mobile' | 'desktop'
+  activePdpName: string
+  productPrice: string
 
   constructor(device) {
     this.device = device
+    this.activePdpName = ''
+    this.productPrice = ''
     this.init()
   }
 
   init() {
     startLog({ name: 'Sticky section on PDP', dev: 'SKh' })
-    // clarityInterval('')
+    clarityInterval('sticky_section_on_pdp')
 
     document.head.insertAdjacentHTML(
       'afterbegin',
@@ -38,7 +42,6 @@ class stickySectionOnPDP {
     if (this.device === 'mobile') {
       this.renderStickyBlockMobile()
     } else {
-      this.renderStickyBlockDesktop()
       this.checkCurrentUrl()
     }
 
@@ -57,6 +60,17 @@ class stickySectionOnPDP {
         $el(place).insertAdjacentHTML('afterbegin', pdpBreadcrumbs)
       }
       this.generateBreadcrumbs()
+      this.clickPdpBreadcrumbsHandler()
+    })
+    console.log(`renderBreadcrumbsBlock`)
+  }
+  clickPdpBreadcrumbsHandler() {
+    waitForElement('#pdpBreadcrumbs').then(i => {
+      $$el('#pdpBreadcrumbs a').forEach((link: HTMLLinkElement) => {
+        link.addEventListener('click', e => {
+          pushData('exp_sticky_breadcrumb', e.target.textContent.trim(), 'Link', `Sticky right block.`)
+        })
+      })
     })
   }
   generateBreadcrumbs() {
@@ -66,7 +80,6 @@ class stickySectionOnPDP {
     const activeCategoryHref = $el('.main-navigation-menu .main-navigation-link.active')?.href
 
     let activeSubcategory = ''
-    let activePdpName = ''
 
     let dataLayerCustomer = window.dataLayer
     dataLayerCustomer.forEach(item => {
@@ -74,32 +87,25 @@ class stickySectionOnPDP {
         activeSubcategory = item.productCategory
       }
       if (item.productName) {
-        activePdpName = item.productName
+        this.activePdpName = item.productName
+      }
+      if (item.productPrice) {
+        this.productPrice = item.productPrice
       }
     })
 
     const pathArray = window.location.pathname.split('/').filter(part => part)
-    let path = ''
-
-    // const breadcrumbs = pathArray
-    //   .map((part, index) => {
-    //     path += `/${part}`
-    //     const isLast = index === pathArray.length - 1
-    //     return isLast
-    //       ? `<span class="active_pdp">${decodeURIComponent(part)}</span>`
-    //       : `<a href="${path}">${decodeURIComponent(part)}</a>`
-    //   })
-    //   .join(`${svg.arrowBreadcrumbIcon}`)
 
     const breadcrumbs = breadcrumbsLinks(
       activeCategoryHref,
       activeCategory,
       pathArray[0],
       activeSubcategory,
-      activePdpName
+      this.activePdpName
     )
 
     breadcrumbsContainer.innerHTML = breadcrumbs
+    console.log(`generateBreadcrumbs`)
   }
   // DESKTOP
   checkCurrentUrl() {
@@ -107,9 +113,66 @@ class stickySectionOnPDP {
     urls.forEach(url => {
       if (url.includes(currentUrl)) {
         console.log(`Current URL matches: ${currentUrl}`)
+        this.renderStickyBlockDesktop()
         this.replaceProductDetailMedia()
+        waitForElement('.is-ctl-product .sticky_block_desktop').then((i: HTMLLinkElement) => {
+          switch (currentUrl) {
+            case '/laufband/swalk-grau':
+              $el('.part_left').classList.add('variant_first_crs')
+              break
+            case '/laufband/swalk-holzoptik-grau':
+              $el('.part_left').classList.add('variant_first_crs')
+              break
+            case '/hantelbank/brt400':
+              $el('.part_left').classList.add('variant_crs')
+              break
+            case '/klimmzugstange/ks270':
+              $el('.part_left').classList.add('variant_crs')
+              break
+            case '/klimmzugstange/ks260':
+              $el('.part_left').classList.add('variant_crs')
+              break
+            case '/stepper/stx300':
+              $el('.part_left').classList.add('variant_crs')
+              break
+            case '/vibrationsplatte/vp250-tuerkis':
+              $el('.part_left').classList.add('variant_crs')
+              break
+            case '/laufband/f31s':
+              $el('.part_left').classList.add('variant_crs')
+              break
+            case '/ergometer/esx500':
+              $el('.part_left').classList.add('variant_crs')
+              break
+            case '/laufband/swalk-holzoptik-hell':
+              $el('.part_left').classList.add('variant_first_crs')
+              break
+            case '/crosstrainer/cx700':
+              $el('.part_left').classList.add('cx700_crs')
+              break
+            case '/kraftstation/hgx200':
+              $el('.part_left').classList.add('hgx200_crs')
+              break
+            case '/kraftstation/hgx100':
+              $el('.part_left').classList.add('variant_crs')
+              break
+            // case '/laufband/f37s':
+            //   $el('.part_left').classList.add('f37s_crs')
+            //   break
+            // case '/speedbike/sbike':
+            //   $el('.part_left').classList.add('sbike_crs')
+            //   break
+            // case '/rudergeraet/srow':
+            //   $el('.part_left').classList.add('srow_crs')
+            //   break
+
+            default:
+              break
+          }
+        })
       }
     })
+    console.log('checkCurrentUrl')
   }
   replaceProductDetailMedia() {
     waitForElement('.product-detail-media').then((i: HTMLLinkElement) => {
@@ -222,20 +285,53 @@ class stickySectionOnPDP {
     waitForElement('.product-detail-media .section-faq').then((i: HTMLLinkElement) => {
       $el('.belvg-block-gallery-full-width')?.insertAdjacentElement('beforeend', i)
     })
+    console.log('replaceProductDetailMedia')
   }
   renderStickyBlockDesktop() {
-    waitForElement('.is-ctl-product .content-main').then((i: HTMLLinkElement) => {
+    waitForElement('.is-ctl-product .content-main .belvg-block-gallery-full-width').then((i: HTMLLinkElement) => {
       if (!$el('.sticky_block_desktop')) {
-        i.insertAdjacentHTML('afterbegin', stickyBlockDesktop)
+        i.insertAdjacentHTML('beforebegin', stickyBlockDesktop)
+        i.closest('.is-ctl-product')?.classList.add('crs_sticky')
       }
     })
     waitForElement('.is-ctl-product .sticky_block_desktop').then((i: HTMLLinkElement) => {
       i.querySelector('.part_right').insertAdjacentElement('afterbegin', $el('.product-detail-buy'))
       i.querySelector('.part_left').insertAdjacentElement('afterbegin', $el('.product-detail-media'))
+
+      if (!$el('.fixed_block_desktop')) {
+        i.insertAdjacentHTML('afterend', fixedBlockDesktop(this.activePdpName, this.productPrice))
+      }
+      if (
+        !$el('.product-detail-form-container .buy-widget-container .btn-buy') &&
+        $el('.fixed_block_desktop .add_to_cart_btn')
+      ) {
+        $el('.fixed_block_desktop .add_to_cart_btn').style.display = 'none'
+      }
     })
     waitForElement('.is-ctl-product .fixed_block_desktop').then((i: HTMLLinkElement) => {
       this.setupStickyBlockScrollHandler()
+      this.addToCartStickyBlockDesktopHandler()
     })
+    console.log(`renderStickyBlockDesktop`)
+  }
+  addToCartStickyBlockDesktopHandler() {
+    waitForElement('.fixed_block_desktop .add_to_cart_btn').then((i: HTMLLinkElement) => {
+      i.addEventListener('click', (e: any) => {
+        e.preventDefault()
+        if (i.closest('.fixed_crs')) {
+          pushData(
+            'exp_sticky_footer_add_to_cart',
+            'Add to cart',
+            'Button',
+            `Sticky Footer. ${this.scrollDepthHandler()}`
+          )
+        } else {
+          pushData('exp_sticky_desktop_add_to_cart', 'Add to cart', 'Button', 'Sticky Desktop')
+        }
+        $el('.product-detail-form-container .buy-widget-container .btn-buy')?.click()
+      })
+    })
+    console.log('addToCartStickyBlockDesktopHandler')
   }
   setupStickyBlockScrollHandler() {
     const stickyBlockDesktop = $el('.sticky_block_desktop')
@@ -247,11 +343,18 @@ class stickySectionOnPDP {
 
         if (stickyBlockRect.bottom <= 0) {
           fixedBlockDesktop.style.position = 'fixed'
+          if (!fixedBlockDesktop.classList.contains('fixed_crs')) {
+            fixedBlockDesktop.classList.add('fixed_crs')
+          }
         } else {
           fixedBlockDesktop.style.position = 'static'
+          if (fixedBlockDesktop.classList.contains('fixed_crs')) {
+            fixedBlockDesktop.classList.remove('fixed_crs')
+          }
         }
       })
     }
+    console.log('setupStickyBlockScrollHandler')
   }
   // MOBILE
   renderStickyBlockMobile() {
@@ -267,7 +370,13 @@ class stickySectionOnPDP {
     waitForElement('.sticky_block_mobile .add_to_cart_btn').then((i: HTMLLinkElement) => {
       i.addEventListener('click', (e: any) => {
         e.preventDefault()
-        console.log(`CLICK add_to_cart_btn`)
+
+        pushData(
+          'exp_sticky_footer_add_to_cart',
+          'Add to cart',
+          'Button',
+          `Sticky Footer. ${this.scrollDepthHandler()}`
+        )
         $el('.rhweb-fixed-buy-widget .buy-widget-container .btn-buy')?.click()
       })
     })
@@ -308,6 +417,15 @@ class stickySectionOnPDP {
         visible()
       })
     })
+  }
+
+  scrollDepthHandler() {
+    const documentHeight = document.documentElement.scrollHeight
+    const windowHeight = window.innerHeight
+    const scrollTop = window.scrollY
+    const scrollDepth = `${((scrollTop / (documentHeight - windowHeight)) * 100).toFixed(0)}%`
+
+    return scrollDepth
   }
 
   // ___________________________________________________________________________________________________________________________________________

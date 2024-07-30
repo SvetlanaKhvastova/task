@@ -373,6 +373,11 @@ script.async = false;
 document.head.appendChild(script);
 //sportstech
 let script = document.createElement("script");
+script.src = "https://conversionratestore.github.io/projects/sportstech/sticky_section_pdp.js";
+script.async = false;
+document.head.appendChild(script);
+//
+let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/sportstech/exit_intent_popup.js";
 script.async = false;
 document.head.appendChild(script);

@@ -62,29 +62,29 @@ export const svg = {
 }
 
 export const urls = [
-  'http://www.sportstech.de/laufband/swalk-grau',
-  'http://www.sportstech.de/hantelbank/brt400',
-  'http://www.sportstech.de/klimmzugstange/ks270',
-  'http://www.sportstech.de/klimmzugstange/ks260',
-  'http://www.sportstech.de/laufband/f37s',
-  'http://www.sportstech.de/hanteln/ah300-20kg',
-  'http://www.sportstech.de/stepper/stx300',
-  'http://www.sportstech.de/speedbike/sbike-lite',
-  'http://www.sportstech.de/laufband/swalk-holzoptik-grau',
-  'http://www.sportstech.de/laufband/f10',
-  'http://www.sportstech.de/laufband/swalk-plus',
-  'http://www.sportstech.de/rudergeraet/wrx1000-dunkelbraun',
-  'http://www.sportstech.de/vibrationsplatte/vp250-tuerkis',
-  'http://www.sportstech.de/laufband/stread-fold',
-  'http://www.sportstech.de/laufband/f31s',
-  'http://www.sportstech.de/ergometer/esx600s',
-  'http://www.sportstech.de/laufband/stread-lite',
-  'http://www.sportstech.de/ergometer/esx500',
-  'http://www.sportstech.de/laufband/f75',
-  'http://www.sportstech.de/laufband/swalk-holzoptik-hell',
-  'http://www.sportstech.de/crosstrainer/cx700',
-  'http://www.sportstech.de/speedbike/sbike',
-  'http://www.sportstech.de/kraftstation/hgx200',
-  'http://www.sportstech.de/kraftstation/hgx100',
-  'http://www.sportstech.de/rudergeraet/srow'
+  'http://www.sportstech.de/laufband/swalk-grau', //+
+  'http://www.sportstech.de/hantelbank/brt400', //+
+  'http://www.sportstech.de/klimmzugstange/ks270', //+
+  'http://www.sportstech.de/klimmzugstange/ks260', //+
+  'http://www.sportstech.de/stepper/stx300', // + ...
+  'http://www.sportstech.de/laufband/swalk-holzoptik-grau', //+
+  'http://www.sportstech.de/vibrationsplatte/vp250-tuerkis', //+
+  'http://www.sportstech.de/laufband/f31s', //+
+  'http://www.sportstech.de/ergometer/esx500', //+
+  'http://www.sportstech.de/laufband/swalk-holzoptik-hell', //+
+  'http://www.sportstech.de/crosstrainer/cx700', //+
+  'http://www.sportstech.de/kraftstation/hgx200', //+
+  'http://www.sportstech.de/kraftstation/hgx100' //+
+  // 'http://www.sportstech.de/laufband/f37s',
+  // 'http://www.sportstech.de/hanteln/ah300-20kg', //цієї сторінки не існує
+  // 'http://www.sportstech.de/speedbike/sbike-lite',
+  // 'http://www.sportstech.de/laufband/f10',
+  // 'http://www.sportstech.de/laufband/swalk-plus',
+  // 'http://www.sportstech.de/rudergeraet/wrx1000-dunkelbraun',
+  // 'http://www.sportstech.de/laufband/stread-fold',
+  // 'http://www.sportstech.de/ergometer/esx600s',
+  // 'http://www.sportstech.de/laufband/stread-lite',
+  // 'http://www.sportstech.de/laufband/f75',
+  // 'http://www.sportstech.de/speedbike/sbike',
+  // 'http://www.sportstech.de/rudergeraet/srow'
 ]
