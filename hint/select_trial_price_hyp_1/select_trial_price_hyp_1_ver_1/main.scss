@@ -23,6 +23,7 @@ header {
 main {
   > div {
     margin: 0 !important;
+    align-items: normal !important;
     > div {
       gap: unset !important;
     }
@@ -103,7 +104,7 @@ main {
 // email_block
 .email_block {
   display: flex;
-  align-items: center;
+  align-items: center !important;
   justify-content: center;
   gap: 8px;
   padding: 4px 10px;

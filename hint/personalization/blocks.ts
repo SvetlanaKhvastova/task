@@ -13,7 +13,18 @@ export const paywallInfoBlock = (title: string, txt: string, img: string, name: 
   `
 }
 
-export const wellDoneSection = (emailTxtFirtsLetter: string, emailTxt: string, imgBefore: string, imgAfter: string) => {
+export const wellDoneSection = (
+  emailTxtFirtsLetter: string,
+  emailTxt: string,
+  imgBefore: string,
+  imgAfter: string,
+  goal: string,
+  relationshipStatus: string,
+  resonatedElement: string,
+  gender: string,
+  astrologicalSign: string,
+  favoriteColor: string
+) => {
   return /* HTML */ `
     <section id="wellDoneSection">
       <div class="section_header">
@@ -26,11 +37,11 @@ export const wellDoneSection = (emailTxtFirtsLetter: string, emailTxt: string, i
         <h2>Well done!</h2>
         <p>Your account is successfully created! You're just one step from your goal!</p>
         <div class="img_wrapp">
-          <div>
+          <div class="before_hint">
             <img src="${git}${imgBefore}" alt="icon" />
             <span>Before Hint</span>
           </div>
-          <div>
+          <div class="after_hint">
             <img src="${git}${imgAfter}" alt="icon" />
             <span>After Hint</span>
           </div>
@@ -45,15 +56,14 @@ export const wellDoneSection = (emailTxtFirtsLetter: string, emailTxt: string, i
               </div>
               <div class="all_about_you_item">
                 <span>Goal</span>
-                <p>${svg.careerDestinyIcon} Career & Destiny</p>
+                <p>${goal}</p>
               </div>
-              <div class="all_about_you_item">
-                <span>Relationship Status</span>
-                <p>${svg.singleFemaleIcon} Single</p>
-              </div>
+              ${relationshipStatus !== 'unknown' && goal.includes('Love & Relationship')
+                ? `<div class="all_about_you_item"><span>Relationship Status</span><p>${relationshipStatus}</p></div> `
+                : ''}
               <div class="all_about_you_item">
                 <span>Element</span>
-                <p>${svg.earthIcon} Earth</p>
+                <p>${resonatedElement}</p>
               </div>
             </div>
             <div class="right_part">
@@ -62,15 +72,15 @@ export const wellDoneSection = (emailTxtFirtsLetter: string, emailTxt: string, i
               </div>
               <div class="all_about_you_item">
                 <span>Gender</span>
-                <p>${svg.femaleIcon} Female</p>
+                <p>${gender}</p>
               </div>
               <div class="all_about_you_item">
                 <span>Astrological Sign</span>
-                <p>${svg.cancerIcon} Cancer</p>
+                <p>${astrologicalSign}</p>
               </div>
               <div class="all_about_you_item">
                 <span>Favorite Color</span>
-                <p>${svg.redIcon} Red</p>
+                <p>${favoriteColor}</p>
               </div>
             </div>
           </div>

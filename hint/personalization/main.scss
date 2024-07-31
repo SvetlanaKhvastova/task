@@ -1,0 +1,265 @@
+.paywall_page {
+  .title_container__cTn7J,
+  .spiritist_container__QOODP,
+  .spiritist_description__5f9nk {
+    display: none !important;
+  }
+
+  .trusted_text__OKFFS {
+    font-weight: 400;
+  }
+  // paywall_info_block
+  .paywall_info_block {
+    padding: 0 20px 22px;
+    & > h2 {
+      color: #121620;
+      font-size: 30px;
+      font-weight: 600;
+      line-height: 38px;
+      margin: 0;
+      font-family:
+        SF Pro Text,
+        sans-serif;
+      max-width: 278px;
+      span {
+        color: #066fde;
+      }
+    }
+    & .img_wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      p {
+        color: #121620;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 24px;
+        margin: 0;
+        font-family:
+          SF Pro Text,
+          sans-serif;
+        max-width: 196px;
+      }
+      img {
+        width: 128px;
+        height: 128px;
+      }
+    }
+    & > p {
+      color: #8ba0bf;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 16px;
+      letter-spacing: 0.011px;
+      margin: 0;
+      font-family:
+        SF Pro Text,
+        sans-serif;
+      span {
+        color: #066fde;
+        font-weight: 700;
+      }
+    }
+  }
+}
+.subscription_plan_page {
+  main {
+    display: none !important;
+  }
+  [data-overlay-container] {
+    width: 100%;
+  }
+  #wellDoneSection {
+    .section_header {
+      .email_block {
+        display: flex;
+        align-items: center !important;
+        justify-content: center;
+        gap: 8px;
+        padding: 4px 10px;
+        background: #dee5f9;
+        width: 100%;
+        .img_box {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 24px;
+          height: 24px;
+          padding: 3px;
+          border-radius: 100px;
+          background: #9eaad5;
+          color: #fff;
+          font-family: 'Inter', sans-serif;
+          font-size: 13px;
+          font-weight: 600;
+          line-height: 18px;
+        }
+        .email_txt {
+          color: #4a567a;
+          font-family: 'Inter', sans-serif;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 20px;
+          margin: 0;
+        }
+      }
+    }
+    .section_body {
+      padding: 16px 16px 23px;
+      > h2 {
+        color: #121620;
+        text-align: center;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 32px;
+        margin: 0 0 5px;
+      }
+      > p {
+        color: #4a567a;
+        text-align: center;
+        font-family: 'Inter', sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 25px;
+        margin: 0 auto;
+        max-width: 321px;
+      }
+      .img_wrapp {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin: 16px 0;
+        > div {
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          gap: 3px;
+          width: 50%;
+          padding: 8px 0 6px;
+          img {
+            max-width: 123px;
+          }
+        }
+        span {
+          text-align: center;
+          font-family: 'Inter', sans-serif;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 20px;
+        }
+        .before_hint {
+          background: #eff1f5;
+          border-radius: 10px 0 0 10px;
+          span {
+            color: #4a567a;
+          }
+        }
+        .after_hint {
+          border: 1px solid #eff1f5;
+          background: #fff;
+          border-radius: 0 10px 10px 0;
+          span {
+            color: #066fde;
+          }
+        }
+        .arrow_icon {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 1;
+        }
+      }
+      > h3 {
+        color: #121620;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 26px;
+        margin: 0;
+        text-align: center;
+      }
+      .all_about_you_block {
+        border-radius: 10px;
+        border: 1px solid #dee5f9;
+        background: #e8f5fd;
+        padding: 16px;
+        margin: 12px 0 0;
+        .new_container {
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          > div {
+            width: 50%;
+            .all_about_you_title {
+              color: #121620;
+              font-size: 14px;
+              font-weight: 700;
+              line-height: 22px;
+              border-bottom: 1px solid #d1d5db;
+              padding-bottom: 10px;
+              margin: 0 0 10px;
+              .accent_blue_txt {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                color: #066fde;
+                margin: 0 0 0 auto;
+                max-width: max-content;
+              }
+            }
+            .all_about_you_item {
+              span {
+                color: #4a567a;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 22px;
+              }
+              p {
+                color: #121620;
+                font-size: 14px;
+                font-weight: 700;
+                line-height: 22px;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 6px;
+                margin: 2px 0 0;
+              }
+              svg {
+                width: 24px;
+                height: 24px;
+              }
+              & + .all_about_you_item {
+                margin-top: 12px;
+              }
+            }
+          }
+          .left_part {
+            width: 73%;
+          }
+        }
+      }
+    }
+    .section_footer {
+      padding: 0 16px 16px;
+      .get_my_insights_btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        background: #066fde;
+        width: 100%;
+        padding: 12px 24px;
+        color: #fff;
+        font-family: 'Inter', sans-serif;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 24px;
+      }
+    }
+  }
+}

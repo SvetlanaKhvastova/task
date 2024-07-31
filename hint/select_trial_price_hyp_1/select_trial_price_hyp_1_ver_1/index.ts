@@ -16,10 +16,10 @@ class exitIntentPopup {
 
   init() {
     startLog({ name: 'select Trial Price Page Improvements V1', dev: 'SKh' })
-    // clarityInterval('')
     this.observeMain()
 
     if (window.location.pathname.match('subscription-pla')) {
+      clarityInterval('exp_select_trial')
       this.handleSubscriptionPage()
     } else if (window.location.pathname.match('email')) {
       this.removeCustomStyles()

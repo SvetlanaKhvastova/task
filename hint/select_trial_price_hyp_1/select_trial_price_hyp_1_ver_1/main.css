@@ -21,6 +21,7 @@ header > header > img {
 
 main > div {
   margin: 0 !important;
+  align-items: normal !important;
 }
 main > div > div {
   gap: unset !important;
@@ -99,7 +100,7 @@ main .styles_plans__kjWfh > :last-child::after {
 
 .email_block {
   display: flex;
-  align-items: center;
+  align-items: center !important;
   justify-content: center;
   gap: 8px;
   padding: 4px 10px;

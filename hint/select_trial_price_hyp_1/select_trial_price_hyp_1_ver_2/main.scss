@@ -23,6 +23,7 @@ header {
 main {
   > div {
     margin: 0 !important;
+    align-items: normal !important;
     > div {
       gap: unset !important;
     }
@@ -30,6 +31,7 @@ main {
   p.font-semibold,
   p.font-semibold + p,
   p.font-semibold + p + img,
+  p.font-semibold + p + svg,
   .styles_subscriptionText__1MH_S {
     display: none;
   }
@@ -61,9 +63,11 @@ main {
         font-weight: 600;
         line-height: 24px;
       }
-      &.styles_activePlan__3pihe {
+      &.styles_activePlan__3pihe,
+      &.\!border-themePrimary {
         background: rgba(59, 130, 246, 0.96);
         border: 2px solid rgba(59, 130, 246, 0.96);
+        border-color: rgba(59, 130, 246, 0.96) !important;
         h3 {
           color: #fff;
         }
@@ -103,7 +107,7 @@ main {
 // email_block
 .email_block {
   display: flex;
-  align-items: center;
+  align-items: center !important;
   justify-content: center;
   gap: 8px;
   padding: 4px 10px;

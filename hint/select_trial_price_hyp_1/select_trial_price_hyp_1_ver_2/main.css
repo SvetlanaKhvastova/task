@@ -21,6 +21,7 @@ header > header > img {
 
 main > div {
   margin: 0 !important;
+  align-items: normal !important;
 }
 main > div > div {
   gap: unset !important;
@@ -28,6 +29,7 @@ main > div > div {
 main p.font-semibold,
 main p.font-semibold + p,
 main p.font-semibold + p + img,
+main p.font-semibold + p + svg,
 main .styles_subscriptionText__1MH_S {
   display: none;
 }
@@ -61,11 +63,12 @@ main .styles_plans__kjWfh .styles_plan__w4qlH h3 {
   font-weight: 600;
   line-height: 24px;
 }
-main .styles_plans__kjWfh .styles_plan__w4qlH.styles_activePlan__3pihe {
+main .styles_plans__kjWfh .styles_plan__w4qlH.styles_activePlan__3pihe, main .styles_plans__kjWfh .styles_plan__w4qlH.\!border-themePrimary {
   background: rgba(59, 130, 246, 0.96);
   border: 2px solid rgba(59, 130, 246, 0.96);
+  border-color: rgba(59, 130, 246, 0.96) !important;
 }
-main .styles_plans__kjWfh .styles_plan__w4qlH.styles_activePlan__3pihe h3 {
+main .styles_plans__kjWfh .styles_plan__w4qlH.styles_activePlan__3pihe h3, main .styles_plans__kjWfh .styles_plan__w4qlH.\!border-themePrimary h3 {
   color: #fff;
 }
 main .styles_plans__kjWfh > :last-child::before {
@@ -99,7 +102,7 @@ main .styles_plans__kjWfh > :last-child::after {
 
 .email_block {
   display: flex;
-  align-items: center;
+  align-items: center !important;
   justify-content: center;
   gap: 8px;
   padding: 4px 10px;

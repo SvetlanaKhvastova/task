@@ -1,1 +1,249 @@
-/*# sourceMappingURL=main.css.map */
+.paywall_page .title_container__cTn7J,
+.paywall_page .spiritist_container__QOODP,
+.paywall_page .spiritist_description__5f9nk {
+  display: none !important;
+}
+.paywall_page .trusted_text__OKFFS {
+  font-weight: 400;
+}
+.paywall_page .paywall_info_block {
+  padding: 0 20px 22px;
+}
+.paywall_page .paywall_info_block > h2 {
+  color: #121620;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 38px;
+  margin: 0;
+  font-family: SF Pro Text, sans-serif;
+  max-width: 278px;
+}
+.paywall_page .paywall_info_block > h2 span {
+  color: #066fde;
+}
+.paywall_page .paywall_info_block .img_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.paywall_page .paywall_info_block .img_wrapper p {
+  color: #121620;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  margin: 0;
+  font-family: SF Pro Text, sans-serif;
+  max-width: 196px;
+}
+.paywall_page .paywall_info_block .img_wrapper img {
+  width: 128px;
+  height: 128px;
+}
+.paywall_page .paywall_info_block > p {
+  color: #8ba0bf;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.011px;
+  margin: 0;
+  font-family: SF Pro Text, sans-serif;
+}
+.paywall_page .paywall_info_block > p span {
+  color: #066fde;
+  font-weight: 700;
+}
+
+.subscription_plan_page main {
+  display: none !important;
+}
+.subscription_plan_page [data-overlay-container] {
+  width: 100%;
+}
+.subscription_plan_page #wellDoneSection .section_header .email_block {
+  display: flex;
+  align-items: center !important;
+  justify-content: center;
+  gap: 8px;
+  padding: 4px 10px;
+  background: #dee5f9;
+  width: 100%;
+}
+.subscription_plan_page #wellDoneSection .section_header .email_block .img_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 3px;
+  border-radius: 100px;
+  background: #9eaad5;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 18px;
+}
+.subscription_plan_page #wellDoneSection .section_header .email_block .email_txt {
+  color: #4a567a;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  margin: 0;
+}
+.subscription_plan_page #wellDoneSection .section_body {
+  padding: 16px 16px 23px;
+}
+.subscription_plan_page #wellDoneSection .section_body > h2 {
+  color: #121620;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  margin: 0 0 5px;
+}
+.subscription_plan_page #wellDoneSection .section_body > p {
+  color: #4a567a;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 25px;
+  margin: 0 auto;
+  max-width: 321px;
+}
+.subscription_plan_page #wellDoneSection .section_body .img_wrapp {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 16px 0;
+}
+.subscription_plan_page #wellDoneSection .section_body .img_wrapp > div {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 3px;
+  width: 50%;
+  padding: 8px 0 6px;
+}
+.subscription_plan_page #wellDoneSection .section_body .img_wrapp > div img {
+  max-width: 123px;
+}
+.subscription_plan_page #wellDoneSection .section_body .img_wrapp span {
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+.subscription_plan_page #wellDoneSection .section_body .img_wrapp .before_hint {
+  background: #eff1f5;
+  border-radius: 10px 0 0 10px;
+}
+.subscription_plan_page #wellDoneSection .section_body .img_wrapp .before_hint span {
+  color: #4a567a;
+}
+.subscription_plan_page #wellDoneSection .section_body .img_wrapp .after_hint {
+  border: 1px solid #eff1f5;
+  background: #fff;
+  border-radius: 0 10px 10px 0;
+}
+.subscription_plan_page #wellDoneSection .section_body .img_wrapp .after_hint span {
+  color: #066fde;
+}
+.subscription_plan_page #wellDoneSection .section_body .img_wrapp .arrow_icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.subscription_plan_page #wellDoneSection .section_body > h3 {
+  color: #121620;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 26px;
+  margin: 0;
+  text-align: center;
+}
+.subscription_plan_page #wellDoneSection .section_body .all_about_you_block {
+  border-radius: 10px;
+  border: 1px solid #dee5f9;
+  background: #e8f5fd;
+  padding: 16px;
+  margin: 12px 0 0;
+}
+.subscription_plan_page #wellDoneSection .section_body .all_about_you_block .new_container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.subscription_plan_page #wellDoneSection .section_body .all_about_you_block .new_container > div {
+  width: 50%;
+}
+.subscription_plan_page #wellDoneSection .section_body .all_about_you_block .new_container > div .all_about_you_title {
+  color: #121620;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 22px;
+  border-bottom: 1px solid #d1d5db;
+  padding-bottom: 10px;
+  margin: 0 0 10px;
+}
+.subscription_plan_page #wellDoneSection .section_body .all_about_you_block .new_container > div .all_about_you_title .accent_blue_txt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #066fde;
+  margin: 0 0 0 auto;
+  max-width: -moz-max-content;
+  max-width: max-content;
+}
+.subscription_plan_page #wellDoneSection .section_body .all_about_you_block .new_container > div .all_about_you_item span {
+  color: #4a567a;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+}
+.subscription_plan_page #wellDoneSection .section_body .all_about_you_block .new_container > div .all_about_you_item p {
+  color: #121620;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  margin: 2px 0 0;
+}
+.subscription_plan_page #wellDoneSection .section_body .all_about_you_block .new_container > div .all_about_you_item svg {
+  width: 24px;
+  height: 24px;
+}
+.subscription_plan_page #wellDoneSection .section_body .all_about_you_block .new_container > div .all_about_you_item + .all_about_you_item {
+  margin-top: 12px;
+}
+.subscription_plan_page #wellDoneSection .section_body .all_about_you_block .new_container .left_part {
+  width: 73%;
+}
+.subscription_plan_page #wellDoneSection .section_footer {
+  padding: 0 16px 16px;
+}
+.subscription_plan_page #wellDoneSection .section_footer .get_my_insights_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: #066fde;
+  width: 100%;
+  padding: 12px 24px;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+}/*# sourceMappingURL=main.css.map */

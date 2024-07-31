@@ -465,22 +465,22 @@ export const content = {
       goal: 'Love & Relationship',
       relationshipStatus: 'In relationship',
       ageGroups: {
-        'Age group = 18-35': {
-          title: 'Let’s Enhance Your Relationship',
+        '18-35': {
+          title: 'Let’s Enhance <span>Your Relationship</span>',
           txt: `“I can help you deepen your connection and enrich your relationship.”`,
           img: 'age_group_1.png',
           name: 'Akho',
           descr: '6 years in palmistry readings and spiritual guidance.'
         },
-        'Age group = 36-55': {
-          title: 'Let’s Enhance Your Relationship',
+        '36-55': {
+          title: 'Let’s Enhance <span>Your Relationship</span>',
           txt: `“I can help you deepen your connection and enrich your relationship.”`,
           img: 'age_group_2.png',
           name: 'Jane',
           descr: '9 years in palmistry readings and spiritual guidance.'
         },
-        'Age group = 56+': {
-          title: 'Let’s Enhance Your Relationship',
+        '56+': {
+          title: 'Let’s Enhance <span>Your Relationship</span>',
           txt: `“I can help you deepen your connection and enrich your relationship.”`,
           img: 'age_group_3.png',
           name: 'Lucy',
@@ -489,65 +489,74 @@ export const content = {
       },
       genderGroups: {
         male: {
-          img: ''
+          imgBefore: 'love_relationship_before.png',
+          imgAfter: 'love_relationship_after.png'
         },
         female: {
-          img: ''
+          imgBefore: 'love_relationship_before.png',
+          imgAfter: 'love_relationship_after.png'
         }
       }
     },
     {
       goal: 'Love & Relationship',
       relationshipStatus: 'Single',
-      ageGroups: [
-        {
-          ageGroup: '18-35',
-          title: 'Let’s Find Your True Love',
+      ageGroups: {
+        '18-35': {
+          title: 'Let’s Find Your <span>True Love</span>',
           txt: `“True love is on the horizon. Let's discover the path to your soulmate.”`,
           img: 'age_group_1.png',
           name: 'Akho',
           descr: '6 years in palmistry readings and spiritual guidance.'
         },
-        {
-          ageGroup: '36-55',
-          title: 'Let’s Find Your True Love',
+        '36-55': {
+          title: 'Let’s Find Your <span>True Love</span>',
           txt: `“True love is on the horizon. Let's discover the path to your soulmate.”`,
           img: 'age_group_2.png',
           name: 'Jane',
           descr: '9 years in palmistry readings and spiritual guidance.'
         },
-        {
-          ageGroup: '56+',
-          title: 'Let’s Find Your True Love',
+        '56+': {
+          title: 'Let’s Find Your <span>True Love</span>',
           txt: `“True love is on the horizon. Let's discover the path to your soulmate.”`,
           img: 'age_group_3.png',
           name: 'Lucy',
           descr: '12 years in palmistry readings and spiritual guidance.'
         }
-      ]
+      },
+      genderGroups: {
+        male: {
+          imgBefore: 'love_relationship_before_male.png',
+          imgAfter: 'love_relationship_after.png'
+        },
+        female: {
+          imgBefore: 'love_relationship_before_female.png',
+          imgAfter: 'love_relationship_after.png'
+        }
+      }
     }
   ],
   'Health & Vitality': [
     {
       goal: 'Health & Vitality',
-      relationshipStatus: '',
+      relationshipStatus: 'unknown',
       ageGroups: {
-        'Age group = 18-35': {
-          title: 'Let’s Boost Your Vitality',
+        '18-35': {
+          title: 'Let’s Boost <br/> <span>Your Vitality</span>',
           txt: `“Let's focus on boosting your health and vitality for a better life.”`,
           img: 'age_group_1.png',
           name: 'Akho',
           descr: '6 years in palmistry readings and spiritual guidance.'
         },
-        'Age group = 36-55': {
-          title: 'Let’s Boost Your Vitality',
+        '36-55': {
+          title: 'Let’s Boost <br/> <span>Your Vitality</span>',
           txt: `“Let's focus on boosting your health and vitality for a better life.”`,
           img: 'age_group_2.png',
           name: 'Jane',
           descr: '9 years in palmistry readings and spiritual guidance.'
         },
-        'Age group = 56+': {
-          title: 'Let’s Boost Your Vitality',
+        '56+': {
+          title: 'Let’s Boost <br/> <span>Your Vitality</span>',
           txt: `“Let's focus on boosting your health and vitality for a better life.”`,
           img: 'age_group_3.png',
           name: 'Lucy',
@@ -556,10 +565,12 @@ export const content = {
       },
       genderGroups: {
         male: {
-          img: ''
+          imgBefore: 'health_vitality_before_male.png',
+          imgAfter: 'health_vitality_after_male.png'
         },
         female: {
-          img: ''
+          imgBefore: 'health_vitality_before_female.png',
+          imgAfter: 'health_vitality_after_female.png'
         }
       }
     }
@@ -567,24 +578,24 @@ export const content = {
   'Career & Destiny': [
     {
       goal: 'Career & Destiny',
-      relationshipStatus: '',
+      relationshipStatus: 'unknown',
       ageGroups: {
         '18-35': {
-          title: 'Let’s Discover Your Destiny',
+          title: 'Let’s Discover <br/> <span>Your Destiny</span>',
           txt: `“There is a meaningful path ahead. Let's uncover your true destiny."`,
           img: 'age_group_1.png',
           name: 'Akho',
           descr: '6 years in palmistry readings and spiritual guidance.'
         },
         '36-55': {
-          title: 'Let’s Discover Your Destiny',
+          title: 'Let’s Discover <br/> <span>Your Destiny</span>',
           txt: `“There is a meaningful path ahead. Let's uncover your true destiny."`,
           img: 'age_group_2.png',
           name: 'Jane',
           descr: '9 years in palmistry readings and spiritual guidance.'
         },
         '56+': {
-          title: 'Let’s Discover Your Destiny',
+          title: 'Let’s Discover <br/> <span>Your Destiny</span>',
           txt: `“There is a meaningful path ahead. Let's uncover your true destiny."`,
           img: 'age_group_3.png',
           name: 'Lucy',
@@ -593,10 +604,12 @@ export const content = {
       },
       genderGroups: {
         male: {
-          img: ''
+          imgBefore: 'career_destiny_before_female.png',
+          imgAfter: 'career_destiny_after_female.png'
         },
         female: {
-          img: ''
+          imgBefore: 'career_destiny_before_male.png',
+          imgAfter: 'career_destiny_after_male.png'
         }
       }
     }
