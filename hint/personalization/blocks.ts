@@ -87,7 +87,9 @@ export const wellDoneSection = (
         </div>
       </div>
       <div class="section_footer">
-        <div class="get_my_insights_btn">Get My Insights</div>
+        <div class="sticky_container">
+          <div class="get_my_insights_btn">Get My Insights</div>
+        </div>
       </div>
     </section>
   `

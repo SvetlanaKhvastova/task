@@ -16,7 +16,11 @@
   line-height: 38px;
   margin: 0;
   font-family: SF Pro Text, sans-serif;
-  max-width: 278px;
+}
+@media (max-width: 376px) {
+  .paywall_page .paywall_info_block > h2 {
+    max-width: 278px;
+  }
 }
 .paywall_page .paywall_info_block > h2 span {
   color: #066fde;
@@ -34,7 +38,12 @@
   line-height: 24px;
   margin: 0;
   font-family: SF Pro Text, sans-serif;
-  max-width: 196px;
+  max-width: 232px;
+}
+@media (max-width: 376px) {
+  .paywall_page .paywall_info_block .img_wrapper p {
+    max-width: 196px;
+  }
 }
 .paywall_page .paywall_info_block .img_wrapper img {
   width: 128px;
@@ -54,11 +63,21 @@
   font-weight: 700;
 }
 
-.subscription_plan_page main {
-  display: none !important;
+.subscription_plan_page #wellDoneSection + main {
+  opacity: 0;
+}
+.subscription_plan_page #wellDoneSection + main.is_hidden {
+  opacity: 0 !important;
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
 }
 .subscription_plan_page [data-overlay-container] {
   width: 100%;
+}
+.subscription_plan_page #wellDoneSection {
+  position: relative;
 }
 .subscription_plan_page #wellDoneSection .section_header .email_block {
   display: flex;
@@ -230,8 +249,14 @@
 .subscription_plan_page #wellDoneSection .section_body .all_about_you_block .new_container .left_part {
   width: 73%;
 }
-.subscription_plan_page #wellDoneSection .section_footer {
+.subscription_plan_page #wellDoneSection .section_footer .sticky_container {
   padding: 0 16px 16px;
+}
+.subscription_plan_page #wellDoneSection .section_footer .sticky_container.fixed-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
 }
 .subscription_plan_page #wellDoneSection .section_footer .get_my_insights_btn {
   display: flex;
@@ -246,4 +271,18 @@
   font-size: 18px;
   font-weight: 500;
   line-height: 24px;
+}
+
+.new_btn_back {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  position: absolute;
+  left: 8px;
+}
+.new_btn_back + button {
+  display: none;
 }/*# sourceMappingURL=main.css.map */

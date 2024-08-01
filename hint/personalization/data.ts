@@ -453,8 +453,8 @@ export const svg = {
     </svg>
   `,
   arrowLeftHeaderIcon: /* HTML */ `
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <path d="M11 14L5 8L11 2" stroke="#121620" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none">
+      <path stroke="#121620" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 15 1 8l7-7"></path>
     </svg>
   `
 }
@@ -603,11 +603,11 @@ export const content = {
         }
       },
       genderGroups: {
-        male: {
+        female: {
           imgBefore: 'career_destiny_before_female.png',
           imgAfter: 'career_destiny_after_female.png'
         },
-        female: {
+        male: {
           imgBefore: 'career_destiny_before_male.png',
           imgAfter: 'career_destiny_after_male.png'
         }

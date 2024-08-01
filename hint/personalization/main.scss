@@ -20,7 +20,9 @@
       font-family:
         SF Pro Text,
         sans-serif;
-      max-width: 278px;
+      @media (max-width: 376px) {
+        max-width: 278px;
+      }
       span {
         color: #066fde;
       }
@@ -39,7 +41,10 @@
         font-family:
           SF Pro Text,
           sans-serif;
-        max-width: 196px;
+        max-width: 232px;
+        @media (max-width: 376px) {
+          max-width: 196px;
+        }
       }
       img {
         width: 128px;
@@ -64,13 +69,21 @@
   }
 }
 .subscription_plan_page {
-  main {
-    display: none !important;
+  #wellDoneSection + main {
+    opacity: 0;
+    &.is_hidden {
+      opacity: 0 !important;
+      pointer-events: none;
+      height: 0;
+      overflow: hidden;
+      visibility: hidden;
+    }
   }
   [data-overlay-container] {
     width: 100%;
   }
   #wellDoneSection {
+    position: relative;
     .section_header {
       .email_block {
         display: flex;
@@ -245,7 +258,15 @@
       }
     }
     .section_footer {
-      padding: 0 16px 16px;
+      .sticky_container {
+        padding: 0 16px 16px;
+        &.fixed-footer {
+          position: fixed;
+          bottom: 0;
+          width: 100%;
+          z-index: 1000;
+        }
+      }
       .get_my_insights_btn {
         display: flex;
         justify-content: center;
@@ -261,5 +282,18 @@
         line-height: 24px;
       }
     }
+  }
+}
+.new_btn_back {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  position: absolute;
+  left: 8px;
+  & + button {
+    display: none;
   }
 }

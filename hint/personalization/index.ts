@@ -1,4 +1,13 @@
-import { startLog, $el, $$el, waitForElement, visibilityOfTime, pushData, hjInterval } from '../../libraries'
+import {
+  startLog,
+  $el,
+  $$el,
+  waitForElement,
+  visibilityOfTime,
+  pushData,
+  hjInterval,
+  clarityInterval
+} from '../../libraries'
 import { paywallInfoBlock, wellDoneSection } from './blocks'
 import { content, svg } from './data'
 // @ts-ignore
@@ -32,6 +41,7 @@ class Personalization {
 
   init() {
     startLog({ name: 'Personalization (Paywall/Separate Page)', dev: 'SKh' })
+    clarityInterval('exp_hypothesis_2')
     this.observeMain()
 
     if (!$el('.crs_inter')) {
@@ -45,9 +55,15 @@ class Personalization {
       document.head.insertAdjacentHTML('beforeend', `<style class="crs_style">${mainStyle}</style>`)
     }
 
+    this.allFunctionsInitHandler()
+  }
+
+  // allFunctions
+  allFunctionsInitHandler() {
     if (this.checkPage() === 'paywall') {
       console.log(`paywall`)
       $el('#wellDoneSection')?.remove()
+      $el('.new_btn_back')?.remove()
       $el('body').classList.add('paywall_page')
       if ($el('body').classList.contains('subscription_plan_page')) {
         $el('body').classList.remove('subscription_plan_page')
@@ -55,14 +71,40 @@ class Personalization {
       this.renderPaywallInfoBlockHandler()
     } else if (this.checkPage() === 'subscriptionPlan') {
       console.log(`subscriptionPlan`)
-      $el('body').classList.add('subscription_plan_page')
       if ($el('body').classList.contains('paywall_page')) {
         $el('body').classList.remove('paywall_page')
       }
-      this.renderWellDoneSection()
+      $el('body').classList.add('subscription_plan_page')
+      let d = setInterval(() => {
+        if ($el('.subscription_plan_page main')) {
+          clearInterval(d)
+          $el('.subscription_plan_page main').classList.add('is_hidden')
+        }
+      }, 300)
+
+      if (!localStorage.getItem('wellDoneSection')) {
+        if ($el('main')) {
+          $el('main').style.display = 'none'
+        }
+
+        this.renderWellDoneSection()
+      }
+
+      if (localStorage.getItem('wellDoneSection')) {
+        // $el('main').style.display = 'block'
+        this.renderNewBtnBack()
+        let d = setInterval(() => {
+          if ($el('.subscription_plan_page main.is_hidden')) {
+            clearInterval(d)
+            $el('.subscription_plan_page main').classList.remove('is_hidden')
+          }
+        }, 300)
+      }
     } else {
       console.log(this.checkPage())
       $el('#wellDoneSection')?.remove()
+      $el('.new_btn_back')?.remove()
+
       if ($el('body').classList.contains('paywall_page')) {
         $el('body').classList.remove('paywall_page')
       }
@@ -79,29 +121,33 @@ class Personalization {
     if (data.birthday === null) return
     const year: number = data.birthday.year
     const goalHandler = this.getGoalHandler()
-    const relationshipStatusHandler = this.getRelationshipStatusHandler()
+    let relationshipStatusHandler = this.getRelationshipStatusHandler()
     const age = this.calculateAge(year)
 
-    if (goalHandler && relationshipStatusHandler && relationshipStatusHandler) {
-      for (const key in content) {
-        if (content.hasOwnProperty(key) && goalHandler.match(key)) {
-          const s = content[key]
-          s.forEach(i => {
-            if (relationshipStatusHandler.includes(i.relationshipStatus)) {
-              const ageGroup = i.ageGroups[age]
-              if (ageGroup) {
-                waitForElement('.trusted_wrapper__Qlbcw').then((element: HTMLElement) => {
-                  if (!$el('.paywall_info_block')) {
-                    element.insertAdjacentHTML(
-                      'afterend',
-                      paywallInfoBlock(ageGroup.title, ageGroup.txt, ageGroup.img, ageGroup.name, ageGroup.descr)
-                    )
-                  }
-                })
-              }
+    if (!goalHandler || !relationshipStatusHandler) return
+
+    if (!goalHandler.includes('Love & Relationship')) {
+      relationshipStatusHandler = 'unknown'
+    }
+
+    for (const key in content) {
+      if (content.hasOwnProperty(key) && goalHandler.match(key)) {
+        const s = content[key]
+        s.forEach(i => {
+          if (relationshipStatusHandler.includes(i.relationshipStatus)) {
+            const ageGroup = i.ageGroups[age]
+            if (ageGroup) {
+              waitForElement('.trusted_wrapper__Qlbcw').then((element: HTMLElement) => {
+                if (!$el('.paywall_info_block')) {
+                  element.insertAdjacentHTML(
+                    'afterend',
+                    paywallInfoBlock(ageGroup.title, ageGroup.txt, ageGroup.img, ageGroup.name, ageGroup.descr)
+                  )
+                }
+              })
             }
-          })
-        }
+          }
+        })
       }
     }
   }
@@ -116,7 +162,8 @@ class Personalization {
     const { day, month, year } = data.birthday
     const goalHandler = this.getGoalHandler()
     let relationshipStatusHandler = this.getRelationshipStatusHandler() || 'unknown'
-    const gender = this.gender?.includes('female') ? 'female' : 'male'
+
+    const gender = data.gender === '1' ? 'male' : 'female'
     const zodiacSign = this.getZodiacSign(day, month, year)
     const resonatedElementHandler = this.getResonatedElementHandler()
     const genderHandler = this.getGenderHandler()
@@ -131,23 +178,21 @@ class Personalization {
     )
       return
 
-    if (goalHandler.includes('Love & Relationship')) {
+    if (!goalHandler.includes('Love & Relationship')) {
       relationshipStatusHandler = 'unknown'
     }
     for (const key in content) {
       if (content.hasOwnProperty(key) && goalHandler.includes(key)) {
         const s = content[key]
         s.forEach(i => {
-          console.log(i, relationshipStatusHandler, i.relationshipStatus)
           if (relationshipStatusHandler.includes(i.relationshipStatus)) {
-            console.log(`>>>>>>`)
             const genderGroup = i.genderGroups[gender]
             const { imgBefore, imgAfter } = genderGroup
 
             waitForElement('main').then((element: HTMLElement) => {
-              if (!$el('.wellDoneSection')) {
+              if (!$el('#wellDoneSection')) {
                 element.insertAdjacentHTML(
-                  'afterend',
+                  'beforebegin',
                   wellDoneSection(
                     emailTxtFirtsLetter,
                     email,
@@ -163,12 +208,86 @@ class Personalization {
                 )
               }
             })
-
-            console.log(genderGroup, `genderGroup`)
+            this.clickGetMyInsightsBtnHandler()
+            this.toggleStickyGetMyInsightsBtnVisibility()
           }
         })
       }
     }
+
+    waitForElement('#wellDoneSection').then((element: HTMLElement) => {
+      pushData('exp_hyp2_visibility_01', 'Screen view', 'Visibility', 'Well done screen')
+    })
+  }
+  clickGetMyInsightsBtnHandler() {
+    waitForElement('.get_my_insights_btn').then((element: HTMLElement) => {
+      element.addEventListener('click', () => {
+        pushData('exp_hyp2_button_01', 'Get my insight', 'Button', 'Well done screen')
+        $el('.subscription_plan_page main').style.display = 'block'
+        if ($el('.subscription_plan_page main').classList.contains('is_hidden')) {
+          $el('.subscription_plan_page main').classList.remove('is_hidden')
+        }
+        $el('#wellDoneSection')?.remove()
+        localStorage.setItem('wellDoneSection', 'yes')
+        this.renderNewBtnBack()
+      })
+    })
+  }
+
+  toggleStickyGetMyInsightsBtnVisibility() {
+    waitForElement('#wellDoneSection').then(() => {
+      const footer = $el('.section_footer') as HTMLElement
+      const btn = $el('.sticky_container') as HTMLElement
+
+      const observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              if (btn.classList.contains('fixed-footer')) {
+                btn.classList.remove('fixed-footer')
+              }
+            } else {
+              if (!btn.classList.contains('fixed-footer')) {
+                btn.classList.add('fixed-footer')
+              }
+            }
+          })
+        },
+        {
+          root: null,
+          threshold: 0
+        }
+      )
+
+      observer.observe(footer)
+    })
+  }
+
+  renderNewBtnBack() {
+    waitForElement('header button').then((element: HTMLElement) => {
+      setTimeout(() => {
+        if (!$el('.new_btn_back')) {
+          element.insertAdjacentHTML('beforebegin', `<div class="new_btn_back">${svg.arrowLeftHeaderIcon}</div>`)
+        }
+        this.clickNewBtnBackSubscriptionPlanHandler()
+      }, 500)
+    })
+  }
+  clickNewBtnBackSubscriptionPlanHandler() {
+    waitForElement('.new_btn_back').then((element: HTMLElement) => {
+      element.addEventListener('click', () => {
+        pushData('exp_hyp2_button_02', 'Back', 'Button', 'Well done screen')
+        if (localStorage.getItem('wellDoneSection')) {
+          localStorage.removeItem('wellDoneSection')
+        }
+        $el('.subscription_plan_page main').style.display = 'none'
+        if (!$el('.subscription_plan_page main').classList.contains('is_hidden')) {
+          $el('.subscription_plan_page main').classList.add('is_hidden')
+        }
+        this.renderWellDoneSection()
+        element.remove()
+      })
+    })
   }
 
   // main
@@ -195,32 +314,8 @@ class Personalization {
         for (let node of mutation.removedNodes) {
           if (!(node instanceof HTMLElement)) continue
           if (node.tagName === 'MAIN') {
-            console.log(node)
-            if (this.checkPage() === 'paywall') {
-              console.log(`paywall`)
-              $el('#wellDoneSection')?.remove()
-              $el('body').classList.add('paywall_page')
-              if ($el('body').classList.contains('subscription_plan_page')) {
-                $el('body').classList.remove('subscription_plan_page')
-              }
-              this.renderPaywallInfoBlockHandler()
-            } else if (this.checkPage() === 'subscriptionPlan') {
-              console.log(`subscriptionPlan`)
-              $el('body').classList.add('subscription_plan_page')
-              if ($el('body').classList.contains('paywall_page')) {
-                $el('body').classList.remove('paywall_page')
-              }
-              this.renderWellDoneSection()
-            } else {
-              console.log(this.checkPage())
-              $el('#wellDoneSection')?.remove()
-              if ($el('body').classList.contains('paywall_page')) {
-                $el('body').classList.remove('paywall_page')
-              }
-              if ($el('body').classList.contains('subscription_plan_page')) {
-                $el('body').classList.remove('subscription_plan_page')
-              }
-            }
+            // console.log(node)
+            this.allFunctionsInitHandler()
           }
         }
       }
@@ -351,21 +446,6 @@ class Personalization {
 
     return this.favoriteColor
   }
-
-  calculateAge(birthYear: number): string {
-    const currentYear = new Date().getFullYear()
-    const age = currentYear - birthYear
-
-    if (age <= 35) {
-      return '18-35'
-    } else if (age >= 36 && age <= 55) {
-      return '36-55'
-    } else if (age >= 56) {
-      return '56+'
-    } else {
-      return 'unknown'
-    }
-  }
   getZodiacSign(day: number, month: number, year: number): string {
     if ((month == 1 && day >= 20) || (month == 2 && day <= 18)) {
       this.astrologicalSign = `${svg.aquariusIcon} Aquarius`
@@ -405,6 +485,20 @@ class Personalization {
       return this.astrologicalSign
     } else {
       return 'Invalid date'
+    }
+  }
+  calculateAge(birthYear: number): string {
+    const currentYear = new Date().getFullYear()
+    const age = currentYear - birthYear
+
+    if (age <= 35) {
+      return '18-35'
+    } else if (age >= 36 && age <= 55) {
+      return '36-55'
+    } else if (age >= 56) {
+      return '56+'
+    } else {
+      return 'unknown'
     }
   }
 }
