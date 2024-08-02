@@ -376,6 +376,10 @@ let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/sportstech/sticky_section_pdp.js";
 script.async = false;
 document.head.appendChild(script);
+let script = document.createElement("script");
+script.src = "https://conversionratestore.github.io/projects/sportstech/exit_intent_popup_relaunch.js";
+script.async = false;
+document.head.appendChild(script);
 //
 let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/sportstech/exit_intent_popup.js";
@@ -401,6 +405,10 @@ script.async = false;
 document.head.appendChild(script);
 let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/hint/select_trial_price_hyp_1_ver_2.js";
+script.async = false;
+document.head.appendChild(script);
+let script = document.createElement("script");
+script.src = "https://conversionratestore.github.io/projects/hint/personalization.js";
 script.async = false;
 document.head.appendChild(script);
 // cerebelly

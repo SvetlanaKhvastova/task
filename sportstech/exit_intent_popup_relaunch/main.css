@@ -1022,6 +1022,53 @@
   width: 100%;
   height: 100%;
 }
+.exit_intent_popup .check_out_now.first_var .header_popup {
+  margin-bottom: 24px;
+}
+@media (max-width: 768px) {
+  .exit_intent_popup .check_out_now.first_var .header_popup {
+    margin-bottom: 16px;
+  }
+}
+.exit_intent_popup .check_out_now.first_var .body_popup .popular_products {
+  margin: 24px 0;
+}
+@media (max-width: 768px) {
+  .exit_intent_popup .check_out_now.first_var .body_popup .popular_products {
+    margin: 16px 0;
+  }
+}
+.exit_intent_popup .check_out_now.first_var .body_popup .btn_wrapper {
+  gap: 24px;
+}
+@media (max-width: 768px) {
+  .exit_intent_popup .check_out_now.first_var .body_popup .btn_wrapper {
+    gap: 16px;
+    margin-top: 16px;
+  }
+}
+.exit_intent_popup .check_out_now.first_var .body_popup .new_txt_relaunch {
+  color: #000;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  margin: 0;
+  max-width: 390px;
+  line-height: initial;
+}
+@media (max-width: 768px) {
+  .exit_intent_popup .check_out_now.first_var .body_popup .new_txt_relaunch {
+    max-width: 289px;
+  }
+}
+.exit_intent_popup .check_out_now.first_var .body_popup .new_txt_relaunch br {
+  display: none;
+}
+@media (max-width: 768px) {
+  .exit_intent_popup .check_out_now.first_var .body_popup .new_txt_relaunch br {
+    display: block;
+  }
+}
 .exit_intent_popup .check_out_now.second_var .info_wrapper, .exit_intent_popup .check_out_now.third_var .info_wrapper {
   width: 100%;
   align-items: center;
@@ -1188,7 +1235,22 @@
     margin-top: 20px;
   }
 }
-
+@media (max-width: 768px) {
+  .check_out_now.large_popup .exit_intent_popup .check_out_now.first_var .header_popup {
+    margin-bottom: 16px;
+  }
+}
+@media (max-width: 768px) {
+  .check_out_now.large_popup .exit_intent_popup .check_out_now.first_var .body_popup .popular_products {
+    margin: 16px 0;
+  }
+}
+@media (max-width: 768px) {
+  .check_out_now.large_popup .exit_intent_popup .check_out_now.first_var .body_popup .btn_wrapper {
+    gap: 16px;
+    margin-top: 16px;
+  }
+}
 .check_out_now_third.large_popup .exit_intent_popup .info_wrapper .body_popup .products_wrapper,
 .check_out_now_second.large_popup .exit_intent_popup .info_wrapper .body_popup .products_wrapper {
   padding-right: 24px;

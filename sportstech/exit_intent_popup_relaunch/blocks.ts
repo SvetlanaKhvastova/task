@@ -176,8 +176,9 @@ export const checkOutNow = /* HTML */ `
           <div class="btn_wrapper">
             <div class="check_out_now_btn main_btn">ZUR KASSE</div>
             <p class="new_txt_relaunch">
-              Der 5%-Rabatt gilt ausschließlich für nicht reduzierte Artikel. Das Angebot kann nicht mit anderen
-              Rabatten, Aktionen oder Sonderangeboten kombiniert werden.
+              Der 5%-Rabatt gilt ausschließlich für nicht <br />
+              reduzierte Artikel. Das Angebot kann nicht mit anderen Rabatten, Aktionen oder Sonderangeboten kombiniert
+              werden.
             </p>
           </div>
         </div>
