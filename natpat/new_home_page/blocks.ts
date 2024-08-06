@@ -1,104 +1,6 @@
-import { svg, git, patches, reviews, press } from './data'
-
-export const guaranteeBlock = /* HTML */ `
-  <div class="guarantee_block">
-    ${svg.guaranteeIcon}
-    <span>365-day Money Back Guarantee </span>
-  </div>
-`
-
-export const differentInfoHeroBlock = /* HTML */ `
-  <div class="different_info_hero_block">
-    <div class="bgr_block">${svg.bgrIcon}</div>
-    <ul class="different_info_hero_list">
-      <li>
-        ${svg.nonToxicIcon}
-        <span>Non Toxic, DEET free</span>
-      </li>
-      <li>
-        ${svg.safeForKidsIcon}
-        <span>Safe for kids (0+)</span>
-      </li>
-      <li>
-        ${svg.designedInAustraliaIcon}
-        <span>Designed in Australia</span>
-      </li>
-      <li>
-        ${svg.freeShippingIcon}
-        <span>FREE Shipping </span>
-      </li>
-    </ul>
-  </div>
-`
-
-export const shopByCategoryBlock = /* HTML */ `
-  <div class="shop_by_category_block">
-    <h2>SHOP BY CATEGORY</h2>
-    <ul>
-      <li class="wellness_item">
-        <a href="/collections/wellness-cognitive">
-          <!-- <img
-            src="https://conversionratestore.github.io/projects/buzzpatch/img/wellness_item_1.png"
-            alt=">Wellness & Cognitive"
-          /> -->
-          <div>
-            ${svg.wellnessIcon}
-            <p>Wellness & Cognitive</p>
-            <span>${svg.arrowRightIcon}</span>
-          </div>
-        </a>
-      </li>
-      <li class="outdoor_protection_item">
-        <a href="/collections/outdoor-protection">
-          <!-- <img
-            src="https://conversionratestore.github.io/projects/buzzpatch/img/wellness_item_2.png"
-            alt="Outdoor Protection"
-          /> -->
-          <div>
-            ${svg.outdoorProtectionIcon}
-            <p>Outdoor Protection</p>
-            <span>${svg.arrowRightIcon}</span>
-          </div>
-        </a>
-      </li>
-      <li class="allergy_relief_item">
-        <a href="/collections/respiratory-allergy-relief">
-          <!-- <img
-            src="https://conversionratestore.github.io/projects/buzzpatch/img/wellness_item_3.png"
-            alt="Respiratory & Allergy Relief"
-          /> -->
-          <div>
-            ${svg.respiratoryAllergyReliefIcon}
-            <p>Respiratory & Allergy Relief</p>
-            <span>${svg.arrowRightIcon}</span>
-          </div>
-        </a>
-      </li>
-      <li class="pets_item">
-        <a href="/collections/pets">
-          <!-- <img src="https://conversionratestore.github.io/projects/buzzpatch/img/wellness_item_4.png" alt="Pets" /> -->
-          <div>
-            ${svg.petsIcon}
-            <p>Pets</p>
-            <span>${svg.arrowRightIcon}</span>
-          </div>
-        </a>
-      </li>
-    </ul>
-  </div>
-`
-
-export const stickyBlock = /* HTML */ `
-  <div class="sticky_block">
-    <div class="title_wrapper">
-      <h2>Natural Solutions for Enhanced Well-being</h2>
-      <p>Better Sleep, Improved Mood, Sharper Focus, and More!</p>
-    </div>
-    <div class="explore_stickers_btn">Explore NatPat Stickers</div>
-  </div>
-`
-
-// ________________________________________________________ver 1
+import { git, reviews, press, sliderData, patches } from './data'
+// @ts-ignore
+import markdownFileContent from './styles.css?raw'
 
 const temp = /* HTML */ `
   <section>
@@ -173,9 +75,12 @@ export const upBtn = /* HTML */ `
   </div>
 `
 
-export const mainBlock = () => {
+export const mainBlock = device => {
   return /* HTML */ `
     <section class="new_main_block">
+      <style>
+        ${markdownFileContent}
+      </style>
       <span class="hi desktop">
         <img src="${git}/img/new-home-page/side.svg" alt="hi" />
       </span>
@@ -188,45 +93,33 @@ export const mainBlock = () => {
         Natural solutions for better<br class="desktop" />
         sleep, mood, focus and more!
       </h1>
+      <div class="images">
+        <a href="/collections/wellness-cognitive"
+          ><img src="${git}/img/new-home-page/img_1${device === 'mobile' ? '_mob' : ''}.webp" alt="img1"
+        /></a>
+        <a href="/collections/outdoor-protection"
+          ><img src="${git}/img/new-home-page/img_2${device === 'mobile' ? '_mob' : ''}.webp" alt="img2"
+        /></a>
+        <a href="/collections/respiratory-allergy-relief"
+          ><img src="${git}/img/new-home-page/img_3.webp" alt="img3"
+        /></a>
+      </div>
+      <ul class="points content_wrapper">
+        <li><img src="${git}/img/new-home-page/non-toxic.svg" alt="non_toxic" /><span>Non Toxic, DEET free</span></li>
+        <li><img src="${git}/img/new-home-page/baby-boy.svg" alt="kid" /><span>Safe for kids (0+)</span></li>
+        <li><img src="${git}/img/new-home-page/australia.svg" alt="au" /><span>Designed in Australia</span></li>
+        <li><img src="${git}/img/new-home-page/express-delivery.svg" alt="ship" /><span>FREE Shipping </span></li>
+      </ul>
       <a class="total_reviews mobile" href="#">
         <img src="${git}/img/new-home-page/stars_green.svg" alt="stars" />
         <span>Excellent | 2,943</span>
         <span>Customer reviews</span>
       </a>
-      <div class="big-stickers">
-        <div class="swiper-container ">
-          <div class="swiper-wrapper parent_slider">
-            <div class="swiper-slide buzzpatch_bundles_var">
-              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_2.png" alt="Mosquito Repellent Stickers" />
-              <a class="shop_now_link" href="/en-eu/products/buzzpatch-bundles">shop now</a>
-            </div>
-            <div class="swiper-slide sleepypatch_sleep_promoting_stickers_var">
-              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_3.png" alt="Sleep Promoting Stickers" />
-              <a class="shop_now_link" href="/en-eu/products/sleepypatch-sleep-promoting-stickers">shop now</a>
-            </div>
-            <div class="swiper-slide zenpatch_mood_calming_stickers_var">
-              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_4.png" alt="Mood Calming Patches" />
-              <a class="shop_now_link" href="/en-eu/products/zenpatch-mood-calming-stickers">shop now</a>
-            </div>
-            <div class="swiper-slide zenpatch_pet_stickers_var">
-              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_5.png" alt="Pet Zen Vapor Stickers" />
-              <a class="shop_now_link" href="/en-eu/products/zenpatch-pet-stickers">shop now</a>
-            </div>
-            <div class="swiper-slide trailpatch_kids_tick_repellent_stickers_var">
-              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_1.png" alt="Kids Tick Repellent Stickers" />
-              <a class="shop_now_link" href="/en-eu/products/trailpatch-kids-tick-repellent-stickers">shop now</a>
-            </div>
-          </div>
-          <div class="slider_dots">
-            <span><i></i></span>
-            <span><i></i></span>
-            <span><i></i></span>
-            <span><i></i></span>
-            <span><i></i></span>
-          </div>
-        </div>
-      </div>
       <a class="crs_btn" href="/collections/homepage">Explore NatPat Stickers</a>
+      <p>
+        <img src="${git}/img/new-home-page/express-delivery.svg" alt="ship" />
+        FREE Shipping | 365-day Money Back Guarantee
+      </p>
     </section>
   `
 }
@@ -288,7 +181,7 @@ export const sliderNews = /* HTML */ ` <section class="new_slider_news">
       .map((p, i) => {
         return /* HTML */ `
           <div class="slide">
-            <div class="bg"><img src="${p.imgBgr}" /></div>
+            <div class="bg"><img src="${git}/img/slide_bg_${i + 1}.png" /></div>
             <p>${p.text}</p>
             <img src="${p.img}" alt="press logo" />
           </div>
@@ -438,13 +331,13 @@ export const info2Block = /* HTML */ `
             href="/products/allergypatch-allergy-relief-stickers"
             >allergy relief stickers</a
           >, designed to ease symptoms naturally.<br /><br />
-          NATPAT also offers specialized solutions for mosquito protection. <br />
-          Their <a href="/products/adult-buzzpatch-mosquito-repellent-patches"> mosquito patches for adults </a> and <a
-            href="/products/buzzpatch-bundles"
-            >mosquito patches for kids</a
-          > are a safe, chemical-free way to keep mosquitoes at bay. Additionally, the <a href="/pages/buzzpatch"
-            >mosquito stickers</a
-          >  provide a fun and effective alternative for children.<br /><br />
+          NATPAT also offers specialized solutions for mosquito protection. Their <a
+            href="/products/adult-buzzpatch-mosquito-repellent-patches"
+          >
+            mosquito patches for adults </a
+          > and <a href="/products/buzzpatch-bundles">mosquito patches for kids</a> are a safe, chemical-free way to
+          keep mosquitoes at bay. Additionally, the <a href="/pages/buzzpatch">mosquito stickers</a>  provide a fun and
+          effective alternative for children.<br /><br />
           In essence, NATPAT is more than just a brand; it's a lifestyle choice for those who prioritize health,
           wellness, and natural solutions in their daily lives.
         </p>

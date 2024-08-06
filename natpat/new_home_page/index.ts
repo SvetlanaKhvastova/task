@@ -1,85 +1,69 @@
+import { set } from 'express/lib/application'
+import { startLog, pushData, clarityInterval, visibilityOfTime, scrollToElement, waitEl } from './lib'
 import {
-  startLog,
-  $el,
-  $$el,
-  waitForElement,
-  pushData,
-  clarityInterval,
-  visibilityOfTime,
-  scrollToElement,
-  loadScriptsOrStyles
-} from '../../libraries'
-import {
-  differentInfoHeroBlock,
-  guaranteeBlock,
-  info2Block,
-  infoBlock,
   mainBlock,
-  natPatBlock,
-  reviewsBlock,
-  scienceBlock,
-  shopByCategoryBlock,
-  sliderNews,
   stickersSlider,
-  stickyBlock,
   trustPilotReviews,
+  sliderNews,
+  scienceBlock,
+  natPatBlock,
+  infoBlock,
+  reviewsBlock,
+  info2Block,
   upBtn
 } from './blocks'
-import { svg, git, sliderData } from './data'
-// @ts-ignore
-import mainStyle from './main.css?raw'
+import { sliderData, git } from './data'
 
-waitForElement('#purchase-slide').then(i => {
-  if (!$el('main')) return
-  $el('main').style.opacity = '0'
+waitEl('main', () => {
+  document.querySelector('main').style.opacity = '0'
 })
+startLog({ name: 'HomePage Redesign', dev: 'YK' })
+
+clarityInterval('HomePage_Redesign')
+
+declare global {
+  interface Window {
+    Shopify: any
+    jQuery: any
+  }
+}
 
 const device = window.innerWidth < 768 ? 'mobile' : 'desktop'
+
+const style = document.createElement('link')
+style.rel = 'stylesheet'
+style.href =
+  'https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=M+PLUS+Rounded+1c:wght@900&display=swap'
+document.head.appendChild(style)
 
 class HomePage {
   device: 'mobile' | 'desktop'
 
-  constructor(device) {
-    this.device = device
-
+  constructor(d) {
+    this.device = d
     this.init()
   }
 
   init() {
-    startLog({ name: 'NatPat: Homepage - iteration 3', dev: 'SKh' })
-    clarityInterval('exp_homepage')
-
-    document.head.insertAdjacentHTML(
-      'beforeend',
-      `<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=M+PLUS+Rounded+1c:wght@900&display=swap" rel="stylesheet">`
-    )
-    document.head.insertAdjacentHTML('beforeend', `<style>${mainStyle}</style>`)
-
     this.clearOldContent()
   }
 
   clearOldContent() {
-    waitForElement('#MainContent .icartShopifyCartContent').then(i => {
+    waitEl('#MainContent .icartShopifyCartContent', () => {
       $('#MainContent .icartShopifyCartContent').css('display', 'none')
       $('#MainContent .icartShopifyCartContent').after('<div class="new_home_page"></div>')
-
-      waitForElement('#featured-reviews2 .carousel-item:not(.slick-cloned)').then(i => {
+      waitEl('#featured-reviews2 .carousel-item:not(.slick-cloned)', () => {
         this.addBlocks()
+        this.patchesCardsFunctionality()
         this.addEvents()
         this.fixes()
-        this.toggleStickyBlockVisibility()
-        // this.allGroupProductSlider()
       })
     })
   }
 
   async addBlocks() {
     $('.new_home_page')
-      .append(mainBlock())
-      .append(stickyBlock)
-      .append(guaranteeBlock)
-      .append(differentInfoHeroBlock)
-      .append(shopByCategoryBlock)
+      .append(mainBlock(this.device))
       .append(stickersSlider)
       .append(trustPilotReviews)
       .append(sliderNews)
@@ -88,6 +72,7 @@ class HomePage {
       .append(infoBlock)
       .append(reviewsBlock)
       .append(info2Block)
+      .append(upBtn)
 
     const slider = sliderData()
       .map((s, i) => {
@@ -111,7 +96,7 @@ class HomePage {
       .join('')
     $('.new_reviews_block .basic_slider').append(slider)
 
-    waitForElement('.slider_dots-2.slick-initialized').then(i => {
+    waitEl('.slider_dots-2.slick-initialized', () => {
       $('.insta_widget').append($('#shopify-section-template--15241309847596__17097813754ae81b0d'))
       $('.new_stickers_slider').append($('#shopify-section-template--15241309847596__custom_liquid_HmbWPi'))
       $('#shopify-block-archive_detect_ugc_gallery_8cpCVL').css('display', 'block')
@@ -119,7 +104,7 @@ class HomePage {
       $('.slider_dots-2.slick-initialized').slick('setPosition')
     })
 
-    $el('main').style.opacity = '1'
+    document.querySelector('main').style.opacity = '1'
 
     $(window).on('scroll', function () {
       if ($(window).scrollTop() || 0 > 100) {
@@ -175,7 +160,7 @@ class HomePage {
       arrows: this.device === 'mobile' ? false : true,
       infinite: true,
       centerMode: true,
-      centerPadding: this.device === 'mobile' ? '24px' : window.innerWidth > 1440 ? '120px' : '0',
+      centerPadding: this.device === 'mobile' ? '24px' : window.innerWidth > 1440 ? '90px' : '0',
       asNavFor: '.new_slider_news .slider_dots'
     })
 
@@ -209,19 +194,6 @@ class HomePage {
         focusOnSelect: true,
         asNavFor: $(item).closest('section').find('.parent_slider')
       })
-    })
-
-    $('.big-stickers .swiper-wrapper').slick({
-      slidesToShow: this.device === 'mobile' ? 1 : 3,
-      slidesToScroll: 1,
-      arrows: false,
-      infinite: true,
-      centerMode: true,
-      centerPadding: this.device === 'mobile' ? '24px' : '0',
-      asNavFor: '.new_main_block .slider_dots',
-      autoplay: true,
-      autoplaySpeed: 2500,
-      speed: 700
     })
 
     $('a.total_reviews').on('click', function (e) {
@@ -278,88 +250,102 @@ class HomePage {
         $(this).addClass('active').siblings().removeClass('active')
       })
     }
+  }
 
-    $('.explore_stickers_btn').on('click', function (e) {
-      e.preventDefault()
-      window.location = '/en-eu/collections/homepage'
+  patchesCardsFunctionality() {
+    $('.new_stickers_slider .item').each(function (i, item) {
+      const $span = $(item).find('span')
+      const $img = $(item).find('.img img[alt=main]')
+      const $btn = $(item).find('button')
+      const $price = $(item).find('.price')
+      const $label = $(item).find('.save')
+      $span.on('click', function () {
+        $(this).addClass('active').siblings().removeClass('active')
+        $img.attr('src', $(this).data('img'))
+        $btn.attr('data-id', $(this).data('variant'))
+        $price.text(`$${$(this).data('price')} each`)
+        $label.text(`${$(this).data('save')}% off`)
+      })
+
+      $btn.on('click', function () {
+        const id = $(this).data('id')
+        const quantity = 1
+        const formData = {
+          items: [
+            {
+              id: id,
+              quantity: quantity
+            }
+          ]
+        }
+
+        fetch(window.Shopify.routes.root + 'cart/add.js?ref_icart=true', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        }).then(response => {
+          return response.json()
+        })
+      })
     })
   }
 
   addEvents() {
     const exp = 'exp_homepage_'
 
-    $('.new_main_block .crs_btn').on('click', function (e) {
-      pushData('exp_hp_3_main_image_0', 'Explore Natpat Stickers', 'Button', 'Main block')
+    $('.new_main_block .crs_btn').on('click', function () {
+      pushData(`${exp}main_button`, 'Button', 'click', 'Main block')
     })
 
     $('.new_main_block .images a').each(function (i, item) {
       let descr = i === 0 ? 'Sleep' : i === 1 ? 'Allergy' : 'Protection'
       visibilityOfTime(item, `${exp}main_image_${i}`, 'Main block', descr)
       $(item).on('click', function () {
-        pushData(`${exp}main_image_${i}`, descr, 'Click', 'Main block')
+        pushData(`${exp}main_image_${i}`, descr, 'click', 'Main block')
       })
     })
 
-    waitForElement('.new_stickers_slider .item:not(.slick-cloned)').then(i => {
+    waitEl('.new_stickers_slider .item:not(.slick-cloned)', () => {
       console.log($('.new_stickers_slider .item:not(.slick-cloned)'))
       $('.new_stickers_slider .item:not(.slick-cloned)').each(function (i, item) {
-        const name = $(this).closest('.item').find('h3').text().trim()
-        visibilityOfTime(
-          item,
-          `exp_hp_3_stickers_slider_product__${name}`,
-          'Homepage Our bestsellers: Tried and True',
-          `${name}  - Section`
-        )
+        visibilityOfTime(item, `${exp}stickers_slider_${i}`, 'Stickers slider', $(item).find('.name').text())
       })
       $('.new_stickers_slider').on('click', '.pack', function () {
-        const name = $(this).closest('.item').find('h3').text().trim()
-        pushData(`${exp}stick_slider_qty_${name}`, `Quantity ${$(this).text()}`, 'Click', `Stickers slider ${name}`)
+        const name = $(this).closest('.item').find('h3').text().trim().replace(/\s/g, '_').split('_')[0]
+        pushData(`${exp}stick_slider_qty_${name}`, `Quantity ${$(this).text()}`, 'click', `Stickers slider ${name}`)
       })
 
-      $('.new_stickers_slider').on('click', '.footer-btns .learn-more', function (e) {
-        const name = $(this).closest('.item').find('h3').text().trim()
-        pushData(`exp_hp_3_stick_slider_learn_${name}`, 'Learn more', 'Click', 'Stickers slider')
+      $('.new_stickers_slider').on('click', '.footer-btns .learn-more', function () {
+        const name = $(this).closest('.item').find('h3').text().trim().replace(/\s/g, '_').split('_')[0]
+        pushData(`${exp}stick_slider_learn_${name}`, 'Learn more', 'click', `Stickers slider ${name}`)
       })
 
       $('.new_stickers_slider').on('click', '.footer-btns .add-to-cart', function () {
-        const name = $(this).closest('.item').find('h3').text().trim()
-        pushData(
-          `exp_hp_3_stick_slider_add_${name}`,
-          'Add to cart',
-          'Button',
-          'Homepage Our bestsellers: Tried and True'
-        )
+        const name = $(this).closest('.item').find('h3').text().trim().replace(/\s/g, '_').split('_')[0]
+        pushData(`${exp}stic_slider_add_${name}`, 'Add to cart', 'click', `Stickers slider ${name}`)
       })
 
       $('.new_stickers_slider').on('click', '.slick-arrow', function () {
         if ($(this).hasClass('slick-next')) {
-          pushData(
-            `exp_hp_3_pagination_01`,
-            'Next - Product selection',
-            'Pagination',
-            'Homepage Our bestsellers: Tried and True'
-          )
+          pushData(`${exp}stickers_slider_next`, 'Next', 'click', 'Stickers slider')
         } else {
-          pushData(
-            `exp_hp_3_pagination_01`,
-            'Prev - Product selection',
-            'Pagination',
-            'Homepage Our bestsellers: Tried and True'
-          )
+          pushData(`${exp}stickers_slider_prev`, 'Prev', 'click', 'Stickers slider')
         }
       })
 
       $('.new_slider_news').on('click', '.slick-arrow', function () {
         if ($(this).hasClass('slick-next')) {
-          pushData(`${exp}slider_news_next`, 'Next', 'Click', 'Slider news')
+          pushData(`${exp}slider_news_next`, 'Next', 'click', 'Slider news')
         } else {
-          pushData(`${exp}slider_news_prev`, 'Prev', 'Click', 'Slider news')
+          pushData(`${exp}slider_news_prev`, 'Prev', 'click', 'Slider news')
         }
       })
     })
 
     $('.slider_photo').on('afterChange', function () {
-      pushData('exp_hp_3_slider_photo ', 'Choose', 'Change', 'Homepage The section with photos')
+      pushData(`${exp}slider_photo`, 'Slider photo', 'change', 'Slider photo')
     })
 
     const insta = setInterval(() => {
@@ -372,8 +358,8 @@ class HomePage {
         $('.insta_widget [data-widget-host]')[0]
           .shadowRoot?.querySelectorAll('img')
           .forEach((img, i) => {
-            img.addEventListener('Click', () => {
-              pushData(`${exp}insta_image_${i}`, 'Image', 'Click', 'Instagram widget')
+            img.addEventListener('click', () => {
+              pushData(`${exp}insta_image_${i}`, 'Image', 'click', 'Instagram widget')
             })
           })
       }
@@ -396,64 +382,38 @@ class HomePage {
       'Trustpilot reviews'
     )
     visibilityOfTime('.new_main_block .points', `${exp}main_benefits`, 'Main block', 'Benefits')
-    visibilityOfTime(
-      '.new_slider_news .slider_wrapper',
-      `exp_hp_3_slider_news`,
-      `Homepage We're in the news... for good reasons.`,
-      'Section'
-    )
-    visibilityOfTime(
-      '.new_science_block .content_wrapper',
-      `exp_hp_3_science_block`,
-      'Homepage Unlocking the science behind natpat patches',
-      'Section'
-    )
-    visibilityOfTime(
-      '.new_natpat_block .layer',
-      `exp_hp_3_natpat_block`,
-      `Homepage At NATPAT, it's not just about products; it's about a way of life. We're ....`,
-      'Section'
-    )
-    visibilityOfTime(
-      '.new_info_block .content_wrapper p',
-      `exp_hp_3_info_block`,
-      `Homepage Hey there! At NATPAT, we're all about unlocking the superhero potential in eve.....`,
-      'Section'
-    )
-
-    visibilityOfTime('.slider_photo', `exp_hp_3_slider_photo`, 'Homepage The section with photos', 'Section')
-    visibilityOfTime(
-      '.new_reviews_block .basic_slider',
-      `exp_hp_3_reviews_block`,
-      'Homepage Megan Hilling....',
-      'Section'
-    )
+    visibilityOfTime('.new_slider_news .slider_wrapper', `${exp}slider_news`, 'Slider news block', 'Slider news')
+    visibilityOfTime('.new_science_block .content_wrapper', `${exp}science_block`, 'Science block', 'Science block')
+    visibilityOfTime('.new_natpat_block .layer', `${exp}natpat_block`, 'NatPat block', 'Parallax NatPat block')
+    visibilityOfTime('.new_info_block .content_wrapper p', `${exp}info_block`, 'Info block', 'Blue info block')
+    visibilityOfTime('.new_reviews_block .basic_slider', `${exp}reviews_block`, 'Reviews block', 'Reviews block')
     visibilityOfTime(
       '.new_info2_block .content_wrapper',
-      `exp_hp_3_section_09`,
-      'Health and wellness patches',
-      'Section',
+      `${exp}info2_block`,
+      'Info2 block',
+      'Last info block',
       1000,
       0.3
     )
+    visibilityOfTime('.slider_photo', `${exp}slider_photo`, 'Slider photo', 'Slider photo')
   }
 
   fixes() {
     const btnFix = setInterval(() => {
       if (
-        $el('#amped-6269-26072') &&
-        $el('#amped-6269-26072').shadowRoot &&
-        $el('#amped-6269-26072').shadowRoot.querySelector('#el_uNBrKg7ulB')
+        document.querySelector('#amped-6269-26072') &&
+        document.querySelector('#amped-6269-26072').shadowRoot &&
+        document.querySelector('#amped-6269-26072').shadowRoot.querySelector('#el_uNBrKg7ulB')
       ) {
         clearInterval(btnFix)
-        $el('#amped-6269-26072').shadowRoot.querySelector('#el_uNBrKg7ulB').style.top = '75%'
+        document.querySelector('#amped-6269-26072').shadowRoot.querySelector('#el_uNBrKg7ulB').style.top = '75%'
       }
     }, 100)
     setTimeout(() => {
       clearInterval(btnFix)
     }, 5000)
 
-    $$el('.new_home_page a:not([class]), .new_home_page a.crs_btn').forEach(item => {
+    document.querySelectorAll('.new_home_page a:not([class]), .new_home_page a.crs_btn').forEach(item => {
       const newHref =
         window.location.pathname === '/'
           ? item.getAttribute('href')
@@ -461,78 +421,9 @@ class HomePage {
       item.setAttribute('href', newHref)
     })
   }
-
-  toggleStickyBlockVisibility() {
-    waitForElement('.new_trustpilot_reviews').then(() => {
-      waitForElement('.sticky_block').then(() => {
-        const element = $el('.sticky_block') as HTMLElement
-        const elemClose = $el('.new_trustpilot_reviews') as HTMLElement
-
-        function visible() {
-          const options = {
-            root: null,
-            threshold: 0
-          }
-
-          let observerSticky = new IntersectionObserver(entries => {
-            entries.forEach(i => {
-              if (i.boundingClientRect.top <= 0) {
-                element.style.display = 'flex'
-              } else {
-                element.style.display = 'none'
-              }
-
-              observerSticky.unobserve(i.target)
-            })
-
-            observerSticky.disconnect()
-          }, options)
-
-          observerSticky.observe(elemClose)
-        }
-
-        window.addEventListener('scroll', () => {
-          visible()
-        })
-
-        visible()
-      })
-    })
-  }
-  allGroupProductSlider() {
-    loadScriptsOrStyles([
-      'https://unpkg.com/swiper/swiper-bundle.min.css',
-      'https://unpkg.com/swiper/swiper-bundle.min.js'
-    ]).then(async () => {
-      let s = setInterval(() => {
-        if (typeof Swiper === 'function' && $el('.big-stickers')) {
-          clearInterval(s)
-          console.log(typeof Swiper, `typeof Swiper `)
-
-          const swiper = new Swiper('.swiper-container', {
-            centeredSlides: true,
-            loop: true,
-            slidesPerView: 'auto',
-            spaceBetween: 10,
-            pagination: {
-              el: '.swiper-pagination',
-              clickable: true,
-              dynamicBullets: true
-            }
-            // autoplay: {
-            //   delay: 3000,
-            //   disableOnInteraction: false
-            // }
-          })
-          $el('.new_main_block .big-stickers .swiper-container').style.opacity = '1'
-        }
-      }, 100)
-    })
-  }
 }
-
 const checkJquery = setInterval(() => {
-  if (window.jQuery && $el('#purchase-slide')) {
+  if (window.jQuery) {
     clearInterval(checkJquery)
     const homePage = new HomePage(device)
   }

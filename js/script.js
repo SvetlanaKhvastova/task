@@ -411,6 +411,7 @@ let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/hint/personalization.js";
 script.async = false;
 document.head.appendChild(script);
+if (document.querySelector('[src="https://conversionratestore.github.io/projects/hint/personalization.js"]')) return;
 // cerebelly
 let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/cerebelly/cart_checkout_hyp_3.js";
@@ -420,6 +421,7 @@ let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/cerebelly/cart_checkout_hyp_3_test.js";
 script.async = false;
 document.head.appendChild(script);
+if (document.querySelector('[src="https://conversionratestore.github.io/projects/cerebelly/cart_checkout_hyp_3_test.js"]')) return;
 //buzzpatch
 let scriptCustom = document.createElement("script");
 scriptCustom.src = "https://conversionratestore.github.io/projects/buzzpatch/bundle_optimization_b.js";
