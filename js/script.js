@@ -431,3 +431,8 @@ let scriptCustom = document.createElement("script");
 scriptCustom.src = "https://conversionratestore.github.io/projects/buzzpatch/bundle_optimization_c.js";
 scriptCustom.async = false;
 document.head.appendChild(scriptCustom);
+// natpat
+let scriptCustom = document.createElement("script");
+scriptCustom.src = "https://conversionratestore.github.io/projects/buzzpatch/homepage_iteration_3.js";
+scriptCustom.async = false;
+document.head.appendChild(scriptCustom);

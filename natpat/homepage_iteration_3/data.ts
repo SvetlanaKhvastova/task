@@ -66,6 +66,15 @@ export const svg = {
       />
     </svg>
   `,
+  guaranteeIconMob: `
+  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+  <path d="M12.4999 22.7869C6.67506 22.7869 1.95306 18.0619 1.95306 12.2332C1.95306 6.40466 6.67506 1.67966 12.4999 1.67966C18.3248 1.67966 23.0468 6.40466 23.0468 12.2332C23.0468 16.5869 20.4123 20.3248 16.6515 21.9378" stroke="#1F4FC9" stroke-width="1.8" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M11.3893 21.347L12.4999 22.7869L11.2486 24.0391" stroke="#1F4FC9" stroke-width="1.8" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M10.3535 14.1114C10.3535 15.1486 11.3145 15.9895 12.5 15.9895C13.6854 15.9895 14.6463 15.1486 14.6463 14.1114C14.6463 13.0741 13.6854 12.2332 12.5 12.2332C11.3145 12.2332 10.3535 11.3923 10.3535 10.355C10.3535 9.31778 11.3145 8.47689 12.5 8.47689C13.6854 8.47689 14.6463 9.31778 14.6463 10.355" stroke="#1F4FC9" stroke-width="1.8" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M12.4999 6.79696V8.47705" stroke="#1F4FC9" stroke-width="1.8" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M12.4999 15.9896V17.6697" stroke="#1F4FC9" stroke-width="1.8" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+  `,
   nonToxicIcon: /* HTML */ `
     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
       <g clip-path="url(#clip0_2915_4525)">

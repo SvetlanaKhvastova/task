@@ -2,7 +2,7 @@ import { svg, git, patches, reviews, press } from './data'
 
 export const guaranteeBlock = /* HTML */ `
   <div class="guarantee_block">
-    ${svg.guaranteeIcon}
+    ${innerWidth > 768 ? svg.guaranteeIcon : svg.guaranteeIconMob}
     <span>365-day Money Back Guarantee </span>
   </div>
 `
@@ -37,10 +37,6 @@ export const shopByCategoryBlock = /* HTML */ `
     <ul>
       <li class="wellness_item">
         <a href="/collections/wellness-cognitive">
-          <!-- <img
-            src="https://conversionratestore.github.io/projects/buzzpatch/img/wellness_item_1.png"
-            alt=">Wellness & Cognitive"
-          /> -->
           <div>
             ${svg.wellnessIcon}
             <p>Wellness & Cognitive</p>
@@ -50,10 +46,6 @@ export const shopByCategoryBlock = /* HTML */ `
       </li>
       <li class="outdoor_protection_item">
         <a href="/collections/outdoor-protection">
-          <!-- <img
-            src="https://conversionratestore.github.io/projects/buzzpatch/img/wellness_item_2.png"
-            alt="Outdoor Protection"
-          /> -->
           <div>
             ${svg.outdoorProtectionIcon}
             <p>Outdoor Protection</p>
@@ -63,10 +55,6 @@ export const shopByCategoryBlock = /* HTML */ `
       </li>
       <li class="allergy_relief_item">
         <a href="/collections/respiratory-allergy-relief">
-          <!-- <img
-            src="https://conversionratestore.github.io/projects/buzzpatch/img/wellness_item_3.png"
-            alt="Respiratory & Allergy Relief"
-          /> -->
           <div>
             ${svg.respiratoryAllergyReliefIcon}
             <p>Respiratory & Allergy Relief</p>
@@ -76,7 +64,6 @@ export const shopByCategoryBlock = /* HTML */ `
       </li>
       <li class="pets_item">
         <a href="/collections/pets">
-          <!-- <img src="https://conversionratestore.github.io/projects/buzzpatch/img/wellness_item_4.png" alt="Pets" /> -->
           <div>
             ${svg.petsIcon}
             <p>Pets</p>
@@ -94,66 +81,11 @@ export const stickyBlock = /* HTML */ `
       <h2>Natural Solutions for Enhanced Well-being</h2>
       <p>Better Sleep, Improved Mood, Sharper Focus, and More!</p>
     </div>
-    <div class="explore_stickers_btn">Explore NatPat Stickers</div>
+    <div class="explore_stickers_btn">Explore all products</div>
   </div>
 `
 
 // ________________________________________________________ver 1
-
-const temp = /* HTML */ `
-  <section>
-    <h2>Discover our plant-powered sticker range</h2>
-    <div class="content_wrapper">
-      <div class="slider_wrapper parent_slider">
-        ${patches
-          .map((p, i) => {
-            return /* HTML */ ` <div class="item">
-              <img src="${git}/img/new-home-page/as_seen.svg" class="tv" alt="tv" />
-              <span class="save">40% off</span>
-              <div class="img">
-                <img src="${p.img[2]}" alt="main" />
-                <img class="sub_img" src="${p.img2}" alt="illustration" />
-              </div>
-              <p class="name">${p.name}</p>
-              <p class="sub_text">${p.subText}</p>
-              <div class="qty">
-                <span
-                  class="active"
-                  data-variant="${p.variants[2]}"
-                  data-img="${p.img[2]}"
-                  data-price="12.00"
-                  data-save="40"
-                  >3 packs</span
-                >
-                <span data-variant="${p.variants[0]}" data-img="${p.img[0]}" data-price="14.99" data-save="50"
-                  >1 pack</span
-                >
-                <span data-variant="${p.variants[1]}" data-img="${p.img[1]}" data-price="13.50" data-save="33"
-                  >2 packs</span
-                >
-                <span data-variant="${p.variants[3]}" data-img="${p.img[3]}" data-price="10.50" data-save="48"
-                  >4 packs</span
-                >
-              </div>
-              <p class="price">$12.00 each</p>
-              <div class="btns">
-                <a href="${p.link}">Learn More</a>
-                <button data-id="${p.variants[2]}">Add to cart</button>
-              </div>
-            </div>`
-          })
-          .join('')}
-      </div>
-      <div class="slider_dots slider_dots1">
-        <span><i></i></span>
-        <span><i></i></span>
-        <span><i></i></span>
-        <span><i></i></span>
-      </div>
-    </div>
-  </section>
-`
-
 export const upBtn = /* HTML */ `
   <div class="up_btn">
     <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 52 52" fill="none">
@@ -194,29 +126,62 @@ export const mainBlock = () => {
         <span>Customer reviews</span>
       </a>
       <div class="big-stickers">
-        <div class="swiper-container ">
-          <div class="swiper-wrapper parent_slider">
+        <div class="swiper-container">
+          ${innerWidth > 768
+            ? `<div class="swiper-wrapper parent_slider">
             <div class="swiper-slide buzzpatch_bundles_var">
+              <span>Mosquito Repellent Stickers</span>
               <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_2.png" alt="Mosquito Repellent Stickers" />
-              <a class="shop_now_link" href="/en-eu/products/buzzpatch-bundles">shop now</a>
+              <a class="shop_now_link" href="/products/buzzpatch-bundles">shop now</a>
             </div>
             <div class="swiper-slide sleepypatch_sleep_promoting_stickers_var">
+              <span>Sleep Promoting Stickers</span>
               <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_3.png" alt="Sleep Promoting Stickers" />
-              <a class="shop_now_link" href="/en-eu/products/sleepypatch-sleep-promoting-stickers">shop now</a>
+              <a class="shop_now_link" href="/products/sleepypatch-sleep-promoting-stickers">shop now</a>
             </div>
             <div class="swiper-slide zenpatch_mood_calming_stickers_var">
+              <span>Mood Calming Patches</span>
               <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_4.png" alt="Mood Calming Patches" />
-              <a class="shop_now_link" href="/en-eu/products/zenpatch-mood-calming-stickers">shop now</a>
+              <a class="shop_now_link" href="/products/zenpatch-mood-calming-stickers">shop now</a>
             </div>
             <div class="swiper-slide zenpatch_pet_stickers_var">
+              <span>Pet Zen Vapor Stickers</span>
               <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_5.png" alt="Pet Zen Vapor Stickers" />
-              <a class="shop_now_link" href="/en-eu/products/zenpatch-pet-stickers">shop now</a>
+              <a class="shop_now_link" href="/products/zenpatch-pet-stickers">shop now</a>
             </div>
             <div class="swiper-slide trailpatch_kids_tick_repellent_stickers_var">
+              <span>Kids Tick Repellent Stickers</span>
               <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_1.png" alt="Kids Tick Repellent Stickers" />
-              <a class="shop_now_link" href="/en-eu/products/trailpatch-kids-tick-repellent-stickers">shop now</a>
+              <a class="shop_now_link" href="/products/trailpatch-kids-tick-repellent-stickers">shop now</a>
             </div>
-          </div>
+          </div>`
+            : `<div class="swiper-wrapper parent_slider">
+            <div class="swiper-slide trailpatch_kids_tick_repellent_stickers_var">
+              <span>Kids Tick Repellent Stickers</span>
+              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_mob_1.png" alt="Kids Tick Repellent Stickers" />
+              <a class="shop_now_link" href="/products/trailpatch-kids-tick-repellent-stickers">shop now</a>
+            </div>
+            <div class="swiper-slide buzzpatch_bundles_var">
+              <span>Mosquito Repellent Stickers</span>
+              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_mob_2.png" alt="Mosquito Repellent Stickers" />
+              <a class="shop_now_link" href="/products/buzzpatch-bundles">shop now</a>
+            </div>
+            <div class="swiper-slide sleepypatch_sleep_promoting_stickers_var">
+              <span>Sleep Promoting Stickers</span>
+              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_mob_3.png" alt="Sleep Promoting Stickers" />
+              <a class="shop_now_link" href="/products/sleepypatch-sleep-promoting-stickers">shop now</a>
+            </div>
+            <div class="swiper-slide zenpatch_mood_calming_stickers_var">
+              <span>Mood Calming Patches</span>
+              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_mob_4.png" alt="Mood Calming Patches" />
+              <a class="shop_now_link" href="/products/zenpatch-mood-calming-stickers">shop now</a>
+            </div>
+            <div class="swiper-slide zenpatch_pet_stickers_var">
+              <span>Pet Zen Vapor Stickers</span>
+              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_mob_5.png" alt="Pet Zen Vapor Stickers" />
+              <a class="shop_now_link" href="/products/zenpatch-pet-stickers">shop now</a>
+            </div>
+          </div>`}
           <div class="slider_dots">
             <span><i></i></span>
             <span><i></i></span>
@@ -226,7 +191,7 @@ export const mainBlock = () => {
           </div>
         </div>
       </div>
-      <a class="crs_btn" href="/collections/homepage">Explore NatPat Stickers</a>
+      <a class="crs_btn" href="/collections/homepage">Explore all products</a>
     </section>
   `
 }
@@ -240,7 +205,7 @@ export const trustPilotReviews = /* HTML */ `
       <img src="${git}/img/stars-trust.svg" alt="trustpilot stars" />
       <span>Excellent</span>
     </p>
-    <h2>Trusted by over <b>1 million</b> customers</h2>
+    <h2>Trusted by over 1 million customers</h2>
     <div class="insta_widget"></div>
     <ul class="reviews_trust parent_slider">
       ${reviews

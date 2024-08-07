@@ -6,8 +6,7 @@ import {
   pushData,
   clarityInterval,
   visibilityOfTime,
-  scrollToElement,
-  loadScriptsOrStyles
+  scrollToElement
 } from '../../libraries'
 import {
   differentInfoHeroBlock,
@@ -66,9 +65,9 @@ class HomePage {
       waitForElement('#featured-reviews2 .carousel-item:not(.slick-cloned)').then(i => {
         this.addBlocks()
         this.addEvents()
+        this.visibleHandler()
         this.fixes()
         this.toggleStickyBlockVisibility()
-        // this.allGroupProductSlider()
       })
     })
   }
@@ -179,7 +178,7 @@ class HomePage {
       asNavFor: '.new_slider_news .slider_dots'
     })
 
-    $('.basic_slider').slick({
+    let basicSlider = $('.basic_slider').slick({
       slidesToShow: this.device === 'mobile' ? 1 : 3,
       slidesToScroll: 1,
       arrows: false,
@@ -187,6 +186,13 @@ class HomePage {
       centerMode: this.device === 'mobile' ? true : false,
       centerPadding: this.device === 'mobile' ? '24px' : '0',
       asNavFor: '.new_reviews_block .slider_dots'
+    })
+    basicSlider.on('swipe', function (event, slick, direction) {
+      if (direction === 'left') {
+        pushData('exp_hp_3_stickers_slider_prev ', 'Prev', 'Click', 'Stickers slider')
+      } else {
+        pushData('exp_hp_3_stickers_slider_next', 'Next', 'Click', 'Stickers slider')
+      }
     })
 
     $('.slider_photo').slick({
@@ -211,18 +217,20 @@ class HomePage {
       })
     })
 
-    $('.big-stickers .swiper-wrapper').slick({
+    let bigStickersSlider = $(`.big-stickers .parent_slider`).slick({
       slidesToShow: this.device === 'mobile' ? 1 : 3,
       slidesToScroll: 1,
       arrows: false,
       infinite: true,
-      centerMode: true,
-      centerPadding: this.device === 'mobile' ? '24px' : '0',
+      centerMode: this.device === 'mobile' ? false : true,
+      centerPadding: '0',
       asNavFor: '.new_main_block .slider_dots',
       autoplay: true,
-      autoplaySpeed: 2500,
-      speed: 700
+      autoplaySpeed: 2500
     })
+    setTimeout(() => {
+      $el('.new_main_block .big-stickers').style.opacity = '1'
+    }, 400)
 
     $('a.total_reviews').on('click', function (e) {
       e.preventDefault()
@@ -278,25 +286,34 @@ class HomePage {
         $(this).addClass('active').siblings().removeClass('active')
       })
     }
-
-    $('.explore_stickers_btn').on('click', function (e) {
-      e.preventDefault()
-      window.location = '/en-eu/collections/homepage'
-    })
   }
 
   addEvents() {
-    const exp = 'exp_homepage_'
-
+    const exp = 'exp_hp_3'
     $('.new_main_block .crs_btn').on('click', function (e) {
       pushData('exp_hp_3_main_image_0', 'Explore Natpat Stickers', 'Button', 'Main block')
     })
 
-    $('.new_main_block .images a').each(function (i, item) {
-      let descr = i === 0 ? 'Sleep' : i === 1 ? 'Allergy' : 'Protection'
-      visibilityOfTime(item, `${exp}main_image_${i}`, 'Main block', descr)
-      $(item).on('click', function () {
-        pushData(`${exp}main_image_${i}`, descr, 'Click', 'Main block')
+    $('.explore_stickers_btn').on('click', function (e) {
+      e.preventDefault()
+      pushData('exp_hp_3_sticky_btn', 'Explore all products', 'Button', 'Sticky block')
+      window.location = '/en-eu/collections/homepage'
+    })
+
+    $('.shop_by_category_block li').each(function (i, item) {
+      $(item).on('click', function (e) {
+        pushData(`exp_hp_3_shop_by_category_${i + 1}`, $(this).find('p').text().trim(), 'Button', 'Shop by category')
+      })
+    })
+
+    $('.new_main_block .big-stickers .shop_now_link').each(function (i, item) {
+      $(item).on('click', function (e) {
+        pushData(
+          `exp_hp_3_shop_now_link`,
+          `Shop now - ${$(this).closest('.swiper-slide').find('span').text().trim()}`,
+          'Button',
+          'Natural solutions for better sleep, mood, focus and more!'
+        )
       })
     })
 
@@ -306,7 +323,7 @@ class HomePage {
         const name = $(this).closest('.item').find('h3').text().trim()
         visibilityOfTime(
           item,
-          `exp_hp_3_stickers_slider_product__${name}`,
+          `exp_hp_3_stickers_slider_product_${name}`,
           'Homepage Our bestsellers: Tried and True',
           `${name}  - Section`
         )
@@ -373,29 +390,31 @@ class HomePage {
           .shadowRoot?.querySelectorAll('img')
           .forEach((img, i) => {
             img.addEventListener('Click', () => {
-              pushData(`${exp}insta_image_${i}`, 'Image', 'Click', 'Instagram widget')
+              pushData(`exp_hp_3_insta_image_${i}`, 'Play', 'Button', 'Homepage Trustpilot')
             })
           })
       }
     }, 1000)
+  }
+
+  visibleHandler() {
+    visibilityOfTime(
+      '.new_main_block',
+      `exp_hp_3_hero_block`,
+      'Natural solutions for better sleep, mood, focus and more!',
+      'Section'
+    )
+
+    visibilityOfTime('.guarantee_block', `exp_hp_3_guarantee_block`, '365-day Money Back Guarantee', 'Section')
+    visibilityOfTime('.different_info_hero_block', `exp_hp_3_free_shipping`, 'Free Shipping', 'Section')
+
+    visibilityOfTime('.shop_by_category_block', `exp_hp_3_shop_by_category`, 'Shop By Category', 'Section')
 
     $('.new_trustpilot_reviews .reviews_trust li:not(.slick-cloned)').each(function (i, item) {
-      visibilityOfTime(
-        item,
-        `${exp}trustpilot_reviews_${i}`,
-        'Trustpilot reviews block',
-        $(item).find('p:first-of-type').text()
-      )
+      visibilityOfTime(item, `exp_hp_3_trustpilot_reviews_${i}`, 'Homepage Trustpilot', 'Section')
     })
 
-    visibilityOfTime('.new_main_block .crs_btn', `${exp}main_button`, 'Main block', 'Button')
-    visibilityOfTime(
-      '.new_trustpilot_reviews .reviews_trust',
-      `${exp}trustpilot_reviews`,
-      'Trustpilot reviews block',
-      'Trustpilot reviews'
-    )
-    visibilityOfTime('.new_main_block .points', `${exp}main_benefits`, 'Main block', 'Benefits')
+    visibilityOfTime('.new_trustpilot_reviews > p', `exp_hp_3_trustpilot_reviews`, 'Homepage Trustpilot', 'Section')
     visibilityOfTime(
       '.new_slider_news .slider_wrapper',
       `exp_hp_3_slider_news`,
@@ -432,9 +451,7 @@ class HomePage {
       '.new_info2_block .content_wrapper',
       `exp_hp_3_section_09`,
       'Health and wellness patches',
-      'Section',
-      1000,
-      0.3
+      'Section'
     )
   }
 
@@ -497,36 +514,6 @@ class HomePage {
 
         visible()
       })
-    })
-  }
-  allGroupProductSlider() {
-    loadScriptsOrStyles([
-      'https://unpkg.com/swiper/swiper-bundle.min.css',
-      'https://unpkg.com/swiper/swiper-bundle.min.js'
-    ]).then(async () => {
-      let s = setInterval(() => {
-        if (typeof Swiper === 'function' && $el('.big-stickers')) {
-          clearInterval(s)
-          console.log(typeof Swiper, `typeof Swiper `)
-
-          const swiper = new Swiper('.swiper-container', {
-            centeredSlides: true,
-            loop: true,
-            slidesPerView: 'auto',
-            spaceBetween: 10,
-            pagination: {
-              el: '.swiper-pagination',
-              clickable: true,
-              dynamicBullets: true
-            }
-            // autoplay: {
-            //   delay: 3000,
-            //   disableOnInteraction: false
-            // }
-          })
-          $el('.new_main_block .big-stickers .swiper-container').style.opacity = '1'
-        }
-      }, 100)
     })
   }
 }
