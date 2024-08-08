@@ -88,6 +88,21 @@ class HomePage {
       .append(reviewsBlock)
       .append(info2Block)
 
+    let bigStickersSlider = $(`.big-stickers .parent_slider`).slick({
+      slidesToShow: this.device === 'mobile' ? 1 : 3,
+      slidesToScroll: 1,
+      arrows: false,
+      infinite: true,
+      centerMode: this.device === 'mobile' ? false : true,
+      centerPadding: '0',
+      asNavFor: '.new_main_block .slider_dots',
+      autoplay: true,
+      autoplaySpeed: 2500
+    })
+    setTimeout(() => {
+      $el('.new_main_block .big-stickers').style.opacity = '1'
+    }, 400)
+
     const slider = sliderData()
       .map((s, i) => {
         return /* HTML */ `
@@ -117,8 +132,6 @@ class HomePage {
       $('#purchaseSlide.slick-initialized').slick('setPosition')
       $('.slider_dots-2.slick-initialized').slick('setPosition')
     })
-
-    $el('main').style.opacity = '1'
 
     $(window).on('scroll', function () {
       if ($(window).scrollTop() || 0 > 100) {
@@ -189,9 +202,9 @@ class HomePage {
     })
     basicSlider.on('swipe', function (event, slick, direction) {
       if (direction === 'left') {
-        pushData('exp_hp_3_stickers_slider_prev ', 'Prev', 'Click', 'Stickers slider')
-      } else {
         pushData('exp_hp_3_stickers_slider_next', 'Next', 'Click', 'Stickers slider')
+      } else {
+        pushData('exp_hp_3_stickers_slider_prev ', 'Prev', 'Click', 'Stickers slider')
       }
     })
 
@@ -217,25 +230,14 @@ class HomePage {
       })
     })
 
-    let bigStickersSlider = $(`.big-stickers .parent_slider`).slick({
-      slidesToShow: this.device === 'mobile' ? 1 : 3,
-      slidesToScroll: 1,
-      arrows: false,
-      infinite: true,
-      centerMode: this.device === 'mobile' ? false : true,
-      centerPadding: '0',
-      asNavFor: '.new_main_block .slider_dots',
-      autoplay: true,
-      autoplaySpeed: 2500
-    })
-    setTimeout(() => {
-      $el('.new_main_block .big-stickers').style.opacity = '1'
-    }, 400)
-
     $('a.total_reviews').on('click', function (e) {
       e.preventDefault()
       scrollToElement('.new_trustpilot_reviews')
     })
+
+    setTimeout(() => {
+      $el('main').style.opacity = '1'
+    }, 500)
 
     // add readmore button
     $('.reviews_trust p:nth-child(2)').each(function (i, item) {
@@ -295,9 +297,7 @@ class HomePage {
     })
 
     $('.explore_stickers_btn').on('click', function (e) {
-      e.preventDefault()
       pushData('exp_hp_3_sticky_btn', 'Explore all products', 'Button', 'Sticky block')
-      window.location = '/en-eu/collections/homepage'
     })
 
     $('.shop_by_category_block li').each(function (i, item) {
@@ -470,7 +470,7 @@ class HomePage {
       clearInterval(btnFix)
     }, 5000)
 
-    $$el('.new_home_page a:not([class]), .new_home_page a.crs_btn').forEach(item => {
+    $$el('.new_home_page a:not([class]), .new_home_page a').forEach(item => {
       const newHref =
         window.location.pathname === '/'
           ? item.getAttribute('href')
@@ -495,8 +495,12 @@ class HomePage {
             entries.forEach(i => {
               if (i.boundingClientRect.top <= 0) {
                 element.style.display = 'flex'
+                $el('body').classList.add('sticky_block_visible')
               } else {
                 element.style.display = 'none'
+                if ($el('body').classList.contains('sticky_block_visible')) {
+                  $el('body').classList.remove('sticky_block_visible')
+                }
               }
 
               observerSticky.unobserve(i.target)

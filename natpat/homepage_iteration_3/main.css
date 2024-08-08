@@ -29,6 +29,15 @@
   }
 }
 
+.sticky_block_visible #provesrc-widget-area #provesrc-notification-container {
+  bottom: 150px !important;
+}
+@media (max-width: 769px) {
+  .sticky_block_visible #provesrc-widget-area #provesrc-notification-container {
+    bottom: 100px !important;
+  }
+}
+
 #purchase-slide {
   background: #f0f0f4 !important;
   margin: 0 !important;
@@ -579,6 +588,7 @@
   font-weight: 600;
   line-height: 24px;
   text-transform: uppercase;
+  text-decoration: unset;
   cursor: pointer;
 }
 .sticky_block .explore_stickers_btn:hover {
@@ -604,6 +614,7 @@
 .new_main_block .crs_btn {
   display: inline-flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
   max-width: 400px;
   height: 64px;
