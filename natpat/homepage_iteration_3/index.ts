@@ -99,9 +99,11 @@ class HomePage {
       autoplay: true,
       autoplaySpeed: 2500
     })
+
     setTimeout(() => {
+      // $el('#loader')?.remove()
       $el('.new_main_block .big-stickers').style.opacity = '1'
-    }, 400)
+    }, 900)
 
     const slider = sliderData()
       .map((s, i) => {
@@ -237,7 +239,7 @@ class HomePage {
 
     setTimeout(() => {
       $el('main').style.opacity = '1'
-    }, 500)
+    }, 400)
 
     // add readmore button
     $('.reviews_trust p:nth-child(2)').each(function (i, item) {
@@ -375,8 +377,18 @@ class HomePage {
       })
     })
 
+    let is_active = false
+    $('.new_slider_news').on('afterChange', function (event, slick, currentSlide, nextSlide) {
+      if (is_active) return
+      is_active = true
+      pushData('exp_hp_3_slider_news', 'Choose', 'Change', 'Slider news')
+      setTimeout(() => {
+        is_active = false
+      }, 500)
+    })
+
     $('.slider_photo').on('afterChange', function () {
-      pushData('exp_hp_3_slider_photo ', 'Choose', 'Change', 'Homepage The section with photos')
+      pushData('exp_hp_3_slider_photo', 'Choose', 'Change', 'Homepage The section with photos')
     })
 
     const insta = setInterval(() => {

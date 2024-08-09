@@ -152,9 +152,9 @@ export const leftPartPaymentBlock = (txtCount: string) => {
       <p>
         Over <b><span class="count_var">${txtCount}</span></b> tests taken today Avg. IQ score: <b>103</b>
       </p>
-      <h2 class="ver_a">Try <span class="accent_color_blue">Cerebrum IQ</span> for 7 days</h2>
-      ${paymentInfoListVerA}
-      <!-- ${paymentInfoListVerB} -->
+      <h2>Try <span class="accent_color_blue">Cerebrum IQ</span> for 7 days</h2>
+      <!-- ${paymentInfoListVerA} -->
+      ${paymentInfoListVerB}
       <!-- ${paymentInfoListVerC} -->
     </div>
   `

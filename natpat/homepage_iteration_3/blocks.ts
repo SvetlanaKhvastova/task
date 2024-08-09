@@ -126,59 +126,65 @@ export const mainBlock = () => {
         <span>Customer reviews</span>
       </a>
       <div class="big-stickers">
+        <!-- <div id="loader" class="loader">
+          <img
+            src="https://conversionratestore.github.io/projects/buzzpatch/img/outdoor_protection_absolute_icon.svg"
+            alt="Loading..."
+          />
+        </div> -->
         <div class="swiper-container">
           ${innerWidth > 768
             ? `<div class="swiper-wrapper parent_slider">
             <div class="swiper-slide buzzpatch_bundles_var">
               <span>Mosquito Repellent Stickers</span>
-              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_2_1x.png" alt="Mosquito Repellent Stickers" />
+              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_2_2x.webp" alt="Mosquito Repellent Stickers"/>
               <a class="shop_now_link" href="/products/buzzpatch-bundles">shop now</a>
             </div>
             <div class="swiper-slide sleepypatch_sleep_promoting_stickers_var">
               <span>Sleep Promoting Stickers</span>
-              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_3_1x.png" alt="Sleep Promoting Stickers" />
+              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_3_2x.webp" alt="Sleep Promoting Stickers"/>
               <a class="shop_now_link" href="/products/sleepypatch-sleep-promoting-stickers">shop now</a>
             </div>
             <div class="swiper-slide zenpatch_mood_calming_stickers_var">
               <span>Mood Calming Patches</span>
-              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_4_1x.png" alt="Mood Calming Patches" />
+              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_4_2x.webp" alt="Mood Calming Patches" loading="lazy"/>
               <a class="shop_now_link" href="/products/zenpatch-mood-calming-stickers">shop now</a>
             </div>
             <div class="swiper-slide zenpatch_pet_stickers_var">
               <span>Pet Zen Vapor Stickers</span>
-              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_5_1x.png" alt="Pet Zen Vapor Stickers" />
+              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_5_2x.webp" alt="Pet Zen Vapor Stickers" loading="lazy"/>
               <a class="shop_now_link" href="/products/zenpatch-pet-stickers">shop now</a>
             </div>
             <div class="swiper-slide trailpatch_kids_tick_repellent_stickers_var">
               <span>Kids Tick Repellent Stickers</span>
-              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_1_1x.png" alt="Kids Tick Repellent Stickers" />
+              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_1_2x.webp" alt="Kids Tick Repellent Stickers"/>
               <a class="shop_now_link" href="/products/trailpatch-kids-tick-repellent-stickers">shop now</a>
             </div>
           </div>`
             : `<div class="swiper-wrapper parent_slider">
             <div class="swiper-slide trailpatch_kids_tick_repellent_stickers_var">
               <span>Kids Tick Repellent Stickers</span>
-              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_mob_1_1x.png" alt="Kids Tick Repellent Stickers" />
+              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_mob_1_2x.webp" alt="Kids Tick Repellent Stickers"/>
               <a class="shop_now_link" href="/products/trailpatch-kids-tick-repellent-stickers">shop now</a>
             </div>
             <div class="swiper-slide buzzpatch_bundles_var">
               <span>Mosquito Repellent Stickers</span>
-              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_mob_2_1x.png" alt="Mosquito Repellent Stickers" />
+              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_mob_2_2x.webp" alt="Mosquito Repellent Stickers" loading="lazy"/>
               <a class="shop_now_link" href="/products/buzzpatch-bundles">shop now</a>
             </div>
             <div class="swiper-slide sleepypatch_sleep_promoting_stickers_var">
               <span>Sleep Promoting Stickers</span>
-              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_mob_3_1x.png" alt="Sleep Promoting Stickers" />
+              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_mob_3_2x.webp" alt="Sleep Promoting Stickers" loading="lazy"/>
               <a class="shop_now_link" href="/products/sleepypatch-sleep-promoting-stickers">shop now</a>
             </div>
             <div class="swiper-slide zenpatch_mood_calming_stickers_var">
               <span>Mood Calming Patches</span>
-              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_mob_4_1x.png" alt="Mood Calming Patches" />
+              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_mob_4_2x.webp" alt="Mood Calming Patches" loading="lazy"/>
               <a class="shop_now_link" href="/products/zenpatch-mood-calming-stickers">shop now</a>
             </div>
             <div class="swiper-slide zenpatch_pet_stickers_var">
               <span>Pet Zen Vapor Stickers</span>
-              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_mob_5_1x.png" alt="Pet Zen Vapor Stickers" />
+              <img class="sticker-bg-img" src="${git}/img/hero_img_bgr_mob_5_2x.webp" alt="Pet Zen Vapor Stickers" loading="lazy"/>
               <a class="shop_now_link" href="/products/zenpatch-pet-stickers">shop now</a>
             </div>
           </div>`}

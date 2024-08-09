@@ -315,7 +315,7 @@
       }
 
       &:nth-child(1) {
-        background: url(https://conversionratestore.github.io/projects/buzzpatch/img/wellness_bgr.png) no-repeat -3px;
+        background: url(https://conversionratestore.github.io/projects/buzzpatch/img/wellness_bgr.webp) no-repeat -3px;
         background-size: cover;
         span {
           svg {
@@ -329,7 +329,7 @@
           position: absolute;
           right: -20px;
           top: -20px;
-          background: url(https://conversionratestore.github.io/projects/buzzpatch/img/wellness_absolute_icon.svg)
+          background: url(https://conversionratestore.github.io/projects/buzzpatch/img/wellness_absolute_icon.png)
             no-repeat center center;
           width: 77px;
           height: 84px;
@@ -344,7 +344,7 @@
         }
       }
       &:nth-child(2) {
-        background: url(https://conversionratestore.github.io/projects/buzzpatch/img/outdoor_protection_bgr.png)
+        background: url(https://conversionratestore.github.io/projects/buzzpatch/img/outdoor_protection_bgr.webp)
           no-repeat -3px;
         background-size: cover;
         span {
@@ -359,7 +359,7 @@
           position: absolute;
           right: -13px;
           bottom: 24px;
-          background: url(https://conversionratestore.github.io/projects/buzzpatch/img/outdoor_protection_absolute_icon.svg)
+          background: url(https://conversionratestore.github.io/projects/buzzpatch/img/outdoor_protection_absolute_icon.png)
             no-repeat center center;
           width: 74px;
           height: 80px;
@@ -373,7 +373,7 @@
         }
       }
       &:nth-child(3) {
-        background: url(https://conversionratestore.github.io/projects/buzzpatch/img/allergy_relief_bgr.png) no-repeat -3px;
+        background: url(https://conversionratestore.github.io/projects/buzzpatch/img/allergy_relief_bgr.webp) no-repeat -3px;
         background-size: cover;
         span {
           svg {
@@ -387,7 +387,7 @@
           position: absolute;
           right: 95px;
           bottom: 18px;
-          background: url(https://conversionratestore.github.io/projects/buzzpatch/img/allergy_relief_absolute_icon.svg)
+          background: url(https://conversionratestore.github.io/projects/buzzpatch/img/allergy_relief_absolute_icon.png)
             no-repeat center center;
           width: 84px;
           height: 88px;
@@ -401,7 +401,7 @@
         }
       }
       &:nth-child(4) {
-        background: url(https://conversionratestore.github.io/projects/buzzpatch/img/pets_bgr.png) no-repeat -3px;
+        background: url(https://conversionratestore.github.io/projects/buzzpatch/img/pets_bgr.webp) no-repeat -3px;
         background-size: cover;
         span {
           svg {
@@ -415,7 +415,7 @@
           position: absolute;
           right: 35px;
           bottom: 20px;
-          background: url(https://conversionratestore.github.io/projects/buzzpatch/img/pets_absolute_icon.svg) no-repeat
+          background: url(https://conversionratestore.github.io/projects/buzzpatch/img/pets_absolute_icon.png) no-repeat
             center center;
           width: 68px;
           height: 120px;
@@ -643,11 +643,29 @@
     margin-bottom: 40px;
   }
   .big-stickers {
+    position: relative;
     margin: 0 52px 40px;
     opacity: 0;
     @media (max-width: 768px) {
       margin: 0 0 22px;
       order: 1;
+    }
+    .loader {
+      position: absolute;
+      left: 50%;
+      top: 40%;
+      transform: translate(-50%, -50%);
+      z-index: 9999; /* Ensure loader is on top */
+    }
+
+    .loader img {
+      width: 300px;
+      height: 300px;
+      animation: shake 0.5s infinite;
+      @media (max-width: 768px) {
+        width: 200px;
+        height: 200px;
+      }
     }
     .parent_slider {
       span {

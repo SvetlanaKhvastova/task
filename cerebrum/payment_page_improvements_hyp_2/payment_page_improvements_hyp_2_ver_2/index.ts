@@ -16,7 +16,7 @@ class paymentPageImprovements {
 
   init() {
     startLog({ name: 'Payment-Page-Improvements Hyp 2', dev: 'SKh' })
-    clarityInterval('exp_improve_payment')
+    clarityInterval('exp_improve_payment', 'variant_2')
 
     if (!$el('.crs_style')) {
       document.head.insertAdjacentHTML(
@@ -45,7 +45,6 @@ class paymentPageImprovements {
     waitForElement('#payment > div').then(() => {
       const txt = $el('#payment .bg-blue-100 .text-inherit b').textContent
       if (!$el('.left_part_payment_block')) {
-        console.log(`>>>>>>>>>>>>>>>>`)
         $el('#payment > div').insertAdjacentHTML('afterbegin', leftPartPaymentBlock(txt))
       }
     })
