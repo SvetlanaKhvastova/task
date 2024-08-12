@@ -74,7 +74,7 @@ export const paymentInfoListVerA = /* HTML */ `
         </h3>
         <p>
           How smart are you compared <br />
-          to others in USA <img src="${git}flag_us.svg" alt="flag us" />?
+          to others in the USA <img src="${git}flag_us.svg" alt="flag us" />?
         </p>
       </div>
     </li>

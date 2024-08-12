@@ -153,6 +153,10 @@
 #payment {
   padding: 40px 0 40px !important;
 
+  #primer-checkout-apm-googlePay {
+    max-height: 40px;
+  }
+
   .item-center.text-center.mb-2.mt-3,
   div.mb-4.flex.items-center,
   .bg-blue-100 {
@@ -166,7 +170,7 @@
     margin: 6px 0 0;
     @media (max-width: 768px) {
       margin: 0;
-      max-width: 230px;
+      max-width: 265px;
     }
   }
   div.font-semibold {
@@ -213,7 +217,10 @@
     }
   }
   #checkout-container {
-    margin: 0 !important;
+    margin: 50px 0 0 !important;
+    @media (max-width: 768px) {
+      margin: 0 !important;
+    }
   }
   .accent_color_blue {
     color: #2563eb;
@@ -534,7 +541,7 @@
     }
   }
   .money_back_guarantee_block {
-    margin: 24px 0;
+    margin: 24px 0 -35px;
     @media (max-width: 768px) {
       position: relative;
       margin: 16px 0;
