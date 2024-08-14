@@ -44,15 +44,15 @@ class Personalization {
     clarityInterval('exp_hypothesis_2')
     this.observeMain()
 
-    if (!$el('.crs_inter')) {
+    if (!$el('.crs_inter_personalization')) {
       document.head.insertAdjacentHTML(
         'afterbegin',
-        `<link class="crs_inter" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">`
+        `<link class="crs_inter_personalization" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">`
       )
     }
 
-    if (!$el('.crs_style')) {
-      document.head.insertAdjacentHTML('beforeend', `<style class="crs_style">${mainStyle}</style>`)
+    if (!$el('.crs_style_personalization')) {
+      document.head.insertAdjacentHTML('beforeend', `<style class="crs_style_personalization">${mainStyle}</style>`)
     }
 
     this.allFunctionsInitHandler()
@@ -135,7 +135,8 @@ class Personalization {
         const s = content[key]
         s.forEach(i => {
           if (relationshipStatusHandler.includes(i.relationshipStatus)) {
-            const ageGroup = i.ageGroups[age]
+            console.log(age, `age>>>>>>>>>>>>`)
+            const ageGroup = i.ageGroups['18-35']
             if (ageGroup) {
               waitForElement('.trusted_wrapper__Qlbcw').then((element: HTMLElement) => {
                 if (!$el('.paywall_info_block')) {

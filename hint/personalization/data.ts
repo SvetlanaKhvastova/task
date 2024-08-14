@@ -489,12 +489,12 @@ export const content = {
       },
       genderGroups: {
         male: {
-          imgBefore: 'love_relationship_before.png',
-          imgAfter: 'love_relationship_after.png'
+          imgBefore: 'love_relationship_before.svg',
+          imgAfter: 'love_relationship_after.svg'
         },
         female: {
-          imgBefore: 'love_relationship_before.png',
-          imgAfter: 'love_relationship_after.png'
+          imgBefore: 'love_relationship_before.svg',
+          imgAfter: 'love_relationship_after.svg'
         }
       }
     },
@@ -503,21 +503,21 @@ export const content = {
       relationshipStatus: 'Single',
       ageGroups: {
         '18-35': {
-          title: 'Let’s Find Your <span>True Love</span>',
+          title: 'Let’s Find Your <br/> <span>True Love</span>',
           txt: `“True love is on the horizon. Let's discover the path to your soulmate.”`,
           img: 'age_group_1.png',
           name: 'Akho',
           descr: '6 years in palmistry readings and spiritual guidance.'
         },
         '36-55': {
-          title: 'Let’s Find Your <span>True Love</span>',
+          title: 'Let’s Find Your <br/>  <span>True Love</span>',
           txt: `“True love is on the horizon. Let's discover the path to your soulmate.”`,
           img: 'age_group_2.png',
           name: 'Jane',
           descr: '9 years in palmistry readings and spiritual guidance.'
         },
         '56+': {
-          title: 'Let’s Find Your <span>True Love</span>',
+          title: 'Let’s Find Your <br/>  <span>True Love</span>',
           txt: `“True love is on the horizon. Let's discover the path to your soulmate.”`,
           img: 'age_group_3.png',
           name: 'Lucy',
@@ -526,12 +526,12 @@ export const content = {
       },
       genderGroups: {
         male: {
-          imgBefore: 'love_relationship_before_male.png',
-          imgAfter: 'love_relationship_after.png'
+          imgBefore: 'love_relationship_before_male.svg',
+          imgAfter: 'love_relationship_after.svg'
         },
         female: {
-          imgBefore: 'love_relationship_before_female.png',
-          imgAfter: 'love_relationship_after.png'
+          imgBefore: 'love_relationship_before_female.svg',
+          imgAfter: 'love_relationship_after.svg'
         }
       }
     }
@@ -565,12 +565,12 @@ export const content = {
       },
       genderGroups: {
         male: {
-          imgBefore: 'health_vitality_before_male.png',
-          imgAfter: 'health_vitality_after_male.png'
+          imgBefore: 'health_vitality_before_male.svg',
+          imgAfter: 'health_vitality_after_male.svg'
         },
         female: {
-          imgBefore: 'health_vitality_before_female.png',
-          imgAfter: 'health_vitality_after_female.png'
+          imgBefore: 'health_vitality_before_female.svg',
+          imgAfter: 'health_vitality_after_female.svg'
         }
       }
     }
@@ -604,12 +604,12 @@ export const content = {
       },
       genderGroups: {
         female: {
-          imgBefore: 'career_destiny_before_female.png',
-          imgAfter: 'career_destiny_after_female.png'
+          imgBefore: 'career_destiny_before_female.svg',
+          imgAfter: 'career_destiny_after_female.svg'
         },
         male: {
-          imgBefore: 'career_destiny_before_male.png',
-          imgAfter: 'career_destiny_after_male.png'
+          imgBefore: 'career_destiny_before_male.svg',
+          imgAfter: 'career_destiny_after_male.svg'
         }
       }
     }
