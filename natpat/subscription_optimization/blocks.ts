@@ -21,6 +21,14 @@ export const newSubscriptionBlock = /* HTML */ `
     </div>
   </div>
 `
+
+export const customDropdown = /* HTML */ `
+  <div class="custom_dropdown">
+    <button class="dropdown_toggle">Select an option</button>
+    <div class="dropdown_menu"></div>
+  </div>
+`
+
 export const stickyBlock = /* HTML */ `
   <div class="sticky_block">
     <div class="choose_your_product_btn">Choose your product</div>

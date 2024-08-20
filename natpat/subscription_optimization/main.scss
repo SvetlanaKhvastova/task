@@ -4,17 +4,290 @@
   display: none !important;
 }
 
-.product__info-container div[role='status'] {
-  display: flex;
-  flex-direction: column-reverse;
-  gap: 15px;
+body {
+  .product {
+    justify-content: space-between;
+  }
+  .product--medium:not(.product--no-media) .product__media-wrapper {
+    max-width: 660px;
+  }
+  #pdpGetNow {
+    padding: 0;
+    max-width: 490px;
+  }
+  .icartShopifyCartContent > section:nth-child(1) {
+    padding-top: 20px;
+    @media (max-width: 768px) {
+      padding-top: 0;
+    }
+    > section {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 20px 20px 55px;
+      @media (max-width: 768px) {
+        padding: 0 15px 55px;
+      }
+    }
+  }
+  .product__info-container {
+    .product__title {
+      margin-bottom: 15px;
+      @media (max-width: 768px) {
+        margin-bottom: 12px;
+      }
+      h1 {
+        line-height: 43.2px;
+        margin-bottom: 0;
+        @media (max-width: 768px) {
+          font-size: 22px;
+          line-height: 30px;
+          letter-spacing: 2px;
+          max-width: 340px;
+          margin-bottom: 0;
+        }
+      }
+    }
+    div[role='status'] {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 15px;
+    }
+    .jdgm-prev-badge__text {
+      color: #515151;
+      font-family: 'SF Pro Text';
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 23.8px;
+      letter-spacing: 0.6px;
+    }
+    .product-form__input {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 0;
+      gap: 15px;
+      @media (max-width: 768px) {
+        gap: 10px;
+      }
+    }
+    .product-form__input input[type='radio'] + label {
+      color: #212529;
+      text-align: center;
+      font-family: 'DINEngschrift LT';
+      font-size: 16px !important;
+      font-weight: 400;
+      line-height: 16px !important;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      max-width: 48%;
+      width: 100%;
+      padding: 13.4px !important;
+      margin: 0;
+      @media (max-width: 1080px) {
+        max-width: 47.6%;
+      }
+      @media (max-width: 768px) {
+        line-height: 22px !important;
+        padding: 7.4px !important;
+        max-width: 48.6%;
+      }
+      @media (max-width: 376px) {
+        max-width: 48.5%;
+      }
+      @media (max-width: 361px) {
+        max-width: 48.4%;
+      }
+    }
+    label .best-seller {
+      left: -1px;
+      color: #fff;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      @media (max-width: 768px) {
+        left: -1.5px;
+      }
+    }
+    .each-pack {
+      margin-top: 4px;
+      @media (max-width: 768px) {
+        margin-top: 0;
+        line-height: 20px;
+      }
+    }
+    .product-form {
+      margin: 0;
+      .product-form__buttons {
+        max-width: 100%;
+        .product-form__submit.subscription-v2-submit-btn {
+          width: 100%;
+          max-width: 100%;
+          min-height: 50px;
+          margin: 0;
+          border-radius: 40px;
+          background: #ff3c81;
+          color: #fff;
+          text-align: center;
+          font-family: 'DINEngschrift LT' !important;
+          font-size: 20px;
+          font-weight: 400;
+          line-height: 18px;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+        }
+      }
+    }
+    .new_reg_price {
+      color: #616267;
+      font-family: 'Roboto', sans-serif !important;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 28px;
+      letter-spacing: 1.3px;
+      text-decoration: line-through;
+      text-transform: uppercase;
+      margin-right: 10px;
+    }
+    .price--large {
+      margin-bottom: 20px;
+      @media (max-width: 768px) {
+        margin-bottom: 15px;
+      }
+    }
+    .price .price-item {
+      color: #0c0b0b;
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      font-size: 21.188px !important;
+      font-weight: 700;
+      line-height: 36px;
+      letter-spacing: 0.5px;
+      text-decoration-line: underline;
+      @media (max-width: 768px) {
+        font-family: 'Roboto', sans-serif !important;
+        font-size: 24px !important;
+        line-height: 30px;
+        color: #000;
+        margin-right: 15px;
+        text-decoration: unset;
+      }
+    }
+    .price--on-sale .price__badge-sale {
+      color: #0c0b0b;
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      font-size: 22.5px !important;
+      font-weight: 700;
+      line-height: 36px;
+      letter-spacing: 0.5px;
+      text-decoration-line: underline;
+      padding-left: 22px !important;
+      @media (max-width: 768px) {
+        font-family: 'Roboto', sans-serif !important;
+        font-size: 24px !important;
+        line-height: 30px;
+        color: #000;
+        padding-left: 24px !important;
+        text-decoration: unset;
+      }
+    }
+    .price__badge-sale svg {
+      left: -2px !important;
+      @media (max-width: 768px) {
+        top: 8px !important;
+      }
+    }
+    .price__container {
+      @media (max-width: 768px) {
+        margin: 0;
+      }
+    }
+    .cPrice {
+      padding: 0;
+      color: #515151;
+      text-align: center;
+      font-family: 'Roboto', sans-serif !important;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 21px;
+      @media (max-width: 768px) {
+        line-height: 20px;
+      }
+    }
+  }
+  .social-proof {
+    @media (max-width: 768px) {
+      margin-bottom: 12px;
+    }
+    .proof {
+      color: #000;
+      font-family: 'SF Pro Text';
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 11px;
+      letter-spacing: 0.6px;
+      border-radius: 10px;
+      border: 1px solid #c3c3c3;
+      background: #f1f1f1;
+      padding: 3.2px 6px;
+    }
+  }
+  .chemical-free {
+    > .container {
+      max-width: 100% !important;
+      padding: 0 35px;
+    }
+    .js-title {
+      color: #0c0b0b !important;
+      font-family: 'DINEngschrift LT' !important;
+      font-size: 67px;
+      font-weight: 400;
+      line-height: 60.97px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin: 0 0 20px 10px;
+    }
+    .text-subhead {
+      color: #515151;
+      font-family: 'SF Pro Text';
+      font-size: 27px;
+      font-weight: 400;
+      line-height: 35px;
+      letter-spacing: 0.6px;
+    }
+    .text-violet {
+      h5 {
+        color: #244899;
+        font-family: 'Inter', sans-serif;
+        font-size: 26.953px;
+        font-weight: 700;
+        line-height: 36px;
+      }
+      p {
+        color: #244899;
+        font-family: 'SF Pro Text';
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 36px;
+        letter-spacing: 0.6px;
+        margin: 0;
+      }
+    }
+  }
+  .sleep-heading {
+    max-width: 100% !important;
+    padding: 0 35px;
+  }
 }
 
 .new_subscription_block {
   border-radius: 6px;
   background: #f1f3f4;
   padding: 33px 15px 15px;
-  margin: 8px 0 15px;
+  margin: 5px 0 15px;
   .plan_selection {
     display: flex;
     align-items: center;
@@ -107,10 +380,13 @@
       line-height: 20px;
       letter-spacing: normal;
       padding-left: 22px;
-      @media (min-width: 1297px) {
+      @media (min-width: 1230px) {
         &:last-child {
           margin-top: -16px;
         }
+      }
+      @media (max-width: 1230px) {
+        width: 46%;
       }
       &::before {
         content: '';
@@ -160,6 +436,7 @@
   background-position: calc(100% - 8px) center;
   -webkit-appearance: none;
   &:disabled {
+    color: #c3c3c3;
   }
   &:focus-visible {
     outline-offset: 0 !important;
@@ -228,6 +505,7 @@
       .plan_selection {
         gap: 10px;
         label {
+          padding: 11.2px 7px;
           &.subscribe_save_variant {
             &::before {
               padding: 4px 8px 2px 8px;
@@ -246,10 +524,13 @@
           width: 100%;
           line-height: 18px;
           &::before {
-            top: 1px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 13.9px;
+            height: 13.9px;
           }
           &:nth-child(1) {
-            order: 1px;
+            order: 1;
           }
           &:nth-child(2) {
             order: 4;
@@ -267,13 +548,98 @@
       }
     }
   }
+}
 
-  .product__info-container div[role='status'] {
-    // gap: 0;
+//
+.custom_dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  margin-top: 10px;
+
+  .dropdown_toggle {
+    position: relative;
+    width: 100%;
+    text-align: left;
+    border-radius: 4px;
+    border: 2px solid #d3d3d3;
+    background: #fff;
+    padding: 8px 12px;
+    cursor: pointer;
+    color: #0c0b0b;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    &.disabled {
+      pointer-events: none;
+      color: #c3c3c3;
+      opacity: 0.7;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      background-image: url(//www.natpat.com/cdn/shop/files/select-form-icon.svg?v=374583230437431762);
+      background-repeat: no-repeat;
+      width: 24px;
+      height: 24px;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: all 0.8s cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+    &.active {
+      &::after {
+        transform: rotateX(180deg) translateY(50%);
+      }
+    }
   }
-  .price--large,
-  .product__buy-buttons {
-    // background: #f1f3f4;
-    // margin: 0 -15px !important;
+
+  .dropdown_menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 4px;
+    border: 2px solid #d3d3d3;
+    background-color: #fff;
+    z-index: 5;
+    margin-top: 1px;
+    &.show {
+      display: block;
+    }
+  }
+  .text_transform {
+    text-transform: lowercase;
+  }
+  .most_common {
+    color: #717171;
+  }
+
+  .dropdown_item {
+    padding: 5px 10px;
+    color: #0c0b0b;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    cursor: pointer;
+    &.selected {
+      background: #1f4fc9;
+      color: white;
+      .most_common {
+        color: white;
+      }
+    }
+    &:hover {
+      background: #1f4fc9;
+      color: white;
+      .most_common {
+        color: white;
+      }
+    }
   }
 }
