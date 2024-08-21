@@ -28,7 +28,7 @@ class subscriptionOptimization {
 
   init() {
     startLog({ name: 'NatPat: subscription Optimization', dev: 'SKh' })
-    // clarityInterval('')
+    clarityInterval('exp_sub_option')
 
     document.head.insertAdjacentHTML(
       'beforeend',
@@ -55,8 +55,22 @@ class subscriptionOptimization {
     waitForElement('.cPrice span').then((i: HTMLElement) => {
       waitForElement('.price__container').then((e: HTMLElement) => {
         const regPrice = i.textContent
-        if (!$el('.new_reg_price')) {
-          e.insertAdjacentHTML('beforebegin', `<div class="new_reg_price">${regPrice}</div>`)
+        let salePrice = ''
+        if (!$el('.product-form__submit span[data-rtx-subscription-price]').classList.contains('hidden')) {
+          salePrice = $el('.product-form__submit span[data-rtx-subscription-price]').textContent
+        }
+        if (!$el('.product-form__submit span[data-rtx-onetime-price]').classList.contains('hidden')) {
+          salePrice = $el('.product-form__submit span[data-rtx-onetime-price]').textContent
+        }
+        console.log(salePrice, `salePrice`)
+        if (!$el('.new_price_wrapper')) {
+          e.insertAdjacentHTML(
+            'beforebegin',
+            `<div class="new_price_wrapper">
+              <div class="new_reg_price">${regPrice}</div>
+              <div class="new_sale_rice">${salePrice}</div>
+            </div>`
+          )
         }
       })
     })
@@ -84,11 +98,6 @@ class subscriptionOptimization {
     })
 
     waitForElement('.new_subscription_block').then((i: HTMLElement) => {
-      // waitForElement('.rtx-subscription-dropdown').then(e => {
-      //   if (!$el('.new_subscription_block + .rtx-subscription-dropdown')) {
-      //     i.insertAdjacentElement('afterend', $el('.rtx-subscription-dropdown'))
-      //   }
-      // })
       this.replacePriceTxtHandler()
       this.changeSubscriptionPlanHandler()
       this.renderCustomDropdown()
@@ -102,26 +111,28 @@ class subscriptionOptimization {
         label.addEventListener('click', () => {
           console.log(`label >>>>>>>>`, label.getAttribute('for'))
           $el('.custom_dropdown')?.remove()
+          $el('.new_price_wrapper')?.remove()
           switch (label.getAttribute('for')) {
             case 'oneTime':
+              pushData('exp_sub_option_button_01', 'One-Time', 'Button', 'Subscribe section')
               $el('[id="purchaseTypeOneTime"]').click()
               if (!$el('.plan_details').classList.contains('one_time_checked')) {
                 $el('.plan_details').classList.add('one_time_checked')
               }
-              // $el('.new_subscription_block + .rtx-subscription-dropdown').disabled = true
               break
             case 'subscribeSave':
+              pushData('exp_sub_option_button_02', 'Subscribe & Save', 'Button', 'Subscribe section')
               $el('[id="purchaseTypeSubscription"]').click()
               if ($el('.plan_details').classList.contains('one_time_checked')) {
                 $el('.plan_details').classList.remove('one_time_checked')
               }
-              // $el('.new_subscription_block + .rtx-subscription-dropdown').disabled = false
               break
 
             default:
               break
           }
           this.renderCustomDropdown()
+          this.replacePriceTxtHandler()
         })
       })
     })
@@ -183,6 +194,7 @@ class subscriptionOptimization {
     const subscriptionDropdownOption = $$el('.rtx-subscription-dropdown option') as NodeListOf<HTMLElement>
 
     dropdownToggle.addEventListener('click', () => {
+      pushData('exp_sub_option_dropdown_01', 'Ship every', 'Dropdown', 'Subscribe section')
       dropdownMenu.classList.toggle('show')
       this.adjustDropdownPosition(dropdownMenu)
       dropdownToggle.classList.toggle('active')
@@ -202,6 +214,12 @@ class subscriptionOptimization {
         dropdownMenu.classList.remove('show')
         dropdownToggle.classList.remove('active')
         console.log(`Selected value: ${value}`)
+        pushData(
+          'exp_sub_option_dropdown_02',
+          `Selected value: ${target.querySelector('.text_transform')?.textContent}`,
+          'Dropdown',
+          'Subscribe section'
+        )
         subscriptionDropdownOption.forEach(opt => {
           if (opt.getAttribute('value') === value) {
             console.log(opt.getAttribute('value') === value)
@@ -311,6 +329,7 @@ class subscriptionOptimization {
   clickStickyBtnHandler() {
     waitForElement('.choose_your_product_btn').then((i: HTMLElement) => {
       i.addEventListener('click', () => {
+        pushData('exp_sub_option_button_03', 'Choose your product', 'Button', 'Sticky button')
         checkScrollPosition(0, $el('#pdpGetNow .product__title'))
         if (window.innerWidth < 376) {
           checkScrollPosition(10, $el('variant-radios'))
