@@ -1,4 +1,4 @@
-import { svg, git } from './data'
+import { svg, git, tooltipObj } from './data'
 
 export const newSubscriptionBlock = /* HTML */ `
   <div id="newSubscriptionBlock">
@@ -10,7 +10,13 @@ export const newSubscriptionBlock = /* HTML */ `
         <input type="radio" name="plan" value="subscribeSave" id="subscribeSave" checked />
         <label for="subscribeSave" class="subscribe_save_variant"> Subscribe & Save</label>
       </div>
-      <div class="plan_comment">A choice that saves both time and money ${svg.orangeArrowIcon}</div>
+      <div class="plan_comment">
+        A choice that saves both time and money ${svg.orangeArrowIcon}<span
+          data-tooltip
+          data-title="${tooltipObj.subscribe}"
+          >${svg.tooltipIcon}</span
+        >
+      </div>
       <ul class="plan_details">
         <li>100% Money-Back Guarantee</li>
         <li>Priority Customer Service</li>

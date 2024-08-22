@@ -139,6 +139,26 @@ body .product__info-container label .best-seller {
     left: -1.5px;
   }
 }
+body .product__info-container .each_pack_subscribe {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
+  text-decoration-line: underline;
+  text-transform: capitalize;
+  margin-top: 4px;
+  font-family: "Roboto", sans-serif;
+}
+body .product__info-container .each_pack_subscribe + .each-pack {
+  display: none;
+}
+@media (max-width: 768px) {
+  body .product__info-container .each_pack_subscribe {
+    margin-top: 0;
+    line-height: 20px;
+  }
+}
 body .product__info-container .each-pack {
   margin-top: 4px;
 }
@@ -176,7 +196,7 @@ body .product__info-container .new_price_wrapper {
   align-items: center;
   gap: 10px;
 }
-body .product__info-container .new_sale_rice {
+body .product__info-container .new_sale_price {
   color: #000;
   font-family: "Roboto", sans-serif !important;
   font-size: 24px;
@@ -195,6 +215,22 @@ body .product__info-container .new_reg_price {
   text-decoration: line-through;
   text-transform: uppercase;
   margin: 0;
+}
+body .product__info-container .percent_off {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+  color: #000;
+  font-family: "Roboto", sans-serif !important;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+body .product__info-container .percent_off svg {
+  margin-top: 2px;
 }
 body .product__info-container .price--large {
   display: flex;
@@ -229,6 +265,7 @@ body .product__info-container .price--on-sale .price__badge-sale {
   padding: 0 0 0 24px !important;
   margin: 0 !important;
   text-transform: uppercase;
+  display: none !important;
 }
 body .product__info-container .price__badge-sale svg {
   left: -3px !important;
@@ -399,6 +436,55 @@ body .sleep-heading {
   text-decoration-line: underline;
   margin: 10px auto;
 }
+.new_subscription_block .plan_comment [data-tooltip] {
+  cursor: pointer;
+}
+.new_subscription_block .plan_comment [data-tippy-root] {
+  right: -20px !important;
+}
+.new_subscription_block .plan_comment .tippy-box {
+  background-color: #fff;
+  filter: drop-shadow(0px 12px 32px rgba(0, 0, 0, 0.1));
+  max-width: 330px !important;
+  border-radius: 15px;
+}
+.new_subscription_block .plan_comment .tippy-box .tippy-content {
+  padding: 16px;
+}
+.new_subscription_block .plan_comment .tippy-box .tippy-content .tooltip_block p {
+  color: #212529;
+  font-family: "Roboto", sans-serif !important;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  margin: 0 0 8px;
+  text-transform: initial;
+  font-style: normal;
+}
+.new_subscription_block .plan_comment .tippy-box .tippy-content .tooltip_block ul {
+  padding-left: 20px;
+  margin: 0;
+}
+.new_subscription_block .plan_comment .tippy-box .tippy-content .tooltip_block ul li {
+  color: #515151;
+  list-style: disc;
+  font-size: 11px;
+}
+.new_subscription_block .plan_comment .tippy-box .tippy-content .tooltip_block ul li + li {
+  margin-top: 15px;
+}
+.new_subscription_block .plan_comment .tippy-box .tippy-content .tooltip_block ul li p {
+  color: #515151;
+  font-weight: 400;
+  margin: 0;
+}
+.new_subscription_block .plan_comment .tippy-box[data-placement^=bottom] > .tippy-arrow, .new_subscription_block .plan_comment .tippy-box[data-placement^=top] > .tippy-arrow {
+  display: block;
+  color: white;
+}
+.new_subscription_block .plan_comment .tippy-box[data-placement^=bottom] > .tippy-arrow:before, .new_subscription_block .plan_comment .tippy-box[data-placement^=top] > .tippy-arrow:before {
+  left: -20px !important;
+}
 .new_subscription_block .plan_details {
   display: flex;
   flex-wrap: wrap;
@@ -552,6 +638,16 @@ body .sleep-heading {
   #newSubscriptionBlock .new_subscription_block .plan_comment {
     margin: 6px 0;
   }
+}
+@media (max-width: 768px) and (max-width: 376px) {
+  #newSubscriptionBlock .new_subscription_block .plan_comment [data-tippy-root] {
+    right: -10px !important;
+  }
+  #newSubscriptionBlock .new_subscription_block .plan_comment .tippy-box[data-placement^=bottom] > .tippy-arrow:before, #newSubscriptionBlock .new_subscription_block .plan_comment .tippy-box[data-placement^=top] > .tippy-arrow:before {
+    left: -10px !important;
+  }
+}
+@media (max-width: 768px) {
   #newSubscriptionBlock .new_subscription_block .plan_details {
     flex-direction: column;
     padding: 12px 17px;

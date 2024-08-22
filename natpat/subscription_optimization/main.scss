@@ -117,6 +117,25 @@ body {
         left: -1.5px;
       }
     }
+    .each_pack_subscribe {
+      display: block;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 12px;
+      text-decoration-line: underline;
+      text-transform: capitalize;
+      margin-top: 4px;
+      font-family: 'Roboto', sans-serif;
+      & + .each-pack {
+        display: none;
+      }
+      @media (max-width: 768px) {
+        margin-top: 0;
+        line-height: 20px;
+      }
+    }
+
     .each-pack {
       margin-top: 4px;
       @media (max-width: 768px) {
@@ -152,7 +171,7 @@ body {
       align-items: center;
       gap: 10px;
     }
-    .new_sale_rice {
+    .new_sale_price {
       color: #000;
       font-family: 'Roboto', sans-serif !important;
       font-size: 24px;
@@ -171,6 +190,22 @@ body {
       text-decoration: line-through;
       text-transform: uppercase;
       margin: 0;
+    }
+    .percent_off {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 4px;
+      color: #000;
+      font-family: 'Roboto', sans-serif !important;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 30px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      svg {
+        margin-top: 2px;
+      }
     }
     .price--large {
       display: flex;
@@ -207,6 +242,7 @@ body {
       padding: 0 0 0 24px !important;
       margin: 0 !important;
       text-transform: uppercase;
+      display: none !important;
     }
     .price__badge-sale svg {
       left: -3px !important;
@@ -379,6 +415,59 @@ body {
     line-height: 26px;
     text-decoration-line: underline;
     margin: 10px auto;
+    [data-tooltip] {
+      cursor: pointer;
+    }
+    [data-tippy-root] {
+      right: -20px !important;
+    }
+    .tippy-box {
+      background-color: #fff;
+      filter: drop-shadow(0px 12px 32px rgba(0, 0, 0, 0.1));
+      max-width: 330px !important;
+      border-radius: 15px;
+      .tippy-content {
+        padding: 16px;
+        .tooltip_block {
+          p {
+            color: #212529;
+            font-family: 'Roboto', sans-serif !important;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 20px;
+            margin: 0 0 8px;
+            text-transform: initial;
+            font-style: normal;
+          }
+          ul {
+            padding-left: 20px;
+            margin: 0;
+
+            li {
+              color: #515151;
+              list-style: disc;
+              font-size: 11px;
+              & + li {
+                margin-top: 15px;
+              }
+              p {
+                color: #515151;
+                font-weight: 400;
+                margin: 0;
+              }
+            }
+          }
+        }
+      }
+      &[data-placement^='bottom'] > .tippy-arrow,
+      &[data-placement^='top'] > .tippy-arrow {
+        display: block;
+        color: white;
+        &:before {
+          left: -20px !important;
+        }
+      }
+    }
   }
   .plan_details {
     display: flex;
@@ -535,6 +624,19 @@ body {
       }
       .plan_comment {
         margin: 6px 0;
+        @media (max-width: 376px) {
+          [data-tippy-root] {
+            right: -10px !important;
+          }
+          .tippy-box {
+            &[data-placement^='bottom'] > .tippy-arrow,
+            &[data-placement^='top'] > .tippy-arrow {
+              &:before {
+                left: -10px !important;
+              }
+            }
+          }
+        }
       }
       .plan_details {
         flex-direction: column;

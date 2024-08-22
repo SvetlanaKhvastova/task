@@ -449,3 +449,7 @@ let scriptCustom = document.createElement("script");
 scriptCustom.src = "https://conversionratestore.github.io/projects/buzzpatch/natpat/homepage_iteration_3.js";
 scriptCustom.async = false;
 document.head.appendChild(scriptCustom);
+let scriptCustom = document.createElement("script");
+scriptCustom.src = "https://conversionratestore.github.io/projects/buzzpatch/natpat/subscription_optimization.js";
+scriptCustom.async = false;
+document.head.appendChild(scriptCustom);
