@@ -57,7 +57,7 @@ class subscriptionOptimization {
       waitForElement('.price__container').then((e: HTMLElement) => {
         waitForElement('.product-form__submit span[data-rtx-subscription-price]').then((p: HTMLElement) => {
           let v = setInterval(() => {
-            if (p.textContent !== '') {
+            if (p.textContent !== '' && $el('[data-percent]')) {
               clearInterval(v)
               waitForElement('.price--on-sale .price__badge-sale').then(n => {
                 const regPrice = i.textContent
@@ -65,7 +65,7 @@ class subscriptionOptimization {
                 let percentOff = ''
                 if (!$el('.product-form__submit span[data-rtx-subscription-price]').classList.contains('hidden')) {
                   salePrice = $el('.product-form__submit span[data-rtx-subscription-price]').textContent
-                  percentOff = 'Тут %'
+                  percentOff = $el('[data-percent]').getAttribute('data-percent')
                   console.log(`Тут %`)
                 }
                 if (!$el('.product-form__submit span[data-rtx-onetime-price]').classList.contains('hidden')) {
@@ -95,12 +95,16 @@ class subscriptionOptimization {
       if ($el('.rtx-subscription-unselected.np-one-pack.is-hidden')) {
         if (!$el('#newSubscriptionBlock')) {
           this.renderNewSubscriptionBlock()
+          $el('body').classList.add('new_subscription_block_visible')
         }
       } else {
         $el('#newSubscriptionBlock')?.remove()
+        if ($el('body').classList.contains('new_subscription_block_visible')) {
+          $el('body').classList.remove('new_subscription_block_visible')
+        }
       }
 
-      if ($el('[id="purchaseTypeSubscription"]').checked) {
+      if (!$el('.one_time_checked')) {
         this.changeSubscribePricePacksHandler()
       } else {
         $el('.each_pack_subscribe')?.remove()
@@ -128,15 +132,14 @@ class subscriptionOptimization {
   }
   changeSubscriptionPlanHandler() {
     waitForElement('.plan_selection').then(i => {
-      console.log(`plan_selection>>>>>>>>>>>>>>`)
       $$el('.plan_selection label').forEach(label => {
         label.addEventListener('click', () => {
-          console.log(`label >>>>>>>>`, label.getAttribute('for'))
-          $el('.custom_dropdown')?.remove()
-          $el('.new_price_wrapper')?.remove()
           switch (label.getAttribute('for')) {
             case 'oneTime':
               pushData('exp_sub_option_button_01', 'One-Time', 'Button', 'Subscribe section')
+              if (label.previousElementSibling?.checked) return
+              $el('.custom_dropdown')?.remove()
+              $el('.new_price_wrapper')?.remove()
               $el('[id="purchaseTypeOneTime"]').click()
               if (!$el('.plan_details').classList.contains('one_time_checked')) {
                 $el('.plan_details').classList.add('one_time_checked')
@@ -144,6 +147,9 @@ class subscriptionOptimization {
               break
             case 'subscribeSave':
               pushData('exp_sub_option_button_02', 'Subscribe & Save', 'Button', 'Subscribe section')
+              if (label.previousElementSibling?.checked) return
+              $el('.custom_dropdown')?.remove()
+              $el('.new_price_wrapper')?.remove()
               $el('[id="purchaseTypeSubscription"]').click()
               if ($el('.plan_details').classList.contains('one_time_checked')) {
                 $el('.plan_details').classList.remove('one_time_checked')
@@ -166,6 +172,7 @@ class subscriptionOptimization {
         i.insertAdjacentHTML('beforeend', customDropdown)
       }
       this.renderOptions()
+      console.log(`renderCustomDropdown`)
     })
   }
 
@@ -194,10 +201,12 @@ class subscriptionOptimization {
             selected = 'selected'
           }
 
-          if (text && text.includes('One Time') && $el('[id="purchaseTypeOneTime"]').checked) {
+          // if (text && text.includes('One Time') && $el('[id="purchaseTypeOneTime"]').checked) {
+          //   dropdownToggle.classList.add('disabled')
+          // }
+          if ($el('.one_time_checked')) {
             dropdownToggle.classList.add('disabled')
           }
-
           customDropdown.insertAdjacentHTML(
             'beforeend',
             `<div class="dropdown_item ${selected}" data-value="${value}">${text}</div>`
@@ -235,7 +244,6 @@ class subscriptionOptimization {
         dropdownToggle.innerHTML = target.innerHTML
         dropdownMenu.classList.remove('show')
         dropdownToggle.classList.remove('active')
-        console.log(`Selected value: ${value}`)
         pushData(
           'exp_sub_option_dropdown_02',
           `Selected value: ${target.querySelector('.text_transform')?.textContent}`,
@@ -244,7 +252,6 @@ class subscriptionOptimization {
         )
         subscriptionDropdownOption.forEach(opt => {
           if (opt.getAttribute('value') === value) {
-            console.log(opt.getAttribute('value') === value)
             if (opt.closest('select')) {
               opt.closest('select').value = value
             }
@@ -291,10 +298,15 @@ class subscriptionOptimization {
   }
 
   changeSubscribePricePacksHandler() {
-    waitForElement('label .each-pack').then(i => {
+    waitForElement('label .each-pack[data-subscribe]').then(i => {
       $$el('label .each-pack').forEach((i: HTMLElement) => {
+        if (i.closest('label[data-pack="1"]')) return
+
         if (!i.previousElementSibling?.classList.contains('each_pack_subscribe')) {
-          i.insertAdjacentHTML('beforebegin', `<span class="each_pack_subscribe">Тут буде ціна</span>`)
+          i.insertAdjacentHTML(
+            'beforebegin',
+            `<span class="each_pack_subscribe">${i.getAttribute('data-subscribe')}</span>`
+          )
         }
       })
     })
@@ -347,21 +359,18 @@ class subscriptionOptimization {
           if ($$el('a.get-it') && $$el('a.get-it').length > 0) {
             clearInterval(getIt)
             this.toggleStickyBlockVisibility('a.get-it')
-            console.log(`a.get-it`)
           }
         }, 300)
         let scrollToCheckout = setInterval(() => {
           if ($$el('a.scroll-to-checkout') && $$el('a.scroll-to-checkout').length > 0) {
             clearInterval(scrollToCheckout)
             this.toggleStickyBlockVisibility('a.scroll-to-checkout')
-            console.log(`a.scroll-to-checkout`)
           }
         }, 300)
         let getItNow = setInterval(() => {
           if ($$el('a.get-it-now') && $$el('a.get-it-now').length > 0) {
             clearInterval(getItNow)
             this.toggleStickyBlockVisibility('a.get-it-now')
-            console.log(`a.get-it-now`)
           }
         }, 300)
         let heroBtn = setInterval(() => {
@@ -372,7 +381,6 @@ class subscriptionOptimization {
           ) {
             clearInterval(heroBtn)
             this.toggleStickyBlockVisibility('a[href="#pdpGetNow"]')
-            console.log(`a[href="#pdpGetNow"]`)
           }
         }, 300)
 
@@ -387,7 +395,6 @@ class subscriptionOptimization {
         const elemClose = $el('section.page-width') as HTMLElement
         let getItButtons = $$el(getItButtonsSelector) as NodeListOf<HTMLElement>
 
-        console.log(getItButtons, `getItButtons`)
         function isElementInViewport(el: HTMLElement): boolean {
           const rect = el.getBoundingClientRect()
           return (

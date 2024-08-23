@@ -4,6 +4,10 @@
   display: none !important;
 }
 
+body.new_subscription_block_visible .price__container {
+  margin: 0 !important;
+  display: none !important;
+}
 body .product {
   justify-content: space-between;
 }
@@ -238,10 +242,6 @@ body .product__info-container .price--large {
   justify-content: center;
   gap: 10px;
   margin-bottom: 15px;
-}
-body .product__info-container .price__container {
-  margin: 0 !important;
-  display: none !important;
 }
 body .product__info-container .price .price-item {
   font-family: "Roboto", sans-serif !important;

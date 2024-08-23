@@ -5,6 +5,10 @@
 }
 
 body {
+  &.new_subscription_block_visible .price__container {
+    margin: 0 !important;
+    display: none !important;
+  }
   .product {
     justify-content: space-between;
   }
@@ -216,10 +220,7 @@ body {
       @media (max-width: 768px) {
       }
     }
-    .price__container {
-      margin: 0 !important;
-      display: none !important;
-    }
+
     .price .price-item {
       font-family: 'Roboto', sans-serif !important;
       font-size: 24px !important;
