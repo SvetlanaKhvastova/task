@@ -24,7 +24,7 @@ class EmailPageEnhancements {
 
   init() {
     startLog({ name: 'Email page enhancements', dev: 'SKh' })
-    clarityInterval('exp_email_enhance', 'variant_1')
+    clarityInterval('exp_email_enhance', 'variant_2')
 
     if (!$el('html').classList.contains('crs_dev')) {
       $el('html').classList.add('crs_dev')
@@ -51,10 +51,10 @@ class EmailPageEnhancements {
   renderTitleBlock() {
     waitForElement('main > div > div.gap-1').then(() => {
       if (!$el('.title_block')) {
-        $el('main > div').insertAdjacentHTML('afterbegin', titleBlockVerB)
+        // $el('main > div').insertAdjacentHTML('afterbegin', titleBlockVerB)
         // _______________________________________________________________________
-        // $el('main > div').insertAdjacentHTML('afterbegin', titleBlockVerC)
-        // $el('body').classList.add('ver_c')
+        $el('main > div').insertAdjacentHTML('afterbegin', titleBlockVerC)
+        $el('body').classList.add('ver_c')
       }
     })
   }
@@ -88,8 +88,8 @@ class EmailPageEnhancements {
   renderNewLabelForInput() {
     waitForElement('[data-slot="input-wrapper"]').then(() => {
       if (!$el('.new_label_txt')) {
-        $el('[data-slot="input-wrapper"]').insertAdjacentHTML('beforebegin', newLabelTxtVerB)
-        // $el('[data-slot="input-wrapper"]').insertAdjacentHTML('beforebegin', newLabelTxtVerC)
+        // $el('[data-slot="input-wrapper"]').insertAdjacentHTML('beforebegin', newLabelTxtVerB)
+        $el('[data-slot="input-wrapper"]').insertAdjacentHTML('beforebegin', newLabelTxtVerC)
       }
     })
   }

@@ -411,6 +411,14 @@ let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/cerebrum/payment_page_improvements_hyp_2_ver_3.js";
 script.async = false;
 document.head.appendChild(script);
+let script = document.createElement("script");
+script.src = "https://conversionratestore.github.io/projects/cerebrum/email_page_enhancements_hyp_3_ver_1.js";
+script.async = false;
+document.head.appendChild(script);
+let script = document.createElement("script");
+script.src = "https://conversionratestore.github.io/projects/cerebrum/email_page_enhancements_hyp_3_ver_2.js";
+script.async = false;
+document.head.appendChild(script);
 //hint
 let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/hint/select_trial_price_hyp_1_ver_1.js";

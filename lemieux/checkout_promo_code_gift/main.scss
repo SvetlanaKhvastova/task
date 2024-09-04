@@ -1,0 +1,18 @@
+[zippyname='basketTab'] {
+  coupon-form,
+  giftcards-form {
+    background: #fff;
+    padding: 0 24px 24px;
+    margin: 0 !important;
+    form {
+      border: 1px solid var(--Borders, #cecdcd);
+      background: var(--Background-1, #fafafa);
+    }
+  }
+  coupon-form {
+    margin-bottom: 0;
+  }
+  & + div {
+    margin-top: 8px !important;
+  }
+}
