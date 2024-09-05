@@ -1,17 +1,112 @@
 [zippyname=basketTab] coupon-form,
 [zippyname=basketTab] giftcards-form {
   background: #fff;
-  padding: 0 24px 24px;
+  padding: 0 24px 24px !important;
   margin: 0 !important;
 }
-[zippyname=basketTab] coupon-form form,
-[zippyname=basketTab] giftcards-form form {
-  border: 1px solid var(--Borders, #cecdcd);
-  background: var(--Background-1, #fafafa);
-}
 [zippyname=basketTab] coupon-form {
-  margin-bottom: 0;
+  margin-bottom: 12px !important;
+  padding-bottom: 0 !important;
+}
+@media (max-width: 1100px) {
+  [zippyname=basketTab] coupon-form {
+    margin-bottom: 8px !important;
+  }
 }
 [zippyname=basketTab] + div {
   margin-top: 8px !important;
+}
+@media (max-width: 1100px) {
+  [zippyname=basketTab] + div {
+    margin-top: 15px !important;
+  }
+}
+
+checkout-form coupon-form form,
+checkout-form giftcards-form form {
+  border: 1px solid #cecdcd;
+  background: #fafafa;
+}
+checkout-form coupon-form form > .m-t-2-s[zippyname=gift],
+checkout-form giftcards-form form > .m-t-2-s[zippyname=gift] {
+  margin: 0 !important;
+}
+checkout-form coupon-form form [zippyclass=is-open],
+checkout-form giftcards-form form [zippyclass=is-open] {
+  position: relative;
+  padding: 6px 12px 6px 40px !important;
+}
+@media (max-width: 1100px) {
+  checkout-form coupon-form form [zippyclass=is-open],
+  checkout-form giftcards-form form [zippyclass=is-open] {
+    padding: 8px 12px 8px 40px !important;
+  }
+}
+checkout-form coupon-form form [zippyclass=is-open]::before,
+checkout-form giftcards-form form [zippyclass=is-open]::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background: url("https://conversionratestore.github.io/projects/lemieux/img/gift_card_icon.svg") no-repeat;
+  background-size: contain;
+}
+checkout-form coupon-form form [zippyclass=is-open] > span,
+checkout-form giftcards-form form [zippyclass=is-open] > span {
+  color: #212121;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 1px;
+}
+checkout-form coupon-form form [zippyclass=is-open] + div > div > div,
+checkout-form giftcards-form form [zippyclass=is-open] + div > div > div {
+  padding: 6px 12px 4px !important;
+}
+@media (max-width: 1100px) {
+  checkout-form coupon-form form [zippyclass=is-open] + div > div > div,
+  checkout-form giftcards-form form [zippyclass=is-open] + div > div > div {
+    padding: 4px 12px 4px !important;
+  }
+}
+checkout-form coupon-form form [zippyclass=is-open] + div > div > div input-wrap input,
+checkout-form giftcards-form form [zippyclass=is-open] + div > div > div input-wrap input {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+checkout-form coupon-form form [zippyclass=is-open] + div > div > div input-wrap label,
+checkout-form giftcards-form form [zippyclass=is-open] + div > div > div input-wrap label {
+  color: #212121;
+  font-size: 12px !important;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  left: 16px;
+}
+checkout-form coupon-form form [zippyclass=is-open] + div > div > div input-wrap + div,
+checkout-form giftcards-form form [zippyclass=is-open] + div > div > div input-wrap + div {
+  margin-top: 12px !important;
+}
+checkout-form coupon-form form [zippyclass=is-open] + div > div > div input-wrap + div .button-1,
+checkout-form giftcards-form form [zippyclass=is-open] + div > div > div input-wrap + div .button-1 {
+  padding: 0 !important;
+}
+checkout-form coupon-form form [zippyclass=is-open] + div > div > div input-wrap + div > div, checkout-form coupon-form form [zippyclass=is-open] + div > div > div input-wrap + div > result,
+checkout-form giftcards-form form [zippyclass=is-open] + div > div > div input-wrap + div > div,
+checkout-form giftcards-form form [zippyclass=is-open] + div > div > div input-wrap + div > result {
+  position: relative;
+}
+checkout-form coupon-form form [zippyclass=is-open] + div > div > div input-wrap + div .button > span,
+checkout-form coupon-form form [zippyclass=is-open] + div > div > div input-wrap + div .button-1 > span,
+checkout-form giftcards-form form [zippyclass=is-open] + div > div > div input-wrap + div .button > span,
+checkout-form giftcards-form form [zippyclass=is-open] + div > div > div input-wrap + div .button-1 > span {
+  line-height: 28px;
+  letter-spacing: 1px;
+}
+checkout-form coupon-form form [zippyclass=is-open]::before {
+  background: url("https://conversionratestore.github.io/projects/lemieux/img/promo_code_icon.svg") no-repeat;
+  background-size: contain;
 }/*# sourceMappingURL=main.css.map */

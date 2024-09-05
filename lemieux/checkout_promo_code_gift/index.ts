@@ -1,6 +1,5 @@
-import { startLog, $el, $$el, waitForElement, clarityInterval } from '../../libraries'
+import { startLog, $el, $$el, waitForElement, pushData } from '../../libraries'
 import {} from './blocks'
-import { svg } from './data'
 
 declare global {
   interface Window {
@@ -28,7 +27,7 @@ declare global {
   if (a) a.appendChild(r) // Вже враховано перевірку на null
 })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=')
 
-window.hj('event', 'eliminate_cart_page')
+window.hj('event', 'exp_cart_page_step')
 
 // @ts-ignore
 import mainStyle from './main.css?raw'
@@ -48,7 +47,7 @@ class CheckoutPromoCodeGift {
 
   initFunc() {
     startLog({
-      name: 'Adding promo code and gift card options to the checkout + Eliminate cart page step on Desktop',
+      name: 'Adding promo code and gift card options to the checkout',
       dev: 'SKh'
     })
 
@@ -56,6 +55,10 @@ class CheckoutPromoCodeGift {
       document.head.insertAdjacentHTML('beforeend', `<style class="crs_style">${mainStyle}</style>`)
     }
 
+    this.initAllFunc()
+  }
+
+  initAllFunc() {
     if (this.checkPage() === 'checkout') {
       if (!$el('[zippyname="basketTab"] coupon-form')) {
         waitForElement('coupon-form').then(i => {
@@ -67,19 +70,25 @@ class CheckoutPromoCodeGift {
         })
       }
       if (!$el('[zippyname="basketTab"] giftcards-form')) {
-        waitForElement('giftcards-form').then(i => {
-          waitForElement('[zippyname="basketTab"]').then(i => {
-            this.toggleElementBetweenContainers('giftcards-form', 'mention-me-wrapper', '[zippyname="basketTab"]')
+        waitForElement('[zippyname="basketTab"] coupon-form').then(i => {
+          waitForElement('giftcards-form').then(i => {
+            waitForElement('[zippyname="basketTab"]').then(i => {
+              this.toggleElementBetweenContainers(
+                'giftcards-form',
+                'mention-me-wrapper',
+                '[zippyname="basketTab"] coupon-form'
+              )
+            })
           })
         })
       }
     }
   }
 
-  toggleElementBetweenContainers(selector, container1Selector, container2Selector) {
-    const element = document.querySelector(selector)
-    const container1 = document.querySelector(container1Selector)
-    const container2 = document.querySelector(container2Selector)
+  toggleElementBetweenContainers(selector: string, container1Selector: string, container2Selector: string) {
+    const element = $el(selector)
+    const container1 = $el(container1Selector)
+    const container2 = $el(container2Selector)
 
     if (!element || !container1 || !container2) {
       console.log(element, container1, container2)
@@ -87,10 +96,147 @@ class CheckoutPromoCodeGift {
       return
     }
 
+    // Обработчики событий
+    function handleCouponEvents() {
+      waitForElement('[zippyname="basketTab"] coupon-form').then(i => {
+        const couponForm = $el("[zippyname=basketTab] coupon-form [zippyclass='is-open']")
+        couponForm.addEventListener('click', handleCouponClick)
+
+        waitForElement('[zippyname=basketTab] coupon-form input').then(i => {
+          const couponInput = $el('[zippyname=basketTab] coupon-form input')
+          couponInput.addEventListener('change', handleCouponInputChange)
+        })
+
+        waitForElement('[zippyname=basketTab] coupon-form action.button').then(i => {
+          const couponButton = $el('[zippyname=basketTab] coupon-form action.button')
+          couponButton.addEventListener('click', handleCouponApplyClick)
+        })
+
+        waitForElement('[zippyname=basketTab] coupon-form button').then(i => {
+          const couponCancelButton = $el('[zippyname=basketTab] coupon-form button')
+          couponCancelButton.addEventListener('click', handleCouponCancelClick)
+        })
+      })
+    }
+    // Обработчики событий для giftcards-form
+    function handleGiftcardEvents() {
+      waitForElement('[zippyname="basketTab"] giftcards-form').then(i => {
+        const giftcardForm = $el(`[zippyname="basketTab"] giftcards-form [zippyclass='is-open']`)
+        giftcardForm.addEventListener('click', handleGiftcardClick)
+
+        waitForElement('[zippyname=basketTab] giftcards-form input').then(i => {
+          const giftcardInput = $el('[zippyname=basketTab] giftcards-form input')
+          giftcardInput.addEventListener('change', handleGiftcardInputChange)
+        })
+
+        waitForElement('[zippyname=basketTab] giftcards-form action.button').then(i => {
+          const giftcardButton = $el('[zippyname=basketTab] giftcards-form action.button')
+          giftcardButton.addEventListener('click', handleGiftcardApplyClick)
+        })
+
+        waitForElement('[zippyname=basketTab] giftcards-form action.button-1').then(i => {
+          const giftcardCheckButton = $el('[zippyname=basketTab] giftcards-form action.button-1')
+          giftcardCheckButton.addEventListener('click', handleGiftcardCheckClick)
+        })
+      })
+    }
+
+    // Функции-обработчики
+    function handleCouponClick(e) {
+      if (e.currentTarget.classList.contains('is-open')) {
+        pushData('exp_cart_page_cart_promocode_open', 'Have you got a promo code', 'Click', 'Bag summary')
+      } else {
+        pushData('exp_cart_page_cart_promocode_close', 'Have you got a promo code', 'Click', 'Bag summary')
+      }
+    }
+
+    function handleCouponInputChange(e) {
+      pushData('exp_cart_page_cart_promocode_input', 'Enter offer code', 'Input', 'Bag summary')
+    }
+
+    function handleCouponApplyClick(e) {
+      pushData('exp_cart_page_cart_promocode_apply', 'Apply', 'Click', 'Bag summary')
+    }
+
+    function handleCouponCancelClick(e) {
+      pushData('exp_cart_page_cart_promocode_close', 'Cancel', 'Click', 'Bag summary')
+    }
+
+    // Функции-обработчики для giftcards-form
+    function handleGiftcardClick(e) {
+      if (e.currentTarget.classList.contains('is-open')) {
+        pushData('exp_cart_page_cart_giftcode_open', 'Have you got a gift card', 'Click', 'Bag summary')
+      } else {
+        pushData('exp_cart_page_cart_giftcode_close', 'Have you got a gift card', 'Click', 'Bag summary')
+      }
+    }
+
+    function handleGiftcardInputChange(e) {
+      pushData('exp_cart_page_cart_giftcode_input', 'Enter a gift card', 'Input', 'Bag summary')
+    }
+
+    function handleGiftcardApplyClick(e) {
+      pushData('exp_cart_page_cart_giftcode_apply', 'Apply', 'Click', 'Bag summary')
+    }
+
+    function handleGiftcardCheckClick(e) {
+      pushData('exp_cart_page_cart_giftcode_check', 'Check balance', 'Click', 'Bag summary')
+    }
+
+    // Функция для удаления обработчиков событий
+    function removeCouponEventListeners() {
+      const couponForm = $el("coupon-form [zippyclass='is-open']")
+      couponForm.removeEventListener('click', handleCouponClick)
+
+      const couponInput = $el('coupon-form input')
+      couponInput.removeEventListener('change', handleCouponInputChange)
+
+      const couponButton = $el('coupon-form action.button')
+      couponButton.removeEventListener('click', handleCouponApplyClick)
+
+      const couponCancelButton = $el('coupon-form button')
+      couponCancelButton.removeEventListener('click', handleCouponCancelClick)
+    }
+
+    // Функция для удаления обработчиков событий для giftcards-form
+    function removeGiftcardEventListeners() {
+      const giftcardForm = $el(`giftcards-form [zippyclass='is-open']`)
+      giftcardForm.removeEventListener('click', handleGiftcardClick)
+
+      const giftcardInput = $el('giftcards-form input')
+      giftcardInput.removeEventListener('change', handleGiftcardInputChange)
+
+      const giftcardButton = $el('giftcards-form action.button')
+      giftcardButton.removeEventListener('click', handleGiftcardApplyClick)
+
+      const giftcardCheckButton = $el('giftcards-form action.button-1')
+      giftcardCheckButton.removeEventListener('click', handleGiftcardCheckClick)
+    }
+
     // Функция для перемещения элемента в указанный контейнер
     function moveToContainer(container) {
       if (container.contains(element)) return
-      container.appendChild(element)
+
+      container.insertAdjacentElement('beforeend', element)
+      if (selector === 'giftcards-form') {
+        container.insertAdjacentElement('afterend', element)
+      }
+
+      if (container === container2) {
+        if (selector === 'coupon-form') {
+          handleCouponEvents()
+        }
+        if (selector === 'giftcards-form') {
+          handleGiftcardEvents()
+        }
+      } else {
+        if (selector === 'coupon-form') {
+          removeCouponEventListeners()
+        }
+        if (selector === 'giftcards-form') {
+          removeGiftcardEventListeners()
+        }
+      }
     }
 
     console.log('toggleElementBetweenContainers', selector)
@@ -115,24 +261,7 @@ class CheckoutPromoCodeGift {
     this.observerNew = new MutationObserver(mutations => {
       mutations.forEach(mutation => {
         if (window.location.pathname !== this.lastPath) {
-          if (this.checkPage() === 'checkout') {
-            if (!$el('[zippyname="basketTab"] coupon-form')) {
-              waitForElement('coupon-form').then(i => {
-                waitForElement('[zippyname="basketTab"]').then(i => {
-                  waitForElement('mention-me-wrapper').then(i => {
-                    this.toggleElementBetweenContainers('coupon-form', 'mention-me-wrapper', '[zippyname="basketTab"]')
-                  })
-                })
-              })
-            }
-            if (!$el('[zippyname="basketTab"] giftcards-form')) {
-              waitForElement('giftcards-form').then(i => {
-                waitForElement('[zippyname="basketTab"]').then(i => {
-                  this.toggleElementBetweenContainers('giftcards-form', 'mention-me-wrapper', '[zippyname="basketTab"]')
-                })
-              })
-            }
-          }
+          this.initAllFunc()
           this.lastPath = window.location.pathname
         }
       })
@@ -175,15 +304,9 @@ class LaunchExperiment {
   }
 
   public init() {
-    startLog({ name: 'Eliminate cart page step on Desktop', dev: 'OS' })
-    if (
-      this.country !== 'other' &&
-      this.device === 'desktop' &&
-      !location.href.includes('basket') &&
-      !location.href.includes('checkout')
-    ) {
-      this.basketButtonHandler()
-    }
+    startLog({ name: 'Eliminate cart page step on Desktop', dev: 'OS (SKh)' })
+    this.basketButtonHandler()
+
     this.updateDevice()
     this.checkBasketPage()
   }
@@ -204,7 +327,6 @@ class LaunchExperiment {
         const btns = document.querySelectorAll('button')
         btns.forEach(btn => {
           if (btn && btn.textContent?.includes('Continue shopping')) {
-            console.log('Button found.')
             const lastPdpHref = localStorage.getItem('lastPdpHref')
             const newContinueShoppingBtn = /* HTML */ ` <a class="w-12 button-1 m-b m-t-2" href="${lastPdpHref}"
               ><span class="button__body">Continue shopping</span></a
@@ -221,51 +343,63 @@ class LaunchExperiment {
 
     function checkForBasketPage() {
       if (location.href.includes('basket')) {
-        console.log('here is basket page')
         waitForButtonAndAttachEvent()
       }
     }
 
+    this.pageChangeHandler(checkForBasketPage)
+    checkForBasketPage()
+  }
+
+  private pageChangeHandler(cb: () => void) {
     ;(function (history) {
       const pushState = history.pushState
       const replaceState = history.replaceState
 
       history.pushState = function (state) {
         pushState.apply(history, arguments)
-        checkForBasketPage()
+        cb()
       }
 
       history.replaceState = function (state) {
         replaceState.apply(history, arguments)
-        checkForBasketPage()
+        cb()
       }
 
       window.addEventListener('popstate', function (event) {
-        checkForBasketPage()
+        cb()
       })
     })(window.history)
-    checkForBasketPage()
   }
 
   private basketButtonHandler = () => {
-    this.waitForElementCustom('minibasket a[href*="/basket"]', elem => {
-      const checkoutUrl = this.country === 'us' ? '/us/checkout' : '/checkout'
-      console.log('Element appeared!')
+    const changeBasketBtn = () => {
+      if (
+        this.country !== 'other' &&
+        this.device === 'desktop' &&
+        !location.href.includes('basket') &&
+        !location.href.includes('checkout')
+      ) {
+        this.waitForElementCustom('minibasket a[href*="/basket"]', elem => {
+          const checkoutUrl = this.country === 'us' ? '/us/checkout' : '/checkout'
+          const newBtnHTML = /* HTML */ `<a class="w-12 p-r-0 p-l-0 button" href="${checkoutUrl}"
+            ><span class="p1 col-w">Checkout securely</span></a
+          >`
 
-      const newBtnHTML = /* HTML */ `<a class="w-12 p-r-0 p-l-0 button" href="${checkoutUrl}"
-        ><span class="p1 col-w">Checkout securely</span></a
-      >`
+          elem.outerHTML = newBtnHTML
 
-      elem.outerHTML = newBtnHTML
-
-      document.querySelector('minibasket a[href*="/checkout"]')?.addEventListener('click', event => {
-        const closeBtn = document.querySelector<HTMLButtonElement>('minibasket [aria-label="Close"]')
-        localStorage.setItem('lastPdpHref', location.href)
-        if (closeBtn) {
-          closeBtn.click()
-        }
-      })
-    })
+          $el('minibasket a[href*="/checkout"]')?.addEventListener('click', event => {
+            const closeBtn = document.querySelector<HTMLButtonElement>('minibasket [aria-label="Close"]')
+            localStorage.setItem('lastPdpHref', location.href)
+            if (closeBtn) {
+              closeBtn.click()
+            }
+          })
+        })
+      }
+    }
+    changeBasketBtn()
+    this.pageChangeHandler(changeBasketBtn)
   }
 
   private waitForElementCustom(selector: string, callback: (element: HTMLElement) => void) {

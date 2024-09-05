@@ -2,17 +2,103 @@
   coupon-form,
   giftcards-form {
     background: #fff;
-    padding: 0 24px 24px;
+    padding: 0 24px 24px !important;
     margin: 0 !important;
-    form {
-      border: 1px solid var(--Borders, #cecdcd);
-      background: var(--Background-1, #fafafa);
-    }
   }
   coupon-form {
-    margin-bottom: 0;
+    margin-bottom: 12px !important;
+    padding-bottom: 0 !important;
+    @media (max-width: 1100px) {
+      margin-bottom: 8px !important;
+    }
   }
   & + div {
     margin-top: 8px !important;
+    @media (max-width: 1100px) {
+      margin-top: 15px !important;
+    }
+  }
+}
+
+checkout-form {
+  coupon-form,
+  giftcards-form {
+    form {
+      border: 1px solid #cecdcd;
+      background: #fafafa;
+      & > .m-t-2-s[zippyname='gift'] {
+        margin: 0 !important;
+      }
+      [zippyclass='is-open'] {
+        position: relative;
+        padding: 6px 12px 6px 40px !important;
+        @media (max-width: 1100px) {
+          padding: 8px 12px 8px 40px !important;
+        }
+        &::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 12px;
+          transform: translateY(-50%);
+          width: 16px;
+          height: 16px;
+          background: url('https://conversionratestore.github.io/projects/lemieux/img/gift_card_icon.svg') no-repeat;
+          background-size: contain;
+        }
+        & > span {
+          color: #212121;
+          font-size: 15px;
+          font-weight: 400;
+          line-height: 20px;
+          letter-spacing: 1px;
+        }
+        & + div > div > div {
+          padding: 6px 12px 4px !important;
+          @media (max-width: 1100px) {
+            padding: 4px 12px 4px !important;
+          }
+          input-wrap {
+            input {
+              padding-left: 16px;
+              padding-right: 16px;
+            }
+            label {
+              color: #212121;
+              font-size: 12px !important;
+              font-weight: 400;
+              line-height: 20px;
+              letter-spacing: 0.5px;
+              left: 16px;
+            }
+            & + div {
+              margin-top: 12px !important;
+              .button-1 {
+                padding: 0 !important;
+              }
+              & > div,
+              & > result {
+                position: relative;
+              }
+              .button > span,
+              .button-1 > span {
+                line-height: 28px;
+                letter-spacing: 1px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  coupon-form {
+    form {
+      [zippyclass='is-open'] {
+        &::before {
+          background: url('https://conversionratestore.github.io/projects/lemieux/img/promo_code_icon.svg') no-repeat;
+          background-size: contain;
+        }
+      }
+    }
   }
 }
