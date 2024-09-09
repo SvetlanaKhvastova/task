@@ -24,9 +24,10 @@ checkout-form {
   coupon-form,
   giftcards-form {
     form {
-      border: 1px solid #cecdcd;
-      background: #fafafa;
-      & > .m-t-2-s[zippyname='gift'] {
+      & > .m-t-2-s[zippyname='gift'],
+      & > [zippyname='tab'] {
+        border: 1px solid #cecdcd;
+        background: #fafafa;
         margin: 0 !important;
       }
       [zippyclass='is-open'] {

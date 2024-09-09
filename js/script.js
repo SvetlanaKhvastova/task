@@ -361,6 +361,7 @@ let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/lemieux/checkout_promo_code_gift.js";
 script.async = false;
 document.head.appendChild(script);
+if (document.querySelector("[src=`https://conversionratestore.github.io/projects/lemieux/checkout_promo_code_gift.js`]")) return;
 // gadgetgone
 let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/gadgetgone/pdp_enhancements.js";

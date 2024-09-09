@@ -22,13 +22,11 @@
   }
 }
 
-checkout-form coupon-form form,
-checkout-form giftcards-form form {
+checkout-form coupon-form form > .m-t-2-s[zippyname=gift], checkout-form coupon-form form > [zippyname=tab],
+checkout-form giftcards-form form > .m-t-2-s[zippyname=gift],
+checkout-form giftcards-form form > [zippyname=tab] {
   border: 1px solid #cecdcd;
   background: #fafafa;
-}
-checkout-form coupon-form form > .m-t-2-s[zippyname=gift],
-checkout-form giftcards-form form > .m-t-2-s[zippyname=gift] {
   margin: 0 !important;
 }
 checkout-form coupon-form form [zippyclass=is-open],

@@ -64,23 +64,24 @@ class CheckoutPromoCodeGift {
         waitForElement('coupon-form').then(i => {
           waitForElement('[zippyname="basketTab"]').then(i => {
             waitForElement('mention-me-wrapper').then(i => {
-              this.toggleElementBetweenContainers('coupon-form', 'mention-me-wrapper', '[zippyname="basketTab"]')
+              console.log('coupon>>>>')
+              this.toggleElementBetweenContainers(
+                'coupon-form',
+                'mention-me-wrapper #mmWrapper',
+                '[zippyname="basketTab"] > div.zippy-hide-up'
+              )
             })
           })
         })
       }
       if (!$el('[zippyname="basketTab"] giftcards-form')) {
-        waitForElement('[zippyname="basketTab"] coupon-form').then(i => {
-          waitForElement('giftcards-form').then(i => {
-            waitForElement('[zippyname="basketTab"]').then(i => {
-              this.toggleElementBetweenContainers(
-                'giftcards-form',
-                'mention-me-wrapper',
-                '[zippyname="basketTab"] coupon-form'
-              )
-            })
+        waitForElement('giftcards-form').then(i => {
+          waitForElement('[zippyname="basketTab"]').then(i => {
+            console.log('giftcards>>>>')
+            this.toggleElementBetweenContainers('giftcards-form', 'mention-me-wrapper', '[zippyname="basketTab"]')
           })
         })
+        waitForElement('[zippyname="basketTab"] coupon-form').then(i => {})
       }
     }
   }
@@ -218,7 +219,7 @@ class CheckoutPromoCodeGift {
       if (container.contains(element)) return
 
       container.insertAdjacentElement('beforeend', element)
-      if (selector === 'giftcards-form') {
+      if (selector === 'coupon-form') {
         container.insertAdjacentElement('afterend', element)
       }
 
