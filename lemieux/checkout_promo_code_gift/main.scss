@@ -8,9 +8,17 @@
   coupon-form {
     margin-bottom: 12px !important;
     padding-bottom: 0 !important;
+    .ng-star-inserted:nth-child(1) {
+      margin: 0 !important;
+    }
     @media (max-width: 1100px) {
       margin-bottom: 8px !important;
     }
+  }
+  #mmWrapper {
+    padding: 0 24px 0 !important;
+    margin-bottom: 1rem;
+    visibility: initial !important;
   }
   & + div {
     margin-top: 8px !important;

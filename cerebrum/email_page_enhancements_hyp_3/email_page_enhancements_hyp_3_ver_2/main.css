@@ -23,6 +23,13 @@ html.crs_dev body nav {
           backdrop-filter: blur(8px) !important;
   padding: 0 24px !important;
 }
+@media (min-width: 768px) {
+  html.crs_dev body nav {
+    border-bottom: 1px solid #f4f4f5 !important;
+    background: #f4f4f5 !important;
+    padding: 0 80px !important;
+  }
+}
 html.crs_dev body nav header {
   padding: 0 !important;
 }
@@ -32,6 +39,12 @@ html.crs_dev body nav + div {
 html.crs_dev body main {
   padding: 24px 20px 20px !important;
   height: 100%;
+}
+@media (min-width: 768px) {
+  html.crs_dev body main {
+    max-width: 480px;
+    padding: 60px 0 0 !important;
+  }
 }
 html.crs_dev body main > div {
   padding: 0 !important;
@@ -93,6 +106,12 @@ html.crs_dev body main [data-slot=input-wrapper] input::placeholder {
 html.crs_dev body main > div > .w-full {
   margin: 0;
 }
+@media (min-width: 768px) {
+  html.crs_dev body main > div > .w-full > div {
+    width: 100%;
+    max-width: 100%;
+  }
+}
 html.crs_dev body main > div > .mx-auto {
   margin: auto 0 0;
   padding: 0 20px !important;
@@ -102,6 +121,20 @@ html.crs_dev body main > div > .mx-auto {
   right: 0;
   transform: translateY(0);
   transition: transform 0.3s ease, margin-top 0.3s ease;
+}
+@media (max-width: 321px) {
+  html.crs_dev body main > div > .mx-auto {
+    margin-top: 40px;
+    position: initial;
+    padding: 0 !important;
+  }
+}
+@media (min-width: 768px) {
+  html.crs_dev body main > div > .mx-auto {
+    margin-top: 24px;
+    position: initial;
+    padding: 0 !important;
+  }
 }
 html.crs_dev body main > div > .mx-auto button {
   display: flex;
@@ -126,6 +159,14 @@ html.crs_dev body main > div > .mx-auto button > svg {
   width: 18px;
   height: 13px;
 }
+@media (min-width: 768px) {
+  html.crs_dev body.ver_c main {
+    padding: 90px 0 0 !important;
+  }
+  html.crs_dev body.ver_c main .title_block h2 {
+    max-width: 472px;
+  }
+}
 html.crs_dev body.input_focused main > div > .mx-auto {
   position: initial;
   padding: 0 !important;
@@ -141,6 +182,13 @@ html.crs_dev body.input_focused main > div > .mx-auto {
   line-height: 32px;
   max-width: 350px;
 }
+@media (min-width: 768px) {
+  .title_block h2 {
+    font-size: 32px;
+    line-height: 42px;
+    max-width: 100%;
+  }
+}
 .title_block h2 .accent_color_green {
   color: #0d766e;
 }
@@ -153,6 +201,13 @@ html.crs_dev body.input_focused main > div > .mx-auto {
   line-height: 24px;
   margin: 16px 0 32px;
 }
+@media (min-width: 768px) {
+  .title_block p {
+    font-size: 18px;
+    margin: 24px 0;
+    max-width: 100%;
+  }
+}
 .title_block ul {
   margin: 24px 0;
   padding-bottom: 24px;
@@ -162,6 +217,11 @@ html.crs_dev body.input_focused main > div > .mx-auto {
   max-width: 319px;
   position: relative;
   padding-left: 16px;
+}
+@media (min-width: 768px) {
+  .title_block ul li {
+    max-width: 100%;
+  }
 }
 .title_block ul li:before {
   content: "";
@@ -176,9 +236,23 @@ html.crs_dev body.input_focused main > div > .mx-auto {
 .title_block ul li + li {
   margin-top: 8px;
 }
+@media (min-width: 768px) {
+  .title_block ul li + li {
+    margin-top: 16px;
+  }
+}
 .title_block ul li p {
   max-width: 100%;
   margin: 0;
+  font-size: 16px;
+}
+@media (min-width: 768px) {
+  .title_block ul li p {
+    max-width: 431px;
+  }
+  .title_block ul li p br {
+    display: none;
+  }
 }
 
 .new_label_txt {
@@ -209,6 +283,11 @@ html.crs_dev body.input_focused main > div > .mx-auto {
   max-width: 265px;
   margin: 12px auto 0;
 }
+@media (min-width: 768px) {
+  .terms_conditions_block {
+    max-width: 100%;
+  }
+}
 .terms_conditions_block p {
   color: #505051;
   text-align: center;
@@ -221,4 +300,5 @@ html.crs_dev body.input_focused main > div > .mx-auto {
 }
 .terms_conditions_block p a {
   color: #00f;
+  cursor: pointer;
 }/*# sourceMappingURL=main.css.map */

@@ -65,18 +65,20 @@ class EmailPageEnhancements {
         $el('[data-slot="input-wrapper"] input').placeholder = 'example@mail.com'
       }
 
-      $el('[data-slot="input-wrapper"] input').addEventListener('focus', e => {
-        $el('body').classList.add('input_focused')
-        window.addEventListener('resize', handleResize)
-      })
-      $el('[data-slot="input-wrapper"] input').addEventListener('blur', e => {
-        window.removeEventListener('resize', handleResize)
-        setTimeout(() => {
-          if ($el('body').classList.contains('input_focused')) {
-            $el('body').classList.remove('input_focused')
-          }
-        }, 300)
-      })
+      if (this.device === 'mobile') {
+        $el('[data-slot="input-wrapper"] input').addEventListener('focus', e => {
+          $el('body').classList.add('input_focused')
+          window.addEventListener('resize', handleResize)
+        })
+        $el('[data-slot="input-wrapper"] input').addEventListener('blur', e => {
+          window.removeEventListener('resize', handleResize)
+          setTimeout(() => {
+            if ($el('body').classList.contains('input_focused')) {
+              $el('body').classList.remove('input_focused')
+            }
+          }, 300)
+        })
+      }
 
       function handleResize() {
         $el('body nav').style.position = 'fixed'

@@ -60,6 +60,20 @@ class CheckoutPromoCodeGift {
 
   initAllFunc() {
     if (this.checkPage() === 'checkout') {
+      if (!$el('[zippyname="basketTab"] #mmWrapper > div')) {
+        waitForElement('#mmWrapper > div').then(i => {
+          waitForElement('[zippyname="basketTab"]').then(i => {
+            waitForElement('mention-me-wrapper').then(i => {
+              console.log('mmWrapper>>>>')
+              this.toggleElementBetweenContainers(
+                '#mmWrapper',
+                'mention-me-wrapper',
+                '[zippyname="basketTab"] > div.zippy-hide-up'
+              )
+            })
+          })
+        })
+      }
       if (!$el('[zippyname="basketTab"] coupon-form')) {
         waitForElement('coupon-form').then(i => {
           waitForElement('[zippyname="basketTab"]').then(i => {
@@ -67,7 +81,7 @@ class CheckoutPromoCodeGift {
               console.log('coupon>>>>')
               this.toggleElementBetweenContainers(
                 'coupon-form',
-                'mention-me-wrapper #mmWrapper',
+                'mention-me-wrapper',
                 '[zippyname="basketTab"] > div.zippy-hide-up'
               )
             })
@@ -78,10 +92,13 @@ class CheckoutPromoCodeGift {
         waitForElement('giftcards-form').then(i => {
           waitForElement('[zippyname="basketTab"]').then(i => {
             console.log('giftcards>>>>')
-            this.toggleElementBetweenContainers('giftcards-form', 'mention-me-wrapper', '[zippyname="basketTab"]')
+            this.toggleElementBetweenContainers(
+              'giftcards-form',
+              '#checkout-step-payment .bg-col-w:nth-child(1)',
+              '[zippyname="basketTab"]'
+            )
           })
         })
-        waitForElement('[zippyname="basketTab"] coupon-form').then(i => {})
       }
     }
   }
@@ -90,6 +107,8 @@ class CheckoutPromoCodeGift {
     const element = $el(selector)
     const container1 = $el(container1Selector)
     const container2 = $el(container2Selector)
+    const container3 = $el('[zippyname="basketTab"] h4')
+    const container4 = $el('#checkout-step-payment .bg-col-w.p-a-6 + div.bg-col-w.p-a-6')
 
     if (!element || !container1 || !container2) {
       console.log(element, container1, container2)
@@ -97,7 +116,14 @@ class CheckoutPromoCodeGift {
       return
     }
 
-    // Обработчики событий
+    // Обработчики событий mmWrapper
+    function handleMMWrapperEvents() {
+      waitForElement('[zippyname="basketTab"] #mmWrapper').then(i => {
+        const couponForm = $el('[zippyname="basketTab"] #mmWrapper')
+        couponForm.addEventListener('click', handleMMWrapperClick)
+      })
+    }
+    // Обработчики событий coupon-form
     function handleCouponEvents() {
       waitForElement('[zippyname="basketTab"] coupon-form').then(i => {
         const couponForm = $el("[zippyname=basketTab] coupon-form [zippyclass='is-open']")
@@ -142,7 +168,12 @@ class CheckoutPromoCodeGift {
       })
     }
 
-    // Функции-обработчики
+    // Функции-обработчики mmWrapper
+    function handleMMWrapperClick(e) {
+      pushData('exp_cart_page_cart_link_referred', 'Been referred by a friend?', 'Click', 'Bag summary')
+    }
+
+    // Функции-обработчики coupon-form
     function handleCouponClick(e) {
       if (e.currentTarget.classList.contains('is-open')) {
         pushData('exp_cart_page_cart_promocode_open', 'Have you got a promo code', 'Click', 'Bag summary')
@@ -184,7 +215,13 @@ class CheckoutPromoCodeGift {
       pushData('exp_cart_page_cart_giftcode_check', 'Check balance', 'Click', 'Bag summary')
     }
 
-    // Функция для удаления обработчиков событий
+    // Функция для удаления обработчиков событий mmWrapper
+    function removeMMWrapperEventListeners() {
+      const couponForm = $el('#mmWrapper')
+      couponForm.removeEventListener('click', handleMMWrapperClick)
+    }
+
+    // Функция для удаления обработчиков событий coupon-form
     function removeCouponEventListeners() {
       const couponForm = $el("coupon-form [zippyclass='is-open']")
       couponForm.removeEventListener('click', handleCouponClick)
@@ -218,12 +255,18 @@ class CheckoutPromoCodeGift {
     function moveToContainer(container) {
       if (container.contains(element)) return
 
-      container.insertAdjacentElement('beforeend', element)
       if (selector === 'coupon-form') {
         container.insertAdjacentElement('afterend', element)
+      } else if (selector === 'giftcards-form') {
+        container.insertAdjacentElement('beforeend', element)
+      } else {
+        container.insertAdjacentElement('beforeend', element)
       }
 
       if (container === container2) {
+        if (selector === '#mmWrapper') {
+          handleMMWrapperEvents()
+        }
         if (selector === 'coupon-form') {
           handleCouponEvents()
         }
@@ -231,6 +274,9 @@ class CheckoutPromoCodeGift {
           handleGiftcardEvents()
         }
       } else {
+        if (selector === '#mmWrapper') {
+          removeMMWrapperEventListeners()
+        }
         if (selector === 'coupon-form') {
           removeCouponEventListeners()
         }
@@ -245,17 +291,19 @@ class CheckoutPromoCodeGift {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          if (entry.target === container1) {
+          if (entry.target === container4) {
+            console.log('container1')
             moveToContainer(container1)
-          } else if (entry.target === container2) {
+          } else if (entry.target === container3) {
+            console.log('container3')
             moveToContainer(container2)
           }
         }
       })
     })
 
-    observer.observe(container1)
-    observer.observe(container2)
+    observer.observe(container4)
+    observer.observe(container3)
   }
 
   observePageChange() {

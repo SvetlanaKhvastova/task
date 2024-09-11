@@ -8,10 +8,18 @@
   margin-bottom: 12px !important;
   padding-bottom: 0 !important;
 }
+[zippyname=basketTab] coupon-form .ng-star-inserted:nth-child(1) {
+  margin: 0 !important;
+}
 @media (max-width: 1100px) {
   [zippyname=basketTab] coupon-form {
     margin-bottom: 8px !important;
   }
+}
+[zippyname=basketTab] #mmWrapper {
+  padding: 0 24px 0 !important;
+  margin-bottom: 1rem;
+  visibility: initial !important;
 }
 [zippyname=basketTab] + div {
   margin-top: 8px !important;
