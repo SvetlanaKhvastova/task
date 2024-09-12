@@ -45,7 +45,7 @@ class HomePage {
   }
 
   init() {
-    startLog({ name: 'NatPat: Homepage - iteration 3', dev: 'SKh' })
+    startLog({ name: 'NatPat: Homepage - iteration 4', dev: 'SKh' })
     clarityInterval('exp_homepage')
 
     document.head.insertAdjacentHTML(
