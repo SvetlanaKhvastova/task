@@ -303,9 +303,17 @@ class HomePage {
           `exp_hp_3_shop_now_link`,
           `Shop now - ${$(this).closest('.swiper-slide').find('span').text().trim()}`,
           'Button',
-          'Natural solutions for better sleep, mood, focus and more!'
+          'Boost mood, focus, sleep & more with our Natural Stickers'
         )
       })
+    })
+
+    $('.new_slider_news').on('click', '.slick-arrow', function () {
+      if ($(this).hasClass('slick-next')) {
+        pushData(`${exp}slider_news_next`, 'Next', 'Click', 'Slider news')
+      } else {
+        pushData(`${exp}slider_news_prev`, 'Prev', 'Click', 'Slider news')
+      }
     })
 
     let is_active = false
@@ -344,7 +352,7 @@ class HomePage {
     visibilityOfTime(
       '.new_main_block',
       `exp_hp_3_hero_block`,
-      'Natural solutions for better sleep, mood, focus and more!',
+      'Boost mood, focus, sleep & more with our Natural Stickers',
       'Section'
     )
 
