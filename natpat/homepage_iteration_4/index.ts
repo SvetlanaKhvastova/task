@@ -297,14 +297,15 @@ class HomePage {
       })
     })
 
-    $('.new_main_block .big-stickers .shop_now_link').each(function (i, item) {
+    $('.shop_by_category_block li').each(function (i, item) {
       $(item).on('click', function (e) {
-        pushData(
-          `exp_hp_3_shop_now_link`,
-          `Shop now - ${$(this).closest('.swiper-slide').find('span').text().trim()}`,
-          'Button',
-          'Boost mood, focus, sleep & more with our Natural Stickers'
-        )
+        pushData(`exp_hp_3_shop_by_category_${i + 1}`, $(this).find('p').text().trim(), 'Button', 'Shop by category')
+      })
+    })
+
+    $('.new_info2_block p a').each(function (i, item) {
+      $(item).on('click', function (e) {
+        pushData(`exp_hp_3_health_wellness_link`, `${$(this).text().trim()}`, 'Link', 'Health and wellness patches')
       })
     })
 

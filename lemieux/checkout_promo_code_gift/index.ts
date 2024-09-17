@@ -108,7 +108,7 @@ class CheckoutPromoCodeGift {
     const container1 = $el(container1Selector)
     const container2 = $el(container2Selector)
     const container3 = $el('[zippyname="basketTab"] h4')
-    const container4 = $el('#checkout-step-payment .bg-col-w.p-a-6 + div.bg-col-w.p-a-6')
+    const container4 = $el('#checkout-step-payment .bg-col-w.p-a-6')?.nextElementSibling
 
     if (!element || !container1 || !container2) {
       console.log(element, container1, container2)
@@ -125,24 +125,23 @@ class CheckoutPromoCodeGift {
     }
     // Обработчики событий coupon-form
     function handleCouponEvents() {
-      waitForElement('[zippyname="basketTab"] coupon-form').then(i => {
+      waitForElement("[zippyname=basketTab] coupon-form [zippyclass='is-open']").then(i => {
         const couponForm = $el("[zippyname=basketTab] coupon-form [zippyclass='is-open']")
         couponForm.addEventListener('click', handleCouponClick)
+      })
+      waitForElement('[zippyname=basketTab] coupon-form input').then(i => {
+        const couponInput = $el('[zippyname=basketTab] coupon-form input')
+        couponInput.addEventListener('change', handleCouponInputChange)
+      })
 
-        waitForElement('[zippyname=basketTab] coupon-form input').then(i => {
-          const couponInput = $el('[zippyname=basketTab] coupon-form input')
-          couponInput.addEventListener('change', handleCouponInputChange)
-        })
+      waitForElement('[zippyname=basketTab] coupon-form action.button').then(i => {
+        const couponButton = $el('[zippyname=basketTab] coupon-form action.button')
+        couponButton.addEventListener('click', handleCouponApplyClick)
+      })
 
-        waitForElement('[zippyname=basketTab] coupon-form action.button').then(i => {
-          const couponButton = $el('[zippyname=basketTab] coupon-form action.button')
-          couponButton.addEventListener('click', handleCouponApplyClick)
-        })
-
-        waitForElement('[zippyname=basketTab] coupon-form button').then(i => {
-          const couponCancelButton = $el('[zippyname=basketTab] coupon-form button')
-          couponCancelButton.addEventListener('click', handleCouponCancelClick)
-        })
+      waitForElement('[zippyname=basketTab] coupon-form button').then(i => {
+        const couponCancelButton = $el('[zippyname=basketTab] coupon-form button')
+        couponCancelButton.addEventListener('click', handleCouponCancelClick)
       })
     }
     // Обработчики событий для giftcards-form
@@ -223,17 +222,25 @@ class CheckoutPromoCodeGift {
 
     // Функция для удаления обработчиков событий coupon-form
     function removeCouponEventListeners() {
-      const couponForm = $el("coupon-form [zippyclass='is-open']")
-      couponForm.removeEventListener('click', handleCouponClick)
+      waitForElement("coupon-form [zippyclass='is-open']").then(i => {
+        const couponForm = $el("coupon-form [zippyclass='is-open']")
+        couponForm.removeEventListener('click', handleCouponClick)
+      })
 
-      const couponInput = $el('coupon-form input')
-      couponInput.removeEventListener('change', handleCouponInputChange)
+      waitForElement('coupon-form input').then(i => {
+        const couponInput = $el('coupon-form input')
+        couponInput?.removeEventListener('change', handleCouponInputChange)
+      })
 
-      const couponButton = $el('coupon-form action.button')
-      couponButton.removeEventListener('click', handleCouponApplyClick)
+      waitForElement('coupon-form action.button').then(i => {
+        const couponButton = $el('coupon-form action.button')
+        couponButton.removeEventListener('click', handleCouponApplyClick)
+      })
 
-      const couponCancelButton = $el('coupon-form button')
-      couponCancelButton.removeEventListener('click', handleCouponCancelClick)
+      waitForElement('coupon-form button').then(i => {
+        const couponCancelButton = $el('coupon-form button')
+        couponCancelButton.removeEventListener('click', handleCouponCancelClick)
+      })
     }
 
     // Функция для удаления обработчиков событий для giftcards-form
