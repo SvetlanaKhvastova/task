@@ -60,20 +60,22 @@ class CheckoutPromoCodeGift {
 
   initAllFunc() {
     if (this.checkPage() === 'checkout') {
-      if (!$el('[zippyname="basketTab"] #mmWrapper > div')) {
-        waitForElement('#mmWrapper > div').then(i => {
-          waitForElement('[zippyname="basketTab"]').then(i => {
-            waitForElement('mention-me-wrapper').then(i => {
-              console.log('mmWrapper>>>>')
-              this.toggleElementBetweenContainers(
-                '#mmWrapper',
-                'mention-me-wrapper',
-                '[zippyname="basketTab"] > div.zippy-hide-up'
-              )
+      setTimeout(() => {
+        if (!$el('[zippyname="basketTab"] #mmWrapper > div')) {
+          waitForElement('#mmWrapper > div').then(i => {
+            waitForElement('[zippyname="basketTab"]').then(i => {
+              waitForElement('mention-me-wrapper').then(i => {
+                console.log('mmWrapper>>>>')
+                this.toggleElementBetweenContainers(
+                  '#mmWrapper',
+                  'mention-me-wrapper',
+                  '[zippyname="basketTab"] > div.zippy-hide-up'
+                )
+              })
             })
           })
-        })
-      }
+        }
+      }, 1000)
       if (!$el('[zippyname="basketTab"] coupon-form')) {
         waitForElement('coupon-form').then(i => {
           waitForElement('[zippyname="basketTab"]').then(i => {
@@ -91,7 +93,6 @@ class CheckoutPromoCodeGift {
       if (!$el('[zippyname="basketTab"] giftcards-form')) {
         waitForElement('giftcards-form').then(i => {
           waitForElement('[zippyname="basketTab"]').then(i => {
-            console.log('giftcards>>>>')
             this.toggleElementBetweenContainers(
               'giftcards-form',
               '#checkout-step-payment .bg-col-w:nth-child(1)',
@@ -112,7 +113,7 @@ class CheckoutPromoCodeGift {
 
     if (!element || !container1 || !container2) {
       console.log(element, container1, container2)
-      console.error('Element or containers not found')
+      // console.error('Element or containers not found')
       return
     }
 
@@ -317,7 +318,13 @@ class CheckoutPromoCodeGift {
     this.observerNew = new MutationObserver(mutations => {
       mutations.forEach(mutation => {
         if (window.location.pathname !== this.lastPath) {
-          this.initAllFunc()
+          if (this.device === 'mobile') {
+            setTimeout(() => {
+              this.initAllFunc()
+            }, 2800)
+          } else {
+            this.initAllFunc()
+          }
           this.lastPath = window.location.pathname
         }
       })

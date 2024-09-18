@@ -83,15 +83,27 @@
 }
 @media (max-width: 768px) {
   .hero_section .hero_section_content .hero_section_title {
-    max-width: 335px;
+    max-width: 330px;
     font-size: 30px;
     line-height: 38px;
     letter-spacing: normal;
-    text-align: center;
-    margin: 0 auto;
+    text-align: left;
+    margin: 0 0 24px;
   }
   .hero_section .hero_section_content .hero_section_title br {
     display: none;
+  }
+  .hero_section .hero_section_content .hero_section_title span:not(.absol_text) {
+    color: #1570ef;
+  }
+}
+@media (max-width: 768px) and (max-width: 768px) {
+  .hero_section .hero_section_content .hero_section_title .absol_text::before {
+    background: url(https://conversionratestore.github.io/projects/envest/img/underline_title_mob.svg) no-repeat;
+    background-size: contain;
+    left: -6px;
+    height: 20px;
+    bottom: -2px;
   }
 }
 .hero_section .hero_section_content .hero_section_subtitle {
@@ -199,6 +211,24 @@
     left: -6px;
   }
 }
+@media (max-width: 768px) {
+  .hero_section.ver_c .hero_section_content .hero_section_title {
+    margin: 0 auto 16px;
+    text-align: center;
+    font-size: 30px;
+    line-height: 38px;
+  }
+  .hero_section.ver_c .hero_section_content .hero_section_title .absol_text::before {
+    background: url(https://conversionratestore.github.io/projects/envest/img/underline_title_mob_ver_c.svg) no-repeat;
+    background-size: contain;
+    left: -8px;
+    bottom: -3px;
+    width: 109%;
+  }
+}
+.hero_section.ver_c .hero_section_content .hero_section_subtitle {
+  margin-top: 16px;
+}
 .hero_section.ver_c .hero_section_image {
   max-width: 652px;
 }
@@ -208,34 +238,82 @@
   }
 }
 
-main > div:nth-child(2) {
+.sticky_block {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: rgb(242, 244, 247);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-shadow);
+  --tw-shadow: var(--nextui-box-shadow-medium);
+  --tw-shadow-colored: var(--nextui-box-shadow-medium);
+  padding: 16px;
+  z-index: 100;
+}
+.sticky_block .sticky_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  height: 48px;
+  border-radius: 8px;
+  background: #008080;
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  margin: 0 auto;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  cursor: pointer;
+}
+
+main {
+  position: relative;
+}
+main > div > section:nth-child(2) {
   padding: 96px 20px !important;
-  background: var(--system-white, #fff);
+  background: #fff;
 }
 @media (max-width: 768px) {
-  main > div:nth-child(2) {
-    padding: 20px 20px 32px !important;
+  main > div > section:nth-child(2) {
+    padding: 24px 20px 32px !important;
   }
 }
-main > div:nth-child(2) > div.absolute,
-main > div:nth-child(2) > div[data-orientation] {
+main > div > section:nth-child(2) > div.absolute,
+main > div > section:nth-child(2) > div > div.hidden {
   display: none !important;
 }
-main > div:nth-child(2) > div.mb-4 {
+main > div > section:nth-child(2) > div > div:nth-child(1) {
   margin: 0 auto !important;
   max-width: 1248px;
+  width: 100%;
+  flex-basis: 100%;
 }
 @media (max-width: 768px) {
-  main > div:nth-child(2) > div.mb-4 {
+  main > div > section:nth-child(2) > div > div:nth-child(1) {
     display: none !important;
   }
 }
-main > div:nth-child(2) > div.mb-4 > div:nth-child(2),
-main > div:nth-child(2) > div.mb-4 h1 {
+main > div > section:nth-child(2) > div > div:nth-child(1) > *:not(.hero_section) {
   display: none !important;
 }
-main > div:nth-child(2) > div.mb-4 > div:nth-child(1) {
+main > div > section:nth-child(2) > div > div:nth-child(1) > div:nth-child(1) {
   width: 0;
   padding: 0;
   flex-basis: unset;
+}
+
+footer + div {
+  display: none !important;
+}
+@media (max-width: 768px) {
+  footer {
+    padding-bottom: 75px !important;
+  }
 }/*# sourceMappingURL=main.css.map */
