@@ -50,7 +50,7 @@ class exitIntentPopup {
         place = 'afterend'
       }
       if (!$el('.hero_section')) {
-        $el('main > div > section:nth-child(2) > div >div:nth-child(1)').insertAdjacentHTML(place, heroVerA)
+        $el('main > div > section:nth-child(2) > div >div:nth-child(1)').insertAdjacentHTML(place, heroVerC)
       }
     })
   }
