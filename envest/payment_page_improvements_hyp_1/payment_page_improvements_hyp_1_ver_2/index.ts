@@ -1,5 +1,5 @@
 import { startLog, $el, $$el, waitForElement, pushData, clarityInterval, visibilityOfTime } from '../../../libraries'
-import { heroVerA, heroVerB, heroVerC, stickyBlock } from './blocks'
+import { heroVerB, stickyBlock } from './blocks'
 
 // @ts-ignore
 import mainStyle from './main.css?raw'
@@ -92,13 +92,7 @@ class exitIntentPopup {
               : null
 
           if (targetClass) {
-            console.log('hero_section')
-            // pushData(
-            //   `exp_screen_motivation_button_01_${targetClass}`,
-            //   'Get My IQ Certificate Now!',
-            //   'Button',
-            //   'First screen Header'
-            // )
+            pushData('exp_paywall2_button_01', 'Get my plan', 'Click', 'First screen')
           }
         }
         $el('.hero_section')?.setAttribute('data-test', '1')
@@ -160,13 +154,7 @@ class exitIntentPopup {
               : null
 
           if (targetClass) {
-            console.log('sticky_block')
-            // pushData(
-            //   `exp_screen_motivation_button_01_${targetClass}`,
-            //   'Get My IQ Certificate Now!',
-            //   'Button',
-            //   'First screen Header'
-            // )
+            pushData('exp_paywall2_button_02', 'Get my plan', 'Click', 'Stiky button')
           }
         }
         $el('.sticky_block')?.setAttribute('data-test', '1')
