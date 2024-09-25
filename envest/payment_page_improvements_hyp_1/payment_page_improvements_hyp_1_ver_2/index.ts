@@ -23,7 +23,7 @@ class exitIntentPopup {
     if (window.location.href.match('paywall2')) {
       startLog({ name: 'Payment-Page-Improvements', dev: 'SKh' })
       console.log(this.device)
-      clarityInterval('exp_paywall2')
+      clarityInterval('exp_paywall2', 'variant_2')
       document.head.insertAdjacentHTML(
         'afterbegin',
         `<link class="crs_inter" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">`
