@@ -1,0 +1,272 @@
+.subscription_plan_page .new_astrologers_screen + main {
+  opacity: 0;
+}
+.subscription_plan_page .new_astrologers_screen + main.is_hidden {
+  opacity: 0 !important;
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+.subscription_plan_page [data-overlay-container] {
+  width: 100%;
+}
+.subscription_plan_page .new_astrologers_screen {
+  padding: 20px 20px 140px;
+}
+.subscription_plan_page .new_astrologers_screen .accent_color_blue {
+  color: #066fde;
+}
+.subscription_plan_page .new_astrologers_screen .main_title {
+  color: #121620;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  margin: 0 0 16px;
+}
+.subscription_plan_page .new_astrologers_screen .astrologers_info_wrapper {
+  padding: 20px;
+  border-radius: 12px;
+  background: #eff2fd;
+}
+.subscription_plan_page .new_astrologers_screen .astrologers_info_wrapper .txt_other_astrologers {
+  max-width: 240px;
+  margin: 36px auto 0;
+  color: #121620;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+}
+.subscription_plan_page .new_astrologers_screen .astrologers_list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.subscription_plan_page .new_astrologers_screen .astrologers_list .astrologer_item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px;
+  border-radius: 12px;
+  border: 2px solid #c2cad8;
+  background: #dee5f9;
+}
+.subscription_plan_page .new_astrologers_screen .astrologers_list .astrologer_item.best_for_you {
+  position: relative;
+  border: 2px solid #04a777;
+}
+.subscription_plan_page .new_astrologers_screen .astrologers_list .astrologer_item.best_for_you::after {
+  content: "Best for you";
+  position: absolute;
+  top: -0.5px;
+  right: -0.4px;
+  padding: 0px 6px 3px;
+  border-radius: 0px 12px;
+  background: #04a777;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.01px;
+}
+.subscription_plan_page .new_astrologers_screen .astrologers_list .astrologer_item.decoration {
+  position: relative;
+  z-index: 1;
+}
+.subscription_plan_page .new_astrologers_screen .astrologers_list .astrologer_item.decoration .decoration_first {
+  position: absolute;
+  content: "";
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  height: 100%;
+  border-radius: 12px;
+  border: 2px solid #c2cad8;
+  background: #dee5f9;
+  z-index: -1;
+}
+.subscription_plan_page .new_astrologers_screen .astrologers_list .astrologer_item.decoration .decoration_second {
+  position: absolute;
+  content: "";
+  top: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 100%;
+  border-radius: 12px;
+  border: 2px solid #c2cad8;
+  background: #dee5f9;
+  z-index: -2;
+}
+.subscription_plan_page .new_astrologers_screen .astrologers_list .astrologer_item.decoration .decoration_third {
+  position: absolute;
+  content: "";
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  border: 2px solid #c2cad8;
+  background: #dee5f9;
+  z-index: 1;
+}
+.subscription_plan_page .new_astrologers_screen .astrologers_list .img_wrapper {
+  width: 68px;
+  height: 68px;
+  flex-shrink: 0;
+  border-radius: 68px;
+}
+.subscription_plan_page .new_astrologers_screen .astrologers_list .astrologer_name {
+  color: #202b47;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+  margin: 0 0 4px;
+}
+.subscription_plan_page .new_astrologers_screen .astrologers_list .astrologer_description {
+  max-width: 165px;
+  color: #4a567a;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.01px;
+}
+.subscription_plan_page .new_astrologers_screen.ver_c .main_title {
+  font-size: 30px;
+  line-height: 38px;
+  margin: 0 0 12px;
+  max-width: 310px;
+}
+.subscription_plan_page .new_astrologers_screen.ver_c .main_description {
+  color: #4a567a;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 140%;
+  max-width: 330px;
+  margin: 0 0 16px;
+}
+.subscription_plan_page .new_astrologers_screen.ver_c .astrologers_list input {
+  z-index: -1;
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+.subscription_plan_page .new_astrologers_screen.ver_c .astrologers_list input:checked + label {
+  border: 2px solid #066fde;
+}
+.subscription_plan_page .new_astrologers_screen.ver_c .astrologers_list input:checked + label .new_custom_radio {
+  border: 2px solid #066fde;
+}
+.subscription_plan_page .new_astrologers_screen.ver_c .astrologers_list input:checked + label .new_custom_radio::before {
+  content: "";
+  position: absolute;
+  width: 12.5px;
+  height: 11.5px;
+  border-radius: 50%;
+  background: #066fde;
+  border: 2px solid #066fde;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.subscription_plan_page .new_astrologers_screen.ver_c .astrologers_list label {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+  border-radius: 12px;
+  border: 2px solid #eff2fd;
+  background: #eff2fd;
+  padding: 12px 12px 12px 20px;
+  max-height: 92px;
+}
+.subscription_plan_page .new_astrologers_screen.ver_c .astrologers_list .astrologer_name {
+  font-size: 16px;
+  line-height: 24px;
+}
+.subscription_plan_page .new_astrologers_screen.ver_c .astrologers_list .astrologer_description {
+  max-width: 100%;
+}
+.subscription_plan_page .new_astrologers_screen.ver_c .astrologers_list .new_custom_radio_wrapper {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+}
+.subscription_plan_page .new_astrologers_screen.ver_c .astrologers_list .new_custom_radio {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  flex-grow: 0;
+  border-radius: 50%;
+  border: 2px solid #858da5;
+}
+.subscription_plan_page .new_astrologers_screen .new_sticky_block {
+  border-top: 1px solid #dee5f9;
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 16px 20px;
+}
+.subscription_plan_page .new_astrologers_screen .new_sticky_block p {
+  color: #121620;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  margin: 0 auto 12px;
+}
+.subscription_plan_page .new_astrologers_screen .new_sticky_block .new_continue_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  background: #066fde;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+}
+.subscription_plan_page .new_astrologers_screen .new_sticky_block .new_continue_btn.is_disabled {
+  background: #c2cad8;
+  pointer-events: none;
+}
+.subscription_plan_page .new_astrologers_screen .new_sticky_block .choose_later_btn {
+  width: -moz-max-content;
+  width: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #202b47;
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  margin: 16px auto 0;
+}
+
+.new_btn_back {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  position: absolute;
+  left: 8px;
+}
+.new_btn_back + button {
+  display: none;
+}/*# sourceMappingURL=main.css.map */

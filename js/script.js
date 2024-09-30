@@ -474,6 +474,15 @@ let scriptCustom = document.createElement("script");
 scriptCustom.src = "https://conversionratestore.github.io/projects/buzzpatch/natpat/homepage_iteration_4.js";
 scriptCustom.async = false;
 document.head.appendChild(scriptCustom);
+
+let scriptCustom = document.createElement("script");
+scriptCustom.src = "https://conversionratestore.github.io/projects/buzzpatch/adults_version_ver_b.js";
+scriptCustom.async = false;
+document.head.appendChild(scriptCustom);
+let scriptCustom = document.createElement("script");
+scriptCustom.src = "https://conversionratestore.github.io/projects/buzzpatch/adults_version_ver_c.js";
+scriptCustom.async = false;
+document.head.appendChild(scriptCustom);
 //
 let scriptCustom = document.createElement("script");
 scriptCustom.src = "https://conversionratestore.github.io/projects/envest/payment_page_improvements_hyp_1_ver_1.js";
