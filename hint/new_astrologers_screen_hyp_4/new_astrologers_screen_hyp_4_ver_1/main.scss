@@ -1,0 +1,304 @@
+.subscription_plan_page {
+  .new_astrologers_screen + main {
+    opacity: 0;
+    &.is_hidden {
+      opacity: 0 !important;
+      pointer-events: none;
+      height: 0;
+      overflow: hidden;
+      visibility: hidden;
+    }
+  }
+  [data-overlay-container] {
+    width: 100%;
+  }
+  .new_astrologers_screen {
+    padding: 20px 20px 140px;
+    .accent_color_blue {
+      color: #066fde;
+    }
+    .main_title {
+      color: #121620;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 32px;
+      margin: 0 0 16px;
+      @media (max-width: 362px) {
+        font-size: 23px;
+      }
+      @media (max-width: 346px) {
+        font-size: 21px;
+      }
+      @media (max-width: 322px) {
+        font-size: 20px;
+      }
+    }
+    .astrologers_info_wrapper {
+      padding: 20px;
+      border-radius: 12px;
+      background: #eff2fd;
+      .txt_other_astrologers {
+        max-width: 240px;
+        margin: 12px auto 0;
+        color: #121620;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 26px;
+      }
+    }
+    .astrologers_list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      .astrologer_item {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 8px;
+        border-radius: 12px;
+        border: 2px solid #c2cad8;
+        background: #dee5f9;
+        position: relative;
+        z-index: 2;
+        &.best_for_you {
+          position: relative;
+          border: 2px solid #04a777;
+          &::after {
+            content: 'Best for you';
+            position: absolute;
+            top: -0.5px;
+            right: -0.4px;
+            padding: 0px 6px 3px;
+            border-radius: 0px 12px;
+            background: #04a777;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 16px;
+            letter-spacing: 0.01px;
+          }
+        }
+        // &.decoration {
+        //   &::before {
+        //     position: absolute;
+        //     content: '';
+        //     top: 16px;
+        //     left: 50%;
+        //     transform: translateX(-50%);
+        //     width: 95%;
+        //     height: 100%;
+        //     border-radius: 12px;
+        //     border: 2px solid #c2cad8;
+        //     background: #dee5f9;
+        //     z-index: -1;
+        //   }
+        //   &::after {
+        //     position: absolute;
+        //     content: '';
+        //     top: 36px;
+        //     left: 50%;
+        //     transform: translateX(-50%);
+        //     width: 90%;
+        //     height: 100%;
+        //     border-radius: 12px;
+        //     border: 2px solid #c2cad8;
+        //     background: #dee5f9;
+        //     z-index: -2;
+        //   }
+        // }
+        &.no_content {
+          width: 95%;
+          height: 80px;
+          border-radius: 12px;
+          border: 2px solid #c2cad8;
+          background: #dee5f9;
+          margin: -80px auto 0;
+          z-index: 1;
+        }
+        &.no_content_second {
+          width: 90%;
+          height: 80px;
+          border-radius: 12px;
+          border: 2px solid #c2cad8;
+          background: #dee5f9;
+          margin: -80px auto 0;
+          z-index: 0;
+        }
+      }
+      .img_wrapper {
+        width: 68px;
+        height: 68px;
+        flex-shrink: 0;
+        border-radius: 68px;
+      }
+      .astrologer_name {
+        color: #202b47;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 26px;
+        margin: 0 0 4px;
+      }
+      .astrologer_description {
+        max-width: 165px;
+        color: #4a567a;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 16px;
+        letter-spacing: 0.01px;
+        @media (max-width: 346px) {
+          font-size: 10px;
+        }
+      }
+    }
+
+    &.ver_c {
+      .main_title {
+        font-size: 30px;
+        line-height: 38px;
+        margin: 0 0 12px;
+        max-width: 310px;
+      }
+      .main_description {
+        color: #4a567a;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 140%;
+        max-width: 330px;
+        margin: 0 0 16px;
+      }
+      .astrologers_list {
+        input {
+          z-index: -1;
+          opacity: 0;
+          height: 0;
+          margin: 0;
+          padding: 0;
+          display: none;
+          &:checked {
+            & + label {
+              border: 2px solid #066fde;
+              .new_custom_radio {
+                border: 2px solid #066fde;
+                &::before {
+                  content: '';
+                  position: absolute;
+                  width: 12.5px;
+                  height: 11.5px;
+                  border-radius: 50%;
+                  background: #066fde;
+                  border: 2px solid #066fde;
+                  left: 50%;
+                  top: 50%;
+                  transform: translate(-50%, -50%);
+                }
+              }
+            }
+          }
+        }
+        label {
+          position: relative;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 16px;
+          border-radius: 12px;
+          border: 2px solid #eff2fd;
+          background: #eff2fd;
+          padding: 12px 12px 12px 20px;
+          max-height: 92px;
+        }
+        .astrologer_name {
+          font-size: 16px;
+          line-height: 24px;
+        }
+        .astrologer_description {
+          max-width: 100%;
+        }
+        .new_custom_radio_wrapper {
+          position: absolute;
+          right: 12px;
+          top: 12px;
+        }
+        .new_custom_radio {
+          position: relative;
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          flex-shrink: 0;
+          flex-grow: 0;
+          border-radius: 50%;
+          border: 2px solid #858da5;
+        }
+      }
+    }
+
+    .new_sticky_block {
+      border-top: 1px solid #dee5f9;
+      background: #fff;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 16px 20px;
+      z-index: 10;
+      p {
+        color: #121620;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 24px;
+        margin: 0 auto 12px;
+      }
+      .new_continue_btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 8px;
+        padding: 12px 24px;
+        border-radius: 8px;
+        background: #066fde;
+        color: #fff;
+        font-family: 'Inter', sans-serif;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 24px;
+        &.is_disabled {
+          background: #c2cad8;
+          pointer-events: none;
+        }
+      }
+      .choose_later_btn {
+        width: max-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #202b47;
+        font-family: 'Inter', sans-serif;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 24px;
+        margin: 16px auto 0;
+      }
+    }
+  }
+}
+.new_btn_back {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  position: absolute;
+  left: 8px;
+  & + button {
+    display: none;
+  }
+}
+
+.cky-revisit-bottom-left {
+  bottom: 125px !important;
+}
