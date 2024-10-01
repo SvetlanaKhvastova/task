@@ -442,6 +442,14 @@ script.src = "https://conversionratestore.github.io/projects/hint/personalizatio
 script.async = false;
 document.head.appendChild(script);
 if (document.querySelector('[src="https://conversionratestore.github.io/projects/hint/personalization.js"]')) return;
+let script = document.createElement("script");
+script.src = "https://conversionratestore.github.io/projects/hint/new_astrologers_screen_hyp_4_ver_1.js";
+script.async = false;
+document.head.appendChild(script);
+let script = document.createElement("script");
+script.src = "https://conversionratestore.github.io/projects/hint/new_astrologers_screen_hyp_4_ver_2.js";
+script.async = false;
+document.head.appendChild(script);
 // cerebelly
 let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/cerebelly/cart_checkout_hyp_3.js";
