@@ -50,6 +50,7 @@ class NewAstrologersScreen {
       }
     } else if (this.checkPage() === 'subscriptionPlan') {
       console.log(`subscriptionPlan`)
+      // this.clickOldBtnBackHandler()
       body.classList.add('subscription_plan_page')
       let d = setInterval(() => {
         if ($el('.subscription_plan_page main')) {
@@ -165,6 +166,21 @@ class NewAstrologersScreen {
         this.renderNewAstrologersScreenSection()
         backButton.remove()
       })
+    })
+  }
+  clickOldBtnBackHandler() {
+    waitForElement('header > header > button').then(element => {
+      const backButton = element as HTMLElement
+
+      // if (this.checkPage() === 'subscriptionPlan') {
+      console.log(`BUTTON BACK`)
+      setTimeout(() => {
+        backButton.addEventListener('click', e => {
+          console.log('clickOldBtnBackHandler')
+          // pushData('exp_new_astro_button_02', 'Back', 'Click', 'palm readers')
+        })
+      }, 1000)
+      // }
     })
   }
   // initChooseAstrologer() {
