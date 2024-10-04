@@ -1,5 +1,5 @@
-import { startLog, $el, $$el, waitForElement, visibilityOfTime, pushData, clarityInterval } from '../../../libraries'
-import { newAstrologersScreenVerB, newAstrologersScreenVerC } from './blocks'
+import { startLog, $el, $$el, waitForElement, pushData, clarityInterval } from '../../../libraries'
+import { newAstrologersScreenVerB } from './blocks'
 import { svg } from './data'
 // @ts-ignore
 import mainStyle from './main.css?raw'
@@ -50,8 +50,9 @@ class NewAstrologersScreen {
       }
     } else if (this.checkPage() === 'subscriptionPlan') {
       console.log(`subscriptionPlan`)
-      // this.clickOldBtnBackHandler()
-      body.classList.add('subscription_plan_page')
+      if (!body.classList.contains('subscription_plan_page')) {
+        body.classList.add('subscription_plan_page')
+      }
       let d = setInterval(() => {
         if ($el('.subscription_plan_page main')) {
           clearInterval(d)
@@ -82,6 +83,7 @@ class NewAstrologersScreen {
       $el('.new_astrologers_screen')?.remove()
 
       if (body.classList.contains('subscription_plan_page')) {
+        console.log(`        body.classList.remove('subscription_plan_page')`)
         body.classList.remove('subscription_plan_page')
       }
     }
@@ -168,21 +170,7 @@ class NewAstrologersScreen {
       })
     })
   }
-  clickOldBtnBackHandler() {
-    waitForElement('header > header > button').then(element => {
-      const backButton = element as HTMLElement
 
-      // if (this.checkPage() === 'subscriptionPlan') {
-      console.log(`BUTTON BACK`)
-      setTimeout(() => {
-        backButton.addEventListener('click', e => {
-          console.log('clickOldBtnBackHandler')
-          // pushData('exp_new_astro_button_02', 'Back', 'Click', 'palm readers')
-        })
-      }, 1000)
-      // }
-    })
-  }
   // initChooseAstrologer() {
   //   if (localStorage.getItem('newAstrologerValue')) {
   //     waitForElement('.subscription_plan_page .new_astrologers_screen.ver_c .astrologers_list').then(element => {
@@ -216,6 +204,7 @@ class NewAstrologersScreen {
             this.allFunctionsInitHandler()
           }
           if (this.checkPage() === 'subscriptionPlan' && !$el('body').classList.contains('subscription_plan_page')) {
+            console.log(`>>>>>>>>>>>>>>>>>>>>>>>>>>>>`)
             this.allFunctionsInitHandler()
           }
           // this.allFunctionsInitHandler()
@@ -224,7 +213,7 @@ class NewAstrologersScreen {
         for (let node of mutation.removedNodes) {
           if (!(node instanceof HTMLElement)) continue
           if (node.tagName === 'MAIN' && this.checkPage() === 'email') {
-            // console.log(node, `NODE!!!!!!!!!!!!!!!!!!!!`)
+            console.log(node, `NODE!!!!!!!!!!!!!!!!!!!!`)
             this.allFunctionsInitHandler()
           }
         }
@@ -235,4 +224,6 @@ class NewAstrologersScreen {
   }
 }
 
-new NewAstrologersScreen(device)
+waitForElement('body').then(element => {
+  new NewAstrologersScreen(device)
+})

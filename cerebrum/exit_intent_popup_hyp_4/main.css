@@ -1,5 +1,5 @@
-.new-popup-backdrop {
-  background: rgba(0, 0, 0, 0.6);
+.new_popup_backdrop {
+  background: rgba(21, 27, 40, 0.6);
   position: fixed;
   opacity: 1;
   top: 0;
@@ -9,51 +9,141 @@
   z-index: 1000000000000;
   transition: all 0.8s ease 0s;
 }
-
-.new-popup-backdrop.is-hidden {
+.new_popup_backdrop.is-hidden {
   opacity: 0;
   pointer-events: none;
 }
-
-.new-popup {
+.new_popup_backdrop .new_popup {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 767px;
+  max-width: 580px;
   width: calc(100% - 32px);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.03), 0px 2px 30px 0px rgba(0, 0, 0, 0.08), 0px 0px 1px 0px rgba(0, 0, 0, 0.3);
 }
-
-.new-popup__close {
+.new_popup_backdrop .new_popup_close {
   position: absolute;
   background: none;
   padding: 0;
-  top: 16px;
+  top: 14px;
   right: 16px;
-  width: 24px;
-  height: 24px;
+  width: 14px;
+  height: 14px;
   z-index: 1;
   border: none;
   transition: all 0.8s ease 0s;
 }
-
-.new-popup__close:hover,
-.new-popup__close:focus {
+.new_popup_backdrop .new_popup_close:hover, .new_popup_backdrop .new_popup_close:focus {
   background: none;
   transform: scale(0.8);
 }
-
-@media (max-width: 768px) {
-  .new-popup-backdrop {
-    overflow: auto;
-  }
-  .new-popup {
-    max-width: 343px;
-    top: 55px;
-    transform: translateX(-50%);
-    padding-bottom: 5px;
-  }
+.new_popup_backdrop .new_popup_content .accent_color_blue {
+  color: #2563eb;
 }
-.exit-intent__popup {
+.new_popup_backdrop .new_popup_content .accent_color_blue_second {
+  color: #0070f0;
+}
+.new_popup_backdrop .new_popup_content .header_popup {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px 14px 0px 0px;
+  background: linear-gradient(45deg, #f0f9ff 0%, #dbeafe 50%, #f8fafc 100%);
+  padding: 5px;
+}
+.new_popup_backdrop .new_popup_content .header_popup p {
+  color: #0070f0;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 32px;
+}
+.new_popup_backdrop .new_popup_content .body_popup {
+  padding: 16px 30px 0;
+}
+.new_popup_backdrop .new_popup_content .body_popup .gift_info {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 24px;
+}
+.new_popup_backdrop .new_popup_content .body_popup .gift_info p {
+  color: #11181c;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  margin: 0;
+}
+.new_popup_backdrop .new_popup_content .body_popup .gift_info h2 {
+  color: #11181c;
+  font-family: "Inter", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  margin: 0;
+}
+.new_popup_backdrop .new_popup_content .body_popup .bgr_grey {
+  border-radius: 14px;
+  background: #f4f4f5;
+  padding: 20px;
+}
+.new_popup_backdrop .new_popup_content .body_popup .bgr_grey > h3 {
+  color: #111827;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21px;
+  letter-spacing: -0.35px;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  text-align: left;
+}
+.new_popup_backdrop .new_popup_content .body_popup .bgr_grey .list_info {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.new_popup_backdrop .new_popup_content .body_popup .bgr_grey .list_info .item_info {
+  display: flex;
+  gap: 12px;
+}
+.new_popup_backdrop .new_popup_content .body_popup .bgr_grey .list_info .item_info svg {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+.new_popup_backdrop .new_popup_content .body_popup .bgr_grey .list_info .item_info h3 {
+  color: #3f3f46;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  margin-bottom: 6px;
+}
+.new_popup_backdrop .new_popup_content .body_popup .bgr_grey .list_info .item_info p {
+  color: #52525b;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  margin: 0;
+}
+.new_popup_backdrop .new_popup_content .footer_popup {
+  padding: 24px 30px;
+}
+.new_popup_backdrop .new_popup_content .footer_popup .btn_start_trial_now {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  height: 56px;
+  width: 100%;
+  border-radius: 8px;
+  background: #0e766f;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+  cursor: pointer;
 }/*# sourceMappingURL=main.css.map */

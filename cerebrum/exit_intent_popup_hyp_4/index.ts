@@ -1,5 +1,5 @@
 import { startLog, $el, $$el, waitForElement, pushData, clarityInterval, checkScrollSpeed } from '../../libraries'
-import { popup, contentPopup } from './blocks'
+import { popup } from './blocks'
 // @ts-ignore
 import mainStyle from './main.css?raw'
 
@@ -20,9 +20,15 @@ class ExitIntentPopup {
     startLog({ name: 'Exit Intent Popup', dev: 'SKh' })
     // clarityInterval('exp_intent_popup')
 
-    if (sessionStorage.getItem('exitIntentPopup')) {
-      return
-      //Frequency: once per session
+    // if (sessionStorage.getItem('exitIntentPopup')) {
+    //   return
+    //   //Frequency: once per session
+    // }
+    if (!$el('.crs_font')) {
+      document.head.insertAdjacentHTML(
+        'afterbegin',
+        `link class="crs_font" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"`
+      )
     }
     document.head.insertAdjacentHTML('beforeend', `<style>${mainStyle}</style>`)
     this.createPopup()
@@ -106,32 +112,30 @@ class ExitIntentPopup {
     if (sessionStorage.getItem('exitIntentPopup')) {
       return
     }
-    this.handleShowPopup(contentPopup, 'exitIntentPopup', trigger)
+    this.handleShowPopup('exitIntentPopup', trigger)
   }
 
   createPopup() {
     console.log(`createPopup`)
-    if (!$el('.new-popup-backdrop')) {
+    if (!$el('.new_popup_backdrop')) {
       $el('body').insertAdjacentHTML('afterbegin', popup)
     }
-    waitForElement('.new-popup-backdrop').then(el => {
+    waitForElement('.new_popup_backdrop').then(el => {
       this.handleClosePopup()
     })
   }
-  handleShowPopup(content: string, name: string, trigger: string) {
+  handleShowPopup(name: string, trigger: string) {
     const isShowed = sessionStorage.getItem(name)
     if (isShowed) return
     console.log(`handleShowPopup`, trigger)
 
     const body = $el('body'),
-      backdrop = $el('.new-popup-backdrop'),
-      popup = $el('.new-popup .new-popup__content')
+      backdrop = $el('.new_popup_backdrop')
 
     if (backdrop.classList.contains('is-hidden')) {
       backdrop.classList.remove('is-hidden')
     }
     body.style.overflow = 'hidden'
-    popup.innerHTML = content
     sessionStorage.setItem(name, 'yes')
 
     // pushData('exp_intent_popup_section_01', 'Section', 'Visibility', 'Pop Up Get paid as you like. In no time!')
@@ -139,8 +143,8 @@ class ExitIntentPopup {
   }
   handleClosePopup() {
     const body = $el('body'),
-      backdrop = $el('.new-popup-backdrop'),
-      popup = $el('.new-popup'),
+      backdrop = $el('.new_popup_backdrop'),
+      popup = $el('.new_popup'),
       closePopupBtns = popup.querySelectorAll('[data-popup="close"]')
     closePopupBtns.forEach((btn: HTMLElement) => {
       btn.addEventListener('click', (e: any) => {
@@ -152,7 +156,7 @@ class ExitIntentPopup {
       })
     })
     backdrop.addEventListener('click', (e: any) => {
-      if (e.target.matches('.new-popup-backdrop')) {
+      if (e.target.matches('.new_popup_backdrop')) {
         // pushData(
         //   'exp_intent_popup_button_05',
         //   'Сlick behind the pop-up area',
@@ -168,7 +172,7 @@ class ExitIntentPopup {
   observePaymentPage() {
     const observer = new MutationObserver(() => {
       if (location.pathname.match('/checkout')) {
-        if (!$el('.new-popup-backdrop')) {
+        if (!$el('.new_popup_backdrop')) {
           this.createPopup()
         }
       } else {

@@ -8,7 +8,13 @@ export const budleHtmlVerB = (price: string) => {
       <h3 class="new_bundle_main_title">Bundle & save</h3>
       <div class="packs">
         <span class="bundle_off">60 % OFF</span>
-        <input type="radio" name="price" id="bundle" value="${bundlesInfo.ver_b.id}" />
+        <input
+          type="radio"
+          name="price"
+          id="bundle"
+          value="${bundlesInfo.ver_b.id}"
+          data-tick-id="${bundlesInfo.ver_b.id}"
+        />
         <label for="bundle">
           <div class="new_bundle_wrapper" id="${bundlesInfo.ver_b.id}">
             <div class="img_wrapper">

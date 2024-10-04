@@ -6,11 +6,10 @@ import {
   pushData,
   clarityInterval,
   loadScriptsOrStyles,
-  visibilityOfTime,
-  checkScrollPosition
+  visibilityOfTime
 } from '../../libraries'
-import { budleHtmlVerB, guaranteeBlock, stockUpTitle, tooltipBlockVerB } from './blocks'
-import { svg, git, bundlesInfo } from './data'
+import { budleHtmlVerB, guaranteeBlock, stockUpTitle } from './blocks'
+import { git } from './data'
 // @ts-ignore
 import mainStyle from './main.css?raw'
 
@@ -18,16 +17,18 @@ const device = window.innerWidth < 768 ? 'mobile' : 'desktop'
 
 class StarterPackBundle {
   device: 'mobile' | 'desktop'
+  idValue: string
 
   constructor(device) {
     this.device = device
+    this.idValue = ''
 
     this.init()
   }
 
   init() {
     startLog({ name: 'Starter Pack" Bundle and UX Improvements on Shopping block', dev: 'SKh' })
-    // clarityInterval('')
+    clarityInterval('exp_zen_introduce', 'variant_1')
 
     if (!$el('.crs_font')) {
       document.head.insertAdjacentHTML(
@@ -36,10 +37,9 @@ class StarterPackBundle {
       )
     }
     document.head.insertAdjacentHTML('beforeend', `<style>${mainStyle}</style>`)
-    if (this.device === 'desktop') {
-      this.renderNewTitle()
-    }
+    this.renderNewTitle()
     this.changePurchaseBlock()
+    this.clickPetLocketInputHandler()
 
     this.renderGuaranteeBlock()
     this.renderNewBundle()
@@ -51,8 +51,12 @@ class StarterPackBundle {
 
   renderNewTitle() {
     waitForElement('h3.purchase__title').then(i => {
+      let place = 'h3.purchase__title'
+      if (this.device === 'mobile') {
+        place = '.lp-tr--purchase h2.lp-tr--section-big-title'
+      }
       if (!$el('.stock_up_title')) {
-        $el('h3.purchase__title').insertAdjacentHTML('afterend', stockUpTitle)
+        $el(place).insertAdjacentHTML('afterend', stockUpTitle)
       }
     })
   }
@@ -79,7 +83,6 @@ class StarterPackBundle {
     waitForElement('.lp-tr--purchase .lp-tr--gray-bg > .lp-tr--desktop img').then(i => {
       const imgElements = $$el('.lp-tr--purchase .lp-tr--gray-bg > .lp-tr--desktop img')
       imgElements.forEach(img => {
-        console.log(img)
         let src = `${git}zenpatch-pet_img_11zon.webp`
         if (this.device === 'mobile') {
           src = `${git}zenpatch-pet_img_mob.webp`
@@ -94,8 +97,22 @@ class StarterPackBundle {
       const elemForm = $el('#lptrPurchase .form')
       const label = $el('.lp-tr--purchase .purchase__pet-locket label:not(.custom-label)')
 
-      if (!$el('#lptrPurchase .form + .purchase__pet-locket') && elemForm) {
-        $el('#lptrPurchase .form').insertAdjacentElement('afterend', petLocketElement)
+      if (this.device === 'desktop') {
+        if (!$el('#lptrPurchase .form + .purchase__pet-locket') && elemForm) {
+          $el('#lptrPurchase .form').insertAdjacentElement('afterend', petLocketElement)
+        }
+      }
+
+      if (this.device === 'mobile') {
+        if (!$el('#lptrPurchase .new_pet_locket_wrapper')) {
+          $el('#lptrPurchase .form').insertAdjacentHTML('afterend', `<div class="new_pet_locket_wrapper"></div>`)
+        }
+
+        waitForElement('.lp-tr--purchase .new_pet_locket_wrapper').then(i => {
+          if (!$el('#lptrPurchase .new_pet_locket_wrapper .purchase__pet-locket') && elemForm) {
+            $el('#lptrPurchase .new_pet_locket_wrapper').insertAdjacentElement('beforeend', petLocketElement)
+          }
+        })
       }
 
       if (!label.textContent.includes('separately')) {
@@ -103,6 +120,29 @@ class StarterPackBundle {
       }
     })
     //
+  }
+
+  clickPetLocketInputHandler() {
+    waitForElement('.purchase__pet-locket').then(i => {
+      const label = $el('.purchase__pet-locket')
+      const input = $el('#petlocket')
+
+      if (input) {
+        label.addEventListener('click', e => {
+          if (!e.target.getAttribute('data-test')) {
+            if (e.target.classList.contains('purchase__pet-locket')) {
+              input?.click()
+            }
+          }
+          e.target.setAttribute('data-test', '1')
+          setTimeout(() => {
+            if (e.target.getAttribute('data-test')) {
+              e.target.removeAttribute('data-test')
+            }
+          }, 400)
+        })
+      }
+    })
   }
 
   renderGuaranteeBlock() {
@@ -124,59 +164,84 @@ class StarterPackBundle {
     })
   }
   clickBundleHandler() {
-    const variantIdVerB = '7674900676652'
-    const variantIdVerC = '7313490542636'
-    $$el('#getNow input[type=radio] + label').forEach((el: HTMLElement) => {
-      el.addEventListener('click', e => {
-        if (
-          el.getAttribute('for') === 'radios-0' ||
-          el.getAttribute('for') === 'radios-1' ||
-          el.getAttribute('for') === 'radios-2' ||
-          el.getAttribute('for') === 'radios-3'
-        ) {
-          $el('.js-total').style.display = 'block'
-          $el('.new_js_total')?.remove()
-        } else {
-          pushData('exp_introduce_v3_click_01', 'Whole family protection kit', 'Click', 'Bundle & save')
-          $el('.js-total').style.display = 'none'
-          if (!$el('.new_js_total')) {
-            $el('.js-total').insertAdjacentHTML('afterend', this.npFamilyKitHtml(variantIdVerB))
+    waitForElement('.new_bundle_pack').then(i => {
+      const variantIdVerB = '7737278857260'
+      $$el('.lp-tr--purchase input[type=radio] + label').forEach((el: HTMLElement) => {
+        el.addEventListener('click', e => {
+          if (
+            el.getAttribute('for') === 'pack3' ||
+            el.getAttribute('for') === 'pack2' ||
+            el.getAttribute('for') === 'pack1' ||
+            el.getAttribute('for') === 'pack4'
+          ) {
+            if ($el('.lp-tr--purchase .overall-price.lp-tr--mobile').classList.contains('is_hidden')) {
+              $el('.lp-tr--purchase .overall-price.lp-tr--mobile').classList.remove('is_hidden')
+            }
+            if ($el('.lp-tr--purchase .purchase__regular-price').classList.contains('is_hidden')) {
+              $el('.lp-tr--purchase .purchase__regular-price').classList.remove('is_hidden')
+            }
+            $el('.new_bundle_price_wrapper')?.remove()
+          } else {
+            pushData('exp_zen_introduce_click_01', 'Pet Zen Starter Pack', 'Click', 'Bundle & save')
+            $el('.lp-tr--purchase .overall-price.lp-tr--mobile').classList.add('is_hidden')
+            $el('.lp-tr--purchase .purchase__regular-price').classList.add('is_hidden')
+
+            if (!$el('.new_bundle_price_wrapper')) {
+              $el('.lp-tr--purchase .overall-price.lp-tr--mobile').insertAdjacentHTML(
+                'afterend',
+                this.newPricePetZenStarterPackHtml(variantIdVerB)
+              )
+            }
           }
-        }
+        })
       })
     })
   }
 
-  npFamilyKitHtml(id: string) {
+  newPricePetZenStarterPackHtml(id: string) {
     const npFamilyKit = $$el('.np-family-kit span')
     let html = ''
-    if (npFamilyKit) {
-      npFamilyKit?.forEach(el => {
-        if (el.getAttribute('data-variant-id') === id) {
-          html = `<div class="new_js_total">
-            <span class="new_price">${el.getAttribute('data-price')}</span> (<span class="new_price_off"
-              >60%</span> OFF)</div>`
-        }
-      })
-    } else {
-      html = ''
-    }
+    // if (npFamilyKit) {
+    //   npFamilyKit?.forEach(el => {
+    //     if (el.getAttribute('data-variant-id') === id) {
+    //       html = `<div class="new_js_total">
+    //         <span class="new_price">${el.getAttribute('data-price')}</span> (<span class="new_price_off"
+    //           >60%</span> OFF)</div>`
+    //     }
+    //   })
+    // } else {
+    //   html = ''
+    // }
+
+    html = /* HTML */ `
+      <div class="new_bundle_price_wrapper">
+        <div class="new_bundle_price_total">
+          <span class="new_price">$36.00</span>
+          <span class="new_price_off">(51% OFF)</span>
+        </div>
+        <div class="new_bundle_reg_price_total">Reg. Price: <span>$80.00</span> (Save <span>$38.97</span>)</div>
+      </div>
+    `
 
     return html
   }
 
   clickProceedToCheckoutBtnHandler() {
-    waitForElement('#addToCart').then(i => {
-      $el('#addToCart')?.addEventListener('click', (e: any) => {
+    waitForElement('.new_bundle_pack').then(i => {
+      $el('.lp-tr--purchase #proceed')?.addEventListener('click', (e: any) => {
         e.preventDefault()
         e.stopPropagation()
-        let idValue = $el('.js-packs input[type=radio]:checked+label')?.previousElementSibling.value
-        this.addToCartHandler(idValue)
+
+        this.idValue = $el('.lp-tr--purchase input[type=radio]:checked+label')?.previousElementSibling.getAttribute(
+          'data-tick-id'
+        )
+
+        $el('#petlocket:checked') ? this.addToCartHandler(+this.idValue, true) : this.addToCartHandler(+this.idValue)
       })
     })
   }
 
-  async addToCartHandler(idValue: number) {
+  async addToCartHandler(idValue: number, petlocket: boolean = false) {
     // clearCart
     await fetch('/cart/clear.js', {
       method: 'POST',
@@ -192,6 +257,13 @@ class StarterPackBundle {
       }
     ]
 
+    if (petlocket) {
+      items.push({
+        id: 43558182027308,
+        quantity: 1
+      })
+    }
+
     let formData = {
       items: items
     }
@@ -203,10 +275,9 @@ class StarterPackBundle {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(formData)
-    }).then(() => {
-      console.log(`idValue`, idValue)
-      window.location.href = '/checkout'
     })
+
+    window.location.href = '/checkout'
   }
 
   initTooltip() {
@@ -229,17 +300,10 @@ class StarterPackBundle {
               },
               placement: 'top-end',
               interactive: true,
-              onShow(instance: any) {
-                // pushData(
-                //   'exp_introduce_v3_element_02',
-                //   'Whole family protection kit tooltip',
-                //   'Visibility',
-                //   'Bundle & save'
-                // )
-              },
+              onShow(instance: any) {},
               onTrigger(e: any) {
                 $el('body').classList.add('tooltip_open')
-                // pushData('exp_introduce_v3_click_02', 'Whole family protection kit tooltip', 'Click', 'Bundle & save')
+                pushData('exp_zen_introduce_click_02', 'Pet Zen Starter Pack', 'Click', 'Bundle & save')
               },
               onHide(instance: any) {
                 $el('body').classList.remove('tooltip_open')
@@ -252,13 +316,17 @@ class StarterPackBundle {
   }
 
   visibleHandler() {
-    waitForElement('.new_bundle_wrapper').then(i => {
-      // visibilityOfTime(
-      //   '.new_bundle_wrapper',
-      //   'exp_introduce_v3_element_01',
-      //   'Bundle & save',
-      //   'Whole family protection kit'
-      // )
+    waitForElement('.new_bundle_pack').then(i => {
+      visibilityOfTime(
+        '.new_bundle_pack',
+        'exp_zen_introduce_element_01',
+        'Bundle & save',
+        'Pet Zen Starter Pack',
+        'View'
+      )
+    })
+    waitForElement('.guarantee_block').then(i => {
+      visibilityOfTime('.guarantee_block', 'exp_zen_introduce_element_02', 'Bundle & save', 'Guarantee', 'View')
     })
   }
 }

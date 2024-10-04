@@ -25,7 +25,7 @@ export const svg = {
 
 export const bundlesInfo = {
   ver_b: {
-    id: '43643653652524',
+    id: '7737278857260',
     img: `${git}zenpatch-pet_bundle_img_11zon.webp`,
     title: 'Pet Zen Starter Pack',
     description: 'Pet Locket + 3 Packs of Pet Zen Vapor Stickers',

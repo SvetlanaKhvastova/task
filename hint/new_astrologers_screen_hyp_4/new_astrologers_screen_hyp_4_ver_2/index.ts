@@ -1,5 +1,5 @@
 import { startLog, $el, $$el, waitForElement, visibilityOfTime, pushData, clarityInterval } from '../../../libraries'
-import { newAstrologersScreenVerB, newAstrologersScreenVerC } from './blocks'
+import { newAstrologersScreenVerC } from './blocks'
 import { svg } from './data'
 // @ts-ignore
 import mainStyle from './main.css?raw'

@@ -22,14 +22,15 @@
   .new_astrologers_screen {
     padding: 20px 20px 140px;
     .accent_color_blue {
-      color: #066fde;
+      color: #8a2be2;
     }
     .main_title {
       color: #121620;
       font-size: 24px;
       font-weight: 700;
       line-height: 32px;
-      margin: 0 0 16px;
+      margin: 0 0 24px;
+      max-width: 335px;
       @media (max-width: 362px) {
         font-size: 23px;
       }
@@ -43,10 +44,11 @@
     .astrologers_info_wrapper {
       padding: 20px;
       border-radius: 12px;
-      background: #eff2fd;
+      background: #faf5ff;
       .txt_other_astrologers {
-        max-width: 240px;
-        margin: 12px auto 0;
+        padding-top: 16px;
+        margin: 16px auto 0;
+        border-top: 1px solid #ebecf0;
         color: #121620;
         text-align: center;
         font-size: 18px;
@@ -57,80 +59,17 @@
     .astrologers_list {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
       .astrologer_item {
         display: flex;
         align-items: center;
         gap: 16px;
-        padding: 8px;
-        border-radius: 12px;
-        border: 2px solid #c2cad8;
-        background: #dee5f9;
         position: relative;
         z-index: 2;
-        &.best_for_you {
-          position: relative;
-          border: 2px solid #04a777;
-          &::after {
-            content: 'Best for you';
-            position: absolute;
-            top: -0.5px;
-            right: -0.4px;
-            padding: 0px 6px 3px;
-            border-radius: 0px 12px;
-            background: #04a777;
-            color: #fff;
-            font-size: 12px;
-            font-weight: 500;
-            line-height: 16px;
-            letter-spacing: 0.01px;
+        &:nth-child(2) {
+          .astrologer_description {
+            max-width: 100%;
           }
-        }
-        // &.decoration {
-        //   &::before {
-        //     position: absolute;
-        //     content: '';
-        //     top: 16px;
-        //     left: 50%;
-        //     transform: translateX(-50%);
-        //     width: 95%;
-        //     height: 100%;
-        //     border-radius: 12px;
-        //     border: 2px solid #c2cad8;
-        //     background: #dee5f9;
-        //     z-index: -1;
-        //   }
-        //   &::after {
-        //     position: absolute;
-        //     content: '';
-        //     top: 36px;
-        //     left: 50%;
-        //     transform: translateX(-50%);
-        //     width: 90%;
-        //     height: 100%;
-        //     border-radius: 12px;
-        //     border: 2px solid #c2cad8;
-        //     background: #dee5f9;
-        //     z-index: -2;
-        //   }
-        // }
-        &.no_content {
-          width: 95%;
-          height: 80px;
-          border-radius: 12px;
-          border: 2px solid #c2cad8;
-          background: #dee5f9;
-          margin: -80px auto 0;
-          z-index: 1;
-        }
-        &.no_content_second {
-          width: 90%;
-          height: 80px;
-          border-radius: 12px;
-          border: 2px solid #c2cad8;
-          background: #dee5f9;
-          margin: -80px auto 0;
-          z-index: 0;
         }
       }
       .img_wrapper {
@@ -241,7 +180,7 @@
     }
 
     .new_sticky_block {
-      border-top: 1px solid #dee5f9;
+      border-top: 1px solid #ebecf0;
       background: #fff;
       position: fixed;
       bottom: 0;
