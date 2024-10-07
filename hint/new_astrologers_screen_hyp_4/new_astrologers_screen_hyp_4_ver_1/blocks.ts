@@ -14,7 +14,7 @@ export const newAstrologersScreenVerB = /* HTML */ `
           </div>
           <div>
             <h3 class="astrologer_name">Akho</h3>
-            <p class="astrologer_description">6 years in palmistry readings and spiritual guidance.</p>
+            <p class="astrologer_description">6 years in palmistry readings and spiritual guidance</p>
           </div>
         </li>
         <li class="astrologer_item best_for_you">

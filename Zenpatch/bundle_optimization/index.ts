@@ -132,6 +132,7 @@ class StarterPackBundle {
           if (!e.target.getAttribute('data-test')) {
             if (e.target.classList.contains('purchase__pet-locket')) {
               input?.click()
+              label.classList.toggle('is_checked')
             }
           }
           e.target.setAttribute('data-test', '1')
@@ -140,6 +141,14 @@ class StarterPackBundle {
               e.target.removeAttribute('data-test')
             }
           }, 400)
+        })
+
+        input.addEventListener('change', () => {
+          if (input.checked) {
+            label.classList.add('is_selected')
+          } else {
+            label.classList.remove('is_selected')
+          }
         })
       }
     })
@@ -155,17 +164,26 @@ class StarterPackBundle {
 
   renderNewBundle() {
     waitForElement('#lptrPurchase .form .form-group').then(i => {
-      const dataEachPriceVerB = $el('.np-family-kit span.np-whole-family-kit')?.getAttribute('data-each-price') ?? ''
+      const dataEachPriceVerB = $el('.pet-zenp-starter-pack span')?.getAttribute('data-each-price') ?? ''
 
       if (!$el('.new_bundle_wrapper')) {
         $el('#lptrPurchase .form .form-group').insertAdjacentHTML('afterend', budleHtmlVerB(dataEachPriceVerB))
       }
       this.initTooltip()
+      this.initCheckedBundle()
+    })
+  }
+  initCheckedBundle() {
+    waitForElement('.new_bundle_pack').then(i => {
+      if (localStorage.getItem('petZenStarterPack')) {
+        $el('#bundle').checked = true
+        localStorage.removeItem('petZenStarterPack')
+      }
     })
   }
   clickBundleHandler() {
     waitForElement('.new_bundle_pack').then(i => {
-      const variantIdVerB = '7737278857260'
+      const variantIdVerB = '43842554855468'
       $$el('.lp-tr--purchase input[type=radio] + label').forEach((el: HTMLElement) => {
         el.addEventListener('click', e => {
           if (
@@ -199,29 +217,28 @@ class StarterPackBundle {
   }
 
   newPricePetZenStarterPackHtml(id: string) {
-    const npFamilyKit = $$el('.np-family-kit span')
+    const npFamilyKit = $$el('.pet-zenp-starter-pack span')
     let html = ''
-    // if (npFamilyKit) {
-    //   npFamilyKit?.forEach(el => {
-    //     if (el.getAttribute('data-variant-id') === id) {
-    //       html = `<div class="new_js_total">
-    //         <span class="new_price">${el.getAttribute('data-price')}</span> (<span class="new_price_off"
-    //           >60%</span> OFF)</div>`
-    //     }
-    //   })
-    // } else {
-    //   html = ''
-    // }
-
-    html = /* HTML */ `
-      <div class="new_bundle_price_wrapper">
-        <div class="new_bundle_price_total">
-          <span class="new_price">$36.00</span>
-          <span class="new_price_off">(51% OFF)</span>
-        </div>
-        <div class="new_bundle_reg_price_total">Reg. Price: <span>$80.00</span> (Save <span>$38.97</span>)</div>
-      </div>
-    `
+    if (npFamilyKit) {
+      npFamilyKit?.forEach(el => {
+        if (el.getAttribute('data-variant-id') === id) {
+          html = /* HTML */ `
+            <div class="new_bundle_price_wrapper">
+              <div class="new_bundle_price_total">
+                <span class="new_price">${el.getAttribute('data-price')}</span>
+                <span class="new_price_off">(${el.getAttribute('data-price-off')}% OFF)</span>
+              </div>
+              <div class="new_bundle_reg_price_total">
+                Reg. Price: <span>${el.getAttribute('data-price-reg')}</span> (Save
+                <span>${el.getAttribute('data-price-save')}</span>)
+              </div>
+            </div>
+          `
+        }
+      })
+    } else {
+      html = ''
+    }
 
     return html
   }
@@ -236,6 +253,10 @@ class StarterPackBundle {
           'data-tick-id'
         )
 
+        if (this.idValue === '43842554855468') {
+          localStorage.setItem('petZenStarterPack', 'yes')
+        }
+
         $el('#petlocket:checked') ? this.addToCartHandler(+this.idValue, true) : this.addToCartHandler(+this.idValue)
       })
     })
@@ -249,6 +270,8 @@ class StarterPackBundle {
         'Content-Type': 'application/json'
       }
     })
+
+    console.log('clearCART!!!!!!!!!!!!!!!!!!!')
 
     let items = [
       {
@@ -277,7 +300,10 @@ class StarterPackBundle {
       body: JSON.stringify(formData)
     })
 
-    window.location.href = '/checkout'
+    console.log(`checkout`, idValue)
+    setTimeout(() => {
+      window.location.href = '/checkout'
+    }, 600)
   }
 
   initTooltip() {
@@ -306,7 +332,9 @@ class StarterPackBundle {
                 pushData('exp_zen_introduce_click_02', 'Pet Zen Starter Pack', 'Click', 'Bundle & save')
               },
               onHide(instance: any) {
-                $el('body').classList.remove('tooltip_open')
+                setTimeout(() => {
+                  $el('body').classList.remove('tooltip_open')
+                }, 200)
               }
             })
           })

@@ -157,3 +157,77 @@ let lookForBtnNewlinkClickHere = setInterval(() => {
     });
   }
 }, 100);
+
+// test() {
+//   type Category = {
+//     type: 'category'
+//     name: string
+//     children: Element[]
+//   }
+//   type Item = {
+//     type: 'item'
+//     name: string
+//     quantity?: number
+//   }
+
+//   type Element = Category | Item
+
+//   const elements: Element[] = [
+//     {
+//       type: 'category',
+//       name: 'Category1',
+//       children: [
+//         {
+//           type: 'item',
+//           name: 'Item1',
+//           quantity: 20
+//         },
+//         {
+//           type: 'item',
+//           name: 'Item2',
+//           quantity: 40
+//         },
+//         {
+//           type: 'category',
+//           name: 'Category2',
+//           children: [
+//             {
+//               type: 'item',
+//               name: 'Item2',
+//               quantity: 60
+//             }
+//           ]
+//         }
+//       ]
+//     },
+//     {
+//       type: 'category',
+//       name: 'Category3',
+//       children: []
+//     },
+//     {
+//       type: 'item',
+//       name: 'Item3'
+//     }
+//   ]
+
+//   const getQuantity = (elements: Element[]): number => {
+//     let q = 0
+//     const stack = [...elements]
+
+//     while (stack.length > 0) {
+//       let first = stack.pop()
+//       if (first) {
+//         if (first.type === 'category') {
+//           stack.push(...first.children)
+//         } else {
+//           q += first?.quantity ?? 0
+//         }
+//       }
+//     }
+
+//     return q
+//   }
+
+//   console.log(getQuantity(elements)) // 120
+// }

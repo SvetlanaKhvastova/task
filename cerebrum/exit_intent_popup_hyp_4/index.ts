@@ -1,5 +1,5 @@
 import { startLog, $el, $$el, waitForElement, pushData, clarityInterval, checkScrollSpeed } from '../../libraries'
-import { popup } from './blocks'
+import { newCheckoutBlock, popup } from './blocks'
 // @ts-ignore
 import mainStyle from './main.css?raw'
 
@@ -183,6 +183,15 @@ class ExitIntentPopup {
     })
 
     observer.observe($el('body'), { childList: true, subtree: true })
+  }
+
+  // _________________________________________________________________________________________________________
+  renderNewPriceClock() {
+    waitForElement('#payment .rounded-lg').then(i => {
+      if (!$el('#payment .new_checkout_block')) {
+        $el('#payment .rounded-lg').insertAdjacentHTML('afterend', newCheckoutBlock)
+      }
+    })
   }
 }
 
