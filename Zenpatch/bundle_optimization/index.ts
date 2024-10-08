@@ -177,6 +177,15 @@ class StarterPackBundle {
     waitForElement('.new_bundle_pack').then(i => {
       if (localStorage.getItem('petZenStarterPack')) {
         $el('#bundle').checked = true
+        $el('.lp-tr--purchase .overall-price.lp-tr--mobile').classList.add('is_hidden')
+        $el('.lp-tr--purchase .purchase__regular-price').classList.add('is_hidden')
+
+        if (!$el('.new_bundle_price_wrapper')) {
+          $el('.lp-tr--purchase .overall-price.lp-tr--mobile').insertAdjacentHTML(
+            'afterend',
+            this.newPricePetZenStarterPackHtml('43842554855468')
+          )
+        }
         localStorage.removeItem('petZenStarterPack')
       }
     })
@@ -262,48 +271,122 @@ class StarterPackBundle {
     })
   }
 
+  // async addToCartHandler(idValue: number, petlocket: boolean = false) {
+  //   // clearCart
+  //   await fetch('/cart/clear.js', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     }
+  //   })
+
+  //   console.log('clearCART!!!!!!!!!!!!!!!!!!!')
+
+  //   let items = [
+  //     {
+  //       id: idValue,
+  //       quantity: 1
+  //     }
+  //   ]
+
+  //   if (petlocket) {
+  //     items.push({
+  //       id: 43558182027308,
+  //       quantity: 1
+  //     })
+  //   }
+
+  //   let formData = {
+  //     items: items
+  //   }
+
+  //   // addToCart
+  //   // await fetch('/cart/add.js', {
+  //   //   method: 'POST',
+  //   //   headers: {
+  //   //     'Content-Type': 'application/json'
+  //   //   },
+  //   //   body: JSON.stringify(formData)
+  //   // }).then(() => {
+  //   //   console.log(`idValue`, idValue, petlocket)
+  //   //   setTimeout(() => {
+  //   //     window.location.href = '/checkout'
+  //   //   }, 800)
+  //   // })
+  //   // addToCart
+  //   try {
+  //     const response = await fetch('/cart/add.js', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify(formData)
+  //     })
+
+  //     if (!response.ok) {
+  //       throw new Error('Failed to add items to cart')
+  //     }
+
+  //     console.log(`idValue`, idValue, petlocket)
+
+  //     window.location.href = '/checkout'
+  //   } catch (error) {
+  //     console.error('Error adding items to cart:', error)
+  //   }
+  // }
+
   async addToCartHandler(idValue: number, petlocket: boolean = false) {
-    // clearCart
-    await fetch('/cart/clear.js', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
+    const CART_CLEAR_URL = '/cart/clear.js'
+    const CART_ADD_URL = '/cart/add.js'
+    const PETLOCKET_ID = 43558182027308
 
-    console.log('clearCART!!!!!!!!!!!!!!!!!!!')
-
-    let items = [
-      {
-        id: idValue,
-        quantity: 1
-      }
-    ]
-
-    if (petlocket) {
-      items.push({
-        id: 43558182027308,
-        quantity: 1
+    try {
+      // Clear the cart
+      const clearResponse = await fetch(CART_CLEAR_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
       })
+
+      if (!clearResponse.ok) {
+        throw new Error('Failed to clear the cart')
+      }
+
+      console.log('Cart cleared successfully')
+
+      // Prepare items to add to cart
+      const items = [{ id: idValue, quantity: 1 }]
+
+      if (petlocket) {
+        items.push({ id: PETLOCKET_ID, quantity: 1 })
+      }
+
+      const formData = { items }
+
+      // Add items to cart
+      const addResponse = await fetch(CART_ADD_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+
+      if (!addResponse.ok) {
+        throw new Error('Failed to add items to cart')
+      }
+
+      console.log(`Items added to cart`, idValue, petlocket)
+
+      // Redirect to checkout
+      setTimeout(() => {
+        window.location.href = '/checkout'
+      }, 700)
+    } catch (error) {
+      console.error('Error in addToCartHandler:', error)
+      console.log('There was an error adding items to the cart. Please try again.')
     }
-
-    let formData = {
-      items: items
-    }
-
-    // addToCart
-    await fetch('/cart/add.js', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData)
-    })
-
-    console.log(`checkout`, idValue)
-    setTimeout(() => {
-      window.location.href = '/checkout'
-    }, 600)
   }
 
   initTooltip() {
