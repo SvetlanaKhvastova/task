@@ -485,6 +485,7 @@
   }
 
   .lp-tr--btn {
+    display: none !important;
     margin: 16px 0;
     @media (max-width: 993px) {
       margin: 16px 0 !important;
@@ -509,6 +510,7 @@
       text-transform: uppercase;
       border-radius: 50px;
       padding: 2px 0 0 !important;
+      display: none !important;
       @media (max-width: 768px) {
         height: 54px;
         font-size: 20px !important;
@@ -671,4 +673,39 @@ body {
 .purchase__pet-locket input[type='checkbox']:checked + .custom-label:after {
   border: solid #337c6b !important;
   border-width: 0 3px 3px 0 !important;
+}
+
+.proceed_to_checkout_wrapper {
+  margin: 16px auto;
+  @media (max-width: 768px) {
+    padding: 12px 22px;
+    background: #fff;
+    margin: 0;
+  }
+  .new_proceed_to_checkout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 56px;
+    max-width: 345px;
+    margin: 0 auto;
+    border-radius: 50px;
+    background: #337c6b;
+    font-family: 'DIN Condensed';
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-radius: 50px;
+    padding: 2px 0 0;
+    color: #fff;
+    cursor: pointer;
+
+    @media (max-width: 768px) {
+      height: 54px;
+      font-size: 20px;
+      max-width: 100%;
+    }
+  }
 }

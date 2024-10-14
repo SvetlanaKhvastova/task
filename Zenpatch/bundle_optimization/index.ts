@@ -42,6 +42,7 @@ class StarterPackBundle {
     this.clickPetLocketInputHandler()
 
     this.renderGuaranteeBlock()
+    this.renderNewProceedToCheckoutBtn()
     this.renderNewBundle()
 
     this.clickBundleHandler()
@@ -162,6 +163,17 @@ class StarterPackBundle {
     })
   }
 
+  renderNewProceedToCheckoutBtn() {
+    waitForElement('.guarantee_block').then(i => {
+      if (!$el('.proceed_to_checkout_wrapper')) {
+        $el('.guarantee_block').insertAdjacentHTML(
+          'beforebegin',
+          `<div class="proceed_to_checkout_wrapper"><div class="new_proceed_to_checkout">Get pet zen now</div></div>`
+        )
+      }
+    })
+  }
+
   renderNewBundle() {
     waitForElement('#lptrPurchase .form .form-group').then(i => {
       const dataEachPriceVerB = $el('.pet-zenp-starter-pack span')?.getAttribute('data-each-price') ?? ''
@@ -254,86 +266,23 @@ class StarterPackBundle {
 
   clickProceedToCheckoutBtnHandler() {
     waitForElement('.new_bundle_pack').then(i => {
-      $el('.lp-tr--purchase #proceed')?.addEventListener('click', (e: any) => {
-        e.preventDefault()
-        e.stopPropagation()
+      waitForElement('.new_proceed_to_checkout').then(i => {
+        $el('.new_proceed_to_checkout').addEventListener('click', (e: any) => {
+          pushData('exp_zen_get_pet_zen_now_click_01', 'Get Pet Zen Now', 'Click', 'Bundle & save')
 
-        this.idValue = $el('.lp-tr--purchase input[type=radio]:checked+label')?.previousElementSibling.getAttribute(
-          'data-tick-id'
-        )
+          this.idValue = $el('.lp-tr--purchase input[type=radio]:checked+label')?.previousElementSibling.getAttribute(
+            'data-tick-id'
+          )
 
-        if (this.idValue === '43842554855468') {
-          localStorage.setItem('petZenStarterPack', 'yes')
-        }
+          if (this.idValue === '43842554855468') {
+            localStorage.setItem('petZenStarterPack', 'yes')
+          }
 
-        $el('#petlocket:checked') ? this.addToCartHandler(+this.idValue, true) : this.addToCartHandler(+this.idValue)
+          $el('#petlocket:checked') ? this.addToCartHandler(+this.idValue, true) : this.addToCartHandler(+this.idValue)
+        })
       })
     })
   }
-
-  // async addToCartHandler(idValue: number, petlocket: boolean = false) {
-  //   // clearCart
-  //   await fetch('/cart/clear.js', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     }
-  //   })
-
-  //   console.log('clearCART!!!!!!!!!!!!!!!!!!!')
-
-  //   let items = [
-  //     {
-  //       id: idValue,
-  //       quantity: 1
-  //     }
-  //   ]
-
-  //   if (petlocket) {
-  //     items.push({
-  //       id: 43558182027308,
-  //       quantity: 1
-  //     })
-  //   }
-
-  //   let formData = {
-  //     items: items
-  //   }
-
-  //   // addToCart
-  //   // await fetch('/cart/add.js', {
-  //   //   method: 'POST',
-  //   //   headers: {
-  //   //     'Content-Type': 'application/json'
-  //   //   },
-  //   //   body: JSON.stringify(formData)
-  //   // }).then(() => {
-  //   //   console.log(`idValue`, idValue, petlocket)
-  //   //   setTimeout(() => {
-  //   //     window.location.href = '/checkout'
-  //   //   }, 800)
-  //   // })
-  //   // addToCart
-  //   try {
-  //     const response = await fetch('/cart/add.js', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       },
-  //       body: JSON.stringify(formData)
-  //     })
-
-  //     if (!response.ok) {
-  //       throw new Error('Failed to add items to cart')
-  //     }
-
-  //     console.log(`idValue`, idValue, petlocket)
-
-  //     window.location.href = '/checkout'
-  //   } catch (error) {
-  //     console.error('Error adding items to cart:', error)
-  //   }
-  // }
 
   async addToCartHandler(idValue: number, petlocket: boolean = false) {
     const CART_CLEAR_URL = '/cart/clear.js'
@@ -372,17 +321,13 @@ class StarterPackBundle {
         },
         body: JSON.stringify(formData)
       })
-
-      if (!addResponse.ok) {
-        throw new Error('Failed to add items to cart')
-      }
-
-      console.log(`Items added to cart`, idValue, petlocket)
-
-      // Redirect to checkout
-      setTimeout(() => {
-        window.location.href = '/checkout'
-      }, 700)
+        .then(res => {
+          return res.json()
+        })
+        .then(data => {
+          console.log(`Items added to cart`, idValue, petlocket, data)
+          window.location.href = '/checkout'
+        })
     } catch (error) {
       console.error('Error in addToCartHandler:', error)
       console.log('There was an error adding items to the cart. Please try again.')
