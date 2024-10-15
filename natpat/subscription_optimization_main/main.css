@@ -1,0 +1,398 @@
+body #getNow {
+  background: #fbfbf9;
+  padding: 16px 0 0;
+}
+body #getNow .js-heading {
+  margin-bottom: 16px;
+}
+body #getNow .js-heading h2 {
+  color: #0c0b0b;
+  font-family: "DINEngschrift LT";
+  font-size: 32px !important;
+  font-weight: 400 !important;
+  line-height: 40px;
+  letter-spacing: 0.64px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+body #getNow .js-heading .free-shipping-checkout {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+body #getNow .magicpatch-packs {
+  padding: 0 24px;
+}
+body #getNow .magicpatch-packs .list-packs {
+  border-radius: 6px;
+  border: 2px solid #eceef0;
+  background: #fff;
+  box-shadow: 0px 2px 4px 0px rgba(12, 11, 11, 0.1), 0px 12px 32px 0px rgba(0, 0, 0, 0.05);
+  padding: 8px !important;
+}
+body #getNow .magicpatch-packs .list-packs.active-slide {
+  border: 2px solid #2a7b72;
+  background-color: #ecf2f1 !important;
+  outline: none;
+}
+body #getNow .magicpatch-packs .list-packs .stickers-prices {
+  gap: 8px;
+}
+body #getNow .magicpatch-packs .list-packs .stickers-prices .info .pack-price {
+  color: #0c0b0b;
+  font-family: "DINEngschrift LT";
+  font-size: 20px !important;
+  font-weight: 400;
+  line-height: 110% !important;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+body #getNow .magicpatch-packs .list-packs .stickers-prices .info .pcs {
+  color: #6f6f6f;
+  font-family: "Roboto", sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 400;
+  line-height: 130% !important;
+  margin: 4px 0;
+}
+body #getNow .magicpatch-packs .list-packs .stickers-prices .info .before-after-prices {
+  gap: 4px;
+  align-items: flex-end;
+}
+body #getNow .magicpatch-packs .list-packs .stickers-prices .info .before-after-prices .strikethrough {
+  color: #6f6f6f;
+  font-family: "Roboto", sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 400;
+  line-height: 130% !important;
+  text-decoration: line-through;
+}
+body #getNow .magicpatch-packs .list-packs .stickers-prices .info .before-after-prices .strikethrough.hidden {
+  display: block !important;
+}
+body #getNow .magicpatch-packs .list-packs .stickers-prices .info .before-after-prices .after-price {
+  color: #0c0b0b;
+  font-family: "Roboto", sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 400;
+  line-height: 130% !important;
+}
+body #getNow .magicpatch-packs .list-packs .stickers-prices .sticker-image {
+  max-width: 64px;
+  max-height: 64px;
+  border-radius: 4px;
+  border: none;
+  padding: 0;
+}
+body #getNow .magicpatch-packs .list-packs .stickers-prices .sticker-image img {
+  border-radius: 4px;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  border-radius: 3px;
+  border: 1px solid #eceef0;
+}
+body #getNow .magicpatch-packs .list-packs .buttons-sticker {
+  gap: 4px;
+}
+body #getNow .magicpatch-packs .list-packs .buttons-sticker .save-btn,
+body #getNow .magicpatch-packs .list-packs .buttons-sticker .top-seller-btn,
+body #getNow .magicpatch-packs .list-packs .buttons-sticker .best-deal-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 73px;
+  padding: 6px;
+  color: #fff;
+  text-align: center;
+  font-family: "DINEngschrift LT" !important;
+  font-size: 12px !important;
+  font-weight: 400;
+  line-height: 12px !important;
+  letter-spacing: 0.72px;
+  text-transform: uppercase;
+  border-radius: 3px;
+}
+body #getNow .magicpatch-packs .list-packs .buttons-sticker .best-deal-btn {
+  color: #0c0b0b;
+  background: #efae16;
+}
+body #getNow .magicpatch-packs .list-packs .buttons-sticker .save-btn {
+  background: #4caf50;
+}
+body #getNow .magicpatch-packs .list-packs .buttons-sticker .save-btn.hidden {
+  display: flex !important;
+}
+body #getNow .magicpatch-packs .list-packs .buttons-sticker .save-btn span {
+  margin-left: 2px;
+}
+body #getNow .magicpatch-packs .list-packs .buttons-sticker .top-seller-btn {
+  background: #0c0b0b;
+}
+
+.new_subscription {
+  margin: 34px 0 12px;
+  padding: 0 24px;
+}
+.new_subscription .new_subscription_block .plan_selection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.new_subscription .new_subscription_block .plan_selection label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc((100% - 12px) / 2);
+  padding: 9.2px 7px;
+  margin: 0;
+  color: #717171;
+  font-family: "Roboto", sans-serif !important;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+  border-radius: 6px;
+  border: 2px solid #d3d3d3;
+  background: #fff;
+  letter-spacing: initial;
+  cursor: pointer;
+}
+.new_subscription .new_subscription_block .plan_selection label.subscribe_save_variant {
+  position: relative;
+}
+.new_subscription .new_subscription_block .plan_selection label.subscribe_save_variant::before {
+  content: "Save extra 15%";
+  position: absolute;
+  top: -19px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: -moz-max-content;
+  width: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 8px 2px 8px;
+  border-radius: 4px 4px 0px 0px;
+  background: #2a7b72;
+  color: #fff;
+  font-family: "DINEngschrift LT";
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  z-index: 1;
+}
+.new_subscription .new_subscription_block .plan_selection input[type=radio] {
+  display: none;
+}
+.new_subscription .new_subscription_block .plan_selection input[type=radio]:checked + label {
+  color: #212529;
+  border: 2px solid #2a7b72;
+  background: #fff;
+}
+.new_subscription .new_subscription_block .plan_comment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #2a7b72;
+  font-family: "Roboto", sans-serif !important;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 26px;
+  text-decoration-line: underline;
+  margin: 4px auto;
+  letter-spacing: initial;
+}
+.new_subscription .new_subscription_block .plan_comment > svg {
+  width: 15px;
+  height: 20px;
+}
+.new_subscription .new_subscription_block .plan_comment [data-tooltip] {
+  cursor: pointer;
+}
+.new_subscription .new_subscription_block .plan_comment [data-tippy-root] {
+  right: -20px !important;
+}
+.new_subscription .new_subscription_block .plan_comment .tippy-box {
+  background-color: #fff;
+  filter: drop-shadow(0px 12px 32px rgba(0, 0, 0, 0.1));
+  max-width: 330px !important;
+  border-radius: 15px;
+}
+.new_subscription .new_subscription_block .plan_comment .tippy-box .tippy-content {
+  padding: 16px;
+}
+.new_subscription .new_subscription_block .plan_comment .tippy-box .tippy-content .tooltip_block p {
+  color: #212529;
+  font-family: "Roboto", sans-serif !important;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  margin: 0 0 8px;
+  text-transform: initial;
+  font-style: normal;
+}
+.new_subscription .new_subscription_block .plan_comment .tippy-box .tippy-content .tooltip_block ul {
+  padding-left: 20px;
+  margin: 0;
+}
+.new_subscription .new_subscription_block .plan_comment .tippy-box .tippy-content .tooltip_block ul li {
+  color: #515151;
+  list-style: disc;
+  font-size: 11px;
+}
+.new_subscription .new_subscription_block .plan_comment .tippy-box .tippy-content .tooltip_block ul li + li {
+  margin-top: 15px;
+}
+.new_subscription .new_subscription_block .plan_comment .tippy-box .tippy-content .tooltip_block ul li p {
+  color: #515151;
+  font-weight: 400;
+  margin: 0;
+}
+.new_subscription .new_subscription_block .plan_comment .tippy-box[data-placement^=bottom] > .tippy-arrow, .new_subscription .new_subscription_block .plan_comment .tippy-box[data-placement^=top] > .tippy-arrow {
+  display: block;
+  color: white;
+}
+.new_subscription .new_subscription_block .plan_comment .tippy-box[data-placement^=bottom] > .tippy-arrow:before, .new_subscription .new_subscription_block .plan_comment .tippy-box[data-placement^=top] > .tippy-arrow:before {
+  left: -20px !important;
+}
+.new_subscription .new_subscription_block .plan_details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 4px;
+  border: 2px solid var(--D3D3D3, #d3d3d3);
+  background: #ecf2f1;
+  margin: 0;
+  list-style: none;
+}
+.new_subscription .new_subscription_block .plan_details li {
+  position: relative;
+  color: #000;
+  font-family: "Roboto", sans-serif !important;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: normal;
+  padding-left: 22px;
+}
+.new_subscription .new_subscription_block .plan_details li::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 13.9px;
+  height: 13.9px;
+  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/checkmark_done_complete.svg) no-repeat center center;
+  background-size: contain;
+}
+.new_subscription .new_subscription_block .plan_details.one_time_checked + .custom_dropdown {
+  display: none;
+}
+.new_subscription .new_subscription_block .plan_details.one_time_checked li:nth-child(3),
+.new_subscription .new_subscription_block .plan_details.one_time_checked li:nth-child(4),
+.new_subscription .new_subscription_block .plan_details.one_time_checked li:nth-child(5) {
+  color: #c3c3c3;
+}
+.new_subscription .new_subscription_block .plan_details.one_time_checked li:nth-child(3)::before,
+.new_subscription .new_subscription_block .plan_details.one_time_checked li:nth-child(4)::before,
+.new_subscription .new_subscription_block .plan_details.one_time_checked li:nth-child(5)::before {
+  content: "";
+  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/stop_icon.svg) no-repeat center center;
+  background-size: contain;
+}
+
+.custom_dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  margin-top: 12px;
+}
+.custom_dropdown .dropdown_toggle {
+  position: relative;
+  width: 100%;
+  text-align: left;
+  border-radius: 4px;
+  border: 2px solid #d3d3d3;
+  background: #fff;
+  padding: 8px 12px;
+  cursor: pointer;
+  color: #0c0b0b;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+.custom_dropdown .dropdown_toggle.disabled {
+  pointer-events: none;
+  color: #c3c3c3;
+  opacity: 0.7;
+}
+.custom_dropdown .dropdown_toggle::after {
+  content: "";
+  position: absolute;
+  background-image: url(//www.natpat.com/cdn/shop/files/select-form-icon.svg?v=374583230437431762);
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.8s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.custom_dropdown .dropdown_toggle.active::after {
+  transform: rotateX(180deg) translateY(50%);
+}
+.custom_dropdown .dropdown_menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 2px solid #d3d3d3;
+  background-color: #fff;
+  z-index: 5;
+  margin-top: 1px;
+}
+.custom_dropdown .dropdown_menu.show {
+  display: block;
+}
+.custom_dropdown .text_transform {
+  text-transform: lowercase;
+}
+.custom_dropdown .most_common {
+  color: #717171;
+}
+.custom_dropdown .dropdown_item {
+  padding: 5px 10px;
+  color: #0c0b0b;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+  cursor: pointer;
+}
+.custom_dropdown .dropdown_item.selected {
+  background: #2a7b72;
+  color: white;
+}
+.custom_dropdown .dropdown_item.selected .most_common {
+  color: white;
+}
+.custom_dropdown .dropdown_item:hover {
+  background: #1f4fc9;
+  color: white;
+}
+.custom_dropdown .dropdown_item:hover .most_common {
+  color: white;
+}/*# sourceMappingURL=main.css.map */
