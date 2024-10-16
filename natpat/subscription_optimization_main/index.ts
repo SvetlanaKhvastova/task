@@ -8,7 +8,7 @@ import {
   checkScrollPosition,
   loadScriptsOrStyles
 } from '../../libraries'
-import { customDropdown, newSubscriptionBlock, stickyBlock } from './blocks'
+import { customDropdown, newPriceWrapper, newSubscriptionBlock } from './blocks'
 import { svg, git } from './data'
 // @ts-ignore
 import mainStyle from './main.css?raw'
@@ -18,10 +18,12 @@ const device = window.innerWidth < 768 ? 'mobile' : 'desktop'
 class SubscriptionOptimization {
   device: 'mobile' | 'desktop'
   observer: null | MutationObserver
+  isActiveOnePack: boolean
 
   constructor(device) {
     this.device = device
     this.observer = null
+    this.isActiveOnePack = false
 
     this.init()
   }
@@ -36,7 +38,10 @@ class SubscriptionOptimization {
     )
     document.head.insertAdjacentHTML('beforeend', `<style class="crs_style">${mainStyle}</style>`)
 
-    this.observePageChange()
+    // this.observePageChange()
+    this.renderNewSubscriptionBlock()
+    this.changeActivePackHandler()
+    this.renderNewLogoUnderButton()
   }
 
   observePageChange() {
@@ -50,16 +55,11 @@ class SubscriptionOptimization {
             $el('body').classList.add('new_subscription_block_visible')
           }
         } else {
-          $el('.new_subscription')?.remove()
+          // $el('.new_subscription')?.remove()
           if ($el('body').classList.contains('new_subscription_block_visible')) {
             $el('body').classList.remove('new_subscription_block_visible')
           }
         }
-      }
-      if (!$el('.one_time_checked')) {
-        this.changeSubscribePricePacksHandler()
-      } else {
-        $el('.each_pack_subscribe')?.remove()
       }
     })
 
@@ -67,98 +67,45 @@ class SubscriptionOptimization {
     this.observer.observe($el('body'), config)
   }
 
-  replacePriceTxtHandler() {
-    waitForElement('.cPrice span').then((i: HTMLElement) => {
-      waitForElement('.price__container').then((e: HTMLElement) => {
-        waitForElement('.product-form__submit span[data-rtx-subscription-price]').then((p: HTMLElement) => {
-          let v = setInterval(() => {
-            if (p.textContent !== '' && $el('[data-percent]')) {
-              clearInterval(v)
-              waitForElement('.price--on-sale .price__badge-sale').then(n => {
-                const regPrice = i.textContent
-                let salePrice = ''
-                let percentOff = ''
-                if (!$el('.product-form__submit span[data-rtx-subscription-price]').classList.contains('hidden')) {
-                  salePrice = $el('.product-form__submit span[data-rtx-subscription-price]').textContent
-                  percentOff = $el('[data-percent]').getAttribute('data-percent')
-                  console.log(`Тут %`)
-                }
-                if (!$el('.product-form__submit span[data-rtx-onetime-price]').classList.contains('hidden')) {
-                  salePrice = $el('.product-form__submit span[data-rtx-onetime-price]').textContent
-                  percentOff = $el('.price--on-sale .price__badge-sale')?.textContent.trim()
-                  console.log(percentOff, `percentOff`)
-                }
-                if (!$el('.new_price_wrapper')) {
-                  e.insertAdjacentHTML(
-                    'beforebegin',
-                    `<div class="new_price_wrapper">
-                      <div class="new_reg_price">${regPrice}</div>
-                      <div class="new_sale_price">${salePrice}</div>
-                      <div class="percent_off">${svg.percentIcon} ${percentOff}</div>
-                    </div>`
-                  )
-                }
-              })
-            }
-          }, 300)
-        })
-      })
-    })
-  }
-
   renderNewSubscriptionBlock() {
     waitForElement('#getNow .stay-container').then(i => {
       const stayContainerElements = $$el('#getNow .stay-container')
+      let checkedIsActiveOnePack = false
 
       stayContainerElements.forEach(container => {
         if (!container.previousElementSibling.classList.contains('new_subscription')) {
-          container.insertAdjacentHTML('beforebegin', newSubscriptionBlock)
+          if (this.isActiveOnePack) {
+            checkedIsActiveOnePack = true
+          }
+          container.insertAdjacentHTML('beforebegin', newSubscriptionBlock(checkedIsActiveOnePack))
         }
       })
+      console.log('renderNewSubscriptionBlock>>>>>>>>>>>>>>>>')
     })
 
-    waitForElement('.new_subscription').then((i: HTMLElement) => {
-      this.replacePriceTxtHandler()
-      this.changeSubscriptionPlanHandler()
-      this.renderCustomDropdown()
-    })
-    this.initTooltip()
-    console.log('renderNewSubscriptionBlock>>>>>>>>>>>>>>>>')
+    this.newSubscriptionBlockHandlers()
   }
 
-  changeSubscriptionPlanHandler() {
-    waitForElement('.plan_selection').then(i => {
-      $$el('.plan_selection label').forEach(label => {
-        label.addEventListener('click', () => {
-          switch (label.getAttribute('for')) {
-            case 'oneTime':
-              pushData('exp_sub_option_button_01', 'One-Time', 'Button', 'Subscribe section')
-              if (label.previousElementSibling?.checked) return
-              $el('.custom_dropdown')?.remove()
-              $el('.new_price_wrapper')?.remove()
-              $el('[id="rtxSubscribe"]').click()
-              if (!$el('.plan_details').classList.contains('one_time_checked')) {
-                $el('.plan_details').classList.add('one_time_checked')
-              }
-              break
-            case 'subscribeSave':
-              pushData('exp_sub_option_button_02', 'Subscribe & Save', 'Button', 'Subscribe section')
-              if (label.previousElementSibling?.checked) return
-              $el('.custom_dropdown')?.remove()
-              $el('.new_price_wrapper')?.remove()
-              $el('[id="rtxSubscribe"]').click()
-              if ($el('.plan_details').classList.contains('one_time_checked')) {
-                $el('.plan_details').classList.remove('one_time_checked')
-              }
-              break
+  newSubscriptionBlockHandlers() {
+    waitForElement('.new_subscription').then((i: HTMLElement) => {
+      if (!this.isActiveOnePack) {
+        this.checkSubscriptionDefault()
+      }
+      this.renderCustomDropdown()
+      this.changeSubscriptionPlanHandler()
+      this.replacePriceTxtHandler()
+      this.initTooltip()
+    })
+  }
 
-            default:
-              break
-          }
-          this.renderCustomDropdown()
-          this.replacePriceTxtHandler()
-        })
-      })
+  checkSubscriptionDefault() {
+    waitForElement('#getNow #rtxSubscribe').then(i => {
+      const inputControlVar = $el('#getNow #rtxSubscribe') as HTMLInputElement
+      const labelControlVar = inputControlVar.nextElementSibling as HTMLLabelElement
+
+      if (!inputControlVar.checked) {
+        labelControlVar.click()
+      }
     })
   }
 
@@ -167,12 +114,12 @@ class SubscriptionOptimization {
       if (!$el('.custom_dropdown')) {
         i.insertAdjacentHTML('beforeend', customDropdown)
       }
-      this.renderOptions()
+      this.renderCustomOptions()
       console.log(`renderCustomDropdown`)
     })
   }
 
-  renderOptions() {
+  renderCustomOptions() {
     waitForElement('#getNow .subscribe-frequency select option').then(i => {
       waitForElement('.custom_dropdown').then(i => {
         const subscriptionDropdown = $el('#getNow .subscribe-frequency select') as HTMLSelectElement
@@ -290,18 +237,94 @@ class SubscriptionOptimization {
     }
   }
 
-  changeSubscribePricePacksHandler() {
-    waitForElement('label .each-pack[data-subscribe]').then(i => {
-      $$el('label .each-pack').forEach((i: HTMLElement) => {
-        if (i.closest('label[data-pack="1"]')) return
+  changeSubscriptionPlanHandler() {
+    waitForElement('.plan_selection').then(i => {
+      const inputControlVar = $el('#getNow #rtxSubscribe') as HTMLInputElement
+      const labelControlVar = inputControlVar.nextElementSibling as HTMLLabelElement
+      const activeSlideOnePack = $el('#getNow .active-slide') as HTMLElement
 
-        if (!i.previousElementSibling?.classList.contains('each_pack_subscribe')) {
-          i.insertAdjacentHTML(
-            'beforebegin',
-            `<span class="each_pack_subscribe">${i.getAttribute('data-subscribe')}</span>`
-          )
-        }
+      $$el('.plan_selection label').forEach(label => {
+        label.addEventListener('click', () => {
+          switch (label.getAttribute('for')) {
+            case 'oneTime':
+              pushData('exp_sub_option_button_01', 'One-Time', 'Button', 'Subscribe section')
+              if (label.previousElementSibling?.checked) return
+              $el('.custom_dropdown')?.remove()
+              $el('.new_price_wrapper')?.remove()
+
+              if (inputControlVar.checked) {
+                labelControlVar.click()
+              }
+
+              if (!$el('.plan_details').classList.contains('one_time_checked')) {
+                $el('.plan_details').classList.add('one_time_checked')
+              }
+              break
+            case 'subscribeSave':
+              pushData('exp_sub_option_button_02', 'Subscribe & Save', 'Button', 'Subscribe section')
+              if (label.previousElementSibling?.checked) return
+              $el('.custom_dropdown')?.remove()
+              $el('.new_price_wrapper')?.remove()
+
+              if (!inputControlVar.checked) {
+                labelControlVar.click()
+              }
+              if ($el('.plan_details').classList.contains('one_time_checked')) {
+                $el('.plan_details').classList.remove('one_time_checked')
+              }
+              break
+
+            default:
+              break
+          }
+          this.renderCustomDropdown()
+          this.replacePriceTxtHandler()
+        })
       })
+    })
+  }
+
+  changeActivePackHandler() {
+    waitForElement('#getNow .magicpatch-packs').then(n => {
+      const packItems = $$el('#getNow .magicpatch-packs .list-packs') as NodeListOf<HTMLElement>
+      console.log(`object`, packItems)
+
+      packItems.forEach(pack => {
+        pack.addEventListener('click', () => {
+          console.log(`object`)
+          if (pack.classList.contains('list-packs-1')) {
+            this.isActiveOnePack = true
+          } else {
+            this.isActiveOnePack = false
+          }
+
+          $el('.new_subscription')?.remove()
+          $el('.new_price_wrapper')?.remove()
+
+          if (!$el('.new_subscription')) {
+            this.renderNewSubscriptionBlock()
+          }
+
+          this.replacePriceTxtHandler()
+        })
+      })
+    })
+  }
+
+  replacePriceTxtHandler() {
+    waitForElement('#getNow .active-slide').then(n => {
+      const activeSlide = $el('#getNow .active-slide') as HTMLElement
+      const button = $el('#getNow #no-icart-open') as HTMLElement
+
+      const regPrice = activeSlide.querySelector('.info .before-after-prices .strikethrough')?.textContent?.trim()
+      let salePrice = activeSlide.querySelector('.info .before-after-prices .after-price')?.textContent?.trim()
+      let percentOff = activeSlide.querySelector('.save-btn span')?.textContent?.trim()
+
+      if (regPrice && salePrice && percentOff) {
+        if (!$el('.new_price_wrapper')) {
+          button.insertAdjacentHTML('beforebegin', newPriceWrapper(regPrice, salePrice, percentOff))
+        }
+      }
     })
   }
 
@@ -316,7 +339,7 @@ class SubscriptionOptimization {
           $$el('[data-tooltip]').forEach(el => {
             tippy(el, {
               content: el.getAttribute('data-title'),
-              // trigger: 'click',
+              trigger: 'click',
               allowHTML: true,
               arrow: true,
               arrowType: 'round',
@@ -337,6 +360,19 @@ class SubscriptionOptimization {
           })
         }
       }, 100)
+    })
+  }
+
+  renderNewLogoUnderButton() {
+    waitForElement('.reviews-slide > img').then(i => {
+      const stayContainerElements = $$el('.reviews-slide > img')
+      const newLogo = 'https://conversionratestore.github.io/projects/zenpatch/img/new_logos.png'
+
+      stayContainerElements.forEach(img => {
+        if (img.src !== newLogo) {
+          img.src = newLogo
+        }
+      })
     })
   }
 }

@@ -264,21 +264,35 @@ class StarterPackBundle {
     return html
   }
 
+  // clickProceedToCheckoutBtnHandler() {
+  //   waitForElement('.new_bundle_pack').then(i => {
+  //     waitForElement('.new_proceed_to_checkout').then(i => {
+  //       $el('.new_proceed_to_checkout').addEventListener('click', (e: any) => {
+  //         pushData('exp_zen_get_pet_zen_now_click_01', 'Get Pet Zen Now', 'Click', 'Bundle & save')
+
+  //         this.idValue = $el('.lp-tr--purchase input[type=radio]:checked+label')?.previousElementSibling.getAttribute(
+  //           'data-tick-id'
+  //         )
+
+  //         if (this.idValue === '43842554855468') {
+  //           localStorage.setItem('petZenStarterPack', 'yes')
+  //         }
+
+  //         $el('#petlocket:checked') ? this.addToCartHandler(+this.idValue, true) : this.addToCartHandler(+this.idValue)
+  //       })
+  //     })
+  //   })
+  // }
   clickProceedToCheckoutBtnHandler() {
     waitForElement('.new_bundle_pack').then(i => {
-      waitForElement('.new_proceed_to_checkout').then(i => {
-        $el('.new_proceed_to_checkout').addEventListener('click', (e: any) => {
+      waitForElement('#lptrPurchase .lp-tr--btn a').then(i => {
+        $el('#lptrPurchase .lp-tr--btn a').addEventListener('click', (e: any) => {
           pushData('exp_zen_get_pet_zen_now_click_01', 'Get Pet Zen Now', 'Click', 'Bundle & save')
-
           this.idValue = $el('.lp-tr--purchase input[type=radio]:checked+label')?.previousElementSibling.getAttribute(
             'data-tick-id'
           )
-
-          if (this.idValue === '43842554855468') {
-            localStorage.setItem('petZenStarterPack', 'yes')
-          }
-
-          $el('#petlocket:checked') ? this.addToCartHandler(+this.idValue, true) : this.addToCartHandler(+this.idValue)
+          const newHref = e.target.href.replace(/\/cart\/\d+:/, `/cart/${this.idValue}:`)
+          e.target.href = newHref
         })
       })
     })
