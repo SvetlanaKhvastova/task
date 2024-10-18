@@ -70,7 +70,6 @@ class SubscriptionOptimization {
     this.changeSrcLogoUnderButton()
 
     this.renderHeaderSlideInCart()
-    this.changeSrcCloseButtonSlideInCart()
     this.renderNextStepBtnSlideInCart()
     this.changeNextStepSlideInCart()
     this.replaceLogoSlideInCart()
@@ -109,6 +108,7 @@ class SubscriptionOptimization {
         }
       })
     })
+    console.log('renderNewSubscriptionBlock')
     this.newSubscriptionBlockHandlers()
   }
 
@@ -122,6 +122,7 @@ class SubscriptionOptimization {
       this.renderNewPriceBlock()
       this.initTooltip()
     })
+    console.log(`newSubscriptionBlockHandlers`)
   }
 
   checkSubscriptionDefault() {
@@ -144,6 +145,7 @@ class SubscriptionOptimization {
         }
       })
       this.renderCustomOptions()
+      console.log(`renderCustomDropdown`)
     })
   }
 
@@ -366,6 +368,7 @@ class SubscriptionOptimization {
                 break
 
               case `subscribeSave`:
+                console.log(this.uniqueId)
                 if (this.uniqueId === 'Cons') {
                   pushData('exp_sub_land_button_06', 'Subscribe & save', 'Click', 'Sticky cart')
                 }
@@ -414,6 +417,8 @@ class SubscriptionOptimization {
         })
       })
     })
+
+    console.log(`changeSubscriptionPlanHandler`)
   }
 
   syncRadioButtons(value: string) {
@@ -431,6 +436,7 @@ class SubscriptionOptimization {
 
       packItems.forEach(pack => {
         pack.addEventListener('click', () => {
+          console.log(`object`)
           if (pack.classList.contains('list-packs-1')) {
             this.isActiveOnePack = true
             this.changeTxtMainBtnToProceedToCheckoutBtn()
@@ -564,17 +570,6 @@ class SubscriptionOptimization {
 
       if (!$el('.header_slide_in_cart')) {
         titleLogoOld.insertAdjacentHTML('afterbegin', headerSlideInCart)
-      }
-    })
-  }
-
-  changeSrcCloseButtonSlideInCart() {
-    waitForElement('#cons .title-logo .close-btn').then(i => {
-      const closeBtn = $el('#cons .title-logo .close-btn') as HTMLImageElement
-      const newCloseIcon = 'https://conversionratestore.github.io/projects/buzzpatch/sunnypatch/img/close.svg'
-
-      if (closeBtn.src !== newCloseIcon) {
-        closeBtn.src = newCloseIcon
       }
     })
   }

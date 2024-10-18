@@ -514,3 +514,8 @@ let scriptCustom = document.createElement("script");
 scriptCustom.src = "https://conversionratestore.github.io/projects/buzzpatch/zenpatch/pet/bundle_optimization_test.js";
 scriptCustom.async = false;
 document.head.appendChild(scriptCustom);
+
+let scriptCustom = document.createElement("script");
+scriptCustom.src = "https://conversionratestore.github.io/projects/buzzpatch/zenpatch/subscription_optimization_lp.js";
+scriptCustom.async = false;
+document.head.appendChild(scriptCustom);

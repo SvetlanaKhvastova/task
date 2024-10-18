@@ -30,8 +30,8 @@ body #getNow .magicpatch-packs .list-packs {
   padding: 8px !important;
 }
 body #getNow .magicpatch-packs .list-packs.active-slide {
-  border: 2px solid #2a7b72;
-  background-color: #ecf2f1 !important;
+  border: 2px solid #0191d7;
+  background: linear-gradient(0deg, rgba(1, 145, 215, 0.1) 0%, rgba(1, 145, 215, 0.1) 100%), #fff !important;
   outline: none;
 }
 body #getNow .magicpatch-packs .list-packs .stickers-prices {
@@ -150,7 +150,7 @@ body #getNow .view-prices #no-icart-open {
   justify-content: center;
   height: 56px;
   border-radius: 60px;
-  background: #2a7b72;
+  background: #0191d7;
   color: #fefefe;
   font-family: "DINEngschrift LT";
   font-size: 20px;
@@ -247,8 +247,8 @@ body #cons .magicpatch-packs .list-packs {
   padding: 8px !important;
 }
 body #cons .magicpatch-packs .list-packs.active-slide {
-  border: 2px solid #2a7b72;
-  background-color: #ecf2f1 !important;
+  border: 2px solid #0191d7;
+  background: linear-gradient(0deg, rgba(1, 145, 215, 0.1) 0%, rgba(1, 145, 215, 0.1) 100%), #fff !important;
   outline: none;
 }
 body #cons .magicpatch-packs .list-packs .stickers-prices {
@@ -386,7 +386,7 @@ body #cons .view-prices .next_step_btn {
   width: 100%;
   height: 50px;
   border-radius: 60px;
-  background: #2a7b72;
+  background: #0191d7;
   color: #fefefe;
   font-family: "DINEngschrift LT";
   font-size: 20px;
@@ -425,7 +425,7 @@ body #cons .body_slide_in_cart .main_title_wrapper .main_title {
   margin: 0;
 }
 body #cons .body_slide_in_cart .main_title_wrapper .change_btn {
-  color: #2a7b72;
+  color: #0191d7;
   font-family: "Roboto", sans-serif;
   font-size: 15px;
   font-weight: 700;
@@ -594,7 +594,7 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
   display: flex;
   gap: 4px;
   max-width: 320px;
-  color: #2a7b72;
+  color: #0191d7;
   font-family: "Roboto", sans-serif;
   font-size: 14px;
   font-style: italic;
@@ -665,7 +665,7 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
   align-items: center;
   padding: 4px 8px 2px 8px;
   border-radius: 4px 4px 0px 0px;
-  background: #2a7b72;
+  background: #0191d7;
   color: #fff;
   font-family: "DINEngschrift LT";
   font-size: 12px;
@@ -680,7 +680,7 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
 }
 .new_subscription .new_subscription_block .plan_selection input[type=radio]:checked + label {
   color: #212529;
-  border: 2px solid #2a7b72;
+  border: 2px solid #0191d7;
   background: #fff;
 }
 .new_subscription .new_subscription_block .plan_comment {
@@ -688,7 +688,7 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
   align-items: center;
   justify-content: flex-end;
   gap: 6px;
-  color: #2a7b72;
+  color: #0191d7;
   font-family: "Roboto", sans-serif !important;
   font-size: 14px;
   font-style: italic;
@@ -807,7 +807,7 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
   transform: translateY(-50%);
   width: 13.9px;
   height: 13.9px;
-  background: url(https://conversionratestore.github.io/projects/buzzpatch/img/checkmark_done_complete_green.svg) no-repeat center center;
+  background: url(https://conversionratestore.github.io/projects/buzzpatch/sleepypatch/img/checkmark_done_complete_blue.svg) no-repeat center center;
   background-size: inherit;
   border-radius: 50%;
 }
@@ -857,7 +857,7 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
 .custom_dropdown .dropdown_toggle::after {
   content: "";
   position: absolute;
-  background-image: url(https://conversionratestore.github.io/projects/buzzpatch/img/select_form_icon_green.svg);
+  background-image: url(https://conversionratestore.github.io/projects/buzzpatch/sleepypatch/img/select_form_icon_blue.svg);
   background-repeat: no-repeat;
   width: 24px;
   height: 24px;
@@ -904,7 +904,7 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
   letter-spacing: normal;
 }
 .custom_dropdown .dropdown_item.selected {
-  background: #2a7b72;
+  background: #0191d7;
   color: white;
 }
 .custom_dropdown .dropdown_item.selected .most_common {
@@ -924,7 +924,6 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
   gap: 10px;
   align-items: center;
   justify-content: center;
-  padding: 0 16px;
 }
 .new_price_wrapper .new_reg_price {
   color: #616267;
@@ -949,7 +948,7 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
   display: flex;
   align-items: center;
   gap: 4px;
-  color: #2a7b72;
+  color: #0191d7;
   font-family: "Roboto", sans-serif;
   font-size: 24px;
   font-weight: 700;
