@@ -13,6 +13,7 @@ import {
   customDropdown,
   headerSlideInCart,
   infoWrapperSlideInCart,
+  newFreeShippingBlock,
   newPriceWrapper,
   newSubscriptionBlock,
   nextStepBtnSlideInCart
@@ -63,6 +64,8 @@ class SubscriptionOptimization {
     document.head.insertAdjacentHTML('beforeend', `<style class="crs_style">${mainStyle}</style>`)
 
     this.changeSaveTxtOnePack()
+    this.changeTxtMainHeader()
+    this.renderNewFreeShippingBlock()
     this.renderNewSubscriptionBlock()
     this.changeActivePackHandler()
 
@@ -87,6 +90,25 @@ class SubscriptionOptimization {
           el.insertAdjacentHTML('afterend', `<span class="new_save_txt">${el.getAttribute('data-price')}</span>`)
         }
       })
+    })
+  }
+
+  changeTxtMainHeader() {
+    waitForElement('body #getNow .js-heading h2').then(i => {
+      const elemHeader = $el('body #getNow .js-heading h2') as HTMLElement
+      if (elemHeader.textContent !== `Stock up and save`) {
+        elemHeader.textContent = `Stock up and save`
+      }
+    })
+  }
+
+  renderNewFreeShippingBlock() {
+    waitForElement('body #getNow .js-heading').then(i => {
+      const elemPlace = $el('body #getNow .js-heading') as HTMLElement
+
+      if (!$el('.new_free_shipping_block')) {
+        elemPlace.insertAdjacentHTML('afterend', newFreeShippingBlock)
+      }
     })
   }
 

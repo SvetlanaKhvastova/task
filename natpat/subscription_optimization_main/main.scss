@@ -30,7 +30,7 @@ body {
         box-shadow:
           0px 2px 4px 0px rgba(12, 11, 11, 0.1),
           0px 12px 32px 0px rgba(0, 0, 0, 0.05);
-        padding: 8px !important;
+        padding: 5.2px 8px !important;
         &.active-slide {
           border: 2px solid #2a7b72;
           background-color: #ecf2f1 !important;
@@ -142,6 +142,7 @@ body {
     .view-prices {
       gap: 0;
       margin: 0;
+      padding: 0 24px;
       > h3,
       .hide-price-pack,
       .stay-container .np-one-pack {
@@ -164,7 +165,9 @@ body {
         line-height: 24px;
         letter-spacing: 0.2px;
         text-transform: uppercase;
-        margin-top: 12px;
+        margin: 12px auto 0;
+        max-width: 100%;
+        box-shadow: none;
       }
     }
     .reviews-slide {
@@ -251,7 +254,7 @@ body {
         box-shadow:
           0px 2px 4px 0px rgba(12, 11, 11, 0.1),
           0px 12px 32px 0px rgba(0, 0, 0, 0.05);
-        padding: 8px !important;
+        padding: 5.2px 8px !important;
         &.active-slide {
           border: 2px solid #2a7b72;
           background-color: #ecf2f1 !important;
@@ -435,6 +438,7 @@ body {
           font-weight: 700;
           line-height: normal !important;
           text-transform: uppercase;
+          letter-spacing: normal;
           margin: 0;
         }
         .change_btn {
@@ -445,6 +449,7 @@ body {
           line-height: normal;
           text-decoration-line: underline;
           text-transform: uppercase;
+          letter-spacing: normal;
           margin: 0;
         }
       }
@@ -604,7 +609,7 @@ body {
 // new_subscription
 .new_subscription {
   margin: 34px 0 12px;
-  padding: 0 24px;
+  padding: 0;
 
   .new_subscription_block {
     &.is_disabled {
@@ -956,7 +961,7 @@ body {
   gap: 10px;
   align-items: center;
   justify-content: center;
-  padding: 0 16px;
+  padding: 0;
   .new_reg_price {
     color: #616267;
     font-family: 'Roboto', sans-serif;

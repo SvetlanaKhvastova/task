@@ -3,7 +3,8 @@ body {
   }
   #getNow {
     background: #fbfbf9;
-    padding: 16px 0 21px;
+    padding: 20px 0 21px;
+    gap: 0;
     .js-heading {
       margin-bottom: 16px;
       h2 {
@@ -14,7 +15,7 @@ body {
         line-height: 40px;
         letter-spacing: 0.64px;
         text-transform: uppercase;
-        margin-bottom: 16px;
+        margin: 0;
       }
       .free-shipping-checkout {
         margin-bottom: 0;
@@ -30,7 +31,7 @@ body {
         box-shadow:
           0px 2px 4px 0px rgba(12, 11, 11, 0.1),
           0px 12px 32px 0px rgba(0, 0, 0, 0.05);
-        padding: 8px !important;
+        padding: 5.2px 8px !important;
         &.active-slide {
           border: 2px solid #0191d7;
           background: linear-gradient(0deg, rgba(1, 145, 215, 0.1) 0%, rgba(1, 145, 215, 0.1) 100%), #fff !important;
@@ -142,6 +143,7 @@ body {
     .view-prices {
       gap: 0;
       margin: 0;
+      padding: 0 24px;
       > h3,
       .hide-price-pack,
       .stay-container .np-one-pack {
@@ -164,13 +166,16 @@ body {
         line-height: 24px;
         letter-spacing: 0.2px;
         text-transform: uppercase;
-        margin-top: 12px;
+        margin: 12px auto 0;
+        max-width: 100%;
+        box-shadow: none;
       }
     }
     .reviews-slide {
       margin-top: 16px !important;
       padding: 0 !important;
       img {
+        width: 100%;
         max-width: 267px;
         margin: 0;
         object-fit: contain;
@@ -251,7 +256,7 @@ body {
         box-shadow:
           0px 2px 4px 0px rgba(12, 11, 11, 0.1),
           0px 12px 32px 0px rgba(0, 0, 0, 0.05);
-        padding: 8px !important;
+        padding: 5.2px 8px !important;
         &.active-slide {
           border: 2px solid #0191d7;
           background: linear-gradient(0deg, rgba(1, 145, 215, 0.1) 0%, rgba(1, 145, 215, 0.1) 100%), #fff !important;
@@ -435,6 +440,7 @@ body {
           font-weight: 700;
           line-height: normal !important;
           text-transform: uppercase;
+          letter-spacing: normal;
           margin: 0;
         }
         .change_btn {
@@ -446,12 +452,14 @@ body {
           text-decoration-line: underline;
           text-transform: uppercase;
           margin: 0;
+          letter-spacing: normal;
         }
       }
       .info_wrapper {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        max-height: 52px;
         padding: 8px;
         gap: 8px;
         border-radius: 6px;
@@ -508,6 +516,7 @@ body {
             font-weight: 400;
             line-height: 130%;
             text-decoration: line-through;
+            letter-spacing: normal;
             margin: 0;
           }
           .new_sale_price {
@@ -516,6 +525,7 @@ body {
             font-size: 14px;
             font-weight: 400;
             line-height: 130%;
+            letter-spacing: normal;
             margin: 0;
           }
         }
@@ -605,7 +615,7 @@ body {
 // new_subscription
 .new_subscription {
   margin: 34px 0 12px;
-  padding: 0 24px;
+  padding: 0;
 
   .new_subscription_block {
     &.is_disabled {
@@ -622,7 +632,7 @@ body {
         position: relative;
         display: flex;
         gap: 4px;
-        max-width: 320px;
+        max-width: 310px;
         color: #0191d7;
         font-family: 'Roboto', sans-serif;
         font-size: 14px;
@@ -678,7 +688,7 @@ body {
           &::before {
             content: 'Save extra 15%';
             position: absolute;
-            top: -20px;
+            top: -19.5px;
             left: 50%;
             transform: translateX(-50%);
             width: max-content;
@@ -992,5 +1002,17 @@ body {
       height: 20px;
       flex-shrink: 0;
     }
+  }
+}
+
+//new_free_shipping_block
+.new_free_shipping_block {
+  max-width: calc(100% + 40px) !important;
+  margin: 0 0 16px -20px;
+  width: calc(100% + 40px);
+
+  img {
+    width: 100%;
+    max-width: 100% !important;
   }
 }

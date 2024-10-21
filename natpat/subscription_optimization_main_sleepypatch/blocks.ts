@@ -1,5 +1,14 @@
 import { svg, git, tooltipObj } from './data'
 
+export const newFreeShippingBlock = /* HTML */ `
+  <div class="new_free_shipping_block">
+    <img
+      src="https://www.natpat.com/cdn/shop/files/free-shipping-worldwide.svg?v=2160055944846624631"
+      alt="new_free_shipping_block"
+    />
+  </div>
+`
+
 export const newSubscriptionBlock = (isActiveOnePack: boolean = false, uniqueId: string): string => {
   return /* HTML */ `
     <div class="new_subscription" id="subscription${uniqueId}">
