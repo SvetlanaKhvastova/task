@@ -179,7 +179,7 @@ body #cons {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  max-width: 343px;
+  max-width: 350px;
   background: #fcfcfa;
   padding: 0 !important;
 }
@@ -737,8 +737,9 @@ body #cons .new_subscription .new_subscription_block.is_disabled .is_active_one_
 .new_subscription .new_subscription_block .tippy-box {
   background-color: #fff;
   filter: drop-shadow(0px 12px 32px rgba(0, 0, 0, 0.1));
+  box-shadow: 30px 18px 39px 79px rgba(0, 0, 0, 0.08);
   max-width: 330px !important;
-  border-radius: 15px;
+  border-radius: 8px;
 }
 .new_subscription .new_subscription_block .tippy-box .tippy-content {
   padding: 16px;

@@ -28,12 +28,6 @@ class SubscriptionOptimization {
   observer: null | MutationObserver
   isActiveOnePack: boolean
   isActiveTwoPack: boolean
-  regPrice: string
-  salePrice: string
-  percentOff: string
-  imgSrc: string
-  packPrice: string
-  pcs: string
   uniqueId: string
 
   constructor(device) {
@@ -41,12 +35,6 @@ class SubscriptionOptimization {
     this.observer = null
     this.isActiveOnePack = false
     this.isActiveTwoPack = false
-    this.regPrice = ''
-    this.salePrice = ''
-    this.percentOff = ''
-    this.imgSrc = ''
-    this.packPrice = ''
-    this.pcs = ''
     this.uniqueId = ''
 
     this.init()
@@ -125,13 +113,15 @@ class SubscriptionOptimization {
   }
 
   checkSubscriptionDefault() {
-    waitForElement('#getNow #rtxSubscribe').then(i => {
+    console.log('checkSubscriptionDefault')
+    waitForElement('#getNow #rtxSubscribe + label').then(i => {
       const inputControlVar = $el('#getNow #rtxSubscribe') as HTMLInputElement
       const labelControlVar = inputControlVar.nextElementSibling as HTMLLabelElement
 
       if (!inputControlVar.checked) {
         labelControlVar.click()
       }
+      console.log(inputControlVar.checked, labelControlVar, `inputControlVar.checked`)
     })
   }
 
@@ -161,10 +151,10 @@ class SubscriptionOptimization {
             ? `<b>Ship every:</b> <span class="text_transform">${opt.textContent?.split('Every ')[1]}</span>`
             : opt.textContent
 
-          if (opt.textContent?.includes('(most common)')) {
-            text = `<b>Ship every:</b> <span class="text_transform">${opt.textContent
-              ?.split('Every ')[1]
-              .split('(most common)')[0]}</span> <span class="most_common">(${opt.textContent?.split('(')[1]}</span>`
+          if (opt.textContent?.includes('2 Months')) {
+            text = `<b>Ship every:</b> <span class="text_transform">${opt.textContent?.split(
+              'Every '
+            )[1]}</span> <span class="most_common"> (most common)</span>`
           }
 
           if (subscriptionDropdown && subscriptionDropdown.value === value) {
@@ -430,7 +420,12 @@ class SubscriptionOptimization {
       const packItems = $$el('.magicpatch-packs .list-packs') as NodeListOf<HTMLElement>
 
       packItems.forEach(pack => {
-        pack.addEventListener('click', () => {
+        pack.addEventListener('click', e => {
+          // if (pack.classList.contains('active')) return
+
+          // packItems.forEach(item => item.classList.remove('active'))
+          // pack.classList.add('active')
+
           if (pack.classList.contains('list-packs-1')) {
             this.isActiveOnePack = true
             this.changeTxtMainBtnToProceedToCheckoutBtn()
@@ -450,36 +445,37 @@ class SubscriptionOptimization {
           $el('.info_wrapper')?.remove()
 
           this.renderNewSubscriptionBlock()
-          this.renderNewPriceBlock()
           this.renderInfoWrapperSlideInCart()
+          this.renderNewPriceBlock()
         })
       })
     })
   }
 
   renderNewPriceBlock() {
-    waitForElement('.list-packs.active-slide').then(n => {
-      const activeSlide = $el('.list-packs.active-slide') as HTMLElement
-      let buttons = $$el('#no-icart-open') as NodeListOf<HTMLElement>
+    waitForElement('.new_subscription').then(n => {
+      waitForElement('.list-packs.active-slide').then(n => {
+        const activeSlide = $el('.list-packs.active-slide') as HTMLElement
+        let buttons = $$el('#no-icart-open') as NodeListOf<HTMLElement>
 
-      this.regPrice = activeSlide.querySelector('.info .before-after-prices .strikethrough')?.textContent?.trim() || ''
-      this.salePrice = activeSlide.querySelector('.info .before-after-prices .after-price')?.textContent?.trim() || ''
-      this.percentOff = activeSlide.querySelector('.save-btn span')?.textContent?.trim() || ''
-      this.imgSrc = activeSlide.querySelector('.sticker-image img')?.getAttribute('src') || ''
-      this.packPrice = activeSlide.querySelector('.info .pack-price')?.textContent?.trim() || ''
-      this.pcs = activeSlide.querySelector('.info .pcs')?.textContent?.split('|')[0].trim() || ''
+        const regPrice =
+          activeSlide.querySelector('.info .before-after-prices .strikethrough')?.textContent?.trim() || ''
+        const salePrice =
+          activeSlide.querySelector('.info .before-after-prices .after-price')?.textContent?.trim() || ''
+        let percentOff = activeSlide.querySelector('.save-btn span')?.textContent?.trim() || ''
 
-      if (activeSlide.classList.contains('list-packs-1')) {
-        this.percentOff = activeSlide.querySelector('.save-btn .new_save_txt')?.textContent?.trim() || ''
-      }
+        if (activeSlide.classList.contains('list-packs-1')) {
+          percentOff = activeSlide.querySelector('.save-btn .new_save_txt')?.textContent?.trim() || ''
+        }
 
-      if (this.regPrice !== '' && this.salePrice !== '' && this.percentOff !== '') {
-        buttons.forEach(button => {
-          if (!button.previousElementSibling?.classList.contains('new_price_wrapper')) {
-            button.insertAdjacentHTML('beforebegin', newPriceWrapper(this.regPrice, this.salePrice, this.percentOff))
-          }
-        })
-      }
+        if (regPrice !== '' && salePrice !== '' && percentOff !== '') {
+          buttons.forEach(button => {
+            if (!button.previousElementSibling?.classList.contains('new_price_wrapper')) {
+              button.insertAdjacentHTML('beforebegin', newPriceWrapper(regPrice, salePrice, percentOff))
+            }
+          })
+        }
+      })
     })
   }
 
@@ -628,11 +624,18 @@ class SubscriptionOptimization {
   renderInfoWrapperSlideInCart() {
     waitForElement('#cons .body_slide_in_cart').then(i => {
       const bodySlideInCart = $el('#cons .body_slide_in_cart') as HTMLElement
+      const activeSlide = $el('.list-packs.active-slide') as HTMLElement
+
+      const regPrice = activeSlide.querySelector('.info .before-after-prices .strikethrough')?.textContent?.trim() || ''
+      const salePrice = activeSlide.querySelector('.info .before-after-prices .after-price')?.textContent?.trim() || ''
+      const imgSrc = activeSlide.querySelector('.sticker-image img')?.getAttribute('src') || ''
+      const packPrice = activeSlide.querySelector('.info .pack-price')?.textContent?.trim() || ''
+      const pcs = activeSlide.querySelector('.info .pcs')?.textContent?.split('|')[0].trim() || ''
 
       if (!$el('.info_wrapper')) {
         bodySlideInCart.insertAdjacentHTML(
           'beforeend',
-          infoWrapperSlideInCart(this.regPrice, this.salePrice, this.imgSrc, this.packPrice, this.pcs)
+          infoWrapperSlideInCart(regPrice, salePrice, imgSrc, packPrice, pcs)
         )
       }
     })
@@ -746,6 +749,6 @@ class SubscriptionOptimization {
   }
 }
 
-waitForElement('#getNow .stay-container').then(i => {
+waitForElement('#getNow .magicpatch-packs .list-packs.active-slide').then(i => {
   new SubscriptionOptimization(device)
 })
