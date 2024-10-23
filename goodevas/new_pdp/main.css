@@ -1,0 +1,206 @@
+.main_benefits_block .main_benefits_list {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  list-style: none;
+  background: #f8f8f8;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  margin: 0;
+  padding: 0;
+}
+@media (max-width: 768px) {
+  .main_benefits_block .main_benefits_list {
+    flex-direction: column;
+  }
+}
+.main_benefits_block .main_benefits_list .main_benefits_item {
+  display: flex;
+  flex-direction: column;
+  width: 33.3333333333%;
+  gap: 10px;
+  padding: 16px;
+  margin: 0;
+}
+@media (max-width: 768px) {
+  .main_benefits_block .main_benefits_list .main_benefits_item {
+    flex-direction: row;
+    width: 100%;
+    gap: 12px;
+  }
+}
+@media (max-width: 768px) {
+  .main_benefits_block .main_benefits_list .main_benefits_item:nth-child(1) .main_benefits_item_icon_wrapper {
+    margin-top: 8px;
+  }
+}
+.main_benefits_block .main_benefits_list .main_benefits_item:nth-child(2) {
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
+}
+@media (max-width: 768px) {
+  .main_benefits_block .main_benefits_list .main_benefits_item:nth-child(2) {
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
+  }
+}
+.main_benefits_block .main_benefits_list .main_benefits_item_icon_wrapper {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+.main_benefits_block .main_benefits_list .main_benefits_item_icon_wrapper svg {
+  width: 100%;
+  height: 100%;
+}
+.main_benefits_block .main_benefits_list .main_benefits_item_title {
+  color: #000;
+  font-family: "Segoe UI";
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.75px;
+  margin: 0 0 8px;
+}
+@media (max-width: 768px) {
+  .main_benefits_block .main_benefits_list .main_benefits_item_title {
+    max-width: 236px;
+  }
+  .main_benefits_block .main_benefits_list .main_benefits_item_title br {
+    display: none;
+  }
+}
+.main_benefits_block .main_benefits_list .main_benefits_item_txt {
+  color: #000;
+  font-family: "Harmonia Sans Pro Cyr";
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: 0.65px;
+  margin: 0;
+  max-width: 179px;
+}
+@media (max-width: 768px) {
+  .main_benefits_block .main_benefits_list .main_benefits_item_txt {
+    max-width: 100%;
+  }
+}
+
+.comparison_table_block {
+  margin-top: 32px;
+}
+.comparison_table_block .comparison_table_main_title {
+  color: #232323;
+  font-family: "Plantin Std";
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 32px;
+  letter-spacing: 1.47px;
+  margin: 0 0 22px;
+  text-align: left;
+}
+.comparison_table_block .custom_table {
+  display: flex;
+  align-items: stretch;
+}
+.comparison_table_block .custom_table > div {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.comparison_table_block .custom_table > div.benefits_row {
+  max-width: 96px;
+}
+.comparison_table_block .custom_table .is_active {
+  position: relative;
+}
+.comparison_table_block .custom_table .is_active::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  border: 6px solid #ffcc60;
+  box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.1);
+}
+.comparison_table_block .custom_table .is_active .body_table .table_cell:nth-child(odd) {
+  background: #ffd479;
+}
+.comparison_table_block .custom_table .is_active .body_table .table_cell:nth-child(even) {
+  background: #ffcc60;
+}
+.comparison_table_block .custom_table .is_active .body_table .table_cell:last-child {
+  border-radius: 0 0 12px 12px;
+}
+.comparison_table_block .custom_table .header_table .table_cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 7px;
+  min-height: 86px;
+}
+.comparison_table_block .custom_table .body_table .table_cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 106px;
+  padding: 8px 4px;
+}
+.comparison_table_block .custom_table .body_table .table_cell:nth-child(odd) {
+  background: #fffbf5;
+}
+.comparison_table_block .custom_table .body_table .table_cell:nth-child(even) {
+  background: #fff6e0;
+}
+.comparison_table_block .custom_table .body_table .table_cell.benefits_cell:first-child {
+  border-radius: 12px 0px 0px 0px;
+}
+.comparison_table_block .custom_table .body_table .table_cell.benefits_cell:last-child {
+  border-radius: 0px 0px 0px 12px;
+}
+.comparison_table_block .custom_table .body_table .table_cell.benefits_cell p {
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.comparison_table_block .custom_table .body_table .table_cell.competitors_cell:last-child {
+  border-radius: 0 0 12px 0;
+}
+.comparison_table_block .custom_table .body_table .table_cell .check_icon_wrapper,
+.comparison_table_block .custom_table .body_table .table_cell .cancel_icon_wrapper {
+  position: relative;
+  display: flex;
+  width: 18px;
+  height: 18px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  z-index: 1;
+}
+.comparison_table_block .custom_table .body_table .table_cell .check_icon_wrapper {
+  background: #fff;
+}
+.comparison_table_block .custom_table .body_table .table_cell .cancel_icon_wrapper {
+  background: #d3c9b2;
+}
+.comparison_table_block .custom_table .body_table .table_cell p {
+  position: relative;
+  color: #000;
+  text-align: center;
+  font-family: "Harmonia Sans Pro Cyr";
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0.75px;
+  word-wrap: break-word;
+  word-break: break-word;
+  z-index: 1;
+  margin: 0;
+  max-width: 233px;
+}/*# sourceMappingURL=main.css.map */
