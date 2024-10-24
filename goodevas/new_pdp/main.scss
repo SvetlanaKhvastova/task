@@ -1,3 +1,574 @@
+.page-content--product {
+  padding: 54px 0 0;
+  > div > .product-grid__container {
+    margin: 0;
+    > div {
+      padding: 0;
+    }
+  }
+  product-images {
+    .product__photos {
+      margin: 0;
+    }
+    .product__main-photos {
+      .product-slideshow {
+        border-radius: 12px;
+        border: none;
+      }
+      .product-main-slide {
+        border: 1px solid #e8e8e1;
+        border-radius: 12px;
+      }
+      .product-image-main[data-size] {
+        img {
+          border-radius: 12px;
+        }
+      }
+    }
+  }
+  .product-single__meta {
+    padding: 0 0 0 67px;
+    .product-block {
+      margin: 0;
+    }
+    .product-single__title {
+      color: #000;
+      font-family: 'Plantin Std';
+      font-size: 34.166px;
+      font-weight: 400;
+      line-height: 39.27px;
+      letter-spacing: 1.785px;
+      margin: 0 0 8px;
+    }
+    #shopify-block-yotpo_product_reviews_ugc_star_rating_FVceyX {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 24px;
+      margin-bottom: 16px;
+      .yotpo-reviews-star-ratings-widget {
+        margin: 0 !important;
+        .yotpo-sr-bottom-line-summary {
+          display: flex !important;
+          gap: 12px;
+          align-items: center !important;
+          justify-content: flex-start;
+          > div {
+            margin: 0 !important;
+            &:first-child {
+              height: 15px !important;
+              margin-top: -4px !important;
+            }
+          }
+          .yotpo-sr-bottom-line-left-panel {
+            color: #f3ad3c !important;
+            font-family: 'Harmonia Sans Pro Cyr' !important;
+            font-size: 16px !important;
+            font-weight: 400 !important;
+            line-height: normal !important;
+            margin: 0 0 0 6px !important;
+          }
+          .yotpo-sr-bottom-line-text {
+            color: #2c2c2c !important;
+            font-family: 'Harmonia Sans Pro Cyr' !important;
+            font-size: 15px !important;
+            font-weight: 400 !important;
+            line-height: 24px !important;
+            letter-spacing: 0.75px !important;
+            padding: 0 !important;
+          }
+        }
+      }
+    }
+    block-variant-picker {
+      margin-bottom: 30px !important;
+      > .variant-button-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin: 0 !important;
+        .variant__label,
+        .variant__label[for] {
+          color: #000;
+          font-family: 'Harmonia Sans Pro Cyr';
+          font-size: 15px;
+          font-weight: 400;
+          line-height: 25.6px;
+          letter-spacing: 0.75px;
+          margin: 0 0 12px !important;
+        }
+        label {
+          color: #000;
+          font-family: 'Harmonia Sans Pro Cyr';
+          font-size: 15px;
+          font-weight: 400;
+          line-height: 24px;
+          letter-spacing: 0.75px;
+          border-radius: 4px;
+          background: #fff;
+          box-shadow: 0px 0px 0px 1px #e8e8e1;
+          margin: 0;
+        }
+        input[type='radio']:checked + label {
+          box-shadow: 0px 0px 0px 2px #000;
+        }
+      }
+    }
+    block-price {
+      .variant__label {
+        display: block;
+        color: #000;
+        font-family: 'Harmonia Sans Pro Cyr';
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 22.4px;
+        letter-spacing: 0.75px;
+        margin: 0 0 10px;
+      }
+      .block-price__container {
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 8px;
+        > div {
+          margin: 0 !important;
+        }
+        .block-price__sale {
+          gap: 8px;
+          span {
+            margin: 0;
+            color: #1c1d1d;
+            font-family: 'Harmonia Sans Pro Cyr';
+            font-size: 24px;
+            font-weight: 400;
+            line-height: 25.6px;
+            letter-spacing: 0.65px;
+            sup {
+              font-size: 11px;
+              line-height: 15.36px;
+              top: -9px;
+            }
+          }
+        }
+        .product__price-savings {
+          color: #e43b3b;
+          font-family: 'Harmonia Sans Pro Cyr';
+          font-size: 15px;
+          font-weight: 600;
+          line-height: 20.8px;
+          letter-spacing: 0.65px;
+        }
+      }
+    }
+    product-inventory {
+      color: #13a360;
+      font-family: 'Harmonia Sans Pro Cyr';
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 24px;
+      letter-spacing: 0.75px;
+      text-transform: uppercase;
+      padding: 0 !important;
+      margin: 30px 0 20px !important;
+      .product-inventory__point {
+        margin: 0 !important;
+        .icon--inventory:before,
+        .icon--inventory:after {
+          background: #13a360;
+        }
+      }
+    }
+    block-buy-buttons {
+      .add-to-cart {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 48px;
+        color: #000;
+        font-family: 'Harmonia Sans Pro Cyr';
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 21.3px;
+        letter-spacing: 0.75px;
+        text-transform: uppercase;
+        border-radius: 1000px;
+        border: 1px solid #edcf48;
+        background: #f9d94c;
+        transition: all 550ms cubic-bezier(0.075, 0.82, 0.165, 1);
+      }
+      .shopify-payment-button {
+        margin-top: 14px;
+      }
+    }
+    #shopify-block-tolstoy_shoppable_video_ugc_stories_block_wq3b84 {
+      ._stories_1qx2f_1 {
+        margin: 0;
+        gap: 24px;
+        .tolstoy-stories-title {
+          color: #000 !important;
+          font-family: 'Plantin Std' !important;
+          font-size: 28px !important;
+          font-weight: 400 !important;
+          line-height: 32px !important;
+          letter-spacing: 1px !important;
+          margin: 0;
+        }
+        ._tilesContainer_1qx2f_19 {
+          gap: 12px !important;
+          ._storyTile_1qx2f_72 {
+            max-width: 156px !important;
+            max-height: 226px;
+            height: 100%;
+            ._storyVideoImage_1qx2f_31 {
+              max-width: 100% !important;
+              height: 100%;
+              min-height: 226px;
+              aspect-ratio: unset !important;
+            }
+            ._storyVideo_1qx2f_31 {
+              width: 100% !important;
+              height: 100% !important;
+              border-radius: 12px !important;
+              border: none !important;
+              max-width: 100% !important;
+            }
+          }
+        }
+      }
+    }
+    #shopify-block-rebuy_personalization_engine_rebuy_widget_XMhGer {
+      margin-top: 32px;
+      .rebuy-bundle {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .rebuy-widget {
+        padding: 0;
+        .primary-title {
+          color: #232323;
+          font-family: 'Plantin Std';
+          font-size: 28px;
+          font-weight: 400;
+          line-height: 32px;
+          letter-spacing: 1.47px;
+          margin: 0 0 24px;
+        }
+        .rebuy-bundle__images {
+          margin: 0;
+          max-width: 346px;
+          width: 100%;
+        }
+        .rebuy-bundle__actions {
+          max-width: 346px;
+          width: 100%;
+          .rebuy-bundle__actions-buttons {
+            margin: 0;
+            width: 100%;
+            button {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              height: 48px;
+              border-radius: 1111px;
+              border: 1px solid #edcf48;
+              background: #f9d94c;
+              color: #000;
+              font-family: 'Harmonia Sans Pro Cyr';
+              font-size: 16px;
+              font-weight: 600;
+              line-height: 21.3px;
+              letter-spacing: 0.75px;
+              text-transform: uppercase;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.best_seller_label_block {
+  position: absolute;
+  left: 22px;
+  top: 22px;
+  z-index: 5;
+  max-width: 154px;
+  max-height: 38px;
+  svg {
+    width: 100%;
+  }
+}
+
+.bought_so_far_block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 8px;
+  background: #f8f8f8;
+  svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+  }
+  p {
+    color: #000;
+    font-family: 'Harmonia Sans Pro Cyr';
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.75px;
+    margin: 0;
+  }
+}
+
+.get_free_delivery_block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  gap: 12px;
+  padding: 8px;
+  margin: 22px 0;
+  border-radius: 0px 0px 8px 8px;
+  border-top: 1px solid #eee;
+  background: #f8f8f8;
+  svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+  }
+  p {
+    color: #000;
+    font-family: 'Harmonia Sans Pro Cyr';
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.75px;
+    margin: 0;
+    .accent_underline {
+      font-weight: 600;
+      text-decoration: underline;
+    }
+    .date_txt {
+      color: #13a360;
+      font-weight: 600;
+    }
+  }
+}
+
+.your_impact_block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 22px 0 32px;
+  svg {
+    width: 24px;
+    height: 29px;
+    flex-shrink: 0;
+  }
+  p {
+    color: #4d7a50;
+    font-family: 'Harmonia Sans Pro Cyr';
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 21px;
+    margin: 0;
+  }
+}
+
+.one_review_block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  border-radius: 12px;
+  background: #fff7e5;
+  margin-bottom: 32px;
+  padding: 16px;
+  .info_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    .info_descr {
+      color: #000;
+      font-family: 'Harmonia Sans Pro Cyr';
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 24px;
+      letter-spacing: 0.75px;
+      margin: 0;
+    }
+    .name_stars_wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+      .name_review {
+        color: #000;
+        font-family: 'Harmonia Sans Pro Cyr';
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 26px;
+        letter-spacing: 0.85px;
+        margin: 0;
+      }
+      .stars_summary {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 4px;
+        .stars_wrapper {
+          display: flex;
+          gap: 3px;
+        }
+        span {
+          color: #f3ad3c;
+          font-family: 'Harmonia Sans Pro Cyr';
+          font-size: 16px;
+          font-weight: 400;
+          line-height: normal;
+          margin: 0;
+        }
+      }
+    }
+  }
+  .img_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    img {
+      width: 100px;
+      height: 100px;
+      border-radius: 6px;
+    }
+    .all_reviews_link {
+      color: #000;
+      font-family: 'Harmonia Sans Pro Cyr';
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 21px;
+      letter-spacing: 0.65px;
+      text-decoration-line: underline;
+      margin: 0;
+      cursor: pointer;
+    }
+  }
+}
+
+.product_details_block {
+  margin: 32px 0;
+  > h2 {
+    color: #232323;
+    font-family: 'Plantin Std';
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 32px;
+    letter-spacing: 1.47px;
+    margin: 0 0 6px;
+  }
+  .product_details_accordion {
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+    list-style: none;
+    padding: 0;
+    .product_details_accordion_block {
+      margin: 0;
+      border-bottom: 1px solid #e8e8e1;
+      &.active {
+        border: none;
+        span {
+          transform: rotate(45deg);
+        }
+      }
+      .product_details_accordion_link {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 0;
+        cursor: pointer;
+        span {
+          width: 22px;
+          height: 22px;
+          flex-shrink: 0;
+          transition: all 0.5s ease;
+        }
+        p {
+          color: #000;
+          font-family: 'Harmonia Sans Pro Cyr';
+          font-size: 15px;
+          font-weight: 600;
+          line-height: 24px;
+          letter-spacing: 0.75px;
+          margin: 0;
+        }
+      }
+      .product_details_accordion_lists {
+        display: none;
+        border-top: 1px solid #d6d9dc;
+        padding: 16px 0 0;
+        > div {
+          p {
+            color: #000;
+            font-family: 'Harmonia Sans Pro Cyr';
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 20.8px;
+            letter-spacing: 0.65px;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+  .blur_txt {
+    position: relative;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Показывать только 3 строки */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: calc(20.8px * 3); /* Высота для 3 строк текста */
+    &::before {
+      position: absolute;
+      content: '';
+      width: 100%;
+      height: 40px;
+      background: linear-gradient(0deg, #fff 20%, #fff 33.82%, rgba(255, 255, 255, 0) 100%);
+      bottom: -10px;
+      left: 0;
+    }
+  }
+  .see_more_block {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0px;
+    cursor: pointer;
+    &.is_open {
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+    div {
+      color: #1773b0;
+      font-family: 'Harmonia Sans Pro Cyr';
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 20.8px;
+      letter-spacing: 0.65px;
+      margin: 0;
+    }
+  }
+}
+
 .main_benefits_block {
   .main_benefits_list {
     display: flex;
@@ -105,6 +676,57 @@
 
       &.benefits_row {
         max-width: 96px;
+        .body_table {
+          .table_cell {
+            border: 1px solid #eee;
+          }
+        }
+      }
+      &.goodevas_row {
+        .header_table {
+          background: #fff6e0;
+          border-radius: 12px 0 0 0;
+          .table_cell {
+            background: #fffceb;
+            border-radius: 12px 12px 0 0;
+
+            .new_img {
+              background: url(https://conversionratestore.github.io/projects/goodevas/img/goodevas_img.webp) no-repeat
+                center -1px;
+              width: 100%;
+              height: 100%;
+              background-size: cover;
+              display: block;
+            }
+          }
+        }
+        .body_table {
+          .table_cell {
+            &:last-child {
+            }
+          }
+        }
+      }
+      &.competitors_row {
+        margin-left: -7px;
+        .table_cell {
+          border: 1px solid #eee;
+        }
+        .header_table {
+          .table_cell {
+            background: #fff6e0;
+            border-radius: 0 12px 0 0;
+            border-left: none;
+            .new_img {
+              background: url(https://conversionratestore.github.io/projects/goodevas/img/competitors_img.webp)
+                no-repeat center -3px;
+              width: 100%;
+              height: 100%;
+              background-size: cover;
+              display: block;
+            }
+          }
+        }
       }
     }
     .is_active {
@@ -116,8 +738,8 @@
         height: 100%;
         border-radius: 12px;
         border: 6px solid #ffcc60;
-        // background: var(--gold-gradient, linear-gradient(180deg, #ffcc60 54%, #de9804 100%));
         box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.1);
+        top: -3px;
       }
       .body_table {
         .table_cell {
@@ -140,8 +762,22 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        gap: 7px;
-        min-height: 86px;
+        min-height: 145px;
+        width: 100%;
+        height: 100%;
+
+        h3 {
+          width: 100%;
+          color: #000;
+          text-align: center;
+          font-family: 'Harmonia Sans Pro Cyr';
+          font-size: 13px;
+          font-weight: 600;
+          line-height: 20px;
+          letter-spacing: 1px;
+          margin: 0;
+          padding: 14px 12px 0 12px;
+        }
       }
     }
     .body_table {
@@ -177,6 +813,9 @@
           &:last-child {
             border-radius: 0 0 12px 0;
           }
+          p {
+            max-width: 250px;
+          }
         }
 
         .check_icon_wrapper,
@@ -209,7 +848,7 @@
           word-break: break-word;
           z-index: 1;
           margin: 0;
-          max-width: 233px;
+          max-width: 255px;
         }
       }
     }
