@@ -1,12 +1,12 @@
-import { svg, git, productDetailsTxt } from './data'
+import { svg, git } from './data'
 
 export const bestSellerLabelBlock = /* HTML */ ` <div class="best_seller_label_block">${svg.bestSellerLabelIcon}</div> `
 
-export const boughtSoFarBlock = (summ: string = ''): string => {
+export const boughtSoFarBlock = (summ: string): string => {
   return /* HTML */ `
     <div class="bought_so_far_block">
       ${svg.cartIcon}
-      <p><span class="">3K+</span> bought so far</p>
+      <p><span class="">${summ}</span> bought so far</p>
     </div>
   `
 }
@@ -23,45 +23,61 @@ export const getFreeDeliveryBlock = () => {
   `
 }
 
-export const yourImpactBlock = () => {
+export const newProductSalesPointsBlock = (data): string => {
   return /* HTML */ `
-    <div class="your_impact_block">
-      ${svg.treeIcon}
-      <p>Your Impact: 5 trees planted with this order</p>
+    <div class="new_product_sales_points_block">
+      <ul class="new_product_sales_points_list">
+        ${data
+          .map((txt: string) => {
+            return /* HTML */ `
+              <li class="new_product_sales_points_item">
+                ${svg.salesPointIcon}
+                <p>${txt}</p>
+              </li>
+            `
+          })
+          .join('')}
+      </ul>
     </div>
   `
 }
 
-export const oneReviewBlock = () => {
+export const yourImpactBlock = (txt: string): string => {
+  return /* HTML */ `
+    <div class="your_impact_block">
+      ${svg.treeIcon}
+      <p>${txt}</p>
+    </div>
+  `
+}
+
+export const oneReviewBlock = (data): string => {
   return /* HTML */ `
     <div class="one_review_block">
       <div class="info_wrapper">
-        <p class="info_descr">
-          “Amazing quality of the product. Very easy to assemble. Both of my kids love it! I’m really happy with our
-          purchase. Definitely happy and will purchase again next time.”
-        </p>
+        <p class="info_descr">${data.txt}</p>
         <div class="name_stars_wrapper">
-          <span class="name_review">Courtney D.</span>
+          <span class="name_review">${data.name}</span>
           <div class="stars_summary">
             <div class="stars_wrapper">${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}</div>
-            <span>5</span>
+            <span>${data.rating}</span>
           </div>
         </div>
       </div>
       <div class="img_wrapper">
-        <img src="" alt="photo product" />
-        <a href="#" class="all_reviews_link">All reviews</a>
+        <img src="${data.img}" alt="photo product" />
+        <span class="all_reviews_link">All reviews</span>
       </div>
     </div>
   `
 }
 
-export const productDetailsBlock = () => {
+export const productDetailsBlock = (data): string => {
   return /* HTML */ `
     <div class="product_details_block">
       <h2>Product details</h2>
       <ul class="product_details_accordion">
-        ${productDetailsTxt
+        ${data
           .map((q, i) => {
             return /* HTML */ `
               <li class="product_details_accordion_block" data-visability="${i + 1}">
@@ -69,7 +85,7 @@ export const productDetailsBlock = () => {
                   <p>${q.title}</p>
                   <span class="product_details_icon">${svg.arrowAccordionIcon}</span>
                 </div>
-                <div class="product_details_accordion_lists" data-visability-open="" ${i + 1}>
+                <div class="product_details_accordion_lists" data-visability-open="${i + 1}">
                   <div>${q.txt}</div>
                 </div>
               </li>
@@ -130,7 +146,7 @@ export const comparisonTableBlock = (data): string => {
           <div class="header_table">
             <div class="table_cell">
               <h3>${data.goodevasTitle}</h3>
-              <div class="new_img"></div>
+              <img src="${git}goodevas_1_img.webp" alt="child girl" />
             </div>
           </div>
           <div class="body_table">
@@ -151,7 +167,7 @@ export const comparisonTableBlock = (data): string => {
           <div class="header_table">
             <div class="table_cell">
               <h3>${data.competitorsTitle}</h3>
-              <div class="new_img"></div>
+              <img src="${git}competitors_1_img.webp" alt="child girl" />
             </div>
           </div>
           <div class="body_table">
@@ -167,6 +183,69 @@ export const comparisonTableBlock = (data): string => {
               .join('')}
           </div>
         </div>
+      </div>
+    </div>
+  `
+}
+
+export const fAQBlock = (data): string => {
+  return /* HTML */ `
+    <div class="faq_block">
+      <h2>FAQ</h2>
+      <ul class="faq_accordion">
+        ${data
+          .map((q, i) => {
+            return /* HTML */ `
+              <li class="faq_accordion_block" data-visability="${i + 1}">
+                <div class="faq_accordion_link">
+                  <p>${q.title}</p>
+                  <span class="faq_icon">${svg.arrowAccordionIcon}</span>
+                </div>
+                <div class="faq_accordion_lists" data-visability-open="${i + 1}">
+                  <div>${q.txt}</div>
+                </div>
+              </li>
+            `
+          })
+          .join('')}
+      </ul>
+    </div>
+  `
+}
+
+export const productImageGalleryBlock = (data): string => {
+  return /* HTML */ `
+    <div class="product_image_gallery_block">
+      <div class="product_image_gallery_container">
+        <h2>Product image gallery</h2>
+        <ul class="product_image_gallery_list">
+          ${data
+            .map((img: string) => {
+              return /* HTML */ `
+                <li class="product_image_gallery_item">
+                  <img src="${img}" alt="photo product" />
+                </li>
+              `
+            })
+            .join('')}
+        </ul>
+      </div>
+    </div>
+  `
+}
+
+export const stickyBlock = /* HTML */ `
+  <div class="sticky_block">
+    <div class="add_to_cart_btn">Add to cart</div>
+  </div>
+`
+export const colorWrapper = (dropdownItem, selectedValue: string): string => {
+  return /* HTML */ `
+    <div class="color_wrapper">
+      <span>Color</span>
+      <div class="custom_dropdown" id="productColor">
+        <div class="dropdown_toggle">${selectedValue}</div>
+        <div class="dropdown_menu">${dropdownItem}</div>
       </div>
     </div>
   `

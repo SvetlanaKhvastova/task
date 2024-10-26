@@ -107,11 +107,48 @@ export const svg = {
   <svg xmlns="http://www.w3.org/2000/svg" width="7" height="8" viewBox="0 0 7 8" fill="none">
   <path d="M0.429524 7.29545C0.607291 7.47309 0.840269 7.56192 1.07313 7.56192C1.30598 7.56192 1.53896 7.47309 1.71673 7.29545L3.49998 5.5122L5.28324 7.29545C5.461 7.47309 5.69398 7.56192 5.92684 7.56192C6.1597 7.56192 6.39267 7.47309 6.57044 7.29545C6.92586 6.93991 6.92586 6.36378 6.57044 6.00836L4.78707 4.22499L6.57032 2.44174C6.92573 2.0862 6.92573 1.51007 6.57032 1.15465C6.21479 0.799361 5.63865 0.799361 5.28324 1.15465L3.49998 2.93791L1.71673 1.15465C1.36119 0.799361 0.785058 0.799361 0.429645 1.15465C0.0742319 1.51019 0.0742319 2.08632 0.429645 2.44174L2.21278 4.22499L0.429524 6.00825C0.0741106 6.36378 0.0741106 6.93991 0.429524 7.29545Z" fill="white"/>
 </svg>
-    `
+    `,
+  salesPointIcon: `
+  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+  <path d="M21.9581 6.59802C21.6786 6.31803 21.2251 6.31755 20.9456 6.59683L12.355 15.1647L9.25557 11.7984C8.98775 11.5077 8.53494 11.4888 8.24375 11.7566C7.95277 12.0244 7.93414 12.4775 8.20196 12.7685L11.8062 16.6828C11.9382 16.8263 12.123 16.9096 12.3178 16.9136C12.323 16.9138 12.328 16.9138 12.3331 16.9138C12.5223 16.9138 12.7044 16.8386 12.8386 16.705L21.9567 7.61077C22.2369 7.33152 22.2374 6.87801 21.9581 6.59802Z" fill="black"/>
+  <path d="M21.7839 12.7839C21.3884 12.7839 21.0678 13.1045 21.0678 13.5C21.0678 17.9488 17.4488 21.5678 13 21.5678C8.55148 21.5678 4.93216 17.9488 4.93216 13.5C4.93216 9.05148 8.55148 5.43216 13 5.43216C13.3955 5.43216 13.7161 5.11161 13.7161 4.7161C13.7161 4.32055 13.3955 4 13 4C7.76164 4 3.5 8.26164 3.5 13.5C3.5 18.7381 7.76164 23 13 23C18.2381 23 22.5 18.7381 22.5 13.5C22.5 13.1045 22.1794 12.7839 21.7839 12.7839Z" fill="black"/>
+</svg>
+  `
 }
 
 export const translations = {
-  en: {
+  '5in1-montessori-climbing-frame-set-triangle-ladder-arch-rocker-slide-board-ramp-netting-rope-cushion': {
+    boughtSoFarTxt: '3K+',
+    newProductSalesPointsTxt: [
+      'Eco-plywood with natural wood glue',
+      'Safe and certified product (CPC and CE)',
+      'Free returns 30 days'
+    ],
+    yourImpactTxt: 'Your Impact: 5 trees planted with this order',
+    oneReviewBlock: {
+      txt: '“Amazing quality of the product. Very easy to assemble. Both of my kids love it! I’m really happy with our purchase. Definitely happy and will purchase again next time.”',
+      name: 'Courtney D.',
+      rating: 5,
+      img: `${git}goodevas_img.webp`
+    },
+    productDetailsTxt: [
+      {
+        title: `4in1 Montessori Climbing Set`,
+        txt: `<p class="blur_txt">Elevate your child's play experience with our 4in1 Montessori Climbing Set, one of Goodevas' flagship offerings. Comprising the core elements of the climbing arch and the triangle ladder, this set is accentuated by the multifunctional climbing net and slide/ramp. Together, they open doors to imaginative play, fostering muscle strength, balance, </p><div class="see_more_block">${svg.arrowMoreIcon}<div>See more</div></div>`
+      },
+      {
+        title: `Safe Materials`,
+        txt: `<p>Safe Materials</p>`
+      },
+      {
+        title: `Size and Dimensions `,
+        txt: `<p>Size and Dimensions </p>`
+      },
+      {
+        title: `Easy to assemble`,
+        txt: `<p>Easy to assemble</p>`
+      }
+    ],
     mainBenefits: {
       safeCertified: {
         icon: `${svg.certificateIcon}`,
@@ -172,44 +209,147 @@ export const translations = {
           competitorsDescr: 'Do not plant <br/> trees'
         }
       ]
-    }
+    },
+    fAQTxt: [
+      {
+        title: `What is the weight limit for the 4-in-1 set?`,
+        txt: `<p>The maximum weight per item of the 4-in-1 set is not more than 50-60 kg, approximately the weight of two children. However, all products are tested weighing 80-100 kg to check their endurance.</p>`
+      },
+      {
+        title: `Can the playset be used outdoors?`,
+        txt: `<p>Can the playset be used outdoors?</p>`
+      },
+      {
+        title: `Is the slide two-sided?`,
+        txt: `<p>Is the slide two-sided?</p>`
+      },
+      {
+        title: `How should the product be cleaned?`,
+        txt: `<p>How should the product be cleaned?</p>`
+      }
+    ],
+    productImageGalleryImgs: [
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`
+    ]
   },
-  es: {
+  '3in1-wooden-swedish-wall-climbing-ladder-for-children-swing-set-slide-board': {
+    boughtSoFarTxt: '3K+',
+    yourImpactTxt: 'Your Impact: 5 trees planted with this order',
+    oneReviewBlock: {
+      txt: '“Amazing quality of the product. Very easy to assemble. Both of my kids love it! I’m really happy with our purchase. Definitely happy and will purchase again next time.”',
+      name: 'Courtney D.',
+      rating: 5,
+      img: `${git}goodevas_img.webp`
+    },
+    productDetailsTxt: [
+      {
+        title: `4in1 Montessori Climbing Set`,
+        txt: `<p class="blur_txt">Elevate your child's play experience with our 4in1 Montessori Climbing Set, one of Goodevas' flagship offerings. Comprising the core elements of the climbing arch and the triangle ladder, this set is accentuated by the multifunctional climbing net and slide/ramp. Together, they open doors to imaginative play, fostering muscle strength, balance, </p><div class="see_more_block">${svg.arrowMoreIcon}<div>See more</div></div>`
+      },
+      {
+        title: `Safe Materials`,
+        txt: `<p>Safe Materials</p>`
+      },
+      {
+        title: `Size and Dimensions `,
+        txt: `<p>Size and Dimensions </p>`
+      },
+      {
+        title: `Easy to assemble`,
+        txt: `<p>Easy to assemble</p>`
+      }
+    ],
     mainBenefits: {
       safeCertified: {
         icon: `${svg.certificateIcon}`,
-        title: '',
-        txt: ''
+        title: 'Safe and certified product (CPC and CE)',
+        txt: 'Our products are proudly CPC and CE certified, meeting stringent standards for consumer safety and compliance'
       },
       warranty: {
         icon: `${svg.warrantyIcon}`,
-        title: '',
-        txt: ''
+        title: '2-year <br/> warranty',
+        txt: 'Our warranty covers any defects in workmanship or materials under regular, indoor us'
       },
       freeShipping: {
         icon: `${svg.shippingIcon}`,
-        title: '',
-        txt: ''
+        title: 'Enjoy Free Shipping worldwide',
+        txt: 'Free delivery within 2 to 4 days in the US and CA. All taxes are included in the price for the USA, Canada, the UK, and the EU.'
       }
-    }
+    },
+    comparisonTable: {
+      mainTitle: 'Goodevas Quality vs Others',
+      goodevasTitle: 'GOODEVAS',
+      goodevasImg: `${git}goodevas_img.webp`,
+      competitorsTitle: 'OTHERS',
+      competitorsImg: `${git}competitors_img.webp`,
+      benefits: [
+        {
+          benefitName: 'Material',
+          goodevasDescr: 'Strong birch plywood with pine-based glue',
+          competitorsDescr: 'Fragile poplar plywood using formaldehyde-based glue'
+        },
+        {
+          benefitName: 'Coating',
+          goodevasDescr: 'Covered by natural oil',
+          competitorsDescr: 'Coated with varnish or paint'
+        },
+        {
+          benefitName: 'Surface',
+          goodevasDescr: 'Smooth. Each part is hand-sanded',
+          competitorsDescr: 'Rough. Machine-sanded'
+        },
+        {
+          benefitName: 'Functionality',
+          goodevasDescr: 'High. A variety of sets + many add-ons',
+          competitorsDescr: 'Low. Only classic sets (no add-ons or sets)'
+        },
+        {
+          benefitName: 'Trust',
+          goodevasDescr: 'Since 2020, over 50k transactions',
+          competitorsDescr: 'New companies'
+        },
+        {
+          benefitName: 'Additional expenses',
+          goodevasDescr: 'Shipping & taxes included in the UK, US, CA, and the EU',
+          competitorsDescr: 'Paid shipping, taxes unknown'
+        },
+        {
+          benefitName: 'Eco initiative',
+          goodevasDescr: 'We plant 5 trees for every purchase',
+          competitorsDescr: 'Do not plant <br/> trees'
+        }
+      ]
+    },
+    fAQTxt: [
+      {
+        title: `What is the weight limit for the 4-in-1 set?`,
+        txt: `<p>The maximum weight per item of the 4-in-1 set is not more than 50-60 kg, approximately the weight of two children. However, all products are tested weighing 80-100 kg to check their endurance.</p>`
+      },
+      {
+        title: `Can the playset be used outdoors?`,
+        txt: `<p>Can the playset be used outdoors?</p>`
+      },
+      {
+        title: `Is the slide two-sided?`,
+        txt: `<p>Is the slide two-sided?</p>`
+      },
+      {
+        title: `How should the product be cleaned?`,
+        txt: `<p>How should the product be cleaned?</p>`
+      }
+    ],
+    productImageGalleryImgs: [
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`
+    ]
   }
 }
-
-export const productDetailsTxt = [
-  {
-    title: `4in1 Montessori Climbing Set`,
-    txt: `<p class="blur_txt">Elevate your child's play experience with our 4in1 Montessori Climbing Set, one of Goodevas' flagship offerings. Comprising the core elements of the climbing arch and the triangle ladder, this set is accentuated by the multifunctional climbing net and slide/ramp. Together, they open doors to imaginative play, fostering muscle strength, balance, </p><div class="see_more_block">${svg.arrowMoreIcon}<div>See more</div></div>`
-  },
-  {
-    title: `Safe Materials`,
-    txt: `<p>Safe Materials</p>`
-  },
-  {
-    title: `Size and Dimensions `,
-    txt: `<p>Size and Dimensions </p>`
-  },
-  {
-    title: `Easy to assemble`,
-    txt: `<p>Easy to assemble</p>`
-  }
-]
