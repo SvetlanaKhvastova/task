@@ -234,11 +234,14 @@ export const productImageGalleryBlock = (data): string => {
   `
 }
 
-export const stickyBlock = /* HTML */ `
-  <div class="sticky_block">
-    <div class="add_to_cart_btn">Add to cart</div>
-  </div>
-`
+export const stickyBlock = (txtBtn: string, additonalClass: string) => {
+  return /* HTML */ `
+    <div class="sticky_block">
+      <div class="add_to_cart_btn ${additonalClass}">${txtBtn}</div>
+    </div>
+  `
+}
+
 export const colorWrapper = (dropdownItem, selectedValue: string): string => {
   return /* HTML */ `
     <div class="color_wrapper">
@@ -246,6 +249,38 @@ export const colorWrapper = (dropdownItem, selectedValue: string): string => {
       <div class="custom_dropdown" id="productColor">
         <div class="dropdown_toggle">${selectedValue}</div>
         <div class="dropdown_menu">${dropdownItem}</div>
+      </div>
+    </div>
+  `
+}
+
+export const estimateYourShippingPeriodBlock = () => {
+  return /* HTML */ `
+    <div class="estimate_your_shipping_period_block">
+      <h2 class="shipping_title">Estimate <span>your</span> shipping period</h2>
+      <div class="shipping_destination">
+        <span>Ship to:</span>
+        <select name="country" id="country_select">
+          <option value="unitedStates">United States</option>
+          <option value="ukraine">Ukraine</option>
+        </select>
+      </div>
+      <div class="shipping_details">
+        <div class="buy_goodevas">
+          <h3 class="shipping_details_title">Buy Goodevas</h3>
+          <span class="shipping_details_date">Today</span>
+          <span class="shipping_details_estimated_date buy_estimated_date">Oct 15, 2024</span>
+        </div>
+        <div class="shipping_info">
+          <h3 class="shipping_details_title">Shipping</h3>
+          <span class="shipping_details_date shipping_duration">2-3 days</span>
+          <span class="shipping_details_estimated_date shipping_estimated_date">Oct 17 - Oct 18, 2024</span>
+        </div>
+        <div class="money_back_guarantee">
+          <h3 class="shipping_details_title">100% money back guarantee through</h3>
+          <span class="shipping_details_date guarantee_duration">After 30 days</span>
+          <span class="shipping_details_estimated_date guarantee_estimated_date">Nov 16 - Nov 17, 2024</span>
+        </div>
       </div>
     </div>
   `

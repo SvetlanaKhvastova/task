@@ -237,8 +237,613 @@ export const translations = {
       `${git}goodevas_img.webp`
     ]
   },
+  '4in1-montessori-climbing-frame-set-triangle-ladder-arch-rocker-slide-board-ramp-netting-rope': {
+    boughtSoFarTxt: '3K+',
+    newProductSalesPointsTxt: [
+      'Eco-plywood with natural wood glue',
+      'Safe and certified product (CPC and CE)',
+      'Free returns 30 days'
+    ],
+    yourImpactTxt: 'Your Impact: 5 trees planted with this order',
+    oneReviewBlock: {
+      txt: '“Amazing quality of the product. Very easy to assemble. Both of my kids love it! I’m really happy with our purchase. Definitely happy and will purchase again next time.”',
+      name: 'Courtney D.',
+      rating: 5,
+      img: `${git}goodevas_img.webp`
+    },
+    productDetailsTxt: [
+      {
+        title: `4in1 Montessori Climbing Set`,
+        txt: `<p class="blur_txt">Elevate your child's play experience with our 4in1 Montessori Climbing Set, one of Goodevas' flagship offerings. Comprising the core elements of the climbing arch and the triangle ladder, this set is accentuated by the multifunctional climbing net and slide/ramp. Together, they open doors to imaginative play, fostering muscle strength, balance, </p><div class="see_more_block">${svg.arrowMoreIcon}<div>See more</div></div>`
+      },
+      {
+        title: `Safe Materials`,
+        txt: `<p>Safe Materials</p>`
+      },
+      {
+        title: `Size and Dimensions `,
+        txt: `<p>Size and Dimensions </p>`
+      },
+      {
+        title: `Easy to assemble`,
+        txt: `<p>Easy to assemble</p>`
+      }
+    ],
+    mainBenefits: {
+      safeCertified: {
+        icon: `${svg.certificateIcon}`,
+        title: 'Safe and certified product (CPC and CE)',
+        txt: 'Our products are proudly CPC and CE certified, meeting stringent standards for consumer safety and compliance'
+      },
+      warranty: {
+        icon: `${svg.warrantyIcon}`,
+        title: '2-year <br/> warranty',
+        txt: 'Our warranty covers any defects in workmanship or materials under regular, indoor us'
+      },
+      freeShipping: {
+        icon: `${svg.shippingIcon}`,
+        title: 'Enjoy Free Shipping worldwide',
+        txt: 'Free delivery within 2 to 4 days in the US and CA. All taxes are included in the price for the USA, Canada, the UK, and the EU.'
+      }
+    },
+    comparisonTable: {
+      mainTitle: 'Goodevas Quality vs Others',
+      goodevasTitle: 'GOODEVAS',
+      goodevasImg: `${git}goodevas_img.webp`,
+      competitorsTitle: 'OTHERS',
+      competitorsImg: `${git}competitors_img.webp`,
+      benefits: [
+        {
+          benefitName: 'Material',
+          goodevasDescr: 'Strong birch plywood with pine-based glue',
+          competitorsDescr: 'Fragile poplar plywood using formaldehyde-based glue'
+        },
+        {
+          benefitName: 'Coating',
+          goodevasDescr: 'Covered by natural oil',
+          competitorsDescr: 'Coated with varnish or paint'
+        },
+        {
+          benefitName: 'Surface',
+          goodevasDescr: 'Smooth. Each part is hand-sanded',
+          competitorsDescr: 'Rough. Machine-sanded'
+        },
+        {
+          benefitName: 'Functionality',
+          goodevasDescr: 'High. A variety of sets + many add-ons',
+          competitorsDescr: 'Low. Only classic sets (no add-ons or sets)'
+        },
+        {
+          benefitName: 'Trust',
+          goodevasDescr: 'Since 2020, over 50k transactions',
+          competitorsDescr: 'New companies'
+        },
+        {
+          benefitName: 'Additional expenses',
+          goodevasDescr: 'Shipping & taxes included in the UK, US, CA, and the EU',
+          competitorsDescr: 'Paid shipping, taxes unknown'
+        },
+        {
+          benefitName: 'Eco initiative',
+          goodevasDescr: 'We plant 5 trees for every purchase',
+          competitorsDescr: 'Do not plant <br/> trees'
+        }
+      ]
+    },
+    fAQTxt: [
+      {
+        title: `What is the weight limit for the 4-in-1 set?`,
+        txt: `<p>The maximum weight per item of the 4-in-1 set is not more than 50-60 kg, approximately the weight of two children. However, all products are tested weighing 80-100 kg to check their endurance.</p>`
+      },
+      {
+        title: `Can the playset be used outdoors?`,
+        txt: `<p>Can the playset be used outdoors?</p>`
+      },
+      {
+        title: `Is the slide two-sided?`,
+        txt: `<p>Is the slide two-sided?</p>`
+      },
+      {
+        title: `How should the product be cleaned?`,
+        txt: `<p>How should the product be cleaned?</p>`
+      }
+    ],
+    productImageGalleryImgs: [
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`
+    ]
+  },
   '3in1-wooden-swedish-wall-climbing-ladder-for-children-swing-set-slide-board': {
     boughtSoFarTxt: '3K+',
+    newProductSalesPointsTxt: [
+      'Eco-plywood with natural wood glue',
+      'Safe and certified product (CPC and CE)',
+      'Free returns 30 days'
+    ],
+    yourImpactTxt: 'Your Impact: 5 trees planted with this order',
+    oneReviewBlock: {
+      txt: '“Amazing quality of the product. Very easy to assemble. Both of my kids love it! I’m really happy with our purchase. Definitely happy and will purchase again next time.”',
+      name: 'Courtney D.',
+      rating: 5,
+      img: `${git}goodevas_img.webp`
+    },
+    productDetailsTxt: [
+      {
+        title: `4in1 Montessori Climbing Set`,
+        txt: `<p class="blur_txt">Elevate your child's play experience with our 4in1 Montessori Climbing Set, one of Goodevas' flagship offerings. Comprising the core elements of the climbing arch and the triangle ladder, this set is accentuated by the multifunctional climbing net and slide/ramp. Together, they open doors to imaginative play, fostering muscle strength, balance, </p><div class="see_more_block">${svg.arrowMoreIcon}<div>See more</div></div>`
+      },
+      {
+        title: `Safe Materials`,
+        txt: `<p>Safe Materials</p>`
+      },
+      {
+        title: `Size and Dimensions `,
+        txt: `<p>Size and Dimensions </p>`
+      },
+      {
+        title: `Easy to assemble`,
+        txt: `<p>Easy to assemble</p>`
+      }
+    ],
+    mainBenefits: {
+      safeCertified: {
+        icon: `${svg.certificateIcon}`,
+        title: 'Safe and certified product (CPC and CE)',
+        txt: 'Our products are proudly CPC and CE certified, meeting stringent standards for consumer safety and compliance'
+      },
+      warranty: {
+        icon: `${svg.warrantyIcon}`,
+        title: '2-year <br/> warranty',
+        txt: 'Our warranty covers any defects in workmanship or materials under regular, indoor us'
+      },
+      freeShipping: {
+        icon: `${svg.shippingIcon}`,
+        title: 'Enjoy Free Shipping worldwide',
+        txt: 'Free delivery within 2 to 4 days in the US and CA. All taxes are included in the price for the USA, Canada, the UK, and the EU.'
+      }
+    },
+    comparisonTable: {
+      mainTitle: 'Goodevas Quality vs Others',
+      goodevasTitle: 'GOODEVAS',
+      goodevasImg: `${git}goodevas_img.webp`,
+      competitorsTitle: 'OTHERS',
+      competitorsImg: `${git}competitors_img.webp`,
+      benefits: [
+        {
+          benefitName: 'Material',
+          goodevasDescr: 'Strong birch plywood with pine-based glue',
+          competitorsDescr: 'Fragile poplar plywood using formaldehyde-based glue'
+        },
+        {
+          benefitName: 'Coating',
+          goodevasDescr: 'Covered by natural oil',
+          competitorsDescr: 'Coated with varnish or paint'
+        },
+        {
+          benefitName: 'Surface',
+          goodevasDescr: 'Smooth. Each part is hand-sanded',
+          competitorsDescr: 'Rough. Machine-sanded'
+        },
+        {
+          benefitName: 'Functionality',
+          goodevasDescr: 'High. A variety of sets + many add-ons',
+          competitorsDescr: 'Low. Only classic sets (no add-ons or sets)'
+        },
+        {
+          benefitName: 'Trust',
+          goodevasDescr: 'Since 2020, over 50k transactions',
+          competitorsDescr: 'New companies'
+        },
+        {
+          benefitName: 'Additional expenses',
+          goodevasDescr: 'Shipping & taxes included in the UK, US, CA, and the EU',
+          competitorsDescr: 'Paid shipping, taxes unknown'
+        },
+        {
+          benefitName: 'Eco initiative',
+          goodevasDescr: 'We plant 5 trees for every purchase',
+          competitorsDescr: 'Do not plant <br/> trees'
+        }
+      ]
+    },
+    fAQTxt: [
+      {
+        title: `What is the weight limit for the 4-in-1 set?`,
+        txt: `<p>The maximum weight per item of the 4-in-1 set is not more than 50-60 kg, approximately the weight of two children. However, all products are tested weighing 80-100 kg to check their endurance.</p>`
+      },
+      {
+        title: `Can the playset be used outdoors?`,
+        txt: `<p>Can the playset be used outdoors?</p>`
+      },
+      {
+        title: `Is the slide two-sided?`,
+        txt: `<p>Is the slide two-sided?</p>`
+      },
+      {
+        title: `How should the product be cleaned?`,
+        txt: `<p>How should the product be cleaned?</p>`
+      }
+    ],
+    productImageGalleryImgs: [
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`
+    ]
+  },
+  '4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige': {
+    boughtSoFarTxt: '3K+',
+    newProductSalesPointsTxt: [
+      'Eco-plywood with natural wood glue',
+      'Safe and certified product (CPC and CE)',
+      'Free returns 30 days'
+    ],
+    yourImpactTxt: 'Your Impact: 5 trees planted with this order',
+    oneReviewBlock: {
+      txt: '“Amazing quality of the product. Very easy to assemble. Both of my kids love it! I’m really happy with our purchase. Definitely happy and will purchase again next time.”',
+      name: 'Courtney D.',
+      rating: 5,
+      img: `${git}goodevas_img.webp`
+    },
+    productDetailsTxt: [
+      {
+        title: `4in1 Montessori Climbing Set`,
+        txt: `<p class="blur_txt">Elevate your child's play experience with our 4in1 Montessori Climbing Set, one of Goodevas' flagship offerings. Comprising the core elements of the climbing arch and the triangle ladder, this set is accentuated by the multifunctional climbing net and slide/ramp. Together, they open doors to imaginative play, fostering muscle strength, balance, </p><div class="see_more_block">${svg.arrowMoreIcon}<div>See more</div></div>`
+      },
+      {
+        title: `Safe Materials`,
+        txt: `<p>Safe Materials</p>`
+      },
+      {
+        title: `Size and Dimensions `,
+        txt: `<p>Size and Dimensions </p>`
+      },
+      {
+        title: `Easy to assemble`,
+        txt: `<p>Easy to assemble</p>`
+      }
+    ],
+    mainBenefits: {
+      safeCertified: {
+        icon: `${svg.certificateIcon}`,
+        title: 'Safe and certified product (CPC and CE)',
+        txt: 'Our products are proudly CPC and CE certified, meeting stringent standards for consumer safety and compliance'
+      },
+      warranty: {
+        icon: `${svg.warrantyIcon}`,
+        title: '2-year <br/> warranty',
+        txt: 'Our warranty covers any defects in workmanship or materials under regular, indoor us'
+      },
+      freeShipping: {
+        icon: `${svg.shippingIcon}`,
+        title: 'Enjoy Free Shipping worldwide',
+        txt: 'Free delivery within 2 to 4 days in the US and CA. All taxes are included in the price for the USA, Canada, the UK, and the EU.'
+      }
+    },
+    comparisonTable: {
+      mainTitle: 'Goodevas Quality vs Others',
+      goodevasTitle: 'GOODEVAS',
+      goodevasImg: `${git}goodevas_img.webp`,
+      competitorsTitle: 'OTHERS',
+      competitorsImg: `${git}competitors_img.webp`,
+      benefits: [
+        {
+          benefitName: 'Material',
+          goodevasDescr: 'Strong birch plywood with pine-based glue',
+          competitorsDescr: 'Fragile poplar plywood using formaldehyde-based glue'
+        },
+        {
+          benefitName: 'Coating',
+          goodevasDescr: 'Covered by natural oil',
+          competitorsDescr: 'Coated with varnish or paint'
+        },
+        {
+          benefitName: 'Surface',
+          goodevasDescr: 'Smooth. Each part is hand-sanded',
+          competitorsDescr: 'Rough. Machine-sanded'
+        },
+        {
+          benefitName: 'Functionality',
+          goodevasDescr: 'High. A variety of sets + many add-ons',
+          competitorsDescr: 'Low. Only classic sets (no add-ons or sets)'
+        },
+        {
+          benefitName: 'Trust',
+          goodevasDescr: 'Since 2020, over 50k transactions',
+          competitorsDescr: 'New companies'
+        },
+        {
+          benefitName: 'Additional expenses',
+          goodevasDescr: 'Shipping & taxes included in the UK, US, CA, and the EU',
+          competitorsDescr: 'Paid shipping, taxes unknown'
+        },
+        {
+          benefitName: 'Eco initiative',
+          goodevasDescr: 'We plant 5 trees for every purchase',
+          competitorsDescr: 'Do not plant <br/> trees'
+        }
+      ]
+    },
+    fAQTxt: [
+      {
+        title: `What is the weight limit for the 4-in-1 set?`,
+        txt: `<p>The maximum weight per item of the 4-in-1 set is not more than 50-60 kg, approximately the weight of two children. However, all products are tested weighing 80-100 kg to check their endurance.</p>`
+      },
+      {
+        title: `Can the playset be used outdoors?`,
+        txt: `<p>Can the playset be used outdoors?</p>`
+      },
+      {
+        title: `Is the slide two-sided?`,
+        txt: `<p>Is the slide two-sided?</p>`
+      },
+      {
+        title: `How should the product be cleaned?`,
+        txt: `<p>How should the product be cleaned?</p>`
+      }
+    ],
+    productImageGalleryImgs: [
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`
+    ]
+  },
+  '6in1-montessori-climbing-frame-set-triangle-ladder-arch-rocker-slide-ramp-net-cushion-art-addition': {
+    boughtSoFarTxt: '3K+',
+    newProductSalesPointsTxt: [
+      'Eco-plywood with natural wood glue',
+      'Safe and certified product (CPC and CE)',
+      'Free returns 30 days'
+    ],
+    yourImpactTxt: 'Your Impact: 5 trees planted with this order',
+    oneReviewBlock: {
+      txt: '“Amazing quality of the product. Very easy to assemble. Both of my kids love it! I’m really happy with our purchase. Definitely happy and will purchase again next time.”',
+      name: 'Courtney D.',
+      rating: 5,
+      img: `${git}goodevas_img.webp`
+    },
+    productDetailsTxt: [
+      {
+        title: `4in1 Montessori Climbing Set`,
+        txt: `<p class="blur_txt">Elevate your child's play experience with our 4in1 Montessori Climbing Set, one of Goodevas' flagship offerings. Comprising the core elements of the climbing arch and the triangle ladder, this set is accentuated by the multifunctional climbing net and slide/ramp. Together, they open doors to imaginative play, fostering muscle strength, balance, </p><div class="see_more_block">${svg.arrowMoreIcon}<div>See more</div></div>`
+      },
+      {
+        title: `Safe Materials`,
+        txt: `<p>Safe Materials</p>`
+      },
+      {
+        title: `Size and Dimensions `,
+        txt: `<p>Size and Dimensions </p>`
+      },
+      {
+        title: `Easy to assemble`,
+        txt: `<p>Easy to assemble</p>`
+      }
+    ],
+    mainBenefits: {
+      safeCertified: {
+        icon: `${svg.certificateIcon}`,
+        title: 'Safe and certified product (CPC and CE)',
+        txt: 'Our products are proudly CPC and CE certified, meeting stringent standards for consumer safety and compliance'
+      },
+      warranty: {
+        icon: `${svg.warrantyIcon}`,
+        title: '2-year <br/> warranty',
+        txt: 'Our warranty covers any defects in workmanship or materials under regular, indoor us'
+      },
+      freeShipping: {
+        icon: `${svg.shippingIcon}`,
+        title: 'Enjoy Free Shipping worldwide',
+        txt: 'Free delivery within 2 to 4 days in the US and CA. All taxes are included in the price for the USA, Canada, the UK, and the EU.'
+      }
+    },
+    comparisonTable: {
+      mainTitle: 'Goodevas Quality vs Others',
+      goodevasTitle: 'GOODEVAS',
+      goodevasImg: `${git}goodevas_img.webp`,
+      competitorsTitle: 'OTHERS',
+      competitorsImg: `${git}competitors_img.webp`,
+      benefits: [
+        {
+          benefitName: 'Material',
+          goodevasDescr: 'Strong birch plywood with pine-based glue',
+          competitorsDescr: 'Fragile poplar plywood using formaldehyde-based glue'
+        },
+        {
+          benefitName: 'Coating',
+          goodevasDescr: 'Covered by natural oil',
+          competitorsDescr: 'Coated with varnish or paint'
+        },
+        {
+          benefitName: 'Surface',
+          goodevasDescr: 'Smooth. Each part is hand-sanded',
+          competitorsDescr: 'Rough. Machine-sanded'
+        },
+        {
+          benefitName: 'Functionality',
+          goodevasDescr: 'High. A variety of sets + many add-ons',
+          competitorsDescr: 'Low. Only classic sets (no add-ons or sets)'
+        },
+        {
+          benefitName: 'Trust',
+          goodevasDescr: 'Since 2020, over 50k transactions',
+          competitorsDescr: 'New companies'
+        },
+        {
+          benefitName: 'Additional expenses',
+          goodevasDescr: 'Shipping & taxes included in the UK, US, CA, and the EU',
+          competitorsDescr: 'Paid shipping, taxes unknown'
+        },
+        {
+          benefitName: 'Eco initiative',
+          goodevasDescr: 'We plant 5 trees for every purchase',
+          competitorsDescr: 'Do not plant <br/> trees'
+        }
+      ]
+    },
+    fAQTxt: [
+      {
+        title: `What is the weight limit for the 4-in-1 set?`,
+        txt: `<p>The maximum weight per item of the 4-in-1 set is not more than 50-60 kg, approximately the weight of two children. However, all products are tested weighing 80-100 kg to check their endurance.</p>`
+      },
+      {
+        title: `Can the playset be used outdoors?`,
+        txt: `<p>Can the playset be used outdoors?</p>`
+      },
+      {
+        title: `Is the slide two-sided?`,
+        txt: `<p>Is the slide two-sided?</p>`
+      },
+      {
+        title: `How should the product be cleaned?`,
+        txt: `<p>How should the product be cleaned?</p>`
+      }
+    ],
+    productImageGalleryImgs: [
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`
+    ]
+  },
+  'indoor-wooden-playground-with-swings-and-slide-board-6in1-playset': {
+    boughtSoFarTxt: '3K+',
+    newProductSalesPointsTxt: [
+      'Eco-plywood with natural wood glue',
+      'Safe and certified product (CPC and CE)',
+      'Free returns 30 days'
+    ],
+    yourImpactTxt: 'Your Impact: 5 trees planted with this order',
+    oneReviewBlock: {
+      txt: '“Amazing quality of the product. Very easy to assemble. Both of my kids love it! I’m really happy with our purchase. Definitely happy and will purchase again next time.”',
+      name: 'Courtney D.',
+      rating: 5,
+      img: `${git}goodevas_img.webp`
+    },
+    productDetailsTxt: [
+      {
+        title: `4in1 Montessori Climbing Set`,
+        txt: `<p class="blur_txt">Elevate your child's play experience with our 4in1 Montessori Climbing Set, one of Goodevas' flagship offerings. Comprising the core elements of the climbing arch and the triangle ladder, this set is accentuated by the multifunctional climbing net and slide/ramp. Together, they open doors to imaginative play, fostering muscle strength, balance, </p><div class="see_more_block">${svg.arrowMoreIcon}<div>See more</div></div>`
+      },
+      {
+        title: `Safe Materials`,
+        txt: `<p>Safe Materials</p>`
+      },
+      {
+        title: `Size and Dimensions `,
+        txt: `<p>Size and Dimensions </p>`
+      },
+      {
+        title: `Easy to assemble`,
+        txt: `<p>Easy to assemble</p>`
+      }
+    ],
+    mainBenefits: {
+      safeCertified: {
+        icon: `${svg.certificateIcon}`,
+        title: 'Safe and certified product (CPC and CE)',
+        txt: 'Our products are proudly CPC and CE certified, meeting stringent standards for consumer safety and compliance'
+      },
+      warranty: {
+        icon: `${svg.warrantyIcon}`,
+        title: '2-year <br/> warranty',
+        txt: 'Our warranty covers any defects in workmanship or materials under regular, indoor us'
+      },
+      freeShipping: {
+        icon: `${svg.shippingIcon}`,
+        title: 'Enjoy Free Shipping worldwide',
+        txt: 'Free delivery within 2 to 4 days in the US and CA. All taxes are included in the price for the USA, Canada, the UK, and the EU.'
+      }
+    },
+    comparisonTable: {
+      mainTitle: 'Goodevas Quality vs Others',
+      goodevasTitle: 'GOODEVAS',
+      goodevasImg: `${git}goodevas_img.webp`,
+      competitorsTitle: 'OTHERS',
+      competitorsImg: `${git}competitors_img.webp`,
+      benefits: [
+        {
+          benefitName: 'Material',
+          goodevasDescr: 'Strong birch plywood with pine-based glue',
+          competitorsDescr: 'Fragile poplar plywood using formaldehyde-based glue'
+        },
+        {
+          benefitName: 'Coating',
+          goodevasDescr: 'Covered by natural oil',
+          competitorsDescr: 'Coated with varnish or paint'
+        },
+        {
+          benefitName: 'Surface',
+          goodevasDescr: 'Smooth. Each part is hand-sanded',
+          competitorsDescr: 'Rough. Machine-sanded'
+        },
+        {
+          benefitName: 'Functionality',
+          goodevasDescr: 'High. A variety of sets + many add-ons',
+          competitorsDescr: 'Low. Only classic sets (no add-ons or sets)'
+        },
+        {
+          benefitName: 'Trust',
+          goodevasDescr: 'Since 2020, over 50k transactions',
+          competitorsDescr: 'New companies'
+        },
+        {
+          benefitName: 'Additional expenses',
+          goodevasDescr: 'Shipping & taxes included in the UK, US, CA, and the EU',
+          competitorsDescr: 'Paid shipping, taxes unknown'
+        },
+        {
+          benefitName: 'Eco initiative',
+          goodevasDescr: 'We plant 5 trees for every purchase',
+          competitorsDescr: 'Do not plant <br/> trees'
+        }
+      ]
+    },
+    fAQTxt: [
+      {
+        title: `What is the weight limit for the 4-in-1 set?`,
+        txt: `<p>The maximum weight per item of the 4-in-1 set is not more than 50-60 kg, approximately the weight of two children. However, all products are tested weighing 80-100 kg to check their endurance.</p>`
+      },
+      {
+        title: `Can the playset be used outdoors?`,
+        txt: `<p>Can the playset be used outdoors?</p>`
+      },
+      {
+        title: `Is the slide two-sided?`,
+        txt: `<p>Is the slide two-sided?</p>`
+      },
+      {
+        title: `How should the product be cleaned?`,
+        txt: `<p>How should the product be cleaned?</p>`
+      }
+    ],
+    productImageGalleryImgs: [
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`,
+      `${git}goodevas_img.webp`
+    ]
+  },
+  '5in1-montessori-climbing-set-triangle-ladder-arch-rocker-slide-board-ramp-net-cushion-chocolate': {
+    boughtSoFarTxt: '3K+',
+    newProductSalesPointsTxt: [
+      'Eco-plywood with natural wood glue',
+      'Safe and certified product (CPC and CE)',
+      'Free returns 30 days'
+    ],
     yourImpactTxt: 'Your Impact: 5 trees planted with this order',
     oneReviewBlock: {
       txt: '“Amazing quality of the product. Very easy to assemble. Both of my kids love it! I’m really happy with our purchase. Definitely happy and will purchase again next time.”',

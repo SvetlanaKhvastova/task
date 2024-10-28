@@ -14,6 +14,7 @@ import {
   boughtSoFarBlock,
   colorWrapper,
   comparisonTableBlock,
+  estimateYourShippingPeriodBlock,
   fAQBlock,
   getFreeDeliveryBlock,
   mainBenefitsBlock,
@@ -50,7 +51,8 @@ class NewPdp {
 
   init() {
     startLog({ name: 'PDP v2 Major Release', dev: 'SKh' })
-    // clarityInterval('')
+    clarityInterval('new_pdp')
+
     document.head.insertAdjacentHTML('beforeend', `<style class="crs_style">${mainStyle}</style>`)
 
     this.renderBestSellerLabelForPhoto()
@@ -62,6 +64,7 @@ class NewPdp {
     this.clickAllReviewsLink()
     this.renderProductDetailsBlock()
     this.toggleSeeMoreTxt()
+    this.renderEstimateYourShippingPeriodBlock()
     this.renderMainBenefits()
     this.renderComparisonTable()
     this.renderProductImageGalleryBlock()
@@ -88,6 +91,8 @@ class NewPdp {
       this.changeColorOnPdp()
       this.syncLoadingState()
     }
+
+    this.visibleHandler()
   }
 
   renderBestSellerLabelForPhoto() {
@@ -173,6 +178,7 @@ class NewPdp {
         const link = $el('.all_reviews_link') as HTMLElement
 
         link.addEventListener('click', () => {
+          pushData('exp_new_pdp_button_03', 'All reviews', 'Click', 'Review section')
           scrollToElement('.yotpo-main-layout')
         })
       })
@@ -198,15 +204,27 @@ class NewPdp {
 
       seeMoreBtn.addEventListener('click', e => {
         if (e.currentTarget && !e.currentTarget.classList.contains('is_open')) {
+          pushData('exp_new_pdp_link_01', 'See more', 'Click', 'Product details')
           e.currentTarget.classList.add('is_open')
           e.currentTarget.querySelector('div').textContent = 'See Less'
           e.currentTarget.previousElementSibling.classList.remove('blur_txt')
         } else {
+          pushData('exp_new_pdp_link_01', 'See Less', 'Click', 'Product details')
           e.currentTarget.classList.remove('is_open')
           e.currentTarget.querySelector('div').textContent = 'See More'
           e.currentTarget.previousElementSibling.classList.add('blur_txt')
         }
       })
+    })
+  }
+
+  renderEstimateYourShippingPeriodBlock() {
+    waitForElement('.product_details_block').then(i => {
+      const сontainerElement = $el('.product_details_block') as HTMLElement
+
+      if (!$el('.estimate_your_shipping_period_block')) {
+        сontainerElement.insertAdjacentHTML('beforebegin', estimateYourShippingPeriodBlock())
+      }
     })
   }
 
@@ -250,8 +268,11 @@ class NewPdp {
   }
 
   renderProductImageGalleryBlock() {
-    waitForElement('#shopify-section-template--18135477813405__1727770539adc7a55b').then(i => {
-      const сontainerElement = $el('#shopify-section-template--18135477813405__1727770539adc7a55b') as HTMLElement
+    let placeElement = $el('#shopify-section-template--18038805430429__1727770539adc7a55b')
+      ? '#shopify-section-template--18038805430429__1727770539adc7a55b'
+      : '#shopify-section-template--18135477813405__1727770539adc7a55b'
+    waitForElement(placeElement).then(i => {
+      const сontainerElement = $el(placeElement) as HTMLElement
 
       if (!$el('.product_image_gallery_block')) {
         сontainerElement.insertAdjacentHTML(
@@ -284,17 +305,67 @@ class NewPdp {
 
           $(`${accordionLinkClass}`).not(this).next(accordionListsClass).slideUp()
           $(`${accordionLinkClass}`).not(this).removeClass('active').closest('li').removeClass('active')
+
+          if (containerClass === '.product_details_block') {
+            if (e.currentTarget.classList.contains('active')) {
+              pushData(
+                'exp_new_pdp_dropdown_02',
+                `Open - ${e.currentTarget.querySelector('p').textContent}`,
+                'Click',
+                'Product details'
+              )
+            } else {
+              pushData(
+                'exp_new_pdp_dropdown_03',
+                `Close - ${e.currentTarget.querySelector('p').textContent}`,
+                'Click',
+                'Product details'
+              )
+            }
+          }
+
+          if (containerClass === '.faq_block') {
+            if (e.currentTarget.classList.contains('active')) {
+              pushData(
+                'exp_new_pdp_dropdown_04',
+                `Open - ${e.currentTarget.querySelector('p').textContent}`,
+                'Click',
+                'FAQ'
+              )
+            } else {
+              pushData(
+                'exp_new_pdp_dropdown_05',
+                `Close - ${e.currentTarget.querySelector('p').textContent}`,
+                'Click',
+                'FAQ'
+              )
+            }
+          }
         })
       }
     }, 1000)
   }
 
   renderStickyBlock() {
-    waitForElement('body').then(i => {
+    waitForElement('.product-single__meta block-buy-buttons .add-to-cart').then(i => {
       const сontainerElement = $el('body') as HTMLElement
+      const addToCartButton = $el('.product-single__meta block-buy-buttons .add-to-cart span') as HTMLElement
+      const restockButton = $el('.restock-rocket-button-container button') as HTMLElement
+      let txtBtn = addToCartButton.textContent || ''
+      let additonalClass = ''
+
+      if (txtBtn === 'Sold Out' && !restockButton) {
+        console.log(restockButton)
+        additonalClass = 'sold_out'
+      }
+
+      if (restockButton) {
+        additonalClass = 'notify_available'
+        txtBtn = restockButton.textContent || ''
+      }
 
       if (!$el('.sticky_block')) {
-        сontainerElement.insertAdjacentHTML('beforeend', stickyBlock)
+        сontainerElement.insertAdjacentHTML('beforeend', stickyBlock(txtBtn, additonalClass))
       }
     })
   }
@@ -383,7 +454,7 @@ class NewPdp {
     ) as NodeListOf<HTMLElement>
 
     dropdownToggle.addEventListener('click', () => {
-      // pushData('exp_sub_option_dropdown_01', 'Ship every', 'Dropdown', 'Subscribe section')
+      pushData('exp_new_pdp_button_02', 'Color', 'Click', 'Stiky section')
       dropdownMenu.classList.toggle('show')
       this.adjustDropdownPosition(dropdownMenu)
       dropdownToggle.classList.toggle('active')
@@ -399,12 +470,7 @@ class NewPdp {
         dropdownToggle.innerHTML = target.innerHTML
         dropdownMenu.classList.remove('show')
         dropdownToggle.classList.remove('active')
-        // pushData(
-        //   'exp_sub_option_dropdown_02',
-        //   `Selected value: ${target.querySelector('.text_transform')?.textContent}`,
-        //   'Dropdown',
-        //   'Subscribe section'
-        // )
+        pushData('exp_new_pdp_dropdown_01', `Selected value: ${target?.textContent}`, 'Dropdown', 'Stiky section')
         variantInputs.forEach(opt => {
           if (opt.getAttribute('value') === value) {
             opt.click()
@@ -454,10 +520,17 @@ class NewPdp {
     waitForElement('.sticky_block').then(i => {
       waitForElement('.sticky_block').then(i => {
         const btnSticky = $el('.add_to_cart_btn') as HTMLElement
-        const btnPdp = $el('.product-single__meta block-buy-buttons .add-to-cart') as HTMLElement
 
         btnSticky.addEventListener('click', () => {
-          btnPdp.click()
+          pushData('exp_new_pdp_button_01', 'Add to cart', 'Click', 'Stiky section')
+          const restockButton = $el('.restock-rocket-button-container .restock-rocket-button-cover') as HTMLElement
+          const addToCartButton = $el('.product-single__meta block-buy-buttons .add-to-cart') as HTMLElement
+
+          if (restockButton) {
+            restockButton.click()
+          } else {
+            addToCartButton.click()
+          }
         })
       })
     })
@@ -514,6 +587,45 @@ class NewPdp {
       })
 
       observer.observe(btnPdp, { attributes: true, attributeFilter: ['class'] })
+    })
+  }
+
+  visibleHandler() {
+    waitForElement('.estimate_your_shipping_period_block').then(i => {
+      visibilityOfTime(
+        '.estimate_your_shipping_period_block',
+        'exp_new_pdp_element_01',
+        'Estimate your shipping period',
+        'Shipping details',
+        'View'
+      )
+    })
+    waitForElement('.product_details_block').then(i => {
+      visibilityOfTime('.product_details_block', 'exp_new_pdp_element_02', 'Product details', 'Product details', 'View')
+    })
+    waitForElement('.main_benefits_block').then(i => {
+      visibilityOfTime('.main_benefits_block', 'exp_new_pdp_element_03', 'Benefits details', 'Benefits details', 'View')
+    })
+    waitForElement('.comparison_table_block').then(i => {
+      visibilityOfTime(
+        '.comparison_table_block',
+        'exp_new_pdp_element_04',
+        'Goodevas Quality vs Others',
+        'Goodevas Quality vs Others',
+        'View'
+      )
+    })
+    waitForElement('.faq_block').then(i => {
+      visibilityOfTime('.faq_block', 'exp_new_pdp_element_05', 'FAQ', 'FAQ', 'View')
+    })
+    waitForElement('.product_image_gallery_block').then(i => {
+      visibilityOfTime(
+        '.product_image_gallery_block',
+        'exp_new_pdp_element_06',
+        'Product image gallery',
+        'Product image gallery',
+        'View'
+      )
     })
   }
 }
