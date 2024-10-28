@@ -146,7 +146,7 @@ export const comparisonTableBlock = (data): string => {
           <div class="header_table">
             <div class="table_cell">
               <h3>${data.goodevasTitle}</h3>
-              <img src="${git}goodevas_1_img.webp" alt="child girl" />
+              <img src="${git}goodevas_1_img.png" alt="child girl" />
             </div>
           </div>
           <div class="body_table">
@@ -167,7 +167,7 @@ export const comparisonTableBlock = (data): string => {
           <div class="header_table">
             <div class="table_cell">
               <h3>${data.competitorsTitle}</h3>
-              <img src="${git}competitors_1_img.webp" alt="child girl" />
+              <img src="${git}competitors_1_img.png" alt="child girl" />
             </div>
           </div>
           <div class="body_table">

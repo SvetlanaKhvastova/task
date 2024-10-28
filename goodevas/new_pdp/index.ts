@@ -86,6 +86,7 @@ class NewPdp {
       this.renderColorWrapper()
       this.clickAddToCartStickyBtn()
       this.changeColorOnPdp()
+      this.syncLoadingState()
     }
   }
 
@@ -100,13 +101,27 @@ class NewPdp {
   }
 
   renderBoughtSoFarBlock() {
-    waitForElement('#shopify-block-yotpo_product_reviews_ugc_star_rating_FVceyX').then(i => {
-      const сontainerElement = $el('#shopify-block-yotpo_product_reviews_ugc_star_rating_FVceyX') as HTMLElement
+    if (this.device === 'desktop') {
+      waitForElement('#shopify-block-yotpo_product_reviews_ugc_star_rating_FVceyX').then(i => {
+        const сontainerElement = $el('#shopify-block-yotpo_product_reviews_ugc_star_rating_FVceyX') as HTMLElement
 
-      if (!$el('.bought_so_far_block')) {
-        сontainerElement.insertAdjacentHTML('beforeend', boughtSoFarBlock(translations[this.pathName].boughtSoFarTxt))
-      }
-    })
+        if (!$el('.bought_so_far_block')) {
+          сontainerElement.insertAdjacentHTML('beforeend', boughtSoFarBlock(translations[this.pathName].boughtSoFarTxt))
+        }
+      })
+    }
+    if (this.device === 'mobile') {
+      waitForElement('.page-content--product .product-single__meta').then(i => {
+        const сontainerElement = $el('.page-content--product .product-single__meta') as HTMLElement
+
+        if (!$el('.bought_so_far_block')) {
+          сontainerElement.insertAdjacentHTML(
+            'afterbegin',
+            boughtSoFarBlock(translations[this.pathName].boughtSoFarTxt)
+          )
+        }
+      })
+    }
   }
 
   renderGetFreeDeliveryBlock() {
@@ -235,12 +250,12 @@ class NewPdp {
   }
 
   renderProductImageGalleryBlock() {
-    waitForElement('#MainContent .shopify-section:nth-child(1)').then(i => {
-      const сontainerElement = $el('#MainContent .shopify-section:nth-child(1)') as HTMLElement
+    waitForElement('#shopify-section-template--18135477813405__1727770539adc7a55b').then(i => {
+      const сontainerElement = $el('#shopify-section-template--18135477813405__1727770539adc7a55b') as HTMLElement
 
       if (!$el('.product_image_gallery_block')) {
         сontainerElement.insertAdjacentHTML(
-          'afterend',
+          'beforebegin',
           productImageGalleryBlock(translations[this.pathName].productImageGalleryImgs)
         )
       }
@@ -279,7 +294,7 @@ class NewPdp {
       const сontainerElement = $el('body') as HTMLElement
 
       if (!$el('.sticky_block')) {
-        сontainerElement.insertAdjacentHTML('afterbegin', stickyBlock)
+        сontainerElement.insertAdjacentHTML('beforeend', stickyBlock)
       }
     })
   }
@@ -483,6 +498,23 @@ class NewPdp {
     if (dropdownToggle && activeValue) {
       dropdownToggle.textContent = activeValue
     }
+  }
+
+  syncLoadingState() {
+    waitForElement('.product-single__meta block-buy-buttons .add-to-cart').then(() => {
+      const btnPdp = $el('.product-single__meta block-buy-buttons .add-to-cart') as HTMLElement
+      const btnSticky = $el('.sticky_block .add_to_cart_btn') as HTMLElement
+
+      const observer = new MutationObserver(() => {
+        if (btnPdp.classList.contains('btn--loading')) {
+          btnSticky.classList.add('btn--loading')
+        } else {
+          btnSticky.classList.remove('btn--loading')
+        }
+      })
+
+      observer.observe(btnPdp, { attributes: true, attributeFilter: ['class'] })
+    })
   }
 }
 
