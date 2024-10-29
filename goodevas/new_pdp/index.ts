@@ -90,6 +90,7 @@ class NewPdp {
       this.clickAddToCartStickyBtn()
       this.changeColorOnPdp()
       this.syncLoadingState()
+      this.resizeSlider()
     }
 
     this.visibleHandler()
@@ -626,6 +627,46 @@ class NewPdp {
         'Product image gallery',
         'View'
       )
+    })
+  }
+
+  resizeSlider() {
+    waitForElement('.product-slideshow').then(i => {
+      const flickityElement = $$el('.product-slideshow')[0] as HTMLElement
+      if (flickityElement) {
+        // @ts-ignore
+        const flkty = Flickity.data(flickityElement)
+
+        if (flkty) {
+          // Устанавливаем ширину слайдов на 100%
+          flkty.cells.forEach(cell => {
+            cell.element.style.width = '100%'
+          })
+
+          // Создаем элементы кнопок для стрелок навигации
+          const prevButton = document.createElement('button')
+          prevButton.className = 'flickity-prev-next-button previous'
+          prevButton.innerHTML = `${svg.prevBtnIcon}` // Используем SVG-иконку для стрелки влево
+          flickityElement.appendChild(prevButton)
+
+          const nextButton = document.createElement('button')
+          nextButton.className = 'flickity-prev-next-button next'
+          nextButton.innerHTML = `${svg.nextBtnIcon}` // Используем SVG-иконку для стрелки вправо
+          flickityElement.appendChild(nextButton)
+
+          // Обработчики событий для стрелок
+          prevButton.addEventListener('click', () => {
+            flkty.previous()
+          })
+
+          nextButton.addEventListener('click', () => {
+            flkty.next()
+          })
+
+          // Обновляем слайдер
+          flkty.resize()
+        }
+      }
     })
   }
 }
