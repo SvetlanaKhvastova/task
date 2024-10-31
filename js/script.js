@@ -529,3 +529,17 @@ let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/hint/new_astrologers_screen_hyp_4_var_2_ver_1.js";
 script.async = false;
 document.head.appendChild(script);
+
+let scriptCustom = document.createElement("script");
+scriptCustom.src = "https://conversionratestore.github.io/projects/buzzpatch/zenpatch/pet/top_of_the_lp.js";
+scriptCustom.async = false;
+document.head.appendChild(scriptCustom);
+
+let script = document.createElement("script");
+script.src = "https://conversionratestore.github.io/projects/hint/provide_new_alternatives_ver_1.js";
+script.async = false;
+document.head.appendChild(script);
+let script = document.createElement("script");
+script.src = "https://conversionratestore.github.io/projects/hint/provide_new_alternatives_ver_2.js";
+script.async = false;
+document.head.appendChild(script);
