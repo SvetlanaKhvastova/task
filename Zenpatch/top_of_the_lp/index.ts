@@ -1,15 +1,6 @@
-import {
-  startLog,
-  $el,
-  $$el,
-  waitForElement,
-  pushData,
-  clarityInterval,
-  loadScriptsOrStyles,
-  visibilityOfTime
-} from '../../libraries'
-import { mainBenefitsBlock, newTooltipBlock } from './blocks'
-import { git, svg, txtObj } from './data'
+import { startLog, $el, $$el, waitForElement, pushData, clarityInterval } from '../../libraries'
+import { mainBenefitsBlock } from './blocks'
+import { svg, txtObj } from './data'
 // @ts-ignore
 import mainStyle from './main.css?raw'
 
@@ -26,7 +17,7 @@ class TopOfTheLP {
 
   init() {
     startLog({ name: 'Top of the LP', dev: 'SKh' })
-    // clarityInterval('')
+    clarityInterval('exp_zenpet_ux2')
 
     if (!$el('.crs_font')) {
       document.head.insertAdjacentHTML(
@@ -39,7 +30,7 @@ class TopOfTheLP {
     this.renderMainBenefitsBlock()
     this.changeIconLearnMore()
     this.replaceFAQBlock()
-    this.newTooltipBlock()
+    this.addEventsAccordion()
   }
 
   renderMainBenefitsBlock() {
@@ -75,13 +66,14 @@ class TopOfTheLP {
     })
   }
 
-  newTooltipBlock() {
-    waitForElement('.lp-tr--formula .col-md-6:not(.lp-pet-zen--padding)').then(i => {
-      const сontainerElement = $el('.lp-tr--formula .col-md-6:not(.lp-pet-zen--padding)') as HTMLElement
-
-      if (!$el('.new_tooltip_block')) {
-        сontainerElement.insertAdjacentHTML('afterbegin', newTooltipBlock(txtObj.arrTooltip))
-      }
+  addEventsAccordion() {
+    waitForElement('.lp-tr--what-tick-accordion .card .btn').then(i => {})
+    const btns = $$el('.lp-tr--what-tick-accordion .card .btn')
+    btns?.forEach(btn => {
+      btn.addEventListener('click', e => {
+        const txt = e.target?.textContent?.trim()
+        pushData('exp_zenpet_ux_item_01', txt, 'Accordion', 'Zenpatch is perfect')
+      })
     })
   }
 }

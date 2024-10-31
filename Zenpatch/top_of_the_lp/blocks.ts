@@ -22,23 +22,3 @@ export const mainBenefitsBlock = (data): string => {
     </div>
   `
 }
-
-export const newTooltipBlock = (data): string => {
-  return /* HTML */ `
-    <div class="steps new_tooltip_block">
-      <ul>
-        <!-- <li>
-          <img src="${img}" alt="${title}" />
-          <div>
-            <p>${title}</p>
-            <img
-              data-title="${tooltip}"
-              src="https://conversionratestore.github.io/projects/buzzpatch/img/inform_btn.svg"
-              alt="tooltip icon"
-            />
-          </div>
-        </li> -->
-      </ul>
-    </div>
-  `
-}
