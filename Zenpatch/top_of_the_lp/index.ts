@@ -1,4 +1,4 @@
-import { startLog, $el, $$el, waitForElement, pushData, clarityInterval } from '../../libraries'
+import { startLog, $el, $$el, waitForElement, pushData, clarityInterval, scrollToElement } from '../../libraries'
 import { mainBenefitsBlock } from './blocks'
 import { svg, txtObj } from './data'
 // @ts-ignore
@@ -28,7 +28,17 @@ class TopOfTheLP {
     document.head.insertAdjacentHTML('beforeend', `<style>${mainStyle}</style>`)
 
     this.renderMainBenefitsBlock()
-    this.changeIconLearnMore()
+
+    if (this.device === 'mobile') {
+      this.changeIconLearnMore()
+      this.scrollToFAQ('.lp-tr--hero-section .lp-tr--learn-more-btn')
+    }
+
+    if (this.device === 'desktop') {
+      this.renderLearnMoreBtnOnDesktop()
+      this.scrollToFAQ('.new_learn_more_btn')
+    }
+
     this.replaceFAQBlock()
     this.addEventsAccordion()
   }
@@ -50,6 +60,39 @@ class TopOfTheLP {
       if (!$el('.new_yellow_icon')) {
         сontainerElement.insertAdjacentHTML('beforeend', `${svg.newYellowIcon}`)
       }
+    })
+  }
+
+  renderLearnMoreBtnOnDesktop() {
+    waitForElement('.lp-tr--hero-section .lp-tr--btn').then(i => {
+      const сontainerElement = $el('.lp-tr--hero-section .lp-tr--btn') as HTMLElement
+
+      if (!$el('.new_learn_more_btn')) {
+        сontainerElement.insertAdjacentHTML(
+          'afterend',
+          `<div class="new_learn_more_btn">Learn more ${svg.newYellowIcon}</div>`
+        )
+      }
+    })
+  }
+
+  scrollToFAQ(selector: string) {
+    waitForElement(selector).then(i => {
+      const btnLearnMore = $el(selector) as HTMLElement
+
+      btnLearnMore.addEventListener('click', e => {
+        e.preventDefault()
+        e.stopPropagation()
+        scrollToElement('.lp-tr--accordion-section .lp-tr--accordion-header', 0)
+        if (selector === '.new_learn_more_btn') {
+          pushData(
+            'exp_zenpet_ux_learn_more_01',
+            'Learn more',
+            'Click',
+            'Help Your Pet Stay zen - stress relief for every occasion'
+          )
+        }
+      })
     })
   }
 
