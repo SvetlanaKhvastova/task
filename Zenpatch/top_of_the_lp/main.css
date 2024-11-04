@@ -264,4 +264,24 @@
   text-transform: uppercase;
   cursor: pointer;
   margin: 24px auto 0;
+}
+
+.new_get_zen_stickers_now {
+  display: flex;
+  max-width: 280px;
+  width: 100%;
+  height: 61px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  background: #ffa311;
+  color: #000;
+  font-family: "DINEngschrift LT";
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: 1px;
+  line-height: 40px;
+  text-transform: uppercase;
+  margin: 0 auto;
+  cursor: pointer;
 }/*# sourceMappingURL=main.css.map */

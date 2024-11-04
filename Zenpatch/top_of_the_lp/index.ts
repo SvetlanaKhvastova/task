@@ -41,6 +41,8 @@ class TopOfTheLP {
 
     this.replaceFAQBlock()
     this.addEventsAccordion()
+    this.renderBtnGetZenToAccordionBody()
+    this.scrollToFromNewGetZenStickersNowBtns('.new_get_zen_stickers_now')
   }
 
   renderMainBenefitsBlock() {
@@ -116,6 +118,38 @@ class TopOfTheLP {
       btn.addEventListener('click', e => {
         const txt = e.target?.textContent?.trim()
         pushData('exp_zenpet_ux_item_01', txt, 'Accordion', 'Zenpatch is perfect')
+      })
+    })
+  }
+
+  renderBtnGetZenToAccordionBody() {
+    waitForElement('.lp-tr--what-tick-accordion .card-body').then(i => {
+      const сontainerElements = $$el('.lp-tr--what-tick-accordion .card-body') as NodeListOf<HTMLElement>
+
+      сontainerElements.forEach(el => {
+        if (!el.querySelector('.new_get_zen_stickers_now')) {
+          el.insertAdjacentHTML('beforeend', `<div class="new_get_zen_stickers_now">Get Zen Stickers Now</div>`)
+        }
+      })
+    })
+  }
+
+  scrollToFromNewGetZenStickersNowBtns(selector: string) {
+    waitForElement(selector).then(i => {
+      const newGetZenStickersNowBtns = $$el(selector) as NodeListOf<HTMLElement>
+
+      newGetZenStickersNowBtns.forEach((btn, idx) => {
+        btn.addEventListener('click', e => {
+          e.preventDefault()
+          e.stopPropagation()
+          scrollToElement('#lptrPurchase', 0)
+          pushData(
+            'exp_zenpet_ux_new_get_zen_stickers_now_01',
+            `Get Zen Stickers Now ${idx + 1}`,
+            'Click',
+            'ZenPatch is Perfect If Your Pet...'
+          )
+        })
       })
     })
   }
