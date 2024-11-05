@@ -11,13 +11,13 @@ export const boughtSoFarBlock = (summ: string): string => {
   `
 }
 
-export const getFreeDeliveryBlock = () => {
+export const getFreeDeliveryBlock = (shippingDate: string) => {
   return /* HTML */ `
     <div class="get_free_delivery_block">
       ${svg.freeDeliveryIcon}
       <p>
         Order now and get <span class="accent_underline">FREE delivery</span> on or before
-        <span class="date_txt">Sunday, October 19</span>
+        <span class="date_txt">${shippingDate}</span>
       </p>
     </div>
   `
@@ -70,6 +70,10 @@ export const oneReviewBlock = (data): string => {
       </div>
     </div>
   `
+}
+
+export const tolstoyStoriesNewTitle = (title: string): string => {
+  return /* HTML */ ` <h2 class="tolstoy_stories_new_title">${title}</h2> `
 }
 
 export const productDetailsBlock = (data): string => {
@@ -242,44 +246,47 @@ export const stickyBlock = (txtBtn: string, additonalClass: string) => {
   `
 }
 
-export const colorWrapper = (dropdownItem, selectedValue: string): string => {
+export const colorWrapper = (dropdownItem, selectedValue: string, isAnyDisabled: boolean): string => {
   return /* HTML */ `
     <div class="color_wrapper">
       <span>Color</span>
       <div class="custom_dropdown" id="productColor">
-        <div class="dropdown_toggle">${selectedValue}</div>
+        <div class="dropdown_toggle" ${isAnyDisabled ? 'data-disabled' : ''}>${selectedValue}</div>
         <div class="dropdown_menu">${dropdownItem}</div>
       </div>
     </div>
   `
 }
 
-export const estimateYourShippingPeriodBlock = () => {
+export const estimateYourShippingPeriodBlock = (
+  country: string,
+  todayDate: string,
+  days: number,
+  shippingDate: string,
+  guaranteeDate: string
+): string => {
   return /* HTML */ `
     <div class="estimate_your_shipping_period_block">
       <h2 class="shipping_title">Estimate <span>your</span> shipping period</h2>
       <div class="shipping_destination">
         <span>Ship to:</span>
-        <select name="country" id="country_select">
-          <option value="unitedStates">United States</option>
-          <option value="ukraine">Ukraine</option>
-        </select>
+        <span class="country_txt">${country}</span>
       </div>
       <div class="shipping_details">
         <div class="buy_goodevas">
           <h3 class="shipping_details_title">Buy Goodevas</h3>
           <span class="shipping_details_date">Today</span>
-          <span class="shipping_details_estimated_date buy_estimated_date">Oct 15, 2024</span>
+          <span class="shipping_details_estimated_date buy_estimated_date">${todayDate}</span>
         </div>
         <div class="shipping_info">
           <h3 class="shipping_details_title">Shipping</h3>
-          <span class="shipping_details_date shipping_duration">2-3 days</span>
-          <span class="shipping_details_estimated_date shipping_estimated_date">Oct 17 - Oct 18, 2024</span>
+          <span class="shipping_details_date shipping_duration">${days} days</span>
+          <span class="shipping_details_estimated_date shipping_estimated_date">${shippingDate}</span>
         </div>
         <div class="money_back_guarantee">
-          <h3 class="shipping_details_title">100% money back guarantee through</h3>
-          <span class="shipping_details_date guarantee_duration">After 30 days</span>
-          <span class="shipping_details_estimated_date guarantee_estimated_date">Nov 16 - Nov 17, 2024</span>
+          <h3 class="shipping_details_title">100% money-back guarantee through</h3>
+          <span class="shipping_details_date guarantee_duration">30 days after purchase</span>
+          <span class="shipping_details_estimated_date guarantee_estimated_date">${guaranteeDate}</span>
         </div>
       </div>
     </div>

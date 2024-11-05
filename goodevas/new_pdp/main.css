@@ -5,7 +5,9 @@
   }
 }
 body #shopify-section-template--18135477813405__sub,
-body #shopify-section-template--18038805430429__sub {
+body #shopify-section-template--18038805430429__sub,
+body more-payment-options-link,
+body .tolstoy-stories-title {
   display: none !important;
 }
 body #shopify-section-template--18135477813405__172779113664c32ea5 > div,
@@ -321,6 +323,14 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
 @media (max-width: 768px) {
   .page-content--product .product-single__meta block-buy-buttons .shopify-payment-button {
     margin-top: 12px;
+  }
+}
+.page-content--product .product-single__meta block-buy-buttons .klarna_wrapper {
+  margin-top: 14px;
+}
+@media (max-width: 768px) {
+  .page-content--product .product-single__meta block-buy-buttons .klarna_wrapper {
+    margin-top: 8px;
   }
 }
 .page-content--product .product-single__meta #shopify-block-tolstoy_shoppable_video_ugc_stories_block_wq3b84 ._stories_1qx2f_1 {
@@ -668,7 +678,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
 }
 @media (max-width: 768px) {
   .new_product_sales_points_block .new_product_sales_points_list {
-    gap: 4px;
+    gap: 8px;
   }
 }
 .new_product_sales_points_block .new_product_sales_points_list .new_product_sales_points_item {
@@ -733,7 +743,7 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
   gap: 32px;
   border-radius: 12px;
   background: #fff7e5;
-  margin-bottom: 32px;
+  margin: 32px 0;
   padding: 16px;
 }
 @media (max-width: 768px) {
@@ -842,6 +852,26 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
   cursor: pointer;
 }
 
+.tolstoy_stories_new_title {
+  color: #000;
+  text-align: left;
+  font-family: "Plantin Std";
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 32px;
+  letter-spacing: 1px;
+  margin: 0;
+}
+@media (max-width: 768px) {
+  .tolstoy_stories_new_title {
+    color: #232323;
+    text-align: center;
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: 1.197px;
+  }
+}
+
 .product_details_block {
   margin: 32px 0;
 }
@@ -927,6 +957,41 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
   letter-spacing: 0.65px;
   margin: 0;
 }
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > ul {
+  margin: 0 0 0 15px;
+  padding: 0;
+  list-style: disc;
+}
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > ul + p {
+  margin-top: 15px;
+}
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > ul > li {
+  margin: 0;
+}
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > ul > li + li {
+  margin-top: 8px;
+}
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > ul > li strong {
+  display: block;
+  margin-bottom: 5px;
+}
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > ul > li > p + ul {
+  margin-top: 5px;
+}
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > ul > li > ul {
+  list-style: circle;
+  margin: 0 0 0 15px;
+}
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > ul > li > ul > li {
+  margin: 0;
+}
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div p + ul {
+  margin: 15px 0 0 15px;
+}
+.product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div .under_line_accent {
+  text-decoration: underline;
+  margin-bottom: 5px;
+}
 .product_details_block .blur_txt {
   position: relative;
   display: -webkit-box;
@@ -1009,6 +1074,32 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
   .estimate_your_shipping_period_block .shipping_title span {
     display: none;
   }
+}
+.estimate_your_shipping_period_block .shipping_destination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+}
+.estimate_your_shipping_period_block .shipping_destination span {
+  color: #9a9a9a;
+  font-family: "Harmonia Sans Pro Cyr";
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.75px;
+  margin: 0;
+}
+@media (max-width: 768px) {
+  .estimate_your_shipping_period_block .shipping_destination span {
+    font-size: 13px;
+    line-height: 21px;
+  }
+}
+.estimate_your_shipping_period_block .shipping_destination .country_txt {
+  color: #000;
+  line-height: normal;
+  font-weight: 600;
 }
 .estimate_your_shipping_period_block .shipping_details {
   display: flex;
@@ -1802,6 +1893,20 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
   letter-spacing: 0.65px;
   padding-right: 20px;
 }
+.sticky_block .custom_dropdown .dropdown_toggle[data-disabled] {
+  position: relative;
+  opacity: 0.75;
+}
+.sticky_block .custom_dropdown .dropdown_toggle[data-disabled]::before {
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  border-left: 2px solid;
+  border-color: #000000;
+  transform: rotate(45deg);
+}
 .sticky_block .custom_dropdown .dropdown_toggle.disabled {
   pointer-events: none;
   color: #c3c3c3;
@@ -1854,4 +1959,17 @@ body.rebuy-modal-visible .sticky_block, body.rebuy-cart-visible .sticky_block {
 .sticky_block .custom_dropdown .dropdown_item.active {
   background: #ffcc60;
   color: white;
+}
+.sticky_block .custom_dropdown .dropdown_item[data-disabled] {
+  position: relative;
+}
+.sticky_block .custom_dropdown .dropdown_item[data-disabled]::before {
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  border-left: 2px solid;
+  border-color: var(--colorBorder);
+  transform: rotate(45deg);
 }/*# sourceMappingURL=main.css.map */

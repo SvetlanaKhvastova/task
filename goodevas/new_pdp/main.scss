@@ -3,7 +3,9 @@ body {
     padding-bottom: 80px;
   }
   #shopify-section-template--18135477813405__sub,
-  #shopify-section-template--18038805430429__sub {
+  #shopify-section-template--18038805430429__sub,
+  more-payment-options-link,
+  .tolstoy-stories-title {
     display: none !important;
   }
   #shopify-section-template--18135477813405__172779113664c32ea5,
@@ -309,6 +311,12 @@ body {
         margin-top: 14px;
         @media (max-width: 768px) {
           margin-top: 12px;
+        }
+      }
+      .klarna_wrapper {
+        margin-top: 14px;
+        @media (max-width: 768px) {
+          margin-top: 8px;
         }
       }
     }
@@ -623,7 +631,7 @@ body {
     padding: 0;
     list-style: none;
     @media (max-width: 768px) {
-      gap: 4px;
+      gap: 8px;
     }
     .new_product_sales_points_item {
       display: flex;
@@ -685,7 +693,7 @@ body {
   gap: 32px;
   border-radius: 12px;
   background: #fff7e5;
-  margin-bottom: 32px;
+  margin: 32px 0;
   padding: 16px;
   @media (max-width: 768px) {
     margin: 28px 0;
@@ -783,6 +791,24 @@ body {
   }
 }
 
+.tolstoy_stories_new_title {
+  color: #000;
+  text-align: left;
+  font-family: 'Plantin Std';
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 32px;
+  letter-spacing: 1px;
+  margin: 0;
+  @media (max-width: 768px) {
+    color: #232323;
+    text-align: center;
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: 1.197px;
+  }
+}
+
 .product_details_block {
   margin: 32px 0;
   @media (max-width: 768px) {
@@ -858,6 +884,41 @@ body {
             line-height: 20.8px;
             letter-spacing: 0.65px;
             margin: 0;
+          }
+          > ul {
+            margin: 0 0 0 15px;
+            padding: 0;
+            list-style: disc;
+            & + p {
+              margin-top: 15px;
+            }
+            > li {
+              margin: 0;
+              & + li {
+                margin-top: 8px;
+              }
+              strong {
+                display: block;
+                margin-bottom: 5px;
+              }
+              > p + ul {
+                margin-top: 5px;
+              }
+              > ul {
+                list-style: circle;
+                margin: 0 0 0 15px;
+                > li {
+                  margin: 0;
+                }
+              }
+            }
+          }
+          p + ul {
+            margin: 15px 0 0 15px;
+          }
+          .under_line_accent {
+            text-decoration: underline;
+            margin-bottom: 5px;
           }
         }
       }
@@ -937,6 +998,31 @@ body {
       span {
         display: none;
       }
+    }
+  }
+
+  .shipping_destination {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+    span {
+      color: #9a9a9a;
+      font-family: 'Harmonia Sans Pro Cyr';
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 24px;
+      letter-spacing: 0.75px;
+      margin: 0;
+      @media (max-width: 768px) {
+        font-size: 13px;
+        line-height: 21px;
+      }
+    }
+    .country_txt {
+      color: #000;
+      line-height: normal;
+      font-weight: 600;
     }
   }
   .shipping_details {
@@ -1671,6 +1757,20 @@ body {
       line-height: 16px;
       letter-spacing: 0.65px;
       padding-right: 20px;
+      &[data-disabled] {
+        position: relative;
+        opacity: 0.75;
+        &::before {
+          position: absolute;
+          content: '';
+          left: 50%;
+          top: 0;
+          bottom: 0;
+          border-left: 2px solid;
+          border-color: #000000;
+          transform: rotate(45deg);
+        }
+      }
       &.disabled {
         pointer-events: none;
         color: #c3c3c3;
@@ -1725,6 +1825,19 @@ body {
       &.active {
         background: #ffcc60;
         color: white;
+      }
+      &[data-disabled] {
+        position: relative;
+        &::before {
+          position: absolute;
+          content: '';
+          left: 50%;
+          top: 0;
+          bottom: 0;
+          border-left: 2px solid;
+          border-color: var(--colorBorder);
+          transform: rotate(45deg);
+        }
       }
     }
   }

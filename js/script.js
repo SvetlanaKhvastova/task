@@ -543,3 +543,8 @@ let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/hint/provide_new_alternatives_ver_2.js";
 script.async = false;
 document.head.appendChild(script);
+
+let script = document.createElement("script");
+script.src = "https://conversionratestore.github.io/projects/goodevas/new_pdp.js";
+script.async = false;
+document.head.appendChild(script);

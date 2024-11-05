@@ -23,6 +23,7 @@ import {
   productDetailsBlock,
   productImageGalleryBlock,
   stickyBlock,
+  tolstoyStoriesNewTitle,
   yourImpactBlock
 } from './blocks'
 import { svg, git, translations } from './data'
@@ -59,8 +60,10 @@ class NewPdp {
     this.renderBoughtSoFarBlock()
     this.renderGetFreeDeliveryBlock()
     this.renderNewProductSalesPointsBlock()
-    this.renderYourImpactBlock()
+    this.renderKlarnaWrapper()
+    this.replaceKlarnaPlacement()
     this.renderOneReviewBlock()
+    this.renderTolstoyStoriesNewTitle()
     this.clickAllReviewsLink()
     this.renderProductDetailsBlock()
     this.toggleSeeMoreTxt()
@@ -135,7 +138,7 @@ class NewPdp {
       const сontainerElement = $el('block-price') as HTMLElement
 
       if (!$el('.get_free_delivery_block')) {
-        сontainerElement.insertAdjacentHTML('afterend', getFreeDeliveryBlock())
+        сontainerElement.insertAdjacentHTML('afterend', getFreeDeliveryBlock(this.getShippingDayDate()))
       }
     })
   }
@@ -153,22 +156,50 @@ class NewPdp {
     })
   }
 
-  renderYourImpactBlock() {
-    waitForElement('block-buy-buttons').then(i => {
-      const сontainerElement = $el('block-buy-buttons') as HTMLElement
+  renderKlarnaWrapper() {
+    waitForElement('klarna-placement').then(i => {
+      waitForElement('.page-content--product .product-single__meta block-buy-buttons').then(i => {
+        const сontainerElement = $el('.page-content--product .product-single__meta block-buy-buttons') as HTMLElement
 
-      if (!$el('.your_impact_block')) {
-        сontainerElement.insertAdjacentHTML('afterend', yourImpactBlock(translations[this.pathName].yourImpactTxt))
-      }
+        if (!$el('.klarna_wrapper')) {
+          сontainerElement.insertAdjacentHTML('beforeend', ` <div class="klarna_wrapper"></div>`)
+        }
+      })
+    })
+  }
+
+  replaceKlarnaPlacement() {
+    waitForElement('klarna-placement').then(i => {
+      waitForElement('.klarna_wrapper').then(i => {
+        const klarnaWrapper = $el('.klarna_wrapper') as HTMLElement
+        const klarna = $el('klarna-placement') as HTMLElement
+
+        if (!$el('.klarna_wrapper klarna-placement')) {
+          klarnaWrapper.insertAdjacentElement('beforeend', klarna)
+        }
+      })
     })
   }
 
   renderOneReviewBlock() {
-    waitForElement('.your_impact_block').then(i => {
-      const сontainerElement = $el('.your_impact_block') as HTMLElement
+    waitForElement('block-buy-buttons').then(i => {
+      const сontainerElement = $el('block-buy-buttons') as HTMLElement
 
       if (!$el('.one_review_block')) {
         сontainerElement.insertAdjacentHTML('afterend', oneReviewBlock(translations[this.pathName].oneReviewBlock))
+      }
+    })
+  }
+
+  renderTolstoyStoriesNewTitle() {
+    waitForElement('.tolstoy-stories-title').then(i => {
+      const сontainerElement = $el('.tolstoy-stories-title') as HTMLElement
+
+      if (!$el('.tolstoy_stories_new_title')) {
+        сontainerElement.insertAdjacentHTML(
+          'afterend',
+          tolstoyStoriesNewTitle(translations[this.pathName].tolstoyStoriesNewTitle)
+        )
       }
     })
   }
@@ -224,9 +255,58 @@ class NewPdp {
       const сontainerElement = $el('.product_details_block') as HTMLElement
 
       if (!$el('.estimate_your_shipping_period_block')) {
-        сontainerElement.insertAdjacentHTML('beforebegin', estimateYourShippingPeriodBlock())
+        сontainerElement.insertAdjacentHTML(
+          'beforebegin',
+          estimateYourShippingPeriodBlock(
+            translations[this.pathName].deliveryToPlace,
+            this.getTodayDate(),
+            translations[this.pathName].deliveryDays,
+            this.getShippingDate(),
+            this.getGuaranteeDate()
+          )
+        )
       }
     })
+  }
+
+  getTodayDate() {
+    const today = new Date()
+    const formattedDate = this.formatDate(today)
+    return formattedDate
+  }
+
+  getShippingDate() {
+    const today = new Date()
+    const shippingDate = new Date(today)
+    shippingDate.setDate(today.getDate() + translations[this.pathName].deliveryDays)
+    const formattedDate = this.formatDate(shippingDate)
+    return formattedDate
+  }
+
+  getGuaranteeDate() {
+    const today = new Date()
+    const guaranteeDate = new Date(today)
+    guaranteeDate.setDate(today.getDate() + translations[this.pathName].guaranteeDate)
+    const formattedDate = this.formatDate(guaranteeDate)
+    return formattedDate
+  }
+
+  formatDate(date: Date): string {
+    const options: Intl.DateTimeFormatOptions = { month: 'short', day: 'numeric', year: 'numeric' }
+    return date.toLocaleDateString('en-US', options)
+  }
+
+  getShippingDayDate() {
+    const today = new Date()
+    const guaranteeDate = new Date(today)
+    guaranteeDate.setDate(today.getDate() + translations[this.pathName].guaranteeDate)
+    const formattedDate = this.formatDayDate(guaranteeDate)
+    return formattedDate
+  }
+
+  formatDayDate(date: Date): string {
+    const options: Intl.DateTimeFormatOptions = { weekday: 'long', month: 'long', day: 'numeric' }
+    return date.toLocaleDateString('en-US', options)
   }
 
   renderMainBenefits() {
@@ -419,20 +499,28 @@ class NewPdp {
         if (variantInputs.length > 0) {
           let dropdownItems: string[] = []
           let selectedValue = ''
+          let isAnyDisabled = false
 
           variantInputs.forEach(input => {
             const value = input.getAttribute('value') || 'Unknown'
             const isActive = input.checked
+            const isDisabled = input.hasAttribute('data-disabled')
 
             if (isActive) {
               selectedValue = value
             }
+            if (isDisabled) {
+              isAnyDisabled = true
+            }
 
-            dropdownItems.push(this.createDropdownItem(value, isActive))
+            dropdownItems.push(this.createDropdownItem(value, isActive, isDisabled))
           })
 
           if (!$el('.color_wrapper')) {
-            container.insertAdjacentHTML('afterbegin', colorWrapper(dropdownItems.join(''), selectedValue))
+            container.insertAdjacentHTML(
+              'afterbegin',
+              colorWrapper(dropdownItems.join(''), selectedValue, isAnyDisabled)
+            )
           }
 
           this.changeCustomDropdownHandler('.custom_dropdown')
@@ -441,8 +529,12 @@ class NewPdp {
     })
   }
 
-  createDropdownItem(value: string, isActive: boolean): string {
-    return /* HTML */ ` <div class="dropdown_item ${isActive ? 'active' : ''}" data-value="${value}">${value}</div> `
+  createDropdownItem(value: string, isActive: boolean, isDisabled: boolean): string {
+    return /* HTML */ `
+      <div class="dropdown_item ${isActive ? 'active' : ''}" data-value="${value}" ${isDisabled ? 'data-disabled' : ''}>
+        ${value}
+      </div>
+    `
   }
 
   changeCustomDropdownHandler(dropdownSelector: string) {
@@ -465,12 +557,20 @@ class NewPdp {
       item.addEventListener('click', event => {
         const target = event.currentTarget as HTMLElement
         const value = target.getAttribute('data-value')
+        const isDisabled = target.hasAttribute('data-disabled')
 
         dropdownMenu.style.top = '100%'
 
         dropdownToggle.innerHTML = target.innerHTML
         dropdownMenu.classList.remove('show')
         dropdownToggle.classList.remove('active')
+
+        if (isDisabled) {
+          dropdownToggle.setAttribute('data-disabled', '')
+        } else {
+          dropdownToggle.removeAttribute('data-disabled')
+        }
+
         pushData('exp_new_pdp_dropdown_01', `Selected value: ${target?.textContent}`, 'Dropdown', 'Stiky section')
         variantInputs.forEach(opt => {
           if (opt.getAttribute('value') === value) {
@@ -553,6 +653,7 @@ class NewPdp {
     const variantInputs = $$el('.product-single__meta block-variant-picker > .variant-button-wrap input')
     const dropdownToggle = $el('.color_wrapper .dropdown_toggle')
     let activeValue = ''
+    let isDisabled = false
 
     variantInputs.forEach(input => {
       const value = input.getAttribute('value') || 'Unknown'
@@ -563,6 +664,7 @@ class NewPdp {
         if (isActive) {
           dropdownItem.classList.add('active')
           activeValue = value
+          isDisabled = input.hasAttribute('data-disabled')
         } else {
           dropdownItem.classList.remove('active')
         }
@@ -571,6 +673,12 @@ class NewPdp {
 
     if (dropdownToggle && activeValue) {
       dropdownToggle.textContent = activeValue
+
+      if (isDisabled) {
+        dropdownToggle.setAttribute('data-disabled', '')
+      } else {
+        dropdownToggle.removeAttribute('data-disabled')
+      }
     }
   }
 

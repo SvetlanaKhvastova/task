@@ -129,9 +129,13 @@ export const svg = {
 export const translations = {
   '/en-gb/products/5in1-montessori-climbing-frame-set-triangle-ladder-arch-rocker-slide-board-ramp-netting-rope-cushion':
     {
-      boughtSoFarTxt: '3K+',
+      boughtSoFarTxt: '17850',
+      deliveryDays: 4,
+      guaranteeDate: 30,
+      deliveryToPlace: 'United Kingdom',
       newProductSalesPointsTxt: [
         'Eco-plywood with natural wood glue',
+        'Taxes and duties are included for the UK',
         'Safe and certified product (CPC and CE)',
         'Free returns 30 days'
       ],
@@ -142,39 +146,69 @@ export const translations = {
         rating: 5,
         img: `${git}goodevas_img.webp`
       },
+      tolstoyStoriesNewTitle: `5in1 Montessori Climbing Frame Set`,
       productDetailsTxt: [
         {
-          title: `4in1 Montessori Climbing Set`,
-          txt: `<p class="blur_txt">Elevate your child's play experience with our 4in1 Montessori Climbing Set, one of Goodevas' flagship offerings. Comprising the core elements of the climbing arch and the triangle ladder, this set is accentuated by the multifunctional climbing net and slide/ramp. Together, they open doors to imaginative play, fostering muscle strength, balance, </p><div class="see_more_block">${svg.arrowMoreIcon}<div>See more</div></div>`
+          title: `5in1 Montessori Climbing Set`,
+          txt: `<p class="blur_txt">Elevate your child's play experience with our 5in1 Montessori Climbing Set, one of Goodevas' flagship offerings. Comprising the core elements of the climbing arch and the triangle ladder, this set is accentuated by the multifunctional climbing net, slide/ramp  and сushion. Together, they open doors to imaginative play, fostering muscle strength, balance, coordination, refined motor skills, and boosted self-confidence. Ingeniously designed to interconnect, this set enables children to craft new play landscapes that evolve with their growth and creativity. Together, they open doors to imaginative play, fostering muscle strength, balance, coordination, refined motor skills, and boosted self-confidence. Ingeniously designed to interconnect, this set enables children to craft new play landscapes that evolve with their growth and creativity.</p><div class="see_more_block">${svg.arrowMoreIcon}<div>See more</div></div>`
         },
         {
           title: `Safe Materials`,
-          txt: `<p>Safe Materials</p>`
+          txt: `<p>Every piece of this set stems from eco-friendly Latvian birch plywood and linden soft hardwood, emphasizing durability and elegance. Our meticulous sanding and polishing processes result in a splinter-free finish, prioritizing your child's safety. By integrating our signature blend of oils and waxes, we ensure the set's compatibility for indoor and controlled outdoor adventures, although it's advisable to keep it away from high humidity or extreme temperatures.</p>`
         },
         {
-          title: `Size and Dimensions `,
-          txt: `<p>Size and Dimensions </p>`
+          title: `Size and Dimensions`,
+          txt: `<ul>
+                  <li>
+                    <strong>Complete Set</strong>
+                    <ul>
+                      <li><p>Dimensions: 10 ft (302 cm)</p></li>
+                      <li><p>Weight: 46.3 lb (21.9 kg)</p></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <strong>Triangle Ladder</strong>
+                    <p>This double-sided ladder, when monitored by an adult, is a haven for little climbers, even those refining their coordination. With its expansive usable area, it can captivate multiple kids, making it an ideal piece for active children craving movement.</p>
+                  </li>
+                  <li>
+                    <strong>Climbing Arch</strong>
+                    <p>A versatile play piece, the arch serves as a support for toddlers learning to stand. As your child grows, it becomes an advanced climbing tool or, when inverted, a unique balance board.</p>
+                  </li>
+                  <li>
+                    <strong>Climbing Net</strong>
+                    <p>Crafted from natural wood and the soft, non-toxic multifilament polypropylene rope, this net offers both durability and safety. It's engineered to withstand pressure, ensuring kids can climb and step with confidence.</p>
+                  </li>
+                  <li>
+                    <strong>Slide &amp; Climbing Ramp</strong>
+                    <p>A double-duty design showcases a smooth slide on one side and a climbing ramp with 4 planks on the other. This slide also doubles as a bridge, integrating seamlessly with other climbing structures to diversify play.</p>
+                  </li>
+                  <li>
+                    <strong>Cushion for Climbing Arch</strong>
+                    <p>The soft and cloud-like cushion for the Climbing Arch provides the perfect surface for children to lie on while they enjoy their favorite hobby - rocking! The soft, light layers make for perfect lying and rocking where every position feels comfortable.</p>
+                  </li>
+                </ul>
+                <p>Unveil a world of potential, imagination, and growth with the 5in1 Montessori Climbing Set with Cushion. A lasting testament to your child's ever-evolving development!</span>`
         },
         {
-          title: `Easy to assemble`,
+          title: `Easy to Assemble`,
           txt: `<p>Easy to assemble</p>`
         }
       ],
       mainBenefits: {
         safeCertified: {
           icon: `${svg.certificateIcon}`,
-          title: 'Safe and certified product (CPC and CE)',
+          title: 'Safe and Certified Product (CPC and CE)',
           txt: 'Our products are proudly CPC and CE certified, meeting stringent standards for consumer safety and compliance'
         },
         warranty: {
           icon: `${svg.warrantyIcon}`,
-          title: '2-year <br/> warranty',
+          title: '2-Year <br/> Warranty',
           txt: 'Our warranty covers any defects in workmanship or materials under regular, indoor us'
         },
         freeShipping: {
           icon: `${svg.shippingIcon}`,
-          title: 'Enjoy Free Shipping worldwide',
-          txt: 'Free delivery within 2 to 4 days in the US and CA. All taxes are included in the price for the USA, Canada, the UK, and the EU.'
+          title: 'Enjoy Free Shipping Worldwide',
+          txt: 'We insure all the packages we fulfill, so you don’t have to worry about anything happening to your package.'
         }
       },
       comparisonTable: {
@@ -190,19 +224,14 @@ export const translations = {
             competitorsDescr: 'Fragile poplar plywood using formaldehyde-based glue'
           },
           {
-            benefitName: 'Coating',
-            goodevasDescr: 'Covered by natural oil',
-            competitorsDescr: 'Coated with varnish or paint'
-          },
-          {
-            benefitName: 'Surface',
-            goodevasDescr: 'Smooth. Each part is hand-sanded',
-            competitorsDescr: 'Rough. Machine-sanded'
+            benefitName: 'Smooth surface',
+            goodevasDescr: 'Each part is hand-sanded',
+            competitorsDescr: 'Machine-sanded'
           },
           {
             benefitName: 'Functionality',
-            goodevasDescr: 'High. A variety of sets + many add-ons',
-            competitorsDescr: 'Low. Only classic sets (no add-ons or sets)'
+            goodevasDescr: 'A variety of sets + many add-ons',
+            competitorsDescr: 'Only classic sets (no add-ons or nets)'
           },
           {
             benefitName: 'Trust',
@@ -210,33 +239,32 @@ export const translations = {
             competitorsDescr: 'New companies'
           },
           {
-            benefitName: 'Additional expenses',
-            goodevasDescr: 'Shipping & taxes included in the UK, US, CA, and the EU',
-            competitorsDescr: 'Paid shipping, taxes unknown'
-          },
-          {
-            benefitName: 'Eco initiative',
-            goodevasDescr: 'We plant 5 trees for every purchase',
-            competitorsDescr: 'Do not plant <br/> trees'
+            benefitName: 'Natural coating',
+            goodevasDescr: 'Covered by natural oil',
+            competitorsDescr: 'Coated with varnish or paint'
           }
         ]
       },
       fAQTxt: [
         {
-          title: `What is the weight limit for the 4-in-1 set?`,
-          txt: `<p>The maximum weight per item of the 4-in-1 set is not more than 50-60 kg, approximately the weight of two children. However, all products are tested weighing 80-100 kg to check their endurance.</p>`
+          title: `Why is this product priced higher than similar alternatives?`,
+          txt: `<p>We use high-quality, eco-friendly materials and a thoughtfully designed structure focused on children’s safety and development. Only birch plywood is used in our products, which is 30-40% stronger than poplar plywood. Our production follows European standards, which contributes to the overall cost.</p>`
         },
         {
-          title: `Can the playset be used outdoors?`,
-          txt: `<p>Can the playset be used outdoors?</p>`
+          title: `Can I see the product in person before buying?`,
+          txt: `<p>Currently, this isn't possible, but you can explore our video reviews, customer photos, and detailed product specifications. We also share customer feedback to help you get a clearer understanding of the product.</p>`
         },
         {
-          title: `Is the slide two-sided?`,
-          txt: `<p>Is the slide two-sided?</p>`
+          title: `What if my child doesn’t end up using the product?`,
+          txt: `<p>Our products are designed to capture children’s interest with functionality and a development-oriented design. If the product doesn’t meet your needs, we offer a convenient return policy—just contact us to arrange a return.</p>`
         },
         {
-          title: `How should the product be cleaned?`,
-          txt: `<p>How should the product be cleaned?</p>`
+          title: `Can I trust the quality and safety of the product?`,
+          txt: `<p>Yes, our products are certified to meet international safety standards, including CPC and CE certifications. We pay close attention to using safe materials and conducting rigorous quality control.</p>`
+        },
+        {
+          title: `What if I’m unfamiliar with your company?`,
+          txt: `<p>We understand that purchasing from a new brand may raise questions. Our company has been in business since 2020, with over 50,000 positive reviews on our website, Amazon, and Etsy, which reflect the trustworthiness of our brand and products.</p>`
         }
       ],
       productImageGalleryImgs: [
@@ -249,9 +277,13 @@ export const translations = {
       ]
     },
   '/products/4in1-montessori-climbing-frame-set-triangle-ladder-arch-rocker-slide-board-ramp-netting-rope': {
-    boughtSoFarTxt: '3K+',
+    boughtSoFarTxt: '21000',
+    deliveryDays: 4,
+    guaranteeDate: 30,
+    deliveryToPlace: 'United States',
     newProductSalesPointsTxt: [
       'Eco-plywood with natural wood glue',
+      'Taxes and duties are included for the US, CA, UK, and the EU',
       'Safe and certified product (CPC and CE)',
       'Free returns 30 days'
     ],
@@ -262,39 +294,66 @@ export const translations = {
       rating: 5,
       img: `${git}goodevas_img.webp`
     },
+    tolstoyStoriesNewTitle: `4in1 Montessori Climbing Set`,
     productDetailsTxt: [
       {
         title: `4in1 Montessori Climbing Set`,
-        txt: `<p class="blur_txt">Elevate your child's play experience with our 4in1 Montessori Climbing Set, one of Goodevas' flagship offerings. Comprising the core elements of the climbing arch and the triangle ladder, this set is accentuated by the multifunctional climbing net and slide/ramp. Together, they open doors to imaginative play, fostering muscle strength, balance, </p><div class="see_more_block">${svg.arrowMoreIcon}<div>See more</div></div>`
+        txt: `<p class="blur_txt">Elevate your child's play experience with our 4in1 Montessori Climbing Set, one of Goodevas' flagship offerings. Comprising the core elements of the climbing arch and the triangle ladder, this set is accentuated by the multifunctional climbing net and slide/ramp. Together, they open doors to imaginative play, fostering muscle strength, balance, coordination, refined motor skills, and boosted self-confidence. Ingeniously designed to interconnect, this set enables children to craft new play landscapes that evolve with their growth and creativity.</p><div class="see_more_block">${svg.arrowMoreIcon}<div>See more</div></div>`
       },
       {
         title: `Safe Materials`,
-        txt: `<p>Safe Materials</p>`
+        txt: `<p>Every piece of this set stems from eco-friendly Latvian birch plywood and linden soft hardwood, emphasizing durability and elegance. Our meticulous sanding and polishing processes result in a splinter-free finish, prioritizing your child's safety. By integrating our signature blend of oils and waxes, we ensure the set's compatibility for indoor and controlled outdoor adventures, although it's advisable to keep it away from high humidity or extreme temperatures.</p>`
       },
       {
-        title: `Size and Dimensions `,
-        txt: `<p>Size and Dimensions </p>`
+        title: `Size and Dimensions`,
+        txt: `
+        <ul>
+          <li>
+            <strong>Complete Set:</strong>
+            <ul>
+              <li><span >Dimensions: 10 ft (302 cm)</span></li>
+              <li><span >Weight: 46.3 lb (21.9 kg)</span></li>
+            </ul>
+          </li>
+          <li>
+            <strong>Triangle Ladder</strong>
+            <p>This double-sided ladder, when monitored by an adult, is a haven for little climbers, even those refining their coordination. With its expansive usable area, it can captivate multiple kids, making it an ideal piece for active children craving movement.</p>
+          </li>
+          <li>
+            <strong>Climbing Arch</strong>
+            <p>A versatile playpiece, the arch serves as a support for toddlers learning to stand. As your child grows, it becomes an advanced climbing tool or, when inverted, a unique balance board.</p>
+          </li>
+          <li>
+            <strong>Climbing Net</strong>
+            <p>Crafted from natural wood and the soft, non-toxic multifilament polypropylene rope, this net offers both durability and safety. It's engineered to withstand pressure, ensuring kids can climb and step with confidence.</p>
+          </li>
+          <li>
+            <strong>Slide &amp; Climbing Ramp</strong>
+            <p>A double-duty design showcases a smooth slide on one side and a climbing ramp with 4 planks on the other. This slide also doubles as a bridge, integrating seamlessly with other climbing structures to diversify play.</p>
+          </li>
+        </ul>
+        <p>Unveil a world of potential, imagination, and growth with the 4in1 Montessori Climbing Set. A lasting testament to your child's ever-evolving development!</p>`
       },
       {
-        title: `Easy to assemble`,
+        title: `Easy to Assemble`,
         txt: `<p>Easy to assemble</p>`
       }
     ],
     mainBenefits: {
       safeCertified: {
         icon: `${svg.certificateIcon}`,
-        title: 'Safe and certified product (CPC and CE)',
+        title: 'Safe and Certified Product (CPC and CE)',
         txt: 'Our products are proudly CPC and CE certified, meeting stringent standards for consumer safety and compliance'
       },
       warranty: {
         icon: `${svg.warrantyIcon}`,
-        title: '2-year <br/> warranty',
+        title: '2-Year <br/> Warranty',
         txt: 'Our warranty covers any defects in workmanship or materials under regular, indoor us'
       },
       freeShipping: {
         icon: `${svg.shippingIcon}`,
-        title: 'Enjoy Free Shipping worldwide',
-        txt: 'Free delivery within 2 to 4 days in the US and CA. All taxes are included in the price for the USA, Canada, the UK, and the EU.'
+        title: 'Enjoy Free Shipping Worldwide',
+        txt: 'We insure all the packages we fulfill, so you don’t have to worry about anything happening to your package.'
       }
     },
     comparisonTable: {
@@ -310,19 +369,14 @@ export const translations = {
           competitorsDescr: 'Fragile poplar plywood using formaldehyde-based glue'
         },
         {
-          benefitName: 'Coating',
-          goodevasDescr: 'Covered by natural oil',
-          competitorsDescr: 'Coated with varnish or paint'
-        },
-        {
-          benefitName: 'Surface',
-          goodevasDescr: 'Smooth. Each part is hand-sanded',
-          competitorsDescr: 'Rough. Machine-sanded'
+          benefitName: 'Smooth surface',
+          goodevasDescr: 'Each part is hand-sanded',
+          competitorsDescr: 'Machine-sanded'
         },
         {
           benefitName: 'Functionality',
-          goodevasDescr: 'High. A variety of sets + many add-ons',
-          competitorsDescr: 'Low. Only classic sets (no add-ons or sets)'
+          goodevasDescr: 'A variety of sets + many add-ons',
+          competitorsDescr: 'Only classic sets (no add-ons or nets)'
         },
         {
           benefitName: 'Trust',
@@ -330,33 +384,32 @@ export const translations = {
           competitorsDescr: 'New companies'
         },
         {
-          benefitName: 'Additional expenses',
-          goodevasDescr: 'Shipping & taxes included in the UK, US, CA, and the EU',
-          competitorsDescr: 'Paid shipping, taxes unknown'
-        },
-        {
-          benefitName: 'Eco initiative',
-          goodevasDescr: 'We plant 5 trees for every purchase',
-          competitorsDescr: 'Do not plant <br/> trees'
+          benefitName: 'Natural coating',
+          goodevasDescr: 'Covered by natural oil',
+          competitorsDescr: 'Coated with varnish or paint'
         }
       ]
     },
     fAQTxt: [
       {
-        title: `What is the weight limit for the 4-in-1 set?`,
-        txt: `<p>The maximum weight per item of the 4-in-1 set is not more than 50-60 kg, approximately the weight of two children. However, all products are tested weighing 80-100 kg to check their endurance.</p>`
+        title: `Why is this product priced higher than similar alternatives?`,
+        txt: `<p>We use high-quality, eco-friendly materials and a thoughtfully designed structure focused on children’s safety and development. Only birch plywood is used in our products, which is 30-40% stronger than poplar plywood. Our production follows European standards, which contributes to the overall cost.</p>`
       },
       {
-        title: `Can the playset be used outdoors?`,
-        txt: `<p>Can the playset be used outdoors?</p>`
+        title: `Can I see the product in person before buying?`,
+        txt: `<p>Currently, this isn't possible, but you can explore our video reviews, customer photos, and detailed product specifications. We also share customer feedback to help you get a clearer understanding of the product.</p>`
       },
       {
-        title: `Is the slide two-sided?`,
-        txt: `<p>Is the slide two-sided?</p>`
+        title: `What if my child doesn’t end up using the product?`,
+        txt: `<p>Our products are designed to capture children’s interest with functionality and a development-oriented design. If the product doesn’t meet your needs, we offer a convenient return policy—just contact us to arrange a return.</p>`
       },
       {
-        title: `How should the product be cleaned?`,
-        txt: `<p>How should the product be cleaned?</p>`
+        title: `Can I trust the quality and safety of the product?`,
+        txt: `<p>Yes, our products are certified to meet international safety standards, including CPC and CE certifications. We pay close attention to using safe materials and conducting rigorous quality control.</p>`
+      },
+      {
+        title: `What if I’m unfamiliar with your company?`,
+        txt: `<p>We understand that purchasing from a new brand may raise questions. Our company has been in business since 2020, with over 50,000 positive reviews on our website, Amazon, and Etsy, which reflect the trustworthiness of our brand and products.</p>`
       }
     ],
     productImageGalleryImgs: [
@@ -369,9 +422,13 @@ export const translations = {
     ]
   },
   '/en-gb/products/3in1-wooden-swedish-wall-climbing-ladder-for-children-swing-set-slide-board': {
-    boughtSoFarTxt: '3K+',
+    boughtSoFarTxt: '12590',
+    deliveryDays: 4,
+    guaranteeDate: 30,
+    deliveryToPlace: 'United Kingdom',
     newProductSalesPointsTxt: [
       'Eco-plywood with natural wood glue',
+      'Taxes and duties are included for the UK',
       'Safe and certified product (CPC and CE)',
       'Free returns 30 days'
     ],
@@ -382,39 +439,82 @@ export const translations = {
       rating: 5,
       img: `${git}goodevas_img.webp`
     },
+    tolstoyStoriesNewTitle: `6in1 Wooden Swedish Wall`,
     productDetailsTxt: [
       {
-        title: `4in1 Montessori Climbing Set`,
-        txt: `<p class="blur_txt">Elevate your child's play experience with our 4in1 Montessori Climbing Set, one of Goodevas' flagship offerings. Comprising the core elements of the climbing arch and the triangle ladder, this set is accentuated by the multifunctional climbing net and slide/ramp. Together, they open doors to imaginative play, fostering muscle strength, balance, </p><div class="see_more_block">${svg.arrowMoreIcon}<div>See more</div></div>`
+        title: `6in1 Wooden Swedish Wall`,
+        txt: `<p class="blur_txt">Elevate your child's indoor play experience with the Swedish Wall + Slide & 3-in-1 Gym Set. A confluence of design and functionality, this set becomes an essential tool for nurturing balance, coordination, motor skills, bravery, and sheer enjoyment. Tailored for children from 1 to 6-7 years old, it is an impeccable addition for every family and makes a memorable gift.</p><div class="see_more_block">${svg.arrowMoreIcon}<div>See more</div></div>`
+      },
+      {
+        title: `Included Components`,
+        txt: `<ul>
+                <li>
+                  <p>Triangle Ladder: Modify this Montessori-driven ladder's height to fit children of varying ages and available space. With 5 distinct locking positions, it offers flexibility in setup.</p>
+                </li>
+                <li>
+                  <p>Slide &amp; Climbing Ramp: Dual-purpose in design, one side provides a sleek slide experience, while the other is a climbing challenge fitted with 4 wooden planks. This piece can be positioned as a bridge or linked to the Triangle Ladder, augmenting the play environment.</p>
+                </li>
+                <li>
+                  <p>3-in-1 Gym Set:</p>
+                  <ul>
+                    <li>
+                      <p>Disk Rope Swing: This multipurpose swing amalgamates natural spruce wood and non-toxic multifilament polypropylene rope, catering to children aged 3-12 years old.</p>
+                    </li>
+                    <li>
+                      <p>Gymnastics Rings: Aimed to boost upper body fortitude and coordination, these wooden rings are an asset for kids of all age groups.</p>
+                    </li>
+                    <li>
+                      <p>Climbing Rope Ladder: Ignite adventurous spirits with this traditional rope ladder, integrated with "through and around" knots to ensure stability and ease of installation.</p>
+                    </li>
+                  </ul>
+                </li>
+              </ul>`
       },
       {
         title: `Safe Materials`,
-        txt: `<p>Safe Materials</p>`
+        txt: `<p>Every component speaks of quality. The base is sculpted from eco-friendly birch plywood and dowels from linden soft hardwood. Every wooden element undergoes rigorous sanding and polishing for a splinter-free touch. Treated with a distinctive mix of oils and waxes, this set promises safety indoors and in controlled outdoor settings. Though, it's best to avoid areas of high humidity and extreme temperatures.</p>`
       },
       {
-        title: `Size and Dimensions `,
-        txt: `<p>Size and Dimensions </p>`
+        title: `Size and Dimensions`,
+        txt: `<ul>
+                <li>
+                  <p>Triangle Ladder: <meta charset="utf-8">69.6" x 21.8" (177 x 55.5 cm); Weight: 20 lb (9 kg)</p>
+                </li>
+                <li>
+                  <p>Slide &amp; Climbing Ramp: Slide size: 41" x 14.4" (104 x 36.5 cm); Weight: 10 lb (4.6 kg)</p>
+                </li>
+                <li>
+                  <p>Disk Rope Swing: Rope length: 59” (150 cm); Weight: 2.25 lb (1kg)</p>
+                </li>
+                <li>
+                  <p>Gymnastics Rings: Ring diameter - 5.9” (15 cm); Rope length - 4” (120 cm); Weight: 2.25 lb (1kg)</p>
+                </li>
+                <li>
+                  <p>Climbing Rope Ladder: Ladder length: 6.2 ft (190 cm); Hanging height: 8 ft (35 x 244 cm); Weight: 4.40 lb (2 kg)</p>
+                </li>
+              </ul>
+              <p>Invigorate your child's world with the Swedish Wall + Slide &amp; 3-in-1 Gym Set, a perfect blend of fun and developmental benefits. Secure yours today and watch the adventures unfold!</p>`
       },
       {
-        title: `Easy to assemble`,
+        title: `Easy to Assemble`,
         txt: `<p>Easy to assemble</p>`
       }
     ],
     mainBenefits: {
       safeCertified: {
         icon: `${svg.certificateIcon}`,
-        title: 'Safe and certified product (CPC and CE)',
+        title: 'Safe and Certified Product (CPC and CE)',
         txt: 'Our products are proudly CPC and CE certified, meeting stringent standards for consumer safety and compliance'
       },
       warranty: {
         icon: `${svg.warrantyIcon}`,
-        title: '2-year <br/> warranty',
+        title: '2-Year <br/> Warranty',
         txt: 'Our warranty covers any defects in workmanship or materials under regular, indoor us'
       },
       freeShipping: {
         icon: `${svg.shippingIcon}`,
-        title: 'Enjoy Free Shipping worldwide',
-        txt: 'Free delivery within 2 to 4 days in the US and CA. All taxes are included in the price for the USA, Canada, the UK, and the EU.'
+        title: 'Enjoy Free Shipping Worldwide',
+        txt: 'We insure all the packages we fulfill, so you don’t have to worry about anything happening to your package.'
       }
     },
     comparisonTable: {
@@ -430,19 +530,9 @@ export const translations = {
           competitorsDescr: 'Fragile poplar plywood using formaldehyde-based glue'
         },
         {
-          benefitName: 'Coating',
-          goodevasDescr: 'Covered by natural oil',
-          competitorsDescr: 'Coated with varnish or paint'
-        },
-        {
-          benefitName: 'Surface',
-          goodevasDescr: 'Smooth. Each part is hand-sanded',
-          competitorsDescr: 'Rough. Machine-sanded'
-        },
-        {
-          benefitName: 'Functionality',
-          goodevasDescr: 'High. A variety of sets + many add-ons',
-          competitorsDescr: 'Low. Only classic sets (no add-ons or sets)'
+          benefitName: 'Smooth surface',
+          goodevasDescr: 'Each part is hand-sanded',
+          competitorsDescr: 'Machine-sanded'
         },
         {
           benefitName: 'Trust',
@@ -450,33 +540,37 @@ export const translations = {
           competitorsDescr: 'New companies'
         },
         {
-          benefitName: 'Additional expenses',
-          goodevasDescr: 'Shipping & taxes included in the UK, US, CA, and the EU',
-          competitorsDescr: 'Paid shipping, taxes unknown'
+          benefitName: 'Natural coating',
+          goodevasDescr: 'Covered by natural oil',
+          competitorsDescr: 'Coated with varnish or paint'
         },
         {
-          benefitName: 'Eco initiative',
-          goodevasDescr: 'We plant 5 trees for every purchase',
-          competitorsDescr: 'Do not plant <br/> trees'
+          benefitName: 'Restoring ecology',
+          goodevasDescr: '5 trees for every purchase',
+          competitorsDescr: 'Do not plant trees'
         }
       ]
     },
     fAQTxt: [
       {
-        title: `What is the weight limit for the 4-in-1 set?`,
-        txt: `<p>The maximum weight per item of the 4-in-1 set is not more than 50-60 kg, approximately the weight of two children. However, all products are tested weighing 80-100 kg to check their endurance.</p>`
+        title: `Why is this product priced higher than similar alternatives?`,
+        txt: `<p>We use high-quality, eco-friendly materials and a thoughtfully designed structure focused on children’s safety and development. Only birch plywood is used in our products, which is 30-40% stronger than poplar plywood. Our production follows European standards, which contributes to the overall cost.</p>`
       },
       {
-        title: `Can the playset be used outdoors?`,
-        txt: `<p>Can the playset be used outdoors?</p>`
+        title: `Can I see the product in person before buying?`,
+        txt: `<p>Currently, this isn't possible, but you can explore our video reviews, customer photos, and detailed product specifications. We also share customer feedback to help you get a clearer understanding of the product.</p>`
       },
       {
-        title: `Is the slide two-sided?`,
-        txt: `<p>Is the slide two-sided?</p>`
+        title: `What if my child doesn’t end up using the product?`,
+        txt: `<p>Our products are designed to capture children’s interest with functionality and a development-oriented design. If the product doesn’t meet your needs, we offer a convenient return policy—just contact us to arrange a return.</p>`
       },
       {
-        title: `How should the product be cleaned?`,
-        txt: `<p>How should the product be cleaned?</p>`
+        title: `Can I trust the quality and safety of the product?`,
+        txt: `<p>Yes, our products are certified to meet international safety standards, including CPC and CE certifications. We pay close attention to using safe materials and conducting rigorous quality control.</p>`
+      },
+      {
+        title: `What if I’m unfamiliar with your company?`,
+        txt: `<p>We understand that purchasing from a new brand may raise questions. Our company has been in business since 2020, with over 50,000 positive reviews on our website, Amazon, and Etsy, which reflect the trustworthiness of our brand and products.</p>`
       }
     ],
     productImageGalleryImgs: [
@@ -489,11 +583,15 @@ export const translations = {
     ]
   },
   '/en-gb/products/4in1-montessori-climbing-set-triangle-ladder-climbing-arch-slide-board-cushion-beige': {
-    boughtSoFarTxt: '3K+',
+    boughtSoFarTxt: '4740',
+    deliveryDays: 4,
+    guaranteeDate: 30,
+    deliveryToPlace: 'United Kingdom',
     newProductSalesPointsTxt: [
       'Eco-plywood with natural wood glue',
+      'Taxes and duties are included for the UK',
       'Safe and certified product (CPC and CE)',
-      'Free returns 30 days'
+      'Free returns within 30 days'
     ],
     yourImpactTxt: 'Your Impact: 5 trees planted with this order',
     oneReviewBlock: {
@@ -502,39 +600,73 @@ export const translations = {
       rating: 5,
       img: `${git}goodevas_img.webp`
     },
+    tolstoyStoriesNewTitle: `4in1 Montessori Climbing Set`,
     productDetailsTxt: [
       {
         title: `4in1 Montessori Climbing Set`,
-        txt: `<p class="blur_txt">Elevate your child's play experience with our 4in1 Montessori Climbing Set, one of Goodevas' flagship offerings. Comprising the core elements of the climbing arch and the triangle ladder, this set is accentuated by the multifunctional climbing net and slide/ramp. Together, they open doors to imaginative play, fostering muscle strength, balance, </p><div class="see_more_block">${svg.arrowMoreIcon}<div>See more</div></div>`
+        txt: `<div class="blur_txt">
+        <p>Demonstrating Goodevas' dedication to excellence and innovation, the 4in1 Montessori climbing set seamlessly combines learning with fun. Grounded in the principles of the Montessori method, this set actively promotes a child's cognitive, emotional, and physical growth. It improves muscle strength, balance, hand-eye coordination, and nurtures motor skills while instilling confidence. Tailored for children aged 1 to 6-7 years old, each element of this set offers versatility:</p>
+        <ul>
+          <li><p>Triangle Ladder: Serving as the core structure, it functions as a secure climbing apparatus for young adventurers.</p></li>
+          <li><p>Climbing Arch: Besides connecting to the triangle ladder, its versatile design can be flipped to serve as a rocker, with the addition of a cushion creating a cozy nook for your little one.</p></li>
+          <li><p>Slide/Ramp: With a dual-purpose, it connects the arch and triangle ladder, facilitating both ascent and descent activities.</p></li>
+          <li><p>Arch Pillow:  This soft cushion for the Climbing Arch provides a comfortable surface for children to lie on while enjoying rocking activities.</p></li>
+        </ul>
+        </div>
+        <div class="see_more_block">${svg.arrowMoreIcon}<div>See more</div></div>`
       },
       {
         title: `Safe Materials`,
-        txt: `<p>Safe Materials</p>`
+        txt: `<p>Prioritizing safety and durability, each piece is crafted from eco-friendly Latvian birch plywood, while the dowels boast linden soft hardwood. Our meticulous attention ensures every wooden surface is sanded and polished for a splinter-free finish. Treated with a unique blend of oils and waxes, this set is apt for both indoor adventures and controlled outdoor play. We, however, advise caution in regions with high humidity or extreme temperatures.</p>`
       },
       {
         title: `Size and Dimensions `,
-        txt: `<p>Size and Dimensions </p>`
+        txt: `<ul>
+                <li><p>Complete Set: 6.89 ft (210 cm)</p></li>
+              </ul>
+              <p>Weight:</p>
+              <ul>
+                <li><p>Complete Set: 42 lb (15.89 kg)</p></li>
+              </ul>
+              `
       },
       {
-        title: `Easy to assemble`,
+        title: `Detailed Components`,
+        txt: `<ul>
+                <li>
+                  <p>A double-sided marvel for independent, supervised climbing, serving as an introductory fitness tool and an engaging toy for simultaneous play by multiple children.</p>
+                </li>
+                <li>
+                  <p>Slide/Ramp: Featuring a dual design for both smooth descents and climbing challenges, with the option to position as a bridge, connecting other climbing structures seamlessly.</p>
+                </li>
+                <li>
+                  <p>Arch: Tailored for various age groups, aiding toddlers in their initial steps and offering advanced climbs for older explorers. Flipping it transforms it into a unique balance board or rocker, providing diverse play options.</p>
+                </li>
+                <li>
+                  <p>Arch Pillow: Soft, lightweight layers create a comfortable surface for lying and rocking, ensuring every position is enjoyable.</p>
+                </li>
+              </ul>`
+      },
+      {
+        title: `Easy to Assemble`,
         txt: `<p>Easy to assemble</p>`
       }
     ],
     mainBenefits: {
       safeCertified: {
         icon: `${svg.certificateIcon}`,
-        title: 'Safe and certified product (CPC and CE)',
+        title: 'Safe and Certified Product (CPC and CE)',
         txt: 'Our products are proudly CPC and CE certified, meeting stringent standards for consumer safety and compliance'
       },
       warranty: {
         icon: `${svg.warrantyIcon}`,
-        title: '2-year <br/> warranty',
+        title: '2-Year <br/> Warranty',
         txt: 'Our warranty covers any defects in workmanship or materials under regular, indoor us'
       },
       freeShipping: {
         icon: `${svg.shippingIcon}`,
-        title: 'Enjoy Free Shipping worldwide',
-        txt: 'Free delivery within 2 to 4 days in the US and CA. All taxes are included in the price for the USA, Canada, the UK, and the EU.'
+        title: 'Enjoy Free Shipping Worldwide',
+        txt: 'We insure all the packages we fulfill, so you don’t have to worry about anything happening to your package.'
       }
     },
     comparisonTable: {
@@ -550,19 +682,14 @@ export const translations = {
           competitorsDescr: 'Fragile poplar plywood using formaldehyde-based glue'
         },
         {
-          benefitName: 'Coating',
-          goodevasDescr: 'Covered by natural oil',
-          competitorsDescr: 'Coated with varnish or paint'
-        },
-        {
-          benefitName: 'Surface',
-          goodevasDescr: 'Smooth. Each part is hand-sanded',
-          competitorsDescr: 'Rough. Machine-sanded'
+          benefitName: 'Smooth surface',
+          goodevasDescr: 'Each part is hand-sanded',
+          competitorsDescr: 'Machine-sanded'
         },
         {
           benefitName: 'Functionality',
-          goodevasDescr: 'High. A variety of sets + many add-ons',
-          competitorsDescr: 'Low. Only classic sets (no add-ons or sets)'
+          goodevasDescr: 'A variety of sets + many add-ons',
+          competitorsDescr: 'Only classic sets (no add-ons or nets)'
         },
         {
           benefitName: 'Trust',
@@ -570,33 +697,32 @@ export const translations = {
           competitorsDescr: 'New companies'
         },
         {
-          benefitName: 'Additional expenses',
-          goodevasDescr: 'Shipping & taxes included in the UK, US, CA, and the EU',
-          competitorsDescr: 'Paid shipping, taxes unknown'
-        },
-        {
-          benefitName: 'Eco initiative',
-          goodevasDescr: 'We plant 5 trees for every purchase',
-          competitorsDescr: 'Do not plant <br/> trees'
+          benefitName: 'Natural coating',
+          goodevasDescr: 'Covered by natural oil',
+          competitorsDescr: 'Coated with varnish or paint'
         }
       ]
     },
     fAQTxt: [
       {
-        title: `What is the weight limit for the 4-in-1 set?`,
-        txt: `<p>The maximum weight per item of the 4-in-1 set is not more than 50-60 kg, approximately the weight of two children. However, all products are tested weighing 80-100 kg to check their endurance.</p>`
+        title: `Why is this product priced higher than similar alternatives?`,
+        txt: `<p>We use high-quality, eco-friendly materials and a thoughtfully designed structure focused on children’s safety and development. Only birch plywood is used in our products, which is 30-40% stronger than poplar plywood. Our production follows European standards, which contributes to the overall cost.</p>`
       },
       {
-        title: `Can the playset be used outdoors?`,
-        txt: `<p>Can the playset be used outdoors?</p>`
+        title: `Can I see the product in person before buying?`,
+        txt: `<p>Currently, this isn't possible, but you can explore our video reviews, customer photos, and detailed product specifications. We also share customer feedback to help you get a clearer understanding of the product.</p>`
       },
       {
-        title: `Is the slide two-sided?`,
-        txt: `<p>Is the slide two-sided?</p>`
+        title: `What if my child doesn’t end up using the product?`,
+        txt: `<p>Our products are designed to capture children’s interest with functionality and a development-oriented design. If the product doesn’t meet your needs, we offer a convenient return policy—just contact us to arrange a return.</p>`
       },
       {
-        title: `How should the product be cleaned?`,
-        txt: `<p>How should the product be cleaned?</p>`
+        title: `Can I trust the quality and safety of the product?`,
+        txt: `<p>Yes, our products are certified to meet international safety standards, including CPC and CE certifications. We pay close attention to using safe materials and conducting rigorous quality control.</p>`
+      },
+      {
+        title: `What if I’m unfamiliar with your company?`,
+        txt: `<p>We understand that purchasing from a new brand may raise questions. Our company has been in business since 2020, with over 50,000 positive reviews on our website, Amazon, and Etsy, which reflect the trustworthiness of our brand and products.</p>`
       }
     ],
     productImageGalleryImgs: [
@@ -610,11 +736,15 @@ export const translations = {
   },
   '/en-ca/products/6in1-montessori-climbing-frame-set-triangle-ladder-arch-rocker-slide-ramp-net-cushion-art-addition':
     {
-      boughtSoFarTxt: '3K+',
+      boughtSoFarTxt: '4200',
+      deliveryDays: 5,
+      guaranteeDate: 30,
+      deliveryToPlace: 'Canada',
       newProductSalesPointsTxt: [
         'Eco-plywood with natural wood glue',
+        'GST & other duties are included for Canada',
         'Safe and certified product (CPC and CE)',
-        'Free returns 30 days'
+        'Free returns within 30 days'
       ],
       yourImpactTxt: 'Your Impact: 5 trees planted with this order',
       oneReviewBlock: {
@@ -623,39 +753,114 @@ export const translations = {
         rating: 5,
         img: `${git}goodevas_img.webp`
       },
+      tolstoyStoriesNewTitle: `6in1 Montessori Climbing Frame Set`,
       productDetailsTxt: [
         {
-          title: `4in1 Montessori Climbing Set`,
-          txt: `<p class="blur_txt">Elevate your child's play experience with our 4in1 Montessori Climbing Set, one of Goodevas' flagship offerings. Comprising the core elements of the climbing arch and the triangle ladder, this set is accentuated by the multifunctional climbing net and slide/ramp. Together, they open doors to imaginative play, fostering muscle strength, balance, </p><div class="see_more_block">${svg.arrowMoreIcon}<div>See more</div></div>`
+          title: `6in1 Montessori Climbing Frame Set`,
+          txt: `<p class="blur_txt">Introducing the 6in1 Climbing Set - a fusion of purposeful design and the Montessori method that emphasizes physical activity for holistic child development. This versatile set fosters courage, hand-eye coordination, muscle strength, balance control, and refined motor skills. Curated for children from 1 to 6-7 years old, this multifunctional play equipment provides a safe and imaginative space for your young one to explore and grow.</p><div class="see_more_block">${svg.arrowMoreIcon}<div>See more</div></div>`
         },
         {
           title: `Safe Materials`,
-          txt: `<p>Safe Materials</p>`
+          txt: `<p>Constructed with a foundation of eco-friendly Latvian birch plywood and dowels made of linden soft hardwood, our commitment to excellence shines in every piece. Each wooden surface is meticulously sanded and polished, ensuring a smooth, splinter-free finish for optimal child safety. Treated with our special blend of oils and waxes, this climbing set is adaptable for both indoor and controlled outdoor environments. Nevertheless, it's recommended to steer clear of regions with elevated humidity or extreme weather conditions.</p>`
         },
         {
-          title: `Size and Dimensions `,
-          txt: `<p>Size and Dimensions </p>`
+          title: `Size and Dimensions`,
+          txt: `<ul>
+                  <li>
+                    <p class="under_line_accent">Triangle Ladder:</p>
+                    <p>the triangle ladder acts as both an introductory training tool and an enjoyable toy. With its spacious usable surface, it is well-suited for energetic children and can easily accommodate two youngsters playing simultaneously.</p>
+                    <ul>
+                      <li>
+                        <p>Size: 8"×21.8" (88.5×55.6 cm)</p>
+                      </li>
+                      <li>
+                        <p>Weight: 19,84 lb (9kg)</p>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <p class="under_line_accent">Slide & Climbing Ramp:</p>
+                    <p>Dual-functional in nature, one side offers a slick slide while the other reveals a climbing ramp with 4 planks, enriching the child's experience with options to climb and slide.</p>
+                    <ul>
+                      <li>
+                        <p>Size: 40.9" x 14.5” (104 x 37 cm)</p> 
+                      </li>
+                      <li>
+                        <p>Weight: 10 lb (4.6 kg)</p>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <p class="under_line_accent">Climbing Net:</p>
+                    <p>Combining the strength of natural wood with the soft touch of multifilament polypropylene rope, this net ensures durability without compromising on safety.</p>
+                    <ul>
+                      <li>
+                        <p>Size: 36.8" x 16.5” (93.6 x 42 cm)</p>
+                      </li>
+                      <li>  
+                        <p>Weight: 4.4 lb (2.6 kg)</p>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <p class="under_line_accent">Climbing Arch:</p>
+                    <p>Crafted for multipurpose use, it aids toddlers in their early standing phases. As they grow, it doubles up as an advanced climbing apparatus or can be inverted to form a unique balance board.</p>
+                    <ul>
+                      <li>
+                        <p>Size: 36.8" x 20.6" (93.5 x 52 cm)</p>
+                      </li>
+                      <li>
+                        <p>Weight: 14 lb (6.01 kg)</p>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <p class="under_line_accent">Cushion for Climbing Arch: </p>
+                    <p>Crafted for multipurpose use, it aids toddlers in their early standing phases. As they grow, it doubles up as an advanced climbing apparatus or can be inverted to form a unique balance board.</p>
+                    <ul>
+                      <li>
+                        <p>Size of the pillow: 45.28" x 19,7" (115 x 50 cm)</p>
+                      </li>
+                      <li>
+                        <p>Weight: 2.2 lb (1 kg)</p>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <p class="under_line_accent">Art Addition:</p>
+                    <p>Seamlessly blending the utility of an adjustable table with an easel, this art station is a multi-functional haven for little artists. Whether drawing, writing, watching cartoons, or playing, this attachment adapts to your child's needs. </p>
+                    <ul>
+                      <li>
+                        <p>Size: 18.5" x 21" (47 x 54 cm)</p>
+                      </li>
+                      <li>
+                        <p>Weight: 10.5 lb (4.8 kg)</p>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+                <p>Unlock a world of creativity, growth, and joy with the 5in1 Climbing Set. A timeless investment in your child's holistic development!</p>`
         },
         {
-          title: `Easy to assemble`,
+          title: `Easy to Assemble`,
           txt: `<p>Easy to assemble</p>`
         }
       ],
       mainBenefits: {
         safeCertified: {
           icon: `${svg.certificateIcon}`,
-          title: 'Safe and certified product (CPC and CE)',
+          title: 'Safe and Certified Product (CPC and CE)',
           txt: 'Our products are proudly CPC and CE certified, meeting stringent standards for consumer safety and compliance'
         },
         warranty: {
           icon: `${svg.warrantyIcon}`,
-          title: '2-year <br/> warranty',
+          title: '2-Year <br/> Warranty',
           txt: 'Our warranty covers any defects in workmanship or materials under regular, indoor us'
         },
         freeShipping: {
           icon: `${svg.shippingIcon}`,
-          title: 'Enjoy Free Shipping worldwide',
-          txt: 'Free delivery within 2 to 4 days in the US and CA. All taxes are included in the price for the USA, Canada, the UK, and the EU.'
+          title: 'Enjoy Free Shipping Worldwide',
+          txt: 'We insure all the packages we fulfill, so you don’t have to worry about anything happening to your package.'
         }
       },
       comparisonTable: {
@@ -671,19 +876,14 @@ export const translations = {
             competitorsDescr: 'Fragile poplar plywood using formaldehyde-based glue'
           },
           {
-            benefitName: 'Coating',
-            goodevasDescr: 'Covered by natural oil',
-            competitorsDescr: 'Coated with varnish or paint'
-          },
-          {
-            benefitName: 'Surface',
-            goodevasDescr: 'Smooth. Each part is hand-sanded',
-            competitorsDescr: 'Rough. Machine-sanded'
+            benefitName: 'Smooth surface',
+            goodevasDescr: 'Each part is hand-sanded',
+            competitorsDescr: 'Machine-sanded'
           },
           {
             benefitName: 'Functionality',
-            goodevasDescr: 'High. A variety of sets + many add-ons',
-            competitorsDescr: 'Low. Only classic sets (no add-ons or sets)'
+            goodevasDescr: 'A variety of sets + many add-ons',
+            competitorsDescr: 'Only classic sets (no add-ons or nets)'
           },
           {
             benefitName: 'Trust',
@@ -691,33 +891,32 @@ export const translations = {
             competitorsDescr: 'New companies'
           },
           {
-            benefitName: 'Additional expenses',
-            goodevasDescr: 'Shipping & taxes included in the UK, US, CA, and the EU',
-            competitorsDescr: 'Paid shipping, taxes unknown'
-          },
-          {
-            benefitName: 'Eco initiative',
-            goodevasDescr: 'We plant 5 trees for every purchase',
-            competitorsDescr: 'Do not plant <br/> trees'
+            benefitName: 'Natural coating',
+            goodevasDescr: 'Covered by natural oil',
+            competitorsDescr: 'Coated with varnish or paint'
           }
         ]
       },
       fAQTxt: [
         {
-          title: `What is the weight limit for the 4-in-1 set?`,
-          txt: `<p>The maximum weight per item of the 4-in-1 set is not more than 50-60 kg, approximately the weight of two children. However, all products are tested weighing 80-100 kg to check their endurance.</p>`
+          title: `Why is this product priced higher than similar alternatives?`,
+          txt: `<p>We use high-quality, eco-friendly materials and a thoughtfully designed structure focused on children’s safety and development. Only birch plywood is used in our products, which is 30-40% stronger than poplar plywood. Our production follows European standards, which contributes to the overall cost.</p>`
         },
         {
-          title: `Can the playset be used outdoors?`,
-          txt: `<p>Can the playset be used outdoors?</p>`
+          title: `Can I see the product in person before buying?`,
+          txt: `<p>Currently, this isn't possible, but you can explore our video reviews, customer photos, and detailed product specifications. We also share customer feedback to help you get a clearer understanding of the product.</p>`
         },
         {
-          title: `Is the slide two-sided?`,
-          txt: `<p>Is the slide two-sided?</p>`
+          title: `What if my child doesn’t end up using the product?`,
+          txt: `<p>Our products are designed to capture children’s interest with functionality and a development-oriented design. If the product doesn’t meet your needs, we offer a convenient return policy—just contact us to arrange a return.</p>`
         },
         {
-          title: `How should the product be cleaned?`,
-          txt: `<p>How should the product be cleaned?</p>`
+          title: `Can I trust the quality and safety of the product?`,
+          txt: `<p>Yes, our products are certified to meet international safety standards, including CPC and CE certifications. We pay close attention to using safe materials and conducting rigorous quality control.</p>`
+        },
+        {
+          title: `What if I’m unfamiliar with your company?`,
+          txt: `<p>We understand that purchasing from a new brand may raise questions. Our company has been in business since 2020, with over 50,000 positive reviews on our website, Amazon, and Etsy, which reflect the trustworthiness of our brand and products.</p>`
         }
       ],
       productImageGalleryImgs: [
@@ -730,11 +929,15 @@ export const translations = {
       ]
     },
   '/en-ca/products/5in1-montessori-climbing-set-triangle-ladder-arch-rocker-slide-board-ramp-net-cushion-chocolate': {
-    boughtSoFarTxt: '3K+',
+    boughtSoFarTxt: '7245',
+    deliveryDays: 5,
+    guaranteeDate: 30,
+    deliveryToPlace: 'Canada',
     newProductSalesPointsTxt: [
       'Eco-plywood with natural wood glue',
+      'GST & other duties are included for Canada',
       'Safe and certified product (CPC and CE)',
-      'Free returns 30 days'
+      'Free returns within 30 days'
     ],
     yourImpactTxt: 'Your Impact: 5 trees planted with this order',
     oneReviewBlock: {
@@ -743,39 +946,75 @@ export const translations = {
       rating: 5,
       img: `${git}goodevas_img.webp`
     },
+    tolstoyStoriesNewTitle: `5in1 Montessori Climbing Set`,
     productDetailsTxt: [
       {
-        title: `4in1 Montessori Climbing Set`,
-        txt: `<p class="blur_txt">Elevate your child's play experience with our 4in1 Montessori Climbing Set, one of Goodevas' flagship offerings. Comprising the core elements of the climbing arch and the triangle ladder, this set is accentuated by the multifunctional climbing net and slide/ramp. Together, they open doors to imaginative play, fostering muscle strength, balance, </p><div class="see_more_block">${svg.arrowMoreIcon}<div>See more</div></div>`
+        title: `5in1 Montessori Climbing Set`,
+        txt: `<p class="blur_txt">Elevate your child's play experience with our 5in1 Montessori Climbing Set, one of Goodevas' flagship offerings. Comprising the core elements of the climbing arch and the triangle ladder, this set is accentuated by the multifunctional climbing net, slide/ramp  and сushion. Together, they open doors to imaginative play, fostering muscle strength, balance, coordination, refined motor skills, and boosted self-confidence. Ingeniously designed to interconnect, this set enables children to craft new play landscapes that evolve with their growth and creativity. Together, they open doors to imaginative play, fostering muscle strength, balance, coordination, refined motor skills, and boosted self-confidence. Ingeniously designed to interconnect, this set enables children to craft new play landscapes that evolve with their growth and creativity.</p><div class="see_more_block">${svg.arrowMoreIcon}<div>See more</div></div>`
       },
       {
         title: `Safe Materials`,
-        txt: `<p>Safe Materials</p>`
+        txt: `<p>Every piece of this set stems from eco-friendly Latvian birch plywood and linden soft hardwood, emphasizing durability and elegance. Our meticulous sanding and polishing processes result in a splinter-free finish, prioritizing your child's safety. By integrating our signature blend of oils and waxes, we ensure the set's compatibility for indoor and controlled outdoor adventures, although it's advisable to keep it away from high humidity or extreme temperatures.</p>`
       },
       {
-        title: `Size and Dimensions `,
-        txt: `<p>Size and Dimensions </p>`
+        title: `Size and Dimensions`,
+        txt: `
+        <ul>
+          <li>
+            <strong>Complete Set</strong>
+            <ul>
+              <li>
+                <p>Dimensions: 10 ft (302 cm)</p>
+              </li>
+              <li>
+                <p>Weight: 46.3 lb (21.9 kg)</p>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Triangle Ladder</strong>
+            <p>This double-sided ladder, when monitored by an adult, is a haven for little climbers, even those refining their coordination. With its expansive usable area, it can captivate multiple kids, making it an ideal piece for active children craving movement.</p>
+          </li>
+          <li>
+            <strong>Climbing Arch</strong>
+            <p>A versatile play piece, the arch serves as a support for toddlers learning to stand. As your child grows, it becomes an advanced climbing tool or, when inverted, a unique balance board.</p>
+          </li>
+          <li>
+            <strong>Climbing Net</strong>
+            <p>Crafted from natural wood and the soft, non-toxic multifilament polypropylene rope, this net offers both durability and safety. It's engineered to withstand pressure, ensuring kids can climb and step with confidence.</p>
+          </li>
+          <li>
+            <strong>Slide & Climbing Ramp</strong>
+            <p>A double-duty design showcases a smooth slide on one side and a climbing ramp with 4 planks on the other. This slide also doubles as a bridge, integrating seamlessly with other climbing structures to diversify play.</p>
+          </li>
+          <li>
+            <strong>Cushion for Climbing Arch</strong>
+            <p>The soft and cloud-like cushion for the Climbing Arch provides the perfect surface for children to lie on while they enjoy their favorite hobby - rocking! The soft, light layers make for perfect lying and rocking where every position feels comfortable.</p>
+          </li>
+        </ul>
+        <p>Unveil a world of potential, imagination, and growth with the 5in1 Montessori Climbing Set with Cushion. A lasting testament to your child's ever-evolving development!</p>
+        `
       },
       {
-        title: `Easy to assemble`,
+        title: `Easy to Assemble`,
         txt: `<p>Easy to assemble</p>`
       }
     ],
     mainBenefits: {
       safeCertified: {
         icon: `${svg.certificateIcon}`,
-        title: 'Safe and certified product (CPC and CE)',
+        title: 'Safe and Certified Product (CPC and CE)',
         txt: 'Our products are proudly CPC and CE certified, meeting stringent standards for consumer safety and compliance'
       },
       warranty: {
         icon: `${svg.warrantyIcon}`,
-        title: '2-year <br/> warranty',
+        title: '2-Year <br/> Warranty',
         txt: 'Our warranty covers any defects in workmanship or materials under regular, indoor us'
       },
       freeShipping: {
         icon: `${svg.shippingIcon}`,
-        title: 'Enjoy Free Shipping worldwide',
-        txt: 'Free delivery within 2 to 4 days in the US and CA. All taxes are included in the price for the USA, Canada, the UK, and the EU.'
+        title: 'Enjoy Free Shipping Worldwide',
+        txt: 'We insure all the packages we fulfill, so you don’t have to worry about anything happening to your package.'
       }
     },
     comparisonTable: {
@@ -791,19 +1030,14 @@ export const translations = {
           competitorsDescr: 'Fragile poplar plywood using formaldehyde-based glue'
         },
         {
-          benefitName: 'Coating',
-          goodevasDescr: 'Covered by natural oil',
-          competitorsDescr: 'Coated with varnish or paint'
-        },
-        {
-          benefitName: 'Surface',
-          goodevasDescr: 'Smooth. Each part is hand-sanded',
-          competitorsDescr: 'Rough. Machine-sanded'
+          benefitName: 'Smooth surface',
+          goodevasDescr: 'Each part is hand-sanded',
+          competitorsDescr: 'Machine-sanded'
         },
         {
           benefitName: 'Functionality',
-          goodevasDescr: 'High. A variety of sets + many add-ons',
-          competitorsDescr: 'Low. Only classic sets (no add-ons or sets)'
+          goodevasDescr: 'A variety of sets + many add-ons',
+          competitorsDescr: 'Only classic sets (no add-ons or nets)'
         },
         {
           benefitName: 'Trust',
@@ -811,33 +1045,32 @@ export const translations = {
           competitorsDescr: 'New companies'
         },
         {
-          benefitName: 'Additional expenses',
-          goodevasDescr: 'Shipping & taxes included in the UK, US, CA, and the EU',
-          competitorsDescr: 'Paid shipping, taxes unknown'
-        },
-        {
-          benefitName: 'Eco initiative',
-          goodevasDescr: 'We plant 5 trees for every purchase',
-          competitorsDescr: 'Do not plant <br/> trees'
+          benefitName: 'Natural coating',
+          goodevasDescr: 'Covered by natural oil',
+          competitorsDescr: 'Coated with varnish or paint'
         }
       ]
     },
     fAQTxt: [
       {
-        title: `What is the weight limit for the 4-in-1 set?`,
-        txt: `<p>The maximum weight per item of the 4-in-1 set is not more than 50-60 kg, approximately the weight of two children. However, all products are tested weighing 80-100 kg to check their endurance.</p>`
+        title: `Why is this product priced higher than similar alternatives?`,
+        txt: `<p>We use high-quality, eco-friendly materials and a thoughtfully designed structure focused on children’s safety and development. Only birch plywood is used in our products, which is 30-40% stronger than poplar plywood. Our production follows European standards, which contributes to the overall cost.</p>`
       },
       {
-        title: `Can the playset be used outdoors?`,
-        txt: `<p>Can the playset be used outdoors?</p>`
+        title: `Can I see the product in person before buying?`,
+        txt: `<p>Currently, this isn't possible, but you can explore our video reviews, customer photos, and detailed product specifications. We also share customer feedback to help you get a clearer understanding of the product.</p>`
       },
       {
-        title: `Is the slide two-sided?`,
-        txt: `<p>Is the slide two-sided?</p>`
+        title: `What if my child doesn’t end up using the product?`,
+        txt: `<p>Our products are designed to capture children’s interest with functionality and a development-oriented design. If the product doesn’t meet your needs, we offer a convenient return policy—just contact us to arrange a return.</p>`
       },
       {
-        title: `How should the product be cleaned?`,
-        txt: `<p>How should the product be cleaned?</p>`
+        title: `Can I trust the quality and safety of the product?`,
+        txt: `<p>Yes, our products are certified to meet international safety standards, including CPC and CE certifications. We pay close attention to using safe materials and conducting rigorous quality control.</p>`
+      },
+      {
+        title: `What if I’m unfamiliar with your company?`,
+        txt: `<p>We understand that purchasing from a new brand may raise questions. Our company has been in business since 2020, with over 50,000 positive reviews on our website, Amazon, and Etsy, which reflect the trustworthiness of our brand and products.</p>`
       }
     ],
     productImageGalleryImgs: [
@@ -850,11 +1083,15 @@ export const translations = {
     ]
   },
   '/en-eu/products/5in1-montessori-climbing-set-triangle-ladder-arch-rocker-slide-board-ramp-net-cushion-chocolate': {
-    boughtSoFarTxt: '3K+',
+    boughtSoFarTxt: '7245',
+    deliveryDays: 4,
+    guaranteeDate: 30,
+    deliveryToPlace: 'Andorra',
     newProductSalesPointsTxt: [
       'Eco-plywood with natural wood glue',
+      'Taxes and duties are included for the US, CA, UK, and the EU',
       'Safe and certified product (CPC and CE)',
-      'Free returns 30 days'
+      'Free returns within 30 days'
     ],
     yourImpactTxt: 'Your Impact: 5 trees planted with this order',
     oneReviewBlock: {
@@ -863,39 +1100,75 @@ export const translations = {
       rating: 5,
       img: `${git}goodevas_img.webp`
     },
+    tolstoyStoriesNewTitle: `5in1 Montessori Climbing Set`,
     productDetailsTxt: [
       {
-        title: `4in1 Montessori Climbing Set`,
-        txt: `<p class="blur_txt">Elevate your child's play experience with our 4in1 Montessori Climbing Set, one of Goodevas' flagship offerings. Comprising the core elements of the climbing arch and the triangle ladder, this set is accentuated by the multifunctional climbing net and slide/ramp. Together, they open doors to imaginative play, fostering muscle strength, balance, </p><div class="see_more_block">${svg.arrowMoreIcon}<div>See more</div></div>`
+        title: `5in1 Montessori Climbing Set`,
+        txt: `<p class="blur_txt">Elevate your child's play experience with our 5in1 Montessori Climbing Set, one of Goodevas' flagship offerings. Comprising the core elements of the climbing arch and the triangle ladder, this set is accentuated by the multifunctional climbing net, slide/ramp  and сushion. Together, they open doors to imaginative play, fostering muscle strength, balance, coordination, refined motor skills, and boosted self-confidence. Ingeniously designed to interconnect, this set enables children to craft new play landscapes that evolve with their growth and creativity. Together, they open doors to imaginative play, fostering muscle strength, balance, coordination, refined motor skills, and boosted self-confidence. Ingeniously designed to interconnect, this set enables children to craft new play landscapes that evolve with their growth and creativity.</p><div class="see_more_block">${svg.arrowMoreIcon}<div>See more</div></div>`
       },
       {
         title: `Safe Materials`,
-        txt: `<p>Safe Materials</p>`
+        txt: `<p>Every piece of this set stems from eco-friendly Latvian birch plywood and linden soft hardwood, emphasizing durability and elegance. Our meticulous sanding and polishing processes result in a splinter-free finish, prioritizing your child's safety. By integrating our signature blend of oils and waxes, we ensure the set's compatibility for indoor and controlled outdoor adventures, although it's advisable to keep it away from high humidity or extreme temperatures.</p>`
       },
       {
-        title: `Size and Dimensions `,
-        txt: `<p>Size and Dimensions </p>`
+        title: `Size and Dimensions`,
+        txt: `
+        <ul>
+          <li>
+            <strong>Complete Set</strong>
+            <ul>
+              <li>
+                <p>Dimensions: 10 ft (302 cm)</p>
+              </li>
+              <li>
+                <p>Weight: 46.3 lb (21.9 kg)</p>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Triangle Ladder</strong>
+            <p>This double-sided ladder, when monitored by an adult, is a haven for little climbers, even those refining their coordination. With its expansive usable area, it can captivate multiple kids, making it an ideal piece for active children craving movement.</p>
+          </li>
+          <li>
+            <strong>Climbing Arch</strong>
+            <p>A versatile play piece, the arch serves as a support for toddlers learning to stand. As your child grows, it becomes an advanced climbing tool or, when inverted, a unique balance board.</p>
+          </li>
+          <li>
+            <strong>Climbing Net</strong>
+            <p>Crafted from natural wood and the soft, non-toxic multifilament polypropylene rope, this net offers both durability and safety. It's engineered to withstand pressure, ensuring kids can climb and step with confidence.</p>
+          </li>
+          <li>
+            <strong>Slide & Climbing Ramp</strong>
+            <p>A double-duty design showcases a smooth slide on one side and a climbing ramp with 4 planks on the other. This slide also doubles as a bridge, integrating seamlessly with other climbing structures to diversify play.</p>
+          </li>
+          <li>
+            <strong>Cushion for Climbing Arch</strong>
+            <p>The soft and cloud-like cushion for the Climbing Arch provides the perfect surface for children to lie on while they enjoy their favorite hobby - rocking! The soft, light layers make for perfect lying and rocking where every position feels comfortable.</p>
+          </li>
+        </ul>
+        <p>Unveil a world of potential, imagination, and growth with the 5in1 Montessori Climbing Set with Cushion. A lasting testament to your child's ever-evolving development!</p>
+        `
       },
       {
-        title: `Easy to assemble`,
+        title: `Easy to Assemble`,
         txt: `<p>Easy to assemble</p>`
       }
     ],
     mainBenefits: {
       safeCertified: {
         icon: `${svg.certificateIcon}`,
-        title: 'Safe and certified product (CPC and CE)',
+        title: 'Safe and Certified Product (CPC and CE)',
         txt: 'Our products are proudly CPC and CE certified, meeting stringent standards for consumer safety and compliance'
       },
       warranty: {
         icon: `${svg.warrantyIcon}`,
-        title: '2-year <br/> warranty',
-        txt: 'Our warranty covers any defects in workmanship or materials under regular, indoor us'
+        title: '2-Year <br/> Warranty',
+        txt: 'Our warranty covers any defects in workmanship or materials under regular indoor us'
       },
       freeShipping: {
         icon: `${svg.shippingIcon}`,
-        title: 'Enjoy Free Shipping worldwide',
-        txt: 'Free delivery within 2 to 4 days in the US and CA. All taxes are included in the price for the USA, Canada, the UK, and the EU.'
+        title: 'Enjoy Free Shipping Worldwide',
+        txt: 'We insure all the packages we fulfill, so you don’t have to worry about anything happening to your package.'
       }
     },
     comparisonTable: {
@@ -911,19 +1184,14 @@ export const translations = {
           competitorsDescr: 'Fragile poplar plywood using formaldehyde-based glue'
         },
         {
-          benefitName: 'Coating',
-          goodevasDescr: 'Covered by natural oil',
-          competitorsDescr: 'Coated with varnish or paint'
-        },
-        {
-          benefitName: 'Surface',
-          goodevasDescr: 'Smooth. Each part is hand-sanded',
-          competitorsDescr: 'Rough. Machine-sanded'
+          benefitName: 'Smooth surface',
+          goodevasDescr: 'Each part is hand-sanded',
+          competitorsDescr: 'Machine-sanded'
         },
         {
           benefitName: 'Functionality',
-          goodevasDescr: 'High. A variety of sets + many add-ons',
-          competitorsDescr: 'Low. Only classic sets (no add-ons or sets)'
+          goodevasDescr: ' A variety of sets + many add-ons',
+          competitorsDescr: 'Only classic sets (no add-ons or nets)'
         },
         {
           benefitName: 'Trust',
@@ -931,33 +1199,32 @@ export const translations = {
           competitorsDescr: 'New companies'
         },
         {
-          benefitName: 'Additional expenses',
-          goodevasDescr: 'Shipping & taxes included in the UK, US, CA, and the EU',
-          competitorsDescr: 'Paid shipping, taxes unknown'
-        },
-        {
-          benefitName: 'Eco initiative',
-          goodevasDescr: 'We plant 5 trees for every purchase',
-          competitorsDescr: 'Do not plant <br/> trees'
+          benefitName: 'Natural coating',
+          goodevasDescr: 'Covered by natural oil',
+          competitorsDescr: 'Coated with varnish or paint'
         }
       ]
     },
     fAQTxt: [
       {
-        title: `What is the weight limit for the 4-in-1 set?`,
-        txt: `<p>The maximum weight per item of the 4-in-1 set is not more than 50-60 kg, approximately the weight of two children. However, all products are tested weighing 80-100 kg to check their endurance.</p>`
+        title: `Why is this product priced higher than similar alternatives?`,
+        txt: `<p>We use high-quality, eco-friendly materials and a thoughtfully designed structure focused on children’s safety and development. Only birch plywood is used in our products, which is 30-40% stronger than poplar plywood. Our production follows European standards, which contributes to the overall cost.</p>`
       },
       {
-        title: `Can the playset be used outdoors?`,
-        txt: `<p>Can the playset be used outdoors?</p>`
+        title: `Can I see the product in person before buying?`,
+        txt: `<p>Currently, this isn't possible, but you can explore our video reviews, customer photos, and detailed product specifications. We also share customer feedback to help you get a clearer understanding of the product.</p>`
       },
       {
-        title: `Is the slide two-sided?`,
-        txt: `<p>Is the slide two-sided?</p>`
+        title: `What if my child doesn’t end up using the product?`,
+        txt: `<p>Our products are designed to capture children’s interest with functionality and a development-oriented design. If the product doesn’t meet your needs, we offer a convenient return policy—just contact us to arrange a return.</p>`
       },
       {
-        title: `How should the product be cleaned?`,
-        txt: `<p>How should the product be cleaned?</p>`
+        title: `Can I trust the quality and safety of the product?`,
+        txt: `<p>Yes, our products are certified to meet international safety standards, including CPC and CE certifications. We pay close attention to using safe materials and conducting rigorous quality control.</p>`
+      },
+      {
+        title: `What if I’m unfamiliar with your company?`,
+        txt: `<p>We understand that purchasing from a new brand may raise questions. Our company has been in business since 2020, with over 50,000 positive reviews on our website, Amazon, and Etsy, which reflect the trustworthiness of our brand and products.</p>`
       }
     ],
     productImageGalleryImgs: [
