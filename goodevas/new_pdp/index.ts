@@ -5,9 +5,9 @@ import {
   waitForElement,
   pushData,
   clarityInterval,
-  loadScriptsOrStyles,
   visibilityOfTime,
-  scrollToElement
+  scrollToElement,
+  scrollToHtmlElement
 } from '../../libraries'
 import {
   bestSellerLabelBlock,
@@ -23,8 +23,7 @@ import {
   productDetailsBlock,
   productImageGalleryBlock,
   stickyBlock,
-  tolstoyStoriesNewTitle,
-  yourImpactBlock
+  tolstoyStoriesNewTitle
 } from './blocks'
 import { svg, git, translations } from './data'
 // @ts-ignore
@@ -94,6 +93,8 @@ class NewPdp {
       this.changeColorOnPdp()
       this.syncLoadingState()
       this.resizeSlider()
+
+      this.observeRestockRocketButton()
     }
 
     this.visibleHandler()
@@ -388,6 +389,18 @@ class NewPdp {
           $(`${accordionLinkClass}`).not(this).removeClass('active').closest('li').removeClass('active')
 
           if (containerClass === '.product_details_block') {
+            setTimeout(() => {
+              const target = e.target as HTMLElement
+              const closestElement = target.closest('.product_details_accordion_block') as HTMLElement
+
+              if (closestElement) {
+                if (window.innerWidth < 768) {
+                  scrollToHtmlElement(closestElement, 90)
+                } else {
+                  scrollToHtmlElement(closestElement, 0)
+                }
+              }
+            }, 400)
             if (e.currentTarget.classList.contains('active')) {
               pushData(
                 'exp_new_pdp_dropdown_02',
@@ -434,11 +447,6 @@ class NewPdp {
       const restockButton = $el('.restock-rocket-button-container button') as HTMLElement
       let txtBtn = addToCartButton.textContent || ''
       let additonalClass = ''
-
-      if (txtBtn === 'Sold Out' && !restockButton) {
-        console.log(restockButton)
-        additonalClass = 'sold_out'
-      }
 
       if (restockButton) {
         additonalClass = 'notify_available'
@@ -493,7 +501,6 @@ class NewPdp {
     waitForElement('.sticky_block').then(i => {
       waitForElement('.product-single__meta block-variant-picker > .variant-button-wrap input').then(i => {
         const container = $el('.sticky_block') as HTMLElement
-
         const variantInputs = $$el('.product-single__meta block-variant-picker > .variant-button-wrap input')
 
         if (variantInputs.length > 0) {
@@ -508,9 +515,7 @@ class NewPdp {
 
             if (isActive) {
               selectedValue = value
-            }
-            if (isDisabled) {
-              isAnyDisabled = true
+              isAnyDisabled = isDisabled
             }
 
             dropdownItems.push(this.createDropdownItem(value, isActive, isDisabled))
@@ -619,7 +624,7 @@ class NewPdp {
 
   clickAddToCartStickyBtn() {
     waitForElement('.sticky_block').then(i => {
-      waitForElement('.sticky_block').then(i => {
+      waitForElement('.add_to_cart_btn').then(i => {
         const btnSticky = $el('.add_to_cart_btn') as HTMLElement
 
         btnSticky.addEventListener('click', () => {
@@ -682,6 +687,54 @@ class NewPdp {
     }
   }
 
+  observeRestockRocketButton() {
+    const observer = new MutationObserver(mutationsList => {
+      for (const mutation of mutationsList) {
+        for (let node of mutation.addedNodes) {
+          if (!(node instanceof HTMLElement)) continue
+
+          if (node.matches('.restock-rocket-button-container')) {
+            this.handleRestockButtonAdded()
+          }
+        }
+        for (let node of mutation.removedNodes) {
+          if (!(node instanceof HTMLElement)) continue
+
+          if (node.matches('.restock-rocket-button-container')) {
+            this.handleRestockButtonRemoved()
+          }
+        }
+      }
+    })
+
+    observer.observe(document.body, { childList: true, subtree: true })
+  }
+
+  handleRestockButtonAdded() {
+    const restockButton = $el('.restock-rocket-button-container')
+    if (restockButton) {
+      this.updateAddToCartButton('Notify me when available', 'notify_available')
+    }
+  }
+
+  handleRestockButtonRemoved() {
+    this.updateAddToCartButton('Add to cart', '')
+  }
+
+  updateAddToCartButton(text: string, additionalClass: string) {
+    waitForElement('.add_to_cart_btn').then(() => {
+      $el('.add_to_cart_btn')?.remove()
+      if (!$el('.add_to_cart_btn')) {
+        $el('.sticky_block')?.insertAdjacentHTML(
+          'beforeend',
+          `<div class="add_to_cart_btn ${additionalClass}">${text}</div>`
+        )
+      }
+      this.clickAddToCartStickyBtn()
+      this.syncLoadingState()
+    })
+  }
+
   syncLoadingState() {
     waitForElement('.product-single__meta block-buy-buttons .add-to-cart').then(() => {
       const btnPdp = $el('.product-single__meta block-buy-buttons .add-to-cart') as HTMLElement
@@ -741,40 +794,45 @@ class NewPdp {
   resizeSlider() {
     waitForElement('.product-slideshow').then(i => {
       const flickityElement = $$el('.product-slideshow')[0] as HTMLElement
-      if (flickityElement) {
-        // @ts-ignore
-        const flkty = Flickity.data(flickityElement)
+      let s = setInterval(() => {
+        if (typeof Flickity === 'function' && flickityElement) {
+          // @ts-ignore
+          const flkty = Flickity.data(flickityElement)
 
-        if (flkty) {
-          // Устанавливаем ширину слайдов на 100%
-          flkty.cells.forEach(cell => {
-            cell.element.style.width = '100%'
-          })
+          if (flkty) {
+            flkty.cells.forEach(cell => {
+              cell.element.style.width = '100%'
+            })
 
-          // Создаем элементы кнопок для стрелок навигации
-          const prevButton = document.createElement('button')
-          prevButton.className = 'flickity-prev-next-button previous'
-          prevButton.innerHTML = `${svg.prevBtnIcon}` // Используем SVG-иконку для стрелки влево
-          flickityElement.appendChild(prevButton)
+            if (!$el('.flickity-prev-next-button-new.previous.new_button')) {
+              const prevButton = document.createElement('button')
+              prevButton.className = 'flickity-prev-next-button-new new_button previous'
+              prevButton.innerHTML = `${svg.prevBtnIcon}`
+              flickityElement.appendChild(prevButton)
 
-          const nextButton = document.createElement('button')
-          nextButton.className = 'flickity-prev-next-button next'
-          nextButton.innerHTML = `${svg.nextBtnIcon}` // Используем SVG-иконку для стрелки вправо
-          flickityElement.appendChild(nextButton)
+              prevButton.addEventListener('click', () => {
+                flkty.previous()
+                pushData('exp_new_pdp_slider_previous_01', 'Previous', 'Click', 'First slider photo')
+              })
+            }
 
-          // Обработчики событий для стрелок
-          prevButton.addEventListener('click', () => {
-            flkty.previous()
-          })
+            if (!$el('.flickity-prev-next-button-new.next.new_button')) {
+              const nextButton = document.createElement('button')
+              nextButton.className = 'flickity-prev-next-button-new new_button next'
+              nextButton.innerHTML = `${svg.nextBtnIcon}`
+              flickityElement.appendChild(nextButton)
 
-          nextButton.addEventListener('click', () => {
-            flkty.next()
-          })
+              nextButton.addEventListener('click', () => {
+                flkty.next()
+                pushData('exp_new_pdp_slider_next_01', 'Next', 'Click', 'First slider photo')
+              })
+            }
 
-          // Обновляем слайдер
-          flkty.resize()
+            // Обновляем слайдер
+            flkty.resize()
+          }
         }
-      }
+      }, 400)
     })
   }
 }

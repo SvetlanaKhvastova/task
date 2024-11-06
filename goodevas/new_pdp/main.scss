@@ -53,27 +53,30 @@ body {
       .product-main-slide {
         border: 1px solid #e8e8e1 !important;
       }
-      .flickity-prev-next-button {
+      .flickity-prev-next-button-new.new_button {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        display: flex;
+        display: flex !important;
         align-items: center;
         justify-content: center;
-        width: 26px;
+        width: 43px;
         height: 35px;
-        z-index: 5;
+        z-index: 10;
+        opacity: 1 !important;
+        padding: 0;
         svg {
           width: 100%;
           height: 100%;
+          overflow: visible !important;
         }
       }
 
-      .flickity-prev-next-button.previous {
-        left: 10px;
+      .flickity-prev-next-button-new.previous.new_button {
+        left: 8px;
       }
 
-      .flickity-prev-next-button.next {
+      .flickity-prev-next-button-new.next.new_button {
         right: 10px;
       }
     }
@@ -360,7 +363,7 @@ body {
               height: 100% !important;
               border-radius: 12px !important;
               border: none !important;
-              max-width: 100% !important;
+              max-width: 156px !important;
             }
           }
         }
@@ -885,7 +888,8 @@ body {
             letter-spacing: 0.65px;
             margin: 0;
           }
-          > ul {
+          > ul,
+          ol {
             margin: 0 0 0 15px;
             padding: 0;
             list-style: disc;
@@ -913,12 +917,28 @@ body {
               }
             }
           }
-          p + ul {
+          p + ul,
+          p + ol {
             margin: 15px 0 0 15px;
           }
           .under_line_accent {
             text-decoration: underline;
             margin-bottom: 5px;
+          }
+          a.under_line_accent {
+            position: relative;
+            font-weight: 600;
+            transition: color 0.3s;
+
+            &:hover {
+              color: #0056b3;
+            }
+          }
+          a {
+            cursor: pointer;
+          }
+          > p + p {
+            margin-top: 15px;
           }
         }
       }
@@ -1057,7 +1077,7 @@ body {
         background: #ffc03c;
         bottom: 23px;
         left: -1px;
-        z-index: 11;
+        z-index: 3;
         @media (max-width: 1020px) {
           width: 20px;
           height: 20px;
@@ -1230,7 +1250,7 @@ body {
       }
       &_title {
         color: #000;
-        font-family: 'Segoe UI';
+        font-family: 'Harmonia Sans Pro Cyr';
         font-size: 15px;
         font-weight: 600;
         line-height: 24px;
@@ -1715,6 +1735,8 @@ body {
     line-height: 21.3px;
     letter-spacing: 0.75px;
     text-transform: uppercase;
+    padding: 5px;
+    text-align: center;
     &.notify_available {
       background: rgb(32, 34, 35);
       color: rgb(255, 255, 255);
