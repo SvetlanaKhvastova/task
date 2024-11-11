@@ -29,14 +29,15 @@ class TopOfTheLP {
 
     this.renderMainBenefitsBlock()
 
-    if (this.device === 'mobile') {
-      this.changeIconLearnMore()
-      this.scrollToFAQ('.lp-tr--hero-section .lp-tr--learn-more-btn')
-    }
-
-    if (this.device === 'desktop') {
+    if (window.innerWidth >= 768) {
+      console.log(this.device, window.innerWidth)
       this.renderLearnMoreBtnOnDesktop()
       this.scrollToFAQ('.new_learn_more_btn')
+    } else {
+      console.log(this.device, window.innerWidth)
+      this.changeIconLearnMore()
+      this.scrollToFAQ('.lp-tr--hero-section .lp-tr--learn-more-btn')
+      $el('.new_learn_more_btn')?.remove()
     }
 
     this.replaceFAQBlock()
