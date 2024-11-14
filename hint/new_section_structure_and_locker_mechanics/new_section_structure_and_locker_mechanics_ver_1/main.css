@@ -1,0 +1,202 @@
+.crs_paywall main .mx-auto.pb-6 {
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  max-width: 100%;
+}
+.crs_paywall main .mx-auto.pb-6 > div.mx-auto {
+  width: 100%;
+  margin: 0;
+}
+.crs_paywall main .mx-auto.pb-6 > div.mx-auto > .mr-auto,
+.crs_paywall main .mx-auto.pb-6 > div.mx-auto > .aspect-square {
+  display: none;
+}
+.crs_paywall .mx-auto > .flex.gap-4 {
+  gap: 0;
+}
+.crs_paywall .mx-auto > .flex.gap-4 > ul.flex-col:last-child {
+  padding: 0 16px;
+}
+.crs_paywall .mx-auto > .flex.gap-4 > div.w-full {
+  padding: 0 16px;
+  margin: 0 0 32px;
+}
+.crs_paywall footer + .bg-violet-50 {
+  padding: 16px;
+  background: white;
+}
+
+.palm_reading_is_ready {
+  margin: 20px 0 16px;
+  padding: 0 16px;
+}
+.palm_reading_is_ready_title {
+  max-width: 294px;
+  color: #121620;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 38px;
+  margin: 0 auto 16px;
+}
+.palm_reading_is_ready_title span {
+  color: #8a2be2;
+}
+.palm_reading_is_ready_img_wrapper {
+  position: relative;
+  max-width: 343px;
+  margin: 0 auto;
+}
+.palm_reading_is_ready_img_wrapper .img_initial {
+  width: 100%;
+  height: 100%;
+}
+.palm_reading_is_ready_img_wrapper img:not(.img_initial) {
+  position: absolute;
+  border-radius: 8px;
+}
+.palm_reading_is_ready_img_wrapper .img_first_absolute {
+  top: 7px;
+  left: 0;
+  max-width: 180px;
+}
+.palm_reading_is_ready_img_wrapper .img_second_absolute {
+  top: 68px;
+  right: 0;
+  max-width: 180px;
+}
+.palm_reading_is_ready_img_wrapper .img_third_absolute {
+  bottom: 60px;
+  left: 0;
+  max-width: 239px;
+}
+.palm_reading_is_ready_img_wrapper .img_fourth_absolute {
+  bottom: 4px;
+  right: 0;
+  max-width: 202px;
+}
+
+.locker_mechanics {
+  padding: 0 0;
+  margin-bottom: 20px;
+}
+.locker_mechanics_title {
+  color: #1d2939;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  margin-bottom: 12px;
+  letter-spacing: normal;
+  padding: 0 16px;
+}
+.locker_mechanics ol {
+  list-style: auto;
+  margin-left: 16px;
+  padding: 0 16px;
+}
+.locker_mechanics ol li {
+  max-width: 305px;
+  color: #1d2939;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: normal;
+}
+@media (max-width: 376px) {
+  .locker_mechanics ol li {
+    max-width: 296px;
+  }
+}
+.locker_mechanics .is_locker {
+  position: relative;
+  border: 2px dashed #dee5f9;
+  margin: 12px 0 0;
+  padding: 0 0px 7px;
+}
+.locker_mechanics .is_locker ol {
+  filter: blur(4.5px);
+}
+.locker_mechanics .is_locker ol li {
+  max-width: 100%;
+}
+.locker_mechanics .is_locker ol li + li {
+  margin-top: 12px;
+}
+.locker_mechanics .is_locker .access_required_absolute {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 257px;
+  width: 100%;
+  border-radius: 14px;
+  border: 2px solid #dee5f9;
+  background: rgb(250, 245, 255);
+  padding: 33px 24px 29px;
+  margin: 0 auto;
+}
+.locker_mechanics .is_locker .access_required_absolute svg {
+  position: absolute;
+  top: -23px;
+  left: 50%;
+  transform: translateX(-50%);
+  fill: #04a777;
+}
+.locker_mechanics .is_locker .access_required_absolute span {
+  max-width: 192px;
+  display: block;
+  color: #121620;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: normal;
+}
+
+.money_back_guarantee {
+  width: 100%;
+  padding: 32px 16px;
+  background: #f2f4f7;
+  margin-bottom: 32px;
+}
+.money_back_guarantee_container {
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.03), 0px 2px 30px 0px rgba(0, 0, 0, 0.08), 0px 0px 1px 0px rgba(0, 0, 0, 0.3);
+  padding: 24px;
+}
+.money_back_guarantee_header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.money_back_guarantee_header svg {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+}
+.money_back_guarantee_title {
+  max-width: 158px;
+  color: #11181c;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+  letter-spacing: normal;
+  margin: 0;
+}
+.money_back_guarantee_description {
+  color: #202b47;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: normal;
+}
+@media (max-width: 376px) {
+  .money_back_guarantee_description {
+    max-width: 273px;
+  }
+}/*# sourceMappingURL=main.css.map */
