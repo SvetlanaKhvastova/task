@@ -8,10 +8,10 @@ export const palmReadingIsReady = /* HTML */ `
     </h2>
     <div class="palm_reading_is_ready_img_wrapper">
       <img src="${git}palm_reading_is_ready.webp" alt="Palm" class="img_initial" />
-      <img src="${git}children.webp" alt="Сhildren" class="img_first_absolute" data-tocheckout />
-      <img src="${git}big_love_at.webp" alt="Big love at" class="img_second_absolute" data-tocheckout />
-      <img src="${git}money_success_at.webp" alt="Money success at" class="img_third_absolute" data-tocheckout />
-      <img src="${git}big_change_at.webp" alt="Big change at" class="img_fourth_absolute" data-tocheckout />
+      <img src="${git}children_blue.webp" alt="Сhildren" class="img_first_absolute" data-tocheckout />
+      <img src="${git}big_love_at_blue.webp" alt="Big love at" class="img_second_absolute" data-tocheckout />
+      <img src="${git}money_success_at_blue.webp" alt="Money success at" class="img_third_absolute" data-tocheckout />
+      <img src="${git}big_change_at_blue.webp" alt="Big change at" class="img_fourth_absolute" data-tocheckout />
     </div>
   </div>
 `

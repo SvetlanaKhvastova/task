@@ -25,7 +25,7 @@ class NewSectionStructureAndLockerMechanics {
 
   init() {
     startLog({ name: 'Improvements on the paywall screen (new section structure + Locker mechanics)', dev: 'SKh' })
-    clarityInterval('exp_6', 'variant_1')
+    clarityInterval('exp_6', 'variant_2')
 
     this.observeMain()
     this.allFunctionsInitHandler()
