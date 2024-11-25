@@ -1,0 +1,306 @@
+.new_popup_backdrop {
+  background: rgba(20, 20, 20, 0.6);
+  position: fixed;
+  opacity: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000000000000;
+  transition: all 0.8s ease 0s;
+}
+.new_popup_backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+@media (max-width: 768px) {
+  .new_popup_backdrop.is-hidden .new_popup {
+    bottom: -100%;
+  }
+}
+.new_popup_backdrop .new_popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 890px;
+  width: calc(100% - 32px);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.03), 0px 2px 30px 0px rgba(0, 0, 0, 0.08), 0px 0px 1px 0px rgba(0, 0, 0, 0.3);
+}
+@media (max-width: 768px) {
+  .new_popup_backdrop .new_popup {
+    position: fixed;
+    top: unset;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow-y: auto;
+    transition: bottom 0.8s ease;
+    transform: unset;
+    border-radius: 0px;
+    padding-top: 46px;
+    max-height: 95%;
+  }
+}
+.new_popup_backdrop .new_popup_close {
+  position: absolute;
+  background: none;
+  padding: 0;
+  top: 14px;
+  right: 16px;
+  width: 14px;
+  height: 14px;
+  z-index: 1;
+  border: none;
+  transition: all 0.8s ease 0s;
+}
+.new_popup_backdrop .new_popup_close:hover, .new_popup_backdrop .new_popup_close:focus {
+  background: none;
+  transform: scale(0.8);
+}
+@media (max-width: 768px) {
+  .new_popup_backdrop .new_popup_close {
+    position: absolute;
+    top: 21px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 5px;
+    border-radius: 100px;
+    background: #000;
+    z-index: 1;
+    transition: all 0.8s ease 0s;
+  }
+  .new_popup_backdrop .new_popup_close svg {
+    display: none;
+  }
+}
+.discount_popup .is_hidden {
+  display: none;
+}
+.discount_popup .info_wrapper {
+  padding: 36px;
+}
+.discount_popup .info_wrapper .header_popup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  margin-bottom: 60px;
+}
+.discount_popup .info_wrapper .header_popup p {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: normal;
+  color: #101010;
+  margin: 0;
+  padding: 0;
+}
+.discount_popup .info_wrapper .header_popup p.accent_txt {
+  font-weight: 600;
+}
+.discount_popup .info_wrapper .header_popup .main_title {
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 46px;
+  text-transform: initial;
+  letter-spacing: normal;
+  color: #101010;
+  margin: 0;
+  padding: 0;
+}
+.discount_popup .info_wrapper .header_popup .main_title span {
+  color: #e0162b;
+}
+.discount_popup .info_wrapper .body_popup .sub_title {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: normal;
+  color: #212121;
+  max-width: 350px;
+  margin: 0 auto 18px;
+}
+.discount_popup .info_wrapper .body_popup .email_wrapper {
+  margin-bottom: 18px;
+}
+.discount_popup .info_wrapper .body_popup .email_wrapper [for=emailNew] {
+  height: 54px;
+  width: 100%;
+  margin: 0;
+}
+.discount_popup .info_wrapper .body_popup .email_wrapper [for=emailNew] input {
+  border: 1px solid #cecdcd;
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 10px 16px;
+  color: #101010;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: normal;
+  border-radius: 0;
+}
+.discount_popup .info_wrapper .body_popup .email_wrapper [for=emailNew] input::-moz-placeholder {
+  color: #949596;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: normal;
+}
+.discount_popup .info_wrapper .body_popup .email_wrapper [for=emailNew] input::placeholder {
+  color: #949596;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: normal;
+}
+.discount_popup .info_wrapper .body_popup .email_wrapper [for=emailNew] input:focus-visible {
+  border-radius: 0;
+}
+.discount_popup .info_wrapper .body_popup .email_wrapper #emailAddressError {
+  display: block;
+  color: #e0162b;
+  margin-top: 8px;
+}
+.discount_popup .info_wrapper .body_popup .discount_code_wrapper {
+  margin-bottom: 18px;
+}
+.discount_popup .info_wrapper .body_popup .discount_code_wrapper .discount_code_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 54px;
+  gap: 8px;
+  border: 1px solid #cecdcd;
+  background: #fff;
+  padding: 10px 16px;
+}
+.discount_popup .info_wrapper .body_popup .discount_code_wrapper .discount_code_container .discount_code_txt {
+  color: #e0162b;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.96px;
+  text-transform: uppercase;
+}
+.discount_popup .info_wrapper .body_popup .discount_code_wrapper .discount_code_container [data-discount] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.discount_popup .info_wrapper .body_popup .check_your_inbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 50px;
+}
+.discount_popup .info_wrapper .body_popup .check_your_inbox svg {
+  width: 151px;
+  height: 151px;
+  flex-shrink: 0;
+}
+.discount_popup .info_wrapper .body_popup .check_your_inbox h2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 44px;
+  letter-spacing: normal;
+  color: #101010;
+  text-transform: initial;
+  margin: 0;
+}
+.discount_popup .info_wrapper .body_popup .check_your_inbox h3 {
+  color: #212121;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: normal;
+  text-transform: initial;
+  margin: 0;
+}
+.discount_popup .info_wrapper .body_popup .get_discount_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 55px;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: normal;
+  color: #fff;
+  background: #e0162b;
+  cursor: pointer;
+}
+
+.get_discount_btn_pdp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: -moz-max-content;
+  width: max-content;
+  background: #f1f1f1;
+  padding: 6px 12px 6px 8px;
+  margin: 14px 0 8px;
+  cursor: pointer;
+}
+@media only screen and (max-width: 1200px) {
+  .get_discount_btn_pdp {
+    margin: 0;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .get_discount_btn_pdp {
+    padding: 6px 12px 6px 10px;
+  }
+}
+.get_discount_btn_pdp svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.get_discount_btn_pdp span {
+  color: #003068;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: 1px;
+  text-decoration: underline;
+  margin: 0;
+}
+
+@media only screen and (max-width: 1200px) {
+  .page-container .product__price {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .page-container .product__price {
+    padding-top: 34px;
+    padding-bottom: 8px;
+    justify-content: space-between;
+  }
+}/*# sourceMappingURL=main.css.map */
