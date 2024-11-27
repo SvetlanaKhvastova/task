@@ -29,26 +29,25 @@ export const contentPopupWithDiscount = /* HTML */ `
             </label>
           </div>
           <div class="btn_wrapper">
-            <div class="get_discount_btn">Got it, Let’s Shop!</div>
+            <div class="main_red_btn step_email">Continue</div>
           </div>
         </div>
       </div>
       <div class="img_wrapper">
-        <img src="${git}check_out_now_img.png" alt="photo" class="desk_var" />
+        <img src="${git}discount_popup_img.webp" alt="photo" class="desk_var" />
       </div>
     </div>
     <div class="second_screen is_hidden">
       <div class="info_wrapper">
         <div class="header_popup">
-          <p>Join the Roofing4US Family and</p>
-          <h2 class="main_title">
-            <span>Save 5%</span> on <br />
-            Your Next Order!
+          ${svg.checkIcon}
+          <h2 class="check_title">
+            Your <span>5%</span> Discount <br />
+            Code is Ready!
           </h2>
-          <p class="accent_txt">Applies to any order over $300</p>
+          <p class="check_txt">Use this code at checkout to get a discount on any order over $300.</p>
         </div>
         <div class="body_popup">
-          <h3 class="sub_title">Enter code at checkout</h3>
           <div class="discount_code_wrapper">
             <div class="discount_code_container">
               <span class="discount_code_txt">USROOFING5</span>
@@ -56,38 +55,23 @@ export const contentPopupWithDiscount = /* HTML */ `
             </div>
           </div>
           <div class="btn_wrapper">
-            <div class="get_discount_btn">Got it, Let’s Shop!</div>
+            <div class="main_red_btn step_coupon">Got it, Let’s Shop!</div>
           </div>
         </div>
       </div>
       <div class="img_wrapper">
-        <img src="${git}check_out_now_img.png" alt="photo" class="desk_var" />
-      </div>
-    </div>
-    <div class="third_screen is_hidden">
-      <div class="info_wrapper">
-        <div class="body_popup">
-          <div class="check_your_inbox">
-            ${svg.checkIcon}
-            <h2>Check your inbox!</h2>
-            <h3>Your code is waiting in your inbox.</h3>
-          </div>
-          <div class="btn_wrapper">
-            <div class="get_discount_btn">Continue shopping</div>
-          </div>
-        </div>
-      </div>
-      <div class="img_wrapper">
-        <img src="${git}check_out_now_img.png" alt="photo" class="desk_var" />
+        <img src="${git}discount_popup_img.webp" alt="photo" class="desk_var" />
       </div>
     </div>
   </div>
 `
 
 export const popup = /* HTML */ `
-  <div class="new_popup_backdrop is-hidden">
+  <div class="new_popup_backdrop is_hidden">
     <div class="new_popup">
-      <button class="new_popup_close" data-popup="close">${svg.closeIcon}</button>
+      <button class="new_popup_close" data-popup="close">
+        ${window.innerWidth > 768 ? `${svg.closeIcon}` : `${svg.closeIconMob}`}
+      </button>
       <div class="new_popup_content">${contentPopupWithDiscount}</div>
     </div>
   </div>

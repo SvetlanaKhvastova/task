@@ -504,3 +504,19 @@ function initGlideSlider() {
         </div>
       </div> */
 }
+
+function doPost(e) {
+  var sheet = SpreadsheetApp.openById("1oxoMuVbbUiQqoU-VAUemZwPVNuXzgEpuY3Ij058NMbs").getActiveSheet();
+  if (!e) return;
+
+  var data = e.parameter;
+  if (!data) return;
+
+  var newRow = [new Date(), data.email];
+  sheet.appendRow(newRow);
+
+  return ContentService.createTextOutput(JSON.stringify({ result: "success" })).setMimeType(ContentService.MimeType.JSON);
+}
+
+// https://docs.google.com/spreadsheets/d/1oxoMuVbbUiQqoU-VAUemZwPVNuXzgEpuY3Ij058NMbs/edit?usp=sharing
+// https://script.google.com/home/projects/1vmQyhqYKQqGejrDOPa1VM27gpdTpbx4qAzN7z7VULSLZ_Bjl7vy3KBEE/edit

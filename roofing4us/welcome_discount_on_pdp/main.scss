@@ -8,16 +8,9 @@
   height: 100%;
   z-index: 1000000000000;
   transition: all 0.8s ease 0s;
-  &.is-hidden {
+  &.is_hidden {
     opacity: 0;
     pointer-events: none;
-  }
-  &.is-hidden {
-    @media (max-width: 768px) {
-      .new_popup {
-        bottom: -100%;
-      }
-    }
   }
   .new_popup {
     position: absolute;
@@ -27,23 +20,23 @@
     max-width: 890px;
     width: calc(100% - 32px);
     border-radius: 8px;
-    background: #fff;
     box-shadow:
       0px 0px 15px 0px rgba(0, 0, 0, 0.03),
       0px 2px 30px 0px rgba(0, 0, 0, 0.08),
       0px 0px 1px 0px rgba(0, 0, 0, 0.3);
     @media (max-width: 768px) {
-      position: fixed;
-      top: unset;
-      bottom: 0;
-      left: 0;
+      max-width: 100%;
       width: 100%;
-      overflow-y: auto;
-      transition: bottom 0.8s ease;
-      transform: unset;
-      border-radius: 0px;
-      padding-top: 46px;
-      max-height: 95%;
+      border-radius: 0;
+      top: 70px;
+      transform: translateX(-50%);
+    }
+  }
+  &.step_coupon_wrapper {
+    .new_popup {
+      @media (max-width: 768px) {
+        top: 46px;
+      }
     }
   }
 
@@ -65,32 +58,37 @@
     }
 
     @media (max-width: 768px) {
-      position: absolute;
-      top: 21px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90px;
-      height: 5px;
-      border-radius: 100px;
-      background: #000;
-      z-index: 1;
-      transition: all 0.8s ease 0s;
-      svg {
-        display: none;
-      }
+      top: 24px;
+      right: 21px;
+      width: 35px;
+      height: 35px;
     }
-  }
-
-  .new_popup_content {
   }
 }
 
 .discount_popup {
+  background: #fff;
+  .first_screen,
+  .second_screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > div {
+      width: 50%;
+      @media (max-width: 768px) {
+        width: 100%;
+      }
+    }
+  }
   .is_hidden {
     display: none;
   }
+
   .info_wrapper {
-    padding: 36px;
+    padding: 10px 36px;
+    @media (max-width: 768px) {
+      padding: 71px 21px 48px;
+    }
     .header_popup {
       display: flex;
       flex-direction: column;
@@ -98,6 +96,10 @@
       justify-content: flex-start;
       gap: 8px;
       margin-bottom: 60px;
+      @media (max-width: 768px) {
+        margin-bottom: 32px;
+        gap: 12px;
+      }
       p {
         font-family: 'Poppins', sans-serif;
         font-size: 14px;
@@ -107,8 +109,17 @@
         color: #101010;
         margin: 0;
         padding: 0;
+        @media (max-width: 768px) {
+          font-size: 16px;
+          line-height: normal;
+        }
         &.accent_txt {
           font-weight: 600;
+          @media (max-width: 768px) {
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 23.8px;
+          }
         }
       }
       .main_title {
@@ -122,8 +133,46 @@
         color: #101010;
         margin: 0;
         padding: 0;
+        @media (max-width: 768px) {
+          font-size: 36px;
+          line-height: 44px;
+        }
         span {
           color: #e0162b;
+        }
+      }
+      > svg {
+        max-width: 151px;
+        max-height: 151px;
+        flex-shrink: 0;
+      }
+      .check_title {
+        font-family: 'Poppins', sans-serif;
+        font-size: 36px;
+        font-weight: 700;
+        line-height: 44px;
+        letter-spacing: normal;
+        color: #101010;
+        text-transform: initial;
+        text-align: center;
+        margin: 0;
+        span {
+          color: #e0162b;
+        }
+      }
+      .check_txt {
+        color: #212121;
+        font-family: 'Poppins', sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: normal;
+        text-transform: initial;
+        text-align: center;
+        margin: 0;
+        @media (max-width: 768px) {
+          max-width: 300px;
+          margin: 0 auto;
         }
       }
     }
@@ -138,13 +187,23 @@
         color: #212121;
         max-width: 350px;
         margin: 0 auto 18px;
+        @media (max-width: 768px) {
+          margin-bottom: 15px;
+          line-height: normal;
+        }
       }
       .email_wrapper {
         margin-bottom: 18px;
+        @media (max-width: 768px) {
+          margin-bottom: 15px;
+        }
         [for='emailNew'] {
           height: 54px;
           width: 100%;
           margin: 0;
+          @media (max-width: 768px) {
+            height: 58px;
+          }
           input {
             border: 1px solid #cecdcd;
             background: #fff;
@@ -158,6 +217,9 @@
             line-height: normal;
             letter-spacing: normal;
             border-radius: 0;
+            @media (max-width: 768px) {
+              padding: 17px;
+            }
             &::placeholder {
               color: #949596;
               font-size: 16px;
@@ -178,6 +240,9 @@
       }
       .discount_code_wrapper {
         margin-bottom: 18px;
+        @media (max-width: 768px) {
+          margin-bottom: 15px;
+        }
         .discount_code_container {
           display: flex;
           align-items: center;
@@ -188,6 +253,9 @@
           border: 1px solid #cecdcd;
           background: #fff;
           padding: 10px 16px;
+          @media (max-width: 768px) {
+            height: 58px;
+          }
           .discount_code_txt {
             color: #e0162b;
             font-family: 'Poppins', sans-serif;
@@ -205,39 +273,7 @@
           }
         }
       }
-      .check_your_inbox {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 50px;
-        svg {
-          width: 151px;
-          height: 151px;
-          flex-shrink: 0;
-        }
-        h2 {
-          font-family: 'Poppins', sans-serif;
-          font-size: 36px;
-          font-weight: 700;
-          line-height: 44px;
-          letter-spacing: normal;
-          color: #101010;
-          text-transform: initial;
-          margin: 0;
-        }
-        h3 {
-          color: #212121;
-          font-family: 'Poppins', sans-serif;
-          font-size: 16px;
-          font-weight: 400;
-          line-height: 22px;
-          letter-spacing: normal;
-          text-transform: initial;
-          margin: 0;
-        }
-      }
-      .get_discount_btn {
+      .main_red_btn {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -251,6 +287,33 @@
         color: #fff;
         background: #e0162b;
         cursor: pointer;
+        @media (max-width: 768px) {
+          font-size: 18px;
+          font-weight: 700;
+          line-height: 26px;
+        }
+      }
+    }
+  }
+  .img_wrapper {
+    height: 100%;
+    max-height: 546px;
+    > img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .second_screen {
+      .info_wrapper {
+        .header_popup {
+          gap: 8px;
+        }
       }
     }
   }
@@ -266,11 +329,15 @@
   padding: 6px 12px 6px 8px;
   margin: 14px 0 8px;
   cursor: pointer;
+  &.is_hidden {
+    display: none;
+  }
 
   @media only screen and (max-width: 1200px) {
     margin: 0;
   }
   @media only screen and (max-width: 768px) {
+    display: inline-flex;
     padding: 6px 12px 6px 10px;
   }
 
@@ -292,17 +359,32 @@
 }
 
 .page-container {
-  .product__price {
-    @media only screen and (max-width: 1200px) {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
+  .call_F_P_tag2.cfp_note {
+    margin-bottom: 10px !important;
+  }
+  .product-single__meta:not(.callforprice_meta) {
+    position: relative;
+    .product__price {
+      @media only screen and (max-width: 1200px) {
+        display: inline-flex;
+        margin-bottom: 14px;
+        width: max-content;
+      }
+      @media only screen and (max-width: 768px) {
+        .price-item {
+          color: #101010;
+          font-family: 'Poppins', sans-serif;
+          font-size: 29px;
+          font-weight: 700;
+          line-height: 37.13px;
+        }
+      }
     }
-    @media only screen and (max-width: 768px) {
-      padding-top: 34px;
-      padding-bottom: 8px;
-      justify-content: space-between;
-    }
+  }
+}
+
+.needsclick.kl-private-reset-css-Xuajs1 {
+  &.is_hidden {
+    display: none !important;
   }
 }
