@@ -50,8 +50,8 @@ export const contentPopupWithDiscount = /* HTML */ `
         <div class="body_popup">
           <div class="discount_code_wrapper">
             <div class="discount_code_container">
-              <span class="discount_code_txt">USROOFING5</span>
-              <span data-discount="USROOFING5">${svg.copyIcon}</span>
+              <span class="discount_code_txt">0AN8XT0VRWD1</span>
+              <span data-discount="0AN8XT0VRWD1">${svg.copyIcon}</span>
             </div>
           </div>
           <div class="btn_wrapper">

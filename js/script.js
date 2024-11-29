@@ -570,3 +570,8 @@ let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/hint/new_section_structure_and_locker_mechanics_ver_2.js";
 script.async = false;
 document.head.appendChild(script);
+
+let script = document.createElement("script");
+script.src = "https://conversionratestore.github.io/projects/roofing4us/welcome_discount_on_pdp.js";
+script.async = false;
+document.head.appendChild(script);

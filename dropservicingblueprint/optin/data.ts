@@ -1,3 +1,5 @@
+import { safeAndSecureBlock } from "./blocks"
+
 const git = 'https://conversionratestore.github.io/projects/dropservicing/optin/img/'
 
 export const svg = {
@@ -90,7 +92,67 @@ export const svg = {
     </clipPath>
   </defs>
 </svg>
-  `
+  `,
+  closeIconPopup:`
+  <svg xmlns="http://www.w3.org/2000/svg" width="19" height="18" viewBox="0 0 19 18" fill="none">
+  <path d="M17.5 1L1.50024 16.9998" stroke="#161718" stroke-width="2" stroke-linecap="round"/>
+  <path d="M17.5 17L1.50025 1.00024" stroke="#161718" stroke-width="2" stroke-linecap="round"/>
+</svg>
+  `,
+  infoBlockIcon1:`
+  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+  <g clip-path="url(#clip0_570_1064)">
+    <path d="M24.008 0.0787548C19.323 -0.00524519 13.98 2.44375 10.598 6.24275C7.36601 6.30375 4.21901 7.62876 1.90201 9.94576C1.76701 10.0788 1.71901 10.2778 1.77801 10.4578C1.83801 10.6388 1.99401 10.7698 2.18201 10.7968L6.03601 11.3488L5.56001 11.8818C5.38301 12.0798 5.39201 12.3808 5.58001 12.5688L12.007 18.9958C12.104 19.0928 12.232 19.1418 12.361 19.1418C12.48 19.1418 12.599 19.0998 12.694 19.0148L13.227 18.5388L13.779 22.3928C13.806 22.5808 13.954 22.7188 14.133 22.7788C14.179 22.7938 14.227 22.8008 14.276 22.8008C14.418 22.8008 14.563 22.7388 14.663 22.6398C16.948 20.3548 18.273 17.2078 18.334 13.9758C22.137 10.5868 24.606 5.24575 24.497 0.566755C24.49 0.300755 24.275 0.0857548 24.008 0.0787548ZM19.4 8.71076C18.913 9.19776 18.273 9.44176 17.632 9.44176C16.991 9.44176 16.351 9.19776 15.864 8.71076C14.89 7.73576 14.89 6.14975 15.864 5.17475C16.839 4.19975 18.425 4.19975 19.4 5.17475C20.375 6.14975 20.375 7.73676 19.4 8.71076Z" fill="white"/>
+    <path d="M3.22406 16.9805C2.15406 18.0505 0.685057 22.8845 0.521057 23.4315C0.468057 23.6075 0.517057 23.7985 0.646057 23.9285C0.742057 24.0245 0.869057 24.0755 1.00006 24.0755C1.04806 24.0755 1.09606 24.0685 1.14406 24.0545C1.69106 23.8905 6.52506 22.4215 7.59506 21.3515C8.80006 20.1465 8.80006 18.1855 7.59506 16.9805C6.38906 15.7755 4.42906 15.7765 3.22406 16.9805Z" fill="white"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_570_1064">
+      <rect width="24" height="24" fill="white" transform="translate(0.5 0.0756836)"/>
+    </clipPath>
+  </defs>
+</svg>
+  `,
+  infoBlockIcon2:`
+  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M21.25 3.07568C21.25 2.10968 20.467 1.32568 19.5 1.32568H5.5C4.533 1.32568 3.75 2.10968 3.75 3.07568V21.0757C3.75 22.0417 4.533 22.8257 5.5 22.8257H19.5C20.467 22.8257 21.25 22.0417 21.25 21.0757V3.07568ZM6.953 18.1387L8.078 19.3387C8.229 19.5007 8.445 19.5867 8.666 19.5747C8.887 19.5627 9.092 19.4527 9.225 19.2757L11.1 16.7757C11.348 16.4447 11.281 15.9737 10.95 15.7257C10.619 15.4777 10.148 15.5447 9.9 15.8757L8.561 17.6607L8.047 17.1127C7.764 16.8107 7.289 16.7957 6.987 17.0787C6.685 17.3617 6.67 17.8367 6.953 18.1387ZM13.5 18.3257H17.5C17.914 18.3257 18.25 17.9897 18.25 17.5757C18.25 17.1617 17.914 16.8257 17.5 16.8257H13.5C13.086 16.8257 12.75 17.1617 12.75 17.5757C12.75 17.9897 13.086 18.3257 13.5 18.3257ZM6.953 12.6387L8.078 13.8387C8.229 14.0007 8.445 14.0867 8.666 14.0747C8.887 14.0627 9.092 13.9527 9.225 13.7757L11.1 11.2757C11.348 10.9447 11.281 10.4737 10.95 10.2257C10.619 9.97768 10.148 10.0447 9.9 10.3757L8.561 12.1607L8.047 11.6127C7.764 11.3107 7.289 11.2957 6.987 11.5787C6.685 11.8617 6.67 12.3367 6.953 12.6387ZM13.5 12.8257H17.5C17.914 12.8257 18.25 12.4897 18.25 12.0757C18.25 11.6617 17.914 11.3257 17.5 11.3257H13.5C13.086 11.3257 12.75 11.6617 12.75 12.0757C12.75 12.4897 13.086 12.8257 13.5 12.8257ZM6.953 7.13868L8.078 8.33868C8.229 8.50068 8.445 8.58668 8.666 8.57468C8.887 8.56268 9.092 8.45268 9.225 8.27568L11.1 5.77568C11.348 5.44468 11.281 4.97368 10.95 4.72568C10.619 4.47768 10.148 4.54468 9.9 4.87568L8.561 6.66068L8.047 6.11268C7.764 5.81068 7.289 5.79568 6.987 6.07868C6.685 6.36168 6.67 6.83668 6.953 7.13868ZM13.5 7.32568H17.5C17.914 7.32568 18.25 6.98968 18.25 6.57568C18.25 6.16168 17.914 5.82568 17.5 5.82568H13.5C13.086 5.82568 12.75 6.16168 12.75 6.57568C12.75 6.98968 13.086 7.32568 13.5 7.32568Z" fill="white"/>
+</svg>
+  `,
+  safeAndSecureIcon:`
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+  <g clip-path="url(#clip0_533_4126)">
+    <path d="M13.3346 2.51071C13.3346 2.32813 13.2209 2.16363 13.0488 2.10063L7.65297 0.103297C7.55497 0.0671302 7.44705 0.0671302 7.34905 0.103297L1.9538 2.10063C1.78172 2.16363 1.66797 2.32755 1.66797 2.51071V7.17796C1.66797 12.488 7.33214 14.0461 7.3893 14.0613C7.42605 14.0706 7.46397 14.0759 7.5013 14.0759C7.53864 14.0759 7.57655 14.0706 7.6133 14.0613C7.67047 14.0461 13.3346 12.4875 13.3346 7.17796V2.51071ZM10.4308 7.38446L7.81922 10.1471C7.73639 10.2346 7.62147 10.2842 7.5013 10.2842C7.38114 10.2842 7.26622 10.2346 7.18339 10.1477L4.5718 7.38505C3.81464 6.58471 3.81464 5.28213 4.5718 4.48121C5.31905 3.6908 6.63564 3.69021 7.38405 4.48121L7.5013 4.60546L7.61855 4.48121C8.36639 3.69021 9.68297 3.6908 10.4308 4.48121C11.188 5.28155 11.188 6.58413 10.4308 7.38446Z" fill="#4A567A"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_533_4126">
+      <rect width="14" height="14" fill="white" transform="translate(0.5 0.0756836)"/>
+    </clipPath>
+  </defs>
+</svg>
+  `,
+  checkSvgExitPopup: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+<path d="M15 8L9 15L5 11" stroke="#2F2F2F" stroke-width="2"/>
+</svg>`,
+closeSvgExitPopup: `
+<svg xmlns="http://www.w3.org/2000/svg" width="39" height="38" viewBox="0 0 39 38" fill="none">
+  <g filter="url(#filter0_d_533_8340)">
+    <circle cx="19.5" cy="15" r="15" fill="#222222"/>
+    <circle cx="19.5" cy="15" r="13.8" stroke="white" stroke-width="2.4"/>
+  </g>
+  <path d="M15.5002 19L23.5 11M23.4998 19L15.5 11" stroke="white" stroke-width="2.4" stroke-linecap="round"/>
+  <defs>
+    <filter id="filter0_d_533_8340" x="0.5" y="0" width="38" height="38" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="4"/>
+      <feGaussianBlur stdDeviation="2"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_533_8340"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_533_8340" result="shape"/>
+    </filter>
+  </defs>
+</svg>
+`
 }
 
 export const stats = [
@@ -121,7 +183,7 @@ export const blockers = [
       button: 'Yes! Get Access Now!',
       video: 'https://www.youtube.com/embed/example1',
       review: {
-        reviewerPhoto: `${git}lauren.jpg`,
+        reviewerPhoto: `${git}christian.jpg`,
         reviewerName: 'Christian',
         reviewText: '"From an unfulfilling job to running his own business, Christian transformed his life in just three months."',
         stars: `${git}rating_stars.png`
@@ -140,7 +202,7 @@ export const blockers = [
       button: 'Yes! Get Access Now!',
       video: 'https://www.youtube.com/embed/example2',
       review: {
-        reviewerPhoto: `${git}lauren.jpg`,
+        reviewerPhoto: `${git}christian.jpg`,
         reviewerName: 'Christian',
         reviewText: '"From an unfulfilling job to running his own business, Christian transformed his life in just three months."',
         stars: `${git}rating_stars.png`
@@ -159,7 +221,7 @@ export const blockers = [
       button: 'Yes! Get Access Now!',
       video: 'https://www.youtube.com/embed/example3',
       review: {
-        reviewerPhoto: `${git}lauren.jpg`,
+        reviewerPhoto: `${git}christian.jpg`,
         reviewerName: 'Christian',
         reviewText: '"From an unfulfilling job to running his own business, Christian transformed his life in just three months."',
         stars: `${git}rating_stars.png`
@@ -178,7 +240,7 @@ export const blockers = [
       button: 'Yes! Get Access Now!',
       video: 'https://www.youtube.com/embed/example4',
       review: {
-        reviewerPhoto: `${git}lauren.jpg`,
+        reviewerPhoto: `${git}christian.jpg`,
         reviewerName: 'Christian',
         reviewText: '"From an unfulfilling job to running his own business, Christian transformed his life in just three months."',
         stars: `${git}rating_stars.png`
@@ -197,7 +259,7 @@ export const blockers = [
       button: 'Yes! Get Access Now!',
       video: 'https://www.youtube.com/embed/example5',
       review: {
-        reviewerPhoto: `${git}lauren.jpg`,
+        reviewerPhoto: `${git}christian.jpg`,
         reviewerName: 'Christian',
         reviewText: '"From an unfulfilling job to running his own business, Christian transformed his life in just three months."',
         stars: `${git}rating_stars.png`
@@ -216,7 +278,7 @@ export const blockers = [
       button: 'Yes! Get Access Now!',
       video: 'https://www.youtube.com/embed/example6',
       review: {
-        reviewerPhoto: `${git}lauren.jpg`,
+        reviewerPhoto: `${git}christian.jpg`,
         reviewerName: 'Christian',
         reviewText: '"From an unfulfilling job to running his own business, Christian transformed his life in just three months."',
         stars: `${git}rating_stars.png`
@@ -410,5 +472,25 @@ export const faq = [
     question: 'Will I be able to start this business just by watching the training?',
     answer:
       'Dylan is going to reveal the 4 steps you need to get started as well as give you a tutorial and template you can use right away.'
+  }
+]
+
+
+export const stories = [
+  {
+    name: 'Barend K.',
+    text: '"Barend was working two stressful restaurant jobs and used this strategy to earn $69,650 in one sale, followed by $77,000 in the next."'
+  },
+  {
+    name: 'Derik J.',
+    text: '"Derik left a stressful day job, now lands high-ticket sales like $23,400, and has clients paying him $162,000 yearly."'
+  },
+  {
+    name: 'Lauren G.',
+    text: '"Lauren made $8,700 in 6 weeks, reached $100,000 in 6 months, and bought her first house."'
+  },
+  {
+    name: 'Stephen H.',
+    text: '"Stephen lost his job, used this system to quickly earn $10,000 per month, and now travels the world in freedom."'
   }
 ]

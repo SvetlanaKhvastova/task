@@ -18,6 +18,8 @@ class WelcomeDiscountOnPdp {
 
   init() {
     startLog({ name: 'Welcome discount on PDP', dev: 'SKh' })
+    clarityInterval('exp_01_welcome')
+
     if (!$el('.crs_style')) {
       document.head.insertAdjacentHTML('beforeend', `<style class="crs_style">${mainStyle}</style>`)
     }
@@ -69,6 +71,7 @@ class WelcomeDiscountOnPdp {
       const btn = $el('.get_discount_btn_pdp') as HTMLElement
 
       btn.addEventListener('click', () => {
+        pushData('exp_01_welcome__get_discount', 'Get a 5% discount', 'click', 'Product description')
         this.showPopup('getDiscount', 'Click on the btn')
       })
     })
@@ -87,7 +90,6 @@ class WelcomeDiscountOnPdp {
   showPopup(name: string, trigger: string) {
     const isShowed = sessionStorage.getItem(name)
     if (isShowed) return
-    console.log(`handleShowPopup`, trigger)
 
     const body = $el('body'),
       backdrop = $el('.new_popup_backdrop')
@@ -97,7 +99,7 @@ class WelcomeDiscountOnPdp {
     }
     body.style.overflow = 'hidden'
 
-    // pushData('exp_intent_popup_section_01', 'Section', 'Visibility', 'Pop Up Get paid as you like. In no time!')
+    pushData('exp_01_welcome__popup_1__view', 'Step 1, Email form', 'view', 'Popup Save 5% on Your next order')
     this.closePopup()
   }
 
@@ -120,29 +122,22 @@ class WelcomeDiscountOnPdp {
   handleBtnClosePopupClick(e: any) {
     if (e.currentTarget && e.currentTarget.closest('.step_coupon_wrapper')) {
       console.log(`step_coupon_wrapper close_btn`)
-      this.applyCoupon(`couponCode`)
+      this.applyCoupon(`0AN8XT0VRWD1`)
     } else {
-      // pushData('exp_intent_popup_button_01', 'Close', 'Button', 'Pop Up Get paid as you like. In no time!');
-      console.log(`close_btn`)
       this.hidePopup()
     }
+    pushData('exp_01_welcome__close_btn', 'Close', 'click', 'Popup Save 5% on Your next order')
   }
 
   handleBackdropClick(e: any) {
     if (e.target.matches('.new_popup_backdrop')) {
       if (e.target.closest('.step_coupon_wrapper')) {
         console.log('new_popup_backdrop step_coupon_wrapper')
-        this.applyCoupon(`couponCode`)
+        this.applyCoupon(`0AN8XT0VRWD1`)
       } else {
-        // pushData(
-        //   'exp_intent_popup_button_05',
-        //   'Сlick behind the pop-up area',
-        //   'Backdrop',
-        //   'Pop Up Get paid as you like. In no time!'
-        // );
-        console.log('new_popup_backdrop')
         this.hidePopup()
       }
+      pushData('exp_01_welcome__backdrop', 'Сlick behind the pop-up area', 'click', 'Popup Save 5% on Your next order')
     }
   }
 
@@ -166,12 +161,7 @@ class WelcomeDiscountOnPdp {
           }
         })
         i.addEventListener('blur', (e: any) => {
-          // pushData(
-          //   'exp_exit_intent_popup_input_01',
-          //   '5% Rabatt erhalten',
-          //   'Input',
-          //   'Erhalten Sie 5% Rabatt & kostenlose Lieferung!'
-          // )
+          pushData('exp_01_welcome__popup_1__email', 'Email', 'click', 'Popup Save 5% on Your next order')
         })
       })
     })
@@ -183,6 +173,7 @@ class WelcomeDiscountOnPdp {
       const emailInput = $el('#emailNew') as HTMLInputElement
 
       btn.addEventListener('click', () => {
+        pushData('exp_01_welcome__popup_1__continue', 'Continue', 'click', 'Popup Save 5% on Your next order')
         this.validateEmailForm(emailInput, true)
       })
     })
@@ -226,6 +217,7 @@ class WelcomeDiscountOnPdp {
     if ($el('.second_screen').classList.contains('is_hidden')) {
       $el('.second_screen').classList.remove('is_hidden')
     }
+    pushData('exp_01_welcome__popup_2__view', 'Step 2. Coupon code', 'view', 'Popup Save 5% on Your next order')
   }
 
   sendEmailToGoogleSheet(email: string) {
@@ -259,7 +251,8 @@ class WelcomeDiscountOnPdp {
       const btn = $el('.main_red_btn.step_coupon') as HTMLElement
 
       btn.addEventListener('click', () => {
-        this.applyCoupon(`couponCode`)
+        pushData('exp_01_welcome__popup_2__got_it', 'Got it, Let`s Shop!', 'click', 'Popup Save 5% on Your next order')
+        this.applyCoupon(`0AN8XT0VRWD1`)
       })
     })
   }
@@ -273,6 +266,7 @@ class WelcomeDiscountOnPdp {
     waitForElement('[data-discount]').then(i => {
       $$el('[data-discount]').forEach((btn): void => {
         btn.addEventListener('click', (event: any) => {
+          pushData('exp_01_welcome__popup_2__copy', 'Copy code', 'click', 'Popup Save 5% on Your next order')
           let discount = event.currentTarget.dataset.discount
           navigator.clipboard.writeText(discount)
           event.currentTarget.textContent = 'Copied!'

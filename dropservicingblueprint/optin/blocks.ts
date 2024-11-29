@@ -1,4 +1,4 @@
-import { learn, reviews, figure, trainingFor, trustpilotReviews, faq, svg, blockers, stats } from './data'
+import { learn, reviews, figure, trainingFor, trustpilotReviews, faq, svg, blockers, stats, stories } from './data'
 
 const git = 'https://conversionratestore.github.io/projects/dropservicing/optin/img'
 
@@ -42,6 +42,62 @@ export const blockersBlock = /* HTML */ `
   </div>
 `
 
+export const tpLabel = /* HTML */ `
+  <div class="tp_label">
+    <img src="${git}/trustpilot.svg" alt="stars" />
+    <p>
+      TrustScore&nbsp;
+      <img src="${git}/trustpilot_star.svg" alt="star" />
+      <b>4.8/5</b>&nbsp;<span>300+ Reviews</span>
+    </p>
+  </div>
+`
+
+export const seatsLeftBlock = /* HTML */ `
+  <p class="seats_left_txt">
+    The event is almost full: <b><span class="seats_left_value">5</span> seats left</b>
+  </p>
+`
+
+export const progressBarBlock = /* HTML */ `
+  <div class="progress_bar_container">
+    <div class="progress_bar"></div>
+  </div>
+`
+
+export const trustedBlock = /* HTML */ `
+  <div class="trusted_block">
+    <img src="${git}/trusted_img.png" alt="img people" />
+    <p>The <b>#1</b> free online business training.<br />Trusted by <span>4M+ people.</span></p>
+  </div>
+`
+
+export const infoBlock = /* HTML */ `
+  <ul class="info_block">
+    <li class="info_item">
+      <span class="info_icon">${svg.infoBlockIcon1}</span>
+      <p>
+        Discover <b>‘Drop Servicing’</b>—a proven method to build a profitable online business and achieve financial
+        freedom.
+      </p>
+    </li>
+    <li class="info_item">
+      <span class="info_icon">${svg.infoBlockIcon2}</span>
+      <p>
+        Learn a simple 4-step process to land your <b>first sale in 30 days</b> using just a laptop and an internet
+        connection.
+      </p>
+    </li>
+  </ul>
+`
+
+export const safeAndSecureBlock = /* HTML */ `
+  <div class="safe_and_secure_block">
+    <span class="safe_and_secure_icon"> ${svg.safeAndSecureIcon} </span>
+    <p>Your data is safe and secure. No ads or spam</p>
+  </div>
+`
+
 export const mainBlock = /* HTML */ `
   <section id="main_block">
     <div class="wrapper">
@@ -51,14 +107,7 @@ export const mainBlock = /* HTML */ `
       </header>
       <div class="hero_wrapper ver_c">
         <div class="info">
-          <div class="tp_label">
-            <img src="${git}/trustpilot.svg" alt="stars" />
-            <p>
-              TrustScore&nbsp;
-              <img src="${git}/trustpilot_star.svg" alt="star" />
-              <b>4.8/5</b>&nbsp;<span>300+ Reviews</span>
-            </p>
-          </div>
+          ${tpLabel}
           <h1>
             The 4 steps to start your online business <br />
             in 2024 and unlock financial freedom goals
@@ -307,32 +356,23 @@ export const footerBlock = /* HTML */ `
     </div>
   </footer>
 `
+
 export const popupBlock = /* HTML */ `
-  <div class="crs_popup_form">
+  <div class="crs_popup_form" data-closeform>
     <div class="form">
-      <div class="close"></div>
-      <form>
-        <h2>Join our Exclusive Online Training</h2>
-        <p class="icons">
-          <span>
-            <img src="${git}/dollar.svg" alt="dollar" />
-            Free
-          </span>
-          <span>
-            <img src="${git}/frame.svg" alt="frame" />
-            Live Training
-          </span>
-          <span>
-            <img src="${git}/calendar.svg" alt="calendar" />
-            Today
-          </span>
-        </p>
+      <div class="close" data-closeform>${svg.closeIconPopup}</div>
+      <form class="crs_form">
         <div class="inputs1">
-          <label><input type="text" placeholder="Enter your name..." name="name" /></label>
+          <h2>Access Your Exclusive Online Training</h2>
+          ${seatsLeftBlock} ${progressBarBlock} ${trustedBlock} ${infoBlock}
+          <h3 class="inputs1_title">Enter your email to get a link for the live training</h3>
           <label><input type="email" placeholder="Enter email address..." name="email" /></label>
-          <button class="cta register">Grab Your FREE Seat Now!</button>
+          ${safeAndSecureBlock}
+          <label class="name_label is_hidden"><input type="text" placeholder="Enter your name..." name="name" /></label>
+          <button class="cta register">GET FREE TRAINING</button>
         </div>
         <div class="inputs2"></div>
+        ${tpLabel}
       </form>
       <div class="bonus">
         <p><img src="${git}/present.png" alt="gift" /> Exclusive bonuses!</p>
@@ -375,6 +415,7 @@ type schedule = {
 export const selectTime = (schedules: schedule[], timeZone: string) => {
   const localTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
   return /* HTML */ `
+    <h3 class="inputs2_title">Select a time to join</h3>
     <ul class="time_list">
       ${schedules
         .map(({ date, schedule }, i) => {
@@ -403,18 +444,18 @@ export const selectTime = (schedules: schedule[], timeZone: string) => {
         })
         .join('')}
     </ul>
-    <button class="cta register_mob">Select a Time to Join</button>
+    <button class="cta register_mob">Select a Time</button>
   `
 }
 
 export const blockersPopupBlock = /* HTML */ `
-  <div class="crs_blockers_popup">
-    <div class="close"></div>
+  <div class="crs_blockers_popup" data-closeblokers>
+    <div class="close" data-closeblokers>${svg.closeIconPopup}</div>
     <div class="crs_blockers_content"></div>
   </div>
 `
 
-export const blockersPopupCntentBlock = (
+export const blockersPopupContentBlock = (
   reviewerPhoto: string,
   reviewerName: string,
   reviewText: string,
@@ -426,19 +467,102 @@ export const blockersPopupCntentBlock = (
 ) => {
   return /* HTML */ `
     <div class="video_wrapper">
-      <div class="head">
-        <div class="img">
-          <img src="${reviewerPhoto}" alt="Lauren" />
+      <div class="review_wrapper">
+        <div class="review_header">
+          <div class="img_wrapper">
+            <img src="${reviewerPhoto}" alt="Lauren" />
+          </div>
+          <div class="review_info">
+            <p>${reviewerName}</p>
+            <img src="${stars}" alt="stars" />
+          </div>
         </div>
-        <p><b>${reviewerName}</b><img src="${stars}" alt="stars" /></p>
         <p>${reviewText}</p>
+      </div>
+      <div class="video">
+        <!-- <div class="wistia_embed wistia_async_q8xu3220ak" style="width:100%;"></div> -->
+        <img src="${git}/img_test.webp" alt="img" />
       </div>
     </div>
     <div class="info_wrapper">
-      ${icon}
-      <h3>${title}</h3>
-      <p>${text}</p>
-      <button class="cta pop">${button}</button>
+      <div class="title_wrapper">
+        ${icon}
+        <h3>${title}</h3>
+        <p>${text}</p>
+      </div>
+      <button data-closeblokers class="cta pop">${button}</button>
     </div>
   `
 }
+
+export const exitPopup = /* HTML */ `
+  <div class="crs_exit_popup" data-closeexit>
+    <div class="crs_exit_content">
+      <div class="close" data-closeexit>${svg.closeSvgExitPopup}</div>
+      <div class="crs_main_info">
+        <h2>Wait! Don't Miss Out on This Opportunity!</h2>
+        ${seatsLeftBlock} ${progressBarBlock}
+        <p>This free training is only available for a short time—don’t miss your last chance!</p>
+        <div class="crs_list_block">
+          <h3>
+            <img src="${git}/check_exit_img.png" alt="icon" /> 
+            You’re just one step away from...
+          </h3>
+          <ul>
+            <li>
+              ${svg.checkSvgExitPopup}
+              <p>Discovering the proven Drop Servicing formula to start your online business</p>
+            </li>
+            <li>
+              ${svg.checkSvgExitPopup}
+              <p>Unlocking financial freedom with practical, results-driven strategies</p>
+            </li>
+            <li>
+              ${svg.checkSvgExitPopup}
+              <p>Accessing a simple 4-step process + exclusive bonuses</p>
+            </li>
+          </ul>
+        </div>
+        <button class="cta pop">Yes, I want free training & bonuses</button>
+        <div class="no_btn">No, I'll miss out</div>
+      </div>
+      <div class="crs_stories">
+        <p>Our Success Stories</p>
+        <div class="crs_stories_block">
+          <div class="crs_stories_nav">
+            ${stories
+              .map(
+                (s, i) => `<span class="${i === 0 ? 'active' : ''}">
+                <img src="https://conversionratestore.github.io/projects/dropservicing/popups/img/avatar_${i}.jpg" alt="avatar" />
+              </span>`
+              )
+              .join('')}
+          </div>
+          <div class="crs_stories_content">
+            ${stories
+              .map(
+                (s, i) =>
+                  /* HTML */ `<div class="crs_story ${i === 0 ? 'active' : ''}">
+                    <div class="crs_story_head">
+                      <span>
+                        <img
+                          src="https://conversionratestore.github.io/projects/dropservicing/popups/img/avatar_${i}.jpg"
+                          alt="avatar"
+                        />
+                      </span>
+                      <p>
+                        <b>${s.name}</b><br />
+                        <span>Verified Customer <img src="${git}/check_exit_img.png" alt="icon" /> </span>
+                      </p>
+                    </div>
+                    <img src="${git}/rating_stars.png" alt="stars" />
+                    <p>${s.text}</p>
+                  </div>`
+              )
+              .join('')}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+`

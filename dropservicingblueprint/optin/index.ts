@@ -7,7 +7,8 @@ import {
   startLog,
   loadScriptsOrStyles,
   visibilityOfTime,
-  clarityInterval
+  clarityInterval,
+  waitForElement
 } from '../../libraries'
 
 import { $el } from '../../libraries/libraries2'
@@ -27,7 +28,8 @@ import {
   videoPopupBLock,
   selectTime,
   blockersPopupBlock,
-  blockersPopupCntentBlock
+  blockersPopupContentBlock,
+  exitPopup
 } from './blocks'
 import { tns } from 'tiny-slider/src/tiny-slider'
 import { blockers, reviews } from './data'
@@ -50,7 +52,9 @@ loadScriptsOrStyles(listStyles)
 startLog({ name: 'Opt in page V2', dev: 'SKH' })
 
 class OptInPageV2 {
+  device: 'mobile' | 'desktop'
   constructor() {
+    this.device = window.innerWidth < 768 ? 'mobile' : 'desktop'
     waitEl('body', () => {
       $el('head').elements[0].insertAdjacentHTML(
         'afterbegin',
@@ -69,6 +73,10 @@ class OptInPageV2 {
     this.addBlocks()
     this.setActions()
     this.setEvents()
+
+    this.setSlider()
+    this.intentPopupTriggers()
+
   }
 
   addBlocks() {
@@ -94,6 +102,7 @@ class OptInPageV2 {
     root.insertAdjacentHTML('beforeend', popupBlock)
     root.insertAdjacentHTML('beforeend', videoPopupBLock)
     root.insertAdjacentHTML('beforeend', blockersPopupBlock)
+    root.insertAdjacentHTML('beforeend', exitPopup)
 
     // if (window.location.href.includes('dropservicing.net')) {
     //   $el('#main_block h1').elements[0].innerHTML =
@@ -102,12 +111,18 @@ class OptInPageV2 {
   }
 
   setActions() {
-    
+    function closeBlockersPopup() {
+      $el('.crs_blockers_popup').elements[0].classList.remove('active')
+
+      setTimeout(() => {
+        $el('.crs_blockers_content').elements[0].innerHTML = ''
+      }, 500)
+    }
+
     $el('.btn_see_details').on('click', function (e) {
       const target = e.currentTarget as HTMLElement | null
       if (!target) return
 
-      console.log(target, `target`)
       $el('.crs_blockers_popup').elements[0].classList.add('active')
 
       const id = target.getAttribute('data-id')
@@ -119,7 +134,7 @@ class OptInPageV2 {
 
         container.insertAdjacentHTML(
           'beforeend',
-          blockersPopupCntentBlock(
+          blockersPopupContentBlock(
             review.reviewerPhoto,
             review.reviewerName,
             review.reviewText,
@@ -130,9 +145,42 @@ class OptInPageV2 {
             button
           )
         )
+
+        $el('.crs_blockers_content .cta').on('click', function (e) {
+          const target = e.currentTarget as HTMLElement | null
+          if (!target) return
+
+          closeBlockersPopup()
+          setTimeout(() => {
+            $el('.crs_popup_form').elements[0].classList.add('active')
+          }, 800)
+        })
       }
     })
-    
+
+    $el('[data-closeblokers]').on('click', function (e) {
+      if (!(e.target as Element).closest('.crs_blockers_content')) {
+        closeBlockersPopup()
+      }
+    })
+
+    $el('[data-closeexit]').on('click', function (e) {
+      if (!(e.target as Element).closest('.crs_main_info') && !(e.target as Element).closest('.crs_stories')) {
+        $el('.crs_exit_popup').elements[0].classList.remove('active')
+      }
+    })
+
+    $el('.crs_exit_popup .cta').on('click', function (e) {
+      $el('.crs_exit_popup').elements[0].classList.remove('active')
+      setTimeout(() => {
+        $el('.crs_popup_form').elements[0].classList.add('active')
+      }, 800)
+    })
+
+    $el('.no_btn').on('click', function (e) {
+      $el('.crs_exit_popup').elements[0].classList.remove('active')
+    })
+
     $el('.inputs2').on('click', 'li', function () {
       if (!this.classList.contains('selected')) {
         this.closest('.inputs2').querySelector('.selected').classList.remove('selected')
@@ -248,6 +296,12 @@ class OptInPageV2 {
       }
     })
 
+    $el('input[name="email"]').on('focus', function () {
+      if ($el('.name_label').elements[0].classList.contains('is_hidden')) {
+        $el('.name_label').elements[0].classList.remove('is_hidden')
+      }
+    })
+
     $el('.question').on('click', function () {
       const text = this.innerText
       if (this.classList.contains('active')) {
@@ -287,10 +341,12 @@ class OptInPageV2 {
       }
     })
 
-    $el('.crs_popup_form .close').on('click', function () {
-      $el('.crs_popup_form').elements[0].classList.remove('active')
-      ;($el('.crs_popup_form .inputs1').elements[0] as HTMLElement).style.display = 'block'
-      $el('.crs_popup_form .inputs2').removeClass('active')
+    $el('[data-closeform]').on('click', function (e) {
+      if (!(e.target as Element).closest('.bonus') && !(e.target as Element).closest('.crs_form')) {
+        $el('.crs_popup_form').elements[0].classList.remove('active')
+        ;($el('.crs_popup_form .inputs1').elements[0] as HTMLElement).style.display = 'block'
+        $el('.crs_popup_form .inputs2').removeClass('active')
+      }
     })
 
     $el('#base_review .slide').on('click', function () {
@@ -326,7 +382,6 @@ class OptInPageV2 {
       //   }
       // })
     })
-
 
     // var 1
     $el('.crs_video_popup .crs_close').on('click', function () {
@@ -468,6 +523,37 @@ class OptInPageV2 {
     visibilityOfTime('#last_cta', 'exp_optin_future_view', 'Your Future Starts Here')
     visibilityOfTime('.crs_popup_form .inputs2', 'exp_optin_popup_cta_time_view_step2', 'Popup after click on CTA')
     visibilityOfTime('#main_block .inputs2', 'exp_optin_main_form_view_step2', 'First screen form')
+  }
+
+  setSlider() {
+    $el('.crs_stories_nav span').on('click', function (e) {
+      if (this.classList.contains('active')) return
+      $el('.crs_stories_nav span').removeClass('active')
+      this.classList.add('active')
+      const index = Array.from(this.parentElement.children).indexOf(this)
+      const elemPosition = $el('.crs_stories_content .crs_story').elements[index].getBoundingClientRect().left
+      const blockPosition = $el('.crs_stories_content').elements[0].getBoundingClientRect().left
+      const elemScrollPosition = blockPosition - elemPosition
+      const blockScrollPosition = $el('.crs_stories_content').elements[0].scrollLeft
+      $el('.crs_stories_content').elements[0].scrollTo({
+        left: blockScrollPosition - elemScrollPosition,
+        behavior: 'smooth'
+      })
+    })
+  }
+
+  intentPopupTriggers() {
+    if (sessionStorage.getItem('intentPopupTriggers')) return
+    
+    if (this.device === 'desktop') {
+      // cursor moved out of the page frame
+      document.addEventListener('mouseout', event => {
+        if (!event.relatedTarget) {
+          sessionStorage.setItem('intentPopupTriggers', 'true')
+          $el('.crs_exit_popup').elements[0].classList.add('active')
+        }
+      })
+    }
   }
 }
 
