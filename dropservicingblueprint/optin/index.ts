@@ -9,7 +9,8 @@ import {
   visibilityOfTime,
   clarityInterval,
   $$el,
-  waitForElement
+  waitForElement,
+  scrollToHtmlElement
 } from '../../libraries'
 
 import { $el } from '../../libraries/libraries2'
@@ -144,7 +145,7 @@ class OptInPageV2 {
       }, 500)
     }
 
-    if (this.device === 'desktop') {
+    if (this.device === 'desktop' && $el('#blokers .blokers_list').elements[0]) {
       const baseBlokersSlider = tns({
         container: '#blokers .blokers_list',
         slideBy: 1,
@@ -152,7 +153,19 @@ class OptInPageV2 {
         loop: false,
         mouseDrag: true,
         gutter: 24,
-        autoHeight: true
+        autoHeight: true,
+        responsive: {
+          0: {
+            items: 3,
+            controls: false,
+            autoHeight: true
+          },
+          768: {
+            items: 3,
+            controls: true,
+            nav: false
+          }
+        }
       })
     }
 
@@ -199,6 +212,29 @@ class OptInPageV2 {
     $el('[data-closeblokers]').on('click', function (e) {
       if (!(e.target as Element).closest('.crs_blockers_content')) {
         closeBlockersPopup()
+      }
+    })
+
+    $el('.show_more_block').on('click', function (e) {
+      const target = e.currentTarget as HTMLElement | null
+      if (!target) return
+
+      target.classList.toggle('is_open')
+
+      const block = target.previousElementSibling
+      const spanElement = target.querySelector('span')
+
+      if (block) {
+        block.classList.toggle('is_open')
+      }
+
+      if (spanElement && !target.classList.contains('is_open')) {
+        spanElement.textContent = 'Show less options'
+        scrollToHtmlElement($$el('.blokers_item')[3], 24)
+      } else {
+        if (spanElement) {
+          spanElement.textContent = 'Show more options'
+        }
       }
     })
 

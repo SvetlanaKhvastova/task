@@ -16,10 +16,14 @@ export const statsBlock = /* HTML */ `
         )
         .join('')}
     </ul>
-  </d>
+  </div>
 `
 
-export const founderName = /* HTML */ ` <span class="founder_name">Dylan Sigley, Founder, Dropservicing.com</span> `
+export const founderName = /* HTML */ `
+  <span class="founder_name"
+    >Dylan Sigley, Founder, <a href="https://dropservicing.com/homepage">Dropservicing.com</a></span
+  >
+`
 
 export const storiesBlock = /* HTML */ `
   <div class="crs_stories">
@@ -64,7 +68,7 @@ export const storiesBlock = /* HTML */ `
 export const blockersBlock = /* HTML */ `
   <div class="blokers">
     <h3>What’s stopping you from achieving your financial and lifestyle goals?</h3>
-    <ul class="blokers_list">
+    <ul class="blokers_list ver_c">
       ${blockers
         .map(
           ({ id, icon, text, button }) => /* HTML */ `
@@ -81,6 +85,7 @@ export const blockersBlock = /* HTML */ `
         )
         .join('')}
     </ul>
+    <div class="show_more_block mobile"><span>Show more options</span> ${svg.showMoreIcon}</div>
   </div>
 `
 
@@ -142,11 +147,11 @@ export const safeAndSecureBlock = /* HTML */ `
 `
 
 export const mainBlock = /* HTML */ `
-  <!-- <section id="main_block" class="ver_c">
+  <section id="main_block" class="ver_c">
     <div class="wrapper">
       <header>
         <img src="${git}/logo.png" alt="logo" />
-        ${statsBlock}
+        <div class="desktop">${statsBlock}</div>
       </header>
       <div class="hero_wrapper ver_c">
         <div class="info">
@@ -161,14 +166,14 @@ export const mainBlock = /* HTML */ `
           <div class="video">
             <div class="wistia_embed wistia_async_q8xu3220ak" style="width:930px;height:521px;"></div>
           </div>
-          ${founderName}
-          ${storiesBlock}
+          ${founderName} ${storiesBlock}
         </div>
+        <div class="mobile stats_mob">${statsBlock}</div>
       </div>
       ${blockersBlock}
     </div>
-  </section> -->
-  <section id="main_block" class="ver_b">
+  </section>
+  <!-- <section id="main_block" class="ver_b">
     <div class="img_bgr">
       <img src="${git}/hero_img.webp" alt="img" />
       ${founderName}
@@ -182,13 +187,17 @@ export const mainBlock = /* HTML */ `
           ${tpLabel}
           <h1>The 4 steps to start your online business in 2024 and unlock financial freedom goals</h1>
           <button class="cta pop">Yes! Get Access Now!</button>
+          <div class="mobile hero_img_wrapper">
+            <img src="${git}/hero_img_mob.webp" alt="img" class="hero_img" />
+            ${founderName}
+          </div>
           ${statsBlock}
         </div>
       </div>
       ${storiesBlock}
     </div>
   </section>
-  <section id="blokers">${blockersBlock}</section>
+  <section id="blokers">${blockersBlock}</section> -->
 `
 
 export const reviewsBlock = /* HTML */ `
@@ -410,9 +419,9 @@ export const footerBlock = /* HTML */ `
         Additionally, This site is NOT endorsed by Google or Meta in any way.
       </p>
       <p>
-        <a href="https://www.dropservicingblueprint.com/">Dylan Sigley Consulting - FZCO</a> | IFZA Business Park, DDP,
-        Dubai Silicon Oasis | +1 (786) 475-8716 | info@dropservicingblueprint.com
+        <a href="https://www.dropservicingblueprint.com/">Dylan Sigley Consulting - FZCO</a>
       </p>
+      <p>| IFZA Business Park, DDP, Dubai Silicon Oasis | +1 (786) 475-8716 | info@dropservicingblueprint.com</p>
       <p>
         <a href="https://www.dropservicingblueprint.com/privacy-policy">Privacy Policy </a>
         <a href="https://www.dropservicingblueprint.com/earnings-disclaimer">Earnings Disclaimer</a>
@@ -532,6 +541,7 @@ export const blockersPopupContentBlock = (
   video: string
 ) => {
   return /* HTML */ `
+    <h3 class="mobile">${title}</h3>
     <div class="video_wrapper">
       <div class="review_wrapper">
         <div class="review_header">
