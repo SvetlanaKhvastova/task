@@ -21,6 +21,46 @@ export const statsBlock = /* HTML */ `
 
 export const founderName = /* HTML */ ` <span class="founder_name">Dylan Sigley, Founder, Dropservicing.com</span> `
 
+export const storiesBlock = /* HTML */ `
+  <div class="crs_stories">
+    <p>Our Success Stories</p>
+    <div class="crs_stories_block">
+      <div class="crs_stories_nav">
+        ${stories
+          .map(
+            (s, i) => `<span class="${i === 0 ? 'active' : ''}">
+                <img src="https://conversionratestore.github.io/projects/dropservicing/popups/img/avatar_${i}.jpg" alt="avatar" />
+              </span>`
+          )
+          .join('')}
+      </div>
+      <div class="crs_stories_content">
+        ${stories
+          .map(
+            (s, i) =>
+              /* HTML */ `<div class="crs_story ${i === 0 ? 'active' : ''}">
+                <div class="crs_story_head">
+                  <span>
+                    <img
+                      src="https://conversionratestore.github.io/projects/dropservicing/popups/img/avatar_${i}.jpg"
+                      alt="avatar"
+                    />
+                  </span>
+                  <p>
+                    <b>${s.name}</b><br />
+                    <span>Verified Customer <img src="${git}/check_exit_img.png" alt="icon" /> </span>
+                  </p>
+                </div>
+                <img src="${git}/rating_stars.png" alt="stars" />
+                <p>${s.text}</p>
+              </div>`
+          )
+          .join('')}
+      </div>
+    </div>
+  </div>
+`
+
 export const blockersBlock = /* HTML */ `
   <div class="blokers">
     <h3>What’s stopping you from achieving your financial and lifestyle goals?</h3>
@@ -29,11 +69,13 @@ export const blockersBlock = /* HTML */ `
         .map(
           ({ id, icon, text, button }) => /* HTML */ `
             <li>
-              <div>
-                ${icon}
-                <p>${text}</p>
+              <div class="blokers_item">
+                <div>
+                  ${icon}
+                  <p>${text}</p>
+                </div>
+                <div data-id="${id}" class="btn_see_details">${button}</div>
               </div>
-              <div data-id="${id}" class="btn_see_details">${button}</div>
             </li>
           `
         )
@@ -55,7 +97,8 @@ export const tpLabel = /* HTML */ `
 
 export const seatsLeftBlock = /* HTML */ `
   <p class="seats_left_txt">
-    The event is almost full: <b><span class="seats_left_value">5</span> seats left</b>
+    The event is almost full:
+    <b><span class="seats_left_value"></span> seats left</b>
   </p>
 `
 
@@ -99,7 +142,7 @@ export const safeAndSecureBlock = /* HTML */ `
 `
 
 export const mainBlock = /* HTML */ `
-  <section id="main_block">
+  <!-- <section id="main_block" class="ver_c">
     <div class="wrapper">
       <header>
         <img src="${git}/logo.png" alt="logo" />
@@ -119,11 +162,33 @@ export const mainBlock = /* HTML */ `
             <div class="wistia_embed wistia_async_q8xu3220ak" style="width:930px;height:521px;"></div>
           </div>
           ${founderName}
+          ${storiesBlock}
         </div>
       </div>
       ${blockersBlock}
     </div>
+  </section> -->
+  <section id="main_block" class="ver_b">
+    <div class="img_bgr">
+      <img src="${git}/hero_img.webp" alt="img" />
+      ${founderName}
+    </div>
+    <div class="wrapper">
+      <header>
+        <img src="${git}/logo.png" alt="logo" />
+      </header>
+      <div class="hero_wrapper ver_b">
+        <div class="info">
+          ${tpLabel}
+          <h1>The 4 steps to start your online business in 2024 and unlock financial freedom goals</h1>
+          <button class="cta pop">Yes! Get Access Now!</button>
+          ${statsBlock}
+        </div>
+      </div>
+      ${storiesBlock}
+    </div>
   </section>
+  <section id="blokers">${blockersBlock}</section>
 `
 
 export const reviewsBlock = /* HTML */ `
@@ -463,14 +528,15 @@ export const blockersPopupContentBlock = (
   icon: string,
   title: string,
   text: string,
-  button: string
+  button: string,
+  video: string
 ) => {
   return /* HTML */ `
     <div class="video_wrapper">
       <div class="review_wrapper">
         <div class="review_header">
           <div class="img_wrapper">
-            <img src="${reviewerPhoto}" alt="Lauren" />
+            <img src="${reviewerPhoto}" alt="${reviewerName}" />
           </div>
           <div class="review_info">
             <p>${reviewerName}</p>
@@ -480,15 +546,21 @@ export const blockersPopupContentBlock = (
         <p>${reviewText}</p>
       </div>
       <div class="video">
-        <!-- <div class="wistia_embed wistia_async_q8xu3220ak" style="width:100%;"></div> -->
-        <img src="${git}/img_test.webp" alt="img" />
+        <iframe
+          src="https://drive.google.com/file/d/${video}/preview"
+          width="100%"
+          height="450"
+          allow="autoplay"
+          sandbox="allow-same-origin allow-scripts allow-popups-to-escape-sandbox"
+        ></iframe>
+        <!-- <img src="${git}/img_test.webp" alt="img" /> -->
       </div>
     </div>
     <div class="info_wrapper">
       <div class="title_wrapper">
         ${icon}
         <h3>${title}</h3>
-        <p>${text}</p>
+        <div class="txt_container">${text}</div>
       </div>
       <button data-closeblokers class="cta pop">${button}</button>
     </div>
@@ -505,7 +577,7 @@ export const exitPopup = /* HTML */ `
         <p>This free training is only available for a short time—don’t miss your last chance!</p>
         <div class="crs_list_block">
           <h3>
-            <img src="${git}/check_exit_img.png" alt="icon" /> 
+            <img src="${git}/check_exit_img.png" alt="icon" />
             You’re just one step away from...
           </h3>
           <ul>
@@ -526,43 +598,7 @@ export const exitPopup = /* HTML */ `
         <button class="cta pop">Yes, I want free training & bonuses</button>
         <div class="no_btn">No, I'll miss out</div>
       </div>
-      <div class="crs_stories">
-        <p>Our Success Stories</p>
-        <div class="crs_stories_block">
-          <div class="crs_stories_nav">
-            ${stories
-              .map(
-                (s, i) => `<span class="${i === 0 ? 'active' : ''}">
-                <img src="https://conversionratestore.github.io/projects/dropservicing/popups/img/avatar_${i}.jpg" alt="avatar" />
-              </span>`
-              )
-              .join('')}
-          </div>
-          <div class="crs_stories_content">
-            ${stories
-              .map(
-                (s, i) =>
-                  /* HTML */ `<div class="crs_story ${i === 0 ? 'active' : ''}">
-                    <div class="crs_story_head">
-                      <span>
-                        <img
-                          src="https://conversionratestore.github.io/projects/dropservicing/popups/img/avatar_${i}.jpg"
-                          alt="avatar"
-                        />
-                      </span>
-                      <p>
-                        <b>${s.name}</b><br />
-                        <span>Verified Customer <img src="${git}/check_exit_img.png" alt="icon" /> </span>
-                      </p>
-                    </div>
-                    <img src="${git}/rating_stars.png" alt="stars" />
-                    <p>${s.text}</p>
-                  </div>`
-              )
-              .join('')}
-          </div>
-        </div>
-      </div>
+      ${storiesBlock}
     </div>
   </div>
 `

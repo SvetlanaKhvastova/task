@@ -8,6 +8,7 @@ import {
   loadScriptsOrStyles,
   visibilityOfTime,
   clarityInterval,
+  $$el,
   waitForElement
 } from '../../libraries'
 
@@ -70,13 +71,39 @@ class OptInPageV2 {
   }
 
   init() {
+    if (!this.getRandomNumberForSeatsLeft()) {
+      this.generateAndStoreRandomNumberForSeatsLeft()
+    }
+
     this.addBlocks()
     this.setActions()
     this.setEvents()
 
+    this.setInnerTxtRandomNumberForSeatsLeft()
     this.setSlider()
     this.intentPopupTriggers()
+  }
 
+  getRandomNumberForSeatsLeft() {
+    return sessionStorage.getItem('randomNumber')
+  }
+
+  generateAndStoreRandomNumberForSeatsLeft() {
+    const randomNumber = Math.floor(Math.random() * 5) + 3 // Генерируем число от 3 до 7
+    sessionStorage.setItem('randomNumber', randomNumber.toString())
+  }
+
+  setInnerTxtRandomNumberForSeatsLeft() {
+    waitForElement('.seats_left_value').then(i => {
+      const randomNumber = this.getRandomNumberForSeatsLeft()
+      let seatsLeft = $$el('.seats_left_value') as NodeListOf<HTMLElement>
+
+      if (randomNumber && seatsLeft) {
+        seatsLeft.forEach(el => {
+          el.textContent = randomNumber
+        })
+      }
+    })
   }
 
   addBlocks() {
@@ -91,23 +118,21 @@ class OptInPageV2 {
     root.insertAdjacentHTML('beforeend', bonusBlock)
     root.insertAdjacentHTML('beforeend', hostBlock)
 
-    // var1
-    root.insertAdjacentHTML('beforeend', videoBlock)
-    root.insertAdjacentHTML('beforeend', trainingForBlock)
-    root.insertAdjacentHTML('beforeend', trustPilotBlock)
-    root.insertAdjacentHTML('beforeend', faqBlock)
-    root.insertAdjacentHTML('beforeend', lastCtaBlock)
+    if (this.device === 'desktop') {
+      root.insertAdjacentHTML('beforeend', videoBlock)
+      root.insertAdjacentHTML('beforeend', trainingForBlock)
+      root.insertAdjacentHTML('beforeend', trustPilotBlock)
+      root.insertAdjacentHTML('beforeend', faqBlock)
+      root.insertAdjacentHTML('beforeend', lastCtaBlock)
+    }
 
     root.insertAdjacentHTML('beforeend', footerBlock)
     root.insertAdjacentHTML('beforeend', popupBlock)
-    root.insertAdjacentHTML('beforeend', videoPopupBLock)
     root.insertAdjacentHTML('beforeend', blockersPopupBlock)
     root.insertAdjacentHTML('beforeend', exitPopup)
-
-    // if (window.location.href.includes('dropservicing.net')) {
-    //   $el('#main_block h1').elements[0].innerHTML =
-    //     'The 4 Steps to Start Your Online Business in 2024 and Achieve Financial Freedom Goals'
-    // }
+    if (this.device === 'desktop') {
+      root.insertAdjacentHTML('beforeend', videoPopupBLock)
+    }
   }
 
   setActions() {
@@ -117,6 +142,18 @@ class OptInPageV2 {
       setTimeout(() => {
         $el('.crs_blockers_content').elements[0].innerHTML = ''
       }, 500)
+    }
+
+    if (this.device === 'desktop') {
+      const baseBlokersSlider = tns({
+        container: '#blokers .blokers_list',
+        slideBy: 1,
+        items: 1,
+        loop: false,
+        mouseDrag: true,
+        gutter: 24,
+        autoHeight: true
+      })
     }
 
     $el('.btn_see_details').on('click', function (e) {
@@ -130,7 +167,7 @@ class OptInPageV2 {
       const popupContentElements = blockers.find(block => block.id === parseInt(id || ''))
 
       if (popupContentElements) {
-        const { icon, title, text, button, review } = popupContentElements?.popupContent || {}
+        const { icon, title, text, button, video, review } = popupContentElements?.popupContent || {}
 
         container.insertAdjacentHTML(
           'beforeend',
@@ -142,7 +179,8 @@ class OptInPageV2 {
             icon,
             title,
             text,
-            button
+            button,
+            video
           )
         )
 
@@ -346,6 +384,12 @@ class OptInPageV2 {
         $el('.crs_popup_form').elements[0].classList.remove('active')
         ;($el('.crs_popup_form .inputs1').elements[0] as HTMLElement).style.display = 'block'
         $el('.crs_popup_form .inputs2').removeClass('active')
+        if (!sessionStorage.getItem('intentPopupTriggers')) {
+          setTimeout(() => {
+            sessionStorage.setItem('intentPopupTriggers', 'true')
+            $el('.crs_exit_popup').elements[0].classList.add('active')
+          }, 400)
+        }
       }
     })
 
@@ -544,16 +588,25 @@ class OptInPageV2 {
 
   intentPopupTriggers() {
     if (sessionStorage.getItem('intentPopupTriggers')) return
-    
+
     if (this.device === 'desktop') {
-      // cursor moved out of the page frame
+      // On desktop only: Mouse exit from current tab
       document.addEventListener('mouseout', event => {
-        if (!event.relatedTarget) {
-          sessionStorage.setItem('intentPopupTriggers', 'true')
-          $el('.crs_exit_popup').elements[0].classList.add('active')
+        if (
+          !event.relatedTarget &&
+          !sessionStorage.getItem('intentPopupTriggers') &&
+          !$el('.crs_popup_form.active').elements[0]
+        ) {
+          console.log(`mouseout`)
+          this.showExitPopup()
         }
       })
     }
+  }
+
+  showExitPopup() {
+    sessionStorage.setItem('intentPopupTriggers', 'true')
+    $el('.crs_exit_popup').elements[0].classList.add('active')
   }
 }
 

@@ -1,4 +1,4 @@
-import { safeAndSecureBlock } from "./blocks"
+import { safeAndSecureBlock } from './blocks'
 
 const git = 'https://conversionratestore.github.io/projects/dropservicing/optin/img/'
 
@@ -93,13 +93,13 @@ export const svg = {
   </defs>
 </svg>
   `,
-  closeIconPopup:`
+  closeIconPopup: `
   <svg xmlns="http://www.w3.org/2000/svg" width="19" height="18" viewBox="0 0 19 18" fill="none">
   <path d="M17.5 1L1.50024 16.9998" stroke="#161718" stroke-width="2" stroke-linecap="round"/>
   <path d="M17.5 17L1.50025 1.00024" stroke="#161718" stroke-width="2" stroke-linecap="round"/>
 </svg>
   `,
-  infoBlockIcon1:`
+  infoBlockIcon1: `
   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
   <g clip-path="url(#clip0_570_1064)">
     <path d="M24.008 0.0787548C19.323 -0.00524519 13.98 2.44375 10.598 6.24275C7.36601 6.30375 4.21901 7.62876 1.90201 9.94576C1.76701 10.0788 1.71901 10.2778 1.77801 10.4578C1.83801 10.6388 1.99401 10.7698 2.18201 10.7968L6.03601 11.3488L5.56001 11.8818C5.38301 12.0798 5.39201 12.3808 5.58001 12.5688L12.007 18.9958C12.104 19.0928 12.232 19.1418 12.361 19.1418C12.48 19.1418 12.599 19.0998 12.694 19.0148L13.227 18.5388L13.779 22.3928C13.806 22.5808 13.954 22.7188 14.133 22.7788C14.179 22.7938 14.227 22.8008 14.276 22.8008C14.418 22.8008 14.563 22.7388 14.663 22.6398C16.948 20.3548 18.273 17.2078 18.334 13.9758C22.137 10.5868 24.606 5.24575 24.497 0.566755C24.49 0.300755 24.275 0.0857548 24.008 0.0787548ZM19.4 8.71076C18.913 9.19776 18.273 9.44176 17.632 9.44176C16.991 9.44176 16.351 9.19776 15.864 8.71076C14.89 7.73576 14.89 6.14975 15.864 5.17475C16.839 4.19975 18.425 4.19975 19.4 5.17475C20.375 6.14975 20.375 7.73676 19.4 8.71076Z" fill="white"/>
@@ -112,12 +112,12 @@ export const svg = {
   </defs>
 </svg>
   `,
-  infoBlockIcon2:`
+  infoBlockIcon2: `
   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
   <path fill-rule="evenodd" clip-rule="evenodd" d="M21.25 3.07568C21.25 2.10968 20.467 1.32568 19.5 1.32568H5.5C4.533 1.32568 3.75 2.10968 3.75 3.07568V21.0757C3.75 22.0417 4.533 22.8257 5.5 22.8257H19.5C20.467 22.8257 21.25 22.0417 21.25 21.0757V3.07568ZM6.953 18.1387L8.078 19.3387C8.229 19.5007 8.445 19.5867 8.666 19.5747C8.887 19.5627 9.092 19.4527 9.225 19.2757L11.1 16.7757C11.348 16.4447 11.281 15.9737 10.95 15.7257C10.619 15.4777 10.148 15.5447 9.9 15.8757L8.561 17.6607L8.047 17.1127C7.764 16.8107 7.289 16.7957 6.987 17.0787C6.685 17.3617 6.67 17.8367 6.953 18.1387ZM13.5 18.3257H17.5C17.914 18.3257 18.25 17.9897 18.25 17.5757C18.25 17.1617 17.914 16.8257 17.5 16.8257H13.5C13.086 16.8257 12.75 17.1617 12.75 17.5757C12.75 17.9897 13.086 18.3257 13.5 18.3257ZM6.953 12.6387L8.078 13.8387C8.229 14.0007 8.445 14.0867 8.666 14.0747C8.887 14.0627 9.092 13.9527 9.225 13.7757L11.1 11.2757C11.348 10.9447 11.281 10.4737 10.95 10.2257C10.619 9.97768 10.148 10.0447 9.9 10.3757L8.561 12.1607L8.047 11.6127C7.764 11.3107 7.289 11.2957 6.987 11.5787C6.685 11.8617 6.67 12.3367 6.953 12.6387ZM13.5 12.8257H17.5C17.914 12.8257 18.25 12.4897 18.25 12.0757C18.25 11.6617 17.914 11.3257 17.5 11.3257H13.5C13.086 11.3257 12.75 11.6617 12.75 12.0757C12.75 12.4897 13.086 12.8257 13.5 12.8257ZM6.953 7.13868L8.078 8.33868C8.229 8.50068 8.445 8.58668 8.666 8.57468C8.887 8.56268 9.092 8.45268 9.225 8.27568L11.1 5.77568C11.348 5.44468 11.281 4.97368 10.95 4.72568C10.619 4.47768 10.148 4.54468 9.9 4.87568L8.561 6.66068L8.047 6.11268C7.764 5.81068 7.289 5.79568 6.987 6.07868C6.685 6.36168 6.67 6.83668 6.953 7.13868ZM13.5 7.32568H17.5C17.914 7.32568 18.25 6.98968 18.25 6.57568C18.25 6.16168 17.914 5.82568 17.5 5.82568H13.5C13.086 5.82568 12.75 6.16168 12.75 6.57568C12.75 6.98968 13.086 7.32568 13.5 7.32568Z" fill="white"/>
 </svg>
   `,
-  safeAndSecureIcon:`
+  safeAndSecureIcon: `
   <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
   <g clip-path="url(#clip0_533_4126)">
     <path d="M13.3346 2.51071C13.3346 2.32813 13.2209 2.16363 13.0488 2.10063L7.65297 0.103297C7.55497 0.0671302 7.44705 0.0671302 7.34905 0.103297L1.9538 2.10063C1.78172 2.16363 1.66797 2.32755 1.66797 2.51071V7.17796C1.66797 12.488 7.33214 14.0461 7.3893 14.0613C7.42605 14.0706 7.46397 14.0759 7.5013 14.0759C7.53864 14.0759 7.57655 14.0706 7.6133 14.0613C7.67047 14.0461 13.3346 12.4875 13.3346 7.17796V2.51071ZM10.4308 7.38446L7.81922 10.1471C7.73639 10.2346 7.62147 10.2842 7.5013 10.2842C7.38114 10.2842 7.26622 10.2346 7.18339 10.1477L4.5718 7.38505C3.81464 6.58471 3.81464 5.28213 4.5718 4.48121C5.31905 3.6908 6.63564 3.69021 7.38405 4.48121L7.5013 4.60546L7.61855 4.48121C8.36639 3.69021 9.68297 3.6908 10.4308 4.48121C11.188 5.28155 11.188 6.58413 10.4308 7.38446Z" fill="#4A567A"/>
@@ -132,7 +132,7 @@ export const svg = {
   checkSvgExitPopup: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
 <path d="M15 8L9 15L5 11" stroke="#2F2F2F" stroke-width="2"/>
 </svg>`,
-closeSvgExitPopup: `
+  closeSvgExitPopup: `
 <svg xmlns="http://www.w3.org/2000/svg" width="39" height="38" viewBox="0 0 39 38" fill="none">
   <g filter="url(#filter0_d_533_8340)">
     <circle cx="19.5" cy="15" r="15" fill="#222222"/>
@@ -179,13 +179,14 @@ export const blockers = [
     popupContent: {
       icon: svg.blockersIcon1,
       title: 'I feel stuck in the 9-to-5 grind with no time, freedom, or flexibility to enjoy my life.',
-      text: 'Feeling stuck in a 9-to-5 grind can drain your time, freedom, and flexibility. This free training introduces a business model built for a lifestyle of freedom: Drop Servicing. Everything you need can be used on a laptop and internet connection. Using the most powerful tools in modern history, you’ll learn how to create an income stream that lets you work from anywhere and on your schedule. The training provides step-by-step guidance, done-for-you templates, and proven strategies, so you can escape the daily grind and design a life you love without taking big risks like giving up your current job.',
+      text: '<p>Feeling stuck in a 9-to-5 grind can drain your time, freedom, and flexibility. This free training introduces a business model built for a lifestyle of freedom: Drop Servicing.</p> <p>Everything you need can be used on a laptop and internet connection. Using the most powerful tools in modern history, you’ll learn how to create an income stream that lets you work from anywhere and on your schedule.</p> <p>The training provides step-by-step guidance, done-for-you templates, and proven strategies, so you can escape the daily grind and design a life you love without taking big risks like giving up your current job.</p>',
       button: 'Yes! Get Access Now!',
-      video: 'https://www.youtube.com/embed/example1',
+      video: '1gVMiMqBfIBJSwIv6H8zkxED7xriYFLAQ',
       review: {
-        reviewerPhoto: `${git}christian.jpg`,
-        reviewerName: 'Christian',
-        reviewText: '"From an unfulfilling job to running his own business, Christian transformed his life in just three months."',
+        reviewerPhoto: `${git}barend_img.webp`,
+        reviewerName: 'Barend',
+        reviewText:
+          '“Barend went from working two stressful restaurant jobs to living his dream of travelling the world”',
         stars: `${git}rating_stars.png`
       }
     }
@@ -198,13 +199,13 @@ export const blockers = [
     popupContent: {
       icon: svg.blockersIcon2,
       title: 'I don’t know how to achieve financial freedom or build recurring, reliable income streams.',
-      text: 'Financial freedom starts with the right strategy, and this free training delivers just that. You’ll learn a proven 4-step system to build a Drop Servicing business—an online model where you connect clients with services and earn recurring income. It’s affordable, beginner-friendly, and requires no inventory, startup costs or technical skills. We break everything into clear, actionable steps, showing you how to generate consistent income monthly. Whether you want to earn extra on the side or replace your job entirely, this training provides the tools to achieve it.',
+      text: '<p>Financial freedom starts with the right strategy, and this free training delivers just that.</p> <p>You’ll learn a proven 4-step system to build a Drop Servicing business—an online model where you connect clients with services and earn recurring income.</p> <p>It’s affordable, beginner-friendly, and requires no inventory, startup costs or technical skills.</p> <p>We break everything into clear, actionable steps, showing you how to generate consistent income monthly.</p> <p>Whether you want to earn extra on the side or replace your job entirely, this training provides the tools to achieve it.</p>',
       button: 'Yes! Get Access Now!',
-      video: 'https://www.youtube.com/embed/example2',
+      video: '1DKzPqpkAEDqX4twEoxkT_ixUm42kIxSf',
       review: {
-        reviewerPhoto: `${git}christian.jpg`,
-        reviewerName: 'Christian',
-        reviewText: '"From an unfulfilling job to running his own business, Christian transformed his life in just three months."',
+        reviewerPhoto: `${git}aleksa_img.webp`,
+        reviewerName: 'Aleksa',
+        reviewText: '“Aleksa followed the 4 simple steps and achieved financial freedom within a few months”',
         stars: `${git}rating_stars.png`
       }
     }
@@ -217,13 +218,13 @@ export const blockers = [
     popupContent: {
       icon: svg.blockersIcon3,
       title: 'I’m struggling to boost my income fast without sacrificing all my free time or taking big risks.',
-      text: 'This free training is perfect for anyone wanting to increase their income in a flexible way. You’ll discover how to build a Drop Servicing business that fits your schedule and learn strategies to land your first high-value client quickly using low-risk methods and time-saving automation.With done-for-you templates and a beginner-friendly process, you’ll gain the tools to grow at your own pace and create a scalable recurring income stream—whether as a side hustle or a full-time business.',
+      text: '<p>This free training is perfect for anyone wanting to increase their income in a flexible way.</p> <p>You’ll discover how to build a Drop Servicing business that fits your schedule and learn strategies to land your first high-value client quickly using low-risk methods and time-saving automation.</p> <p>With done-for-you templates and a beginner-friendly process, you’ll gain the tools to grow at your own pace and create a scalable recurring income stream—whether as a side hustle or a full-time business.</p>',
       button: 'Yes! Get Access Now!',
-      video: 'https://www.youtube.com/embed/example3',
+      video: '1kpKHy3gCpOSSEnpafDv0qSXB6zAlMi0f',
       review: {
-        reviewerPhoto: `${git}christian.jpg`,
-        reviewerName: 'Christian',
-        reviewText: '"From an unfulfilling job to running his own business, Christian transformed his life in just three months."',
+        reviewerPhoto: `${git}ed_img.webp`,
+        reviewerName: 'Ed',
+        reviewText: '“Ed used our strategies to boost his income fast and earned 6 figures within his first year”',
         stars: `${git}rating_stars.png`
       }
     }
@@ -236,13 +237,14 @@ export const blockers = [
     popupContent: {
       icon: svg.blockersIcon4,
       title: 'I lack the skills or clarity to start an online business; it feels overwhelming and impossible to begin.',
-      text: 'Starting an online business is overwhelming to say the least. But it doesn’t have to be. . This free training breaks everything down into a simple, step-by-step process designed for beginners. You don’t need prior experience or technical skills—just follow our checklist, use the provided done-for-you templates, and you’ll be on your way to building your own path to financial freedom. You’ll also see real-life success stories of people who started from scratch that will motivate you and prove it’s possible. By the end of the training, you’ll have the clarity, tools, and confidence to get started with Drop Servicing stress-free.',
+      text: '<p>Starting an online business is overwhelming to say the least. But it doesn’t have to be.</p> <p>This free training breaks everything down into a simple, step-by-step process designed for beginners.</p> <p>You don’t need prior experience or technical skills—just follow our checklist, use the provided done-for-you templates, and you’ll be on your way to building your own path to financial freedom.</p> <p>You’ll also see real-life success stories of people who started from scratch that will motivate you and prove it’s possible.</p> <p>By the end of the training, you’ll have the clarity, tools, and confidence to get started with Drop Servicing stress-free.</p>',
       button: 'Yes! Get Access Now!',
-      video: 'https://www.youtube.com/embed/example4',
+      video: '1jYLnyLJhUwYjvjd-C5ZHTGpH_Ch2VNTZ',
       review: {
-        reviewerPhoto: `${git}christian.jpg`,
-        reviewerName: 'Christian',
-        reviewText: '"From an unfulfilling job to running his own business, Christian transformed his life in just three months."',
+        reviewerPhoto: `${git}lauren_img.webp`,
+        reviewerName: 'Lauren',
+        reviewText:
+          '“Lauren gained complete clarity and confidence on what to do to achieve her goals and now makes 7 figures per year”',
         stars: `${git}rating_stars.png`
       }
     }
@@ -255,13 +257,14 @@ export const blockers = [
     popupContent: {
       icon: svg.blockersIcon5,
       title: 'I feel overwhelmed by options and need a simple, beginner-friendly path to success.',
-      text: 'Overwhelmed by options? This free training makes starting an online business simple and beginner-friendly. Drop Servicing eliminates the need for technical skills, upfront investments, or complicated setups. Using just a laptop and an internet connection you’ll build a simple little laptop business that funds your freedom. Our free training provides done-for-you templates, automation tools, and real-life examples, ensuring your success. By the end, you’ll have the confidence and knowledge to begin immediately, knowing this proven model has helped countless other beginners succeed.',
+      text: '<p>Overwhelmed by options? This free training makes starting an online business simple and beginner-friendly.</p> <p>Drop Servicing eliminates the need for technical skills, upfront investments, or complicated setups. Using just a laptop and an internet connection you’ll build a simple little laptop business that funds your freedom.</p> <p>Our free training provides done-for-you templates, automation tools, and real-life examples, ensuring your success. By the end, you’ll have the confidence and knowledge to begin immediately, knowing this proven model has helped countless other beginners succeed.</p>',
       button: 'Yes! Get Access Now!',
-      video: 'https://www.youtube.com/embed/example5',
+      video: '1Tr0eDJO8Ao5X4rJesfEVMvt8Zv3ysgxw',
       review: {
-        reviewerPhoto: `${git}christian.jpg`,
-        reviewerName: 'Christian',
-        reviewText: '"From an unfulfilling job to running his own business, Christian transformed his life in just three months."',
+        reviewerPhoto: `${git}jordan_img.webp`,
+        reviewerName: 'Jordan',
+        reviewText:
+          '“After trying everything Jordan discovered our simple method and got his first sale within a few weeks”',
         stars: `${git}rating_stars.png`
       }
     }
@@ -274,13 +277,14 @@ export const blockers = [
     popupContent: {
       icon: svg.blockersIcon6,
       title: 'I’m skeptical of online business promises and need a proven, trustworthy system.',
-      text: 'Skeptical about online business promises? This free training is built on transparency and proven results. We show you a clear, step-by-step system to build a Drop Servicing business, supported by real-life case studies and success stories. No hype—just actionable strategies that thousands have used to achieve financial freedom goals. You’ll see how this beginner-friendly model works and why it’s trusted by so many. With no fluff and no gimmicks, this training provides the tools and guidance you need to start confidently and see real results.',
+      text: '<p>Skeptical about online business promises? This free training is built on transparency and proven results.</p> <p>We show you a clear, step-by-step system to build a Drop Servicing business, supported by real-life case studies and success stories.</p> <p>No hype—just actionable strategies that thousands have used to achieve financial freedom goals. You’ll see how this beginner-friendly model works and why it’s trusted by so many.</p> <p>With no fluff and no gimmicks, this training provides the tools and guidance you need to start confidently and see real results.</p>',
       button: 'Yes! Get Access Now!',
-      video: 'https://www.youtube.com/embed/example6',
+      video: '1o33LtqsudY26TKerdg-fMkJQkY65b1XP',
       review: {
-        reviewerPhoto: `${git}christian.jpg`,
-        reviewerName: 'Christian',
-        reviewText: '"From an unfulfilling job to running his own business, Christian transformed his life in just three months."',
+        reviewerPhoto: `${git}michelle_img.webp`,
+        reviewerName: 'Michelle',
+        reviewText:
+          '“Feeling unsure about all the online business promises, Michelle took a leap of faith with us—and it paid off with total freedom.”',
         stars: `${git}rating_stars.png`
       }
     }
@@ -474,7 +478,6 @@ export const faq = [
       'Dylan is going to reveal the 4 steps you need to get started as well as give you a tutorial and template you can use right away.'
   }
 ]
-
 
 export const stories = [
   {
