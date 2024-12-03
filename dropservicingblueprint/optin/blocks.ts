@@ -125,15 +125,13 @@ export const infoBlock = /* HTML */ `
     <li class="info_item">
       <span class="info_icon">${svg.infoBlockIcon1}</span>
       <p>
-        Discover <b>‘Drop Servicing’</b>—a proven method to build a profitable online business and achieve financial
-        freedom.
+        Discover <b>‘Drop Servicing’</b>—a new method to build a simple online business and achieve financial freedom.
       </p>
     </li>
     <li class="info_item">
       <span class="info_icon">${svg.infoBlockIcon2}</span>
       <p>
-        Learn a simple 4-step process to land your <b>first sale in 30 days</b> using just a laptop and an internet
-        connection.
+        Learn a 4-step process to land your <b>first sale in 30 days</b> using just a laptop and an internet connection.
       </p>
     </li>
   </ul>
@@ -439,7 +437,10 @@ export const popupBlock = /* HTML */ `
         <div class="inputs1">
           <h2>Access Your Exclusive Online Training</h2>
           ${seatsLeftBlock} ${progressBarBlock} ${trustedBlock} ${infoBlock}
-          <h3 class="inputs1_title">Enter your email to get a link for the live training</h3>
+          <h3 class="inputs1_title">
+            Enter your email <br class="mobile" />
+            to get a link for the live training
+          </h3>
           <label><input type="email" placeholder="Enter email address..." name="email" /></label>
           ${safeAndSecureBlock}
           <label class="name_label is_hidden"><input type="text" placeholder="Enter your name..." name="name" /></label>
@@ -524,8 +525,10 @@ export const selectTime = (schedules: schedule[], timeZone: string) => {
 
 export const blockersPopupBlock = /* HTML */ `
   <div class="crs_blockers_popup" data-closeblokers>
-    <div class="close" data-closeblokers>${svg.closeIconPopup}</div>
-    <div class="crs_blockers_content"></div>
+    <div>
+      <div class="close" data-closeblokers>${svg.closeIconPopup}</div>
+      <div class="crs_blockers_content"></div>
+    </div>
   </div>
 `
 
@@ -556,23 +559,18 @@ export const blockersPopupContentBlock = (
         <p>${reviewText}</p>
       </div>
       <div class="video">
-        <iframe
-          src="https://drive.google.com/file/d/${video}/preview"
-          width="100%"
-          height="450"
-          allow="autoplay"
-          sandbox="allow-same-origin allow-scripts allow-popups-to-escape-sandbox"
-        ></iframe>
-        <!-- <img src="${git}/img_test.webp" alt="img" /> -->
+        <video controls src="https://conversionratestore.github.io/projects/dropservicing/optin/video/${video}"></video>
       </div>
     </div>
     <div class="info_wrapper">
       <div class="title_wrapper">
         ${icon}
         <h3>${title}</h3>
-        <div class="txt_container">${text}</div>
+        <div class="txt_container_abs">
+          <div class="txt_container">${text}</div>
+        </div>
       </div>
-      <button data-closeblokers class="cta pop">${button}</button>
+      <button class="cta pop">${button}</button>
     </div>
   `
 }

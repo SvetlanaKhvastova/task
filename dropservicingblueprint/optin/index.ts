@@ -81,7 +81,8 @@ class OptInPageV2 {
     this.setEvents()
 
     this.setInnerTxtRandomNumberForSeatsLeft()
-    this.setSlider()
+    this.setSliderStories('#main_block')
+    this.setSliderStories('.crs_exit_popup')
     this.intentPopupTriggers()
   }
 
@@ -118,9 +119,9 @@ class OptInPageV2 {
     root.insertAdjacentHTML('beforeend', reviewsBlock)
     root.insertAdjacentHTML('beforeend', bonusBlock)
     root.insertAdjacentHTML('beforeend', hostBlock)
+    root.insertAdjacentHTML('beforeend', videoBlock)
 
     if (this.device === 'desktop') {
-      root.insertAdjacentHTML('beforeend', videoBlock)
       root.insertAdjacentHTML('beforeend', trainingForBlock)
       root.insertAdjacentHTML('beforeend', trustPilotBlock)
       root.insertAdjacentHTML('beforeend', faqBlock)
@@ -131,18 +132,36 @@ class OptInPageV2 {
     root.insertAdjacentHTML('beforeend', popupBlock)
     root.insertAdjacentHTML('beforeend', blockersPopupBlock)
     root.insertAdjacentHTML('beforeend', exitPopup)
-    if (this.device === 'desktop') {
-      root.insertAdjacentHTML('beforeend', videoPopupBLock)
-    }
+    root.insertAdjacentHTML('beforeend', videoPopupBLock)
   }
 
   setActions() {
+    function addScrollListener() {
+      const videoWrappers = $$el('.txt_container')
+      videoWrappers.forEach(wrapper => {
+        wrapper.addEventListener('scroll', () => handleScroll(wrapper))
+      })
+    }
+
+    function handleScroll(wrapper) {
+      const scrollTop = wrapper.scrollTop
+      const scrollHeight = wrapper.scrollHeight
+      const clientHeight = wrapper.clientHeight
+
+      if (scrollTop + clientHeight < scrollHeight) {
+        console.log(`remove scrolling-up`, wrapper)
+        wrapper.classList.remove('scrolling-up')
+      } else {
+        console.log(`add scrolling-up`, wrapper)
+        wrapper.classList.add('scrolling-up')
+      }
+    }
     function closeBlockersPopup() {
       $el('.crs_blockers_popup').elements[0].classList.remove('active')
 
       setTimeout(() => {
         $el('.crs_blockers_content').elements[0].innerHTML = ''
-      }, 500)
+      }, 300)
     }
 
     if (this.device === 'desktop' && $el('#blokers .blokers_list').elements[0]) {
@@ -172,6 +191,7 @@ class OptInPageV2 {
     $el('.btn_see_details').on('click', function (e) {
       const target = e.currentTarget as HTMLElement | null
       if (!target) return
+      ;($el('body').elements[0] as HTMLElement).style.overflow = 'hidden'
 
       $el('.crs_blockers_popup').elements[0].classList.add('active')
 
@@ -206,12 +226,15 @@ class OptInPageV2 {
             $el('.crs_popup_form').elements[0].classList.add('active')
           }, 800)
         })
+
+        addScrollListener()
       }
     })
 
     $el('[data-closeblokers]').on('click', function (e) {
       if (!(e.target as Element).closest('.crs_blockers_content')) {
         closeBlockersPopup()
+        ;($el('body').elements[0] as HTMLElement).style.overflow = 'auto'
       }
     })
 
@@ -240,6 +263,7 @@ class OptInPageV2 {
 
     $el('[data-closeexit]').on('click', function (e) {
       if (!(e.target as Element).closest('.crs_main_info') && !(e.target as Element).closest('.crs_stories')) {
+        ;($el('body').elements[0] as HTMLElement).style.overflow = 'auto'
         $el('.crs_exit_popup').elements[0].classList.remove('active')
       }
     })
@@ -252,6 +276,7 @@ class OptInPageV2 {
     })
 
     $el('.no_btn').on('click', function (e) {
+      ;($el('body').elements[0] as HTMLElement).style.overflow = 'auto'
       $el('.crs_exit_popup').elements[0].classList.remove('active')
     })
 
@@ -389,11 +414,12 @@ class OptInPageV2 {
     })
 
     $el('.cta.pop').on('click', function () {
+      ;($el('body').elements[0] as HTMLElement).style.overflow = 'hidden'
       console.log(`.cta.pop`)
-      if ($el('.crs_video_popup').elements[0].classList.contains('active')) {
+      if ($el('.crs_video_popup')?.elements[0]?.classList.contains('active')) {
         $el('.crs_video_popup .video *:not(.crs_close)').elements.forEach(el => el.remove())
       }
-      $el('.crs_video_popup').elements[0].classList.remove('active')
+      $el('.crs_video_popup')?.elements[0]?.classList.remove('active')
       $el('.crs_popup_form').elements[0].classList.add('active')
       if (this.closest('#last_cta')) {
         pushData('exp_optin_future_cta', 'Join the exclusive training', 'click', 'Your Future Starts Here')
@@ -417,13 +443,16 @@ class OptInPageV2 {
 
     $el('[data-closeform]').on('click', function (e) {
       if (!(e.target as Element).closest('.bonus') && !(e.target as Element).closest('.crs_form')) {
+        ;($el('body').elements[0] as HTMLElement).style.overflow = 'auto'
         $el('.crs_popup_form').elements[0].classList.remove('active')
         ;($el('.crs_popup_form .inputs1').elements[0] as HTMLElement).style.display = 'block'
         $el('.crs_popup_form .inputs2').removeClass('active')
+
         if (!sessionStorage.getItem('intentPopupTriggers')) {
           setTimeout(() => {
             sessionStorage.setItem('intentPopupTriggers', 'true')
             $el('.crs_exit_popup').elements[0].classList.add('active')
+            ;($el('body').elements[0] as HTMLElement).style.overflow = 'hidden'
           }, 400)
         }
       }
@@ -435,9 +464,10 @@ class OptInPageV2 {
 
       // var 1
       const videoBlock = $el(`.video_slide[data-video="${videoId}"] .video`).elements[0].cloneNode(true)
+      console.log(videoBlock, videoId, `videoBlock`)
       $el('.crs_video_popup .video').elements[0].appendChild(videoBlock)
 
-      $el('.crs_video_popup').elements[0].classList.add('active')
+      $el('.crs_video_popup')?.elements[0]?.classList.add('active')
       pushData('exp_optin_why_join_review', `Open review. ${text}`, 'click', 'Why Join This Webinar')
 
       // var 1
@@ -492,28 +522,6 @@ class OptInPageV2 {
       }
     })
 
-    // var 1
-    const videoSlider = tns({
-      container: '#video_block ul',
-      items: 1,
-      slideBy: 1,
-      //@ts-ignore
-      controlsPosition: 'bottom',
-      loop: false,
-      navPosition: 'bottom',
-      gutter: 0,
-      center: true,
-      responsive: {
-        0: {
-          edgePadding: 16,
-          controls: false
-        },
-        768: {
-          edgePadding: 200,
-          controls: true
-        }
-      }
-    })
     setTimeout(() => {
       if (baseReviewSlider.getInfo().navItems) {
         ;(baseReviewSlider.getInfo().navItems as HTMLCollection)[1].classList.add('tns-nav-near')
@@ -527,43 +535,68 @@ class OptInPageV2 {
       navItems[info.index + 1]?.classList.add('tns-nav-near')
     })
 
-    videoSlider.getInfo().slideItems[0].classList.add('tns-current')
-    ;(videoSlider.getInfo().navItems as HTMLCollection)[1].classList.add('tns-nav-near')
-
-    videoSlider.events.on('indexChanged', function (info) {
-      const slideItems = info.slideItems
-      const navItems = info.navItems as HTMLCollection
-      Array.from(navItems).forEach(nav => nav.classList.remove('tns-nav-near'))
-      Array.from(slideItems).forEach(slide => slide.classList.remove('tns-current'))
-      navItems[info.index - 1]?.classList.add('tns-nav-near')
-      navItems[info.index + 1]?.classList.add('tns-nav-near')
-      const currentSlide = slideItems[info.index]
-      currentSlide.classList.add('tns-current')
-    })
-
-    tns({
-      container: '#trust_pilot ul',
-      items: 3,
-      slideBy: 1,
-      controls: true,
-      //@ts-ignore
-      controlsPosition: 'bottom',
-      loop: false,
-      navPosition: 'bottom',
-      mouseDrag: true,
-      gutter: 20,
-      autoHeight: true,
-      responsive: {
-        0: {
-          items: 1,
-          controls: false
-        },
-        768: {
-          items: 3,
-          controls: true
+    // var 1
+    if (this.device === 'desktop') {
+      const videoSlider = tns({
+        container: '#video_block ul',
+        items: 1,
+        slideBy: 1,
+        //@ts-ignore
+        controlsPosition: 'bottom',
+        loop: false,
+        navPosition: 'bottom',
+        gutter: 0,
+        center: true,
+        responsive: {
+          0: {
+            edgePadding: 16,
+            controls: false
+          },
+          768: {
+            edgePadding: 200,
+            controls: true
+          }
         }
-      }
-    })
+      })
+
+      videoSlider.getInfo().slideItems[0].classList.add('tns-current')
+      ;(videoSlider.getInfo().navItems as HTMLCollection)[1].classList.add('tns-nav-near')
+
+      videoSlider.events.on('indexChanged', function (info) {
+        const slideItems = info.slideItems
+        const navItems = info.navItems as HTMLCollection
+        Array.from(navItems).forEach(nav => nav.classList.remove('tns-nav-near'))
+        Array.from(slideItems).forEach(slide => slide.classList.remove('tns-current'))
+        navItems[info.index - 1]?.classList.add('tns-nav-near')
+        navItems[info.index + 1]?.classList.add('tns-nav-near')
+        const currentSlide = slideItems[info.index]
+        currentSlide.classList.add('tns-current')
+      })
+
+      tns({
+        container: '#trust_pilot ul',
+        items: 3,
+        slideBy: 1,
+        controls: true,
+        //@ts-ignore
+        controlsPosition: 'bottom',
+        loop: false,
+        navPosition: 'bottom',
+        mouseDrag: true,
+        gutter: 20,
+        autoHeight: true,
+        responsive: {
+          0: {
+            items: 1,
+            controls: false
+          },
+          768: {
+            items: 3,
+            controls: true
+          }
+        }
+      })
+    }
 
     const videoApi = setInterval(() => {
       if (window.Wistia) {
@@ -605,17 +638,20 @@ class OptInPageV2 {
     visibilityOfTime('#main_block .inputs2', 'exp_optin_main_form_view_step2', 'First screen form')
   }
 
-  setSlider() {
-    $el('.crs_stories_nav span').on('click', function (e) {
+  setSliderStories(sliderContainer) {
+    $el(`${sliderContainer} .crs_stories_nav span`).on('click', function (e) {
       if (this.classList.contains('active')) return
-      $el('.crs_stories_nav span').removeClass('active')
+
+      $el(`${sliderContainer} .crs_stories_nav span`).removeClass('active')
       this.classList.add('active')
       const index = Array.from(this.parentElement.children).indexOf(this)
-      const elemPosition = $el('.crs_stories_content .crs_story').elements[index].getBoundingClientRect().left
-      const blockPosition = $el('.crs_stories_content').elements[0].getBoundingClientRect().left
+      const elemPosition = $el(`${sliderContainer} .crs_stories_content .crs_story`).elements[
+        index
+      ].getBoundingClientRect().left
+      const blockPosition = $el(`${sliderContainer} .crs_stories_content`).elements[0].getBoundingClientRect().left
       const elemScrollPosition = blockPosition - elemPosition
-      const blockScrollPosition = $el('.crs_stories_content').elements[0].scrollLeft
-      $el('.crs_stories_content').elements[0].scrollTo({
+      const blockScrollPosition = $el(`${sliderContainer} .crs_stories_content`).elements[0].scrollLeft
+      $el(`${sliderContainer} .crs_stories_content`).elements[0].scrollTo({
         left: blockScrollPosition - elemScrollPosition,
         behavior: 'smooth'
       })
@@ -642,6 +678,7 @@ class OptInPageV2 {
 
   showExitPopup() {
     sessionStorage.setItem('intentPopupTriggers', 'true')
+    ;($el('body').elements[0] as HTMLElement).style.overflow = 'hidden'
     $el('.crs_exit_popup').elements[0].classList.add('active')
   }
 }

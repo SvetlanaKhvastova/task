@@ -229,6 +229,8 @@
             }
             &:focus-visible {
               border-radius: 0;
+              outline: 1px solid black !important;
+              border: none !important;
             }
           }
         }
