@@ -6,14 +6,13 @@ import {
   waitEl,
   startLog,
   loadScriptsOrStyles,
-  visibilityOfTime,
   clarityInterval,
   $$el,
   waitForElement,
   scrollToHtmlElement
 } from '../../libraries'
 
-import { $el } from '../../libraries/libraries2'
+import { $el, visibilityOfTime } from '../../libraries/libraries2'
 
 import {
   mainBlock,
@@ -44,13 +43,6 @@ declare global {
   }
 }
 
-const listStyles = [
-  'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css',
-  'https://fast.wistia.com/assets/external/E-v1.js'
-]
-
-loadScriptsOrStyles(listStyles)
-
 startLog({ name: 'Opt in page V2', dev: 'SKH' })
 
 class OptInPageV2 {
@@ -72,6 +64,7 @@ class OptInPageV2 {
   }
 
   init() {
+    clarityInterval('exp_opt_in_v2', 'variant_2')
     if (!this.getRandomNumberForSeatsLeft()) {
       this.generateAndStoreRandomNumberForSeatsLeft()
     }
@@ -113,8 +106,8 @@ class OptInPageV2 {
     if (root && root.nextElementSibling && root.nextElementSibling.tagName.toLowerCase() === 'style') {
       root.nextElementSibling.remove()
     }
-    root.classList.add('crs_style_v2')
     root.innerHTML = ''
+    root.classList.add('crs_v2')
     root.insertAdjacentHTML('afterbegin', mainBlock)
     root.insertAdjacentHTML('beforeend', reviewsBlock)
     root.insertAdjacentHTML('beforeend', bonusBlock)
@@ -164,30 +157,6 @@ class OptInPageV2 {
       }, 300)
     }
 
-    if (this.device === 'desktop' && $el('#blokers .blokers_list').elements[0]) {
-      const baseBlokersSlider = tns({
-        container: '#blokers .blokers_list',
-        slideBy: 1,
-        items: 1,
-        loop: false,
-        mouseDrag: true,
-        gutter: 24,
-        autoHeight: true,
-        responsive: {
-          0: {
-            items: 3,
-            controls: false,
-            autoHeight: true
-          },
-          768: {
-            items: 3,
-            controls: true,
-            nav: false
-          }
-        }
-      })
-    }
-
     $el('.btn_see_details').on('click', function (e) {
       const target = e.currentTarget as HTMLElement | null
       if (!target) return
@@ -198,6 +167,14 @@ class OptInPageV2 {
       const id = target.getAttribute('data-id')
       const container = $el('.crs_blockers_content').elements[0]
       const popupContentElements = blockers.find(block => block.id === parseInt(id || ''))
+      const popupName = popupContentElements?.popupContent.title
+
+      pushData(
+        'exp_opt_in_v2__slider__open',
+        `See details. ${popupName}`,
+        'click',
+        'What’s stopping you from achieving your financial and lifestyle goals?'
+      )
 
       if (popupContentElements) {
         const { icon, title, text, button, video, review } = popupContentElements?.popupContent || {}
@@ -216,14 +193,26 @@ class OptInPageV2 {
             video
           )
         )
+        waitForElement('.crs_blockers_content .info_wrapper').then(el => {
+          pushData('exp_opt_in_v2__popup_det__view', 'Popup', 'view', `Popup. ${popupName}`)
+        })
 
         $el('.crs_blockers_content .cta').on('click', function (e) {
           const target = e.currentTarget as HTMLElement | null
           if (!target) return
 
+          pushData('exp_opt_in_v2__popup_det__cta', 'Yes! Get Access Now!', 'click', `Popup. ${popupName}`)
+
           closeBlockersPopup()
           setTimeout(() => {
             $el('.crs_popup_form').elements[0].classList.add('active')
+            visibilityOfTime(
+              '.crs_popup_form.active .inputs1',
+              'exp_opt_in_v2__p_form__1__view',
+              'Popup. Access Your Exclusive Online Training. Step 1',
+              'Popup'
+            )
+            console.log(`visibilityOfTime >>>>>>>>`)
           }, 800)
         })
 
@@ -269,13 +258,21 @@ class OptInPageV2 {
     })
 
     $el('.crs_exit_popup .cta').on('click', function (e) {
+      pushData('exp_opt_in_v2__p_exit__yes', 'Yes, I want free training & bonuses', 'click', 'Popup. Exit-intent')
       $el('.crs_exit_popup').elements[0].classList.remove('active')
+      visibilityOfTime(
+        '.crs_popup_form.active .inputs1',
+        'exp_opt_in_v2__p_form__1__view',
+        'Popup. Access Your Exclusive Online Training. Step 1',
+        'Popup'
+      )
       setTimeout(() => {
         $el('.crs_popup_form').elements[0].classList.add('active')
       }, 800)
     })
 
     $el('.no_btn').on('click', function (e) {
+      pushData('exp_opt_in_v2__p_exit__no', `No, I'll miss out`, 'click', 'Popup. Exit-intent')
       ;($el('body').elements[0] as HTMLElement).style.overflow = 'auto'
       $el('.crs_exit_popup').elements[0].classList.remove('active')
     })
@@ -285,7 +282,12 @@ class OptInPageV2 {
         this.closest('.inputs2').querySelector('.selected').classList.remove('selected')
         this.classList.add('selected')
         const schedule = this.getAttribute('data-schedule')
-        pushData('exp_optin_popup_cta_time', `Select time ${schedule}`, 'click', 'Popup after click on CTA')
+        pushData(
+          'exp_opt_in_v2__p_form__2__time',
+          `Input. Time. ${schedule}`,
+          'click',
+          'Popup. Access Your Exclusive Online Training. Step 2'
+        )
       }
     })
 
@@ -318,13 +320,15 @@ class OptInPageV2 {
         )
       } else {
         pushData(
-          `exp_optin_popup_cta_button_${
-            !this.querySelector('.inputs2').classList.contains('active') ? 'step_1' : 'step_2'
+          `exp_opt_in_v2__p_form__${
+            !this.querySelector('.inputs2').classList.contains('active') ? '1__get' : '2__select'
           }`,
-          'Grab Your FREE Seat Now',
+          `${!this.querySelector('.inputs2').classList.contains('active') ? 'Get free training' : 'Select a Time'}`,
           'click',
-          `Popup after click on CTA ${
-            !this.querySelector('.inputs2').classList.contains('active') ? 'step 1' : 'step 2'
+          `${
+            !this.querySelector('.inputs2').classList.contains('active')
+              ? 'Popup. Access Your Exclusive Online Training. Step 1'
+              : 'Popup. Access Your Exclusive Online Training. Step 2'
           }`
         )
       }
@@ -348,6 +352,12 @@ class OptInPageV2 {
           this.querySelector('.inputs1').style.display = 'none'
           this.querySelector('.inputs2').innerHTML = selectTime(schedule.webinar.schedules, schedule.webinar.timezone)
           this.querySelector('.inputs2').classList.add('active')
+          pushData(
+            'exp_opt_in_v2__p_form__2__view',
+            'Popup',
+            'view',
+            'Popup. Access Your Exclusive Online Training. Step 2'
+          )
         } catch (error) {
           console.log(error)
         }
@@ -382,7 +392,12 @@ class OptInPageV2 {
       if (mainLoc) {
         pushData('exp_optin_fs_name', 'Enter your name', 'input', 'First screen form')
       } else {
-        pushData('exp_optin_popup_cta_name', 'Enter your name', 'input', 'Popup after click on CTA')
+        pushData(
+          'exp_opt_in_v2__p_form__1__name',
+          'Input. Enter your name',
+          'click',
+          'Popup. Access Your Exclusive Online Training. Step 1'
+        )
       }
     })
 
@@ -391,7 +406,12 @@ class OptInPageV2 {
       if (mainLoc) {
         pushData('exp_optin_fs_email', 'Enter email address', 'input', 'First screen form')
       } else {
-        pushData('exp_optin_popup_cta_email', 'Enter email address', 'input', 'Popup after click on CTA')
+        pushData(
+          'exp_opt_in_v2__p_form__1__email',
+          'Input. Enter email address',
+          'click',
+          'Popup. Access Your Exclusive Online Training. Step 1'
+        )
       }
     })
 
@@ -437,8 +457,15 @@ class OptInPageV2 {
         pushData('exp_optin_popup_review_cta', 'Grab Your FREE Seat Now', 'click', 'Popup after review')
       }
       if (this.closest('#main_block')) {
-        pushData('exp_optin_fs_button_mobile', 'Grab Your FREE Seat Now', 'click', 'First screen form')
+        pushData('exp_opt_in_v2__fs__cta', 'Yes! Get Access Now!', 'click', 'First screen')
       }
+
+      visibilityOfTime(
+        '.crs_popup_form.active',
+        'exp_opt_in_v2__p_form__1__view',
+        'Popup. Access Your Exclusive Online Training. Step 1',
+        'Popup'
+      )
     })
 
     $el('[data-closeform]').on('click', function (e) {
@@ -453,6 +480,7 @@ class OptInPageV2 {
             sessionStorage.setItem('intentPopupTriggers', 'true')
             $el('.crs_exit_popup').elements[0].classList.add('active')
             ;($el('body').elements[0] as HTMLElement).style.overflow = 'hidden'
+            pushData('exp_opt_in_v2__p_exit__view', 'Popup', 'view', 'Popup. Exit-intent')
           }, 400)
         }
       }
@@ -499,41 +527,45 @@ class OptInPageV2 {
       $el('.crs_video_popup').elements[0].classList.remove('active')
     })
 
-    const baseReviewSlider = tns({
-      container: '#base_review ul',
-      slideBy: 1,
-      loop: false,
-      navPosition: 'bottom',
-      //@ts-ignore
-      controlsPosition: 'bottom',
-      mouseDrag: false,
-      gutter: 30,
-      responsive: {
-        0: {
-          items: 1,
-          controls: false,
-          autoHeight: true
-        },
-        768: {
-          items: 3,
-          controls: true,
-          nav: false
+    // if ($el('#base_review.is_slider ul').elements[0]) {
+    if ($el('#base_review ul').elements[0]) {
+      const baseReviewSlider = tns({
+        container: '#base_review ul',
+        slideBy: 1,
+        loop: false,
+        navPosition: 'bottom',
+        //@ts-ignore
+        controlsPosition: 'bottom',
+        mouseDrag: false,
+        gutter: 30,
+        responsive: {
+          0: {
+            items: 1.25,
+            controls: false,
+            autoHeight: true,
+            gutter: 16
+          },
+          768: {
+            items: 3,
+            controls: true,
+            nav: false
+          }
         }
-      }
-    })
+      })
 
-    setTimeout(() => {
-      if (baseReviewSlider.getInfo().navItems) {
-        ;(baseReviewSlider.getInfo().navItems as HTMLCollection)[1].classList.add('tns-nav-near')
-      }
-    }, 500)
+      setTimeout(() => {
+        if (baseReviewSlider.getInfo().navItems) {
+          ;(baseReviewSlider.getInfo().navItems as HTMLCollection)[1].classList.add('tns-nav-near')
+        }
+      }, 500)
 
-    baseReviewSlider.events.on('indexChanged', function (info) {
-      const navItems = info.navItems as HTMLCollection
-      Array.from(navItems).forEach(nav => nav.classList.remove('tns-nav-near'))
-      navItems[info.index - 1]?.classList.add('tns-nav-near')
-      navItems[info.index + 1]?.classList.add('tns-nav-near')
-    })
+      baseReviewSlider.events.on('indexChanged', function (info) {
+        const navItems = info.navItems as HTMLCollection
+        Array.from(navItems).forEach(nav => nav.classList.remove('tns-nav-near'))
+        navItems[info.index - 1]?.classList.add('tns-nav-near')
+        navItems[info.index + 1]?.classList.add('tns-nav-near')
+      })
+    }
 
     // var 1
     if (this.device === 'desktop') {
@@ -625,7 +657,6 @@ class OptInPageV2 {
 
   setEvents() {
     visibilityOfTime('.crs_video_popup', 'exp_optin_popup_review_view', 'Popup after review')
-    visibilityOfTime('.crs_popup_form', 'exp_optin_popup_cta_view', 'Popup after click on CTA')
     visibilityOfTime('#base_review', 'exp_optin_why_join_view', 'Why Join This Webinar')
     visibilityOfTime('#bonus_block', 'exp_optin_bonuses_view', 'Exclusive Bonuses')
     visibilityOfTime('#host_block', 'exp_optin_host_view', 'Your Host: Dylan Sydney')
@@ -634,7 +665,6 @@ class OptInPageV2 {
     visibilityOfTime('#trust_pilot', 'exp_optin_trustscore_view', 'TrustScore')
     visibilityOfTime('#faq_block', 'exp_optin_faq_view', 'Frequently asked questions')
     visibilityOfTime('#last_cta', 'exp_optin_future_view', 'Your Future Starts Here')
-    visibilityOfTime('.crs_popup_form .inputs2', 'exp_optin_popup_cta_time_view_step2', 'Popup after click on CTA')
     visibilityOfTime('#main_block .inputs2', 'exp_optin_main_form_view_step2', 'First screen form')
   }
 
@@ -680,7 +710,10 @@ class OptInPageV2 {
     sessionStorage.setItem('intentPopupTriggers', 'true')
     ;($el('body').elements[0] as HTMLElement).style.overflow = 'hidden'
     $el('.crs_exit_popup').elements[0].classList.add('active')
+    pushData('exp_opt_in_v2__p_exit__view', 'Popup', 'view', 'Popup. Exit-intent')
   }
 }
 
-new OptInPageV2()
+waitForElement('.crs_landing').then(i => {
+  new OptInPageV2()
+})

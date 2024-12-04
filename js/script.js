@@ -575,3 +575,13 @@ let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/roofing4us/welcome_discount_on_pdp.js";
 script.async = false;
 document.head.appendChild(script);
+
+let script = document.createElement("script");
+let script = document.createElement("script");
+script.src = "https://conversionratestore.github.io/projects/dropservicing/optin/optin_ver_b.js";
+script.async = false;
+document.head.appendChild(script);
+
+script.src = "https://conversionratestore.github.io/projects/dropservicing/optin/optin_ver_c.js";
+script.async = false;
+document.head.appendChild(script);

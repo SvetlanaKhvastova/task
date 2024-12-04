@@ -68,7 +68,7 @@ export const storiesBlock = /* HTML */ `
 export const blockersBlock = /* HTML */ `
   <div class="blokers">
     <h3>What’s stopping you from achieving your financial and lifestyle goals?</h3>
-    <ul class="blokers_list ver_c">
+    <ul class="blokers_list">
       ${blockers
         .map(
           ({ id, icon, text, button }) => /* HTML */ `
@@ -145,13 +145,13 @@ export const safeAndSecureBlock = /* HTML */ `
 `
 
 export const mainBlock = /* HTML */ `
-  <section id="main_block" class="ver_c">
+  <section id="main_block">
     <div class="wrapper">
       <header>
         <img src="${git}/logo.png" alt="logo" />
         <div class="desktop">${statsBlock}</div>
       </header>
-      <div class="hero_wrapper ver_c">
+      <div class="hero_wrapper">
         <div class="info">
           ${tpLabel}
           <h1>
@@ -171,42 +171,17 @@ export const mainBlock = /* HTML */ `
       ${blockersBlock}
     </div>
   </section>
-  <!-- <section id="main_block" class="ver_b">
-    <div class="img_bgr">
-      <img src="${git}/hero_img.webp" alt="img" />
-      ${founderName}
-    </div>
-    <div class="wrapper">
-      <header>
-        <img src="${git}/logo.png" alt="logo" />
-      </header>
-      <div class="hero_wrapper ver_b">
-        <div class="info">
-          ${tpLabel}
-          <h1>The 4 steps to start your online business in 2024 and unlock financial freedom goals</h1>
-          <button class="cta pop">Yes! Get Access Now!</button>
-          <div class="mobile hero_img_wrapper">
-            <img src="${git}/hero_img_mob.webp" alt="img" class="hero_img" />
-            ${founderName}
-          </div>
-          ${statsBlock}
-        </div>
-      </div>
-      ${storiesBlock}
-    </div>
-  </section>
-  <section id="blokers">${blockersBlock}</section> -->
 `
 
 export const reviewsBlock = /* HTML */ `
   <section id="base_review">
     <h2>Why Join This Webinar?</h2>
     <p>
-      Learn how to start your business within 30 days. See howinfo these success stories transformed their lives and
-      achieved their financial freedom goals
+      Learn how to start your Drop Servicing business within 30 days. See how these success stories transformed their
+      lives and achieved their financial freedom goals
     </p>
     <div class="crs_container">
-      <ul>
+      <ul class="">
         ${reviews
           .map(
             ({ name, review, img, videoId }) => /* HTML */ `
@@ -216,7 +191,7 @@ export const reviewsBlock = /* HTML */ `
                     <div class="img">
                       <img src="${git}/${img}" alt="${name}" />
                     </div>
-                    <p><b>${name}</b><img src="${git}/rating_stars.png" alt="stars" /></p>
+                    <p><b>${name}</b><img src="${git}/rating_stars_new.png" alt="stars" /></p>
                   </div>
                   <p>${review}</p>
                 </div>
@@ -259,7 +234,9 @@ export const hostBlock = /* HTML */ `
       <ul>
         ${figure.map(item => /* HTML */ `<li><span></span>${item}</li>`).join('')}
       </ul>
-      <p>Access Dylan’s formula to learn how to start your online business and achieve financial freedom goals</p>
+      <p>
+        Access Dylan’s formula to learn how to start your Drop Servicing business and unlock financial freedom goals
+      </p>
       <button class="cta pop">Unlock Dylan’s Formula for Free</button>
     </div>
   </section>
@@ -286,7 +263,7 @@ export const videoBlock = /* HTML */ `
                   <div class="img">
                     <img src="${git}/${img}" alt="${name}" />
                   </div>
-                  <p><b>${name}</b><img src="${git}/rating_stars.png" alt="stars" /></p>
+                  <p><b>${name}</b><img src="${git}/rating_stars_new.png" alt="stars" /></p>
                   <p>${review}</p>
                 </div>
                 <div class="video">
@@ -317,10 +294,10 @@ export const trainingForBlock = /* HTML */ `
       <h2>Who is the Training for?</h2>
       <p>This free training is designed for:</p>
       <ul>
-        ${trainingFor.map(item => /* HTML */ `<li><img src="${git}/check.svg" alt="check" />${item}</li>`).join('')}
+        ${trainingFor.map(item => /* HTML */ `<li>${svg.checkBlueIcon}${item}</li>`).join('')}
       </ul>
       <p>If any of the above apply to you, you're in the right place!</p>
-      <p>Join your Free training to start your business and transform your career.</p>
+      <p>Join your Free training to start your business and transform your career</p>
       <button class="cta pop">Join The FREE Training Now</button>
     </div>
   </section>
@@ -356,10 +333,10 @@ export const trustPilotBlock = /* HTML */ `
     </div>
     <div class="points">
       <div class="crs_container">
-        <p>3,000+ Members <img src="${git}/members.svg" alt="members" /></p>
-        <p>4M+ In Revenue <img src="${git}/revenue.svg" alt="revenue" /></p>
-        <p>100+ Countries <img src="${git}/countries.svg" alt="countries" /></p>
-        <p>15M+ Views <img src="${git}/views.svg" alt="views" /></p>
+        <p>3,000+ Members ${svg.membersIcon}</p>
+        <p>4M+ In Revenue ${svg.revenueIcon}</p>
+        <p>100+ Countries ${svg.countriesIcon}</p>
+        <p>15M+ Views ${svg.viewsIcon}</p>
       </div>
     </div>
   </section>
@@ -414,10 +391,9 @@ export const footerBlock = /* HTML */ `
       </p>
       <p>
         NOT GOOGLE or META: This site is not a part of the Google website, Google Inc, Meta website, or Meta, Inc.
-        Additionally, This site is NOT endorsed by Google or Meta in any way.
-      </p>
-      <p>
-        <a href="https://www.dropservicingblueprint.com/">Dylan Sigley Consulting - FZCO</a>
+        Additionally, This site is NOT endorsed by Google or Meta in any way.<br class="mobile" /><br
+          class="mobile"
+        /><a href="https://www.dropservicingblueprint.com/">Dylan Sigley Consulting - FZCO</a>
       </p>
       <p>| IFZA Business Park, DDP, Dubai Silicon Oasis | +1 (786) 475-8716 | info@dropservicingblueprint.com</p>
       <p>

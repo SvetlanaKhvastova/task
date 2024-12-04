@@ -1,4 +1,6 @@
-export const git: string = 'https://conversionratestore.github.io/projects/goodevas/img/'
+import { safeAndSecureBlock } from './blocks'
+
+const git = 'https://conversionratestore.github.io/projects/dropservicing/optin/img/'
 
 export const svg = {
   blockersIcon1: `
@@ -51,116 +53,501 @@ export const svg = {
   <svg xmlns="http://www.w3.org/2000/svg" width="21" height="16" viewBox="0 0 21 16" fill="none">
   <path d="M20.5404 8.86092C20.9309 8.47039 20.9309 7.83723 20.5404 7.4467L14.1764 1.08274C13.7859 0.692216 13.1527 0.692216 12.7622 1.08274C12.3717 1.47327 12.3717 2.10643 12.7622 2.49695L18.419 8.15381L12.7622 13.8107C12.3717 14.2012 12.3717 14.8344 12.7622 15.2249C13.1527 15.6154 13.7859 15.6154 14.1764 15.2249L20.5404 8.86092ZM0.833252 9.15381H19.8333V7.15381H0.833252V9.15381Z" fill="white"/>
 </svg> 
+  `,
+  statsIcon1: `
+  <svg xmlns="http://www.w3.org/2000/svg" width="27" height="26" viewBox="0 0 27 26" fill="none">
+  <g opacity="0.3">
+    <path d="M18.9692 16.7296C18.7931 15.5334 18.1941 14.4399 17.2809 13.6475C16.3676 12.8551 15.2006 12.4163 13.9915 12.4106H12.8646C11.6555 12.4163 10.4885 12.8551 9.57523 13.6475C8.66197 14.4399 8.06298 15.5334 7.88694 16.7296L7.34681 20.5063C7.32955 20.6283 7.34095 20.7528 7.38011 20.8697C7.41926 20.9866 7.48509 21.0928 7.57239 21.1798C7.78421 21.3917 9.0837 22.4719 13.4291 22.4719C17.7745 22.4719 19.0708 21.3959 19.2858 21.1798C19.3731 21.0928 19.439 20.9866 19.4781 20.8697C19.5173 20.7528 19.5287 20.6283 19.5114 20.5063L18.9692 16.7296Z" fill="white"/>
+    <path d="M8.72592 12.9933C7.70235 13.9369 7.03637 15.2052 6.84076 16.5836L6.4489 19.2948C3.30342 19.2736 2.35025 18.1298 2.19139 17.8968C2.12998 17.8122 2.08616 17.7161 2.06251 17.6142C2.03886 17.5124 2.03587 17.4068 2.05371 17.3037L2.2867 15.9905C2.4081 15.3041 2.6932 14.6572 3.11784 14.1045C3.54248 13.5518 4.09414 13.1096 4.72603 12.8155C5.35793 12.5214 6.05143 12.384 6.74773 12.4149C7.44403 12.4459 8.12261 12.6443 8.72592 12.9933Z" fill="white"/>
+    <path d="M24.8004 17.3037C24.8182 17.4068 24.8152 17.5124 24.7916 17.6142C24.7679 17.7161 24.7241 17.8122 24.6627 17.8968C24.5038 18.1298 23.5507 19.2736 20.4052 19.2948L20.0133 16.5836C19.8177 15.2052 19.1517 13.9369 18.1282 12.9933C18.7315 12.6443 19.4101 12.4459 20.1064 12.4149C20.8027 12.384 21.4962 12.5214 22.1281 12.8155C22.76 13.1096 23.3116 13.5518 23.7363 14.1045C24.1609 14.6572 24.446 15.3041 24.5674 15.9905L24.8004 17.3037Z" fill="white"/>
+    <path d="M8.90436 10.6632C8.63776 11.0412 8.28385 11.3494 7.87268 11.5614C7.4615 11.7735 7.00523 11.8831 6.5426 11.8811C6.08112 11.8811 5.62623 11.7714 5.21544 11.5611C4.80465 11.3509 4.44972 11.046 4.17988 10.6716C3.91004 10.2972 3.73303 9.86406 3.66344 9.40785C3.59384 8.95165 3.63365 8.48543 3.77959 8.04762C3.92552 7.60982 4.1734 7.21296 4.50281 6.88975C4.83221 6.56654 5.2337 6.32623 5.6742 6.18863C6.11469 6.05103 6.58158 6.02008 7.03639 6.09832C7.4912 6.17656 7.9209 6.36176 8.29009 6.63865C8.1839 7.05391 8.13053 7.48092 8.13123 7.90955C8.13204 8.88088 8.39946 9.83336 8.90436 10.6632Z" fill="white"/>
+    <path d="M23.2227 8.96863C23.223 9.35118 23.1479 9.73003 23.0016 10.0835C22.8553 10.437 22.6408 10.7582 22.3703 11.0287C22.0998 11.2992 21.7786 11.5137 21.4251 11.66C21.0716 11.8062 20.6928 11.8814 20.3102 11.8811C19.8476 11.8831 19.3913 11.7735 18.9802 11.5614C18.569 11.3494 18.2151 11.0412 17.9485 10.6632C18.4534 9.83336 18.7208 8.88088 18.7216 7.90955C18.7223 7.48092 18.6689 7.05392 18.5628 6.63865C18.9955 6.31412 19.51 6.1165 20.0487 6.06792C20.5874 6.01935 21.129 6.12174 21.6127 6.36363C22.0965 6.60552 22.5034 6.97735 22.7877 7.43745C23.0721 7.89755 23.2227 8.42775 23.2227 8.96863Z" fill="white"/>
+    <path d="M13.4279 11.8811C15.6213 11.8811 17.3994 10.103 17.3994 7.90955C17.3994 5.71612 15.6213 3.93799 13.4279 3.93799C11.2344 3.93799 9.4563 5.71612 9.4563 7.90955C9.4563 10.103 11.2344 11.8811 13.4279 11.8811Z" fill="white"/>
+  </g>
+</svg>
+  `,
+  statsIcon2: `
+  <svg xmlns="http://www.w3.org/2000/svg" width="27" height="26" viewBox="0 0 27 26" fill="none">
+  <g opacity="0.3" clip-path="url(#clip0_570_905)">
+    <path d="M3.01843 23.7959V5.7915H0.900269V24.855C0.900269 25.1359 1.01185 25.4052 1.21047 25.6039C1.40908 25.8025 1.67846 25.9141 1.95935 25.9141H26.3182V23.7959H3.01843Z" fill="white"/>
+    <path d="M10.432 15.3232C10.432 15.0424 10.3204 14.773 10.1218 14.5744C9.92319 14.3757 9.65381 14.2642 9.37292 14.2642H6.19568C5.91479 14.2642 5.64541 14.3757 5.44679 14.5744C5.24818 14.773 5.1366 15.0424 5.1366 15.3232V22.7368H10.432V15.3232Z" fill="white"/>
+    <path d="M17.8458 11.0869C17.8458 10.806 17.7342 10.5366 17.5356 10.338C17.337 10.1394 17.0676 10.0278 16.7867 10.0278H13.6095C13.3286 10.0278 13.0592 10.1394 12.8606 10.338C12.662 10.5366 12.5504 10.806 12.5504 11.0869V22.7368H17.8458V11.0869Z" fill="white"/>
+    <path d="M25.2599 6.85059C25.2599 6.5697 25.1483 6.30032 24.9497 6.1017C24.7511 5.90309 24.4817 5.7915 24.2008 5.7915H21.0236C20.7427 5.7915 20.4733 5.90309 20.2747 6.1017C20.0761 6.30032 19.9645 6.5697 19.9645 6.85059V22.7368H25.2599V6.85059Z" fill="white"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_570_905">
+      <rect width="25.418" height="25.418" fill="white" transform="translate(0.900024 0.496094)"/>
+    </clipPath>
+  </defs>
+</svg>
+  `,
+  statsIcon3: `
+  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+  <g opacity="0.3" clip-path="url(#clip0_570_913)">
+    <path d="M25.1455 7.14899C25.0121 6.036 23.9632 4.96875 22.8658 4.82577C16.1738 3.99427 9.40673 3.99427 2.71689 4.82577C1.61854 4.96844 0.56966 6.036 0.436238 7.14899C-0.0362004 11.228 -0.0362004 15.1831 0.436238 19.2612C0.56966 20.3742 1.61854 21.4425 2.71689 21.5845C9.40673 22.416 16.174 22.416 22.8658 21.5845C23.9632 21.4427 25.0121 20.3742 25.1455 19.2612C25.618 15.1835 25.618 11.228 25.1455 7.14899ZM10.6726 17.4422V8.96931L17.0272 13.2059L10.6726 17.4422Z" fill="white"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_570_913">
+      <rect width="25.418" height="25.418" fill="white" transform="translate(0.0820312 0.496094)"/>
+    </clipPath>
+  </defs>
+</svg>
+  `,
+  closeIconPopup: `
+  <svg xmlns="http://www.w3.org/2000/svg" width="19" height="18" viewBox="0 0 19 18" fill="none">
+  <path d="M17.5 1L1.50024 16.9998" stroke="#161718" stroke-width="2" stroke-linecap="round"/>
+  <path d="M17.5 17L1.50025 1.00024" stroke="#161718" stroke-width="2" stroke-linecap="round"/>
+</svg>
+  `,
+  infoBlockIcon1: `
+  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+  <g clip-path="url(#clip0_570_1064)">
+    <path d="M24.008 0.0787548C19.323 -0.00524519 13.98 2.44375 10.598 6.24275C7.36601 6.30375 4.21901 7.62876 1.90201 9.94576C1.76701 10.0788 1.71901 10.2778 1.77801 10.4578C1.83801 10.6388 1.99401 10.7698 2.18201 10.7968L6.03601 11.3488L5.56001 11.8818C5.38301 12.0798 5.39201 12.3808 5.58001 12.5688L12.007 18.9958C12.104 19.0928 12.232 19.1418 12.361 19.1418C12.48 19.1418 12.599 19.0998 12.694 19.0148L13.227 18.5388L13.779 22.3928C13.806 22.5808 13.954 22.7188 14.133 22.7788C14.179 22.7938 14.227 22.8008 14.276 22.8008C14.418 22.8008 14.563 22.7388 14.663 22.6398C16.948 20.3548 18.273 17.2078 18.334 13.9758C22.137 10.5868 24.606 5.24575 24.497 0.566755C24.49 0.300755 24.275 0.0857548 24.008 0.0787548ZM19.4 8.71076C18.913 9.19776 18.273 9.44176 17.632 9.44176C16.991 9.44176 16.351 9.19776 15.864 8.71076C14.89 7.73576 14.89 6.14975 15.864 5.17475C16.839 4.19975 18.425 4.19975 19.4 5.17475C20.375 6.14975 20.375 7.73676 19.4 8.71076Z" fill="white"/>
+    <path d="M3.22406 16.9805C2.15406 18.0505 0.685057 22.8845 0.521057 23.4315C0.468057 23.6075 0.517057 23.7985 0.646057 23.9285C0.742057 24.0245 0.869057 24.0755 1.00006 24.0755C1.04806 24.0755 1.09606 24.0685 1.14406 24.0545C1.69106 23.8905 6.52506 22.4215 7.59506 21.3515C8.80006 20.1465 8.80006 18.1855 7.59506 16.9805C6.38906 15.7755 4.42906 15.7765 3.22406 16.9805Z" fill="white"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_570_1064">
+      <rect width="24" height="24" fill="white" transform="translate(0.5 0.0756836)"/>
+    </clipPath>
+  </defs>
+</svg>
+  `,
+  infoBlockIcon2: `
+  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M21.25 3.07568C21.25 2.10968 20.467 1.32568 19.5 1.32568H5.5C4.533 1.32568 3.75 2.10968 3.75 3.07568V21.0757C3.75 22.0417 4.533 22.8257 5.5 22.8257H19.5C20.467 22.8257 21.25 22.0417 21.25 21.0757V3.07568ZM6.953 18.1387L8.078 19.3387C8.229 19.5007 8.445 19.5867 8.666 19.5747C8.887 19.5627 9.092 19.4527 9.225 19.2757L11.1 16.7757C11.348 16.4447 11.281 15.9737 10.95 15.7257C10.619 15.4777 10.148 15.5447 9.9 15.8757L8.561 17.6607L8.047 17.1127C7.764 16.8107 7.289 16.7957 6.987 17.0787C6.685 17.3617 6.67 17.8367 6.953 18.1387ZM13.5 18.3257H17.5C17.914 18.3257 18.25 17.9897 18.25 17.5757C18.25 17.1617 17.914 16.8257 17.5 16.8257H13.5C13.086 16.8257 12.75 17.1617 12.75 17.5757C12.75 17.9897 13.086 18.3257 13.5 18.3257ZM6.953 12.6387L8.078 13.8387C8.229 14.0007 8.445 14.0867 8.666 14.0747C8.887 14.0627 9.092 13.9527 9.225 13.7757L11.1 11.2757C11.348 10.9447 11.281 10.4737 10.95 10.2257C10.619 9.97768 10.148 10.0447 9.9 10.3757L8.561 12.1607L8.047 11.6127C7.764 11.3107 7.289 11.2957 6.987 11.5787C6.685 11.8617 6.67 12.3367 6.953 12.6387ZM13.5 12.8257H17.5C17.914 12.8257 18.25 12.4897 18.25 12.0757C18.25 11.6617 17.914 11.3257 17.5 11.3257H13.5C13.086 11.3257 12.75 11.6617 12.75 12.0757C12.75 12.4897 13.086 12.8257 13.5 12.8257ZM6.953 7.13868L8.078 8.33868C8.229 8.50068 8.445 8.58668 8.666 8.57468C8.887 8.56268 9.092 8.45268 9.225 8.27568L11.1 5.77568C11.348 5.44468 11.281 4.97368 10.95 4.72568C10.619 4.47768 10.148 4.54468 9.9 4.87568L8.561 6.66068L8.047 6.11268C7.764 5.81068 7.289 5.79568 6.987 6.07868C6.685 6.36168 6.67 6.83668 6.953 7.13868ZM13.5 7.32568H17.5C17.914 7.32568 18.25 6.98968 18.25 6.57568C18.25 6.16168 17.914 5.82568 17.5 5.82568H13.5C13.086 5.82568 12.75 6.16168 12.75 6.57568C12.75 6.98968 13.086 7.32568 13.5 7.32568Z" fill="white"/>
+</svg>
+  `,
+  safeAndSecureIcon: `
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+  <g clip-path="url(#clip0_533_4126)">
+    <path d="M13.3346 2.51071C13.3346 2.32813 13.2209 2.16363 13.0488 2.10063L7.65297 0.103297C7.55497 0.0671302 7.44705 0.0671302 7.34905 0.103297L1.9538 2.10063C1.78172 2.16363 1.66797 2.32755 1.66797 2.51071V7.17796C1.66797 12.488 7.33214 14.0461 7.3893 14.0613C7.42605 14.0706 7.46397 14.0759 7.5013 14.0759C7.53864 14.0759 7.57655 14.0706 7.6133 14.0613C7.67047 14.0461 13.3346 12.4875 13.3346 7.17796V2.51071ZM10.4308 7.38446L7.81922 10.1471C7.73639 10.2346 7.62147 10.2842 7.5013 10.2842C7.38114 10.2842 7.26622 10.2346 7.18339 10.1477L4.5718 7.38505C3.81464 6.58471 3.81464 5.28213 4.5718 4.48121C5.31905 3.6908 6.63564 3.69021 7.38405 4.48121L7.5013 4.60546L7.61855 4.48121C8.36639 3.69021 9.68297 3.6908 10.4308 4.48121C11.188 5.28155 11.188 6.58413 10.4308 7.38446Z" fill="#4A567A"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_533_4126">
+      <rect width="14" height="14" fill="white" transform="translate(0.5 0.0756836)"/>
+    </clipPath>
+  </defs>
+</svg>
+  `,
+  checkSvgExitPopup: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+<path d="M15 8L9 15L5 11" stroke="#2F2F2F" stroke-width="2"/>
+</svg>
+`,
+  closeSvgExitPopup: `
+<svg xmlns="http://www.w3.org/2000/svg" width="39" height="38" viewBox="0 0 39 38" fill="none">
+  <g filter="url(#filter0_d_533_8340)">
+    <circle cx="19.5" cy="15" r="15" fill="#222222"/>
+    <circle cx="19.5" cy="15" r="13.8" stroke="white" stroke-width="2.4"/>
+  </g>
+  <path d="M15.5002 19L23.5 11M23.4998 19L15.5 11" stroke="white" stroke-width="2.4" stroke-linecap="round"/>
+  <defs>
+    <filter id="filter0_d_533_8340" x="0.5" y="0" width="38" height="38" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="4"/>
+      <feGaussianBlur stdDeviation="2"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_533_8340"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_533_8340" result="shape"/>
+    </filter>
+  </defs>
+</svg>
+`,
+  showMoreIcon: `
+<svg xmlns="http://www.w3.org/2000/svg" width="15" height="10" viewBox="0 0 15 10" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5714 2.52547L8.2074 8.88943C7.81688 9.27995 7.18371 9.27995 6.79319 8.88943L0.429229 2.52546C0.0387039 2.13494 0.0387039 1.50178 0.429229 1.11125C0.819754 0.720728 1.45292 0.720728 1.84344 1.11125L7.5003 6.76811L13.1572 1.11125C13.5477 0.720728 14.1808 0.720728 14.5714 1.11125C14.9619 1.50178 14.9619 2.13494 14.5714 2.52547Z" fill="white"/>
+</svg>
+`,
+  membersIcon: `
+<svg xmlns="http://www.w3.org/2000/svg" width="45" height="46" viewBox="0 0 45 46" fill="none">
+  <path d="M32.3118 29.3836C32.0001 27.2658 30.9397 25.3298 29.3228 23.927C27.706 22.5241 25.6399 21.7472 23.4993 21.7373H21.5043C19.3637 21.7472 17.2976 22.5241 15.6807 23.927C14.0639 25.3298 13.0034 27.2658 12.6918 29.3836L11.7355 36.0698C11.705 36.2859 11.7252 36.5062 11.7945 36.7132C11.8638 36.9202 11.9803 37.1082 12.1349 37.2623C12.5099 37.6373 14.8105 39.5498 22.5036 39.5498C30.1968 39.5498 32.4918 37.6448 32.8724 37.2623C33.0269 37.1082 33.1435 36.9202 33.2128 36.7132C33.2821 36.5062 33.3023 36.2859 33.2718 36.0698L32.3118 29.3836Z" fill="#2C50D3"/>
+  <path d="M14.1746 22.7688C12.3625 24.4393 11.1834 26.6848 10.8371 29.125L10.1434 33.925C4.5746 33.8875 2.8871 31.8625 2.60585 31.45C2.49714 31.3002 2.41955 31.1301 2.37769 30.9497C2.33582 30.7694 2.33052 30.5825 2.3621 30.4L2.7746 28.075C2.98952 26.8599 3.49427 25.7146 4.24605 24.7361C4.99784 23.7576 5.97449 22.9748 7.09319 22.4541C8.2119 21.9334 9.43967 21.6901 10.6724 21.7449C11.9051 21.7997 13.1065 22.1509 14.1746 22.7688Z" fill="#2C50D3"/>
+  <path d="M42.6377 30.4C42.6693 30.5825 42.664 30.7694 42.6221 30.9497C42.5802 31.1301 42.5027 31.3002 42.3939 31.45C42.1127 31.8625 40.4252 33.8875 34.8564 33.925L34.1627 29.125C33.8164 26.6848 32.6373 24.4393 30.8252 22.7688C31.8933 22.1509 33.0946 21.7997 34.3274 21.7449C35.5601 21.6901 36.7879 21.9334 37.9066 22.4541C39.0253 22.9748 40.002 23.7576 40.7537 24.7361C41.5055 25.7146 42.0103 26.8599 42.2252 28.075L42.6377 30.4Z" fill="#2C50D3"/>
+  <path d="M14.4938 18.6436C14.0218 19.3129 13.3952 19.8585 12.6673 20.2339C11.9393 20.6093 11.1315 20.8034 10.3125 20.7998C9.49548 20.7998 8.69016 20.6057 7.9629 20.2334C7.23563 19.8611 6.60725 19.3213 6.12953 18.6585C5.65181 17.9957 5.33844 17.2288 5.21522 16.4212C5.09201 15.6135 5.16249 14.7881 5.42085 14.013C5.67922 13.2379 6.11807 12.5353 6.70124 11.9631C7.28442 11.3909 7.99522 10.9655 8.77507 10.7218C9.55493 10.4782 10.3815 10.4234 11.1867 10.562C11.9919 10.7005 12.7526 11.0283 13.4063 11.5186C13.2183 12.2537 13.1238 13.0097 13.125 13.7686C13.1264 15.4882 13.5999 17.1745 14.4938 18.6436Z" fill="#2C50D3"/>
+  <path d="M39.8434 15.6436C39.8439 16.3208 39.7108 16.9915 39.4519 17.6174C39.1929 18.2432 38.8131 18.8118 38.3342 19.2907C37.8553 19.7696 37.2867 20.1494 36.6609 20.4083C36.0351 20.6673 35.3644 20.8003 34.6871 20.7998C33.8681 20.8034 33.0603 20.6093 32.3323 20.2339C31.6044 19.8585 30.9778 19.3129 30.5059 18.6436C31.3997 17.1745 31.8732 15.4882 31.8746 13.7686C31.8759 13.0097 31.7814 12.2537 31.5934 11.5186C32.3594 10.944 33.2703 10.5941 34.224 10.5081C35.1778 10.4221 36.1366 10.6034 36.9931 11.0317C37.8495 11.4599 38.5699 12.1182 39.0733 12.9328C39.5767 13.7473 39.8434 14.686 39.8434 15.6436Z" fill="#2C50D3"/>
+  <path d="M22.5 20.7998C26.3833 20.7998 29.5312 17.6518 29.5312 13.7686C29.5312 9.8853 26.3833 6.7373 22.5 6.7373C18.6167 6.7373 15.4688 9.8853 15.4688 13.7686C15.4688 17.6518 18.6167 20.7998 22.5 20.7998Z" fill="#2C50D3"/>
+</svg>
+`,
+  revenueIcon: `
+<svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46" fill="none">
+  <g clip-path="url(#clip0_533_2715)">
+    <path d="M3.9165 41.8936V10.0186H0.166504V43.7686C0.166504 44.2658 0.364048 44.7428 0.715679 45.0944C1.06731 45.446 1.54422 45.6436 2.0415 45.6436H45.1665V41.8936H3.9165Z" fill="#2C50D3"/>
+    <path d="M17.0415 26.8936C17.0415 26.3963 16.844 25.9194 16.4923 25.5677C16.1407 25.2161 15.6638 25.0186 15.1665 25.0186H9.5415C9.04422 25.0186 8.56731 25.2161 8.21568 25.5677C7.86405 25.9194 7.6665 26.3963 7.6665 26.8936V40.0186H17.0415V26.8936Z" fill="#2C50D3"/>
+    <path d="M30.1665 19.3936C30.1665 18.8963 29.969 18.4194 29.6173 18.0677C29.2657 17.7161 28.7888 17.5186 28.2915 17.5186H22.6665C22.1692 17.5186 21.6923 17.7161 21.3407 18.0677C20.989 18.4194 20.7915 18.8963 20.7915 19.3936V40.0186H30.1665V19.3936Z" fill="#2C50D3"/>
+    <path d="M43.2915 11.8936C43.2915 11.3963 43.094 10.9194 42.7423 10.5677C42.3907 10.2161 41.9138 10.0186 41.4165 10.0186H35.7915C35.2942 10.0186 34.8173 10.2161 34.4657 10.5677C34.114 10.9194 33.9165 11.3963 33.9165 11.8936V40.0186H43.2915V11.8936Z" fill="#2C50D3"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_533_2715">
+      <rect width="45" height="45" fill="white" transform="translate(0.166504 0.643555)"/>
+    </clipPath>
+  </defs>
+</svg>
+`,
+  countriesIcon: `
+  <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46" fill="none">
+  <path d="M22.8335 2.51855C18.7543 2.51855 14.7666 3.72819 11.3749 5.99449C7.98311 8.2608 5.33955 11.482 3.77849 15.2507C2.21743 19.0194 1.80899 23.1664 2.60481 27.1673C3.40063 31.1681 5.36497 34.8432 8.24943 37.7276C11.1339 40.6121 14.8089 42.5764 18.8098 43.3722C22.8106 44.1681 26.9576 43.7596 30.7264 42.1986C34.4951 40.6375 37.7163 37.994 39.9826 34.6022C42.2489 31.2104 43.4585 27.2228 43.4585 23.1436C43.4585 17.6735 41.2855 12.4274 37.4176 8.55948C33.5496 4.69154 28.3036 2.51855 22.8335 2.51855ZM14.4494 6.39043L15.5679 7.16668C15.8152 7.33903 16.0157 7.5704 16.151 7.8398L16.4323 8.4023C16.5814 8.70125 16.811 8.9527 17.0952 9.1284C17.3794 9.30411 17.7069 9.39712 18.041 9.39699H20.0407C20.5178 9.39699 20.9754 9.58654 21.3128 9.92393C21.6502 10.2613 21.8398 10.7189 21.8398 11.1961V11.2317C21.84 11.5658 21.747 11.8934 21.5713 12.1776C21.3956 12.4618 21.1441 12.6913 20.8451 12.8404L16.0479 15.2404C15.9807 15.2732 15.9159 15.3105 15.8538 15.352L13.3985 16.9889C13.1379 17.1629 12.927 17.4016 12.7863 17.6817L12.4216 18.4148C12.2956 18.664 12.2299 18.9394 12.2299 19.2187C12.2299 19.498 12.2956 19.7734 12.4216 20.0226C12.5902 20.3606 12.6483 20.7431 12.5875 21.116C12.5268 21.4888 12.3504 21.8331 12.0832 22.1001L12.0298 22.1545C11.7461 22.4382 11.3757 22.6189 10.9775 22.6678C10.5793 22.7167 10.1762 22.6311 9.83225 22.4245L6.69444 20.5401C6.32637 20.3189 6.04942 19.9734 5.91351 19.5661L5.14194 17.2504C5.10632 17.2504 5.08101 17.2392 5.04819 17.2382C6.62175 12.52 10.0028 8.61871 14.4494 6.39043ZM24.7844 29.8214C24.7846 29.9517 24.7637 30.0812 24.7226 30.2048L23.8929 32.6929C23.8337 32.8717 23.7335 33.0341 23.6004 33.1673L22.1004 34.6673C21.9306 34.8367 21.8151 35.0527 21.7685 35.2879L20.9744 39.2554C20.9377 39.4361 20.8603 39.606 20.748 39.7522C20.6358 39.8984 20.4917 40.0171 20.3266 40.0992L19.676 40.4254C19.4479 40.5387 19.19 40.5776 18.9386 40.5367C18.6872 40.4959 18.455 40.3773 18.2744 40.1976L17.0688 38.992C16.9767 38.8994 16.8998 38.7927 16.841 38.6761L16.0751 37.1442C15.9914 36.9754 15.9478 36.7897 15.9476 36.6014V32.7332C15.9471 32.5078 15.8842 32.2868 15.7657 32.095C15.6472 31.9032 15.4778 31.748 15.2763 31.6467L14.2713 31.1451C14.0817 31.051 13.92 30.9088 13.8026 30.7326L12.221 28.3598C12.0878 28.1606 12.0167 27.9263 12.0166 27.6867V26.8429C12.0172 26.6176 12.0803 26.3969 12.1988 26.2052C12.3173 26.0136 12.4866 25.8585 12.6879 25.7573L13.6188 25.2886C13.854 25.1715 14.0446 24.9809 14.1616 24.7457L14.6304 23.8148C14.7314 23.6139 14.886 23.4449 15.0771 23.3264C15.2682 23.208 15.4884 23.1447 15.7132 23.1436H17.4063C17.5658 23.1434 17.7237 23.1747 17.8711 23.2357C18.0184 23.2967 18.1523 23.3861 18.2651 23.4989L18.536 23.7698C18.7639 23.9974 19.0727 24.1254 19.3948 24.1261H19.646C19.9684 24.1273 20.2772 24.2562 20.5048 24.4847C20.7323 24.7131 20.8601 25.0224 20.8601 25.3448C20.8606 25.57 20.9235 25.7907 21.0418 25.9823C21.1601 26.174 21.3292 26.3291 21.5304 26.4304L24.1179 27.7232C24.3192 27.8247 24.4884 27.9799 24.6067 28.1717C24.725 28.3635 24.7879 28.5844 24.7882 28.8098L24.7844 29.8214ZM29.7251 12.0004C29.8087 11.7979 29.9314 11.6138 30.086 11.4586L31.7651 9.78043C31.8916 9.65401 32.0375 9.54862 32.1973 9.46824L33.9598 8.58699C34.1137 8.51355 34.2782 8.46452 34.4473 8.44168C36.4718 10.0378 38.1465 12.0332 39.3673 14.3039H38.5385C38.0966 14.3039 37.6728 14.1286 37.3601 13.8164L37.1576 13.6139C36.8449 13.3014 36.4211 13.1258 35.9791 13.1254H34.706C34.4457 13.1247 34.1888 13.1851 33.956 13.3017L32.3041 14.1286C32.0713 14.2448 31.8144 14.3048 31.5541 14.3039H31.2569C30.983 14.3037 30.7134 14.236 30.4719 14.1068C30.2304 13.9776 30.0244 13.7909 29.8722 13.5632C29.72 13.3354 29.6263 13.0737 29.5993 12.8012C29.5724 12.5286 29.613 12.2536 29.7176 12.0004H29.7251ZM36.7929 35.6301L36.671 35.3311C36.6045 35.1306 36.5707 34.9207 36.5707 34.7095V32.5448C36.5706 32.2399 36.4997 31.9392 36.3635 31.6664L34.8129 28.567C34.6767 28.2942 34.6058 27.9935 34.6057 27.6886V27.4017C34.6056 27.067 34.5201 26.7379 34.3571 26.4456C34.1941 26.1532 33.9592 25.9074 33.6745 25.7314C33.3898 25.5554 33.0649 25.455 32.7306 25.4399C32.3962 25.4247 32.0636 25.4953 31.7641 25.6448L31.0919 25.9814C30.8194 26.1174 30.519 26.1883 30.2144 26.1886H30.1291C29.7168 26.1878 29.3151 26.0577 28.9808 25.8165C28.6464 25.5753 28.3961 25.2352 28.2654 24.8442L27.8323 23.5439C27.7654 23.3435 27.7312 23.1336 27.731 22.9223V21.3464C27.731 21.023 27.8108 20.7047 27.9634 20.4196C28.116 20.1345 28.3366 19.8916 28.6057 19.7123L30.3944 18.5198C30.5817 18.3949 30.7891 18.3032 31.0076 18.2489L34.0507 17.4876C34.4135 17.397 34.7946 17.4117 35.1494 17.5298L37.2494 18.2301C37.4502 18.297 37.6604 18.3311 37.8719 18.3314H40.9366C41.7503 21.3311 41.7972 24.4872 41.0732 27.5098C40.3492 30.5324 38.8773 33.3246 36.7929 35.6301Z" fill="#2C50D3"/>
+</svg>
+  `,
+  viewsIcon: `
+  <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46" fill="none">
+  <g clip-path="url(#clip0_533_2726)">
+    <path d="M44.8726 12.4222C44.6364 10.4517 42.7795 8.56227 40.8366 8.30914C28.9891 6.83706 17.0087 6.83706 5.16497 8.30914C3.22046 8.56172 1.36351 10.4517 1.1273 12.4222C0.290899 19.6437 0.290899 26.6458 1.1273 33.8657C1.36351 35.8361 3.22046 37.7274 5.16497 37.9787C17.0087 39.4508 28.9895 39.4508 40.8366 37.9787C42.7795 37.7278 44.6364 35.8361 44.8726 33.8657C45.7092 26.6465 45.7092 19.6437 44.8726 12.4222ZM19.2497 30.6453V15.6449L30.4999 23.1454L19.2497 30.6453Z" fill="#2C50D3"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_533_2726">
+      <rect width="45" height="45" fill="white" transform="translate(0.5 0.643555)"/>
+    </clipPath>
+  </defs>
+</svg>
+  `,
+  checkBlueIcon: `
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="17" viewBox="0 0 18 17" fill="none">
+  <rect x="17.5" y="17" width="17" height="17" rx="8.5" transform="rotate(180 17.5 17)" fill="#2C50D3"/>
+  <path d="M12.4004 5.09961L7.30039 11.8996L4.75039 9.63294" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
   `
 }
 
+export const stats = [
+  {
+    icon: svg.statsIcon1,
+    text: '3,000+ Members'
+  },
+  {
+    icon: svg.statsIcon2,
+    text: '4M+ In Revenue'
+  },
+  {
+    icon: svg.statsIcon3,
+    text: '15M+ Views'
+  }
+]
+
 export const blockers = [
   {
+    id: 1,
     icon: svg.blockersIcon1,
     text: 'I feel stuck in the 9-to-5 grind with no time, freedom, or flexibility to enjoy my life.',
     button: `See details <span class="arrow_btn_icon">${svg.arrowBtnIcon}</span>`,
     popupContent: {
       icon: svg.blockersIcon1,
       title: 'I feel stuck in the 9-to-5 grind with no time, freedom, or flexibility to enjoy my life.',
-      text: 'Feeling stuck in a 9-to-5 grind can drain your time, freedom, and flexibility. This free training introduces a business model built for a lifestyle of freedom: Drop Servicing. Everything you need can be used on a laptop and internet connection. Using the most powerful tools in modern history, you’ll learn how to create an income stream that lets you work from anywhere and on your schedule. The training provides step-by-step guidance, done-for-you templates, and proven strategies, so you can escape the daily grind and design a life you love without taking big risks like giving up your current job.',
+      text: '<p>Feeling stuck in a 9-to-5 grind can drain your time, freedom, and flexibility. This free training introduces a business model built for a lifestyle of freedom: Drop Servicing.</p> <p>Everything you need can be used on a laptop and internet connection. Using the most powerful tools in modern history, you’ll learn how to create an income stream that lets you work from anywhere and on your schedule.</p> <p>The training provides step-by-step guidance, done-for-you templates, and proven strategies, so you can escape the daily grind and design a life you love without taking big risks like giving up your current job.</p>',
       button: 'Yes! Get Access Now!',
-      video: 'https://www.youtube.com/embed/example1',
+      video: 'video_barend.mp4',
       review: {
-        text: '"From an unfulfilling job to running his own business, Christian transformed his life in just three months."',
-        reviewerName: 'Christian',
-        reviewerPhoto: `${git}reviewer1.jpg`,
-        stars: 5
+        reviewerPhoto: `${git}barend_img.webp`,
+        reviewerName: 'Barend',
+        reviewText:
+          '“Barend went from working two stressful restaurant jobs to living his dream of travelling the world”',
+        stars: `${git}rating_stars_new.png`
       }
     }
   },
   {
+    id: 2,
     icon: svg.blockersIcon2,
     text: 'I don’t know how to achieve financial freedom or build recurring, reliable income streams.',
     button: `See details <span class="arrow_btn_icon">${svg.arrowBtnIcon}</span>`,
     popupContent: {
       icon: svg.blockersIcon2,
       title: 'I don’t know how to achieve financial freedom or build recurring, reliable income streams.',
-      text: 'Financial freedom starts with the right strategy, and this free training delivers just that. You’ll learn a proven 4-step system to build a Drop Servicing business—an online model where you connect clients with services and earn recurring income. It’s affordable, beginner-friendly, and requires no inventory, startup costs or technical skills. We break everything into clear, actionable steps, showing you how to generate consistent income monthly. Whether you want to earn extra on the side or replace your job entirely, this training provides the tools to achieve it.',
-      button: 'Learn more',
-      video: 'https://www.youtube.com/embed/example2',
+      text: '<p>Financial freedom starts with the right strategy, and this free training delivers just that.</p> <p>You’ll learn a proven 4-step system to build a Drop Servicing business—an online model where you connect clients with services and earn recurring income.</p> <p>It’s affordable, beginner-friendly, and requires no inventory, startup costs or technical skills.</p> <p>We break everything into clear, actionable steps, showing you how to generate consistent income monthly.</p> <p>Whether you want to earn extra on the side or replace your job entirely, this training provides the tools to achieve it.</p>',
+      button: 'Yes! Get Access Now!',
+      video: 'video_aleksa.mp4',
       review: {
-        text: '"From an unfulfilling job to running his own business, Christian transformed his life in just three months."',
-        reviewerName: 'Christian',
-        reviewerPhoto: `${git}reviewer1.jpg`,
-        stars: 5
+        reviewerPhoto: `${git}aleksa_img.webp`,
+        reviewerName: 'Aleksa',
+        reviewText: '“Aleksa followed the 4 simple steps and achieved financial freedom within a few months”',
+        stars: `${git}rating_stars_new.png`
       }
     }
   },
   {
+    id: 3,
     icon: svg.blockersIcon3,
     text: 'I’m struggling to boost my income fast without sacrificing all my free time or taking big risks.',
     button: `See details <span class="arrow_btn_icon">${svg.arrowBtnIcon}</span>`,
     popupContent: {
       icon: svg.blockersIcon3,
       title: 'I’m struggling to boost my income fast without sacrificing all my free time or taking big risks.',
-      text: 'This free training is perfect for anyone wanting to increase their income in a flexible way. You’ll discover how to build a Drop Servicing business that fits your schedule and learn strategies to land your first high-value client quickly using low-risk methods and time-saving automation.With done-for-you templates and a beginner-friendly process, you’ll gain the tools to grow at your own pace and create a scalable recurring income stream—whether as a side hustle or a full-time business.',
+      text: '<p>This free training is perfect for anyone wanting to increase their income in a flexible way.</p> <p>You’ll discover how to build a Drop Servicing business that fits your schedule and learn strategies to land your first high-value client quickly using low-risk methods and time-saving automation.</p> <p>With done-for-you templates and a beginner-friendly process, you’ll gain the tools to grow at your own pace and create a scalable recurring income stream—whether as a side hustle or a full-time business.</p>',
       button: 'Yes! Get Access Now!',
-      video: 'https://www.youtube.com/embed/example3',
+      video: 'video_ed.mp4',
       review: {
-        text: '"From an unfulfilling job to running his own business, Christian transformed his life in just three months."',
-        reviewerName: 'Christian',
-        reviewerPhoto: `${git}reviewer1.jpg`,
-        stars: 5
+        reviewerPhoto: `${git}ed_img.webp`,
+        reviewerName: 'Ed',
+        reviewText: '“Ed used our strategies to boost his income fast and earned 6 figures within his first year”',
+        stars: `${git}rating_stars_new.png`
       }
     }
   },
   {
+    id: 4,
     icon: svg.blockersIcon4,
     text: 'I lack the skills or clarity to start an online business; it feels overwhelming and impossible to begin.',
     button: `See details <span class="arrow_btn_icon">${svg.arrowBtnIcon}</span>`,
     popupContent: {
       icon: svg.blockersIcon4,
       title: 'I lack the skills or clarity to start an online business; it feels overwhelming and impossible to begin.',
-      text: 'Starting an online business is overwhelming to say the least. But it doesn’t have to be. . This free training breaks everything down into a simple, step-by-step process designed for beginners. You don’t need prior experience or technical skills—just follow our checklist, use the provided done-for-you templates, and you’ll be on your way to building your own path to financial freedom. You’ll also see real-life success stories of people who started from scratch that will motivate you and prove it’s possible. By the end of the training, you’ll have the clarity, tools, and confidence to get started with Drop Servicing stress-free.',
+      text: '<p>Starting an online business is overwhelming to say the least. But it doesn’t have to be.</p> <p>This free training breaks everything down into a simple, step-by-step process designed for beginners.</p> <p>You don’t need prior experience or technical skills—just follow our checklist, use the provided done-for-you templates, and you’ll be on your way to building your own path to financial freedom.</p> <p>You’ll also see real-life success stories of people who started from scratch that will motivate you and prove it’s possible.</p> <p>By the end of the training, you’ll have the clarity, tools, and confidence to get started with Drop Servicing stress-free.</p>',
       button: 'Yes! Get Access Now!',
-      video: 'https://www.youtube.com/embed/example4',
+      video: 'video_lauren.mp4',
       review: {
-        text: '"From an unfulfilling job to running his own business, Christian transformed his life in just three months."',
-        reviewerName: 'Christian',
-        reviewerPhoto: `${git}reviewer1.jpg`,
-        stars: 5
+        reviewerPhoto: `${git}lauren_img.webp`,
+        reviewerName: 'Lauren',
+        reviewText:
+          '“Lauren gained complete clarity and confidence on what to do to achieve her goals and now makes 7 figures per year”',
+        stars: `${git}rating_stars_new.png`
       }
     }
   },
   {
+    id: 5,
     icon: svg.blockersIcon5,
     text: 'I feel overwhelmed by options and need a simple, beginner-friendly path to success.',
     button: `See details <span class="arrow_btn_icon">${svg.arrowBtnIcon}</span>`,
     popupContent: {
       icon: svg.blockersIcon5,
       title: 'I feel overwhelmed by options and need a simple, beginner-friendly path to success.',
-      text: 'Overwhelmed by options? This free training makes starting an online business simple and beginner-friendly. Drop Servicing eliminates the need for technical skills, upfront investments, or complicated setups. Using just a laptop and an internet connection you’ll build a simple little laptop business that funds your freedom. Our free training provides done-for-you templates, automation tools, and real-life examples, ensuring your success. By the end, you’ll have the confidence and knowledge to begin immediately, knowing this proven model has helped countless other beginners succeed.',
+      text: '<p>Overwhelmed by options? This free training makes starting an online business simple and beginner-friendly.</p> <p>Drop Servicing eliminates the need for technical skills, upfront investments, or complicated setups. Using just a laptop and an internet connection you’ll build a simple little laptop business that funds your freedom.</p> <p>Our free training provides done-for-you templates, automation tools, and real-life examples, ensuring your success. By the end, you’ll have the confidence and knowledge to begin immediately, knowing this proven model has helped countless other beginners succeed.</p>',
       button: 'Yes! Get Access Now!',
-      video: 'https://www.youtube.com/embed/example5',
+      video: 'video_jordan.mp4',
       review: {
-        text: '"From an unfulfilling job to running his own business, Christian transformed his life in just three months."',
-        reviewerName: 'Christian',
-        reviewerPhoto: `${git}reviewer1.jpg`,
-        stars: 5
+        reviewerPhoto: `${git}jordan_img.webp`,
+        reviewerName: 'Jordan',
+        reviewText:
+          '“After trying everything Jordan discovered our simple method and got his first sale within a few weeks”',
+        stars: `${git}rating_stars_new.png`
       }
     }
   },
   {
+    id: 6,
     icon: svg.blockersIcon6,
     text: 'I’m skeptical of online business promises and need a proven, trustworthy system.',
     button: `See details <span class="arrow_btn_icon">${svg.arrowBtnIcon}</span>`,
     popupContent: {
       icon: svg.blockersIcon6,
       title: 'I’m skeptical of online business promises and need a proven, trustworthy system.',
-      text: 'Skeptical about online business promises? This free training is built on transparency and proven results. We show you a clear, step-by-step system to build a Drop Servicing business, supported by real-life case studies and success stories. No hype—just actionable strategies that thousands have used to achieve financial freedom goals. You’ll see how this beginner-friendly model works and why it’s trusted by so many. With no fluff and no gimmicks, this training provides the tools and guidance you need to start confidently and see real results.',
+      text: '<p>Skeptical about online business promises? This free training is built on transparency and proven results.</p> <p>We show you a clear, step-by-step system to build a Drop Servicing business, supported by real-life case studies and success stories.</p> <p>No hype—just actionable strategies that thousands have used to achieve financial freedom goals. You’ll see how this beginner-friendly model works and why it’s trusted by so many.</p> <p>With no fluff and no gimmicks, this training provides the tools and guidance you need to start confidently and see real results.</p>',
       button: 'Yes! Get Access Now!',
-      video: 'https://www.youtube.com/embed/example6',
+      video: 'video_michelle.mp4',
       review: {
-        text: '"From an unfulfilling job to running his own business, Christian transformed his life in just three months."',
-        reviewerName: 'Christian',
-        reviewerPhoto: `${git}reviewer1.jpg`,
-        stars: 5
+        reviewerPhoto: `${git}michelle_img.webp`,
+        reviewerName: 'Michelle',
+        reviewText:
+          '“Feeling unsure about all the online business promises, Michelle took a leap of faith with us—and it paid off with total freedom.”',
+        stars: `${git}rating_stars_new.png`
       }
     }
+  }
+]
+
+export const reviews = [
+  {
+    name: 'Lauren',
+    review:
+      '"Lauren transitioned from managing physical stores to building her own automated Drop Servicing business."',
+    img: 'lauren.jpg',
+    videoId: 'q8xu3220ak'
+  },
+  {
+    name: 'Christian',
+    review:
+      '"From an unfulfilling job to running his own business, Christian transformed his life in just three months."',
+    img: 'christian.jpg',
+    videoId: '24pvu5oip9'
+  },
+  {
+    name: 'Michelle',
+    review:
+      '"Michelle went from juggling various online side gigs to creating a steady income that allows her to live abroad."',
+    img: 'michelle.jpg',
+    videoId: '9lsnni5wtx'
+  },
+  {
+    name: 'Ed',
+    review: '"Ed went from a busy father of two with limited time to running a thriving business on his own term."',
+    img: 'ed.jpg',
+    videoId: 'n2ujymsyou'
+  },
+  {
+    name: 'Muhammad',
+    review:
+      '"Muhammad went from struggling with other business models to building a thriving business without needing sales calls."',
+    img: 'muhammad.jpg',
+    videoId: 'q03fyag9sb'
+  },
+  {
+    name: 'Aleksa',
+    review:
+      '"Aleksa transformed from a struggling student to a financially independent entrepreneur in just one year."',
+    img: 'aleksa.jpg',
+    videoId: 'rup4dintys'
+  },
+  {
+    name: 'Guy',
+    review:
+      '"Guy turned her part-time side hustle into a reliable source of income while working full-time as a nurse."',
+    img: 'guy.jpg',
+    videoId: '9luz6eb8y5'
+  }
+]
+
+export const learn = [
+  '<b>The Drop Servicing Method:</b> Our new strategy for earning online without significant startup costs.',
+  '<b>A Simple 4-Step Process:</b> Start your online business journey with just a laptop and internet connection.',
+  '<b>Escape The 9-5 Grind:</b> How to transition from traditional employment to being your own boss.',
+  '<b>The 2024 Opportunity:</b> How to capitalize on this emerging trend to achieve your financial freedom goals.',
+  '<b>Real Success Stories:</b> Get inspired by participants who left their jobs to build successful businesses, gaining the freedom to live on their own terms.'
+]
+
+export const figure = [
+  'Dylan Sigley was a broke college student working in a call center when he discovered a new online business method called "Drop Servicing".',
+  'Soon after, he built a ridiculously profitable business from home, allowing him to quit his job and earn 6-figures while traveling the world and working only 5 hours a week.',
+  `This FREE webclass skips the nonsense to show you, step-by-step, how Dylan grew his business so quickly and how hundreds of others have replicated his success using the same process. It's the most practical, results-driven training you'll find.`,
+  'Dylan has one of the best (if not the best) track records in the industry for helping people around the world build Drop Servicing Businesses, even as complete beginners with no skills or degree.',
+  'Normally, it costs between $4K and $24K to work with Dylan, but in this webclass you get his exact methods for FREE! Register now before this is taken offline in the next few days.'
+]
+
+export const trainingFor = [
+  'Aspiring entrepreneurs eager to shift from employee to business owner.',
+  'People tired of their jobs and wanting to move towards achieving their financial freedom goals.',
+  'Anyone ready for actionable insights to take control of their lives and financial goals.'
+]
+
+export const trustpilotReviews = [
+  {
+    name: 'Fabiano Musase',
+    title: 'Drop Servicing Blueprint Partner Program',
+    text: 'The level of detail provided in the course is great. I have learned more about business and entrepreneurship from this course than I have in any other. The tools that are provided, the strategies, and even better, the done-for-you templates and portfolio come with practical examples a student can simply copy, paste and implement. It is really up to the hard work, dedication and consistency of the individual to generate great results from this course.',
+    date: 'Updated Sep 5, 2024',
+    link: 'https://www.trustpilot.com/reviews/66d751064ea542f0b227b3d5'
+  },
+  {
+    name: 'Carlos Lima',
+    title: 'Step-by-Step Guide 4 all',
+    text: 'My Experience with the Course is that You have all the information you need (Step-by-step) Dylan and His team guide you thru all the points, configurations, and templates of all you need to do to Thrive in the Niche you Pick. For me, it has been an amazing experience, and being someone that has tried several Online courses about different topics and from different, so-called "Gurus", I can clearly state that this one is worth every penny.<br><br>Thank You for purring this course together.',
+    date: 'Jun 26, 2023',
+    link: 'https://www.trustpilot.com/reviews/6499351115ff79ccb5de2646'
+  },
+  {
+    name: 'Michael Abboud',
+    title: 'Professional, ordained and classy experience',
+    text: "Hi, my name is Michael and my experience learning from Dylan's course has been nothing short of incredible. He truly dives into the specifics on what it is and more importantly how you start a business. Most of the work is done for you, and as long as you're willing to follow the steps in his videos, you're guaranteed to find some form of success with his course. I've had access to the course for 12 days and the advancements I've made have been nothing short of remarkable. Thank you to Dylan and his team for the great experience so far.",
+    date: 'May 22, 2023',
+    link: 'https://www.trustpilot.com/reviews/646b52f009485285aab0a91f'
+  },
+  {
+    name: 'Maged Rafaat',
+    title: 'Simply a hidden Gem',
+    text: 'An amazing course with all the details covered from scratch on how to build a business online.<br><br>Everything need is explained thoroughly with all details and step by step guides from building your website to how to lo get leads to finalizing deals and closing on sales.<br><br>I strongly recommend this course to anyone who is interested in drop shipping as this course has it all.',
+    date: 'Jun 27, 2023',
+    link: 'https://www.trustpilot.com/reviews/649afb0dbe90b81ce4f7001e'
+  },
+  {
+    name: 'Shawn Gibson',
+    title: 'Adding rocket fuel to your business launch',
+    text: 'I have been taking this course for several weeks now and I am blown away by the amount of information and value packed into the lessons. I spent a lot of time scouring youtube for the various topics covered by Dylan and his team and found nothing with as much in depth coverage as what is provided in the Drop Servicing Blueprint. The team is very responsive to any questions I may have and always willing to help! I would recommend this course to anyone ready to jump start their business and cut down months of learning curve.',
+    date: 'Sep 9, 2022',
+    link: 'https://www.trustpilot.com/reviews/631b22117f7a8621ee571454'
+  },
+  {
+    name: 'Justice Selepe',
+    title: 'Drop Servicing blueprint',
+    text: 'Drop Servicing blueprint is the best online business venture. I have learned a lot from the course regarding business management and opportunities. The teacher is supportive and always available to guide and help. I highly recommend the course to everyone who wants to start a new business venture',
+    date: 'Jul 14, 2022',
+    link: 'https://www.trustpilot.com/reviews/62d010668000af4a883feeef'
+  },
+  {
+    name: 'Ashaya Gupta',
+    title: 'Amazing Course with Unparalleled Support!',
+    text: "I am extremely satisfied with the Drop Servicing Blueprint course! The content is incredibly in-depth and packed with tons of valuable material that is well-structured and easy to follow. The course itself is worth every penny, but what truly stands out is the exclusive community you gain access to. The experts in the group are very helpful and always willing to answer any questions you may have. Plus, Dylan Sigley himself is super accessible and responsive, which is rare in online courses like this.<br><br>Thanks to the course, I’ve already bagged a couple of sales and am eager to continue expanding my business with the insights and strategies I've learned. The community support combined with the high-quality course material makes this a winning combination. Fully satisfied and highly recommend!",
+    date: 'Aug 27, 2024',
+    link: 'https://www.trustpilot.com/reviews/66cdbcb0c3878fd95a2e31a7'
+  },
+  {
+    name: 'Karey Nduta',
+    title: 'Look no further',
+    text: "This is my first ever online review because, damn! This course deserves an online review.<br><br>Since 2010, I have started so many online businesses. From E-commerce to affiliate marketing to trading to falling for stupid scams and loosing hundreds of dollars. If it has trended, I have tried it. You see, I know one thing for sure, I was born to be free. Before this course I had freedom of location working remotely for the best silicon valley start up anyone would want to work for but I still craved freedom of time. Not having to report to someone 5 days a week, 9 to 5.<br><br>Just when that ache was becoming unbearable and I had started to fight with my employer for more flexibility, I found Dylan. I am very tech savvy but this course is so plainly spelt out that even the least technical person would understand.<br><br>I just launched my first campaign using the guide in the course and have a few interested clients I am meeting with. This is so surreal. I can't believe am finally running my own business.",
+    date: 'Oct 7, 2022',
+    link: 'https://www.trustpilot.com/reviews/6340206f350baeeabe63848e'
+  },
+  {
+    name: 'Cleo Zupan',
+    title: 'The best coaching out there',
+    text: "When I first joined I didn't know if this course was good or not, but now that I have been a part of this community I can say that it is amazing. You get a lot of details andthe coach does everything with you and shows you how to do it. It is a great course and I would recommend it to anyone out there.",
+    date: 'Oct 7, 2022',
+    link: 'https://www.trustpilot.com/reviews/634028a1350baeeabe638d65'
+  },
+  {
+    name: 'Ewa',
+    title: 'It is worth more than it costs',
+    text: 'A well-structured course that taught me not only how to build my first online business but also how to gain the trust of customers and build the image of my own brand. T o be hones I was scared at the beginning to pay such an amount of money because I am just a student. But now I know it was the best decision I could have made. The value of the course pays back many times.',
+    date: 'Mar 15, 2023',
+    link: 'https://www.trustpilot.com/reviews/641198058c535135419c1a9a'
+  },
+  {
+    name: 'Andy Jay',
+    title: 'Exceeded Expectations',
+    text: "The course starts off with a lot of mindset exercises that I felt really got me out of my funk and into a deeper state of motivation. Then, the rest of the course is jam-packed with so many resources, yet done in a way that doesn't make you feel overwhelmed.<br><br>I'm still going through his course, but I have already begun recommending it to my friends and family.<br><br>Also, for everything he offers, I've paid, and I'm not even exaggerating... 10x more for other courses that are not nearly as good. So, if you're looking for a way to break out of the 9-5 rat race, this course is your best shot. Invest in yourself and get to work!",
+    date: 'Oct 8, 2022',
+    link: 'https://www.trustpilot.com/reviews/6340ef6bb67840c2ab2b641b'
+  },
+  {
+    name: 'Fredrik Ljunggren',
+    title: 'Amazing course',
+    text: "Very easy to follow. You don't have to have any knowledge in how to start a business before entering this course. I did't know much about anything to be honest and I've managed to start an online business and fulfill my dream, thanks to this course.<br><br>You wont regret buying it.",
+    date: 'May 16, 2023',
+    link: 'https://www.trustpilot.com/reviews/64638248fe2b0edcd71caf04'
+  }
+]
+
+export const faq = [
+  {
+    question: 'Who is this training for?',
+    answer:
+      'This training is for anyone interested in discovering a new business idea and learning how people worldwide are achieving their financial freedom goals.'
+  },
+  {
+    question: 'What if I have questions during the training?',
+    answer:
+      'You will be able to leave any questions you have in the chat and Dylan will answer questions at the end of the training.'
+  },
+  {
+    question: 'How long is the session?',
+    answer:
+      "Dylan's trainings are generally highly practical and detailed so you should dedicate 1-2 hours to watching the training."
+  },
+  {
+    question: 'Do I need specific skills to attend?',
+    answer:
+      'No special prior skills, degree, or extensive experience is necessary to attend. This training is accessible to practically anyone.'
+  },
+  {
+    question: 'Will I be able to start this business just by watching the training?',
+    answer:
+      'Dylan is going to reveal the 4 steps you need to get started as well as give you a tutorial and template you can use right away.'
+  }
+]
+
+export const stories = [
+  {
+    name: 'Barend K.',
+    text: '"Barend was working two stressful restaurant jobs and used this strategy to earn $69,650 in one sale, followed by $77,000 in the next."'
+  },
+  {
+    name: 'Derik J.',
+    text: '"Derik left a stressful day job, now lands high-ticket sales like $23,400, and has clients paying him $162,000 yearly."'
+  },
+  {
+    name: 'Lauren G.',
+    text: '"Lauren made $8,700 in 6 weeks, reached $100,000 in 6 months, and bought her first house."'
+  },
+  {
+    name: 'Stephen H.',
+    text: '"Stephen lost his job, used this system to quickly earn $10,000 per month, and now travels the world in freedom."'
   }
 ]
