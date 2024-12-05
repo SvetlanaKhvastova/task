@@ -157,6 +157,7 @@ class OptInPageV2 {
 
       setTimeout(() => {
         $el('.crs_blockers_content').elements[0].innerHTML = ''
+        $el('.sticky_btn_wrapper')?.elements[0]?.remove()
       }, 300)
     }
 
@@ -173,10 +174,13 @@ class OptInPageV2 {
         nav: false,
         responsive: {
           0: {
-            items: 2
+            items: 2.2
+          },
+          1100: {
+            items: 2.2
           },
           1290: {
-            items: 3
+            items: 3.25
           }
         }
       })
@@ -212,6 +216,7 @@ class OptInPageV2 {
       $el('.crs_blockers_popup').elements[0].classList.add('active')
 
       const id = target.getAttribute('data-id')
+      const blockersPopup = $el('.crs_blockers_popup').elements[0]
       const container = $el('.crs_blockers_content').elements[0]
       const popupContentElements = blockers.find(block => block.id === parseInt(id || ''))
       const popupName = popupContentElements?.popupContent.title
@@ -222,6 +227,14 @@ class OptInPageV2 {
         'click',
         'What’s stopping you from achieving your financial and lifestyle goals?'
       )
+
+      if (window.innerWidth < 768) {
+        console.log(`MOB`)
+        blockersPopup.insertAdjacentHTML(
+          'beforeend',
+          `<div class="sticky_btn_wrapper"><button class="cta pop">Yes! Get Access Now!</button></div>`
+        )
+      }
 
       if (popupContentElements) {
         const { icon, title, text, button, video, review } = popupContentElements?.popupContent || {}
@@ -244,7 +257,7 @@ class OptInPageV2 {
           pushData('exp_opt_in_v2__popup_det__view', 'Popup', 'view', `Popup. ${popupName}`)
         })
 
-        $el('.crs_blockers_content .cta').on('click', function (e) {
+        $el('.crs_blockers_popup .cta').on('click', function (e) {
           const target = e.currentTarget as HTMLElement | null
           if (!target) return
 
@@ -259,7 +272,6 @@ class OptInPageV2 {
               'Popup. Access Your Exclusive Online Training. Step 1',
               'Popup'
             )
-            console.log(`visibilityOfTime >>>>>>>>`)
           }, 800)
         })
 
@@ -288,11 +300,11 @@ class OptInPageV2 {
       }
 
       if (spanElement && !target.classList.contains('is_open')) {
-        spanElement.textContent = 'Show less options'
+        spanElement.textContent = 'Show more options'
         scrollToHtmlElement($$el('.blokers_item')[3], 24)
       } else {
         if (spanElement) {
-          spanElement.textContent = 'Show more options'
+          spanElement.textContent = 'Show less options'
         }
       }
     })

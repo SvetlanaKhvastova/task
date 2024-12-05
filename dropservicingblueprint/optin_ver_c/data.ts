@@ -386,14 +386,14 @@ export const reviews = [
       '"Aleksa transformed from a struggling student to a financially independent entrepreneur in just one year."',
     img: 'aleksa.jpg',
     videoId: 'rup4dintys'
-  },
-  {
-    name: 'Guy',
-    review:
-      '"Guy turned her part-time side hustle into a reliable source of income while working full-time as a nurse."',
-    img: 'guy.jpg',
-    videoId: '9luz6eb8y5'
   }
+  // {
+  //   name: 'Guy',
+  //   review:
+  //     '"Guy turned her part-time side hustle into a reliable source of income while working full-time as a nurse."',
+  //   img: 'guy.jpg',
+  //   videoId: '9luz6eb8y5'
+  // }
 ]
 
 export const learn = [

@@ -161,10 +161,14 @@ export const mainBlock = /* HTML */ `
           <button class="cta pop">Yes! Get Access Now!</button>
         </div>
         <div class="video_wrapper">
+          <div class="loader" id="video_loader"></div>
           <div class="video">
-            <div class="wistia_embed wistia_async_q8xu3220ak" style="width:930px;height:521px;"></div>
+            <div
+              class="wistia_embed wistia_async_ilo2gdof4l wistia_embed_initialized"
+              style="width:100%;height:100%;"
+            ></div>
           </div>
-          ${founderName} ${storiesBlock}
+          ${storiesBlock}
         </div>
         <div class="mobile stats_mob">${statsBlock}</div>
       </div>
@@ -501,10 +505,14 @@ export const selectTime = (schedules: schedule[], timeZone: string) => {
 
 export const blockersPopupBlock = /* HTML */ `
   <div class="crs_blockers_popup" data-closeblokers>
-    <div>
+    <div class="crs_blockers_popup_container">
       <div class="close" data-closeblokers>${svg.closeIconPopup}</div>
       <div class="crs_blockers_content"></div>
     </div>
+
+    ${window.innerWidth < 768
+      ? '<div class="sticky_btn_wrapper"><button class="cta pop">Yes! Get Access Now!</button></div>'
+      : ''}
   </div>
 `
 
@@ -546,7 +554,7 @@ export const blockersPopupContentBlock = (
           <div class="txt_container">${text}</div>
         </div>
       </div>
-      <button class="cta pop">${button}</button>
+      ${window.innerWidth >= 768 ? `<button class="cta pop">${button}</button>` : ''}
     </div>
   `
 }

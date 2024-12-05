@@ -500,7 +500,7 @@ export const selectTime = (schedules: schedule[], timeZone: string) => {
 
 export const blockersPopupBlock = /* HTML */ `
   <div class="crs_blockers_popup" data-closeblokers>
-    <div>
+    <div class="crs_blockers_popup_container">
       <div class="close" data-closeblokers>${svg.closeIconPopup}</div>
       <div class="crs_blockers_content"></div>
     </div>
@@ -545,7 +545,7 @@ export const blockersPopupContentBlock = (
           <div class="txt_container">${text}</div>
         </div>
       </div>
-      <button class="cta pop">${button}</button>
+      ${window.innerWidth >= 768 ? `<button class="cta pop">${button}</button>` : ''}
     </div>
   `
 }

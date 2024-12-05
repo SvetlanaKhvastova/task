@@ -154,8 +154,33 @@ class OptInPageV2 {
 
       setTimeout(() => {
         $el('.crs_blockers_content').elements[0].innerHTML = ''
+        $el('.sticky_btn_wrapper')?.elements[0]?.remove()
       }, 300)
     }
+
+    const videoApiHero = setInterval(() => {
+      if (window.Wistia) {
+        clearInterval(videoApiHero)
+        window._wq = window._wq || []
+        window._wq.push({
+          id: 'ilo2gdof4l',
+          onReady: function (video) {
+            $el('#video_loader').addClass('is_hidden')
+
+            video.bind('play', function () {
+              console.log(`PLAY`)
+              pushData('exp_opt_in_v2__fs__video', 'Open video', 'click', 'First screen')
+              $el('#main_block .crs_stories').addClass('is_hidden')
+            })
+
+            video.bind('pause', function () {
+              console.log('PAUSE')
+              $el('#main_block .crs_stories').removeClass('is_hidden')
+            })
+          }
+        })
+      }
+    }, 500)
 
     $el('.btn_see_details').on('click', function (e) {
       const target = e.currentTarget as HTMLElement | null
@@ -165,6 +190,7 @@ class OptInPageV2 {
       $el('.crs_blockers_popup').elements[0].classList.add('active')
 
       const id = target.getAttribute('data-id')
+      const blockersPopup = $el('.crs_blockers_popup').elements[0]
       const container = $el('.crs_blockers_content').elements[0]
       const popupContentElements = blockers.find(block => block.id === parseInt(id || ''))
       const popupName = popupContentElements?.popupContent.title
@@ -175,6 +201,14 @@ class OptInPageV2 {
         'click',
         'What’s stopping you from achieving your financial and lifestyle goals?'
       )
+
+      if (window.innerWidth < 768) {
+        console.log(`MOB`)
+        blockersPopup.insertAdjacentHTML(
+          'beforeend',
+          `<div class="sticky_btn_wrapper"><button class="cta pop">Yes! Get Access Now!</button></div>`
+        )
+      }
 
       if (popupContentElements) {
         const { icon, title, text, button, video, review } = popupContentElements?.popupContent || {}
@@ -197,7 +231,7 @@ class OptInPageV2 {
           pushData('exp_opt_in_v2__popup_det__view', 'Popup', 'view', `Popup. ${popupName}`)
         })
 
-        $el('.crs_blockers_content .cta').on('click', function (e) {
+        $el('.crs_blockers_popup .cta').on('click', function (e) {
           const target = e.currentTarget as HTMLElement | null
           if (!target) return
 
@@ -212,7 +246,6 @@ class OptInPageV2 {
               'Popup. Access Your Exclusive Online Training. Step 1',
               'Popup'
             )
-            console.log(`visibilityOfTime >>>>>>>>`)
           }, 800)
         })
 
@@ -241,11 +274,11 @@ class OptInPageV2 {
       }
 
       if (spanElement && !target.classList.contains('is_open')) {
-        spanElement.textContent = 'Show less options'
+        spanElement.textContent = 'Show more options'
         scrollToHtmlElement($$el('.blokers_item')[3], 24)
       } else {
         if (spanElement) {
-          spanElement.textContent = 'Show more options'
+          spanElement.textContent = 'Show less options'
         }
       }
     })
@@ -639,6 +672,7 @@ class OptInPageV2 {
             id: review.videoId,
             onReady: function (video) {
               video.bind('play', function () {
+                console.log(`PLAY`)
                 if (video.container.closest('.video_slide')) {
                   pushData(
                     'exp_optin_hear_video',
