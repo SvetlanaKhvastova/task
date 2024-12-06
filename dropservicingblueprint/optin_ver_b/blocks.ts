@@ -73,12 +73,12 @@ export const blockersBlock = /* HTML */ `
         .map(
           ({ id, icon, text, button }) => /* HTML */ `
             <li>
-              <div class="blokers_item">
+              <div data-id="${id}" class="blokers_item" data-seedetails>
                 <div>
                   ${icon}
                   <p>${text}</p>
                 </div>
-                <div data-id="${id}" class="btn_see_details">${button}</div>
+                <div class="btn_see_details">${button}</div>
               </div>
             </li>
           `
@@ -534,7 +534,7 @@ export const blockersPopupContentBlock = (
         <p>${reviewText}</p>
       </div>
       <div class="video">
-        <video controls src="https://conversionratestore.github.io/projects/dropservicing/optin/video/${video}"></video>
+        <div class="wistia_embed wistia_async_${video} wistia_embed_initialized" style="width:100%;height:100%;"></div>
       </div>
     </div>
     <div class="info_wrapper">

@@ -235,7 +235,7 @@ export const blockers = [
       title: 'I feel stuck in the 9-to-5 grind with no time, freedom, or flexibility to enjoy my life.',
       text: '<p>Feeling stuck in a 9-to-5 grind can drain your time, freedom, and flexibility. This free training introduces a business model built for a lifestyle of freedom: Drop Servicing.</p> <p>Everything you need can be used on a laptop and internet connection. Using the most powerful tools in modern history, you’ll learn how to create an income stream that lets you work from anywhere and on your schedule.</p> <p>The training provides step-by-step guidance, done-for-you templates, and proven strategies, so you can escape the daily grind and design a life you love without taking big risks like giving up your current job.</p>',
       button: 'Yes! Get Access Now!',
-      video: 'video_barend.mp4',
+      video: 'z0avn3iqzy',
       review: {
         reviewerPhoto: `${git}barend_img.webp`,
         reviewerName: 'Barend',
@@ -255,7 +255,7 @@ export const blockers = [
       title: 'I don’t know how to achieve financial freedom or build recurring, reliable income streams.',
       text: '<p>Financial freedom starts with the right strategy, and this free training delivers just that.</p> <p>You’ll learn a proven 4-step system to build a Drop Servicing business—an online model where you connect clients with services and earn recurring income.</p> <p>It’s affordable, beginner-friendly, and requires no inventory, startup costs or technical skills.</p> <p>We break everything into clear, actionable steps, showing you how to generate consistent income monthly.</p> <p>Whether you want to earn extra on the side or replace your job entirely, this training provides the tools to achieve it.</p>',
       button: 'Yes! Get Access Now!',
-      video: 'video_aleksa.mp4',
+      video: 'w3aqhrq7ih',
       review: {
         reviewerPhoto: `${git}aleksa_img.webp`,
         reviewerName: 'Aleksa',
@@ -274,7 +274,7 @@ export const blockers = [
       title: 'I’m struggling to boost my income fast without sacrificing all my free time or taking big risks.',
       text: '<p>This free training is perfect for anyone wanting to increase their income in a flexible way.</p> <p>You’ll discover how to build a Drop Servicing business that fits your schedule and learn strategies to land your first high-value client quickly using low-risk methods and time-saving automation.</p> <p>With done-for-you templates and a beginner-friendly process, you’ll gain the tools to grow at your own pace and create a scalable recurring income stream—whether as a side hustle or a full-time business.</p>',
       button: 'Yes! Get Access Now!',
-      video: 'video_ed.mp4',
+      video: 'kfls9if7xo',
       review: {
         reviewerPhoto: `${git}ed_img.webp`,
         reviewerName: 'Ed',
@@ -293,7 +293,7 @@ export const blockers = [
       title: 'I lack the skills or clarity to start an online business; it feels overwhelming and impossible to begin.',
       text: '<p>Starting an online business is overwhelming to say the least. But it doesn’t have to be.</p> <p>This free training breaks everything down into a simple, step-by-step process designed for beginners.</p> <p>You don’t need prior experience or technical skills—just follow our checklist, use the provided done-for-you templates, and you’ll be on your way to building your own path to financial freedom.</p> <p>You’ll also see real-life success stories of people who started from scratch that will motivate you and prove it’s possible.</p> <p>By the end of the training, you’ll have the clarity, tools, and confidence to get started with Drop Servicing stress-free.</p>',
       button: 'Yes! Get Access Now!',
-      video: 'video_lauren.mp4',
+      video: 'gcdkkjxaye',
       review: {
         reviewerPhoto: `${git}lauren_img.webp`,
         reviewerName: 'Lauren',
@@ -313,7 +313,7 @@ export const blockers = [
       title: 'I feel overwhelmed by options and need a simple, beginner-friendly path to success.',
       text: '<p>Overwhelmed by options? This free training makes starting an online business simple and beginner-friendly.</p> <p>Drop Servicing eliminates the need for technical skills, upfront investments, or complicated setups. Using just a laptop and an internet connection you’ll build a simple little laptop business that funds your freedom.</p> <p>Our free training provides done-for-you templates, automation tools, and real-life examples, ensuring your success. By the end, you’ll have the confidence and knowledge to begin immediately, knowing this proven model has helped countless other beginners succeed.</p>',
       button: 'Yes! Get Access Now!',
-      video: 'video_jordan.mp4',
+      video: 'szyss7l2s2',
       review: {
         reviewerPhoto: `${git}jordan_img.webp`,
         reviewerName: 'Jordan',
@@ -333,7 +333,7 @@ export const blockers = [
       title: 'I’m skeptical of online business promises and need a proven, trustworthy system.',
       text: '<p>Skeptical about online business promises? This free training is built on transparency and proven results.</p> <p>We show you a clear, step-by-step system to build a Drop Servicing business, supported by real-life case studies and success stories.</p> <p>No hype—just actionable strategies that thousands have used to achieve financial freedom goals. You’ll see how this beginner-friendly model works and why it’s trusted by so many.</p> <p>With no fluff and no gimmicks, this training provides the tools and guidance you need to start confidently and see real results.</p>',
       button: 'Yes! Get Access Now!',
-      video: 'video_michelle.mp4',
+      video: '31humpsf2v',
       review: {
         reviewerPhoto: `${git}michelle_img.webp`,
         reviewerName: 'Michelle',

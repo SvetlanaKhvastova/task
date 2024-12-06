@@ -887,6 +887,7 @@ body {
             border-radius: 0;
             padding: 18px;
             margin-bottom: 40px;
+            cursor: pointer;
             @media (max-width: 1290px) {
               padding: 18px;
             }
@@ -1962,6 +1963,7 @@ body {
     align-items: center;
     padding: 0;
     transition: all 0.8s ease 0s;
+    background: rgba(5, 31, 67, 0.2);
 
     @include _768 {
       padding: 0;
@@ -2551,6 +2553,7 @@ body {
     z-index: 1000000000000;
     transition: all 0.8s ease 0s;
     overflow: hidden;
+    background: rgba(5, 31, 67, 0.2);
     &.active {
       opacity: 1;
       pointer-events: unset;
@@ -2712,6 +2715,21 @@ body {
           height: 100%;
           width: 100%;
           aspect-ratio: 5/10;
+          border-radius: 20px;
+          background: #000;
+          .wistia_embed {
+            border-radius: 20px;
+            > div {
+              border-radius: 20px !important;
+              .w-css-reset {
+                .w-css-reset-tree.w-bpb-wrapper {
+                  button {
+                    display: none !important;
+                  }
+                }
+              }
+            }
+          }
           @include _768 {
             aspect-ratio: unset;
             height: 519px;

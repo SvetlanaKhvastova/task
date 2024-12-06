@@ -894,6 +894,7 @@ body::-webkit-scrollbar-thumb {
   border-radius: 0;
   padding: 18px;
   margin-bottom: 40px;
+  cursor: pointer;
 }
 @media (max-width: 1290px) {
   .crs_v2 #blokers .blokers .blokers_list li .blokers_item {
@@ -1901,6 +1902,7 @@ body::-webkit-scrollbar-thumb {
   align-items: center;
   padding: 0;
   transition: all 0.8s ease 0s;
+  background: rgba(5, 31, 67, 0.2);
 }
 @media (max-width: 768px) {
   .crs_v2 .crs_popup_form {
@@ -2437,6 +2439,7 @@ body::-webkit-scrollbar-thumb {
   z-index: 1000000000000;
   transition: all 0.8s ease 0s;
   overflow: hidden;
+  background: rgba(5, 31, 67, 0.2);
 }
 .crs_v2 .crs_blockers_popup.active {
   opacity: 1;
@@ -2598,6 +2601,17 @@ body::-webkit-scrollbar-thumb {
   height: 100%;
   width: 100%;
   aspect-ratio: 5/10;
+  border-radius: 20px;
+  background: #000;
+}
+.crs_v2 .crs_blockers_popup .crs_blockers_content .video_wrapper .video .wistia_embed {
+  border-radius: 20px;
+}
+.crs_v2 .crs_blockers_popup .crs_blockers_content .video_wrapper .video .wistia_embed > div {
+  border-radius: 20px !important;
+}
+.crs_v2 .crs_blockers_popup .crs_blockers_content .video_wrapper .video .wistia_embed > div .w-css-reset .w-css-reset-tree.w-bpb-wrapper button {
+  display: none !important;
 }
 @media (max-width: 768px) {
   .crs_v2 .crs_blockers_popup .crs_blockers_content .video_wrapper .video {

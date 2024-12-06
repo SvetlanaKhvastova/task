@@ -129,6 +129,11 @@ class OptInPageV2 {
     root.insertAdjacentHTML('beforeend', blockersPopupBlock)
     root.insertAdjacentHTML('beforeend', exitPopup)
     root.insertAdjacentHTML('beforeend', videoPopupBLock)
+
+    if (window.location.href.includes('dropservicing.net')) {
+      $el('#main_block h1').elements[0].innerHTML =
+        'The 4 steps to start your online business in 2024 and achieve financial freedom goals'
+    }
   }
 
   setActions() {
@@ -208,7 +213,7 @@ class OptInPageV2 {
       })
     }
 
-    $el('.btn_see_details').on('click', function (e) {
+    $el('[data-seedetails]').on('click', function (e) {
       const target = e.currentTarget as HTMLElement | null
       if (!target) return
       ;($el('body').elements[0] as HTMLElement).style.overflow = 'hidden'
@@ -280,7 +285,8 @@ class OptInPageV2 {
     })
 
     $el('[data-closeblokers]').on('click', function (e) {
-      if (!(e.target as Element).closest('.crs_blockers_content')) {
+      console.log(e.currentTarget)
+      if ((e.target as Element).matches('.crs_blockers_popup') || (e.currentTarget as Element).matches('.close')) {
         closeBlockersPopup()
         ;($el('body').elements[0] as HTMLElement).style.overflow = 'auto'
       }
@@ -528,7 +534,7 @@ class OptInPageV2 {
     })
 
     $el('[data-closeform]').on('click', function (e) {
-      if (!(e.target as Element).closest('.bonus') && !(e.target as Element).closest('.crs_form')) {
+      if ((e.target as Element).matches('.crs_popup_form') || (e.currentTarget as Element).matches('.close')) {
         ;($el('body').elements[0] as HTMLElement).style.overflow = 'auto'
         $el('.crs_popup_form').elements[0].classList.remove('active')
         ;($el('.crs_popup_form .inputs1').elements[0] as HTMLElement).style.display = 'block'

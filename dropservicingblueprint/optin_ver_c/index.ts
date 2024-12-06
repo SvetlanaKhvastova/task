@@ -126,6 +126,11 @@ class OptInPageV2 {
     root.insertAdjacentHTML('beforeend', blockersPopupBlock)
     root.insertAdjacentHTML('beforeend', exitPopup)
     root.insertAdjacentHTML('beforeend', videoPopupBLock)
+
+    if (window.location.href.includes('dropservicing.net')) {
+      $el('#main_block h1').elements[0].innerHTML =
+        'The 4 steps to start your online business <br /> in 2024 and achieve financial freedom goals'
+    }
   }
 
   setActions() {
@@ -177,12 +182,26 @@ class OptInPageV2 {
               console.log('PAUSE')
               $el('#main_block .crs_stories').removeClass('is_hidden')
             })
+
+            const observer = new MutationObserver(() => {
+              if (
+                $el('.crs_popup_form').elements[0]?.classList.contains('active') ||
+                $el('.crs_blockers_popup').elements[0]?.classList.contains('active') ||
+                $el('.crs_video_popup').elements[0]?.classList.contains('active') ||
+                $el('#video_block').elements[0]?.classList.contains('is_play') ||
+                $el('.crs_exit_popup').elements[0]?.classList.contains('active')
+              ) {
+                video.pause()
+              }
+            })
+
+            observer.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['class'] })
           }
         })
       }
     }, 500)
 
-    $el('.btn_see_details').on('click', function (e) {
+    $el('[data-seedetails]').on('click', function (e) {
       const target = e.currentTarget as HTMLElement | null
       if (!target) return
       ;($el('body').elements[0] as HTMLElement).style.overflow = 'hidden'
@@ -254,7 +273,8 @@ class OptInPageV2 {
     })
 
     $el('[data-closeblokers]').on('click', function (e) {
-      if (!(e.target as Element).closest('.crs_blockers_content')) {
+      console.log(e.currentTarget)
+      if ((e.target as Element).matches('.crs_blockers_popup') || (e.currentTarget as Element).matches('.close')) {
         closeBlockersPopup()
         ;($el('body').elements[0] as HTMLElement).style.overflow = 'auto'
       }
@@ -502,7 +522,7 @@ class OptInPageV2 {
     })
 
     $el('[data-closeform]').on('click', function (e) {
-      if (!(e.target as Element).closest('.bonus') && !(e.target as Element).closest('.crs_form')) {
+      if ((e.target as Element).matches('.crs_popup_form') || (e.currentTarget as Element).matches('.close')) {
         ;($el('body').elements[0] as HTMLElement).style.overflow = 'auto'
         $el('.crs_popup_form').elements[0].classList.remove('active')
         ;($el('.crs_popup_form .inputs1').elements[0] as HTMLElement).style.display = 'block'
@@ -674,12 +694,18 @@ class OptInPageV2 {
               video.bind('play', function () {
                 console.log(`PLAY`)
                 if (video.container.closest('.video_slide')) {
+                  video.container.closest('#video_block').classList.add('is_play')
                   pushData(
                     'exp_optin_hear_video',
                     `Video ${video.data.media.name}`,
                     'click',
                     'Hear from Our Participants'
                   )
+                }
+              })
+              video.bind('pause', function () {
+                if (video.container.closest('#video_block').classList.contains('is_play')) {
+                  video.container.closest('#video_block').classList.remove('is_play')
                 }
               })
             }
