@@ -33,7 +33,7 @@ export const storiesBlock = /* HTML */ `
         ${stories
           .map(
             (s, i) => `<span class="${i === 0 ? 'active' : ''}">
-                <img src="https://conversionratestore.github.io/projects/dropservicing/popups/img/avatar_${i}.jpg" alt="avatar" />
+                <img src="https://conversionratestore.github.io/projects/dropservicing/popups/img/avatar_new_${i}.png" alt="avatar" />
               </span>`
           )
           .join('')}
@@ -46,7 +46,7 @@ export const storiesBlock = /* HTML */ `
                 <div class="crs_story_head">
                   <span>
                     <img
-                      src="https://conversionratestore.github.io/projects/dropservicing/popups/img/avatar_${i}.jpg"
+                      src="https://conversionratestore.github.io/projects/dropservicing/popups/img/avatar_new_${i}.png"
                       alt="avatar"
                     />
                   </span>
@@ -176,8 +176,8 @@ export const reviewsBlock = /* HTML */ `
   <section id="base_review">
     <h2>Why Join This Webinar?</h2>
     <p>
-      Learn how to start your Drop Servicing business within 30 days. See how these success stories transformed their
-      lives and achieved their financial freedom goals
+      Learn how to start your business within 30 days. See how these success stories transformed their lives and
+      achieved their financial freedom goals
     </p>
     <div class="crs_container">
       <ul class="${window.innerWidth >= 768 ? 'ver_b' : ''}">
@@ -233,9 +233,7 @@ export const hostBlock = /* HTML */ `
       <ul>
         ${figure.map(item => /* HTML */ `<li><span></span>${item}</li>`).join('')}
       </ul>
-      <p>
-        Access Dylan’s formula to learn how to start your Drop Servicing business and unlock financial freedom goals
-      </p>
+      <p>Access Dylan's formula to learn how to start your online business and achieve financial freedom goals</p>
       <button class="cta pop">Unlock Dylan’s Formula for Free</button>
     </div>
   </section>
@@ -296,7 +294,7 @@ export const trainingForBlock = /* HTML */ `
         ${trainingFor.map(item => /* HTML */ `<li>${svg.checkBlueIcon}${item}</li>`).join('')}
       </ul>
       <p>If any of the above apply to you, you're in the right place!</p>
-      <p>Join your Free training to start your business and transform your career</p>
+      <p>Join your Free training to start your business and transform your career.</p>
       <button class="cta pop">Join The FREE Training Now</button>
     </div>
   </section>
@@ -364,7 +362,7 @@ export const faqBlock = /* HTML */ `
 export const lastCtaBlock = /* HTML */ `
   <section id="last_cta" class="crs_container">
     <div class="img">
-      <img src="${git}/product.jpg" alt="product" />
+      <img src="${git}/product.png" alt="product" />
     </div>
     <div>
       <h2>Your Future Starts Here!</h2>
@@ -394,7 +392,10 @@ export const footerBlock = /* HTML */ `
           class="mobile"
         /><a href="https://www.dropservicingblueprint.com/">Dylan Sigley Consulting - FZCO</a>
       </p>
-      <p>| IFZA Business Park, DDP, Dubai Silicon Oasis | +1 (786) 475-8716 | info@dropservicingblueprint.com</p>
+      <p>
+        <a href="https://www.dropservicingblueprint.com/">Dylan Sigley Consulting - FZCO</a> | IFZA Business Park, DDP,
+        Dubai Silicon Oasis | +1 (786) 475-8716 | info@dropservicingblueprint.com
+      </p>
       <p>
         <a href="https://www.dropservicingblueprint.com/privacy-policy">Privacy Policy </a>
         <a href="https://www.dropservicingblueprint.com/earnings-disclaimer">Earnings Disclaimer</a>
@@ -545,7 +546,9 @@ export const blockersPopupContentBlock = (
           <div class="txt_container">${text}</div>
         </div>
       </div>
-      ${window.innerWidth >= 768 ? `<button class="cta pop">${button}</button>` : ''}
+      ${window.innerWidth >= 768
+        ? `<div class="sticky_btn_wrapper_desktop"><button class="cta pop">${button}</button></div>`
+        : ''}
     </div>
   `
 }

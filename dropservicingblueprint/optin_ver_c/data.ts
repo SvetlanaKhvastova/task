@@ -237,7 +237,7 @@ export const blockers = [
       button: 'Yes! Get Access Now!',
       video: 'z0avn3iqzy',
       review: {
-        reviewerPhoto: `${git}barend_img.webp`,
+        reviewerPhoto: `${git}avatar_3.png`,
         reviewerName: 'Barend',
         reviewText:
           '“Barend went from working two stressful restaurant jobs to living his dream of travelling the world”',
@@ -257,7 +257,7 @@ export const blockers = [
       button: 'Yes! Get Access Now!',
       video: 'w3aqhrq7ih',
       review: {
-        reviewerPhoto: `${git}aleksa_img.webp`,
+        reviewerPhoto: `${git}avatar_4.png`,
         reviewerName: 'Aleksa',
         reviewText: '“Aleksa followed the 4 simple steps and achieved financial freedom within a few months”',
         stars: `${git}rating_stars_new.png`
@@ -276,7 +276,7 @@ export const blockers = [
       button: 'Yes! Get Access Now!',
       video: 'kfls9if7xo',
       review: {
-        reviewerPhoto: `${git}ed_img.webp`,
+        reviewerPhoto: `${git}avatar_1.png`,
         reviewerName: 'Ed',
         reviewText: '“Ed used our strategies to boost his income fast and earned 6 figures within his first year”',
         stars: `${git}rating_stars_new.png`
@@ -295,7 +295,7 @@ export const blockers = [
       button: 'Yes! Get Access Now!',
       video: 'gcdkkjxaye',
       review: {
-        reviewerPhoto: `${git}lauren_img.webp`,
+        reviewerPhoto: `${git}avatar_2.png`,
         reviewerName: 'Lauren',
         reviewText:
           '“Lauren gained complete clarity and confidence on what to do to achieve her goals and now makes 7 figures per year”',
@@ -315,7 +315,7 @@ export const blockers = [
       button: 'Yes! Get Access Now!',
       video: 'szyss7l2s2',
       review: {
-        reviewerPhoto: `${git}jordan_img.webp`,
+        reviewerPhoto: `${git}avatar_5.png`,
         reviewerName: 'Jordan',
         reviewText:
           '“After trying everything Jordan discovered our simple method and got his first sale within a few weeks”',
@@ -335,7 +335,7 @@ export const blockers = [
       button: 'Yes! Get Access Now!',
       video: '31humpsf2v',
       review: {
-        reviewerPhoto: `${git}michelle_img.webp`,
+        reviewerPhoto: `${git}avatar_6.png`,
         reviewerName: 'Michelle',
         reviewText:
           '“Feeling unsure about all the online business promises, Michelle took a leap of faith with us—and it paid off with total freedom.”',
@@ -350,41 +350,41 @@ export const reviews = [
     name: 'Lauren',
     review:
       '"Lauren transitioned from managing physical stores to building her own automated Drop Servicing business."',
-    img: 'lauren.jpg',
+    img: 'avatar_2.png',
     videoId: 'q8xu3220ak'
   },
   {
     name: 'Christian',
     review:
       '"From an unfulfilling job to running his own business, Christian transformed his life in just three months."',
-    img: 'christian.jpg',
+    img: 'avatar_0.png',
     videoId: '24pvu5oip9'
   },
   {
     name: 'Michelle',
     review:
       '"Michelle went from juggling various online side gigs to creating a steady income that allows her to live abroad."',
-    img: 'michelle.jpg',
+    img: 'avatar_6.png',
     videoId: '9lsnni5wtx'
   },
   {
     name: 'Ed',
     review: '"Ed went from a busy father of two with limited time to running a thriving business on his own term."',
-    img: 'ed.jpg',
+    img: 'avatar_1.png',
     videoId: 'n2ujymsyou'
   },
   {
     name: 'Muhammad',
     review:
       '"Muhammad went from struggling with other business models to building a thriving business without needing sales calls."',
-    img: 'muhammad.jpg',
+    img: 'avatar_7.png',
     videoId: 'q03fyag9sb'
   },
   {
     name: 'Aleksa',
     review:
       '"Aleksa transformed from a struggling student to a financially independent entrepreneur in just one year."',
-    img: 'aleksa.jpg',
+    img: 'avatar_4.png',
     videoId: 'rup4dintys'
   }
   // {
@@ -406,10 +406,10 @@ export const learn = [
 
 export const figure = [
   'Dylan Sigley was a broke college student working in a call center when he discovered a new online business method called "Drop Servicing".',
-  'Soon after, he built a ridiculously profitable business from home, allowing him to quit his job and earn 6-figures while traveling the world and working only 5 hours a week.',
-  `This FREE webclass skips the nonsense to show you, step-by-step, how Dylan grew his business so quickly and how hundreds of others have replicated his success using the same process. It's the most practical, results-driven training you'll find.`,
-  'Dylan has one of the best (if not the best) track records in the industry for helping people around the world build Drop Servicing Businesses, even as complete beginners with no skills or degree.',
-  'Normally, it costs between $4K and $24K to work with Dylan, but in this webclass you get his exact methods for FREE! Register now before this is taken offline in the next few days.'
+  'Soon after, he built a successful online business, allowing him to quit his job and earn 6-figures while traveling the world and working only 5 hours a week from his laptop.',
+  `This FREE webclass skips the nonsense to show you, step-by-step, how Dylan grew his business so quickly and how hundreds of others have used the same process to successfully start their own businesses.`,
+  'Dylan has one of the best track records in the industry for helping people around the world build Drop Servicing Businesses, even as complete beginners with no degree.',
+  'Normally, it costs between 4K and 24K to work with Dylan, but in this webclass you get his exact methods for FREE! Register now before this is taken offline in the next few days.'
 ]
 
 export const trainingFor = [
@@ -535,19 +535,19 @@ export const faq = [
 
 export const stories = [
   {
-    name: 'Barend K.',
-    text: '"Barend was working two stressful restaurant jobs and used this strategy to earn $69,650 in one sale, followed by $77,000 in the next."'
+    name: 'Christian',
+    text: '"From an unfulfilling job to running his own business, Christian transformed his life in just three months."'
   },
   {
-    name: 'Derik J.',
-    text: '"Derik left a stressful day job, now lands high-ticket sales like $23,400, and has clients paying him $162,000 yearly."'
+    name: 'Aleksa',
+    text: '"Aleksa transformed from a struggling student to a financially independent entrepreneur in just one year"'
   },
   {
-    name: 'Lauren G.',
-    text: '"Lauren made $8,700 in 6 weeks, reached $100,000 in 6 months, and bought her first house."'
+    name: 'Guy',
+    text: '"Guy turned her part-time side hustle into a reliable source of income while working full-time as a nurse"'
   },
   {
-    name: 'Stephen H.',
-    text: '"Stephen lost his job, used this system to quickly earn $10,000 per month, and now travels the world in freedom."'
+    name: 'Muhammad',
+    text: '"Muhammad went from struggling with other business models to building a thriving business without needing sales calls"'
   }
 ]
