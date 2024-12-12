@@ -1,11 +1,33 @@
 import { svg, git } from './data'
 
+export const keySellingPointsBlock = (data): string => {
+  return /* HTML */ `
+    <div class="key_selling_points_block">
+      <ul class="key_selling_points_list">
+        ${data
+          .map(point => {
+            return /* HTML */ `
+              <li class="key_selling_points_item">
+                ${point.icon}
+                <div>
+                  <h3>${point.title}</h3>
+                  <p>${point.txt}</p>
+                </div>
+              </li>
+            `
+          })
+          .join('')}
+      </ul>
+    </div>
+  `
+}
+
 export const anchorMenu = (data): string => {
   return /* HTML */ `
     <div class="anchor_menu">
       <ul class="anchor_menu_list">
         ${data
-          .map((txt: string, index: number) => {
+          .map((txt: string) => {
             return /* HTML */ `
               <li class="anchor_menu_item">
                 <a href="#${txt.replace(/\s+/g, '')}" class="anchor_menu_link" data-target="${txt.replace(/\s+/g, '')}">
@@ -25,6 +47,19 @@ export const boughtSoFarBlock = (summ: string): string => {
     <div class="bought_so_far_block">
       ${svg.cartIcon}
       <p><span class="">${summ}</span> bought so far</p>
+    </div>
+  `
+}
+
+export const tooltipBlock = (tooltipTxt: string): string => {
+  return /* HTML */ ` <div class="tooltip_zone" data-tooltip data-title="${tooltipTxt}">${svg.tooltipIcon}</div> `
+}
+
+export const inStockBlock = (): string => {
+  return /* HTML */ `
+    <div class="in_stock_block">
+      <span class="in_stock_icon"></span>
+      <p class="in_stock_txt">In stock, ready to ship</p>
     </div>
   `
 }
