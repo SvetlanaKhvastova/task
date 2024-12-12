@@ -1,5 +1,25 @@
 import { svg, git } from './data'
 
+export const anchorMenu = (data): string => {
+  return /* HTML */ `
+    <div class="anchor_menu">
+      <ul class="anchor_menu_list">
+        ${data
+          .map((txt: string, index: number) => {
+            return /* HTML */ `
+              <li class="anchor_menu_item">
+                <a href="#${txt.replace(/\s+/g, '')}" class="anchor_menu_link" data-target="${txt.replace(/\s+/g, '')}">
+                  <p>${txt}</p>
+                </a>
+              </li>
+            `
+          })
+          .join('')}
+      </ul>
+    </div>
+  `
+}
+
 export const boughtSoFarBlock = (summ: string): string => {
   return /* HTML */ `
     <div class="bought_so_far_block">
@@ -30,20 +50,24 @@ export const newProductSalesPointsBlock = (data): string => {
 
 export const oneReviewBlock = (data): string => {
   return /* HTML */ `
-    <div class="one_review_block">
+    <div class="one_review_block ${data.class}">
+      <div class="img_wrapper">
+        <img src="${data.img}" alt="photo product" />
+      </div>
       <div class="info_wrapper">
         <p class="info_descr">${data.txt}</p>
         <div class="name_stars_wrapper">
-          <span class="name_review">${data.name}</span>
-          <div class="stars_summary">
-            <div class="stars_wrapper">${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}</div>
-            <span>${data.rating}</span>
+          <div class="name_stars_container">
+            <span class="name_review">${data.name}</span>
+            <div class="stars_summary">
+              <div class="stars_wrapper">${data.starIcons}</div>
+              <span>${data.rating}</span>
+            </div>
           </div>
+          <a href="/pages/customer-review" target="_blank" rel="noopener noreferrer" class="all_reviews_link"
+            >All reviews</a
+          >
         </div>
-      </div>
-      <div class="img_wrapper">
-        <img src="${data.img}" alt="photo product" />
-        <span class="all_reviews_link">All reviews</span>
       </div>
     </div>
   `
@@ -52,15 +76,18 @@ export const oneReviewBlock = (data): string => {
 export const productDetailsBlock = (data): string => {
   return /* HTML */ `
     <div class="product_details_block">
-      <h2>Product details</h2>
       <ul class="product_details_accordion">
         ${data
           .map((q, i) => {
             return /* HTML */ `
-              <li class="product_details_accordion_block" data-visability="${i + 1}">
+              <li
+                class="product_details_accordion_block ${q.class}"
+                data-visability="${i + 1}"
+                id="${q.title.replace(/\s+/g, '')}"
+              >
                 <div class="product_details_accordion_link">
                   <p>${q.title}</p>
-                  <span class="product_details_icon">${svg.arrowAccordionIcon}</span>
+                  <span class="product_details_icon">${svg.arrowAccordionIconProduct}</span>
                 </div>
                 <div class="product_details_accordion_lists" data-visability-open="${i + 1}">
                   <div>${q.txt}</div>
@@ -68,34 +95,6 @@ export const productDetailsBlock = (data): string => {
               </li>
             `
           })
-          .join('')}
-      </ul>
-    </div>
-  `
-}
-
-interface Benefit {
-  icon: string
-  title: string
-  txt: string
-}
-
-export const mainBenefitsBlock = (data: Record<string, Benefit>): string => {
-  return /* HTML */ `
-    <div class="main_benefits_block">
-      <ul class="main_benefits_list">
-        ${Object.values(data)
-          .map(
-            benefit => /* HTML */ `
-              <li class="main_benefits_item">
-                <div class="main_benefits_item_icon_wrapper">${benefit.icon}</div>
-                <div class="main_benefits_item_info">
-                  <h2 class="main_benefits_item_title">${benefit.title}</h2>
-                  <p class="main_benefits_item_txt">${benefit.txt}</p>
-                </div>
-              </li>
-            `
-          )
           .join('')}
       </ul>
     </div>
@@ -126,7 +125,7 @@ export const reviewsBlock = () => {
 
 export const fAQBlock = (data): string => {
   return /* HTML */ `
-    <div class="faq_block">
+    <div class="faq_block" id="FAQ">
       <div class="new_container">
         <h2>FAQ</h2>
         <ul class="faq_accordion">
@@ -212,10 +211,11 @@ export const comparisonTableBlock = (data): string => {
   `
 }
 
-export const stickyBlock = (txtBtn: string, additonalClass: string) => {
+export const stickyBlock = (title: string, price: string) => {
   return /* HTML */ `
     <div class="sticky_block">
-      <div class="add_to_cart_btn ${additonalClass}">${txtBtn}</div>
+      <div class="sticky_product_title">${title}</div>
+      <div class="sticky_product_price">${price}</div>
     </div>
   `
 }

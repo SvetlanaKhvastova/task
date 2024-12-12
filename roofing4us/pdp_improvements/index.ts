@@ -10,10 +10,10 @@ import {
   scrollToHtmlElement
 } from '../../libraries'
 import {
+  anchorMenu,
   boughtSoFarBlock,
   comparisonTableBlock,
   fAQBlock,
-  mainBenefitsBlock,
   newProductSalesPointsBlock,
   oneReviewBlock,
   productDetailsBlock,
@@ -50,23 +50,30 @@ class NewPdp {
 
     document.head.insertAdjacentHTML('beforeend', `<style class="crs_style">${mainStyle}</style>`)
 
-    // this.renderBoughtSoFarBlock()
-    // this.renderNewProductSalesPointsBlock()
-    // this.renderOneReviewBlock()
-    // this.clickAllReviewsLink()
-    // this.renderProductDetailsBlock()
-    // this.renderMainBenefits()
+    this.addIdGeneral()
+    this.renderBoughtSoFarBlock()
+    this.renderNewProductSalesPointsBlock()
+    this.renderOneReviewBlockFirst()
+    if (this.device === 'desktop') {
+      this.renderOneReviewBlockSecond()
+    }
+    this.clickAllReviewsLink()
+    this.renderProductDetailsBlock()
+    this.replaceInformationToProductDetailsBlock()
 
     this.renderReviewsBlock()
     this.renderFAQBlock()
     this.renderComparisonTable()
 
-    // this.initAccordionProductDetails(
-    //   '.product_details_block',
-    //   '.product_details_accordion_block',
-    //   '.product_details_accordion_link',
-    //   '.product_details_accordion_lists'
-    // )
+    this.renderAnchorMenu()
+    this.initializeAnchorMenu()
+
+    this.initAccordionProductDetails(
+      '.product_details_block',
+      '.product_details_accordion_block',
+      '.product_details_accordion_link',
+      '.product_details_accordion_lists'
+    )
     this.initAccordionProductDetails(
       '.faq_block',
       '.faq_accordion_block',
@@ -74,27 +81,110 @@ class NewPdp {
       '.faq_accordion_lists'
     )
 
-    // if (this.device === 'mobile') {
-    //   this.renderStickyBlock()
-    //   this.toggleStickyBlockVisibility()
-    //   this.renderColorWrapper()
-    //   this.clickAddToCartStickyBtn()
-    // }
+    this.renderStickyBlock()
+    this.toggleStickyBlockVisibility()
+  }
+
+  addIdGeneral() {
+    waitForElement(
+      '.product-template__container > .product-section .detail_page_padding .product-content-section'
+    ).then(i => {
+      $el('.product-template__container > .product-section .detail_page_padding .product-content-section').setAttribute(
+        'id',
+        'General'
+      )
+    })
+  }
+
+  renderAnchorMenu() {
+    waitForElement('#PageContainer').then(i => {
+      const сontainerElement = $el('#PageContainer') as HTMLElement
+
+      if (!$el('.anchor_menu')) {
+        сontainerElement.insertAdjacentHTML('beforebegin', anchorMenu(translations[this.pathName].anchorMenuTxt))
+      }
+    })
+  }
+
+  initializeAnchorMenu() {
+    waitForElement('.product_details_accordion').then(i => {
+      const breadcrumbs = $el('.breadcrumbs') as HTMLElement
+      const anchorMenu = $el('.anchor_menu')
+      const menuLinks = $$el('.anchor_menu_link')
+      const sections = Array.from(menuLinks).map(link => $el(link.getAttribute('href')))
+
+      const handleScroll = () => {
+        if (breadcrumbs && breadcrumbs.getBoundingClientRect().top <= 0) {
+          anchorMenu.classList.add('is_sticky')
+        } else {
+          anchorMenu.classList.remove('is_sticky')
+        }
+      }
+
+      const observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            const id = entry.target.getAttribute('id')
+            const link = $el(`.anchor_menu_link[href="#${id}"]`)
+
+            if (entry.isIntersecting) {
+              // Проверяем, если это аккордеон и виден элемент с классом product_details_accordion_lists
+              const accordionContent = entry.target.querySelector('.product_details_accordion_lists')
+              if (accordionContent) {
+                const accordionRect = accordionContent.getBoundingClientRect()
+                if (
+                  (accordionRect.top >= 0 && accordionRect.top <= window.innerHeight) ||
+                  (accordionRect.bottom >= 0 && accordionRect.bottom <= window.innerHeight)
+                ) {
+                  link.classList.add('is_active')
+                } else {
+                  link.classList.remove('is_active')
+                }
+              } else {
+                // Если это не аккордеон, добавляем класс is_active, когда блок виден
+                link.classList.add('is_active')
+              }
+            } else {
+              link.classList.remove('is_active')
+            }
+          })
+        },
+        { threshold: [0.5] }
+      )
+
+      sections.forEach(section => {
+        observer.observe(section)
+      })
+
+      menuLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+          e.preventDefault()
+          const targetId = this.getAttribute('data-target')
+          const targetElement = $el(`#${targetId}`)
+
+          if (targetElement) {
+            if (targetElement.classList.contains('product_details_accordion_block')) {
+              ;(targetElement?.querySelector('.product_details_accordion_link') as HTMLElement)?.click()
+            } else {
+              scrollToHtmlElement(targetElement, 80)
+            }
+          }
+        })
+      })
+
+      window.addEventListener('scroll', handleScroll)
+      handleScroll()
+    })
   }
 
   renderBoughtSoFarBlock() {
     if (this.device === 'desktop') {
-      waitForElement('#shopify-block-yotpo_product_reviews_ugc_star_rating_FVceyX').then(i => {
-        const сontainerElement = $el('#shopify-block-yotpo_product_reviews_ugc_star_rating_FVceyX') as HTMLElement
-
-        if (!$el('.bought_so_far_block')) {
-          сontainerElement.insertAdjacentHTML('beforeend', boughtSoFarBlock(translations[this.pathName].boughtSoFarTxt))
-        }
-      })
-    }
-    if (this.device === 'mobile') {
-      waitForElement('.page-content--product .product-single__meta').then(i => {
-        const сontainerElement = $el('.page-content--product .product-single__meta') as HTMLElement
+      waitForElement(
+        '.product-template__container > .product-section .detail_page_padding .product-content-section'
+      ).then(i => {
+        const сontainerElement = $el(
+          '.product-template__container > .product-section .detail_page_padding .product-content-section'
+        ) as HTMLElement
 
         if (!$el('.bought_so_far_block')) {
           сontainerElement.insertAdjacentHTML(
@@ -107,138 +197,91 @@ class NewPdp {
   }
 
   renderNewProductSalesPointsBlock() {
-    waitForElement('product-inventory').then(i => {
-      const сontainerElement = $el('product-inventory') as HTMLElement
+    waitForElement('.product-template__container > .product-section .detail_page_padding .product-atc-section').then(
+      i => {
+        const сontainerElement = $el(
+          '.product-template__container > .product-section .detail_page_padding .product-atc-section'
+        ) as HTMLElement
 
-      if (!$el('.new_product_sales_points_block')) {
-        сontainerElement.insertAdjacentHTML(
-          'beforebegin',
-          newProductSalesPointsBlock(translations[this.pathName].newProductSalesPointsTxt)
-        )
+        if (!$el('.new_product_sales_points_block')) {
+          сontainerElement.insertAdjacentHTML(
+            'beforeend',
+            newProductSalesPointsBlock(translations[this.pathName].newProductSalesPointsTxt)
+          )
+        }
+      }
+    )
+  }
+
+  renderOneReviewBlockFirst() {
+    waitForElement('.new_product_sales_points_block').then(i => {
+      const сontainerElement = $el('.new_product_sales_points_block') as HTMLElement
+
+      if (!$el('.one_review_block.first_review')) {
+        сontainerElement.insertAdjacentHTML('afterend', oneReviewBlock(translations[this.pathName].oneReviewBlockFirst))
       }
     })
   }
 
-  renderOneReviewBlock() {
-    waitForElement('block-buy-buttons').then(i => {
-      const сontainerElement = $el('block-buy-buttons') as HTMLElement
+  renderOneReviewBlockSecond() {
+    waitForElement('.product-template__container > .product-section .detail_page_padding .product-atc-section').then(
+      i => {
+        const сontainerElement = $el(
+          '.product-template__container > .product-section .detail_page_padding .product-atc-section'
+        ) as HTMLElement
 
-      if (!$el('.one_review_block')) {
-        сontainerElement.insertAdjacentHTML('afterend', oneReviewBlock(translations[this.pathName].oneReviewBlock))
+        if (!$el('.one_review_block.second_review')) {
+          сontainerElement.insertAdjacentHTML(
+            'beforeend',
+            oneReviewBlock(translations[this.pathName].oneReviewBlockSecond)
+          )
+        }
       }
-    })
+    )
   }
 
   clickAllReviewsLink() {
     waitForElement('.all_reviews_link').then(i => {
-      waitForElement('.yotpo-main-layout').then(i => {
-        const link = $el('.all_reviews_link') as HTMLElement
+      const link = $$el('.all_reviews_link') as NodeListOf<HTMLElement>
 
-        link.addEventListener('click', () => {
+      link.forEach(i => {
+        i.addEventListener('click', () => {
           pushData('exp_new_pdp_button_03', 'All reviews', 'Click', 'Review section')
-          scrollToElement('.yotpo-main-layout')
         })
       })
     })
   }
 
   renderProductDetailsBlock() {
-    waitForElement('.main_benefits_block').then(i => {
-      const сontainerElement = $el('.main_benefits_block') as HTMLElement
+    waitForElement('.one_review_block.first_review').then(i => {
+      const сontainerElement = $el('.one_review_block.first_review') as HTMLElement
 
       if (!$el('.product_details_block')) {
         сontainerElement.insertAdjacentHTML(
-          'beforebegin',
+          'afterend',
           productDetailsBlock(translations[this.pathName].productDetailsTxt)
         )
       }
     })
   }
 
-  renderMainBenefits() {
-    waitForElement('.product-single__meta').then(i => {
-      const сontainerElement = $el('.product-single__meta') as HTMLElement
-
-      if (!$el('.main_benefits_block')) {
-        сontainerElement.insertAdjacentHTML('beforeend', mainBenefitsBlock(translations[this.pathName].mainBenefits))
-      }
-    })
-  }
-
-  renderStickyBlock() {
-    waitForElement('.product-single__meta block-buy-buttons .add-to-cart').then(i => {
-      const сontainerElement = $el('body') as HTMLElement
-      const addToCartButton = $el('.product-single__meta block-buy-buttons .add-to-cart span') as HTMLElement
-      const restockButton = $el('.restock-rocket-button-container button') as HTMLElement
-      let txtBtn = addToCartButton.textContent || ''
-      let additonalClass = ''
-
-      if (restockButton) {
-        additonalClass = 'notify_available'
-        txtBtn = restockButton.textContent || ''
-      }
-
-      if (!$el('.sticky_block')) {
-        сontainerElement.insertAdjacentHTML('beforeend', stickyBlock(txtBtn, additonalClass))
-      }
-    })
-  }
-
-  toggleStickyBlockVisibility() {
-    waitForElement('block-buy-buttons').then(() => {
-      waitForElement('.sticky_block').then(() => {
-        const element = $el('.sticky_block') as HTMLElement
-        const elemClose = $el('block-buy-buttons') as HTMLElement
-
-        function visible() {
-          const options = {
-            root: null,
-            threshold: 0
-          }
-
-          let observerSticky = new IntersectionObserver(entries => {
-            entries.forEach(i => {
-              if (i.isIntersecting) {
-                element.style.display = 'none'
-              } else {
-                element.style.display = 'flex'
-              }
-
-              observerSticky.unobserve(i.target)
-            })
-
-            observerSticky.disconnect()
-          }, options)
-
-          observerSticky.observe(elemClose)
-        }
-
-        window.addEventListener('scroll', () => {
-          visible()
-        })
-
-        visible()
+  replaceInformationToProductDetailsBlock() {
+    const moveElement = (sourceSelector: string, targetSelector: string) => {
+      waitForElement(sourceSelector).then(() => {
+        const sourceElement = $el(sourceSelector) as HTMLElement
+        const targetElement = $el(targetSelector) as HTMLElement
+        targetElement.insertAdjacentElement('afterbegin', sourceElement)
       })
-    })
-  }
+    }
 
-  clickAddToCartStickyBtn() {
-    waitForElement('.sticky_block').then(i => {
-      waitForElement('.add_to_cart_btn').then(i => {
-        const btnSticky = $el('.add_to_cart_btn') as HTMLElement
-
-        btnSticky.addEventListener('click', () => {
-          pushData('exp_new_pdp_button_01', 'Add to cart', 'Click', 'Stiky section')
-          const restockButton = $el('.restock-rocket-button-container .restock-rocket-button-cover') as HTMLElement
-          const addToCartButton = $el('.product-single__meta block-buy-buttons .add-to-cart') as HTMLElement
-
-          if (restockButton) {
-            restockButton.click()
-          } else {
-            addToCartButton.click()
-          }
-        })
-      })
+    waitForElement('.product_details_block').then(() => {
+      moveElement(
+        '#productDescription',
+        '.product_details_block .new_description .product_details_accordion_lists > div'
+      )
+      moveElement('#productSpecs', '.product_details_block .new_technical_specs .product_details_accordion_lists > div')
+      moveElement('#productDatasheets', '.product_details_block .new_datasheets .product_details_accordion_lists > div')
+      moveElement('#productReviews', '.product_details_block .new_reviews .product_details_accordion_lists > div')
     })
   }
 
@@ -307,7 +350,7 @@ class NewPdp {
                 if (window.innerWidth < 768) {
                   scrollToHtmlElement(closestElement, 90)
                 } else {
-                  scrollToHtmlElement(closestElement, 0)
+                  scrollToHtmlElement(closestElement, 50)
                 }
               }
             }, 400)
@@ -348,6 +391,63 @@ class NewPdp {
         })
       }
     }, 1000)
+  }
+
+  renderStickyBlock() {
+    waitForElement('.product-form__cart-submit').then(i => {
+      const сontainerElement = $el('body') as HTMLElement
+      const title = $el('.template-product h1.product-single__title').textContent
+      const price = $el('.price-item').textContent
+      const addToCartButton = $el('.product-form__cart-submit') as HTMLElement
+
+      if (!$el('.sticky_block')) {
+        сontainerElement.insertAdjacentHTML('beforeend', stickyBlock(title, price))
+      }
+    })
+  }
+
+  toggleStickyBlockVisibility() {
+    waitForElement('.product-template__container > .product-section .product-atc-section .product-form').then(() => {
+      waitForElement('.sticky_block').then(() => {
+        const element = $el('.sticky_block') as HTMLElement
+        const elemClose = $el(
+          '.product-template__container > .product-section .product-atc-section .product-form'
+        ) as HTMLElement
+
+        function visible() {
+          const options = {
+            root: null,
+            threshold: 0
+          }
+
+          let observerSticky = new IntersectionObserver(entries => {
+            entries.forEach(i => {
+              if (i.isIntersecting) {
+                if ($el('body').classList.contains('sticky_block_visible')) {
+                  $el('body').classList.remove('sticky_block_visible')
+                }
+                element.style.display = 'none'
+              } else {
+                $el('body').classList.add('sticky_block_visible')
+                element.style.display = 'flex'
+              }
+
+              observerSticky.unobserve(i.target)
+            })
+
+            observerSticky.disconnect()
+          }, options)
+
+          observerSticky.observe(elemClose)
+        }
+
+        window.addEventListener('scroll', () => {
+          visible()
+        })
+
+        visible()
+      })
+    })
   }
 }
 

@@ -17,16 +17,21 @@ export const svg = {
 </svg>
     `,
   cartIcon: `
-    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none">
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M16.2365 20.3298C16.5606 20.3298 16.8232 20.0671 16.8232 19.7431C16.8232 19.4191 16.5606 19.1565 16.2365 19.1565C15.9125 19.1565 15.6499 19.4191 15.6499 19.7431C15.6499 20.0671 15.9125 20.3298 16.2365 20.3298ZM16.2365 22.0898C17.5325 22.0898 18.5832 21.0391 18.5832 19.7431C18.5832 18.4471 17.5325 17.3965 16.2365 17.3965C14.9405 17.3965 13.8899 18.4471 13.8899 19.7431C13.8899 21.0391 14.9405 22.0898 16.2365 22.0898Z" fill="#13A360"/>
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M9.19724 20.3298C9.52125 20.3298 9.7839 20.0671 9.7839 19.7431C9.7839 19.4191 9.52125 19.1565 9.19724 19.1565C8.87322 19.1565 8.61057 19.4191 8.61057 19.7431C8.61057 20.0671 8.87322 20.3298 9.19724 20.3298ZM9.19724 22.0898C10.4932 22.0898 11.5439 21.0391 11.5439 19.7431C11.5439 18.4471 10.4932 17.3965 9.19724 17.3965C7.90124 17.3965 6.85059 18.4471 6.85059 19.7431C6.85059 21.0391 7.90124 22.0898 9.19724 22.0898Z" fill="#13A360"/>
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M0.83783 0.481796C1.10742 0.0774155 1.65378 -0.0318563 2.05817 0.237733L3.42862 1.15136C3.86633 1.44315 4.17532 1.89181 4.29189 2.40477L6.7063 13.0283C6.85807 13.696 7.45172 14.1698 8.13653 14.1698H17.2967C17.9816 14.1698 18.5752 13.696 18.727 13.0283L20.5936 4.81497C20.8022 3.89719 20.1046 3.02324 19.1634 3.02324H10.0766C9.59063 3.02324 9.19663 2.62926 9.19663 2.14326C9.19663 1.65725 9.59063 1.26327 10.0766 1.26327H19.1634C21.234 1.26327 22.7687 3.18587 22.3098 5.20498L20.4432 13.4183C20.1093 14.8873 18.8033 15.9298 17.2967 15.9298H8.13653C6.62998 15.9298 5.32395 14.8873 4.99008 13.4183L2.57567 2.7948C2.55901 2.72154 2.51486 2.65745 2.45234 2.61576L1.0819 1.70213C0.677513 1.43254 0.568241 0.886183 0.83783 0.481796Z" fill="#13A360"/>
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M9.19091 8.63233C9.5344 8.28849 10.0916 8.2882 10.4354 8.63169L11.4733 9.66855L14.9989 6.143C15.3425 5.79934 15.8997 5.79934 16.2434 6.143C16.587 6.48667 16.587 7.04383 16.2434 7.38749L12.0959 11.535C11.7523 11.8785 11.1954 11.8787 10.8517 11.5353L9.19149 9.87682C8.84771 9.53333 8.84742 8.97612 9.19091 8.63233Z" fill="#13A360"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+  <path d="M1 2.91016L3.9535 4.35434L6.62026 15.5948C6.78789 16.3642 7.44359 16.9102 8.19997 16.9102H18.3176C19.074 16.9102 19.7297 16.3642 19.8973 15.5948L21.959 6.1314C22.1894 5.07393 21.4189 4.06696 20.3793 4.06696C16.4598 4.06696 10.3428 4.06696 10.3428 4.06696" stroke="#13A360" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M16.5528 8.20801C15.5445 9.21637 11.8161 12.6126 11.8161 12.6126L9.50098 10.6973" stroke="#13A360" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16.5" cy="21.4102" r="1.5" stroke="#13A360" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="9.5" cy="21.4102" r="1.5" stroke="#13A360" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
     `,
   starIcon: `
   <svg xmlns="http://www.w3.org/2000/svg" width="15" height="14" viewBox="0 0 15 14" fill="none">
   <path d="M7.34207 10.9528L11.5705 13.5049L10.4484 8.69492L14.1842 5.45858L9.26473 5.04115L7.34207 0.504883L5.4195 5.04115L0.5 5.45858L4.23579 8.69492L3.11365 13.5049L7.34207 10.9528Z" fill="#FAAC07"/>
+</svg>
+    `,
+  arrowAccordionIconProduct: `
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
+  <path d="M7.01338 11.9102C6.77258 11.9102 6.55853 11.828 6.39799 11.6638L1.26087 6.40869C0.913043 6.08024 0.913043 5.50546 1.26087 5.17702C1.58194 4.8212 2.14381 4.8212 2.46488 5.17702L7.01338 9.80263L11.5351 5.17702C11.8562 4.8212 12.4181 4.8212 12.7391 5.17702C13.087 5.50546 13.087 6.08024 12.7391 6.40869L7.60201 11.6638C7.44147 11.828 7.22742 11.9102 7.01338 11.9102Z" fill="#023F88"/>
 </svg>
     `,
   arrowAccordionIcon: `
@@ -99,9 +104,9 @@ export const svg = {
 </svg>
     `,
   salesPointIcon: `
-  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
-  <path d="M21.9581 6.59802C21.6786 6.31803 21.2251 6.31755 20.9456 6.59683L12.355 15.1647L9.25557 11.7984C8.98775 11.5077 8.53494 11.4888 8.24375 11.7566C7.95277 12.0244 7.93414 12.4775 8.20196 12.7685L11.8062 16.6828C11.9382 16.8263 12.123 16.9096 12.3178 16.9136C12.323 16.9138 12.328 16.9138 12.3331 16.9138C12.5223 16.9138 12.7044 16.8386 12.8386 16.705L21.9567 7.61077C22.2369 7.33152 22.2374 6.87801 21.9581 6.59802Z" fill="black"/>
-  <path d="M21.7839 12.7839C21.3884 12.7839 21.0678 13.1045 21.0678 13.5C21.0678 17.9488 17.4488 21.5678 13 21.5678C8.55148 21.5678 4.93216 17.9488 4.93216 13.5C4.93216 9.05148 8.55148 5.43216 13 5.43216C13.3955 5.43216 13.7161 5.11161 13.7161 4.7161C13.7161 4.32055 13.3955 4 13 4C7.76164 4 3.5 8.26164 3.5 13.5C3.5 18.7381 7.76164 23 13 23C18.2381 23 22.5 18.7381 22.5 13.5C22.5 13.1045 22.1794 12.7839 21.7839 12.7839Z" fill="black"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="25" height="26" viewBox="0 0 25 26" fill="none">
+  <path d="M7.70215 11.749L11.8179 15.8941L21.4569 6.59131" stroke="#13A360" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M12.5 3.98047C7.26164 3.98047 3 8.24211 3 13.4805C3 18.7186 7.26164 22.9805 12.5 22.9805C17.7381 22.9805 22 18.7186 22 13.4805" stroke="#13A360" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
   `,
   prevBtnIcon: `
@@ -118,99 +123,51 @@ export const svg = {
 
 export const translations = {
   '/products/twinwall-polycarbonate-sheet-all-sizes': {
+    anchorMenuTxt: ['General', 'Description', 'Technical Specs', 'Datasheets', 'Reviews', 'FAQ'],
     boughtSoFarTxt: '17850',
     newProductSalesPointsTxt: [
-      'Eco-plywood with natural wood glue',
-      'Taxes and duties are included for the UK',
-      'Safe and certified product (CPC and CE)',
-      'Free returns 30 days'
+      'Shipping Protection for Peace of Mind',
+      'Fast Processing & Delivery',
+      'Flexible Delivery Options'
     ],
-    oneReviewBlock: {
-      txt: '“I recently purchased a climbing frame, and I must say the overall experience was outstanding. The service was impeccable, delivery prompt, and the quality of the climbing frame exceeded my expectations. Highly recommend!”',
-      name: 'Laur',
+    oneReviewBlockFirst: {
+      txt: 'They had the best prices I could find and the order process was very easy. Shipping was fast and the shipper was great to work with. I will be ordering again in the future.',
+      name: 'Justin Galvin',
       rating: 5,
-      img: `https://cdn-yotpo-images-production.yotpo.com/Review/555469445/535006134/original.jpg?1710194520`
+      starIcons: `${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}`,
+      img: `//roofing4us.com/cdn/shop/products/Webp.net-resizeimage_6_110x110@2x.jpg?v=1643195115`,
+      class: 'first_review'
+    },
+    oneReviewBlockSecond: {
+      txt: `Even though their original suppliers didn't come through, Insulation4us worked really hard to get the product I ordered on time.`,
+      name: 'Andrew Wano',
+      rating: 4,
+      starIcons: `${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}`,
+      img: `//roofing4us.com/cdn/shop/files/polycarbonatesheet4_dd63251a-3a21-4e59-92c3-81f75cd5fe24_110x110@2x.png?v=1721121870`,
+      class: 'second_review'
     },
     productDetailsTxt: [
       {
-        title: `5in1 Montessori Climbing Set`,
-        txt: `<p class="blur_txt">Elevate your child's play experience with our 5in1 Montessori Climbing Set, one of Goodevas' flagship offerings. Comprising the core elements of the climbing arch and the triangle ladder, this set is accentuated by the multifunctional climbing net, slide/ramp  and сushion. Together, they open doors to imaginative play, fostering muscle strength, balance, coordination, refined motor skills, and boosted self-confidence. Ingeniously designed to interconnect, this set enables children to craft new play landscapes that evolve with their growth and creativity. Together, they open doors to imaginative play, fostering muscle strength, balance, coordination, refined motor skills, and boosted self-confidence. Ingeniously designed to interconnect, this set enables children to craft new play landscapes that evolve with their growth and creativity.</p><div class="see_more_block">${svg.arrowMoreIcon}<div>See more</div></div>`
+        title: `Description`,
+        txt: ``,
+        class: `new_description`
       },
       {
-        title: `Safe Materials`,
-        txt: `<p>Every piece of this set stems from eco-friendly Latvian birch plywood and linden soft hardwood, emphasizing durability and elegance. Our meticulous sanding and polishing processes result in a splinter-free finish, prioritizing your child's safety. By integrating our signature blend of oils and waxes, we ensure the set's compatibility for indoor and controlled outdoor adventures, although it's advisable to keep it away from high humidity or extreme temperatures.</p>`
+        title: `Technical Specs`,
+        txt: ``,
+        class: `new_technical_specs`
       },
       {
-        title: `Size and Dimensions`,
-        txt: `<ul>
-                  <li>
-                    <strong>Complete Set</strong>
-                    <ul>
-                      <li><p>Dimensions: 10 ft (302 cm)</p></li>
-                      <li><p>Weight: 46.3 lb (21.9 kg)</p></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <strong>Triangle Ladder</strong>
-                    <p>This double-sided ladder, when monitored by an adult, is a haven for little climbers, even those refining their coordination. With its expansive usable area, it can captivate multiple kids, making it an ideal piece for active children craving movement.</p>
-                  </li>
-                  <li>
-                    <strong>Climbing Arch</strong>
-                    <p>A versatile play piece, the arch serves as a support for toddlers learning to stand. As your child grows, it becomes an advanced climbing tool or, when inverted, a unique balance board.</p>
-                  </li>
-                  <li>
-                    <strong>Climbing Net</strong>
-                    <p>Crafted from natural wood and the soft, non-toxic multifilament polypropylene rope, this net offers both durability and safety. It's engineered to withstand pressure, ensuring kids can climb and step with confidence.</p>
-                  </li>
-                  <li>
-                    <strong>Slide &amp; Climbing Ramp</strong>
-                    <p>A double-duty design showcases a smooth slide on one side and a climbing ramp with 4 planks on the other. This slide also doubles as a bridge, integrating seamlessly with other climbing structures to diversify play.</p>
-                  </li>
-                  <li>
-                    <strong>Cushion for Climbing Arch</strong>
-                    <p>The soft and cloud-like cushion for the Climbing Arch provides the perfect surface for children to lie on while they enjoy their favorite hobby - rocking! The soft, light layers make for perfect lying and rocking where every position feels comfortable.</p>
-                  </li>
-                </ul>
-                <p>Unveil a world of potential, imagination, and growth with the 5in1 Montessori Climbing Set with Cushion. A lasting testament to your child's ever-evolving development!</span>`
+        title: `Datasheets`,
+        txt: ``,
+        class: `new_datasheets`
       },
       {
-        title: `Easy to Assemble`,
-        txt: `
-          <p>We provide detailed, easy-to-follow instructions to make assembling our sets a fun and enjoyable experience for the whole family. In the attached file, you'll find step-by-step <a class="under_line_accent" target="_blank" href="https://drive.google.com/file/d/1e8TZwkP6QfK9a3m4uwarp1mHoaHr_NTv/view?usp=sharing">instructions</a>.</p>
-          <p>For additional support, we've also included a link to a video tutorial to make building together even more enjoyable.</p>
-          <ol>
-            <li>
-              <a class="under_line_accent" href="https://youtu.be/zzr0sgSfuQI" target="_blank" rel="noopener noreferrer">Triangle ladder assembly</a>
-            </li>
-            <li>
-              <a class="under_line_accent" href="https://youtu.be/JWVnHix3RD4" target="_blank" rel="noopener noreferrer">Arch assembly</a>
-            </li>
-            <li>
-              <a class="under_line_accent" href="https://youtu.be/5TSJYOXEWQ4" target="_blank" rel="noopener noreferrer">Slide assembly</a>
-            </li>
-            <li>
-              <a class="under_line_accent" href="https://youtu.be/iZE0yZ_lFfI" target="_blank" rel="noopener noreferrer">Net assembly</a>
-            </li>
-          </ol>`
+        title: `Reviews`,
+        txt: ``,
+        class: `new_reviews`
       }
     ],
-    mainBenefits: {
-      safeCertified: {
-        icon: `${svg.certificateIcon}`,
-        title: 'Safe and Certified Product (CPC and CE)',
-        txt: 'Our products are proudly CPC and CE certified, meeting stringent standards for consumer safety and compliance'
-      },
-      warranty: {
-        icon: `${svg.warrantyIcon}`,
-        title: '2-Year <br/> Warranty',
-        txt: 'Our warranty covers any defects in workmanship or materials under regular, indoor us'
-      },
-      freeShipping: {
-        icon: `${svg.shippingIcon}`,
-        title: 'Enjoy Free Shipping Worldwide',
-        txt: 'We insure all the packages we fulfill, so you don’t have to worry about anything happening to your package.'
-      }
-    },
     comparisonTable: {
       mainTitle: 'Why Buy From Roofing4US?',
       myTitle: 'Other Brands',
@@ -260,16 +217,25 @@ export const translations = {
   '/products/h-channel-for-twinwall-polycarbonate-sheet-all-sizes': {
     boughtSoFarTxt: '21000',
     newProductSalesPointsTxt: [
-      'Eco-plywood with natural wood glue',
-      'Taxes and duties are included for the US, CA, UK, and the EU',
-      'Safe and certified product (CPC and CE)',
-      'Free returns 30 days'
+      'Shipping Protection for Peace of Mind',
+      'Fast Processing & Delivery',
+      'Flexible Delivery Options'
     ],
-    oneReviewBlock: {
-      txt: '“The climbing set is exactly what I’d hoped for! Great value for the price. It was easy to assemble and our 20 month old loves it. I can tell she will enjoy it for years to come. Thank you!”',
-      name: 'Caroline P.',
+    oneReviewBlockFirst: {
+      txt: 'They had the best prices I could find and the order process was very easy. Shipping was fast and the shipper was great to work with. I will be ordering again in the future.',
+      name: 'Justin Galvin',
       rating: 5,
-      img: `https://cdn-yotpo-images-production.yotpo.com/Review/477333005/434222901/original.jpg?1686918544`
+      starIcons: `${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}`,
+      img: `https://cdn-yotpo-images-production.yotpo.com/Review/555469445/535006134/original.jpg?1710194520`,
+      class: 'first_review'
+    },
+    oneReviewBlockSecond: {
+      txt: `Even though their original suppliers didn't come through, Insulation4us worked really hard to get the product I ordered on time.`,
+      name: 'Andrew Wano',
+      rating: 4,
+      starIcons: `${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}`,
+      img: `//roofing4us.com/cdn/shop/products/Webp.net-resizeimage_6_110x110@2x.jpg?v=1643195115`,
+      class: 'second_review'
     },
     productDetailsTxt: [
       {
@@ -397,16 +363,25 @@ export const translations = {
   '/products/u-channel-all-sizes': {
     boughtSoFarTxt: '12590',
     newProductSalesPointsTxt: [
-      'Eco-plywood with natural wood glue',
-      'Taxes and duties are included for the UK',
-      'Safe and certified product (CPC and CE)',
-      'Free returns 30 days'
+      'Shipping Protection for Peace of Mind',
+      'Fast Processing & Delivery',
+      'Flexible Delivery Options'
     ],
-    oneReviewBlock: {
-      txt: '“Absolutely amazing product! Our almost 2 years old LOVES it! Great quality, pretty easy to install and would definitely recommend for any toddler!!”',
-      name: 'Oliviya',
+    oneReviewBlockFirst: {
+      txt: 'They had the best prices I could find and the order process was very easy. Shipping was fast and the shipper was great to work with. I will be ordering again in the future.',
+      name: 'Justin Galvin',
       rating: 5,
-      img: `https://cdn-yotpo-images-production.yotpo.com/Review/555469024/535005974/original.jpg?1710194503`
+      starIcons: `${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}`,
+      img: `https://cdn-yotpo-images-production.yotpo.com/Review/555469445/535006134/original.jpg?1710194520`,
+      class: 'first_review'
+    },
+    oneReviewBlockSecond: {
+      txt: `Even though their original suppliers didn't come through, Insulation4us worked really hard to get the product I ordered on time.`,
+      name: 'Andrew Wano',
+      rating: 4,
+      starIcons: `${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}`,
+      img: `//roofing4us.com/cdn/shop/products/Webp.net-resizeimage_6_110x110@2x.jpg?v=1643195115`,
+      class: 'second_review'
     },
     productDetailsTxt: [
       {
@@ -544,16 +519,25 @@ export const translations = {
   '/products/primegrip-best-damn-ripper™-pro-roofing-shovel': {
     boughtSoFarTxt: '4740',
     newProductSalesPointsTxt: [
-      'Eco-plywood with natural wood glue',
-      'Taxes and duties are included for the UK',
-      'Safe and certified product (CPC and CE)',
-      'Free returns within 30 days'
+      'Shipping Protection for Peace of Mind',
+      'Fast Processing & Delivery',
+      'Flexible Delivery Options'
     ],
-    oneReviewBlock: {
-      txt: `“I'm more than happy with the wood triangle, arch, and slide for my baby! It's beautifully made with high-quality wood, providing a safe and fun playtime. My baby loves it, and I can see how it helps with her development. Also a stylish addition to our playroom.”`,
-      name: 'Sandra',
+    oneReviewBlockFirst: {
+      txt: 'They had the best prices I could find and the order process was very easy. Shipping was fast and the shipper was great to work with. I will be ordering again in the future.',
+      name: 'Justin Galvin',
       rating: 5,
-      img: `https://cdn-yotpo-images-production.yotpo.com/Review/555520604/535101206/original.jpg?1710224014`
+      starIcons: `${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}`,
+      img: `https://cdn-yotpo-images-production.yotpo.com/Review/555469445/535006134/original.jpg?1710194520`,
+      class: 'first_review'
+    },
+    oneReviewBlockSecond: {
+      txt: `Even though their original suppliers didn't come through, Insulation4us worked really hard to get the product I ordered on time.`,
+      name: 'Andrew Wano',
+      rating: 4,
+      starIcons: `${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}`,
+      img: `//roofing4us.com/cdn/shop/products/Webp.net-resizeimage_6_110x110@2x.jpg?v=1643195115`,
+      class: 'second_review'
     },
     productDetailsTxt: [
       {
@@ -685,16 +669,25 @@ export const translations = {
   '/products/primegrip-hammrhead-roofing-knife': {
     boughtSoFarTxt: '4200',
     newProductSalesPointsTxt: [
-      'Eco-plywood with natural wood glue',
-      'GST & other duties are included for Canada',
-      'Safe and certified product (CPC and CE)',
-      'Free returns within 30 days'
+      'Shipping Protection for Peace of Mind',
+      'Fast Processing & Delivery',
+      'Flexible Delivery Options'
     ],
-    oneReviewBlock: {
-      txt: `“We got the arch for our son's first birthday. It has been the perfect addition to go with the triangle and slide we gave our 3 year old for Christmas. Both kids use this set daily. The arch is easy to assemble, is very sturdy, and a great size. I'm so impressed with the shipping times, and the company's customer service is phenomenal. I look forward to having this set for several years!!”`,
-      name: 'Stephanie S.',
+    oneReviewBlockFirst: {
+      txt: 'They had the best prices I could find and the order process was very easy. Shipping was fast and the shipper was great to work with. I will be ordering again in the future.',
+      name: 'Justin Galvin',
       rating: 5,
-      img: `https://cdn-yotpo-images-production.yotpo.com/Review/555684885/535284091/original.jpg?1710274581`
+      starIcons: `${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}`,
+      img: `https://cdn-yotpo-images-production.yotpo.com/Review/555469445/535006134/original.jpg?1710194520`,
+      class: 'first_review'
+    },
+    oneReviewBlockSecond: {
+      txt: `Even though their original suppliers didn't come through, Insulation4us worked really hard to get the product I ordered on time.`,
+      name: 'Andrew Wano',
+      rating: 4,
+      starIcons: `${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}`,
+      img: `//roofing4us.com/cdn/shop/products/Webp.net-resizeimage_6_110x110@2x.jpg?v=1643195115`,
+      class: 'second_review'
     },
     productDetailsTxt: [
       {
@@ -873,16 +866,25 @@ export const translations = {
   '/products/tpo-plus-roof-membranes-all-sizes': {
     boughtSoFarTxt: '7245',
     newProductSalesPointsTxt: [
-      'Eco-plywood with natural wood glue',
-      'GST & other duties are included for Canada',
-      'Safe and certified product (CPC and CE)',
-      'Free returns within 30 days'
+      'Shipping Protection for Peace of Mind',
+      'Fast Processing & Delivery',
+      'Flexible Delivery Options'
     ],
-    oneReviewBlock: {
-      txt: '“Absolutely no regrets! Love that we can set it up multiple ways. My 4.5 year old loves obstacle courses and this is great! I also love that it stores fairly easily behind the arch. Would definitely recommend!”',
-      name: 'Sam',
+    oneReviewBlockFirst: {
+      txt: 'They had the best prices I could find and the order process was very easy. Shipping was fast and the shipper was great to work with. I will be ordering again in the future.',
+      name: 'Justin Galvin',
       rating: 5,
-      img: `https://cdn-yotpo-images-production.yotpo.com/Review/555469362/535006066/original.jpg?1710194512`
+      starIcons: `${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}`,
+      img: `https://cdn-yotpo-images-production.yotpo.com/Review/555469445/535006134/original.jpg?1710194520`,
+      class: 'first_review'
+    },
+    oneReviewBlockSecond: {
+      txt: `Even though their original suppliers didn't come through, Insulation4us worked really hard to get the product I ordered on time.`,
+      name: 'Andrew Wano',
+      rating: 4,
+      starIcons: `${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}`,
+      img: `//roofing4us.com/cdn/shop/products/Webp.net-resizeimage_6_110x110@2x.jpg?v=1643195115`,
+      class: 'second_review'
     },
     productDetailsTxt: [
       {
@@ -1019,16 +1021,25 @@ export const translations = {
   '/products/landmark-shingles-all-colors': {
     boughtSoFarTxt: '7245',
     newProductSalesPointsTxt: [
-      'Eco-plywood with natural wood glue',
-      'Taxes and duties are included for the US, CA, UK, and the EU',
-      'Safe and certified product (CPC and CE)',
-      'Free returns within 30 days'
+      'Shipping Protection for Peace of Mind',
+      'Fast Processing & Delivery',
+      'Flexible Delivery Options'
     ],
-    oneReviewBlock: {
-      txt: '“I can’t rave about this item enough! My baby(10 months) has been on it since we got it. Shipping was crazy fast and set up was super quick and easy! I love the dark stain and the quality is amazing, it is very sturdy. My baby is all about pulling up on EVERYTHING so this has helped give him a safe space to do that.”',
-      name: 'Ashley',
+    oneReviewBlockFirst: {
+      txt: 'They had the best prices I could find and the order process was very easy. Shipping was fast and the shipper was great to work with. I will be ordering again in the future.',
+      name: 'Justin Galvin',
       rating: 5,
-      img: `https://cdn-yotpo-images-production.yotpo.com/Review/555469368/535006062/original.jpg?1710194512`
+      starIcons: `${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}`,
+      img: `https://cdn-yotpo-images-production.yotpo.com/Review/555469445/535006134/original.jpg?1710194520`,
+      class: 'first_review'
+    },
+    oneReviewBlockSecond: {
+      txt: `Even though their original suppliers didn't come through, Insulation4us worked really hard to get the product I ordered on time.`,
+      name: 'Andrew Wano',
+      rating: 4,
+      starIcons: `${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}`,
+      img: `//roofing4us.com/cdn/shop/products/Webp.net-resizeimage_6_110x110@2x.jpg?v=1643195115`,
+      class: 'second_review'
     },
     productDetailsTxt: [
       {
@@ -1165,16 +1176,25 @@ export const translations = {
   '/products/dow-thermax-sheathing-4-x-8-polyiso-all-sizes': {
     boughtSoFarTxt: '7245',
     newProductSalesPointsTxt: [
-      'Eco-plywood with natural wood glue',
-      'Taxes and duties are included for the US, CA, UK, and the EU',
-      'Safe and certified product (CPC and CE)',
-      'Free returns within 30 days'
+      'Shipping Protection for Peace of Mind',
+      'Fast Processing & Delivery',
+      'Flexible Delivery Options'
     ],
-    oneReviewBlock: {
-      txt: '“I can’t rave about this item enough! My baby(10 months) has been on it since we got it. Shipping was crazy fast and set up was super quick and easy! I love the dark stain and the quality is amazing, it is very sturdy. My baby is all about pulling up on EVERYTHING so this has helped give him a safe space to do that.”',
-      name: 'Ashley',
+    oneReviewBlockFirst: {
+      txt: 'They had the best prices I could find and the order process was very easy. Shipping was fast and the shipper was great to work with. I will be ordering again in the future.',
+      name: 'Justin Galvin',
       rating: 5,
-      img: `https://cdn-yotpo-images-production.yotpo.com/Review/555469368/535006062/original.jpg?1710194512`
+      starIcons: `${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}`,
+      img: `https://cdn-yotpo-images-production.yotpo.com/Review/555469445/535006134/original.jpg?1710194520`,
+      class: 'first_review'
+    },
+    oneReviewBlockSecond: {
+      txt: `Even though their original suppliers didn't come through, Insulation4us worked really hard to get the product I ordered on time.`,
+      name: 'Andrew Wano',
+      rating: 4,
+      starIcons: `${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}`,
+      img: `//roofing4us.com/cdn/shop/products/Webp.net-resizeimage_6_110x110@2x.jpg?v=1643195115`,
+      class: 'second_review'
     },
     productDetailsTxt: [
       {
