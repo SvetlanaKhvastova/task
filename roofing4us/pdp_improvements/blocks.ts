@@ -26,6 +26,11 @@ export const anchorMenu = (data): string => {
   return /* HTML */ `
     <div class="anchor_menu">
       <ul class="anchor_menu_list">
+        <li class="anchor_menu_item">
+          <a href="#General" class="anchor_menu_link is_active" data-target="General">
+            <p>General</p>
+          </a>
+        </li>
         ${data
           .map((txt: string) => {
             return /* HTML */ `
@@ -249,8 +254,43 @@ export const comparisonTableBlock = (data): string => {
 export const stickyBlock = (title: string, price: string) => {
   return /* HTML */ `
     <div class="sticky_block">
-      <div class="sticky_product_title">${title}</div>
-      <div class="sticky_product_price">${price}</div>
+      <div class="sticky_product_info">
+        <div class="sticky_product_title">${title}</div>
+        <div class="sticky_product_price">${price}</div>
+      </div>
+      <div class="sticky_btn_wrapper">
+        <div class="sticky_add_to_cart">Add to cart</div>
+      </div>
     </div>
+  `
+}
+
+export const sliderBlock = (data): string => {
+  return /* HTML */ `
+    <div class="slider_block">
+      <ul class="slider_wrapper">
+        ${data.map((img: string) => {
+          return /* HTML */ `
+            <li data-fancybox="demo" data-src="${img}">
+              <img src="${img}" alt="photo product roofing4us" />
+            </li>
+          `
+        })}
+      </ul>
+    </div>
+  `
+}
+
+export const additionalImgBlock = (data): string => {
+  return /* HTML */ `
+    <ul class="additional_img_block">
+      ${data.map((img: string) => {
+        return /* HTML */ `
+          <li>
+            <img src="${img}" alt="photo product roofing4us" />
+          </li>
+        `
+      })}
+    </ul>
   `
 }

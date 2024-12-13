@@ -1,6 +1,14 @@
 export const git: string = 'https://conversionratestore.github.io/projects/roofing4us/img/'
 
 export const svg = {
+  cartIcon: `
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+  <path d="M1 2.91016L3.9535 4.35434L6.62026 15.5948C6.78789 16.3642 7.44359 16.9102 8.19997 16.9102H18.3176C19.074 16.9102 19.7297 16.3642 19.8973 15.5948L21.959 6.1314C22.1894 5.07393 21.4189 4.06696 20.3793 4.06696C16.4598 4.06696 10.3428 4.06696 10.3428 4.06696" stroke="#13A360" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M16.5528 8.20801C15.5445 9.21637 11.8161 12.6126 11.8161 12.6126L9.50098 10.6973" stroke="#13A360" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16.5" cy="21.4102" r="1.5" stroke="#13A360" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="9.5" cy="21.4102" r="1.5" stroke="#13A360" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+  `,
   pointIconFirst: `
   <svg xmlns="http://www.w3.org/2000/svg" width="26" height="27" viewBox="0 0 26 27" fill="none">
   <g clip-path="url(#clip0_4082_41134)">
@@ -84,11 +92,26 @@ export const svg = {
   <path d="M7.70215 11.749L11.8179 15.8941L21.4569 6.59131" stroke="#13A360" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M12.5 3.98047C7.26164 3.98047 3 8.24211 3 13.4805C3 18.7186 7.26164 22.9805 12.5 22.9805C17.7381 22.9805 22 18.7186 22 13.4805" stroke="#13A360" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
-  `
+  `,
+  sliderArroWIcon: `
+  <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.5 0C6.32031 0 0.5 5.82029 0.5 13C0.5 20.1797 6.32031 25.9999 13.5 25.9999C20.6797 25.9999 26.5 20.1797 26.5 13C26.5 5.82029 20.6797 0 13.5 0Z" fill="#003068"/>
+<path d="M8.62598 13H18.3756" stroke="white" stroke-width="1.625" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M13.5 8.12549L18.3748 13.0003L13.5 17.8751" stroke="white" stroke-width="1.625" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`
 }
 
 export const translations = {
   '/products/twinwall-polycarbonate-sheet-all-sizes': {
+    sideSliderImg: [
+      '//roofing4us.com/cdn/shop/products/Pic-MWALL2CLR6MMX48X96_media-1_110x110@2x.jpg?v=1643195115',
+      '//roofing4us.com/cdn/shop/products/Webp.net-resizeimage_6_110x110@2x.jpg?v=1643195115',
+      '//roofing4us.com/cdn/shop/files/polycarbonatesheet_88a746f4-44db-4342-a9ce-4d654d9852e1_110x110@2x.png?v=1721121870',
+      '//roofing4us.com/cdn/shop/files/polycarbonatesheet3_047b7c8a-5279-4b4d-a9f3-785c7568e8c0_110x110@2x.png?v=1721121870',
+      '//roofing4us.com/cdn/shop/files/polycarbonatesheet4_dd63251a-3a21-4e59-92c3-81f75cd5fe24_110x110@2x.png?v=1721121870'
+    ],
+    additionalImg: [`${git}img_1_test.webp`, `${git}img_2_test.webp`, `${git}img_3_test.webp`],
     tooltipTxt: `While the estimated delivery time is 10-12 working days, we often ship faster! Place your order today and we'll do our best to get it to you sooner. If the timeline doesn’t work for you, no worries – you can cancel your order anytime before it ships.`,
     keySellingPointsTxt: [
       {
@@ -102,7 +125,7 @@ export const translations = {
         txt: `With low U-values ranging from 0.19 to 0.68, this polycarbonate provides superior thermal insulation`
       }
     ],
-    anchorMenuTxt: ['General', 'Description', 'Technical Specs', 'Datasheets', 'Reviews', 'FAQ'],
+    anchorMenuTxt: ['Description', 'Technical Specs', 'Datasheets', 'Delivery Information', 'Reviews', 'FAQ'],
     boughtSoFarTxt: '17850',
     newProductSalesPointsTxt: [
       'Shipping Protection for Peace of Mind',
@@ -140,6 +163,11 @@ export const translations = {
         title: `Datasheets`,
         txt: ``,
         class: `new_datasheets`
+      },
+      {
+        title: `Delivery Information`,
+        txt: ``,
+        class: `delivery_information`
       },
       {
         title: `Reviews`,
@@ -194,6 +222,15 @@ export const translations = {
     ]
   },
   '/products/h-channel-for-twinwall-polycarbonate-sheet-all-sizes': {
+    sideSliderImg: [
+      '//roofing4us.com/cdn/shop/products/Pic-MWALL2CLR6MMX48X96_media-1_110x110@2x.jpg?v=1643195115',
+      '//roofing4us.com/cdn/shop/products/Webp.net-resizeimage_6_110x110@2x.jpg?v=1643195115',
+      '//roofing4us.com/cdn/shop/files/polycarbonatesheet_88a746f4-44db-4342-a9ce-4d654d9852e1_110x110@2x.png?v=1721121870',
+      '//roofing4us.com/cdn/shop/files/polycarbonatesheet3_047b7c8a-5279-4b4d-a9f3-785c7568e8c0_110x110@2x.png?v=1721121870',
+      '//roofing4us.com/cdn/shop/files/polycarbonatesheet4_dd63251a-3a21-4e59-92c3-81f75cd5fe24_110x110@2x.png?v=1721121870'
+    ],
+    additionalImg: [`${git}img_1_test.webp`, `${git}img_2_test.webp`, `${git}img_3_test.webp`],
+    tooltipTxt: `While the estimated delivery time is 10-12 working days, we often ship faster! Place your order today and we'll do our best to get it to you sooner. If the timeline doesn’t work for you, no worries – you can cancel your order anytime before it ships.`,
     keySellingPointsTxt: [
       {
         icon: svg.pointIconFirst,
@@ -206,7 +243,7 @@ export const translations = {
         txt: `With low U-values ranging from 0.19 to 0.68, this polycarbonate provides superior thermal insulation`
       }
     ],
-    anchorMenuTxt: ['General', 'Description', 'Technical Specs', 'Datasheets', 'Reviews', 'FAQ'],
+    anchorMenuTxt: ['Description', 'Technical Specs', 'Datasheets', 'Delivery Information', 'Reviews', 'FAQ'],
     boughtSoFarTxt: '17850',
     newProductSalesPointsTxt: [
       'Shipping Protection for Peace of Mind',
@@ -246,6 +283,11 @@ export const translations = {
         class: `new_datasheets`
       },
       {
+        title: `Delivery Information`,
+        txt: ``,
+        class: `delivery_information`
+      },
+      {
         title: `Reviews`,
         txt: ``,
         class: `new_reviews`
@@ -254,7 +296,7 @@ export const translations = {
     comparisonTable: {
       mainTitle: 'Why Buy From Roofing4US?',
       myTitle: 'Other Brands',
-      competitorsTitle: `Roofing4US`,
+      competitorsTitle: `<img src="${git}roofing4us_logo.png" alt="logo Roofing4US">`,
       benefits: [
         {
           benefitName: 'Reliable Delivery and Communication',
@@ -298,6 +340,15 @@ export const translations = {
     ]
   },
   '/products/u-channel-all-sizes': {
+    sideSliderImg: [
+      '//roofing4us.com/cdn/shop/products/Pic-MWALL2CLR6MMX48X96_media-1_110x110@2x.jpg?v=1643195115',
+      '//roofing4us.com/cdn/shop/products/Webp.net-resizeimage_6_110x110@2x.jpg?v=1643195115',
+      '//roofing4us.com/cdn/shop/files/polycarbonatesheet_88a746f4-44db-4342-a9ce-4d654d9852e1_110x110@2x.png?v=1721121870',
+      '//roofing4us.com/cdn/shop/files/polycarbonatesheet3_047b7c8a-5279-4b4d-a9f3-785c7568e8c0_110x110@2x.png?v=1721121870',
+      '//roofing4us.com/cdn/shop/files/polycarbonatesheet4_dd63251a-3a21-4e59-92c3-81f75cd5fe24_110x110@2x.png?v=1721121870'
+    ],
+    additionalImg: [`${git}img_1_test.webp`, `${git}img_2_test.webp`, `${git}img_3_test.webp`],
+    tooltipTxt: `While the estimated delivery time is 10-12 working days, we often ship faster! Place your order today and we'll do our best to get it to you sooner. If the timeline doesn’t work for you, no worries – you can cancel your order anytime before it ships.`,
     keySellingPointsTxt: [
       {
         icon: svg.pointIconFirst,
@@ -310,7 +361,7 @@ export const translations = {
         txt: `With low U-values ranging from 0.19 to 0.68, this polycarbonate provides superior thermal insulation`
       }
     ],
-    anchorMenuTxt: ['General', 'Description', 'Technical Specs', 'Datasheets', 'Reviews', 'FAQ'],
+    anchorMenuTxt: ['Description', 'Technical Specs', 'Datasheets', 'Delivery Information', 'Reviews', 'FAQ'],
     boughtSoFarTxt: '17850',
     newProductSalesPointsTxt: [
       'Shipping Protection for Peace of Mind',
@@ -350,6 +401,11 @@ export const translations = {
         class: `new_datasheets`
       },
       {
+        title: `Delivery Information`,
+        txt: ``,
+        class: `delivery_information`
+      },
+      {
         title: `Reviews`,
         txt: ``,
         class: `new_reviews`
@@ -358,7 +414,7 @@ export const translations = {
     comparisonTable: {
       mainTitle: 'Why Buy From Roofing4US?',
       myTitle: 'Other Brands',
-      competitorsTitle: `Roofing4US`,
+      competitorsTitle: `<img src="${git}roofing4us_logo.png" alt="logo Roofing4US">`,
       benefits: [
         {
           benefitName: 'Reliable Delivery and Communication',
@@ -402,6 +458,15 @@ export const translations = {
     ]
   },
   '/products/primegrip-best-damn-ripper™-pro-roofing-shovel': {
+    sideSliderImg: [
+      '//roofing4us.com/cdn/shop/products/Pic-MWALL2CLR6MMX48X96_media-1_110x110@2x.jpg?v=1643195115',
+      '//roofing4us.com/cdn/shop/products/Webp.net-resizeimage_6_110x110@2x.jpg?v=1643195115',
+      '//roofing4us.com/cdn/shop/files/polycarbonatesheet_88a746f4-44db-4342-a9ce-4d654d9852e1_110x110@2x.png?v=1721121870',
+      '//roofing4us.com/cdn/shop/files/polycarbonatesheet3_047b7c8a-5279-4b4d-a9f3-785c7568e8c0_110x110@2x.png?v=1721121870',
+      '//roofing4us.com/cdn/shop/files/polycarbonatesheet4_dd63251a-3a21-4e59-92c3-81f75cd5fe24_110x110@2x.png?v=1721121870'
+    ],
+    additionalImg: [`${git}img_1_test.webp`, `${git}img_2_test.webp`, `${git}img_3_test.webp`],
+    tooltipTxt: `While the estimated delivery time is 10-12 working days, we often ship faster! Place your order today and we'll do our best to get it to you sooner. If the timeline doesn’t work for you, no worries – you can cancel your order anytime before it ships.`,
     keySellingPointsTxt: [
       {
         icon: svg.pointIconFirst,
@@ -414,7 +479,7 @@ export const translations = {
         txt: `With low U-values ranging from 0.19 to 0.68, this polycarbonate provides superior thermal insulation`
       }
     ],
-    anchorMenuTxt: ['General', 'Description', 'Technical Specs', 'Datasheets', 'Reviews', 'FAQ'],
+    anchorMenuTxt: ['Description', 'Technical Specs', 'Delivery Information', 'Reviews', 'FAQ'],
     boughtSoFarTxt: '17850',
     newProductSalesPointsTxt: [
       'Shipping Protection for Peace of Mind',
@@ -449,9 +514,9 @@ export const translations = {
         class: `new_technical_specs`
       },
       {
-        title: `Datasheets`,
+        title: `Delivery Information`,
         txt: ``,
-        class: `new_datasheets`
+        class: `delivery_information`
       },
       {
         title: `Reviews`,
@@ -462,7 +527,7 @@ export const translations = {
     comparisonTable: {
       mainTitle: 'Why Buy From Roofing4US?',
       myTitle: 'Other Brands',
-      competitorsTitle: `Roofing4US`,
+      competitorsTitle: `<img src="${git}roofing4us_logo.png" alt="logo Roofing4US">`,
       benefits: [
         {
           benefitName: 'Reliable Delivery and Communication',
@@ -506,6 +571,15 @@ export const translations = {
     ]
   },
   '/products/primegrip-hammrhead-roofing-knife': {
+    sideSliderImg: [
+      '//roofing4us.com/cdn/shop/products/Pic-MWALL2CLR6MMX48X96_media-1_110x110@2x.jpg?v=1643195115',
+      '//roofing4us.com/cdn/shop/products/Webp.net-resizeimage_6_110x110@2x.jpg?v=1643195115',
+      '//roofing4us.com/cdn/shop/files/polycarbonatesheet_88a746f4-44db-4342-a9ce-4d654d9852e1_110x110@2x.png?v=1721121870',
+      '//roofing4us.com/cdn/shop/files/polycarbonatesheet3_047b7c8a-5279-4b4d-a9f3-785c7568e8c0_110x110@2x.png?v=1721121870',
+      '//roofing4us.com/cdn/shop/files/polycarbonatesheet4_dd63251a-3a21-4e59-92c3-81f75cd5fe24_110x110@2x.png?v=1721121870'
+    ],
+    additionalImg: [`${git}img_1_test.webp`, `${git}img_2_test.webp`, `${git}img_3_test.webp`],
+    tooltipTxt: `While the estimated delivery time is 10-12 working days, we often ship faster! Place your order today and we'll do our best to get it to you sooner. If the timeline doesn’t work for you, no worries – you can cancel your order anytime before it ships.`,
     keySellingPointsTxt: [
       {
         icon: svg.pointIconFirst,
@@ -518,7 +592,7 @@ export const translations = {
         txt: `With low U-values ranging from 0.19 to 0.68, this polycarbonate provides superior thermal insulation`
       }
     ],
-    anchorMenuTxt: ['General', 'Description', 'Technical Specs', 'Datasheets', 'Reviews', 'FAQ'],
+    anchorMenuTxt: ['Description', 'Technical Specs', 'Delivery Information', 'Reviews', 'FAQ'],
     boughtSoFarTxt: '17850',
     newProductSalesPointsTxt: [
       'Shipping Protection for Peace of Mind',
@@ -553,9 +627,9 @@ export const translations = {
         class: `new_technical_specs`
       },
       {
-        title: `Datasheets`,
+        title: `Delivery Information`,
         txt: ``,
-        class: `new_datasheets`
+        class: `delivery_information`
       },
       {
         title: `Reviews`,
@@ -566,7 +640,7 @@ export const translations = {
     comparisonTable: {
       mainTitle: 'Why Buy From Roofing4US?',
       myTitle: 'Other Brands',
-      competitorsTitle: `Roofing4US`,
+      competitorsTitle: `<img src="${git}roofing4us_logo.png" alt="logo Roofing4US">`,
       benefits: [
         {
           benefitName: 'Reliable Delivery and Communication',
@@ -610,6 +684,15 @@ export const translations = {
     ]
   },
   '/products/tpo-plus-roof-membranes-all-sizes': {
+    sideSliderImg: [
+      '//roofing4us.com/cdn/shop/products/Pic-MWALL2CLR6MMX48X96_media-1_110x110@2x.jpg?v=1643195115',
+      '//roofing4us.com/cdn/shop/products/Webp.net-resizeimage_6_110x110@2x.jpg?v=1643195115',
+      '//roofing4us.com/cdn/shop/files/polycarbonatesheet_88a746f4-44db-4342-a9ce-4d654d9852e1_110x110@2x.png?v=1721121870',
+      '//roofing4us.com/cdn/shop/files/polycarbonatesheet3_047b7c8a-5279-4b4d-a9f3-785c7568e8c0_110x110@2x.png?v=1721121870',
+      '//roofing4us.com/cdn/shop/files/polycarbonatesheet4_dd63251a-3a21-4e59-92c3-81f75cd5fe24_110x110@2x.png?v=1721121870'
+    ],
+    additionalImg: [`${git}img_1_test.webp`, `${git}img_2_test.webp`, `${git}img_3_test.webp`],
+    tooltipTxt: `While the estimated delivery time is 10-12 working days, we often ship faster! Place your order today and we'll do our best to get it to you sooner. If the timeline doesn’t work for you, no worries – you can cancel your order anytime before it ships.`,
     keySellingPointsTxt: [
       {
         icon: svg.pointIconFirst,
@@ -622,7 +705,7 @@ export const translations = {
         txt: `With low U-values ranging from 0.19 to 0.68, this polycarbonate provides superior thermal insulation`
       }
     ],
-    anchorMenuTxt: ['General', 'Description', 'Technical Specs', 'Datasheets', 'Reviews', 'FAQ'],
+    anchorMenuTxt: ['Description', 'Technical Specs', 'Datasheets', 'Delivery Information', 'Reviews', 'FAQ'],
     boughtSoFarTxt: '17850',
     newProductSalesPointsTxt: [
       'Shipping Protection for Peace of Mind',
@@ -662,6 +745,11 @@ export const translations = {
         class: `new_datasheets`
       },
       {
+        title: `Delivery Information`,
+        txt: ``,
+        class: `delivery_information`
+      },
+      {
         title: `Reviews`,
         txt: ``,
         class: `new_reviews`
@@ -670,7 +758,7 @@ export const translations = {
     comparisonTable: {
       mainTitle: 'Why Buy From Roofing4US?',
       myTitle: 'Other Brands',
-      competitorsTitle: `Roofing4US`,
+      competitorsTitle: `<img src="${git}roofing4us_logo.png" alt="logo Roofing4US">`,
       benefits: [
         {
           benefitName: 'Reliable Delivery and Communication',
@@ -714,6 +802,15 @@ export const translations = {
     ]
   },
   '/products/landmark-shingles-all-colors': {
+    sideSliderImg: [
+      '//roofing4us.com/cdn/shop/products/Pic-MWALL2CLR6MMX48X96_media-1_110x110@2x.jpg?v=1643195115',
+      '//roofing4us.com/cdn/shop/products/Webp.net-resizeimage_6_110x110@2x.jpg?v=1643195115',
+      '//roofing4us.com/cdn/shop/files/polycarbonatesheet_88a746f4-44db-4342-a9ce-4d654d9852e1_110x110@2x.png?v=1721121870',
+      '//roofing4us.com/cdn/shop/files/polycarbonatesheet3_047b7c8a-5279-4b4d-a9f3-785c7568e8c0_110x110@2x.png?v=1721121870',
+      '//roofing4us.com/cdn/shop/files/polycarbonatesheet4_dd63251a-3a21-4e59-92c3-81f75cd5fe24_110x110@2x.png?v=1721121870'
+    ],
+    additionalImg: [`${git}img_1_test.webp`, `${git}img_2_test.webp`, `${git}img_3_test.webp`],
+    tooltipTxt: `While the estimated delivery time is 10-12 working days, we often ship faster! Place your order today and we'll do our best to get it to you sooner. If the timeline doesn’t work for you, no worries – you can cancel your order anytime before it ships.`,
     keySellingPointsTxt: [
       {
         icon: svg.pointIconFirst,
@@ -726,7 +823,7 @@ export const translations = {
         txt: `With low U-values ranging from 0.19 to 0.68, this polycarbonate provides superior thermal insulation`
       }
     ],
-    anchorMenuTxt: ['General', 'Description', 'Technical Specs', 'Datasheets', 'Reviews', 'FAQ'],
+    anchorMenuTxt: ['Description', 'Technical Specs', 'Datasheets', 'Delivery Information', 'Reviews', 'FAQ'],
     boughtSoFarTxt: '17850',
     newProductSalesPointsTxt: [
       'Shipping Protection for Peace of Mind',
@@ -766,6 +863,11 @@ export const translations = {
         class: `new_datasheets`
       },
       {
+        title: `Delivery Information`,
+        txt: ``,
+        class: `delivery_information`
+      },
+      {
         title: `Reviews`,
         txt: ``,
         class: `new_reviews`
@@ -774,7 +876,7 @@ export const translations = {
     comparisonTable: {
       mainTitle: 'Why Buy From Roofing4US?',
       myTitle: 'Other Brands',
-      competitorsTitle: `Roofing4US`,
+      competitorsTitle: `<img src="${git}roofing4us_logo.png" alt="logo Roofing4US">`,
       benefits: [
         {
           benefitName: 'Reliable Delivery and Communication',
@@ -818,6 +920,15 @@ export const translations = {
     ]
   },
   '/products/dow-thermax-sheathing-4-x-8-polyiso-all-sizes': {
+    sideSliderImg: [
+      '//roofing4us.com/cdn/shop/products/Pic-MWALL2CLR6MMX48X96_media-1_110x110@2x.jpg?v=1643195115',
+      '//roofing4us.com/cdn/shop/products/Webp.net-resizeimage_6_110x110@2x.jpg?v=1643195115',
+      '//roofing4us.com/cdn/shop/files/polycarbonatesheet_88a746f4-44db-4342-a9ce-4d654d9852e1_110x110@2x.png?v=1721121870',
+      '//roofing4us.com/cdn/shop/files/polycarbonatesheet3_047b7c8a-5279-4b4d-a9f3-785c7568e8c0_110x110@2x.png?v=1721121870',
+      '//roofing4us.com/cdn/shop/files/polycarbonatesheet4_dd63251a-3a21-4e59-92c3-81f75cd5fe24_110x110@2x.png?v=1721121870'
+    ],
+    additionalImg: [`${git}img_1_test.webp`, `${git}img_2_test.webp`, `${git}img_3_test.webp`],
+    tooltipTxt: `While the estimated delivery time is 10-12 working days, we often ship faster! Place your order today and we'll do our best to get it to you sooner. If the timeline doesn’t work for you, no worries – you can cancel your order anytime before it ships.`,
     keySellingPointsTxt: [
       {
         icon: svg.pointIconFirst,
@@ -830,7 +941,7 @@ export const translations = {
         txt: `With low U-values ranging from 0.19 to 0.68, this polycarbonate provides superior thermal insulation`
       }
     ],
-    anchorMenuTxt: ['General', 'Description', 'Technical Specs', 'Datasheets', 'Reviews', 'FAQ'],
+    anchorMenuTxt: ['Description', 'Technical Specs', 'Datasheets', 'Delivery Information', 'Reviews', 'FAQ'],
     boughtSoFarTxt: '17850',
     newProductSalesPointsTxt: [
       'Shipping Protection for Peace of Mind',
@@ -870,6 +981,11 @@ export const translations = {
         class: `new_datasheets`
       },
       {
+        title: `Delivery Information`,
+        txt: ``,
+        class: `delivery_information`
+      },
+      {
         title: `Reviews`,
         txt: ``,
         class: `new_reviews`
@@ -878,7 +994,7 @@ export const translations = {
     comparisonTable: {
       mainTitle: 'Why Buy From Roofing4US?',
       myTitle: 'Other Brands',
-      competitorsTitle: `Roofing4US`,
+      competitorsTitle: `<img src="${git}roofing4us_logo.png" alt="logo Roofing4US">`,
       benefits: [
         {
           benefitName: 'Reliable Delivery and Communication',

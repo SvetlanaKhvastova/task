@@ -11,6 +11,7 @@ import {
   loadScriptsOrStyles
 } from '../../libraries'
 import {
+  additionalImgBlock,
   anchorMenu,
   boughtSoFarBlock,
   comparisonTableBlock,
@@ -21,6 +22,7 @@ import {
   oneReviewBlock,
   productDetailsBlock,
   reviewsBlock,
+  sliderBlock,
   stickyBlock,
   tooltipBlock
 } from './blocks'
@@ -45,7 +47,7 @@ class NewPdp {
 
   findTranslationKey(path: string): string {
     const keys = Object.keys(translations)
-    return keys.find(key => path.includes(key)) || ''
+    return keys.find(key => decodeURIComponent(path).includes(decodeURIComponent(key))) || ''
   }
 
   init() {
@@ -94,6 +96,11 @@ class NewPdp {
 
     this.renderStickyBlock()
     this.toggleStickyBlockVisibility()
+
+    this.renderSliderBlock()
+    this.initFancyboxCarousel()
+    this.initFancybox()
+    this.renderAdditionalImgBlock()
   }
 
   addIdGeneral() {
@@ -108,19 +115,15 @@ class NewPdp {
   }
 
   renderkeySellingPointsBlock() {
-    waitForElement('.product-single__media-wrapper').then(i => {
-      const сontainerElements = $$el('.product-single__media-wrapper') as NodeListOf<HTMLElement>
+    waitForElement('.product-image-section').then(i => {
+      const сontainerElement = $el('.product-image-section') as HTMLElement
 
-      сontainerElements.forEach(сontainerElement => {
-        if (!сontainerElement.classList.contains('hide')) {
-          if (!$el('.key_selling_points_block')) {
-            сontainerElement.insertAdjacentHTML(
-              'beforeend',
-              keySellingPointsBlock(translations[this.pathName].keySellingPointsTxt)
-            )
-          }
-        }
-      })
+      if (!$el('.key_selling_points_block')) {
+        сontainerElement.insertAdjacentHTML(
+          'beforeend',
+          keySellingPointsBlock(translations[this.pathName].keySellingPointsTxt)
+        )
+      }
     })
   }
 
@@ -301,6 +304,11 @@ class NewPdp {
         'afterbegin'
       )
       this.moveElement(
+        '#productShipping',
+        '.product_details_block .delivery_information .product_details_accordion_lists > div',
+        'afterbegin'
+      )
+      this.moveElement(
         '#productReviews',
         '.product_details_block .new_reviews .product_details_accordion_lists > div',
         'afterbegin'
@@ -472,24 +480,7 @@ class NewPdp {
             const id = entry.target.getAttribute('id')
             const link = $el(`.anchor_menu_link[href="#${id}"]`)
 
-            if (entry.isIntersecting) {
-              // Проверяем, если это аккордеон и виден элемент с классом product_details_accordion_lists
-              const accordionContent = entry.target.querySelector('.product_details_accordion_lists')
-              if (accordionContent) {
-                const accordionRect = accordionContent.getBoundingClientRect()
-                if (
-                  (accordionRect.top >= 110 && accordionRect.top <= window.innerHeight) ||
-                  (accordionRect.bottom >= -100 && accordionRect.bottom <= window.innerHeight)
-                ) {
-                  link.classList.add('is_active')
-                } else {
-                  link.classList.remove('is_active')
-                }
-              } else {
-                // Если это не аккордеон, добавляем класс is_active, когда блок виден
-                link.classList.add('is_active')
-              }
-            } else {
+            if (!entry.isIntersecting) {
               link.classList.remove('is_active')
             }
           })
@@ -507,11 +498,18 @@ class NewPdp {
           const targetId = this.getAttribute('data-target')
           const targetElement = $el(`#${targetId}`)
 
+          // Добавляем активный класс при клике
+          menuLinks.forEach(link => link.classList.remove('is_active'))
+          this.classList.add('is_active')
+
           if (targetElement) {
-            if (targetElement.classList.contains('product_details_accordion_block')) {
+            if (
+              targetElement.classList.contains('product_details_accordion_block') &&
+              !targetElement.classList.contains('active')
+            ) {
               ;(targetElement?.querySelector('.product_details_accordion_link') as HTMLElement)?.click()
             } else {
-              scrollToHtmlElement(targetElement, 80)
+              scrollToHtmlElement(targetElement, 49.5)
             }
           }
         })
@@ -523,11 +521,11 @@ class NewPdp {
   }
 
   renderStickyBlock() {
-    waitForElement('.product-form__cart-submit').then(i => {
+    waitForElement('.btns_wrapper_payment ').then(i => {
       const сontainerElement = $el('body') as HTMLElement
       const title = $el('.template-product h1.product-single__title').textContent
       const price = $el('.price-item').textContent
-      const addToCartButton = $el('.product-form__cart-submit') as HTMLElement
+      const addToCartButton = $el('.btns_wrapper_payment') as HTMLElement
 
       if (!$el('.sticky_block')) {
         сontainerElement.insertAdjacentHTML('beforeend', stickyBlock(title, price))
@@ -538,44 +536,117 @@ class NewPdp {
   toggleStickyBlockVisibility() {
     waitForElement('.product-template__container > .product-section .product-atc-section .product-form').then(() => {
       waitForElement('.sticky_block').then(() => {
-        const element = $el('.sticky_block') as HTMLElement
-        const elemClose = $el(
-          '.product-template__container > .product-section .product-atc-section .product-form'
-        ) as HTMLElement
+        const stickyBlock = $el('.sticky_block') as HTMLElement
+        const elemClose = $el('.product-template__container > .product-section .product-single__meta') as HTMLElement
+        const btnsWrapperPayment = $el('.product-form') as HTMLElement
+        const stickyBtnWrapper = stickyBlock.querySelector('.sticky_btn_wrapper')
+        let isStickyVisible = false
 
-        function visible() {
-          const options = {
-            root: null,
-            threshold: 0
-          }
-
-          let observerSticky = new IntersectionObserver(entries => {
-            entries.forEach(i => {
-              if (i.isIntersecting) {
-                if ($el('body').classList.contains('sticky_block_visible')) {
-                  $el('body').classList.remove('sticky_block_visible')
-                }
-                element.style.display = 'none'
-              } else {
-                $el('body').classList.add('sticky_block_visible')
-                element.style.display = 'flex'
+        function handleVisibilityChange(entries: IntersectionObserverEntry[]) {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              if (!isStickyVisible) {
+                isStickyVisible = true
+                $el('body').classList.remove('sticky_block_visible')
+                stickyBlock.classList.remove('visible')
+                elemClose.appendChild(btnsWrapperPayment)
               }
-
-              observerSticky.unobserve(i.target)
-            })
-
-            observerSticky.disconnect()
-          }, options)
-
-          observerSticky.observe(elemClose)
+            } else {
+              if (isStickyVisible) {
+                isStickyVisible = false
+                $el('body').classList.add('sticky_block_visible')
+                stickyBlock.classList.add('visible')
+                if (stickyBtnWrapper) {
+                  stickyBtnWrapper.appendChild(btnsWrapperPayment)
+                }
+              }
+            }
+          })
         }
 
-        window.addEventListener('scroll', () => {
-          visible()
+        const observerSticky = new IntersectionObserver(handleVisibilityChange, {
+          root: null,
+          threshold: 0.1
         })
 
-        visible()
+        observerSticky.observe(elemClose)
+
+        handleVisibilityChange([
+          {
+            target: elemClose,
+            isIntersecting: elemClose.getBoundingClientRect().top < window.innerHeight
+          } as unknown as IntersectionObserverEntry
+        ])
       })
+    })
+  }
+
+  renderSliderBlock() {
+    waitForElement('#ProductSection-product-template').then(i => {
+      const сontainerElement = $el('#ProductSection-product-template') as HTMLElement
+
+      if (!$el('.slider_block')) {
+        сontainerElement.insertAdjacentHTML('afterbegin', sliderBlock(translations[this.pathName].sideSliderImg))
+      }
+    })
+  }
+
+  initFancyboxCarousel() {
+    loadScriptsOrStyles([
+      'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css',
+      'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js'
+    ]).then(async () => {
+      let s = setInterval(() => {
+        if (typeof jQuery('.slider_wrapper').slick === 'function' && $el('.slider_block')) {
+          clearInterval(s)
+
+          let slider = jQuery('.slider_wrapper').slick({
+            slidesToShow: 5,
+            vertical: true,
+            infinite: false,
+            prevArrow: ` <div class="prev_btn slider_arrow">${svg.sliderArroWIcon}</div> `,
+            nextArrow: ` <div class="next_btn slider_arrow">${svg.sliderArroWIcon}</div> `,
+            responsive: [
+              {
+                breakpoint: 1024,
+                settings: {
+                  slidesToShow: 5,
+                  arrows: true,
+                  vertical: false
+                }
+              }
+            ]
+          })
+        }
+      }, 100)
+    })
+  }
+
+  initFancybox() {
+    loadScriptsOrStyles([
+      'https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js',
+      'https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css'
+    ]).then(async () => {
+      let s = setInterval(() => {
+        if (typeof Fancybox === 'function' && $el('.slider_block')) {
+          clearInterval(s)
+          Fancybox.bind('[data-fancybox="gallery"]', {
+            Thumbs: {
+              type: 'classic'
+            }
+          })
+        }
+      }, 100)
+    })
+  }
+
+  renderAdditionalImgBlock() {
+    waitForElement('.key_selling_points_block').then(i => {
+      const сontainerElement = $el('.key_selling_points_block') as HTMLElement
+
+      if (!$el('.additional_img_block')) {
+        сontainerElement.insertAdjacentHTML('afterend', additionalImgBlock(translations[this.pathName].additionalImg))
+      }
     })
   }
 }
