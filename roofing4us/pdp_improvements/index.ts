@@ -24,7 +24,8 @@ import {
   reviewsBlock,
   sliderBlock,
   stickyBlock,
-  tooltipBlock
+  tooltipBlock,
+  videoBlock
 } from './blocks'
 import { svg, git, translations } from './data'
 // @ts-ignore
@@ -57,7 +58,10 @@ class NewPdp {
     document.head.insertAdjacentHTML('beforeend', `<style class="crs_style">${mainStyle}</style>`)
 
     this.addIdGeneral()
-    this.renderkeySellingPointsBlock()
+    if (this.device === 'desktop') {
+      this.renderkeySellingPointsBlock()
+      this.renderAdditionalImgBlock()
+    }
     this.renderBoughtSoFarBlock()
     this.renderTooltipBlock()
     this.initTooltipBlock()
@@ -68,6 +72,9 @@ class NewPdp {
     this.renderOneReviewBlockFirst()
     if (this.device === 'desktop') {
       this.renderOneReviewBlockSecond()
+    }
+    if (this.device === 'mobile') {
+      this.renderVideoBlock()
     }
     this.clickAllReviewsLink()
     this.renderProductDetailsBlock()
@@ -98,9 +105,8 @@ class NewPdp {
     this.toggleStickyBlockVisibility()
 
     this.renderSliderBlock()
-    this.initFancyboxCarousel()
+    this.initSlickCarousel()
     this.initFancybox()
-    this.renderAdditionalImgBlock()
   }
 
   addIdGeneral() {
@@ -127,6 +133,16 @@ class NewPdp {
     })
   }
 
+  renderAdditionalImgBlock() {
+    waitForElement('.key_selling_points_block').then(i => {
+      const сontainerElement = $el('.key_selling_points_block') as HTMLElement
+
+      if (!$el('.additional_img_block')) {
+        сontainerElement.insertAdjacentHTML('afterend', additionalImgBlock(translations[this.pathName].additionalImg))
+      }
+    })
+  }
+
   renderBoughtSoFarBlock() {
     if (this.device === 'desktop') {
       waitForElement(
@@ -134,6 +150,21 @@ class NewPdp {
       ).then(i => {
         const сontainerElement = $el(
           '.product-template__container > .product-section .detail_page_padding .product-content-section'
+        ) as HTMLElement
+
+        if (!$el('.bought_so_far_block')) {
+          сontainerElement.insertAdjacentHTML(
+            'afterbegin',
+            boughtSoFarBlock(translations[this.pathName].boughtSoFarTxt)
+          )
+        }
+      })
+    }
+
+    if (this.device === 'mobile') {
+      waitForElement('.product-template__container > .product-section .product-image-section').then(i => {
+        const сontainerElement = $el(
+          '.product-template__container > .product-section .product-image-section'
         ) as HTMLElement
 
         if (!$el('.bought_so_far_block')) {
@@ -174,7 +205,7 @@ class NewPdp {
               appendTo: function () {
                 return el.closest('.product-page-sku')
               },
-              placement: 'bottom',
+              placement: window.innerWidth < 768 ? 'top' : 'bottom',
               interactive: true,
               onShow(instance: any) {},
               onTrigger(e: any) {},
@@ -256,6 +287,20 @@ class NewPdp {
             'beforeend',
             oneReviewBlock(translations[this.pathName].oneReviewBlockSecond)
           )
+        }
+      }
+    )
+  }
+
+  renderVideoBlock() {
+    waitForElement('.product-template__container > .product-section .detail_page_padding .product-atc-section').then(
+      i => {
+        const сontainerElement = $el(
+          '.product-template__container > .product-section .detail_page_padding .product-atc-section'
+        ) as HTMLElement
+
+        if (!$el('.video_block')) {
+          сontainerElement.insertAdjacentHTML('beforeend', videoBlock(translations[this.pathName].videoLink))
         }
       }
     )
@@ -404,7 +449,7 @@ class NewPdp {
 
               if (closestElement) {
                 if (window.innerWidth < 768) {
-                  scrollToHtmlElement(closestElement, 90)
+                  scrollToHtmlElement(closestElement, 43)
                 } else {
                   scrollToHtmlElement(closestElement, 50)
                 }
@@ -509,7 +554,11 @@ class NewPdp {
             ) {
               ;(targetElement?.querySelector('.product_details_accordion_link') as HTMLElement)?.click()
             } else {
-              scrollToHtmlElement(targetElement, 49.5)
+              if (this.device === 'desktop') {
+                scrollToHtmlElement(targetElement, 49.5)
+              } else {
+                scrollToHtmlElement(targetElement, 42)
+              }
             }
           }
         })
@@ -525,11 +574,12 @@ class NewPdp {
       const сontainerElement = $el('body') as HTMLElement
       const title = $el('.template-product h1.product-single__title').textContent
       const price = $el('.price-item').textContent
-      const addToCartButton = $el('.btns_wrapper_payment') as HTMLElement
 
       if (!$el('.sticky_block')) {
         сontainerElement.insertAdjacentHTML('beforeend', stickyBlock(title, price))
       }
+
+      this.clickStickyAddToCartBtn()
     })
   }
 
@@ -537,9 +587,7 @@ class NewPdp {
     waitForElement('.product-template__container > .product-section .product-atc-section .product-form').then(() => {
       waitForElement('.sticky_block').then(() => {
         const stickyBlock = $el('.sticky_block') as HTMLElement
-        const elemClose = $el('.product-template__container > .product-section .product-single__meta') as HTMLElement
-        const btnsWrapperPayment = $el('.product-form') as HTMLElement
-        const stickyBtnWrapper = stickyBlock.querySelector('.sticky_btn_wrapper')
+        const elemClose = $el('.product-single__meta') as HTMLElement
         let isStickyVisible = false
 
         function handleVisibilityChange(entries: IntersectionObserverEntry[]) {
@@ -549,16 +597,12 @@ class NewPdp {
                 isStickyVisible = true
                 $el('body').classList.remove('sticky_block_visible')
                 stickyBlock.classList.remove('visible')
-                elemClose.appendChild(btnsWrapperPayment)
               }
             } else {
               if (isStickyVisible) {
                 isStickyVisible = false
                 $el('body').classList.add('sticky_block_visible')
                 stickyBlock.classList.add('visible')
-                if (stickyBtnWrapper) {
-                  stickyBtnWrapper.appendChild(btnsWrapperPayment)
-                }
               }
             }
           })
@@ -581,17 +625,53 @@ class NewPdp {
     })
   }
 
+  clickStickyAddToCartBtn() {
+    waitForElement('.sticky_add_to_cart').then(i => {
+      waitForElement('.product-single__meta .btns_wrapper_payment .product-form__cart-submit').then(i => {
+        const stickyAddToCartBtn = $el('.sticky_add_to_cart') as HTMLElement
+        const addToCartBtn = $el(
+          '.product-single__meta .btns_wrapper_payment .product-form__cart-submit'
+        ) as HTMLElement
+
+        const observer = new MutationObserver(mutations => {
+          mutations.forEach(mutation => {
+            if (mutation.attributeName === 'aria-disabled') {
+              if (addToCartBtn.hasAttribute('aria-disabled')) {
+                stickyAddToCartBtn.setAttribute('disabled', 'true')
+              } else {
+                stickyAddToCartBtn.removeAttribute('disabled')
+              }
+            }
+          })
+        })
+
+        observer.observe(addToCartBtn, { attributes: true })
+
+        stickyAddToCartBtn.addEventListener('click', () => {
+          console.log(`clickStickyAddToCartBtn`)
+          addToCartBtn.click()
+        })
+      })
+    })
+  }
+
   renderSliderBlock() {
     waitForElement('#ProductSection-product-template').then(i => {
-      const сontainerElement = $el('#ProductSection-product-template') as HTMLElement
+      let сontainerElement = $el('#ProductSection-product-template') as HTMLElement
+      let placement = 'afterbegin' as InsertPosition
+
+      if (this.device === 'mobile') {
+        сontainerElement = $el('.product-template__container > .product-section .product-image-section') as HTMLElement
+        placement = 'afterend'
+      }
 
       if (!$el('.slider_block')) {
-        сontainerElement.insertAdjacentHTML('afterbegin', sliderBlock(translations[this.pathName].sideSliderImg))
+        сontainerElement.insertAdjacentHTML(placement, sliderBlock(translations[this.pathName].sideSliderImg))
       }
     })
   }
 
-  initFancyboxCarousel() {
+  initSlickCarousel() {
     loadScriptsOrStyles([
       'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css',
       'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js'
@@ -610,13 +690,15 @@ class NewPdp {
               {
                 breakpoint: 1024,
                 settings: {
-                  slidesToShow: 5,
+                  slidesToShow: 4,
                   arrows: true,
                   vertical: false
                 }
               }
             ]
           })
+
+          $el('.slider_block').style.display = 'block'
         }
       }, 100)
     })
@@ -637,16 +719,6 @@ class NewPdp {
           })
         }
       }, 100)
-    })
-  }
-
-  renderAdditionalImgBlock() {
-    waitForElement('.key_selling_points_block').then(i => {
-      const сontainerElement = $el('.key_selling_points_block') as HTMLElement
-
-      if (!$el('.additional_img_block')) {
-        сontainerElement.insertAdjacentHTML('afterend', additionalImgBlock(translations[this.pathName].additionalImg))
-      }
     })
   }
 }

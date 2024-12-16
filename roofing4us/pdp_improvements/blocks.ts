@@ -28,7 +28,7 @@ export const anchorMenu = (data): string => {
       <ul class="anchor_menu_list">
         <li class="anchor_menu_item">
           <a href="#General" class="anchor_menu_link is_active" data-target="General">
-            <p>General</p>
+            <span>General</span>
           </a>
         </li>
         ${data
@@ -36,7 +36,7 @@ export const anchorMenu = (data): string => {
             return /* HTML */ `
               <li class="anchor_menu_item">
                 <a href="#${txt.replace(/\s+/g, '')}" class="anchor_menu_link" data-target="${txt.replace(/\s+/g, '')}">
-                  <p>${txt}</p>
+                  <span>${txt}</span>
                 </a>
               </li>
             `
@@ -91,10 +91,17 @@ export const newProductSalesPointsBlock = (data): string => {
 export const oneReviewBlock = (data): string => {
   return /* HTML */ `
     <div class="one_review_block ${data.class}">
-      <div class="img_wrapper">
+      ${window.innerWidth >= 768
+        ? `<div class="img_wrapper">
         <img src="${data.img}" alt="photo product" />
-      </div>
+      </div>`
+        : ''}
       <div class="info_wrapper">
+        ${window.innerWidth < 768
+          ? `<a href="/pages/customer-review" target="_blank" rel="noopener noreferrer" class="all_reviews_link"
+            >All reviews</a
+          >`
+          : ''}
         <p class="info_descr">${data.txt}</p>
         <div class="name_stars_wrapper">
           <div class="name_stars_container">
@@ -104,9 +111,11 @@ export const oneReviewBlock = (data): string => {
               <span>${data.rating}</span>
             </div>
           </div>
-          <a href="/pages/customer-review" target="_blank" rel="noopener noreferrer" class="all_reviews_link"
+          ${window.innerWidth >= 768
+            ? `<a href="/pages/customer-review" target="_blank" rel="noopener noreferrer" class="all_reviews_link"
             >All reviews</a
-          >
+          >`
+            : ''}
         </div>
       </div>
     </div>
@@ -141,11 +150,24 @@ export const productDetailsBlock = (data): string => {
   `
 }
 
+export const videoBlock = (video: string): string => {
+  return /* HTML */ `
+    <div class="video_block">
+      <div class="new_container">
+        <img src="${video}" alt="photo product roofing4us" />
+      </div>
+    </div>
+  `
+}
+
 export const reviewsBlock = () => {
   return /* HTML */ `
     <div class="reviews_block">
       <div class="new_container">
-        <h2>Join over 85,000+ satisfied customers who trust roofing4us for quality and service</h2>
+        ${window.innerWidth >= 768
+          ? ` <h2>Join over 85,000+ satisfied customers who trust roofing4us for quality and service</h2>`
+          : ' <h2>Customer Reviews</h2>'}
+
         <div class="reviews_list">
           <iframe
             name="full-page-widget_frame"
@@ -254,12 +276,24 @@ export const comparisonTableBlock = (data): string => {
 export const stickyBlock = (title: string, price: string) => {
   return /* HTML */ `
     <div class="sticky_block">
-      <div class="sticky_product_info">
+      ${window.innerWidth >= 768
+        ? `<div class="sticky_product_info">
         <div class="sticky_product_title">${title}</div>
         <div class="sticky_product_price">${price}</div>
-      </div>
+      </div>`
+        : ``}
       <div class="sticky_btn_wrapper">
-        <div class="sticky_add_to_cart">Add to cart</div>
+        <div class="sticky_add_to_cart">
+          <span class="txt">Add to cart </span>
+          <span class="hide" data-loader="">
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-spinner" viewBox="0 0 20 20">
+              <path
+                d="M7.229 1.173a9.25 9.25 0 1 0 11.655 11.412 1.25 1.25 0 1 0-2.4-.698 6.75 6.75 0 1 1-8.506-8.329 1.25 1.25 0 1 0-.75-2.385z"
+                fill="#919EAB"
+              ></path>
+            </svg>
+          </span>
+        </div>
       </div>
     </div>
   `
@@ -268,15 +302,15 @@ export const stickyBlock = (title: string, price: string) => {
 export const sliderBlock = (data): string => {
   return /* HTML */ `
     <div class="slider_block">
-      <ul class="slider_wrapper">
+      <div class="slider_wrapper">
         ${data.map((img: string) => {
           return /* HTML */ `
-            <li data-fancybox="demo" data-src="${img}">
+            <div data-fancybox="demo" data-src="${img}" class="slider_item">
               <img src="${img}" alt="photo product roofing4us" />
-            </li>
+            </div>
           `
         })}
-      </ul>
+      </div>
     </div>
   `
 }

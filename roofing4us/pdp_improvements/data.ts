@@ -175,6 +175,7 @@ export const translations = {
         class: `new_reviews`
       }
     ],
+    videoLink: `${git}img_3_test.webp`,
     comparisonTable: {
       mainTitle: 'Why Buy From Roofing4US?',
       myTitle: 'Other Brands',
@@ -293,6 +294,7 @@ export const translations = {
         class: `new_reviews`
       }
     ],
+    videoLink: `${git}img_3_test.webp`,
     comparisonTable: {
       mainTitle: 'Why Buy From Roofing4US?',
       myTitle: 'Other Brands',
@@ -411,6 +413,7 @@ export const translations = {
         class: `new_reviews`
       }
     ],
+    videoLink: `${git}img_3_test.webp`,
     comparisonTable: {
       mainTitle: 'Why Buy From Roofing4US?',
       myTitle: 'Other Brands',
@@ -524,6 +527,7 @@ export const translations = {
         class: `new_reviews`
       }
     ],
+    videoLink: `${git}img_3_test.webp`,
     comparisonTable: {
       mainTitle: 'Why Buy From Roofing4US?',
       myTitle: 'Other Brands',
@@ -637,6 +641,7 @@ export const translations = {
         class: `new_reviews`
       }
     ],
+    videoLink: `${git}img_3_test.webp`,
     comparisonTable: {
       mainTitle: 'Why Buy From Roofing4US?',
       myTitle: 'Other Brands',
@@ -755,6 +760,7 @@ export const translations = {
         class: `new_reviews`
       }
     ],
+    videoLink: `${git}img_3_test.webp`,
     comparisonTable: {
       mainTitle: 'Why Buy From Roofing4US?',
       myTitle: 'Other Brands',
@@ -873,6 +879,7 @@ export const translations = {
         class: `new_reviews`
       }
     ],
+    videoLink: `${git}img_3_test.webp`,
     comparisonTable: {
       mainTitle: 'Why Buy From Roofing4US?',
       myTitle: 'Other Brands',
@@ -991,6 +998,7 @@ export const translations = {
         class: `new_reviews`
       }
     ],
+    videoLink: `${git}img_3_test.webp`,
     comparisonTable: {
       mainTitle: 'Why Buy From Roofing4US?',
       myTitle: 'Other Brands',
