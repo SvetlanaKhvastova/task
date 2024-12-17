@@ -90,18 +90,14 @@ export const newProductSalesPointsBlock = (data): string => {
 
 export const oneReviewBlock = (data): string => {
   return /* HTML */ `
-    <div class="one_review_block ${data.class}">
+    <a href="/pages/customer-review" target="_blank" rel="noopener noreferrer" class="one_review_block ${data.class}">
       ${window.innerWidth >= 768
         ? `<div class="img_wrapper">
         <img src="${data.img}" alt="photo product" />
       </div>`
         : ''}
       <div class="info_wrapper">
-        ${window.innerWidth < 768
-          ? `<a href="/pages/customer-review" target="_blank" rel="noopener noreferrer" class="all_reviews_link"
-            >All reviews</a
-          >`
-          : ''}
+        ${window.innerWidth < 768 ? `<span class="all_reviews_link">All reviews</span>` : ''}
         <p class="info_descr">${data.txt}</p>
         <div class="name_stars_wrapper">
           <div class="name_stars_container">
@@ -111,14 +107,10 @@ export const oneReviewBlock = (data): string => {
               <span>${data.rating}</span>
             </div>
           </div>
-          ${window.innerWidth >= 768
-            ? `<a href="/pages/customer-review" target="_blank" rel="noopener noreferrer" class="all_reviews_link"
-            >All reviews</a
-          >`
-            : ''}
+          ${window.innerWidth >= 768 ? `<span class="all_reviews_link">All reviews</span>` : ''}
         </div>
       </div>
-    </div>
+    </a>
   `
 }
 
@@ -294,6 +286,10 @@ export const stickyBlock = (title: string, price: string) => {
             </svg>
           </span>
         </div>
+
+        <div class="sticky_call_to_inquire">
+          <span class="txt">Call to inquire</span>
+        </div>
       </div>
     </div>
   `
@@ -303,13 +299,15 @@ export const sliderBlock = (data): string => {
   return /* HTML */ `
     <div class="slider_block">
       <div class="slider_wrapper">
-        ${data.map((img: string) => {
-          return /* HTML */ `
-            <div data-fancybox="demo" data-src="${img}" class="slider_item">
-              <img src="${img}" alt="photo product roofing4us" />
-            </div>
-          `
-        })}
+        ${data
+          .map((img: string) => {
+            return /* HTML */ `
+              <div data-fancybox="demo" data-src="${img}" class="slider_item">
+                <img src="${img}" alt="photo product roofing4us" />
+              </div>
+            `
+          })
+          .join('')}
       </div>
     </div>
   `
@@ -318,13 +316,15 @@ export const sliderBlock = (data): string => {
 export const additionalImgBlock = (data): string => {
   return /* HTML */ `
     <ul class="additional_img_block">
-      ${data.map((img: string) => {
-        return /* HTML */ `
-          <li>
-            <img src="${img}" alt="photo product roofing4us" />
-          </li>
-        `
-      })}
+      ${data
+        .map((img: string) => {
+          return /* HTML */ `
+            <li>
+              <img src="${img}" alt="photo product roofing4us" />
+            </li>
+          `
+        })
+        .join('')}
     </ul>
   `
 }

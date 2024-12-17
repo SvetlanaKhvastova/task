@@ -50,10 +50,18 @@ export const svg = {
 
   `,
   starIcon: `
-  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="14" viewBox="0 0 15 14" fill="none">
-  <path d="M7.34207 10.9528L11.5705 13.5049L10.4484 8.69492L14.1842 5.45858L9.26473 5.04115L7.34207 0.504883L5.4195 5.04115L0.5 5.45858L4.23579 8.69492L3.11365 13.5049L7.34207 10.9528Z" fill="#FAAC07"/>
+<svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect y="0.410156" width="18" height="18" fill="#1FB899"/>
+<path d="M9 2.41016L10.5717 7.24684L15.6574 7.24704L11.5431 10.2365L13.1145 15.0733L9 12.0842L4.8855 15.0733L6.45687 10.2365L2.3426 7.24704L7.42826 7.24684L9 2.41016Z" fill="white"/>
 </svg>
     `,
+  starIconEmpty: `
+  <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect y="0.410156" width="18" height="18" fill="#B9D0CB"/>
+<rect y="0.410156" width="11" height="18" fill="#1FB899"/>
+<path d="M9 2.41016L10.5717 7.24684L15.6574 7.24704L11.5431 10.2365L13.1145 15.0733L9 12.0842L4.8855 15.0733L6.45687 10.2365L2.3426 7.24704L7.42826 7.24684L9 2.41016Z" fill="white"/>
+</svg>
+`,
   arrowAccordionIconProduct: `
     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
   <path d="M7.01338 11.9102C6.77258 11.9102 6.55853 11.828 6.39799 11.6638L1.26087 6.40869C0.913043 6.08024 0.913043 5.50546 1.26087 5.17702C1.58194 4.8212 2.14381 4.8212 2.46488 5.17702L7.01338 9.80263L11.5351 5.17702C11.8562 4.8212 12.4181 4.8212 12.7391 5.17702C13.087 5.50546 13.087 6.08024 12.7391 6.40869L7.60201 11.6638C7.44147 11.828 7.22742 11.9102 7.01338 11.9102Z" fill="#023F88"/>
@@ -99,6 +107,13 @@ export const svg = {
 <path d="M8.62598 13H18.3756" stroke="white" stroke-width="1.625" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M13.5 8.12549L18.3748 13.0003L13.5 17.8751" stroke="white" stroke-width="1.625" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
+`,
+  noteIcon: `
+<svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M14.8433 28.6265C21.904 28.6265 27.628 22.9026 27.628 15.8418C27.628 8.78103 21.904 3.05713 14.8433 3.05713C7.7825 3.05713 2.05859 8.78103 2.05859 15.8418C2.05859 22.9026 7.7825 28.6265 14.8433 28.6265Z" fill="#C2C2C2"/>
+<path d="M16.6416 8.914L16.2816 17.536H13.6716L13.3116 8.914H16.6416ZM15.0216 22.144C14.4816 22.144 14.0376 21.988 13.6896 21.676C13.3536 21.352 13.1856 20.956 13.1856 20.488C13.1856 20.008 13.3536 19.606 13.6896 19.282C14.0376 18.958 14.4816 18.796 15.0216 18.796C15.5496 18.796 15.9816 18.958 16.3176 19.282C16.6656 19.606 16.8396 20.008 16.8396 20.488C16.8396 20.956 16.6656 21.352 16.3176 21.676C15.9816 21.988 15.5496 22.144 15.0216 22.144Z" fill="white"/>
+</svg>
+
 `
 }
 
@@ -144,14 +159,14 @@ export const translations = {
       txt: `Even though their original suppliers didn't come through, Insulation4us worked really hard to get the product I ordered on time.`,
       name: 'Andrew Wano',
       rating: 4,
-      starIcons: `${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}`,
+      starIcons: `${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIconEmpty}`,
       img: `//roofing4us.com/cdn/shop/files/polycarbonatesheet4_dd63251a-3a21-4e59-92c3-81f75cd5fe24_110x110@2x.png?v=1721121870`,
       class: 'second_review'
     },
     productDetailsTxt: [
       {
         title: `Description`,
-        txt: ``,
+        txt: `<p>Twinwall Polycarbonate is a light weight, durable plastic that provides more thermal insulation than glass. It is UV and weather resistant while being virtually unbreakable, making it ideal for greenhouses, skylights and other outdoor applications.</p><p>In order to prevent debris penetrating inside the ribs, the exposed top and bottom ends (the width side of a sheet) must always be sealed first with the solid aluminum tape on the top of the sheet and vented tape at the bottom of the sheet.</p>`,
         class: `new_description`
       },
       {
@@ -270,7 +285,7 @@ export const translations = {
     productDetailsTxt: [
       {
         title: `Description`,
-        txt: ``,
+        txt: `<div class="note_txt">${svg.noteIcon} The customer is required to have a means of offloading their order when it arrives</div><p>The H-Channel is designed to connect two polycarbonate sheets together on their length side. It must not be screwed to the panel, simply connected to the panels. It can be easily cut.</p>`,
         class: `new_description`
       },
       {
@@ -389,7 +404,7 @@ export const translations = {
     productDetailsTxt: [
       {
         title: `Description`,
-        txt: ``,
+        txt: `<div class="note_txt">${svg.noteIcon} The customer is required to have a means of offloading their order when it arrives</div><p>The H-Channel is designed to connect two polycarbonate sheets together on their length side. It must not be screwed to the panel, simply connected to the panels. It can be easily cut.</p>`,
         class: `new_description`
       },
       {
@@ -508,7 +523,17 @@ export const translations = {
     productDetailsTxt: [
       {
         title: `Description`,
-        txt: ``,
+        txt: `<p>This completely unique redesign of the Best Damn Ripper Roofing Shovel features deep angled side slots on the blade that allow it to easily locate and pry nails from the base of side walls and under step flashing without having to bend over and switch out tools to complete the task.</p><p>The sharp rear teeth with reduced spacing facilitate complete removal of thinner nails and underlayment staples.</p>
+        <div class="key_features">
+          <p><b>Key Features:</b></p>
+          <ul>
+            <li><p>Pries forwards and backwards for increased productivity</p></li>
+            <li><p>Sharp rear teeth with reduced spacing for easy removal of thin nails and staples</p></li>
+            <li><p>Deep side slots allow removal of nails from the base of side walls and under step flashing without bending and switching tools</p></li>
+            <li><p>Centre wing at the base of the handle allows shingles to slide off effortlessly</p></li>
+            <li><p>Lightweight and durable tool with multi-screw design - easily replace damaged shafts to get a longer service life</p></li>
+          </ul>
+        </div>`,
         class: `new_description`
       },
       {
@@ -622,7 +647,17 @@ export const translations = {
     productDetailsTxt: [
       {
         title: `Description`,
-        txt: ``,
+        txt: `<p>This completely unique redesign of the Best Damn Ripper Roofing Shovel features deep angled side slots on the blade that allow it to easily locate and pry nails from the base of side walls and under step flashing without having to bend over and switch out tools to complete the task.</p><p>The sharp rear teeth with reduced spacing facilitate complete removal of thinner nails and underlayment staples.</p>
+        <div class="key_features">
+          <p><b>Key Features:</b></p>
+          <ul>
+            <li><p>Pries forwards and backwards for increased productivity</p></li>
+            <li><p>Sharp rear teeth with reduced spacing for easy removal of thin nails and staples</p></li>
+            <li><p>Deep side slots allow removal of nails from the base of side walls and under step flashing without bending and switching tools</p></li>
+            <li><p>Centre wing at the base of the handle allows shingles to slide off effortlessly</p></li>
+            <li><p>Lightweight and durable tool with multi-screw design - easily replace damaged shafts to get a longer service life</p></li>
+          </ul>
+        </div>`,
         class: `new_description`
       },
       {
@@ -736,7 +771,17 @@ export const translations = {
     productDetailsTxt: [
       {
         title: `Description`,
-        txt: ``,
+        txt: `<p>This completely unique redesign of the Best Damn Ripper Roofing Shovel features deep angled side slots on the blade that allow it to easily locate and pry nails from the base of side walls and under step flashing without having to bend over and switch out tools to complete the task.</p><p>The sharp rear teeth with reduced spacing facilitate complete removal of thinner nails and underlayment staples.</p>
+        <div class="key_features">
+          <p><b>Key Features:</b></p>
+          <ul>
+            <li><p>Pries forwards and backwards for increased productivity</p></li>
+            <li><p>Sharp rear teeth with reduced spacing for easy removal of thin nails and staples</p></li>
+            <li><p>Deep side slots allow removal of nails from the base of side walls and under step flashing without bending and switching tools</p></li>
+            <li><p>Centre wing at the base of the handle allows shingles to slide off effortlessly</p></li>
+            <li><p>Lightweight and durable tool with multi-screw design - easily replace damaged shafts to get a longer service life</p></li>
+          </ul>
+        </div>`,
         class: `new_description`
       },
       {
@@ -855,7 +900,17 @@ export const translations = {
     productDetailsTxt: [
       {
         title: `Description`,
-        txt: ``,
+        txt: `<p>This completely unique redesign of the Best Damn Ripper Roofing Shovel features deep angled side slots on the blade that allow it to easily locate and pry nails from the base of side walls and under step flashing without having to bend over and switch out tools to complete the task.</p><p>The sharp rear teeth with reduced spacing facilitate complete removal of thinner nails and underlayment staples.</p>
+        <div class="key_features">
+          <p><b>Key Features:</b></p>
+          <ul>
+            <li><p>Pries forwards and backwards for increased productivity</p></li>
+            <li><p>Sharp rear teeth with reduced spacing for easy removal of thin nails and staples</p></li>
+            <li><p>Deep side slots allow removal of nails from the base of side walls and under step flashing without bending and switching tools</p></li>
+            <li><p>Centre wing at the base of the handle allows shingles to slide off effortlessly</p></li>
+            <li><p>Lightweight and durable tool with multi-screw design - easily replace damaged shafts to get a longer service life</p></li>
+          </ul>
+        </div>`,
         class: `new_description`
       },
       {
@@ -974,7 +1029,17 @@ export const translations = {
     productDetailsTxt: [
       {
         title: `Description`,
-        txt: ``,
+        txt: `<p>This completely unique redesign of the Best Damn Ripper Roofing Shovel features deep angled side slots on the blade that allow it to easily locate and pry nails from the base of side walls and under step flashing without having to bend over and switch out tools to complete the task.</p><p>The sharp rear teeth with reduced spacing facilitate complete removal of thinner nails and underlayment staples.</p>
+        <div class="key_features">
+          <p><b>Key Features:</b></p>
+          <ul>
+            <li><p>Pries forwards and backwards for increased productivity</p></li>
+            <li><p>Sharp rear teeth with reduced spacing for easy removal of thin nails and staples</p></li>
+            <li><p>Deep side slots allow removal of nails from the base of side walls and under step flashing without bending and switching tools</p></li>
+            <li><p>Centre wing at the base of the handle allows shingles to slide off effortlessly</p></li>
+            <li><p>Lightweight and durable tool with multi-screw design - easily replace damaged shafts to get a longer service life</p></li>
+          </ul>
+        </div>`,
         class: `new_description`
       },
       {

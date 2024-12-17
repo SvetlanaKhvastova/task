@@ -53,7 +53,7 @@ class NewPdp {
 
   init() {
     startLog({ name: 'PDP improvements', dev: 'SKh' })
-    // clarityInterval('new_pdp')
+    clarityInterval('new_pdp')
 
     document.head.insertAdjacentHTML('beforeend', `<style class="crs_style">${mainStyle}</style>`)
 
@@ -68,6 +68,7 @@ class NewPdp {
     this.renderInStockBlock()
     this.renderBtnsWrapper()
     this.replaceBtnsPayToBtnsWrapper()
+    this.replaceCallFPBtn()
     this.renderNewProductSalesPointsBlock()
     this.renderOneReviewBlockFirst()
     if (this.device === 'desktop') {
@@ -107,6 +108,10 @@ class NewPdp {
     this.renderSliderBlock()
     this.initSlickCarousel()
     this.initFancybox()
+    this.clickDescriptionRelatedProducts()
+    this.visibleHandler()
+
+    this.addClassLabelColor()
   }
 
   addIdGeneral() {
@@ -207,7 +212,9 @@ class NewPdp {
               },
               placement: window.innerWidth < 768 ? 'top' : 'bottom',
               interactive: true,
-              onShow(instance: any) {},
+              onShow(instance: any) {
+                pushData('exp_add_quality_visibility_01', 'Tooltip', 'view', 'Product benefits')
+              },
               onTrigger(e: any) {},
               onHide(instance: any) {}
             })
@@ -244,6 +251,14 @@ class NewPdp {
       })
       waitForElement('[data-shopify="payment-button"]').then(i => {
         this.moveElement('[data-shopify="payment-button"]', '.btns_wrapper_payment', 'beforeend')
+      })
+    })
+  }
+
+  replaceCallFPBtn() {
+    waitForElement('.call_F_P_tag2:not(.cfp_note)').then(() => {
+      waitForElement('.in_stock_block').then(i => {
+        this.moveElement('.call_F_P_tag2:not(.cfp_note)', '.in_stock_block', 'beforebegin')
       })
     })
   }
@@ -307,12 +322,16 @@ class NewPdp {
   }
 
   clickAllReviewsLink() {
-    waitForElement('.all_reviews_link').then(i => {
-      const link = $$el('.all_reviews_link') as NodeListOf<HTMLElement>
+    waitForElement('.one_review_block').then(i => {
+      const link = $$el('.one_review_block') as NodeListOf<HTMLElement>
 
       link.forEach(i => {
         i.addEventListener('click', () => {
-          pushData('exp_new_pdp_button_03', 'All reviews', 'Click', 'Review section')
+          if (i.classList.contains('first_review')) {
+            pushData('exp_add_quality_element_02', '1', 'click', 'Reviews')
+          } else {
+            pushData('exp_add_quality_element_02', '2', 'click', 'Reviews')
+          }
         })
       })
     })
@@ -333,11 +352,11 @@ class NewPdp {
 
   replaceInformationToProductDetailsBlock() {
     waitForElement('.product_details_block').then(() => {
-      this.moveElement(
-        '#productDescription',
-        '.product_details_block .new_description .product_details_accordion_lists > div',
-        'afterbegin'
-      )
+      // this.moveElement(
+      //   '#productDescription',
+      //   '.product_details_block .new_description .product_details_accordion_lists > div',
+      //   'afterbegin'
+      // )
       this.moveElement(
         '#productSpecs',
         '.product_details_block .new_technical_specs .product_details_accordion_lists > div',
@@ -448,43 +467,44 @@ class NewPdp {
               const closestElement = target.closest('.product_details_accordion_block') as HTMLElement
 
               if (closestElement) {
-                if (window.innerWidth < 768) {
-                  scrollToHtmlElement(closestElement, 43)
-                } else {
-                  scrollToHtmlElement(closestElement, 50)
-                }
+                scrollToHtmlElement(closestElement, 43)
               }
             }, 400)
-            if (e.currentTarget.classList.contains('active')) {
-              pushData(
-                'exp_new_pdp_dropdown_02',
-                `Open - ${e.currentTarget.querySelector('p').textContent}`,
-                'Click',
-                'Product details'
-              )
-            } else {
-              pushData(
-                'exp_new_pdp_dropdown_03',
-                `Close - ${e.currentTarget.querySelector('p').textContent}`,
-                'Click',
-                'Product details'
-              )
+
+            if (!localStorage.getItem('anchorMenu')) {
+              const menuLinks = $$el('.anchor_menu_link')
+              menuLinks?.forEach(link => link.classList.remove('is_active'))
+              if (e.currentTarget.classList.contains('active')) {
+                pushData(
+                  'exp_add_quality_button_08',
+                  `${e.currentTarget.querySelector('p').textContent} - Open`,
+                  'click',
+                  'Product details'
+                )
+              } else {
+                pushData(
+                  'exp_add_quality_button_08',
+                  `${e.currentTarget.querySelector('p').textContent} - Close`,
+                  'click',
+                  'Product details'
+                )
+              }
             }
           }
 
           if (containerClass === '.faq_block') {
             if (e.currentTarget.classList.contains('active')) {
               pushData(
-                'exp_new_pdp_dropdown_04',
-                `Open - ${e.currentTarget.querySelector('p').textContent}`,
-                'Click',
+                'exp_add_quality_button_03',
+                `${e.currentTarget.querySelector('p').textContent} - Open`,
+                'click',
                 'FAQ'
               )
             } else {
               pushData(
-                'exp_new_pdp_dropdown_05',
-                `Close - ${e.currentTarget.querySelector('p').textContent}`,
-                'Click',
+                'exp_add_quality_button_03',
+                `${e.currentTarget.querySelector('p').textContent} - Close`,
+                'click',
                 'FAQ'
               )
             }
@@ -506,13 +526,13 @@ class NewPdp {
 
   initializeAnchorMenu() {
     waitForElement('.product_details_accordion').then(i => {
-      const breadcrumbs = $el('.breadcrumbs') as HTMLElement
+      const anchorElem = $el('#shopify-section-product-template') as HTMLElement
       const anchorMenu = $el('.anchor_menu')
       const menuLinks = $$el('.anchor_menu_link')
       const sections = Array.from(menuLinks).map(link => $el(link.getAttribute('href')))
 
       const handleScroll = () => {
-        if (breadcrumbs && breadcrumbs.getBoundingClientRect().top <= 0) {
+        if (anchorElem && anchorElem.getBoundingClientRect().top <= 0) {
           anchorMenu.classList.add('is_sticky')
         } else {
           anchorMenu.classList.remove('is_sticky')
@@ -543,9 +563,11 @@ class NewPdp {
           const targetId = this.getAttribute('data-target')
           const targetElement = $el(`#${targetId}`)
 
-          // Добавляем активный класс при клике
           menuLinks.forEach(link => link.classList.remove('is_active'))
           this.classList.add('is_active')
+
+          pushData('exp_add_quality_button_01', this.textContent.trim(), 'click', 'Header')
+          localStorage.setItem('anchorMenu', this.textContent.trim())
 
           if (targetElement) {
             if (
@@ -554,13 +576,11 @@ class NewPdp {
             ) {
               ;(targetElement?.querySelector('.product_details_accordion_link') as HTMLElement)?.click()
             } else {
-              if (this.device === 'desktop') {
-                scrollToHtmlElement(targetElement, 49.5)
-              } else {
-                scrollToHtmlElement(targetElement, 42)
-              }
+              scrollToHtmlElement(targetElement, 43)
             }
           }
+
+          localStorage.removeItem('anchorMenu')
         })
       })
 
@@ -573,13 +593,60 @@ class NewPdp {
     waitForElement('.btns_wrapper_payment ').then(i => {
       const сontainerElement = $el('body') as HTMLElement
       const title = $el('.template-product h1.product-single__title').textContent
-      const price = $el('.price-item').textContent
+      const priceElement = $el('.price-item') as HTMLElement
+      const price = priceElement.textContent
 
-      if (!$el('.sticky_block')) {
+      if (!$el('.sticky_block') && price) {
         сontainerElement.insertAdjacentHTML('beforeend', stickyBlock(title, price))
       }
 
+      this.observePriceChange(priceElement)
+      this.observeCallForPrice()
       this.clickStickyAddToCartBtn()
+      this.clickStickyCallForPriceBtn()
+    })
+  }
+
+  observePriceChange(priceElement: HTMLElement) {
+    const stickyPriceElement = $el('.sticky_product_price') as HTMLElement
+
+    const observer = new MutationObserver(mutations => {
+      mutations.forEach(mutation => {
+        if (mutation.type === 'childList' && stickyPriceElement) {
+          stickyPriceElement.textContent = priceElement.textContent
+        }
+      })
+    })
+
+    observer.observe(priceElement, { childList: true })
+  }
+
+  observeCallForPrice() {
+    waitForElement('.product-single__meta').then(i => {
+      const metaElement = $el('.product-single__meta') as HTMLElement
+      const stickyCallBtn = $el('.sticky_call_to_inquire') as HTMLElement
+      const stickyAddToCartBtn = $el('.sticky_add_to_cart') as HTMLElement
+
+      const updateButtonState = () => {
+        if (metaElement.classList.contains('callforprice_meta')) {
+          stickyCallBtn.style.display = 'flex'
+          stickyAddToCartBtn.style.display = 'none'
+        } else {
+          stickyCallBtn.style.display = 'none'
+          stickyAddToCartBtn.style.display = 'flex'
+        }
+      }
+
+      const observer = new MutationObserver(mutations => {
+        mutations.forEach(mutation => {
+          if (mutation.attributeName === 'class') {
+            updateButtonState()
+          }
+        })
+      })
+
+      observer.observe(metaElement, { attributes: true })
+      updateButtonState()
     })
   }
 
@@ -648,8 +715,22 @@ class NewPdp {
         observer.observe(addToCartBtn, { attributes: true })
 
         stickyAddToCartBtn.addEventListener('click', () => {
-          console.log(`clickStickyAddToCartBtn`)
+          pushData('exp_add_quality_button_07', 'Add to cart', 'click', 'Sticky add to cart')
           addToCartBtn.click()
+        })
+      })
+    })
+  }
+
+  clickStickyCallForPriceBtn() {
+    waitForElement('.call_F_P_tag2 a').then(i => {
+      waitForElement('.sticky_call_to_inquire').then(i => {
+        const stickyCallInquireBtn = $el('.sticky_call_to_inquire') as HTMLElement
+        const callInquireBtn = $el('.call_F_P_tag2 a') as HTMLElement
+
+        stickyCallInquireBtn.addEventListener('click', () => {
+          pushData('exp_add_quality_button_09', 'Sticky Call to inquire', 'click', 'Sticky Call to inquire')
+          callInquireBtn.click()
         })
       })
     })
@@ -681,7 +762,7 @@ class NewPdp {
           clearInterval(s)
 
           let slider = jQuery('.slider_wrapper').slick({
-            slidesToShow: 5,
+            slidesToShow: 10,
             vertical: true,
             infinite: false,
             prevArrow: ` <div class="prev_btn slider_arrow">${svg.sliderArroWIcon}</div> `,
@@ -717,8 +798,76 @@ class NewPdp {
               type: 'classic'
             }
           })
+
+          $$el('[data-fancybox]').forEach((el, i) => {
+            el.addEventListener('click', function () {
+              pushData('exp_add_quality_image_01', `photo_${i + 1}`, 'click', 'PDP Images')
+            })
+          })
         }
       }, 100)
+    })
+  }
+
+  clickDescriptionRelatedProducts() {
+    waitForElement('.description-related-products a').then(i => {
+      const descriptionRelatedProducts = $$el('.description-related-products a') as NodeListOf<HTMLElement>
+
+      descriptionRelatedProducts.forEach(item => {
+        item.addEventListener('click', e => {
+          pushData(
+            'exp_add_quality_button_02',
+            (e.currentTarget as HTMLElement)?.getAttribute('href') || '',
+            'click',
+            'Frequently Bought Together'
+          )
+        })
+      })
+    })
+  }
+
+  visibleHandler() {
+    waitForElement('.one_review_block.first_review').then(i => {
+      visibilityOfTime('.one_review_block.first_review', 'exp_add_quality_visibility_02', 'Reviews', '1', 'view')
+    })
+    waitForElement('.one_review_block.second_review').then(i => {
+      visibilityOfTime('.one_review_block.second_review', 'exp_add_quality_visibility_02', 'Reviews', '2', 'view')
+    })
+    waitForElement('.description-related-products').then(i => {
+      visibilityOfTime(
+        '.description-related-products',
+        'exp_add_quality_visibility_03',
+        'Frequently Bought Together',
+        'Frequently Bought Together',
+        'view'
+      )
+    })
+    waitForElement('.reviews_block').then(i => {
+      visibilityOfTime('.reviews_block', 'exp_add_quality_visibility_04', 'All Reviews', 'Reviews io', 'view')
+    })
+    waitForElement('.faq_block').then(i => {
+      visibilityOfTime('.faq_block', 'exp_add_quality_visibility_05', 'FAQ', 'FAQ', 'view')
+    })
+    waitForElement('.comparison_table_block').then(i => {
+      visibilityOfTime(
+        '.comparison_table_block',
+        'exp_add_quality_visibility_06',
+        'Why Buy From Roofing4US?',
+        'Why Buy From Roofing4US?',
+        'view'
+      )
+    })
+  }
+
+  addClassLabelColor() {
+    waitForElement('[for="SingleOptionSelector-0"]').then(i => {
+      const label = $el('[for="SingleOptionSelector-0"]') as HTMLElement
+
+      console.log(label, `label`)
+
+      if (label.textContent?.includes('Color')) {
+        label.parentElement?.classList.add('label_color')
+      }
     })
   }
 }
