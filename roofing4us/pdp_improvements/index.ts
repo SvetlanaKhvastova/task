@@ -74,9 +74,7 @@ class NewPdp {
     if (this.device === 'desktop') {
       this.renderOneReviewBlockSecond()
     }
-    if (this.device === 'mobile') {
-      this.renderVideoBlock()
-    }
+    this.renderVideoBlock()
     this.clickAllReviewsLink()
     this.renderProductDetailsBlock()
     this.replaceInformationToProductDetailsBlock()
@@ -112,6 +110,8 @@ class NewPdp {
     this.visibleHandler()
 
     this.addClassLabelColor()
+
+    this.trackYouTubePlay()
   }
 
   addIdGeneral() {
@@ -142,7 +142,7 @@ class NewPdp {
     waitForElement('.key_selling_points_block').then(i => {
       const сontainerElement = $el('.key_selling_points_block') as HTMLElement
 
-      if (!$el('.additional_img_block')) {
+      if (!$el('.additional_img_block') && translations[this.pathName].additionalImg.length > 0) {
         сontainerElement.insertAdjacentHTML('afterend', additionalImgBlock(translations[this.pathName].additionalImg))
       }
     })
@@ -184,11 +184,13 @@ class NewPdp {
 
   renderTooltipBlock() {
     waitForElement('.free_delivery p').then(i => {
-      const сontainerElement = $el('.free_delivery p') as HTMLElement
+      const сontainerElements = $$el('.free_delivery p') as NodeListOf<HTMLElement>
 
-      if (!$el('.tooltip_zone')) {
-        сontainerElement.insertAdjacentHTML('beforeend', tooltipBlock(translations[this.pathName].tooltipTxt))
-      }
+      сontainerElements.forEach(сontainerElement => {
+        if (!$el('.tooltip_zone')) {
+          сontainerElement.insertAdjacentHTML('beforeend', tooltipBlock(translations[this.pathName].tooltipTxt))
+        }
+      })
     })
   }
 
@@ -208,7 +210,7 @@ class NewPdp {
               arrow: true,
               arrowType: 'round',
               appendTo: function () {
-                return el.closest('.product-page-sku')
+                return el.closest('.free_delivery')
               },
               placement: window.innerWidth < 768 ? 'top' : 'bottom',
               interactive: true,
@@ -308,17 +310,29 @@ class NewPdp {
   }
 
   renderVideoBlock() {
-    waitForElement('.product-template__container > .product-section .detail_page_padding .product-atc-section').then(
-      i => {
+    if (this.device === 'desktop') {
+      waitForElement('.product-template__container > .product-section .product-image-section').then(i => {
         const сontainerElement = $el(
-          '.product-template__container > .product-section .detail_page_padding .product-atc-section'
+          '.product-template__container > .product-section .product-image-section'
         ) as HTMLElement
 
-        if (!$el('.video_block')) {
+        if (!$el('.video_block') && translations[this.pathName].videoLink.length > 0) {
           сontainerElement.insertAdjacentHTML('beforeend', videoBlock(translations[this.pathName].videoLink))
         }
-      }
-    )
+      })
+    } else {
+      waitForElement('.product-template__container > .product-section .detail_page_padding .product-atc-section').then(
+        i => {
+          const сontainerElement = $el(
+            '.product-template__container > .product-section .detail_page_padding .product-atc-section'
+          ) as HTMLElement
+
+          if (!$el('.video_block')) {
+            сontainerElement.insertAdjacentHTML('beforeend', videoBlock(translations[this.pathName].videoLink))
+          }
+        }
+      )
+    }
   }
 
   clickAllReviewsLink() {
@@ -357,26 +371,34 @@ class NewPdp {
       //   '.product_details_block .new_description .product_details_accordion_lists > div',
       //   'afterbegin'
       // )
-      this.moveElement(
-        '#productSpecs',
-        '.product_details_block .new_technical_specs .product_details_accordion_lists > div',
-        'afterbegin'
-      )
-      this.moveElement(
-        '#productDatasheets',
-        '.product_details_block .new_datasheets .product_details_accordion_lists > div',
-        'afterbegin'
-      )
-      this.moveElement(
-        '#productShipping',
-        '.product_details_block .delivery_information .product_details_accordion_lists > div',
-        'afterbegin'
-      )
-      this.moveElement(
-        '#productReviews',
-        '.product_details_block .new_reviews .product_details_accordion_lists > div',
-        'afterbegin'
-      )
+      waitForElement('.product_details_block .new_technical_specs .product_details_accordion_lists > div').then(() => {
+        this.moveElement(
+          '#productSpecs',
+          '.product_details_block .new_technical_specs .product_details_accordion_lists > div',
+          'afterbegin'
+        )
+      })
+      waitForElement('.product_details_block .new_datasheets .product_details_accordion_lists > div').then(() => {
+        this.moveElement(
+          '#productDatasheets',
+          '.product_details_block .new_datasheets .product_details_accordion_lists > div',
+          'afterbegin'
+        )
+      })
+      waitForElement('.product_details_block .delivery_information .product_details_accordion_lists > div').then(() => {
+        this.moveElement(
+          '#productShipping',
+          '.product_details_block .delivery_information .product_details_accordion_lists > div',
+          'afterbegin'
+        )
+      })
+      waitForElement('.product_details_block .new_reviews .product_details_accordion_lists > div').then(() => {
+        this.moveElement(
+          '#productReviews',
+          '.product_details_block .new_reviews .product_details_accordion_lists > div',
+          'afterbegin'
+        )
+      })
     })
   }
 
@@ -746,7 +768,7 @@ class NewPdp {
         placement = 'afterend'
       }
 
-      if (!$el('.slider_block')) {
+      if (!$el('.slider_block') && translations[this.pathName].sideSliderImg.length > 0) {
         сontainerElement.insertAdjacentHTML(placement, sliderBlock(translations[this.pathName].sideSliderImg))
       }
     })
@@ -762,14 +784,15 @@ class NewPdp {
           clearInterval(s)
 
           let slider = jQuery('.slider_wrapper').slick({
-            slidesToShow: 10,
+            slidesToShow: 12,
             vertical: true,
             infinite: false,
+            arrows: true,
             prevArrow: ` <div class="prev_btn slider_arrow">${svg.sliderArroWIcon}</div> `,
             nextArrow: ` <div class="next_btn slider_arrow">${svg.sliderArroWIcon}</div> `,
             responsive: [
               {
-                breakpoint: 1024,
+                breakpoint: 768,
                 settings: {
                   slidesToShow: 4,
                   arrows: true,
@@ -863,10 +886,38 @@ class NewPdp {
     waitForElement('[for="SingleOptionSelector-0"]').then(i => {
       const label = $el('[for="SingleOptionSelector-0"]') as HTMLElement
 
-      console.log(label, `label`)
-
       if (label.textContent?.includes('Color')) {
         label.parentElement?.classList.add('label_color')
+      }
+    })
+  }
+
+  trackYouTubePlay() {
+    let tag = document.createElement('script')
+    tag.src = 'https://www.youtube.com/iframe_api'
+    tag.async = false
+    document.head.appendChild(tag)
+
+    waitForElement('.video_block').then(i => {
+      window.onYouTubeIframeAPIReady = () => {
+        const iframes = $$el('iframe[src*="youtube.com/embed/"]')
+        iframes.forEach((iframe, index) => {
+          const videoId = iframe.src.match(/embed\/([a-zA-Z0-9_-]+)/)[1]
+
+          const player = new YT.Player(iframe, {
+            events: {
+              onStateChange: onPlayerStateChange
+            }
+          })
+          console.log(player, `Player`)
+        })
+      }
+
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING) {
+          console.log('YouTube video is playing')
+          pushData('exp_add_quality_element_01', 'video', 'click', 'Product specification')
+        }
       }
     })
   }

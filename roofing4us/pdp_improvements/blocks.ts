@@ -91,11 +91,7 @@ export const newProductSalesPointsBlock = (data): string => {
 export const oneReviewBlock = (data): string => {
   return /* HTML */ `
     <a href="/pages/customer-review" target="_blank" rel="noopener noreferrer" class="one_review_block ${data.class}">
-      ${window.innerWidth >= 768
-        ? `<div class="img_wrapper">
-        <img src="${data.img}" alt="photo product" />
-      </div>`
-        : ''}
+      ${window.innerWidth >= 768 ? `<div class="img_wrapper">${data.img}</div>` : ''}
       <div class="info_wrapper">
         ${window.innerWidth < 768 ? `<span class="all_reviews_link">All reviews</span>` : ''}
         <p class="info_descr">${data.txt}</p>
@@ -143,13 +139,7 @@ export const productDetailsBlock = (data): string => {
 }
 
 export const videoBlock = (video: string): string => {
-  return /* HTML */ `
-    <div class="video_block">
-      <div class="new_container">
-        <img src="${video}" alt="photo product roofing4us" />
-      </div>
-    </div>
-  `
+  return /* HTML */ ` <div class="video_block">${video}</div> `
 }
 
 export const reviewsBlock = () => {
@@ -300,10 +290,19 @@ export const sliderBlock = (data): string => {
     <div class="slider_block">
       <div class="slider_wrapper">
         ${data
-          .map((img: string) => {
+          .map((item: string) => {
+            const isVideo = item.includes('<iframe')
+            const srcMatch = item.match(/src=["']([^"']+)["']/)
+            const src = srcMatch ? srcMatch[1] : ''
+            const thumbnail = isVideo ? `${git}fancybox_video_img.png` : src
             return /* HTML */ `
-              <div data-fancybox="demo" data-src="${img}" class="slider_item">
-                <img src="${img}" alt="photo product roofing4us" />
+              <div
+                data-fancybox="demo"
+                data-type="${isVideo ? 'iframe' : 'image'}"
+                data-src="${src}"
+                class="slider_item"
+              >
+                <img src="${thumbnail}" alt="Gallery item" />
               </div>
             `
           })
@@ -312,7 +311,6 @@ export const sliderBlock = (data): string => {
     </div>
   `
 }
-
 export const additionalImgBlock = (data): string => {
   return /* HTML */ `
     <ul class="additional_img_block">
