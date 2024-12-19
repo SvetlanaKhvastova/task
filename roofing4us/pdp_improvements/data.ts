@@ -355,7 +355,8 @@ export const translations = {
     productDetailsTxt: [
       {
         title: `Description`,
-        txt: `<p>Twinwall Polycarbonate Sheets are a premium choice for construction and DIY projects, offering unmatched strength, light transmission, and thermal insulation. At just 1/8 the weight of glass but 200 times more impact-resistant, these sheets are easy to handle and built to last. The twin-wall design provides superior thermal efficiency, while a UV-protective layer ensures long-lasting clarity and resistance to weathering.</p>
+        txt: `<div class="note_txt">${svg.noteIcon} The customer is required to have a means of offloading their order when it arrives</div>
+        <p>Twinwall Polycarbonate Sheets are a premium choice for construction and DIY projects, offering unmatched strength, light transmission, and thermal insulation. At just 1/8 the weight of glass but 200 times more impact-resistant, these sheets are easy to handle and built to last. The twin-wall design provides superior thermal efficiency, while a UV-protective layer ensures long-lasting clarity and resistance to weathering.</p>
         <div class="bullet_wrapper">
           <p><b>Key Features:</b></p>
           <ul>
@@ -424,22 +425,37 @@ export const translations = {
       competitorsTitle: `<img src="${git}roofing4us_logo_new.png" alt="logo Roofing4US">`,
       benefits: [
         {
-          benefitName: 'Reliable Delivery and Communication',
+          benefitName: 'Wide selection of quality <br/> products',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         },
         {
-          benefitName: 'Customer-Centric Returns and Cancellations',
+          benefitName: 'Competitive pricing',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         },
         {
-          benefitName: 'High-Quality Products',
+          benefitName: 'Expert advice and support',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         },
         {
-          benefitName: 'Transparent Pricing and Support',
+          benefitName: 'Bespoke solutions for contractors',
+          myDescr: svg.cancelIcon,
+          competitorsDescr: svg.checkIcon
+        },
+        {
+          benefitName: 'Fast nationwide delivery',
+          myDescr: svg.cancelIcon,
+          competitorsDescr: svg.checkIcon
+        },
+        {
+          benefitName: 'Knowledgeable staff and customer support',
+          myDescr: svg.cancelIcon,
+          competitorsDescr: svg.checkIcon
+        },
+        {
+          benefitName: 'Seamless online shopping <br/> experience',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         }
@@ -581,22 +597,37 @@ export const translations = {
       competitorsTitle: `<img src="${git}roofing4us_logo_new.png" alt="logo Roofing4US">`,
       benefits: [
         {
-          benefitName: 'Reliable Delivery and Communication',
+          benefitName: 'Wide selection of quality <br/> products',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         },
         {
-          benefitName: 'Customer-Centric Returns and Cancellations',
+          benefitName: 'Competitive pricing',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         },
         {
-          benefitName: 'High-Quality Products',
+          benefitName: 'Expert advice and support',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         },
         {
-          benefitName: 'Transparent Pricing and Support',
+          benefitName: 'Bespoke solutions for contractors',
+          myDescr: svg.cancelIcon,
+          competitorsDescr: svg.checkIcon
+        },
+        {
+          benefitName: 'Fast nationwide delivery',
+          myDescr: svg.cancelIcon,
+          competitorsDescr: svg.checkIcon
+        },
+        {
+          benefitName: 'Knowledgeable staff and customer support',
+          myDescr: svg.cancelIcon,
+          competitorsDescr: svg.checkIcon
+        },
+        {
+          benefitName: 'Seamless online shopping <br/> experience',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         }
@@ -738,22 +769,37 @@ export const translations = {
       competitorsTitle: `<img src="${git}roofing4us_logo_new.png" alt="logo Roofing4US">`,
       benefits: [
         {
-          benefitName: 'Reliable Delivery and Communication',
+          benefitName: 'Wide selection of quality <br/> products',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         },
         {
-          benefitName: 'Customer-Centric Returns and Cancellations',
+          benefitName: 'Competitive pricing',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         },
         {
-          benefitName: 'High-Quality Products',
+          benefitName: 'Expert advice and support',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         },
         {
-          benefitName: 'Transparent Pricing and Support',
+          benefitName: 'Bespoke solutions for contractors',
+          myDescr: svg.cancelIcon,
+          competitorsDescr: svg.checkIcon
+        },
+        {
+          benefitName: 'Fast nationwide delivery',
+          myDescr: svg.cancelIcon,
+          competitorsDescr: svg.checkIcon
+        },
+        {
+          benefitName: 'Knowledgeable staff and customer support',
+          myDescr: svg.cancelIcon,
+          competitorsDescr: svg.checkIcon
+        },
+        {
+          benefitName: 'Seamless online shopping <br/> experience',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         }
@@ -877,22 +923,37 @@ export const translations = {
       competitorsTitle: `<img src="${git}roofing4us_logo_new.png" alt="logo Roofing4US">`,
       benefits: [
         {
-          benefitName: 'Reliable Delivery and Communication',
+          benefitName: 'Wide selection of quality <br/> products',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         },
         {
-          benefitName: 'Customer-Centric Returns and Cancellations',
+          benefitName: 'Competitive pricing',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         },
         {
-          benefitName: 'High-Quality Products',
+          benefitName: 'Expert advice and support',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         },
         {
-          benefitName: 'Transparent Pricing and Support',
+          benefitName: 'Bespoke solutions for contractors',
+          myDescr: svg.cancelIcon,
+          competitorsDescr: svg.checkIcon
+        },
+        {
+          benefitName: 'Fast nationwide delivery',
+          myDescr: svg.cancelIcon,
+          competitorsDescr: svg.checkIcon
+        },
+        {
+          benefitName: 'Knowledgeable staff and customer support',
+          myDescr: svg.cancelIcon,
+          competitorsDescr: svg.checkIcon
+        },
+        {
+          benefitName: 'Seamless online shopping <br/> experience',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         }
@@ -950,7 +1011,7 @@ export const translations = {
       }
     ],
     anchorMenuTxt: ['Description', 'Technical Specs', 'Delivery Information', 'Reviews', 'FAQ'],
-    boughtSoFarTxt: '3K+',
+    boughtSoFarTxt: '2K+',
     newProductSalesPointsTxt: [
       'Shipping Protection for Peace of Mind',
       'Fast Processing & Delivery',
@@ -1014,22 +1075,37 @@ export const translations = {
       competitorsTitle: `<img src="${git}roofing4us_logo_new.png" alt="logo Roofing4US">`,
       benefits: [
         {
-          benefitName: 'Reliable Delivery and Communication',
+          benefitName: 'Wide selection of quality <br/> products',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         },
         {
-          benefitName: 'Customer-Centric Returns and Cancellations',
+          benefitName: 'Competitive pricing',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         },
         {
-          benefitName: 'High-Quality Products',
+          benefitName: 'Expert advice and support',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         },
         {
-          benefitName: 'Transparent Pricing and Support',
+          benefitName: 'Bespoke solutions for contractors',
+          myDescr: svg.cancelIcon,
+          competitorsDescr: svg.checkIcon
+        },
+        {
+          benefitName: 'Fast nationwide delivery',
+          myDescr: svg.cancelIcon,
+          competitorsDescr: svg.checkIcon
+        },
+        {
+          benefitName: 'Knowledgeable staff and customer support',
+          myDescr: svg.cancelIcon,
+          competitorsDescr: svg.checkIcon
+        },
+        {
+          benefitName: 'Seamless online shopping <br/> experience',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         }
@@ -1094,8 +1170,17 @@ export const translations = {
       'Flexible Delivery Options'
     ],
     oneReviewBlockFirst: {
-      txt: '"Outstanding transaction in every way! Great price! Excellent communication! I would highly recommend! Thank you."',
-      name: 'Robert Harms ',
+      txt: `“The TPO Plus Roof Membranes available on Roofing4us.com are an excellent choice for any roofing project. The TPO Plus membrane is a high-quality roofing material that is durable, long-lasting, and easy to install. The membranes are available in a variety of sizes to fit any project, making them a versatile option for contractors and DIYers alike.
+<br/>
+<br/>
+The TPO Plus membrane is made from a blend of thermoplastic and rubber materials that provide excellent resistance to weathering, UV rays, and chemicals. It also has a reinforced scrim that gives it added strength and stability, making it ideal for use in areas with high wind or foot traffic.
+<br/>
+<br/>
+One of the best things about the TPO Plus membrane is that it is easy to install. The membrane comes with a self-adhesive backing that makes installation quick and simple. It can be applied directly to the roof deck, eliminating the need for additional adhesive or mechanical fasteners.
+<br/>
+<br/>
+Overall, the TPO Plus Roof Membranes are a great choice for any roofing project. They are affordable, easy to install, and provide excellent durability and resistance to the elements. Whether you're a professional contractor or a DIYer, these membranes are an excellent option for your roofing needs.”`,
+      name: 'Customer Feedback',
       rating: 5,
       starIcons: `${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}${svg.starIcon}`,
       img: svg.anonymousIcon,
@@ -1164,6 +1249,18 @@ export const translations = {
             <p>Synthetic Roofing Underlayments - Stringer EXO50 - The Stringer EXO50 is a high-performance synthetic roofing underlayment that provides excellent protection against the elements. It is lightweight, easy to install, and is suitable for use on a wide range of roofing surfaces.</p>
           </div>
         </div>
+        <div class="bullet_wrapper">
+            <p><b>Frequently Asked Questions</b></p>
+            <div class="txt_wrapper">
+              <p><b>What is TPO roofing?</b> TPO (Thermoplastic Olefin) roofing is a type of single-ply roofing membrane that is commonly used in commercial and industrial roofing applications. TPO roofing is known for its durability, energy efficiency, and ease of installation.</p>
+              <p><b>What are TPO Plus Roof Membranes?</b> TPO Plus Roof Membranes are a type of TPO roofing membrane that features a factory-applied, self-adhering layer for easier installation. This eliminates the need for adhesives, which can simplify the installation process and save time and money.</p>
+              <p><b>What are the benefits of TPO Plus Roof Membranes?</b> TPO Plus Roof Membranes offer a number of benefits, including superior weather resistance, energy efficiency, and ease of installation. The self-adhering layer eliminates the need for adhesives, which can save time and money on installation. TPO roofing is also known for its durability, which can lead to a longer lifespan and lower maintenance costs.</p>
+              <p><b>What sizes are available for TPO Plus Roof Membranes?</b> TPO Plus Roof Membranes are available in a range of sizes to meet the needs of different roofing applications. At Roofing4US, we carry TPO Plus Roof Membranes in a variety of sizes to suit your specific project requirements.</p>
+              <p><b>Can TPO Plus Roof Membranes be installed in cold weather</b> Yes, TPO Plus Roof Membranes can be installed in cold weather conditions. The self-adhering layer allows for easier installation in colder temperatures, which can be beneficial for projects that need to be completed during the winter months.</p>
+              <p><b>How long do TPO Plus Roof Membranes last?</b> The lifespan of TPO Plus Roof Membranes can vary depending on factors such as weather conditions, maintenance, and installation quality. However, TPO roofing is known for its durability and can last for up to 30 years or more with proper installation and maintenance.</p>
+              <p><b>Are TPO Plus Roof Membranes environmentally friendly</b> Yes, TPO Plus Roof Membranes are environmentally friendly. TPO roofing is known for its energy efficiency, which can help to reduce heating and cooling costs for buildings. Additionally, TPO roofing is 100% recyclable at the end of its life, which can help to reduce waste in landfills.</p>
+              </div>
+        </div>
         `,
         class: `new_description`
       },
@@ -1195,22 +1292,37 @@ export const translations = {
       competitorsTitle: `<img src="${git}roofing4us_logo_new.png" alt="logo Roofing4US">`,
       benefits: [
         {
-          benefitName: 'Reliable Delivery and Communication',
+          benefitName: 'Wide selection of quality <br/> products',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         },
         {
-          benefitName: 'Customer-Centric Returns and Cancellations',
+          benefitName: 'Competitive pricing',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         },
         {
-          benefitName: 'High-Quality Products',
+          benefitName: 'Expert advice and support',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         },
         {
-          benefitName: 'Transparent Pricing and Support',
+          benefitName: 'Bespoke solutions for contractors',
+          myDescr: svg.cancelIcon,
+          competitorsDescr: svg.checkIcon
+        },
+        {
+          benefitName: 'Fast nationwide delivery',
+          myDescr: svg.cancelIcon,
+          competitorsDescr: svg.checkIcon
+        },
+        {
+          benefitName: 'Knowledgeable staff and customer support',
+          myDescr: svg.cancelIcon,
+          competitorsDescr: svg.checkIcon
+        },
+        {
+          benefitName: 'Seamless online shopping <br/> experience',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         }
@@ -1253,36 +1365,36 @@ export const translations = {
   },
   '/products/landmark-shingles-all-colors': {
     sideSliderImg: [
-      '<img src="//roofing4us.com/cdn/shop/products/308747-LM-AtlanticBlue_1024x1024@2x.jpg?v=1662157097" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/products/308747-LM-Birchwood_1024x1024@2x.jpg?v=1599568308" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/products/308747-LM-BlackWalnut_1024x1024@2x.jpg?v=1599568318" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/products/308747-LM-BurntSienna_1024x1024@2x.jpg?v=1662157080" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/products/308747-LM-CharcoalBlack_1024x1024@2x.jpg?v=1599568334" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/products/308747-LM-CobblestoneGray_1024x1024@2x.jpg?v=1599568340" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/products/308747-LM-CottageRed_1024x1024@2x.jpg?v=1662156978" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/products/308747-LM-Driftwood_1024x1024@2x.jpg?v=1599568357" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/products/308747-LM-GeorgetownGray_1024x1024@2x.jpg?v=1599568365" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/products/308747-LM-HeatherBlend_1024x1024@2x.jpg?v=1662156959" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/products/308747-LM-HunterGreen_1024x1024@2x.jpg?v=1599568382" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/products/308747-LM-MaxDefGeorgetownGray_1024x1024@2x.jpg?v=1599568393" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/products/308747-LM-MaxDefMoireBlack_1024x1024@2x.jpg?v=1599568402" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/products/308747-LM-MaxDefWeatheredWood_1024x1024@2x.jpg?v=1662156852" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/products/308747-LM-MissionBrown_1024x1024@2x.jpg?v=1662156847" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/products/308747-LM-MoireBlack_1024x1024@2x.jpg?v=1599568434" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/products/308747-LM-MojaveTan_1024x1024@2x.jpg?v=1662156835" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/products/308747-LM-PaintedDesert_1024x1024@2x.jpg?v=1662156828" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/products/308747-LM-Pewter_1024x1024@2x.jpg?v=1599568455" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/products/308747-LM-Pewterwood_1024x1024@2x.jpg?v=1599568462" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/products/308747-LM-ResawnShake_1024x1024@2x.jpg?v=1662156725" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/products/308747-LM-SilverBirch_1024x1024@2x.jpg?v=1599568474" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/products/308747-LM-ThunderStormGray_1024x1024@2x.jpg?v=1599568481" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/products/308747-LM-WeatheredWood_1024x1024@2x.jpg?v=1599568487" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/products/LM-CinderBlack_1200x1400_4118a0c0-88de-4913-83b8-b35e73cb4587_1024x1024@2x.jpg?v=1662156617" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/products/LM-GraniteGray_1200x460_03d87295-79a8-4a1f-aafc-10cd0f2aa9af_1024x1024@2x.jpg?v=1599568507" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/products/LM-MountainTimber_1200x460_855bca38-10a9-46f4-bbbc-520b6e9bc2ff_1024x1024@2x.jpg?v=1599568516" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/products/LM-SunriseCedar_1200x460_af546e8e-9707-4076-823b-1a56e103f110_1024x1024@2x.jpg?v=1662156601" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/products/308747-LM-ColonialSlate_1024x1024@2x.jpg?v=1599568534" alt="photo product roofing4us" />',
-      '<img src="//roofing4us.com/cdn/shop/files/CertainteedLandmark_1024x1024@2x.png?v=1683013172" alt="photo product roofing4us" />'
+      // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-AtlanticBlue_1024x1024@2x.jpg?v=1662157097" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-Birchwood_1024x1024@2x.jpg?v=1599568308" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-BlackWalnut_1024x1024@2x.jpg?v=1599568318" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-BurntSienna_1024x1024@2x.jpg?v=1662157080" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-CharcoalBlack_1024x1024@2x.jpg?v=1599568334" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-CobblestoneGray_1024x1024@2x.jpg?v=1599568340" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-CottageRed_1024x1024@2x.jpg?v=1662156978" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-Driftwood_1024x1024@2x.jpg?v=1599568357" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-GeorgetownGray_1024x1024@2x.jpg?v=1599568365" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-HeatherBlend_1024x1024@2x.jpg?v=1662156959" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-HunterGreen_1024x1024@2x.jpg?v=1599568382" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-MaxDefGeorgetownGray_1024x1024@2x.jpg?v=1599568393" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-MaxDefMoireBlack_1024x1024@2x.jpg?v=1599568402" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-MaxDefWeatheredWood_1024x1024@2x.jpg?v=1662156852" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-MissionBrown_1024x1024@2x.jpg?v=1662156847" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-MoireBlack_1024x1024@2x.jpg?v=1599568434" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-MojaveTan_1024x1024@2x.jpg?v=1662156835" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-PaintedDesert_1024x1024@2x.jpg?v=1662156828" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-Pewter_1024x1024@2x.jpg?v=1599568455" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-Pewterwood_1024x1024@2x.jpg?v=1599568462" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-ResawnShake_1024x1024@2x.jpg?v=1662156725" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-SilverBirch_1024x1024@2x.jpg?v=1599568474" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-ThunderStormGray_1024x1024@2x.jpg?v=1599568481" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-WeatheredWood_1024x1024@2x.jpg?v=1599568487" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/products/LM-CinderBlack_1200x1400_4118a0c0-88de-4913-83b8-b35e73cb4587_1024x1024@2x.jpg?v=1662156617" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/products/LM-GraniteGray_1200x460_03d87295-79a8-4a1f-aafc-10cd0f2aa9af_1024x1024@2x.jpg?v=1599568507" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/products/LM-MountainTimber_1200x460_855bca38-10a9-46f4-bbbc-520b6e9bc2ff_1024x1024@2x.jpg?v=1599568516" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/products/LM-SunriseCedar_1200x460_af546e8e-9707-4076-823b-1a56e103f110_1024x1024@2x.jpg?v=1662156601" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/products/308747-LM-ColonialSlate_1024x1024@2x.jpg?v=1599568534" alt="photo product roofing4us" />',
+      // '<img src="//roofing4us.com/cdn/shop/files/CertainteedLandmark_1024x1024@2x.png?v=1683013172" alt="photo product roofing4us" />'
     ],
     additionalImg: [],
     tooltipTxt: `While the estimated delivery time is 10-12 working days, we often ship faster! Place your order today and we'll do our best to get it to you sooner. If the timeline doesn’t work for you, no worries – you can cancel your order anytime before it ships.`,
@@ -1373,6 +1485,31 @@ export const translations = {
           <p>Installing Landmark shingles correctly is crucial for the warranty and performance of your roof. CertainTeed provides comprehensive installation instructions, available in both English and Spanish, to ensure proper installation.</p>
         </div>
         <div class="note_txt">${svg.noteIcon} All Colors May Not Be Available In Your Location At Time Of Purchase</div>
+        <div class="bullet_wrapper">
+          <p><b>Browse Other Shingle Products:</b></p>
+          <div class="txt_wrapper">
+            <p><b class="underline_txt">Heritage Vintage Laminated Asphalt Shingles: </b>These shingles offer a vintage look and provide exceptional durability, featuring a unique granule mix and shadowtone blend for a striking appearance.</p>
+            <p><b class="underline_txt">Heritage IR Laminated Asphalt Shingles:</b> Designed to provide enhanced impact resistance, these shingles are an excellent choice for homes in hail-prone areas.</p>
+            <p><b class="underline_txt">Heritage Woodgate Laminated Asphalt Shingles:</b> With a wider design and a rustic, wood shake-like appearance, these shingles add a touch of charm to any home.</p>
+            <p><b class="underline_txt">Elite Glass-Seal 3-Tab Shingles:</b> A classic choice, these 3-tab shingles offer reliable protection and a wide range of color options.</p>
+            <p><b class="underline_txt">Solaris Hip & Ridge Shingle:</b> Designed to complement Solaris shingles, these hip and ridge shingles provide additional protection and a consistent appearance across the entire roof.</p>
+            <p><b class="underline_txt">Heritage Premium Laminated Asphalt Shingles:</b> Offering an upgrade from standard Heritage shingles, the Premium line provides additional durability and an enhanced aesthetic.</p>
+            <p><b class="underline_txt">CertainTeed XT 25 3-Tab Shingles:</b> A popular 3-tab shingle option from CertainTeed, these shingles provide long-lasting protection with a variety of color choices.</p>
+            <p><b class="underline_txt">Heritage Laminated Asphalt Shingles:</b> A versatile option with an attractive dimensional appearance, these laminated shingles offer exceptional performance and style.</p>
+            <p><b class="underline_txt">Tamko Heritage Hip & Ridge: </b>These hip and ridge shingles are designed to match and complement Tamko Heritage shingles, ensuring a cohesive look across your entire roof.</p>
+          </div>
+        </div>
+        <div class="bullet_wrapper">
+          <p><b>Frequently Asked Questions:</b></p>
+          <div class="txt_wrapper">
+            <p><b>Are Landmark shingles algae-resistant?</b>  Landmark offers algae-resistant (AR) shingles that help protect against dark or black discoloration, sometimes called staining or streaking, caused by blue-green algae. AR shingles are not available in all regions.</p>
+            <p><b>What is the minimum roof slope required for Landmark shingles? </b>Landmark shingles should be used on roofs with slopes greater than 2" per foot. Low-slope applications (2:12 to < 4:12) require additional underlayment.</p>
+            <p><b>Are Landmark shingles fire-resistant?</b> Landmark shingles have a Class A fire-resistance rating, which is the highest rating available.</p>
+            <p><b>Are Landmark shingles approved for use in high-wind regions?</b> Landmark shingles meet TDI Windstorm Requirements and have ASTM D3161 Class F Wind Resistance and ASTM D7158 Class H Wind Resistance certifications.</p>
+            <p><b>Can I install Landmark shingles over existing shingles? </b>While it is possible to install Landmark shingles over existing shingles, it is generally not recommended. Installing new shingles over old ones can lead to improper sealing, reduced wind resistance, and shortened lifespan. Always consult a professional roofing contractor and local building codes before deciding to install new shingles over existing ones.</p>
+            <p><b>Are Landmark shingles environmentally friendly? </b>CertainTeed is committed to sustainability and offers various environmentally friendly roofing products. Landmark shingles are made with a fiberglass mat base, which is more sustainable and requires less energy to produce than organic mat-based shingles. Additionally, CertainTeed operates a shingle recycling program to help keep old shingles out of landfills.</p>
+          </div>
+        </div>
         `,
         class: `new_description`
       },
@@ -1404,22 +1541,37 @@ export const translations = {
       competitorsTitle: `<img src="${git}roofing4us_logo_new.png" alt="logo Roofing4US">`,
       benefits: [
         {
-          benefitName: 'Reliable Delivery and Communication',
+          benefitName: 'Wide selection of quality <br/> products',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         },
         {
-          benefitName: 'Customer-Centric Returns and Cancellations',
+          benefitName: 'Competitive pricing',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         },
         {
-          benefitName: 'High-Quality Products',
+          benefitName: 'Expert advice and support',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         },
         {
-          benefitName: 'Transparent Pricing and Support',
+          benefitName: 'Bespoke solutions for contractors',
+          myDescr: svg.cancelIcon,
+          competitorsDescr: svg.checkIcon
+        },
+        {
+          benefitName: 'Fast nationwide delivery',
+          myDescr: svg.cancelIcon,
+          competitorsDescr: svg.checkIcon
+        },
+        {
+          benefitName: 'Knowledgeable staff and customer support',
+          myDescr: svg.cancelIcon,
+          competitorsDescr: svg.checkIcon
+        },
+        {
+          benefitName: 'Seamless online shopping <br/> experience',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         }
@@ -1477,7 +1629,7 @@ export const translations = {
       }
     ],
     anchorMenuTxt: ['Description', 'Technical Specs', 'Datasheets', 'Delivery Information', 'Reviews', 'FAQ'],
-    boughtSoFarTxt: '2K+',
+    boughtSoFarTxt: '3K+',
     newProductSalesPointsTxt: [
       'Shipping Protection for Peace of Mind',
       'Fast Processing & Delivery',
@@ -1565,6 +1717,15 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
         </div>
         <p><b>Rmax Thermasheath-3 Polyiso Rigid Foam Insulation Board:</b> This product is a polyiso insulation board that can be used in walls, roofs, and other applications. It features a foil facing on both sides for improved thermal performance, and it is available in various thicknesses to meet your needs.</p>
         <p><b>Rmax Durasheath-3 Insulation Board:</b> This product is a polyiso insulation board that is designed for use in walls and roofs. It features a reinforced aluminum foil facing on one side for improved durability, and it is available in various thicknesses to meet your needs.</p>
+        <div class="bullet_wrapper">
+          <p><b>Frequently Asked Questions:</b></p>
+          <div class="txt_wrapper">
+            <p><b>What is sheathing?</b> Sheathing is a layer of material, typically made of wood, gypsum, or foam, that is used to cover the exterior of a building before siding is installed. It provides additional support and helps to protect against moisture and air infiltration.</p>
+            <p><b>What are the benefits of using sheathing?</b> Sheathing provides several benefits, including added structural support, improved energy efficiency, and protection against moisture and air infiltration. It can also improve the overall appearance of the building.</p>
+            <p><b>How is sheathing installed? </b>Sheathing is typically installed over the studs of a building, and is fastened in place using nails or screws. Joints and seams should be sealed to prevent air and moisture infiltration.</p>
+            <p><b>Can sheathing be used for interior walls?</b> Sheathing is typically used for exterior walls, but can also be used for interior walls in some cases. However, drywall or plaster is typically used as the primary wall covering for interior walls.</p>
+          </div>
+        </div>
         `,
         class: `new_description`
       },
@@ -1596,22 +1757,37 @@ Overall, the Dow Thermax Sheathing 4' x 8' Polyiso is an outstanding product tha
       competitorsTitle: `<img src="${git}roofing4us_logo_new.png" alt="logo Roofing4US">`,
       benefits: [
         {
-          benefitName: 'Reliable Delivery and Communication',
+          benefitName: 'Wide selection of quality <br/> products',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         },
         {
-          benefitName: 'Customer-Centric Returns and Cancellations',
+          benefitName: 'Competitive pricing',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         },
         {
-          benefitName: 'High-Quality Products',
+          benefitName: 'Expert advice and support',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         },
         {
-          benefitName: 'Transparent Pricing and Support',
+          benefitName: 'Bespoke solutions for contractors',
+          myDescr: svg.cancelIcon,
+          competitorsDescr: svg.checkIcon
+        },
+        {
+          benefitName: 'Fast nationwide delivery',
+          myDescr: svg.cancelIcon,
+          competitorsDescr: svg.checkIcon
+        },
+        {
+          benefitName: 'Knowledgeable staff and customer support',
+          myDescr: svg.cancelIcon,
+          competitorsDescr: svg.checkIcon
+        },
+        {
+          benefitName: 'Seamless online shopping <br/> experience',
           myDescr: svg.cancelIcon,
           competitorsDescr: svg.checkIcon
         }

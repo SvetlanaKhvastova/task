@@ -58,10 +58,12 @@ class NewPdp {
     document.head.insertAdjacentHTML('beforeend', `<style class="crs_style">${mainStyle}</style>`)
 
     this.addIdGeneral()
+    this.changeTxtBannerCustomerReview()
     if (this.device === 'desktop') {
       this.renderkeySellingPointsBlock()
       this.renderAdditionalImgBlock()
     }
+    this.addClassOldSlider()
     this.renderBoughtSoFarBlock()
     this.renderTooltipBlock()
     this.initTooltipBlock()
@@ -110,8 +112,13 @@ class NewPdp {
     this.visibleHandler()
 
     this.addClassLabelColor()
+    this.addClassLabelLength()
+    this.addClassLabelThicknessFirst()
+    this.addClassLabelThickness()
+    this.addClassLabelSize()
 
-    this.trackYouTubePlay()
+    // this.trackYouTubePlay()
+    this.changeFisrtImgInMainSlider()
   }
 
   addIdGeneral() {
@@ -125,6 +132,16 @@ class NewPdp {
     })
   }
 
+  changeTxtBannerCustomerReview() {
+    waitForElement('.usp-banner-item a[href="/pages/customer-review"]').then(i => {
+      const banner = $el('.usp-banner-item a[href="/pages/customer-review"]') as HTMLElement
+
+      if (banner && banner.textContent && !banner.textContent.includes('198 Reviews')) {
+        banner.innerHTML = `<img src="https://cdn.shopify.com/s/files/1/0579/4807/8277/files/review-star-rating-Insulation4less-110-x-20.png?v=1637592262" alt="5 star rating">4.8  |  <span>198 Reviews</span>`
+      }
+    })
+  }
+
   renderkeySellingPointsBlock() {
     waitForElement('.product-image-section').then(i => {
       const сontainerElement = $el('.product-image-section') as HTMLElement
@@ -134,6 +151,16 @@ class NewPdp {
           'beforeend',
           keySellingPointsBlock(translations[this.pathName].keySellingPointsTxt)
         )
+      }
+    })
+  }
+
+  addClassOldSlider() {
+    waitForElement('div[data-thumbnail-slider]').then(i => {
+      if (window.location.pathname.includes('/products/landmark-shingles-all-colors')) {
+        console.log(`>>>>>>>>>>>>>>>>>>>`)
+        const thumbnailSlider = $el('div[data-thumbnail-slider]') as HTMLElement
+        thumbnailSlider.classList.add('old_slider')
       }
     })
   }
@@ -327,7 +354,7 @@ class NewPdp {
             '.product-template__container > .product-section .detail_page_padding .product-atc-section'
           ) as HTMLElement
 
-          if (!$el('.video_block')) {
+          if (!$el('.video_block') && translations[this.pathName].videoLink.length > 0) {
             сontainerElement.insertAdjacentHTML('beforeend', videoBlock(translations[this.pathName].videoLink))
           }
         }
@@ -889,6 +916,55 @@ class NewPdp {
       if (label.textContent?.includes('Color')) {
         label.parentElement?.classList.add('label_color')
       }
+
+      if (window.location.pathname.includes('/products/landmark-shingles-all-colors')) {
+        label.closest('.product-form__controls-group')?.classList.add('label_parent')
+        label.parentElement?.classList.add('label_color_first')
+      }
+    })
+  }
+
+  addClassLabelLength() {
+    waitForElement('[for="SingleOptionSelector-0"]').then(i => {
+      const label = $el('[for="SingleOptionSelector-0"]') as HTMLElement
+
+      if (label.textContent?.includes('Length')) {
+        label.parentElement?.classList.add('label_length')
+      }
+    })
+  }
+
+  addClassLabelSize() {
+    waitForElement('[for="SingleOptionSelector-0"]').then(i => {
+      const label = $el('[for="SingleOptionSelector-0"]') as HTMLElement
+
+      if (label.textContent?.includes('Size')) {
+        label.parentElement?.classList.add('label_size')
+      }
+    })
+  }
+
+  addClassLabelThicknessFirst() {
+    waitForElement('[for="SingleOptionSelector-0"]').then(i => {
+      const label = $el('[for="SingleOptionSelector-0"]') as HTMLElement
+
+      if (label.textContent?.includes('Thickness')) {
+        label.parentElement?.classList.add('label_thickness_first')
+      }
+
+      if (window.location.pathname.includes('/products/dow-thermax-sheathing-4-x-8-polyiso-all-sizes')) {
+        label.closest('.product-form__controls-group')?.classList.add('label_parent')
+      }
+    })
+  }
+
+  addClassLabelThickness() {
+    waitForElement('[for="SingleOptionSelector-1"]').then(i => {
+      const label = $el('[for="SingleOptionSelector-1"]') as HTMLElement
+
+      if (label.textContent?.includes('Thickness')) {
+        label.parentElement?.classList.add('label_thickness')
+      }
     })
   }
 
@@ -919,6 +995,129 @@ class NewPdp {
           pushData('exp_add_quality_element_01', 'video', 'click', 'Product specification')
         }
       }
+    })
+  }
+
+  changeFisrtImgInMainSlider() {
+    //
+    waitForElement('#FeaturedMedia-product-template-30758060785816-wrapper').then(i => {
+      const parentElem = $el('#FeaturedMedia-product-template-30758060785816-wrapper') as HTMLElement
+      const imgs = parentElem.querySelectorAll('img') as NodeListOf<HTMLImageElement>
+
+      imgs.forEach(img => {
+        if (
+          img.src !== `${git}polycarbonate_sheet_img_1.webp` &&
+          img.getAttribute('srcset') !== `${git}polycarbonate_sheet_img_1.webp`
+        ) {
+          img.src = `${git}polycarbonate_sheet_img_1.webp`
+          img.setAttribute('srcset', `${git}polycarbonate_sheet_img_1.webp`)
+        }
+      })
+    })
+
+    waitForElement('#FeaturedMedia-product-template-30758060818584-wrapper').then(i => {
+      const parentElem = $el('#FeaturedMedia-product-template-30758060818584-wrapper') as HTMLElement
+      const imgs = parentElem.querySelectorAll('img') as NodeListOf<HTMLImageElement>
+
+      imgs.forEach(img => {
+        if (
+          img.src !== `${git}polycarbonate_sheet_img_5.webp` &&
+          img.getAttribute('srcset') !== `${git}polycarbonate_sheet_img_5.webp`
+        ) {
+          img.src = `${git}polycarbonate_sheet_img_5.webp`
+          img.setAttribute('srcset', `${git}polycarbonate_sheet_img_5.webp`)
+        }
+      })
+    })
+
+    waitForElement('#FeaturedMedia-product-template-30758062063768-wrapper').then(i => {
+      const parentElem = $el('#FeaturedMedia-product-template-30758062063768-wrapper') as HTMLElement
+      const imgs = parentElem.querySelectorAll('img') as NodeListOf<HTMLImageElement>
+
+      imgs.forEach(img => {
+        if (
+          img.src !== `${git}h_channel_polycarbonate_sheet_img_1.webp` &&
+          img.getAttribute('srcset') !== `${git}h_channel_polycarbonate_sheet_img_1.webp`
+        ) {
+          img.src = `${git}h_channel_polycarbonate_sheet_img_1.webp`
+          img.setAttribute('srcset', `${git}h_channel_polycarbonate_sheet_img_1.webp`)
+        }
+      })
+    })
+
+    waitForElement('#FeaturedMedia-product-template-30758061998232-wrapper').then(i => {
+      const parentElem = $el('#FeaturedMedia-product-template-30758061998232-wrapper') as HTMLElement
+      const imgs = parentElem.querySelectorAll('img') as NodeListOf<HTMLImageElement>
+
+      imgs.forEach(img => {
+        if (
+          img.src !== `${git}u_chanel_polycarbonate_sheet_img_1.webp` &&
+          img.getAttribute('srcset') !== `${git}u_chanel_polycarbonate_sheet_img_1.webp`
+        ) {
+          img.src = `${git}u_chanel_polycarbonate_sheet_img_1.webp`
+          img.setAttribute('srcset', `${git}u_chanel_polycarbonate_sheet_img_1.webp`)
+        }
+      })
+    })
+
+    waitForElement('#FeaturedMedia-product-template-37519802138776-wrapper').then(i => {
+      const parentElem = $el('#FeaturedMedia-product-template-37519802138776-wrapper') as HTMLElement
+      const imgs = parentElem.querySelectorAll('img') as NodeListOf<HTMLImageElement>
+
+      imgs.forEach(img => {
+        if (
+          img.src !== `${git}Roofing Shovel_img_1.webp` &&
+          img.getAttribute('srcset') !== `${git}Roofing Shovel_img_1.webp`
+        ) {
+          img.src = `${git}Roofing Shovel_img_1.webp`
+          img.setAttribute('srcset', `${git}Roofing Shovel_img_1.webp`)
+        }
+      })
+    })
+
+    waitForElement('#FeaturedMedia-product-template-37457632723096-wrapper').then(i => {
+      const parentElem = $el('#FeaturedMedia-product-template-37457632723096-wrapper') as HTMLElement
+      const imgs = parentElem.querySelectorAll('img') as NodeListOf<HTMLImageElement>
+
+      imgs.forEach(img => {
+        if (
+          img.src !== `${git}roofing_knife_img_1.webp` &&
+          img.getAttribute('srcset') !== `${git}roofing_knife_img_1.webp`
+        ) {
+          img.src = `${git}roofing_knife_img_1.webp`
+          img.setAttribute('srcset', `${git}roofing_knife_img_1.webp`)
+        }
+      })
+    })
+
+    waitForElement('#FeaturedMedia-product-template-10901381841048-wrapper').then(i => {
+      const parentElem = $el('#FeaturedMedia-product-template-10901381841048-wrapper') as HTMLElement
+      const imgs = parentElem.querySelectorAll('img') as NodeListOf<HTMLImageElement>
+
+      imgs.forEach(img => {
+        if (
+          img.src !== `${git}roof_membranes_img_1.webp` &&
+          img.getAttribute('srcset') !== `${git}roof_membranes_img_1.webp`
+        ) {
+          img.src = `${git}roof_membranes_img_1.webp`
+          img.setAttribute('srcset', `${git}roof_membranes_img_1.webp`)
+        }
+      })
+    })
+
+    waitForElement('#FeaturedMedia-product-template-10918798885016-wrapper').then(i => {
+      const parentElem = $el('#FeaturedMedia-product-template-10918798885016-wrapper') as HTMLElement
+      const imgs = parentElem.querySelectorAll('img') as NodeListOf<HTMLImageElement>
+
+      imgs.forEach(img => {
+        if (
+          img.src !== `${git}dow_thermax_sheathing_img_1.webp` &&
+          img.getAttribute('srcset') !== `${git}dow_thermax_sheathing_img_1.webp`
+        ) {
+          img.src = `${git}dow_thermax_sheathing_img_1.webp`
+          img.setAttribute('srcset', `${git}dow_thermax_sheathing_img_1.webp`)
+        }
+      })
     })
   }
 }

@@ -1,0 +1,270 @@
+@media (min-width: 769px) {
+  .lp-tr--header-section {
+    padding: 40px 0 !important;
+  }
+  .lp-tr--hero-section {
+    padding-top: 0 !important;
+  }
+  .lp-tr--hero-section .lp-tr--main-title,
+  .lp-tr--hero-section .lp-tr--hero-lists {
+    display: none !important;
+  }
+  .lp-tr--hero-section .lp-tr--btn {
+    margin: 0 auto !important;
+  }
+  .lp-tr--hero-section .lp-tr--btn a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 428px !important;
+    height: 66px;
+    color: #000;
+    text-align: center;
+    font-family: "DINEngschrift LT";
+    font-size: 32px !important;
+    font-weight: 400;
+    line-height: 40px;
+    text-transform: uppercase;
+    border-radius: 50px;
+    background: #ffa311;
+    box-shadow: none;
+  }
+}
+@media (max-width: 768px) {
+  .lp-tr--hero-section {
+    padding-top: 16px !important;
+  }
+  .lp-tr--hero-section > .container {
+    padding: 0 14px !important;
+  }
+  .lp-tr--hero-section > .container > .row {
+    margin: 0;
+  }
+  .lp-tr--hero-section > .container > .row > .col-12 {
+    margin: 0;
+    padding: 0;
+  }
+  .lp-tr--hero-section .lp-tr--main-title,
+  .lp-tr--hero-section .lp-tr--hero-lists {
+    display: none !important;
+  }
+  .lp-tr--hero-section .lp-tr--btn .lp-tr--kids-tick-mb-img {
+    max-width: 265px;
+    margin-bottom: -59px;
+  }
+  .lp-tr--hero-section .lp-tr--btn a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 311px !important;
+    color: #000;
+    height: 64px;
+    text-align: center;
+    font-family: "DINEngschrift LT";
+    font-size: 24px !important;
+    font-weight: 400;
+    line-height: 40px;
+    text-transform: uppercase;
+    border-radius: 100px;
+    background: #ffa311;
+    box-shadow: 0px 4px 15px 0px rgba(72, 67, 69, 0.51);
+  }
+  .lp-tr--hero-section .lp-tr--learn-more-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: #fff;
+    text-align: center;
+    font-family: "DINEngschrift LT";
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 28px;
+    text-transform: uppercase;
+    margin: 16px 0;
+  }
+  .lp-tr--hero-section .lp-tr--learn-more-btn img {
+    display: none !important;
+  }
+  .lp-tr--formula {
+    padding-top: 50px !important;
+  }
+  .lp-tr--formula > .container {
+    padding: 0 15px !important;
+  }
+  .lp-tr--formula > .container > .row {
+    margin: 0;
+  }
+  .lp-tr--formula > .container > .row > .col-md-6 {
+    margin: 0;
+    padding: 0;
+  }
+  .lp-tr--formula .lp-pet-zen--natural-box {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 12px;
+    margin-bottom: 15px;
+  }
+  .lp-tr--formula .lp-pet-zen--natural-box .lp-pet-zen--section-title {
+    color: #212529;
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    margin: 0;
+  }
+  .lp-tr--formula .lp-pet-zen--section-description {
+    color: #000;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: initial;
+    margin-bottom: 10px !important;
+  }
+  .lp-tr--formula .col-md-6:not(.lp-pet-zen--padding) {
+    max-width: 330px;
+    margin: -10px auto 0 !important;
+  }
+  .lp-tr--formula .col-md-6:not(.lp-pet-zen--padding) a.lp-tr--mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+    height: 69px;
+    color: #fff;
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    font-size: 21.188px;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    margin: 12px 0 0;
+  }
+}
+.main_benefits_block {
+  margin-bottom: 20px;
+}
+@media (min-width: 768px) {
+  .main_benefits_block {
+    margin-bottom: 24px;
+  }
+}
+.main_benefits_block .main_benefits_title {
+  color: #fff;
+  text-align: center;
+  font-family: "DINEngschrift LT";
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: 0.14px;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+}
+@media (min-width: 768px) {
+  .main_benefits_block .main_benefits_title {
+    font-size: 70px;
+    line-height: 82px;
+    letter-spacing: 0.35px;
+    margin: 0 auto 24px;
+  }
+}
+.main_benefits_block .main_benefits_list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+@media (min-width: 768px) {
+  .main_benefits_block .main_benefits_list {
+    max-width: 435px;
+    margin: 0 auto;
+    gap: 16px;
+  }
+}
+.main_benefits_block .main_benefits_list .main_benefits_item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+}
+.main_benefits_block .main_benefits_list .main_benefits_item svg {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+@media (min-width: 768px) {
+  .main_benefits_block .main_benefits_list .main_benefits_item svg {
+    width: 40px;
+    height: 40px;
+  }
+}
+.main_benefits_block .main_benefits_list .main_benefits_item p {
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: initial;
+  margin: 0;
+}
+@media (min-width: 768px) {
+  .main_benefits_block .main_benefits_list .main_benefits_item p {
+    font-size: 20px;
+    line-height: 30px;
+  }
+}
+.main_benefits_block .main_benefits_list .main_benefits_item p .under_line_accent {
+  text-decoration-line: underline;
+}
+
+.new_learn_more_btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  width: -moz-max-content;
+  width: max-content;
+  color: #fff;
+  font-family: "DINEngschrift LT";
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 28px;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin: 24px auto 0;
+}
+
+.new_get_zen_stickers_now {
+  display: flex;
+  max-width: 280px;
+  width: 100%;
+  height: 61px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  background: #ffa311;
+  color: #000;
+  font-family: "DINEngschrift LT";
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: 1px;
+  line-height: 40px;
+  text-transform: uppercase;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+header.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+header.hidden {
+  display: none;
+}/*# sourceMappingURL=main.css.map */

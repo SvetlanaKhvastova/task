@@ -577,11 +577,21 @@ script.async = false;
 document.head.appendChild(script);
 
 let script = document.createElement("script");
-let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/dropservicing/optin/optin_ver_b.js";
 script.async = false;
 document.head.appendChild(script);
 
+let script = document.createElement("script");
 script.src = "https://conversionratestore.github.io/projects/dropservicing/optin/optin_ver_c.js";
 script.async = false;
 document.head.appendChild(script);
+
+let script = document.createElement("script");
+script.src = "https://conversionratestore.github.io/projects/roofing4us/pdp_improvements.js";
+script.async = false;
+document.head.appendChild(script);
+
+let scriptCustom = document.createElement("script");
+scriptCustom.src = "https://conversionratestore.github.io/projects/buzzpatch/zenpatch/pet/top_of_the_lp_var_2.js";
+scriptCustom.async = false;
+document.head.appendChild(scriptCustom);
