@@ -119,6 +119,10 @@ class NewPdp {
 
     // this.trackYouTubePlay()
     this.changeFisrtImgInMainSlider()
+
+    if (this.device === 'mobile') {
+      this.toggleChatWidgetVisibility()
+    }
   }
 
   addIdGeneral() {
@@ -215,10 +219,23 @@ class NewPdp {
 
       сontainerElements.forEach(сontainerElement => {
         if (!$el('.tooltip_zone')) {
-          сontainerElement.insertAdjacentHTML('beforeend', tooltipBlock(translations[this.pathName].tooltipTxt))
+          console.log(сontainerElement.textContent?.trim(), `сontainerElement.textContent`)
+          const workingDays = this.extractWorkingDays(сontainerElement.textContent?.trim() || '')
+          console.log(workingDays, `workingDays`)
+          сontainerElement.insertAdjacentHTML(
+            'beforeend',
+            tooltipBlock(
+              `While the estimated delivery time is <span>${workingDays}</span>, we often ship faster! Place your order today and we'll do our best to get it to you sooner. If the timeline doesn’t work for you, no worries – you can cancel your order anytime before it ships.`
+            )
+          )
         }
       })
     })
+  }
+
+  extractWorkingDays(text: string): string {
+    const match = text.match(/Time (\d+-\d+ Working Days)/)
+    return match ? match[1] : ''
   }
 
   initTooltipBlock() {
@@ -565,10 +582,16 @@ class NewPdp {
 
   renderAnchorMenu() {
     waitForElement('#PageContainer').then(i => {
-      const сontainerElement = $el('#PageContainer') as HTMLElement
+      let сontainerElement = $el('#PageContainer') as HTMLElement
+      let placement = 'beforebegin' as InsertPosition
+
+      if (this.device === 'mobile') {
+        сontainerElement = $el('body') as HTMLElement
+        placement = 'afterbegin' as InsertPosition
+      }
 
       if (!$el('.anchor_menu')) {
-        сontainerElement.insertAdjacentHTML('beforebegin', anchorMenu(translations[this.pathName].anchorMenuTxt))
+        сontainerElement.insertAdjacentHTML(placement, anchorMenu(translations[this.pathName].anchorMenuTxt))
       }
     })
   }
@@ -708,17 +731,17 @@ class NewPdp {
 
         function handleVisibilityChange(entries: IntersectionObserverEntry[]) {
           entries.forEach(entry => {
-            if (entry.isIntersecting) {
+            if (!entry.isIntersecting) {
               if (!isStickyVisible) {
                 isStickyVisible = true
-                $el('body').classList.remove('sticky_block_visible')
-                stickyBlock.classList.remove('visible')
+                $el('body').classList.add('sticky_block_visible')
+                stickyBlock.classList.add('visible')
               }
             } else {
               if (isStickyVisible) {
                 isStickyVisible = false
-                $el('body').classList.add('sticky_block_visible')
-                stickyBlock.classList.add('visible')
+                $el('body').classList.remove('sticky_block_visible')
+                stickyBlock.classList.remove('visible')
               }
             }
           })
@@ -731,10 +754,11 @@ class NewPdp {
 
         observerSticky.observe(elemClose)
 
+        const initialRect = elemClose.getBoundingClientRect()
         handleVisibilityChange([
           {
             target: elemClose,
-            isIntersecting: elemClose.getBoundingClientRect().top < window.innerHeight
+            isIntersecting: initialRect.top >= 0 && initialRect.bottom <= window.innerHeight
           } as unknown as IntersectionObserverEntry
         ])
       })
@@ -1118,6 +1142,37 @@ class NewPdp {
           img.setAttribute('srcset', `${git}dow_thermax_sheathing_img_1.webp`)
         }
       })
+    })
+  }
+
+  toggleChatWidgetVisibility() {
+    waitForElement('#chat-widget-container').then(i => {
+      const chatWidget = $el('#chat-widget-container') as HTMLElement
+
+      const observer = new MutationObserver(mutations => {
+        mutations.forEach(mutation => {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+            const right = window.getComputedStyle(chatWidget).right
+            if (right === '0px') {
+              console.log(`right !!!!!!!!!!!!!!!!!`)
+              chatWidget.classList.add('visible')
+            } else {
+              console.log(`NON !!!!!!!!!!!!!!!!!`)
+              chatWidget.classList.remove('visible')
+            }
+          }
+        })
+      })
+
+      observer.observe(chatWidget, { attributes: true, attributeFilter: ['style'] })
+
+      // Инициализируем состояние при загрузке страницы
+      const initialRight = window.getComputedStyle(chatWidget).right
+      if (initialRight === '0px') {
+        chatWidget.classList.add('visible')
+      } else {
+        chatWidget.classList.remove('visible')
+      }
     })
   }
 }

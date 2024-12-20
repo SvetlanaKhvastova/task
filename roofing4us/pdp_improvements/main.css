@@ -129,7 +129,10 @@
 }
 @media (max-width: 768px) {
   .sticky_block_visible #chat-widget-container {
-    bottom: 65px !important;
+    bottom: 70px !important;
+  }
+  .sticky_block_visible #chat-widget-container.visible {
+    bottom: 0 !important;
   }
 }
 
@@ -441,6 +444,9 @@
 .product-template__container > .product-section .detail_page_padding .product-page-sku .tippy-content {
   padding: 12px 12px 14px 12px;
 }
+.product-template__container > .product-section .detail_page_padding .product-page-sku .tippy-content span {
+  text-transform: lowercase;
+}
 .product-template__container > .product-section .detail_page_padding .product-page-sku .tippy-arrow {
   color: #8097b3;
 }
@@ -727,7 +733,7 @@
 }
 @media (max-width: 768px) {
   .anchor_menu {
-    position: sticky;
+    position: fixed;
     opacity: 0;
     display: none;
     width: 100%;
@@ -748,6 +754,7 @@
 @media (max-width: 768px) {
   .anchor_menu.is_sticky {
     box-shadow: none;
+    position: fixed;
   }
 }
 .anchor_menu.is_sticky .anchor_menu_list {
@@ -1232,9 +1239,9 @@
 .product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_link p {
   color: #101010;
   font-family: "Poppins", sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
-  line-height: 22px;
+  line-height: 24px;
   margin: 0;
 }
 @media (max-width: 768px) {
@@ -1256,9 +1263,9 @@
 .product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div p {
   color: #101010;
   font-family: "Poppins", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 22px;
   margin: 0;
 }
 .product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > .bullet_wrapper {
@@ -1311,9 +1318,9 @@
   padding: 8px 12px;
   color: #101010;
   font-family: "Poppins", sans-serif;
-  font-size: 13.5px;
+  font-size: 14px;
   font-weight: 500;
-  line-height: 20.25px;
+  line-height: 22px;
 }
 .product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div > .note_txt svg {
   width: 25px;
@@ -1332,9 +1339,9 @@
 .product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div .tabcontent > div {
   color: #101010;
   font-family: "Poppins", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 22px;
 }
 .product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div .tabcontent .rate_list {
   text-transform: initial;
@@ -1344,7 +1351,7 @@
   text-transform: initial;
 }
 .product_details_block .product_details_accordion .product_details_accordion_block .product_details_accordion_lists > div .tabcontent .general-delivery-info a {
-  display: block;
+  display: inline-block;
   color: #e0162b;
   font-weight: 600;
   text-transform: capitalize;
@@ -1729,6 +1736,7 @@
     background: #fff;
     box-shadow: 0px -2px 8px 0px rgba(0, 0, 0, 0.08);
     border: none;
+    z-index: 111111111;
   }
 }
 .sticky_block.visible {
