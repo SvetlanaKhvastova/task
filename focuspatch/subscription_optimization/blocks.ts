@@ -61,9 +61,9 @@ export const newBlockPackages = () => {
   `
 }
 
-export const newSubscriptionBlock = (isActiveOnePack: boolean = false, uniqueId: string): string => {
+export const newSubscriptionBlock = (isActiveOnePack: boolean = false, uniqueId: string, className = ''): string => {
   return /* HTML */ `
-    <div class="new_subscription" id="subscription${uniqueId}">
+    <div class="new_subscription ${className}" id="subscription${uniqueId}">
       <div class="new_subscription_block ${isActiveOnePack ? 'is_disabled' : ''}">
         <div class="plan_selection">
           <input
@@ -117,21 +117,21 @@ export const customDropdown = /* HTML */ `
   </div>
 `
 
-export const newPriceWrapper = (regPrice: string, salePrice: string, percentOff: string): string => {
+export const newPriceWrapper = /* HTML */ `
+  <div class="new_price_wrapper_package">
+    <div class="new_reg_price">$99.96</div>
+    <div class="new_final_price">$42.00</div>
+    <div class="percent_off">${svg.percentIcon}<span class="percent_off_txt">50%</span> OFF</div>
+  </div>
+`
+
+export const proceedToCheckoutBtn = (className = '') => {
   return /* HTML */ `
-    <div class="new_price_wrapper_package">
-      <div class="new_reg_price">${regPrice}</div>
-      <div class="new_final_price">${salePrice}</div>
-      <div class="percent_off">${svg.percentIcon} ${percentOff} OFF</div>
+    <div class="new_proceed_to_checkout_wrapper ${className}">
+      <div class="new_proceed_to_checkout_btn">PROCEED TO CHECKOUT</div>
     </div>
   `
 }
-
-export const proceedToCheckoutBtn = /* HTML */ `
-  <div class="new_proceed_to_checkout_wrapper">
-    <div class="new_proceed_to_checkout_btn">PROCEED TO CHECKOUT</div>
-  </div>
-`
 
 export const newGuaranteeBlockPackage = /* HTML */ `
   <div class="new_guarantee_block_package">
@@ -142,27 +142,74 @@ export const newGuaranteeBlockPackage = /* HTML */ `
 export const newBlockPackage = () => {
   return /* HTML */ `
     <div id="newBlockPackage">
-      ${newTitleBlockPackage} ${newFreeShippingBlockPackage} ${proceedToCheckoutBtn} ${newGuaranteeBlockPackage}
+      ${newTitleBlockPackage} ${newFreeShippingBlockPackage} ${newPriceWrapper} ${proceedToCheckoutBtn()}
+      ${newGuaranteeBlockPackage}
     </div>
   `
 }
 
+export const arrowBack = /* HTML */ ` <span data-btnBack class="arrow_back is_hidden">${svg.arrowLeftBackIcon}</span> `
+
 export const headerSlideInPackage = /* HTML */ `
   <div class="header_slide_in_package">
+    ${arrowBack}
     <h2>select <span class="active_title">package</span></h2>
     <p class="step_wrapper"><span class="active_step">1</span>/2</p>
   </div>
 `
+export const infoSelectedPackageSlideInPackage = (
+  regPrice: string,
+  salePrice: string,
+  imgSrc: string,
+  packPrice: string,
+  pcs: string
+): string => {
+  return /* HTML */ `
+    <div class="info_selected_package is_hidden">
+      <div class="details_wrapper">
+        <div class="details_img_wrapper">
+          <img src="${imgSrc}" alt="packs" />
+        </div>
+        <div class="details_quantity_wrapper">
+          <p class="details_price_for_pack">${packPrice}</p>
+          <p class="details_quantity">${pcs}</p>
+        </div>
+      </div>
+      <div class="price_wrapper">
+        <span class="new_reg_price">${regPrice}</span>
+        <span class="new_sale_price">${salePrice}</span>
+      </div>
+    </div>
+  `
+}
+
+export const bodySlideInPackage = /* HTML */ `
+  <div class="body_slide_in_package">
+    <div class="main_title_wrapper is_hidden">
+      <p class="main_title">SELECTED Package</p>
+      <div data-btnBack class="change_btn">Change</div>
+    </div>
+    ${infoSelectedPackageSlideInPackage('$99.96', '$42.00', `${git}lp-focuspatch-pack4.png`, '$10.50/pack', '4 Packs')}
+  </div>
+`
+
+export const nextStepBtnSlideInCart = /* HTML */ `
+  <div class="next_step_wrapper">
+    <div class="next_step_btn">Next step 1/2</div>
+  </div>
+`
 
 export const footerSlideInPackage = /* HTML */ `
-  <div class="footer_slide_in_package">${proceedToCheckoutBtn} ${newGuaranteeBlockPackage}</div>
+  <div class="footer_slide_in_package">
+    ${newPriceWrapper} ${nextStepBtnSlideInCart} ${proceedToCheckoutBtn('is_hidden')} ${newGuaranteeBlockPackage}
+  </div>
 `
 
 export const slideInPackage = /* HTML */ `
-  <div class="crs_slide_in">
+  <div class="crs_slide_in" data-closeform>
     <div class="crs_slide_in_container">
-      <div class="close">${svg.closeIconPopup}</div>
-      <div class="crs_slide_in_content">${headerSlideInPackage}${newBlockPackages()}${footerSlideInPackage}</div>
+      <div class="close" data-closeform>${svg.closeIconPopup}</div>
+      <div class="crs_slide_in_content">${headerSlideInPackage}${bodySlideInPackage} ${footerSlideInPackage}</div>
     </div>
   </div>
 `

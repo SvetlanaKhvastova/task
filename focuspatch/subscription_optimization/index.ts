@@ -62,16 +62,20 @@ class SubscriptionOptimization {
     document.head.insertAdjacentHTML('beforeend', `<style class="crs_style">${mainStyle}</style>`)
 
     this.renderNewTitleBlockPackage()
-    this.renderNewBlockPackages()
+    this.renderNewBlockPackagesOnLanding()
     this.changeActivePackHandler()
     this.renderNewSubscriptionBlock()
     this.changeSubscriptionPlanHandler()
     this.initTooltip()
     this.renderCustomDropdown()
-    this.renderNewPriceBlock()
 
-    this.renderSlideIn()
-    this.openSlideInCart()
+    this.renderSlideInPackage()
+    this.renderNewBlockPackagesInSlideInPackage()
+    this.renderNewSubscriptionBlockPackagesInSlideInPackage()
+    this.openSlideInPackage()
+    this.closeSlideInPackage()
+    this.changeNextStepSlideInPackage()
+    this.changePrevStepSlideInPackage()
   }
 
   renderNewTitleBlockPackage() {
@@ -84,11 +88,11 @@ class SubscriptionOptimization {
     })
   }
 
-  renderNewBlockPackages() {
+  renderNewBlockPackagesOnLanding() {
     waitForElement('#newBlockPackage .new_free_shipping_block_package').then(n => {
       const containerElement = $el('#newBlockPackage .new_free_shipping_block_package') as HTMLElement
 
-      if (!$el('.focuspatch_packs')) {
+      if (!$el('#newBlockPackage .focuspatch_packs')) {
         containerElement.insertAdjacentHTML('afterend', newBlockPackages())
       }
     })
@@ -100,25 +104,111 @@ class SubscriptionOptimization {
 
       packageItems.forEach(item => {
         item.addEventListener('click', () => {
+          const packId = item.getAttribute('data-id') || ''
+          const imgSrc = item.querySelector('.focuspatch_packs_image img')?.getAttribute('src') || ''
+          const packPrice = item.querySelector('.focuspatch_packs_price_per_pack')?.textContent || ''
+          const pcs = item.querySelector('.number_patches')?.textContent || ''
+          const regPrice = item.querySelector('.focuspatch_packs_reg_price')?.textContent || ''
+          const salePrice = item.querySelector('.focuspatch_packs_final_price')?.textContent || ''
+          const savePercent = item.querySelector('.save_banner_percent')?.textContent || ''
           console.log(item)
           packageItems.forEach(i => {
             i.classList.remove('active')
           })
 
           item.classList.add('active')
+          if (packId === '1') {
+            this.isActiveOnePack = true
+          } else {
+            this.isActiveOnePack = false
+          }
+
+          this.changeAllTextContent(imgSrc, packPrice, pcs, regPrice, salePrice, packId, savePercent)
+
+          if (packId) {
+            this.syncActivePackState(packId)
+          }
         })
       })
     })
   }
 
+  syncActivePackState(packId: string) {
+    const packageItems = $$el('.focuspatch_packs_item') as NodeListOf<HTMLElement>
+
+    packageItems.forEach(item => {
+      if (item.getAttribute('data-id') === packId) {
+        item.classList.add('active')
+      } else {
+        item.classList.remove('active')
+      }
+    })
+  }
+
+  changeAllTextContent(
+    imgSrc: string,
+    packPrice: string,
+    pcs: string,
+    regPrice: string,
+    salePrice: string,
+    activePackId: string,
+    savePercent: string
+  ) {
+    waitForElement('.crs_slide_in .info_selected_package').then(i => {
+      const detailsImg = $el('.info_selected_package .details_img_wrapper img') as HTMLImageElement
+      const pricePerPack = $el('.info_selected_package .details_price_for_pack') as HTMLElement
+      const numberPatches = $el('.info_selected_package .details_quantity') as HTMLElement
+      const regPriceTxt = $el('.info_selected_package .new_reg_price') as HTMLElement
+      const finalPriceTxt = $el('.info_selected_package .new_sale_price') as HTMLElement
+      const checkoutBtn = $el('.crs_slide_in .new_proceed_to_checkout_btn') as HTMLElement
+
+      if (detailsImg && pricePerPack && numberPatches && regPriceTxt && finalPriceTxt && checkoutBtn) {
+        detailsImg.src = imgSrc
+        pricePerPack.textContent = packPrice
+        numberPatches.textContent = pcs
+        regPriceTxt.textContent = regPrice
+        finalPriceTxt.textContent = salePrice
+
+        if (activePackId !== '1') {
+          checkoutBtn.textContent = 'Subscribe & Save'
+        } else {
+          checkoutBtn.textContent = 'PROCEED TO CHECKOUT'
+        }
+      }
+    })
+    waitForElement('.new_price_wrapper_package').then(i => {
+      const newPriceWrappersPackage = $$el('.new_price_wrapper_package') as NodeListOf<HTMLElement>
+
+      newPriceWrappersPackage.forEach(priceWrapper => {
+        const newRegPrice = priceWrapper.querySelector('.new_reg_price') as HTMLElement
+        const newSalePrice = priceWrapper.querySelector('.new_final_price') as HTMLElement
+        const percentOff = priceWrapper.querySelector('.percent_off_txt') as HTMLElement
+
+        console.log(newRegPrice, newSalePrice, percentOff, `priceWrapper`)
+
+        if (newRegPrice && newSalePrice && percentOff) {
+          newRegPrice.textContent = regPrice
+          newSalePrice.textContent = salePrice
+          percentOff.textContent = `${savePercent}`
+        }
+      })
+    })
+  }
+
   renderNewSubscriptionBlock() {
-    waitForElement('.focuspatch_packs').then(i => {
-      const сontainerElements = $$el('.focuspatch_packs') as NodeListOf<HTMLElement>
+    waitForElement('#newBlockPackage .focuspatch_packs').then(i => {
+      const сontainerElements = $$el('#newBlockPackage .focuspatch_packs') as NodeListOf<HTMLElement>
       let checkedIsActiveOnePack = false
       this.uniqueId = 'Landing'
 
       сontainerElements.forEach(container => {
-        if (!container.previousElementSibling.classList.contains('new_subscription')) {
+        if (
+          container.previousElementSibling &&
+          !container.previousElementSibling.classList.contains('new_subscription')
+        ) {
+          if (this.isActiveOnePack) {
+            checkedIsActiveOnePack = true
+          }
           container.insertAdjacentHTML('afterend', newSubscriptionBlock(checkedIsActiveOnePack, this.uniqueId))
         }
       })
@@ -126,7 +216,7 @@ class SubscriptionOptimization {
   }
 
   changeSubscriptionPlanHandler() {
-    waitForElement(`.new_subscription_block `).then(() => {
+    waitForElement(`.new_subscription_block`).then(() => {
       const newSubscriptionPlanLabels = $$el(`.plan_selection label`) as NodeListOf<HTMLElement>
 
       newSubscriptionPlanLabels.forEach(label => {
@@ -134,9 +224,13 @@ class SubscriptionOptimization {
         label.replaceWith(newLabel)
 
         newLabel.addEventListener('click', () => {
+          const value = newLabel.previousElementSibling?.getAttribute('value')
+          if (value) {
+            this.syncRadioButtons(value)
+          }
           console.log(newLabel.getAttribute('for'), `newLabel.getAttribute('for') `)
 
-          switch (newLabel?.previousElementSibling?.value) {
+          switch (value) {
             case `oneTime`:
               $$el('.plan_details')?.forEach(el => {
                 if (!el.classList.contains('one_time_checked')) {
@@ -158,8 +252,20 @@ class SubscriptionOptimization {
         })
       })
     })
+  }
 
-    console.log(`changeSubscriptionPlanHandler`)
+  syncRadioButtons(value: string) {
+    const radioButtons = $$el('.new_subscription input[type="radio"]') as NodeListOf<HTMLInputElement>
+
+    radioButtons.forEach(radio => {
+      if (radio.value === value) {
+        radio.checked = true
+        radio.closest('.new_subscription_block')?.classList.remove('is_disabled')
+      } else {
+        radio.checked = false
+        radio.closest('.new_subscription_block')?.classList.add('is_disabled')
+      }
+    })
   }
 
   initTooltip() {
@@ -203,7 +309,7 @@ class SubscriptionOptimization {
   }
 
   renderCustomDropdown() {
-    waitForElement('.new_subscription_block').then((i: HTMLElement) => {
+    waitForElement('.new_subscription_block').then(i => {
       const newSubscriptionBlock = $$el('.new_subscription_block') as NodeListOf<HTMLElement>
       newSubscriptionBlock.forEach(s => {
         if (!s.querySelector('.custom_dropdown')) {
@@ -213,17 +319,7 @@ class SubscriptionOptimization {
     })
   }
 
-  renderNewPriceBlock() {
-    waitForElement('#newBlockPackage .new_proceed_to_checkout_wrapper').then(n => {
-      const containerElement = $el('#newBlockPackage .new_proceed_to_checkout_wrapper') as HTMLElement
-
-      if (!$el('.proceed_to_checkout_btn')) {
-        containerElement.insertAdjacentHTML('beforebegin', newPriceWrapper('$99.96', '$36.60', '50%'))
-      }
-    })
-  }
-
-  renderSlideIn() {
+  renderSlideInPackage() {
     waitForElement('body').then(n => {
       const containerElement = $el('body') as HTMLElement
 
@@ -232,16 +328,148 @@ class SubscriptionOptimization {
       }
     })
   }
+  renderNewBlockPackagesInSlideInPackage() {
+    waitForElement('.crs_slide_in .body_slide_in_package').then(n => {
+      const containerElement = $el('.crs_slide_in .body_slide_in_package') as HTMLElement
 
-  openSlideInCart() {
+      if (!$el('.crs_slide_in .body_slide_in_package .focuspatch_packs')) {
+        containerElement.insertAdjacentHTML('afterbegin', newBlockPackages())
+      }
+    })
+  }
+  renderNewSubscriptionBlockPackagesInSlideInPackage() {
+    waitForElement('.crs_slide_in .new_price_wrapper_package').then(i => {
+      const сontainerElement = $el('.crs_slide_in .new_price_wrapper_package') as HTMLElement
+      let checkedIsActiveOnePack = false
+      this.uniqueId = 'SlideInPackage'
+
+      if (!$el('.crs_slide_in .new_subscription')) {
+        if (this.isActiveOnePack) {
+          checkedIsActiveOnePack = true
+        }
+        сontainerElement.insertAdjacentHTML(
+          'beforebegin',
+          newSubscriptionBlock(checkedIsActiveOnePack, this.uniqueId, 'is_hidden')
+        )
+      }
+    })
+  }
+  openSlideInPackage() {
     waitForElement('.crs_slide_in').then(n => {
       const btnsOpenSlideInCart = $$el('[href="#lpfpPackage"]') as NodeListOf<HTMLElement>
-      const slideInCart = $el('.crs_slide_in') as HTMLElement
 
       btnsOpenSlideInCart?.forEach(btn => {
         btn.addEventListener('click', e => {
           e.preventDefault()
-          slideInCart.classList.add('active')
+          this.openSlideInPackageHandler()
+        })
+      })
+    })
+  }
+  closeSlideInPackage() {
+    waitForElement('[data-closeform]').then(n => {
+      const btnsCloseSlideInCart = $$el('[data-closeform]') as NodeListOf<HTMLElement>
+
+      btnsCloseSlideInCart.forEach(btn => {
+        btn.addEventListener('click', e => {
+          if ((e.target as Element).matches('.crs_slide_in') || (e.currentTarget as Element).matches('.close')) {
+            console.log(`close`)
+            this.closeSlideInPackageHandler()
+          }
+        })
+      })
+    })
+  }
+  openSlideInPackageHandler() {
+    const slideInCart = $el('.crs_slide_in') as HTMLElement
+    const body = $el('body') as HTMLElement
+
+    body.style.overflow = 'hidden'
+    slideInCart.classList.add('active')
+  }
+  closeSlideInPackageHandler() {
+    const slideInCart = $el('.crs_slide_in') as HTMLElement
+    const body = $el('body') as HTMLElement
+
+    body.style.overflow = 'auto'
+    slideInCart.classList.remove('active')
+  }
+  changeNextStepSlideInPackage() {
+    waitForElement('.crs_slide_in .next_step_btn').then(i => {
+      const nextStepBtn = $el('.crs_slide_in .next_step_btn')
+      const packsSlideInPackage = $el('.crs_slide_in .focuspatch_packs') as HTMLElement
+      const arrowBack = $el('.crs_slide_in .arrow_back') as HTMLElement
+      const headerSlideInPackage = $el('.crs_slide_in .header_slide_in_package') as HTMLElement
+      const activeTitle = headerSlideInPackage?.querySelector('.active_title')
+      const activeStep = headerSlideInPackage?.querySelector('.active_step')
+      const mainTitleWrapper = $el('.crs_slide_in .main_title_wrapper') as HTMLElement
+      const newSubscription = $el('.crs_slide_in .new_subscription') as HTMLElement
+      const proceedToCheckoutBtn = $el('.crs_slide_in .new_proceed_to_checkout_wrapper') as HTMLElement
+      const infoSelectedPackageSlideInPackage = $el('.crs_slide_in .info_selected_package') as HTMLElement
+
+      nextStepBtn.addEventListener('click', e => {
+        e.currentTarget.closest('.next_step_wrapper').classList.add('is_hidden')
+        console.log(`nextStepBtn`)
+
+        if (
+          packsSlideInPackage &&
+          arrowBack &&
+          activeTitle &&
+          activeStep &&
+          mainTitleWrapper &&
+          newSubscription &&
+          proceedToCheckoutBtn &&
+          infoSelectedPackageSlideInPackage
+        ) {
+          packsSlideInPackage.classList.add('is_hidden')
+          arrowBack.classList.remove('is_hidden')
+          activeTitle.textContent = 'plan'
+          activeStep.textContent = '2'
+          mainTitleWrapper.classList.remove('is_hidden')
+          newSubscription.classList.remove('is_hidden')
+          proceedToCheckoutBtn.classList.remove('is_hidden')
+          infoSelectedPackageSlideInPackage.classList.remove('is_hidden')
+        }
+      })
+    })
+  }
+  changePrevStepSlideInPackage() {
+    waitForElement('.crs_slide_in [data-btnBack]').then(i => {
+      const btnsBack = $$el('.crs_slide_in [data-btnBack]') as NodeListOf<HTMLElement>
+      const packsSlideInPackage = $el('.crs_slide_in .focuspatch_packs') as HTMLElement
+      const arrowBack = $el('.crs_slide_in .arrow_back') as HTMLElement
+      const headerSlideInPackage = $el('.crs_slide_in .header_slide_in_package') as HTMLElement
+      const activeTitle = headerSlideInPackage?.querySelector('.active_title')
+      const activeStep = headerSlideInPackage?.querySelector('.active_step')
+      const mainTitleWrapper = $el('.crs_slide_in .main_title_wrapper') as HTMLElement
+      const nextStepWrapper = $el('.crs_slide_in .next_step_wrapper') as HTMLElement
+      const newSubscription = $el('.crs_slide_in .new_subscription') as HTMLElement
+      const proceedToCheckoutBtn = $el('.crs_slide_in .new_proceed_to_checkout_wrapper') as HTMLElement
+      const infoSelectedPackageSlideInPackage = $el('.crs_slide_in .info_selected_package') as HTMLElement
+
+      btnsBack.forEach(btn => {
+        btn.addEventListener('click', e => {
+          console.log(`btnsBack`)
+          if (
+            packsSlideInPackage &&
+            arrowBack &&
+            activeTitle &&
+            activeStep &&
+            mainTitleWrapper &&
+            nextStepWrapper &&
+            proceedToCheckoutBtn &&
+            infoSelectedPackageSlideInPackage
+          ) {
+            packsSlideInPackage.classList.remove('is_hidden')
+            arrowBack.classList.add('is_hidden')
+            activeTitle.textContent = 'package'
+            activeStep.textContent = '1'
+            mainTitleWrapper.classList.add('is_hidden')
+            nextStepWrapper.classList.remove('is_hidden')
+            newSubscription.classList.add('is_hidden')
+            proceedToCheckoutBtn.classList.add('is_hidden')
+            infoSelectedPackageSlideInPackage.classList.add('is_hidden')
+          }
         })
       })
     })
