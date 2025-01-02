@@ -132,11 +132,11 @@ export const packagesData = {
     {
       id: 4,
       packs: '4 Packs',
-      pricePerPack: `10.50`,
+      pricePerPack: ``,
       totalPatches: `96 Patches`,
-      regularPrice: `99.96`,
-      finalPrice: `42.00`,
-      savePercent: `58`,
+      regularPrice: ``,
+      finalPrice: ``,
+      savePercent: ``,
       image: 'lp-focuspatch-pack4.png',
       bestDeal: true,
       topSeller: false
@@ -144,11 +144,11 @@ export const packagesData = {
     {
       id: 3,
       packs: `3 Packs`,
-      pricePerPack: `12.00`,
+      pricePerPack: ``,
       totalPatches: `72 Patches`,
-      regularPrice: `74.97`,
-      finalPrice: `36.00`,
-      savePercent: `51`,
+      regularPrice: ``,
+      finalPrice: ``,
+      savePercent: ``,
       image: 'lp-focuspatch-pack3.png',
       bestDeal: false,
       topSeller: true
@@ -156,11 +156,11 @@ export const packagesData = {
     {
       id: 2,
       packs: '2 Packs',
-      pricePerPack: `13.50`,
+      pricePerPack: ``,
       totalPatches: `48 Patches`,
-      regularPrice: `49.98`,
-      finalPrice: `27.00`,
-      savePercent: `45`,
+      regularPrice: ``,
+      finalPrice: ``,
+      savePercent: ``,
       image: 'lp-focuspatch-pack2.png',
       bestDeal: false,
       topSeller: false
@@ -168,11 +168,11 @@ export const packagesData = {
     {
       id: 1,
       packs: '1 Pack',
-      pricePerPack: `14.99`,
+      pricePerPack: ``,
       totalPatches: `24 Patches`,
-      regularPrice: `29.99`,
-      finalPrice: `14.99`,
-      savePercent: `38`,
+      regularPrice: ``,
+      finalPrice: ``,
+      savePercent: ``,
       image: 'lp-focuspatch-pack1.png',
       bestDeal: false,
       topSeller: false

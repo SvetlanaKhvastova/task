@@ -61,6 +61,8 @@ class SubscriptionOptimization {
     )
     document.head.insertAdjacentHTML('beforeend', `<style class="crs_style">${mainStyle}</style>`)
 
+    this.initAllPricingForNewBlockPackages()
+    this.initActiveSubscriptionForAllPlans()
     this.renderNewTitleBlockPackage()
     this.renderNewBlockPackagesOnLanding()
     this.changeActivePackHandler()
@@ -68,6 +70,7 @@ class SubscriptionOptimization {
     this.changeSubscriptionPlanHandler()
     this.initTooltip()
     this.renderCustomDropdown()
+    this.addClickProceedToCheckoutBtns()
 
     this.renderSlideInPackage()
     this.renderNewBlockPackagesInSlideInPackage()
@@ -76,6 +79,109 @@ class SubscriptionOptimization {
     this.closeSlideInPackage()
     this.changeNextStepSlideInPackage()
     this.changePrevStepSlideInPackage()
+  }
+
+  initAllPricingForNewBlockPackages() {
+    waitForElement('.pricing_block_attr').then(i => {
+      const pricingBlocksAttr = $$el('.pricing_block_attr') as NodeListOf<HTMLElement>
+
+      pricingBlocksAttr.forEach(block => {
+        const cardBody = block.closest('.card-body')
+        const subscriptionDiscount = block.getAttribute('data-subscription-discount')
+        const subscriptionOldPrice = block.getAttribute('data-subscription-old-price')
+        const subscriptionFinalPrice = block.getAttribute('data-subscription-final-price')
+        const subscriptionPricePerPack = block.getAttribute('data-subscription-price-per-pack')
+        const noSubscriptionDiscount = block.getAttribute('data_no-subscription-discount')
+        const noSubscriptionOldPrice = block.getAttribute('data-no-subscription-old-price')
+        const noSubscriptionFinalPrice = block.getAttribute('data-no-subscription-final-price')
+        const noSubscriptionPricePerPack = block.getAttribute('data-no-subscription-price-per-pack')
+
+        waitForElement('.focuspatch_packs_item').then(i => {
+          const packs = $$el('.focuspatch_packs_item') as NodeListOf<HTMLElement>
+          packs.forEach(pack => {
+            const saveBannerPercent = pack.querySelector('.save_banner_percent') as HTMLElement
+            const focuspatchPricePerPack = pack.querySelector('.price_per_pack_txt') as HTMLElement
+            const focuspatchRegPrice = pack.querySelector('.reg_price_txt') as HTMLElement
+            const focuspatchFinalPrice = pack.querySelector('.final_price_txt') as HTMLElement
+            if (cardBody && cardBody.getAttribute('data-pack') === pack.getAttribute('data-id')) {
+              if (pack.getAttribute('data-id') === '1' || $el('[value="oneTime"]:checked')) {
+                saveBannerPercent.textContent = noSubscriptionDiscount
+                focuspatchRegPrice.textContent = noSubscriptionOldPrice
+                focuspatchFinalPrice.textContent = noSubscriptionFinalPrice
+                focuspatchPricePerPack.textContent = noSubscriptionPricePerPack
+              } else {
+                saveBannerPercent.textContent = subscriptionDiscount
+                focuspatchRegPrice.textContent = subscriptionOldPrice
+                focuspatchFinalPrice.textContent = subscriptionFinalPrice
+                focuspatchPricePerPack.textContent = subscriptionPricePerPack
+              }
+            }
+          })
+        })
+
+        waitForElement('.new_price_wrapper_package').then(i => {
+          const newPriceWrapperPackage = $$el('.new_price_wrapper_package') as NodeListOf<HTMLElement>
+          const activePack = $el('.focuspatch_packs_item.active') as HTMLElement
+
+          newPriceWrapperPackage.forEach(wrapper => {
+            const newRegPrice = wrapper.querySelector('.new_reg_price') as HTMLElement
+            const newFinalPrice = wrapper.querySelector('.new_final_price') as HTMLElement
+            const percentOffTxt = wrapper.querySelector('.percent_off_txt') as HTMLElement
+
+            if (cardBody && cardBody.getAttribute('data-pack') === activePack.getAttribute('data-id')) {
+              if (activePack.getAttribute('data-id') === '1' || $el('[value="oneTime"]:checked')) {
+                percentOffTxt.textContent = noSubscriptionDiscount
+                newRegPrice.textContent = noSubscriptionOldPrice
+                newFinalPrice.textContent = noSubscriptionFinalPrice
+              } else {
+                percentOffTxt.textContent = subscriptionDiscount
+                newRegPrice.textContent = subscriptionOldPrice
+                newFinalPrice.textContent = subscriptionFinalPrice
+              }
+            }
+          })
+        })
+
+        waitForElement('.info_selected_package').then(i => {
+          const infoSelectedPackages = $$el('.info_selected_package') as NodeListOf<HTMLElement>
+          const activePack = $el('.focuspatch_packs_item.active') as HTMLElement
+
+          infoSelectedPackages.forEach(infoSelectedPackage => {
+            const newRegPrice = infoSelectedPackage.querySelector('.new_reg_price') as HTMLElement
+            const newFinalPrice = infoSelectedPackage.querySelector('.new_sale_price') as HTMLElement
+            const newPicePerPack = infoSelectedPackage.querySelector('.details_price_for_pack') as HTMLElement
+            const newDetailsQuantity = infoSelectedPackage.querySelector('.details_quantity') as HTMLElement
+            const img = infoSelectedPackage.querySelector('.details_img_wrapper img') as HTMLImageElement
+
+            if (cardBody && cardBody.getAttribute('data-pack') === activePack.getAttribute('data-id')) {
+              img.src = activePack.querySelector('.focuspatch_packs_image img')?.getAttribute('src') || ''
+              newPicePerPack.textContent = `${noSubscriptionPricePerPack}/pack`
+              newDetailsQuantity.textContent = activePack.querySelector('.number_patches')?.textContent || ''
+
+              if (activePack.getAttribute('data-id') === '1' || $el('[value="oneTime"]:checked')) {
+                newRegPrice.textContent = noSubscriptionOldPrice
+                newFinalPrice.textContent = noSubscriptionFinalPrice
+              } else {
+                newRegPrice.textContent = subscriptionOldPrice
+                newFinalPrice.textContent = subscriptionFinalPrice
+              }
+            }
+          })
+        })
+      })
+    })
+  }
+
+  initActiveSubscriptionForAllPlans() {
+    waitForElement('.rtx-subscribe-label input').then(i => {
+      const inputsSubscribe = $$el('.rtx-subscribe-label input') as NodeListOf<HTMLInputElement>
+
+      inputsSubscribe.forEach(input => {
+        if (!input.checked) {
+          input.checked = true
+        }
+      })
+    })
   }
 
   renderNewTitleBlockPackage() {
@@ -117,10 +223,26 @@ class SubscriptionOptimization {
           })
 
           item.classList.add('active')
+
+          $$el('.custom_dropdown').forEach(i => {
+            i?.remove()
+          })
+
           if (packId === '1') {
+            $$el('[value="oneTime"]').forEach(i => {
+              if (!i.closest('.new_subscription_block')?.classList.contains('is_disabled')) {
+                i.nextElementSibling.click()
+              }
+            })
             this.isActiveOnePack = true
           } else {
+            $$el('[value="subscribeSave"]').forEach(i => {
+              if (i.closest('.new_subscription_block')?.classList.contains('is_disabled')) {
+                i.nextElementSibling.click()
+              }
+            })
             this.isActiveOnePack = false
+            this.renderCustomDropdown()
           }
 
           this.changeAllTextContent(imgSrc, packPrice, pcs, regPrice, salePrice, packId, savePercent)
@@ -160,20 +282,14 @@ class SubscriptionOptimization {
       const numberPatches = $el('.info_selected_package .details_quantity') as HTMLElement
       const regPriceTxt = $el('.info_selected_package .new_reg_price') as HTMLElement
       const finalPriceTxt = $el('.info_selected_package .new_sale_price') as HTMLElement
-      const checkoutBtn = $el('.crs_slide_in .new_proceed_to_checkout_btn') as HTMLElement
 
-      if (detailsImg && pricePerPack && numberPatches && regPriceTxt && finalPriceTxt && checkoutBtn) {
+      if (detailsImg && pricePerPack && numberPatches && regPriceTxt && finalPriceTxt) {
         detailsImg.src = imgSrc
         pricePerPack.textContent = packPrice
         numberPatches.textContent = pcs
         regPriceTxt.textContent = regPrice
         finalPriceTxt.textContent = salePrice
-
-        if (activePackId !== '1') {
-          checkoutBtn.textContent = 'Subscribe & Save'
-        } else {
-          checkoutBtn.textContent = 'PROCEED TO CHECKOUT'
-        }
+        this.changeTxtBtnsToBuyPacks(activePackId)
       }
     })
     waitForElement('.new_price_wrapper_package').then(i => {
@@ -184,12 +300,24 @@ class SubscriptionOptimization {
         const newSalePrice = priceWrapper.querySelector('.new_final_price') as HTMLElement
         const percentOff = priceWrapper.querySelector('.percent_off_txt') as HTMLElement
 
-        console.log(newRegPrice, newSalePrice, percentOff, `priceWrapper`)
-
         if (newRegPrice && newSalePrice && percentOff) {
           newRegPrice.textContent = regPrice
           newSalePrice.textContent = salePrice
           percentOff.textContent = `${savePercent}`
+        }
+      })
+    })
+  }
+
+  changeTxtBtnsToBuyPacks(param: string) {
+    waitForElement('.new_proceed_to_checkout_btn').then(i => {
+      const checkoutBtn = $$el('.new_proceed_to_checkout_btn') as NodeListOf<HTMLElement>
+
+      checkoutBtn.forEach(btn => {
+        if (param !== '1' && param !== 'oneTime') {
+          btn.textContent = 'Subscribe & Save'
+        } else {
+          btn.textContent = 'PROCEED TO CHECKOUT'
         }
       })
     })
@@ -227,8 +355,10 @@ class SubscriptionOptimization {
           const value = newLabel.previousElementSibling?.getAttribute('value')
           if (value) {
             this.syncRadioButtons(value)
+            this.changeTxtBtnsToBuyPacks(value)
           }
           console.log(newLabel.getAttribute('for'), `newLabel.getAttribute('for') `)
+          console.log(this.isActiveOnePack, `this.isActiveOnePack `)
 
           switch (value) {
             case `oneTime`:
@@ -237,7 +367,9 @@ class SubscriptionOptimization {
                   el.classList.add('one_time_checked')
                 }
               })
-
+              if (!$el('.focuspatch_packs_item.active[data-id="1"]')) {
+                this.initFalseSubscriptionForAllPlans()
+              }
               break
 
             case `subscribeSave`:
@@ -246,10 +378,29 @@ class SubscriptionOptimization {
                   el.classList.remove('one_time_checked')
                 }
               })
-
+              if (this.isActiveOnePack && $el('.focuspatch_packs_item.active[data-id="1"]')) {
+                $el('[data-id="2"]')?.click()
+                this.isActiveOnePack = false
+              }
+              this.initActiveSubscriptionForAllPlans()
               break
           }
+          if (!$el('.focuspatch_packs_item.active[data-id="1"]')) {
+            this.initAllPricingForNewBlockPackages()
+          }
         })
+      })
+    })
+  }
+
+  initFalseSubscriptionForAllPlans() {
+    waitForElement('.rtx-subscribe-label input').then(i => {
+      const inputsSubscribe = $$el('.rtx-subscribe-label input') as NodeListOf<HTMLInputElement>
+
+      inputsSubscribe.forEach(input => {
+        if (input.checked) {
+          input.checked = false
+        }
       })
     })
   }
@@ -311,10 +462,176 @@ class SubscriptionOptimization {
   renderCustomDropdown() {
     waitForElement('.new_subscription_block').then(i => {
       const newSubscriptionBlock = $$el('.new_subscription_block') as NodeListOf<HTMLElement>
+      const activePack = $el('.focuspatch_packs_item.active') as HTMLElement
+
       newSubscriptionBlock.forEach(s => {
         if (!s.querySelector('.custom_dropdown')) {
           s.insertAdjacentHTML('beforeend', customDropdown)
         }
+      })
+      this.renderCustomOptions(`[data-pack="${activePack.getAttribute('data-id')}"]`)
+    })
+  }
+
+  renderCustomOptions(subscriptionDropdownElem: string) {
+    waitForElement(`${subscriptionDropdownElem} .v-pack-select-frequency option`).then(i => {
+      waitForElement('.custom_dropdown').then(i => {
+        const subscriptionDropdown = $el(`${subscriptionDropdownElem} .v-pack-select-frequency`) as HTMLSelectElement
+        const subscriptionDropdownOption = $$el(
+          `${subscriptionDropdownElem} .v-pack-select-frequency option`
+        ) as NodeListOf<HTMLElement>
+        const customDropdowns = $$el('.dropdown_menu') as NodeListOf<HTMLElement>
+        const dropdownsToggle = $$el('.dropdown_toggle') as NodeListOf<HTMLElement>
+        subscriptionDropdownOption.forEach(opt => {
+          let selected = opt.getAttribute('selected') !== null ? 'selected' : ''
+          const value = opt.getAttribute('value')
+          let text = opt.textContent?.includes('Every')
+            ? `<b>Ship every:</b> <span class="text_transform">${opt.textContent?.split('Every ')[1]}</span>`
+            : opt.textContent
+
+          if (opt.textContent?.includes('1 Month')) {
+            text = `<b>Ship every:</b> <span class="text_transform">${opt.textContent?.split(
+              'Every '
+            )[1]}</span> <span class="most_common"> (most common)</span>`
+          }
+
+          if (subscriptionDropdown && subscriptionDropdown.value === value) {
+            dropdownsToggle.forEach(dropdownToggle => {
+              dropdownToggle.innerHTML = `${text}`
+              selected = 'selected'
+            })
+          }
+
+          customDropdowns.forEach(customDropdown => {
+            customDropdown.insertAdjacentHTML(
+              'beforeend',
+              `<div class="dropdown_item ${selected}" data-value="${value}">${text}</div>`
+            )
+          })
+        })
+        this.changeCustomDropdownHandler('.custom_dropdown', subscriptionDropdownElem)
+      })
+    })
+  }
+
+  changeCustomDropdownHandler(dropdownSelector: string, subscriptionDropdownElem: string) {
+    console.log(`changeCustomDropdownHandler`)
+    const dropdowns = $$el(dropdownSelector) as NodeListOf<HTMLElement>
+
+    dropdowns.forEach(dropdown => {
+      const dropdownToggle = dropdown.querySelector('.dropdown_toggle') as HTMLElement
+      const dropdownMenu = dropdown.querySelector('.dropdown_menu') as HTMLElement
+      const dropdownItems = dropdown.querySelectorAll('.dropdown_item') as NodeListOf<HTMLElement>
+      const subscriptionDropdownOptions = $$el(
+        `${subscriptionDropdownElem} .v-pack-select-frequency option`
+      ) as NodeListOf<HTMLElement>
+
+      dropdownToggle.addEventListener('click', () => {
+        dropdownMenu.classList.toggle('show')
+        this.adjustDropdownPosition(dropdownMenu)
+        dropdownToggle.classList.toggle('active')
+      })
+
+      dropdownItems.forEach(item => {
+        item.addEventListener('click', event => {
+          const target = event.currentTarget as HTMLElement
+          const value = target.getAttribute('data-value')
+
+          this.syncDropdowns(dropdownSelector, value)
+
+          dropdownItems.forEach(item => item.classList.remove('selected'))
+
+          target.classList.add('selected')
+          dropdownMenu.style.top = '100%'
+
+          dropdownToggle.innerHTML = target.innerHTML
+          dropdownMenu.classList.remove('show')
+          dropdownToggle.classList.remove('active')
+
+          subscriptionDropdownOptions.forEach(opt => {
+            if (opt.getAttribute('value') === value) {
+              if (opt.closest('select')) {
+                ;(opt.closest('select') as HTMLSelectElement).value = value
+              }
+            }
+          })
+        })
+      })
+
+      document.addEventListener('click', event => {
+        const target = event.target as HTMLElement
+        if (!dropdown.contains(target)) {
+          dropdownMenu.classList.remove('show')
+          dropdownToggle.classList.remove('active')
+          dropdownMenu.style.top = '100%'
+        }
+      })
+
+      let observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+              this.adjustDropdownPosition(dropdownMenu)
+            }
+          })
+        },
+        {
+          root: null,
+          threshold: 1.0
+        }
+      )
+
+      observer.observe(dropdownMenu)
+    })
+  }
+
+  adjustDropdownPosition(dropdownMenu: HTMLElement) {
+    const rect = dropdownMenu.getBoundingClientRect()
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight
+
+    if (rect.bottom > viewportHeight) {
+      dropdownMenu.style.top = `-${rect.height + 2}px`
+    } else {
+      dropdownMenu.style.top = '100%'
+    }
+  }
+
+  syncDropdowns(dropdownSelector: string, value: string) {
+    const dropdowns = $$el(dropdownSelector) as NodeListOf<HTMLElement>
+
+    dropdowns.forEach(dropdown => {
+      const dropdownToggle = dropdown.querySelector('.dropdown_toggle') as HTMLElement
+      const dropdownMenu = dropdown.querySelector('.dropdown_menu') as HTMLElement
+      const dropdownItems = dropdown.querySelectorAll('.dropdown_item') as NodeListOf<HTMLElement>
+
+      dropdownItems.forEach(item => {
+        if (item.getAttribute('data-value') === value) {
+          dropdownItems.forEach(item => item.classList.remove('selected'))
+          item.classList.add('selected')
+          dropdownToggle.innerHTML = item.innerHTML
+          dropdownMenu.classList.remove('show')
+          dropdownToggle.classList.remove('active')
+        }
+      })
+    })
+  }
+
+  addClickProceedToCheckoutBtns() {
+    waitForElement('.new_proceed_to_checkout_btn').then(i => {
+      const proceedToCheckoutBtns = $$el('.new_proceed_to_checkout_btn') as NodeListOf<HTMLElement>
+
+      proceedToCheckoutBtns.forEach(btn => {
+        btn.addEventListener('click', e => {
+          const activePack = $el('.focuspatch_packs_item.active') as HTMLElement
+          const btnsControl = $$el('.lp-fp--order-btn') as NodeListOf<HTMLElement>
+
+          btnsControl.forEach(i => {
+            if (i.closest('.card-body')?.getAttribute('data-pack') === activePack.getAttribute('data-id')) {
+              console.log(`proceedToCheckoutBtns`, activePack.getAttribute('data-id'))
+              i.click()
+            }
+          })
+        })
       })
     })
   }
@@ -449,7 +766,11 @@ class SubscriptionOptimization {
 
       btnsBack.forEach(btn => {
         btn.addEventListener('click', e => {
-          console.log(`btnsBack`)
+          if (e.currentTarget && (e.currentTarget as HTMLElement).classList.contains('change_btn')) {
+            console.log(`change_btn`)
+          } else {
+            console.log(`btnsBack`)
+          }
           if (
             packsSlideInPackage &&
             arrowBack &&

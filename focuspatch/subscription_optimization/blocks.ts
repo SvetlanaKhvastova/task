@@ -31,15 +31,17 @@ export const newBlockPackages = () => {
                     <img src="${git}${pack.image}" class="ls-is-cached lazyloaded" />
                   </div>
                   <div class="focuspatch_packs_info">
-                    <p class="focuspatch_packs_price_per_pack">$${pack.pricePerPack}/Pack</p>
+                    <p class="focuspatch_packs_price_per_pack">
+                      <span class="price_per_pack_txt">${pack.pricePerPack}</span>/Pack
+                    </p>
                     <p class="focuspatch_packs_pcs_wrapper">
                       ${pack.packs}
                       <span>|</span> <span class="number_patches">${pack.totalPatches}</span>
                     </p>
                     <div class="focuspatch_packs_reg_final_prices">
-                      <p class="focuspatch_packs_reg_price">$<span class="reg_price_txt">${pack.regularPrice}</span></p>
+                      <p class="focuspatch_packs_reg_price"><span class="reg_price_txt">${pack.regularPrice}</span></p>
                       <p class="focuspatch_packs_final_price">
-                        $<span class="final_price_txt">${pack.finalPrice}</span>
+                        <span class="final_price_txt">${pack.finalPrice}</span>
                       </p>
                     </div>
                   </div>
@@ -47,7 +49,7 @@ export const newBlockPackages = () => {
                 <div class="focuspatch_packs_banners">
                   <p class="save_banner">
                     Save
-                    <span class="save_banner_percent">${pack.savePercent}%</span>
+                    <span class="save_banner_percent">${pack.savePercent}</span>
                   </p>
                   ${pack.bestDeal ? '<p class="best_deal_banner">Best Deal</p>' : ''}
                   ${pack.topSeller ? '<p class="top_seller_banner">Top seller</p>' : ''}
@@ -119,16 +121,16 @@ export const customDropdown = /* HTML */ `
 
 export const newPriceWrapper = /* HTML */ `
   <div class="new_price_wrapper_package">
-    <div class="new_reg_price">$99.96</div>
-    <div class="new_final_price">$42.00</div>
-    <div class="percent_off">${svg.percentIcon}<span class="percent_off_txt">50%</span> OFF</div>
+    <div class="new_reg_price"></div>
+    <div class="new_final_price"></div>
+    <div class="percent_off">${svg.percentIcon}<span class="percent_off_txt"></span> OFF</div>
   </div>
 `
 
 export const proceedToCheckoutBtn = (className = '') => {
   return /* HTML */ `
     <div class="new_proceed_to_checkout_wrapper ${className}">
-      <div class="new_proceed_to_checkout_btn">PROCEED TO CHECKOUT</div>
+      <div class="new_proceed_to_checkout_btn">Subscribe & Save</div>
     </div>
   `
 }
@@ -189,7 +191,7 @@ export const bodySlideInPackage = /* HTML */ `
       <p class="main_title">SELECTED Package</p>
       <div data-btnBack class="change_btn">Change</div>
     </div>
-    ${infoSelectedPackageSlideInPackage('$99.96', '$42.00', `${git}lp-focuspatch-pack4.png`, '$10.50/pack', '4 Packs')}
+    ${infoSelectedPackageSlideInPackage('', '', ``, '', '')}
   </div>
 `
 

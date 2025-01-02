@@ -3,6 +3,9 @@
   background: #fff;
   > .container {
     display: none;
+    .offerBox {
+      // display: block !important;
+    }
   }
   #newBlockPackage {
     .new_title_block_package {
