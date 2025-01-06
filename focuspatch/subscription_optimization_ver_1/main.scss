@@ -121,7 +121,7 @@
           }
           .focuspatch_packs_reg_final_prices {
             display: flex;
-            align-items: flex-end;
+            align-items: center;
             justify-content: flex-start;
             gap: 4px;
             .focuspatch_packs_reg_price {
@@ -185,6 +185,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 10px;
   margin: 12px 0;
   .new_reg_price {
@@ -831,7 +832,7 @@
     margin: auto 0 0;
     .new_subscription {
       padding: 0;
-      margin: 18px 0 0;
+      margin: 18px 0 12px;
       .new_subscription_block {
         .plan_selection {
           gap: 10px;
@@ -840,6 +841,9 @@
           }
         }
       }
+    }
+    .new_price_wrapper_package {
+      margin-top: 0;
     }
     .new_proceed_to_checkout_wrapper,
     .next_step_wrapper {

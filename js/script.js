@@ -595,3 +595,13 @@ let scriptCustom = document.createElement("script");
 scriptCustom.src = "https://conversionratestore.github.io/projects/buzzpatch/zenpatch/pet/top_of_the_lp_var_2.js";
 scriptCustom.async = false;
 document.head.appendChild(scriptCustom);
+
+let scriptCustom = document.createElement("script");
+scriptCustom.src = "https://conversionratestore.github.io/projects/buzzpatch/focuspatch/subscription_optimization_ver_1.js";
+scriptCustom.async = false;
+document.head.appendChild(scriptCustom);
+
+let scriptCustom = document.createElement("script");
+scriptCustom.src = "https://conversionratestore.github.io/projects/buzzpatch/focuspatch/subscription_optimization_ver_2.js";
+scriptCustom.async = false;
+document.head.appendChild(scriptCustom);

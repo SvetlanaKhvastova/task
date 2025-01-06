@@ -24,36 +24,24 @@ const device = window.innerWidth < 768 ? 'mobile' : 'desktop'
 
 class SubscriptionOptimization {
   device: 'mobile' | 'desktop'
-  observer: null | MutationObserver
   isActiveOnePack: boolean
   isActiveTwoPack: boolean
-  regPrice: string
-  salePrice: string
-  percentOff: string
-  imgSrc: string
-  packPrice: string
-  pcs: string
   uniqueId: string
+  isActiveFlag: boolean
 
   constructor(device) {
     this.device = device
-    this.observer = null
     this.isActiveOnePack = false
     this.isActiveTwoPack = false
-    this.regPrice = ''
-    this.salePrice = ''
-    this.percentOff = ''
-    this.imgSrc = ''
-    this.packPrice = ''
-    this.pcs = ''
     this.uniqueId = ''
+    this.isActiveFlag = false
 
     this.init()
   }
 
   init() {
     startLog({ name: 'focuspatch: subscription Optimization', dev: 'SKh' })
-    // clarityInterval('exp_sub_land')
+    clarityInterval('focuspatch_c', 'variant_1')
 
     document.head.insertAdjacentHTML(
       'beforeend',
@@ -71,6 +59,7 @@ class SubscriptionOptimization {
     this.initTooltip()
     this.renderCustomDropdown()
     this.addClickProceedToCheckoutBtns()
+    this.visibilityPacksOnLanging()
 
     this.renderSlideInPackage()
     this.renderNewBlockPackagesInSlideInPackage()
@@ -205,7 +194,7 @@ class SubscriptionOptimization {
   }
 
   changeActivePackHandler() {
-    waitForElement('.focuspatch_packs').then(n => {
+    waitForElement('.crs_slide_in .focuspatch_packs').then(n => {
       const packageItems = $$el('.focuspatch_packs_item') as NodeListOf<HTMLElement>
 
       packageItems.forEach(item => {
@@ -217,7 +206,16 @@ class SubscriptionOptimization {
           const regPrice = item.querySelector('.focuspatch_packs_reg_price')?.textContent || ''
           const salePrice = item.querySelector('.focuspatch_packs_final_price')?.textContent || ''
           const savePercent = item.querySelector('.save_banner_percent')?.textContent || ''
-          console.log(item)
+
+          if (!this.isActiveFlag) {
+            if (item.closest('#newBlockPackage')) {
+              pushData('exp_focuspatch_click_01', packId, 'click', 'Choose your package')
+            }
+            if (item.closest('.crs_slide_in')) {
+              pushData('exp_focuspatch_click_06', packId, 'click', 'SELECT PACKAGE')
+            }
+          }
+
           packageItems.forEach(i => {
             i.classList.remove('active')
           })
@@ -231,14 +229,18 @@ class SubscriptionOptimization {
           if (packId === '1') {
             $$el('[value="oneTime"]').forEach(i => {
               if (!i.closest('.new_subscription_block')?.classList.contains('is_disabled')) {
+                this.isActiveFlag = true
                 i.nextElementSibling.click()
+                this.isActiveFlag = false
               }
             })
             this.isActiveOnePack = true
           } else {
             $$el('[value="subscribeSave"]').forEach(i => {
               if (i.closest('.new_subscription_block')?.classList.contains('is_disabled')) {
+                this.isActiveFlag = true
                 i.nextElementSibling.click()
+                this.isActiveFlag = false
               }
             })
             this.isActiveOnePack = false
@@ -357,8 +359,6 @@ class SubscriptionOptimization {
             this.syncRadioButtons(value)
             this.changeTxtBtnsToBuyPacks(value)
           }
-          console.log(newLabel.getAttribute('for'), `newLabel.getAttribute('for') `)
-          console.log(this.isActiveOnePack, `this.isActiveOnePack `)
 
           switch (value) {
             case `oneTime`:
@@ -370,6 +370,15 @@ class SubscriptionOptimization {
               if (!$el('.focuspatch_packs_item.active[data-id="1"]')) {
                 this.initFalseSubscriptionForAllPlans()
               }
+              if (!this.isActiveFlag) {
+                if (newLabel.closest('#newBlockPackage')) {
+                  pushData('exp_focuspatch_click_03', 'One time', 'click', 'Choose your package')
+                }
+                if (newLabel.closest('.crs_slide_in')) {
+                  pushData('exp_focuspatch_click_09', 'One time', 'click', 'SELECT PLAN')
+                }
+              }
+
               break
 
             case `subscribeSave`:
@@ -379,10 +388,20 @@ class SubscriptionOptimization {
                 }
               })
               if (this.isActiveOnePack && $el('.focuspatch_packs_item.active[data-id="1"]')) {
+                this.isActiveFlag = true
                 $el('[data-id="2"]')?.click()
                 this.isActiveOnePack = false
+                this.isActiveFlag = false
               }
               this.initActiveSubscriptionForAllPlans()
+              if (!this.isActiveFlag) {
+                if (newLabel.closest('#newBlockPackage')) {
+                  pushData('exp_focuspatch_click_02', 'Subscribe and save', 'click', 'Choose your package')
+                }
+                if (newLabel.closest('.crs_slide_in')) {
+                  pushData('exp_focuspatch_click_08', 'Subscribe and save', 'click', 'SELECT PLAN')
+                }
+              }
               break
           }
           if (!$el('.focuspatch_packs_item.active[data-id="1"]')) {
@@ -442,14 +461,14 @@ class SubscriptionOptimization {
               onShow(instance: any) {
                 if (el.closest('.plan_comment')) {
                   pushData(
-                    'exp_sub_land_tooltip_01',
+                    'exp_focuspatch_tooltip_01',
                     'A choice that saves both time and money',
                     'View',
                     'Subscribe section'
                   )
                 }
                 if (el.closest('.is_active_one_pack')) {
-                  pushData('exp_sub_land_tooltip_02', 'Select 2, 3 or 4 packs..', 'View', 'Subscribe section')
+                  pushData('exp_focuspatch_tooltip_02', 'Select 2, 3 or 4 packs..', 'View', 'Subscribe section')
                 }
               }
             })
@@ -515,7 +534,6 @@ class SubscriptionOptimization {
   }
 
   changeCustomDropdownHandler(dropdownSelector: string, subscriptionDropdownElem: string) {
-    console.log(`changeCustomDropdownHandler`)
     const dropdowns = $$el(dropdownSelector) as NodeListOf<HTMLElement>
 
     dropdowns.forEach(dropdown => {
@@ -527,6 +545,12 @@ class SubscriptionOptimization {
       ) as NodeListOf<HTMLElement>
 
       dropdownToggle.addEventListener('click', () => {
+        if (dropdownToggle.closest('#newBlockPackage')) {
+          pushData('exp_focuspatch_click_04', 'Ship every xxx week', 'click', 'Choose your package')
+        } else {
+          pushData('exp_focuspatch_click_10', 'Ship every xxx week', 'click', 'SELECT PLAN')
+        }
+
         dropdownMenu.classList.toggle('show')
         this.adjustDropdownPosition(dropdownMenu)
         dropdownToggle.classList.toggle('active')
@@ -547,6 +571,22 @@ class SubscriptionOptimization {
           dropdownToggle.innerHTML = target.innerHTML
           dropdownMenu.classList.remove('show')
           dropdownToggle.classList.remove('active')
+
+          if (dropdownToggle.closest('#newBlockPackage')) {
+            pushData(
+              'exp_focuspatch_dropdown_01',
+              `Selected value: ${target.querySelector('.text_transform')?.textContent}`,
+              'Dropdown',
+              'Choose your package'
+            )
+          } else {
+            pushData(
+              'exp_focuspatch_dropdown_02',
+              `Selected value: ${target.querySelector('.text_transform')?.textContent}`,
+              'Dropdown',
+              'SELECT PLAN'
+            )
+          }
 
           subscriptionDropdownOptions.forEach(opt => {
             if (opt.getAttribute('value') === value) {
@@ -627,7 +667,11 @@ class SubscriptionOptimization {
 
           btnsControl.forEach(i => {
             if (i.closest('.card-body')?.getAttribute('data-pack') === activePack.getAttribute('data-id')) {
-              console.log(`proceedToCheckoutBtns`, activePack.getAttribute('data-id'))
+              if (btn.closest('#newBlockPackage')) {
+                pushData('exp_focuspatch_click_05', btn.textContent || '', 'click', 'Choose your package')
+              } else {
+                pushData('exp_focuspatch_click_13', btn.textContent || '', 'click', 'SELECT PLAN')
+              }
               i.click()
             }
           })
@@ -679,6 +723,7 @@ class SubscriptionOptimization {
         btn.addEventListener('click', e => {
           e.preventDefault()
           this.openSlideInPackageHandler()
+          this.observeElementSlideInPackageVisibility()
         })
       })
     })
@@ -690,7 +735,16 @@ class SubscriptionOptimization {
       btnsCloseSlideInCart.forEach(btn => {
         btn.addEventListener('click', e => {
           if ((e.target as Element).matches('.crs_slide_in') || (e.currentTarget as Element).matches('.close')) {
-            console.log(`close`)
+            if ((e.currentTarget as Element).matches('.close')) {
+              if ((e.currentTarget as Element).classList.contains('select_plan')) {
+                pushData('exp_focuspatch_click_11', 'Close', 'click', 'SELECT PLAN')
+              } else {
+                pushData('exp_focuspatch_click_11', 'Close', 'click', 'SELECT PACKAGE')
+              }
+            }
+            if ((e.target as Element).matches('.crs_slide_in')) {
+              pushData('exp_focuspatch_click_14', 'Overlay', 'click', 'Slide in')
+            }
             this.closeSlideInPackageHandler()
           }
         })
@@ -723,10 +777,11 @@ class SubscriptionOptimization {
       const newSubscription = $el('.crs_slide_in .new_subscription') as HTMLElement
       const proceedToCheckoutBtn = $el('.crs_slide_in .new_proceed_to_checkout_wrapper') as HTMLElement
       const infoSelectedPackageSlideInPackage = $el('.crs_slide_in .info_selected_package') as HTMLElement
+      const closeBtnPackageSlideInPackage = $el('.crs_slide_in .close') as HTMLElement
 
       nextStepBtn.addEventListener('click', e => {
         e.currentTarget.closest('.next_step_wrapper').classList.add('is_hidden')
-        console.log(`nextStepBtn`)
+        pushData('exp_focuspatch_click_07', 'Next step', 'click', 'SELECT PACKAGE')
 
         if (
           packsSlideInPackage &&
@@ -736,7 +791,8 @@ class SubscriptionOptimization {
           mainTitleWrapper &&
           newSubscription &&
           proceedToCheckoutBtn &&
-          infoSelectedPackageSlideInPackage
+          infoSelectedPackageSlideInPackage &&
+          closeBtnPackageSlideInPackage
         ) {
           packsSlideInPackage.classList.add('is_hidden')
           arrowBack.classList.remove('is_hidden')
@@ -746,6 +802,8 @@ class SubscriptionOptimization {
           newSubscription.classList.remove('is_hidden')
           proceedToCheckoutBtn.classList.remove('is_hidden')
           infoSelectedPackageSlideInPackage.classList.remove('is_hidden')
+          closeBtnPackageSlideInPackage.classList.add('select_plan')
+          this.observeElementSlideInPackageVisibility()
         }
       })
     })
@@ -763,13 +821,14 @@ class SubscriptionOptimization {
       const newSubscription = $el('.crs_slide_in .new_subscription') as HTMLElement
       const proceedToCheckoutBtn = $el('.crs_slide_in .new_proceed_to_checkout_wrapper') as HTMLElement
       const infoSelectedPackageSlideInPackage = $el('.crs_slide_in .info_selected_package') as HTMLElement
+      const closeBtnPackageSlideInPackage = $el('.crs_slide_in .close') as HTMLElement
 
       btnsBack.forEach(btn => {
         btn.addEventListener('click', e => {
           if (e.currentTarget && (e.currentTarget as HTMLElement).classList.contains('change_btn')) {
-            console.log(`change_btn`)
+            pushData('exp_focuspatch_click_12', 'Change', 'click', 'SELECT PLAN')
           } else {
-            console.log(`btnsBack`)
+            pushData('exp_focuspatch_click_15', 'Btn Back', 'click', 'SELECT PLAN')
           }
           if (
             packsSlideInPackage &&
@@ -779,7 +838,8 @@ class SubscriptionOptimization {
             mainTitleWrapper &&
             nextStepWrapper &&
             proceedToCheckoutBtn &&
-            infoSelectedPackageSlideInPackage
+            infoSelectedPackageSlideInPackage &&
+            closeBtnPackageSlideInPackage
           ) {
             packsSlideInPackage.classList.remove('is_hidden')
             arrowBack.classList.add('is_hidden')
@@ -790,10 +850,54 @@ class SubscriptionOptimization {
             newSubscription.classList.add('is_hidden')
             proceedToCheckoutBtn.classList.add('is_hidden')
             infoSelectedPackageSlideInPackage.classList.add('is_hidden')
+            closeBtnPackageSlideInPackage.classList.remove('select_plan')
+            this.observeElementSlideInPackageVisibility()
           }
         })
       })
     })
+  }
+
+  visibilityPacksOnLanging() {
+    waitForElement('#newBlockPackage').then(i => {
+      visibilityOfTime(
+        '#newBlockPackage',
+        'exp_focuspatch_element_01',
+        'Choose your package',
+        'Choose your package',
+        'View'
+      )
+    })
+  }
+
+  observeElementSlideInPackageVisibility() {
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    }
+
+    const observer = new IntersectionObserver(handleIntersect, options)
+
+    waitForElement('.crs_slide_in.active').then(i => {
+      const target1 = $el('.crs_slide_in.active') as HTMLElement
+      observer.observe(target1)
+    })
+
+    function handleIntersect(entries: IntersectionObserverEntry[]) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (entry.target.classList.contains('active')) {
+            const activeTitle = entry.target.querySelector('.active_title')
+            if (activeTitle && activeTitle.textContent === 'package') {
+              pushData('exp_focuspatch_element_02', 'SELECT PACKAGE', 'view', 'SELECT PACKAGE')
+            } else if (activeTitle && activeTitle.textContent === 'plan') {
+              pushData('exp_focuspatch_element_03', 'SELECT PLAN', 'view', 'SELECT PLAN')
+            }
+          }
+        }
+      })
+    }
   }
 }
 
