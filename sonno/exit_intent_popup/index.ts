@@ -168,32 +168,66 @@ class ExitIntentPopup {
   async getItemsBasket(trigger: string) {
     if (this.isPopupOpen()) return
 
-    const now = Date.now()
-    this.lastPopupTime = Number(sessionStorage.getItem('lastPopupTime')) || 0
+    // const now = Date.now()
+    // this.lastPopupTime = Number(sessionStorage.getItem('lastPopupTime')) || 0
 
-    if (now - this.lastPopupTime < this.timeLag) return
-    sessionStorage.setItem('lastPopupTime', now.toString())
+    // if (now - this.lastPopupTime < this.timeLag) return
+    // sessionStorage.setItem('lastPopupTime', now.toString())
 
-    const isProductsInBasket = '1'
+    const isProductsInBasket = await this.getCartCheckout()
     const isReturningUser = Number(localStorage.getItem('session')) > 1
 
     const showPopup = (popup: any, popupType: string) => {
       this.handleShowPopup(popup, popupType, trigger, popupType)
     }
 
-    if (isProductsInBasket.length > 0) {
-      if (isReturningUser) {
-        showPopup(returningUsersWithProducts, 'returningUsersWithProducts')
-      } else {
-        showPopup(newUsersWithProducts, 'newUsersWithProducts')
-      }
-    } else {
-      if (isReturningUser) {
-        showPopup(returningUsersWOProducts, 'returningUsersWOProducts')
-      } else {
-        showPopup(newUsersWOProducts(), 'newUsersWOProducts')
-      }
+    const insertProductItems = (products: any[], isNewUser: boolean) => {
+      products.forEach(item => {
+        const { url, image, product_title, variant_title, presentment_price, quantity } = item
+        const productLink = url
+        const productImg = image
+        const productTitle = product_title
+        const productDescr = variant_title
+        const productFinalPrice = +presentment_price * +quantity
+        const productDiscountedPrice = +presentment_price * +quantity
+        const productOldPrice = productFinalPrice + productDiscountedPrice
+
+        waitForElement('.products_list').then(() => {
+          $el('.products_list').insertAdjacentHTML(
+            'beforeend',
+            createProductItem(
+              productLink,
+              productImg,
+              productTitle,
+              productDescr,
+              productOldPrice,
+              productFinalPrice,
+              productDiscountedPrice,
+              isNewUser
+            )
+          )
+        })
+      })
     }
+
+    // if (isProductsInBasket.length > 0) {
+    //   if (isReturningUser) {
+    //     showPopup(returningUsersWithProducts, 'returningUsersWithProducts')
+    // insertProductItems(isProductsInBasket, false)
+    //   } else {
+    //     showPopup(newUsersWithProducts, 'newUsersWithProducts')
+    // insertProductItems(isProductsInBasket, true)
+    //   }
+    // } else {
+    //   if (isReturningUser) {
+    //     showPopup(returningUsersWOProducts, 'returningUsersWOProducts')
+    //   } else {
+    //     showPopup(newUsersWOProducts(), 'newUsersWOProducts')
+    //   }
+    // }
+
+    showPopup(newUsersWithProducts, 'newUsersWithProducts')
+    insertProductItems(isProductsInBasket, true)
   }
 
   isPopupOpen() {
@@ -202,8 +236,8 @@ class ExitIntentPopup {
 
   handleShowPopup(content: string, name: string, trigger: string, visibilityName: string) {
     console.log(`handleShowPopup`, trigger, name)
-    const isShowed = sessionStorage.getItem(name)
-    if (isShowed && name !== 'firstOrderDiscountClick') return
+    // const isShowed = sessionStorage.getItem(name)
+    // if (isShowed && name !== 'firstOrderDiscountClick') return
 
     const body = $el('body'),
       backdrop = $el('.new_popup_backdrop'),
@@ -465,7 +499,8 @@ class ExitIntentPopup {
         btn.addEventListener('click', (event: any) => {
           let discount = event.currentTarget.dataset.discount
           navigator.clipboard.writeText(discount)
-          event.currentTarget.textContent = 'Copied!'
+          event.currentTarget.innerHTML = `Copied! ${svg.copyCheeckIcon}`
+          event.currentTarget.closest('.discount_code_container').classList.add('copied')
 
           if (btn.closest('.first_order_discount')) {
             pushData('exp_exit_intent_popup_button_05', 'Code  Welcome5', 'Button', 'Sie stehen auf der Liste')
@@ -488,7 +523,10 @@ class ExitIntentPopup {
           }
 
           setTimeout(() => {
-            btn.innerHTML = `${svg.copyIcon}`
+            btn.innerHTML = `Copy ${svg.copyIcon}`
+            if (btn.closest('.discount_code_container').classList.contains('copied')) {
+              btn.closest('.discount_code_container').classList.remove('copied')
+            }
           }, 600)
         })
       })
@@ -675,19 +713,17 @@ class ExitIntentPopup {
       })
   }
   async getCartCheckout() {
-    await fetch('/cart.js', {
-      method: 'GET'
-    })
-      .then(response => {
-        return response.json()
+    try {
+      const response = await fetch('/cart.js', {
+        method: 'GET'
       })
-      .then(data => {
-        console.log(data)
-        // data.items.forEach(el => {})
-      })
-      .catch(error => {
-        console.error('Error:', error)
-      })
+      const data = await response.json()
+      const products = data.items
+      return products
+    } catch (error) {
+      console.error('Error:', error)
+      return []
+    }
   }
   async getCoupon(couponCode: string, isActive: boolean = true) {
     const currentPath = window.location.pathname
