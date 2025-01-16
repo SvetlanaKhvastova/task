@@ -20,20 +20,20 @@ export const firstOrderDiscount = /* HTML */ `
           </label>
         </div>
         <div class="btn_wrapper">
-          <div class="get_discount_btn main_btn">Get 10% off</div>
+          <div class="first_order_get_discount_btn main_btn">Get 10% off</div>
         </div>
       </div>
     </div>
     <div class="img_wrapper">
-      <img src="${git}check_out_now_img.png" alt="photo" class="desk_var" />
-      <img src="${git}first_order_discount_img_mob.png" alt="photo" class="mob_var" />
+      <img src="${git}popup_img_1.webp" alt="photo" class="desk_var" />
+      <img src="${git}popup_img_1_mob.webp" alt="photo" class="mob_var" />
     </div>
   </div>
   <div class="first_order_discount second_var is_hidden">
     <div class="info_wrapper">
       <div class="header_popup">
         <h2 class="main_title">You are on the list!</h2>
-        <p>
+        <p class="main_description">
           Your <b>10% first order discount is ready</b> <br />
           (no minimum spend, no exclusions)
         </p>
@@ -47,7 +47,7 @@ export const firstOrderDiscount = /* HTML */ `
           </div>
         </div>
         <div class="btn_wrapper">
-          <div class="continue_shopping_btn main_btn" data-popup="close">Continue Shopping</div>
+          <div class="first_order_continue_shopping_btn main_btn" data-popup="close">Continue Shopping</div>
         </div>
       </div>
     </div>
@@ -89,12 +89,13 @@ export const newUsersWOProducts = (
                     <span class="old_price_txt">${oldPrice}</span>
                     <span class="price_txt">${price}</span>
                     <span class="save_txt">Save ${saveTxt}</span>
+                    <img class="img_label" src="${git}popup_img_9.webp" alt="photo" />
                   </div>
                 </div>
               </div>
               <div class="btn_wrapper">
                 <p>Discount will be applied on Checkout</p>
-                <a href="${link}" class="shop_now_btn main_btn"> Shop Now</a>
+                <div class="active_product_shop_now_btn main_btn">Shop Now</div>
               </div>
             </div>
           </div>
@@ -102,7 +103,10 @@ export const newUsersWOProducts = (
       : /* HTML */ `
           <div class="new_users_w_o_products exit_intent_popup">
             <div class="header_popup">
-              <h2 class="main_title">Get an <span class="accent_color_orange">extra 10% off</span> all Divan Beds</h2>
+              <h2 class="main_title">
+                Get an <span class="accent_color_orange">extra 10% off</span> <br />
+                all Divan Beds
+              </h2>
             </div>
             <div class="body_popup">
               <div class="img_wrapper">
@@ -110,7 +114,7 @@ export const newUsersWOProducts = (
               </div>
               <div class="btn_wrapper">
                 <p>Discount will be applied on Checkout</p>
-                <div class="shop_now_btn main_btn">Shop Now</div>
+                <div class="divan_beds_shop_now_btn main_btn">Shop Now</div>
               </div>
             </div>
           </div>
@@ -153,7 +157,7 @@ export const newUsersWithProducts = /* HTML */ `
           </div>
         </div>
         <div class="btn_wrapper">
-          <div class="checkout_btn main_btn">Checkout</div>
+          <div class="new_users_with_products_checkout_btn main_btn">Checkout</div>
         </div>
       </div>
     </div>
@@ -179,7 +183,7 @@ export const returningUsersWOProducts = /* HTML */ `
                 <img src="${git}${window.innerWidth >= 768 ? category.img : category.imgMob}" alt="photo" />
                 <div class="info_wrapper">
                   <h3>${category.title}</h3>
-                  <a href="${category.link}" class="shop_now_btn main_btn"
+                  <a href="${category.link}" class="returning_users_w_o_products_shop_now_btn main_btn"
                     >${category.buttonText} ${svg.arrowWhiteBtnIcon}</a
                   >
                 </div>
@@ -204,7 +208,7 @@ export const returningUsersWithProducts = /* HTML */ `
           <ul class="products_list"></ul>
         </div>
         <div class="btn_wrapper">
-          <div class="checkout_btn main_btn">Checkout</div>
+          <div class="returning_users_with_products_checkout_btn main_btn">Checkout</div>
         </div>
       </div>
     </div>
