@@ -96,11 +96,9 @@ class ExitIntentPopup {
   }
   intentPopupTriggers() {
     // for all users on first session after 10 seconds from the session start.
-    // if (!localStorage.getItem('initUser')) {
-    //   this.getNewUser('_ga')
-    // }
-    this.handleShowPopup(firstOrderDiscount, 'firstOrderDiscount', 'firstOrderDiscount', 'firstOrderDiscount')
-    $el('.new_popup_backdrop').setAttribute('popup', `firstOrderDiscount`)
+    if (!localStorage.getItem('initUser')) {
+      this.getNewUser('_ga')
+    }
 
     if (this.device === 'mobile') {
       // Scroll up (JS speed value: 150) - for any page
@@ -171,11 +169,11 @@ class ExitIntentPopup {
   async getItemsBasket(trigger: string) {
     if (this.isPopupOpen()) return
 
-    // const now = Date.now()
-    // this.lastPopupTime = Number(sessionStorage.getItem('lastPopupTime')) || 0
+    const now = Date.now()
+    this.lastPopupTime = Number(sessionStorage.getItem('lastPopupTime')) || 0
 
-    // if (now - this.lastPopupTime < this.timeLag) return
-    // sessionStorage.setItem('lastPopupTime', now.toString())
+    if (now - this.lastPopupTime < this.timeLag) return
+    sessionStorage.setItem('lastPopupTime', now.toString())
 
     const isProductsInBasket = await this.getCartCheckout()
     const isReturningUser = Number(localStorage.getItem('session')) > 1
@@ -213,41 +211,51 @@ class ExitIntentPopup {
       })
     }
 
-    // if (isProductsInBasket.length > 0) {
-    //   if (isReturningUser) {
-    // showPopup(returningUsersWithProducts, 'returningUsersWithProducts')
-    // insertProductItems(isProductsInBasket, false)
-    // $el('.new_popup_backdrop').setAttribute('popup', `returningUsersWithProducts`)
-    //   } else {
-    // showPopup(newUsersWithProducts, 'newUsersWithProducts')
-    // insertProductItems(isProductsInBasket, true)
-    // $el('.new_popup_backdrop').setAttribute('popup', `newUsersWithProducts`)
-    //   }
-    // } else {
-    //   if (isReturningUser) {
-    // showPopup(returningUsersWOProducts, 'returningUsersWOProducts')
-    // $el('.new_popup_backdrop').setAttribute('popup', `returningUsersWOProducts`)
-    //   } else {
-    //     if (window.location.pathname.match('/products/')) {
-    // waitForElement('[x-data="product"]').then(() => {
-    //   let imgProduct = $el('[x-data="product"] .splide__slide.is-active img').getAttribute('src') ?? ''
-    //   let titleProduct = $el('[x-data="product"] h1.leading-normal').textContent ?? ''
-    //   let oldPriceProduct = $el('[x-data="product"] section.price-pro .text-primary.line-through').textContent ?? ''
-    //   let priceProduct = $el('[x-data="product"] section.price-pro .text-primary:not(.line-through)').textContent ?? ''
-    //   let saveTxtProduct = $el('[x-data="product"] .bg-danger').textContent.split('SAVE ')[1] ?? ''
-    //   let linkProduct = window.location.pathname ?? ''
+    if (isProductsInBasket.length > 0) {
+      if (isReturningUser) {
+        showPopup(returningUsersWithProducts, 'returningUsersWithProducts')
+        insertProductItems(isProductsInBasket, false)
+        $el('.new_popup_backdrop').setAttribute('popup', `returningUsersWithProducts`)
+      } else {
+        showPopup(newUsersWithProducts, 'newUsersWithProducts')
+        insertProductItems(isProductsInBasket, true)
+        $el('.new_popup_backdrop').setAttribute('popup', `newUsersWithProducts`)
+      }
+    } else {
+      if (isReturningUser) {
+        showPopup(returningUsersWOProducts, 'returningUsersWOProducts')
+        $el('.new_popup_backdrop').setAttribute('popup', `returningUsersWOProducts`)
+      } else {
+        if (window.location.pathname.match('/products/')) {
+          waitForElement('[x-data="product"]').then(() => {
+            let imgProduct = $el('[x-data="product"] .splide__slide.is-active img').getAttribute('src') ?? ''
+            let titleProduct = $el('[x-data="product"] h1.leading-normal').textContent ?? ''
+            let oldPriceProduct =
+              $el('[x-data="product"] section.price-pro .text-primary.line-through').textContent ?? ''
+            let priceProduct =
+              $el('[x-data="product"] section.price-pro .text-primary:not(.line-through)').textContent ?? ''
+            let saveTxtProduct = $el('[x-data="product"] .bg-danger').textContent.split('SAVE ')[1] ?? ''
+            let linkProduct = window.location.pathname ?? ''
 
-    //   showPopup(
-    //     newUsersWOProducts(true, imgProduct, titleProduct, oldPriceProduct, priceProduct, saveTxtProduct, linkProduct),
-    //     'newUsersWOProducts'
-    //   )
-    // })
-    //     } else {
-    // showPopup(newUsersWOProducts(), 'newUsersWOProducts')
-    //     }
-    // $el('.new_popup_backdrop').setAttribute('popup', `newUsersWOProducts`)
-    //   }
-    // }
+            showPopup(
+              newUsersWOProducts(
+                true,
+                imgProduct,
+                titleProduct,
+                oldPriceProduct,
+                priceProduct,
+                saveTxtProduct,
+                linkProduct
+              ),
+              'newUsersWOProducts'
+            )
+          })
+        } else {
+          showPopup(newUsersWOProducts(), 'newUsersWOProducts')
+        }
+        $el('.new_popup_backdrop').setAttribute('popup', `newUsersWOProducts`)
+      }
+    }
   }
 
   isPopupOpen() {
@@ -256,8 +264,8 @@ class ExitIntentPopup {
 
   handleShowPopup(content: string, name: string, trigger: string, visibilityName: string) {
     console.log(`handleShowPopup`, trigger, name)
-    // const isShowed = sessionStorage.getItem(name)
-    // if (isShowed && name !== 'firstOrderDiscountClick') return
+    const isShowed = sessionStorage.getItem(name)
+    if (isShowed && name !== 'firstOrderDiscount') return
 
     const body = $el('body'),
       backdrop = $el('.new_popup_backdrop'),
@@ -273,11 +281,13 @@ class ExitIntentPopup {
     switch (visibilityName) {
       case 'firstOrderDiscount':
         break
+      case 'returningUsersWithProducts':
+        break
+      case 'newUsersWithProducts':
+        break
       case 'returningUsersWOProducts':
         break
       case 'newUsersWOProducts':
-        break
-      case 'newUsersWithProducts':
         break
       default:
         break
@@ -293,41 +303,27 @@ class ExitIntentPopup {
       backdrop = $el('.new_popup_backdrop'),
       popup = $el('.new_popup'),
       closePopupBtns = popup.querySelectorAll('[data-popup="close"]')
+
     closePopupBtns.forEach((btn: HTMLElement) => {
       btn.addEventListener('click', (e: any) => {
-        if (!e.currentTarget.getAttribute('data-test')) {
-          backdrop.classList.add('is_hidden')
-          body.style.overflow = 'initial'
+        backdrop.classList.add('is_hidden')
+        body.style.overflow = 'initial'
 
-          setTimeout(() => {
-            $el('.new_popup_content').innerHTML = ''
-          }, 500)
-        }
-        e.currentTarget.setAttribute('data-test', '1')
         setTimeout(() => {
-          if (btn.getAttribute('data-test')) {
-            btn.removeAttribute('data-test')
-          }
-        }, 1000)
+          $el('.new_popup_content').innerHTML = ''
+        }, 500)
       })
     })
     backdrop.addEventListener('click', (e: any) => {
-      if (!e.target.getAttribute('data-test')) {
-        if (e.target.matches('.new_popup_backdrop')) {
-          backdrop.classList.add('is_hidden')
-          body.style.overflow = 'initial'
+      if (e.target.matches('.new_popup_backdrop')) {
+        console.log(`backdrop`)
+        backdrop.classList.add('is_hidden')
+        body.style.overflow = 'initial'
 
-          setTimeout(() => {
-            $el('.new_popup_content').innerHTML = ''
-          }, 500)
-        }
+        setTimeout(() => {
+          $el('.new_popup_content').innerHTML = ''
+        }, 500)
       }
-      e.target.setAttribute('data-test', '1')
-      setTimeout(() => {
-        if (e.target.getAttribute('data-test')) {
-          e.target.removeAttribute('data-test')
-        }
-      }, 1000)
     })
   }
 
@@ -385,15 +381,15 @@ class ExitIntentPopup {
       }
       if (target.matches('.divan_beds_shop_now_btn')) {
         console.log(`divan_beds_shop_now_btn`)
-        this.getCoupon('CROTEST', '/collections/divan-beds')
+        this.getCoupon('NY20', '/collections/divan-beds')
       }
       if (target.matches('.active_product_shop_now_btn')) {
         console.log(`active_product_shop_now_btn`)
-        this.getCoupon('CROTEST')
+        this.getCoupon('NY20')
       }
       if (target.matches('.new_users_with_products_checkout_btn')) {
         console.log(`new_users_with_products_checkout_btn`)
-        this.getCoupon('CROTEST', '/checkout')
+        this.getCoupon('NY20', '/checkout')
       }
       if (target.matches('.returning_users_w_o_products_shop_now_btn')) {
         console.log(`returning_users_w_o_products_shop_now_btn`, target.previousElementSibling.textContent)
@@ -439,16 +435,47 @@ class ExitIntentPopup {
     }
 
     if (isValidEmail !== null && nextStep) {
-      this.handleEmailSubmission(emailInputValue)
+      const privateKey = 'pk_bbcf811227dc01d7b640c5cb8a0ce1c1e0'
+      const listId = 'TNnBFE'
+      this.subscribeToKlaviyo(emailInputValue, privateKey, listId)
     }
   }
-  handleEmailSubmission(email: string) {
-    console.log(`handleEmailSubmission`)
-    if ($el('.first_order_discount.first_var')) {
-      $el('.first_order_discount.first_var').classList.add('is_hidden')
+
+  async subscribeToKlaviyo(email: string, privateKey: string, listId: string) {
+    const url = `https://a.klaviyo.com/api/v2/list/${listId}/subscribe`
+
+    const data = {
+      api_key: privateKey,
+      profiles: [
+        {
+          email: email
+        }
+      ]
     }
-    if ($el('.first_order_discount.second_var').classList.contains('is_hidden')) {
-      $el('.first_order_discount.second_var').classList.remove('is_hidden')
+
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`)
+      }
+
+      const result = await response.json()
+      console.log('Successfully subscribed:', result)
+      if ($el('.first_order_discount.first_var')) {
+        $el('.first_order_discount.first_var').classList.add('is_hidden')
+      }
+      if ($el('.first_order_discount.second_var').classList.contains('is_hidden')) {
+        $el('.first_order_discount.second_var').classList.remove('is_hidden')
+      }
+    } catch (error) {
+      console.error('Error subscribing to Klaviyo:', error)
     }
   }
 

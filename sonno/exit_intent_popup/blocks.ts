@@ -42,8 +42,8 @@ export const firstOrderDiscount = /* HTML */ `
         <div class="discount_code_wrapper">
           <p class="discount_code_title">Copy and Enter code at checkout</p>
           <div class="discount_code_container">
-            <span class="discount_code_txt">sonno10</span>
-            <span data-discount="sonno10">Copy ${svg.copyIcon}</span>
+            <span class="discount_code_txt">NY20</span>
+            <span data-discount="NY20">Copy ${svg.copyIcon}</span>
           </div>
         </div>
         <div class="btn_wrapper">
@@ -152,8 +152,8 @@ export const newUsersWithProducts = /* HTML */ `
         <div class="discount_code_wrapper">
           <p class="discount_code_title">Copy and Enter code at checkout</p>
           <div class="discount_code_container">
-            <span class="discount_code_txt">sonno10</span>
-            <span data-discount="sonno10">Copy ${svg.copyIcon}</span>
+            <span class="discount_code_txt">NY20</span>
+            <span data-discount="NY20">Copy ${svg.copyIcon}</span>
           </div>
         </div>
         <div class="btn_wrapper">

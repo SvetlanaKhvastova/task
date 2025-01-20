@@ -275,6 +275,10 @@
               font-weight: 500;
               line-height: 20px;
               margin: 0 0 12px;
+              a {
+                text-decoration: none;
+                color: inherit;
+              }
               @media (max-width: 768px) {
                 font-size: 14px;
               }
@@ -511,6 +515,7 @@
   .img_wrapper {
     max-width: 445px;
     img {
+      width: 100%;
       border-radius: 0 12px 12px 0;
       @media (max-width: 768px) {
         border-radius: 12px 12px 0 0;
@@ -807,6 +812,7 @@
     max-width: 360px;
     border-radius: 0 12px 12px 0;
     img {
+      width: 100%;
       border-radius: 0 12px 12px 0;
       height: 100%;
     }
@@ -928,6 +934,7 @@
     border-radius: 0 12px 12px 0;
     img {
       border-radius: 0 12px 12px 0;
+      width: 100%;
     }
   }
 }
